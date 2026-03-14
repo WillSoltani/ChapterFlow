@@ -1,0 +1,2614 @@
+{
+  "schemaVersion": "1.0.0",
+  "packageId": "ccb3fe82-5aa0-4ef5-b99f-ec062b7ded0d",
+  "createdAt": "2026-03-13T00:00:00Z",
+  "contentOwner": "Will Soltani",
+  "book": {
+    "bookId": "good-to-great",
+    "title": "Good to Great",
+    "author": "Jim Collins",
+    "categories": [
+      "Leadership",
+      "Management",
+      "Strategy"
+    ],
+    "tags": [
+      "leadership",
+      "discipline",
+      "strategy",
+      "teams",
+      "culture",
+      "momentum"
+    ],
+    "edition": {
+      "name": "First Edition",
+      "publishedYear": 2001
+    },
+    "variantFamily": "EMH"
+  },
+  "chapters": [
+    {
+      "chapterId": "ch01-good-blocks-great",
+      "number": 1,
+      "title": "When Good Prevents Greatness",
+      "readingTimeMinutes": 14,
+      "contentVariants": {
+        "easy": {
+          "summaryBullets": [
+            "This chapter argues that acceptable performance often prevents the harder pursuit of genuine excellence.",
+            "Collins presents greatness as the result of disciplined choices rather than luck or charisma alone.",
+            "A key idea is that complacency matters because weak foundations undermine later progress.",
+            "The chapter explains how research discipline shapes outcomes over time.",
+            "It warns against confusing visible activity with real progress.",
+            "Readers are encouraged to think in systems, people quality, and repeated behavior instead of slogans.",
+            "The lesson applies to work, school, and personal growth because strong results usually compound from disciplined basics.",
+            "Its core message is that greatness is built through clear principles sustained over time."
+          ],
+          "keyTakeaways": [
+            "Complacency",
+            "Research Discipline",
+            "Greatness",
+            "Comparison Set",
+            "Ambition",
+            "Performance Ceiling"
+          ],
+          "practice": [
+            "question comfortable success",
+            "compare against stronger standards",
+            "define what great would require",
+            "look for where good is creating drift"
+          ]
+        },
+        "medium": {
+          "summaryBullets": [
+            "This chapter argues that acceptable performance often prevents the harder pursuit of genuine excellence.",
+            "Collins treats greatness as a research based pattern rather than a motivational fantasy.",
+            "A central point is that complacency creates leverage only when paired with the right people and disciplined execution.",
+            "The chapter shows how research discipline can either strengthen an organization or quietly weaken it depending on how it is handled.",
+            "It challenges the tendency to search for dramatic answers when the deeper causes of success are often structural and cumulative.",
+            "This means leaders need to examine what actually compounds rather than what merely looks impressive in the short term.",
+            "The chapter also suggests that discipline is strongest when it lives inside people and systems instead of being imposed through constant control.",
+            "That idea matters because organizations often build bureaucracy when what they really need is clarity and consistency.",
+            "For students and early career readers, the chapter is useful anywhere teams, habits, or ambitions need durable structure.",
+            "The practical challenge is to simplify to what matters most and then stay with it long enough to see momentum develop.",
+            "This requires resisting distraction, trend chasing, and the comfort of acceptable but limited performance.",
+            "The deeper lesson is that greatness is usually the product of disciplined alignment more than dramatic genius."
+          ],
+          "keyTakeaways": [
+            "Complacency",
+            "Research Discipline",
+            "Greatness",
+            "Comparison Set",
+            "Ambition",
+            "Performance Ceiling"
+          ],
+          "practice": [
+            "question comfortable success",
+            "compare against stronger standards",
+            "define what great would require",
+            "look for where good is creating drift"
+          ]
+        },
+        "hard": {
+          "summaryBullets": [
+            "This chapter argues that acceptable performance often prevents the harder pursuit of genuine excellence, and it frames the lesson as a principle of organizational and personal design.",
+            "Collins builds his case through comparative research, which matters because it shifts the conversation from storytelling to patterned differences.",
+            "The chapter suggests that complacency is valuable precisely because it narrows attention to what has lasting explanatory power.",
+            "It also shows that research discipline is not merely a style preference but a causal element in whether disciplined action can accumulate over time.",
+            "A major theme is that greatness is rarely the result of one breakthrough event. It is usually the delayed visible effect of many earlier disciplined choices.",
+            "This makes the chapter especially useful for people who are impatient, because it reframes slow progress as the normal appearance of compounding rather than as proof of failure.",
+            "The chapter also warns against the symbolic substitutes for greatness, such as image, noise, fashionable tools, or constant reinvention.",
+            "Those substitutes feel active, but they often weaken the very consistency required for momentum to build.",
+            "Collins therefore points readers back to fundamentals such as people quality, honest reality testing, strategic simplicity, and disciplined follow through.",
+            "Another implication is that great leaders often create systems that reduce dependence on personality by building clarity into the organization itself.",
+            "This matters for students and early career readers because the same principle applies when building habits, teams, reputations, or long term projects.",
+            "A recurring insight is that the enemy of excellence is often not disaster but tolerable mediocrity, because it removes the urgency to reexamine assumptions.",
+            "The chapter also has an ethical edge, since it values truth, humility, and stewardship over ego, theater, or personal glory.",
+            "That means great outcomes depend not only on ambition but on the willingness to submit ambition to disciplined reality.",
+            "The practical implication is to identify the few variables that really matter and then design your behavior, team, and systems around them.",
+            "The deepest lesson is that greatness is an emergent property of disciplined people, disciplined thought, and disciplined action held together long enough to compound."
+          ],
+          "keyTakeaways": [
+            "Complacency",
+            "Research Discipline",
+            "Greatness",
+            "Comparison Set",
+            "Ambition",
+            "Performance Ceiling"
+          ],
+          "practice": [
+            "question comfortable success",
+            "compare against stronger standards",
+            "define what great would require",
+            "look for where good is creating drift"
+          ]
+        }
+      },
+      "examples": [
+        {
+          "exampleId": "ch01-ex01",
+          "title": "Good habits that keep you average",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You are functioning well enough in school, work, or daily life that nothing feels urgent, but you can sense you are coasting. Because things are not obviously broken, you keep postponing the harder changes that would create real growth.",
+          "whatToDo": [
+            "Identify one area where good performance has become an excuse to avoid stronger standards. Define what great would look like there, then make one change that raises the bar beyond comfort rather than waiting for failure to force movement."
+          ],
+          "whyItMatters": "This matters because many people stall not from disaster but from acceptable mediocrity. The chapter becomes practical when readers see how comfort quietly blocks excellence."
+        },
+        {
+          "exampleId": "ch01-ex02",
+          "title": "Choosing disciplined routines over drama",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You often look for a big reset, a perfect plan, or a motivational breakthrough to change your life. But the real issue is that your daily systems are inconsistent, so each fresh start collapses after the initial emotion fades.",
+          "whatToDo": [
+            "Shift attention away from dramatic reinvention and toward repeatable habits that move the flywheel a little each day. Build momentum through consistency rather than through excitement, and measure progress over months instead of moods."
+          ],
+          "whyItMatters": "This example matters because many young adults overvalue dramatic change and undervalue compounding. The book works best when it changes how they think about progress itself."
+        },
+        {
+          "exampleId": "ch01-ex03",
+          "title": "Building the right project team",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A student project or club is stuck because the group keeps debating plans while the actual team fit is weak. Some members are dependable and thoughtful, while others create drag, confusion, or passive resistance that no clever strategy can fix.",
+          "whatToDo": [
+            "Address the people issue before the strategy issue. Put dependable people in the most important roles, reduce drag where possible, and simplify the plan until the team is strong enough to carry it with discipline."
+          ],
+          "whyItMatters": "Students often assume better planning is the answer when the real issue is who is on the bus. This example makes the chapter concrete in an environment where team composition drives outcomes."
+        },
+        {
+          "exampleId": "ch01-ex04",
+          "title": "Facing academic reality honestly",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A class, thesis, or semester plan is clearly not going the way you hoped, but you keep softening the facts because admitting the truth feels threatening. The result is that weak assumptions stay alive long after the evidence has changed.",
+          "whatToDo": [
+            "Create a direct review of the facts without self pity or self protection. Name what is actually happening, what assumptions failed, and what disciplined next step gives you the best chance to recover or adapt."
+          ],
+          "whyItMatters": "This matters because brutal facts are useful only when paired with resolve. The chapter becomes educational when readers learn to separate honest diagnosis from emotional collapse."
+        },
+        {
+          "exampleId": "ch01-ex05",
+          "title": "Choosing strategy over trend chasing",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "At work, everyone is excited about a new tool, platform, or technology trend, and there is pressure to adopt it quickly so the organization does not look behind. But the team is less clear on whether it actually fits the core strategy or makes the underlying advantage stronger.",
+          "whatToDo": [
+            "Evaluate the tool against the central engine of the business rather than against hype. Adopt it if it clearly strengthens what the organization is already trying to become best at, and ignore it if it mainly offers noise or image."
+          ],
+          "whyItMatters": "This example reflects the book’s warning that technology cannot rescue a confused strategy. Readers need to see how disciplined fit is different from fashionable action."
+        },
+        {
+          "exampleId": "ch01-ex06",
+          "title": "Sustaining momentum on a team",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "A team wants a dramatic turnaround and keeps resetting priorities, rebranding initiatives, or launching fresh programs before the previous ones have time to compound. Energy is high, but the organization keeps looping instead of building force.",
+          "whatToDo": [
+            "Commit to a coherent set of disciplined actions and repeat them long enough for momentum to become visible. Resist the urge to interpret every slow period as proof that a full reset is needed."
+          ],
+          "whyItMatters": "This matters because many teams sabotage themselves by chasing transformation theater. The chapter becomes practical when readers learn to value accumulated traction over symbolic change."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch01-h-q01",
+            "prompt": "What is the main claim of this chapter?",
+            "choices": [
+              "That acceptable performance often prevents the harder pursuit of genuine excellence.",
+              "That greatness comes mainly from luck.",
+              "That dramatic change always beats disciplined effort.",
+              "That activity is the same as momentum."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch01-h-q02",
+            "prompt": "Why does Collins emphasize this principle?",
+            "choices": [
+              "Because it helps explain why some organizations build durable momentum while others stall.",
+              "Because it eliminates the need for hiring or strategy.",
+              "Because it proves emotion is irrelevant in leadership.",
+              "Because it makes technology the central answer to every problem."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch01-h-q03",
+            "prompt": "Which pair best reflects the chapter's deeper logic?",
+            "choices": [
+              "complacency and research discipline shape compounding performance.",
+              "Drama and speed replace discipline.",
+              "Noise and reinvention create trust.",
+              "Complexity and trend chasing produce clarity."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch01-h-q04",
+            "prompt": "What mistake does this chapter warn against?",
+            "choices": [
+              "Confusing visible action or comfortable success with the conditions of real greatness.",
+              "Hiring carefully before expanding.",
+              "Testing reality honestly.",
+              "Building disciplined routines."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch01-h-q05",
+            "prompt": "How does this chapter apply outside business?",
+            "choices": [
+              "It applies anywhere people need disciplined systems, honest thinking, and repeated high quality action.",
+              "It applies only to Fortune 500 companies.",
+              "It applies only when technology is the main issue.",
+              "It has little relevance to students or personal growth."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch01-h-q06",
+            "prompt": "Why is compounding important in this chapter?",
+            "choices": [
+              "Because great results usually appear after many disciplined steps accumulate over time.",
+              "Because success should happen immediately if the principle is correct.",
+              "Because compounding only matters in finance.",
+              "Because momentum can be manufactured through slogans alone."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch01-h-q07",
+            "prompt": "What does the chapter suggest about leadership quality?",
+            "choices": [
+              "Strong leadership often builds disciplined systems rather than dependence on personality.",
+              "Strong leadership avoids all structure.",
+              "Strong leadership mainly protects appearances.",
+              "Strong leadership depends on constant reinvention."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch01-h-q08",
+            "prompt": "Why does the chapter criticize acceptable mediocrity?",
+            "choices": [
+              "Because being merely good often removes the urgency needed to reach something better.",
+              "Because mediocre results are always caused by low intelligence.",
+              "Because comfort is never useful in any form.",
+              "Because every average result requires a total reset."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch01-h-q09",
+            "prompt": "What is the practical move after learning this chapter?",
+            "choices": [
+              "Identify the few factors that really matter and align people, systems, and actions around them.",
+              "Chase more opportunities so you keep every option open.",
+              "Adopt trends early even when they lack strategic fit.",
+              "Wait for a dramatic breakthrough before changing anything."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch01-h-q10",
+            "prompt": "What is the deepest takeaway from this chapter?",
+            "choices": [
+              "Greatness emerges from disciplined alignment sustained long enough to compound.",
+              "Greatness comes from one major event.",
+              "Greatness is mostly a branding effect.",
+              "Greatness depends on avoiding all constraints."
+            ],
+            "correctIndex": 0
+          }
+        ]
+      }
+    },
+    {
+      "chapterId": "ch02-level-five-leadership",
+      "number": 2,
+      "title": "Quiet Leaders With Fierce Resolve",
+      "readingTimeMinutes": 15,
+      "contentVariants": {
+        "easy": {
+          "summaryBullets": [
+            "This chapter argues that the best leaders combine humility with relentless commitment to results.",
+            "Collins presents greatness as the result of disciplined choices rather than luck or charisma alone.",
+            "A key idea is that level 5 leadership matters because weak foundations undermine later progress.",
+            "The chapter explains how humility shapes outcomes over time.",
+            "It warns against confusing visible activity with real progress.",
+            "Readers are encouraged to think in systems, people quality, and repeated behavior instead of slogans.",
+            "The lesson applies to work, school, and personal growth because strong results usually compound from disciplined basics.",
+            "Its core message is that greatness is built through clear principles sustained over time."
+          ],
+          "keyTakeaways": [
+            "Level 5 Leadership",
+            "Humility",
+            "Resolve",
+            "Ego Control",
+            "Long Term Stewardship",
+            "Credibility"
+          ],
+          "practice": [
+            "separate ego from mission",
+            "credit the team openly",
+            "own failure directly",
+            "focus on building something that lasts"
+          ]
+        },
+        "medium": {
+          "summaryBullets": [
+            "This chapter argues that the best leaders combine humility with relentless commitment to results.",
+            "Collins treats greatness as a research based pattern rather than a motivational fantasy.",
+            "A central point is that level 5 leadership creates leverage only when paired with the right people and disciplined execution.",
+            "The chapter shows how humility can either strengthen an organization or quietly weaken it depending on how it is handled.",
+            "It challenges the tendency to search for dramatic answers when the deeper causes of success are often structural and cumulative.",
+            "This means leaders need to examine what actually compounds rather than what merely looks impressive in the short term.",
+            "The chapter also suggests that discipline is strongest when it lives inside people and systems instead of being imposed through constant control.",
+            "That idea matters because organizations often build bureaucracy when what they really need is clarity and consistency.",
+            "For students and early career readers, the chapter is useful anywhere teams, habits, or ambitions need durable structure.",
+            "The practical challenge is to simplify to what matters most and then stay with it long enough to see momentum develop.",
+            "This requires resisting distraction, trend chasing, and the comfort of acceptable but limited performance.",
+            "The deeper lesson is that greatness is usually the product of disciplined alignment more than dramatic genius."
+          ],
+          "keyTakeaways": [
+            "Level 5 Leadership",
+            "Humility",
+            "Resolve",
+            "Ego Control",
+            "Long Term Stewardship",
+            "Credibility"
+          ],
+          "practice": [
+            "separate ego from mission",
+            "credit the team openly",
+            "own failure directly",
+            "focus on building something that lasts"
+          ]
+        },
+        "hard": {
+          "summaryBullets": [
+            "This chapter argues that the best leaders combine humility with relentless commitment to results, and it frames the lesson as a principle of organizational and personal design.",
+            "Collins builds his case through comparative research, which matters because it shifts the conversation from storytelling to patterned differences.",
+            "The chapter suggests that level 5 leadership is valuable precisely because it narrows attention to what has lasting explanatory power.",
+            "It also shows that humility is not merely a style preference but a causal element in whether disciplined action can accumulate over time.",
+            "A major theme is that greatness is rarely the result of one breakthrough event. It is usually the delayed visible effect of many earlier disciplined choices.",
+            "This makes the chapter especially useful for people who are impatient, because it reframes slow progress as the normal appearance of compounding rather than as proof of failure.",
+            "The chapter also warns against the symbolic substitutes for greatness, such as image, noise, fashionable tools, or constant reinvention.",
+            "Those substitutes feel active, but they often weaken the very consistency required for momentum to build.",
+            "Collins therefore points readers back to fundamentals such as people quality, honest reality testing, strategic simplicity, and disciplined follow through.",
+            "Another implication is that great leaders often create systems that reduce dependence on personality by building clarity into the organization itself.",
+            "This matters for students and early career readers because the same principle applies when building habits, teams, reputations, or long term projects.",
+            "A recurring insight is that the enemy of excellence is often not disaster but tolerable mediocrity, because it removes the urgency to reexamine assumptions.",
+            "The chapter also has an ethical edge, since it values truth, humility, and stewardship over ego, theater, or personal glory.",
+            "That means great outcomes depend not only on ambition but on the willingness to submit ambition to disciplined reality.",
+            "The practical implication is to identify the few variables that really matter and then design your behavior, team, and systems around them.",
+            "The deepest lesson is that greatness is an emergent property of disciplined people, disciplined thought, and disciplined action held together long enough to compound."
+          ],
+          "keyTakeaways": [
+            "Level 5 Leadership",
+            "Humility",
+            "Resolve",
+            "Ego Control",
+            "Long Term Stewardship",
+            "Credibility"
+          ],
+          "practice": [
+            "separate ego from mission",
+            "credit the team openly",
+            "own failure directly",
+            "focus on building something that lasts"
+          ]
+        }
+      },
+      "examples": [
+        {
+          "exampleId": "ch02-ex01",
+          "title": "Good habits that keep you average",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You are functioning well enough in school, work, or daily life that nothing feels urgent, but you can sense you are coasting. Because things are not obviously broken, you keep postponing the harder changes that would create real growth.",
+          "whatToDo": [
+            "Identify one area where good performance has become an excuse to avoid stronger standards. Define what great would look like there, then make one change that raises the bar beyond comfort rather than waiting for failure to force movement."
+          ],
+          "whyItMatters": "This matters because many people stall not from disaster but from acceptable mediocrity. The chapter becomes practical when readers see how comfort quietly blocks excellence."
+        },
+        {
+          "exampleId": "ch02-ex02",
+          "title": "Choosing disciplined routines over drama",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You often look for a big reset, a perfect plan, or a motivational breakthrough to change your life. But the real issue is that your daily systems are inconsistent, so each fresh start collapses after the initial emotion fades.",
+          "whatToDo": [
+            "Shift attention away from dramatic reinvention and toward repeatable habits that move the flywheel a little each day. Build momentum through consistency rather than through excitement, and measure progress over months instead of moods."
+          ],
+          "whyItMatters": "This example matters because many young adults overvalue dramatic change and undervalue compounding. The book works best when it changes how they think about progress itself."
+        },
+        {
+          "exampleId": "ch02-ex03",
+          "title": "Building the right project team",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A student project or club is stuck because the group keeps debating plans while the actual team fit is weak. Some members are dependable and thoughtful, while others create drag, confusion, or passive resistance that no clever strategy can fix.",
+          "whatToDo": [
+            "Address the people issue before the strategy issue. Put dependable people in the most important roles, reduce drag where possible, and simplify the plan until the team is strong enough to carry it with discipline."
+          ],
+          "whyItMatters": "Students often assume better planning is the answer when the real issue is who is on the bus. This example makes the chapter concrete in an environment where team composition drives outcomes."
+        },
+        {
+          "exampleId": "ch02-ex04",
+          "title": "Facing academic reality honestly",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A class, thesis, or semester plan is clearly not going the way you hoped, but you keep softening the facts because admitting the truth feels threatening. The result is that weak assumptions stay alive long after the evidence has changed.",
+          "whatToDo": [
+            "Create a direct review of the facts without self pity or self protection. Name what is actually happening, what assumptions failed, and what disciplined next step gives you the best chance to recover or adapt."
+          ],
+          "whyItMatters": "This matters because brutal facts are useful only when paired with resolve. The chapter becomes educational when readers learn to separate honest diagnosis from emotional collapse."
+        },
+        {
+          "exampleId": "ch02-ex05",
+          "title": "Choosing strategy over trend chasing",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "At work, everyone is excited about a new tool, platform, or technology trend, and there is pressure to adopt it quickly so the organization does not look behind. But the team is less clear on whether it actually fits the core strategy or makes the underlying advantage stronger.",
+          "whatToDo": [
+            "Evaluate the tool against the central engine of the business rather than against hype. Adopt it if it clearly strengthens what the organization is already trying to become best at, and ignore it if it mainly offers noise or image."
+          ],
+          "whyItMatters": "This example reflects the book’s warning that technology cannot rescue a confused strategy. Readers need to see how disciplined fit is different from fashionable action."
+        },
+        {
+          "exampleId": "ch02-ex06",
+          "title": "Sustaining momentum on a team",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "A team wants a dramatic turnaround and keeps resetting priorities, rebranding initiatives, or launching fresh programs before the previous ones have time to compound. Energy is high, but the organization keeps looping instead of building force.",
+          "whatToDo": [
+            "Commit to a coherent set of disciplined actions and repeat them long enough for momentum to become visible. Resist the urge to interpret every slow period as proof that a full reset is needed."
+          ],
+          "whyItMatters": "This matters because many teams sabotage themselves by chasing transformation theater. The chapter becomes practical when readers learn to value accumulated traction over symbolic change."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch02-h-q01",
+            "prompt": "What is the main claim of this chapter?",
+            "choices": [
+              "That the best leaders combine humility with relentless commitment to results.",
+              "That greatness comes mainly from luck.",
+              "That dramatic change always beats disciplined effort.",
+              "That activity is the same as momentum."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch02-h-q02",
+            "prompt": "Why does Collins emphasize this principle?",
+            "choices": [
+              "Because it helps explain why some organizations build durable momentum while others stall.",
+              "Because it eliminates the need for hiring or strategy.",
+              "Because it proves emotion is irrelevant in leadership.",
+              "Because it makes technology the central answer to every problem."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch02-h-q03",
+            "prompt": "Which pair best reflects the chapter's deeper logic?",
+            "choices": [
+              "level 5 leadership and humility shape compounding performance.",
+              "Drama and speed replace discipline.",
+              "Noise and reinvention create trust.",
+              "Complexity and trend chasing produce clarity."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch02-h-q04",
+            "prompt": "What mistake does this chapter warn against?",
+            "choices": [
+              "Confusing visible action or comfortable success with the conditions of real greatness.",
+              "Hiring carefully before expanding.",
+              "Testing reality honestly.",
+              "Building disciplined routines."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch02-h-q05",
+            "prompt": "How does this chapter apply outside business?",
+            "choices": [
+              "It applies anywhere people need disciplined systems, honest thinking, and repeated high quality action.",
+              "It applies only to Fortune 500 companies.",
+              "It applies only when technology is the main issue.",
+              "It has little relevance to students or personal growth."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch02-h-q06",
+            "prompt": "Why is compounding important in this chapter?",
+            "choices": [
+              "Because great results usually appear after many disciplined steps accumulate over time.",
+              "Because success should happen immediately if the principle is correct.",
+              "Because compounding only matters in finance.",
+              "Because momentum can be manufactured through slogans alone."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch02-h-q07",
+            "prompt": "What does the chapter suggest about leadership quality?",
+            "choices": [
+              "Strong leadership often builds disciplined systems rather than dependence on personality.",
+              "Strong leadership avoids all structure.",
+              "Strong leadership mainly protects appearances.",
+              "Strong leadership depends on constant reinvention."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch02-h-q08",
+            "prompt": "Why does the chapter criticize acceptable mediocrity?",
+            "choices": [
+              "Because being merely good often removes the urgency needed to reach something better.",
+              "Because mediocre results are always caused by low intelligence.",
+              "Because comfort is never useful in any form.",
+              "Because every average result requires a total reset."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch02-h-q09",
+            "prompt": "What is the practical move after learning this chapter?",
+            "choices": [
+              "Identify the few factors that really matter and align people, systems, and actions around them.",
+              "Chase more opportunities so you keep every option open.",
+              "Adopt trends early even when they lack strategic fit.",
+              "Wait for a dramatic breakthrough before changing anything."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch02-h-q10",
+            "prompt": "What is the deepest takeaway from this chapter?",
+            "choices": [
+              "Greatness emerges from disciplined alignment sustained long enough to compound.",
+              "Greatness comes from one major event.",
+              "Greatness is mostly a branding effect.",
+              "Greatness depends on avoiding all constraints."
+            ],
+            "correctIndex": 0
+          }
+        ]
+      }
+    },
+    {
+      "chapterId": "ch03-who-before-what",
+      "number": 3,
+      "title": "Get The Right People First",
+      "readingTimeMinutes": 16,
+      "contentVariants": {
+        "easy": {
+          "summaryBullets": [
+            "This chapter argues that great execution starts by choosing the right people before locking in strategy.",
+            "Collins presents greatness as the result of disciplined choices rather than luck or charisma alone.",
+            "A key idea is that talent selection matters because weak foundations undermine later progress.",
+            "The chapter explains how team fit shapes outcomes over time.",
+            "It warns against confusing visible activity with real progress.",
+            "Readers are encouraged to think in systems, people quality, and repeated behavior instead of slogans.",
+            "The lesson applies to work, school, and personal growth because strong results usually compound from disciplined basics.",
+            "Its core message is that greatness is built through clear principles sustained over time."
+          ],
+          "keyTakeaways": [
+            "Talent Selection",
+            "Team Fit",
+            "Discipline In Hiring",
+            "People First",
+            "Culture Fit",
+            "Alignment"
+          ],
+          "practice": [
+            "hire slowly when stakes are high",
+            "remove poor fit early",
+            "look for character and discipline",
+            "build the team before expanding complexity"
+          ]
+        },
+        "medium": {
+          "summaryBullets": [
+            "This chapter argues that great execution starts by choosing the right people before locking in strategy.",
+            "Collins treats greatness as a research based pattern rather than a motivational fantasy.",
+            "A central point is that talent selection creates leverage only when paired with the right people and disciplined execution.",
+            "The chapter shows how team fit can either strengthen an organization or quietly weaken it depending on how it is handled.",
+            "It challenges the tendency to search for dramatic answers when the deeper causes of success are often structural and cumulative.",
+            "This means leaders need to examine what actually compounds rather than what merely looks impressive in the short term.",
+            "The chapter also suggests that discipline is strongest when it lives inside people and systems instead of being imposed through constant control.",
+            "That idea matters because organizations often build bureaucracy when what they really need is clarity and consistency.",
+            "For students and early career readers, the chapter is useful anywhere teams, habits, or ambitions need durable structure.",
+            "The practical challenge is to simplify to what matters most and then stay with it long enough to see momentum develop.",
+            "This requires resisting distraction, trend chasing, and the comfort of acceptable but limited performance.",
+            "The deeper lesson is that greatness is usually the product of disciplined alignment more than dramatic genius."
+          ],
+          "keyTakeaways": [
+            "Talent Selection",
+            "Team Fit",
+            "Discipline In Hiring",
+            "People First",
+            "Culture Fit",
+            "Alignment"
+          ],
+          "practice": [
+            "hire slowly when stakes are high",
+            "remove poor fit early",
+            "look for character and discipline",
+            "build the team before expanding complexity"
+          ]
+        },
+        "hard": {
+          "summaryBullets": [
+            "This chapter argues that great execution starts by choosing the right people before locking in strategy, and it frames the lesson as a principle of organizational and personal design.",
+            "Collins builds his case through comparative research, which matters because it shifts the conversation from storytelling to patterned differences.",
+            "The chapter suggests that talent selection is valuable precisely because it narrows attention to what has lasting explanatory power.",
+            "It also shows that team fit is not merely a style preference but a causal element in whether disciplined action can accumulate over time.",
+            "A major theme is that greatness is rarely the result of one breakthrough event. It is usually the delayed visible effect of many earlier disciplined choices.",
+            "This makes the chapter especially useful for people who are impatient, because it reframes slow progress as the normal appearance of compounding rather than as proof of failure.",
+            "The chapter also warns against the symbolic substitutes for greatness, such as image, noise, fashionable tools, or constant reinvention.",
+            "Those substitutes feel active, but they often weaken the very consistency required for momentum to build.",
+            "Collins therefore points readers back to fundamentals such as people quality, honest reality testing, strategic simplicity, and disciplined follow through.",
+            "Another implication is that great leaders often create systems that reduce dependence on personality by building clarity into the organization itself.",
+            "This matters for students and early career readers because the same principle applies when building habits, teams, reputations, or long term projects.",
+            "A recurring insight is that the enemy of excellence is often not disaster but tolerable mediocrity, because it removes the urgency to reexamine assumptions.",
+            "The chapter also has an ethical edge, since it values truth, humility, and stewardship over ego, theater, or personal glory.",
+            "That means great outcomes depend not only on ambition but on the willingness to submit ambition to disciplined reality.",
+            "The practical implication is to identify the few variables that really matter and then design your behavior, team, and systems around them.",
+            "The deepest lesson is that greatness is an emergent property of disciplined people, disciplined thought, and disciplined action held together long enough to compound."
+          ],
+          "keyTakeaways": [
+            "Talent Selection",
+            "Team Fit",
+            "Discipline In Hiring",
+            "People First",
+            "Culture Fit",
+            "Alignment"
+          ],
+          "practice": [
+            "hire slowly when stakes are high",
+            "remove poor fit early",
+            "look for character and discipline",
+            "build the team before expanding complexity"
+          ]
+        }
+      },
+      "examples": [
+        {
+          "exampleId": "ch03-ex01",
+          "title": "Good habits that keep you average",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You are functioning well enough in school, work, or daily life that nothing feels urgent, but you can sense you are coasting. Because things are not obviously broken, you keep postponing the harder changes that would create real growth.",
+          "whatToDo": [
+            "Identify one area where good performance has become an excuse to avoid stronger standards. Define what great would look like there, then make one change that raises the bar beyond comfort rather than waiting for failure to force movement."
+          ],
+          "whyItMatters": "This matters because many people stall not from disaster but from acceptable mediocrity. The chapter becomes practical when readers see how comfort quietly blocks excellence."
+        },
+        {
+          "exampleId": "ch03-ex02",
+          "title": "Choosing disciplined routines over drama",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You often look for a big reset, a perfect plan, or a motivational breakthrough to change your life. But the real issue is that your daily systems are inconsistent, so each fresh start collapses after the initial emotion fades.",
+          "whatToDo": [
+            "Shift attention away from dramatic reinvention and toward repeatable habits that move the flywheel a little each day. Build momentum through consistency rather than through excitement, and measure progress over months instead of moods."
+          ],
+          "whyItMatters": "This example matters because many young adults overvalue dramatic change and undervalue compounding. The book works best when it changes how they think about progress itself."
+        },
+        {
+          "exampleId": "ch03-ex03",
+          "title": "Building the right project team",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A student project or club is stuck because the group keeps debating plans while the actual team fit is weak. Some members are dependable and thoughtful, while others create drag, confusion, or passive resistance that no clever strategy can fix.",
+          "whatToDo": [
+            "Address the people issue before the strategy issue. Put dependable people in the most important roles, reduce drag where possible, and simplify the plan until the team is strong enough to carry it with discipline."
+          ],
+          "whyItMatters": "Students often assume better planning is the answer when the real issue is who is on the bus. This example makes the chapter concrete in an environment where team composition drives outcomes."
+        },
+        {
+          "exampleId": "ch03-ex04",
+          "title": "Facing academic reality honestly",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A class, thesis, or semester plan is clearly not going the way you hoped, but you keep softening the facts because admitting the truth feels threatening. The result is that weak assumptions stay alive long after the evidence has changed.",
+          "whatToDo": [
+            "Create a direct review of the facts without self pity or self protection. Name what is actually happening, what assumptions failed, and what disciplined next step gives you the best chance to recover or adapt."
+          ],
+          "whyItMatters": "This matters because brutal facts are useful only when paired with resolve. The chapter becomes educational when readers learn to separate honest diagnosis from emotional collapse."
+        },
+        {
+          "exampleId": "ch03-ex05",
+          "title": "Choosing strategy over trend chasing",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "At work, everyone is excited about a new tool, platform, or technology trend, and there is pressure to adopt it quickly so the organization does not look behind. But the team is less clear on whether it actually fits the core strategy or makes the underlying advantage stronger.",
+          "whatToDo": [
+            "Evaluate the tool against the central engine of the business rather than against hype. Adopt it if it clearly strengthens what the organization is already trying to become best at, and ignore it if it mainly offers noise or image."
+          ],
+          "whyItMatters": "This example reflects the book’s warning that technology cannot rescue a confused strategy. Readers need to see how disciplined fit is different from fashionable action."
+        },
+        {
+          "exampleId": "ch03-ex06",
+          "title": "Sustaining momentum on a team",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "A team wants a dramatic turnaround and keeps resetting priorities, rebranding initiatives, or launching fresh programs before the previous ones have time to compound. Energy is high, but the organization keeps looping instead of building force.",
+          "whatToDo": [
+            "Commit to a coherent set of disciplined actions and repeat them long enough for momentum to become visible. Resist the urge to interpret every slow period as proof that a full reset is needed."
+          ],
+          "whyItMatters": "This matters because many teams sabotage themselves by chasing transformation theater. The chapter becomes practical when readers learn to value accumulated traction over symbolic change."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch03-h-q01",
+            "prompt": "What is the main claim of this chapter?",
+            "choices": [
+              "That great execution starts by choosing the right people before locking in strategy.",
+              "That greatness comes mainly from luck.",
+              "That dramatic change always beats disciplined effort.",
+              "That activity is the same as momentum."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch03-h-q02",
+            "prompt": "Why does Collins emphasize this principle?",
+            "choices": [
+              "Because it helps explain why some organizations build durable momentum while others stall.",
+              "Because it eliminates the need for hiring or strategy.",
+              "Because it proves emotion is irrelevant in leadership.",
+              "Because it makes technology the central answer to every problem."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch03-h-q03",
+            "prompt": "Which pair best reflects the chapter's deeper logic?",
+            "choices": [
+              "talent selection and team fit shape compounding performance.",
+              "Drama and speed replace discipline.",
+              "Noise and reinvention create trust.",
+              "Complexity and trend chasing produce clarity."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch03-h-q04",
+            "prompt": "What mistake does this chapter warn against?",
+            "choices": [
+              "Confusing visible action or comfortable success with the conditions of real greatness.",
+              "Hiring carefully before expanding.",
+              "Testing reality honestly.",
+              "Building disciplined routines."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch03-h-q05",
+            "prompt": "How does this chapter apply outside business?",
+            "choices": [
+              "It applies anywhere people need disciplined systems, honest thinking, and repeated high quality action.",
+              "It applies only to Fortune 500 companies.",
+              "It applies only when technology is the main issue.",
+              "It has little relevance to students or personal growth."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch03-h-q06",
+            "prompt": "Why is compounding important in this chapter?",
+            "choices": [
+              "Because great results usually appear after many disciplined steps accumulate over time.",
+              "Because success should happen immediately if the principle is correct.",
+              "Because compounding only matters in finance.",
+              "Because momentum can be manufactured through slogans alone."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch03-h-q07",
+            "prompt": "What does the chapter suggest about leadership quality?",
+            "choices": [
+              "Strong leadership often builds disciplined systems rather than dependence on personality.",
+              "Strong leadership avoids all structure.",
+              "Strong leadership mainly protects appearances.",
+              "Strong leadership depends on constant reinvention."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch03-h-q08",
+            "prompt": "Why does the chapter criticize acceptable mediocrity?",
+            "choices": [
+              "Because being merely good often removes the urgency needed to reach something better.",
+              "Because mediocre results are always caused by low intelligence.",
+              "Because comfort is never useful in any form.",
+              "Because every average result requires a total reset."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch03-h-q09",
+            "prompt": "What is the practical move after learning this chapter?",
+            "choices": [
+              "Identify the few factors that really matter and align people, systems, and actions around them.",
+              "Chase more opportunities so you keep every option open.",
+              "Adopt trends early even when they lack strategic fit.",
+              "Wait for a dramatic breakthrough before changing anything."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch03-h-q10",
+            "prompt": "What is the deepest takeaway from this chapter?",
+            "choices": [
+              "Greatness emerges from disciplined alignment sustained long enough to compound.",
+              "Greatness comes from one major event.",
+              "Greatness is mostly a branding effect.",
+              "Greatness depends on avoiding all constraints."
+            ],
+            "correctIndex": 0
+          }
+        ]
+      }
+    },
+    {
+      "chapterId": "ch04-brutal-facts",
+      "number": 4,
+      "title": "Face Reality Without Losing Faith",
+      "readingTimeMinutes": 13,
+      "contentVariants": {
+        "easy": {
+          "summaryBullets": [
+            "This chapter argues that strong organizations confront difficult facts directly while maintaining confidence in eventual success.",
+            "Collins presents greatness as the result of disciplined choices rather than luck or charisma alone.",
+            "A key idea is that brutal facts matters because weak foundations undermine later progress.",
+            "The chapter explains how faith shapes outcomes over time.",
+            "It warns against confusing visible activity with real progress.",
+            "Readers are encouraged to think in systems, people quality, and repeated behavior instead of slogans.",
+            "The lesson applies to work, school, and personal growth because strong results usually compound from disciplined basics.",
+            "Its core message is that greatness is built through clear principles sustained over time."
+          ],
+          "keyTakeaways": [
+            "Brutal Facts",
+            "Faith",
+            "Truth Telling",
+            "Clarity",
+            "Resilience",
+            "Organizational Honesty"
+          ],
+          "practice": [
+            "surface bad news early",
+            "make truth safe to speak",
+            "separate facts from panic",
+            "keep belief while fixing reality"
+          ]
+        },
+        "medium": {
+          "summaryBullets": [
+            "This chapter argues that strong organizations confront difficult facts directly while maintaining confidence in eventual success.",
+            "Collins treats greatness as a research based pattern rather than a motivational fantasy.",
+            "A central point is that brutal facts creates leverage only when paired with the right people and disciplined execution.",
+            "The chapter shows how faith can either strengthen an organization or quietly weaken it depending on how it is handled.",
+            "It challenges the tendency to search for dramatic answers when the deeper causes of success are often structural and cumulative.",
+            "This means leaders need to examine what actually compounds rather than what merely looks impressive in the short term.",
+            "The chapter also suggests that discipline is strongest when it lives inside people and systems instead of being imposed through constant control.",
+            "That idea matters because organizations often build bureaucracy when what they really need is clarity and consistency.",
+            "For students and early career readers, the chapter is useful anywhere teams, habits, or ambitions need durable structure.",
+            "The practical challenge is to simplify to what matters most and then stay with it long enough to see momentum develop.",
+            "This requires resisting distraction, trend chasing, and the comfort of acceptable but limited performance.",
+            "The deeper lesson is that greatness is usually the product of disciplined alignment more than dramatic genius."
+          ],
+          "keyTakeaways": [
+            "Brutal Facts",
+            "Faith",
+            "Truth Telling",
+            "Clarity",
+            "Resilience",
+            "Organizational Honesty"
+          ],
+          "practice": [
+            "surface bad news early",
+            "make truth safe to speak",
+            "separate facts from panic",
+            "keep belief while fixing reality"
+          ]
+        },
+        "hard": {
+          "summaryBullets": [
+            "This chapter argues that strong organizations confront difficult facts directly while maintaining confidence in eventual success, and it frames the lesson as a principle of organizational and personal design.",
+            "Collins builds his case through comparative research, which matters because it shifts the conversation from storytelling to patterned differences.",
+            "The chapter suggests that brutal facts is valuable precisely because it narrows attention to what has lasting explanatory power.",
+            "It also shows that faith is not merely a style preference but a causal element in whether disciplined action can accumulate over time.",
+            "A major theme is that greatness is rarely the result of one breakthrough event. It is usually the delayed visible effect of many earlier disciplined choices.",
+            "This makes the chapter especially useful for people who are impatient, because it reframes slow progress as the normal appearance of compounding rather than as proof of failure.",
+            "The chapter also warns against the symbolic substitutes for greatness, such as image, noise, fashionable tools, or constant reinvention.",
+            "Those substitutes feel active, but they often weaken the very consistency required for momentum to build.",
+            "Collins therefore points readers back to fundamentals such as people quality, honest reality testing, strategic simplicity, and disciplined follow through.",
+            "Another implication is that great leaders often create systems that reduce dependence on personality by building clarity into the organization itself.",
+            "This matters for students and early career readers because the same principle applies when building habits, teams, reputations, or long term projects.",
+            "A recurring insight is that the enemy of excellence is often not disaster but tolerable mediocrity, because it removes the urgency to reexamine assumptions.",
+            "The chapter also has an ethical edge, since it values truth, humility, and stewardship over ego, theater, or personal glory.",
+            "That means great outcomes depend not only on ambition but on the willingness to submit ambition to disciplined reality.",
+            "The practical implication is to identify the few variables that really matter and then design your behavior, team, and systems around them.",
+            "The deepest lesson is that greatness is an emergent property of disciplined people, disciplined thought, and disciplined action held together long enough to compound."
+          ],
+          "keyTakeaways": [
+            "Brutal Facts",
+            "Faith",
+            "Truth Telling",
+            "Clarity",
+            "Resilience",
+            "Organizational Honesty"
+          ],
+          "practice": [
+            "surface bad news early",
+            "make truth safe to speak",
+            "separate facts from panic",
+            "keep belief while fixing reality"
+          ]
+        }
+      },
+      "examples": [
+        {
+          "exampleId": "ch04-ex01",
+          "title": "Good habits that keep you average",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You are functioning well enough in school, work, or daily life that nothing feels urgent, but you can sense you are coasting. Because things are not obviously broken, you keep postponing the harder changes that would create real growth.",
+          "whatToDo": [
+            "Identify one area where good performance has become an excuse to avoid stronger standards. Define what great would look like there, then make one change that raises the bar beyond comfort rather than waiting for failure to force movement."
+          ],
+          "whyItMatters": "This matters because many people stall not from disaster but from acceptable mediocrity. The chapter becomes practical when readers see how comfort quietly blocks excellence."
+        },
+        {
+          "exampleId": "ch04-ex02",
+          "title": "Choosing disciplined routines over drama",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You often look for a big reset, a perfect plan, or a motivational breakthrough to change your life. But the real issue is that your daily systems are inconsistent, so each fresh start collapses after the initial emotion fades.",
+          "whatToDo": [
+            "Shift attention away from dramatic reinvention and toward repeatable habits that move the flywheel a little each day. Build momentum through consistency rather than through excitement, and measure progress over months instead of moods."
+          ],
+          "whyItMatters": "This example matters because many young adults overvalue dramatic change and undervalue compounding. The book works best when it changes how they think about progress itself."
+        },
+        {
+          "exampleId": "ch04-ex03",
+          "title": "Building the right project team",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A student project or club is stuck because the group keeps debating plans while the actual team fit is weak. Some members are dependable and thoughtful, while others create drag, confusion, or passive resistance that no clever strategy can fix.",
+          "whatToDo": [
+            "Address the people issue before the strategy issue. Put dependable people in the most important roles, reduce drag where possible, and simplify the plan until the team is strong enough to carry it with discipline."
+          ],
+          "whyItMatters": "Students often assume better planning is the answer when the real issue is who is on the bus. This example makes the chapter concrete in an environment where team composition drives outcomes."
+        },
+        {
+          "exampleId": "ch04-ex04",
+          "title": "Facing academic reality honestly",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A class, thesis, or semester plan is clearly not going the way you hoped, but you keep softening the facts because admitting the truth feels threatening. The result is that weak assumptions stay alive long after the evidence has changed.",
+          "whatToDo": [
+            "Create a direct review of the facts without self pity or self protection. Name what is actually happening, what assumptions failed, and what disciplined next step gives you the best chance to recover or adapt."
+          ],
+          "whyItMatters": "This matters because brutal facts are useful only when paired with resolve. The chapter becomes educational when readers learn to separate honest diagnosis from emotional collapse."
+        },
+        {
+          "exampleId": "ch04-ex05",
+          "title": "Choosing strategy over trend chasing",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "At work, everyone is excited about a new tool, platform, or technology trend, and there is pressure to adopt it quickly so the organization does not look behind. But the team is less clear on whether it actually fits the core strategy or makes the underlying advantage stronger.",
+          "whatToDo": [
+            "Evaluate the tool against the central engine of the business rather than against hype. Adopt it if it clearly strengthens what the organization is already trying to become best at, and ignore it if it mainly offers noise or image."
+          ],
+          "whyItMatters": "This example reflects the book’s warning that technology cannot rescue a confused strategy. Readers need to see how disciplined fit is different from fashionable action."
+        },
+        {
+          "exampleId": "ch04-ex06",
+          "title": "Sustaining momentum on a team",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "A team wants a dramatic turnaround and keeps resetting priorities, rebranding initiatives, or launching fresh programs before the previous ones have time to compound. Energy is high, but the organization keeps looping instead of building force.",
+          "whatToDo": [
+            "Commit to a coherent set of disciplined actions and repeat them long enough for momentum to become visible. Resist the urge to interpret every slow period as proof that a full reset is needed."
+          ],
+          "whyItMatters": "This matters because many teams sabotage themselves by chasing transformation theater. The chapter becomes practical when readers learn to value accumulated traction over symbolic change."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch04-h-q01",
+            "prompt": "What is the main claim of this chapter?",
+            "choices": [
+              "That strong organizations confront difficult facts directly while maintaining confidence in eventual success.",
+              "That greatness comes mainly from luck.",
+              "That dramatic change always beats disciplined effort.",
+              "That activity is the same as momentum."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch04-h-q02",
+            "prompt": "Why does Collins emphasize this principle?",
+            "choices": [
+              "Because it helps explain why some organizations build durable momentum while others stall.",
+              "Because it eliminates the need for hiring or strategy.",
+              "Because it proves emotion is irrelevant in leadership.",
+              "Because it makes technology the central answer to every problem."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch04-h-q03",
+            "prompt": "Which pair best reflects the chapter's deeper logic?",
+            "choices": [
+              "brutal facts and faith shape compounding performance.",
+              "Drama and speed replace discipline.",
+              "Noise and reinvention create trust.",
+              "Complexity and trend chasing produce clarity."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch04-h-q04",
+            "prompt": "What mistake does this chapter warn against?",
+            "choices": [
+              "Confusing visible action or comfortable success with the conditions of real greatness.",
+              "Hiring carefully before expanding.",
+              "Testing reality honestly.",
+              "Building disciplined routines."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch04-h-q05",
+            "prompt": "How does this chapter apply outside business?",
+            "choices": [
+              "It applies anywhere people need disciplined systems, honest thinking, and repeated high quality action.",
+              "It applies only to Fortune 500 companies.",
+              "It applies only when technology is the main issue.",
+              "It has little relevance to students or personal growth."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch04-h-q06",
+            "prompt": "Why is compounding important in this chapter?",
+            "choices": [
+              "Because great results usually appear after many disciplined steps accumulate over time.",
+              "Because success should happen immediately if the principle is correct.",
+              "Because compounding only matters in finance.",
+              "Because momentum can be manufactured through slogans alone."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch04-h-q07",
+            "prompt": "What does the chapter suggest about leadership quality?",
+            "choices": [
+              "Strong leadership often builds disciplined systems rather than dependence on personality.",
+              "Strong leadership avoids all structure.",
+              "Strong leadership mainly protects appearances.",
+              "Strong leadership depends on constant reinvention."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch04-h-q08",
+            "prompt": "Why does the chapter criticize acceptable mediocrity?",
+            "choices": [
+              "Because being merely good often removes the urgency needed to reach something better.",
+              "Because mediocre results are always caused by low intelligence.",
+              "Because comfort is never useful in any form.",
+              "Because every average result requires a total reset."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch04-h-q09",
+            "prompt": "What is the practical move after learning this chapter?",
+            "choices": [
+              "Identify the few factors that really matter and align people, systems, and actions around them.",
+              "Chase more opportunities so you keep every option open.",
+              "Adopt trends early even when they lack strategic fit.",
+              "Wait for a dramatic breakthrough before changing anything."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch04-h-q10",
+            "prompt": "What is the deepest takeaway from this chapter?",
+            "choices": [
+              "Greatness emerges from disciplined alignment sustained long enough to compound.",
+              "Greatness comes from one major event.",
+              "Greatness is mostly a branding effect.",
+              "Greatness depends on avoiding all constraints."
+            ],
+            "correctIndex": 0
+          }
+        ]
+      }
+    },
+    {
+      "chapterId": "ch05-hedgehog-concept",
+      "number": 5,
+      "title": "Find The Simple Core",
+      "readingTimeMinutes": 14,
+      "contentVariants": {
+        "easy": {
+          "summaryBullets": [
+            "This chapter argues that great strategy emerges from knowing what you can be best at, what drives your engine, and what you deeply care about.",
+            "Collins presents greatness as the result of disciplined choices rather than luck or charisma alone.",
+            "A key idea is that hedgehog concept matters because weak foundations undermine later progress.",
+            "The chapter explains how strategic simplicity shapes outcomes over time.",
+            "It warns against confusing visible activity with real progress.",
+            "Readers are encouraged to think in systems, people quality, and repeated behavior instead of slogans.",
+            "The lesson applies to work, school, and personal growth because strong results usually compound from disciplined basics.",
+            "Its core message is that greatness is built through clear principles sustained over time."
+          ],
+          "keyTakeaways": [
+            "Hedgehog Concept",
+            "Strategic Simplicity",
+            "Economic Engine",
+            "Best At",
+            "Passion",
+            "Focus"
+          ],
+          "practice": [
+            "find the intersection of strength and economics",
+            "ignore distracting opportunities",
+            "simplify the core strategy",
+            "return to the central principle repeatedly"
+          ]
+        },
+        "medium": {
+          "summaryBullets": [
+            "This chapter argues that great strategy emerges from knowing what you can be best at, what drives your engine, and what you deeply care about.",
+            "Collins treats greatness as a research based pattern rather than a motivational fantasy.",
+            "A central point is that hedgehog concept creates leverage only when paired with the right people and disciplined execution.",
+            "The chapter shows how strategic simplicity can either strengthen an organization or quietly weaken it depending on how it is handled.",
+            "It challenges the tendency to search for dramatic answers when the deeper causes of success are often structural and cumulative.",
+            "This means leaders need to examine what actually compounds rather than what merely looks impressive in the short term.",
+            "The chapter also suggests that discipline is strongest when it lives inside people and systems instead of being imposed through constant control.",
+            "That idea matters because organizations often build bureaucracy when what they really need is clarity and consistency.",
+            "For students and early career readers, the chapter is useful anywhere teams, habits, or ambitions need durable structure.",
+            "The practical challenge is to simplify to what matters most and then stay with it long enough to see momentum develop.",
+            "This requires resisting distraction, trend chasing, and the comfort of acceptable but limited performance.",
+            "The deeper lesson is that greatness is usually the product of disciplined alignment more than dramatic genius."
+          ],
+          "keyTakeaways": [
+            "Hedgehog Concept",
+            "Strategic Simplicity",
+            "Economic Engine",
+            "Best At",
+            "Passion",
+            "Focus"
+          ],
+          "practice": [
+            "find the intersection of strength and economics",
+            "ignore distracting opportunities",
+            "simplify the core strategy",
+            "return to the central principle repeatedly"
+          ]
+        },
+        "hard": {
+          "summaryBullets": [
+            "This chapter argues that great strategy emerges from knowing what you can be best at, what drives your engine, and what you deeply care about, and it frames the lesson as a principle of organizational and personal design.",
+            "Collins builds his case through comparative research, which matters because it shifts the conversation from storytelling to patterned differences.",
+            "The chapter suggests that hedgehog concept is valuable precisely because it narrows attention to what has lasting explanatory power.",
+            "It also shows that strategic simplicity is not merely a style preference but a causal element in whether disciplined action can accumulate over time.",
+            "A major theme is that greatness is rarely the result of one breakthrough event. It is usually the delayed visible effect of many earlier disciplined choices.",
+            "This makes the chapter especially useful for people who are impatient, because it reframes slow progress as the normal appearance of compounding rather than as proof of failure.",
+            "The chapter also warns against the symbolic substitutes for greatness, such as image, noise, fashionable tools, or constant reinvention.",
+            "Those substitutes feel active, but they often weaken the very consistency required for momentum to build.",
+            "Collins therefore points readers back to fundamentals such as people quality, honest reality testing, strategic simplicity, and disciplined follow through.",
+            "Another implication is that great leaders often create systems that reduce dependence on personality by building clarity into the organization itself.",
+            "This matters for students and early career readers because the same principle applies when building habits, teams, reputations, or long term projects.",
+            "A recurring insight is that the enemy of excellence is often not disaster but tolerable mediocrity, because it removes the urgency to reexamine assumptions.",
+            "The chapter also has an ethical edge, since it values truth, humility, and stewardship over ego, theater, or personal glory.",
+            "That means great outcomes depend not only on ambition but on the willingness to submit ambition to disciplined reality.",
+            "The practical implication is to identify the few variables that really matter and then design your behavior, team, and systems around them.",
+            "The deepest lesson is that greatness is an emergent property of disciplined people, disciplined thought, and disciplined action held together long enough to compound."
+          ],
+          "keyTakeaways": [
+            "Hedgehog Concept",
+            "Strategic Simplicity",
+            "Economic Engine",
+            "Best At",
+            "Passion",
+            "Focus"
+          ],
+          "practice": [
+            "find the intersection of strength and economics",
+            "ignore distracting opportunities",
+            "simplify the core strategy",
+            "return to the central principle repeatedly"
+          ]
+        }
+      },
+      "examples": [
+        {
+          "exampleId": "ch05-ex01",
+          "title": "Good habits that keep you average",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You are functioning well enough in school, work, or daily life that nothing feels urgent, but you can sense you are coasting. Because things are not obviously broken, you keep postponing the harder changes that would create real growth.",
+          "whatToDo": [
+            "Identify one area where good performance has become an excuse to avoid stronger standards. Define what great would look like there, then make one change that raises the bar beyond comfort rather than waiting for failure to force movement."
+          ],
+          "whyItMatters": "This matters because many people stall not from disaster but from acceptable mediocrity. The chapter becomes practical when readers see how comfort quietly blocks excellence."
+        },
+        {
+          "exampleId": "ch05-ex02",
+          "title": "Choosing disciplined routines over drama",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You often look for a big reset, a perfect plan, or a motivational breakthrough to change your life. But the real issue is that your daily systems are inconsistent, so each fresh start collapses after the initial emotion fades.",
+          "whatToDo": [
+            "Shift attention away from dramatic reinvention and toward repeatable habits that move the flywheel a little each day. Build momentum through consistency rather than through excitement, and measure progress over months instead of moods."
+          ],
+          "whyItMatters": "This example matters because many young adults overvalue dramatic change and undervalue compounding. The book works best when it changes how they think about progress itself."
+        },
+        {
+          "exampleId": "ch05-ex03",
+          "title": "Building the right project team",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A student project or club is stuck because the group keeps debating plans while the actual team fit is weak. Some members are dependable and thoughtful, while others create drag, confusion, or passive resistance that no clever strategy can fix.",
+          "whatToDo": [
+            "Address the people issue before the strategy issue. Put dependable people in the most important roles, reduce drag where possible, and simplify the plan until the team is strong enough to carry it with discipline."
+          ],
+          "whyItMatters": "Students often assume better planning is the answer when the real issue is who is on the bus. This example makes the chapter concrete in an environment where team composition drives outcomes."
+        },
+        {
+          "exampleId": "ch05-ex04",
+          "title": "Facing academic reality honestly",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A class, thesis, or semester plan is clearly not going the way you hoped, but you keep softening the facts because admitting the truth feels threatening. The result is that weak assumptions stay alive long after the evidence has changed.",
+          "whatToDo": [
+            "Create a direct review of the facts without self pity or self protection. Name what is actually happening, what assumptions failed, and what disciplined next step gives you the best chance to recover or adapt."
+          ],
+          "whyItMatters": "This matters because brutal facts are useful only when paired with resolve. The chapter becomes educational when readers learn to separate honest diagnosis from emotional collapse."
+        },
+        {
+          "exampleId": "ch05-ex05",
+          "title": "Choosing strategy over trend chasing",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "At work, everyone is excited about a new tool, platform, or technology trend, and there is pressure to adopt it quickly so the organization does not look behind. But the team is less clear on whether it actually fits the core strategy or makes the underlying advantage stronger.",
+          "whatToDo": [
+            "Evaluate the tool against the central engine of the business rather than against hype. Adopt it if it clearly strengthens what the organization is already trying to become best at, and ignore it if it mainly offers noise or image."
+          ],
+          "whyItMatters": "This example reflects the book’s warning that technology cannot rescue a confused strategy. Readers need to see how disciplined fit is different from fashionable action."
+        },
+        {
+          "exampleId": "ch05-ex06",
+          "title": "Sustaining momentum on a team",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "A team wants a dramatic turnaround and keeps resetting priorities, rebranding initiatives, or launching fresh programs before the previous ones have time to compound. Energy is high, but the organization keeps looping instead of building force.",
+          "whatToDo": [
+            "Commit to a coherent set of disciplined actions and repeat them long enough for momentum to become visible. Resist the urge to interpret every slow period as proof that a full reset is needed."
+          ],
+          "whyItMatters": "This matters because many teams sabotage themselves by chasing transformation theater. The chapter becomes practical when readers learn to value accumulated traction over symbolic change."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch05-h-q01",
+            "prompt": "What is the main claim of this chapter?",
+            "choices": [
+              "That great strategy emerges from knowing what you can be best at, what drives your engine, and what you deeply care about.",
+              "That greatness comes mainly from luck.",
+              "That dramatic change always beats disciplined effort.",
+              "That activity is the same as momentum."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch05-h-q02",
+            "prompt": "Why does Collins emphasize this principle?",
+            "choices": [
+              "Because it helps explain why some organizations build durable momentum while others stall.",
+              "Because it eliminates the need for hiring or strategy.",
+              "Because it proves emotion is irrelevant in leadership.",
+              "Because it makes technology the central answer to every problem."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch05-h-q03",
+            "prompt": "Which pair best reflects the chapter's deeper logic?",
+            "choices": [
+              "hedgehog concept and strategic simplicity shape compounding performance.",
+              "Drama and speed replace discipline.",
+              "Noise and reinvention create trust.",
+              "Complexity and trend chasing produce clarity."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch05-h-q04",
+            "prompt": "What mistake does this chapter warn against?",
+            "choices": [
+              "Confusing visible action or comfortable success with the conditions of real greatness.",
+              "Hiring carefully before expanding.",
+              "Testing reality honestly.",
+              "Building disciplined routines."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch05-h-q05",
+            "prompt": "How does this chapter apply outside business?",
+            "choices": [
+              "It applies anywhere people need disciplined systems, honest thinking, and repeated high quality action.",
+              "It applies only to Fortune 500 companies.",
+              "It applies only when technology is the main issue.",
+              "It has little relevance to students or personal growth."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch05-h-q06",
+            "prompt": "Why is compounding important in this chapter?",
+            "choices": [
+              "Because great results usually appear after many disciplined steps accumulate over time.",
+              "Because success should happen immediately if the principle is correct.",
+              "Because compounding only matters in finance.",
+              "Because momentum can be manufactured through slogans alone."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch05-h-q07",
+            "prompt": "What does the chapter suggest about leadership quality?",
+            "choices": [
+              "Strong leadership often builds disciplined systems rather than dependence on personality.",
+              "Strong leadership avoids all structure.",
+              "Strong leadership mainly protects appearances.",
+              "Strong leadership depends on constant reinvention."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch05-h-q08",
+            "prompt": "Why does the chapter criticize acceptable mediocrity?",
+            "choices": [
+              "Because being merely good often removes the urgency needed to reach something better.",
+              "Because mediocre results are always caused by low intelligence.",
+              "Because comfort is never useful in any form.",
+              "Because every average result requires a total reset."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch05-h-q09",
+            "prompt": "What is the practical move after learning this chapter?",
+            "choices": [
+              "Identify the few factors that really matter and align people, systems, and actions around them.",
+              "Chase more opportunities so you keep every option open.",
+              "Adopt trends early even when they lack strategic fit.",
+              "Wait for a dramatic breakthrough before changing anything."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch05-h-q10",
+            "prompt": "What is the deepest takeaway from this chapter?",
+            "choices": [
+              "Greatness emerges from disciplined alignment sustained long enough to compound.",
+              "Greatness comes from one major event.",
+              "Greatness is mostly a branding effect.",
+              "Greatness depends on avoiding all constraints."
+            ],
+            "correctIndex": 0
+          }
+        ]
+      }
+    },
+    {
+      "chapterId": "ch06-culture-of-discipline",
+      "number": 6,
+      "title": "Discipline Beats Bureaucracy",
+      "readingTimeMinutes": 15,
+      "contentVariants": {
+        "easy": {
+          "summaryBullets": [
+            "This chapter argues that disciplined people and disciplined thought reduce the need for heavy control systems.",
+            "Collins presents greatness as the result of disciplined choices rather than luck or charisma alone.",
+            "A key idea is that discipline matters because weak foundations undermine later progress.",
+            "The chapter explains how self management shapes outcomes over time.",
+            "It warns against confusing visible activity with real progress.",
+            "Readers are encouraged to think in systems, people quality, and repeated behavior instead of slogans.",
+            "The lesson applies to work, school, and personal growth because strong results usually compound from disciplined basics.",
+            "Its core message is that greatness is built through clear principles sustained over time."
+          ],
+          "keyTakeaways": [
+            "Discipline",
+            "Self Management",
+            "Accountability",
+            "Consistency",
+            "Freedom Within Framework",
+            "Execution"
+          ],
+          "practice": [
+            "set clear rules and trust disciplined people",
+            "reduce unnecessary controls",
+            "hold consistent standards",
+            "protect disciplined habits daily"
+          ]
+        },
+        "medium": {
+          "summaryBullets": [
+            "This chapter argues that disciplined people and disciplined thought reduce the need for heavy control systems.",
+            "Collins treats greatness as a research based pattern rather than a motivational fantasy.",
+            "A central point is that discipline creates leverage only when paired with the right people and disciplined execution.",
+            "The chapter shows how self management can either strengthen an organization or quietly weaken it depending on how it is handled.",
+            "It challenges the tendency to search for dramatic answers when the deeper causes of success are often structural and cumulative.",
+            "This means leaders need to examine what actually compounds rather than what merely looks impressive in the short term.",
+            "The chapter also suggests that discipline is strongest when it lives inside people and systems instead of being imposed through constant control.",
+            "That idea matters because organizations often build bureaucracy when what they really need is clarity and consistency.",
+            "For students and early career readers, the chapter is useful anywhere teams, habits, or ambitions need durable structure.",
+            "The practical challenge is to simplify to what matters most and then stay with it long enough to see momentum develop.",
+            "This requires resisting distraction, trend chasing, and the comfort of acceptable but limited performance.",
+            "The deeper lesson is that greatness is usually the product of disciplined alignment more than dramatic genius."
+          ],
+          "keyTakeaways": [
+            "Discipline",
+            "Self Management",
+            "Accountability",
+            "Consistency",
+            "Freedom Within Framework",
+            "Execution"
+          ],
+          "practice": [
+            "set clear rules and trust disciplined people",
+            "reduce unnecessary controls",
+            "hold consistent standards",
+            "protect disciplined habits daily"
+          ]
+        },
+        "hard": {
+          "summaryBullets": [
+            "This chapter argues that disciplined people and disciplined thought reduce the need for heavy control systems, and it frames the lesson as a principle of organizational and personal design.",
+            "Collins builds his case through comparative research, which matters because it shifts the conversation from storytelling to patterned differences.",
+            "The chapter suggests that discipline is valuable precisely because it narrows attention to what has lasting explanatory power.",
+            "It also shows that self management is not merely a style preference but a causal element in whether disciplined action can accumulate over time.",
+            "A major theme is that greatness is rarely the result of one breakthrough event. It is usually the delayed visible effect of many earlier disciplined choices.",
+            "This makes the chapter especially useful for people who are impatient, because it reframes slow progress as the normal appearance of compounding rather than as proof of failure.",
+            "The chapter also warns against the symbolic substitutes for greatness, such as image, noise, fashionable tools, or constant reinvention.",
+            "Those substitutes feel active, but they often weaken the very consistency required for momentum to build.",
+            "Collins therefore points readers back to fundamentals such as people quality, honest reality testing, strategic simplicity, and disciplined follow through.",
+            "Another implication is that great leaders often create systems that reduce dependence on personality by building clarity into the organization itself.",
+            "This matters for students and early career readers because the same principle applies when building habits, teams, reputations, or long term projects.",
+            "A recurring insight is that the enemy of excellence is often not disaster but tolerable mediocrity, because it removes the urgency to reexamine assumptions.",
+            "The chapter also has an ethical edge, since it values truth, humility, and stewardship over ego, theater, or personal glory.",
+            "That means great outcomes depend not only on ambition but on the willingness to submit ambition to disciplined reality.",
+            "The practical implication is to identify the few variables that really matter and then design your behavior, team, and systems around them.",
+            "The deepest lesson is that greatness is an emergent property of disciplined people, disciplined thought, and disciplined action held together long enough to compound."
+          ],
+          "keyTakeaways": [
+            "Discipline",
+            "Self Management",
+            "Accountability",
+            "Consistency",
+            "Freedom Within Framework",
+            "Execution"
+          ],
+          "practice": [
+            "set clear rules and trust disciplined people",
+            "reduce unnecessary controls",
+            "hold consistent standards",
+            "protect disciplined habits daily"
+          ]
+        }
+      },
+      "examples": [
+        {
+          "exampleId": "ch06-ex01",
+          "title": "Good habits that keep you average",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You are functioning well enough in school, work, or daily life that nothing feels urgent, but you can sense you are coasting. Because things are not obviously broken, you keep postponing the harder changes that would create real growth.",
+          "whatToDo": [
+            "Identify one area where good performance has become an excuse to avoid stronger standards. Define what great would look like there, then make one change that raises the bar beyond comfort rather than waiting for failure to force movement."
+          ],
+          "whyItMatters": "This matters because many people stall not from disaster but from acceptable mediocrity. The chapter becomes practical when readers see how comfort quietly blocks excellence."
+        },
+        {
+          "exampleId": "ch06-ex02",
+          "title": "Choosing disciplined routines over drama",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You often look for a big reset, a perfect plan, or a motivational breakthrough to change your life. But the real issue is that your daily systems are inconsistent, so each fresh start collapses after the initial emotion fades.",
+          "whatToDo": [
+            "Shift attention away from dramatic reinvention and toward repeatable habits that move the flywheel a little each day. Build momentum through consistency rather than through excitement, and measure progress over months instead of moods."
+          ],
+          "whyItMatters": "This example matters because many young adults overvalue dramatic change and undervalue compounding. The book works best when it changes how they think about progress itself."
+        },
+        {
+          "exampleId": "ch06-ex03",
+          "title": "Building the right project team",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A student project or club is stuck because the group keeps debating plans while the actual team fit is weak. Some members are dependable and thoughtful, while others create drag, confusion, or passive resistance that no clever strategy can fix.",
+          "whatToDo": [
+            "Address the people issue before the strategy issue. Put dependable people in the most important roles, reduce drag where possible, and simplify the plan until the team is strong enough to carry it with discipline."
+          ],
+          "whyItMatters": "Students often assume better planning is the answer when the real issue is who is on the bus. This example makes the chapter concrete in an environment where team composition drives outcomes."
+        },
+        {
+          "exampleId": "ch06-ex04",
+          "title": "Facing academic reality honestly",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A class, thesis, or semester plan is clearly not going the way you hoped, but you keep softening the facts because admitting the truth feels threatening. The result is that weak assumptions stay alive long after the evidence has changed.",
+          "whatToDo": [
+            "Create a direct review of the facts without self pity or self protection. Name what is actually happening, what assumptions failed, and what disciplined next step gives you the best chance to recover or adapt."
+          ],
+          "whyItMatters": "This matters because brutal facts are useful only when paired with resolve. The chapter becomes educational when readers learn to separate honest diagnosis from emotional collapse."
+        },
+        {
+          "exampleId": "ch06-ex05",
+          "title": "Choosing strategy over trend chasing",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "At work, everyone is excited about a new tool, platform, or technology trend, and there is pressure to adopt it quickly so the organization does not look behind. But the team is less clear on whether it actually fits the core strategy or makes the underlying advantage stronger.",
+          "whatToDo": [
+            "Evaluate the tool against the central engine of the business rather than against hype. Adopt it if it clearly strengthens what the organization is already trying to become best at, and ignore it if it mainly offers noise or image."
+          ],
+          "whyItMatters": "This example reflects the book’s warning that technology cannot rescue a confused strategy. Readers need to see how disciplined fit is different from fashionable action."
+        },
+        {
+          "exampleId": "ch06-ex06",
+          "title": "Sustaining momentum on a team",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "A team wants a dramatic turnaround and keeps resetting priorities, rebranding initiatives, or launching fresh programs before the previous ones have time to compound. Energy is high, but the organization keeps looping instead of building force.",
+          "whatToDo": [
+            "Commit to a coherent set of disciplined actions and repeat them long enough for momentum to become visible. Resist the urge to interpret every slow period as proof that a full reset is needed."
+          ],
+          "whyItMatters": "This matters because many teams sabotage themselves by chasing transformation theater. The chapter becomes practical when readers learn to value accumulated traction over symbolic change."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch06-h-q01",
+            "prompt": "What is the main claim of this chapter?",
+            "choices": [
+              "That disciplined people and disciplined thought reduce the need for heavy control systems.",
+              "That greatness comes mainly from luck.",
+              "That dramatic change always beats disciplined effort.",
+              "That activity is the same as momentum."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch06-h-q02",
+            "prompt": "Why does Collins emphasize this principle?",
+            "choices": [
+              "Because it helps explain why some organizations build durable momentum while others stall.",
+              "Because it eliminates the need for hiring or strategy.",
+              "Because it proves emotion is irrelevant in leadership.",
+              "Because it makes technology the central answer to every problem."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch06-h-q03",
+            "prompt": "Which pair best reflects the chapter's deeper logic?",
+            "choices": [
+              "discipline and self management shape compounding performance.",
+              "Drama and speed replace discipline.",
+              "Noise and reinvention create trust.",
+              "Complexity and trend chasing produce clarity."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch06-h-q04",
+            "prompt": "What mistake does this chapter warn against?",
+            "choices": [
+              "Confusing visible action or comfortable success with the conditions of real greatness.",
+              "Hiring carefully before expanding.",
+              "Testing reality honestly.",
+              "Building disciplined routines."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch06-h-q05",
+            "prompt": "How does this chapter apply outside business?",
+            "choices": [
+              "It applies anywhere people need disciplined systems, honest thinking, and repeated high quality action.",
+              "It applies only to Fortune 500 companies.",
+              "It applies only when technology is the main issue.",
+              "It has little relevance to students or personal growth."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch06-h-q06",
+            "prompt": "Why is compounding important in this chapter?",
+            "choices": [
+              "Because great results usually appear after many disciplined steps accumulate over time.",
+              "Because success should happen immediately if the principle is correct.",
+              "Because compounding only matters in finance.",
+              "Because momentum can be manufactured through slogans alone."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch06-h-q07",
+            "prompt": "What does the chapter suggest about leadership quality?",
+            "choices": [
+              "Strong leadership often builds disciplined systems rather than dependence on personality.",
+              "Strong leadership avoids all structure.",
+              "Strong leadership mainly protects appearances.",
+              "Strong leadership depends on constant reinvention."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch06-h-q08",
+            "prompt": "Why does the chapter criticize acceptable mediocrity?",
+            "choices": [
+              "Because being merely good often removes the urgency needed to reach something better.",
+              "Because mediocre results are always caused by low intelligence.",
+              "Because comfort is never useful in any form.",
+              "Because every average result requires a total reset."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch06-h-q09",
+            "prompt": "What is the practical move after learning this chapter?",
+            "choices": [
+              "Identify the few factors that really matter and align people, systems, and actions around them.",
+              "Chase more opportunities so you keep every option open.",
+              "Adopt trends early even when they lack strategic fit.",
+              "Wait for a dramatic breakthrough before changing anything."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch06-h-q10",
+            "prompt": "What is the deepest takeaway from this chapter?",
+            "choices": [
+              "Greatness emerges from disciplined alignment sustained long enough to compound.",
+              "Greatness comes from one major event.",
+              "Greatness is mostly a branding effect.",
+              "Greatness depends on avoiding all constraints."
+            ],
+            "correctIndex": 0
+          }
+        ]
+      }
+    },
+    {
+      "chapterId": "ch07-technology-accelerators",
+      "number": 7,
+      "title": "Technology Accelerates It Does Not Save",
+      "readingTimeMinutes": 16,
+      "contentVariants": {
+        "easy": {
+          "summaryBullets": [
+            "This chapter argues that technology works best when it strengthens an already sound strategy instead of trying to replace one.",
+            "Collins presents greatness as the result of disciplined choices rather than luck or charisma alone.",
+            "A key idea is that technology accelerator matters because weak foundations undermine later progress.",
+            "The chapter explains how strategic fit shapes outcomes over time.",
+            "It warns against confusing visible activity with real progress.",
+            "Readers are encouraged to think in systems, people quality, and repeated behavior instead of slogans.",
+            "The lesson applies to work, school, and personal growth because strong results usually compound from disciplined basics.",
+            "Its core message is that greatness is built through clear principles sustained over time."
+          ],
+          "keyTakeaways": [
+            "Technology Accelerator",
+            "Strategic Fit",
+            "Amplification",
+            "Tool Choice",
+            "Discipline",
+            "Timing"
+          ],
+          "practice": [
+            "adopt tools that fit the core strategy",
+            "avoid trend chasing",
+            "treat technology as a lever not identity",
+            "measure whether the tool deepens the advantage"
+          ]
+        },
+        "medium": {
+          "summaryBullets": [
+            "This chapter argues that technology works best when it strengthens an already sound strategy instead of trying to replace one.",
+            "Collins treats greatness as a research based pattern rather than a motivational fantasy.",
+            "A central point is that technology accelerator creates leverage only when paired with the right people and disciplined execution.",
+            "The chapter shows how strategic fit can either strengthen an organization or quietly weaken it depending on how it is handled.",
+            "It challenges the tendency to search for dramatic answers when the deeper causes of success are often structural and cumulative.",
+            "This means leaders need to examine what actually compounds rather than what merely looks impressive in the short term.",
+            "The chapter also suggests that discipline is strongest when it lives inside people and systems instead of being imposed through constant control.",
+            "That idea matters because organizations often build bureaucracy when what they really need is clarity and consistency.",
+            "For students and early career readers, the chapter is useful anywhere teams, habits, or ambitions need durable structure.",
+            "The practical challenge is to simplify to what matters most and then stay with it long enough to see momentum develop.",
+            "This requires resisting distraction, trend chasing, and the comfort of acceptable but limited performance.",
+            "The deeper lesson is that greatness is usually the product of disciplined alignment more than dramatic genius."
+          ],
+          "keyTakeaways": [
+            "Technology Accelerator",
+            "Strategic Fit",
+            "Amplification",
+            "Tool Choice",
+            "Discipline",
+            "Timing"
+          ],
+          "practice": [
+            "adopt tools that fit the core strategy",
+            "avoid trend chasing",
+            "treat technology as a lever not identity",
+            "measure whether the tool deepens the advantage"
+          ]
+        },
+        "hard": {
+          "summaryBullets": [
+            "This chapter argues that technology works best when it strengthens an already sound strategy instead of trying to replace one, and it frames the lesson as a principle of organizational and personal design.",
+            "Collins builds his case through comparative research, which matters because it shifts the conversation from storytelling to patterned differences.",
+            "The chapter suggests that technology accelerator is valuable precisely because it narrows attention to what has lasting explanatory power.",
+            "It also shows that strategic fit is not merely a style preference but a causal element in whether disciplined action can accumulate over time.",
+            "A major theme is that greatness is rarely the result of one breakthrough event. It is usually the delayed visible effect of many earlier disciplined choices.",
+            "This makes the chapter especially useful for people who are impatient, because it reframes slow progress as the normal appearance of compounding rather than as proof of failure.",
+            "The chapter also warns against the symbolic substitutes for greatness, such as image, noise, fashionable tools, or constant reinvention.",
+            "Those substitutes feel active, but they often weaken the very consistency required for momentum to build.",
+            "Collins therefore points readers back to fundamentals such as people quality, honest reality testing, strategic simplicity, and disciplined follow through.",
+            "Another implication is that great leaders often create systems that reduce dependence on personality by building clarity into the organization itself.",
+            "This matters for students and early career readers because the same principle applies when building habits, teams, reputations, or long term projects.",
+            "A recurring insight is that the enemy of excellence is often not disaster but tolerable mediocrity, because it removes the urgency to reexamine assumptions.",
+            "The chapter also has an ethical edge, since it values truth, humility, and stewardship over ego, theater, or personal glory.",
+            "That means great outcomes depend not only on ambition but on the willingness to submit ambition to disciplined reality.",
+            "The practical implication is to identify the few variables that really matter and then design your behavior, team, and systems around them.",
+            "The deepest lesson is that greatness is an emergent property of disciplined people, disciplined thought, and disciplined action held together long enough to compound."
+          ],
+          "keyTakeaways": [
+            "Technology Accelerator",
+            "Strategic Fit",
+            "Amplification",
+            "Tool Choice",
+            "Discipline",
+            "Timing"
+          ],
+          "practice": [
+            "adopt tools that fit the core strategy",
+            "avoid trend chasing",
+            "treat technology as a lever not identity",
+            "measure whether the tool deepens the advantage"
+          ]
+        }
+      },
+      "examples": [
+        {
+          "exampleId": "ch07-ex01",
+          "title": "Good habits that keep you average",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You are functioning well enough in school, work, or daily life that nothing feels urgent, but you can sense you are coasting. Because things are not obviously broken, you keep postponing the harder changes that would create real growth.",
+          "whatToDo": [
+            "Identify one area where good performance has become an excuse to avoid stronger standards. Define what great would look like there, then make one change that raises the bar beyond comfort rather than waiting for failure to force movement."
+          ],
+          "whyItMatters": "This matters because many people stall not from disaster but from acceptable mediocrity. The chapter becomes practical when readers see how comfort quietly blocks excellence."
+        },
+        {
+          "exampleId": "ch07-ex02",
+          "title": "Choosing disciplined routines over drama",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You often look for a big reset, a perfect plan, or a motivational breakthrough to change your life. But the real issue is that your daily systems are inconsistent, so each fresh start collapses after the initial emotion fades.",
+          "whatToDo": [
+            "Shift attention away from dramatic reinvention and toward repeatable habits that move the flywheel a little each day. Build momentum through consistency rather than through excitement, and measure progress over months instead of moods."
+          ],
+          "whyItMatters": "This example matters because many young adults overvalue dramatic change and undervalue compounding. The book works best when it changes how they think about progress itself."
+        },
+        {
+          "exampleId": "ch07-ex03",
+          "title": "Building the right project team",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A student project or club is stuck because the group keeps debating plans while the actual team fit is weak. Some members are dependable and thoughtful, while others create drag, confusion, or passive resistance that no clever strategy can fix.",
+          "whatToDo": [
+            "Address the people issue before the strategy issue. Put dependable people in the most important roles, reduce drag where possible, and simplify the plan until the team is strong enough to carry it with discipline."
+          ],
+          "whyItMatters": "Students often assume better planning is the answer when the real issue is who is on the bus. This example makes the chapter concrete in an environment where team composition drives outcomes."
+        },
+        {
+          "exampleId": "ch07-ex04",
+          "title": "Facing academic reality honestly",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A class, thesis, or semester plan is clearly not going the way you hoped, but you keep softening the facts because admitting the truth feels threatening. The result is that weak assumptions stay alive long after the evidence has changed.",
+          "whatToDo": [
+            "Create a direct review of the facts without self pity or self protection. Name what is actually happening, what assumptions failed, and what disciplined next step gives you the best chance to recover or adapt."
+          ],
+          "whyItMatters": "This matters because brutal facts are useful only when paired with resolve. The chapter becomes educational when readers learn to separate honest diagnosis from emotional collapse."
+        },
+        {
+          "exampleId": "ch07-ex05",
+          "title": "Choosing strategy over trend chasing",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "At work, everyone is excited about a new tool, platform, or technology trend, and there is pressure to adopt it quickly so the organization does not look behind. But the team is less clear on whether it actually fits the core strategy or makes the underlying advantage stronger.",
+          "whatToDo": [
+            "Evaluate the tool against the central engine of the business rather than against hype. Adopt it if it clearly strengthens what the organization is already trying to become best at, and ignore it if it mainly offers noise or image."
+          ],
+          "whyItMatters": "This example reflects the book’s warning that technology cannot rescue a confused strategy. Readers need to see how disciplined fit is different from fashionable action."
+        },
+        {
+          "exampleId": "ch07-ex06",
+          "title": "Sustaining momentum on a team",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "A team wants a dramatic turnaround and keeps resetting priorities, rebranding initiatives, or launching fresh programs before the previous ones have time to compound. Energy is high, but the organization keeps looping instead of building force.",
+          "whatToDo": [
+            "Commit to a coherent set of disciplined actions and repeat them long enough for momentum to become visible. Resist the urge to interpret every slow period as proof that a full reset is needed."
+          ],
+          "whyItMatters": "This matters because many teams sabotage themselves by chasing transformation theater. The chapter becomes practical when readers learn to value accumulated traction over symbolic change."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch07-h-q01",
+            "prompt": "What is the main claim of this chapter?",
+            "choices": [
+              "That technology works best when it strengthens an already sound strategy instead of trying to replace one.",
+              "That greatness comes mainly from luck.",
+              "That dramatic change always beats disciplined effort.",
+              "That activity is the same as momentum."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch07-h-q02",
+            "prompt": "Why does Collins emphasize this principle?",
+            "choices": [
+              "Because it helps explain why some organizations build durable momentum while others stall.",
+              "Because it eliminates the need for hiring or strategy.",
+              "Because it proves emotion is irrelevant in leadership.",
+              "Because it makes technology the central answer to every problem."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch07-h-q03",
+            "prompt": "Which pair best reflects the chapter's deeper logic?",
+            "choices": [
+              "technology accelerator and strategic fit shape compounding performance.",
+              "Drama and speed replace discipline.",
+              "Noise and reinvention create trust.",
+              "Complexity and trend chasing produce clarity."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch07-h-q04",
+            "prompt": "What mistake does this chapter warn against?",
+            "choices": [
+              "Confusing visible action or comfortable success with the conditions of real greatness.",
+              "Hiring carefully before expanding.",
+              "Testing reality honestly.",
+              "Building disciplined routines."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch07-h-q05",
+            "prompt": "How does this chapter apply outside business?",
+            "choices": [
+              "It applies anywhere people need disciplined systems, honest thinking, and repeated high quality action.",
+              "It applies only to Fortune 500 companies.",
+              "It applies only when technology is the main issue.",
+              "It has little relevance to students or personal growth."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch07-h-q06",
+            "prompt": "Why is compounding important in this chapter?",
+            "choices": [
+              "Because great results usually appear after many disciplined steps accumulate over time.",
+              "Because success should happen immediately if the principle is correct.",
+              "Because compounding only matters in finance.",
+              "Because momentum can be manufactured through slogans alone."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch07-h-q07",
+            "prompt": "What does the chapter suggest about leadership quality?",
+            "choices": [
+              "Strong leadership often builds disciplined systems rather than dependence on personality.",
+              "Strong leadership avoids all structure.",
+              "Strong leadership mainly protects appearances.",
+              "Strong leadership depends on constant reinvention."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch07-h-q08",
+            "prompt": "Why does the chapter criticize acceptable mediocrity?",
+            "choices": [
+              "Because being merely good often removes the urgency needed to reach something better.",
+              "Because mediocre results are always caused by low intelligence.",
+              "Because comfort is never useful in any form.",
+              "Because every average result requires a total reset."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch07-h-q09",
+            "prompt": "What is the practical move after learning this chapter?",
+            "choices": [
+              "Identify the few factors that really matter and align people, systems, and actions around them.",
+              "Chase more opportunities so you keep every option open.",
+              "Adopt trends early even when they lack strategic fit.",
+              "Wait for a dramatic breakthrough before changing anything."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch07-h-q10",
+            "prompt": "What is the deepest takeaway from this chapter?",
+            "choices": [
+              "Greatness emerges from disciplined alignment sustained long enough to compound.",
+              "Greatness comes from one major event.",
+              "Greatness is mostly a branding effect.",
+              "Greatness depends on avoiding all constraints."
+            ],
+            "correctIndex": 0
+          }
+        ]
+      }
+    },
+    {
+      "chapterId": "ch08-flywheel-vs-doom-loop",
+      "number": 8,
+      "title": "Momentum Builds Gradually",
+      "readingTimeMinutes": 13,
+      "contentVariants": {
+        "easy": {
+          "summaryBullets": [
+            "This chapter argues that great results usually come from cumulative disciplined effort rather than one dramatic breakthrough.",
+            "Collins presents greatness as the result of disciplined choices rather than luck or charisma alone.",
+            "A key idea is that flywheel matters because weak foundations undermine later progress.",
+            "The chapter explains how momentum shapes outcomes over time.",
+            "It warns against confusing visible activity with real progress.",
+            "Readers are encouraged to think in systems, people quality, and repeated behavior instead of slogans.",
+            "The lesson applies to work, school, and personal growth because strong results usually compound from disciplined basics.",
+            "Its core message is that greatness is built through clear principles sustained over time."
+          ],
+          "keyTakeaways": [
+            "Flywheel",
+            "Momentum",
+            "Consistency",
+            "Doom Loop",
+            "False Transformation",
+            "Compounding Action"
+          ],
+          "practice": [
+            "repeat the right actions long enough",
+            "avoid constant strategy resets",
+            "measure momentum honestly",
+            "stop chasing dramatic rescue moves"
+          ]
+        },
+        "medium": {
+          "summaryBullets": [
+            "This chapter argues that great results usually come from cumulative disciplined effort rather than one dramatic breakthrough.",
+            "Collins treats greatness as a research based pattern rather than a motivational fantasy.",
+            "A central point is that flywheel creates leverage only when paired with the right people and disciplined execution.",
+            "The chapter shows how momentum can either strengthen an organization or quietly weaken it depending on how it is handled.",
+            "It challenges the tendency to search for dramatic answers when the deeper causes of success are often structural and cumulative.",
+            "This means leaders need to examine what actually compounds rather than what merely looks impressive in the short term.",
+            "The chapter also suggests that discipline is strongest when it lives inside people and systems instead of being imposed through constant control.",
+            "That idea matters because organizations often build bureaucracy when what they really need is clarity and consistency.",
+            "For students and early career readers, the chapter is useful anywhere teams, habits, or ambitions need durable structure.",
+            "The practical challenge is to simplify to what matters most and then stay with it long enough to see momentum develop.",
+            "This requires resisting distraction, trend chasing, and the comfort of acceptable but limited performance.",
+            "The deeper lesson is that greatness is usually the product of disciplined alignment more than dramatic genius."
+          ],
+          "keyTakeaways": [
+            "Flywheel",
+            "Momentum",
+            "Consistency",
+            "Doom Loop",
+            "False Transformation",
+            "Compounding Action"
+          ],
+          "practice": [
+            "repeat the right actions long enough",
+            "avoid constant strategy resets",
+            "measure momentum honestly",
+            "stop chasing dramatic rescue moves"
+          ]
+        },
+        "hard": {
+          "summaryBullets": [
+            "This chapter argues that great results usually come from cumulative disciplined effort rather than one dramatic breakthrough, and it frames the lesson as a principle of organizational and personal design.",
+            "Collins builds his case through comparative research, which matters because it shifts the conversation from storytelling to patterned differences.",
+            "The chapter suggests that flywheel is valuable precisely because it narrows attention to what has lasting explanatory power.",
+            "It also shows that momentum is not merely a style preference but a causal element in whether disciplined action can accumulate over time.",
+            "A major theme is that greatness is rarely the result of one breakthrough event. It is usually the delayed visible effect of many earlier disciplined choices.",
+            "This makes the chapter especially useful for people who are impatient, because it reframes slow progress as the normal appearance of compounding rather than as proof of failure.",
+            "The chapter also warns against the symbolic substitutes for greatness, such as image, noise, fashionable tools, or constant reinvention.",
+            "Those substitutes feel active, but they often weaken the very consistency required for momentum to build.",
+            "Collins therefore points readers back to fundamentals such as people quality, honest reality testing, strategic simplicity, and disciplined follow through.",
+            "Another implication is that great leaders often create systems that reduce dependence on personality by building clarity into the organization itself.",
+            "This matters for students and early career readers because the same principle applies when building habits, teams, reputations, or long term projects.",
+            "A recurring insight is that the enemy of excellence is often not disaster but tolerable mediocrity, because it removes the urgency to reexamine assumptions.",
+            "The chapter also has an ethical edge, since it values truth, humility, and stewardship over ego, theater, or personal glory.",
+            "That means great outcomes depend not only on ambition but on the willingness to submit ambition to disciplined reality.",
+            "The practical implication is to identify the few variables that really matter and then design your behavior, team, and systems around them.",
+            "The deepest lesson is that greatness is an emergent property of disciplined people, disciplined thought, and disciplined action held together long enough to compound."
+          ],
+          "keyTakeaways": [
+            "Flywheel",
+            "Momentum",
+            "Consistency",
+            "Doom Loop",
+            "False Transformation",
+            "Compounding Action"
+          ],
+          "practice": [
+            "repeat the right actions long enough",
+            "avoid constant strategy resets",
+            "measure momentum honestly",
+            "stop chasing dramatic rescue moves"
+          ]
+        }
+      },
+      "examples": [
+        {
+          "exampleId": "ch08-ex01",
+          "title": "Good habits that keep you average",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You are functioning well enough in school, work, or daily life that nothing feels urgent, but you can sense you are coasting. Because things are not obviously broken, you keep postponing the harder changes that would create real growth.",
+          "whatToDo": [
+            "Identify one area where good performance has become an excuse to avoid stronger standards. Define what great would look like there, then make one change that raises the bar beyond comfort rather than waiting for failure to force movement."
+          ],
+          "whyItMatters": "This matters because many people stall not from disaster but from acceptable mediocrity. The chapter becomes practical when readers see how comfort quietly blocks excellence."
+        },
+        {
+          "exampleId": "ch08-ex02",
+          "title": "Choosing disciplined routines over drama",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You often look for a big reset, a perfect plan, or a motivational breakthrough to change your life. But the real issue is that your daily systems are inconsistent, so each fresh start collapses after the initial emotion fades.",
+          "whatToDo": [
+            "Shift attention away from dramatic reinvention and toward repeatable habits that move the flywheel a little each day. Build momentum through consistency rather than through excitement, and measure progress over months instead of moods."
+          ],
+          "whyItMatters": "This example matters because many young adults overvalue dramatic change and undervalue compounding. The book works best when it changes how they think about progress itself."
+        },
+        {
+          "exampleId": "ch08-ex03",
+          "title": "Building the right project team",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A student project or club is stuck because the group keeps debating plans while the actual team fit is weak. Some members are dependable and thoughtful, while others create drag, confusion, or passive resistance that no clever strategy can fix.",
+          "whatToDo": [
+            "Address the people issue before the strategy issue. Put dependable people in the most important roles, reduce drag where possible, and simplify the plan until the team is strong enough to carry it with discipline."
+          ],
+          "whyItMatters": "Students often assume better planning is the answer when the real issue is who is on the bus. This example makes the chapter concrete in an environment where team composition drives outcomes."
+        },
+        {
+          "exampleId": "ch08-ex04",
+          "title": "Facing academic reality honestly",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A class, thesis, or semester plan is clearly not going the way you hoped, but you keep softening the facts because admitting the truth feels threatening. The result is that weak assumptions stay alive long after the evidence has changed.",
+          "whatToDo": [
+            "Create a direct review of the facts without self pity or self protection. Name what is actually happening, what assumptions failed, and what disciplined next step gives you the best chance to recover or adapt."
+          ],
+          "whyItMatters": "This matters because brutal facts are useful only when paired with resolve. The chapter becomes educational when readers learn to separate honest diagnosis from emotional collapse."
+        },
+        {
+          "exampleId": "ch08-ex05",
+          "title": "Choosing strategy over trend chasing",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "At work, everyone is excited about a new tool, platform, or technology trend, and there is pressure to adopt it quickly so the organization does not look behind. But the team is less clear on whether it actually fits the core strategy or makes the underlying advantage stronger.",
+          "whatToDo": [
+            "Evaluate the tool against the central engine of the business rather than against hype. Adopt it if it clearly strengthens what the organization is already trying to become best at, and ignore it if it mainly offers noise or image."
+          ],
+          "whyItMatters": "This example reflects the book’s warning that technology cannot rescue a confused strategy. Readers need to see how disciplined fit is different from fashionable action."
+        },
+        {
+          "exampleId": "ch08-ex06",
+          "title": "Sustaining momentum on a team",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "A team wants a dramatic turnaround and keeps resetting priorities, rebranding initiatives, or launching fresh programs before the previous ones have time to compound. Energy is high, but the organization keeps looping instead of building force.",
+          "whatToDo": [
+            "Commit to a coherent set of disciplined actions and repeat them long enough for momentum to become visible. Resist the urge to interpret every slow period as proof that a full reset is needed."
+          ],
+          "whyItMatters": "This matters because many teams sabotage themselves by chasing transformation theater. The chapter becomes practical when readers learn to value accumulated traction over symbolic change."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch08-h-q01",
+            "prompt": "What is the main claim of this chapter?",
+            "choices": [
+              "That great results usually come from cumulative disciplined effort rather than one dramatic breakthrough.",
+              "That greatness comes mainly from luck.",
+              "That dramatic change always beats disciplined effort.",
+              "That activity is the same as momentum."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch08-h-q02",
+            "prompt": "Why does Collins emphasize this principle?",
+            "choices": [
+              "Because it helps explain why some organizations build durable momentum while others stall.",
+              "Because it eliminates the need for hiring or strategy.",
+              "Because it proves emotion is irrelevant in leadership.",
+              "Because it makes technology the central answer to every problem."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch08-h-q03",
+            "prompt": "Which pair best reflects the chapter's deeper logic?",
+            "choices": [
+              "flywheel and momentum shape compounding performance.",
+              "Drama and speed replace discipline.",
+              "Noise and reinvention create trust.",
+              "Complexity and trend chasing produce clarity."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch08-h-q04",
+            "prompt": "What mistake does this chapter warn against?",
+            "choices": [
+              "Confusing visible action or comfortable success with the conditions of real greatness.",
+              "Hiring carefully before expanding.",
+              "Testing reality honestly.",
+              "Building disciplined routines."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch08-h-q05",
+            "prompt": "How does this chapter apply outside business?",
+            "choices": [
+              "It applies anywhere people need disciplined systems, honest thinking, and repeated high quality action.",
+              "It applies only to Fortune 500 companies.",
+              "It applies only when technology is the main issue.",
+              "It has little relevance to students or personal growth."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch08-h-q06",
+            "prompt": "Why is compounding important in this chapter?",
+            "choices": [
+              "Because great results usually appear after many disciplined steps accumulate over time.",
+              "Because success should happen immediately if the principle is correct.",
+              "Because compounding only matters in finance.",
+              "Because momentum can be manufactured through slogans alone."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch08-h-q07",
+            "prompt": "What does the chapter suggest about leadership quality?",
+            "choices": [
+              "Strong leadership often builds disciplined systems rather than dependence on personality.",
+              "Strong leadership avoids all structure.",
+              "Strong leadership mainly protects appearances.",
+              "Strong leadership depends on constant reinvention."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch08-h-q08",
+            "prompt": "Why does the chapter criticize acceptable mediocrity?",
+            "choices": [
+              "Because being merely good often removes the urgency needed to reach something better.",
+              "Because mediocre results are always caused by low intelligence.",
+              "Because comfort is never useful in any form.",
+              "Because every average result requires a total reset."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch08-h-q09",
+            "prompt": "What is the practical move after learning this chapter?",
+            "choices": [
+              "Identify the few factors that really matter and align people, systems, and actions around them.",
+              "Chase more opportunities so you keep every option open.",
+              "Adopt trends early even when they lack strategic fit.",
+              "Wait for a dramatic breakthrough before changing anything."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch08-h-q10",
+            "prompt": "What is the deepest takeaway from this chapter?",
+            "choices": [
+              "Greatness emerges from disciplined alignment sustained long enough to compound.",
+              "Greatness comes from one major event.",
+              "Greatness is mostly a branding effect.",
+              "Greatness depends on avoiding all constraints."
+            ],
+            "correctIndex": 0
+          }
+        ]
+      }
+    },
+    {
+      "chapterId": "ch09-enduring-greatness",
+      "number": 9,
+      "title": "Turn Gains Into Durability",
+      "readingTimeMinutes": 14,
+      "contentVariants": {
+        "easy": {
+          "summaryBullets": [
+            "This chapter argues that lasting greatness depends on preserving core strengths while building for the future beyond one leader or cycle.",
+            "Collins presents greatness as the result of disciplined choices rather than luck or charisma alone.",
+            "A key idea is that durability matters because weak foundations undermine later progress.",
+            "The chapter explains how institution building shapes outcomes over time.",
+            "It warns against confusing visible activity with real progress.",
+            "Readers are encouraged to think in systems, people quality, and repeated behavior instead of slogans.",
+            "The lesson applies to work, school, and personal growth because strong results usually compound from disciplined basics.",
+            "Its core message is that greatness is built through clear principles sustained over time."
+          ],
+          "keyTakeaways": [
+            "Durability",
+            "Institution Building",
+            "Succession",
+            "Core Values",
+            "Continuity",
+            "Long Term Stewardship"
+          ],
+          "practice": [
+            "build systems that outlast you",
+            "protect the core while adapting",
+            "plan for succession early",
+            "treat greatness as maintenance not a trophy"
+          ]
+        },
+        "medium": {
+          "summaryBullets": [
+            "This chapter argues that lasting greatness depends on preserving core strengths while building for the future beyond one leader or cycle.",
+            "Collins treats greatness as a research based pattern rather than a motivational fantasy.",
+            "A central point is that durability creates leverage only when paired with the right people and disciplined execution.",
+            "The chapter shows how institution building can either strengthen an organization or quietly weaken it depending on how it is handled.",
+            "It challenges the tendency to search for dramatic answers when the deeper causes of success are often structural and cumulative.",
+            "This means leaders need to examine what actually compounds rather than what merely looks impressive in the short term.",
+            "The chapter also suggests that discipline is strongest when it lives inside people and systems instead of being imposed through constant control.",
+            "That idea matters because organizations often build bureaucracy when what they really need is clarity and consistency.",
+            "For students and early career readers, the chapter is useful anywhere teams, habits, or ambitions need durable structure.",
+            "The practical challenge is to simplify to what matters most and then stay with it long enough to see momentum develop.",
+            "This requires resisting distraction, trend chasing, and the comfort of acceptable but limited performance.",
+            "The deeper lesson is that greatness is usually the product of disciplined alignment more than dramatic genius."
+          ],
+          "keyTakeaways": [
+            "Durability",
+            "Institution Building",
+            "Succession",
+            "Core Values",
+            "Continuity",
+            "Long Term Stewardship"
+          ],
+          "practice": [
+            "build systems that outlast you",
+            "protect the core while adapting",
+            "plan for succession early",
+            "treat greatness as maintenance not a trophy"
+          ]
+        },
+        "hard": {
+          "summaryBullets": [
+            "This chapter argues that lasting greatness depends on preserving core strengths while building for the future beyond one leader or cycle, and it frames the lesson as a principle of organizational and personal design.",
+            "Collins builds his case through comparative research, which matters because it shifts the conversation from storytelling to patterned differences.",
+            "The chapter suggests that durability is valuable precisely because it narrows attention to what has lasting explanatory power.",
+            "It also shows that institution building is not merely a style preference but a causal element in whether disciplined action can accumulate over time.",
+            "A major theme is that greatness is rarely the result of one breakthrough event. It is usually the delayed visible effect of many earlier disciplined choices.",
+            "This makes the chapter especially useful for people who are impatient, because it reframes slow progress as the normal appearance of compounding rather than as proof of failure.",
+            "The chapter also warns against the symbolic substitutes for greatness, such as image, noise, fashionable tools, or constant reinvention.",
+            "Those substitutes feel active, but they often weaken the very consistency required for momentum to build.",
+            "Collins therefore points readers back to fundamentals such as people quality, honest reality testing, strategic simplicity, and disciplined follow through.",
+            "Another implication is that great leaders often create systems that reduce dependence on personality by building clarity into the organization itself.",
+            "This matters for students and early career readers because the same principle applies when building habits, teams, reputations, or long term projects.",
+            "A recurring insight is that the enemy of excellence is often not disaster but tolerable mediocrity, because it removes the urgency to reexamine assumptions.",
+            "The chapter also has an ethical edge, since it values truth, humility, and stewardship over ego, theater, or personal glory.",
+            "That means great outcomes depend not only on ambition but on the willingness to submit ambition to disciplined reality.",
+            "The practical implication is to identify the few variables that really matter and then design your behavior, team, and systems around them.",
+            "The deepest lesson is that greatness is an emergent property of disciplined people, disciplined thought, and disciplined action held together long enough to compound."
+          ],
+          "keyTakeaways": [
+            "Durability",
+            "Institution Building",
+            "Succession",
+            "Core Values",
+            "Continuity",
+            "Long Term Stewardship"
+          ],
+          "practice": [
+            "build systems that outlast you",
+            "protect the core while adapting",
+            "plan for succession early",
+            "treat greatness as maintenance not a trophy"
+          ]
+        }
+      },
+      "examples": [
+        {
+          "exampleId": "ch09-ex01",
+          "title": "Good habits that keep you average",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You are functioning well enough in school, work, or daily life that nothing feels urgent, but you can sense you are coasting. Because things are not obviously broken, you keep postponing the harder changes that would create real growth.",
+          "whatToDo": [
+            "Identify one area where good performance has become an excuse to avoid stronger standards. Define what great would look like there, then make one change that raises the bar beyond comfort rather than waiting for failure to force movement."
+          ],
+          "whyItMatters": "This matters because many people stall not from disaster but from acceptable mediocrity. The chapter becomes practical when readers see how comfort quietly blocks excellence."
+        },
+        {
+          "exampleId": "ch09-ex02",
+          "title": "Choosing disciplined routines over drama",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You often look for a big reset, a perfect plan, or a motivational breakthrough to change your life. But the real issue is that your daily systems are inconsistent, so each fresh start collapses after the initial emotion fades.",
+          "whatToDo": [
+            "Shift attention away from dramatic reinvention and toward repeatable habits that move the flywheel a little each day. Build momentum through consistency rather than through excitement, and measure progress over months instead of moods."
+          ],
+          "whyItMatters": "This example matters because many young adults overvalue dramatic change and undervalue compounding. The book works best when it changes how they think about progress itself."
+        },
+        {
+          "exampleId": "ch09-ex03",
+          "title": "Building the right project team",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A student project or club is stuck because the group keeps debating plans while the actual team fit is weak. Some members are dependable and thoughtful, while others create drag, confusion, or passive resistance that no clever strategy can fix.",
+          "whatToDo": [
+            "Address the people issue before the strategy issue. Put dependable people in the most important roles, reduce drag where possible, and simplify the plan until the team is strong enough to carry it with discipline."
+          ],
+          "whyItMatters": "Students often assume better planning is the answer when the real issue is who is on the bus. This example makes the chapter concrete in an environment where team composition drives outcomes."
+        },
+        {
+          "exampleId": "ch09-ex04",
+          "title": "Facing academic reality honestly",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A class, thesis, or semester plan is clearly not going the way you hoped, but you keep softening the facts because admitting the truth feels threatening. The result is that weak assumptions stay alive long after the evidence has changed.",
+          "whatToDo": [
+            "Create a direct review of the facts without self pity or self protection. Name what is actually happening, what assumptions failed, and what disciplined next step gives you the best chance to recover or adapt."
+          ],
+          "whyItMatters": "This matters because brutal facts are useful only when paired with resolve. The chapter becomes educational when readers learn to separate honest diagnosis from emotional collapse."
+        },
+        {
+          "exampleId": "ch09-ex05",
+          "title": "Choosing strategy over trend chasing",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "At work, everyone is excited about a new tool, platform, or technology trend, and there is pressure to adopt it quickly so the organization does not look behind. But the team is less clear on whether it actually fits the core strategy or makes the underlying advantage stronger.",
+          "whatToDo": [
+            "Evaluate the tool against the central engine of the business rather than against hype. Adopt it if it clearly strengthens what the organization is already trying to become best at, and ignore it if it mainly offers noise or image."
+          ],
+          "whyItMatters": "This example reflects the book’s warning that technology cannot rescue a confused strategy. Readers need to see how disciplined fit is different from fashionable action."
+        },
+        {
+          "exampleId": "ch09-ex06",
+          "title": "Sustaining momentum on a team",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "A team wants a dramatic turnaround and keeps resetting priorities, rebranding initiatives, or launching fresh programs before the previous ones have time to compound. Energy is high, but the organization keeps looping instead of building force.",
+          "whatToDo": [
+            "Commit to a coherent set of disciplined actions and repeat them long enough for momentum to become visible. Resist the urge to interpret every slow period as proof that a full reset is needed."
+          ],
+          "whyItMatters": "This matters because many teams sabotage themselves by chasing transformation theater. The chapter becomes practical when readers learn to value accumulated traction over symbolic change."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch09-h-q01",
+            "prompt": "What is the main claim of this chapter?",
+            "choices": [
+              "That lasting greatness depends on preserving core strengths while building for the future beyond one leader or cycle.",
+              "That greatness comes mainly from luck.",
+              "That dramatic change always beats disciplined effort.",
+              "That activity is the same as momentum."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch09-h-q02",
+            "prompt": "Why does Collins emphasize this principle?",
+            "choices": [
+              "Because it helps explain why some organizations build durable momentum while others stall.",
+              "Because it eliminates the need for hiring or strategy.",
+              "Because it proves emotion is irrelevant in leadership.",
+              "Because it makes technology the central answer to every problem."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch09-h-q03",
+            "prompt": "Which pair best reflects the chapter's deeper logic?",
+            "choices": [
+              "durability and institution building shape compounding performance.",
+              "Drama and speed replace discipline.",
+              "Noise and reinvention create trust.",
+              "Complexity and trend chasing produce clarity."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch09-h-q04",
+            "prompt": "What mistake does this chapter warn against?",
+            "choices": [
+              "Confusing visible action or comfortable success with the conditions of real greatness.",
+              "Hiring carefully before expanding.",
+              "Testing reality honestly.",
+              "Building disciplined routines."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch09-h-q05",
+            "prompt": "How does this chapter apply outside business?",
+            "choices": [
+              "It applies anywhere people need disciplined systems, honest thinking, and repeated high quality action.",
+              "It applies only to Fortune 500 companies.",
+              "It applies only when technology is the main issue.",
+              "It has little relevance to students or personal growth."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch09-h-q06",
+            "prompt": "Why is compounding important in this chapter?",
+            "choices": [
+              "Because great results usually appear after many disciplined steps accumulate over time.",
+              "Because success should happen immediately if the principle is correct.",
+              "Because compounding only matters in finance.",
+              "Because momentum can be manufactured through slogans alone."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch09-h-q07",
+            "prompt": "What does the chapter suggest about leadership quality?",
+            "choices": [
+              "Strong leadership often builds disciplined systems rather than dependence on personality.",
+              "Strong leadership avoids all structure.",
+              "Strong leadership mainly protects appearances.",
+              "Strong leadership depends on constant reinvention."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch09-h-q08",
+            "prompt": "Why does the chapter criticize acceptable mediocrity?",
+            "choices": [
+              "Because being merely good often removes the urgency needed to reach something better.",
+              "Because mediocre results are always caused by low intelligence.",
+              "Because comfort is never useful in any form.",
+              "Because every average result requires a total reset."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch09-h-q09",
+            "prompt": "What is the practical move after learning this chapter?",
+            "choices": [
+              "Identify the few factors that really matter and align people, systems, and actions around them.",
+              "Chase more opportunities so you keep every option open.",
+              "Adopt trends early even when they lack strategic fit.",
+              "Wait for a dramatic breakthrough before changing anything."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch09-h-q10",
+            "prompt": "What is the deepest takeaway from this chapter?",
+            "choices": [
+              "Greatness emerges from disciplined alignment sustained long enough to compound.",
+              "Greatness comes from one major event.",
+              "Greatness is mostly a branding effect.",
+              "Greatness depends on avoiding all constraints."
+            ],
+            "correctIndex": 0
+          }
+        ]
+      }
+    }
+  ]
+}

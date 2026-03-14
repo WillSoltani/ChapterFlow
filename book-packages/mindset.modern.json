@@ -1,0 +1,2407 @@
+{
+  "schemaVersion": "1.0.0",
+  "packageId": "a0e4fc11-f90d-4884-9138-53d1d513fdb7",
+  "createdAt": "2026-03-13T00:00:00Z",
+  "contentOwner": "Will Soltani",
+  "book": {
+    "bookId": "mindset",
+    "title": "Mindset",
+    "author": "Carol S. Dweck",
+    "categories": [
+      "Psychology",
+      "Personal Development",
+      "Education"
+    ],
+    "tags": [
+      "mindset",
+      "growth",
+      "learning",
+      "resilience",
+      "education",
+      "leadership"
+    ],
+    "edition": {
+      "name": "Updated Main Chapter Edition",
+      "publishedYear": 2006
+    },
+    "variantFamily": "EMH"
+  },
+  "chapters": [
+    {
+      "chapterId": "ch01-how-beliefs-about-growth-shape-life",
+      "number": 1,
+      "title": "How Beliefs About Growth Shape Life",
+      "readingTimeMinutes": 13,
+      "contentVariants": {
+        "easy": {
+          "summaryBullets": [
+            "This chapter introduces the idea that people often operate from either a fixed mindset or a growth mindset when they face challenge, feedback, and uncertainty.",
+            "A fixed mindset treats ability as something largely settled, which makes mistakes feel like proof of limits rather than part of learning.",
+            "A growth mindset treats ability as something that can expand through effort, strategy, help, and time.",
+            "The chapter explains that these mindsets influence what people seek, whether they protect image or build capacity.",
+            "When people focus on looking smart, they often avoid difficulty that could expose weakness in the short term.",
+            "When people focus on getting better, they are more willing to enter situations where they might struggle before they improve.",
+            "The chapter argues that mindset matters because beliefs about ability quietly shape choices, habits, and emotional reactions.",
+            "The main lesson is that development starts with the stories people tell themselves about what talent and effort mean."
+          ],
+          "keyTakeaways": [
+            "mindset shapes action",
+            "ability beliefs affect goals",
+            "image protection blocks learning",
+            "growth needs effort and strategy",
+            "challenge can be useful",
+            "identity stories matter"
+          ],
+          "practice": [
+            "notice one fixed thought this week",
+            "rename one setback as data",
+            "choose one challenge that stretches you",
+            "ask what skill can grow here",
+            "praise process in your self talk"
+          ]
+        },
+        "medium": {
+          "summaryBullets": [
+            "This chapter introduces the idea that people often operate from either a fixed mindset or a growth mindset when they face challenge, feedback, and uncertainty.",
+            "A fixed mindset treats ability as something largely settled, which makes mistakes feel like proof of limits rather than part of learning.",
+            "A growth mindset treats ability as something that can expand through effort, strategy, help, and time.",
+            "The chapter explains that these mindsets influence what people seek, whether they protect image or build capacity.",
+            "When people focus on looking smart, they often avoid difficulty that could expose weakness in the short term.",
+            "When people focus on getting better, they are more willing to enter situations where they might struggle before they improve.",
+            "The chapter argues that mindset matters because beliefs about ability quietly shape choices, habits, and emotional reactions.",
+            "The main lesson is that development starts with the stories people tell themselves about what talent and effort mean.",
+            "The chapter shows that the same event, such as a bad score or a failed attempt, can be interpreted either as a verdict on worth or as information for the next try.",
+            "It emphasizes that mindset is not just theory because it affects resilience, curiosity, and willingness to practice.",
+            "A growth mindset does not deny difficulty, but it interprets difficulty as part of the path instead of as a sign to quit.",
+            "The deeper practical point is that people can change how they frame challenge, which changes what they attempt and what they eventually become."
+          ],
+          "keyTakeaways": [
+            "mindset shapes action",
+            "ability beliefs affect goals",
+            "image protection blocks learning",
+            "growth needs effort and strategy",
+            "challenge can be useful",
+            "identity stories matter",
+            "reflection supports change"
+          ],
+          "practice": [
+            "notice one fixed thought this week",
+            "rename one setback as data",
+            "choose one challenge that stretches you",
+            "ask what skill can grow here",
+            "praise process in your self talk",
+            "review one response after a challenge"
+          ]
+        },
+        "hard": {
+          "summaryBullets": [
+            "This chapter introduces the idea that people often operate from either a fixed mindset or a growth mindset when they face challenge, feedback, and uncertainty.",
+            "A fixed mindset treats ability as something largely settled, which makes mistakes feel like proof of limits rather than part of learning.",
+            "A growth mindset treats ability as something that can expand through effort, strategy, help, and time.",
+            "The chapter explains that these mindsets influence what people seek, whether they protect image or build capacity.",
+            "When people focus on looking smart, they often avoid difficulty that could expose weakness in the short term.",
+            "When people focus on getting better, they are more willing to enter situations where they might struggle before they improve.",
+            "The chapter argues that mindset matters because beliefs about ability quietly shape choices, habits, and emotional reactions.",
+            "The main lesson is that development starts with the stories people tell themselves about what talent and effort mean.",
+            "The chapter shows that the same event, such as a bad score or a failed attempt, can be interpreted either as a verdict on worth or as information for the next try.",
+            "It emphasizes that mindset is not just theory because it affects resilience, curiosity, and willingness to practice.",
+            "A growth mindset does not deny difficulty, but it interprets difficulty as part of the path instead of as a sign to quit.",
+            "The deeper practical point is that people can change how they frame challenge, which changes what they attempt and what they eventually become.",
+            "A deeper reading shows that mindset is really about incentives inside the self, because people pursue whichever actions best protect the identity they value most.",
+            "If identity is built around always appearing capable, then honest feedback becomes threatening even when it would help long term growth.",
+            "If identity is built around learning, then temporary embarrassment becomes easier to tolerate because progress matters more than image.",
+            "The deepest takeaway is that beliefs about human potential function like hidden rules that govern ambition, courage, and the meaning of effort."
+          ],
+          "keyTakeaways": [
+            "mindset shapes action",
+            "ability beliefs affect goals",
+            "image protection blocks learning",
+            "growth needs effort and strategy",
+            "challenge can be useful",
+            "identity stories matter",
+            "reflection supports change",
+            "systems shape behavior",
+            "identity can be retrained"
+          ],
+          "practice": [
+            "notice one fixed thought this week",
+            "rename one setback as data",
+            "choose one challenge that stretches you",
+            "ask what skill can grow here",
+            "praise process in your self talk",
+            "review one response after a challenge",
+            "build a feedback loop around one skill"
+          ]
+        }
+      },
+      "examples": [
+        {
+          "exampleId": "ch01-ex01",
+          "title": "New hobby fear",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You want to start drawing, coding, or lifting, but you keep delaying because being bad at the beginning feels like evidence that you are not the kind of person who can do it. The fear is less about the task and more about what early struggle seems to say about your identity.",
+          "whatToDo": [
+            "Start with a short practice block and treat early mistakes as proof that you are inside the learning process. Tell yourself that a rough first attempt is information about where to focus rather than a verdict on your ceiling."
+          ],
+          "whyItMatters": "This matters because many people abandon useful skills before real learning starts. A growth frame keeps you in the game long enough to improve."
+        },
+        {
+          "exampleId": "ch01-ex02",
+          "title": "After a bad result",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You bomb a small goal such as a race, an interview, or a personal challenge and spend days replaying it as proof that you do not have what it takes. The event becomes a personal label instead of a specific outcome.",
+          "whatToDo": [
+            "Write down what happened, what was under your control, and what one change would improve the next attempt. Separate your worth from the result so the result can become useful feedback."
+          ],
+          "whyItMatters": "This matters because people grow faster when they learn from outcomes instead of turning outcomes into identity statements."
+        },
+        {
+          "exampleId": "ch01-ex03",
+          "title": "First exam shock",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "You get an exam grade that is lower than expected and immediately wonder whether you are just not smart enough for the subject. That thought makes it harder to review mistakes because every mistake feels personal.",
+          "whatToDo": [
+            "Review the test with the goal of finding patterns in preparation, misunderstanding, and execution. Ask what study method or question type needs work instead of asking what the grade says about your intelligence."
+          ],
+          "whyItMatters": "This matters because school can easily turn performance into identity. A growth lens preserves effort and problem solving after a disappointing result."
+        },
+        {
+          "exampleId": "ch01-ex04",
+          "title": "Avoiding hard classes",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "You are choosing next term classes and feel pulled toward the easiest option because you want to protect your GPA and avoid looking average. The safer choice may limit learning you actually want.",
+          "whatToDo": [
+            "Balance risk and responsibility, but notice when you are choosing mainly to preserve image. If the harder class serves your goals, enter it with a plan for office hours, practice, and revision."
+          ],
+          "whyItMatters": "This matters because mindset often appears in the courses, projects, and opportunities people either pursue or avoid."
+        },
+        {
+          "exampleId": "ch01-ex05",
+          "title": "Fear of visible stretch work",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "A manager offers you a task that is slightly above your comfort zone, and you want to decline because a messy first draft might make you look less capable. Protecting reputation starts to matter more than gaining skill.",
+          "whatToDo": [
+            "Accept the stretch work and set expectations that you are learning while delivering. Ask for fast feedback early so the process becomes iterative rather than all or nothing."
+          ],
+          "whyItMatters": "This matters because early career growth often comes from imperfect reps in public. Mindset determines whether those reps feel dangerous or valuable."
+        },
+        {
+          "exampleId": "ch01-ex06",
+          "title": "Feedback avoidance at work",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "You finish work and hope nobody looks too closely because criticism feels like a threat to competence. As a result, you miss the chance to improve your craft.",
+          "whatToDo": [
+            "Invite one specific piece of feedback on structure, clarity, or execution. Treat criticism as information attached to the work product rather than as an attack on your identity."
+          ],
+          "whyItMatters": "This matters because professional growth depends on how well people can metabolize feedback without collapsing into defensiveness."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch01-h-q01",
+            "prompt": "[Deeper] What central claim does this chapter make about the two mindsets and how they shape goals, effort, and identity?",
+            "choices": [
+              "This chapter introduces the idea that people often operate from either a fixed mindset or a growth mindset when they face challenge, feedback, and uncertainty.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch01-h-q02",
+            "prompt": "[Deeper] Which statement best matches the fixed mindset pattern described in this chapter?",
+            "choices": [
+              "A fixed mindset treats ability as something largely settled, which makes mistakes feel like proof of limits rather than part of learning.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch01-h-q03",
+            "prompt": "[Deeper] Which statement best matches the growth mindset pattern described in this chapter?",
+            "choices": [
+              "A growth mindset treats ability as something that can expand through effort, strategy, help, and time.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch01-h-q04",
+            "prompt": "[Deeper] What practical effect does the chapter say this has on behavior?",
+            "choices": [
+              "The chapter explains that these mindsets influence what people seek, whether they protect image or build capacity.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch01-h-q05",
+            "prompt": "[Deeper] Why does this chapter say the issue matters in real life?",
+            "choices": [
+              "When people focus on looking smart, they often avoid difficulty that could expose weakness in the short term.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch01-h-q06",
+            "prompt": "[Deeper] What misunderstanding does the chapter correct?",
+            "choices": [
+              "When people focus on getting better, they are more willing to enter situations where they might struggle before they improve.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch01-h-q07",
+            "prompt": "[Deeper] What condition supports better development according to the chapter?",
+            "choices": [
+              "The chapter argues that mindset matters because beliefs about ability quietly shape choices, habits, and emotional reactions.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch01-h-q08",
+            "prompt": "[Deeper] What is the main simple takeaway of the chapter?",
+            "choices": [
+              "The main lesson is that development starts with the stories people tell themselves about what talent and effort mean.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch01-h-q09",
+            "prompt": "[Deeper] What extra nuance appears in the deeper discussion of the chapter?",
+            "choices": [
+              "A deeper reading shows that mindset is really about incentives inside the self, because people pursue whichever actions best protect the identity they value most.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch01-h-q10",
+            "prompt": "[Deeper] What is the deepest takeaway of the chapter?",
+            "choices": [
+              "The deepest takeaway is that beliefs about human potential function like hidden rules that govern ambition, courage, and the meaning of effort.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          }
+        ]
+      }
+    },
+    {
+      "chapterId": "ch02-what-each-mindset-sounds-like-inside",
+      "number": 2,
+      "title": "What Each Mindset Sounds Like Inside",
+      "readingTimeMinutes": 14,
+      "contentVariants": {
+        "easy": {
+          "summaryBullets": [
+            "This chapter moves from the definition of mindset to the lived experience of it, showing how each mindset shapes self talk during success, setback, and comparison.",
+            "A fixed mindset voice often asks whether a moment proves intelligence, talent, or worth.",
+            "A growth mindset voice is more likely to ask what can be learned, practiced, or adjusted next.",
+            "The chapter explains that these internal scripts influence whether people feel shame, curiosity, panic, or determination after difficulty.",
+            "Because mindset becomes a private conversation, it can drive behavior even when nobody else sees it.",
+            "People in a fixed mindset often interpret effort as evidence that they lacked natural ability in the first place.",
+            "People in a growth mindset are more likely to see effort as the path by which ability becomes visible and reliable.",
+            "The central lesson is that changing results often begins with changing the meaning attached to struggle and feedback."
+          ],
+          "keyTakeaways": [
+            "self talk drives behavior",
+            "effort can mean growth",
+            "comparison can teach",
+            "interpretation shapes emotion",
+            "language habits matter",
+            "awareness enables change"
+          ],
+          "practice": [
+            "catch one fixed mindset phrase",
+            "replace verdict words with process words",
+            "study one person without envy",
+            "pause before reacting to feedback",
+            "ask what this moment can teach"
+          ]
+        },
+        "medium": {
+          "summaryBullets": [
+            "This chapter moves from the definition of mindset to the lived experience of it, showing how each mindset shapes self talk during success, setback, and comparison.",
+            "A fixed mindset voice often asks whether a moment proves intelligence, talent, or worth.",
+            "A growth mindset voice is more likely to ask what can be learned, practiced, or adjusted next.",
+            "The chapter explains that these internal scripts influence whether people feel shame, curiosity, panic, or determination after difficulty.",
+            "Because mindset becomes a private conversation, it can drive behavior even when nobody else sees it.",
+            "People in a fixed mindset often interpret effort as evidence that they lacked natural ability in the first place.",
+            "People in a growth mindset are more likely to see effort as the path by which ability becomes visible and reliable.",
+            "The central lesson is that changing results often begins with changing the meaning attached to struggle and feedback.",
+            "The chapter also shows that success can trigger different reactions, because one mindset chases validation while the other chases development.",
+            "In a fixed mindset, comparison becomes a constant threat because another person’s success can feel like a verdict on your own limits.",
+            "In a growth mindset, another person can become a source of models, methods, and inspiration rather than only competition.",
+            "The practical takeaway is that people can learn to notice their internal script and interrupt it before it hardens into avoidance or blame."
+          ],
+          "keyTakeaways": [
+            "self talk drives behavior",
+            "effort can mean growth",
+            "comparison can teach",
+            "interpretation shapes emotion",
+            "language habits matter",
+            "awareness enables change",
+            "reflection supports change"
+          ],
+          "practice": [
+            "catch one fixed mindset phrase",
+            "replace verdict words with process words",
+            "study one person without envy",
+            "pause before reacting to feedback",
+            "ask what this moment can teach",
+            "review one response after a challenge"
+          ]
+        },
+        "hard": {
+          "summaryBullets": [
+            "This chapter moves from the definition of mindset to the lived experience of it, showing how each mindset shapes self talk during success, setback, and comparison.",
+            "A fixed mindset voice often asks whether a moment proves intelligence, talent, or worth.",
+            "A growth mindset voice is more likely to ask what can be learned, practiced, or adjusted next.",
+            "The chapter explains that these internal scripts influence whether people feel shame, curiosity, panic, or determination after difficulty.",
+            "Because mindset becomes a private conversation, it can drive behavior even when nobody else sees it.",
+            "People in a fixed mindset often interpret effort as evidence that they lacked natural ability in the first place.",
+            "People in a growth mindset are more likely to see effort as the path by which ability becomes visible and reliable.",
+            "The central lesson is that changing results often begins with changing the meaning attached to struggle and feedback.",
+            "The chapter also shows that success can trigger different reactions, because one mindset chases validation while the other chases development.",
+            "In a fixed mindset, comparison becomes a constant threat because another person’s success can feel like a verdict on your own limits.",
+            "In a growth mindset, another person can become a source of models, methods, and inspiration rather than only competition.",
+            "The practical takeaway is that people can learn to notice their internal script and interrupt it before it hardens into avoidance or blame.",
+            "A deeper reading suggests that mindset is maintained by language habits, since repeated interpretations become the default lens for future events.",
+            "This means mindset change requires awareness at the moment of interpretation, not only agreement with the theory in the abstract.",
+            "The chapter also implies that emotional regulation and mindset are linked, because a person must tolerate discomfort long enough to choose a better interpretation.",
+            "The deepest takeaway is that mindset work is a discipline of meaning making, where people decide whether experience will shrink the self or educate it."
+          ],
+          "keyTakeaways": [
+            "self talk drives behavior",
+            "effort can mean growth",
+            "comparison can teach",
+            "interpretation shapes emotion",
+            "language habits matter",
+            "awareness enables change",
+            "reflection supports change",
+            "systems shape behavior",
+            "identity can be retrained"
+          ],
+          "practice": [
+            "catch one fixed mindset phrase",
+            "replace verdict words with process words",
+            "study one person without envy",
+            "pause before reacting to feedback",
+            "ask what this moment can teach",
+            "review one response after a challenge",
+            "build a feedback loop around one skill"
+          ]
+        }
+      },
+      "examples": [
+        {
+          "exampleId": "ch02-ex01",
+          "title": "Social comparison spiral",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "A friend learns a skill quickly and you start telling yourself that they have the gift and you do not. Their progress feels like proof of your own ceiling instead of a reminder that practice methods matter.",
+          "whatToDo": [
+            "Notice the comparison script and rewrite it into a study question. Ask what they are doing consistently that you can test in your own practice instead of turning their progress into your identity story."
+          ],
+          "whyItMatters": "This matters because comparison can either collapse motivation or provide a model. The difference often comes from the mindset lens."
+        },
+        {
+          "exampleId": "ch02-ex02",
+          "title": "Reading criticism online",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You share something small online and one critical comment ruins the whole experience because it feels like exposure. You stop focusing on the work and start focusing on what the comment says about you.",
+          "whatToDo": [
+            "Separate the signal from the sting by asking whether the comment contains actionable information. Use what helps and discard what is purely mean, but do not let one reaction become your whole identity."
+          ],
+          "whyItMatters": "This matters because public feedback is common for people in their twenties. A growth interpretation makes criticism easier to use without becoming crushed by it."
+        },
+        {
+          "exampleId": "ch02-ex03",
+          "title": "Class participation fear",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "You avoid speaking in seminar because you think one awkward answer will reveal that you do not belong in the room. Silence becomes a way to protect identity.",
+          "whatToDo": [
+            "Set a goal to contribute one honest idea or question each class. Treat participation as practice in thinking and communication rather than as a performance of perfect intelligence."
+          ],
+          "whyItMatters": "This matters because school rewards visible engagement, yet fear of exposure can keep capable students quiet."
+        },
+        {
+          "exampleId": "ch02-ex04",
+          "title": "Office hours hesitation",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "You need help, but going to office hours feels like admitting you are not naturally good at the subject. You would rather struggle alone than risk looking weak.",
+          "whatToDo": [
+            "Go to office hours with one specific confusion and one attempted solution. Frame help seeking as a learning strategy instead of as a confession of inadequacy."
+          ],
+          "whyItMatters": "This matters because growth often accelerates when people can ask for help without shame."
+        },
+        {
+          "exampleId": "ch02-ex05",
+          "title": "Peer success at work",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "Someone on your team gets praised and you instantly feel smaller, as if their win reduced your own future. The emotion makes collaboration harder.",
+          "whatToDo": [
+            "Use the moment to study what they did well and where you can build similar strengths. Let their success expand your view of what is possible rather than narrow your confidence."
+          ],
+          "whyItMatters": "This matters because workplaces reward people who can learn from peers instead of quietly resenting them."
+        },
+        {
+          "exampleId": "ch02-ex06",
+          "title": "Rewriting after review",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "A supervisor marks up your draft heavily and your first instinct is to defend every line because revision feels humiliating. The conversation becomes about ego rather than quality.",
+          "whatToDo": [
+            "Read the notes once, wait, and return with the question of what stronger version of the work is now possible. Respond to the substance of the feedback rather than to the ego pain it first created."
+          ],
+          "whyItMatters": "This matters because many career gains come through revision. The inner script determines whether review becomes a gift or a fight."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch02-h-q01",
+            "prompt": "[Deeper] What central claim does this chapter make about the inner dialogue and emotional logic of fixed and growth mindsets?",
+            "choices": [
+              "This chapter moves from the definition of mindset to the lived experience of it, showing how each mindset shapes self talk during success, setback, and comparison.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch02-h-q02",
+            "prompt": "[Deeper] Which statement best matches the fixed mindset pattern described in this chapter?",
+            "choices": [
+              "A fixed mindset voice often asks whether a moment proves intelligence, talent, or worth.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch02-h-q03",
+            "prompt": "[Deeper] Which statement best matches the growth mindset pattern described in this chapter?",
+            "choices": [
+              "A growth mindset voice is more likely to ask what can be learned, practiced, or adjusted next.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch02-h-q04",
+            "prompt": "[Deeper] What practical effect does the chapter say this has on behavior?",
+            "choices": [
+              "The chapter explains that these internal scripts influence whether people feel shame, curiosity, panic, or determination after difficulty.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch02-h-q05",
+            "prompt": "[Deeper] Why does this chapter say the issue matters in real life?",
+            "choices": [
+              "Because mindset becomes a private conversation, it can drive behavior even when nobody else sees it.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch02-h-q06",
+            "prompt": "[Deeper] What misunderstanding does the chapter correct?",
+            "choices": [
+              "People in a fixed mindset often interpret effort as evidence that they lacked natural ability in the first place.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch02-h-q07",
+            "prompt": "[Deeper] What condition supports better development according to the chapter?",
+            "choices": [
+              "People in a growth mindset are more likely to see effort as the path by which ability becomes visible and reliable.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch02-h-q08",
+            "prompt": "[Deeper] What is the main simple takeaway of the chapter?",
+            "choices": [
+              "The central lesson is that changing results often begins with changing the meaning attached to struggle and feedback.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch02-h-q09",
+            "prompt": "[Deeper] What extra nuance appears in the deeper discussion of the chapter?",
+            "choices": [
+              "A deeper reading suggests that mindset is maintained by language habits, since repeated interpretations become the default lens for future events.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch02-h-q10",
+            "prompt": "[Deeper] What is the deepest takeaway of the chapter?",
+            "choices": [
+              "The deepest takeaway is that mindset work is a discipline of meaning making, where people decide whether experience will shrink the self or educate it.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          }
+        ]
+      }
+    },
+    {
+      "chapterId": "ch03-ability-accomplishment-and-the-role-of-effort",
+      "number": 3,
+      "title": "Ability Accomplishment And The Role Of Effort",
+      "readingTimeMinutes": 15,
+      "contentVariants": {
+        "easy": {
+          "summaryBullets": [
+            "This chapter challenges the idea that high achievement is mostly the expression of inborn talent that reveals itself early and cleanly.",
+            "It argues that accomplishment usually grows through sustained effort, deliberate practice, mistakes, and revision.",
+            "The chapter does not deny differences in starting points, but it rejects the belief that starting point is the whole story.",
+            "A fixed mindset tends to romanticize effortless success and to treat hard work as a sign of lesser ability.",
+            "A growth mindset treats effort as the mechanism by which skill becomes stronger and more dependable.",
+            "The chapter explains that people often plateau not because they lack talent, but because they stop using challenge to extend themselves.",
+            "Real accomplishment therefore depends on process habits such as persistence, strategy, and response to setbacks.",
+            "The main lesson is that effort is not the opposite of ability but one of the main ways ability is developed."
+          ],
+          "keyTakeaways": [
+            "effort builds skill",
+            "talent myths distort reality",
+            "practice extends capacity",
+            "praise shapes behavior",
+            "process creates reliability",
+            "achievement needs repetition"
+          ],
+          "practice": [
+            "track reps not just outcomes",
+            "choose one stretch routine",
+            "praise strategy and persistence",
+            "study hidden effort behind success",
+            "review one plateau honestly"
+          ]
+        },
+        "medium": {
+          "summaryBullets": [
+            "This chapter challenges the idea that high achievement is mostly the expression of inborn talent that reveals itself early and cleanly.",
+            "It argues that accomplishment usually grows through sustained effort, deliberate practice, mistakes, and revision.",
+            "The chapter does not deny differences in starting points, but it rejects the belief that starting point is the whole story.",
+            "A fixed mindset tends to romanticize effortless success and to treat hard work as a sign of lesser ability.",
+            "A growth mindset treats effort as the mechanism by which skill becomes stronger and more dependable.",
+            "The chapter explains that people often plateau not because they lack talent, but because they stop using challenge to extend themselves.",
+            "Real accomplishment therefore depends on process habits such as persistence, strategy, and response to setbacks.",
+            "The main lesson is that effort is not the opposite of ability but one of the main ways ability is developed.",
+            "The chapter also warns that praise centered only on intelligence can make people fragile because it ties worth to easy proof rather than to growth.",
+            "By contrast, respect for disciplined effort helps people build skills that last beyond a single performance.",
+            "Accomplishment becomes more reliable when people seek difficult practice instead of only situations where they can already look good.",
+            "The practical implication is that ambition should be paired with routines that repeatedly stretch present capacity."
+          ],
+          "keyTakeaways": [
+            "effort builds skill",
+            "talent myths distort reality",
+            "practice extends capacity",
+            "praise shapes behavior",
+            "process creates reliability",
+            "achievement needs repetition",
+            "reflection supports change"
+          ],
+          "practice": [
+            "track reps not just outcomes",
+            "choose one stretch routine",
+            "praise strategy and persistence",
+            "study hidden effort behind success",
+            "review one plateau honestly",
+            "review one response after a challenge"
+          ]
+        },
+        "hard": {
+          "summaryBullets": [
+            "This chapter challenges the idea that high achievement is mostly the expression of inborn talent that reveals itself early and cleanly.",
+            "It argues that accomplishment usually grows through sustained effort, deliberate practice, mistakes, and revision.",
+            "The chapter does not deny differences in starting points, but it rejects the belief that starting point is the whole story.",
+            "A fixed mindset tends to romanticize effortless success and to treat hard work as a sign of lesser ability.",
+            "A growth mindset treats effort as the mechanism by which skill becomes stronger and more dependable.",
+            "The chapter explains that people often plateau not because they lack talent, but because they stop using challenge to extend themselves.",
+            "Real accomplishment therefore depends on process habits such as persistence, strategy, and response to setbacks.",
+            "The main lesson is that effort is not the opposite of ability but one of the main ways ability is developed.",
+            "The chapter also warns that praise centered only on intelligence can make people fragile because it ties worth to easy proof rather than to growth.",
+            "By contrast, respect for disciplined effort helps people build skills that last beyond a single performance.",
+            "Accomplishment becomes more reliable when people seek difficult practice instead of only situations where they can already look good.",
+            "The practical implication is that ambition should be paired with routines that repeatedly stretch present capacity.",
+            "A deeper reading reveals that talent myths are socially attractive because they make success look magical and failure look final, which simplifies reality.",
+            "But that simplification hides the invisible labor, coaching, and repeated correction behind most impressive performance.",
+            "The chapter therefore pushes readers to respect effort not as moral theater but as the concrete engine of adaptation and mastery.",
+            "The deepest takeaway is that accomplishment becomes more attainable when people stop worshipping natural ease and start investing in the mechanics of improvement."
+          ],
+          "keyTakeaways": [
+            "effort builds skill",
+            "talent myths distort reality",
+            "practice extends capacity",
+            "praise shapes behavior",
+            "process creates reliability",
+            "achievement needs repetition",
+            "reflection supports change",
+            "systems shape behavior",
+            "identity can be retrained"
+          ],
+          "practice": [
+            "track reps not just outcomes",
+            "choose one stretch routine",
+            "praise strategy and persistence",
+            "study hidden effort behind success",
+            "review one plateau honestly",
+            "review one response after a challenge",
+            "build a feedback loop around one skill"
+          ]
+        }
+      },
+      "examples": [
+        {
+          "exampleId": "ch03-ex01",
+          "title": "Learning looks messy",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You are trying to get better at a personal goal and feel discouraged because progress is slower than you imagined. Part of you believes that if you really had talent it would already look easy.",
+          "whatToDo": [
+            "Document your practice over several weeks so you can see small gains in consistency, accuracy, or stamina. Judge progress by the quality of your process as well as the visible result."
+          ],
+          "whyItMatters": "This matters because growth usually looks ordinary while it is happening. People quit when they mistake slow progress for no capacity."
+        },
+        {
+          "exampleId": "ch03-ex02",
+          "title": "Admiring effortless people",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You keep comparing yourself with people who seem naturally gifted and overlook the years of repetition behind their current skill. That comparison makes your own work feel futile.",
+          "whatToDo": [
+            "Look for the routines, coaching, and repetitions behind someone you admire. Use that information to set a realistic practice plan rather than chasing the fantasy of effortless excellence."
+          ],
+          "whyItMatters": "This matters because realistic models protect motivation better than myths about talent."
+        },
+        {
+          "exampleId": "ch03-ex03",
+          "title": "Writing revision resistance",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "You think a strong writer should get it right on the first pass, so repeated revision makes you feel less capable. The draft becomes a referendum on talent.",
+          "whatToDo": [
+            "Treat revision as the actual craft of writing. Build time for rethinking structure, examples, and clarity rather than expecting brilliance from the first draft."
+          ],
+          "whyItMatters": "This matters because strong academic work is often produced through revision. Beliefs about effort change whether students use that fact well."
+        },
+        {
+          "exampleId": "ch03-ex04",
+          "title": "Math practice plateau",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "You stop improving in a quantitative course and assume the subject is simply not for you. Because the identity conclusion feels so final, you reduce practice at the exact time you need more targeted work.",
+          "whatToDo": [
+            "Break the subject into narrower skills and practice the weakest one with help and repetition. Let strategy become more precise instead of letting identity become more negative."
+          ],
+          "whyItMatters": "This matters because plateaus often call for better method, not surrender."
+        },
+        {
+          "exampleId": "ch03-ex05",
+          "title": "New analyst expectations",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "You start a role and expect to be impressive quickly, so basic practice tasks feel beneath you or embarrassing. You want results before you build foundations.",
+          "whatToDo": [
+            "Use repetitive tasks to build speed, judgment, and pattern recognition. Treat the early phase as skill construction rather than as a stage for proving you were a good hire."
+          ],
+          "whyItMatters": "This matters because early career development often depends on patient accumulation of invisible competence."
+        },
+        {
+          "exampleId": "ch03-ex06",
+          "title": "Presentation skill myth",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "A colleague presents smoothly and you assume public speaking is just something they naturally have. That belief keeps you from training a skill that can in fact improve.",
+          "whatToDo": [
+            "Study preparation habits, storytelling choices, and rehearsal patterns behind strong presentations. Then practice those components directly instead of treating speaking as a fixed trait."
+          ],
+          "whyItMatters": "This matters because many work skills look innate from the outside but are built through repeated preparation."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch03-h-q01",
+            "prompt": "[Deeper] What central claim does this chapter make about how accomplishment is built through effort, strategy, and persistence rather than raw talent myths?",
+            "choices": [
+              "This chapter challenges the idea that high achievement is mostly the expression of inborn talent that reveals itself early and cleanly.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch03-h-q02",
+            "prompt": "[Deeper] Which statement best matches the fixed mindset pattern described in this chapter?",
+            "choices": [
+              "It argues that accomplishment usually grows through sustained effort, deliberate practice, mistakes, and revision.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch03-h-q03",
+            "prompt": "[Deeper] Which statement best matches the growth mindset pattern described in this chapter?",
+            "choices": [
+              "The chapter does not deny differences in starting points, but it rejects the belief that starting point is the whole story.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch03-h-q04",
+            "prompt": "[Deeper] What practical effect does the chapter say this has on behavior?",
+            "choices": [
+              "A fixed mindset tends to romanticize effortless success and to treat hard work as a sign of lesser ability.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch03-h-q05",
+            "prompt": "[Deeper] Why does this chapter say the issue matters in real life?",
+            "choices": [
+              "A growth mindset treats effort as the mechanism by which skill becomes stronger and more dependable.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch03-h-q06",
+            "prompt": "[Deeper] What misunderstanding does the chapter correct?",
+            "choices": [
+              "The chapter explains that people often plateau not because they lack talent, but because they stop using challenge to extend themselves.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch03-h-q07",
+            "prompt": "[Deeper] What condition supports better development according to the chapter?",
+            "choices": [
+              "Real accomplishment therefore depends on process habits such as persistence, strategy, and response to setbacks.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch03-h-q08",
+            "prompt": "[Deeper] What is the main simple takeaway of the chapter?",
+            "choices": [
+              "The main lesson is that effort is not the opposite of ability but one of the main ways ability is developed.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch03-h-q09",
+            "prompt": "[Deeper] What extra nuance appears in the deeper discussion of the chapter?",
+            "choices": [
+              "A deeper reading reveals that talent myths are socially attractive because they make success look magical and failure look final, which simplifies reality.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch03-h-q10",
+            "prompt": "[Deeper] What is the deepest takeaway of the chapter?",
+            "choices": [
+              "The deepest takeaway is that accomplishment becomes more attainable when people stop worshipping natural ease and start investing in the mechanics of improvement.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          }
+        ]
+      }
+    },
+    {
+      "chapterId": "ch04-competition-training-and-growth-in-sports",
+      "number": 4,
+      "title": "Competition Training And Growth In Sports",
+      "readingTimeMinutes": 14,
+      "contentVariants": {
+        "easy": {
+          "summaryBullets": [
+            "This chapter uses sports to show how mindset shapes preparation, response to losses, and relationship to pressure.",
+            "Athletes with a fixed mindset often feel that every performance exposes their permanent level, which makes failure especially threatening.",
+            "Athletes with a growth mindset are more likely to use losses, fatigue, and criticism as material for improvement.",
+            "The chapter highlights that champions are usually built through disciplined training rather than through confidence alone.",
+            "A fixed mindset can lead people to avoid strong opponents or hard drills that might reveal weakness.",
+            "A growth mindset makes it easier to value practice quality over image protection.",
+            "Coaching also matters because the messages leaders send can either cultivate fragility or resilience.",
+            "The main lesson is that performance under pressure depends heavily on how a person has learned to interpret pressure before the big moment arrives."
+          ],
+          "keyTakeaways": [
+            "training shapes confidence",
+            "loss can teach",
+            "coaches shape mindset",
+            "hard opponents are useful",
+            "pressure reveals habits",
+            "honesty supports growth"
+          ],
+          "practice": [
+            "review one loss for lessons",
+            "choose one hard drill",
+            "value reps over image",
+            "ask for coaching feedback",
+            "measure preparation quality"
+          ]
+        },
+        "medium": {
+          "summaryBullets": [
+            "This chapter uses sports to show how mindset shapes preparation, response to losses, and relationship to pressure.",
+            "Athletes with a fixed mindset often feel that every performance exposes their permanent level, which makes failure especially threatening.",
+            "Athletes with a growth mindset are more likely to use losses, fatigue, and criticism as material for improvement.",
+            "The chapter highlights that champions are usually built through disciplined training rather than through confidence alone.",
+            "A fixed mindset can lead people to avoid strong opponents or hard drills that might reveal weakness.",
+            "A growth mindset makes it easier to value practice quality over image protection.",
+            "Coaching also matters because the messages leaders send can either cultivate fragility or resilience.",
+            "The main lesson is that performance under pressure depends heavily on how a person has learned to interpret pressure before the big moment arrives.",
+            "The chapter also shows that confidence is healthier when it comes from preparation and adaptation instead of from pretending weakness does not exist.",
+            "In sport, mindset is visible because the scoreboard gives constant feedback, yet the deeper battle happens in interpretation of that feedback.",
+            "People improve more when they can stay honest about flaws without turning flaws into identity.",
+            "The practical takeaway is that a training mindset should reward learning from competition rather than only preserving status."
+          ],
+          "keyTakeaways": [
+            "training shapes confidence",
+            "loss can teach",
+            "coaches shape mindset",
+            "hard opponents are useful",
+            "pressure reveals habits",
+            "honesty supports growth",
+            "reflection supports change"
+          ],
+          "practice": [
+            "review one loss for lessons",
+            "choose one hard drill",
+            "value reps over image",
+            "ask for coaching feedback",
+            "measure preparation quality",
+            "review one response after a challenge"
+          ]
+        },
+        "hard": {
+          "summaryBullets": [
+            "This chapter uses sports to show how mindset shapes preparation, response to losses, and relationship to pressure.",
+            "Athletes with a fixed mindset often feel that every performance exposes their permanent level, which makes failure especially threatening.",
+            "Athletes with a growth mindset are more likely to use losses, fatigue, and criticism as material for improvement.",
+            "The chapter highlights that champions are usually built through disciplined training rather than through confidence alone.",
+            "A fixed mindset can lead people to avoid strong opponents or hard drills that might reveal weakness.",
+            "A growth mindset makes it easier to value practice quality over image protection.",
+            "Coaching also matters because the messages leaders send can either cultivate fragility or resilience.",
+            "The main lesson is that performance under pressure depends heavily on how a person has learned to interpret pressure before the big moment arrives.",
+            "The chapter also shows that confidence is healthier when it comes from preparation and adaptation instead of from pretending weakness does not exist.",
+            "In sport, mindset is visible because the scoreboard gives constant feedback, yet the deeper battle happens in interpretation of that feedback.",
+            "People improve more when they can stay honest about flaws without turning flaws into identity.",
+            "The practical takeaway is that a training mindset should reward learning from competition rather than only preserving status.",
+            "A deeper reading suggests that sports are a compressed laboratory of life because effort, ego, feedback, and visible failure all appear quickly and repeatedly.",
+            "This makes athletic settings unusually good at exposing whether a person seeks validation or growth when stakes rise.",
+            "The chapter also implies that coaches create moral climates, since the meaning they attach to mistakes shapes courage, discipline, and honesty.",
+            "The deepest takeaway is that resilient performance grows from a long habit of turning pressure into information and training into identity."
+          ],
+          "keyTakeaways": [
+            "training shapes confidence",
+            "loss can teach",
+            "coaches shape mindset",
+            "hard opponents are useful",
+            "pressure reveals habits",
+            "honesty supports growth",
+            "reflection supports change",
+            "systems shape behavior",
+            "identity can be retrained"
+          ],
+          "practice": [
+            "review one loss for lessons",
+            "choose one hard drill",
+            "value reps over image",
+            "ask for coaching feedback",
+            "measure preparation quality",
+            "review one response after a challenge",
+            "build a feedback loop around one skill"
+          ]
+        }
+      },
+      "examples": [
+        {
+          "exampleId": "ch04-ex01",
+          "title": "Workout ego trap",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You stop trying new exercises because being weak at them feels embarrassing, so your training stays comfortable but stagnant. Protecting image begins to outrank getting stronger.",
+          "whatToDo": [
+            "Pick one exercise you avoid and practice it with manageable form and consistency. Treat awkwardness as the entry price for future competence rather than as proof you should stay away."
+          ],
+          "whyItMatters": "This matters because growth in physical skill often starts right where ego wants to retreat."
+        },
+        {
+          "exampleId": "ch04-ex02",
+          "title": "Losing in recreation",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You lose a friendly game and spend the rest of the day angry because the result feels like a statement about your athletic worth. The loss becomes bigger than the event itself.",
+          "whatToDo": [
+            "Ask what the game revealed about conditioning, technique, focus, or decision making. Use the result to set one concrete practice target instead of replaying it as humiliation."
+          ],
+          "whyItMatters": "This matters because competition is useful only when people can learn from it without turning it into identity damage."
+        },
+        {
+          "exampleId": "ch04-ex03",
+          "title": "Trying out for a team",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "You want to try out for a club team but fear that not making it would permanently label you as untalented. Avoidance feels safer than uncertainty.",
+          "whatToDo": [
+            "Enter the tryout with a two part goal of competing well and collecting information about what level is required. Whether you make it or not, build a follow up plan from what you learn."
+          ],
+          "whyItMatters": "This matters because opportunities are often lost long before any official rejection. Mindset influences whether people even step forward."
+        },
+        {
+          "exampleId": "ch04-ex04",
+          "title": "Coach criticism after practice",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A coach gives blunt feedback and you feel singled out, so you mentally shut down for the rest of practice. The correction stops being usable.",
+          "whatToDo": [
+            "Write down the key correction after practice and rehearse it deliberately next session. Let criticism become technical guidance instead of social shame."
+          ],
+          "whyItMatters": "This matters because athletic coaching is often direct. Players who can separate correction from identity improve faster."
+        },
+        {
+          "exampleId": "ch04-ex05",
+          "title": "Sales loss review",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "A sales or client pitch fails and the team treats the loss as personal embarrassment, so no one wants to examine what really went wrong. Protecting ego blocks learning.",
+          "whatToDo": [
+            "Run a calm review focused on preparation, objections, timing, and execution. Create one new practice habit from the loss so the event strengthens the team."
+          ],
+          "whyItMatters": "This matters because work competition often mirrors sports. Honest review turns losses into future advantage."
+        },
+        {
+          "exampleId": "ch04-ex06",
+          "title": "High pressure performance",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "You freeze during an important presentation because you relied on hope and confidence instead of rehearsal and repetition. Pressure exposes weak preparation.",
+          "whatToDo": [
+            "Build pressure practice into preparation by rehearsing out loud, refining transitions, and seeking critique before the event. Let preparation become the source of confidence."
+          ],
+          "whyItMatters": "This matters because performance is more dependable when confidence rests on reps rather than self image."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch04-h-q01",
+            "prompt": "[Deeper] What central claim does this chapter make about how mindset affects athletic training, response to losses, and long term development?",
+            "choices": [
+              "This chapter uses sports to show how mindset shapes preparation, response to losses, and relationship to pressure.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch04-h-q02",
+            "prompt": "[Deeper] Which statement best matches the fixed mindset pattern described in this chapter?",
+            "choices": [
+              "Athletes with a fixed mindset often feel that every performance exposes their permanent level, which makes failure especially threatening.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch04-h-q03",
+            "prompt": "[Deeper] Which statement best matches the growth mindset pattern described in this chapter?",
+            "choices": [
+              "Athletes with a growth mindset are more likely to use losses, fatigue, and criticism as material for improvement.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch04-h-q04",
+            "prompt": "[Deeper] What practical effect does the chapter say this has on behavior?",
+            "choices": [
+              "The chapter highlights that champions are usually built through disciplined training rather than through confidence alone.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch04-h-q05",
+            "prompt": "[Deeper] Why does this chapter say the issue matters in real life?",
+            "choices": [
+              "A fixed mindset can lead people to avoid strong opponents or hard drills that might reveal weakness.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch04-h-q06",
+            "prompt": "[Deeper] What misunderstanding does the chapter correct?",
+            "choices": [
+              "A growth mindset makes it easier to value practice quality over image protection.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch04-h-q07",
+            "prompt": "[Deeper] What condition supports better development according to the chapter?",
+            "choices": [
+              "Coaching also matters because the messages leaders send can either cultivate fragility or resilience.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch04-h-q08",
+            "prompt": "[Deeper] What is the main simple takeaway of the chapter?",
+            "choices": [
+              "The main lesson is that performance under pressure depends heavily on how a person has learned to interpret pressure before the big moment arrives.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch04-h-q09",
+            "prompt": "[Deeper] What extra nuance appears in the deeper discussion of the chapter?",
+            "choices": [
+              "A deeper reading suggests that sports are a compressed laboratory of life because effort, ego, feedback, and visible failure all appear quickly and repeatedly.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch04-h-q10",
+            "prompt": "[Deeper] What is the deepest takeaway of the chapter?",
+            "choices": [
+              "The deepest takeaway is that resilient performance grows from a long habit of turning pressure into information and training into identity.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          }
+        ]
+      }
+    },
+    {
+      "chapterId": "ch05-mindset-in-business-leadership-and-culture",
+      "number": 5,
+      "title": "Mindset In Business Leadership And Culture",
+      "readingTimeMinutes": 15,
+      "contentVariants": {
+        "easy": {
+          "summaryBullets": [
+            "This chapter applies mindset ideas to business, showing how leaders and cultures can either encourage growth or protect status.",
+            "A fixed mindset organization often becomes preoccupied with looking brilliant, avoiding blame, and defending hierarchy.",
+            "A growth mindset organization values learning, adaptation, candor, and development over image management.",
+            "Leaders reveal their mindset in how they hire, give feedback, handle failure, and respond to other talented people.",
+            "If leaders feel threatened by strong teammates, they often create cultures of fear and political protection.",
+            "If leaders value growth, they are more likely to build teams where feedback and improvement are normal.",
+            "The chapter argues that companies suffer when short term image replaces long term learning.",
+            "The main lesson is that organizational success depends not only on strategy but also on the beliefs leaders hold about talent and growth."
+          ],
+          "keyTakeaways": [
+            "leaders model mindset",
+            "culture rewards something",
+            "image can distort decisions",
+            "feedback supports growth",
+            "truth telling protects organizations",
+            "development needs standards"
+          ],
+          "practice": [
+            "invite one honest review",
+            "reward learning in your team",
+            "notice status protecting habits",
+            "study how leaders react to talent",
+            "make one improvement loop visible"
+          ]
+        },
+        "medium": {
+          "summaryBullets": [
+            "This chapter applies mindset ideas to business, showing how leaders and cultures can either encourage growth or protect status.",
+            "A fixed mindset organization often becomes preoccupied with looking brilliant, avoiding blame, and defending hierarchy.",
+            "A growth mindset organization values learning, adaptation, candor, and development over image management.",
+            "Leaders reveal their mindset in how they hire, give feedback, handle failure, and respond to other talented people.",
+            "If leaders feel threatened by strong teammates, they often create cultures of fear and political protection.",
+            "If leaders value growth, they are more likely to build teams where feedback and improvement are normal.",
+            "The chapter argues that companies suffer when short term image replaces long term learning.",
+            "The main lesson is that organizational success depends not only on strategy but also on the beliefs leaders hold about talent and growth.",
+            "The chapter also shows that leadership mindset affects ethics, because people hide problems more readily in cultures where mistakes are punished as identity failures.",
+            "Growth cultures are not soft because they still demand accountability, but they connect accountability to learning and better systems.",
+            "Strong organizations therefore combine high standards with openness to feedback and development.",
+            "The practical takeaway is that managers should reward truth telling, coaching, and skill building rather than only polished appearances."
+          ],
+          "keyTakeaways": [
+            "leaders model mindset",
+            "culture rewards something",
+            "image can distort decisions",
+            "feedback supports growth",
+            "truth telling protects organizations",
+            "development needs standards",
+            "reflection supports change"
+          ],
+          "practice": [
+            "invite one honest review",
+            "reward learning in your team",
+            "notice status protecting habits",
+            "study how leaders react to talent",
+            "make one improvement loop visible",
+            "review one response after a challenge"
+          ]
+        },
+        "hard": {
+          "summaryBullets": [
+            "This chapter applies mindset ideas to business, showing how leaders and cultures can either encourage growth or protect status.",
+            "A fixed mindset organization often becomes preoccupied with looking brilliant, avoiding blame, and defending hierarchy.",
+            "A growth mindset organization values learning, adaptation, candor, and development over image management.",
+            "Leaders reveal their mindset in how they hire, give feedback, handle failure, and respond to other talented people.",
+            "If leaders feel threatened by strong teammates, they often create cultures of fear and political protection.",
+            "If leaders value growth, they are more likely to build teams where feedback and improvement are normal.",
+            "The chapter argues that companies suffer when short term image replaces long term learning.",
+            "The main lesson is that organizational success depends not only on strategy but also on the beliefs leaders hold about talent and growth.",
+            "The chapter also shows that leadership mindset affects ethics, because people hide problems more readily in cultures where mistakes are punished as identity failures.",
+            "Growth cultures are not soft because they still demand accountability, but they connect accountability to learning and better systems.",
+            "Strong organizations therefore combine high standards with openness to feedback and development.",
+            "The practical takeaway is that managers should reward truth telling, coaching, and skill building rather than only polished appearances.",
+            "A deeper reading suggests that culture is the collective form of mindset, since daily incentives teach people whether their job is to protect image or improve reality.",
+            "This means leadership psychology becomes organizational structure over time through promotion choices, meeting norms, and responses to bad news.",
+            "A fixed mindset at the top can cascade into silence, fragility, and distorted decision making across a whole system.",
+            "The deepest takeaway is that growth minded leadership is less about slogans and more about building institutions where truth can travel and people can develop."
+          ],
+          "keyTakeaways": [
+            "leaders model mindset",
+            "culture rewards something",
+            "image can distort decisions",
+            "feedback supports growth",
+            "truth telling protects organizations",
+            "development needs standards",
+            "reflection supports change",
+            "systems shape behavior",
+            "identity can be retrained"
+          ],
+          "practice": [
+            "invite one honest review",
+            "reward learning in your team",
+            "notice status protecting habits",
+            "study how leaders react to talent",
+            "make one improvement loop visible",
+            "review one response after a challenge",
+            "build a feedback loop around one skill"
+          ]
+        }
+      },
+      "examples": [
+        {
+          "exampleId": "ch05-ex01",
+          "title": "Friend group status games",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "In a project or side hustle with friends, people start caring more about who seems smartest than about what actually works. Good ideas get filtered through ego.",
+          "whatToDo": [
+            "Shift the conversation toward evidence, iteration, and shared goals. Praise helpful improvements and honesty instead of only clever first impressions."
+          ],
+          "whyItMatters": "This matters because even informal groups can drift into fixed mindset culture when status becomes the main currency."
+        },
+        {
+          "exampleId": "ch05-ex02",
+          "title": "Leading a volunteer effort",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You coordinate a small volunteer event and feel tempted to do everything yourself so nobody sees mistakes. Control protects image but weakens the group.",
+          "whatToDo": [
+            "Delegate real responsibility, invite feedback, and treat rough spots as part of building team capability. Let leadership mean developing others, not only protecting your reputation."
+          ],
+          "whyItMatters": "This matters because mindset influences whether leadership becomes performance or stewardship."
+        },
+        {
+          "exampleId": "ch05-ex03",
+          "title": "Student club leadership",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A club president avoids ambitious ideas because failed events might make the leadership team look incompetent. The club stays safe but stagnant.",
+          "whatToDo": [
+            "Create a culture where experiments are reviewed for lessons and not only for embarrassment. Pair accountability with reflection so members keep trying."
+          ],
+          "whyItMatters": "This matters because student organizations teach early lessons about leadership and culture."
+        },
+        {
+          "exampleId": "ch05-ex04",
+          "title": "Team project blame culture",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A class project runs into problems and everyone starts defending their own part rather than solving the issue together. The team is protecting image instead of learning.",
+          "whatToDo": [
+            "Name the shared goal, surface what is not working, and divide improvements clearly. Make it acceptable to admit mistakes without turning the meeting into a blame contest."
+          ],
+          "whyItMatters": "This matters because collaborative work improves when truth is safer than posturing."
+        },
+        {
+          "exampleId": "ch05-ex05",
+          "title": "Manager threatened by talent",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "A manager seems uncomfortable when junior employees do strong work, so people stop taking initiative to avoid creating tension. The culture quietly punishes excellence.",
+          "whatToDo": [
+            "Document wins, keep communication direct, and if you lead others do the opposite by publicly supporting talented teammates. Build norms where strong performance is seen as a collective asset."
+          ],
+          "whyItMatters": "This matters because growth cultures scale talent, while fixed cultures suppress it to protect hierarchy."
+        },
+        {
+          "exampleId": "ch05-ex06",
+          "title": "Post launch review",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "A product launch misses expectations and the first reaction is to spin the story instead of studying the data. Image management delays real improvement.",
+          "whatToDo": [
+            "Hold a review that distinguishes outcomes, assumptions, execution gaps, and next actions. Reward people who surface uncomfortable facts early."
+          ],
+          "whyItMatters": "This matters because organizations improve only when they can face reality without treating reality as humiliation."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch05-h-q01",
+            "prompt": "[Deeper] What central claim does this chapter make about how mindset shapes leadership, hiring, culture, and response to setbacks in organizations?",
+            "choices": [
+              "This chapter applies mindset ideas to business, showing how leaders and cultures can either encourage growth or protect status.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch05-h-q02",
+            "prompt": "[Deeper] Which statement best matches the fixed mindset pattern described in this chapter?",
+            "choices": [
+              "A fixed mindset organization often becomes preoccupied with looking brilliant, avoiding blame, and defending hierarchy.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch05-h-q03",
+            "prompt": "[Deeper] Which statement best matches the growth mindset pattern described in this chapter?",
+            "choices": [
+              "A growth mindset organization values learning, adaptation, candor, and development over image management.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch05-h-q04",
+            "prompt": "[Deeper] What practical effect does the chapter say this has on behavior?",
+            "choices": [
+              "Leaders reveal their mindset in how they hire, give feedback, handle failure, and respond to other talented people.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch05-h-q05",
+            "prompt": "[Deeper] Why does this chapter say the issue matters in real life?",
+            "choices": [
+              "If leaders feel threatened by strong teammates, they often create cultures of fear and political protection.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch05-h-q06",
+            "prompt": "[Deeper] What misunderstanding does the chapter correct?",
+            "choices": [
+              "If leaders value growth, they are more likely to build teams where feedback and improvement are normal.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch05-h-q07",
+            "prompt": "[Deeper] What condition supports better development according to the chapter?",
+            "choices": [
+              "The chapter argues that companies suffer when short term image replaces long term learning.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch05-h-q08",
+            "prompt": "[Deeper] What is the main simple takeaway of the chapter?",
+            "choices": [
+              "The main lesson is that organizational success depends not only on strategy but also on the beliefs leaders hold about talent and growth.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch05-h-q09",
+            "prompt": "[Deeper] What extra nuance appears in the deeper discussion of the chapter?",
+            "choices": [
+              "A deeper reading suggests that culture is the collective form of mindset, since daily incentives teach people whether their job is to protect image or improve reality.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch05-h-q10",
+            "prompt": "[Deeper] What is the deepest takeaway of the chapter?",
+            "choices": [
+              "The deepest takeaway is that growth minded leadership is less about slogans and more about building institutions where truth can travel and people can develop.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          }
+        ]
+      }
+    },
+    {
+      "chapterId": "ch06-love-friendship-and-relationships-under-different-mindsets",
+      "number": 6,
+      "title": "Love Friendship And Relationships Under Different Mindsets",
+      "readingTimeMinutes": 14,
+      "contentVariants": {
+        "easy": {
+          "summaryBullets": [
+            "This chapter explains that mindset does not only affect achievement but also shapes intimacy, friendship, and conflict.",
+            "A fixed mindset in relationships often expects smooth compatibility and treats conflict as proof that something is wrong with the bond or the people in it.",
+            "A growth mindset sees relationships as things that require communication, adjustment, forgiveness, and effort.",
+            "Because of this difference, people with different mindsets interpret disagreement very differently.",
+            "A fixed mindset can make people chase validation, mind reading, or perfect understanding instead of honest conversation.",
+            "A growth mindset supports direct communication and the belief that relationships can deepen through working on problems well.",
+            "The chapter argues that labels such as needy, selfish, or difficult can freeze people instead of helping them change together.",
+            "The main lesson is that healthy relationships depend partly on whether people believe connection can be developed."
+          ],
+          "keyTakeaways": [
+            "conflict can teach",
+            "relationships need effort",
+            "labels can freeze people",
+            "repair matters",
+            "vulnerability needs hope",
+            "communication beats mind reading"
+          ],
+          "practice": [
+            "name one issue directly",
+            "drop one permanent label",
+            "ask what repair looks like",
+            "listen for defensiveness",
+            "treat conflict as data"
+          ]
+        },
+        "medium": {
+          "summaryBullets": [
+            "This chapter explains that mindset does not only affect achievement but also shapes intimacy, friendship, and conflict.",
+            "A fixed mindset in relationships often expects smooth compatibility and treats conflict as proof that something is wrong with the bond or the people in it.",
+            "A growth mindset sees relationships as things that require communication, adjustment, forgiveness, and effort.",
+            "Because of this difference, people with different mindsets interpret disagreement very differently.",
+            "A fixed mindset can make people chase validation, mind reading, or perfect understanding instead of honest conversation.",
+            "A growth mindset supports direct communication and the belief that relationships can deepen through working on problems well.",
+            "The chapter argues that labels such as needy, selfish, or difficult can freeze people instead of helping them change together.",
+            "The main lesson is that healthy relationships depend partly on whether people believe connection can be developed.",
+            "The chapter also shows that rejection and criticism feel especially harsh in a fixed mindset because they are heard as global judgments of worth.",
+            "Growth minded relationships are not free of pain, but they are more likely to use pain as a prompt for discussion and repair.",
+            "Expectations matter because people often want effortless harmony while ignoring the work required for trust and understanding.",
+            "The practical takeaway is that better relationships grow through honest effort rather than through fantasy about perfect fit."
+          ],
+          "keyTakeaways": [
+            "conflict can teach",
+            "relationships need effort",
+            "labels can freeze people",
+            "repair matters",
+            "vulnerability needs hope",
+            "communication beats mind reading",
+            "reflection supports change"
+          ],
+          "practice": [
+            "name one issue directly",
+            "drop one permanent label",
+            "ask what repair looks like",
+            "listen for defensiveness",
+            "treat conflict as data",
+            "review one response after a challenge"
+          ]
+        },
+        "hard": {
+          "summaryBullets": [
+            "This chapter explains that mindset does not only affect achievement but also shapes intimacy, friendship, and conflict.",
+            "A fixed mindset in relationships often expects smooth compatibility and treats conflict as proof that something is wrong with the bond or the people in it.",
+            "A growth mindset sees relationships as things that require communication, adjustment, forgiveness, and effort.",
+            "Because of this difference, people with different mindsets interpret disagreement very differently.",
+            "A fixed mindset can make people chase validation, mind reading, or perfect understanding instead of honest conversation.",
+            "A growth mindset supports direct communication and the belief that relationships can deepen through working on problems well.",
+            "The chapter argues that labels such as needy, selfish, or difficult can freeze people instead of helping them change together.",
+            "The main lesson is that healthy relationships depend partly on whether people believe connection can be developed.",
+            "The chapter also shows that rejection and criticism feel especially harsh in a fixed mindset because they are heard as global judgments of worth.",
+            "Growth minded relationships are not free of pain, but they are more likely to use pain as a prompt for discussion and repair.",
+            "Expectations matter because people often want effortless harmony while ignoring the work required for trust and understanding.",
+            "The practical takeaway is that better relationships grow through honest effort rather than through fantasy about perfect fit.",
+            "A deeper reading suggests that mindset shapes vulnerability itself, because a person must believe people can change in order to risk difficult honesty.",
+            "Without that belief, conflict becomes a courtroom where each side tries to prove stable character flaws in the other.",
+            "The chapter therefore links growth mindset to mercy as well as accountability, since partners and friends need room to improve without excusing harmful behavior.",
+            "The deepest takeaway is that love becomes more durable when people treat character as formable and repair as part of real closeness."
+          ],
+          "keyTakeaways": [
+            "conflict can teach",
+            "relationships need effort",
+            "labels can freeze people",
+            "repair matters",
+            "vulnerability needs hope",
+            "communication beats mind reading",
+            "reflection supports change",
+            "systems shape behavior",
+            "identity can be retrained"
+          ],
+          "practice": [
+            "name one issue directly",
+            "drop one permanent label",
+            "ask what repair looks like",
+            "listen for defensiveness",
+            "treat conflict as data",
+            "review one response after a challenge",
+            "build a feedback loop around one skill"
+          ]
+        }
+      },
+      "examples": [
+        {
+          "exampleId": "ch06-ex01",
+          "title": "Dating and one argument",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You go on a few good dates, then a disagreement happens and you immediately think the connection must be wrong because it is no longer effortless. One conflict becomes a final verdict.",
+          "whatToDo": [
+            "Ask whether the disagreement reveals incompatibility or simply a place where communication and boundaries need work. Stay curious long enough to learn which it is."
+          ],
+          "whyItMatters": "This matters because many relationships end not from one issue alone but from the belief that any issue means the bond is flawed beyond repair."
+        },
+        {
+          "exampleId": "ch06-ex02",
+          "title": "Friendship label trap",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "A friend lets you down once and you start describing them as selfish in a permanent way. The label hardens faster than the conversation.",
+          "whatToDo": [
+            "Describe the behavior that hurt you and the change you need instead of assigning a whole identity. Give the relationship a chance to respond to clear communication."
+          ],
+          "whyItMatters": "This matters because labels often freeze relationships at the exact point where honest discussion could help."
+        },
+        {
+          "exampleId": "ch06-ex03",
+          "title": "Roommate conflict",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A roommate issue grows because each person reads the other’s behavior as fixed character instead of as a problem that can be addressed. The apartment becomes tense fast.",
+          "whatToDo": [
+            "Set a calm time to discuss the specific pattern, what each person needs, and what change would look like next week. Focus on behavior and repair rather than on global judgments."
+          ],
+          "whyItMatters": "This matters because shared living often tests whether people believe relationships can improve through conversation and adjustment."
+        },
+        {
+          "exampleId": "ch06-ex04",
+          "title": "Group project resentment",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A team member misses deadlines and frustration turns into permanent narratives about who they are. Nobody addresses the behavior clearly, so resentment builds.",
+          "whatToDo": [
+            "Bring up the issue in concrete terms and agree on a better process with check ins and visible responsibilities. Keep the conversation on action and repair."
+          ],
+          "whyItMatters": "This matters because school relationships improve when people can correct problems without reducing one another to fixed flaws."
+        },
+        {
+          "exampleId": "ch06-ex05",
+          "title": "Coworker misunderstanding",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "An awkward email exchange makes you conclude that a coworker is impossible, and every future interaction is filtered through that label. Trust erodes quickly.",
+          "whatToDo": [
+            "Ask for a short conversation to clarify tone, expectations, and intended meaning. Leave room for the possibility that the relationship can improve with better communication."
+          ],
+          "whyItMatters": "This matters because workplace relationships are shaped as much by interpretation as by events themselves."
+        },
+        {
+          "exampleId": "ch06-ex06",
+          "title": "Manager feedback tension",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "A manager gives hard feedback and you assume they do not respect you, so you withdraw instead of engaging. The relationship stiffens because the meaning of the moment is never discussed.",
+          "whatToDo": [
+            "Clarify what success looks like and ask for examples and next steps. Treat the conversation as part of building a stronger working relationship rather than as a fixed verdict."
+          ],
+          "whyItMatters": "This matters because many professional relationships strengthen only after people learn how to handle difficult conversations well."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch06-h-q01",
+            "prompt": "[Deeper] What central claim does this chapter make about how mindset shapes conflict, vulnerability, expectations, and repair in relationships?",
+            "choices": [
+              "This chapter explains that mindset does not only affect achievement but also shapes intimacy, friendship, and conflict.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch06-h-q02",
+            "prompt": "[Deeper] Which statement best matches the fixed mindset pattern described in this chapter?",
+            "choices": [
+              "A fixed mindset in relationships often expects smooth compatibility and treats conflict as proof that something is wrong with the bond or the people in it.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch06-h-q03",
+            "prompt": "[Deeper] Which statement best matches the growth mindset pattern described in this chapter?",
+            "choices": [
+              "A growth mindset sees relationships as things that require communication, adjustment, forgiveness, and effort.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch06-h-q04",
+            "prompt": "[Deeper] What practical effect does the chapter say this has on behavior?",
+            "choices": [
+              "Because of this difference, people with different mindsets interpret disagreement very differently.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch06-h-q05",
+            "prompt": "[Deeper] Why does this chapter say the issue matters in real life?",
+            "choices": [
+              "A fixed mindset can make people chase validation, mind reading, or perfect understanding instead of honest conversation.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch06-h-q06",
+            "prompt": "[Deeper] What misunderstanding does the chapter correct?",
+            "choices": [
+              "A growth mindset supports direct communication and the belief that relationships can deepen through working on problems well.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch06-h-q07",
+            "prompt": "[Deeper] What condition supports better development according to the chapter?",
+            "choices": [
+              "The chapter argues that labels such as needy, selfish, or difficult can freeze people instead of helping them change together.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch06-h-q08",
+            "prompt": "[Deeper] What is the main simple takeaway of the chapter?",
+            "choices": [
+              "The main lesson is that healthy relationships depend partly on whether people believe connection can be developed.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch06-h-q09",
+            "prompt": "[Deeper] What extra nuance appears in the deeper discussion of the chapter?",
+            "choices": [
+              "A deeper reading suggests that mindset shapes vulnerability itself, because a person must believe people can change in order to risk difficult honesty.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch06-h-q10",
+            "prompt": "[Deeper] What is the deepest takeaway of the chapter?",
+            "choices": [
+              "The deepest takeaway is that love becomes more durable when people treat character as formable and repair as part of real closeness.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          }
+        ]
+      }
+    },
+    {
+      "chapterId": "ch07-how-adults-shape-the-growth-of-others",
+      "number": 7,
+      "title": "How Adults Shape The Growth Of Others",
+      "readingTimeMinutes": 15,
+      "contentVariants": {
+        "easy": {
+          "summaryBullets": [
+            "This chapter looks at the adults who shape development and shows how their messages can either support growth or lock people into fragile beliefs about ability.",
+            "Parents, teachers, and coaches influence not only performance but also how young people interpret effort, failure, and praise.",
+            "When adults praise fixed traits alone, they can unintentionally make children afraid of challenge and mistake making.",
+            "When adults praise strategy, persistence, and learning, they help children connect effort with improvement.",
+            "The chapter argues that high standards and warmth should work together rather than against each other.",
+            "Growth oriented guidance does not mean lowering expectations or pretending results do not matter.",
+            "Instead, it means teaching that capability can be built through disciplined work and helpful support.",
+            "The main lesson is that leaders of learners should communicate belief in development while still telling the truth about what needs work."
+          ],
+          "keyTakeaways": [
+            "messages shape identity",
+            "praise should be specific",
+            "high standards still matter",
+            "support must not become rescue",
+            "leaders teach what effort means",
+            "development needs honesty"
+          ],
+          "practice": [
+            "praise process precisely",
+            "correct behavior not identity",
+            "pair challenge with support",
+            "review one message you repeat",
+            "ask how your feedback sounds"
+          ]
+        },
+        "medium": {
+          "summaryBullets": [
+            "This chapter looks at the adults who shape development and shows how their messages can either support growth or lock people into fragile beliefs about ability.",
+            "Parents, teachers, and coaches influence not only performance but also how young people interpret effort, failure, and praise.",
+            "When adults praise fixed traits alone, they can unintentionally make children afraid of challenge and mistake making.",
+            "When adults praise strategy, persistence, and learning, they help children connect effort with improvement.",
+            "The chapter argues that high standards and warmth should work together rather than against each other.",
+            "Growth oriented guidance does not mean lowering expectations or pretending results do not matter.",
+            "Instead, it means teaching that capability can be built through disciplined work and helpful support.",
+            "The main lesson is that leaders of learners should communicate belief in development while still telling the truth about what needs work.",
+            "The chapter also warns that rescuing people from every frustration can weaken their tolerance for the struggle real learning requires.",
+            "At the same time, harsh labeling can make them identify with failure instead of learning from it.",
+            "Effective adults therefore combine honesty, structure, encouragement, and specific guidance.",
+            "The practical takeaway is that the words authority figures use after success and failure can shape a person for years."
+          ],
+          "keyTakeaways": [
+            "messages shape identity",
+            "praise should be specific",
+            "high standards still matter",
+            "support must not become rescue",
+            "leaders teach what effort means",
+            "development needs honesty",
+            "reflection supports change"
+          ],
+          "practice": [
+            "praise process precisely",
+            "correct behavior not identity",
+            "pair challenge with support",
+            "review one message you repeat",
+            "ask how your feedback sounds",
+            "review one response after a challenge"
+          ]
+        },
+        "hard": {
+          "summaryBullets": [
+            "This chapter looks at the adults who shape development and shows how their messages can either support growth or lock people into fragile beliefs about ability.",
+            "Parents, teachers, and coaches influence not only performance but also how young people interpret effort, failure, and praise.",
+            "When adults praise fixed traits alone, they can unintentionally make children afraid of challenge and mistake making.",
+            "When adults praise strategy, persistence, and learning, they help children connect effort with improvement.",
+            "The chapter argues that high standards and warmth should work together rather than against each other.",
+            "Growth oriented guidance does not mean lowering expectations or pretending results do not matter.",
+            "Instead, it means teaching that capability can be built through disciplined work and helpful support.",
+            "The main lesson is that leaders of learners should communicate belief in development while still telling the truth about what needs work.",
+            "The chapter also warns that rescuing people from every frustration can weaken their tolerance for the struggle real learning requires.",
+            "At the same time, harsh labeling can make them identify with failure instead of learning from it.",
+            "Effective adults therefore combine honesty, structure, encouragement, and specific guidance.",
+            "The practical takeaway is that the words authority figures use after success and failure can shape a person for years.",
+            "A deeper reading shows that developmental leadership is ethical work, because adults help define what effort, worth, and potential mean for the people they influence.",
+            "This means praise is never neutral when it repeatedly teaches whether love and respect depend on looking naturally gifted.",
+            "The chapter therefore pushes adults to examine not just what standards they hold, but what theory of human growth those standards communicate.",
+            "The deepest takeaway is that strong mentors combine demanding expectations with a steady belief that people can become more than they are today."
+          ],
+          "keyTakeaways": [
+            "messages shape identity",
+            "praise should be specific",
+            "high standards still matter",
+            "support must not become rescue",
+            "leaders teach what effort means",
+            "development needs honesty",
+            "reflection supports change",
+            "systems shape behavior",
+            "identity can be retrained"
+          ],
+          "practice": [
+            "praise process precisely",
+            "correct behavior not identity",
+            "pair challenge with support",
+            "review one message you repeat",
+            "ask how your feedback sounds",
+            "review one response after a challenge",
+            "build a feedback loop around one skill"
+          ]
+        }
+      },
+      "examples": [
+        {
+          "exampleId": "ch07-ex01",
+          "title": "Helping a younger sibling",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "A younger sibling is frustrated with homework and you are tempted either to say they are naturally smart or to take over the task to end the stress. Neither move teaches growth well.",
+          "whatToDo": [
+            "Acknowledge the frustration, remind them that confusion is part of learning, and help them try one better strategy. Keep their ownership of the task intact."
+          ],
+          "whyItMatters": "This matters because everyday language from older siblings and friends can reinforce either fragility or resilience."
+        },
+        {
+          "exampleId": "ch07-ex02",
+          "title": "Mentoring a friend",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "A friend wants advice on a goal and you instinctively focus only on cheering them up. Encouragement helps, but it can avoid the real work of development if it stays vague.",
+          "whatToDo": [
+            "Encourage them while also helping them identify the next skill, habit, or feedback loop that will move them forward. Pair belief with a plan."
+          ],
+          "whyItMatters": "This matters because growth is supported best when warmth and realism are kept together."
+        },
+        {
+          "exampleId": "ch07-ex03",
+          "title": "Tutoring someone",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "You are tutoring a classmate and they keep saying they are just bad at the subject. If you respond with empty reassurance, the fixed story stays intact.",
+          "whatToDo": [
+            "Point to a specific improvement they made and name the strategy that produced it. Then set one next step so progress feels concrete and repeatable."
+          ],
+          "whyItMatters": "This matters because good teaching translates effort into visible progress rather than into generic positivity."
+        },
+        {
+          "exampleId": "ch07-ex04",
+          "title": "Student leader feedback",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "You lead a peer workshop and want to motivate participants, so you praise only the students who finish quickly. Others quietly learn that speed equals ability.",
+          "whatToDo": [
+            "Praise persistence, revision, and good questions along with strong outcomes. Make the room feel like a place where growth is visible and respected."
+          ],
+          "whyItMatters": "This matters because learning environments teach values through what they publicly celebrate."
+        },
+        {
+          "exampleId": "ch07-ex05",
+          "title": "Training a new hire",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "A new hire struggles with part of the workflow and you can either label them as not ready or coach them through the learning curve. The message you send will shape future risk taking.",
+          "whatToDo": [
+            "Give specific feedback, explain what improvement looks like, and make clear that the standard is high because the skill can be learned. Stay demanding and supportive at the same time."
+          ],
+          "whyItMatters": "This matters because managers often function like teachers. Their mindset affects whether new people become cautious or capable."
+        },
+        {
+          "exampleId": "ch07-ex06",
+          "title": "Reviewing junior work",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "A junior teammate makes a mistake and the easiest response is a global comment about their judgment. That may protect standards in the moment but damage confidence in a way that reduces future initiative.",
+          "whatToDo": [
+            "Address the exact mistake, the principle behind it, and how to avoid it next time. Keep the correction tied to the work and the path forward."
+          ],
+          "whyItMatters": "This matters because professional development depends on feedback that is clear without becoming identity damage."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch07-h-q01",
+            "prompt": "[Deeper] What central claim does this chapter make about how parents, teachers, and coaches can cultivate or weaken growth through messages and standards?",
+            "choices": [
+              "This chapter looks at the adults who shape development and shows how their messages can either support growth or lock people into fragile beliefs about ability.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch07-h-q02",
+            "prompt": "[Deeper] Which statement best matches the fixed mindset pattern described in this chapter?",
+            "choices": [
+              "Parents, teachers, and coaches influence not only performance but also how young people interpret effort, failure, and praise.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch07-h-q03",
+            "prompt": "[Deeper] Which statement best matches the growth mindset pattern described in this chapter?",
+            "choices": [
+              "When adults praise fixed traits alone, they can unintentionally make children afraid of challenge and mistake making.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch07-h-q04",
+            "prompt": "[Deeper] What practical effect does the chapter say this has on behavior?",
+            "choices": [
+              "When adults praise strategy, persistence, and learning, they help children connect effort with improvement.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch07-h-q05",
+            "prompt": "[Deeper] Why does this chapter say the issue matters in real life?",
+            "choices": [
+              "The chapter argues that high standards and warmth should work together rather than against each other.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch07-h-q06",
+            "prompt": "[Deeper] What misunderstanding does the chapter correct?",
+            "choices": [
+              "Growth oriented guidance does not mean lowering expectations or pretending results do not matter.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch07-h-q07",
+            "prompt": "[Deeper] What condition supports better development according to the chapter?",
+            "choices": [
+              "Instead, it means teaching that capability can be built through disciplined work and helpful support.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch07-h-q08",
+            "prompt": "[Deeper] What is the main simple takeaway of the chapter?",
+            "choices": [
+              "The main lesson is that leaders of learners should communicate belief in development while still telling the truth about what needs work.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch07-h-q09",
+            "prompt": "[Deeper] What extra nuance appears in the deeper discussion of the chapter?",
+            "choices": [
+              "A deeper reading shows that developmental leadership is ethical work, because adults help define what effort, worth, and potential mean for the people they influence.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch07-h-q10",
+            "prompt": "[Deeper] What is the deepest takeaway of the chapter?",
+            "choices": [
+              "The deepest takeaway is that strong mentors combine demanding expectations with a steady belief that people can become more than they are today.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          }
+        ]
+      }
+    },
+    {
+      "chapterId": "ch08-changing-your-mindset-in-practice",
+      "number": 8,
+      "title": "Changing Your Mindset In Practice",
+      "readingTimeMinutes": 16,
+      "contentVariants": {
+        "easy": {
+          "summaryBullets": [
+            "This chapter focuses on change, arguing that mindset is powerful but not immovable.",
+            "People can learn to notice fixed mindset triggers and respond to them in more growth oriented ways.",
+            "The chapter explains that change begins with awareness of the situations that activate fear, defensiveness, or avoidance.",
+            "Once those moments are visible, people can practice new interpretations and new behaviors.",
+            "A growth mindset is not achieved by repeating slogans but by acting differently when challenge appears.",
+            "The chapter also emphasizes that change is gradual because old habits of interpretation return under stress.",
+            "Progress comes from repeated practice of better responses to setbacks, criticism, and effort.",
+            "The main lesson is that mindset change becomes real when people build new habits of meaning, effort, and action."
+          ],
+          "keyTakeaways": [
+            "change is possible",
+            "awareness starts change",
+            "practice beats slogans",
+            "triggers matter",
+            "compassion helps learning",
+            "identity shifts through repetition"
+          ],
+          "practice": [
+            "map one common trigger",
+            "write one growth response",
+            "rehearse your next setback plan",
+            "speak to your fixed voice calmly",
+            "track one domain of change"
+          ]
+        },
+        "medium": {
+          "summaryBullets": [
+            "This chapter focuses on change, arguing that mindset is powerful but not immovable.",
+            "People can learn to notice fixed mindset triggers and respond to them in more growth oriented ways.",
+            "The chapter explains that change begins with awareness of the situations that activate fear, defensiveness, or avoidance.",
+            "Once those moments are visible, people can practice new interpretations and new behaviors.",
+            "A growth mindset is not achieved by repeating slogans but by acting differently when challenge appears.",
+            "The chapter also emphasizes that change is gradual because old habits of interpretation return under stress.",
+            "Progress comes from repeated practice of better responses to setbacks, criticism, and effort.",
+            "The main lesson is that mindset change becomes real when people build new habits of meaning, effort, and action.",
+            "The chapter encourages readers to observe their fixed mindset persona without shame so they can work with it honestly.",
+            "It also stresses that change requires concrete plans for what to do when old reactions return.",
+            "Growth therefore becomes a daily discipline of noticing triggers, naming the old story, and choosing a better next move.",
+            "The practical takeaway is that self transformation is possible when reflection is tied to repeated behavioral practice."
+          ],
+          "keyTakeaways": [
+            "change is possible",
+            "awareness starts change",
+            "practice beats slogans",
+            "triggers matter",
+            "compassion helps learning",
+            "identity shifts through repetition",
+            "reflection supports change"
+          ],
+          "practice": [
+            "map one common trigger",
+            "write one growth response",
+            "rehearse your next setback plan",
+            "speak to your fixed voice calmly",
+            "track one domain of change",
+            "review one response after a challenge"
+          ]
+        },
+        "hard": {
+          "summaryBullets": [
+            "This chapter focuses on change, arguing that mindset is powerful but not immovable.",
+            "People can learn to notice fixed mindset triggers and respond to them in more growth oriented ways.",
+            "The chapter explains that change begins with awareness of the situations that activate fear, defensiveness, or avoidance.",
+            "Once those moments are visible, people can practice new interpretations and new behaviors.",
+            "A growth mindset is not achieved by repeating slogans but by acting differently when challenge appears.",
+            "The chapter also emphasizes that change is gradual because old habits of interpretation return under stress.",
+            "Progress comes from repeated practice of better responses to setbacks, criticism, and effort.",
+            "The main lesson is that mindset change becomes real when people build new habits of meaning, effort, and action.",
+            "The chapter encourages readers to observe their fixed mindset persona without shame so they can work with it honestly.",
+            "It also stresses that change requires concrete plans for what to do when old reactions return.",
+            "Growth therefore becomes a daily discipline of noticing triggers, naming the old story, and choosing a better next move.",
+            "The practical takeaway is that self transformation is possible when reflection is tied to repeated behavioral practice.",
+            "A deeper reading suggests that mindset change is less about replacing one belief in the abstract and more about redesigning one response at a time across different parts of life.",
+            "This means people should expect mixed progress, because the growth mindset can be stronger in one domain and weaker in another.",
+            "The chapter also implies that compassion matters, since harsh self attack can become another fixed mindset reaction disguised as self improvement.",
+            "The deepest takeaway is that real change happens when people face challenge with honesty, mercy, and disciplined repetition until a new identity becomes believable."
+          ],
+          "keyTakeaways": [
+            "change is possible",
+            "awareness starts change",
+            "practice beats slogans",
+            "triggers matter",
+            "compassion helps learning",
+            "identity shifts through repetition",
+            "reflection supports change",
+            "systems shape behavior",
+            "identity can be retrained"
+          ],
+          "practice": [
+            "map one common trigger",
+            "write one growth response",
+            "rehearse your next setback plan",
+            "speak to your fixed voice calmly",
+            "track one domain of change",
+            "review one response after a challenge",
+            "build a feedback loop around one skill"
+          ]
+        }
+      },
+      "examples": [
+        {
+          "exampleId": "ch08-ex01",
+          "title": "Catching your trigger",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You notice that certain moments such as criticism, comparison, or slow progress instantly trigger the same old thought that you are falling behind or not built for this. The reaction feels automatic.",
+          "whatToDo": [
+            "Identify one recurring trigger and write the fixed story it usually activates. Then write the growth response you want to practice the next time that trigger appears."
+          ],
+          "whyItMatters": "This matters because change starts when vague emotion becomes a visible pattern that can be interrupted."
+        },
+        {
+          "exampleId": "ch08-ex02",
+          "title": "Trying again after quitting",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You stopped a personal goal months ago after early struggle and still feel embarrassed about returning to it. Restarting feels like admitting weakness.",
+          "whatToDo": [
+            "Return with a small repeatable plan and a different definition of success that values consistency over instant competence. Let restarting become evidence of growth instead of proof of failure."
+          ],
+          "whyItMatters": "This matters because many meaningful changes happen on the second or third attempt, not the first."
+        },
+        {
+          "exampleId": "ch08-ex03",
+          "title": "Changing study identity",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "You have always told yourself that you are a procrastinator or that you are bad at one type of class, so every new assignment starts under that label. The label begins doing the work before you do.",
+          "whatToDo": [
+            "Replace the identity label with a process commitment such as when you will start, what help you will use, and how you will revise. Focus on building a new pattern rather than defending an old story."
+          ],
+          "whyItMatters": "This matters because academic change becomes easier when students stop treating past habits as destiny."
+        },
+        {
+          "exampleId": "ch08-ex04",
+          "title": "Responding to a poor semester",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A rough semester makes you feel like the year has already defined you. That belief can quietly lower effort in the next term because the identity story feels settled.",
+          "whatToDo": [
+            "Review the term for specific habits, systems, and choices that can change next term. Build a narrow plan for attendance, study timing, and feedback use rather than carrying a global negative label forward."
+          ],
+          "whyItMatters": "This matters because recovery in school depends on whether students treat bad periods as permanent identity or as information for redesign."
+        },
+        {
+          "exampleId": "ch08-ex05",
+          "title": "Career pivot anxiety",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "You want to move into a new role, but the beginner phase feels too exposing because you are used to competence in your current lane. The transition threatens your identity.",
+          "whatToDo": [
+            "Frame the move as a structured apprenticeship and choose metrics for early learning such as conversations, projects, and feedback loops. Let temporary awkwardness be part of the plan."
+          ],
+          "whyItMatters": "This matters because many career transitions fail emotionally before they fail practically. Growth mindset keeps beginners moving."
+        },
+        {
+          "exampleId": "ch08-ex06",
+          "title": "Repairing a work reputation hit",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "A mistake at work makes you feel permanently marked, so you become cautious and smaller instead of rebuilding trust through action. The story freezes you.",
+          "whatToDo": [
+            "Acknowledge the mistake, correct what you can, and show a visible pattern of improved preparation and reliability over time. Let new behavior rewrite the reputation story gradually."
+          ],
+          "whyItMatters": "This matters because trust is usually repaired through consistent action. A growth view makes that long process feel possible."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch08-h-q01",
+            "prompt": "[Deeper] What central claim does this chapter make about how to notice, challenge, and gradually change fixed mindset patterns in daily life?",
+            "choices": [
+              "This chapter focuses on change, arguing that mindset is powerful but not immovable.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch08-h-q02",
+            "prompt": "[Deeper] Which statement best matches the fixed mindset pattern described in this chapter?",
+            "choices": [
+              "People can learn to notice fixed mindset triggers and respond to them in more growth oriented ways.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch08-h-q03",
+            "prompt": "[Deeper] Which statement best matches the growth mindset pattern described in this chapter?",
+            "choices": [
+              "The chapter explains that change begins with awareness of the situations that activate fear, defensiveness, or avoidance.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch08-h-q04",
+            "prompt": "[Deeper] What practical effect does the chapter say this has on behavior?",
+            "choices": [
+              "Once those moments are visible, people can practice new interpretations and new behaviors.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch08-h-q05",
+            "prompt": "[Deeper] Why does this chapter say the issue matters in real life?",
+            "choices": [
+              "A growth mindset is not achieved by repeating slogans but by acting differently when challenge appears.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch08-h-q06",
+            "prompt": "[Deeper] What misunderstanding does the chapter correct?",
+            "choices": [
+              "The chapter also emphasizes that change is gradual because old habits of interpretation return under stress.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch08-h-q07",
+            "prompt": "[Deeper] What condition supports better development according to the chapter?",
+            "choices": [
+              "Progress comes from repeated practice of better responses to setbacks, criticism, and effort.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch08-h-q08",
+            "prompt": "[Deeper] What is the main simple takeaway of the chapter?",
+            "choices": [
+              "The main lesson is that mindset change becomes real when people build new habits of meaning, effort, and action.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch08-h-q09",
+            "prompt": "[Deeper] What extra nuance appears in the deeper discussion of the chapter?",
+            "choices": [
+              "A deeper reading suggests that mindset change is less about replacing one belief in the abstract and more about redesigning one response at a time across different parts of life.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch08-h-q10",
+            "prompt": "[Deeper] What is the deepest takeaway of the chapter?",
+            "choices": [
+              "The deepest takeaway is that real change happens when people face challenge with honesty, mercy, and disciplined repetition until a new identity becomes believable.",
+              "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
+              "It says that challenge should usually be avoided because struggle mainly proves limitation.",
+              "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
+            ],
+            "correctIndex": 0
+          }
+        ]
+      }
+    }
+  ]
+}

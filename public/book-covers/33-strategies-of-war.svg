@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1400" role="img" aria-labelledby="title desc">
+  <title id="title">The 33 Strategies of War book cover</title>
+  <desc id="desc">A dramatic dark cover with a bold red title treatment and abstract shield and line motifs.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0b0e14"/>
+      <stop offset="100%" stop-color="#161c25"/>
+    </linearGradient>
+    <linearGradient id="red" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0%" stop-color="#b40a1a"/>
+      <stop offset="100%" stop-color="#ff3148"/>
+    </linearGradient>
+    <linearGradient id="steel" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#a8b2c0"/>
+      <stop offset="100%" stop-color="#5f6977"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="1400" rx="38" fill="url(#bg)"/>
+  <rect x="74" y="84" width="752" height="190" rx="22" fill="#0f131c" stroke="#303848" stroke-width="4"/>
+  <text x="450" y="168" text-anchor="middle" fill="#e8edf6" font-family="Arial, sans-serif" font-size="54" font-weight="700" letter-spacing="8">ROBERT GREENE</text>
+  <text x="450" y="500" text-anchor="middle" fill="url(#red)" font-family="Arial, sans-serif" font-size="250" font-weight="900">33</text>
+  <text x="450" y="660" text-anchor="middle" fill="#f1f4f8" font-family="Georgia, 'Times New Roman', serif" font-size="84" letter-spacing="10">STRATEGIES</text>
+  <text x="450" y="760" text-anchor="middle" fill="#f1f4f8" font-family="Georgia, 'Times New Roman', serif" font-size="62" letter-spacing="14">OF</text>
+  <text x="450" y="920" text-anchor="middle" fill="#f1f4f8" font-family="Georgia, 'Times New Roman', serif" font-size="152" letter-spacing="8">WAR</text>
+  <g transform="translate(450 1070)">
+    <path d="M0-130c92 0 170 46 198 118 10 26 16 51 16 80-58 48-132 72-214 72s-156-24-214-72c0-29 6-54 16-80 28-72 106-118 198-118z" fill="#0d121a" stroke="#2e3746" stroke-width="8"/>
+    <path d="M0-98c66 0 121 31 142 79 7 16 10 32 10 49-42 34-95 50-152 50s-110-16-152-50c0-17 3-33 10-49 21-48 76-79 142-79z" fill="url(#steel)" opacity="0.92"/>
+    <path d="M0-78l34 44 54 8-39 39 9 55-58-30-58 30 9-55-39-39 54-8z" fill="url(#red)" stroke="#5d0e18" stroke-width="6"/>
+    <path d="M-210 102c62-18 115-44 160-79" stroke="#b1232f" stroke-width="8" stroke-linecap="round"/>
+    <path d="M210 102c-62-18-115-44-160-79" stroke="#b1232f" stroke-width="8" stroke-linecap="round"/>
+  </g>
+  <rect x="92" y="1200" width="716" height="110" rx="24" fill="#0e141d" stroke="#2f3848" stroke-width="4"/>
+  <text x="450" y="1268" text-anchor="middle" fill="#e8edf6" font-family="Arial, sans-serif" font-size="34" font-weight="700" letter-spacing="3">Modern reading of conflict, leverage, reputation, and coalition strategy</text>
+</svg>

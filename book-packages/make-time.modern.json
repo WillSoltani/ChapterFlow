@@ -1,0 +1,1521 @@
+{
+  "schemaVersion": "1.0.0",
+  "packageId": "4e76ee41-d84f-42e7-87e0-3c3f9490abc2",
+  "createdAt": "2026-03-13T00:00:00Z",
+  "contentOwner": "Will Soltani",
+  "book": {
+    "bookId": "make-time",
+    "title": "Make Time",
+    "author": "Jake Knapp, John Zeratsky",
+    "categories": [
+      "Productivity",
+      "Focus",
+      "Behavior"
+    ],
+    "tags": [
+      "time",
+      "focus",
+      "attention",
+      "energy",
+      "daily-systems",
+      "productivity"
+    ],
+    "edition": {
+      "name": "Modern Learning Edition",
+      "publishedYear": 2026
+    },
+    "variantFamily": "EMH"
+  },
+  "chapters": [
+    {
+      "chapterId": "ch01-how-the-framework-works",
+      "number": 1,
+      "title": "How The Framework Works",
+      "readingTimeMinutes": 13,
+      "contentVariants": {
+        "easy": {
+          "summaryBullets": [
+            "The opening section explains that the book is not about squeezing in more tasks but about making room for what matters each day.",
+            "It frames modern life as shaped by constant busyness and endless sources of distraction that quietly consume attention.",
+            "The core response is a repeatable daily framework rather than a rigid life overhaul.",
+            "The framework is built around choosing a highlight, finding focus, building energy, and reflecting on what worked.",
+            "This structure matters because it turns vague productivity advice into daily decisions that can actually be tested.",
+            "The book argues that small shifts in design can change the feel of a whole day without requiring extreme discipline.",
+            "Readers are encouraged to treat each day as an experiment instead of as a test of personal worth.",
+            "The central lesson is that time improves when it is designed deliberately instead of surrendered by default."
+          ],
+          "keyTakeaways": [
+            "Pick one meaningful priority",
+            "Defend attention actively",
+            "Design before relying on willpower",
+            "Energy shapes focus",
+            "Use reflection as feedback",
+            "Small changes can change a day"
+          ],
+          "practice": [
+            "Choose tomorrow’s highlight tonight",
+            "Remove one distraction before work starts",
+            "Block one focus window",
+            "Take one energy supporting break"
+          ]
+        },
+        "medium": {
+          "summaryBullets": [
+            "The opening section explains that the book is not about squeezing in more tasks but about making room for what matters each day.",
+            "It frames modern life as shaped by constant busyness and endless sources of distraction that quietly consume attention.",
+            "The core response is a repeatable daily framework rather than a rigid life overhaul.",
+            "The framework is built around choosing a highlight, finding focus, building energy, and reflecting on what worked.",
+            "This structure matters because it turns vague productivity advice into daily decisions that can actually be tested.",
+            "The book argues that small shifts in design can change the feel of a whole day without requiring extreme discipline.",
+            "Readers are encouraged to treat each day as an experiment instead of as a test of personal worth.",
+            "The central lesson is that time improves when it is designed deliberately instead of surrendered by default.",
+            "The chapter shows that the daily structure behind choosing attention intentionally improves when daily choices are made against strong defaults instead of against abstract intentions alone.",
+            "It also argues that small tactical changes work because they shift behavior at the point where attention is usually lost.",
+            "A stronger reading asks not only what the tactic is but what default it is trying to interrupt or replace.",
+            "The practical message is that better days are built through repeated design choices, not through occasional inspiration."
+          ],
+          "keyTakeaways": [
+            "Pick one meaningful priority",
+            "Defend attention actively",
+            "Design before relying on willpower",
+            "Energy shapes focus",
+            "Use reflection as feedback",
+            "Small changes can change a day",
+            "Defaults shape days",
+            "Design beats reaction"
+          ],
+          "practice": [
+            "Choose tomorrow’s highlight tonight",
+            "Remove one distraction before work starts",
+            "Block one focus window",
+            "Take one energy supporting break",
+            "Write one lesson from the day",
+            "Keep the experiment small and repeatable"
+          ]
+        },
+        "hard": {
+          "summaryBullets": [
+            "The opening section explains that the book is not about squeezing in more tasks but about making room for what matters each day.",
+            "It frames modern life as shaped by constant busyness and endless sources of distraction that quietly consume attention.",
+            "The core response is a repeatable daily framework rather than a rigid life overhaul.",
+            "The framework is built around choosing a highlight, finding focus, building energy, and reflecting on what worked.",
+            "This structure matters because it turns vague productivity advice into daily decisions that can actually be tested.",
+            "The book argues that small shifts in design can change the feel of a whole day without requiring extreme discipline.",
+            "Readers are encouraged to treat each day as an experiment instead of as a test of personal worth.",
+            "The central lesson is that time improves when it is designed deliberately instead of surrendered by default.",
+            "The chapter shows that the daily structure behind choosing attention intentionally improves when daily choices are made against strong defaults instead of against abstract intentions alone.",
+            "It also argues that small tactical changes work because they shift behavior at the point where attention is usually lost.",
+            "A stronger reading asks not only what the tactic is but what default it is trying to interrupt or replace.",
+            "The practical message is that better days are built through repeated design choices, not through occasional inspiration.",
+            "The deeper lesson is that the daily structure behind choosing attention intentionally is shaped by an environment designed to capture attention through convenience, speed, and endless availability.",
+            "This means the framework is not merely personal organization but a daily counterstrategy against systems that profit from distraction and reaction.",
+            "A more nuanced reading shows that the highlight is a value decision, laser is an attention defense, energize is capacity management, and reflect is a learning loop.",
+            "The material also implies that agency grows when people redesign defaults instead of waiting to feel more disciplined than the environment around them."
+          ],
+          "keyTakeaways": [
+            "Pick one meaningful priority",
+            "Defend attention actively",
+            "Design before relying on willpower",
+            "Energy shapes focus",
+            "Use reflection as feedback",
+            "Small changes can change a day",
+            "Attention is contested",
+            "Energy is strategic",
+            "Reflection closes the loop"
+          ],
+          "practice": [
+            "Choose tomorrow’s highlight tonight",
+            "Remove one distraction before work starts",
+            "Block one focus window",
+            "Take one energy supporting break",
+            "Write one lesson from the day",
+            "Keep the experiment small and repeatable",
+            "Review one failed day without blame",
+            "Design one stronger default for tomorrow"
+          ]
+        }
+      },
+      "examples": [
+        {
+          "exampleId": "ch01-ex01",
+          "title": "Phone first morning",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You wake up and instantly start checking messages, news, and social apps, and before long the first hour of the day belongs to whatever reached you first. By the time you try to focus on something meaningful, your attention already feels scattered.",
+          "whatToDo": [
+            "Choose a highlight before bed and create a morning setup that delays the phone long enough to begin with intention. Make the first action of the day support your priority instead of feeding the default pull of infinite content."
+          ],
+          "whyItMatters": "A lot of people in their twenties lose time before the day has properly begun because defaults are stronger than intention. This example makes the book’s daily design philosophy immediately practical."
+        },
+        {
+          "exampleId": "ch01-ex02",
+          "title": "Wanting time for a side project",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You care about a creative or personal project, but every evening disappears into low effort screen time and reactive tasks. The project feels important in theory, yet it never becomes the center of any one day.",
+          "whatToDo": [
+            "Use the highlight idea to give the project a clear place in the day and make a specific plan for when the work will happen. Reduce the distractions most likely to interrupt that block before the work begins."
+          ],
+          "whyItMatters": "Important personal work often fails because it is never protected with the same seriousness as other obligations. This example helps readers connect the framework to projects they genuinely care about."
+        },
+        {
+          "exampleId": "ch01-ex03",
+          "title": "Study day without direction",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "You sit down for a long study session with the intention of being productive, but because you never defined the one thing that matters most, the time gets spread across email, minor assignments, and random research. At the end, you are tired but unsure what moved forward.",
+          "whatToDo": [
+            "Pick a single academic highlight for the day and define what completed progress looks like before you begin. Then shape your environment so your easiest next action supports that one priority instead of every possible task at once."
+          ],
+          "whyItMatters": "Students often confuse a full day with a meaningful day. This example shows how choosing a highlight can turn vague busyness into visible progress."
+        },
+        {
+          "exampleId": "ch01-ex04",
+          "title": "Class project and fragmented focus",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A project requires real concentration, but constant messages from classmates and switching between tools keeps breaking the flow. Everyone is communicating all day, yet the hard thinking never gets enough uninterrupted time.",
+          "whatToDo": [
+            "Separate communication time from focus time and protect at least one window where the project gets full attention. Use the laser principle to reduce the most common interruptions before they happen instead of fighting them one by one."
+          ],
+          "whyItMatters": "School work increasingly happens in environments built for quick coordination, not deep thought. This example helps readers see why focus must be intentionally defended when collaboration is always on."
+        },
+        {
+          "exampleId": "ch01-ex05",
+          "title": "Calendar full of meetings",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "Your workday is shaped by meetings, quick replies, and whatever seems hottest in the inbox. The work that would most improve your value keeps getting pushed into leftover time, which means it rarely gets done with real attention.",
+          "whatToDo": [
+            "Pick a highlight that reflects your highest value work and schedule time for it before the day gets claimed by reactive tasks. Then reduce unnecessary availability during that block so the work has a real chance to happen."
+          ],
+          "whyItMatters": "Work culture often praises constant responsiveness even when it erodes meaningful output. This example makes the book’s framework relevant to early career knowledge work where time gets absorbed quickly."
+        },
+        {
+          "exampleId": "ch01-ex06",
+          "title": "End of day with no energy left",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "You plan to finish important work after the urgent tasks are done, but by late afternoon your energy is low and your attention is weak. The day may have been full, but your best thinking capacity was spent somewhere else.",
+          "whatToDo": [
+            "Treat energy as part of time design by placing demanding work earlier or by supporting focus through breaks, movement, and better pacing. Use reflection to notice when your attention is strongest and let that shape future scheduling."
+          ],
+          "whyItMatters": "Many people try to solve time problems without noticing energy patterns. This example connects the Energize and Reflect parts of the framework to better real world decision making."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch01-h-q01",
+            "prompt": "What is the main claim of how the framework works?",
+            "choices": [
+              "Better days come from adding more tasks efficiently",
+              "Better days come from deliberately shaping attention, energy, and priorities",
+              "Motivation is the only real productivity tool",
+              "Schedules matter less than flexibility in every case"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch01-h-q02",
+            "prompt": "Why does the framework emphasize one daily highlight?",
+            "choices": [
+              "Because it gives the day a clear center instead of letting reactivity define it",
+              "Because all other tasks should be ignored completely",
+              "Because one task is always enough for any day",
+              "Because urgency is always the best guide"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch01-h-q03",
+            "prompt": "What is the purpose of the Laser part of the framework?",
+            "choices": [
+              "To increase multitasking capacity",
+              "To reduce attention loss by redesigning distractions before they take over",
+              "To make every tool available at all times",
+              "To avoid any planning"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch01-h-q04",
+            "prompt": "Why is energy treated as part of time design?",
+            "choices": [
+              "Because time and focus are unaffected by physical state",
+              "Because attention works differently depending on rest, movement, and physiology",
+              "Because energy matters only in athletics",
+              "Because energy replaces the need for tactics"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch01-h-q05",
+            "prompt": "What role does reflection play in the book’s method?",
+            "choices": [
+              "It turns success and failure into learning about what actually works",
+              "It proves whether you are disciplined enough",
+              "It eliminates the need for experimentation",
+              "It matters only after perfect days"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch01-h-q06",
+            "prompt": "How does the chapter frame defaults in modern life?",
+            "choices": [
+              "As neutral background conditions",
+              "As powerful forces that shape behavior unless deliberately redesigned",
+              "As irrelevant once a goal is chosen",
+              "As helpful for everyone equally"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch01-h-q07",
+            "prompt": "What deeper problem does the framework respond to?",
+            "choices": [
+              "A culture of endless reactivity and attention capture",
+              "A shortage of apps and tools",
+              "A lack of goals among ambitious people",
+              "A refusal to work hard"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch01-h-q08",
+            "prompt": "Why are small tactical changes emphasized instead of giant overhauls?",
+            "choices": [
+              "Because small design changes are easier to repeat and test in real life",
+              "Because large goals are always bad",
+              "Because tactics replace values",
+              "Because habits cannot change quickly"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch01-h-q09",
+            "prompt": "What mindset best fits the Make Time approach?",
+            "choices": [
+              "Treat each day as an experiment in designing better defaults",
+              "Treat each day as a test of self worth",
+              "Keep every option open all the time",
+              "Wait for free time to appear naturally"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch01-h-q10",
+            "prompt": "What broader value does the framework claim to provide?",
+            "choices": [
+              "A way to fit more into the same rushed life",
+              "A way to reclaim attention for the things that matter most day by day",
+              "A way to eliminate all obligations",
+              "A way to avoid structure entirely"
+            ],
+            "correctIndex": 1
+          }
+        ]
+      }
+    },
+    {
+      "chapterId": "ch02-choose-a-daily-highlight",
+      "number": 2,
+      "title": "Choose A Daily Highlight",
+      "readingTimeMinutes": 15,
+      "contentVariants": {
+        "easy": {
+          "summaryBullets": [
+            "The chapter argues that every day should contain one highlighted priority that deserves special protection and attention.",
+            "A highlight can be urgent, deeply satisfying, or strategically important, but it should be clear enough to guide decisions.",
+            "Choosing a highlight creates direction because it prevents the day from being ruled entirely by incoming demands.",
+            "The chapter encourages simplicity, since one clear priority is easier to honor than a list of competing wishes.",
+            "A good highlight gives the day a center of gravity and makes progress feel visible.",
+            "Without a highlight, people tend to drift into reactivity and let the day be defined by other people’s priorities.",
+            "The book emphasizes choosing intentionally instead of waiting for urgency to choose for you.",
+            "The lesson is that meaningful days usually begin with a clear decision about what matters most today."
+          ],
+          "keyTakeaways": [
+            "Pick one meaningful priority",
+            "Defend attention actively",
+            "Design before relying on willpower",
+            "Energy shapes focus",
+            "Use reflection as feedback",
+            "Small changes can change a day"
+          ],
+          "practice": [
+            "Choose tomorrow’s highlight tonight",
+            "Remove one distraction before work starts",
+            "Block one focus window",
+            "Take one energy supporting break"
+          ]
+        },
+        "medium": {
+          "summaryBullets": [
+            "The chapter argues that every day should contain one highlighted priority that deserves special protection and attention.",
+            "A highlight can be urgent, deeply satisfying, or strategically important, but it should be clear enough to guide decisions.",
+            "Choosing a highlight creates direction because it prevents the day from being ruled entirely by incoming demands.",
+            "The chapter encourages simplicity, since one clear priority is easier to honor than a list of competing wishes.",
+            "A good highlight gives the day a center of gravity and makes progress feel visible.",
+            "Without a highlight, people tend to drift into reactivity and let the day be defined by other people’s priorities.",
+            "The book emphasizes choosing intentionally instead of waiting for urgency to choose for you.",
+            "The lesson is that meaningful days usually begin with a clear decision about what matters most today.",
+            "The chapter shows that picking one meaningful priority that gives shape to the day improves when daily choices are made against strong defaults instead of against abstract intentions alone.",
+            "It also argues that small tactical changes work because they shift behavior at the point where attention is usually lost.",
+            "A stronger reading asks not only what the tactic is but what default it is trying to interrupt or replace.",
+            "The practical message is that better days are built through repeated design choices, not through occasional inspiration."
+          ],
+          "keyTakeaways": [
+            "Pick one meaningful priority",
+            "Defend attention actively",
+            "Design before relying on willpower",
+            "Energy shapes focus",
+            "Use reflection as feedback",
+            "Small changes can change a day",
+            "Defaults shape days",
+            "Design beats reaction"
+          ],
+          "practice": [
+            "Choose tomorrow’s highlight tonight",
+            "Remove one distraction before work starts",
+            "Block one focus window",
+            "Take one energy supporting break",
+            "Write one lesson from the day",
+            "Keep the experiment small and repeatable"
+          ]
+        },
+        "hard": {
+          "summaryBullets": [
+            "The chapter argues that every day should contain one highlighted priority that deserves special protection and attention.",
+            "A highlight can be urgent, deeply satisfying, or strategically important, but it should be clear enough to guide decisions.",
+            "Choosing a highlight creates direction because it prevents the day from being ruled entirely by incoming demands.",
+            "The chapter encourages simplicity, since one clear priority is easier to honor than a list of competing wishes.",
+            "A good highlight gives the day a center of gravity and makes progress feel visible.",
+            "Without a highlight, people tend to drift into reactivity and let the day be defined by other people’s priorities.",
+            "The book emphasizes choosing intentionally instead of waiting for urgency to choose for you.",
+            "The lesson is that meaningful days usually begin with a clear decision about what matters most today.",
+            "The chapter shows that picking one meaningful priority that gives shape to the day improves when daily choices are made against strong defaults instead of against abstract intentions alone.",
+            "It also argues that small tactical changes work because they shift behavior at the point where attention is usually lost.",
+            "A stronger reading asks not only what the tactic is but what default it is trying to interrupt or replace.",
+            "The practical message is that better days are built through repeated design choices, not through occasional inspiration.",
+            "The deeper lesson is that picking one meaningful priority that gives shape to the day is shaped by an environment designed to capture attention through convenience, speed, and endless availability.",
+            "This means the framework is not merely personal organization but a daily counterstrategy against systems that profit from distraction and reaction.",
+            "A more nuanced reading shows that the highlight is a value decision, laser is an attention defense, energize is capacity management, and reflect is a learning loop.",
+            "The material also implies that agency grows when people redesign defaults instead of waiting to feel more disciplined than the environment around them."
+          ],
+          "keyTakeaways": [
+            "Pick one meaningful priority",
+            "Defend attention actively",
+            "Design before relying on willpower",
+            "Energy shapes focus",
+            "Use reflection as feedback",
+            "Small changes can change a day",
+            "Attention is contested",
+            "Energy is strategic",
+            "Reflection closes the loop"
+          ],
+          "practice": [
+            "Choose tomorrow’s highlight tonight",
+            "Remove one distraction before work starts",
+            "Block one focus window",
+            "Take one energy supporting break",
+            "Write one lesson from the day",
+            "Keep the experiment small and repeatable",
+            "Review one failed day without blame",
+            "Design one stronger default for tomorrow"
+          ]
+        }
+      },
+      "examples": [
+        {
+          "exampleId": "ch02-ex01",
+          "title": "Phone first morning",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You wake up and instantly start checking messages, news, and social apps, and before long the first hour of the day belongs to whatever reached you first. By the time you try to focus on something meaningful, your attention already feels scattered.",
+          "whatToDo": [
+            "Choose a highlight before bed and create a morning setup that delays the phone long enough to begin with intention. Make the first action of the day support your priority instead of feeding the default pull of infinite content."
+          ],
+          "whyItMatters": "A lot of people in their twenties lose time before the day has properly begun because defaults are stronger than intention. This example makes the book’s daily design philosophy immediately practical."
+        },
+        {
+          "exampleId": "ch02-ex02",
+          "title": "Wanting time for a side project",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You care about a creative or personal project, but every evening disappears into low effort screen time and reactive tasks. The project feels important in theory, yet it never becomes the center of any one day.",
+          "whatToDo": [
+            "Use the highlight idea to give the project a clear place in the day and make a specific plan for when the work will happen. Reduce the distractions most likely to interrupt that block before the work begins."
+          ],
+          "whyItMatters": "Important personal work often fails because it is never protected with the same seriousness as other obligations. This example helps readers connect the framework to projects they genuinely care about."
+        },
+        {
+          "exampleId": "ch02-ex03",
+          "title": "Study day without direction",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "You sit down for a long study session with the intention of being productive, but because you never defined the one thing that matters most, the time gets spread across email, minor assignments, and random research. At the end, you are tired but unsure what moved forward.",
+          "whatToDo": [
+            "Pick a single academic highlight for the day and define what completed progress looks like before you begin. Then shape your environment so your easiest next action supports that one priority instead of every possible task at once."
+          ],
+          "whyItMatters": "Students often confuse a full day with a meaningful day. This example shows how choosing a highlight can turn vague busyness into visible progress."
+        },
+        {
+          "exampleId": "ch02-ex04",
+          "title": "Class project and fragmented focus",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A project requires real concentration, but constant messages from classmates and switching between tools keeps breaking the flow. Everyone is communicating all day, yet the hard thinking never gets enough uninterrupted time.",
+          "whatToDo": [
+            "Separate communication time from focus time and protect at least one window where the project gets full attention. Use the laser principle to reduce the most common interruptions before they happen instead of fighting them one by one."
+          ],
+          "whyItMatters": "School work increasingly happens in environments built for quick coordination, not deep thought. This example helps readers see why focus must be intentionally defended when collaboration is always on."
+        },
+        {
+          "exampleId": "ch02-ex05",
+          "title": "Calendar full of meetings",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "Your workday is shaped by meetings, quick replies, and whatever seems hottest in the inbox. The work that would most improve your value keeps getting pushed into leftover time, which means it rarely gets done with real attention.",
+          "whatToDo": [
+            "Pick a highlight that reflects your highest value work and schedule time for it before the day gets claimed by reactive tasks. Then reduce unnecessary availability during that block so the work has a real chance to happen."
+          ],
+          "whyItMatters": "Work culture often praises constant responsiveness even when it erodes meaningful output. This example makes the book’s framework relevant to early career knowledge work where time gets absorbed quickly."
+        },
+        {
+          "exampleId": "ch02-ex06",
+          "title": "End of day with no energy left",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "You plan to finish important work after the urgent tasks are done, but by late afternoon your energy is low and your attention is weak. The day may have been full, but your best thinking capacity was spent somewhere else.",
+          "whatToDo": [
+            "Treat energy as part of time design by placing demanding work earlier or by supporting focus through breaks, movement, and better pacing. Use reflection to notice when your attention is strongest and let that shape future scheduling."
+          ],
+          "whyItMatters": "Many people try to solve time problems without noticing energy patterns. This example connects the Energize and Reflect parts of the framework to better real world decision making."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch02-h-q01",
+            "prompt": "What is the main claim of choose a daily highlight?",
+            "choices": [
+              "Better days come from adding more tasks efficiently",
+              "Better days come from deliberately shaping attention, energy, and priorities",
+              "Motivation is the only real productivity tool",
+              "Schedules matter less than flexibility in every case"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch02-h-q02",
+            "prompt": "Why does the framework emphasize one daily highlight?",
+            "choices": [
+              "Because it gives the day a clear center instead of letting reactivity define it",
+              "Because all other tasks should be ignored completely",
+              "Because one task is always enough for any day",
+              "Because urgency is always the best guide"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch02-h-q03",
+            "prompt": "What is the purpose of the Laser part of the framework?",
+            "choices": [
+              "To increase multitasking capacity",
+              "To reduce attention loss by redesigning distractions before they take over",
+              "To make every tool available at all times",
+              "To avoid any planning"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch02-h-q04",
+            "prompt": "Why is energy treated as part of time design?",
+            "choices": [
+              "Because time and focus are unaffected by physical state",
+              "Because attention works differently depending on rest, movement, and physiology",
+              "Because energy matters only in athletics",
+              "Because energy replaces the need for tactics"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch02-h-q05",
+            "prompt": "What role does reflection play in the book’s method?",
+            "choices": [
+              "It turns success and failure into learning about what actually works",
+              "It proves whether you are disciplined enough",
+              "It eliminates the need for experimentation",
+              "It matters only after perfect days"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch02-h-q06",
+            "prompt": "How does the chapter frame defaults in modern life?",
+            "choices": [
+              "As neutral background conditions",
+              "As powerful forces that shape behavior unless deliberately redesigned",
+              "As irrelevant once a goal is chosen",
+              "As helpful for everyone equally"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch02-h-q07",
+            "prompt": "What deeper problem does the framework respond to?",
+            "choices": [
+              "A culture of endless reactivity and attention capture",
+              "A shortage of apps and tools",
+              "A lack of goals among ambitious people",
+              "A refusal to work hard"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch02-h-q08",
+            "prompt": "Why are small tactical changes emphasized instead of giant overhauls?",
+            "choices": [
+              "Because small design changes are easier to repeat and test in real life",
+              "Because large goals are always bad",
+              "Because tactics replace values",
+              "Because habits cannot change quickly"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch02-h-q09",
+            "prompt": "What mindset best fits the Make Time approach?",
+            "choices": [
+              "Treat each day as an experiment in designing better defaults",
+              "Treat each day as a test of self worth",
+              "Keep every option open all the time",
+              "Wait for free time to appear naturally"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch02-h-q10",
+            "prompt": "What broader value does the framework claim to provide?",
+            "choices": [
+              "A way to fit more into the same rushed life",
+              "A way to reclaim attention for the things that matter most day by day",
+              "A way to eliminate all obligations",
+              "A way to avoid structure entirely"
+            ],
+            "correctIndex": 1
+          }
+        ]
+      }
+    },
+    {
+      "chapterId": "ch03-laser-away-distractions",
+      "number": 3,
+      "title": "Laser Away Distractions",
+      "readingTimeMinutes": 15,
+      "contentVariants": {
+        "easy": {
+          "summaryBullets": [
+            "The chapter explains that focused time rarely happens by accident in environments built to interrupt attention.",
+            "Phones, browsers, notifications, and endless feeds are designed to pull the mind away from chosen work.",
+            "The book suggests that focus improves when distractions are removed before they demand resistance in the moment.",
+            "Rather than trusting self control alone, readers are encouraged to redesign tools and environments so temptation is less available.",
+            "Small frictions can reduce distraction because they make default impulses harder to follow automatically.",
+            "The chapter treats attention as a limited resource that must be defended against well designed competition.",
+            "Laser mode is less about heroic discipline and more about making focused work the easier option.",
+            "The lesson is that people can find better focus when they stop treating distraction as neutral background noise."
+          ],
+          "keyTakeaways": [
+            "Pick one meaningful priority",
+            "Defend attention actively",
+            "Design before relying on willpower",
+            "Energy shapes focus",
+            "Use reflection as feedback",
+            "Small changes can change a day"
+          ],
+          "practice": [
+            "Choose tomorrow’s highlight tonight",
+            "Remove one distraction before work starts",
+            "Block one focus window",
+            "Take one energy supporting break"
+          ]
+        },
+        "medium": {
+          "summaryBullets": [
+            "The chapter explains that focused time rarely happens by accident in environments built to interrupt attention.",
+            "Phones, browsers, notifications, and endless feeds are designed to pull the mind away from chosen work.",
+            "The book suggests that focus improves when distractions are removed before they demand resistance in the moment.",
+            "Rather than trusting self control alone, readers are encouraged to redesign tools and environments so temptation is less available.",
+            "Small frictions can reduce distraction because they make default impulses harder to follow automatically.",
+            "The chapter treats attention as a limited resource that must be defended against well designed competition.",
+            "Laser mode is less about heroic discipline and more about making focused work the easier option.",
+            "The lesson is that people can find better focus when they stop treating distraction as neutral background noise.",
+            "The chapter shows that protecting attention from devices, interruptions, and addictive defaults improves when daily choices are made against strong defaults instead of against abstract intentions alone.",
+            "It also argues that small tactical changes work because they shift behavior at the point where attention is usually lost.",
+            "A stronger reading asks not only what the tactic is but what default it is trying to interrupt or replace.",
+            "The practical message is that better days are built through repeated design choices, not through occasional inspiration."
+          ],
+          "keyTakeaways": [
+            "Pick one meaningful priority",
+            "Defend attention actively",
+            "Design before relying on willpower",
+            "Energy shapes focus",
+            "Use reflection as feedback",
+            "Small changes can change a day",
+            "Defaults shape days",
+            "Design beats reaction"
+          ],
+          "practice": [
+            "Choose tomorrow’s highlight tonight",
+            "Remove one distraction before work starts",
+            "Block one focus window",
+            "Take one energy supporting break",
+            "Write one lesson from the day",
+            "Keep the experiment small and repeatable"
+          ]
+        },
+        "hard": {
+          "summaryBullets": [
+            "The chapter explains that focused time rarely happens by accident in environments built to interrupt attention.",
+            "Phones, browsers, notifications, and endless feeds are designed to pull the mind away from chosen work.",
+            "The book suggests that focus improves when distractions are removed before they demand resistance in the moment.",
+            "Rather than trusting self control alone, readers are encouraged to redesign tools and environments so temptation is less available.",
+            "Small frictions can reduce distraction because they make default impulses harder to follow automatically.",
+            "The chapter treats attention as a limited resource that must be defended against well designed competition.",
+            "Laser mode is less about heroic discipline and more about making focused work the easier option.",
+            "The lesson is that people can find better focus when they stop treating distraction as neutral background noise.",
+            "The chapter shows that protecting attention from devices, interruptions, and addictive defaults improves when daily choices are made against strong defaults instead of against abstract intentions alone.",
+            "It also argues that small tactical changes work because they shift behavior at the point where attention is usually lost.",
+            "A stronger reading asks not only what the tactic is but what default it is trying to interrupt or replace.",
+            "The practical message is that better days are built through repeated design choices, not through occasional inspiration.",
+            "The deeper lesson is that protecting attention from devices, interruptions, and addictive defaults is shaped by an environment designed to capture attention through convenience, speed, and endless availability.",
+            "This means the framework is not merely personal organization but a daily counterstrategy against systems that profit from distraction and reaction.",
+            "A more nuanced reading shows that the highlight is a value decision, laser is an attention defense, energize is capacity management, and reflect is a learning loop.",
+            "The material also implies that agency grows when people redesign defaults instead of waiting to feel more disciplined than the environment around them."
+          ],
+          "keyTakeaways": [
+            "Pick one meaningful priority",
+            "Defend attention actively",
+            "Design before relying on willpower",
+            "Energy shapes focus",
+            "Use reflection as feedback",
+            "Small changes can change a day",
+            "Attention is contested",
+            "Energy is strategic",
+            "Reflection closes the loop"
+          ],
+          "practice": [
+            "Choose tomorrow’s highlight tonight",
+            "Remove one distraction before work starts",
+            "Block one focus window",
+            "Take one energy supporting break",
+            "Write one lesson from the day",
+            "Keep the experiment small and repeatable",
+            "Review one failed day without blame",
+            "Design one stronger default for tomorrow"
+          ]
+        }
+      },
+      "examples": [
+        {
+          "exampleId": "ch03-ex01",
+          "title": "Phone first morning",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You wake up and instantly start checking messages, news, and social apps, and before long the first hour of the day belongs to whatever reached you first. By the time you try to focus on something meaningful, your attention already feels scattered.",
+          "whatToDo": [
+            "Choose a highlight before bed and create a morning setup that delays the phone long enough to begin with intention. Make the first action of the day support your priority instead of feeding the default pull of infinite content."
+          ],
+          "whyItMatters": "A lot of people in their twenties lose time before the day has properly begun because defaults are stronger than intention. This example makes the book’s daily design philosophy immediately practical."
+        },
+        {
+          "exampleId": "ch03-ex02",
+          "title": "Wanting time for a side project",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You care about a creative or personal project, but every evening disappears into low effort screen time and reactive tasks. The project feels important in theory, yet it never becomes the center of any one day.",
+          "whatToDo": [
+            "Use the highlight idea to give the project a clear place in the day and make a specific plan for when the work will happen. Reduce the distractions most likely to interrupt that block before the work begins."
+          ],
+          "whyItMatters": "Important personal work often fails because it is never protected with the same seriousness as other obligations. This example helps readers connect the framework to projects they genuinely care about."
+        },
+        {
+          "exampleId": "ch03-ex03",
+          "title": "Study day without direction",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "You sit down for a long study session with the intention of being productive, but because you never defined the one thing that matters most, the time gets spread across email, minor assignments, and random research. At the end, you are tired but unsure what moved forward.",
+          "whatToDo": [
+            "Pick a single academic highlight for the day and define what completed progress looks like before you begin. Then shape your environment so your easiest next action supports that one priority instead of every possible task at once."
+          ],
+          "whyItMatters": "Students often confuse a full day with a meaningful day. This example shows how choosing a highlight can turn vague busyness into visible progress."
+        },
+        {
+          "exampleId": "ch03-ex04",
+          "title": "Class project and fragmented focus",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A project requires real concentration, but constant messages from classmates and switching between tools keeps breaking the flow. Everyone is communicating all day, yet the hard thinking never gets enough uninterrupted time.",
+          "whatToDo": [
+            "Separate communication time from focus time and protect at least one window where the project gets full attention. Use the laser principle to reduce the most common interruptions before they happen instead of fighting them one by one."
+          ],
+          "whyItMatters": "School work increasingly happens in environments built for quick coordination, not deep thought. This example helps readers see why focus must be intentionally defended when collaboration is always on."
+        },
+        {
+          "exampleId": "ch03-ex05",
+          "title": "Calendar full of meetings",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "Your workday is shaped by meetings, quick replies, and whatever seems hottest in the inbox. The work that would most improve your value keeps getting pushed into leftover time, which means it rarely gets done with real attention.",
+          "whatToDo": [
+            "Pick a highlight that reflects your highest value work and schedule time for it before the day gets claimed by reactive tasks. Then reduce unnecessary availability during that block so the work has a real chance to happen."
+          ],
+          "whyItMatters": "Work culture often praises constant responsiveness even when it erodes meaningful output. This example makes the book’s framework relevant to early career knowledge work where time gets absorbed quickly."
+        },
+        {
+          "exampleId": "ch03-ex06",
+          "title": "End of day with no energy left",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "You plan to finish important work after the urgent tasks are done, but by late afternoon your energy is low and your attention is weak. The day may have been full, but your best thinking capacity was spent somewhere else.",
+          "whatToDo": [
+            "Treat energy as part of time design by placing demanding work earlier or by supporting focus through breaks, movement, and better pacing. Use reflection to notice when your attention is strongest and let that shape future scheduling."
+          ],
+          "whyItMatters": "Many people try to solve time problems without noticing energy patterns. This example connects the Energize and Reflect parts of the framework to better real world decision making."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch03-h-q01",
+            "prompt": "What is the main claim of laser away distractions?",
+            "choices": [
+              "Better days come from adding more tasks efficiently",
+              "Better days come from deliberately shaping attention, energy, and priorities",
+              "Motivation is the only real productivity tool",
+              "Schedules matter less than flexibility in every case"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch03-h-q02",
+            "prompt": "Why does the framework emphasize one daily highlight?",
+            "choices": [
+              "Because it gives the day a clear center instead of letting reactivity define it",
+              "Because all other tasks should be ignored completely",
+              "Because one task is always enough for any day",
+              "Because urgency is always the best guide"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch03-h-q03",
+            "prompt": "What is the purpose of the Laser part of the framework?",
+            "choices": [
+              "To increase multitasking capacity",
+              "To reduce attention loss by redesigning distractions before they take over",
+              "To make every tool available at all times",
+              "To avoid any planning"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch03-h-q04",
+            "prompt": "Why is energy treated as part of time design?",
+            "choices": [
+              "Because time and focus are unaffected by physical state",
+              "Because attention works differently depending on rest, movement, and physiology",
+              "Because energy matters only in athletics",
+              "Because energy replaces the need for tactics"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch03-h-q05",
+            "prompt": "What role does reflection play in the book’s method?",
+            "choices": [
+              "It turns success and failure into learning about what actually works",
+              "It proves whether you are disciplined enough",
+              "It eliminates the need for experimentation",
+              "It matters only after perfect days"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch03-h-q06",
+            "prompt": "How does the chapter frame defaults in modern life?",
+            "choices": [
+              "As neutral background conditions",
+              "As powerful forces that shape behavior unless deliberately redesigned",
+              "As irrelevant once a goal is chosen",
+              "As helpful for everyone equally"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch03-h-q07",
+            "prompt": "What deeper problem does the framework respond to?",
+            "choices": [
+              "A culture of endless reactivity and attention capture",
+              "A shortage of apps and tools",
+              "A lack of goals among ambitious people",
+              "A refusal to work hard"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch03-h-q08",
+            "prompt": "Why are small tactical changes emphasized instead of giant overhauls?",
+            "choices": [
+              "Because small design changes are easier to repeat and test in real life",
+              "Because large goals are always bad",
+              "Because tactics replace values",
+              "Because habits cannot change quickly"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch03-h-q09",
+            "prompt": "What mindset best fits the Make Time approach?",
+            "choices": [
+              "Treat each day as an experiment in designing better defaults",
+              "Treat each day as a test of self worth",
+              "Keep every option open all the time",
+              "Wait for free time to appear naturally"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch03-h-q10",
+            "prompt": "What broader value does the framework claim to provide?",
+            "choices": [
+              "A way to fit more into the same rushed life",
+              "A way to reclaim attention for the things that matter most day by day",
+              "A way to eliminate all obligations",
+              "A way to avoid structure entirely"
+            ],
+            "correctIndex": 1
+          }
+        ]
+      }
+    },
+    {
+      "chapterId": "ch04-energize-the-brain-and-body",
+      "number": 4,
+      "title": "Energize The Brain And Body",
+      "readingTimeMinutes": 14,
+      "contentVariants": {
+        "easy": {
+          "summaryBullets": [
+            "The chapter argues that time management works better when energy is treated as a practical resource instead of an afterthought.",
+            "Focus depends heavily on sleep, movement, food, light, and breaks even when people try to ignore those basics.",
+            "Low energy makes distraction more attractive and high quality attention harder to sustain.",
+            "The book encourages simple physical habits that support alertness without requiring a perfect lifestyle.",
+            "Energy is presented as something that can be influenced through ordinary daily choices rather than through motivation speeches.",
+            "The chapter connects productivity to physiology by showing that the mind performs differently depending on how the body is treated.",
+            "Better energy makes it easier to stay with the highlight and resist shallow defaults.",
+            "The lesson is that designing a good day includes designing the conditions that make good attention possible."
+          ],
+          "keyTakeaways": [
+            "Pick one meaningful priority",
+            "Defend attention actively",
+            "Design before relying on willpower",
+            "Energy shapes focus",
+            "Use reflection as feedback",
+            "Small changes can change a day"
+          ],
+          "practice": [
+            "Choose tomorrow’s highlight tonight",
+            "Remove one distraction before work starts",
+            "Block one focus window",
+            "Take one energy supporting break"
+          ]
+        },
+        "medium": {
+          "summaryBullets": [
+            "The chapter argues that time management works better when energy is treated as a practical resource instead of an afterthought.",
+            "Focus depends heavily on sleep, movement, food, light, and breaks even when people try to ignore those basics.",
+            "Low energy makes distraction more attractive and high quality attention harder to sustain.",
+            "The book encourages simple physical habits that support alertness without requiring a perfect lifestyle.",
+            "Energy is presented as something that can be influenced through ordinary daily choices rather than through motivation speeches.",
+            "The chapter connects productivity to physiology by showing that the mind performs differently depending on how the body is treated.",
+            "Better energy makes it easier to stay with the highlight and resist shallow defaults.",
+            "The lesson is that designing a good day includes designing the conditions that make good attention possible.",
+            "The chapter shows that supporting attention through energy, movement, food, rest, and environment improves when daily choices are made against strong defaults instead of against abstract intentions alone.",
+            "It also argues that small tactical changes work because they shift behavior at the point where attention is usually lost.",
+            "A stronger reading asks not only what the tactic is but what default it is trying to interrupt or replace.",
+            "The practical message is that better days are built through repeated design choices, not through occasional inspiration."
+          ],
+          "keyTakeaways": [
+            "Pick one meaningful priority",
+            "Defend attention actively",
+            "Design before relying on willpower",
+            "Energy shapes focus",
+            "Use reflection as feedback",
+            "Small changes can change a day",
+            "Defaults shape days",
+            "Design beats reaction"
+          ],
+          "practice": [
+            "Choose tomorrow’s highlight tonight",
+            "Remove one distraction before work starts",
+            "Block one focus window",
+            "Take one energy supporting break",
+            "Write one lesson from the day",
+            "Keep the experiment small and repeatable"
+          ]
+        },
+        "hard": {
+          "summaryBullets": [
+            "The chapter argues that time management works better when energy is treated as a practical resource instead of an afterthought.",
+            "Focus depends heavily on sleep, movement, food, light, and breaks even when people try to ignore those basics.",
+            "Low energy makes distraction more attractive and high quality attention harder to sustain.",
+            "The book encourages simple physical habits that support alertness without requiring a perfect lifestyle.",
+            "Energy is presented as something that can be influenced through ordinary daily choices rather than through motivation speeches.",
+            "The chapter connects productivity to physiology by showing that the mind performs differently depending on how the body is treated.",
+            "Better energy makes it easier to stay with the highlight and resist shallow defaults.",
+            "The lesson is that designing a good day includes designing the conditions that make good attention possible.",
+            "The chapter shows that supporting attention through energy, movement, food, rest, and environment improves when daily choices are made against strong defaults instead of against abstract intentions alone.",
+            "It also argues that small tactical changes work because they shift behavior at the point where attention is usually lost.",
+            "A stronger reading asks not only what the tactic is but what default it is trying to interrupt or replace.",
+            "The practical message is that better days are built through repeated design choices, not through occasional inspiration.",
+            "The deeper lesson is that supporting attention through energy, movement, food, rest, and environment is shaped by an environment designed to capture attention through convenience, speed, and endless availability.",
+            "This means the framework is not merely personal organization but a daily counterstrategy against systems that profit from distraction and reaction.",
+            "A more nuanced reading shows that the highlight is a value decision, laser is an attention defense, energize is capacity management, and reflect is a learning loop.",
+            "The material also implies that agency grows when people redesign defaults instead of waiting to feel more disciplined than the environment around them."
+          ],
+          "keyTakeaways": [
+            "Pick one meaningful priority",
+            "Defend attention actively",
+            "Design before relying on willpower",
+            "Energy shapes focus",
+            "Use reflection as feedback",
+            "Small changes can change a day",
+            "Attention is contested",
+            "Energy is strategic",
+            "Reflection closes the loop"
+          ],
+          "practice": [
+            "Choose tomorrow’s highlight tonight",
+            "Remove one distraction before work starts",
+            "Block one focus window",
+            "Take one energy supporting break",
+            "Write one lesson from the day",
+            "Keep the experiment small and repeatable",
+            "Review one failed day without blame",
+            "Design one stronger default for tomorrow"
+          ]
+        }
+      },
+      "examples": [
+        {
+          "exampleId": "ch04-ex01",
+          "title": "Phone first morning",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You wake up and instantly start checking messages, news, and social apps, and before long the first hour of the day belongs to whatever reached you first. By the time you try to focus on something meaningful, your attention already feels scattered.",
+          "whatToDo": [
+            "Choose a highlight before bed and create a morning setup that delays the phone long enough to begin with intention. Make the first action of the day support your priority instead of feeding the default pull of infinite content."
+          ],
+          "whyItMatters": "A lot of people in their twenties lose time before the day has properly begun because defaults are stronger than intention. This example makes the book’s daily design philosophy immediately practical."
+        },
+        {
+          "exampleId": "ch04-ex02",
+          "title": "Wanting time for a side project",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You care about a creative or personal project, but every evening disappears into low effort screen time and reactive tasks. The project feels important in theory, yet it never becomes the center of any one day.",
+          "whatToDo": [
+            "Use the highlight idea to give the project a clear place in the day and make a specific plan for when the work will happen. Reduce the distractions most likely to interrupt that block before the work begins."
+          ],
+          "whyItMatters": "Important personal work often fails because it is never protected with the same seriousness as other obligations. This example helps readers connect the framework to projects they genuinely care about."
+        },
+        {
+          "exampleId": "ch04-ex03",
+          "title": "Study day without direction",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "You sit down for a long study session with the intention of being productive, but because you never defined the one thing that matters most, the time gets spread across email, minor assignments, and random research. At the end, you are tired but unsure what moved forward.",
+          "whatToDo": [
+            "Pick a single academic highlight for the day and define what completed progress looks like before you begin. Then shape your environment so your easiest next action supports that one priority instead of every possible task at once."
+          ],
+          "whyItMatters": "Students often confuse a full day with a meaningful day. This example shows how choosing a highlight can turn vague busyness into visible progress."
+        },
+        {
+          "exampleId": "ch04-ex04",
+          "title": "Class project and fragmented focus",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A project requires real concentration, but constant messages from classmates and switching between tools keeps breaking the flow. Everyone is communicating all day, yet the hard thinking never gets enough uninterrupted time.",
+          "whatToDo": [
+            "Separate communication time from focus time and protect at least one window where the project gets full attention. Use the laser principle to reduce the most common interruptions before they happen instead of fighting them one by one."
+          ],
+          "whyItMatters": "School work increasingly happens in environments built for quick coordination, not deep thought. This example helps readers see why focus must be intentionally defended when collaboration is always on."
+        },
+        {
+          "exampleId": "ch04-ex05",
+          "title": "Calendar full of meetings",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "Your workday is shaped by meetings, quick replies, and whatever seems hottest in the inbox. The work that would most improve your value keeps getting pushed into leftover time, which means it rarely gets done with real attention.",
+          "whatToDo": [
+            "Pick a highlight that reflects your highest value work and schedule time for it before the day gets claimed by reactive tasks. Then reduce unnecessary availability during that block so the work has a real chance to happen."
+          ],
+          "whyItMatters": "Work culture often praises constant responsiveness even when it erodes meaningful output. This example makes the book’s framework relevant to early career knowledge work where time gets absorbed quickly."
+        },
+        {
+          "exampleId": "ch04-ex06",
+          "title": "End of day with no energy left",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "You plan to finish important work after the urgent tasks are done, but by late afternoon your energy is low and your attention is weak. The day may have been full, but your best thinking capacity was spent somewhere else.",
+          "whatToDo": [
+            "Treat energy as part of time design by placing demanding work earlier or by supporting focus through breaks, movement, and better pacing. Use reflection to notice when your attention is strongest and let that shape future scheduling."
+          ],
+          "whyItMatters": "Many people try to solve time problems without noticing energy patterns. This example connects the Energize and Reflect parts of the framework to better real world decision making."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch04-h-q01",
+            "prompt": "What is the main claim of energize the brain and body?",
+            "choices": [
+              "Better days come from adding more tasks efficiently",
+              "Better days come from deliberately shaping attention, energy, and priorities",
+              "Motivation is the only real productivity tool",
+              "Schedules matter less than flexibility in every case"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch04-h-q02",
+            "prompt": "Why does the framework emphasize one daily highlight?",
+            "choices": [
+              "Because it gives the day a clear center instead of letting reactivity define it",
+              "Because all other tasks should be ignored completely",
+              "Because one task is always enough for any day",
+              "Because urgency is always the best guide"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch04-h-q03",
+            "prompt": "What is the purpose of the Laser part of the framework?",
+            "choices": [
+              "To increase multitasking capacity",
+              "To reduce attention loss by redesigning distractions before they take over",
+              "To make every tool available at all times",
+              "To avoid any planning"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch04-h-q04",
+            "prompt": "Why is energy treated as part of time design?",
+            "choices": [
+              "Because time and focus are unaffected by physical state",
+              "Because attention works differently depending on rest, movement, and physiology",
+              "Because energy matters only in athletics",
+              "Because energy replaces the need for tactics"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch04-h-q05",
+            "prompt": "What role does reflection play in the book’s method?",
+            "choices": [
+              "It turns success and failure into learning about what actually works",
+              "It proves whether you are disciplined enough",
+              "It eliminates the need for experimentation",
+              "It matters only after perfect days"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch04-h-q06",
+            "prompt": "How does the chapter frame defaults in modern life?",
+            "choices": [
+              "As neutral background conditions",
+              "As powerful forces that shape behavior unless deliberately redesigned",
+              "As irrelevant once a goal is chosen",
+              "As helpful for everyone equally"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch04-h-q07",
+            "prompt": "What deeper problem does the framework respond to?",
+            "choices": [
+              "A culture of endless reactivity and attention capture",
+              "A shortage of apps and tools",
+              "A lack of goals among ambitious people",
+              "A refusal to work hard"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch04-h-q08",
+            "prompt": "Why are small tactical changes emphasized instead of giant overhauls?",
+            "choices": [
+              "Because small design changes are easier to repeat and test in real life",
+              "Because large goals are always bad",
+              "Because tactics replace values",
+              "Because habits cannot change quickly"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch04-h-q09",
+            "prompt": "What mindset best fits the Make Time approach?",
+            "choices": [
+              "Treat each day as an experiment in designing better defaults",
+              "Treat each day as a test of self worth",
+              "Keep every option open all the time",
+              "Wait for free time to appear naturally"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch04-h-q10",
+            "prompt": "What broader value does the framework claim to provide?",
+            "choices": [
+              "A way to fit more into the same rushed life",
+              "A way to reclaim attention for the things that matter most day by day",
+              "A way to eliminate all obligations",
+              "A way to avoid structure entirely"
+            ],
+            "correctIndex": 1
+          }
+        ]
+      }
+    },
+    {
+      "chapterId": "ch05-reflect-and-adjust-daily",
+      "number": 5,
+      "title": "Reflect And Adjust Daily",
+      "readingTimeMinutes": 13,
+      "contentVariants": {
+        "easy": {
+          "summaryBullets": [
+            "The closing section argues that sustainable improvement comes from noticing what actually works in your own life.",
+            "Reflection matters because no tactic is universal, and each person has different energy patterns, responsibilities, and temptations.",
+            "The book recommends treating tactics as experiments rather than rules that must work perfectly right away.",
+            "A short review at the end of the day can reveal what supported the highlight and what pulled attention away from it.",
+            "This reflective habit turns failure into data and prevents one bad day from becoming an identity judgment.",
+            "The chapter encourages adjustment over perfection, since daily life is variable and messy.",
+            "Progress becomes more realistic when people keep what helps and discard what does not.",
+            "The main lesson is that making time is an ongoing practice of observation, adaptation, and intentional design."
+          ],
+          "keyTakeaways": [
+            "Pick one meaningful priority",
+            "Defend attention actively",
+            "Design before relying on willpower",
+            "Energy shapes focus",
+            "Use reflection as feedback",
+            "Small changes can change a day"
+          ],
+          "practice": [
+            "Choose tomorrow’s highlight tonight",
+            "Remove one distraction before work starts",
+            "Block one focus window",
+            "Take one energy supporting break"
+          ]
+        },
+        "medium": {
+          "summaryBullets": [
+            "The closing section argues that sustainable improvement comes from noticing what actually works in your own life.",
+            "Reflection matters because no tactic is universal, and each person has different energy patterns, responsibilities, and temptations.",
+            "The book recommends treating tactics as experiments rather than rules that must work perfectly right away.",
+            "A short review at the end of the day can reveal what supported the highlight and what pulled attention away from it.",
+            "This reflective habit turns failure into data and prevents one bad day from becoming an identity judgment.",
+            "The chapter encourages adjustment over perfection, since daily life is variable and messy.",
+            "Progress becomes more realistic when people keep what helps and discard what does not.",
+            "The main lesson is that making time is an ongoing practice of observation, adaptation, and intentional design.",
+            "The chapter shows that using reflection to learn which tactics improve real life instead of copying systems blindly improves when daily choices are made against strong defaults instead of against abstract intentions alone.",
+            "It also argues that small tactical changes work because they shift behavior at the point where attention is usually lost.",
+            "A stronger reading asks not only what the tactic is but what default it is trying to interrupt or replace.",
+            "The practical message is that better days are built through repeated design choices, not through occasional inspiration."
+          ],
+          "keyTakeaways": [
+            "Pick one meaningful priority",
+            "Defend attention actively",
+            "Design before relying on willpower",
+            "Energy shapes focus",
+            "Use reflection as feedback",
+            "Small changes can change a day",
+            "Defaults shape days",
+            "Design beats reaction"
+          ],
+          "practice": [
+            "Choose tomorrow’s highlight tonight",
+            "Remove one distraction before work starts",
+            "Block one focus window",
+            "Take one energy supporting break",
+            "Write one lesson from the day",
+            "Keep the experiment small and repeatable"
+          ]
+        },
+        "hard": {
+          "summaryBullets": [
+            "The closing section argues that sustainable improvement comes from noticing what actually works in your own life.",
+            "Reflection matters because no tactic is universal, and each person has different energy patterns, responsibilities, and temptations.",
+            "The book recommends treating tactics as experiments rather than rules that must work perfectly right away.",
+            "A short review at the end of the day can reveal what supported the highlight and what pulled attention away from it.",
+            "This reflective habit turns failure into data and prevents one bad day from becoming an identity judgment.",
+            "The chapter encourages adjustment over perfection, since daily life is variable and messy.",
+            "Progress becomes more realistic when people keep what helps and discard what does not.",
+            "The main lesson is that making time is an ongoing practice of observation, adaptation, and intentional design.",
+            "The chapter shows that using reflection to learn which tactics improve real life instead of copying systems blindly improves when daily choices are made against strong defaults instead of against abstract intentions alone.",
+            "It also argues that small tactical changes work because they shift behavior at the point where attention is usually lost.",
+            "A stronger reading asks not only what the tactic is but what default it is trying to interrupt or replace.",
+            "The practical message is that better days are built through repeated design choices, not through occasional inspiration.",
+            "The deeper lesson is that using reflection to learn which tactics improve real life instead of copying systems blindly is shaped by an environment designed to capture attention through convenience, speed, and endless availability.",
+            "This means the framework is not merely personal organization but a daily counterstrategy against systems that profit from distraction and reaction.",
+            "A more nuanced reading shows that the highlight is a value decision, laser is an attention defense, energize is capacity management, and reflect is a learning loop.",
+            "The material also implies that agency grows when people redesign defaults instead of waiting to feel more disciplined than the environment around them."
+          ],
+          "keyTakeaways": [
+            "Pick one meaningful priority",
+            "Defend attention actively",
+            "Design before relying on willpower",
+            "Energy shapes focus",
+            "Use reflection as feedback",
+            "Small changes can change a day",
+            "Attention is contested",
+            "Energy is strategic",
+            "Reflection closes the loop"
+          ],
+          "practice": [
+            "Choose tomorrow’s highlight tonight",
+            "Remove one distraction before work starts",
+            "Block one focus window",
+            "Take one energy supporting break",
+            "Write one lesson from the day",
+            "Keep the experiment small and repeatable",
+            "Review one failed day without blame",
+            "Design one stronger default for tomorrow"
+          ]
+        }
+      },
+      "examples": [
+        {
+          "exampleId": "ch05-ex01",
+          "title": "Phone first morning",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You wake up and instantly start checking messages, news, and social apps, and before long the first hour of the day belongs to whatever reached you first. By the time you try to focus on something meaningful, your attention already feels scattered.",
+          "whatToDo": [
+            "Choose a highlight before bed and create a morning setup that delays the phone long enough to begin with intention. Make the first action of the day support your priority instead of feeding the default pull of infinite content."
+          ],
+          "whyItMatters": "A lot of people in their twenties lose time before the day has properly begun because defaults are stronger than intention. This example makes the book’s daily design philosophy immediately practical."
+        },
+        {
+          "exampleId": "ch05-ex02",
+          "title": "Wanting time for a side project",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You care about a creative or personal project, but every evening disappears into low effort screen time and reactive tasks. The project feels important in theory, yet it never becomes the center of any one day.",
+          "whatToDo": [
+            "Use the highlight idea to give the project a clear place in the day and make a specific plan for when the work will happen. Reduce the distractions most likely to interrupt that block before the work begins."
+          ],
+          "whyItMatters": "Important personal work often fails because it is never protected with the same seriousness as other obligations. This example helps readers connect the framework to projects they genuinely care about."
+        },
+        {
+          "exampleId": "ch05-ex03",
+          "title": "Study day without direction",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "You sit down for a long study session with the intention of being productive, but because you never defined the one thing that matters most, the time gets spread across email, minor assignments, and random research. At the end, you are tired but unsure what moved forward.",
+          "whatToDo": [
+            "Pick a single academic highlight for the day and define what completed progress looks like before you begin. Then shape your environment so your easiest next action supports that one priority instead of every possible task at once."
+          ],
+          "whyItMatters": "Students often confuse a full day with a meaningful day. This example shows how choosing a highlight can turn vague busyness into visible progress."
+        },
+        {
+          "exampleId": "ch05-ex04",
+          "title": "Class project and fragmented focus",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A project requires real concentration, but constant messages from classmates and switching between tools keeps breaking the flow. Everyone is communicating all day, yet the hard thinking never gets enough uninterrupted time.",
+          "whatToDo": [
+            "Separate communication time from focus time and protect at least one window where the project gets full attention. Use the laser principle to reduce the most common interruptions before they happen instead of fighting them one by one."
+          ],
+          "whyItMatters": "School work increasingly happens in environments built for quick coordination, not deep thought. This example helps readers see why focus must be intentionally defended when collaboration is always on."
+        },
+        {
+          "exampleId": "ch05-ex05",
+          "title": "Calendar full of meetings",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "Your workday is shaped by meetings, quick replies, and whatever seems hottest in the inbox. The work that would most improve your value keeps getting pushed into leftover time, which means it rarely gets done with real attention.",
+          "whatToDo": [
+            "Pick a highlight that reflects your highest value work and schedule time for it before the day gets claimed by reactive tasks. Then reduce unnecessary availability during that block so the work has a real chance to happen."
+          ],
+          "whyItMatters": "Work culture often praises constant responsiveness even when it erodes meaningful output. This example makes the book’s framework relevant to early career knowledge work where time gets absorbed quickly."
+        },
+        {
+          "exampleId": "ch05-ex06",
+          "title": "End of day with no energy left",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "You plan to finish important work after the urgent tasks are done, but by late afternoon your energy is low and your attention is weak. The day may have been full, but your best thinking capacity was spent somewhere else.",
+          "whatToDo": [
+            "Treat energy as part of time design by placing demanding work earlier or by supporting focus through breaks, movement, and better pacing. Use reflection to notice when your attention is strongest and let that shape future scheduling."
+          ],
+          "whyItMatters": "Many people try to solve time problems without noticing energy patterns. This example connects the Energize and Reflect parts of the framework to better real world decision making."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch05-h-q01",
+            "prompt": "What is the main claim of reflect and adjust daily?",
+            "choices": [
+              "Better days come from adding more tasks efficiently",
+              "Better days come from deliberately shaping attention, energy, and priorities",
+              "Motivation is the only real productivity tool",
+              "Schedules matter less than flexibility in every case"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch05-h-q02",
+            "prompt": "Why does the framework emphasize one daily highlight?",
+            "choices": [
+              "Because it gives the day a clear center instead of letting reactivity define it",
+              "Because all other tasks should be ignored completely",
+              "Because one task is always enough for any day",
+              "Because urgency is always the best guide"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch05-h-q03",
+            "prompt": "What is the purpose of the Laser part of the framework?",
+            "choices": [
+              "To increase multitasking capacity",
+              "To reduce attention loss by redesigning distractions before they take over",
+              "To make every tool available at all times",
+              "To avoid any planning"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch05-h-q04",
+            "prompt": "Why is energy treated as part of time design?",
+            "choices": [
+              "Because time and focus are unaffected by physical state",
+              "Because attention works differently depending on rest, movement, and physiology",
+              "Because energy matters only in athletics",
+              "Because energy replaces the need for tactics"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch05-h-q05",
+            "prompt": "What role does reflection play in the book’s method?",
+            "choices": [
+              "It turns success and failure into learning about what actually works",
+              "It proves whether you are disciplined enough",
+              "It eliminates the need for experimentation",
+              "It matters only after perfect days"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch05-h-q06",
+            "prompt": "How does the chapter frame defaults in modern life?",
+            "choices": [
+              "As neutral background conditions",
+              "As powerful forces that shape behavior unless deliberately redesigned",
+              "As irrelevant once a goal is chosen",
+              "As helpful for everyone equally"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch05-h-q07",
+            "prompt": "What deeper problem does the framework respond to?",
+            "choices": [
+              "A culture of endless reactivity and attention capture",
+              "A shortage of apps and tools",
+              "A lack of goals among ambitious people",
+              "A refusal to work hard"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch05-h-q08",
+            "prompt": "Why are small tactical changes emphasized instead of giant overhauls?",
+            "choices": [
+              "Because small design changes are easier to repeat and test in real life",
+              "Because large goals are always bad",
+              "Because tactics replace values",
+              "Because habits cannot change quickly"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch05-h-q09",
+            "prompt": "What mindset best fits the Make Time approach?",
+            "choices": [
+              "Treat each day as an experiment in designing better defaults",
+              "Treat each day as a test of self worth",
+              "Keep every option open all the time",
+              "Wait for free time to appear naturally"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch05-h-q10",
+            "prompt": "What broader value does the framework claim to provide?",
+            "choices": [
+              "A way to fit more into the same rushed life",
+              "A way to reclaim attention for the things that matter most day by day",
+              "A way to eliminate all obligations",
+              "A way to avoid structure entirely"
+            ],
+            "correctIndex": 1
+          }
+        ]
+      }
+    }
+  ]
+}

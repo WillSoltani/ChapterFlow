@@ -1,0 +1,2415 @@
+{
+  "schemaVersion": "1.0.0",
+  "packageId": "754e3777-d79d-4b7b-a5e7-a8b34a74195a",
+  "createdAt": "2026-03-13T00:00:00Z",
+  "contentOwner": "Will Soltani",
+  "book": {
+    "bookId": "tiny-habits",
+    "title": "Tiny Habits",
+    "author": "BJ Fogg",
+    "categories": [
+      "Productivity",
+      "Psychology",
+      "Behavior"
+    ],
+    "tags": [
+      "habits",
+      "behavior-design",
+      "tiny-actions",
+      "consistency",
+      "celebration",
+      "behavior-change"
+    ],
+    "edition": {
+      "name": "Modern Learning Edition",
+      "publishedYear": 2026
+    },
+    "variantFamily": "EMH"
+  },
+  "chapters": [
+    {
+      "chapterId": "ch01-elements-of-behavior",
+      "number": 1,
+      "title": "The Elements Of Behavior",
+      "readingTimeMinutes": 15,
+      "contentVariants": {
+        "easy": {
+          "summaryBullets": [
+            "The book introduces behavior as something that happens when motivation, ability, and a prompt come together at the same moment.",
+            "If one of these elements is missing, the behavior is much less likely to happen.",
+            "Motivation can be powerful but it often rises and falls too much to be trusted on its own.",
+            "Ability means how easy the action feels in the moment, not how important it is in theory.",
+            "Prompts are the cues that tell the brain now is the time to act.",
+            "The chapter argues that behavior change becomes clearer when you stop treating failure as a moral issue and start seeing design problems.",
+            "People often ask for more motivation when what they really need is a simpler action or a better prompt.",
+            "This framework gives readers a practical way to diagnose why a habit is not happening."
+          ],
+          "keyTakeaways": [
+            "Behavior needs three elements",
+            "Tiny beats fragile ambition",
+            "Good prompts matter",
+            "Emotion wires habits in",
+            "Growth should stay flexible",
+            "Design is kinder than blame"
+          ],
+          "practice": [
+            "Shrink one habit today",
+            "Pick a real anchor",
+            "Celebrate immediately",
+            "Remove one barrier"
+          ]
+        },
+        "medium": {
+          "summaryBullets": [
+            "The book introduces behavior as something that happens when motivation, ability, and a prompt come together at the same moment.",
+            "If one of these elements is missing, the behavior is much less likely to happen.",
+            "Motivation can be powerful but it often rises and falls too much to be trusted on its own.",
+            "Ability means how easy the action feels in the moment, not how important it is in theory.",
+            "Prompts are the cues that tell the brain now is the time to act.",
+            "The chapter argues that behavior change becomes clearer when you stop treating failure as a moral issue and start seeing design problems.",
+            "People often ask for more motivation when what they really need is a simpler action or a better prompt.",
+            "This framework gives readers a practical way to diagnose why a habit is not happening.",
+            "The chapter shows that the idea that behavior depends on motivation, ability, and prompts working together becomes clearer when you study behavior in the exact moment it either happens or fails to happen.",
+            "It also argues that behavior design works better than self blame because it points to concrete adjustments instead of vague frustration.",
+            "A stronger reading of the method asks what is missing, what is too hard, and what emotional pattern is supporting the result.",
+            "The practical lesson is that reliable change comes from fitting behavior to real life instead of trying to overpower real life."
+          ],
+          "keyTakeaways": [
+            "Behavior needs three elements",
+            "Tiny beats fragile ambition",
+            "Good prompts matter",
+            "Emotion wires habits in",
+            "Growth should stay flexible",
+            "Design is kinder than blame",
+            "Design beats pressure",
+            "Fit matters more than force"
+          ],
+          "practice": [
+            "Shrink one habit today",
+            "Pick a real anchor",
+            "Celebrate immediately",
+            "Remove one barrier",
+            "Track what actually works",
+            "Use the tiny version as the floor"
+          ]
+        },
+        "hard": {
+          "summaryBullets": [
+            "The book introduces behavior as something that happens when motivation, ability, and a prompt come together at the same moment.",
+            "If one of these elements is missing, the behavior is much less likely to happen.",
+            "Motivation can be powerful but it often rises and falls too much to be trusted on its own.",
+            "Ability means how easy the action feels in the moment, not how important it is in theory.",
+            "Prompts are the cues that tell the brain now is the time to act.",
+            "The chapter argues that behavior change becomes clearer when you stop treating failure as a moral issue and start seeing design problems.",
+            "People often ask for more motivation when what they really need is a simpler action or a better prompt.",
+            "This framework gives readers a practical way to diagnose why a habit is not happening.",
+            "The chapter shows that the idea that behavior depends on motivation, ability, and prompts working together becomes clearer when you study behavior in the exact moment it either happens or fails to happen.",
+            "It also argues that behavior design works better than self blame because it points to concrete adjustments instead of vague frustration.",
+            "A stronger reading of the method asks what is missing, what is too hard, and what emotional pattern is supporting the result.",
+            "The practical lesson is that reliable change comes from fitting behavior to real life instead of trying to overpower real life.",
+            "The deeper lesson is that the idea that behavior depends on motivation, ability, and prompts working together reflects a design philosophy in which human behavior is responsive, contextual, and more flexible than people assume.",
+            "This means small design choices can create large downstream effects when they alter repetition, confidence, and emotional association.",
+            "The chapter also implies that many failed habit efforts are not failures of character but failures of behavioral fit.",
+            "A more nuanced reading treats behavior change as the interaction of motivation, skill, environment, identity, and timing rather than as one simple act of discipline."
+          ],
+          "keyTakeaways": [
+            "Behavior needs three elements",
+            "Tiny beats fragile ambition",
+            "Good prompts matter",
+            "Emotion wires habits in",
+            "Growth should stay flexible",
+            "Design is kinder than blame",
+            "Behavior is contextual",
+            "Compassion improves change",
+            "Scale through stability"
+          ],
+          "practice": [
+            "Shrink one habit today",
+            "Pick a real anchor",
+            "Celebrate immediately",
+            "Remove one barrier",
+            "Track what actually works",
+            "Use the tiny version as the floor",
+            "Review failed attempts as design data",
+            "Choose one system adjustment each week"
+          ]
+        }
+      },
+      "examples": [
+        {
+          "exampleId": "ch01-ex01",
+          "title": "Start reading again",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You want to read more books, but every plan turns into a large goal that feels unrealistic after a long day. Because the behavior is framed as an hour of focused reading, you keep postponing it until the habit never starts.",
+          "whatToDo": [
+            "Create a tiny version that happens after a reliable anchor, such as reading one paragraph after plugging in your phone at night. Celebrate the completion immediately so the brain starts linking the action with success instead of pressure."
+          ],
+          "whyItMatters": "Personal goals often fail because they are designed for ideal days instead of normal ones. This example helps readers apply the Tiny Habits method to a common problem in a humane and sustainable way."
+        },
+        {
+          "exampleId": "ch01-ex02",
+          "title": "Reduce stress snacking",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You find yourself snacking automatically whenever you feel restless in the evening. The behavior feels small, but it repeats often enough that it becomes frustrating and hard to interrupt.",
+          "whatToDo": [
+            "Study what is prompting the routine, what emotional relief it provides, and how easy it is to perform. Then redesign the moment by reducing access, changing the prompt pattern, and inserting an easier replacement action that gives some relief with less cost."
+          ],
+          "whyItMatters": "This scenario shows how the same model can be used for unwanted habits, not only for building good ones. It helps readers move from guilt to practical redesign."
+        },
+        {
+          "exampleId": "ch01-ex03",
+          "title": "Build a study starter",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "You keep waiting for motivation to study, and because motivation rarely arrives at the right time you end up delaying until stress becomes the real prompt. The result is inconsistent effort and unnecessary anxiety.",
+          "whatToDo": [
+            "Attach an extremely small study action to an existing routine, such as opening your notes after sitting down with coffee. Make the first step tiny enough that it feels almost too easy, and celebrate completion so the routine becomes easier to repeat tomorrow."
+          ],
+          "whyItMatters": "Students often assume better study habits require more pressure. This example shows that stable progress often begins with smaller, smarter design rather than bigger promises."
+        },
+        {
+          "exampleId": "ch01-ex04",
+          "title": "Improve group project follow through",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A class project keeps slipping because everyone intends to contribute but nobody has a dependable routine for updates or handoffs. The group is relying on motivation and memory instead of behavior design.",
+          "whatToDo": [
+            "Choose one tiny shared behavior with a clear prompt, such as posting a short progress update right after each work block. Keep it simple enough that it is easy to do even in busy weeks, and let the consistency create momentum for the rest of the work."
+          ],
+          "whyItMatters": "School teamwork often breaks down through weak process, not bad intent. This example shows how tiny routines can improve coordination and reduce last minute pressure."
+        },
+        {
+          "exampleId": "ch01-ex05",
+          "title": "Start strong at a new job",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "You want to look organized at a new job, but your current workflow depends on remembering too many small tasks. Because nothing is anchored clearly, important follow ups get delayed even though you care about doing well.",
+          "whatToDo": [
+            "Create tiny work habits tied to existing transitions, such as reviewing priorities right after opening your laptop or logging one follow up right after each meeting. Keep the action small enough that it happens even on chaotic days and grows from there."
+          ],
+          "whyItMatters": "Early career work improves when reliability is built through systems instead of stress. This example helps readers use tiny habits to create visible steadiness in professional settings."
+        },
+        {
+          "exampleId": "ch01-ex06",
+          "title": "Change a team meeting pattern",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "A team meeting always runs long because people arrive without clear updates and discussion drifts. Everyone wants the process to improve, but no one has built a routine that makes the better behavior automatic.",
+          "whatToDo": [
+            "Design one tiny behavior for the team, such as posting a one sentence update before the meeting starts or ending each agenda item with a visible owner. Keep the new action easy, anchored, and repeatable so it becomes part of the group pattern."
+          ],
+          "whyItMatters": "The Tiny Habits method applies to teams as well as individuals. This example helps readers see how small routine changes can reshape group performance without dramatic intervention."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch01-h-q01",
+            "prompt": "What is the central claim of the elements of behavior?",
+            "choices": [
+              "Big goals matter more than repeatable design",
+              "Reliable behavior comes from designing conditions that make action easier and more likely",
+              "Motivation alone is enough if the goal matters",
+              "Habits form mainly through pressure"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch01-h-q02",
+            "prompt": "Why does the method prefer tiny actions over large ones at the start?",
+            "choices": [
+              "Because ambition is unhelpful",
+              "Because easy actions repeat more consistently and create a stable base for growth",
+              "Because tiny actions always stay tiny",
+              "Because difficulty prevents learning"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch01-h-q03",
+            "prompt": "What role do prompts play in the model?",
+            "choices": [
+              "They replace motivation entirely",
+              "They tell the brain when to act and make timing more reliable",
+              "They matter only for bad habits",
+              "They are less important than intention"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch01-h-q04",
+            "prompt": "Why is celebration treated as important rather than optional?",
+            "choices": [
+              "Because positive emotion helps wire the new habit in quickly",
+              "Because celebration proves the habit is complete forever",
+              "Because rewards matter only after large actions",
+              "Because emotion is separate from behavior change"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch01-h-q05",
+            "prompt": "What does the book suggest is usually a better response than self blame when a habit fails?",
+            "choices": [
+              "Add more shame so the habit feels serious",
+              "Diagnose motivation, ability, and prompting to redesign the behavior",
+              "Wait for the next burst of enthusiasm",
+              "Drop the goal entirely"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch01-h-q06",
+            "prompt": "How does the method describe growth from a tiny habit?",
+            "choices": [
+              "It should be forced as quickly as possible",
+              "It should emerge from consistency and success rather than pressure",
+              "It usually happens before the habit is stable",
+              "It is not necessary once a tiny habit exists"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch01-h-q07",
+            "prompt": "What broader philosophy of change is implied by the chapter?",
+            "choices": [
+              "Change works best when it fits human reality instead of fighting it",
+              "Change works only under intense pressure",
+              "Change depends mostly on talent",
+              "Change should avoid emotion entirely"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch01-h-q08",
+            "prompt": "Why is the method described as compassionate?",
+            "choices": [
+              "Because it lowers standards",
+              "Because it treats failure as information about design rather than proof of personal weakness",
+              "Because it avoids accountability",
+              "Because it rejects all structure"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch01-h-q09",
+            "prompt": "What kind of thinking does the book encourage when building habits?",
+            "choices": [
+              "All or nothing thinking",
+              "Experimental thinking that adjusts the design based on what actually happens",
+              "Purely motivational thinking",
+              "Performance thinking that ignores context"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch01-h-q10",
+            "prompt": "What is the deeper value of the Tiny Habits approach?",
+            "choices": [
+              "It gives people a practical way to create change that is durable, humane, and adaptable",
+              "It guarantees immediate transformation",
+              "It removes the need for goals and planning",
+              "It works only for personal habits and not for teams"
+            ],
+            "correctIndex": 0
+          }
+        ]
+      }
+    },
+    {
+      "chapterId": "ch02-motivation-and-matching",
+      "number": 2,
+      "title": "Motivation Works Best When It Matches",
+      "readingTimeMinutes": 14,
+      "contentVariants": {
+        "easy": {
+          "summaryBullets": [
+            "The chapter explains that motivation is unstable, so strong plans should not depend on high motivation staying available every day.",
+            "People often choose habits that sound admirable rather than habits they actually want to sustain.",
+            "A better approach is to match behavior with genuine aspiration, context, and current energy.",
+            "When the habit fits what you truly care about, it feels less forced and more repeatable.",
+            "Mismatch creates friction because the behavior competes with your real priorities and emotional state.",
+            "The chapter encourages honesty about what you actually want instead of what you think you should want.",
+            "Small habit design becomes stronger when it starts from desire and feasibility together.",
+            "The main lesson is that good behavior design aligns with human reality rather than with fantasy discipline."
+          ],
+          "keyTakeaways": [
+            "Behavior needs three elements",
+            "Tiny beats fragile ambition",
+            "Good prompts matter",
+            "Emotion wires habits in",
+            "Growth should stay flexible",
+            "Design is kinder than blame"
+          ],
+          "practice": [
+            "Shrink one habit today",
+            "Pick a real anchor",
+            "Celebrate immediately",
+            "Remove one barrier"
+          ]
+        },
+        "medium": {
+          "summaryBullets": [
+            "The chapter explains that motivation is unstable, so strong plans should not depend on high motivation staying available every day.",
+            "People often choose habits that sound admirable rather than habits they actually want to sustain.",
+            "A better approach is to match behavior with genuine aspiration, context, and current energy.",
+            "When the habit fits what you truly care about, it feels less forced and more repeatable.",
+            "Mismatch creates friction because the behavior competes with your real priorities and emotional state.",
+            "The chapter encourages honesty about what you actually want instead of what you think you should want.",
+            "Small habit design becomes stronger when it starts from desire and feasibility together.",
+            "The main lesson is that good behavior design aligns with human reality rather than with fantasy discipline.",
+            "The chapter shows that how behavior succeeds when actions match real motivation instead of wishful ambition becomes clearer when you study behavior in the exact moment it either happens or fails to happen.",
+            "It also argues that behavior design works better than self blame because it points to concrete adjustments instead of vague frustration.",
+            "A stronger reading of the method asks what is missing, what is too hard, and what emotional pattern is supporting the result.",
+            "The practical lesson is that reliable change comes from fitting behavior to real life instead of trying to overpower real life."
+          ],
+          "keyTakeaways": [
+            "Behavior needs three elements",
+            "Tiny beats fragile ambition",
+            "Good prompts matter",
+            "Emotion wires habits in",
+            "Growth should stay flexible",
+            "Design is kinder than blame",
+            "Design beats pressure",
+            "Fit matters more than force"
+          ],
+          "practice": [
+            "Shrink one habit today",
+            "Pick a real anchor",
+            "Celebrate immediately",
+            "Remove one barrier",
+            "Track what actually works",
+            "Use the tiny version as the floor"
+          ]
+        },
+        "hard": {
+          "summaryBullets": [
+            "The chapter explains that motivation is unstable, so strong plans should not depend on high motivation staying available every day.",
+            "People often choose habits that sound admirable rather than habits they actually want to sustain.",
+            "A better approach is to match behavior with genuine aspiration, context, and current energy.",
+            "When the habit fits what you truly care about, it feels less forced and more repeatable.",
+            "Mismatch creates friction because the behavior competes with your real priorities and emotional state.",
+            "The chapter encourages honesty about what you actually want instead of what you think you should want.",
+            "Small habit design becomes stronger when it starts from desire and feasibility together.",
+            "The main lesson is that good behavior design aligns with human reality rather than with fantasy discipline.",
+            "The chapter shows that how behavior succeeds when actions match real motivation instead of wishful ambition becomes clearer when you study behavior in the exact moment it either happens or fails to happen.",
+            "It also argues that behavior design works better than self blame because it points to concrete adjustments instead of vague frustration.",
+            "A stronger reading of the method asks what is missing, what is too hard, and what emotional pattern is supporting the result.",
+            "The practical lesson is that reliable change comes from fitting behavior to real life instead of trying to overpower real life.",
+            "The deeper lesson is that how behavior succeeds when actions match real motivation instead of wishful ambition reflects a design philosophy in which human behavior is responsive, contextual, and more flexible than people assume.",
+            "This means small design choices can create large downstream effects when they alter repetition, confidence, and emotional association.",
+            "The chapter also implies that many failed habit efforts are not failures of character but failures of behavioral fit.",
+            "A more nuanced reading treats behavior change as the interaction of motivation, skill, environment, identity, and timing rather than as one simple act of discipline."
+          ],
+          "keyTakeaways": [
+            "Behavior needs three elements",
+            "Tiny beats fragile ambition",
+            "Good prompts matter",
+            "Emotion wires habits in",
+            "Growth should stay flexible",
+            "Design is kinder than blame",
+            "Behavior is contextual",
+            "Compassion improves change",
+            "Scale through stability"
+          ],
+          "practice": [
+            "Shrink one habit today",
+            "Pick a real anchor",
+            "Celebrate immediately",
+            "Remove one barrier",
+            "Track what actually works",
+            "Use the tiny version as the floor",
+            "Review failed attempts as design data",
+            "Choose one system adjustment each week"
+          ]
+        }
+      },
+      "examples": [
+        {
+          "exampleId": "ch02-ex01",
+          "title": "Start reading again",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You want to read more books, but every plan turns into a large goal that feels unrealistic after a long day. Because the behavior is framed as an hour of focused reading, you keep postponing it until the habit never starts.",
+          "whatToDo": [
+            "Create a tiny version that happens after a reliable anchor, such as reading one paragraph after plugging in your phone at night. Celebrate the completion immediately so the brain starts linking the action with success instead of pressure."
+          ],
+          "whyItMatters": "Personal goals often fail because they are designed for ideal days instead of normal ones. This example helps readers apply the Tiny Habits method to a common problem in a humane and sustainable way."
+        },
+        {
+          "exampleId": "ch02-ex02",
+          "title": "Reduce stress snacking",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You find yourself snacking automatically whenever you feel restless in the evening. The behavior feels small, but it repeats often enough that it becomes frustrating and hard to interrupt.",
+          "whatToDo": [
+            "Study what is prompting the routine, what emotional relief it provides, and how easy it is to perform. Then redesign the moment by reducing access, changing the prompt pattern, and inserting an easier replacement action that gives some relief with less cost."
+          ],
+          "whyItMatters": "This scenario shows how the same model can be used for unwanted habits, not only for building good ones. It helps readers move from guilt to practical redesign."
+        },
+        {
+          "exampleId": "ch02-ex03",
+          "title": "Build a study starter",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "You keep waiting for motivation to study, and because motivation rarely arrives at the right time you end up delaying until stress becomes the real prompt. The result is inconsistent effort and unnecessary anxiety.",
+          "whatToDo": [
+            "Attach an extremely small study action to an existing routine, such as opening your notes after sitting down with coffee. Make the first step tiny enough that it feels almost too easy, and celebrate completion so the routine becomes easier to repeat tomorrow."
+          ],
+          "whyItMatters": "Students often assume better study habits require more pressure. This example shows that stable progress often begins with smaller, smarter design rather than bigger promises."
+        },
+        {
+          "exampleId": "ch02-ex04",
+          "title": "Improve group project follow through",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A class project keeps slipping because everyone intends to contribute but nobody has a dependable routine for updates or handoffs. The group is relying on motivation and memory instead of behavior design.",
+          "whatToDo": [
+            "Choose one tiny shared behavior with a clear prompt, such as posting a short progress update right after each work block. Keep it simple enough that it is easy to do even in busy weeks, and let the consistency create momentum for the rest of the work."
+          ],
+          "whyItMatters": "School teamwork often breaks down through weak process, not bad intent. This example shows how tiny routines can improve coordination and reduce last minute pressure."
+        },
+        {
+          "exampleId": "ch02-ex05",
+          "title": "Start strong at a new job",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "You want to look organized at a new job, but your current workflow depends on remembering too many small tasks. Because nothing is anchored clearly, important follow ups get delayed even though you care about doing well.",
+          "whatToDo": [
+            "Create tiny work habits tied to existing transitions, such as reviewing priorities right after opening your laptop or logging one follow up right after each meeting. Keep the action small enough that it happens even on chaotic days and grows from there."
+          ],
+          "whyItMatters": "Early career work improves when reliability is built through systems instead of stress. This example helps readers use tiny habits to create visible steadiness in professional settings."
+        },
+        {
+          "exampleId": "ch02-ex06",
+          "title": "Change a team meeting pattern",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "A team meeting always runs long because people arrive without clear updates and discussion drifts. Everyone wants the process to improve, but no one has built a routine that makes the better behavior automatic.",
+          "whatToDo": [
+            "Design one tiny behavior for the team, such as posting a one sentence update before the meeting starts or ending each agenda item with a visible owner. Keep the new action easy, anchored, and repeatable so it becomes part of the group pattern."
+          ],
+          "whyItMatters": "The Tiny Habits method applies to teams as well as individuals. This example helps readers see how small routine changes can reshape group performance without dramatic intervention."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch02-h-q01",
+            "prompt": "What is the central claim of motivation works best when it matches?",
+            "choices": [
+              "Big goals matter more than repeatable design",
+              "Reliable behavior comes from designing conditions that make action easier and more likely",
+              "Motivation alone is enough if the goal matters",
+              "Habits form mainly through pressure"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch02-h-q02",
+            "prompt": "Why does the method prefer tiny actions over large ones at the start?",
+            "choices": [
+              "Because ambition is unhelpful",
+              "Because easy actions repeat more consistently and create a stable base for growth",
+              "Because tiny actions always stay tiny",
+              "Because difficulty prevents learning"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch02-h-q03",
+            "prompt": "What role do prompts play in the model?",
+            "choices": [
+              "They replace motivation entirely",
+              "They tell the brain when to act and make timing more reliable",
+              "They matter only for bad habits",
+              "They are less important than intention"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch02-h-q04",
+            "prompt": "Why is celebration treated as important rather than optional?",
+            "choices": [
+              "Because positive emotion helps wire the new habit in quickly",
+              "Because celebration proves the habit is complete forever",
+              "Because rewards matter only after large actions",
+              "Because emotion is separate from behavior change"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch02-h-q05",
+            "prompt": "What does the book suggest is usually a better response than self blame when a habit fails?",
+            "choices": [
+              "Add more shame so the habit feels serious",
+              "Diagnose motivation, ability, and prompting to redesign the behavior",
+              "Wait for the next burst of enthusiasm",
+              "Drop the goal entirely"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch02-h-q06",
+            "prompt": "How does the method describe growth from a tiny habit?",
+            "choices": [
+              "It should be forced as quickly as possible",
+              "It should emerge from consistency and success rather than pressure",
+              "It usually happens before the habit is stable",
+              "It is not necessary once a tiny habit exists"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch02-h-q07",
+            "prompt": "What broader philosophy of change is implied by the chapter?",
+            "choices": [
+              "Change works best when it fits human reality instead of fighting it",
+              "Change works only under intense pressure",
+              "Change depends mostly on talent",
+              "Change should avoid emotion entirely"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch02-h-q08",
+            "prompt": "Why is the method described as compassionate?",
+            "choices": [
+              "Because it lowers standards",
+              "Because it treats failure as information about design rather than proof of personal weakness",
+              "Because it avoids accountability",
+              "Because it rejects all structure"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch02-h-q09",
+            "prompt": "What kind of thinking does the book encourage when building habits?",
+            "choices": [
+              "All or nothing thinking",
+              "Experimental thinking that adjusts the design based on what actually happens",
+              "Purely motivational thinking",
+              "Performance thinking that ignores context"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch02-h-q10",
+            "prompt": "What is the deeper value of the Tiny Habits approach?",
+            "choices": [
+              "It gives people a practical way to create change that is durable, humane, and adaptable",
+              "It guarantees immediate transformation",
+              "It removes the need for goals and planning",
+              "It works only for personal habits and not for teams"
+            ],
+            "correctIndex": 0
+          }
+        ]
+      }
+    },
+    {
+      "chapterId": "ch03-easy-does-it",
+      "number": 3,
+      "title": "Easy Does It",
+      "readingTimeMinutes": 15,
+      "contentVariants": {
+        "easy": {
+          "summaryBullets": [
+            "The book argues that easier behaviors happen more reliably because ability often matters more than motivation in daily life.",
+            "When a behavior is tiny, the brain resists it less and repetition becomes more likely.",
+            "People often fail because they choose actions that are too large for ordinary days.",
+            "Reducing difficulty can mean shrinking the action, reducing steps, improving timing, or removing barriers.",
+            "Ease matters because habits are built through consistency before they are built through intensity.",
+            "A tiny version of a behavior can preserve continuity even when energy is low.",
+            "The chapter treats simplicity as a strategic advantage, not as a lack of ambition.",
+            "Making a habit easy creates a stable base that can grow later without collapse."
+          ],
+          "keyTakeaways": [
+            "Behavior needs three elements",
+            "Tiny beats fragile ambition",
+            "Good prompts matter",
+            "Emotion wires habits in",
+            "Growth should stay flexible",
+            "Design is kinder than blame"
+          ],
+          "practice": [
+            "Shrink one habit today",
+            "Pick a real anchor",
+            "Celebrate immediately",
+            "Remove one barrier"
+          ]
+        },
+        "medium": {
+          "summaryBullets": [
+            "The book argues that easier behaviors happen more reliably because ability often matters more than motivation in daily life.",
+            "When a behavior is tiny, the brain resists it less and repetition becomes more likely.",
+            "People often fail because they choose actions that are too large for ordinary days.",
+            "Reducing difficulty can mean shrinking the action, reducing steps, improving timing, or removing barriers.",
+            "Ease matters because habits are built through consistency before they are built through intensity.",
+            "A tiny version of a behavior can preserve continuity even when energy is low.",
+            "The chapter treats simplicity as a strategic advantage, not as a lack of ambition.",
+            "Making a habit easy creates a stable base that can grow later without collapse.",
+            "The chapter shows that why making a behavior tiny and easy matters more than demanding more drive becomes clearer when you study behavior in the exact moment it either happens or fails to happen.",
+            "It also argues that behavior design works better than self blame because it points to concrete adjustments instead of vague frustration.",
+            "A stronger reading of the method asks what is missing, what is too hard, and what emotional pattern is supporting the result.",
+            "The practical lesson is that reliable change comes from fitting behavior to real life instead of trying to overpower real life."
+          ],
+          "keyTakeaways": [
+            "Behavior needs three elements",
+            "Tiny beats fragile ambition",
+            "Good prompts matter",
+            "Emotion wires habits in",
+            "Growth should stay flexible",
+            "Design is kinder than blame",
+            "Design beats pressure",
+            "Fit matters more than force"
+          ],
+          "practice": [
+            "Shrink one habit today",
+            "Pick a real anchor",
+            "Celebrate immediately",
+            "Remove one barrier",
+            "Track what actually works",
+            "Use the tiny version as the floor"
+          ]
+        },
+        "hard": {
+          "summaryBullets": [
+            "The book argues that easier behaviors happen more reliably because ability often matters more than motivation in daily life.",
+            "When a behavior is tiny, the brain resists it less and repetition becomes more likely.",
+            "People often fail because they choose actions that are too large for ordinary days.",
+            "Reducing difficulty can mean shrinking the action, reducing steps, improving timing, or removing barriers.",
+            "Ease matters because habits are built through consistency before they are built through intensity.",
+            "A tiny version of a behavior can preserve continuity even when energy is low.",
+            "The chapter treats simplicity as a strategic advantage, not as a lack of ambition.",
+            "Making a habit easy creates a stable base that can grow later without collapse.",
+            "The chapter shows that why making a behavior tiny and easy matters more than demanding more drive becomes clearer when you study behavior in the exact moment it either happens or fails to happen.",
+            "It also argues that behavior design works better than self blame because it points to concrete adjustments instead of vague frustration.",
+            "A stronger reading of the method asks what is missing, what is too hard, and what emotional pattern is supporting the result.",
+            "The practical lesson is that reliable change comes from fitting behavior to real life instead of trying to overpower real life.",
+            "The deeper lesson is that why making a behavior tiny and easy matters more than demanding more drive reflects a design philosophy in which human behavior is responsive, contextual, and more flexible than people assume.",
+            "This means small design choices can create large downstream effects when they alter repetition, confidence, and emotional association.",
+            "The chapter also implies that many failed habit efforts are not failures of character but failures of behavioral fit.",
+            "A more nuanced reading treats behavior change as the interaction of motivation, skill, environment, identity, and timing rather than as one simple act of discipline."
+          ],
+          "keyTakeaways": [
+            "Behavior needs three elements",
+            "Tiny beats fragile ambition",
+            "Good prompts matter",
+            "Emotion wires habits in",
+            "Growth should stay flexible",
+            "Design is kinder than blame",
+            "Behavior is contextual",
+            "Compassion improves change",
+            "Scale through stability"
+          ],
+          "practice": [
+            "Shrink one habit today",
+            "Pick a real anchor",
+            "Celebrate immediately",
+            "Remove one barrier",
+            "Track what actually works",
+            "Use the tiny version as the floor",
+            "Review failed attempts as design data",
+            "Choose one system adjustment each week"
+          ]
+        }
+      },
+      "examples": [
+        {
+          "exampleId": "ch03-ex01",
+          "title": "Start reading again",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You want to read more books, but every plan turns into a large goal that feels unrealistic after a long day. Because the behavior is framed as an hour of focused reading, you keep postponing it until the habit never starts.",
+          "whatToDo": [
+            "Create a tiny version that happens after a reliable anchor, such as reading one paragraph after plugging in your phone at night. Celebrate the completion immediately so the brain starts linking the action with success instead of pressure."
+          ],
+          "whyItMatters": "Personal goals often fail because they are designed for ideal days instead of normal ones. This example helps readers apply the Tiny Habits method to a common problem in a humane and sustainable way."
+        },
+        {
+          "exampleId": "ch03-ex02",
+          "title": "Reduce stress snacking",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You find yourself snacking automatically whenever you feel restless in the evening. The behavior feels small, but it repeats often enough that it becomes frustrating and hard to interrupt.",
+          "whatToDo": [
+            "Study what is prompting the routine, what emotional relief it provides, and how easy it is to perform. Then redesign the moment by reducing access, changing the prompt pattern, and inserting an easier replacement action that gives some relief with less cost."
+          ],
+          "whyItMatters": "This scenario shows how the same model can be used for unwanted habits, not only for building good ones. It helps readers move from guilt to practical redesign."
+        },
+        {
+          "exampleId": "ch03-ex03",
+          "title": "Build a study starter",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "You keep waiting for motivation to study, and because motivation rarely arrives at the right time you end up delaying until stress becomes the real prompt. The result is inconsistent effort and unnecessary anxiety.",
+          "whatToDo": [
+            "Attach an extremely small study action to an existing routine, such as opening your notes after sitting down with coffee. Make the first step tiny enough that it feels almost too easy, and celebrate completion so the routine becomes easier to repeat tomorrow."
+          ],
+          "whyItMatters": "Students often assume better study habits require more pressure. This example shows that stable progress often begins with smaller, smarter design rather than bigger promises."
+        },
+        {
+          "exampleId": "ch03-ex04",
+          "title": "Improve group project follow through",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A class project keeps slipping because everyone intends to contribute but nobody has a dependable routine for updates or handoffs. The group is relying on motivation and memory instead of behavior design.",
+          "whatToDo": [
+            "Choose one tiny shared behavior with a clear prompt, such as posting a short progress update right after each work block. Keep it simple enough that it is easy to do even in busy weeks, and let the consistency create momentum for the rest of the work."
+          ],
+          "whyItMatters": "School teamwork often breaks down through weak process, not bad intent. This example shows how tiny routines can improve coordination and reduce last minute pressure."
+        },
+        {
+          "exampleId": "ch03-ex05",
+          "title": "Start strong at a new job",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "You want to look organized at a new job, but your current workflow depends on remembering too many small tasks. Because nothing is anchored clearly, important follow ups get delayed even though you care about doing well.",
+          "whatToDo": [
+            "Create tiny work habits tied to existing transitions, such as reviewing priorities right after opening your laptop or logging one follow up right after each meeting. Keep the action small enough that it happens even on chaotic days and grows from there."
+          ],
+          "whyItMatters": "Early career work improves when reliability is built through systems instead of stress. This example helps readers use tiny habits to create visible steadiness in professional settings."
+        },
+        {
+          "exampleId": "ch03-ex06",
+          "title": "Change a team meeting pattern",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "A team meeting always runs long because people arrive without clear updates and discussion drifts. Everyone wants the process to improve, but no one has built a routine that makes the better behavior automatic.",
+          "whatToDo": [
+            "Design one tiny behavior for the team, such as posting a one sentence update before the meeting starts or ending each agenda item with a visible owner. Keep the new action easy, anchored, and repeatable so it becomes part of the group pattern."
+          ],
+          "whyItMatters": "The Tiny Habits method applies to teams as well as individuals. This example helps readers see how small routine changes can reshape group performance without dramatic intervention."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch03-h-q01",
+            "prompt": "What is the central claim of easy does it?",
+            "choices": [
+              "Big goals matter more than repeatable design",
+              "Reliable behavior comes from designing conditions that make action easier and more likely",
+              "Motivation alone is enough if the goal matters",
+              "Habits form mainly through pressure"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch03-h-q02",
+            "prompt": "Why does the method prefer tiny actions over large ones at the start?",
+            "choices": [
+              "Because ambition is unhelpful",
+              "Because easy actions repeat more consistently and create a stable base for growth",
+              "Because tiny actions always stay tiny",
+              "Because difficulty prevents learning"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch03-h-q03",
+            "prompt": "What role do prompts play in the model?",
+            "choices": [
+              "They replace motivation entirely",
+              "They tell the brain when to act and make timing more reliable",
+              "They matter only for bad habits",
+              "They are less important than intention"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch03-h-q04",
+            "prompt": "Why is celebration treated as important rather than optional?",
+            "choices": [
+              "Because positive emotion helps wire the new habit in quickly",
+              "Because celebration proves the habit is complete forever",
+              "Because rewards matter only after large actions",
+              "Because emotion is separate from behavior change"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch03-h-q05",
+            "prompt": "What does the book suggest is usually a better response than self blame when a habit fails?",
+            "choices": [
+              "Add more shame so the habit feels serious",
+              "Diagnose motivation, ability, and prompting to redesign the behavior",
+              "Wait for the next burst of enthusiasm",
+              "Drop the goal entirely"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch03-h-q06",
+            "prompt": "How does the method describe growth from a tiny habit?",
+            "choices": [
+              "It should be forced as quickly as possible",
+              "It should emerge from consistency and success rather than pressure",
+              "It usually happens before the habit is stable",
+              "It is not necessary once a tiny habit exists"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch03-h-q07",
+            "prompt": "What broader philosophy of change is implied by the chapter?",
+            "choices": [
+              "Change works best when it fits human reality instead of fighting it",
+              "Change works only under intense pressure",
+              "Change depends mostly on talent",
+              "Change should avoid emotion entirely"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch03-h-q08",
+            "prompt": "Why is the method described as compassionate?",
+            "choices": [
+              "Because it lowers standards",
+              "Because it treats failure as information about design rather than proof of personal weakness",
+              "Because it avoids accountability",
+              "Because it rejects all structure"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch03-h-q09",
+            "prompt": "What kind of thinking does the book encourage when building habits?",
+            "choices": [
+              "All or nothing thinking",
+              "Experimental thinking that adjusts the design based on what actually happens",
+              "Purely motivational thinking",
+              "Performance thinking that ignores context"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch03-h-q10",
+            "prompt": "What is the deeper value of the Tiny Habits approach?",
+            "choices": [
+              "It gives people a practical way to create change that is durable, humane, and adaptable",
+              "It guarantees immediate transformation",
+              "It removes the need for goals and planning",
+              "It works only for personal habits and not for teams"
+            ],
+            "correctIndex": 0
+          }
+        ]
+      }
+    },
+    {
+      "chapterId": "ch04-the-power-of-after",
+      "number": 4,
+      "title": "The Power Of After",
+      "readingTimeMinutes": 14,
+      "contentVariants": {
+        "easy": {
+          "summaryBullets": [
+            "Prompts matter because even a good habit idea will often fail if nothing reliably tells you when to do it.",
+            "The book recommends attaching new habits to existing routines that already happen consistently.",
+            "This creates an anchor, which makes the new behavior easier to remember and easier to place in daily life.",
+            "A strong prompt is specific and immediate rather than vague or aspirational.",
+            "After moments are useful because they connect a new habit to something already stable.",
+            "People often overestimate their memory and underestimate the importance of good prompting.",
+            "The chapter shows that timing and sequence can matter as much as intention.",
+            "A well chosen anchor turns habit performance from guesswork into routine."
+          ],
+          "keyTakeaways": [
+            "Behavior needs three elements",
+            "Tiny beats fragile ambition",
+            "Good prompts matter",
+            "Emotion wires habits in",
+            "Growth should stay flexible",
+            "Design is kinder than blame"
+          ],
+          "practice": [
+            "Shrink one habit today",
+            "Pick a real anchor",
+            "Celebrate immediately",
+            "Remove one barrier"
+          ]
+        },
+        "medium": {
+          "summaryBullets": [
+            "Prompts matter because even a good habit idea will often fail if nothing reliably tells you when to do it.",
+            "The book recommends attaching new habits to existing routines that already happen consistently.",
+            "This creates an anchor, which makes the new behavior easier to remember and easier to place in daily life.",
+            "A strong prompt is specific and immediate rather than vague or aspirational.",
+            "After moments are useful because they connect a new habit to something already stable.",
+            "People often overestimate their memory and underestimate the importance of good prompting.",
+            "The chapter shows that timing and sequence can matter as much as intention.",
+            "A well chosen anchor turns habit performance from guesswork into routine.",
+            "The chapter shows that how anchors and prompts create dependable timing for habits becomes clearer when you study behavior in the exact moment it either happens or fails to happen.",
+            "It also argues that behavior design works better than self blame because it points to concrete adjustments instead of vague frustration.",
+            "A stronger reading of the method asks what is missing, what is too hard, and what emotional pattern is supporting the result.",
+            "The practical lesson is that reliable change comes from fitting behavior to real life instead of trying to overpower real life."
+          ],
+          "keyTakeaways": [
+            "Behavior needs three elements",
+            "Tiny beats fragile ambition",
+            "Good prompts matter",
+            "Emotion wires habits in",
+            "Growth should stay flexible",
+            "Design is kinder than blame",
+            "Design beats pressure",
+            "Fit matters more than force"
+          ],
+          "practice": [
+            "Shrink one habit today",
+            "Pick a real anchor",
+            "Celebrate immediately",
+            "Remove one barrier",
+            "Track what actually works",
+            "Use the tiny version as the floor"
+          ]
+        },
+        "hard": {
+          "summaryBullets": [
+            "Prompts matter because even a good habit idea will often fail if nothing reliably tells you when to do it.",
+            "The book recommends attaching new habits to existing routines that already happen consistently.",
+            "This creates an anchor, which makes the new behavior easier to remember and easier to place in daily life.",
+            "A strong prompt is specific and immediate rather than vague or aspirational.",
+            "After moments are useful because they connect a new habit to something already stable.",
+            "People often overestimate their memory and underestimate the importance of good prompting.",
+            "The chapter shows that timing and sequence can matter as much as intention.",
+            "A well chosen anchor turns habit performance from guesswork into routine.",
+            "The chapter shows that how anchors and prompts create dependable timing for habits becomes clearer when you study behavior in the exact moment it either happens or fails to happen.",
+            "It also argues that behavior design works better than self blame because it points to concrete adjustments instead of vague frustration.",
+            "A stronger reading of the method asks what is missing, what is too hard, and what emotional pattern is supporting the result.",
+            "The practical lesson is that reliable change comes from fitting behavior to real life instead of trying to overpower real life.",
+            "The deeper lesson is that how anchors and prompts create dependable timing for habits reflects a design philosophy in which human behavior is responsive, contextual, and more flexible than people assume.",
+            "This means small design choices can create large downstream effects when they alter repetition, confidence, and emotional association.",
+            "The chapter also implies that many failed habit efforts are not failures of character but failures of behavioral fit.",
+            "A more nuanced reading treats behavior change as the interaction of motivation, skill, environment, identity, and timing rather than as one simple act of discipline."
+          ],
+          "keyTakeaways": [
+            "Behavior needs three elements",
+            "Tiny beats fragile ambition",
+            "Good prompts matter",
+            "Emotion wires habits in",
+            "Growth should stay flexible",
+            "Design is kinder than blame",
+            "Behavior is contextual",
+            "Compassion improves change",
+            "Scale through stability"
+          ],
+          "practice": [
+            "Shrink one habit today",
+            "Pick a real anchor",
+            "Celebrate immediately",
+            "Remove one barrier",
+            "Track what actually works",
+            "Use the tiny version as the floor",
+            "Review failed attempts as design data",
+            "Choose one system adjustment each week"
+          ]
+        }
+      },
+      "examples": [
+        {
+          "exampleId": "ch04-ex01",
+          "title": "Start reading again",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You want to read more books, but every plan turns into a large goal that feels unrealistic after a long day. Because the behavior is framed as an hour of focused reading, you keep postponing it until the habit never starts.",
+          "whatToDo": [
+            "Create a tiny version that happens after a reliable anchor, such as reading one paragraph after plugging in your phone at night. Celebrate the completion immediately so the brain starts linking the action with success instead of pressure."
+          ],
+          "whyItMatters": "Personal goals often fail because they are designed for ideal days instead of normal ones. This example helps readers apply the Tiny Habits method to a common problem in a humane and sustainable way."
+        },
+        {
+          "exampleId": "ch04-ex02",
+          "title": "Reduce stress snacking",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You find yourself snacking automatically whenever you feel restless in the evening. The behavior feels small, but it repeats often enough that it becomes frustrating and hard to interrupt.",
+          "whatToDo": [
+            "Study what is prompting the routine, what emotional relief it provides, and how easy it is to perform. Then redesign the moment by reducing access, changing the prompt pattern, and inserting an easier replacement action that gives some relief with less cost."
+          ],
+          "whyItMatters": "This scenario shows how the same model can be used for unwanted habits, not only for building good ones. It helps readers move from guilt to practical redesign."
+        },
+        {
+          "exampleId": "ch04-ex03",
+          "title": "Build a study starter",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "You keep waiting for motivation to study, and because motivation rarely arrives at the right time you end up delaying until stress becomes the real prompt. The result is inconsistent effort and unnecessary anxiety.",
+          "whatToDo": [
+            "Attach an extremely small study action to an existing routine, such as opening your notes after sitting down with coffee. Make the first step tiny enough that it feels almost too easy, and celebrate completion so the routine becomes easier to repeat tomorrow."
+          ],
+          "whyItMatters": "Students often assume better study habits require more pressure. This example shows that stable progress often begins with smaller, smarter design rather than bigger promises."
+        },
+        {
+          "exampleId": "ch04-ex04",
+          "title": "Improve group project follow through",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A class project keeps slipping because everyone intends to contribute but nobody has a dependable routine for updates or handoffs. The group is relying on motivation and memory instead of behavior design.",
+          "whatToDo": [
+            "Choose one tiny shared behavior with a clear prompt, such as posting a short progress update right after each work block. Keep it simple enough that it is easy to do even in busy weeks, and let the consistency create momentum for the rest of the work."
+          ],
+          "whyItMatters": "School teamwork often breaks down through weak process, not bad intent. This example shows how tiny routines can improve coordination and reduce last minute pressure."
+        },
+        {
+          "exampleId": "ch04-ex05",
+          "title": "Start strong at a new job",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "You want to look organized at a new job, but your current workflow depends on remembering too many small tasks. Because nothing is anchored clearly, important follow ups get delayed even though you care about doing well.",
+          "whatToDo": [
+            "Create tiny work habits tied to existing transitions, such as reviewing priorities right after opening your laptop or logging one follow up right after each meeting. Keep the action small enough that it happens even on chaotic days and grows from there."
+          ],
+          "whyItMatters": "Early career work improves when reliability is built through systems instead of stress. This example helps readers use tiny habits to create visible steadiness in professional settings."
+        },
+        {
+          "exampleId": "ch04-ex06",
+          "title": "Change a team meeting pattern",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "A team meeting always runs long because people arrive without clear updates and discussion drifts. Everyone wants the process to improve, but no one has built a routine that makes the better behavior automatic.",
+          "whatToDo": [
+            "Design one tiny behavior for the team, such as posting a one sentence update before the meeting starts or ending each agenda item with a visible owner. Keep the new action easy, anchored, and repeatable so it becomes part of the group pattern."
+          ],
+          "whyItMatters": "The Tiny Habits method applies to teams as well as individuals. This example helps readers see how small routine changes can reshape group performance without dramatic intervention."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch04-h-q01",
+            "prompt": "What is the central claim of the power of after?",
+            "choices": [
+              "Big goals matter more than repeatable design",
+              "Reliable behavior comes from designing conditions that make action easier and more likely",
+              "Motivation alone is enough if the goal matters",
+              "Habits form mainly through pressure"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch04-h-q02",
+            "prompt": "Why does the method prefer tiny actions over large ones at the start?",
+            "choices": [
+              "Because ambition is unhelpful",
+              "Because easy actions repeat more consistently and create a stable base for growth",
+              "Because tiny actions always stay tiny",
+              "Because difficulty prevents learning"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch04-h-q03",
+            "prompt": "What role do prompts play in the model?",
+            "choices": [
+              "They replace motivation entirely",
+              "They tell the brain when to act and make timing more reliable",
+              "They matter only for bad habits",
+              "They are less important than intention"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch04-h-q04",
+            "prompt": "Why is celebration treated as important rather than optional?",
+            "choices": [
+              "Because positive emotion helps wire the new habit in quickly",
+              "Because celebration proves the habit is complete forever",
+              "Because rewards matter only after large actions",
+              "Because emotion is separate from behavior change"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch04-h-q05",
+            "prompt": "What does the book suggest is usually a better response than self blame when a habit fails?",
+            "choices": [
+              "Add more shame so the habit feels serious",
+              "Diagnose motivation, ability, and prompting to redesign the behavior",
+              "Wait for the next burst of enthusiasm",
+              "Drop the goal entirely"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch04-h-q06",
+            "prompt": "How does the method describe growth from a tiny habit?",
+            "choices": [
+              "It should be forced as quickly as possible",
+              "It should emerge from consistency and success rather than pressure",
+              "It usually happens before the habit is stable",
+              "It is not necessary once a tiny habit exists"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch04-h-q07",
+            "prompt": "What broader philosophy of change is implied by the chapter?",
+            "choices": [
+              "Change works best when it fits human reality instead of fighting it",
+              "Change works only under intense pressure",
+              "Change depends mostly on talent",
+              "Change should avoid emotion entirely"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch04-h-q08",
+            "prompt": "Why is the method described as compassionate?",
+            "choices": [
+              "Because it lowers standards",
+              "Because it treats failure as information about design rather than proof of personal weakness",
+              "Because it avoids accountability",
+              "Because it rejects all structure"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch04-h-q09",
+            "prompt": "What kind of thinking does the book encourage when building habits?",
+            "choices": [
+              "All or nothing thinking",
+              "Experimental thinking that adjusts the design based on what actually happens",
+              "Purely motivational thinking",
+              "Performance thinking that ignores context"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch04-h-q10",
+            "prompt": "What is the deeper value of the Tiny Habits approach?",
+            "choices": [
+              "It gives people a practical way to create change that is durable, humane, and adaptable",
+              "It guarantees immediate transformation",
+              "It removes the need for goals and planning",
+              "It works only for personal habits and not for teams"
+            ],
+            "correctIndex": 0
+          }
+        ]
+      }
+    },
+    {
+      "chapterId": "ch05-emotion-creates-habits",
+      "number": 5,
+      "title": "Emotion Creates Habits",
+      "readingTimeMinutes": 15,
+      "contentVariants": {
+        "easy": {
+          "summaryBullets": [
+            "The chapter argues that emotion shapes habit formation more directly than repetition alone.",
+            "When people feel good right after a behavior, the brain is more likely to tag that behavior as worth repeating.",
+            "Celebration matters because it creates positive emotion immediately instead of waiting for distant results.",
+            "Tiny feelings of success can be enough to strengthen the new pattern if they are genuine and timely.",
+            "The book challenges the idea that behavior change must rely on harsh discipline or self criticism.",
+            "People often repeat what feels rewarding now, even when the action itself is very small.",
+            "The chapter teaches that emotion is not decoration around the habit but part of the mechanism that builds it.",
+            "Creating a positive feeling at the right moment helps small actions take root quickly."
+          ],
+          "keyTakeaways": [
+            "Behavior needs three elements",
+            "Tiny beats fragile ambition",
+            "Good prompts matter",
+            "Emotion wires habits in",
+            "Growth should stay flexible",
+            "Design is kinder than blame"
+          ],
+          "practice": [
+            "Shrink one habit today",
+            "Pick a real anchor",
+            "Celebrate immediately",
+            "Remove one barrier"
+          ]
+        },
+        "medium": {
+          "summaryBullets": [
+            "The chapter argues that emotion shapes habit formation more directly than repetition alone.",
+            "When people feel good right after a behavior, the brain is more likely to tag that behavior as worth repeating.",
+            "Celebration matters because it creates positive emotion immediately instead of waiting for distant results.",
+            "Tiny feelings of success can be enough to strengthen the new pattern if they are genuine and timely.",
+            "The book challenges the idea that behavior change must rely on harsh discipline or self criticism.",
+            "People often repeat what feels rewarding now, even when the action itself is very small.",
+            "The chapter teaches that emotion is not decoration around the habit but part of the mechanism that builds it.",
+            "Creating a positive feeling at the right moment helps small actions take root quickly.",
+            "The chapter shows that why positive emotion and celebration make habits wire in faster becomes clearer when you study behavior in the exact moment it either happens or fails to happen.",
+            "It also argues that behavior design works better than self blame because it points to concrete adjustments instead of vague frustration.",
+            "A stronger reading of the method asks what is missing, what is too hard, and what emotional pattern is supporting the result.",
+            "The practical lesson is that reliable change comes from fitting behavior to real life instead of trying to overpower real life."
+          ],
+          "keyTakeaways": [
+            "Behavior needs three elements",
+            "Tiny beats fragile ambition",
+            "Good prompts matter",
+            "Emotion wires habits in",
+            "Growth should stay flexible",
+            "Design is kinder than blame",
+            "Design beats pressure",
+            "Fit matters more than force"
+          ],
+          "practice": [
+            "Shrink one habit today",
+            "Pick a real anchor",
+            "Celebrate immediately",
+            "Remove one barrier",
+            "Track what actually works",
+            "Use the tiny version as the floor"
+          ]
+        },
+        "hard": {
+          "summaryBullets": [
+            "The chapter argues that emotion shapes habit formation more directly than repetition alone.",
+            "When people feel good right after a behavior, the brain is more likely to tag that behavior as worth repeating.",
+            "Celebration matters because it creates positive emotion immediately instead of waiting for distant results.",
+            "Tiny feelings of success can be enough to strengthen the new pattern if they are genuine and timely.",
+            "The book challenges the idea that behavior change must rely on harsh discipline or self criticism.",
+            "People often repeat what feels rewarding now, even when the action itself is very small.",
+            "The chapter teaches that emotion is not decoration around the habit but part of the mechanism that builds it.",
+            "Creating a positive feeling at the right moment helps small actions take root quickly.",
+            "The chapter shows that why positive emotion and celebration make habits wire in faster becomes clearer when you study behavior in the exact moment it either happens or fails to happen.",
+            "It also argues that behavior design works better than self blame because it points to concrete adjustments instead of vague frustration.",
+            "A stronger reading of the method asks what is missing, what is too hard, and what emotional pattern is supporting the result.",
+            "The practical lesson is that reliable change comes from fitting behavior to real life instead of trying to overpower real life.",
+            "The deeper lesson is that why positive emotion and celebration make habits wire in faster reflects a design philosophy in which human behavior is responsive, contextual, and more flexible than people assume.",
+            "This means small design choices can create large downstream effects when they alter repetition, confidence, and emotional association.",
+            "The chapter also implies that many failed habit efforts are not failures of character but failures of behavioral fit.",
+            "A more nuanced reading treats behavior change as the interaction of motivation, skill, environment, identity, and timing rather than as one simple act of discipline."
+          ],
+          "keyTakeaways": [
+            "Behavior needs three elements",
+            "Tiny beats fragile ambition",
+            "Good prompts matter",
+            "Emotion wires habits in",
+            "Growth should stay flexible",
+            "Design is kinder than blame",
+            "Behavior is contextual",
+            "Compassion improves change",
+            "Scale through stability"
+          ],
+          "practice": [
+            "Shrink one habit today",
+            "Pick a real anchor",
+            "Celebrate immediately",
+            "Remove one barrier",
+            "Track what actually works",
+            "Use the tiny version as the floor",
+            "Review failed attempts as design data",
+            "Choose one system adjustment each week"
+          ]
+        }
+      },
+      "examples": [
+        {
+          "exampleId": "ch05-ex01",
+          "title": "Start reading again",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You want to read more books, but every plan turns into a large goal that feels unrealistic after a long day. Because the behavior is framed as an hour of focused reading, you keep postponing it until the habit never starts.",
+          "whatToDo": [
+            "Create a tiny version that happens after a reliable anchor, such as reading one paragraph after plugging in your phone at night. Celebrate the completion immediately so the brain starts linking the action with success instead of pressure."
+          ],
+          "whyItMatters": "Personal goals often fail because they are designed for ideal days instead of normal ones. This example helps readers apply the Tiny Habits method to a common problem in a humane and sustainable way."
+        },
+        {
+          "exampleId": "ch05-ex02",
+          "title": "Reduce stress snacking",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You find yourself snacking automatically whenever you feel restless in the evening. The behavior feels small, but it repeats often enough that it becomes frustrating and hard to interrupt.",
+          "whatToDo": [
+            "Study what is prompting the routine, what emotional relief it provides, and how easy it is to perform. Then redesign the moment by reducing access, changing the prompt pattern, and inserting an easier replacement action that gives some relief with less cost."
+          ],
+          "whyItMatters": "This scenario shows how the same model can be used for unwanted habits, not only for building good ones. It helps readers move from guilt to practical redesign."
+        },
+        {
+          "exampleId": "ch05-ex03",
+          "title": "Build a study starter",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "You keep waiting for motivation to study, and because motivation rarely arrives at the right time you end up delaying until stress becomes the real prompt. The result is inconsistent effort and unnecessary anxiety.",
+          "whatToDo": [
+            "Attach an extremely small study action to an existing routine, such as opening your notes after sitting down with coffee. Make the first step tiny enough that it feels almost too easy, and celebrate completion so the routine becomes easier to repeat tomorrow."
+          ],
+          "whyItMatters": "Students often assume better study habits require more pressure. This example shows that stable progress often begins with smaller, smarter design rather than bigger promises."
+        },
+        {
+          "exampleId": "ch05-ex04",
+          "title": "Improve group project follow through",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A class project keeps slipping because everyone intends to contribute but nobody has a dependable routine for updates or handoffs. The group is relying on motivation and memory instead of behavior design.",
+          "whatToDo": [
+            "Choose one tiny shared behavior with a clear prompt, such as posting a short progress update right after each work block. Keep it simple enough that it is easy to do even in busy weeks, and let the consistency create momentum for the rest of the work."
+          ],
+          "whyItMatters": "School teamwork often breaks down through weak process, not bad intent. This example shows how tiny routines can improve coordination and reduce last minute pressure."
+        },
+        {
+          "exampleId": "ch05-ex05",
+          "title": "Start strong at a new job",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "You want to look organized at a new job, but your current workflow depends on remembering too many small tasks. Because nothing is anchored clearly, important follow ups get delayed even though you care about doing well.",
+          "whatToDo": [
+            "Create tiny work habits tied to existing transitions, such as reviewing priorities right after opening your laptop or logging one follow up right after each meeting. Keep the action small enough that it happens even on chaotic days and grows from there."
+          ],
+          "whyItMatters": "Early career work improves when reliability is built through systems instead of stress. This example helps readers use tiny habits to create visible steadiness in professional settings."
+        },
+        {
+          "exampleId": "ch05-ex06",
+          "title": "Change a team meeting pattern",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "A team meeting always runs long because people arrive without clear updates and discussion drifts. Everyone wants the process to improve, but no one has built a routine that makes the better behavior automatic.",
+          "whatToDo": [
+            "Design one tiny behavior for the team, such as posting a one sentence update before the meeting starts or ending each agenda item with a visible owner. Keep the new action easy, anchored, and repeatable so it becomes part of the group pattern."
+          ],
+          "whyItMatters": "The Tiny Habits method applies to teams as well as individuals. This example helps readers see how small routine changes can reshape group performance without dramatic intervention."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch05-h-q01",
+            "prompt": "What is the central claim of emotion creates habits?",
+            "choices": [
+              "Big goals matter more than repeatable design",
+              "Reliable behavior comes from designing conditions that make action easier and more likely",
+              "Motivation alone is enough if the goal matters",
+              "Habits form mainly through pressure"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch05-h-q02",
+            "prompt": "Why does the method prefer tiny actions over large ones at the start?",
+            "choices": [
+              "Because ambition is unhelpful",
+              "Because easy actions repeat more consistently and create a stable base for growth",
+              "Because tiny actions always stay tiny",
+              "Because difficulty prevents learning"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch05-h-q03",
+            "prompt": "What role do prompts play in the model?",
+            "choices": [
+              "They replace motivation entirely",
+              "They tell the brain when to act and make timing more reliable",
+              "They matter only for bad habits",
+              "They are less important than intention"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch05-h-q04",
+            "prompt": "Why is celebration treated as important rather than optional?",
+            "choices": [
+              "Because positive emotion helps wire the new habit in quickly",
+              "Because celebration proves the habit is complete forever",
+              "Because rewards matter only after large actions",
+              "Because emotion is separate from behavior change"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch05-h-q05",
+            "prompt": "What does the book suggest is usually a better response than self blame when a habit fails?",
+            "choices": [
+              "Add more shame so the habit feels serious",
+              "Diagnose motivation, ability, and prompting to redesign the behavior",
+              "Wait for the next burst of enthusiasm",
+              "Drop the goal entirely"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch05-h-q06",
+            "prompt": "How does the method describe growth from a tiny habit?",
+            "choices": [
+              "It should be forced as quickly as possible",
+              "It should emerge from consistency and success rather than pressure",
+              "It usually happens before the habit is stable",
+              "It is not necessary once a tiny habit exists"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch05-h-q07",
+            "prompt": "What broader philosophy of change is implied by the chapter?",
+            "choices": [
+              "Change works best when it fits human reality instead of fighting it",
+              "Change works only under intense pressure",
+              "Change depends mostly on talent",
+              "Change should avoid emotion entirely"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch05-h-q08",
+            "prompt": "Why is the method described as compassionate?",
+            "choices": [
+              "Because it lowers standards",
+              "Because it treats failure as information about design rather than proof of personal weakness",
+              "Because it avoids accountability",
+              "Because it rejects all structure"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch05-h-q09",
+            "prompt": "What kind of thinking does the book encourage when building habits?",
+            "choices": [
+              "All or nothing thinking",
+              "Experimental thinking that adjusts the design based on what actually happens",
+              "Purely motivational thinking",
+              "Performance thinking that ignores context"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch05-h-q10",
+            "prompt": "What is the deeper value of the Tiny Habits approach?",
+            "choices": [
+              "It gives people a practical way to create change that is durable, humane, and adaptable",
+              "It guarantees immediate transformation",
+              "It removes the need for goals and planning",
+              "It works only for personal habits and not for teams"
+            ],
+            "correctIndex": 0
+          }
+        ]
+      }
+    },
+    {
+      "chapterId": "ch06-grow-from-tiny-to-transformative",
+      "number": 6,
+      "title": "Grow From Tiny To Transformative",
+      "readingTimeMinutes": 14,
+      "contentVariants": {
+        "easy": {
+          "summaryBullets": [
+            "The chapter explains that tiny habits can grow naturally after consistency is established, but they should not be forced too early.",
+            "Growth works best when it feels like expansion from success rather than pressure from obligation.",
+            "A tiny habit should first become stable enough that it happens with low friction.",
+            "Once stability is strong, people can choose when and how to do more while keeping the tiny version available as a floor.",
+            "This protects the habit during busy or stressful periods because the baseline remains possible.",
+            "The chapter encourages flexible growth rather than rigid escalation schedules.",
+            "Transformation comes from repeated success building identity and momentum over time.",
+            "The larger point is that durable change is often the result of gradual strengthening, not dramatic overhaul."
+          ],
+          "keyTakeaways": [
+            "Behavior needs three elements",
+            "Tiny beats fragile ambition",
+            "Good prompts matter",
+            "Emotion wires habits in",
+            "Growth should stay flexible",
+            "Design is kinder than blame"
+          ],
+          "practice": [
+            "Shrink one habit today",
+            "Pick a real anchor",
+            "Celebrate immediately",
+            "Remove one barrier"
+          ]
+        },
+        "medium": {
+          "summaryBullets": [
+            "The chapter explains that tiny habits can grow naturally after consistency is established, but they should not be forced too early.",
+            "Growth works best when it feels like expansion from success rather than pressure from obligation.",
+            "A tiny habit should first become stable enough that it happens with low friction.",
+            "Once stability is strong, people can choose when and how to do more while keeping the tiny version available as a floor.",
+            "This protects the habit during busy or stressful periods because the baseline remains possible.",
+            "The chapter encourages flexible growth rather than rigid escalation schedules.",
+            "Transformation comes from repeated success building identity and momentum over time.",
+            "The larger point is that durable change is often the result of gradual strengthening, not dramatic overhaul.",
+            "The chapter shows that how small habits scale over time without pressure or burnout becomes clearer when you study behavior in the exact moment it either happens or fails to happen.",
+            "It also argues that behavior design works better than self blame because it points to concrete adjustments instead of vague frustration.",
+            "A stronger reading of the method asks what is missing, what is too hard, and what emotional pattern is supporting the result.",
+            "The practical lesson is that reliable change comes from fitting behavior to real life instead of trying to overpower real life."
+          ],
+          "keyTakeaways": [
+            "Behavior needs three elements",
+            "Tiny beats fragile ambition",
+            "Good prompts matter",
+            "Emotion wires habits in",
+            "Growth should stay flexible",
+            "Design is kinder than blame",
+            "Design beats pressure",
+            "Fit matters more than force"
+          ],
+          "practice": [
+            "Shrink one habit today",
+            "Pick a real anchor",
+            "Celebrate immediately",
+            "Remove one barrier",
+            "Track what actually works",
+            "Use the tiny version as the floor"
+          ]
+        },
+        "hard": {
+          "summaryBullets": [
+            "The chapter explains that tiny habits can grow naturally after consistency is established, but they should not be forced too early.",
+            "Growth works best when it feels like expansion from success rather than pressure from obligation.",
+            "A tiny habit should first become stable enough that it happens with low friction.",
+            "Once stability is strong, people can choose when and how to do more while keeping the tiny version available as a floor.",
+            "This protects the habit during busy or stressful periods because the baseline remains possible.",
+            "The chapter encourages flexible growth rather than rigid escalation schedules.",
+            "Transformation comes from repeated success building identity and momentum over time.",
+            "The larger point is that durable change is often the result of gradual strengthening, not dramatic overhaul.",
+            "The chapter shows that how small habits scale over time without pressure or burnout becomes clearer when you study behavior in the exact moment it either happens or fails to happen.",
+            "It also argues that behavior design works better than self blame because it points to concrete adjustments instead of vague frustration.",
+            "A stronger reading of the method asks what is missing, what is too hard, and what emotional pattern is supporting the result.",
+            "The practical lesson is that reliable change comes from fitting behavior to real life instead of trying to overpower real life.",
+            "The deeper lesson is that how small habits scale over time without pressure or burnout reflects a design philosophy in which human behavior is responsive, contextual, and more flexible than people assume.",
+            "This means small design choices can create large downstream effects when they alter repetition, confidence, and emotional association.",
+            "The chapter also implies that many failed habit efforts are not failures of character but failures of behavioral fit.",
+            "A more nuanced reading treats behavior change as the interaction of motivation, skill, environment, identity, and timing rather than as one simple act of discipline."
+          ],
+          "keyTakeaways": [
+            "Behavior needs three elements",
+            "Tiny beats fragile ambition",
+            "Good prompts matter",
+            "Emotion wires habits in",
+            "Growth should stay flexible",
+            "Design is kinder than blame",
+            "Behavior is contextual",
+            "Compassion improves change",
+            "Scale through stability"
+          ],
+          "practice": [
+            "Shrink one habit today",
+            "Pick a real anchor",
+            "Celebrate immediately",
+            "Remove one barrier",
+            "Track what actually works",
+            "Use the tiny version as the floor",
+            "Review failed attempts as design data",
+            "Choose one system adjustment each week"
+          ]
+        }
+      },
+      "examples": [
+        {
+          "exampleId": "ch06-ex01",
+          "title": "Start reading again",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You want to read more books, but every plan turns into a large goal that feels unrealistic after a long day. Because the behavior is framed as an hour of focused reading, you keep postponing it until the habit never starts.",
+          "whatToDo": [
+            "Create a tiny version that happens after a reliable anchor, such as reading one paragraph after plugging in your phone at night. Celebrate the completion immediately so the brain starts linking the action with success instead of pressure."
+          ],
+          "whyItMatters": "Personal goals often fail because they are designed for ideal days instead of normal ones. This example helps readers apply the Tiny Habits method to a common problem in a humane and sustainable way."
+        },
+        {
+          "exampleId": "ch06-ex02",
+          "title": "Reduce stress snacking",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You find yourself snacking automatically whenever you feel restless in the evening. The behavior feels small, but it repeats often enough that it becomes frustrating and hard to interrupt.",
+          "whatToDo": [
+            "Study what is prompting the routine, what emotional relief it provides, and how easy it is to perform. Then redesign the moment by reducing access, changing the prompt pattern, and inserting an easier replacement action that gives some relief with less cost."
+          ],
+          "whyItMatters": "This scenario shows how the same model can be used for unwanted habits, not only for building good ones. It helps readers move from guilt to practical redesign."
+        },
+        {
+          "exampleId": "ch06-ex03",
+          "title": "Build a study starter",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "You keep waiting for motivation to study, and because motivation rarely arrives at the right time you end up delaying until stress becomes the real prompt. The result is inconsistent effort and unnecessary anxiety.",
+          "whatToDo": [
+            "Attach an extremely small study action to an existing routine, such as opening your notes after sitting down with coffee. Make the first step tiny enough that it feels almost too easy, and celebrate completion so the routine becomes easier to repeat tomorrow."
+          ],
+          "whyItMatters": "Students often assume better study habits require more pressure. This example shows that stable progress often begins with smaller, smarter design rather than bigger promises."
+        },
+        {
+          "exampleId": "ch06-ex04",
+          "title": "Improve group project follow through",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A class project keeps slipping because everyone intends to contribute but nobody has a dependable routine for updates or handoffs. The group is relying on motivation and memory instead of behavior design.",
+          "whatToDo": [
+            "Choose one tiny shared behavior with a clear prompt, such as posting a short progress update right after each work block. Keep it simple enough that it is easy to do even in busy weeks, and let the consistency create momentum for the rest of the work."
+          ],
+          "whyItMatters": "School teamwork often breaks down through weak process, not bad intent. This example shows how tiny routines can improve coordination and reduce last minute pressure."
+        },
+        {
+          "exampleId": "ch06-ex05",
+          "title": "Start strong at a new job",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "You want to look organized at a new job, but your current workflow depends on remembering too many small tasks. Because nothing is anchored clearly, important follow ups get delayed even though you care about doing well.",
+          "whatToDo": [
+            "Create tiny work habits tied to existing transitions, such as reviewing priorities right after opening your laptop or logging one follow up right after each meeting. Keep the action small enough that it happens even on chaotic days and grows from there."
+          ],
+          "whyItMatters": "Early career work improves when reliability is built through systems instead of stress. This example helps readers use tiny habits to create visible steadiness in professional settings."
+        },
+        {
+          "exampleId": "ch06-ex06",
+          "title": "Change a team meeting pattern",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "A team meeting always runs long because people arrive without clear updates and discussion drifts. Everyone wants the process to improve, but no one has built a routine that makes the better behavior automatic.",
+          "whatToDo": [
+            "Design one tiny behavior for the team, such as posting a one sentence update before the meeting starts or ending each agenda item with a visible owner. Keep the new action easy, anchored, and repeatable so it becomes part of the group pattern."
+          ],
+          "whyItMatters": "The Tiny Habits method applies to teams as well as individuals. This example helps readers see how small routine changes can reshape group performance without dramatic intervention."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch06-h-q01",
+            "prompt": "What is the central claim of grow from tiny to transformative?",
+            "choices": [
+              "Big goals matter more than repeatable design",
+              "Reliable behavior comes from designing conditions that make action easier and more likely",
+              "Motivation alone is enough if the goal matters",
+              "Habits form mainly through pressure"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch06-h-q02",
+            "prompt": "Why does the method prefer tiny actions over large ones at the start?",
+            "choices": [
+              "Because ambition is unhelpful",
+              "Because easy actions repeat more consistently and create a stable base for growth",
+              "Because tiny actions always stay tiny",
+              "Because difficulty prevents learning"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch06-h-q03",
+            "prompt": "What role do prompts play in the model?",
+            "choices": [
+              "They replace motivation entirely",
+              "They tell the brain when to act and make timing more reliable",
+              "They matter only for bad habits",
+              "They are less important than intention"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch06-h-q04",
+            "prompt": "Why is celebration treated as important rather than optional?",
+            "choices": [
+              "Because positive emotion helps wire the new habit in quickly",
+              "Because celebration proves the habit is complete forever",
+              "Because rewards matter only after large actions",
+              "Because emotion is separate from behavior change"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch06-h-q05",
+            "prompt": "What does the book suggest is usually a better response than self blame when a habit fails?",
+            "choices": [
+              "Add more shame so the habit feels serious",
+              "Diagnose motivation, ability, and prompting to redesign the behavior",
+              "Wait for the next burst of enthusiasm",
+              "Drop the goal entirely"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch06-h-q06",
+            "prompt": "How does the method describe growth from a tiny habit?",
+            "choices": [
+              "It should be forced as quickly as possible",
+              "It should emerge from consistency and success rather than pressure",
+              "It usually happens before the habit is stable",
+              "It is not necessary once a tiny habit exists"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch06-h-q07",
+            "prompt": "What broader philosophy of change is implied by the chapter?",
+            "choices": [
+              "Change works best when it fits human reality instead of fighting it",
+              "Change works only under intense pressure",
+              "Change depends mostly on talent",
+              "Change should avoid emotion entirely"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch06-h-q08",
+            "prompt": "Why is the method described as compassionate?",
+            "choices": [
+              "Because it lowers standards",
+              "Because it treats failure as information about design rather than proof of personal weakness",
+              "Because it avoids accountability",
+              "Because it rejects all structure"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch06-h-q09",
+            "prompt": "What kind of thinking does the book encourage when building habits?",
+            "choices": [
+              "All or nothing thinking",
+              "Experimental thinking that adjusts the design based on what actually happens",
+              "Purely motivational thinking",
+              "Performance thinking that ignores context"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch06-h-q10",
+            "prompt": "What is the deeper value of the Tiny Habits approach?",
+            "choices": [
+              "It gives people a practical way to create change that is durable, humane, and adaptable",
+              "It guarantees immediate transformation",
+              "It removes the need for goals and planning",
+              "It works only for personal habits and not for teams"
+            ],
+            "correctIndex": 0
+          }
+        ]
+      }
+    },
+    {
+      "chapterId": "ch07-untangle-bad-habits",
+      "number": 7,
+      "title": "Untangle Bad Habits",
+      "readingTimeMinutes": 15,
+      "contentVariants": {
+        "easy": {
+          "summaryBullets": [
+            "The book applies the same behavior model to bad habits by asking what makes the unwanted action easy, prompted, and attractive.",
+            "Bad habits often persist because the design around them quietly supports repetition.",
+            "To disrupt a bad habit, you can remove prompts, increase difficulty, or reduce the emotional pull that keeps it going.",
+            "This is more effective than relying only on guilt because guilt rarely redesigns the environment.",
+            "The chapter treats unwanted habits as systems that can be unpacked rather than as proof of weak character.",
+            "A practical strategy is to make the bad behavior harder to perform at the exact moment it usually happens.",
+            "Changing one link in the pattern can reduce the automatic quality of the routine.",
+            "The lesson is that breaking a habit works better when the system changes with you."
+          ],
+          "keyTakeaways": [
+            "Behavior needs three elements",
+            "Tiny beats fragile ambition",
+            "Good prompts matter",
+            "Emotion wires habits in",
+            "Growth should stay flexible",
+            "Design is kinder than blame"
+          ],
+          "practice": [
+            "Shrink one habit today",
+            "Pick a real anchor",
+            "Celebrate immediately",
+            "Remove one barrier"
+          ]
+        },
+        "medium": {
+          "summaryBullets": [
+            "The book applies the same behavior model to bad habits by asking what makes the unwanted action easy, prompted, and attractive.",
+            "Bad habits often persist because the design around them quietly supports repetition.",
+            "To disrupt a bad habit, you can remove prompts, increase difficulty, or reduce the emotional pull that keeps it going.",
+            "This is more effective than relying only on guilt because guilt rarely redesigns the environment.",
+            "The chapter treats unwanted habits as systems that can be unpacked rather than as proof of weak character.",
+            "A practical strategy is to make the bad behavior harder to perform at the exact moment it usually happens.",
+            "Changing one link in the pattern can reduce the automatic quality of the routine.",
+            "The lesson is that breaking a habit works better when the system changes with you.",
+            "The chapter shows that how to weaken unwanted behaviors by redesigning prompts, ability, and motivation becomes clearer when you study behavior in the exact moment it either happens or fails to happen.",
+            "It also argues that behavior design works better than self blame because it points to concrete adjustments instead of vague frustration.",
+            "A stronger reading of the method asks what is missing, what is too hard, and what emotional pattern is supporting the result.",
+            "The practical lesson is that reliable change comes from fitting behavior to real life instead of trying to overpower real life."
+          ],
+          "keyTakeaways": [
+            "Behavior needs three elements",
+            "Tiny beats fragile ambition",
+            "Good prompts matter",
+            "Emotion wires habits in",
+            "Growth should stay flexible",
+            "Design is kinder than blame",
+            "Design beats pressure",
+            "Fit matters more than force"
+          ],
+          "practice": [
+            "Shrink one habit today",
+            "Pick a real anchor",
+            "Celebrate immediately",
+            "Remove one barrier",
+            "Track what actually works",
+            "Use the tiny version as the floor"
+          ]
+        },
+        "hard": {
+          "summaryBullets": [
+            "The book applies the same behavior model to bad habits by asking what makes the unwanted action easy, prompted, and attractive.",
+            "Bad habits often persist because the design around them quietly supports repetition.",
+            "To disrupt a bad habit, you can remove prompts, increase difficulty, or reduce the emotional pull that keeps it going.",
+            "This is more effective than relying only on guilt because guilt rarely redesigns the environment.",
+            "The chapter treats unwanted habits as systems that can be unpacked rather than as proof of weak character.",
+            "A practical strategy is to make the bad behavior harder to perform at the exact moment it usually happens.",
+            "Changing one link in the pattern can reduce the automatic quality of the routine.",
+            "The lesson is that breaking a habit works better when the system changes with you.",
+            "The chapter shows that how to weaken unwanted behaviors by redesigning prompts, ability, and motivation becomes clearer when you study behavior in the exact moment it either happens or fails to happen.",
+            "It also argues that behavior design works better than self blame because it points to concrete adjustments instead of vague frustration.",
+            "A stronger reading of the method asks what is missing, what is too hard, and what emotional pattern is supporting the result.",
+            "The practical lesson is that reliable change comes from fitting behavior to real life instead of trying to overpower real life.",
+            "The deeper lesson is that how to weaken unwanted behaviors by redesigning prompts, ability, and motivation reflects a design philosophy in which human behavior is responsive, contextual, and more flexible than people assume.",
+            "This means small design choices can create large downstream effects when they alter repetition, confidence, and emotional association.",
+            "The chapter also implies that many failed habit efforts are not failures of character but failures of behavioral fit.",
+            "A more nuanced reading treats behavior change as the interaction of motivation, skill, environment, identity, and timing rather than as one simple act of discipline."
+          ],
+          "keyTakeaways": [
+            "Behavior needs three elements",
+            "Tiny beats fragile ambition",
+            "Good prompts matter",
+            "Emotion wires habits in",
+            "Growth should stay flexible",
+            "Design is kinder than blame",
+            "Behavior is contextual",
+            "Compassion improves change",
+            "Scale through stability"
+          ],
+          "practice": [
+            "Shrink one habit today",
+            "Pick a real anchor",
+            "Celebrate immediately",
+            "Remove one barrier",
+            "Track what actually works",
+            "Use the tiny version as the floor",
+            "Review failed attempts as design data",
+            "Choose one system adjustment each week"
+          ]
+        }
+      },
+      "examples": [
+        {
+          "exampleId": "ch07-ex01",
+          "title": "Start reading again",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You want to read more books, but every plan turns into a large goal that feels unrealistic after a long day. Because the behavior is framed as an hour of focused reading, you keep postponing it until the habit never starts.",
+          "whatToDo": [
+            "Create a tiny version that happens after a reliable anchor, such as reading one paragraph after plugging in your phone at night. Celebrate the completion immediately so the brain starts linking the action with success instead of pressure."
+          ],
+          "whyItMatters": "Personal goals often fail because they are designed for ideal days instead of normal ones. This example helps readers apply the Tiny Habits method to a common problem in a humane and sustainable way."
+        },
+        {
+          "exampleId": "ch07-ex02",
+          "title": "Reduce stress snacking",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You find yourself snacking automatically whenever you feel restless in the evening. The behavior feels small, but it repeats often enough that it becomes frustrating and hard to interrupt.",
+          "whatToDo": [
+            "Study what is prompting the routine, what emotional relief it provides, and how easy it is to perform. Then redesign the moment by reducing access, changing the prompt pattern, and inserting an easier replacement action that gives some relief with less cost."
+          ],
+          "whyItMatters": "This scenario shows how the same model can be used for unwanted habits, not only for building good ones. It helps readers move from guilt to practical redesign."
+        },
+        {
+          "exampleId": "ch07-ex03",
+          "title": "Build a study starter",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "You keep waiting for motivation to study, and because motivation rarely arrives at the right time you end up delaying until stress becomes the real prompt. The result is inconsistent effort and unnecessary anxiety.",
+          "whatToDo": [
+            "Attach an extremely small study action to an existing routine, such as opening your notes after sitting down with coffee. Make the first step tiny enough that it feels almost too easy, and celebrate completion so the routine becomes easier to repeat tomorrow."
+          ],
+          "whyItMatters": "Students often assume better study habits require more pressure. This example shows that stable progress often begins with smaller, smarter design rather than bigger promises."
+        },
+        {
+          "exampleId": "ch07-ex04",
+          "title": "Improve group project follow through",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A class project keeps slipping because everyone intends to contribute but nobody has a dependable routine for updates or handoffs. The group is relying on motivation and memory instead of behavior design.",
+          "whatToDo": [
+            "Choose one tiny shared behavior with a clear prompt, such as posting a short progress update right after each work block. Keep it simple enough that it is easy to do even in busy weeks, and let the consistency create momentum for the rest of the work."
+          ],
+          "whyItMatters": "School teamwork often breaks down through weak process, not bad intent. This example shows how tiny routines can improve coordination and reduce last minute pressure."
+        },
+        {
+          "exampleId": "ch07-ex05",
+          "title": "Start strong at a new job",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "You want to look organized at a new job, but your current workflow depends on remembering too many small tasks. Because nothing is anchored clearly, important follow ups get delayed even though you care about doing well.",
+          "whatToDo": [
+            "Create tiny work habits tied to existing transitions, such as reviewing priorities right after opening your laptop or logging one follow up right after each meeting. Keep the action small enough that it happens even on chaotic days and grows from there."
+          ],
+          "whyItMatters": "Early career work improves when reliability is built through systems instead of stress. This example helps readers use tiny habits to create visible steadiness in professional settings."
+        },
+        {
+          "exampleId": "ch07-ex06",
+          "title": "Change a team meeting pattern",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "A team meeting always runs long because people arrive without clear updates and discussion drifts. Everyone wants the process to improve, but no one has built a routine that makes the better behavior automatic.",
+          "whatToDo": [
+            "Design one tiny behavior for the team, such as posting a one sentence update before the meeting starts or ending each agenda item with a visible owner. Keep the new action easy, anchored, and repeatable so it becomes part of the group pattern."
+          ],
+          "whyItMatters": "The Tiny Habits method applies to teams as well as individuals. This example helps readers see how small routine changes can reshape group performance without dramatic intervention."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch07-h-q01",
+            "prompt": "What is the central claim of untangle bad habits?",
+            "choices": [
+              "Big goals matter more than repeatable design",
+              "Reliable behavior comes from designing conditions that make action easier and more likely",
+              "Motivation alone is enough if the goal matters",
+              "Habits form mainly through pressure"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch07-h-q02",
+            "prompt": "Why does the method prefer tiny actions over large ones at the start?",
+            "choices": [
+              "Because ambition is unhelpful",
+              "Because easy actions repeat more consistently and create a stable base for growth",
+              "Because tiny actions always stay tiny",
+              "Because difficulty prevents learning"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch07-h-q03",
+            "prompt": "What role do prompts play in the model?",
+            "choices": [
+              "They replace motivation entirely",
+              "They tell the brain when to act and make timing more reliable",
+              "They matter only for bad habits",
+              "They are less important than intention"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch07-h-q04",
+            "prompt": "Why is celebration treated as important rather than optional?",
+            "choices": [
+              "Because positive emotion helps wire the new habit in quickly",
+              "Because celebration proves the habit is complete forever",
+              "Because rewards matter only after large actions",
+              "Because emotion is separate from behavior change"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch07-h-q05",
+            "prompt": "What does the book suggest is usually a better response than self blame when a habit fails?",
+            "choices": [
+              "Add more shame so the habit feels serious",
+              "Diagnose motivation, ability, and prompting to redesign the behavior",
+              "Wait for the next burst of enthusiasm",
+              "Drop the goal entirely"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch07-h-q06",
+            "prompt": "How does the method describe growth from a tiny habit?",
+            "choices": [
+              "It should be forced as quickly as possible",
+              "It should emerge from consistency and success rather than pressure",
+              "It usually happens before the habit is stable",
+              "It is not necessary once a tiny habit exists"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch07-h-q07",
+            "prompt": "What broader philosophy of change is implied by the chapter?",
+            "choices": [
+              "Change works best when it fits human reality instead of fighting it",
+              "Change works only under intense pressure",
+              "Change depends mostly on talent",
+              "Change should avoid emotion entirely"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch07-h-q08",
+            "prompt": "Why is the method described as compassionate?",
+            "choices": [
+              "Because it lowers standards",
+              "Because it treats failure as information about design rather than proof of personal weakness",
+              "Because it avoids accountability",
+              "Because it rejects all structure"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch07-h-q09",
+            "prompt": "What kind of thinking does the book encourage when building habits?",
+            "choices": [
+              "All or nothing thinking",
+              "Experimental thinking that adjusts the design based on what actually happens",
+              "Purely motivational thinking",
+              "Performance thinking that ignores context"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch07-h-q10",
+            "prompt": "What is the deeper value of the Tiny Habits approach?",
+            "choices": [
+              "It gives people a practical way to create change that is durable, humane, and adaptable",
+              "It guarantees immediate transformation",
+              "It removes the need for goals and planning",
+              "It works only for personal habits and not for teams"
+            ],
+            "correctIndex": 0
+          }
+        ]
+      }
+    },
+    {
+      "chapterId": "ch08-change-together",
+      "number": 8,
+      "title": "How We Change Together",
+      "readingTimeMinutes": 14,
+      "contentVariants": {
+        "easy": {
+          "summaryBullets": [
+            "The final chapter shows that behavior change is often social, not purely individual.",
+            "People are influenced by what others model, celebrate, expect, and make normal around them.",
+            "Supportive environments can make tiny habits easier because cues and rewards become shared.",
+            "Groups can strengthen change when they reduce shame and increase consistency.",
+            "The chapter suggests that helping others change works best when you respect autonomy and reduce pressure.",
+            "Social reinforcement matters because habits often become identity signals inside relationships and communities.",
+            "A well designed environment can make good behavior feel more obvious and less lonely.",
+            "The closing message is that lasting change grows faster when people and systems support it together."
+          ],
+          "keyTakeaways": [
+            "Behavior needs three elements",
+            "Tiny beats fragile ambition",
+            "Good prompts matter",
+            "Emotion wires habits in",
+            "Growth should stay flexible",
+            "Design is kinder than blame"
+          ],
+          "practice": [
+            "Shrink one habit today",
+            "Pick a real anchor",
+            "Celebrate immediately",
+            "Remove one barrier"
+          ]
+        },
+        "medium": {
+          "summaryBullets": [
+            "The final chapter shows that behavior change is often social, not purely individual.",
+            "People are influenced by what others model, celebrate, expect, and make normal around them.",
+            "Supportive environments can make tiny habits easier because cues and rewards become shared.",
+            "Groups can strengthen change when they reduce shame and increase consistency.",
+            "The chapter suggests that helping others change works best when you respect autonomy and reduce pressure.",
+            "Social reinforcement matters because habits often become identity signals inside relationships and communities.",
+            "A well designed environment can make good behavior feel more obvious and less lonely.",
+            "The closing message is that lasting change grows faster when people and systems support it together.",
+            "The chapter shows that how habits spread through relationships, support, and shared environments becomes clearer when you study behavior in the exact moment it either happens or fails to happen.",
+            "It also argues that behavior design works better than self blame because it points to concrete adjustments instead of vague frustration.",
+            "A stronger reading of the method asks what is missing, what is too hard, and what emotional pattern is supporting the result.",
+            "The practical lesson is that reliable change comes from fitting behavior to real life instead of trying to overpower real life."
+          ],
+          "keyTakeaways": [
+            "Behavior needs three elements",
+            "Tiny beats fragile ambition",
+            "Good prompts matter",
+            "Emotion wires habits in",
+            "Growth should stay flexible",
+            "Design is kinder than blame",
+            "Design beats pressure",
+            "Fit matters more than force"
+          ],
+          "practice": [
+            "Shrink one habit today",
+            "Pick a real anchor",
+            "Celebrate immediately",
+            "Remove one barrier",
+            "Track what actually works",
+            "Use the tiny version as the floor"
+          ]
+        },
+        "hard": {
+          "summaryBullets": [
+            "The final chapter shows that behavior change is often social, not purely individual.",
+            "People are influenced by what others model, celebrate, expect, and make normal around them.",
+            "Supportive environments can make tiny habits easier because cues and rewards become shared.",
+            "Groups can strengthen change when they reduce shame and increase consistency.",
+            "The chapter suggests that helping others change works best when you respect autonomy and reduce pressure.",
+            "Social reinforcement matters because habits often become identity signals inside relationships and communities.",
+            "A well designed environment can make good behavior feel more obvious and less lonely.",
+            "The closing message is that lasting change grows faster when people and systems support it together.",
+            "The chapter shows that how habits spread through relationships, support, and shared environments becomes clearer when you study behavior in the exact moment it either happens or fails to happen.",
+            "It also argues that behavior design works better than self blame because it points to concrete adjustments instead of vague frustration.",
+            "A stronger reading of the method asks what is missing, what is too hard, and what emotional pattern is supporting the result.",
+            "The practical lesson is that reliable change comes from fitting behavior to real life instead of trying to overpower real life.",
+            "The deeper lesson is that how habits spread through relationships, support, and shared environments reflects a design philosophy in which human behavior is responsive, contextual, and more flexible than people assume.",
+            "This means small design choices can create large downstream effects when they alter repetition, confidence, and emotional association.",
+            "The chapter also implies that many failed habit efforts are not failures of character but failures of behavioral fit.",
+            "A more nuanced reading treats behavior change as the interaction of motivation, skill, environment, identity, and timing rather than as one simple act of discipline."
+          ],
+          "keyTakeaways": [
+            "Behavior needs three elements",
+            "Tiny beats fragile ambition",
+            "Good prompts matter",
+            "Emotion wires habits in",
+            "Growth should stay flexible",
+            "Design is kinder than blame",
+            "Behavior is contextual",
+            "Compassion improves change",
+            "Scale through stability"
+          ],
+          "practice": [
+            "Shrink one habit today",
+            "Pick a real anchor",
+            "Celebrate immediately",
+            "Remove one barrier",
+            "Track what actually works",
+            "Use the tiny version as the floor",
+            "Review failed attempts as design data",
+            "Choose one system adjustment each week"
+          ]
+        }
+      },
+      "examples": [
+        {
+          "exampleId": "ch08-ex01",
+          "title": "Start reading again",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You want to read more books, but every plan turns into a large goal that feels unrealistic after a long day. Because the behavior is framed as an hour of focused reading, you keep postponing it until the habit never starts.",
+          "whatToDo": [
+            "Create a tiny version that happens after a reliable anchor, such as reading one paragraph after plugging in your phone at night. Celebrate the completion immediately so the brain starts linking the action with success instead of pressure."
+          ],
+          "whyItMatters": "Personal goals often fail because they are designed for ideal days instead of normal ones. This example helps readers apply the Tiny Habits method to a common problem in a humane and sustainable way."
+        },
+        {
+          "exampleId": "ch08-ex02",
+          "title": "Reduce stress snacking",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You find yourself snacking automatically whenever you feel restless in the evening. The behavior feels small, but it repeats often enough that it becomes frustrating and hard to interrupt.",
+          "whatToDo": [
+            "Study what is prompting the routine, what emotional relief it provides, and how easy it is to perform. Then redesign the moment by reducing access, changing the prompt pattern, and inserting an easier replacement action that gives some relief with less cost."
+          ],
+          "whyItMatters": "This scenario shows how the same model can be used for unwanted habits, not only for building good ones. It helps readers move from guilt to practical redesign."
+        },
+        {
+          "exampleId": "ch08-ex03",
+          "title": "Build a study starter",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "You keep waiting for motivation to study, and because motivation rarely arrives at the right time you end up delaying until stress becomes the real prompt. The result is inconsistent effort and unnecessary anxiety.",
+          "whatToDo": [
+            "Attach an extremely small study action to an existing routine, such as opening your notes after sitting down with coffee. Make the first step tiny enough that it feels almost too easy, and celebrate completion so the routine becomes easier to repeat tomorrow."
+          ],
+          "whyItMatters": "Students often assume better study habits require more pressure. This example shows that stable progress often begins with smaller, smarter design rather than bigger promises."
+        },
+        {
+          "exampleId": "ch08-ex04",
+          "title": "Improve group project follow through",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A class project keeps slipping because everyone intends to contribute but nobody has a dependable routine for updates or handoffs. The group is relying on motivation and memory instead of behavior design.",
+          "whatToDo": [
+            "Choose one tiny shared behavior with a clear prompt, such as posting a short progress update right after each work block. Keep it simple enough that it is easy to do even in busy weeks, and let the consistency create momentum for the rest of the work."
+          ],
+          "whyItMatters": "School teamwork often breaks down through weak process, not bad intent. This example shows how tiny routines can improve coordination and reduce last minute pressure."
+        },
+        {
+          "exampleId": "ch08-ex05",
+          "title": "Start strong at a new job",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "You want to look organized at a new job, but your current workflow depends on remembering too many small tasks. Because nothing is anchored clearly, important follow ups get delayed even though you care about doing well.",
+          "whatToDo": [
+            "Create tiny work habits tied to existing transitions, such as reviewing priorities right after opening your laptop or logging one follow up right after each meeting. Keep the action small enough that it happens even on chaotic days and grows from there."
+          ],
+          "whyItMatters": "Early career work improves when reliability is built through systems instead of stress. This example helps readers use tiny habits to create visible steadiness in professional settings."
+        },
+        {
+          "exampleId": "ch08-ex06",
+          "title": "Change a team meeting pattern",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "A team meeting always runs long because people arrive without clear updates and discussion drifts. Everyone wants the process to improve, but no one has built a routine that makes the better behavior automatic.",
+          "whatToDo": [
+            "Design one tiny behavior for the team, such as posting a one sentence update before the meeting starts or ending each agenda item with a visible owner. Keep the new action easy, anchored, and repeatable so it becomes part of the group pattern."
+          ],
+          "whyItMatters": "The Tiny Habits method applies to teams as well as individuals. This example helps readers see how small routine changes can reshape group performance without dramatic intervention."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch08-h-q01",
+            "prompt": "What is the central claim of how we change together?",
+            "choices": [
+              "Big goals matter more than repeatable design",
+              "Reliable behavior comes from designing conditions that make action easier and more likely",
+              "Motivation alone is enough if the goal matters",
+              "Habits form mainly through pressure"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch08-h-q02",
+            "prompt": "Why does the method prefer tiny actions over large ones at the start?",
+            "choices": [
+              "Because ambition is unhelpful",
+              "Because easy actions repeat more consistently and create a stable base for growth",
+              "Because tiny actions always stay tiny",
+              "Because difficulty prevents learning"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch08-h-q03",
+            "prompt": "What role do prompts play in the model?",
+            "choices": [
+              "They replace motivation entirely",
+              "They tell the brain when to act and make timing more reliable",
+              "They matter only for bad habits",
+              "They are less important than intention"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch08-h-q04",
+            "prompt": "Why is celebration treated as important rather than optional?",
+            "choices": [
+              "Because positive emotion helps wire the new habit in quickly",
+              "Because celebration proves the habit is complete forever",
+              "Because rewards matter only after large actions",
+              "Because emotion is separate from behavior change"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch08-h-q05",
+            "prompt": "What does the book suggest is usually a better response than self blame when a habit fails?",
+            "choices": [
+              "Add more shame so the habit feels serious",
+              "Diagnose motivation, ability, and prompting to redesign the behavior",
+              "Wait for the next burst of enthusiasm",
+              "Drop the goal entirely"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch08-h-q06",
+            "prompt": "How does the method describe growth from a tiny habit?",
+            "choices": [
+              "It should be forced as quickly as possible",
+              "It should emerge from consistency and success rather than pressure",
+              "It usually happens before the habit is stable",
+              "It is not necessary once a tiny habit exists"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch08-h-q07",
+            "prompt": "What broader philosophy of change is implied by the chapter?",
+            "choices": [
+              "Change works best when it fits human reality instead of fighting it",
+              "Change works only under intense pressure",
+              "Change depends mostly on talent",
+              "Change should avoid emotion entirely"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch08-h-q08",
+            "prompt": "Why is the method described as compassionate?",
+            "choices": [
+              "Because it lowers standards",
+              "Because it treats failure as information about design rather than proof of personal weakness",
+              "Because it avoids accountability",
+              "Because it rejects all structure"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch08-h-q09",
+            "prompt": "What kind of thinking does the book encourage when building habits?",
+            "choices": [
+              "All or nothing thinking",
+              "Experimental thinking that adjusts the design based on what actually happens",
+              "Purely motivational thinking",
+              "Performance thinking that ignores context"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "questionId": "ch08-h-q10",
+            "prompt": "What is the deeper value of the Tiny Habits approach?",
+            "choices": [
+              "It gives people a practical way to create change that is durable, humane, and adaptable",
+              "It guarantees immediate transformation",
+              "It removes the need for goals and planning",
+              "It works only for personal habits and not for teams"
+            ],
+            "correctIndex": 0
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+<svg width="1200" height="1800" viewBox="0 0 1200 1800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="1800" fill="#141414"/>
+  <rect x="84" y="84" width="1032" height="1632" rx="46" fill="#171717" stroke="#3F3F46" stroke-width="8"/>
+  <rect x="84" y="84" width="1032" height="214" rx="46" fill="#6D28D9"/>
+  <text x="600" y="198" text-anchor="middle" fill="#F5F3FF" font-family="Georgia, serif" font-size="82" letter-spacing="9">ROBERT GREENE</text>
+
+  <circle cx="600" cy="660" r="232" fill="url(#outerGlow)" opacity="0.95"/>
+  <circle cx="600" cy="660" r="178" fill="#18181B" stroke="#A78BFA" stroke-width="8"/>
+  <path d="M600 506C645 506 684 544 684 591C684 631 661 662 628 678C653 691 670 718 670 749C670 800 629 842 578 842H468V506H600Z" fill="#DDD6FE"/>
+  <path d="M632 842H732C783 842 824 800 824 749C824 718 807 691 782 678C815 662 838 631 838 591C838 544 799 506 754 506H632V842Z" fill="#C4B5FD"/>
+  <circle cx="600" cy="611" r="20" fill="#18181B"/>
+  <path d="M548 724C576 753 624 753 652 724" stroke="#18181B" stroke-width="14" stroke-linecap="round"/>
+
+  <text x="600" y="1090" text-anchor="middle" fill="#F8FAFC" font-family="Georgia, serif" font-size="112" letter-spacing="7">THE LAWS OF</text>
+  <text x="600" y="1210" text-anchor="middle" fill="#F8FAFC" font-family="Georgia, serif" font-size="124" letter-spacing="7">HUMAN NATURE</text>
+  <text x="600" y="1320" text-anchor="middle" fill="#C4B5FD" font-family="Arial, sans-serif" font-size="40" letter-spacing="5">SELF AWARENESS • INCENTIVES • LEADERSHIP</text>
+
+  <rect x="176" y="1412" width="848" height="212" rx="26" fill="#1F1F23" stroke="#3F3F46" stroke-width="4"/>
+  <text x="600" y="1492" text-anchor="middle" fill="#E4E4E7" font-family="Arial, sans-serif" font-size="40" letter-spacing="4">READ MOTIVES CLEARLY</text>
+  <text x="600" y="1556" text-anchor="middle" fill="#D4D4D8" font-family="Arial, sans-serif" font-size="34">A modern learning edition on emotion, character,</text>
+  <text x="600" y="1602" text-anchor="middle" fill="#D4D4D8" font-family="Arial, sans-serif" font-size="34">envy, group behavior, and the ethics of influence.</text>
+
+  <defs>
+    <radialGradient id="outerGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(600 660) rotate(90) scale(232)">
+      <stop stop-color="#8B5CF6"/>
+      <stop offset="1" stop-color="#4C1D95"/>
+    </radialGradient>
+  </defs>
+</svg>

@@ -1,0 +1,925 @@
+{
+  "schemaVersion": "1.0.0",
+  "packageId": "73b496d6-812d-41cf-8a27-9b623b0391ea",
+  "createdAt": "2026-03-13T00:00:00Z",
+  "contentOwner": "Will Soltani",
+  "book": {
+    "bookId": "mans-search-for-meaning",
+    "title": "Man's Search for Meaning",
+    "author": "Viktor E. Frankl",
+    "categories": [
+      "Psychology",
+      "Philosophy",
+      "Resilience"
+    ],
+    "tags": [
+      "meaning",
+      "logotherapy",
+      "resilience",
+      "suffering",
+      "responsibility",
+      "purpose"
+    ],
+    "edition": {
+      "name": "Beacon Press Three Part Edition",
+      "publishedYear": 2025
+    },
+    "variantFamily": "EMH"
+  },
+  "chapters": [
+    {
+      "chapterId": "ch01-camp-experience-and-inner-freedom",
+      "number": 1,
+      "title": "Suffering, Choice, and Inner Freedom",
+      "readingTimeMinutes": 15,
+      "contentVariants": {
+        "easy": {
+          "summaryBullets": [
+            "This chapter argues that the camp narrative argues that even under extreme deprivation people still retain some freedom in how they respond internally.",
+            "A central idea is that human beings need more than comfort or success. They need reasons to endure and act well.",
+            "The chapter treats meaning as something lived through response, not only discussed in theory.",
+            "It encourages readers to look for dignity, responsibility, and purpose even when conditions are painful.",
+            "The lesson matters because students and early career readers face pressure, uncertainty, loss, and disappointment in forms that can still feel overwhelming.",
+            "The chapter keeps returning to the freedom found in response, perspective, and responsibility.",
+            "It presents resilience as a moral and psychological practice rather than as mere toughness.",
+            "The main takeaway is that life can remain meaningful even when comfort, certainty, and control are limited."
+          ],
+          "keyTakeaways": [
+            "response still matters",
+            "dignity can survive hardship",
+            "meaning can exist in suffering",
+            "choice remains limited but real",
+            "attitude shapes endurance",
+            "inner life affects survival"
+          ],
+          "practice": [
+            "pause before reacting",
+            "name what is still in your control",
+            "find one reason to endure well",
+            "protect dignity under stress",
+            "respond instead of collapsing into resentment"
+          ]
+        },
+        "medium": {
+          "summaryBullets": [
+            "This chapter argues that the camp narrative argues that even under extreme deprivation people still retain some freedom in how they respond internally.",
+            "A central idea is that human beings need more than comfort or success. They need reasons to endure and act well.",
+            "The chapter treats meaning as something lived through response, not only discussed in theory.",
+            "It encourages readers to look for dignity, responsibility, and purpose even when conditions are painful.",
+            "The lesson matters because students and early career readers face pressure, uncertainty, loss, and disappointment in forms that can still feel overwhelming.",
+            "The chapter keeps returning to the freedom found in response, perspective, and responsibility.",
+            "It presents resilience as a moral and psychological practice rather than as mere toughness.",
+            "The main takeaway is that life can remain meaningful even when comfort, certainty, and control are limited.",
+            "The chapter also challenges the idea that suffering automatically destroys meaning, arguing instead that suffering changes the question life asks of a person.",
+            "Rather than asking only how to escape pain, the reader is asked how to answer it with dignity, love, work, or moral seriousness.",
+            "For students and early career readers, the practical lesson is that identity becomes stronger when built around responsibility instead of around ease or applause.",
+            "The chapter ultimately frames hope as something disciplined and truthful rather than sentimental."
+          ],
+          "keyTakeaways": [
+            "response still matters",
+            "dignity can survive hardship",
+            "meaning can exist in suffering",
+            "choice remains limited but real",
+            "attitude shapes endurance",
+            "inner life affects survival",
+            "response creates dignity",
+            "meaning resists emptiness"
+          ],
+          "practice": [
+            "pause before reacting",
+            "name what is still in your control",
+            "find one reason to endure well",
+            "protect dignity under stress",
+            "respond instead of collapsing into resentment",
+            "review one situation through responsibility not complaint"
+          ]
+        },
+        "hard": {
+          "summaryBullets": [
+            "This chapter argues that the camp narrative argues that even under extreme deprivation people still retain some freedom in how they respond internally.",
+            "A central idea is that human beings need more than comfort or success. They need reasons to endure and act well.",
+            "The chapter treats meaning as something lived through response, not only discussed in theory.",
+            "It encourages readers to look for dignity, responsibility, and purpose even when conditions are painful.",
+            "The lesson matters because students and early career readers face pressure, uncertainty, loss, and disappointment in forms that can still feel overwhelming.",
+            "The chapter keeps returning to the freedom found in response, perspective, and responsibility.",
+            "It presents resilience as a moral and psychological practice rather than as mere toughness.",
+            "The main takeaway is that life can remain meaningful even when comfort, certainty, and control are limited.",
+            "The chapter also challenges the idea that suffering automatically destroys meaning, arguing instead that suffering changes the question life asks of a person.",
+            "Rather than asking only how to escape pain, the reader is asked how to answer it with dignity, love, work, or moral seriousness.",
+            "For students and early career readers, the practical lesson is that identity becomes stronger when built around responsibility instead of around ease or applause.",
+            "The chapter ultimately frames hope as something disciplined and truthful rather than sentimental.",
+            "A deeper reading shows that the book is not romanticizing suffering. It is warning against nihilism when suffering becomes unavoidable.",
+            "This means meaning is not a decorative idea added after survival. It is part of what makes endurance, moral agency, and psychological survival possible at all.",
+            "The chapter therefore links freedom, conscience, work, love, and mortality into one account of how a person can still choose significance under constraint.",
+            "The deepest takeaway is that meaning is discovered through responsible response, and that response remains possible farther into hardship than many people assume."
+          ],
+          "keyTakeaways": [
+            "response still matters",
+            "dignity can survive hardship",
+            "meaning can exist in suffering",
+            "choice remains limited but real",
+            "attitude shapes endurance",
+            "inner life affects survival",
+            "response creates dignity",
+            "meaning resists emptiness",
+            "truthful hope matters"
+          ],
+          "practice": [
+            "pause before reacting",
+            "name what is still in your control",
+            "find one reason to endure well",
+            "protect dignity under stress",
+            "respond instead of collapsing into resentment",
+            "review one situation through responsibility not complaint",
+            "name one difficult reality and one worthy response"
+          ]
+        }
+      },
+      "examples": [
+        {
+          "exampleId": "ch01-ex01",
+          "title": "Responding under pressure",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "A difficult event makes you feel cornered, and your first instinct is to assume that the event now fully defines your life. In that moment it becomes hard to notice that, while you may not control the event, you still have some control over the way you answer it.",
+          "whatToDo": [
+            "Create a pause between the event and your reaction. protect the space between what happens and how you respond, then choose one response that protects dignity and direction instead of surrendering to despair or self pity."
+          ],
+          "whyItMatters": "This matters because personal suffering often becomes heavier when it is treated as total identity. Frankl's central insight is that response still matters even when options narrow."
+        },
+        {
+          "exampleId": "ch01-ex02",
+          "title": "Turning pain toward responsibility",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You are disappointed, grieving, or exhausted, and the easiest question to ask is why this is happening to you. That question is understandable, but it can trap you if it never becomes a question about what kind of person you still want to be here.",
+          "whatToDo": [
+            "Shift the focus from complaint to responsibility. protect the space between what happens and how you respond, and ask what dignity, honesty, or service would look like in this specific circumstance."
+          ],
+          "whyItMatters": "This matters because meaning is often found less in the event itself than in the responsibility taken within it. That shift can create steadier action and less despair."
+        },
+        {
+          "exampleId": "ch01-ex03",
+          "title": "Meaning beyond grades",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A bad result in school makes everything feel smaller and more pointless, especially when your self worth is heavily tied to performance. The danger is not only discouragement. It is letting one outcome erase the larger reasons you are learning and growing at all.",
+          "whatToDo": [
+            "Reconnect the setback to a wider purpose. treat pressure and disappointment as tests of response rather than total definitions of identity, so the grade becomes feedback inside a meaningful path instead of a verdict on your value."
+          ],
+          "whyItMatters": "This matters because academic life can narrow attention to metrics that do not hold the whole meaning of a life. Perspective protects resilience and depth."
+        },
+        {
+          "exampleId": "ch01-ex04",
+          "title": "Serving others during hard seasons",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A stressful semester makes everyone more self focused, and it becomes easy to believe you have no capacity left for patience, help, or generosity. Yet small acts of usefulness can sometimes restore perspective better than pure self absorption can.",
+          "whatToDo": [
+            "Keep one responsibility to others active even during pressure. treat pressure and disappointment as tests of response rather than total definitions of identity, and use service as a way to protect meaning when life feels narrowed by stress."
+          ],
+          "whyItMatters": "This matters because meaning often grows through relationships and responsibility. Students become more resilient when they do not let hardship sever every outward bond."
+        },
+        {
+          "exampleId": "ch01-ex05",
+          "title": "Holding purpose at work",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "A difficult workplace or uncertain job can make effort feel hollow, especially if you start treating the whole experience as only a source of frustration. That mindset can drain energy faster than the job itself.",
+          "whatToDo": [
+            "Identify what responsibility, service, or growth still matters in the role. maintain dignity and judgment even when conditions are harsh or unfair, and let that purpose guide your conduct while you decide what should change next."
+          ],
+          "whyItMatters": "This matters because work becomes more bearable and more ethical when it is connected to meaning instead of only to survival or status."
+        },
+        {
+          "exampleId": "ch01-ex06",
+          "title": "Facing reality without collapse",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "A serious professional setback makes it tempting to choose between denial and despair. Both responses are distortions. One refuses reality and the other surrenders to it.",
+          "whatToDo": [
+            "Acknowledge the difficulty fully while still asking what useful and honorable action remains. maintain dignity and judgment even when conditions are harsh or unfair, so hope becomes disciplined rather than delusional."
+          ],
+          "whyItMatters": "This matters because constructive realism is one of the hardest professional skills. It allows people to keep acting well without pretending conditions are easy."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch01-h-q01",
+            "prompt": "What is the main claim of this chapter?",
+            "choices": [
+              "That the camp narrative argues that even under extreme deprivation people still retain some freedom in how they respond internally.",
+              "That comfort is the highest human aim.",
+              "That suffering always removes meaning completely.",
+              "That responsibility matters only when life is easy."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch01-h-q02",
+            "prompt": "What broad human need does the chapter emphasize?",
+            "choices": [
+              "The need for meaning and responsibility.",
+              "The need for status above all else.",
+              "The need to control every external event.",
+              "The need to avoid all discomfort."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch01-h-q03",
+            "prompt": "Why does this chapter matter for students and early career readers?",
+            "choices": [
+              "Because pressure, loss, and uncertainty can still feel overwhelming in ordinary life.",
+              "Because meaning matters only in extreme historical situations.",
+              "Because resilience is mostly automatic at younger ages.",
+              "Because responsibility becomes important only after success."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch01-h-q04",
+            "prompt": "How does the chapter treat meaning?",
+            "choices": [
+              "As something lived through response and responsibility.",
+              "As something found only in comfort.",
+              "As something reserved for formal religion only.",
+              "As something unrelated to action."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch01-h-q05",
+            "prompt": "What remains important even when control is limited?",
+            "choices": [
+              "Dignity, perspective, and response.",
+              "Perfect certainty about outcomes.",
+              "External approval from everyone.",
+              "Complete freedom from suffering."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch01-h-q06",
+            "prompt": "What common idea does the chapter challenge?",
+            "choices": [
+              "That suffering automatically destroys meaning.",
+              "That response matters under pressure.",
+              "That work and love can carry meaning.",
+              "That responsibility shapes identity."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch01-h-q07",
+            "prompt": "What practical lesson does the chapter offer?",
+            "choices": [
+              "Identity becomes stronger when built around responsibility rather than ease or applause.",
+              "Hope should ignore reality to stay strong.",
+              "Pain should always be romanticized.",
+              "Meaning is mostly a private feeling detached from conduct."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch01-h-q08",
+            "prompt": "What deeper warning appears in the chapter?",
+            "choices": [
+              "The warning against nihilism when suffering becomes unavoidable.",
+              "The warning that all pain is valuable in itself.",
+              "The warning that conscience is irrelevant under hardship.",
+              "The warning that love and work do not matter much."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch01-h-q09",
+            "prompt": "What does the chapter connect together in a deeper reading?",
+            "choices": [
+              "Freedom, conscience, work, love, and mortality.",
+              "Pleasure, applause, and social dominance.",
+              "Comfort, denial, and emotional escape.",
+              "Status, certainty, and external control."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch01-h-q10",
+            "prompt": "What is the deepest takeaway of the chapter?",
+            "choices": [
+              "Meaning is discovered through responsible response, even far into hardship.",
+              "Meaning disappears when life becomes painful.",
+              "Meaning depends mainly on easy circumstances.",
+              "Meaning is something other people assign to you."
+            ],
+            "correctIndex": 0
+          }
+        ]
+      }
+    },
+    {
+      "chapterId": "ch02-logotherapy-and-meaning",
+      "number": 2,
+      "title": "Meaning As A Human Need",
+      "readingTimeMinutes": 15,
+      "contentVariants": {
+        "easy": {
+          "summaryBullets": [
+            "This chapter argues that the explanation of logotherapy claims that people are driven less by pleasure or power than by the search for meaning and responsibility.",
+            "A central idea is that human beings need more than comfort or success. They need reasons to endure and act well.",
+            "The chapter treats meaning as something lived through response, not only discussed in theory.",
+            "It encourages readers to look for dignity, responsibility, and purpose even when conditions are painful.",
+            "The lesson matters because students and early career readers face pressure, uncertainty, loss, and disappointment in forms that can still feel overwhelming.",
+            "The chapter keeps returning to the freedom found in response, perspective, and responsibility.",
+            "It presents resilience as a moral and psychological practice rather than as mere toughness.",
+            "The main takeaway is that life can remain meaningful even when comfort, certainty, and control are limited."
+          ],
+          "keyTakeaways": [
+            "meaning is central",
+            "responsibility gives direction",
+            "suffering can be answered",
+            "purpose supports endurance",
+            "work and love can carry meaning",
+            "empty success can still feel vacant"
+          ],
+          "practice": [
+            "write one meaningful responsibility",
+            "connect one task to a larger why",
+            "replace self pity with response",
+            "look for meaning in service",
+            "review where life feels empty and why"
+          ]
+        },
+        "medium": {
+          "summaryBullets": [
+            "This chapter argues that the explanation of logotherapy claims that people are driven less by pleasure or power than by the search for meaning and responsibility.",
+            "A central idea is that human beings need more than comfort or success. They need reasons to endure and act well.",
+            "The chapter treats meaning as something lived through response, not only discussed in theory.",
+            "It encourages readers to look for dignity, responsibility, and purpose even when conditions are painful.",
+            "The lesson matters because students and early career readers face pressure, uncertainty, loss, and disappointment in forms that can still feel overwhelming.",
+            "The chapter keeps returning to the freedom found in response, perspective, and responsibility.",
+            "It presents resilience as a moral and psychological practice rather than as mere toughness.",
+            "The main takeaway is that life can remain meaningful even when comfort, certainty, and control are limited.",
+            "The chapter also challenges the idea that suffering automatically destroys meaning, arguing instead that suffering changes the question life asks of a person.",
+            "Rather than asking only how to escape pain, the reader is asked how to answer it with dignity, love, work, or moral seriousness.",
+            "For students and early career readers, the practical lesson is that identity becomes stronger when built around responsibility instead of around ease or applause.",
+            "The chapter ultimately frames hope as something disciplined and truthful rather than sentimental."
+          ],
+          "keyTakeaways": [
+            "meaning is central",
+            "responsibility gives direction",
+            "suffering can be answered",
+            "purpose supports endurance",
+            "work and love can carry meaning",
+            "empty success can still feel vacant",
+            "response creates dignity",
+            "meaning resists emptiness"
+          ],
+          "practice": [
+            "write one meaningful responsibility",
+            "connect one task to a larger why",
+            "replace self pity with response",
+            "look for meaning in service",
+            "review where life feels empty and why",
+            "review one situation through responsibility not complaint"
+          ]
+        },
+        "hard": {
+          "summaryBullets": [
+            "This chapter argues that the explanation of logotherapy claims that people are driven less by pleasure or power than by the search for meaning and responsibility.",
+            "A central idea is that human beings need more than comfort or success. They need reasons to endure and act well.",
+            "The chapter treats meaning as something lived through response, not only discussed in theory.",
+            "It encourages readers to look for dignity, responsibility, and purpose even when conditions are painful.",
+            "The lesson matters because students and early career readers face pressure, uncertainty, loss, and disappointment in forms that can still feel overwhelming.",
+            "The chapter keeps returning to the freedom found in response, perspective, and responsibility.",
+            "It presents resilience as a moral and psychological practice rather than as mere toughness.",
+            "The main takeaway is that life can remain meaningful even when comfort, certainty, and control are limited.",
+            "The chapter also challenges the idea that suffering automatically destroys meaning, arguing instead that suffering changes the question life asks of a person.",
+            "Rather than asking only how to escape pain, the reader is asked how to answer it with dignity, love, work, or moral seriousness.",
+            "For students and early career readers, the practical lesson is that identity becomes stronger when built around responsibility instead of around ease or applause.",
+            "The chapter ultimately frames hope as something disciplined and truthful rather than sentimental.",
+            "A deeper reading shows that the book is not romanticizing suffering. It is warning against nihilism when suffering becomes unavoidable.",
+            "This means meaning is not a decorative idea added after survival. It is part of what makes endurance, moral agency, and psychological survival possible at all.",
+            "The chapter therefore links freedom, conscience, work, love, and mortality into one account of how a person can still choose significance under constraint.",
+            "The deepest takeaway is that meaning is discovered through responsible response, and that response remains possible farther into hardship than many people assume."
+          ],
+          "keyTakeaways": [
+            "meaning is central",
+            "responsibility gives direction",
+            "suffering can be answered",
+            "purpose supports endurance",
+            "work and love can carry meaning",
+            "empty success can still feel vacant",
+            "response creates dignity",
+            "meaning resists emptiness",
+            "truthful hope matters"
+          ],
+          "practice": [
+            "write one meaningful responsibility",
+            "connect one task to a larger why",
+            "replace self pity with response",
+            "look for meaning in service",
+            "review where life feels empty and why",
+            "review one situation through responsibility not complaint",
+            "name one difficult reality and one worthy response"
+          ]
+        }
+      },
+      "examples": [
+        {
+          "exampleId": "ch02-ex01",
+          "title": "Responding under pressure",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "A difficult event makes you feel cornered, and your first instinct is to assume that the event now fully defines your life. In that moment it becomes hard to notice that, while you may not control the event, you still have some control over the way you answer it.",
+          "whatToDo": [
+            "Create a pause between the event and your reaction. ask what your life is asking of you, not only what you want from it, then choose one response that protects dignity and direction instead of surrendering to despair or self pity."
+          ],
+          "whyItMatters": "This matters because personal suffering often becomes heavier when it is treated as total identity. Frankl's central insight is that response still matters even when options narrow."
+        },
+        {
+          "exampleId": "ch02-ex02",
+          "title": "Turning pain toward responsibility",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You are disappointed, grieving, or exhausted, and the easiest question to ask is why this is happening to you. That question is understandable, but it can trap you if it never becomes a question about what kind of person you still want to be here.",
+          "whatToDo": [
+            "Shift the focus from complaint to responsibility. ask what your life is asking of you, not only what you want from it, and ask what dignity, honesty, or service would look like in this specific circumstance."
+          ],
+          "whyItMatters": "This matters because meaning is often found less in the event itself than in the responsibility taken within it. That shift can create steadier action and less despair."
+        },
+        {
+          "exampleId": "ch02-ex03",
+          "title": "Meaning beyond grades",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A bad result in school makes everything feel smaller and more pointless, especially when your self worth is heavily tied to performance. The danger is not only discouragement. It is letting one outcome erase the larger reasons you are learning and growing at all.",
+          "whatToDo": [
+            "Reconnect the setback to a wider purpose. connect effort to meaning and responsibility instead of only performance, so the grade becomes feedback inside a meaningful path instead of a verdict on your value."
+          ],
+          "whyItMatters": "This matters because academic life can narrow attention to metrics that do not hold the whole meaning of a life. Perspective protects resilience and depth."
+        },
+        {
+          "exampleId": "ch02-ex04",
+          "title": "Serving others during hard seasons",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A stressful semester makes everyone more self focused, and it becomes easy to believe you have no capacity left for patience, help, or generosity. Yet small acts of usefulness can sometimes restore perspective better than pure self absorption can.",
+          "whatToDo": [
+            "Keep one responsibility to others active even during pressure. connect effort to meaning and responsibility instead of only performance, and use service as a way to protect meaning when life feels narrowed by stress."
+          ],
+          "whyItMatters": "This matters because meaning often grows through relationships and responsibility. Students become more resilient when they do not let hardship sever every outward bond."
+        },
+        {
+          "exampleId": "ch02-ex05",
+          "title": "Holding purpose at work",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "A difficult workplace or uncertain job can make effort feel hollow, especially if you start treating the whole experience as only a source of frustration. That mindset can drain energy faster than the job itself.",
+          "whatToDo": [
+            "Identify what responsibility, service, or growth still matters in the role. treat purpose, service, and responsibility as part of psychological resilience, and let that purpose guide your conduct while you decide what should change next."
+          ],
+          "whyItMatters": "This matters because work becomes more bearable and more ethical when it is connected to meaning instead of only to survival or status."
+        },
+        {
+          "exampleId": "ch02-ex06",
+          "title": "Facing reality without collapse",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "A serious professional setback makes it tempting to choose between denial and despair. Both responses are distortions. One refuses reality and the other surrenders to it.",
+          "whatToDo": [
+            "Acknowledge the difficulty fully while still asking what useful and honorable action remains. treat purpose, service, and responsibility as part of psychological resilience, so hope becomes disciplined rather than delusional."
+          ],
+          "whyItMatters": "This matters because constructive realism is one of the hardest professional skills. It allows people to keep acting well without pretending conditions are easy."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch02-h-q01",
+            "prompt": "What is the main claim of this chapter?",
+            "choices": [
+              "That the explanation of logotherapy claims that people are driven less by pleasure or power than by the search for meaning and responsibility.",
+              "That comfort is the highest human aim.",
+              "That suffering always removes meaning completely.",
+              "That responsibility matters only when life is easy."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch02-h-q02",
+            "prompt": "What broad human need does the chapter emphasize?",
+            "choices": [
+              "The need for meaning and responsibility.",
+              "The need for status above all else.",
+              "The need to control every external event.",
+              "The need to avoid all discomfort."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch02-h-q03",
+            "prompt": "Why does this chapter matter for students and early career readers?",
+            "choices": [
+              "Because pressure, loss, and uncertainty can still feel overwhelming in ordinary life.",
+              "Because meaning matters only in extreme historical situations.",
+              "Because resilience is mostly automatic at younger ages.",
+              "Because responsibility becomes important only after success."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch02-h-q04",
+            "prompt": "How does the chapter treat meaning?",
+            "choices": [
+              "As something lived through response and responsibility.",
+              "As something found only in comfort.",
+              "As something reserved for formal religion only.",
+              "As something unrelated to action."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch02-h-q05",
+            "prompt": "What remains important even when control is limited?",
+            "choices": [
+              "Dignity, perspective, and response.",
+              "Perfect certainty about outcomes.",
+              "External approval from everyone.",
+              "Complete freedom from suffering."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch02-h-q06",
+            "prompt": "What common idea does the chapter challenge?",
+            "choices": [
+              "That suffering automatically destroys meaning.",
+              "That response matters under pressure.",
+              "That work and love can carry meaning.",
+              "That responsibility shapes identity."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch02-h-q07",
+            "prompt": "What practical lesson does the chapter offer?",
+            "choices": [
+              "Identity becomes stronger when built around responsibility rather than ease or applause.",
+              "Hope should ignore reality to stay strong.",
+              "Pain should always be romanticized.",
+              "Meaning is mostly a private feeling detached from conduct."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch02-h-q08",
+            "prompt": "What deeper warning appears in the chapter?",
+            "choices": [
+              "The warning against nihilism when suffering becomes unavoidable.",
+              "The warning that all pain is valuable in itself.",
+              "The warning that conscience is irrelevant under hardship.",
+              "The warning that love and work do not matter much."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch02-h-q09",
+            "prompt": "What does the chapter connect together in a deeper reading?",
+            "choices": [
+              "Freedom, conscience, work, love, and mortality.",
+              "Pleasure, applause, and social dominance.",
+              "Comfort, denial, and emotional escape.",
+              "Status, certainty, and external control."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch02-h-q10",
+            "prompt": "What is the deepest takeaway of the chapter?",
+            "choices": [
+              "Meaning is discovered through responsible response, even far into hardship.",
+              "Meaning disappears when life becomes painful.",
+              "Meaning depends mainly on easy circumstances.",
+              "Meaning is something other people assign to you."
+            ],
+            "correctIndex": 0
+          }
+        ]
+      }
+    },
+    {
+      "chapterId": "ch03-tragic-optimism-and-modern-life",
+      "number": 3,
+      "title": "Hope Without Denial",
+      "readingTimeMinutes": 14,
+      "contentVariants": {
+        "easy": {
+          "summaryBullets": [
+            "This chapter argues that the closing postscript argues for tragic optimism, which means affirming meaning and responsibility without denying pain, guilt, or mortality.",
+            "A central idea is that human beings need more than comfort or success. They need reasons to endure and act well.",
+            "The chapter treats meaning as something lived through response, not only discussed in theory.",
+            "It encourages readers to look for dignity, responsibility, and purpose even when conditions are painful.",
+            "The lesson matters because students and early career readers face pressure, uncertainty, loss, and disappointment in forms that can still feel overwhelming.",
+            "The chapter keeps returning to the freedom found in response, perspective, and responsibility.",
+            "It presents resilience as a moral and psychological practice rather than as mere toughness.",
+            "The main takeaway is that life can remain meaningful even when comfort, certainty, and control are limited."
+          ],
+          "keyTakeaways": [
+            "hope should face reality",
+            "pain need not erase meaning",
+            "guilt can become growth",
+            "mortality clarifies values",
+            "optimism can be disciplined",
+            "responsibility outlasts comfort"
+          ],
+          "practice": [
+            "name one hard reality honestly",
+            "choose one constructive response",
+            "use regret as a guide to better action",
+            "let mortality clarify priorities",
+            "hold hope without self deception"
+          ]
+        },
+        "medium": {
+          "summaryBullets": [
+            "This chapter argues that the closing postscript argues for tragic optimism, which means affirming meaning and responsibility without denying pain, guilt, or mortality.",
+            "A central idea is that human beings need more than comfort or success. They need reasons to endure and act well.",
+            "The chapter treats meaning as something lived through response, not only discussed in theory.",
+            "It encourages readers to look for dignity, responsibility, and purpose even when conditions are painful.",
+            "The lesson matters because students and early career readers face pressure, uncertainty, loss, and disappointment in forms that can still feel overwhelming.",
+            "The chapter keeps returning to the freedom found in response, perspective, and responsibility.",
+            "It presents resilience as a moral and psychological practice rather than as mere toughness.",
+            "The main takeaway is that life can remain meaningful even when comfort, certainty, and control are limited.",
+            "The chapter also challenges the idea that suffering automatically destroys meaning, arguing instead that suffering changes the question life asks of a person.",
+            "Rather than asking only how to escape pain, the reader is asked how to answer it with dignity, love, work, or moral seriousness.",
+            "For students and early career readers, the practical lesson is that identity becomes stronger when built around responsibility instead of around ease or applause.",
+            "The chapter ultimately frames hope as something disciplined and truthful rather than sentimental."
+          ],
+          "keyTakeaways": [
+            "hope should face reality",
+            "pain need not erase meaning",
+            "guilt can become growth",
+            "mortality clarifies values",
+            "optimism can be disciplined",
+            "responsibility outlasts comfort",
+            "response creates dignity",
+            "meaning resists emptiness"
+          ],
+          "practice": [
+            "name one hard reality honestly",
+            "choose one constructive response",
+            "use regret as a guide to better action",
+            "let mortality clarify priorities",
+            "hold hope without self deception",
+            "review one situation through responsibility not complaint"
+          ]
+        },
+        "hard": {
+          "summaryBullets": [
+            "This chapter argues that the closing postscript argues for tragic optimism, which means affirming meaning and responsibility without denying pain, guilt, or mortality.",
+            "A central idea is that human beings need more than comfort or success. They need reasons to endure and act well.",
+            "The chapter treats meaning as something lived through response, not only discussed in theory.",
+            "It encourages readers to look for dignity, responsibility, and purpose even when conditions are painful.",
+            "The lesson matters because students and early career readers face pressure, uncertainty, loss, and disappointment in forms that can still feel overwhelming.",
+            "The chapter keeps returning to the freedom found in response, perspective, and responsibility.",
+            "It presents resilience as a moral and psychological practice rather than as mere toughness.",
+            "The main takeaway is that life can remain meaningful even when comfort, certainty, and control are limited.",
+            "The chapter also challenges the idea that suffering automatically destroys meaning, arguing instead that suffering changes the question life asks of a person.",
+            "Rather than asking only how to escape pain, the reader is asked how to answer it with dignity, love, work, or moral seriousness.",
+            "For students and early career readers, the practical lesson is that identity becomes stronger when built around responsibility instead of around ease or applause.",
+            "The chapter ultimately frames hope as something disciplined and truthful rather than sentimental.",
+            "A deeper reading shows that the book is not romanticizing suffering. It is warning against nihilism when suffering becomes unavoidable.",
+            "This means meaning is not a decorative idea added after survival. It is part of what makes endurance, moral agency, and psychological survival possible at all.",
+            "The chapter therefore links freedom, conscience, work, love, and mortality into one account of how a person can still choose significance under constraint.",
+            "The deepest takeaway is that meaning is discovered through responsible response, and that response remains possible farther into hardship than many people assume."
+          ],
+          "keyTakeaways": [
+            "hope should face reality",
+            "pain need not erase meaning",
+            "guilt can become growth",
+            "mortality clarifies values",
+            "optimism can be disciplined",
+            "responsibility outlasts comfort",
+            "response creates dignity",
+            "meaning resists emptiness",
+            "truthful hope matters"
+          ],
+          "practice": [
+            "name one hard reality honestly",
+            "choose one constructive response",
+            "use regret as a guide to better action",
+            "let mortality clarify priorities",
+            "hold hope without self deception",
+            "review one situation through responsibility not complaint",
+            "name one difficult reality and one worthy response"
+          ]
+        }
+      },
+      "examples": [
+        {
+          "exampleId": "ch03-ex01",
+          "title": "Responding under pressure",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "A difficult event makes you feel cornered, and your first instinct is to assume that the event now fully defines your life. In that moment it becomes hard to notice that, while you may not control the event, you still have some control over the way you answer it.",
+          "whatToDo": [
+            "Create a pause between the event and your reaction. practice hope that does not depend on easy circumstances, then choose one response that protects dignity and direction instead of surrendering to despair or self pity."
+          ],
+          "whyItMatters": "This matters because personal suffering often becomes heavier when it is treated as total identity. Frankl's central insight is that response still matters even when options narrow."
+        },
+        {
+          "exampleId": "ch03-ex02",
+          "title": "Turning pain toward responsibility",
+          "contexts": [
+            "personal"
+          ],
+          "scenario": "You are disappointed, grieving, or exhausted, and the easiest question to ask is why this is happening to you. That question is understandable, but it can trap you if it never becomes a question about what kind of person you still want to be here.",
+          "whatToDo": [
+            "Shift the focus from complaint to responsibility. practice hope that does not depend on easy circumstances, and ask what dignity, honesty, or service would look like in this specific circumstance."
+          ],
+          "whyItMatters": "This matters because meaning is often found less in the event itself than in the responsibility taken within it. That shift can create steadier action and less despair."
+        },
+        {
+          "exampleId": "ch03-ex03",
+          "title": "Meaning beyond grades",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A bad result in school makes everything feel smaller and more pointless, especially when your self worth is heavily tied to performance. The danger is not only discouragement. It is letting one outcome erase the larger reasons you are learning and growing at all.",
+          "whatToDo": [
+            "Reconnect the setback to a wider purpose. stay constructive during setbacks without pretending they do not hurt, so the grade becomes feedback inside a meaningful path instead of a verdict on your value."
+          ],
+          "whyItMatters": "This matters because academic life can narrow attention to metrics that do not hold the whole meaning of a life. Perspective protects resilience and depth."
+        },
+        {
+          "exampleId": "ch03-ex04",
+          "title": "Serving others during hard seasons",
+          "contexts": [
+            "school"
+          ],
+          "scenario": "A stressful semester makes everyone more self focused, and it becomes easy to believe you have no capacity left for patience, help, or generosity. Yet small acts of usefulness can sometimes restore perspective better than pure self absorption can.",
+          "whatToDo": [
+            "Keep one responsibility to others active even during pressure. stay constructive during setbacks without pretending they do not hurt, and use service as a way to protect meaning when life feels narrowed by stress."
+          ],
+          "whyItMatters": "This matters because meaning often grows through relationships and responsibility. Students become more resilient when they do not let hardship sever every outward bond."
+        },
+        {
+          "exampleId": "ch03-ex05",
+          "title": "Holding purpose at work",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "A difficult workplace or uncertain job can make effort feel hollow, especially if you start treating the whole experience as only a source of frustration. That mindset can drain energy faster than the job itself.",
+          "whatToDo": [
+            "Identify what responsibility, service, or growth still matters in the role. face difficulty honestly while still choosing useful and ethical action, and let that purpose guide your conduct while you decide what should change next."
+          ],
+          "whyItMatters": "This matters because work becomes more bearable and more ethical when it is connected to meaning instead of only to survival or status."
+        },
+        {
+          "exampleId": "ch03-ex06",
+          "title": "Facing reality without collapse",
+          "contexts": [
+            "work"
+          ],
+          "scenario": "A serious professional setback makes it tempting to choose between denial and despair. Both responses are distortions. One refuses reality and the other surrenders to it.",
+          "whatToDo": [
+            "Acknowledge the difficulty fully while still asking what useful and honorable action remains. face difficulty honestly while still choosing useful and ethical action, so hope becomes disciplined rather than delusional."
+          ],
+          "whyItMatters": "This matters because constructive realism is one of the hardest professional skills. It allows people to keep acting well without pretending conditions are easy."
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch03-h-q01",
+            "prompt": "What is the main claim of this chapter?",
+            "choices": [
+              "That the closing postscript argues for tragic optimism, which means affirming meaning and responsibility without denying pain, guilt, or mortality.",
+              "That comfort is the highest human aim.",
+              "That suffering always removes meaning completely.",
+              "That responsibility matters only when life is easy."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch03-h-q02",
+            "prompt": "What broad human need does the chapter emphasize?",
+            "choices": [
+              "The need for meaning and responsibility.",
+              "The need for status above all else.",
+              "The need to control every external event.",
+              "The need to avoid all discomfort."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch03-h-q03",
+            "prompt": "Why does this chapter matter for students and early career readers?",
+            "choices": [
+              "Because pressure, loss, and uncertainty can still feel overwhelming in ordinary life.",
+              "Because meaning matters only in extreme historical situations.",
+              "Because resilience is mostly automatic at younger ages.",
+              "Because responsibility becomes important only after success."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch03-h-q04",
+            "prompt": "How does the chapter treat meaning?",
+            "choices": [
+              "As something lived through response and responsibility.",
+              "As something found only in comfort.",
+              "As something reserved for formal religion only.",
+              "As something unrelated to action."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch03-h-q05",
+            "prompt": "What remains important even when control is limited?",
+            "choices": [
+              "Dignity, perspective, and response.",
+              "Perfect certainty about outcomes.",
+              "External approval from everyone.",
+              "Complete freedom from suffering."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch03-h-q06",
+            "prompt": "What common idea does the chapter challenge?",
+            "choices": [
+              "That suffering automatically destroys meaning.",
+              "That response matters under pressure.",
+              "That work and love can carry meaning.",
+              "That responsibility shapes identity."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch03-h-q07",
+            "prompt": "What practical lesson does the chapter offer?",
+            "choices": [
+              "Identity becomes stronger when built around responsibility rather than ease or applause.",
+              "Hope should ignore reality to stay strong.",
+              "Pain should always be romanticized.",
+              "Meaning is mostly a private feeling detached from conduct."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch03-h-q08",
+            "prompt": "What deeper warning appears in the chapter?",
+            "choices": [
+              "The warning against nihilism when suffering becomes unavoidable.",
+              "The warning that all pain is valuable in itself.",
+              "The warning that conscience is irrelevant under hardship.",
+              "The warning that love and work do not matter much."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch03-h-q09",
+            "prompt": "What does the chapter connect together in a deeper reading?",
+            "choices": [
+              "Freedom, conscience, work, love, and mortality.",
+              "Pleasure, applause, and social dominance.",
+              "Comfort, denial, and emotional escape.",
+              "Status, certainty, and external control."
+            ],
+            "correctIndex": 0
+          },
+          {
+            "questionId": "ch03-h-q10",
+            "prompt": "What is the deepest takeaway of the chapter?",
+            "choices": [
+              "Meaning is discovered through responsible response, even far into hardship.",
+              "Meaning disappears when life becomes painful.",
+              "Meaning depends mainly on easy circumstances.",
+              "Meaning is something other people assign to you."
+            ],
+            "correctIndex": 0
+          }
+        ]
+      }
+    }
+  ]
+}
