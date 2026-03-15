@@ -489,7 +489,7 @@ export function ChapterReaderClient({
       setUserSubmissions((prev) => [payload.submission, ...prev]);
       setEngagementPoints((prev) => Math.max(prev, payload.points));
       setToast(
-        `Scenario submitted for admin review. +${SCENARIO_SUBMISSION_POINTS} points earned.`
+        `Scenario submitted for review. +${SCENARIO_SUBMISSION_POINTS} Flow Points earned.`
       );
     } catch (error: unknown) {
       const message =

@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
-  ArrowUpRight,
   Bell,
   BookOpen,
   Brain,
@@ -16,6 +15,7 @@ import {
   Grid2x2,
   HandHelping,
   LayoutPanelTop,
+  Loader2,
   Lock,
   Palette,
   Search,
@@ -106,12 +106,6 @@ const FAQ_ENTRIES = [
     answer:
       "No. Product reminders, learning summaries, and promotional emails are controlled separately so you can keep the signal without the noise.",
   },
-];
-
-const ACTIVE_SESSIONS = [
-  { device: "This MacBook Pro", detail: "Current session • Halifax", status: "Active now" },
-  { device: "iPhone 15", detail: "Mobile Safari • Toronto", status: "Yesterday at 21:14" },
-  { device: "Chrome on Windows", detail: "Work device • New York", status: "3 days ago" },
 ];
 
 const DEFAULT_OPEN_SECTIONS: Record<string, boolean> = {
@@ -284,6 +278,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
   const [activeSection, setActiveSection] = useState("reading-experience");
   const [openSections, setOpenSections] = useState<Record<string, boolean>>(DEFAULT_OPEN_SECTIONS);
   const [confirmAction, setConfirmAction] = useState<ConfirmActionKind | null>(null);
+  const [feedbackText, setFeedbackText] = useState("");
   const [saveState, setSaveState] = useState<SaveState>("idle");
   const [lastSavedAt, setLastSavedAt] = useState<string | null>(null);
   const { toast, showToast } = useToast();
@@ -300,7 +295,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
   } = useOnboardingState();
 
   const { state: preferences, hydrated: prefsHydrated, patchSection, reset: resetPreferences } = useBookPreferences();
-  const { billingState, billingAction, launchBillingAction } = useBookEntitlements(
+  const { billingState } = useBookEntitlements(
     onboarding.setupComplete
   );
 
@@ -766,11 +761,6 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
     ].join("\n");
     createDownload("book-accelerator-progress-report.txt", report, "text/plain");
     showToast("Progress report downloaded", "success");
-  };
-
-  const handleBillingAction = async (kind: "upgrade" | "portal") => {
-    const message = await launchBillingAction(kind);
-    if (message) showToast(message, "error");
   };
 
   const confirmModalCopy: Record<ConfirmActionKind, { title: string; description: string; confirmLabel: string }> = {
@@ -1962,20 +1952,10 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
                         <PreviewCard
                           eyebrow="Active sessions"
                           title="Recent device activity"
-                          footer="A future backend connection can swap this placeholder list for live revocation and full session metadata."
+                          footer="Session revocation connects here once backend device tracking is live."
                         >
-                          <div className="space-y-3">
-                            {ACTIVE_SESSIONS.map((session) => (
-                              <div key={session.device} className="rounded-2xl border border-white/8 bg-black/12 p-4">
-                                <div className="flex items-start justify-between gap-3">
-                                  <div>
-                                    <p className="text-sm font-medium text-slate-100">{session.device}</p>
-                                    <p className="mt-1 text-sm text-slate-400">{session.detail}</p>
-                                  </div>
-                                  <span className="rounded-full border border-white/10 px-2 py-1 text-[11px] text-slate-400">{session.status}</span>
-                                </div>
-                              </div>
-                            ))}
+                          <div className="rounded-2xl border border-white/8 bg-black/12 p-4 text-sm leading-6 text-slate-400">
+                            Active session data is not yet available. Once backend session tracking is connected, this panel will show your devices, locations, and let you revoke individual sessions.
                           </div>
                           <Button variant="secondary" className="mt-4" onClick={() => setConfirmAction("sign-out-all")}>
                             Sign out of all devices
@@ -2033,131 +2013,80 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
                   accent="amber"
                 >
                   <div className="space-y-5">
-                    <div className="grid gap-5 xl:grid-cols-[1.05fr_0.95fr]">
-                      <div className="space-y-5">
-                        <div className="rounded-[30px] border border-white/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] p-5">
-                          <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                            <div>
-                              <p className="text-[11px] uppercase tracking-[0.26em] text-slate-500">Current plan</p>
-                              <h3 className="mt-2 text-2xl font-semibold text-slate-50">
-                                {billingState.loading
-                                  ? "Loading plan"
-                                  : billingState.payload?.entitlement.plan === "PRO"
-                                    ? "Pro"
-                                    : "Free"}
-                              </h3>
-                              <p className="mt-2 max-w-xl text-sm leading-6 text-slate-300">
-                                {billingState.error
-                                  ? "Plan details could not be loaded right now. Billing shortcuts remain ready for backend connection."
-                                  : billingState.payload?.entitlement.plan === "PRO"
-                                    ? "Your account has Pro access. Manage renewal, invoices, and cancellation from one place."
-                                    : "You are using the Free plan. Upgrade only if unlimited starts and future advanced learning features would materially help."}
-                              </p>
-                            </div>
-                            <div className="grid gap-2 sm:min-w-[200px]">
-                              <Button
-                                variant="primary"
-                                onClick={() => handleBillingAction("upgrade")}
-                                disabled={billingAction !== null}
-                              >
-                                {billingAction === "upgrade" ? "Opening checkout" : "Upgrade to Pro"}
-                              </Button>
-                              <Button
-                                variant="secondary"
-                                onClick={() => handleBillingAction("portal")}
-                                disabled={billingAction !== null}
-                              >
-                                {billingAction === "portal" ? "Opening portal" : "Manage subscription"}
-                              </Button>
-                            </div>
-                          </div>
-                          <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-                            <InlineSummaryStat
-                              label="Free books used"
-                              value={billingState.payload ? billingState.payload.entitlement.unlockedBooksCount : "—"}
-                            />
-                            <InlineSummaryStat
-                              label="Remaining free access"
-                              value={billingState.payload ? billingState.payload.entitlement.remainingFreeStarts : "—"}
-                            />
-                            <InlineSummaryStat
-                              label="Billing renewal"
-                              value={billingState.payload?.entitlement.plan === "PRO" ? "Managed in portal" : "Not applicable"}
-                            />
-                            <InlineSummaryStat label="Payment method" value={billingState.payload?.entitlement.plan === "PRO" ? "Card on file" : "No payment method"} />
-                          </div>
+                    <div className="rounded-[30px] border border-white/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] p-5">
+                      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                        <div>
+                          <p className="text-[11px] uppercase tracking-[0.26em] text-slate-500">Current plan</p>
+                          <h3 className="mt-2 text-2xl font-semibold text-slate-50">
+                            {billingState.loading
+                              ? "Loading plan"
+                              : billingState.payload?.entitlement.plan === "PRO"
+                                ? "Pro"
+                                : "Free"}
+                          </h3>
+                          <p className="mt-2 max-w-xl text-sm leading-6 text-slate-300">
+                            {billingState.error
+                              ? "Plan details could not be loaded right now."
+                              : billingState.payload?.entitlement.plan === "PRO"
+                                ? "Your account has Pro access. Billing management will be available in a future update."
+                                : "You are using the Free plan. Upgrading to Pro will be available in a future update."}
+                          </p>
                         </div>
-
-                        <div className="grid gap-5 lg:grid-cols-2">
-                          <PreviewCard
-                            eyebrow="Free vs Pro"
-                            title="Plan comparison"
-                            footer="The upgrade prompt stays informative rather than aggressive."
-                          >
-                            <div className="grid gap-3 sm:grid-cols-2">
-                              <div className="rounded-2xl border border-white/8 bg-black/12 p-4">
-                                <p className="text-sm font-semibold text-slate-50">Free</p>
-                                <ul className="mt-3 space-y-2 text-sm text-slate-300">
-                                  <li>Use your free book starts thoughtfully</li>
-                                  <li>Core reader and quiz flow</li>
-                                  <li>Local settings and privacy controls</li>
-                                </ul>
-                              </div>
-                              <div className="rounded-2xl border border-sky-300/20 bg-sky-500/10 p-4">
-                                <p className="text-sm font-semibold text-sky-50">Pro</p>
-                                <ul className="mt-3 space-y-2 text-sm text-sky-100/90">
-                                  {(billingState.payload?.paywall.benefits ?? [
-                                    "Unlimited book starts",
-                                    "Cross device continuity as backend support expands",
-                                    "Advanced learning controls as they ship",
-                                  ]).map((benefit) => (
-                                    <li key={benefit}>{benefit}</li>
-                                  ))}
-                                </ul>
-                              </div>
-                            </div>
-                          </PreviewCard>
-
-                          <PreviewCard
-                            eyebrow="Billing tools"
-                            title="What happens if I cancel"
-                            footer="Cancellation language is direct so the user can make an informed decision."
-                          >
-                            <div className="space-y-4 rounded-2xl border border-white/8 bg-black/12 p-4 text-sm leading-6 text-slate-300">
-                              <p>
-                                If you cancel, paid renewal stops. Your experience would return to the Free plan after the current paid period ends.
-                              </p>
-                              <p>
-                                Existing local settings remain. Future backend access rules for unlimited starts and synced history would follow the final entitlement model.
-                              </p>
-                              <div className="rounded-xl border border-white/8 bg-white/[0.03] px-3 py-3 text-slate-400">
-                                Invoice history and promo code entry are shown as placeholders until the billing backend exposes those details directly in app.
-                              </div>
-                            </div>
-                          </PreviewCard>
+                        <div className="grid gap-2 sm:min-w-[200px]">
+                          <Button variant="primary" disabled>
+                            Upgrade to Pro
+                          </Button>
+                          <Button variant="secondary" disabled>
+                            Manage subscription
+                          </Button>
+                          <p className="text-center text-[11px] text-slate-500">Billing management coming soon</p>
                         </div>
                       </div>
-
-                      <div className="space-y-5">
-                        <div className="rounded-[28px] border border-white/10 bg-white/[0.03] p-5">
-                          <p className="text-[11px] uppercase tracking-[0.26em] text-slate-500">Portal shortcuts</p>
-                          <div className="mt-4 space-y-3">
-                            <Button variant="secondary" fullWidth className="justify-between" onClick={() => handleBillingAction("portal")}>
-                              Billing portal
-                              <ArrowUpRight className="h-4 w-4" />
-                            </Button>
-                            <Button variant="secondary" fullWidth className="justify-between" onClick={() => showToast("Invoice history will appear here when backend data is connected.", "info")}>
-                              Invoice history
-                              <ArrowUpRight className="h-4 w-4" />
-                            </Button>
-                            <Button variant="secondary" fullWidth className="justify-between" onClick={() => showToast("Promo code entry is reserved for a later billing phase.", "info")}>
-                              Promo code
-                              <ArrowUpRight className="h-4 w-4" />
-                            </Button>
-                          </div>
-                        </div>
+                      <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                        <InlineSummaryStat
+                          label="Free books used"
+                          value={billingState.payload ? billingState.payload.entitlement.unlockedBooksCount : "—"}
+                        />
+                        <InlineSummaryStat
+                          label="Remaining free access"
+                          value={billingState.payload ? billingState.payload.entitlement.remainingFreeStarts : "—"}
+                        />
+                        <InlineSummaryStat
+                          label="Billing renewal"
+                          value={billingState.payload?.entitlement.plan === "PRO" ? "Managed in portal" : "Not applicable"}
+                        />
+                        <InlineSummaryStat label="Payment method" value={billingState.payload?.entitlement.plan === "PRO" ? "Card on file" : "No payment method"} />
                       </div>
                     </div>
+
+                    <PreviewCard
+                      eyebrow="Free vs Pro"
+                      title="Plan comparison"
+                      footer="Full billing management will be available in a future update."
+                    >
+                      <div className="grid gap-3 sm:grid-cols-2">
+                        <div className="rounded-2xl border border-white/8 bg-black/12 p-4">
+                          <p className="text-sm font-semibold text-slate-50">Free</p>
+                          <ul className="mt-3 space-y-2 text-sm text-slate-300">
+                            <li>Use your free book starts thoughtfully</li>
+                            <li>Core reader and quiz flow</li>
+                            <li>Local settings and privacy controls</li>
+                          </ul>
+                        </div>
+                        <div className="rounded-2xl border border-sky-300/20 bg-sky-500/10 p-4">
+                          <p className="text-sm font-semibold text-sky-50">Pro</p>
+                          <ul className="mt-3 space-y-2 text-sm text-sky-100/90">
+                            {(billingState.payload?.paywall.benefits ?? [
+                              "Unlimited book starts",
+                              "Cross device continuity as backend support expands",
+                              "Advanced learning controls as they ship",
+                            ]).map((benefit) => (
+                              <li key={benefit}>{benefit}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    </PreviewCard>
                   </div>
                 </SettingsSectionCard>
               ) : null}
@@ -2181,25 +2110,25 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
                           title="Help center"
                           description="Browse calm product guidance, common workflows, and product explanations."
                           buttonLabel="Open help center"
-                          onClick={() => showToast("Help center entry point is ready for content wiring.", "info")}
+                          onClick={() => showToast("Help center content is being prepared. Check back soon.", "info")}
                         />
                         <SupportActionCard
                           title="Contact support"
                           description="Reach a human for account or product issues when self service does not solve it."
                           buttonLabel="Contact support"
-                          onClick={() => showToast("Support contact flow will connect here.", "info")}
+                          onClick={() => window.open("mailto:support@chapterflow.io", "_blank")}
                         />
                         <SupportActionCard
                           title="Report a bug"
                           description="Flag issues with enough detail for the team to reproduce them quickly."
                           buttonLabel="Report a bug"
-                          onClick={() => showToast("Bug report flow placeholder opened.", "info")}
+                          onClick={() => window.open("mailto:support@chapterflow.io?subject=Bug+Report", "_blank")}
                         />
                         <SupportActionCard
                           title="Request a feature"
                           description="Suggest improvements when the workflow itself needs to change."
                           buttonLabel="Request a feature"
-                          onClick={() => showToast("Feature request flow placeholder opened.", "info")}
+                          onClick={() => window.open("mailto:support@chapterflow.io?subject=Feature+Request", "_blank")}
                         />
                       </div>
 
@@ -2209,10 +2138,28 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
                             <p className="text-[11px] uppercase tracking-[0.26em] text-slate-500">Feedback</p>
                             <h3 className="mt-2 text-lg font-semibold text-slate-50">Send product feedback</h3>
                           </div>
-                          <Button variant="secondary" onClick={() => showToast("Feedback form placeholder submitted.", "success")}>Send feedback</Button>
+                          <Button
+                            variant="secondary"
+                            onClick={() => {
+                              if (!feedbackText.trim()) {
+                                showToast("Write some feedback before sending.", "info");
+                                return;
+                              }
+                              window.open(
+                                `mailto:feedback@chapterflow.io?subject=Product+Feedback&body=${encodeURIComponent(feedbackText)}`,
+                                "_blank"
+                              );
+                              setFeedbackText("");
+                              showToast("Opening your mail client with feedback ready to send.", "success");
+                            }}
+                          >
+                            Send feedback
+                          </Button>
                         </div>
                         <textarea
                           rows={5}
+                          value={feedbackText}
+                          onChange={(event) => setFeedbackText(event.target.value)}
                           placeholder="Share what felt confusing, what felt strong, or what should improve next."
                           className="mt-4 w-full rounded-2xl border border-white/10 bg-[#0d1424] px-4 py-3 text-sm text-slate-100 placeholder:text-slate-500 outline-none focus:border-sky-300/35"
                         />
@@ -2238,13 +2185,13 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
                       <div className="rounded-[28px] border border-white/10 bg-white/[0.03] p-5">
                         <p className="text-[11px] uppercase tracking-[0.26em] text-slate-500">Legal</p>
                         <div className="mt-4 flex flex-col gap-3 text-sm">
-                          <Link href="/" className="rounded-2xl border border-white/10 bg-black/12 px-4 py-3 text-slate-200 transition hover:border-white/18 hover:bg-white/[0.06]">
+                          <Link href="/legal/privacy" className="rounded-2xl border border-white/10 bg-black/12 px-4 py-3 text-slate-200 transition hover:border-white/18 hover:bg-white/[0.06]">
                             Privacy policy
                           </Link>
-                          <Link href="/" className="rounded-2xl border border-white/10 bg-black/12 px-4 py-3 text-slate-200 transition hover:border-white/18 hover:bg-white/[0.06]">
+                          <Link href="/legal/terms" className="rounded-2xl border border-white/10 bg-black/12 px-4 py-3 text-slate-200 transition hover:border-white/18 hover:bg-white/[0.06]">
                             Terms
                           </Link>
-                          <Link href="/" className="rounded-2xl border border-white/10 bg-black/12 px-4 py-3 text-slate-200 transition hover:border-white/18 hover:bg-white/[0.06]">
+                          <Link href="/legal/cookies" className="rounded-2xl border border-white/10 bg-black/12 px-4 py-3 text-slate-200 transition hover:border-white/18 hover:bg-white/[0.06]">
                             Cookie policy
                           </Link>
                         </div>
@@ -2306,7 +2253,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
 
       <div className="pointer-events-none fixed bottom-5 right-5 z-40 hidden rounded-2xl border border-white/10 bg-[#0b1324]/92 px-4 py-3 text-sm shadow-[0_18px_40px_rgba(2,6,23,0.46)] backdrop-blur md:flex md:items-center md:gap-3">
         <div className={`inline-flex h-9 w-9 items-center justify-center rounded-xl ${saveState === "saving" ? "bg-amber-400/15 text-amber-100" : saveState === "saved" ? "bg-emerald-400/15 text-emerald-100" : "bg-sky-400/15 text-sky-100"}`}>
-          {saveState === "saving" ? <Search className="h-4 w-4 animate-pulse" /> : saveState === "saved" ? <ShieldCheck className="h-4 w-4" /> : <Settings2 className="h-4 w-4" />}
+          {saveState === "saving" ? <Loader2 className="h-4 w-4 animate-spin" /> : saveState === "saved" ? <ShieldCheck className="h-4 w-4" /> : <Settings2 className="h-4 w-4" />}
         </div>
         <div>
           <p className="font-medium text-slate-100">
