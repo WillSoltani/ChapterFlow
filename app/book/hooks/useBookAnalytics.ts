@@ -130,12 +130,30 @@ function formatRelativeDayLabel(dayKey: string | null): string {
   return formatDayLabel(dayKey);
 }
 
-function hasMeaningfulReaderActivity(reader: StoredReaderStateSnapshot | null): boolean {
-  if (!reader) return false;
-  if (reader.notes.trim().length > 0) return true;
-  if (Object.keys(reader.quizAnswers).length > 0) return true;
-  if (reader.quizResult !== null) return true;
-  if (reader.showRecap) return true;
+function hasMeaningfulReaderActivity(
+  reader: StoredReaderStateSnapshot | Record<string, unknown> | null
+): boolean {
+  if (!reader || typeof reader !== "object") return false;
+
+  const notes = typeof reader.notes === "string" ? reader.notes : "";
+  if (notes.trim().length > 0) return true;
+
+  const quizAnswers =
+    reader.quizAnswers && typeof reader.quizAnswers === "object" && !Array.isArray(reader.quizAnswers)
+      ? (reader.quizAnswers as Record<string, unknown>)
+      : {};
+  if (Object.keys(quizAnswers).length > 0) return true;
+
+  const quizResult = reader.quizResult;
+  if (
+    quizResult &&
+    typeof quizResult === "object" &&
+    typeof (quizResult as { score?: unknown }).score === "number"
+  ) {
+    return true;
+  }
+
+  if (reader.showRecap === true) return true;
   return false;
 }
 
