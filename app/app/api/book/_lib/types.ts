@@ -2,8 +2,20 @@ export type VariantFamily = "EMH" | "PBC";
 
 export type VariantKey = "easy" | "medium" | "hard" | "precise" | "balanced" | "challenging";
 
+export type ChapterSummaryBlock =
+  | {
+      type: "paragraph";
+      text: string;
+    }
+  | {
+      type: "bullet";
+      text: string;
+      detail?: string;
+    };
+
 export type ChapterVariantContent = {
   summaryBullets: string[];
+  summaryBlocks?: ChapterSummaryBlock[];
   takeaways: string[];
   practice?: string[];
 };
@@ -19,6 +31,7 @@ export type BookPackageQuizQuestion = {
 export type BookPackageQuiz = {
   passingScorePercent: number;
   questions: BookPackageQuizQuestion[];
+  retryQuestions?: BookPackageQuizQuestion[];
 };
 
 export type BookPackageExample = {
@@ -79,6 +92,7 @@ export type ChapterQuizPayload = {
   title: string;
   passingScorePercent: number;
   questions: BookPackageQuizQuestion[];
+  retryQuestions?: BookPackageQuizQuestion[];
 };
 
 export type BookManifestChapter = {
@@ -173,6 +187,69 @@ export type QuizAttemptItem = {
   scorePercent: number;
   passed: boolean;
   createdAt: string;
+};
+
+export type ScenarioScope = "work" | "school" | "personal";
+export type ScenarioSubmissionStatus = "pending" | "approved" | "rejected";
+
+export type BookUserScenarioSubmissionItem = {
+  userId: string;
+  submissionId: string;
+  bookId: string;
+  chapterNumber: number;
+  chapterId?: string;
+  title: string;
+  scenario: string;
+  whatToDo: string;
+  whyItMatters: string;
+  scope: ScenarioScope;
+  status: ScenarioSubmissionStatus;
+  pointsAwarded: number;
+  createdAt: string;
+  updatedAt: string;
+  reviewedAt?: string;
+  reviewedBy?: string;
+  reviewNotes?: string;
+};
+
+export type BookScenarioModerationItem = BookUserScenarioSubmissionItem & {
+  queuedAt: string;
+};
+
+export type BookScenarioLookupItem = {
+  submissionId: string;
+  userId: string;
+  bookId: string;
+  chapterNumber: number;
+  createdAt: string;
+  status: ScenarioSubmissionStatus;
+  pointsAwarded: number;
+  queuedAt?: string;
+  approvedAt?: string;
+  updatedAt: string;
+};
+
+export type BookApprovedScenarioItem = {
+  submissionId: string;
+  userId: string;
+  bookId: string;
+  chapterNumber: number;
+  chapterId?: string;
+  title: string;
+  scenario: string;
+  whatToDo: string;
+  whyItMatters: string;
+  scope: ScenarioScope;
+  approvedAt: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type BookUserEngagementItem = {
+  userId: string;
+  points: number;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type BookUserProfileItem = {

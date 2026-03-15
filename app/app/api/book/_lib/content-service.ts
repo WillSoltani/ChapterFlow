@@ -81,8 +81,16 @@ export async function getUserAccessibleQuiz(params: {
   return { progress, quiz };
 }
 
-export function sanitizeQuizForClient(quiz: ChapterQuizPayload): Omit<ChapterQuizPayload, "questions"> & {
+export function sanitizeQuizForClient(
+  quiz: ChapterQuizPayload
+): Omit<ChapterQuizPayload, "questions" | "retryQuestions"> & {
   questions: Array<{
+    questionId: string;
+    prompt: string;
+    choices: string[];
+    explanation?: string;
+  }>;
+  retryQuestions?: Array<{
     questionId: string;
     prompt: string;
     choices: string[];
@@ -95,6 +103,12 @@ export function sanitizeQuizForClient(quiz: ChapterQuizPayload): Omit<ChapterQui
     title: quiz.title,
     passingScorePercent: quiz.passingScorePercent,
     questions: quiz.questions.map((q) => ({
+      questionId: q.questionId,
+      prompt: q.prompt,
+      choices: q.choices,
+      explanation: q.explanation,
+    })),
+    retryQuestions: (quiz.retryQuestions ?? []).map((q) => ({
       questionId: q.questionId,
       prompt: q.prompt,
       choices: q.choices,

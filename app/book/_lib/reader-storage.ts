@@ -16,6 +16,9 @@ export type StoredReaderStateSnapshot = {
   exampleFilter: "all" | "work" | "school" | "personal";
   quizAnswers: Record<string, number>;
   quizResult: { score: number; passed: boolean } | null;
+  quizRetakeCount: number;
+  quizFailureStreak: number;
+  quizCooldownUntil: string | null;
   notes: string;
   focusMode: boolean;
   fontScale: "sm" | "md" | "lg";
@@ -131,6 +134,22 @@ export function parseStoredReaderState(
               score: Number(parsed.quizResult.score ?? 0),
               passed: Boolean(parsed.quizResult.passed),
             }
+          : null,
+      quizRetakeCount:
+        typeof parsed.quizRetakeCount === "number" &&
+        Number.isFinite(parsed.quizRetakeCount) &&
+        parsed.quizRetakeCount >= 0
+          ? Math.floor(parsed.quizRetakeCount)
+          : 0,
+      quizFailureStreak:
+        typeof parsed.quizFailureStreak === "number" &&
+        Number.isFinite(parsed.quizFailureStreak) &&
+        parsed.quizFailureStreak >= 0
+          ? Math.floor(parsed.quizFailureStreak)
+          : 0,
+      quizCooldownUntil:
+        typeof parsed.quizCooldownUntil === "string" && parsed.quizCooldownUntil.trim()
+          ? parsed.quizCooldownUntil
           : null,
       notes: typeof parsed.notes === "string" ? parsed.notes : "",
       focusMode:

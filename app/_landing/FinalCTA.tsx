@@ -4,6 +4,8 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { CheckCircle2 } from 'lucide-react'
 
+const START_FREE_HREF = '/auth/login?returnTo=%2Fbook'
+
 export function FinalCTA() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })
@@ -46,7 +48,7 @@ export function FinalCTA() {
 
           <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
             <a
-              href="#"
+              href={START_FREE_HREF}
               className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-[16px] px-8 py-4 rounded-full transition-all duration-200 shadow-2xl shadow-indigo-600/35 hover:shadow-indigo-500/50 hover:-translate-y-0.5"
             >
               Start reading for free

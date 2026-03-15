@@ -48,7 +48,7 @@ const CHAPTER_KEYS = new Set([
   "quiz",
 ]);
 const EXAMPLE_KEYS = new Set(["exampleId", "title", "scenario", "whatToDo", "whyItMatters", "contexts"]);
-const QUIZ_KEYS = new Set(["passingScorePercent", "questions"]);
+const QUIZ_KEYS = new Set(["passingScorePercent", "questions", "retryQuestions"]);
 const QUESTION_KEYS = new Set([
   "questionId",
   "prompt",
@@ -58,6 +58,7 @@ const QUESTION_KEYS = new Set([
   "explanation",
 ]);
 const VARIANT_CONTENT_KEYS = new Set([
+  "summaryBlocks",
   "summaryBullets",
   "importantSummary",
   "takeaways",
@@ -141,6 +142,51 @@ function readStringArray(
     if (item) out.push(item);
   }
   return out;
+}
+
+function parseSummaryBlocks(
+  value: unknown,
+  path: string,
+  issues: ValidationIssue[]
+): Array<{ type: "paragraph"; text: string } | { type: "bullet"; text: string; detail?: string }> {
+  if (value == null) return [];
+  if (!Array.isArray(value)) {
+    issues.push({ path, message: "summaryBlocks must be an array." });
+    return [];
+  }
+  const blocks: Array<
+    { type: "paragraph"; text: string } | { type: "bullet"; text: string; detail?: string }
+  > = [];
+  value.forEach((item, index) => {
+    const blockPath = `${path}[${index}]`;
+    if (!isRecord(item)) {
+      issues.push({ path: blockPath, message: "summary block must be an object." });
+      return;
+    }
+    const type = readString(item.type, `${blockPath}.type`, issues, { min: 1, max: 20 });
+    const text = readString(item.text, `${blockPath}.text`, issues, { max: 4000 });
+    if (type === "paragraph") {
+      blocks.push({ type: "paragraph", text });
+      return;
+    }
+    if (type === "bullet") {
+      const detail =
+        item.detail == null
+          ? undefined
+          : readString(item.detail, `${blockPath}.detail`, issues, {
+              optional: true,
+              min: 1,
+              max: 4000,
+            });
+      blocks.push({ type: "bullet", text, detail });
+      return;
+    }
+    issues.push({
+      path: `${blockPath}.type`,
+      message: "summary block type must be paragraph or bullet.",
+    });
+  });
+  return blocks;
 }
 
 function parseVariantFamily(value: unknown, path: string, issues: ValidationIssue[]): VariantFamily {
@@ -298,6 +344,11 @@ function parseChapter(chapterRaw: unknown, path: string, issues: ValidationIssue
       `${path}.contentVariants.${variantKey}`,
       issues
     );
+    const summaryBlocks = parseSummaryBlocks(
+      variantValue.summaryBlocks,
+      `${path}.contentVariants.${variantKey}.summaryBlocks`,
+      issues
+    );
     const summaryBullets = Array.isArray(variantValue.summaryBullets)
       ? readStringArray(
           variantValue.summaryBullets,
@@ -305,6 +356,8 @@ function parseChapter(chapterRaw: unknown, path: string, issues: ValidationIssue
           issues,
           { minItems: 1, maxItems: 20, itemMax: 2000 }
         )
+      : summaryBlocks.length > 0
+        ? summaryBlocks.map((block) => block.text)
       : typeof variantValue.importantSummary === "string"
         ? [
             readString(
@@ -319,7 +372,7 @@ function parseChapter(chapterRaw: unknown, path: string, issues: ValidationIssue
     if (!summaryBullets.length) {
       issues.push({
         path: `${path}.contentVariants.${variantKey}.summaryBullets`,
-        message: "Provide summaryBullets or importantSummary.",
+        message: "Provide summaryBlocks, summaryBullets, or importantSummary.",
       });
     }
 
@@ -330,6 +383,7 @@ function parseChapter(chapterRaw: unknown, path: string, issues: ValidationIssue
 
     contentVariants[variantKey as VariantKey] = {
       summaryBullets,
+      summaryBlocks: summaryBlocks.length > 0 ? summaryBlocks : undefined,
       takeaways: readStringArray(
         takeawaysSource,
         `${path}.contentVariants.${variantKey}.${
@@ -399,6 +453,7 @@ function parseQuiz(quizRaw: unknown, path: string, issues: ValidationIssue[]) {
     return {
       passingScorePercent: 80,
       questions: [] as BookPackageQuizQuestion[],
+      retryQuestions: [] as BookPackageQuizQuestion[],
     };
   }
 
@@ -408,6 +463,13 @@ function parseQuiz(quizRaw: unknown, path: string, issues: ValidationIssue[]) {
     issues.push({ path: `${path}.questions`, message: "questions must be an array." });
   }
   const questions = questionsRaw.map((q, idx) => parseQuestion(q, `${path}.questions[${idx}]`, issues));
+  const retryQuestionsRaw = Array.isArray(quizRaw.retryQuestions) ? quizRaw.retryQuestions : [];
+  if (quizRaw.retryQuestions != null && !Array.isArray(quizRaw.retryQuestions)) {
+    issues.push({ path: `${path}.retryQuestions`, message: "retryQuestions must be an array." });
+  }
+  const retryQuestions = retryQuestionsRaw.map((q, idx) =>
+    parseQuestion(q, `${path}.retryQuestions[${idx}]`, issues)
+  );
 
   return {
     passingScorePercent: readInteger(quizRaw.passingScorePercent, `${path}.passingScorePercent`, issues, {
@@ -415,6 +477,7 @@ function parseQuiz(quizRaw: unknown, path: string, issues: ValidationIssue[]) {
       max: 100,
     }),
     questions,
+    retryQuestions: retryQuestions.length > 0 ? retryQuestions : undefined,
   };
 }
 
@@ -511,11 +574,12 @@ function enforceSemanticRules(pkg: BookPackage, issues: ValidationIssue[]) {
     }
 
     const questionIds = new Set<string>();
-    for (const question of chapter.quiz.questions) {
+    const retryQuestions = chapter.quiz.retryQuestions ?? [];
+    for (const question of [...chapter.quiz.questions, ...retryQuestions]) {
       if (questionIds.has(question.questionId)) {
         issues.push({
           path: `book.chapters.${chapter.number}.quiz.questions.${question.questionId}`,
-          message: "questionId must be unique within chapter.",
+          message: "questionId must be unique across questions and retryQuestions within chapter.",
         });
       }
       questionIds.add(question.questionId);

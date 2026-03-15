@@ -70,6 +70,42 @@ export function chapterStateSk(bookId: string, chapterNumber: number): string {
   return `CHAPTERSTATE#${bookId}#${padChapterNumber(chapterNumber)}`;
 }
 
+export function scenarioSubmissionSk(
+  bookId: string,
+  chapterNumber: number,
+  submissionId: string
+): string {
+  return `SCENARIO#${bookId}#${padChapterNumber(chapterNumber)}#${submissionId}`;
+}
+
+export function scenarioModerationPk(status: "PENDING"): string {
+  return `BOOKSCENARIO#${status}`;
+}
+
+export function scenarioModerationSk(createdAt: string, submissionId: string): string {
+  return `${createdAt}#${submissionId}`;
+}
+
+export function scenarioLookupPk(submissionId: string): string {
+  return `BOOKSCENARIO#LOOKUP#${submissionId}`;
+}
+
+export function scenarioLookupSk(): string {
+  return "META";
+}
+
+export function approvedScenarioPk(bookId: string, chapterNumber: number): string {
+  return `BOOKSCENARIO#APPROVED#${bookId}#${padChapterNumber(chapterNumber)}`;
+}
+
+export function approvedScenarioSk(createdAt: string, submissionId: string): string {
+  return `${createdAt}#${submissionId}`;
+}
+
+export function engagementSk(): string {
+  return "ENGAGEMENT";
+}
+
 export function readingDaySk(dayKey: string): string {
   return `READINGDAY#${dayKey}`;
 }

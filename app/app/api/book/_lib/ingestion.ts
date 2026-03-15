@@ -152,6 +152,7 @@ function buildArtifacts(pkg: BookPackage): {
     title: chapter.title,
     passingScorePercent: chapter.quiz.passingScorePercent,
     questions: chapter.quiz.questions,
+    retryQuestions: chapter.quiz.retryQuestions,
   }));
 
   return {

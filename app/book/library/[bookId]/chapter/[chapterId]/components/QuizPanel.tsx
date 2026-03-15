@@ -12,6 +12,8 @@ type QuizPanelProps = {
   result: QuizResult | null;
   explanationOpen: Record<string, boolean>;
   requiredScore: number;
+  cooldownSeconds: number;
+  failureStreak: number;
   onAnswer: (questionId: string, optionIndex: number) => void;
   onSubmit: () => void;
   onReviewSummary: () => void;
@@ -33,6 +35,8 @@ export function QuizPanel({
   result,
   explanationOpen,
   requiredScore,
+  cooldownSeconds,
+  failureStreak,
   onAnswer,
   onSubmit,
   onReviewSummary,
@@ -42,7 +46,8 @@ export function QuizPanel({
   nextChapterLabel,
 }: QuizPanelProps) {
   const answeredCount = questions.filter((q) => typeof answers[q.id] === "number").length;
-  const canSubmit = answeredCount === questions.length && !result;
+  const canSubmit = answeredCount === questions.length && !result && cooldownSeconds <= 0;
+  const cooldownMinutes = Math.ceil(cooldownSeconds / 60);
 
   return (
     <section className="space-y-4">
@@ -88,7 +93,9 @@ export function QuizPanel({
               <p className="text-sm opacity-80 text-slate-200">
                 {result.passed
                   ? "Well done. You can now unlock the next chapter."
-                  : `Need ${requiredScore}%. Review the explanations below and try again.`}
+                  : cooldownSeconds > 0
+                    ? `Need ${requiredScore}%. Retry unlocks in ${cooldownMinutes} minute${cooldownMinutes === 1 ? "" : "s"}.`
+                    : `Need ${requiredScore}%. Review the explanations below and try again.`}
               </p>
             </div>
           </div>
@@ -159,7 +166,7 @@ export function QuizPanel({
 
                   return (
                     <button
-                      key={option}
+                      key={`${question.id}-${optionIndex}`}
                       type="button"
                       disabled={submitted}
                       onClick={() => onAnswer(question.id, optionIndex)}
@@ -241,9 +248,17 @@ export function QuizPanel({
             <button
               type="button"
               onClick={onRetry}
-              className="rounded-2xl border border-sky-300/30 bg-sky-500/14 px-4 py-3 text-sm font-semibold text-sky-100 transition hover:bg-sky-500/22"
+              className={[
+                "rounded-2xl border px-4 py-3 text-sm font-semibold transition",
+                cooldownSeconds > 0
+                  ? "cursor-not-allowed border-white/10 bg-white/4 text-slate-500"
+                  : "border-sky-300/30 bg-sky-500/14 text-sky-100 hover:bg-sky-500/22",
+              ].join(" ")}
+              disabled={cooldownSeconds > 0}
             >
-              Try Again
+              {cooldownSeconds > 0
+                ? `Retry in ${cooldownMinutes} min`
+                : `Try Again${failureStreak > 0 ? ` (Attempt ${failureStreak + 1})` : ""}`}
             </button>
           </div>
         )
@@ -259,7 +274,9 @@ export function QuizPanel({
               : "cursor-not-allowed border border-white/10 bg-white/3 text-slate-600",
           ].join(" ")}
         >
-          Submit Answers · {answeredCount}/{questions.length} answered
+          {cooldownSeconds > 0
+            ? `Retake locked · ${cooldownMinutes} min remaining`
+            : `Submit Answers · ${answeredCount}/${questions.length} answered`}
         </button>
       )}
     </section>

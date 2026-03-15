@@ -21,6 +21,9 @@ type PersistedChapterState = {
   exampleFilter: ExampleFilter;
   quizAnswers: Record<string, number>;
   quizResult: QuizResult | null;
+  quizRetakeCount: number;
+  quizFailureStreak: number;
+  quizCooldownUntil: string | null;
   notes: string;
   focusMode: boolean;
   fontScale: FontScale;
@@ -41,6 +44,9 @@ const defaultState: PersistedChapterState = {
   exampleFilter: "all",
   quizAnswers: {},
   quizResult: null,
+  quizRetakeCount: 0,
+  quizFailureStreak: 0,
+  quizCooldownUntil: null,
   notes: "",
   focusMode: false,
   fontScale: "md",
@@ -62,6 +68,10 @@ function isExampleFilter(value: unknown): value is ExampleFilter {
 
 function isFontScale(value: unknown): value is FontScale {
   return value === "sm" || value === "md" || value === "lg";
+}
+
+function isValidTimestamp(value: string): boolean {
+  return Number.isFinite(new Date(value).getTime());
 }
 
 function parseStored(value: string | null): PersistedChapterState | null {
@@ -100,6 +110,24 @@ function parseStored(value: string | null): PersistedChapterState | null {
         : defaultState.exampleFilter,
       quizAnswers,
       quizResult,
+      quizRetakeCount:
+        typeof parsed.quizRetakeCount === "number" &&
+        Number.isFinite(parsed.quizRetakeCount) &&
+        parsed.quizRetakeCount >= 0
+          ? Math.floor(parsed.quizRetakeCount)
+          : defaultState.quizRetakeCount,
+      quizFailureStreak:
+        typeof parsed.quizFailureStreak === "number" &&
+        Number.isFinite(parsed.quizFailureStreak) &&
+        parsed.quizFailureStreak >= 0
+          ? Math.floor(parsed.quizFailureStreak)
+          : defaultState.quizFailureStreak,
+      quizCooldownUntil:
+        typeof parsed.quizCooldownUntil === "string" &&
+        parsed.quizCooldownUntil.trim() &&
+        isValidTimestamp(parsed.quizCooldownUntil)
+          ? parsed.quizCooldownUntil
+          : defaultState.quizCooldownUntil,
       notes: typeof parsed.notes === "string" ? parsed.notes : defaultState.notes,
       focusMode:
         typeof parsed.focusMode === "boolean" ? parsed.focusMode : defaultState.focusMode,
@@ -225,6 +253,9 @@ export function useChapterState(bookId: string, chapterId: string, chapterNumber
       readingDepth,
       quizAnswers: {},
       quizResult: null,
+      quizRetakeCount: 0,
+      quizFailureStreak: 0,
+      quizCooldownUntil: null,
       explanationOpen: {},
     }));
   }, []);
@@ -252,8 +283,29 @@ export function useChapterState(bookId: string, chapterId: string, chapterNumber
     }));
   }, []);
 
+  const startQuizRetake = useCallback(() => {
+    setState((prev) => ({
+      ...prev,
+      quizRetakeCount: prev.quizRetakeCount + 1,
+      quizAnswers: {},
+      quizResult: null,
+      explanationOpen: {},
+    }));
+  }, []);
+
   const setQuizResult = useCallback((quizResult: QuizResult | null) => {
     setState((prev) => ({ ...prev, quizResult }));
+  }, []);
+
+  const setQuizFailureState = useCallback((failureStreak: number, cooldownUntil: string | null) => {
+    setState((prev) => ({
+      ...prev,
+      quizFailureStreak: Math.max(0, Math.floor(failureStreak)),
+      quizCooldownUntil:
+        typeof cooldownUntil === "string" && cooldownUntil.trim() && isValidTimestamp(cooldownUntil)
+          ? cooldownUntil
+          : null,
+    }));
   }, []);
 
   const setNotes = useCallback((notes: string) => {
@@ -302,7 +354,9 @@ export function useChapterState(bookId: string, chapterId: string, chapterNumber
     setExampleFilter,
     setQuizAnswer,
     clearQuizState,
+    startQuizRetake,
     setQuizResult,
+    setQuizFailureState,
     setNotes,
     appendNote,
     toggleFocusMode,

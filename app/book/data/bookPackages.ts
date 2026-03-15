@@ -63,9 +63,21 @@ export type VariantKey =
   | "balanced"
   | "challenging";
 
+export type PackageSummaryBlock =
+  | {
+      type: "paragraph";
+      text: string;
+    }
+  | {
+      type: "bullet";
+      text: string;
+      detail?: string;
+    };
+
 export type PackageVariantContent = {
   importantSummary?: string;
   summaryBullets?: string[];
+  summaryBlocks?: PackageSummaryBlock[];
   keyTakeaways?: string[];
   takeaways?: string[];
   practice?: string[];
@@ -83,6 +95,7 @@ export type PackageQuizQuestion = {
 export type PackageQuiz = {
   passingScorePercent: number;
   questions: PackageQuizQuestion[];
+  retryQuestions?: PackageQuizQuestion[];
 };
 
 export type PackageExample = {

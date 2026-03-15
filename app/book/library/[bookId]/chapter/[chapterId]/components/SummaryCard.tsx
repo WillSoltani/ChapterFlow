@@ -1,9 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import { BookmarkPlus, ChevronDown, ChevronUp, Quote } from "lucide-react";
+import type { ChapterSummaryBlock } from "@/app/book/data/mockChapters";
 
 type SummaryCardProps = {
-  bullets: string[];
+  blocks: ChapterSummaryBlock[];
   takeaways: string[];
   keyQuote?: string;
   recap?: string;
@@ -14,7 +16,7 @@ type SummaryCardProps = {
 };
 
 export function SummaryCard({
-  bullets,
+  blocks,
   takeaways,
   keyQuote,
   recap,
@@ -23,6 +25,8 @@ export function SummaryCard({
   onSaveTakeaways,
   fontScaleClass,
 }: SummaryCardProps) {
+  const [expandedDetails, setExpandedDetails] = useState<Record<string, boolean>>({});
+
   return (
     <div className="space-y-4">
       {/* Main summary */}
@@ -42,16 +46,75 @@ export function SummaryCard({
           </button>
         </div>
 
-        <ul className="space-y-3.5">
-          {bullets.map((bullet, i) => (
-            <li key={bullet} className={["group flex gap-3.5", fontScaleClass].join(" ")}>
-              <span className="mt-[0.4em] inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-sky-300/30 bg-sky-500/12 text-[10px] font-bold tabular-nums text-sky-300">
-                {i + 1}
-              </span>
-              <span className="text-slate-200 leading-relaxed">{bullet}</span>
-            </li>
-          ))}
-        </ul>
+        <div className="space-y-3.5">
+          {blocks.map((block, index) => {
+            if (block.type === "paragraph") {
+              return (
+                <p
+                  key={block.id}
+                  className={[
+                    "rounded-2xl border border-white/8 bg-white/4 px-4 py-3 text-slate-200",
+                    fontScaleClass,
+                  ].join(" ")}
+                >
+                  {block.text}
+                </p>
+              );
+            }
+
+            const bulletNumber = blocks
+              .slice(0, index + 1)
+              .filter((item) => item.type === "bullet").length;
+            const open = Boolean(expandedDetails[block.id]);
+            return (
+              <article
+                key={block.id}
+                className="rounded-2xl border border-white/10 bg-white/3 px-4 py-3"
+              >
+                <div className={["group flex gap-3.5", fontScaleClass].join(" ")}>
+                  <span className="mt-[0.4em] inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-sky-300/30 bg-sky-500/12 text-[10px] font-bold tabular-nums text-sky-300">
+                    {bulletNumber}
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-slate-200 leading-relaxed">{block.text}</p>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setExpandedDetails((prev) => ({
+                          ...prev,
+                          [block.id]: !prev[block.id],
+                        }))
+                      }
+                      className="mt-1 inline-flex items-center gap-1 text-xs font-medium text-sky-300 transition hover:text-sky-200"
+                    >
+                      {open ? (
+                        <>
+                          <ChevronUp className="h-3.5 w-3.5" />
+                          Hide details
+                        </>
+                      ) : (
+                        <>
+                          <ChevronDown className="h-3.5 w-3.5" />
+                          More details
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </div>
+                {open ? (
+                  <p
+                    className={[
+                      "mt-2 rounded-xl border border-white/8 bg-[#050813]/45 px-3 py-2 text-slate-300",
+                      fontScaleClass,
+                    ].join(" ")}
+                  >
+                    {block.detail}
+                  </p>
+                ) : null}
+              </article>
+            );
+          })}
+        </div>
       </section>
 
       {/* Key quote */}

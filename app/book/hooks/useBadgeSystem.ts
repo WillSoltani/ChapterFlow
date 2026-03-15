@@ -238,7 +238,7 @@ function deriveBadgeStats(
       const isChapterCompleted = completedChapterIds.has(chapterId);
       const chapterScore = Number(stored.chapterScores[chapterId] ?? 0);
       const quizScore = reader?.quizResult?.score ?? chapterScore;
-      const quizPassed = reader?.quizResult?.passed ?? chapterScore >= 70;
+      const quizPassed = reader?.quizResult?.passed ?? chapterScore >= 80;
       const readingDepth = reader?.readingDepth ?? "deeper";
 
       usedReadingModes.add(readingDepth);

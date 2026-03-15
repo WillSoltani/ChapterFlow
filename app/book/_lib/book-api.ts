@@ -3,12 +3,14 @@
 export class BookClientError extends Error {
   status: number;
   code?: string;
+  details?: unknown;
 
-  constructor(message: string, status = 500, code?: string) {
+  constructor(message: string, status = 500, code?: string, details?: unknown) {
     super(message);
     this.name = "BookClientError";
     this.status = status;
     this.code = code;
+    this.details = details;
   }
 }
 
@@ -53,7 +55,16 @@ export async function fetchBookJson<T>(
       typeof payload.error.code === "string"
         ? payload.error.code
         : undefined;
-    throw new BookClientError(message, response.status, code);
+    const details =
+      payload &&
+      typeof payload === "object" &&
+      "error" in payload &&
+      payload.error &&
+      typeof payload.error === "object" &&
+      "details" in payload.error
+        ? payload.error.details
+        : undefined;
+    throw new BookClientError(message, response.status, code, details);
   }
 
   return payload as T;

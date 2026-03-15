@@ -276,7 +276,7 @@ export function BookOnboardingClient() {
                     <HowItWorksRow
                       icon={<FileText className="h-5 w-5" />}
                       title="Read a chapter summary"
-                      description="5–10 focused bullet points. Adjust depth to your preference."
+                      description="A concise blend of short paragraphs and key bullets with optional detail expands."
                     />
                     <HowItWorksRow
                       icon={<Lightbulb className="h-5 w-5" />}

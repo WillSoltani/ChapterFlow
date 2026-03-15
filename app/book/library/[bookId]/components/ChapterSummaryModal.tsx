@@ -34,11 +34,17 @@ export function ChapterSummaryModal({
 
           <div>
             <p className="text-sm font-medium text-slate-200">Summary</p>
-            <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-slate-300">
-              {chapter.summaryByDepth.standard.map((point) => (
-                <li key={point}>{point}</li>
+            <div className="mt-2 space-y-1.5 text-sm text-slate-300">
+              {chapter.summaryByDepth.standard.map((block) => (
+                block.type === "paragraph" ? (
+                  <p key={block.id}>{block.text}</p>
+                ) : (
+                  <p key={block.id} className="pl-2">
+                    • {block.text}
+                  </p>
+                )
               ))}
-            </ul>
+            </div>
           </div>
 
           <div>
