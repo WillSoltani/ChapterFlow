@@ -1,6 +1,6 @@
+import { getSiteUrl } from "@/app/_lib/site-url";
+
 const DEFAULT_CHAPTERFLOW_SITE_URL = "https://siliconx.ca";
-const DEFAULT_CHAPTERFLOW_APP_URL = "https://chapterflow.siliconx.ca";
-const DEFAULT_CHAPTERFLOW_AUTH_URL = "https://auth.siliconx.ca";
 const DEFAULT_CHAPTERFLOW_DEV_URL = "http://localhost:3000";
 const LOCAL_CHAPTERFLOW_HOSTS = new Set([
   "localhost:3000",
@@ -17,61 +17,8 @@ export const CHAPTERFLOW_NAME = "ChapterFlow";
 export const CHAPTERFLOW_TAGLINE =
   "Guided reading for people who want depth, momentum, and real retention.";
 
-export function getChapterFlowDeploymentMode(): "embedded" | "standalone" {
-  const mode = String(process.env.CHAPTERFLOW_DEPLOYMENT_MODE ?? "standalone")
-    .trim()
-    .toLowerCase();
-  return mode === "embedded" ? "embedded" : "standalone";
-}
-
-export function usesDedicatedChapterFlowHosts(): boolean {
-  return getChapterFlowDeploymentMode() === "standalone";
-}
-
 function normalizeUrl(value: string): string {
   return value.trim().replace(/\/+$/, "");
-}
-
-function safeUrl(value: string | undefined): string | null {
-  if (!value) return null;
-  const trimmed = value.trim();
-  if (!trimmed) return null;
-  try {
-    return normalizeUrl(trimmed);
-  } catch {
-    return null;
-  }
-}
-
-export function getChapterFlowAppUrl(): string {
-  const configured = safeUrl(process.env.NEXT_PUBLIC_CHAPTERFLOW_APP_URL);
-  if (configured) return configured;
-  return process.env.NODE_ENV === "production"
-    ? DEFAULT_CHAPTERFLOW_APP_URL
-    : DEFAULT_CHAPTERFLOW_DEV_URL;
-}
-
-export function getChapterFlowSiteUrl(): string {
-  const configured = safeUrl(
-    process.env.NEXT_PUBLIC_CHAPTERFLOW_SITE_URL ||
-      process.env.CHAPTERFLOW_SITE_BASE_URL
-  );
-  if (configured) return configured;
-  return process.env.NODE_ENV === "production"
-    ? DEFAULT_CHAPTERFLOW_SITE_URL
-    : DEFAULT_CHAPTERFLOW_DEV_URL;
-}
-
-export function getChapterFlowAuthUrl(): string {
-  const configured = safeUrl(process.env.NEXT_PUBLIC_CHAPTERFLOW_AUTH_URL);
-  if (configured) return configured;
-  return process.env.NODE_ENV === "production"
-    ? DEFAULT_CHAPTERFLOW_AUTH_URL
-    : DEFAULT_CHAPTERFLOW_DEV_URL;
-}
-
-function hostFromUrl(value: string): string {
-  return new URL(value).host.toLowerCase();
 }
 
 function normalizeHost(value: string | null | undefined): string {
@@ -80,6 +27,33 @@ function normalizeHost(value: string | null | undefined): string {
     .replace(/^https?:\/\//i, "")
     .replace(/\/.*$/, "")
     .toLowerCase();
+}
+
+function siteBaseUrl(): string {
+  const siteUrl = getSiteUrl();
+  return siteUrl || (process.env.NODE_ENV === "production"
+    ? DEFAULT_CHAPTERFLOW_SITE_URL
+    : DEFAULT_CHAPTERFLOW_DEV_URL);
+}
+
+export function getChapterFlowDeploymentMode(): "embedded" | "standalone" {
+  return "standalone";
+}
+
+export function usesDedicatedChapterFlowHosts(): boolean {
+  return false;
+}
+
+export function getChapterFlowSiteUrl(): string {
+  return normalizeUrl(siteBaseUrl());
+}
+
+export function getChapterFlowAppUrl(): string {
+  return normalizeUrl(siteBaseUrl());
+}
+
+export function getChapterFlowAuthUrl(): string {
+  return normalizeUrl(siteBaseUrl());
 }
 
 export function isLocalHost(host: string | null | undefined): boolean {
@@ -92,28 +66,19 @@ export function isLocalHost(host: string | null | undefined): boolean {
   );
 }
 
-export function isChapterFlowAppHost(host: string | null | undefined): boolean {
-  const normalized = normalizeHost(host);
-  if (!normalized) return false;
-  if (LOCAL_CHAPTERFLOW_HOSTS.has(normalized)) return true;
-  if (!usesDedicatedChapterFlowHosts()) return false;
-  return normalized === hostFromUrl(getChapterFlowAppUrl());
-}
-
 export function isChapterFlowSiteHost(host: string | null | undefined): boolean {
   const normalized = normalizeHost(host);
   if (!normalized) return false;
   if (LOCAL_CHAPTERFLOW_HOSTS.has(normalized)) return true;
-  if (!usesDedicatedChapterFlowHosts()) return false;
-  return normalized === hostFromUrl(getChapterFlowSiteUrl());
+  return normalized === new URL(getChapterFlowSiteUrl()).host.toLowerCase();
 }
 
-export function isChapterFlowAuthHost(host: string | null | undefined): boolean {
-  const normalized = normalizeHost(host);
-  if (!normalized) return false;
-  if (LOCAL_CHAPTERFLOW_HOSTS.has(normalized)) return false;
-  if (!usesDedicatedChapterFlowHosts()) return false;
-  return normalized === hostFromUrl(getChapterFlowAuthUrl());
+export function isChapterFlowAppHost(): boolean {
+  return false;
+}
+
+export function isChapterFlowAuthHost(): boolean {
+  return false;
 }
 
 export function buildChapterFlowSiteHref(path = "/"): string {
@@ -121,13 +86,13 @@ export function buildChapterFlowSiteHref(path = "/"): string {
 }
 
 export function buildChapterFlowAppHref(path = "/"): string {
-  return `${getChapterFlowAppUrl()}${path.startsWith("/") ? path : `/${path}`}`;
+  return `${getChapterFlowSiteUrl()}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
 export function buildChapterFlowAuthHref(path = "/"): string {
-  return `${getChapterFlowAuthUrl()}${path.startsWith("/") ? path : `/${path}`}`;
+  return `${getChapterFlowSiteUrl()}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
 export function getChapterFlowLaunchHref(): string {
-  return usesDedicatedChapterFlowHosts() ? buildChapterFlowSiteHref("/") : "/book";
+  return "/book";
 }

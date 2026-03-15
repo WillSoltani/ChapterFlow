@@ -1,12 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { mustServerEnv } from "@/app/app/api/_lib/server-env";
 import { resolvePublicOrigin } from "@/app/app/_lib/server-origin";
-import {
-  buildChapterFlowAppHref,
-  isChapterFlowAppHost,
-  isChapterFlowAuthHost,
-  isChapterFlowSiteHost,
-} from "@/app/_lib/chapterflow-brand";
 import { resolveCognitoDomain } from "../_lib/cognito-domain";
 import { getAuthCookieBase } from "../_lib/auth-cookie";
 import { sanitizeReturnTo } from "../_lib/return-to";
@@ -38,14 +32,7 @@ export async function GET(req: NextRequest) {
     const verifier = req.cookies.get("pkce_verifier")?.value;
     const expectedState = req.cookies.get("oauth_state")?.value;
     const rawReturnTo = req.cookies.get("post_auth_redirect")?.value;
-    const host = req.headers.get("x-forwarded-host") || req.headers.get("host");
-    const defaultReturnTo =
-      isChapterFlowSiteHost(host) ||
-      isChapterFlowAppHost(host) ||
-      isChapterFlowAuthHost(host)
-        ? buildChapterFlowAppHref("/book")
-        : "/app";
-    const returnTo = sanitizeReturnTo(rawReturnTo, defaultReturnTo);
+    const returnTo = sanitizeReturnTo(rawReturnTo, "/book");
 
     if (!verifier || state !== expectedState) {
       return NextResponse.redirect(new URL("/?auth=state_error", origin));
@@ -90,8 +77,6 @@ export async function GET(req: NextRequest) {
 
     res.cookies.set("id_token", idToken, commonCookie);
     res.cookies.set("access_token", accessToken, commonCookie);
-
-    // Clear PKCE cookies (more reliable than delete across Next versions)
     res.cookies.set("pkce_verifier", "", { ...cookieBase, maxAge: 0 });
     res.cookies.set("oauth_state", "", { ...cookieBase, maxAge: 0 });
     res.cookies.set("post_auth_redirect", "", { ...cookieBase, maxAge: 0 });
