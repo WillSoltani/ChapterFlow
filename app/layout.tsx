@@ -27,8 +27,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${GeistSans.className} ${GeistMono.variable}`}>
-      <body className="min-h-screen w-full overflow-x-hidden bg-[#040812] text-slate-100 antialiased">
+    <html lang="en" className={`dark ${GeistSans.className} ${GeistMono.variable}`}>
+      <head>
+        {/* Anti-flash: apply theme before first paint */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var p=JSON.parse(localStorage.getItem('book-accelerator:preferences:v2')||'{}');var t=(p&&p.appearance&&p.appearance.theme)||'dark';if(t==='light'){document.documentElement.classList.remove('dark');}else if(t==='system'){if(!window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.classList.remove('dark');}}}catch(e){}})();`,
+          }}
+        />
+      </head>
+      <body className="min-h-screen w-full overflow-x-hidden bg-slate-50 text-slate-900 antialiased dark:bg-[#040812] dark:text-slate-100">
         {children}
       </body>
     </html>

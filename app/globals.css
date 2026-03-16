@@ -104,11 +104,11 @@ body {
   --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
-  --bg: 10 16 30;        
-  --panel: 255 255 255;   
-  --text: 226 232 240;    
-  --muted: 148 163 184;   
-  --muted2: 100 116 139;  
+  --bg: 248 250 252;
+  --panel: 255 255 255;
+  --text: 15 23 42;
+  --muted: 148 163 184;
+  --muted2: 100 116 139;
   --cf-site-bg: 4 9 22;
   --cf-site-panel-line: 255 255 255;
   --cf-site-panel-strong: 8 17 35;
@@ -152,6 +152,8 @@ body {
   --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.551 0.027 264.364);
+  --bg: 10 16 30;
+  --text: 226 232 240;
 }
 
 .premium-card {
