@@ -3,50 +3,56 @@
   <desc id="desc">Auto-generated themed cover for Superforecasting by Philip Tetlock and Dan Gardner.</desc>
   <defs>
     <linearGradient id="g479382705" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#2A3F5B"/>
-      <stop offset="100%" stop-color="#3F5F86"/>
+      <stop offset="0%" stop-color="#253651"/>
+      <stop offset="100%" stop-color="#3E5A87"/>
     </linearGradient>
   </defs>
 
   <rect width="1200" height="1800" fill="url(#g479382705)"/>
 
-  <rect x="0" y="300" width="1200" height="1180" fill="#93B0CE" opacity="0.1"/>
-  <g stroke="#FDF8EE" opacity="0.2">
-    <line x1="160" y1="320" x2="160" y2="1460" stroke-width="4"/>
-    <line x1="320" y1="320" x2="320" y2="1460" stroke-width="3"/>
-    <line x1="480" y1="320" x2="480" y2="1460" stroke-width="2"/>
-    <line x1="640" y1="320" x2="640" y2="1460" stroke-width="3"/>
-    <line x1="800" y1="320" x2="800" y2="1460" stroke-width="2"/>
-    <line x1="960" y1="320" x2="960" y2="1460" stroke-width="3"/>
-  </g>
-  <path d="M140 430 L1060 430" stroke="#E4A150" stroke-width="10" opacity="0.22"/>
-  <path d="M140 1330 L1060 1330" stroke="#E4A150" stroke-width="10" opacity="0.2"/>
-  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F3ECE0" stroke="#C8B7A1" stroke-width="10"/>
+  <rect x="0" y="300" width="1200" height="1180" fill="#96B1D0" opacity="0.12"/>
+  <rect x="140" y="360" width="920" height="1050" rx="48" fill="#FDF8EE" opacity="0.22"/>
+  <path d="M0 560 Q300 438 600 560 T1200 560" stroke="#FDF8EE" stroke-width="22" opacity="0.24"/>
+  <path d="M0 1180 Q300 1058 600 1180 T1200 1180" stroke="#E5A854" stroke-width="16" opacity="0.22"/>
+  <ellipse cx="600" cy="812" rx="470" ry="382" fill="#FDF8EE" opacity="0.08"/>
+  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F3ECE0" stroke="#C5B39A" stroke-width="10"/>
+<g opacity="0.24" transform="translate(0 -26)">
+  <g transform="translate(401 577)">
+    <rect x="0" y="0" width="396" height="324" rx="24" fill="#F3ECE0" stroke="#FDF8EE" stroke-width="8"/>
+    <line x1="62" y1="272" x2="334" y2="272" stroke="#FDF8EE" stroke-width="10" stroke-linecap="round"/>
+    <line x1="62" y1="272" x2="62" y2="74" stroke="#FDF8EE" stroke-width="10" stroke-linecap="round"/>
+    <path d="M78 236 L144 210 L194 226 L248 154 L318 122" fill="none" stroke="#96B1D0" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="318" cy="122" r="12" fill="#212F41"/>
+  </g></g>
 
-  <g transform="translate(402 566)">
-    <rect x="0" y="0" width="420" height="328" rx="24" fill="#FDF8EE" stroke="#93B0CE" stroke-width="8"/>
-    <path d="M56 258 C136 192 228 222 306 158" stroke="#233244" stroke-width="10" stroke-linecap="round"/>
-    <rect x="82" y="98" width="250" height="26" rx="13" fill="#93B0CE" opacity="0.55"/>
-    <rect x="82" y="132" width="212" height="26" rx="13" fill="#E4A150" opacity="0.45"/>
-    <g transform="translate(294 214) rotate(-18)">
-      <rect x="0" y="0" width="88" height="22" rx="10" fill="#E4A150" opacity="0.9"/>
-      <polygon points="88,11 108,0 108,22" fill="#233244"/>
-      <polygon points="108,0 118,11 108,22" fill="#FDF8EE"/>
-    </g>
+  <g transform="translate(414 568)">
+    <rect x="0" y="0" width="396" height="324" rx="24" fill="#FDF8EE" stroke="#96B1D0" stroke-width="8"/>
+    <line x1="62" y1="272" x2="334" y2="272" stroke="#96B1D0" stroke-width="10" stroke-linecap="round"/>
+    <line x1="62" y1="272" x2="62" y2="74" stroke="#96B1D0" stroke-width="10" stroke-linecap="round"/>
+    <path d="M78 236 L144 210 L194 226 L248 154 L318 122" fill="none" stroke="#E5A854" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="318" cy="122" r="12" fill="#212F41"/>
   </g>
 
   <g transform="translate(930 336)">
-    <path d="M82 8 L152 34 V90 C152 142 120 174 82 190 C44 174 12 142 12 90 V34 Z" fill="#FDF8EE" stroke="#E4A150" stroke-width="10"/>
-    <rect x="30" y="64" width="104" height="64" rx="20" fill="#93B0CE" opacity="0.72"/>
-    <text x="82" y="106" text-anchor="middle" fill="#233244" font-family="'Trebuchet MS', Arial, sans-serif" font-size="40" font-weight="700" letter-spacing="2">SU</text>
+    <path d="M82 8 L152 34 V90 C152 142 120 174 82 190 C44 174 12 142 12 90 V34 Z" fill="#FDF8EE" stroke="#E5A854" stroke-width="10"/>
+    <rect x="30" y="64" width="104" height="64" rx="20" fill="#96B1D0" opacity="0.72"/>
+    <text x="82" y="106" text-anchor="middle" fill="#212F41" font-family="'Trebuchet MS', Arial, sans-serif" font-size="40" font-weight="700" letter-spacing="2">SU</text>
   </g>
 
-  <rect x="0" y="0" width="1200" height="238" fill="#2A3F5B" opacity="0.93"/>
-  <rect x="0" y="1454" width="1200" height="346" fill="#3F5F86" opacity="0.95"/>
+  <rect x="0" y="0" width="1200" height="238" fill="#253651" opacity="0.93"/>
+  <rect x="0" y="1454" width="1200" height="346" fill="#3E5A87" opacity="0.95"/>
   <text x="600" y="136" text-anchor="middle" fill="#FDF8EE" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">PHILIP TETLOCK AND DAN GARDNER</text>
   <text x="600" y="208" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">THINKING</text>
-  <text x="600" y="1216" text-anchor="middle" fill="#233244" font-family="Georgia, 'Times New Roman', serif" font-size="92" font-weight="700" letter-spacing="2">SUPERFORECASTING</text>
+  <text x="600" y="1216" text-anchor="middle" fill="#212F41" font-family="Georgia, 'Times New Roman', serif" font-size="92" font-weight="700" letter-spacing="2">SUPERFORECASTING</text>
+  <g>
+    <rect x="435" y="1466" width="160" height="42" rx="21" fill="#FDF8EE" opacity="0.18" stroke="#FDF8EE" stroke-width="2"/>
+    <text x="515" y="1494" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">REASONING</text>
+  </g>
+  <g>
+    <rect x="617" y="1466" width="148" height="42" rx="21" fill="#FDF8EE" opacity="0.18" stroke="#FDF8EE" stroke-width="2"/>
+    <text x="691" y="1494" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">JUDGMENT</text>
+  </g>
   <text x="600" y="1538" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">REASONING  ·  JUDGMENT  ·  SYSTEMS</text>
-  <text x="600" y="1604" text-anchor="middle" fill="#FDF8EE" font-family="Georgia, serif" font-size="30">Mental models and judgment</text>
+  <text x="600" y="1604" text-anchor="middle" fill="#FDF8EE" font-family="Georgia, serif" font-size="30">Think probabilistically and update often</text>
   <text x="600" y="1668" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
 </svg>

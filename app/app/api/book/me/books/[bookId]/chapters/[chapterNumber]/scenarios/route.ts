@@ -7,7 +7,7 @@ import {
   requireString,
   withBookApiErrors,
 } from "@/app/app/api/book/_lib/http";
-import { getBookTableName } from "@/app/app/api/book/_lib/env";
+import { getBookTableName, getBookAnalyticsTableName } from "@/app/app/api/book/_lib/env";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import {
   addUserEngagementPoints,
@@ -24,6 +24,7 @@ import type {
   BookUserScenarioSubmissionItem,
   ScenarioScope,
 } from "@/app/app/api/book/_lib/types";
+import { analyticsTrackScenario } from "@/app/app/api/book/_lib/analytics-repo";
 import { nowIso } from "@/app/app/api/book/_lib/keys";
 
 export const runtime = "nodejs";
@@ -186,6 +187,17 @@ export async function POST(
       userId: user.sub,
       deltaPoints: SCENARIO_SUBMISSION_POINTS,
     });
+
+    // Analytics — fire-and-forget
+    getBookAnalyticsTableName().then((analyticsTable) => {
+      if (!analyticsTable) return;
+      analyticsTrackScenario(analyticsTable, {
+        userId: user.sub,
+        bookId,
+        chapterNumber: chapterNumberInt,
+        pointsAwarded: SCENARIO_SUBMISSION_POINTS,
+      }).catch(() => {});
+    }).catch(() => {});
 
     return bookOk({
       submission: {

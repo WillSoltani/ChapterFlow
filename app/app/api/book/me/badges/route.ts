@@ -7,8 +7,9 @@ import {
   requireString,
   withBookApiErrors,
 } from "@/app/app/api/book/_lib/http";
-import { getBookTableName } from "@/app/app/api/book/_lib/env";
+import { getBookTableName, getBookAnalyticsTableName } from "@/app/app/api/book/_lib/env";
 import { listBadgeAwards, putBadgeAward } from "@/app/app/api/book/_lib/repo";
+import { analyticsTrackBadge } from "@/app/app/api/book/_lib/analytics-repo";
 
 export const runtime = "nodejs";
 
@@ -46,6 +47,17 @@ export async function PUT(req: Request) {
       earnedAt,
       tier,
     });
+
+    // Analytics — fire-and-forget
+    getBookAnalyticsTableName().then((analyticsTable) => {
+      if (!analyticsTable) return;
+      analyticsTrackBadge(analyticsTable, {
+        userId: user.sub,
+        badgeId,
+        tier,
+        earnedAt,
+      }).catch(() => {});
+    }).catch(() => {});
 
     return bookOk({ ok: true });
   });

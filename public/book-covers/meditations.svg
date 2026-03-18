@@ -3,46 +3,56 @@
   <desc id="desc">Auto-generated themed cover for Meditations by Marcus Aurelius.</desc>
   <defs>
     <linearGradient id="g1580767895" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#4C3D30"/>
-      <stop offset="100%" stop-color="#6C5845"/>
+      <stop offset="0%" stop-color="#3B2922"/>
+      <stop offset="100%" stop-color="#664A3C"/>
     </linearGradient>
   </defs>
 
   <rect width="1200" height="1800" fill="url(#g1580767895)"/>
 
-  <rect x="0" y="300" width="1200" height="1180" fill="#B7A28B" opacity="0.1"/>
-  <g stroke="#FDF7EC" opacity="0.2">
-    <line x1="160" y1="320" x2="160" y2="1460" stroke-width="4"/>
-    <line x1="320" y1="320" x2="320" y2="1460" stroke-width="3"/>
-    <line x1="480" y1="320" x2="480" y2="1460" stroke-width="2"/>
-    <line x1="640" y1="320" x2="640" y2="1460" stroke-width="3"/>
-    <line x1="800" y1="320" x2="800" y2="1460" stroke-width="2"/>
-    <line x1="960" y1="320" x2="960" y2="1460" stroke-width="3"/>
-  </g>
-  <path d="M140 430 L1060 430" stroke="#D8A060" stroke-width="10" opacity="0.22"/>
-  <path d="M140 1330 L1060 1330" stroke="#D8A060" stroke-width="10" opacity="0.2"/>
-  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F3ECE0" stroke="#C7B7A1" stroke-width="10"/>
+  <rect x="-120" y="310" width="820" height="1100" transform="rotate(-12 400 860)" fill="#BB9E8C" opacity="0.24"/>
+  <rect x="560" y="260" width="760" height="1150" transform="rotate(8 940 835)" fill="#DC9062" opacity="0.16"/>
+  <circle cx="276" cy="569" r="180" fill="#DC9062" opacity="0.17"/>
+  <circle cx="954" cy="1031" r="220" fill="#BB9E8C" opacity="0.2"/>
+  <ellipse cx="600" cy="812" rx="470" ry="382" fill="#FDF6EC" opacity="0.08"/>
+  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F3EBE0" stroke="#C4B099" stroke-width="10"/>
+<g opacity="0.24" transform="translate(0 -26)">
+  <g transform="translate(404 569)">
+    <rect x="42" y="56" width="58" height="250" rx="8" fill="#BB9E8C" opacity="0.84"/>
+    <rect x="294" y="56" width="58" height="250" rx="8" fill="#BB9E8C" opacity="0.84"/>
+    <path d="M100 90 C136 40 258 40 294 90 V132 H100 Z" fill="#F3EBE0" stroke="#FDF6EC" stroke-width="8"/>
+    <rect x="126" y="132" width="168" height="174" rx="14" fill="#F3EBE0" stroke="#FDF6EC" stroke-width="8"/>
+    <line x1="100" y1="198" x2="294" y2="198" stroke="#FDF6EC" stroke-width="8"/>
+  </g></g>
 
   <g transform="translate(417 561)">
-    <rect x="42" y="56" width="58" height="250" rx="8" fill="#D8A060" opacity="0.84"/>
-    <rect x="294" y="56" width="58" height="250" rx="8" fill="#D8A060" opacity="0.84"/>
-    <path d="M100 90 C136 40 258 40 294 90 V132 H100 Z" fill="#FDF7EC" stroke="#B7A28B" stroke-width="8"/>
-    <rect x="126" y="132" width="168" height="174" rx="14" fill="#FDF7EC" stroke="#B7A28B" stroke-width="8"/>
-    <line x1="100" y1="198" x2="294" y2="198" stroke="#B7A28B" stroke-width="8"/>
+    <rect x="42" y="56" width="58" height="250" rx="8" fill="#DC9062" opacity="0.84"/>
+    <rect x="294" y="56" width="58" height="250" rx="8" fill="#DC9062" opacity="0.84"/>
+    <path d="M100 90 C136 40 258 40 294 90 V132 H100 Z" fill="#FDF6EC" stroke="#BB9E8C" stroke-width="8"/>
+    <rect x="126" y="132" width="168" height="174" rx="14" fill="#FDF6EC" stroke="#BB9E8C" stroke-width="8"/>
+    <line x1="100" y1="198" x2="294" y2="198" stroke="#BB9E8C" stroke-width="8"/>
   </g>
 
   <g transform="translate(926 334)">
-    <polygon points="88,8 162,52 162,136 88,180 14,136 14,52" fill="#FDF7EC" stroke="#D8A060" stroke-width="10"/>
-    <circle cx="88" cy="94" r="44" fill="#B7A28B" opacity="0.7"/>
-    <text x="88" y="108" text-anchor="middle" fill="#332920" font-family="'Trebuchet MS', Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="2">ME</text>
+    <polygon points="88,8 162,52 162,136 88,180 14,136 14,52" fill="#FDF6EC" stroke="#DC9062" stroke-width="10"/>
+    <circle cx="88" cy="94" r="44" fill="#BB9E8C" opacity="0.7"/>
+    <text x="88" y="108" text-anchor="middle" fill="#30261E" font-family="'Trebuchet MS', Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="2">ME</text>
   </g>
 
-  <rect x="0" y="0" width="1200" height="238" fill="#4C3D30" opacity="0.93"/>
-  <rect x="0" y="1454" width="1200" height="346" fill="#6C5845" opacity="0.95"/>
-  <text x="600" y="136" text-anchor="middle" fill="#FDF7EC" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">MARCUS AURELIUS</text>
-  <text x="600" y="208" text-anchor="middle" fill="#FDF7EC" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">PHILOSOPHY</text>
-  <text x="600" y="1216" text-anchor="middle" fill="#332920" font-family="Georgia, 'Times New Roman', serif" font-size="108" font-weight="700" letter-spacing="2">MEDITATIONS</text>
-  <text x="600" y="1538" text-anchor="middle" fill="#FDF7EC" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">STOICISM  ·  ETHICS  ·  SELF COMMAND</text>
-  <text x="600" y="1604" text-anchor="middle" fill="#FDF7EC" font-family="Georgia, serif" font-size="30">Calm judgment under pressure and uncertainty</text>
-  <text x="600" y="1668" text-anchor="middle" fill="#FDF7EC" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
+  <rect x="0" y="0" width="1200" height="238" fill="#3B2922" opacity="0.93"/>
+  <rect x="0" y="1454" width="1200" height="346" fill="#664A3C" opacity="0.95"/>
+  <text x="600" y="136" text-anchor="middle" fill="#FDF6EC" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">MARCUS AURELIUS</text>
+  <text x="600" y="208" text-anchor="middle" fill="#FDF6EC" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">PHILOSOPHY</text>
+  <text x="600" y="1216" text-anchor="middle" fill="#30261E" font-family="Georgia, 'Times New Roman', serif" font-size="108" font-weight="700" letter-spacing="2">MEDITATIONS</text>
+  <g>
+    <rect x="453" y="1466" width="148" height="42" rx="21" fill="#FDF6EC" opacity="0.18" stroke="#FDF6EC" stroke-width="2"/>
+    <text x="527" y="1494" text-anchor="middle" fill="#FDF6EC" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">STOICISM</text>
+  </g>
+  <g>
+    <rect x="623" y="1466" width="124" height="42" rx="21" fill="#FDF6EC" opacity="0.18" stroke="#FDF6EC" stroke-width="2"/>
+    <text x="685" y="1494" text-anchor="middle" fill="#FDF6EC" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">ETHICS</text>
+  </g>
+  <text x="600" y="1538" text-anchor="middle" fill="#FDF6EC" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">STOICISM  ·  ETHICS  ·  SELF COMMAND</text>
+  <text x="600" y="1604" text-anchor="middle" fill="#FDF6EC" font-family="Georgia, serif" font-size="30">Inner discipline for external uncertainty</text>
+  <text x="600" y="1668" text-anchor="middle" fill="#FDF6EC" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
 </svg>

@@ -2,42 +2,65 @@
   <title id="title">Tiny Habits cover</title>
   <desc id="desc">Auto-generated themed cover for Tiny Habits by BJ Fogg.</desc>
   <defs>
-    <linearGradient id="g650579274" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#2D3656"/>
-      <stop offset="100%" stop-color="#4E5E8A"/>
+    <linearGradient id="g558395373" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1C3A3C"/>
+      <stop offset="100%" stop-color="#366B64"/>
     </linearGradient>
   </defs>
 
-  <rect width="1200" height="1800" fill="url(#g650579274)"/>
+  <rect width="1200" height="1800" fill="url(#g558395373)"/>
 
-  <rect x="0" y="300" width="1200" height="1180" fill="#9AACD2" opacity="0.12"/>
-  <rect x="110" y="370" width="420" height="420" rx="42" fill="#FDF8EF" opacity="0.2"/>
-  <rect x="670" y="360" width="420" height="430" rx="42" fill="#D88D57" opacity="0.16"/>
-  <rect x="110" y="980" width="420" height="360" rx="42" fill="#D88D57" opacity="0.15"/>
-  <rect x="670" y="950" width="420" height="390" rx="42" fill="#FDF8EF" opacity="0.2"/>
-  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F3ECE2" stroke="#C9B8A2" stroke-width="10"/>
+  <rect x="0" y="300" width="1200" height="1180" fill="#8CC3B3" opacity="0.1"/>
+  <g fill="#FBF8EF" opacity="0.19">
+    <circle cx="210" cy="560" r="124"/>
+    <circle cx="1020" cy="640" r="110"/>
+    <circle cx="920" cy="1220" r="132"/>
+    <circle cx="230" cy="1190" r="96"/>
+  </g>
+  <path d="M70 730 Q300 588 600 740 T1130 760" stroke="#DEAF51" stroke-width="20" opacity="0.2"/>
+  <path d="M70 960 Q320 1078 600 940 T1130 920" stroke="#FBF8EF" stroke-width="16" opacity="0.24"/>
+  <ellipse cx="600" cy="812" rx="470" ry="382" fill="#FBF8EF" opacity="0.08"/>
+  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F2EEE3" stroke="#C3B69C" stroke-width="10"/>
+<g opacity="0.24" transform="translate(0 -26)">
+  <g transform="translate(392 543)">
+    <rect x="0" y="0" width="392" height="340" rx="24" fill="#F2EEE3" stroke="#FBF8EF" stroke-width="8"/>
+    <circle cx="72" cy="70" r="13" fill="#8CC3B3" opacity="0.88"/><circle cx="134" cy="70" r="13" fill="#FBF8EF" opacity="0.88"/><circle cx="196" cy="70" r="13" fill="#8CC3B3" opacity="0.88"/><circle cx="258" cy="70" r="13" fill="#FBF8EF" opacity="0.88"/><circle cx="320" cy="70" r="13" fill="#8CC3B3" opacity="0.88"/>
+<circle cx="72" cy="126" r="13" fill="#FBF8EF" opacity="0.88"/><circle cx="134" cy="126" r="13" fill="#8CC3B3" opacity="0.88"/><circle cx="196" cy="126" r="13" fill="#FBF8EF" opacity="0.88"/><circle cx="258" cy="126" r="13" fill="#8CC3B3" opacity="0.88"/><circle cx="320" cy="126" r="13" fill="#FBF8EF" opacity="0.88"/>
+<circle cx="72" cy="182" r="13" fill="#8CC3B3" opacity="0.88"/><circle cx="134" cy="182" r="13" fill="#FBF8EF" opacity="0.88"/><circle cx="196" cy="182" r="13" fill="#8CC3B3" opacity="0.88"/><circle cx="258" cy="182" r="13" fill="#FBF8EF" opacity="0.88"/><circle cx="320" cy="182" r="13" fill="#8CC3B3" opacity="0.88"/>
+<circle cx="72" cy="238" r="13" fill="#FBF8EF" opacity="0.88"/><circle cx="134" cy="238" r="13" fill="#8CC3B3" opacity="0.88"/><circle cx="196" cy="238" r="13" fill="#FBF8EF" opacity="0.88"/><circle cx="258" cy="238" r="13" fill="#8CC3B3" opacity="0.88"/><circle cx="320" cy="238" r="13" fill="#FBF8EF" opacity="0.88"/>
+<circle cx="72" cy="294" r="13" fill="#8CC3B3" opacity="0.88"/><circle cx="134" cy="294" r="13" fill="#FBF8EF" opacity="0.88"/><circle cx="196" cy="294" r="13" fill="#8CC3B3" opacity="0.88"/><circle cx="258" cy="294" r="13" fill="#FBF8EF" opacity="0.88"/><circle cx="320" cy="294" r="13" fill="#8CC3B3" opacity="0.88"/>
+  </g></g>
 
-  <g transform="translate(410 543)">
-    <rect x="0" y="0" width="392" height="340" rx="24" fill="#FDF8EF" stroke="#9AACD2" stroke-width="8"/>
-    <circle cx="72" cy="70" r="13" fill="#D88D57" opacity="0.88"/><circle cx="134" cy="70" r="13" fill="#9AACD2" opacity="0.88"/><circle cx="196" cy="70" r="13" fill="#D88D57" opacity="0.88"/><circle cx="258" cy="70" r="13" fill="#9AACD2" opacity="0.88"/><circle cx="320" cy="70" r="13" fill="#D88D57" opacity="0.88"/>
-<circle cx="72" cy="126" r="13" fill="#9AACD2" opacity="0.88"/><circle cx="134" cy="126" r="13" fill="#D88D57" opacity="0.88"/><circle cx="196" cy="126" r="13" fill="#9AACD2" opacity="0.88"/><circle cx="258" cy="126" r="13" fill="#D88D57" opacity="0.88"/><circle cx="320" cy="126" r="13" fill="#9AACD2" opacity="0.88"/>
-<circle cx="72" cy="182" r="13" fill="#D88D57" opacity="0.88"/><circle cx="134" cy="182" r="13" fill="#9AACD2" opacity="0.88"/><circle cx="196" cy="182" r="13" fill="#D88D57" opacity="0.88"/><circle cx="258" cy="182" r="13" fill="#9AACD2" opacity="0.88"/><circle cx="320" cy="182" r="13" fill="#D88D57" opacity="0.88"/>
-<circle cx="72" cy="238" r="13" fill="#9AACD2" opacity="0.88"/><circle cx="134" cy="238" r="13" fill="#D88D57" opacity="0.88"/><circle cx="196" cy="238" r="13" fill="#9AACD2" opacity="0.88"/><circle cx="258" cy="238" r="13" fill="#D88D57" opacity="0.88"/><circle cx="320" cy="238" r="13" fill="#9AACD2" opacity="0.88"/>
-<circle cx="72" cy="294" r="13" fill="#D88D57" opacity="0.88"/><circle cx="134" cy="294" r="13" fill="#9AACD2" opacity="0.88"/><circle cx="196" cy="294" r="13" fill="#D88D57" opacity="0.88"/><circle cx="258" cy="294" r="13" fill="#9AACD2" opacity="0.88"/><circle cx="320" cy="294" r="13" fill="#D88D57" opacity="0.88"/>
+  <g transform="translate(405 560)">
+    <rect x="0" y="0" width="392" height="340" rx="24" fill="#FBF8EF" stroke="#8CC3B3" stroke-width="8"/>
+    <circle cx="72" cy="70" r="13" fill="#DEAF51" opacity="0.88"/><circle cx="134" cy="70" r="13" fill="#8CC3B3" opacity="0.88"/><circle cx="196" cy="70" r="13" fill="#DEAF51" opacity="0.88"/><circle cx="258" cy="70" r="13" fill="#8CC3B3" opacity="0.88"/><circle cx="320" cy="70" r="13" fill="#DEAF51" opacity="0.88"/>
+<circle cx="72" cy="126" r="13" fill="#8CC3B3" opacity="0.88"/><circle cx="134" cy="126" r="13" fill="#DEAF51" opacity="0.88"/><circle cx="196" cy="126" r="13" fill="#8CC3B3" opacity="0.88"/><circle cx="258" cy="126" r="13" fill="#DEAF51" opacity="0.88"/><circle cx="320" cy="126" r="13" fill="#8CC3B3" opacity="0.88"/>
+<circle cx="72" cy="182" r="13" fill="#DEAF51" opacity="0.88"/><circle cx="134" cy="182" r="13" fill="#8CC3B3" opacity="0.88"/><circle cx="196" cy="182" r="13" fill="#DEAF51" opacity="0.88"/><circle cx="258" cy="182" r="13" fill="#8CC3B3" opacity="0.88"/><circle cx="320" cy="182" r="13" fill="#DEAF51" opacity="0.88"/>
+<circle cx="72" cy="238" r="13" fill="#8CC3B3" opacity="0.88"/><circle cx="134" cy="238" r="13" fill="#DEAF51" opacity="0.88"/><circle cx="196" cy="238" r="13" fill="#8CC3B3" opacity="0.88"/><circle cx="258" cy="238" r="13" fill="#DEAF51" opacity="0.88"/><circle cx="320" cy="238" r="13" fill="#8CC3B3" opacity="0.88"/>
+<circle cx="72" cy="294" r="13" fill="#DEAF51" opacity="0.88"/><circle cx="134" cy="294" r="13" fill="#8CC3B3" opacity="0.88"/><circle cx="196" cy="294" r="13" fill="#DEAF51" opacity="0.88"/><circle cx="258" cy="294" r="13" fill="#8CC3B3" opacity="0.88"/><circle cx="320" cy="294" r="13" fill="#DEAF51" opacity="0.88"/>
   </g>
 
-  <g transform="translate(930 336)">
-    <path d="M82 8 L152 34 V90 C152 142 120 174 82 190 C44 174 12 142 12 90 V34 Z" fill="#FDF8EF" stroke="#D88D57" stroke-width="10"/>
-    <rect x="30" y="64" width="104" height="64" rx="20" fill="#9AACD2" opacity="0.72"/>
-    <text x="82" y="106" text-anchor="middle" fill="#232B3B" font-family="'Trebuchet MS', Arial, sans-serif" font-size="40" font-weight="700" letter-spacing="2">TH</text>
+  <g transform="translate(924 332)">
+    <rect x="24" y="14" width="128" height="156" rx="64" fill="#FBF8EF" stroke="#DEAF51" stroke-width="10"/>
+    <path d="M44 54 H132" stroke="#8CC3B3" stroke-width="10" stroke-linecap="round"/>
+    <path d="M44 80 H132" stroke="#8CC3B3" stroke-width="10" stroke-linecap="round"/>
+    <text x="88" y="128" text-anchor="middle" fill="#1E2F2E" font-family="'Trebuchet MS', Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="2">TH</text>
   </g>
 
-  <rect x="0" y="0" width="1200" height="238" fill="#2D3656" opacity="0.93"/>
-  <rect x="0" y="1454" width="1200" height="346" fill="#4E5E8A" opacity="0.95"/>
-  <text x="600" y="136" text-anchor="middle" fill="#FDF8EF" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">BJ FOGG</text>
-  <text x="600" y="208" text-anchor="middle" fill="#FDF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">PSYCHOLOGY</text>
-  <text x="600" y="1216" text-anchor="middle" fill="#232B3B" font-family="Georgia, 'Times New Roman', serif" font-size="108" font-weight="700" letter-spacing="2">TINY HABITS</text>
-  <text x="600" y="1538" text-anchor="middle" fill="#FDF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">HABITS  ·  BEHAVIOR-DESIGN  ·  TINY-ACTIONS</text>
-  <text x="600" y="1604" text-anchor="middle" fill="#FDF8EF" font-family="Georgia, serif" font-size="30">Behavior, bias, and motivation</text>
-  <text x="600" y="1668" text-anchor="middle" fill="#FDF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
+  <rect x="0" y="0" width="1200" height="238" fill="#1C3A3C" opacity="0.93"/>
+  <rect x="0" y="1454" width="1200" height="346" fill="#366B64" opacity="0.95"/>
+  <text x="600" y="136" text-anchor="middle" fill="#FBF8EF" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">BJ FOGG</text>
+  <text x="600" y="208" text-anchor="middle" fill="#FBF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">PRODUCTIVITY</text>
+  <text x="600" y="1216" text-anchor="middle" fill="#1E2F2E" font-family="'Trebuchet MS', Arial, sans-serif" font-size="108" font-weight="700" letter-spacing="2">TINY HABITS</text>
+  <g>
+    <rect x="411" y="1466" width="124" height="42" rx="21" fill="#FBF8EF" opacity="0.18" stroke="#FBF8EF" stroke-width="2"/>
+    <text x="473" y="1494" text-anchor="middle" fill="#FBF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">HABITS</text>
+  </g>
+  <g>
+    <rect x="557" y="1466" width="232" height="42" rx="21" fill="#FBF8EF" opacity="0.18" stroke="#FBF8EF" stroke-width="2"/>
+    <text x="673" y="1494" text-anchor="middle" fill="#FBF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">BEHAVIOR DESIGN</text>
+  </g>
+  <text x="600" y="1538" text-anchor="middle" fill="#FBF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">HABITS  ·  BEHAVIOR-DESIGN  ·  TINY-ACTIONS</text>
+  <text x="600" y="1604" text-anchor="middle" fill="#FBF8EF" font-family="Georgia, serif" font-size="30">Start tiny and let consistency compound</text>
+  <text x="600" y="1668" text-anchor="middle" fill="#FBF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
 </svg>

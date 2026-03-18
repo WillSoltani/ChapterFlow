@@ -10,11 +10,25 @@
 
   <rect width="1200" height="1800" fill="url(#g1265880820)"/>
 
-  <circle cx="600" cy="840" r="420" fill="#8E8E8E" opacity="0.16"/>
-  <circle cx="600" cy="840" r="300" fill="#FFFFFF" opacity="0.16"/>
-  <circle cx="572" cy="862" r="210" fill="#3D3D3D" opacity="0.18"/>
-  <circle cx="628" cy="818" r="130" fill="#FFFFFF" opacity="0.34"/>
+  <rect x="0" y="300" width="1200" height="1180" fill="#8E8E8E" opacity="0.1"/>
+  <g stroke="#FFFFFF" opacity="0.2">
+    <line x1="160" y1="320" x2="160" y2="1460" stroke-width="4"/>
+    <line x1="320" y1="320" x2="320" y2="1460" stroke-width="3"/>
+    <line x1="480" y1="320" x2="480" y2="1460" stroke-width="2"/>
+    <line x1="640" y1="320" x2="640" y2="1460" stroke-width="3"/>
+    <line x1="800" y1="320" x2="800" y2="1460" stroke-width="2"/>
+    <line x1="960" y1="320" x2="960" y2="1460" stroke-width="3"/>
+  </g>
+  <path d="M140 430 L1060 430" stroke="#3D3D3D" stroke-width="10" opacity="0.22"/>
+  <path d="M140 1330 L1060 1330" stroke="#3D3D3D" stroke-width="10" opacity="0.2"/>
+  <ellipse cx="600" cy="812" rx="470" ry="382" fill="#FFFFFF" opacity="0.08"/>
   <rect x="116" y="304" width="968" height="1036" rx="38" fill="#FAFAFA" stroke="#D3D3D3" stroke-width="10"/>
+<g opacity="0.24" transform="translate(0 -26)">
+  <g transform="translate(434 578)">
+    <rect x="0" y="0" width="340" height="276" rx="22" fill="#FAFAFA" stroke="#FFFFFF" stroke-width="8"/>
+    <circle cx="170" cy="130" r="68" fill="#141414" opacity="0.92"/>
+    <rect x="84" y="214" width="172" height="20" rx="10" fill="#8E8E8E" opacity="0.88"/>
+  </g></g>
 
   <g transform="translate(417 595)">
     <rect x="0" y="0" width="340" height="276" rx="22" fill="#FFFFFF" stroke="#8E8E8E" stroke-width="8"/>
@@ -33,7 +47,15 @@
   <text x="600" y="136" text-anchor="middle" fill="#FFFFFF" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">GARY KELLER, JAY PAPASAN</text>
   <text x="600" y="208" text-anchor="middle" fill="#FFFFFF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">PRODUCTIVITY</text>
   <text x="600" y="1216" text-anchor="middle" fill="#141414" font-family="'Trebuchet MS', Arial, sans-serif" font-size="92" font-weight="700" letter-spacing="2">THE ONE THING</text>
+  <g>
+    <rect x="447" y="1466" width="112" height="42" rx="21" fill="#FFFFFF" opacity="0.18" stroke="#FFFFFF" stroke-width="2"/>
+    <text x="503" y="1494" text-anchor="middle" fill="#FFFFFF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">FOCUS</text>
+  </g>
+  <g>
+    <rect x="581" y="1466" width="172" height="42" rx="21" fill="#FFFFFF" opacity="0.18" stroke="#FFFFFF" stroke-width="2"/>
+    <text x="667" y="1494" text-anchor="middle" fill="#FFFFFF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">PRIORITIES</text>
+  </g>
   <text x="600" y="1538" text-anchor="middle" fill="#FFFFFF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">FOCUS  ·  PRIORITIES  ·  PRODUCTIVITY</text>
-  <text x="600" y="1604" text-anchor="middle" fill="#FFFFFF" font-family="Georgia, serif" font-size="30">One priority that makes everything easier</text>
+  <text x="600" y="1604" text-anchor="middle" fill="#FFFFFF" font-family="Georgia, serif" font-size="30">One priority that unlocks the rest</text>
   <text x="600" y="1668" text-anchor="middle" fill="#FFFFFF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
 </svg>

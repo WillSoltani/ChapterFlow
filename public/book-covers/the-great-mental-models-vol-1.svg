@@ -3,45 +3,86 @@
   <desc id="desc">Auto-generated themed cover for The Great Mental Models Vol. 1 by Shane Parrish.</desc>
   <defs>
     <linearGradient id="g213647393" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#2A3F5B"/>
-      <stop offset="100%" stop-color="#3F5F86"/>
+      <stop offset="0%" stop-color="#213550"/>
+      <stop offset="100%" stop-color="#395987"/>
     </linearGradient>
   </defs>
 
   <rect width="1200" height="1800" fill="url(#g213647393)"/>
 
-  <circle cx="600" cy="840" r="420" fill="#93B0CE" opacity="0.16"/>
-  <circle cx="600" cy="840" r="300" fill="#FDF8EE" opacity="0.16"/>
-  <circle cx="629" cy="857" r="210" fill="#E4A150" opacity="0.18"/>
-  <circle cx="571" cy="823" r="130" fill="#FDF8EE" opacity="0.34"/>
-  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F3ECE0" stroke="#C8B7A1" stroke-width="10"/>
+  <rect x="0" y="300" width="1200" height="1180" fill="#94B2D2" opacity="0.1"/>
+  <rect x="110" y="360" width="420" height="430" rx="42" fill="#FDF8EE" opacity="0.2"/>
+  <rect x="670" y="360" width="420" height="420" rx="42" fill="#E8A451" opacity="0.16"/>
+  <rect x="110" y="980" width="420" height="360" rx="42" fill="#E8A451" opacity="0.15"/>
+  <rect x="670" y="950" width="420" height="390" rx="42" fill="#FDF8EE" opacity="0.2"/>
+  <circle cx="649" cy="877" r="128" fill="#FDF8EE" opacity="0.16"/>
+  <ellipse cx="600" cy="812" rx="470" ry="382" fill="#FDF8EE" opacity="0.08"/>
+  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F3ECE0" stroke="#C6B299" stroke-width="10"/>
+<g opacity="0.24" transform="translate(0 -26)">
+  <g transform="translate(405 552)">
+    <rect x="14" y="24" width="368" height="332" rx="24" fill="#F3ECE0" stroke="#FDF8EE" stroke-width="8"/>
+    <g stroke="#94B2D2" stroke-width="8" opacity="0.86">
+      <line x1="94" y1="96" x2="184" y2="140"/>
+      <line x1="184" y1="140" x2="288" y2="108"/>
+      <line x1="184" y1="140" x2="174" y2="242"/>
+      <line x1="174" y1="242" x2="286" y2="284"/>
+      <line x1="94" y1="96" x2="104" y2="228"/>
+      <line x1="104" y1="228" x2="174" y2="242"/>
+      <line x1="288" y1="108" x2="286" y2="284"/>
+    </g>
+    <g fill="#212F41">
+      <circle cx="94" cy="96" r="13"/>
+      <circle cx="184" cy="140" r="13"/>
+      <circle cx="288" cy="108" r="13"/>
+      <circle cx="104" cy="228" r="13"/>
+      <circle cx="174" cy="242" r="13"/>
+      <circle cx="286" cy="284" r="13"/>
+    </g>
+  </g></g>
 
-  <g transform="translate(404 574)">
-    <rect x="0" y="0" width="420" height="328" rx="24" fill="#FDF8EE" stroke="#93B0CE" stroke-width="8"/>
-    <path d="M56 258 C136 192 228 222 306 158" stroke="#233244" stroke-width="10" stroke-linecap="round"/>
-    <rect x="82" y="98" width="250" height="26" rx="13" fill="#93B0CE" opacity="0.55"/>
-    <rect x="82" y="132" width="212" height="26" rx="13" fill="#E4A150" opacity="0.45"/>
-    <g transform="translate(294 214) rotate(-18)">
-      <rect x="0" y="0" width="88" height="22" rx="10" fill="#E4A150" opacity="0.9"/>
-      <polygon points="88,11 108,0 108,22" fill="#233244"/>
-      <polygon points="108,0 118,11 108,22" fill="#FDF8EE"/>
+  <g transform="translate(418 570)">
+    <rect x="14" y="24" width="368" height="332" rx="24" fill="#FDF8EE" stroke="#94B2D2" stroke-width="8"/>
+    <g stroke="#E8A451" stroke-width="8" opacity="0.86">
+      <line x1="94" y1="96" x2="184" y2="140"/>
+      <line x1="184" y1="140" x2="288" y2="108"/>
+      <line x1="184" y1="140" x2="174" y2="242"/>
+      <line x1="174" y1="242" x2="286" y2="284"/>
+      <line x1="94" y1="96" x2="104" y2="228"/>
+      <line x1="104" y1="228" x2="174" y2="242"/>
+      <line x1="288" y1="108" x2="286" y2="284"/>
+    </g>
+    <g fill="#212F41">
+      <circle cx="94" cy="96" r="13"/>
+      <circle cx="184" cy="140" r="13"/>
+      <circle cx="288" cy="108" r="13"/>
+      <circle cx="104" cy="228" r="13"/>
+      <circle cx="174" cy="242" r="13"/>
+      <circle cx="286" cy="284" r="13"/>
     </g>
   </g>
 
   <g transform="translate(924 332)">
-    <polygon points="88,8 168,88 88,168 8,88" fill="#FDF8EE" stroke="#E4A150" stroke-width="10"/>
-    <circle cx="88" cy="88" r="38" fill="#93B0CE" opacity="0.72"/>
-    <text x="88" y="102" text-anchor="middle" fill="#233244" font-family="'Trebuchet MS', Arial, sans-serif" font-size="40" font-weight="700" letter-spacing="2">GM</text>
+    <polygon points="88,8 168,88 88,168 8,88" fill="#FDF8EE" stroke="#E8A451" stroke-width="10"/>
+    <circle cx="88" cy="88" r="38" fill="#94B2D2" opacity="0.72"/>
+    <text x="88" y="102" text-anchor="middle" fill="#212F41" font-family="'Trebuchet MS', Arial, sans-serif" font-size="40" font-weight="700" letter-spacing="2">GM</text>
   </g>
 
-  <rect x="0" y="0" width="1200" height="238" fill="#2A3F5B" opacity="0.93"/>
-  <rect x="0" y="1454" width="1200" height="346" fill="#3F5F86" opacity="0.95"/>
+  <rect x="0" y="0" width="1200" height="238" fill="#213550" opacity="0.93"/>
+  <rect x="0" y="1454" width="1200" height="346" fill="#395987" opacity="0.95"/>
   <text x="600" y="136" text-anchor="middle" fill="#FDF8EE" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">SHANE PARRISH</text>
   <text x="600" y="208" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">THINKING</text>
-  <text x="600" y="1114" text-anchor="middle" fill="#233244" font-family="Georgia, 'Times New Roman', serif" font-size="92" font-weight="700" letter-spacing="2">THE GREAT</text>
-  <text x="600" y="1213" text-anchor="middle" fill="#233244" font-family="Georgia, 'Times New Roman', serif" font-size="92" font-weight="700" letter-spacing="2">MENTAL MODELS</text>
-  <text x="600" y="1312" text-anchor="middle" fill="#233244" font-family="Georgia, 'Times New Roman', serif" font-size="92" font-weight="700" letter-spacing="2">VOL. 1</text>
+  <text x="600" y="1114" text-anchor="middle" fill="#212F41" font-family="Georgia, 'Times New Roman', serif" font-size="92" font-weight="700" letter-spacing="2">THE GREAT</text>
+  <text x="600" y="1213" text-anchor="middle" fill="#212F41" font-family="Georgia, 'Times New Roman', serif" font-size="92" font-weight="700" letter-spacing="2">MENTAL MODELS</text>
+  <text x="600" y="1312" text-anchor="middle" fill="#212F41" font-family="Georgia, 'Times New Roman', serif" font-size="92" font-weight="700" letter-spacing="2">VOL. 1</text>
+  <g>
+    <rect x="435" y="1466" width="160" height="42" rx="21" fill="#FDF8EE" opacity="0.18" stroke="#FDF8EE" stroke-width="2"/>
+    <text x="515" y="1494" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">REASONING</text>
+  </g>
+  <g>
+    <rect x="617" y="1466" width="148" height="42" rx="21" fill="#FDF8EE" opacity="0.18" stroke="#FDF8EE" stroke-width="2"/>
+    <text x="691" y="1494" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">JUDGMENT</text>
+  </g>
   <text x="600" y="1538" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">REASONING  ·  JUDGMENT  ·  SYSTEMS</text>
-  <text x="600" y="1604" text-anchor="middle" fill="#FDF8EE" font-family="Georgia, serif" font-size="30">Mental models and judgment</text>
+  <text x="600" y="1604" text-anchor="middle" fill="#FDF8EE" font-family="Georgia, serif" font-size="30">Foundational models for clearer thinking</text>
   <text x="600" y="1668" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
 </svg>

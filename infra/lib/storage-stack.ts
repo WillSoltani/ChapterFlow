@@ -50,6 +50,7 @@ function resolveAllowedWebOrigins(): string[] {
 
 export class StorageStack extends cdk.Stack {
   public readonly table: dynamodb.Table;
+  public readonly analyticsTable: dynamodb.Table;
   public readonly rawBucket: s3.Bucket;
   public readonly outputBucket: s3.Bucket;
   public readonly kmsKey: kms.Key;
@@ -73,6 +74,34 @@ export class StorageStack extends cdk.Stack {
       pointInTimeRecoverySpecification: { pointInTimeRecoveryEnabled: true },
 
       removalPolicy: cdk.RemovalPolicy.DESTROY,
+    });
+
+    // Analytics table — separate from main app table for independent scaling and querying
+    this.analyticsTable = new dynamodb.Table(this, "BookAnalyticsTable", {
+      tableName: "ChapterFlowAnalytics",
+      partitionKey: { name: "PK", type: dynamodb.AttributeType.STRING },
+      sortKey: { name: "SK", type: dynamodb.AttributeType.STRING },
+      billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
+      pointInTimeRecoverySpecification: { pointInTimeRecoveryEnabled: true },
+      stream: dynamodb.StreamViewType.NEW_AND_OLD_IMAGES,
+      // RETAIN: never drop analytics data on stack destroy
+      removalPolicy: cdk.RemovalPolicy.RETAIN,
+    });
+
+    // GSI 1 — query events by date and type: "all quiz_attempts on 2024-01-15"
+    this.analyticsTable.addGlobalSecondaryIndex({
+      indexName: "eventDate-eventType-index",
+      partitionKey: { name: "eventDate", type: dynamodb.AttributeType.STRING },
+      sortKey: { name: "eventType", type: dynamodb.AttributeType.STRING },
+      projectionType: dynamodb.ProjectionType.ALL,
+    });
+
+    // GSI 2 — query user snapshots by plan: "all PRO users sorted by last activity"
+    this.analyticsTable.addGlobalSecondaryIndex({
+      indexName: "plan-updatedAt-index",
+      partitionKey: { name: "plan", type: dynamodb.AttributeType.STRING },
+      sortKey: { name: "updatedAt", type: dynamodb.AttributeType.STRING },
+      projectionType: dynamodb.ProjectionType.ALL,
     });
 
     this.rawBucket = new s3.Bucket(this, "RawUploadsBucket", {
@@ -232,6 +261,7 @@ export class StorageStack extends cdk.Stack {
     });
 
     new cdk.CfnOutput(this, "SecureDocTableName", { value: this.table.tableName });
+    new cdk.CfnOutput(this, "AnalyticsTableName", { value: this.analyticsTable.tableName });
     new cdk.CfnOutput(this, "RawBucketName", { value: this.rawBucket.bucketName });
     new cdk.CfnOutput(this, "OutputBucketName", { value: this.outputBucket.bucketName });
     new cdk.CfnOutput(this, "KmsKeyArn", { value: this.kmsKey.keyArn });

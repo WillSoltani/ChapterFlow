@@ -10,18 +10,26 @@
 
   <rect width="1200" height="1800" fill="url(#g110774657)"/>
 
-  <rect x="0" y="300" width="1200" height="1180" fill="#89B39C" opacity="0.1"/>
-  <g stroke="#FCFAF1" opacity="0.2">
-    <line x1="160" y1="320" x2="160" y2="1460" stroke-width="4"/>
-    <line x1="320" y1="320" x2="320" y2="1460" stroke-width="3"/>
-    <line x1="480" y1="320" x2="480" y2="1460" stroke-width="2"/>
-    <line x1="640" y1="320" x2="640" y2="1460" stroke-width="3"/>
-    <line x1="800" y1="320" x2="800" y2="1460" stroke-width="2"/>
-    <line x1="960" y1="320" x2="960" y2="1460" stroke-width="3"/>
+  <rect x="0" y="300" width="1200" height="1180" fill="#89B39C" opacity="0.08"/>
+  <g stroke="#FCFAF1" opacity="0.18">
+    <path d="M0 380 L1200 980" stroke-width="10"/>
+    <path d="M0 600 L1200 1200" stroke-width="8"/>
+    <path d="M0 820 L1200 1420" stroke-width="6"/>
+    <path d="M0 1040 L1040 1540" stroke-width="5"/>
+    <path d="M160 300 L1200 820" stroke-width="5"/>
   </g>
-  <path d="M140 430 L1060 430" stroke="#CFA34C" stroke-width="10" opacity="0.22"/>
-  <path d="M140 1330 L1060 1330" stroke="#CFA34C" stroke-width="10" opacity="0.2"/>
+  <rect x="116" y="340" width="968" height="990" rx="46" fill="#FCFAF1" opacity="0.14"/>
+  <ellipse cx="600" cy="812" rx="470" ry="382" fill="#FCFAF1" opacity="0.08"/>
   <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F4F1E5" stroke="#B8B193" stroke-width="10"/>
+<g opacity="0.24" transform="translate(0 -26)">
+  <g transform="translate(397 571)">
+    <rect x="0" y="0" width="392" height="332" rx="24" fill="#F4F1E5" stroke="#FCFAF1" stroke-width="8"/>
+    <rect x="74" y="192" width="46" height="94" rx="10" fill="#89B39C" opacity="0.84"/>
+    <rect x="142" y="150" width="46" height="136" rx="10" fill="#FCFAF1" opacity="0.86"/>
+    <rect x="210" y="122" width="46" height="164" rx="10" fill="#89B39C" opacity="0.88"/>
+    <circle cx="302" cy="188" r="58" fill="#1E3128" opacity="0.82"/>
+    <text x="302" y="206" text-anchor="middle" fill="#F4F1E5" font-family="Georgia, serif" font-size="48" font-weight="700">$</text>
+  </g></g>
 
   <g transform="translate(410 562)">
     <rect x="0" y="0" width="392" height="332" rx="24" fill="#FCFAF1" stroke="#89B39C" stroke-width="8"/>
@@ -43,7 +51,15 @@
   <text x="600" y="136" text-anchor="middle" fill="#FCFAF1" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">MORGAN HOUSEL</text>
   <text x="600" y="208" text-anchor="middle" fill="#FCFAF1" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">MONEY</text>
   <text x="600" y="1216" text-anchor="middle" fill="#1E3128" font-family="Georgia, 'Times New Roman', serif" font-size="78" font-weight="700" letter-spacing="2">THE PSYCHOLOGY OF MONEY</text>
+  <g>
+    <rect x="459" y="1466" width="112" height="42" rx="21" fill="#FCFAF1" opacity="0.18" stroke="#FCFAF1" stroke-width="2"/>
+    <text x="515" y="1494" text-anchor="middle" fill="#FCFAF1" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">MONEY</text>
+  </g>
+  <g>
+    <rect x="593" y="1466" width="148" height="42" rx="21" fill="#FCFAF1" opacity="0.18" stroke="#FCFAF1" stroke-width="2"/>
+    <text x="667" y="1494" text-anchor="middle" fill="#FCFAF1" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">BEHAVIOR</text>
+  </g>
   <text x="600" y="1538" text-anchor="middle" fill="#FCFAF1" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">MONEY  ·  BEHAVIOR  ·  WEALTH</text>
-  <text x="600" y="1604" text-anchor="middle" fill="#FCFAF1" font-family="Georgia, serif" font-size="30">Behavior and incentives behind money decisions</text>
+  <text x="600" y="1604" text-anchor="middle" fill="#FCFAF1" font-family="Georgia, serif" font-size="30">Behavior beats spreadsheets over time</text>
   <text x="600" y="1668" text-anchor="middle" fill="#FCFAF1" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
 </svg>

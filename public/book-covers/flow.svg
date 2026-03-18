@@ -3,41 +3,58 @@
   <desc id="desc">Auto-generated themed cover for Flow by Mihaly Csikszentmihalyi.</desc>
   <defs>
     <linearGradient id="g233972080" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#3F3A32"/>
-      <stop offset="100%" stop-color="#5F574A"/>
+      <stop offset="0%" stop-color="#3C362B"/>
+      <stop offset="100%" stop-color="#665C48"/>
     </linearGradient>
   </defs>
 
   <rect width="1200" height="1800" fill="url(#g233972080)"/>
 
-  <rect x="0" y="300" width="1200" height="1180" fill="#B39F88" opacity="0.12"/>
-  <rect x="110" y="370" width="420" height="420" rx="42" fill="#FEF8EE" opacity="0.2"/>
-  <rect x="670" y="360" width="420" height="430" rx="42" fill="#D6A160" opacity="0.16"/>
-  <rect x="110" y="980" width="420" height="360" rx="42" fill="#D6A160" opacity="0.15"/>
-  <rect x="670" y="950" width="420" height="390" rx="42" fill="#FEF8EE" opacity="0.2"/>
-  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F3ECE2" stroke="#C8B8A2" stroke-width="10"/>
+  <rect x="0" y="300" width="1200" height="1180" fill="#B8A289" opacity="0.08"/>
+  <g stroke="#FEF8EE" opacity="0.18">
+    <path d="M0 380 L1200 980" stroke-width="10"/>
+    <path d="M0 600 L1200 1200" stroke-width="8"/>
+    <path d="M0 820 L1200 1420" stroke-width="6"/>
+    <path d="M0 1040 L1040 1540" stroke-width="5"/>
+    <path d="M160 300 L1200 820" stroke-width="5"/>
+  </g>
+  <rect x="116" y="340" width="968" height="990" rx="46" fill="#FEF8EE" opacity="0.14"/>
+  <ellipse cx="600" cy="812" rx="470" ry="382" fill="#FEF8EE" opacity="0.08"/>
+  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F3ECE2" stroke="#C6B49A" stroke-width="10"/>
+<g opacity="0.24" transform="translate(0 -26)">
+  <g transform="translate(398 561)">
+    <rect x="0" y="0" width="416" height="308" rx="24" fill="#F3ECE2" stroke="#FEF8EE" stroke-width="8"/>
+    <path d="M20 198 C86 132 148 132 214 198 C278 262 340 262 396 198" fill="none" stroke="#B8A289" stroke-width="16" stroke-linecap="round"/>
+    <path d="M20 242 C88 176 150 176 216 242 C278 304 340 304 396 242" fill="none" stroke="#FEF8EE" stroke-width="14" stroke-linecap="round"/>
+  </g></g>
 
-  <g transform="translate(395 562)">
-    <rect x="42" y="56" width="58" height="250" rx="8" fill="#D6A160" opacity="0.84"/>
-    <rect x="294" y="56" width="58" height="250" rx="8" fill="#D6A160" opacity="0.84"/>
-    <path d="M100 90 C136 40 258 40 294 90 V132 H100 Z" fill="#FEF8EE" stroke="#B39F88" stroke-width="8"/>
-    <rect x="126" y="132" width="168" height="174" rx="14" fill="#FEF8EE" stroke="#B39F88" stroke-width="8"/>
-    <line x1="100" y1="198" x2="294" y2="198" stroke="#B39F88" stroke-width="8"/>
+  <g transform="translate(381 578)">
+    <rect x="0" y="0" width="416" height="308" rx="24" fill="#FEF8EE" stroke="#B8A289" stroke-width="8"/>
+    <path d="M20 198 C86 132 148 132 214 198 C278 262 340 262 396 198" fill="none" stroke="#DAA561" stroke-width="16" stroke-linecap="round"/>
+    <path d="M20 242 C88 176 150 176 216 242 C278 304 340 304 396 242" fill="none" stroke="#B8A289" stroke-width="14" stroke-linecap="round"/>
   </g>
 
   <g transform="translate(924 332)">
-    <rect x="24" y="14" width="128" height="156" rx="64" fill="#FEF8EE" stroke="#D6A160" stroke-width="10"/>
-    <path d="M44 54 H132" stroke="#B39F88" stroke-width="10" stroke-linecap="round"/>
-    <path d="M44 80 H132" stroke="#B39F88" stroke-width="10" stroke-linecap="round"/>
-    <text x="88" y="128" text-anchor="middle" fill="#322C25" font-family="'Trebuchet MS', Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="2">FL</text>
+    <rect x="24" y="14" width="128" height="156" rx="64" fill="#FEF8EE" stroke="#DAA561" stroke-width="10"/>
+    <path d="M44 54 H132" stroke="#B8A289" stroke-width="10" stroke-linecap="round"/>
+    <path d="M44 80 H132" stroke="#B8A289" stroke-width="10" stroke-linecap="round"/>
+    <text x="88" y="128" text-anchor="middle" fill="#302922" font-family="'Trebuchet MS', Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="2">FL</text>
   </g>
 
-  <rect x="0" y="0" width="1200" height="238" fill="#3F3A32" opacity="0.93"/>
-  <rect x="0" y="1454" width="1200" height="346" fill="#5F574A" opacity="0.95"/>
+  <rect x="0" y="0" width="1200" height="238" fill="#3C362B" opacity="0.93"/>
+  <rect x="0" y="1454" width="1200" height="346" fill="#665C48" opacity="0.95"/>
   <text x="600" y="136" text-anchor="middle" fill="#FEF8EE" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">MIHALY CSIKSZENTMIHALYI</text>
   <text x="600" y="208" text-anchor="middle" fill="#FEF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">PHILOSOPHY</text>
-  <text x="600" y="1216" text-anchor="middle" fill="#322C25" font-family="Georgia, 'Times New Roman', serif" font-size="108" font-weight="700" letter-spacing="2">FLOW</text>
+  <text x="600" y="1216" text-anchor="middle" fill="#302922" font-family="Georgia, 'Times New Roman', serif" font-size="108" font-weight="700" letter-spacing="2">FLOW</text>
+  <g>
+    <rect x="453" y="1466" width="160" height="42" rx="21" fill="#FEF8EE" opacity="0.18" stroke="#FEF8EE" stroke-width="2"/>
+    <text x="533" y="1494" text-anchor="middle" fill="#FEF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">ATTENTION</text>
+  </g>
+  <g>
+    <rect x="635" y="1466" width="112" height="42" rx="21" fill="#FEF8EE" opacity="0.18" stroke="#FEF8EE" stroke-width="2"/>
+    <text x="691" y="1494" text-anchor="middle" fill="#FEF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">FOCUS</text>
+  </g>
   <text x="600" y="1538" text-anchor="middle" fill="#FEF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">ATTENTION  ·  FOCUS  ·  ENJOYMENT</text>
-  <text x="600" y="1604" text-anchor="middle" fill="#FEF8EE" font-family="Georgia, serif" font-size="30">Meaning and perspective</text>
+  <text x="600" y="1604" text-anchor="middle" fill="#FEF8EE" font-family="Georgia, serif" font-size="30">Deep absorption at the edge of skill</text>
   <text x="600" y="1668" text-anchor="middle" fill="#FEF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
 </svg>

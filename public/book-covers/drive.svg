@@ -2,40 +2,55 @@
   <title id="title">Drive cover</title>
   <desc id="desc">Auto-generated themed cover for Drive by Daniel H. Pink.</desc>
   <defs>
-    <linearGradient id="g1418475028" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#2D3656"/>
-      <stop offset="100%" stop-color="#4E5E8A"/>
+    <linearGradient id="g828951272" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1A2D4C"/>
+      <stop offset="100%" stop-color="#3E587E"/>
     </linearGradient>
   </defs>
 
-  <rect width="1200" height="1800" fill="url(#g1418475028)"/>
+  <rect width="1200" height="1800" fill="url(#g828951272)"/>
 
-  <circle cx="600" cy="840" r="420" fill="#9AACD2" opacity="0.16"/>
-  <circle cx="600" cy="840" r="300" fill="#FDF8EF" opacity="0.16"/>
-  <circle cx="628" cy="852" r="210" fill="#D88D57" opacity="0.18"/>
-  <circle cx="572" cy="828" r="130" fill="#FDF8EF" opacity="0.34"/>
-  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F3ECE2" stroke="#C9B8A2" stroke-width="10"/>
+  <rect x="0" y="300" width="1200" height="1180" fill="#8AA9CA" opacity="0.12"/>
+  <rect x="140" y="360" width="920" height="1050" rx="48" fill="#FDF8EE" opacity="0.22"/>
+  <path d="M0 560 Q300 415 600 560 T1200 560" stroke="#FDF8EE" stroke-width="22" opacity="0.24"/>
+  <path d="M0 1180 Q300 1035 600 1180 T1200 1180" stroke="#DDA04B" stroke-width="16" opacity="0.22"/>
+  <ellipse cx="600" cy="812" rx="470" ry="382" fill="#FDF8EE" opacity="0.08"/>
+  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F4EDE2" stroke="#C7B59C" stroke-width="10"/>
+<g opacity="0.24" transform="translate(0 -26)">
+  <g transform="translate(408 554)">
+    <circle cx="196" cy="186" r="152" fill="#F4EDE2" opacity="0.95" stroke="#FDF8EE" stroke-width="8"/>
+    <circle cx="196" cy="186" r="104" fill="none" stroke="#8AA9CA" stroke-width="16"/>
+    <circle cx="196" cy="186" r="62" fill="none" stroke="#FDF8EE" stroke-width="14"/>
+    <circle cx="196" cy="186" r="24" fill="#202E3F"/>
+  </g></g>
 
-  <g transform="translate(417 559)">
-    <circle cx="196" cy="186" r="152" fill="#FDF8EF" opacity="0.95" stroke="#9AACD2" stroke-width="8"/>
-    <circle cx="196" cy="186" r="104" fill="none" stroke="#D88D57" stroke-width="16"/>
-    <circle cx="196" cy="186" r="62" fill="none" stroke="#9AACD2" stroke-width="14"/>
-    <circle cx="196" cy="186" r="24" fill="#232B3B"/>
+  <g transform="translate(391 546)">
+    <circle cx="196" cy="186" r="152" fill="#FDF8EE" opacity="0.95" stroke="#8AA9CA" stroke-width="8"/>
+    <circle cx="196" cy="186" r="104" fill="none" stroke="#DDA04B" stroke-width="16"/>
+    <circle cx="196" cy="186" r="62" fill="none" stroke="#8AA9CA" stroke-width="14"/>
+    <circle cx="196" cy="186" r="24" fill="#202E3F"/>
   </g>
 
-  <g transform="translate(924 332)">
-    <rect x="24" y="14" width="128" height="156" rx="64" fill="#FDF8EF" stroke="#D88D57" stroke-width="10"/>
-    <path d="M44 54 H132" stroke="#9AACD2" stroke-width="10" stroke-linecap="round"/>
-    <path d="M44 80 H132" stroke="#9AACD2" stroke-width="10" stroke-linecap="round"/>
-    <text x="88" y="128" text-anchor="middle" fill="#232B3B" font-family="'Trebuchet MS', Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="2">DR</text>
+  <g transform="translate(926 334)">
+    <polygon points="88,8 162,52 162,136 88,180 14,136 14,52" fill="#FDF8EE" stroke="#DDA04B" stroke-width="10"/>
+    <circle cx="88" cy="94" r="44" fill="#8AA9CA" opacity="0.7"/>
+    <text x="88" y="108" text-anchor="middle" fill="#202E3F" font-family="'Trebuchet MS', Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="2">DR</text>
   </g>
 
-  <rect x="0" y="0" width="1200" height="238" fill="#2D3656" opacity="0.93"/>
-  <rect x="0" y="1454" width="1200" height="346" fill="#4E5E8A" opacity="0.95"/>
-  <text x="600" y="136" text-anchor="middle" fill="#FDF8EF" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">DANIEL H. PINK</text>
-  <text x="600" y="208" text-anchor="middle" fill="#FDF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">PSYCHOLOGY</text>
-  <text x="600" y="1216" text-anchor="middle" fill="#232B3B" font-family="Georgia, 'Times New Roman', serif" font-size="108" font-weight="700" letter-spacing="2">DRIVE</text>
-  <text x="600" y="1538" text-anchor="middle" fill="#FDF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">MOTIVATION  ·  AUTONOMY  ·  MASTERY</text>
-  <text x="600" y="1604" text-anchor="middle" fill="#FDF8EF" font-family="Georgia, serif" font-size="30">Behavior, bias, and motivation</text>
-  <text x="600" y="1668" text-anchor="middle" fill="#FDF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
+  <rect x="0" y="0" width="1200" height="238" fill="#1A2D4C" opacity="0.93"/>
+  <rect x="0" y="1454" width="1200" height="346" fill="#3E587E" opacity="0.95"/>
+  <text x="600" y="136" text-anchor="middle" fill="#FDF8EE" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">DANIEL H. PINK</text>
+  <text x="600" y="208" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">LEADERSHIP</text>
+  <text x="600" y="1216" text-anchor="middle" fill="#202E3F" font-family="Georgia, 'Times New Roman', serif" font-size="108" font-weight="700" letter-spacing="2">DRIVE</text>
+  <g>
+    <rect x="429" y="1466" width="172" height="42" rx="21" fill="#FDF8EE" opacity="0.18" stroke="#FDF8EE" stroke-width="2"/>
+    <text x="515" y="1494" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">MOTIVATION</text>
+  </g>
+  <g>
+    <rect x="623" y="1466" width="148" height="42" rx="21" fill="#FDF8EE" opacity="0.18" stroke="#FDF8EE" stroke-width="2"/>
+    <text x="697" y="1494" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">AUTONOMY</text>
+  </g>
+  <text x="600" y="1538" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">MOTIVATION  ·  AUTONOMY  ·  MASTERY</text>
+  <text x="600" y="1604" text-anchor="middle" fill="#FDF8EE" font-family="Georgia, serif" font-size="30">Autonomy, mastery, and purpose drive performance</text>
+  <text x="600" y="1668" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
 </svg>

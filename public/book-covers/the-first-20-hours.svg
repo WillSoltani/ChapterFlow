@@ -3,43 +3,63 @@
   <desc id="desc">Auto-generated themed cover for The First 20 Hours by Josh Kaufman.</desc>
   <defs>
     <linearGradient id="g1401189458" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#314C74"/>
-      <stop offset="100%" stop-color="#5578A6"/>
+      <stop offset="0%" stop-color="#294A6C"/>
+      <stop offset="100%" stop-color="#507CAB"/>
     </linearGradient>
   </defs>
 
   <rect width="1200" height="1800" fill="url(#g1401189458)"/>
 
-  <rect x="-120" y="310" width="820" height="1100" transform="rotate(-12 400 860)" fill="#9CB9DA" opacity="0.24"/>
-  <rect x="560" y="260" width="760" height="1150" transform="rotate(8 940 835)" fill="#DE9A4A" opacity="0.16"/>
-  <circle cx="238" cy="567" r="180" fill="#DE9A4A" opacity="0.17"/>
-  <circle cx="992" cy="1033" r="220" fill="#9CB9DA" opacity="0.2"/>
-  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F3ECE1" stroke="#C8B8A2" stroke-width="10"/>
+  <rect x="0" y="300" width="1200" height="1180" fill="#9EBFDD" opacity="0.08"/>
+  <g stroke="#FEF8EF" opacity="0.18">
+    <path d="M0 380 L1200 980" stroke-width="10"/>
+    <path d="M0 600 L1200 1200" stroke-width="8"/>
+    <path d="M0 820 L1200 1420" stroke-width="6"/>
+    <path d="M0 1040 L1040 1540" stroke-width="5"/>
+    <path d="M160 300 L1200 820" stroke-width="5"/>
+  </g>
+  <rect x="116" y="340" width="968" height="990" rx="46" fill="#FEF8EF" opacity="0.14"/>
+  <ellipse cx="600" cy="812" rx="470" ry="382" fill="#FEF8EF" opacity="0.08"/>
+  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F3ECE1" stroke="#C5B29A" stroke-width="10"/>
+<g opacity="0.24" transform="translate(0 -26)">
+  <g transform="translate(408 557)">
+    <rect x="0" y="0" width="356" height="352" rx="24" fill="#F3ECE1" stroke="#FEF8EF" stroke-width="8"/>
+    <path d="M88 72 H268 C264 112 236 146 200 176 C236 206 264 240 268 280 H88 C92 240 120 206 156 176 C120 146 92 112 88 72 Z" fill="#9EBFDD" opacity="0.86"/>
+    <path d="M156 176 H200" stroke="#233447" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="178" cy="168" r="7" fill="#F3ECE1"/>
+    <circle cx="186" cy="186" r="6" fill="#F3ECE1"/>
+    <circle cx="172" cy="204" r="5" fill="#F3ECE1"/>
+  </g></g>
 
-  <g transform="translate(393 563)">
-    <rect x="0" y="0" width="420" height="328" rx="24" fill="#FEF8EF" stroke="#9CB9DA" stroke-width="8"/>
-    <path d="M56 258 C136 192 228 222 306 158" stroke="#25364A" stroke-width="10" stroke-linecap="round"/>
-    <rect x="82" y="98" width="250" height="26" rx="13" fill="#9CB9DA" opacity="0.55"/>
-    <rect x="82" y="132" width="212" height="26" rx="13" fill="#DE9A4A" opacity="0.45"/>
-    <g transform="translate(294 214) rotate(-18)">
-      <rect x="0" y="0" width="88" height="22" rx="10" fill="#DE9A4A" opacity="0.9"/>
-      <polygon points="88,11 108,0 108,22" fill="#25364A"/>
-      <polygon points="108,0 118,11 108,22" fill="#FEF8EF"/>
-    </g>
+  <g transform="translate(421 549)">
+    <rect x="0" y="0" width="356" height="352" rx="24" fill="#FEF8EF" stroke="#9EBFDD" stroke-width="8"/>
+    <path d="M88 72 H268 C264 112 236 146 200 176 C236 206 264 240 268 280 H88 C92 240 120 206 156 176 C120 146 92 112 88 72 Z" fill="#E2914C" opacity="0.86"/>
+    <path d="M156 176 H200" stroke="#233447" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="178" cy="168" r="7" fill="#FEF8EF"/>
+    <circle cx="186" cy="186" r="6" fill="#FEF8EF"/>
+    <circle cx="172" cy="204" r="5" fill="#FEF8EF"/>
   </g>
 
   <g transform="translate(928 336)">
-    <circle cx="84" cy="84" r="76" fill="#FEF8EF" stroke="#DE9A4A" stroke-width="10"/>
-    <circle cx="84" cy="84" r="56" fill="#9CB9DA" opacity="0.68"/>
-    <text x="84" y="98" text-anchor="middle" fill="#25364A" font-family="'Trebuchet MS', Arial, sans-serif" font-size="44" font-weight="700" letter-spacing="2">F2</text>
+    <circle cx="84" cy="84" r="76" fill="#FEF8EF" stroke="#E2914C" stroke-width="10"/>
+    <circle cx="84" cy="84" r="56" fill="#9EBFDD" opacity="0.68"/>
+    <text x="84" y="98" text-anchor="middle" fill="#233447" font-family="'Trebuchet MS', Arial, sans-serif" font-size="44" font-weight="700" letter-spacing="2">F2</text>
   </g>
 
-  <rect x="0" y="0" width="1200" height="238" fill="#314C74" opacity="0.93"/>
-  <rect x="0" y="1454" width="1200" height="346" fill="#5578A6" opacity="0.95"/>
+  <rect x="0" y="0" width="1200" height="238" fill="#294A6C" opacity="0.93"/>
+  <rect x="0" y="1454" width="1200" height="346" fill="#507CAB" opacity="0.95"/>
   <text x="600" y="136" text-anchor="middle" fill="#FEF8EF" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">JOSH KAUFMAN</text>
   <text x="600" y="208" text-anchor="middle" fill="#FEF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">LEARNING</text>
-  <text x="600" y="1216" text-anchor="middle" fill="#25364A" font-family="'Trebuchet MS', Arial, sans-serif" font-size="92" font-weight="700" letter-spacing="2">THE FIRST 20 HOURS</text>
+  <text x="600" y="1216" text-anchor="middle" fill="#233447" font-family="'Trebuchet MS', Arial, sans-serif" font-size="92" font-weight="700" letter-spacing="2">THE FIRST 20 HOURS</text>
+  <g>
+    <rect x="453" y="1466" width="148" height="42" rx="21" fill="#FEF8EF" opacity="0.18" stroke="#FEF8EF" stroke-width="2"/>
+    <text x="527" y="1494" text-anchor="middle" fill="#FEF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">PRACTICE</text>
+  </g>
+  <g>
+    <rect x="623" y="1466" width="124" height="42" rx="21" fill="#FEF8EF" opacity="0.18" stroke="#FEF8EF" stroke-width="2"/>
+    <text x="685" y="1494" text-anchor="middle" fill="#FEF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">MEMORY</text>
+  </g>
   <text x="600" y="1538" text-anchor="middle" fill="#FEF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">PRACTICE  ·  MEMORY  ·  FEEDBACK</text>
-  <text x="600" y="1604" text-anchor="middle" fill="#FEF8EF" font-family="Georgia, serif" font-size="30">Practice and skill building</text>
+  <text x="600" y="1604" text-anchor="middle" fill="#FEF8EF" font-family="Georgia, serif" font-size="30">Rapid skill acquisition through smart practice</text>
   <text x="600" y="1668" text-anchor="middle" fill="#FEF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
 </svg>

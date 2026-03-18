@@ -10,12 +10,21 @@
 
   <rect width="1200" height="1800" fill="url(#g24774720)"/>
 
-  <rect x="0" y="300" width="1200" height="1180" fill="#A890C2" opacity="0.12"/>
-  <rect x="110" y="370" width="420" height="420" rx="42" fill="#FDF7FF" opacity="0.2"/>
-  <rect x="670" y="360" width="420" height="430" rx="42" fill="#E0B043" opacity="0.16"/>
-  <rect x="110" y="980" width="420" height="360" rx="42" fill="#E0B043" opacity="0.15"/>
-  <rect x="670" y="950" width="420" height="390" rx="42" fill="#FDF7FF" opacity="0.2"/>
+  <circle cx="600" cy="840" r="420" fill="#A890C2" opacity="0.16"/>
+  <circle cx="600" cy="840" r="300" fill="#FDF7FF" opacity="0.16"/>
+  <circle cx="607" cy="832" r="210" fill="#E0B043" opacity="0.18"/>
+  <circle cx="593" cy="848" r="130" fill="#FDF7FF" opacity="0.34"/>
+  <ellipse cx="600" cy="812" rx="470" ry="382" fill="#FDF7FF" opacity="0.08"/>
   <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F4EDEE" stroke="#C3B0C9" stroke-width="10"/>
+<g opacity="0.24" transform="translate(0 -26)">
+  <g transform="translate(417 577)">
+    <ellipse cx="198" cy="286" rx="144" ry="34" fill="#FDF7FF" opacity="0.72"/>
+    <ellipse cx="198" cy="248" rx="144" ry="34" fill="#A890C2" opacity="0.8"/>
+    <ellipse cx="198" cy="210" rx="144" ry="34" fill="#FDF7FF" opacity="0.86"/>
+    <ellipse cx="198" cy="172" rx="144" ry="34" fill="#A890C2" opacity="0.92"/>
+    <circle cx="198" cy="100" r="44" fill="#2E2240" opacity="0.85"/>
+    <text x="198" y="114" text-anchor="middle" fill="#F4EDEE" font-family="Georgia, serif" font-size="40" font-weight="700">$</text>
+  </g></g>
 
   <g transform="translate(400 568)">
     <ellipse cx="198" cy="286" rx="144" ry="34" fill="#A890C2" opacity="0.72"/>
@@ -38,7 +47,15 @@
   <text x="600" y="136" text-anchor="middle" fill="#FDF7FF" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">ROBERT T. KIYOSAKI</text>
   <text x="600" y="208" text-anchor="middle" fill="#FDF7FF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">MONEY</text>
   <text x="600" y="1216" text-anchor="middle" fill="#2E2240" font-family="Georgia, 'Times New Roman', serif" font-size="92" font-weight="700" letter-spacing="2">RICH DAD POOR DAD</text>
+  <g>
+    <rect x="393" y="1466" width="268" height="42" rx="21" fill="#FDF7FF" opacity="0.18" stroke="#FDF7FF" stroke-width="2"/>
+    <text x="527" y="1494" text-anchor="middle" fill="#FDF7FF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">FINANCIAL LITERACY</text>
+  </g>
+  <g>
+    <rect x="683" y="1466" width="124" height="42" rx="21" fill="#FDF7FF" opacity="0.18" stroke="#FDF7FF" stroke-width="2"/>
+    <text x="745" y="1494" text-anchor="middle" fill="#FDF7FF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">ASSETS</text>
+  </g>
   <text x="600" y="1538" text-anchor="middle" fill="#FDF7FF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">FINANCIAL LITERACY  ·  ASSETS  ·  CASH FLOW</text>
-  <text x="600" y="1604" text-anchor="middle" fill="#FDF7FF" font-family="Georgia, serif" font-size="30">Mindset and systems for building wealth</text>
+  <text x="600" y="1604" text-anchor="middle" fill="#FDF7FF" font-family="Georgia, serif" font-size="30">Assets and cash flow over appearances</text>
   <text x="600" y="1668" text-anchor="middle" fill="#FDF7FF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
 </svg>

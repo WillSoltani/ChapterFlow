@@ -2,40 +2,63 @@
   <title id="title">Grit cover</title>
   <desc id="desc">Auto-generated themed cover for Grit by Angela Duckworth.</desc>
   <defs>
-    <linearGradient id="g107413344" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#2D3656"/>
-      <stop offset="100%" stop-color="#4E5E8A"/>
+    <linearGradient id="g1693988440" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#31334C"/>
+      <stop offset="100%" stop-color="#545881"/>
     </linearGradient>
   </defs>
 
-  <rect width="1200" height="1800" fill="url(#g107413344)"/>
+  <rect width="1200" height="1800" fill="url(#g1693988440)"/>
 
-  <rect x="0" y="300" width="1200" height="1180" fill="#9AACD2" opacity="0.12"/>
-  <rect x="110" y="370" width="420" height="420" rx="42" fill="#FDF8EF" opacity="0.2"/>
-  <rect x="670" y="360" width="420" height="430" rx="42" fill="#D88D57" opacity="0.16"/>
-  <rect x="110" y="980" width="420" height="360" rx="42" fill="#D88D57" opacity="0.15"/>
-  <rect x="670" y="950" width="420" height="390" rx="42" fill="#FDF8EF" opacity="0.2"/>
-  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F3ECE2" stroke="#C9B8A2" stroke-width="10"/>
+  <rect x="0" y="300" width="1200" height="1180" fill="#ACB6D3" opacity="0.1"/>
+  <g stroke="#FEF8EE" opacity="0.2">
+    <line x1="160" y1="320" x2="160" y2="1460" stroke-width="4"/>
+    <line x1="320" y1="320" x2="320" y2="1460" stroke-width="3"/>
+    <line x1="480" y1="320" x2="480" y2="1460" stroke-width="2"/>
+    <line x1="640" y1="320" x2="640" y2="1460" stroke-width="3"/>
+    <line x1="800" y1="320" x2="800" y2="1460" stroke-width="2"/>
+    <line x1="960" y1="320" x2="960" y2="1460" stroke-width="3"/>
+  </g>
+  <path d="M140 430 L1060 430" stroke="#E1B05B" stroke-width="10" opacity="0.22"/>
+  <path d="M140 1330 L1060 1330" stroke="#E1B05B" stroke-width="10" opacity="0.2"/>
+  <ellipse cx="600" cy="812" rx="470" ry="382" fill="#FEF8EE" opacity="0.08"/>
+  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F4EEE2" stroke="#C6B69D" stroke-width="10"/>
+<g opacity="0.24" transform="translate(0 -26)">
+  <g transform="translate(396 570)">
+    <circle cx="204" cy="72" r="44" fill="#ACB6D3" opacity="0.44"/>
+    <path d="M24 292 L132 144 L208 248 L296 114 L388 292 Z" fill="#FEF8EE" opacity="0.82"/>
+    <path d="M84 292 L168 186 L226 260 L302 172 L360 292 Z" fill="#ACB6D3" opacity="0.82"/>
+    <path d="M34 292 H378" stroke="#F4EEE2" stroke-width="12" stroke-linecap="round" opacity="0.8"/>
+  </g></g>
 
-  <g transform="translate(399 551)">
-    <circle cx="204" cy="72" r="44" fill="#D88D57" opacity="0.44"/>
-    <path d="M24 292 L132 144 L208 248 L296 114 L388 292 Z" fill="#9AACD2" opacity="0.82"/>
-    <path d="M84 292 L168 186 L226 260 L302 172 L360 292 Z" fill="#D88D57" opacity="0.82"/>
-    <path d="M34 292 H378" stroke="#FDF8EF" stroke-width="12" stroke-linecap="round" opacity="0.8"/>
+  <g transform="translate(409 561)">
+    <circle cx="204" cy="72" r="44" fill="#E1B05B" opacity="0.44"/>
+    <path d="M24 292 L132 144 L208 248 L296 114 L388 292 Z" fill="#ACB6D3" opacity="0.82"/>
+    <path d="M84 292 L168 186 L226 260 L302 172 L360 292 Z" fill="#E1B05B" opacity="0.82"/>
+    <path d="M34 292 H378" stroke="#FEF8EE" stroke-width="12" stroke-linecap="round" opacity="0.8"/>
   </g>
 
-  <g transform="translate(928 336)">
-    <circle cx="84" cy="84" r="76" fill="#FDF8EF" stroke="#D88D57" stroke-width="10"/>
-    <circle cx="84" cy="84" r="56" fill="#9AACD2" opacity="0.68"/>
-    <text x="84" y="98" text-anchor="middle" fill="#232B3B" font-family="'Trebuchet MS', Arial, sans-serif" font-size="44" font-weight="700" letter-spacing="2">GR</text>
+  <g transform="translate(924 332)">
+    <rect x="24" y="14" width="128" height="156" rx="64" fill="#FEF8EE" stroke="#E1B05B" stroke-width="10"/>
+    <path d="M44 54 H132" stroke="#ACB6D3" stroke-width="10" stroke-linecap="round"/>
+    <path d="M44 80 H132" stroke="#ACB6D3" stroke-width="10" stroke-linecap="round"/>
+    <text x="88" y="128" text-anchor="middle" fill="#2A2F44" font-family="'Trebuchet MS', Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="2">GR</text>
   </g>
 
-  <rect x="0" y="0" width="1200" height="238" fill="#2D3656" opacity="0.93"/>
-  <rect x="0" y="1454" width="1200" height="346" fill="#4E5E8A" opacity="0.95"/>
-  <text x="600" y="136" text-anchor="middle" fill="#FDF8EF" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">ANGELA DUCKWORTH</text>
-  <text x="600" y="208" text-anchor="middle" fill="#FDF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">PSYCHOLOGY</text>
-  <text x="600" y="1216" text-anchor="middle" fill="#232B3B" font-family="Georgia, 'Times New Roman', serif" font-size="108" font-weight="700" letter-spacing="2">GRIT</text>
-  <text x="600" y="1538" text-anchor="middle" fill="#FDF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">GRIT  ·  PERSEVERANCE  ·  PASSION</text>
-  <text x="600" y="1604" text-anchor="middle" fill="#FDF8EF" font-family="Georgia, serif" font-size="30">Behavior, bias, and motivation</text>
-  <text x="600" y="1668" text-anchor="middle" fill="#FDF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
+  <rect x="0" y="0" width="1200" height="238" fill="#31334C" opacity="0.93"/>
+  <rect x="0" y="1454" width="1200" height="346" fill="#545881" opacity="0.95"/>
+  <text x="600" y="136" text-anchor="middle" fill="#FEF8EE" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">ANGELA DUCKWORTH</text>
+  <text x="600" y="208" text-anchor="middle" fill="#FEF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">RESILIENCE</text>
+  <text x="600" y="1216" text-anchor="middle" fill="#2A2F44" font-family="Georgia, 'Times New Roman', serif" font-size="108" font-weight="700" letter-spacing="2">GRIT</text>
+  <g>
+    <rect x="441" y="1466" width="100" height="42" rx="21" fill="#FEF8EE" opacity="0.18" stroke="#FEF8EE" stroke-width="2"/>
+    <text x="491" y="1494" text-anchor="middle" fill="#FEF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">GRIT</text>
+  </g>
+  <g>
+    <rect x="563" y="1466" width="196" height="42" rx="21" fill="#FEF8EE" opacity="0.18" stroke="#FEF8EE" stroke-width="2"/>
+    <text x="661" y="1494" text-anchor="middle" fill="#FEF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">PERSEVERANCE</text>
+  </g>
+  <text x="600" y="1538" text-anchor="middle" fill="#FEF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">GRIT  ·  PERSEVERANCE  ·  PASSION</text>
+  <text x="600" y="1604" text-anchor="middle" fill="#FEF8EE" font-family="Georgia, serif" font-size="30">Sustain effort over long horizons</text>
+  <text x="600" y="1668" text-anchor="middle" fill="#FEF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
 </svg>

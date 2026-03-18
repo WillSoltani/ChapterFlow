@@ -10,29 +10,25 @@
 
   <rect width="1200" height="1800" fill="url(#g1861940242)"/>
 
-  <rect x="0" y="300" width="1200" height="1180" fill="#8DA0B3" opacity="0.1"/>
-  <g stroke="#FFFFFF" opacity="0.2">
-    <line x1="160" y1="320" x2="160" y2="1460" stroke-width="4"/>
-    <line x1="320" y1="320" x2="320" y2="1460" stroke-width="3"/>
-    <line x1="480" y1="320" x2="480" y2="1460" stroke-width="2"/>
-    <line x1="640" y1="320" x2="640" y2="1460" stroke-width="3"/>
-    <line x1="800" y1="320" x2="800" y2="1460" stroke-width="2"/>
-    <line x1="960" y1="320" x2="960" y2="1460" stroke-width="3"/>
-  </g>
-  <path d="M140 430 L1060 430" stroke="#E3A542" stroke-width="10" opacity="0.22"/>
-  <path d="M140 1330 L1060 1330" stroke="#E3A542" stroke-width="10" opacity="0.2"/>
+  <rect x="-120" y="310" width="820" height="1100" transform="rotate(-12 400 860)" fill="#8DA0B3" opacity="0.24"/>
+  <rect x="560" y="260" width="760" height="1150" transform="rotate(8 940 835)" fill="#E3A542" opacity="0.16"/>
+  <circle cx="263" cy="575" r="180" fill="#E3A542" opacity="0.17"/>
+  <circle cx="967" cy="1025" r="220" fill="#8DA0B3" opacity="0.2"/>
+  <ellipse cx="600" cy="812" rx="470" ry="382" fill="#FFFFFF" opacity="0.08"/>
   <rect x="116" y="304" width="968" height="1036" rx="38" fill="#FFFFFF" stroke="#BFC7D0" stroke-width="10"/>
+<g opacity="0.24" transform="translate(0 -26)">
+  <g transform="translate(391 561)">
+    <rect x="0" y="0" width="388" height="334" rx="24" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="8"/>
+    <text x="104" y="204" text-anchor="middle" fill="#2A3139" font-family="Georgia, serif" font-size="150" font-weight="700">0</text>
+    <text x="292" y="204" text-anchor="middle" fill="#8DA0B3" font-family="Georgia, serif" font-size="150" font-weight="700">1</text>
+    <path d="M166 176 L222 176" stroke="#FFFFFF" stroke-width="14" stroke-linecap="round"/>
+  </g></g>
 
-  <g transform="translate(388 553)">
-    <rect x="0" y="0" width="420" height="328" rx="24" fill="#FFFFFF" stroke="#8DA0B3" stroke-width="8"/>
-    <path d="M56 258 C136 192 228 222 306 158" stroke="#2A3139" stroke-width="10" stroke-linecap="round"/>
-    <rect x="82" y="98" width="250" height="26" rx="13" fill="#8DA0B3" opacity="0.55"/>
-    <rect x="82" y="132" width="212" height="26" rx="13" fill="#E3A542" opacity="0.45"/>
-    <g transform="translate(294 214) rotate(-18)">
-      <rect x="0" y="0" width="88" height="22" rx="10" fill="#E3A542" opacity="0.9"/>
-      <polygon points="88,11 108,0 108,22" fill="#2A3139"/>
-      <polygon points="108,0 118,11 108,22" fill="#FFFFFF"/>
-    </g>
+  <g transform="translate(404 553)">
+    <rect x="0" y="0" width="388" height="334" rx="24" fill="#FFFFFF" stroke="#8DA0B3" stroke-width="8"/>
+    <text x="104" y="204" text-anchor="middle" fill="#2A3139" font-family="Georgia, serif" font-size="150" font-weight="700">0</text>
+    <text x="292" y="204" text-anchor="middle" fill="#E3A542" font-family="Georgia, serif" font-size="150" font-weight="700">1</text>
+    <path d="M166 176 L222 176" stroke="#8DA0B3" stroke-width="14" stroke-linecap="round"/>
   </g>
 
   <g transform="translate(922 332)">
@@ -47,7 +43,15 @@
   <text x="600" y="136" text-anchor="middle" fill="#FFFFFF" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">DANIEL KAHNEMAN</text>
   <text x="600" y="208" text-anchor="middle" fill="#FFFFFF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">THINKING</text>
   <text x="600" y="1216" text-anchor="middle" fill="#2A3139" font-family="Georgia, 'Times New Roman', serif" font-size="78" font-weight="700" letter-spacing="2">THINKING, FAST AND SLOW</text>
+  <g>
+    <rect x="465" y="1466" width="100" height="42" rx="21" fill="#FFFFFF" opacity="0.18" stroke="#FFFFFF" stroke-width="2"/>
+    <text x="515" y="1494" text-anchor="middle" fill="#FFFFFF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">BIAS</text>
+  </g>
+  <g>
+    <rect x="587" y="1466" width="148" height="42" rx="21" fill="#FFFFFF" opacity="0.18" stroke="#FFFFFF" stroke-width="2"/>
+    <text x="661" y="1494" text-anchor="middle" fill="#FFFFFF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">JUDGMENT</text>
+  </g>
   <text x="600" y="1538" text-anchor="middle" fill="#FFFFFF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">BIAS  ·  JUDGMENT  ·  DECISION-MAKING</text>
-  <text x="600" y="1604" text-anchor="middle" fill="#FFFFFF" font-family="Georgia, serif" font-size="30">Two systems of thought in tension</text>
+  <text x="600" y="1604" text-anchor="middle" fill="#FFFFFF" font-family="Georgia, serif" font-size="30">Fast intuition versus slow deliberation</text>
   <text x="600" y="1668" text-anchor="middle" fill="#FFFFFF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
 </svg>

@@ -3,41 +3,71 @@
   <desc id="desc">Auto-generated themed cover for The Elephant in the Brain by Kevin Simler and Robin Hanson.</desc>
   <defs>
     <linearGradient id="g767045212" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#2D3656"/>
-      <stop offset="100%" stop-color="#4E5E8A"/>
+      <stop offset="0%" stop-color="#2E3755"/>
+      <stop offset="100%" stop-color="#566591"/>
     </linearGradient>
   </defs>
 
   <rect width="1200" height="1800" fill="url(#g767045212)"/>
 
-  <circle cx="600" cy="840" r="420" fill="#9AACD2" opacity="0.16"/>
-  <circle cx="600" cy="840" r="300" fill="#FDF8EF" opacity="0.16"/>
-  <circle cx="578" cy="853" r="210" fill="#D88D57" opacity="0.18"/>
-  <circle cx="622" cy="827" r="130" fill="#FDF8EF" opacity="0.34"/>
-  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F3ECE2" stroke="#C9B8A2" stroke-width="10"/>
+  <rect x="0" y="300" width="1200" height="1180" fill="#9EB0D3" opacity="0.1"/>
+  <g stroke="#FDF8EF" opacity="0.2">
+    <line x1="160" y1="320" x2="160" y2="1460" stroke-width="4"/>
+    <line x1="320" y1="320" x2="320" y2="1460" stroke-width="3"/>
+    <line x1="480" y1="320" x2="480" y2="1460" stroke-width="2"/>
+    <line x1="640" y1="320" x2="640" y2="1460" stroke-width="3"/>
+    <line x1="800" y1="320" x2="800" y2="1460" stroke-width="2"/>
+    <line x1="960" y1="320" x2="960" y2="1460" stroke-width="3"/>
+  </g>
+  <path d="M140 430 L1060 430" stroke="#D88E5C" stroke-width="10" opacity="0.22"/>
+  <path d="M140 1330 L1060 1330" stroke="#D88E5C" stroke-width="10" opacity="0.2"/>
+  <ellipse cx="600" cy="812" rx="470" ry="382" fill="#FDF8EF" opacity="0.08"/>
+  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F3ECE2" stroke="#C5B39C" stroke-width="10"/>
+<g opacity="0.24" transform="translate(0 -26)">
+  <g transform="translate(416 565)">
+    <path d="M82 68 H188 C216 68 238 90 238 118 V238 C238 294 194 340 136 340 C78 340 34 294 34 238 V118 C34 90 56 68 82 68 Z" fill="#F3ECE2" stroke="#FDF8EF" stroke-width="8"/>
+    <path d="M208 68 H314 C342 68 364 90 364 118 V238 C364 294 320 340 262 340 C204 340 160 294 160 238 V118 C160 90 182 68 208 68 Z" fill="#9EB0D3" opacity="0.84"/>
+    <circle cx="102" cy="182" r="10" fill="#212938"/>
+    <circle cx="164" cy="182" r="10" fill="#212938"/>
+    <path d="M94 242 Q132 270 172 242" fill="none" stroke="#212938" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="228" cy="182" r="10" fill="#F3ECE2"/>
+    <circle cx="290" cy="182" r="10" fill="#F3ECE2"/>
+    <path d="M220 250 Q258 222 298 250" fill="none" stroke="#F3ECE2" stroke-width="10" stroke-linecap="round"/>
+  </g></g>
 
-  <g transform="translate(397 553)">
-    <circle cx="196" cy="170" r="128" fill="none" stroke="#D88D57" stroke-width="20" opacity="0.88"/>
-    <circle cx="196" cy="170" r="76" fill="none" stroke="#9AACD2" stroke-width="18" opacity="0.86"/>
-    <polygon points="316,170 274,154 284,186" fill="#D88D57"/>
-    <polygon points="118,96 132,136 98,126" fill="#9AACD2"/>
-    <circle cx="196" cy="170" r="32" fill="#232B3B" opacity="0.82"/>
+  <g transform="translate(399 557)">
+    <path d="M82 68 H188 C216 68 238 90 238 118 V238 C238 294 194 340 136 340 C78 340 34 294 34 238 V118 C34 90 56 68 82 68 Z" fill="#FDF8EF" stroke="#9EB0D3" stroke-width="8"/>
+    <path d="M208 68 H314 C342 68 364 90 364 118 V238 C364 294 320 340 262 340 C204 340 160 294 160 238 V118 C160 90 182 68 208 68 Z" fill="#D88E5C" opacity="0.84"/>
+    <circle cx="102" cy="182" r="10" fill="#212938"/>
+    <circle cx="164" cy="182" r="10" fill="#212938"/>
+    <path d="M94 242 Q132 270 172 242" fill="none" stroke="#212938" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="228" cy="182" r="10" fill="#FDF8EF"/>
+    <circle cx="290" cy="182" r="10" fill="#FDF8EF"/>
+    <path d="M220 250 Q258 222 298 250" fill="none" stroke="#FDF8EF" stroke-width="10" stroke-linecap="round"/>
   </g>
 
   <g transform="translate(926 334)">
-    <polygon points="88,8 162,52 162,136 88,180 14,136 14,52" fill="#FDF8EF" stroke="#D88D57" stroke-width="10"/>
-    <circle cx="88" cy="94" r="44" fill="#9AACD2" opacity="0.7"/>
-    <text x="88" y="108" text-anchor="middle" fill="#232B3B" font-family="'Trebuchet MS', Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="2">EB</text>
+    <polygon points="88,8 162,52 162,136 88,180 14,136 14,52" fill="#FDF8EF" stroke="#D88E5C" stroke-width="10"/>
+    <circle cx="88" cy="94" r="44" fill="#9EB0D3" opacity="0.7"/>
+    <text x="88" y="108" text-anchor="middle" fill="#212938" font-family="'Trebuchet MS', Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="2">EB</text>
   </g>
 
-  <rect x="0" y="0" width="1200" height="238" fill="#2D3656" opacity="0.93"/>
-  <rect x="0" y="1454" width="1200" height="346" fill="#4E5E8A" opacity="0.95"/>
+  <rect x="0" y="0" width="1200" height="238" fill="#2E3755" opacity="0.93"/>
+  <rect x="0" y="1454" width="1200" height="346" fill="#566591" opacity="0.95"/>
   <text x="600" y="136" text-anchor="middle" fill="#FDF8EF" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">KEVIN SIMLER AND ROBIN HANSON</text>
   <text x="600" y="208" text-anchor="middle" fill="#FDF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">PSYCHOLOGY</text>
-  <text x="600" y="1114" text-anchor="middle" fill="#232B3B" font-family="Georgia, 'Times New Roman', serif" font-size="108" font-weight="700" letter-spacing="2">THE ELEPHANT</text>
-  <text x="600" y="1231" text-anchor="middle" fill="#232B3B" font-family="Georgia, 'Times New Roman', serif" font-size="108" font-weight="700" letter-spacing="2">IN THE</text>
-  <text x="600" y="1348" text-anchor="middle" fill="#232B3B" font-family="Georgia, 'Times New Roman', serif" font-size="108" font-weight="700" letter-spacing="2">BRAIN</text>
+  <text x="600" y="1114" text-anchor="middle" fill="#212938" font-family="Georgia, 'Times New Roman', serif" font-size="108" font-weight="700" letter-spacing="2">THE ELEPHANT</text>
+  <text x="600" y="1231" text-anchor="middle" fill="#212938" font-family="Georgia, 'Times New Roman', serif" font-size="108" font-weight="700" letter-spacing="2">IN THE</text>
+  <text x="600" y="1348" text-anchor="middle" fill="#212938" font-family="Georgia, 'Times New Roman', serif" font-size="108" font-weight="700" letter-spacing="2">BRAIN</text>
+  <g>
+    <rect x="471" y="1466" width="100" height="42" rx="21" fill="#FDF8EF" opacity="0.18" stroke="#FDF8EF" stroke-width="2"/>
+    <text x="521" y="1494" text-anchor="middle" fill="#FDF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">BIAS</text>
+  </g>
+  <g>
+    <rect x="593" y="1466" width="136" height="42" rx="21" fill="#FDF8EF" opacity="0.18" stroke="#FDF8EF" stroke-width="2"/>
+    <text x="661" y="1494" text-anchor="middle" fill="#FDF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">EMOTION</text>
+  </g>
   <text x="600" y="1538" text-anchor="middle" fill="#FDF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">BIAS  ·  EMOTION  ·  MOTIVES</text>
-  <text x="600" y="1604" text-anchor="middle" fill="#FDF8EF" font-family="Georgia, serif" font-size="30">Behavior, bias, and motivation</text>
+  <text x="600" y="1604" text-anchor="middle" fill="#FDF8EF" font-family="Georgia, serif" font-size="30">Hidden motives beneath public explanations</text>
   <text x="600" y="1668" text-anchor="middle" fill="#FDF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
 </svg>

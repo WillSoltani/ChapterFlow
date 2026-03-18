@@ -41,6 +41,114 @@ function hash(input) {
   return Math.abs(value);
 }
 
+function clamp(value, min, max) {
+  return Math.max(min, Math.min(max, value));
+}
+
+function hexToRgb(hex) {
+  const normalized = String(hex).replace("#", "").trim();
+  if (!/^[0-9a-fA-F]{6}$/.test(normalized)) return null;
+  return {
+    r: parseInt(normalized.slice(0, 2), 16),
+    g: parseInt(normalized.slice(2, 4), 16),
+    b: parseInt(normalized.slice(4, 6), 16),
+  };
+}
+
+function rgbToHex({ r, g, b }) {
+  return `#${[r, g, b]
+    .map((value) => clamp(Math.round(value), 0, 255).toString(16).padStart(2, "0"))
+    .join("")}`.toUpperCase();
+}
+
+function rgbToHsl({ r, g, b }) {
+  const rr = r / 255;
+  const gg = g / 255;
+  const bb = b / 255;
+  const max = Math.max(rr, gg, bb);
+  const min = Math.min(rr, gg, bb);
+  const delta = max - min;
+
+  let h = 0;
+  if (delta !== 0) {
+    if (max === rr) h = ((gg - bb) / delta) % 6;
+    else if (max === gg) h = (bb - rr) / delta + 2;
+    else h = (rr - gg) / delta + 4;
+  }
+  h = Math.round(h * 60);
+  if (h < 0) h += 360;
+
+  const l = (max + min) / 2;
+  const s = delta === 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
+  return { h, s: s * 100, l: l * 100 };
+}
+
+function hslToRgb({ h, s, l }) {
+  const hh = ((h % 360) + 360) % 360;
+  const ss = clamp(s, 0, 100) / 100;
+  const ll = clamp(l, 0, 100) / 100;
+  const c = (1 - Math.abs(2 * ll - 1)) * ss;
+  const x = c * (1 - Math.abs(((hh / 60) % 2) - 1));
+  const m = ll - c / 2;
+
+  let rr = 0;
+  let gg = 0;
+  let bb = 0;
+  if (hh < 60) {
+    rr = c;
+    gg = x;
+  } else if (hh < 120) {
+    rr = x;
+    gg = c;
+  } else if (hh < 180) {
+    gg = c;
+    bb = x;
+  } else if (hh < 240) {
+    gg = x;
+    bb = c;
+  } else if (hh < 300) {
+    rr = x;
+    bb = c;
+  } else {
+    rr = c;
+    bb = x;
+  }
+
+  return {
+    r: (rr + m) * 255,
+    g: (gg + m) * 255,
+    b: (bb + m) * 255,
+  };
+}
+
+function shiftHexColor(hex, shifts) {
+  const rgb = hexToRgb(hex);
+  if (!rgb) return hex;
+  const hsl = rgbToHsl(rgb);
+  const shifted = {
+    h: hsl.h + (shifts.h || 0),
+    s: clamp(hsl.s + (shifts.s || 0), 0, 100),
+    l: clamp(hsl.l + (shifts.l || 0), 0, 100),
+  };
+  return rgbToHex(hslToRgb(shifted));
+}
+
+function deriveCoverPalette(basePalette, seed) {
+  const hueShift = (seed % 22) - 11;
+  const satShift = ((seed >> 4) % 12) - 6;
+  const lightShift = ((seed >> 8) % 10) - 5;
+  return {
+    bgTop: shiftHexColor(basePalette.bgTop, { h: hueShift, s: satShift, l: lightShift - 2 }),
+    bgBottom: shiftHexColor(basePalette.bgBottom, { h: hueShift + 2, s: satShift, l: lightShift + 1 }),
+    panel: shiftHexColor(basePalette.panel, { h: hueShift * 0.22, s: satShift * 0.35, l: 0 }),
+    panelStroke: shiftHexColor(basePalette.panelStroke, { h: hueShift * 0.3, s: satShift * 0.4, l: -2 }),
+    ink: shiftHexColor(basePalette.ink, { h: hueShift * 0.18, s: satShift * 0.28, l: -1 }),
+    accent: shiftHexColor(basePalette.accent, { h: hueShift * 0.85, s: satShift * 0.65, l: 1 }),
+    accentSoft: shiftHexColor(basePalette.accentSoft, { h: hueShift * 0.75, s: satShift * 0.55, l: 1 }),
+    light: shiftHexColor(basePalette.light, { h: hueShift * 0.2, s: satShift * 0.2, l: 0 }),
+  };
+}
+
 function esc(text) {
   return String(text)
     .replace(/&/g, "&amp;")
@@ -920,33 +1028,481 @@ const COVER_MOTIF_KEYWORDS = {
 };
 
 const COVER_BOOK_OVERRIDES = {
-  "atomic-habits": { motif: "dot-grid", theme: "productivity", subtitle: "Small habits compound into big outcomes" },
-  "deep-work": { motif: "focus-block", theme: "productivity", subtitle: "Focus deeply on work that truly matters" },
-  "thinking-fast-and-slow": { motif: "pencil-line", theme: "thinking", subtitle: "Two systems of thought in tension" },
-  "the-power-of-habit": { motif: "loop-arrows", theme: "productivity", subtitle: "Cue, routine, and reward in daily life" },
-  "the-one-thing": { motif: "bullet-dot", theme: "productivity", subtitle: "One priority that makes everything easier" },
-  "start-with-why": { motif: "target-rings", theme: "leadership", subtitle: "Purpose first, then action and execution" },
-  "the-48-laws-of-power": { motif: "crown-sigil", theme: "strategy", subtitle: "Status, timing, and strategic positioning" },
-  "art-of-war": { motif: "crossed-swords", theme: "strategy", subtitle: "Win through positioning, not just force" },
-  "33-strategies-of-war": { motif: "chess-grid", theme: "strategy", subtitle: "Tactical choices under pressure" },
-  "never-split-the-difference": { motif: "handshake-split", theme: "communication", subtitle: "Negotiation through calibrated empathy" },
-  influence: { motif: "magnet-u", theme: "communication", subtitle: "Psychology of persuasion in real decisions" },
-  "pre-suasion": { motif: "magnet-u", theme: "communication", subtitle: "Prime attention before you make the ask" },
-  "talk-like-ted": { motif: "microphone", theme: "communication", subtitle: "Stories and delivery that move people" },
-  "how-to-talk-to-anyone": { motif: "speech-bubbles", theme: "communication", subtitle: "Social ease through practical communication skills" },
-  "the-psychology-of-money": { motif: "bar-coin", theme: "finance", subtitle: "Behavior and incentives behind money decisions" },
-  "rich-dad-poor-dad": { motif: "stacked-coins", theme: "finance", subtitle: "Mindset and systems for building wealth" },
-  "blue-ocean-strategy": { motif: "wave-surge", theme: "strategy", subtitle: "Create uncontested space instead of competing harder" },
-  "the-black-swan": { motif: "swan-curve", theme: "thinking", subtitle: "Outlier events and hidden uncertainty" },
-  "the-lean-startup": { motif: "flywheel", theme: "innovation", subtitle: "Build, measure, learn in tight cycles" },
-  "zero-to-one": { motif: "zero-one", theme: "innovation", subtitle: "Move from incremental to truly new value" },
-  "the-checklist-manifesto": { motif: "checklist-board", theme: "productivity", subtitle: "Reliability through simple disciplined systems" },
-  meditations: { motif: "column-arch", theme: "philosophy", subtitle: "Calm judgment under pressure and uncertainty" },
-  "the-obstacle-is-the-way": { motif: "mountain-sun", theme: "resilience", subtitle: "Turn friction into progress and strength" },
-  "cant-hurt-me": { motif: "shield-mark", theme: "resilience", subtitle: "Mental toughness through deliberate adversity" },
-  "the-prince": { motif: "crown-sigil", theme: "strategy", subtitle: "Power, governance, and political realism" },
-  "the-pyramid-principle": { motif: "pyramid", theme: "thinking", subtitle: "Structured argument and clear executive communication" },
-  attached: { motif: "interlocked-rings", theme: "relationships", subtitle: "Attachment patterns in modern relationships" },
+  "friends-and-influence-student-edition": {
+    motif: "speech-bubbles",
+    theme: "communication",
+    subtitle: "Build trust through genuine interest and respect",
+  },
+  "art-of-war": {
+    motif: "crossed-swords",
+    theme: "strategy",
+    subtitle: "Win through positioning, timing, and restraint",
+  },
+  "the-prince": {
+    motif: "crown-sigil",
+    theme: "strategy",
+    subtitle: "Power, legitimacy, and political realism",
+  },
+  "33-strategies-of-war": {
+    motif: "chess-grid",
+    theme: "strategy",
+    subtitle: "Tactical discipline under sustained pressure",
+  },
+  influence: {
+    motif: "magnet-u",
+    theme: "communication",
+    subtitle: "Persuasion principles in real decisions",
+  },
+  "laws-of-human-nature": {
+    motif: "mask-dual",
+    theme: "psychology",
+    subtitle: "Decode motives before they become risk",
+  },
+  "pre-suasion": {
+    motif: "target-rings",
+    theme: "communication",
+    subtitle: "Shape attention before making the ask",
+  },
+  "never-split-the-difference": {
+    motif: "handshake-split",
+    theme: "communication",
+    subtitle: "Negotiate with tactical empathy and precision",
+  },
+  "games-people-play": {
+    motif: "chess-grid",
+    theme: "psychology",
+    subtitle: "Break hidden social scripts and games",
+  },
+  "crucial-conversations": {
+    motif: "speech-bubbles",
+    theme: "communication",
+    subtitle: "Stay clear when stakes and emotions rise",
+  },
+  "difficult-conversations": {
+    motif: "handshake-split",
+    theme: "communication",
+    subtitle: "Separate intent, impact, and identity",
+  },
+  "the-charisma-myth": {
+    motif: "magnet-u",
+    theme: "communication",
+    subtitle: "Presence, warmth, and earned confidence",
+  },
+  "what-every-body-is-saying": {
+    motif: "mind-network",
+    theme: "psychology",
+    subtitle: "Read nonverbal signals with context",
+  },
+  "the-power-of-habit": {
+    motif: "loop-arrows",
+    theme: "productivity",
+    subtitle: "Redesign cues, routines, and rewards",
+  },
+  "tiny-habits": {
+    motif: "dot-grid",
+    theme: "productivity",
+    subtitle: "Start tiny and let consistency compound",
+  },
+  essentialism: {
+    motif: "bullet-dot",
+    theme: "productivity",
+    subtitle: "Protect the vital few from the trivial many",
+  },
+  "deep-work": {
+    motif: "focus-block",
+    theme: "productivity",
+    subtitle: "Concentrate deeply where value is created",
+  },
+  drive: {
+    motif: "target-rings",
+    theme: "leadership",
+    subtitle: "Autonomy, mastery, and purpose drive performance",
+  },
+  mindset: {
+    motif: "mind-network",
+    theme: "psychology",
+    subtitle: "Grow ability through effort and feedback",
+  },
+  grit: {
+    motif: "mountain-sun",
+    theme: "resilience",
+    subtitle: "Sustain effort over long horizons",
+  },
+  "the-courage-to-be-disliked": {
+    motif: "bridge-arc",
+    theme: "philosophy",
+    subtitle: "Choose freedom over approval dependence",
+  },
+  attached: {
+    motif: "interlocked-rings",
+    theme: "relationships",
+    subtitle: "Understand attachment patterns in love",
+  },
+  "start-with-why": {
+    motif: "target-rings",
+    theme: "leadership",
+    subtitle: "Purpose aligns action and followership",
+  },
+  "the-7-habits-of-highly-effective-people": {
+    motif: "checklist-board",
+    theme: "productivity",
+    subtitle: "Principle centered habits for lasting effectiveness",
+  },
+  "the-millionaire-fastlane": {
+    motif: "line-chart",
+    theme: "finance",
+    subtitle: "Leverage systems to accelerate wealth creation",
+  },
+  "rich-dad-poor-dad": {
+    motif: "stacked-coins",
+    theme: "finance",
+    subtitle: "Assets and cash flow over appearances",
+  },
+  "make-time": {
+    motif: "hourglass-track",
+    theme: "productivity",
+    subtitle: "Design days around what matters most",
+  },
+  "the-psychology-of-money": {
+    motif: "bar-coin",
+    theme: "finance",
+    subtitle: "Behavior beats spreadsheets over time",
+  },
+  "thinking-fast-and-slow": {
+    motif: "zero-one",
+    theme: "thinking",
+    subtitle: "Fast intuition versus slow deliberation",
+  },
+  "predictably-irrational": {
+    motif: "maze-grid",
+    theme: "psychology",
+    subtitle: "Bias patterns hidden inside daily choices",
+  },
+  "the-almanack-of-naval-ravikant": {
+    motif: "scale-balance",
+    theme: "philosophy",
+    subtitle: "Wealth and happiness through leverage and judgment",
+  },
+  "extreme-ownership": {
+    motif: "shield-mark",
+    theme: "leadership",
+    subtitle: "Own outcomes and lead from the front",
+  },
+  "the-hard-thing-about-hard-things": {
+    motif: "anvil-mark",
+    theme: "leadership",
+    subtitle: "Lead through chaos and hard tradeoffs",
+  },
+  "good-to-great": {
+    motif: "flag-peak",
+    theme: "leadership",
+    subtitle: "Disciplined people and compounding momentum",
+  },
+  "the-48-laws-of-power": {
+    motif: "crown-sigil",
+    theme: "strategy",
+    subtitle: "Status, timing, and strategic restraint",
+  },
+  "atomic-habits": {
+    motif: "dot-grid",
+    theme: "productivity",
+    subtitle: "Small habits compound into big outcomes",
+  },
+  "the-one-thing": {
+    motif: "bullet-dot",
+    theme: "productivity",
+    subtitle: "One priority that unlocks the rest",
+  },
+  indistractable: {
+    motif: "focus-block",
+    theme: "productivity",
+    subtitle: "Defend attention against constant distraction",
+  },
+  "cant-hurt-me": {
+    motif: "shield-mark",
+    theme: "resilience",
+    subtitle: "Build disciplined mental toughness",
+  },
+  "so-good-they-cant-ignore-you": {
+    motif: "pencil-line",
+    theme: "learning",
+    subtitle: "Career capital before passion myths",
+  },
+  "talk-like-ted": {
+    motif: "microphone",
+    theme: "communication",
+    subtitle: "Stories and delivery that move audiences",
+  },
+  "the-like-switch": {
+    motif: "interlocked-rings",
+    theme: "relationships",
+    subtitle: "Build rapport through reliable social signals",
+  },
+  "pitch-anything": {
+    motif: "microphone",
+    theme: "communication",
+    subtitle: "Control frame and raise perceived value",
+  },
+  "how-to-talk-to-anyone": {
+    motif: "speech-bubbles",
+    theme: "communication",
+    subtitle: "Practical conversation patterns for social ease",
+  },
+  "the-righteous-mind": {
+    motif: "scale-balance",
+    theme: "philosophy",
+    subtitle: "Moral intuitions shape political disagreement",
+  },
+  "zero-to-one": {
+    motif: "zero-one",
+    theme: "innovation",
+    subtitle: "Create category defining value from scratch",
+  },
+  "the-lean-startup": {
+    motif: "flywheel",
+    theme: "innovation",
+    subtitle: "Build, measure, and learn in short loops",
+  },
+  "blue-ocean-strategy": {
+    motif: "wave-surge",
+    theme: "strategy",
+    subtitle: "Create uncontested market space",
+  },
+  "good-strategy-bad-strategy": {
+    motif: "compass-star",
+    theme: "strategy",
+    subtitle: "Diagnosis, leverage, and coherent action",
+  },
+  antifragile: {
+    motif: "anvil-mark",
+    theme: "resilience",
+    subtitle: "Gain from volatility and stress",
+  },
+  mastery: {
+    motif: "open-book",
+    theme: "learning",
+    subtitle: "Deliberate practice and apprenticeship to excellence",
+  },
+  "the-obstacle-is-the-way": {
+    motif: "mountain-sun",
+    theme: "resilience",
+    subtitle: "Turn friction into fuel for action",
+  },
+  "discipline-is-destiny": {
+    motif: "hourglass-track",
+    theme: "resilience",
+    subtitle: "Temperance and self command build character",
+  },
+  meditations: {
+    motif: "column-arch",
+    theme: "philosophy",
+    subtitle: "Inner discipline for external uncertainty",
+  },
+  "mans-search-for-meaning": {
+    motif: "mountain-sun",
+    theme: "philosophy",
+    subtitle: "Meaning as a source of endurance",
+  },
+  "built-to-last": {
+    motif: "flag-peak",
+    theme: "leadership",
+    subtitle: "Build institutions that outlive founders",
+  },
+  "clear-thinking": {
+    motif: "pencil-line",
+    theme: "thinking",
+    subtitle: "Pause and separate signal from impulse",
+  },
+  "competing-against-luck": {
+    motif: "target-rings",
+    theme: "innovation",
+    subtitle: "Win by solving the job to be done",
+  },
+  "ego-is-the-enemy": {
+    motif: "scale-balance",
+    theme: "philosophy",
+    subtitle: "Trade ego for humility and steady progress",
+  },
+  execution: {
+    motif: "checklist-board",
+    theme: "leadership",
+    subtitle: "Turn strategy into accountable action",
+  },
+  flow: {
+    motif: "wave-surge",
+    theme: "philosophy",
+    subtitle: "Deep absorption at the edge of skill",
+  },
+  "getting-things-done": {
+    motif: "checklist-board",
+    theme: "productivity",
+    subtitle: "Capture, clarify, and execute with calm",
+  },
+  limitless: {
+    motif: "mind-network",
+    theme: "learning",
+    subtitle: "Upgrade mindset, motivation, and methods",
+  },
+  "made-to-stick": {
+    motif: "speech-bubbles",
+    theme: "communication",
+    subtitle: "Make ideas memorable and actionable",
+  },
+  "make-it-stick": {
+    motif: "open-book",
+    theme: "learning",
+    subtitle: "Retrieval and spacing beat rereading",
+  },
+  "measure-what-matters": {
+    motif: "target-rings",
+    theme: "leadership",
+    subtitle: "Set clear objectives and measurable key results",
+  },
+  "mistakes-were-made-but-not-by-me": {
+    motif: "mask-dual",
+    theme: "psychology",
+    subtitle: "Self justification distorts memory and blame",
+  },
+  "never-eat-alone": {
+    motif: "bridge-arc",
+    theme: "relationships",
+    subtitle: "Relationships grow through consistent generosity",
+  },
+  noise: {
+    motif: "maze-grid",
+    theme: "thinking",
+    subtitle: "Reduce random judgment variation",
+  },
+  "on-becoming-a-person": {
+    motif: "interlocked-rings",
+    theme: "psychology",
+    subtitle: "Empathy and authenticity enable growth",
+  },
+  peak: {
+    motif: "mountain-sun",
+    theme: "learning",
+    subtitle: "Deliberate practice compounds skill",
+  },
+  "playing-to-win": {
+    motif: "chess-grid",
+    theme: "strategy",
+    subtitle: "Choose where to play and how to win",
+  },
+  "seeking-wisdom": {
+    motif: "node-map",
+    theme: "thinking",
+    subtitle: "Timeless mental models for better judgment",
+  },
+  "seven-powers": {
+    motif: "flag-peak",
+    theme: "strategy",
+    subtitle: "Build durable strategic advantages",
+  },
+  "skin-in-the-game": {
+    motif: "scale-balance",
+    theme: "thinking",
+    subtitle: "Align risk with accountability",
+  },
+  "smarter-faster-better": {
+    motif: "line-chart",
+    theme: "productivity",
+    subtitle: "Productive teams run on clarity and focus",
+  },
+  "super-thinking": {
+    motif: "node-map",
+    theme: "thinking",
+    subtitle: "Use mental models to simplify complexity",
+  },
+  superforecasting: {
+    motif: "line-chart",
+    theme: "thinking",
+    subtitle: "Think probabilistically and update often",
+  },
+  "the-12-week-year": {
+    motif: "hourglass-track",
+    theme: "productivity",
+    subtitle: "Compress goals into shorter execution cycles",
+  },
+  "the-art-of-thinking-clearly": {
+    motif: "pencil-line",
+    theme: "thinking",
+    subtitle: "Recognize cognitive biases before acting",
+  },
+  "the-black-swan": {
+    motif: "swan-curve",
+    theme: "thinking",
+    subtitle: "Prepare for rare, high impact uncertainty",
+  },
+  "the-checklist-manifesto": {
+    motif: "checklist-board",
+    theme: "productivity",
+    subtitle: "Simple checklists prevent costly misses",
+  },
+  "the-denial-of-death": {
+    motif: "column-arch",
+    theme: "philosophy",
+    subtitle: "Mortality and the stories people build",
+  },
+  "the-elephant-in-the-brain": {
+    motif: "mask-dual",
+    theme: "psychology",
+    subtitle: "Hidden motives beneath public explanations",
+  },
+  "the-first-20-hours": {
+    motif: "hourglass-track",
+    theme: "learning",
+    subtitle: "Rapid skill acquisition through smart practice",
+  },
+  "the-gift-of-fear": {
+    motif: "shield-mark",
+    theme: "resilience",
+    subtitle: "Trust intuition and protect boundaries early",
+  },
+  "the-great-mental-models-vol-1": {
+    motif: "node-map",
+    theme: "thinking",
+    subtitle: "Foundational models for clearer thinking",
+  },
+  "the-great-mental-models-vol-2": {
+    motif: "maze-grid",
+    theme: "thinking",
+    subtitle: "Apply models across complex systems",
+  },
+  "the-innovators-dilemma": {
+    motif: "flywheel",
+    theme: "innovation",
+    subtitle: "Incumbent success can block future growth",
+  },
+  "the-mole-people": {
+    motif: "maze-grid",
+    theme: "philosophy",
+    subtitle: "Invisible systems and survival underground",
+  },
+  "the-outsiders": {
+    motif: "line-chart",
+    theme: "leadership",
+    subtitle: "Unconventional allocation drives outperformance",
+  },
+  "the-pyramid-principle": {
+    motif: "pyramid",
+    theme: "thinking",
+    subtitle: "Structure ideas from insight to evidence",
+  },
+  "the-war-of-art": {
+    motif: "crossed-swords",
+    theme: "resilience",
+    subtitle: "Defeat resistance and ship creative work",
+  },
+  "thinking-in-bets": {
+    motif: "zero-one",
+    theme: "thinking",
+    subtitle: "Decide under uncertainty with probabilities",
+  },
+  ultralearning: {
+    motif: "rocket",
+    theme: "learning",
+    subtitle: "Aggressive self directed learning at speed",
+  },
 };
 
 const COVER_PALETTE_OVERRIDES = {
@@ -1083,7 +1639,7 @@ function keywordLine(book, themeLabel) {
 function renderCoverLayout(layoutVariant, palette, seed) {
   const dx = (seed % 60) - 30;
   const dy = ((seed >> 3) % 50) - 25;
-  switch (layoutVariant % 5) {
+  switch (layoutVariant % 8) {
     case 0:
       return `
   <rect x="-120" y="310" width="820" height="1100" transform="rotate(-12 400 860)" fill="${palette.accentSoft}" opacity="0.24"/>
@@ -1115,13 +1671,46 @@ function renderCoverLayout(layoutVariant, palette, seed) {
   </g>
   <path d="M140 430 L1060 430" stroke="${palette.accent}" stroke-width="10" opacity="0.22"/>
   <path d="M140 1330 L1060 1330" stroke="${palette.accent}" stroke-width="10" opacity="0.2"/>`;
+    case 4:
+      return `
+  <rect x="0" y="300" width="1200" height="1180" fill="${palette.accentSoft}" opacity="0.1"/>
+  <g fill="${palette.light}" opacity="0.19">
+    <circle cx="210" cy="560" r="124"/>
+    <circle cx="1020" cy="640" r="110"/>
+    <circle cx="920" cy="1220" r="132"/>
+    <circle cx="230" cy="1190" r="96"/>
+  </g>
+  <path d="M70 730 Q300 ${590 + dy} 600 740 T1130 760" stroke="${palette.accent}" stroke-width="20" opacity="0.2"/>
+  <path d="M70 960 Q320 ${1080 + dy} 600 940 T1130 920" stroke="${palette.light}" stroke-width="16" opacity="0.24"/>`;
+    case 5:
+      return `
+  <rect x="0" y="300" width="1200" height="1180" fill="${palette.accentSoft}" opacity="0.08"/>
+  <g stroke="${palette.light}" opacity="0.18">
+    <path d="M0 380 L1200 980" stroke-width="10"/>
+    <path d="M0 600 L1200 1200" stroke-width="8"/>
+    <path d="M0 820 L1200 1420" stroke-width="6"/>
+    <path d="M0 1040 L1040 1540" stroke-width="5"/>
+    <path d="M160 300 L1200 820" stroke-width="5"/>
+  </g>
+  <rect x="116" y="340" width="968" height="990" rx="46" fill="${palette.light}" opacity="0.14"/>`;
+    case 6:
+      return `
+  <rect x="0" y="300" width="1200" height="1180" fill="${palette.accentSoft}" opacity="0.1"/>
+  <rect x="70" y="350" width="1060" height="1060" rx="520" fill="${palette.light}" opacity="0.12"/>
+  <rect x="194" y="474" width="812" height="812" rx="406" fill="${palette.accent}" opacity="0.1"/>
+  <path d="M600 330 V1440" stroke="${palette.light}" stroke-width="6" opacity="0.24"/>
+  <path d="M160 885 H1040" stroke="${palette.accent}" stroke-width="8" opacity="0.24"/>`;
+    case 7:
+      return `
+  <rect x="0" y="300" width="1200" height="1180" fill="${palette.accentSoft}" opacity="0.1"/>
+  <rect x="110" y="360" width="420" height="430" rx="42" fill="${palette.light}" opacity="0.2"/>
+  <rect x="670" y="360" width="420" height="420" rx="42" fill="${palette.accent}" opacity="0.16"/>
+  <rect x="110" y="980" width="420" height="360" rx="42" fill="${palette.accent}" opacity="0.15"/>
+  <rect x="670" y="950" width="420" height="390" rx="42" fill="${palette.light}" opacity="0.2"/>
+  <circle cx="${620 + dx}" cy="${860 + dy}" r="128" fill="${palette.light}" opacity="0.16"/>`;
     default:
       return `
-  <rect x="0" y="300" width="1200" height="1180" fill="${palette.accentSoft}" opacity="0.12"/>
-  <rect x="110" y="370" width="420" height="420" rx="42" fill="${palette.light}" opacity="0.2"/>
-  <rect x="670" y="360" width="420" height="430" rx="42" fill="${palette.accent}" opacity="0.16"/>
-  <rect x="110" y="980" width="420" height="360" rx="42" fill="${palette.accent}" opacity="0.15"/>
-  <rect x="670" y="950" width="420" height="390" rx="42" fill="${palette.light}" opacity="0.2"/>`;
+  <rect x="0" y="300" width="1200" height="1180" fill="${palette.accentSoft}" opacity="0.12"/>`;
   }
 }
 
@@ -1765,6 +2354,49 @@ function renderCoverSigil(book, palette, seed) {
   }
 }
 
+function normalizeCoverToken(value) {
+  return cleanSpaces(value)
+    .replace(/[()]/g, " ")
+    .replace(/[-/]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toUpperCase();
+}
+
+function coverContextTokens(book, themeLabel) {
+  const source = [...(book.tags || []), ...(book.categories || [])]
+    .map((value) => normalizeCoverToken(value))
+    .filter(Boolean)
+    .filter((value) => value.length >= 4 && value.length <= 22);
+  const unique = [];
+  for (const value of source) {
+    if (!unique.includes(value)) unique.push(value);
+  }
+  if (unique.length === 0) return [themeLabel];
+  return unique.slice(0, 2);
+}
+
+function renderCoverContextChips(book, palette, themeLabel) {
+  const chips = coverContextTokens(book, themeLabel);
+  const gap = 22;
+  const chipWidths = chips.map((chip) => 52 + chip.length * 12);
+  const totalWidth = chipWidths.reduce((sum, width) => sum + width, 0) + gap * Math.max(0, chips.length - 1);
+  let cursorX = 600 - totalWidth / 2;
+
+  return chips
+    .map((chip, index) => {
+      const width = chipWidths[index];
+      const x = Math.round(cursorX);
+      cursorX += width + gap;
+      const textX = x + width / 2;
+      return `  <g>
+    <rect x="${x}" y="1466" width="${width}" height="42" rx="21" fill="${palette.light}" opacity="0.18" stroke="${palette.light}" stroke-width="2"/>
+    <text x="${textX}" y="1494" text-anchor="middle" fill="${palette.light}" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">${esc(chip)}</text>
+  </g>`;
+    })
+    .join("\n");
+}
+
 function createCoverSvg(pkg) {
   const id = pkg.book.bookId;
   const override = COVER_BOOK_OVERRIDES[id] || null;
@@ -1773,8 +2405,11 @@ function createCoverSvg(pkg) {
   const seed = hash(`${id}|${pkg.book.author}|${pkg.book.title}|${theme}`);
   const motif = chooseCoverMotif(pkg.book, theme, id);
   const basePalette = meta.palettes[hash(`${id}|${theme}`) % meta.palettes.length];
-  const palette = { ...basePalette, ...(COVER_PALETTE_OVERRIDES[id] || {}) };
-  const layoutVariant = hash(`${pkg.book.title}|${pkg.book.author}`) % 5;
+  const palette = {
+    ...deriveCoverPalette(basePalette, seed),
+    ...(COVER_PALETTE_OVERRIDES[id] || {}),
+  };
+  const layoutVariant = hash(`${pkg.book.title}|${pkg.book.author}`) % 8;
   const gradId = `g${hash(`${id}-${theme}`)}`;
   const author = cleanSpaces(pkg.book.author).toUpperCase();
   const titleLines = splitTitle(pkg.book.title);
@@ -1782,6 +2417,19 @@ function createCoverSvg(pkg) {
   const keywordText = keywordLine(pkg.book, meta.label);
   const subtitle = override?.subtitle || meta.subtitle;
   const sigilSvg = renderCoverSigil(pkg.book, palette, seed);
+  const contextChipsSvg = renderCoverContextChips(pkg.book, palette, meta.label);
+  const motifEchoPalette = {
+    ...palette,
+    accent: palette.accentSoft,
+    accentSoft: palette.light,
+    light: palette.panel,
+  };
+  const motifEchoSvg = `<g opacity="0.24" transform="translate(0 -26)">${renderCoverMotif(
+    motif,
+    theme,
+    motifEchoPalette,
+    seed + 137
+  )}</g>`;
   const lineGap = Math.round(fontSize * 1.08);
   const firstLineY = titleLines.length === 1 ? 1216 : titleLines.length === 2 ? 1162 : 1114;
   const titleSvg = titleLines
@@ -1803,7 +2451,9 @@ function createCoverSvg(pkg) {
 
   <rect width="1200" height="1800" fill="url(#${gradId})"/>
 ${renderCoverLayout(layoutVariant, palette, seed)}
+  <ellipse cx="600" cy="812" rx="470" ry="382" fill="${palette.light}" opacity="0.08"/>
   <rect x="116" y="304" width="968" height="1036" rx="38" fill="${palette.panel}" stroke="${palette.panelStroke}" stroke-width="10"/>
+${motifEchoSvg}
 ${renderCoverMotif(motif, theme, palette, seed)}
 ${sigilSvg}
 
@@ -1812,6 +2462,7 @@ ${sigilSvg}
   <text x="600" y="136" text-anchor="middle" fill="${palette.light}" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">${esc(author)}</text>
   <text x="600" y="208" text-anchor="middle" fill="${palette.light}" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">${esc(meta.label)}</text>
 ${titleSvg}
+${contextChipsSvg}
   <text x="600" y="1538" text-anchor="middle" fill="${palette.light}" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">${esc(keywordText)}</text>
   <text x="600" y="1604" text-anchor="middle" fill="${palette.light}" font-family="Georgia, serif" font-size="30">${esc(subtitle)}</text>
   <text x="600" y="1668" text-anchor="middle" fill="${palette.light}" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>

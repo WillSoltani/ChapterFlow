@@ -3,41 +3,62 @@
   <desc id="desc">Auto-generated themed cover for The Charisma Myth by Olivia Fox Cabane.</desc>
   <defs>
     <linearGradient id="g1086275482" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#1F3E50"/>
-      <stop offset="100%" stop-color="#396A76"/>
+      <stop offset="0%" stop-color="#1F3A46"/>
+      <stop offset="100%" stop-color="#406B74"/>
     </linearGradient>
   </defs>
 
   <rect width="1200" height="1800" fill="url(#g1086275482)"/>
 
-  <rect x="0" y="300" width="1200" height="1180" fill="#7CB0A3" opacity="0.12"/>
-  <rect x="110" y="370" width="420" height="420" rx="42" fill="#FEF8EE" opacity="0.2"/>
-  <rect x="670" y="360" width="420" height="430" rx="42" fill="#D98540" opacity="0.16"/>
-  <rect x="110" y="980" width="420" height="360" rx="42" fill="#D98540" opacity="0.15"/>
-  <rect x="670" y="950" width="420" height="390" rx="42" fill="#FEF8EE" opacity="0.2"/>
-  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F4ECE0" stroke="#CAB7A0" stroke-width="10"/>
+  <rect x="0" y="300" width="1200" height="1180" fill="#83AFA1" opacity="0.1"/>
+  <g fill="#FEF8EE" opacity="0.19">
+    <circle cx="210" cy="560" r="124"/>
+    <circle cx="1020" cy="640" r="110"/>
+    <circle cx="920" cy="1220" r="132"/>
+    <circle cx="230" cy="1190" r="96"/>
+  </g>
+  <path d="M70 730 Q300 591 600 740 T1130 760" stroke="#D58049" stroke-width="20" opacity="0.2"/>
+  <path d="M70 960 Q320 1081 600 940 T1130 920" stroke="#FEF8EE" stroke-width="16" opacity="0.24"/>
+  <ellipse cx="600" cy="812" rx="470" ry="382" fill="#FEF8EE" opacity="0.08"/>
+  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F4ECE0" stroke="#C4B19B" stroke-width="10"/>
+<g opacity="0.24" transform="translate(0 -26)">
+  <g transform="translate(399 553)">
+    <path d="M80 68 V214 Q80 304 170 304 H230 Q320 304 320 214 V68" fill="none" stroke="#83AFA1" stroke-width="34" stroke-linecap="round"/>
+    <rect x="66" y="40" width="44" height="68" rx="12" fill="#F4ECE0"/>
+    <rect x="290" y="40" width="44" height="68" rx="12" fill="#F4ECE0"/>
+    <circle cx="198" cy="182" r="54" fill="#FEF8EE" opacity="0.7"/>
+    <circle cx="198" cy="182" r="26" fill="#1D2B2F" opacity="0.86"/>
+  </g></g>
 
   <g transform="translate(412 571)">
-    <path d="M80 68 V214 Q80 304 170 304 H230 Q320 304 320 214 V68" fill="none" stroke="#D98540" stroke-width="34" stroke-linecap="round"/>
+    <path d="M80 68 V214 Q80 304 170 304 H230 Q320 304 320 214 V68" fill="none" stroke="#D58049" stroke-width="34" stroke-linecap="round"/>
     <rect x="66" y="40" width="44" height="68" rx="12" fill="#FEF8EE"/>
     <rect x="290" y="40" width="44" height="68" rx="12" fill="#FEF8EE"/>
-    <circle cx="198" cy="182" r="54" fill="#7CB0A3" opacity="0.7"/>
-    <circle cx="198" cy="182" r="26" fill="#1E2E33" opacity="0.86"/>
+    <circle cx="198" cy="182" r="54" fill="#83AFA1" opacity="0.7"/>
+    <circle cx="198" cy="182" r="26" fill="#1D2B2F" opacity="0.86"/>
   </g>
 
   <g transform="translate(922 332)">
-    <rect x="12" y="12" width="152" height="152" rx="24" fill="#FEF8EE" stroke="#D98540" stroke-width="10"/>
-    <path d="M30 116 L146 52" stroke="#7CB0A3" stroke-width="8" stroke-linecap="round"/>
-    <path d="M30 138 L146 74" stroke="#7CB0A3" stroke-width="8" stroke-linecap="round"/>
-    <text x="88" y="102" text-anchor="middle" fill="#1E2E33" font-family="'Trebuchet MS', Arial, sans-serif" font-size="44" font-weight="700" letter-spacing="2">CM</text>
+    <rect x="12" y="12" width="152" height="152" rx="24" fill="#FEF8EE" stroke="#D58049" stroke-width="10"/>
+    <path d="M30 116 L146 52" stroke="#83AFA1" stroke-width="8" stroke-linecap="round"/>
+    <path d="M30 138 L146 74" stroke="#83AFA1" stroke-width="8" stroke-linecap="round"/>
+    <text x="88" y="102" text-anchor="middle" fill="#1D2B2F" font-family="'Trebuchet MS', Arial, sans-serif" font-size="44" font-weight="700" letter-spacing="2">CM</text>
   </g>
 
-  <rect x="0" y="0" width="1200" height="238" fill="#1F3E50" opacity="0.93"/>
-  <rect x="0" y="1454" width="1200" height="346" fill="#396A76" opacity="0.95"/>
+  <rect x="0" y="0" width="1200" height="238" fill="#1F3A46" opacity="0.93"/>
+  <rect x="0" y="1454" width="1200" height="346" fill="#406B74" opacity="0.95"/>
   <text x="600" y="136" text-anchor="middle" fill="#FEF8EE" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">OLIVIA FOX CABANE</text>
   <text x="600" y="208" text-anchor="middle" fill="#FEF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">COMMUNICATION</text>
-  <text x="600" y="1216" text-anchor="middle" fill="#1E2E33" font-family="'Trebuchet MS', Arial, sans-serif" font-size="92" font-weight="700" letter-spacing="2">THE CHARISMA MYTH</text>
+  <text x="600" y="1216" text-anchor="middle" fill="#1D2B2F" font-family="'Trebuchet MS', Arial, sans-serif" font-size="92" font-weight="700" letter-spacing="2">THE CHARISMA MYTH</text>
+  <g>
+    <rect x="453" y="1466" width="148" height="42" rx="21" fill="#FEF8EE" opacity="0.18" stroke="#FEF8EE" stroke-width="2"/>
+    <text x="527" y="1494" text-anchor="middle" fill="#FEF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">PRESENCE</text>
+  </g>
+  <g>
+    <rect x="623" y="1466" width="124" height="42" rx="21" fill="#FEF8EE" opacity="0.18" stroke="#FEF8EE" stroke-width="2"/>
+    <text x="685" y="1494" text-anchor="middle" fill="#FEF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">WARMTH</text>
+  </g>
   <text x="600" y="1538" text-anchor="middle" fill="#FEF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">PRESENCE  ·  WARMTH  ·  POWER</text>
-  <text x="600" y="1604" text-anchor="middle" fill="#FEF8EE" font-family="Georgia, serif" font-size="30">Influence, dialogue, and trust</text>
+  <text x="600" y="1604" text-anchor="middle" fill="#FEF8EE" font-family="Georgia, serif" font-size="30">Presence, warmth, and earned confidence</text>
   <text x="600" y="1668" text-anchor="middle" fill="#FEF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
 </svg>

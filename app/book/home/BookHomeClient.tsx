@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Flame, Sparkles, X } from "lucide-react";
 import { getBookById } from "@/app/book/data/booksCatalog";
 import { getBookChaptersBundle } from "@/app/book/data/mockChapters";
@@ -55,9 +55,20 @@ function mapSnapshotToRecentProgress(
 
 export function BookHomeClient() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const searchInputRef = useRef<HTMLInputElement | null>(null);
   const [selectedBadge, setSelectedBadge] = useState<BadgeState | null>(null);
   const [showQuickReviewModal, setShowQuickReviewModal] = useState(false);
+  const [showProBanner, setShowProBanner] = useState(false);
+
+  // Show a success banner when Stripe redirects back after payment, then
+  // clean the URL so a refresh doesn't re-show it.
+  useEffect(() => {
+    if (searchParams.get("billing") === "success") {
+      setShowProBanner(true);
+      router.replace("/book/workspace");
+    }
+  }, [searchParams, router]);
 
   const { state: onboarding, hydrated: onboardingHydrated } = useOnboardingState();
   const dashboard = useBookState({
@@ -203,6 +214,25 @@ export function BookHomeClient() {
 
   return (
     <main className="cf-app-shell">
+      {showProBanner && (
+        <div className="relative flex items-center justify-between gap-3 bg-linear-to-r from-(--cf-accent) to-(--cf-accent-strong) px-4 py-3 text-white sm:px-6">
+          <div className="flex items-center gap-2.5">
+            <Sparkles className="h-4 w-4 shrink-0" />
+            <p className="text-sm font-medium">
+              You&apos;re now on Pro — enjoy unlimited access to the full library.
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={() => setShowProBanner(false)}
+            aria-label="Dismiss"
+            className="shrink-0 rounded-lg p-1 transition hover:bg-white/20"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        </div>
+      )}
+
       <TopNav
         name={onboarding.name || "Reader"}
         activeTab="home"

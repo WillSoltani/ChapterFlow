@@ -5,7 +5,7 @@ import {
   requireBodyObject,
   withBookApiErrors,
 } from "@/app/app/api/book/_lib/http";
-import { getBookContentBucket, getBookTableName } from "@/app/app/api/book/_lib/env";
+import { getBookContentBucket, getBookTableName, getBookAnalyticsTableName } from "@/app/app/api/book/_lib/env";
 import { getUserAccessibleQuiz } from "@/app/app/api/book/_lib/content-service";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import {
@@ -18,6 +18,7 @@ import {
   updateProgressAfterQuizPass,
   writeQuizAttempt,
 } from "@/app/app/api/book/_lib/repo";
+import { analyticsTrackQuizAttempt } from "@/app/app/api/book/_lib/analytics-repo";
 import { nowIso } from "@/app/app/api/book/_lib/keys";
 import type { ChapterQuizPayload } from "@/app/app/api/book/_lib/types";
 
@@ -249,6 +250,18 @@ export async function POST(
         scorePercent: result.scorePercent,
       });
     }
+
+    // Analytics — fire-and-forget, never block the response
+    getBookAnalyticsTableName().then((analyticsTable) => {
+      if (!analyticsTable) return;
+      analyticsTrackQuizAttempt(analyticsTable, {
+        userId: user.sub,
+        bookId,
+        chapterNumber: chapterNumberInt,
+        scorePercent: result.scorePercent,
+        passed: result.passed,
+      }).catch(() => {});
+    }).catch(() => {});
 
     const failureStreak = result.passed ? 0 : streakBeforeAttempt + 1;
     const cooldownSeconds = result.passed

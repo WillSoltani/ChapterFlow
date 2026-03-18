@@ -8,12 +8,13 @@ import {
   requireString,
   withBookApiErrors,
 } from "@/app/app/api/book/_lib/http";
-import { getBookTableName } from "@/app/app/api/book/_lib/env";
+import { getBookTableName, getBookAnalyticsTableName } from "@/app/app/api/book/_lib/env";
 import {
   addReadingDayActivity,
   getUserProgress,
   upsertUserProgress,
 } from "@/app/app/api/book/_lib/repo";
+import { analyticsTrackReadingSession } from "@/app/app/api/book/_lib/analytics-repo";
 import { nowIso } from "@/app/app/api/book/_lib/keys";
 
 export const runtime = "nodejs";
@@ -66,6 +67,17 @@ export async function POST(req: Request) {
         updatedAt: occurredAt,
       });
     }
+
+    // Analytics — fire-and-forget
+    getBookAnalyticsTableName().then((analyticsTable) => {
+      if (!analyticsTable) return;
+      analyticsTrackReadingSession(analyticsTable, {
+        userId: user.sub,
+        bookId,
+        deltaMs,
+        dayKey,
+      }).catch(() => {});
+    }).catch(() => {});
 
     return bookOk({
       readingDay,

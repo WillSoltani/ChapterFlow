@@ -3,45 +3,83 @@
   <desc id="desc">Auto-generated themed cover for Limitless by Jim Kwik.</desc>
   <defs>
     <linearGradient id="g138154761" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#2D4A6A"/>
-      <stop offset="100%" stop-color="#4B7AA3"/>
+      <stop offset="0%" stop-color="#294369"/>
+      <stop offset="100%" stop-color="#4A74AE"/>
     </linearGradient>
   </defs>
 
   <rect width="1200" height="1800" fill="url(#g138154761)"/>
 
-  <rect x="0" y="300" width="1200" height="1180" fill="#8EB4D1" opacity="0.12"/>
-  <rect x="110" y="370" width="420" height="420" rx="42" fill="#FDF8EE" opacity="0.2"/>
-  <rect x="670" y="360" width="420" height="430" rx="42" fill="#E29C48" opacity="0.16"/>
-  <rect x="110" y="980" width="420" height="360" rx="42" fill="#E29C48" opacity="0.15"/>
-  <rect x="670" y="950" width="420" height="390" rx="42" fill="#FDF8EE" opacity="0.2"/>
-  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F4EEE3" stroke="#CABAA4" stroke-width="10"/>
+  <rect x="-120" y="310" width="820" height="1100" transform="rotate(-12 400 860)" fill="#90B2D4" opacity="0.24"/>
+  <rect x="560" y="260" width="760" height="1150" transform="rotate(8 940 835)" fill="#E5AA4A" opacity="0.16"/>
+  <circle cx="242" cy="580" r="180" fill="#E5AA4A" opacity="0.17"/>
+  <circle cx="988" cy="1020" r="220" fill="#90B2D4" opacity="0.2"/>
+  <ellipse cx="600" cy="812" rx="470" ry="382" fill="#FDF8EE" opacity="0.08"/>
+  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F4EEE3" stroke="#C7B79D" stroke-width="10"/>
+<g opacity="0.24" transform="translate(0 -26)">
+  <g transform="translate(390 557)">
+    <rect x="18" y="24" width="364" height="334" rx="26" fill="#F4EEE3" stroke="#FDF8EE" stroke-width="8"/>
+    <g stroke="#90B2D4" stroke-width="8" opacity="0.86">
+      <line x1="84" y1="96" x2="174" y2="144"/>
+      <line x1="174" y1="144" x2="282" y2="110"/>
+      <line x1="174" y1="144" x2="166" y2="244"/>
+      <line x1="166" y1="244" x2="280" y2="286"/>
+      <line x1="84" y1="96" x2="96" y2="232"/>
+      <line x1="96" y1="232" x2="166" y2="244"/>
+      <line x1="282" y1="110" x2="280" y2="286"/>
+    </g>
+    <g fill="#203142">
+      <circle cx="84" cy="96" r="14"/>
+      <circle cx="174" cy="144" r="14"/>
+      <circle cx="282" cy="110" r="14"/>
+      <circle cx="96" cy="232" r="14"/>
+      <circle cx="166" cy="244" r="14"/>
+      <circle cx="280" cy="286" r="14"/>
+    </g>
+  </g></g>
 
-  <g transform="translate(397 558)">
-    <rect x="0" y="0" width="420" height="328" rx="24" fill="#FDF8EE" stroke="#8EB4D1" stroke-width="8"/>
-    <path d="M56 258 C136 192 228 222 306 158" stroke="#223445" stroke-width="10" stroke-linecap="round"/>
-    <rect x="82" y="98" width="250" height="26" rx="13" fill="#8EB4D1" opacity="0.55"/>
-    <rect x="82" y="132" width="212" height="26" rx="13" fill="#E29C48" opacity="0.45"/>
-    <g transform="translate(294 214) rotate(-18)">
-      <rect x="0" y="0" width="88" height="22" rx="10" fill="#E29C48" opacity="0.9"/>
-      <polygon points="88,11 108,0 108,22" fill="#223445"/>
-      <polygon points="108,0 118,11 108,22" fill="#FDF8EE"/>
+  <g transform="translate(403 548)">
+    <rect x="18" y="24" width="364" height="334" rx="26" fill="#FDF8EE" stroke="#90B2D4" stroke-width="8"/>
+    <g stroke="#E5AA4A" stroke-width="8" opacity="0.86">
+      <line x1="84" y1="96" x2="174" y2="144"/>
+      <line x1="174" y1="144" x2="282" y2="110"/>
+      <line x1="174" y1="144" x2="166" y2="244"/>
+      <line x1="166" y1="244" x2="280" y2="286"/>
+      <line x1="84" y1="96" x2="96" y2="232"/>
+      <line x1="96" y1="232" x2="166" y2="244"/>
+      <line x1="282" y1="110" x2="280" y2="286"/>
+    </g>
+    <g fill="#203142">
+      <circle cx="84" cy="96" r="14"/>
+      <circle cx="174" cy="144" r="14"/>
+      <circle cx="282" cy="110" r="14"/>
+      <circle cx="96" cy="232" r="14"/>
+      <circle cx="166" cy="244" r="14"/>
+      <circle cx="280" cy="286" r="14"/>
     </g>
   </g>
 
   <g transform="translate(924 332)">
-    <rect x="24" y="14" width="128" height="156" rx="64" fill="#FDF8EE" stroke="#E29C48" stroke-width="10"/>
-    <path d="M44 54 H132" stroke="#8EB4D1" stroke-width="10" stroke-linecap="round"/>
-    <path d="M44 80 H132" stroke="#8EB4D1" stroke-width="10" stroke-linecap="round"/>
-    <text x="88" y="128" text-anchor="middle" fill="#223445" font-family="'Trebuchet MS', Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="2">LI</text>
+    <rect x="24" y="14" width="128" height="156" rx="64" fill="#FDF8EE" stroke="#E5AA4A" stroke-width="10"/>
+    <path d="M44 54 H132" stroke="#90B2D4" stroke-width="10" stroke-linecap="round"/>
+    <path d="M44 80 H132" stroke="#90B2D4" stroke-width="10" stroke-linecap="round"/>
+    <text x="88" y="128" text-anchor="middle" fill="#203142" font-family="'Trebuchet MS', Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="2">LI</text>
   </g>
 
-  <rect x="0" y="0" width="1200" height="238" fill="#2D4A6A" opacity="0.93"/>
-  <rect x="0" y="1454" width="1200" height="346" fill="#4B7AA3" opacity="0.95"/>
+  <rect x="0" y="0" width="1200" height="238" fill="#294369" opacity="0.93"/>
+  <rect x="0" y="1454" width="1200" height="346" fill="#4A74AE" opacity="0.95"/>
   <text x="600" y="136" text-anchor="middle" fill="#FDF8EE" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">JIM KWIK</text>
   <text x="600" y="208" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">LEARNING</text>
-  <text x="600" y="1216" text-anchor="middle" fill="#223445" font-family="'Trebuchet MS', Arial, sans-serif" font-size="108" font-weight="700" letter-spacing="2">LIMITLESS</text>
+  <text x="600" y="1216" text-anchor="middle" fill="#203142" font-family="'Trebuchet MS', Arial, sans-serif" font-size="108" font-weight="700" letter-spacing="2">LIMITLESS</text>
+  <g>
+    <rect x="453" y="1466" width="148" height="42" rx="21" fill="#FDF8EE" opacity="0.18" stroke="#FDF8EE" stroke-width="2"/>
+    <text x="527" y="1494" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">PRACTICE</text>
+  </g>
+  <g>
+    <rect x="623" y="1466" width="124" height="42" rx="21" fill="#FDF8EE" opacity="0.18" stroke="#FDF8EE" stroke-width="2"/>
+    <text x="685" y="1494" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">MEMORY</text>
+  </g>
   <text x="600" y="1538" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">PRACTICE  ·  MEMORY  ·  FEEDBACK</text>
-  <text x="600" y="1604" text-anchor="middle" fill="#FDF8EE" font-family="Georgia, serif" font-size="30">Practice and skill building</text>
+  <text x="600" y="1604" text-anchor="middle" fill="#FDF8EE" font-family="Georgia, serif" font-size="30">Upgrade mindset, motivation, and methods</text>
   <text x="600" y="1668" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
 </svg>

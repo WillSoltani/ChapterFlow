@@ -6,11 +6,12 @@ import {
   requireBodyObject,
   withBookApiErrors,
 } from "@/app/app/api/book/_lib/http";
-import { getBookTableName } from "@/app/app/api/book/_lib/env";
+import { getBookTableName, getBookAnalyticsTableName } from "@/app/app/api/book/_lib/env";
 import {
   getUserProfileItem,
   putUserProfileItem,
 } from "@/app/app/api/book/_lib/repo";
+import { analyticsTrackOnboarding } from "@/app/app/api/book/_lib/analytics-repo";
 
 export const runtime = "nodejs";
 
@@ -50,6 +51,20 @@ export async function PATCH(req: Request) {
       profile,
       createdAt: existing?.createdAt,
     });
+
+    // Analytics — fire-and-forget when onboarding is being completed
+    if (profile.onboardingCompleted === true) {
+      getBookAnalyticsTableName().then((analyticsTable) => {
+        if (!analyticsTable) return;
+        analyticsTrackOnboarding(analyticsTable, {
+          userId: user.sub,
+          email: user.email,
+          goal: typeof profile.goal === "string" ? profile.goal : undefined,
+          dailyGoalMinutes:
+            typeof profile.dailyGoalMinutes === "number" ? profile.dailyGoalMinutes : undefined,
+        }).catch(() => {});
+      }).catch(() => {});
+    }
 
     return bookOk({
       profile: saved.profile,

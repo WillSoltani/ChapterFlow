@@ -3,52 +3,63 @@
   <desc id="desc">Auto-generated themed cover for Games People Play by Eric Berne.</desc>
   <defs>
     <linearGradient id="g116034736" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#2D3656"/>
-      <stop offset="100%" stop-color="#4E5E8A"/>
+      <stop offset="0%" stop-color="#232B41"/>
+      <stop offset="100%" stop-color="#4A597E"/>
     </linearGradient>
   </defs>
 
   <rect width="1200" height="1800" fill="url(#g116034736)"/>
 
-  <rect x="0" y="300" width="1200" height="1180" fill="#9AACD2" opacity="0.12"/>
-  <rect x="140" y="360" width="920" height="1050" rx="48" fill="#FDF8EF" opacity="0.22"/>
-  <path d="M0 560 Q300 448 600 560 T1200 560" stroke="#FDF8EF" stroke-width="22" opacity="0.24"/>
-  <path d="M0 1180 Q300 1068 600 1180 T1200 1180" stroke="#D88D57" stroke-width="16" opacity="0.22"/>
-  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F3ECE2" stroke="#C9B8A2" stroke-width="10"/>
+  <rect x="0" y="300" width="1200" height="1180" fill="#9EB1D3" opacity="0.08"/>
+  <g stroke="#FDF8EF" opacity="0.18">
+    <path d="M0 380 L1200 980" stroke-width="10"/>
+    <path d="M0 600 L1200 1200" stroke-width="8"/>
+    <path d="M0 820 L1200 1420" stroke-width="6"/>
+    <path d="M0 1040 L1040 1540" stroke-width="5"/>
+    <path d="M160 300 L1200 820" stroke-width="5"/>
+  </g>
+  <rect x="116" y="340" width="968" height="990" rx="46" fill="#FDF8EF" opacity="0.14"/>
+  <ellipse cx="600" cy="812" rx="470" ry="382" fill="#FDF8EF" opacity="0.08"/>
+  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F3ECE2" stroke="#C5B29C" stroke-width="10"/>
+<g opacity="0.24" transform="translate(0 -26)">
+  <g transform="translate(398 552)">
+    <rect x="0" y="0" width="396" height="336" rx="24" fill="#F3ECE2" stroke="#FDF8EF" stroke-width="8"/>
+    <rect x="52" y="52" width="74" height="64" rx="8" fill="#FDF8EF" opacity="0.56"/><rect x="126" y="52" width="74" height="64" rx="8" fill="#9EB1D3" opacity="0.56"/><rect x="200" y="52" width="74" height="64" rx="8" fill="#FDF8EF" opacity="0.56"/><rect x="274" y="52" width="74" height="64" rx="8" fill="#9EB1D3" opacity="0.56"/>
+<rect x="52" y="116" width="74" height="64" rx="8" fill="#9EB1D3" opacity="0.56"/><rect x="126" y="116" width="74" height="64" rx="8" fill="#FDF8EF" opacity="0.56"/><rect x="200" y="116" width="74" height="64" rx="8" fill="#9EB1D3" opacity="0.56"/><rect x="274" y="116" width="74" height="64" rx="8" fill="#FDF8EF" opacity="0.56"/>
+<rect x="52" y="180" width="74" height="64" rx="8" fill="#FDF8EF" opacity="0.56"/><rect x="126" y="180" width="74" height="64" rx="8" fill="#9EB1D3" opacity="0.56"/><rect x="200" y="180" width="74" height="64" rx="8" fill="#FDF8EF" opacity="0.56"/><rect x="274" y="180" width="74" height="64" rx="8" fill="#9EB1D3" opacity="0.56"/>
+<rect x="52" y="244" width="74" height="64" rx="8" fill="#9EB1D3" opacity="0.56"/><rect x="126" y="244" width="74" height="64" rx="8" fill="#FDF8EF" opacity="0.56"/><rect x="200" y="244" width="74" height="64" rx="8" fill="#9EB1D3" opacity="0.56"/><rect x="274" y="244" width="74" height="64" rx="8" fill="#FDF8EF" opacity="0.56"/>
+    <path d="M206 128 C174 128 154 148 154 174 C154 194 168 210 188 216 C176 228 166 244 166 266 H246 C246 244 236 228 224 216 C244 210 258 194 258 174 C258 148 238 128 206 128 Z" fill="#212938" opacity="0.9"/>
+  </g></g>
 
-  <g transform="translate(405 545)">
-    <rect x="18" y="24" width="364" height="334" rx="26" fill="#FDF8EF" stroke="#9AACD2" stroke-width="8"/>
-    <g stroke="#D88D57" stroke-width="8" opacity="0.86">
-      <line x1="84" y1="96" x2="174" y2="144"/>
-      <line x1="174" y1="144" x2="282" y2="110"/>
-      <line x1="174" y1="144" x2="166" y2="244"/>
-      <line x1="166" y1="244" x2="280" y2="286"/>
-      <line x1="84" y1="96" x2="96" y2="232"/>
-      <line x1="96" y1="232" x2="166" y2="244"/>
-      <line x1="282" y1="110" x2="280" y2="286"/>
-    </g>
-    <g fill="#232B3B">
-      <circle cx="84" cy="96" r="14"/>
-      <circle cx="174" cy="144" r="14"/>
-      <circle cx="282" cy="110" r="14"/>
-      <circle cx="96" cy="232" r="14"/>
-      <circle cx="166" cy="244" r="14"/>
-      <circle cx="280" cy="286" r="14"/>
-    </g>
+  <g transform="translate(411 543)">
+    <rect x="0" y="0" width="396" height="336" rx="24" fill="#FDF8EF" stroke="#9EB1D3" stroke-width="8"/>
+    <rect x="52" y="52" width="74" height="64" rx="8" fill="#9EB1D3" opacity="0.56"/><rect x="126" y="52" width="74" height="64" rx="8" fill="#D88B5C" opacity="0.56"/><rect x="200" y="52" width="74" height="64" rx="8" fill="#9EB1D3" opacity="0.56"/><rect x="274" y="52" width="74" height="64" rx="8" fill="#D88B5C" opacity="0.56"/>
+<rect x="52" y="116" width="74" height="64" rx="8" fill="#D88B5C" opacity="0.56"/><rect x="126" y="116" width="74" height="64" rx="8" fill="#9EB1D3" opacity="0.56"/><rect x="200" y="116" width="74" height="64" rx="8" fill="#D88B5C" opacity="0.56"/><rect x="274" y="116" width="74" height="64" rx="8" fill="#9EB1D3" opacity="0.56"/>
+<rect x="52" y="180" width="74" height="64" rx="8" fill="#9EB1D3" opacity="0.56"/><rect x="126" y="180" width="74" height="64" rx="8" fill="#D88B5C" opacity="0.56"/><rect x="200" y="180" width="74" height="64" rx="8" fill="#9EB1D3" opacity="0.56"/><rect x="274" y="180" width="74" height="64" rx="8" fill="#D88B5C" opacity="0.56"/>
+<rect x="52" y="244" width="74" height="64" rx="8" fill="#D88B5C" opacity="0.56"/><rect x="126" y="244" width="74" height="64" rx="8" fill="#9EB1D3" opacity="0.56"/><rect x="200" y="244" width="74" height="64" rx="8" fill="#D88B5C" opacity="0.56"/><rect x="274" y="244" width="74" height="64" rx="8" fill="#9EB1D3" opacity="0.56"/>
+    <path d="M206 128 C174 128 154 148 154 174 C154 194 168 210 188 216 C176 228 166 244 166 266 H246 C246 244 236 228 224 216 C244 210 258 194 258 174 C258 148 238 128 206 128 Z" fill="#212938" opacity="0.9"/>
   </g>
 
   <g transform="translate(928 336)">
-    <circle cx="84" cy="84" r="76" fill="#FDF8EF" stroke="#D88D57" stroke-width="10"/>
-    <circle cx="84" cy="84" r="56" fill="#9AACD2" opacity="0.68"/>
-    <text x="84" y="98" text-anchor="middle" fill="#232B3B" font-family="'Trebuchet MS', Arial, sans-serif" font-size="44" font-weight="700" letter-spacing="2">GP</text>
+    <circle cx="84" cy="84" r="76" fill="#FDF8EF" stroke="#D88B5C" stroke-width="10"/>
+    <circle cx="84" cy="84" r="56" fill="#9EB1D3" opacity="0.68"/>
+    <text x="84" y="98" text-anchor="middle" fill="#212938" font-family="'Trebuchet MS', Arial, sans-serif" font-size="44" font-weight="700" letter-spacing="2">GP</text>
   </g>
 
-  <rect x="0" y="0" width="1200" height="238" fill="#2D3656" opacity="0.93"/>
-  <rect x="0" y="1454" width="1200" height="346" fill="#4E5E8A" opacity="0.95"/>
+  <rect x="0" y="0" width="1200" height="238" fill="#232B41" opacity="0.93"/>
+  <rect x="0" y="1454" width="1200" height="346" fill="#4A597E" opacity="0.95"/>
   <text x="600" y="136" text-anchor="middle" fill="#FDF8EF" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">ERIC BERNE</text>
   <text x="600" y="208" text-anchor="middle" fill="#FDF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">PSYCHOLOGY</text>
-  <text x="600" y="1216" text-anchor="middle" fill="#232B3B" font-family="Georgia, 'Times New Roman', serif" font-size="92" font-weight="700" letter-spacing="2">GAMES PEOPLE PLAY</text>
+  <text x="600" y="1216" text-anchor="middle" fill="#212938" font-family="Georgia, 'Times New Roman', serif" font-size="92" font-weight="700" letter-spacing="2">GAMES PEOPLE PLAY</text>
+  <g>
+    <rect x="327" y="1466" width="316" height="42" rx="21" fill="#FDF8EF" opacity="0.18" stroke="#FDF8EF" stroke-width="2"/>
+    <text x="485" y="1494" text-anchor="middle" fill="#FDF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">TRANSACTIONAL ANALYSIS</text>
+  </g>
+  <g>
+    <rect x="665" y="1466" width="208" height="42" rx="21" fill="#FDF8EF" opacity="0.18" stroke="#FDF8EF" stroke-width="2"/>
+    <text x="769" y="1494" text-anchor="middle" fill="#FDF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">RELATIONSHIPS</text>
+  </g>
   <text x="600" y="1538" text-anchor="middle" fill="#FDF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">TRANSACTIONAL ANALYSIS  ·  RELATIONSHIPS  ·  COMMUNICATION</text>
-  <text x="600" y="1604" text-anchor="middle" fill="#FDF8EF" font-family="Georgia, serif" font-size="30">Behavior, bias, and motivation</text>
+  <text x="600" y="1604" text-anchor="middle" fill="#FDF8EF" font-family="Georgia, serif" font-size="30">Break hidden social scripts and games</text>
   <text x="600" y="1668" text-anchor="middle" fill="#FDF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
 </svg>

@@ -2,49 +2,54 @@
   <title id="title">The Like Switch cover</title>
   <desc id="desc">Auto-generated themed cover for The Like Switch by Jack Schafer, Marvin Karlins.</desc>
   <defs>
-    <linearGradient id="g231015657" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#2D4A64"/>
-      <stop offset="100%" stop-color="#3E6D8C"/>
+    <linearGradient id="g1276804220" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#743F53"/>
+      <stop offset="100%" stop-color="#9F6472"/>
     </linearGradient>
   </defs>
 
-  <rect width="1200" height="1800" fill="url(#g231015657)"/>
+  <rect width="1200" height="1800" fill="url(#g1276804220)"/>
 
-  <rect x="0" y="300" width="1200" height="1180" fill="#8DBBCB" opacity="0.1"/>
-  <g stroke="#FDF8EE" opacity="0.2">
-    <line x1="160" y1="320" x2="160" y2="1460" stroke-width="4"/>
-    <line x1="320" y1="320" x2="320" y2="1460" stroke-width="3"/>
-    <line x1="480" y1="320" x2="480" y2="1460" stroke-width="2"/>
-    <line x1="640" y1="320" x2="640" y2="1460" stroke-width="3"/>
-    <line x1="800" y1="320" x2="800" y2="1460" stroke-width="2"/>
-    <line x1="960" y1="320" x2="960" y2="1460" stroke-width="3"/>
-  </g>
-  <path d="M140 430 L1060 430" stroke="#E19345" stroke-width="10" opacity="0.22"/>
-  <path d="M140 1330 L1060 1330" stroke="#E19345" stroke-width="10" opacity="0.2"/>
-  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F4EFE4" stroke="#CBBBA3" stroke-width="10"/>
+  <circle cx="600" cy="840" r="420" fill="#CA9DB1" opacity="0.16"/>
+  <circle cx="600" cy="840" r="300" fill="#FDF8EE" opacity="0.16"/>
+  <circle cx="595" cy="858" r="210" fill="#E0A556" opacity="0.18"/>
+  <circle cx="605" cy="822" r="130" fill="#FDF8EE" opacity="0.34"/>
+  <ellipse cx="600" cy="812" rx="470" ry="382" fill="#FDF8EE" opacity="0.08"/>
+  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F4ECE2" stroke="#C7B399" stroke-width="10"/>
+<g opacity="0.24" transform="translate(0 -26)">
+  <g transform="translate(401 554)">
+    <circle cx="150" cy="176" r="88" fill="none" stroke="#CA9DB1" stroke-width="22"/>
+    <circle cx="254" cy="176" r="88" fill="none" stroke="#FDF8EE" stroke-width="22"/>
+    <rect x="56" y="50" width="292" height="252" rx="26" fill="none" stroke="#F4ECE2" stroke-width="8" opacity="0.78"/>
+  </g></g>
 
-  <g transform="translate(391 570)">
-    <rect x="0" y="0" width="396" height="332" rx="24" fill="#FDF8EE" stroke="#8DBBCB" stroke-width="8"/>
-    <rect x="194" y="40" width="8" height="252" rx="4" fill="#E19345" opacity="0.84"/>
-    <path d="M68 204 Q120 152 178 190 L194 206" fill="none" stroke="#20313C" stroke-width="14" stroke-linecap="round"/>
-    <path d="M328 204 Q276 152 218 190 L202 206" fill="none" stroke="#20313C" stroke-width="14" stroke-linecap="round"/>
-    <rect x="86" y="90" width="94" height="22" rx="11" fill="#8DBBCB" opacity="0.72"/>
-    <rect x="214" y="90" width="96" height="22" rx="11" fill="#E19345" opacity="0.72"/>
+  <g transform="translate(414 571)">
+    <circle cx="150" cy="176" r="88" fill="none" stroke="#E0A556" stroke-width="22"/>
+    <circle cx="254" cy="176" r="88" fill="none" stroke="#CA9DB1" stroke-width="22"/>
+    <rect x="56" y="50" width="292" height="252" rx="26" fill="none" stroke="#FDF8EE" stroke-width="8" opacity="0.78"/>
   </g>
 
-  <g transform="translate(924 332)">
-    <rect x="24" y="14" width="128" height="156" rx="64" fill="#FDF8EE" stroke="#E19345" stroke-width="10"/>
-    <path d="M44 54 H132" stroke="#8DBBCB" stroke-width="10" stroke-linecap="round"/>
-    <path d="M44 80 H132" stroke="#8DBBCB" stroke-width="10" stroke-linecap="round"/>
-    <text x="88" y="128" text-anchor="middle" fill="#20313C" font-family="'Trebuchet MS', Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="2">LS</text>
+  <g transform="translate(922 332)">
+    <rect x="12" y="12" width="152" height="152" rx="24" fill="#FDF8EE" stroke="#E0A556" stroke-width="10"/>
+    <path d="M30 116 L146 52" stroke="#CA9DB1" stroke-width="8" stroke-linecap="round"/>
+    <path d="M30 138 L146 74" stroke="#CA9DB1" stroke-width="8" stroke-linecap="round"/>
+    <text x="88" y="102" text-anchor="middle" fill="#382731" font-family="'Trebuchet MS', Arial, sans-serif" font-size="44" font-weight="700" letter-spacing="2">LS</text>
   </g>
 
-  <rect x="0" y="0" width="1200" height="238" fill="#2D4A64" opacity="0.93"/>
-  <rect x="0" y="1454" width="1200" height="346" fill="#3E6D8C" opacity="0.95"/>
+  <rect x="0" y="0" width="1200" height="238" fill="#743F53" opacity="0.93"/>
+  <rect x="0" y="1454" width="1200" height="346" fill="#9F6472" opacity="0.95"/>
   <text x="600" y="136" text-anchor="middle" fill="#FDF8EE" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">JACK SCHAFER, MARVIN KARLINS</text>
-  <text x="600" y="208" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">COMMUNICATION</text>
-  <text x="600" y="1216" text-anchor="middle" fill="#20313C" font-family="'Trebuchet MS', Arial, sans-serif" font-size="92" font-weight="700" letter-spacing="2">THE LIKE SWITCH</text>
+  <text x="600" y="208" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">RELATIONSHIPS</text>
+  <text x="600" y="1216" text-anchor="middle" fill="#382731" font-family="'Trebuchet MS', Arial, sans-serif" font-size="92" font-weight="700" letter-spacing="2">THE LIKE SWITCH</text>
+  <g>
+    <rect x="435" y="1466" width="136" height="42" rx="21" fill="#FDF8EE" opacity="0.18" stroke="#FDF8EE" stroke-width="2"/>
+    <text x="503" y="1494" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">RAPPORT</text>
+  </g>
+  <g>
+    <rect x="593" y="1466" width="172" height="42" rx="21" fill="#FDF8EE" opacity="0.18" stroke="#FDF8EE" stroke-width="2"/>
+    <text x="679" y="1494" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">LIKABILITY</text>
+  </g>
   <text x="600" y="1538" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">RAPPORT  ·  LIKABILITY  ·  BODY LANGUAGE</text>
-  <text x="600" y="1604" text-anchor="middle" fill="#FDF8EE" font-family="Georgia, serif" font-size="30">Influence, dialogue, and trust</text>
+  <text x="600" y="1604" text-anchor="middle" fill="#FDF8EE" font-family="Georgia, serif" font-size="30">Build rapport through reliable social signals</text>
   <text x="600" y="1668" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
 </svg>

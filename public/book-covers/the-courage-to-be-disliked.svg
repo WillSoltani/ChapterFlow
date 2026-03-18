@@ -2,43 +2,65 @@
   <title id="title">The Courage to Be Disliked cover</title>
   <desc id="desc">Auto-generated themed cover for The Courage to Be Disliked by Ichiro Kishimi, Fumitake Koga.</desc>
   <defs>
-    <linearGradient id="g1919032724" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#2D3656"/>
-      <stop offset="100%" stop-color="#4E5E8A"/>
+    <linearGradient id="g1730277356" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3B3531"/>
+      <stop offset="100%" stop-color="#635950"/>
     </linearGradient>
   </defs>
 
-  <rect width="1200" height="1800" fill="url(#g1919032724)"/>
+  <rect width="1200" height="1800" fill="url(#g1730277356)"/>
 
-  <rect x="-120" y="310" width="820" height="1100" transform="rotate(-12 400 860)" fill="#9AACD2" opacity="0.24"/>
-  <rect x="560" y="260" width="760" height="1150" transform="rotate(8 940 835)" fill="#D88D57" opacity="0.16"/>
-  <circle cx="251" cy="536" r="180" fill="#D88D57" opacity="0.17"/>
-  <circle cx="979" cy="1064" r="220" fill="#9AACD2" opacity="0.2"/>
-  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F3ECE2" stroke="#C9B8A2" stroke-width="10"/>
+  <rect x="0" y="300" width="1200" height="1180" fill="#B49C8C" opacity="0.1"/>
+  <rect x="70" y="350" width="1060" height="1060" rx="520" fill="#FEF7EE" opacity="0.12"/>
+  <rect x="194" y="474" width="812" height="812" rx="406" fill="#D69365" opacity="0.1"/>
+  <path d="M600 330 V1440" stroke="#FEF7EE" stroke-width="6" opacity="0.24"/>
+  <path d="M160 885 H1040" stroke="#D69365" stroke-width="8" opacity="0.24"/>
+  <ellipse cx="600" cy="812" rx="470" ry="382" fill="#FEF7EE" opacity="0.08"/>
+  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F3EBE2" stroke="#C4B19C" stroke-width="10"/>
+<g opacity="0.24" transform="translate(0 -26)">
+  <g transform="translate(381 581)">
+    <rect x="0" y="0" width="408" height="304" rx="24" fill="#F3EBE2" stroke="#FEF7EE" stroke-width="8"/>
+    <path d="M50 242 Q204 92 358 242" fill="none" stroke="#B49C8C" stroke-width="16" stroke-linecap="round"/>
+    <line x1="98" y1="214" x2="98" y2="242" stroke="#FEF7EE" stroke-width="10" stroke-linecap="round"/>
+    <line x1="146" y1="174" x2="146" y2="242" stroke="#FEF7EE" stroke-width="10" stroke-linecap="round"/>
+    <line x1="204" y1="150" x2="204" y2="242" stroke="#FEF7EE" stroke-width="10" stroke-linecap="round"/>
+    <line x1="262" y1="174" x2="262" y2="242" stroke="#FEF7EE" stroke-width="10" stroke-linecap="round"/>
+    <line x1="310" y1="214" x2="310" y2="242" stroke="#FEF7EE" stroke-width="10" stroke-linecap="round"/>
+  </g></g>
 
-  <g transform="translate(392 553)">
-    <rect x="42" y="56" width="58" height="250" rx="8" fill="#D88D57" opacity="0.84"/>
-    <rect x="294" y="56" width="58" height="250" rx="8" fill="#D88D57" opacity="0.84"/>
-    <path d="M100 90 C136 40 258 40 294 90 V132 H100 Z" fill="#FDF8EF" stroke="#9AACD2" stroke-width="8"/>
-    <rect x="126" y="132" width="168" height="174" rx="14" fill="#FDF8EF" stroke="#9AACD2" stroke-width="8"/>
-    <line x1="100" y1="198" x2="294" y2="198" stroke="#9AACD2" stroke-width="8"/>
+  <g transform="translate(394 573)">
+    <rect x="0" y="0" width="408" height="304" rx="24" fill="#FEF7EE" stroke="#B49C8C" stroke-width="8"/>
+    <path d="M50 242 Q204 92 358 242" fill="none" stroke="#D69365" stroke-width="16" stroke-linecap="round"/>
+    <line x1="98" y1="214" x2="98" y2="242" stroke="#B49C8C" stroke-width="10" stroke-linecap="round"/>
+    <line x1="146" y1="174" x2="146" y2="242" stroke="#B49C8C" stroke-width="10" stroke-linecap="round"/>
+    <line x1="204" y1="150" x2="204" y2="242" stroke="#B49C8C" stroke-width="10" stroke-linecap="round"/>
+    <line x1="262" y1="174" x2="262" y2="242" stroke="#B49C8C" stroke-width="10" stroke-linecap="round"/>
+    <line x1="310" y1="214" x2="310" y2="242" stroke="#B49C8C" stroke-width="10" stroke-linecap="round"/>
   </g>
 
   <g transform="translate(922 332)">
-    <rect x="12" y="12" width="152" height="152" rx="24" fill="#FDF8EF" stroke="#D88D57" stroke-width="10"/>
-    <path d="M30 116 L146 52" stroke="#9AACD2" stroke-width="8" stroke-linecap="round"/>
-    <path d="M30 138 L146 74" stroke="#9AACD2" stroke-width="8" stroke-linecap="round"/>
-    <text x="88" y="102" text-anchor="middle" fill="#232B3B" font-family="'Trebuchet MS', Arial, sans-serif" font-size="44" font-weight="700" letter-spacing="2">CD</text>
+    <rect x="12" y="12" width="152" height="152" rx="24" fill="#FEF7EE" stroke="#D69365" stroke-width="10"/>
+    <path d="M30 116 L146 52" stroke="#B49C8C" stroke-width="8" stroke-linecap="round"/>
+    <path d="M30 138 L146 74" stroke="#B49C8C" stroke-width="8" stroke-linecap="round"/>
+    <text x="88" y="102" text-anchor="middle" fill="#2F2923" font-family="'Trebuchet MS', Arial, sans-serif" font-size="44" font-weight="700" letter-spacing="2">CD</text>
   </g>
 
-  <rect x="0" y="0" width="1200" height="238" fill="#2D3656" opacity="0.93"/>
-  <rect x="0" y="1454" width="1200" height="346" fill="#4E5E8A" opacity="0.95"/>
-  <text x="600" y="136" text-anchor="middle" fill="#FDF8EF" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">ICHIRO KISHIMI, FUMITAKE KOGA</text>
-  <text x="600" y="208" text-anchor="middle" fill="#FDF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">PSYCHOLOGY</text>
-  <text x="600" y="1114" text-anchor="middle" fill="#232B3B" font-family="Georgia, 'Times New Roman', serif" font-size="108" font-weight="700" letter-spacing="2">THE COURAGE</text>
-  <text x="600" y="1231" text-anchor="middle" fill="#232B3B" font-family="Georgia, 'Times New Roman', serif" font-size="108" font-weight="700" letter-spacing="2">TO BE</text>
-  <text x="600" y="1348" text-anchor="middle" fill="#232B3B" font-family="Georgia, 'Times New Roman', serif" font-size="108" font-weight="700" letter-spacing="2">DISLIKED</text>
-  <text x="600" y="1538" text-anchor="middle" fill="#FDF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">ADLERIAN PSYCHOLOGY  ·  FREEDOM  ·  RELATIONSHIPS</text>
-  <text x="600" y="1604" text-anchor="middle" fill="#FDF8EF" font-family="Georgia, serif" font-size="30">Behavior, bias, and motivation</text>
-  <text x="600" y="1668" text-anchor="middle" fill="#FDF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
+  <rect x="0" y="0" width="1200" height="238" fill="#3B3531" opacity="0.93"/>
+  <rect x="0" y="1454" width="1200" height="346" fill="#635950" opacity="0.95"/>
+  <text x="600" y="136" text-anchor="middle" fill="#FEF7EE" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">ICHIRO KISHIMI, FUMITAKE KOGA</text>
+  <text x="600" y="208" text-anchor="middle" fill="#FEF7EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">PHILOSOPHY</text>
+  <text x="600" y="1114" text-anchor="middle" fill="#2F2923" font-family="Georgia, 'Times New Roman', serif" font-size="108" font-weight="700" letter-spacing="2">THE COURAGE</text>
+  <text x="600" y="1231" text-anchor="middle" fill="#2F2923" font-family="Georgia, 'Times New Roman', serif" font-size="108" font-weight="700" letter-spacing="2">TO BE</text>
+  <text x="600" y="1348" text-anchor="middle" fill="#2F2923" font-family="Georgia, 'Times New Roman', serif" font-size="108" font-weight="700" letter-spacing="2">DISLIKED</text>
+  <g>
+    <rect x="381" y="1466" width="280" height="42" rx="21" fill="#FEF7EE" opacity="0.18" stroke="#FEF7EE" stroke-width="2"/>
+    <text x="521" y="1494" text-anchor="middle" fill="#FEF7EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">ADLERIAN PSYCHOLOGY</text>
+  </g>
+  <g>
+    <rect x="683" y="1466" width="136" height="42" rx="21" fill="#FEF7EE" opacity="0.18" stroke="#FEF7EE" stroke-width="2"/>
+    <text x="751" y="1494" text-anchor="middle" fill="#FEF7EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">FREEDOM</text>
+  </g>
+  <text x="600" y="1538" text-anchor="middle" fill="#FEF7EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">ADLERIAN PSYCHOLOGY  ·  FREEDOM  ·  RELATIONSHIPS</text>
+  <text x="600" y="1604" text-anchor="middle" fill="#FEF7EE" font-family="Georgia, serif" font-size="30">Choose freedom over approval dependence</text>
+  <text x="600" y="1668" text-anchor="middle" fill="#FEF7EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
 </svg>

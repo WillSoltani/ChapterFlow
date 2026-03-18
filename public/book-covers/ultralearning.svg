@@ -3,43 +3,63 @@
   <desc id="desc">Auto-generated themed cover for Ultralearning by Scott Young.</desc>
   <defs>
     <linearGradient id="g820684095" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#2D4A6A"/>
-      <stop offset="100%" stop-color="#4B7AA3"/>
+      <stop offset="0%" stop-color="#285065"/>
+      <stop offset="100%" stop-color="#498AAA"/>
     </linearGradient>
   </defs>
 
   <rect width="1200" height="1800" fill="url(#g820684095)"/>
 
-  <circle cx="600" cy="840" r="420" fill="#8EB4D1" opacity="0.16"/>
-  <circle cx="600" cy="840" r="300" fill="#FDF8EE" opacity="0.16"/>
-  <circle cx="615" cy="858" r="210" fill="#E29C48" opacity="0.18"/>
-  <circle cx="585" cy="822" r="130" fill="#FDF8EE" opacity="0.34"/>
-  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F4EEE3" stroke="#CABAA4" stroke-width="10"/>
+  <rect x="0" y="300" width="1200" height="1180" fill="#90BFD4" opacity="0.1"/>
+  <g stroke="#FDF8EE" opacity="0.2">
+    <line x1="160" y1="320" x2="160" y2="1460" stroke-width="4"/>
+    <line x1="320" y1="320" x2="320" y2="1460" stroke-width="3"/>
+    <line x1="480" y1="320" x2="480" y2="1460" stroke-width="2"/>
+    <line x1="640" y1="320" x2="640" y2="1460" stroke-width="3"/>
+    <line x1="800" y1="320" x2="800" y2="1460" stroke-width="2"/>
+    <line x1="960" y1="320" x2="960" y2="1460" stroke-width="3"/>
+  </g>
+  <path d="M140 430 L1060 430" stroke="#E5894A" stroke-width="10" opacity="0.22"/>
+  <path d="M140 1330 L1060 1330" stroke="#E5894A" stroke-width="10" opacity="0.2"/>
+  <ellipse cx="600" cy="812" rx="470" ry="382" fill="#FDF8EE" opacity="0.08"/>
+  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F4EDE3" stroke="#C7B39D" stroke-width="10"/>
+<g opacity="0.24" transform="translate(0 -26)">
+  <g transform="translate(395 539)">
+    <path d="M198 24 C272 78 304 152 304 220 C304 292 254 342 198 374 C142 342 92 292 92 220 C92 152 124 78 198 24 Z" fill="#90BFD4" opacity="0.9"/>
+    <circle cx="198" cy="162" r="44" fill="#F4EDE3" opacity="0.95"/>
+    <path d="M176 226 L220 226 L236 322 L160 322 Z" fill="#F4EDE3" opacity="0.94"/>
+    <path d="M108 272 L58 304 L102 316 Z" fill="#FDF8EE" opacity="0.9"/>
+    <path d="M288 272 L338 304 L294 316 Z" fill="#FDF8EE" opacity="0.9"/>
+  </g></g>
 
-  <g transform="translate(390 570)">
-    <rect x="0" y="0" width="420" height="328" rx="24" fill="#FDF8EE" stroke="#8EB4D1" stroke-width="8"/>
-    <path d="M56 258 C136 192 228 222 306 158" stroke="#223445" stroke-width="10" stroke-linecap="round"/>
-    <rect x="82" y="98" width="250" height="26" rx="13" fill="#8EB4D1" opacity="0.55"/>
-    <rect x="82" y="132" width="212" height="26" rx="13" fill="#E29C48" opacity="0.45"/>
-    <g transform="translate(294 214) rotate(-18)">
-      <rect x="0" y="0" width="88" height="22" rx="10" fill="#E29C48" opacity="0.9"/>
-      <polygon points="88,11 108,0 108,22" fill="#223445"/>
-      <polygon points="108,0 118,11 108,22" fill="#FDF8EE"/>
-    </g>
+  <g transform="translate(408 556)">
+    <path d="M198 24 C272 78 304 152 304 220 C304 292 254 342 198 374 C142 342 92 292 92 220 C92 152 124 78 198 24 Z" fill="#E5894A" opacity="0.9"/>
+    <circle cx="198" cy="162" r="44" fill="#FDF8EE" opacity="0.95"/>
+    <path d="M176 226 L220 226 L236 322 L160 322 Z" fill="#FDF8EE" opacity="0.94"/>
+    <path d="M108 272 L58 304 L102 316 Z" fill="#90BFD4" opacity="0.9"/>
+    <path d="M288 272 L338 304 L294 316 Z" fill="#90BFD4" opacity="0.9"/>
   </g>
 
   <g transform="translate(930 336)">
-    <path d="M82 8 L152 34 V90 C152 142 120 174 82 190 C44 174 12 142 12 90 V34 Z" fill="#FDF8EE" stroke="#E29C48" stroke-width="10"/>
-    <rect x="30" y="64" width="104" height="64" rx="20" fill="#8EB4D1" opacity="0.72"/>
-    <text x="82" y="106" text-anchor="middle" fill="#223445" font-family="'Trebuchet MS', Arial, sans-serif" font-size="40" font-weight="700" letter-spacing="2">UL</text>
+    <path d="M82 8 L152 34 V90 C152 142 120 174 82 190 C44 174 12 142 12 90 V34 Z" fill="#FDF8EE" stroke="#E5894A" stroke-width="10"/>
+    <rect x="30" y="64" width="104" height="64" rx="20" fill="#90BFD4" opacity="0.72"/>
+    <text x="82" y="106" text-anchor="middle" fill="#203342" font-family="'Trebuchet MS', Arial, sans-serif" font-size="40" font-weight="700" letter-spacing="2">UL</text>
   </g>
 
-  <rect x="0" y="0" width="1200" height="238" fill="#2D4A6A" opacity="0.93"/>
-  <rect x="0" y="1454" width="1200" height="346" fill="#4B7AA3" opacity="0.95"/>
+  <rect x="0" y="0" width="1200" height="238" fill="#285065" opacity="0.93"/>
+  <rect x="0" y="1454" width="1200" height="346" fill="#498AAA" opacity="0.95"/>
   <text x="600" y="136" text-anchor="middle" fill="#FDF8EE" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">SCOTT YOUNG</text>
   <text x="600" y="208" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">LEARNING</text>
-  <text x="600" y="1216" text-anchor="middle" fill="#223445" font-family="'Trebuchet MS', Arial, sans-serif" font-size="92" font-weight="700" letter-spacing="2">ULTRALEARNING</text>
+  <text x="600" y="1216" text-anchor="middle" fill="#203342" font-family="'Trebuchet MS', Arial, sans-serif" font-size="92" font-weight="700" letter-spacing="2">ULTRALEARNING</text>
+  <g>
+    <rect x="453" y="1466" width="148" height="42" rx="21" fill="#FDF8EE" opacity="0.18" stroke="#FDF8EE" stroke-width="2"/>
+    <text x="527" y="1494" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">PRACTICE</text>
+  </g>
+  <g>
+    <rect x="623" y="1466" width="124" height="42" rx="21" fill="#FDF8EE" opacity="0.18" stroke="#FDF8EE" stroke-width="2"/>
+    <text x="685" y="1494" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">MEMORY</text>
+  </g>
   <text x="600" y="1538" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">PRACTICE  ·  MEMORY  ·  FEEDBACK</text>
-  <text x="600" y="1604" text-anchor="middle" fill="#FDF8EE" font-family="Georgia, serif" font-size="30">Practice and skill building</text>
+  <text x="600" y="1604" text-anchor="middle" fill="#FDF8EE" font-family="Georgia, serif" font-size="30">Aggressive self directed learning at speed</text>
   <text x="600" y="1668" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
 </svg>

@@ -3,48 +3,58 @@
   <desc id="desc">Auto-generated themed cover for Predictably Irrational by Dan Ariely.</desc>
   <defs>
     <linearGradient id="g1693898631" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#3A3E63"/>
-      <stop offset="100%" stop-color="#5A5A86"/>
+      <stop offset="0%" stop-color="#3D416A"/>
+      <stop offset="100%" stop-color="#656397"/>
     </linearGradient>
   </defs>
 
   <rect width="1200" height="1800" fill="url(#g1693898631)"/>
 
-  <rect x="0" y="300" width="1200" height="1180" fill="#9FA8D9" opacity="0.1"/>
-  <g stroke="#FDF7EE" opacity="0.2">
-    <line x1="160" y1="320" x2="160" y2="1460" stroke-width="4"/>
-    <line x1="320" y1="320" x2="320" y2="1460" stroke-width="3"/>
-    <line x1="480" y1="320" x2="480" y2="1460" stroke-width="2"/>
-    <line x1="640" y1="320" x2="640" y2="1460" stroke-width="3"/>
-    <line x1="800" y1="320" x2="800" y2="1460" stroke-width="2"/>
-    <line x1="960" y1="320" x2="960" y2="1460" stroke-width="3"/>
+  <rect x="0" y="300" width="1200" height="1180" fill="#A2ABDB" opacity="0.08"/>
+  <g stroke="#FDF7EE" opacity="0.18">
+    <path d="M0 380 L1200 980" stroke-width="10"/>
+    <path d="M0 600 L1200 1200" stroke-width="8"/>
+    <path d="M0 820 L1200 1420" stroke-width="6"/>
+    <path d="M0 1040 L1040 1540" stroke-width="5"/>
+    <path d="M160 300 L1200 820" stroke-width="5"/>
   </g>
-  <path d="M140 430 L1060 430" stroke="#D59D5A" stroke-width="10" opacity="0.22"/>
-  <path d="M140 1330 L1060 1330" stroke="#D59D5A" stroke-width="10" opacity="0.2"/>
-  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F2EDE3" stroke="#C8B8A7" stroke-width="10"/>
+  <rect x="116" y="340" width="968" height="990" rx="46" fill="#FDF7EE" opacity="0.14"/>
+  <ellipse cx="600" cy="812" rx="470" ry="382" fill="#FDF7EE" opacity="0.08"/>
+  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F2EDE3" stroke="#C4B3A0" stroke-width="10"/>
+<g opacity="0.24" transform="translate(0 -26)">
+  <g transform="translate(397 553)">
+    <rect x="0" y="0" width="388" height="332" rx="24" fill="#F2EDE3" stroke="#FDF7EE" stroke-width="8"/>
+    <path d="M52 62 H338 V270 H82 V100 H286 V228 H136 V152 H236" fill="none" stroke="#A2ABDB" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="236" cy="152" r="12" fill="#222637"/>
+  </g></g>
 
-  <g transform="translate(408 572)">
-    <rect x="0" y="0" width="392" height="332" rx="24" fill="#FDF7EE" stroke="#9FA8D9" stroke-width="8"/>
-    <rect x="74" y="192" width="46" height="94" rx="10" fill="#D59D5A" opacity="0.84"/>
-    <rect x="142" y="150" width="46" height="136" rx="10" fill="#9FA8D9" opacity="0.86"/>
-    <rect x="210" y="122" width="46" height="164" rx="10" fill="#D59D5A" opacity="0.88"/>
-    <circle cx="302" cy="188" r="58" fill="#24283A" opacity="0.82"/>
-    <text x="302" y="206" text-anchor="middle" fill="#FDF7EE" font-family="Georgia, serif" font-size="48" font-weight="700">$</text>
+  <g transform="translate(410 570)">
+    <rect x="0" y="0" width="388" height="332" rx="24" fill="#FDF7EE" stroke="#A2ABDB" stroke-width="8"/>
+    <path d="M52 62 H338 V270 H82 V100 H286 V228 H136 V152 H236" fill="none" stroke="#D7A05D" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="236" cy="152" r="12" fill="#222637"/>
   </g>
 
   <g transform="translate(922 332)">
-    <rect x="12" y="12" width="152" height="152" rx="24" fill="#FDF7EE" stroke="#D59D5A" stroke-width="10"/>
-    <path d="M30 116 L146 52" stroke="#9FA8D9" stroke-width="8" stroke-linecap="round"/>
-    <path d="M30 138 L146 74" stroke="#9FA8D9" stroke-width="8" stroke-linecap="round"/>
-    <text x="88" y="102" text-anchor="middle" fill="#24283A" font-family="'Trebuchet MS', Arial, sans-serif" font-size="44" font-weight="700" letter-spacing="2">PI</text>
+    <rect x="12" y="12" width="152" height="152" rx="24" fill="#FDF7EE" stroke="#D7A05D" stroke-width="10"/>
+    <path d="M30 116 L146 52" stroke="#A2ABDB" stroke-width="8" stroke-linecap="round"/>
+    <path d="M30 138 L146 74" stroke="#A2ABDB" stroke-width="8" stroke-linecap="round"/>
+    <text x="88" y="102" text-anchor="middle" fill="#222637" font-family="'Trebuchet MS', Arial, sans-serif" font-size="44" font-weight="700" letter-spacing="2">PI</text>
   </g>
 
-  <rect x="0" y="0" width="1200" height="238" fill="#3A3E63" opacity="0.93"/>
-  <rect x="0" y="1454" width="1200" height="346" fill="#5A5A86" opacity="0.95"/>
+  <rect x="0" y="0" width="1200" height="238" fill="#3D416A" opacity="0.93"/>
+  <rect x="0" y="1454" width="1200" height="346" fill="#656397" opacity="0.95"/>
   <text x="600" y="136" text-anchor="middle" fill="#FDF7EE" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">DAN ARIELY</text>
   <text x="600" y="208" text-anchor="middle" fill="#FDF7EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">PSYCHOLOGY</text>
-  <text x="600" y="1216" text-anchor="middle" fill="#24283A" font-family="Georgia, 'Times New Roman', serif" font-size="78" font-weight="700" letter-spacing="2">PREDICTABLY IRRATIONAL</text>
+  <text x="600" y="1216" text-anchor="middle" fill="#222637" font-family="Georgia, 'Times New Roman', serif" font-size="78" font-weight="700" letter-spacing="2">PREDICTABLY IRRATIONAL</text>
+  <g>
+    <rect x="477" y="1466" width="100" height="42" rx="21" fill="#FDF7EE" opacity="0.18" stroke="#FDF7EE" stroke-width="2"/>
+    <text x="527" y="1494" text-anchor="middle" fill="#FDF7EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">BIAS</text>
+  </g>
+  <g>
+    <rect x="599" y="1466" width="124" height="42" rx="21" fill="#FDF7EE" opacity="0.18" stroke="#FDF7EE" stroke-width="2"/>
+    <text x="661" y="1494" text-anchor="middle" fill="#FDF7EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">CHOICE</text>
+  </g>
   <text x="600" y="1538" text-anchor="middle" fill="#FDF7EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">BIAS  ·  CHOICE  ·  IRRATIONALITY</text>
-  <text x="600" y="1604" text-anchor="middle" fill="#FDF7EE" font-family="Georgia, serif" font-size="30">Behavior, bias, and motivation</text>
+  <text x="600" y="1604" text-anchor="middle" fill="#FDF7EE" font-family="Georgia, serif" font-size="30">Bias patterns hidden inside daily choices</text>
   <text x="600" y="1668" text-anchor="middle" fill="#FDF7EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
 </svg>

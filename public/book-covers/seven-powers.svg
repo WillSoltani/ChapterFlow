@@ -3,40 +3,62 @@
   <desc id="desc">Auto-generated themed cover for Seven Powers by Hamilton Helmer.</desc>
   <defs>
     <linearGradient id="g1641825426" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#2B2A3D"/>
-      <stop offset="100%" stop-color="#4A486E"/>
+      <stop offset="0%" stop-color="#2F303D"/>
+      <stop offset="100%" stop-color="#565874"/>
     </linearGradient>
   </defs>
 
   <rect width="1200" height="1800" fill="url(#g1641825426)"/>
 
-  <circle cx="600" cy="840" r="420" fill="#8F90C0" opacity="0.16"/>
-  <circle cx="600" cy="840" r="300" fill="#FEF8F0" opacity="0.16"/>
-  <circle cx="583" cy="826" r="210" fill="#D59A43" opacity="0.18"/>
-  <circle cx="617" cy="854" r="130" fill="#FEF8F0" opacity="0.34"/>
-  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F2ECE1" stroke="#C7B9A3" stroke-width="10"/>
+  <rect x="0" y="300" width="1200" height="1180" fill="#959ABF" opacity="0.1"/>
+  <g fill="#FEF8F0" opacity="0.19">
+    <circle cx="210" cy="560" r="124"/>
+    <circle cx="1020" cy="640" r="110"/>
+    <circle cx="920" cy="1220" r="132"/>
+    <circle cx="230" cy="1190" r="96"/>
+  </g>
+  <path d="M70 730 Q300 576 600 740 T1130 760" stroke="#D28D4C" stroke-width="20" opacity="0.2"/>
+  <path d="M70 960 Q320 1066 600 940 T1130 920" stroke="#FEF8F0" stroke-width="16" opacity="0.24"/>
+  <ellipse cx="600" cy="812" rx="470" ry="382" fill="#FEF8F0" opacity="0.08"/>
+  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F2EBE1" stroke="#C1B39F" stroke-width="10"/>
+<g opacity="0.24" transform="translate(0 -26)">
+  <g transform="translate(383 558)">
+    <rect x="0" y="0" width="404" height="312" rx="24" fill="#F2EBE1" stroke="#FEF8F0" stroke-width="8"/>
+    <path d="M34 266 L132 144 L194 224 L278 112 L370 266 Z" fill="#959ABF" opacity="0.88"/>
+    <path d="M118 154 V84" stroke="#22252F" stroke-width="10" stroke-linecap="round"/>
+    <path d="M118 86 L188 106 L118 126 Z" fill="#22252F" opacity="0.9"/>
+    <circle cx="320" cy="78" r="22" fill="#FEF8F0" opacity="0.72"/>
+  </g></g>
 
-  <g transform="translate(402 553)">
-    <rect x="38" y="28" width="320" height="300" rx="24" fill="#FEF8F0" stroke="#8F90C0" stroke-width="8"/>
-    <path d="M86 288 L302 72" stroke="#D59A43" stroke-width="16" stroke-linecap="round"/>
-    <path d="M302 288 L86 72" stroke="#8F90C0" stroke-width="16" stroke-linecap="round"/>
-    <rect x="74" y="278" width="34" height="12" rx="6" fill="#232733"/>
-    <rect x="292" y="278" width="34" height="12" rx="6" fill="#232733"/>
+  <g transform="translate(396 575)">
+    <rect x="0" y="0" width="404" height="312" rx="24" fill="#FEF8F0" stroke="#959ABF" stroke-width="8"/>
+    <path d="M34 266 L132 144 L194 224 L278 112 L370 266 Z" fill="#D28D4C" opacity="0.88"/>
+    <path d="M118 154 V84" stroke="#22252F" stroke-width="10" stroke-linecap="round"/>
+    <path d="M118 86 L188 106 L118 126 Z" fill="#22252F" opacity="0.9"/>
+    <circle cx="320" cy="78" r="22" fill="#959ABF" opacity="0.72"/>
   </g>
 
   <g transform="translate(922 332)">
-    <rect x="12" y="12" width="152" height="152" rx="24" fill="#FEF8F0" stroke="#D59A43" stroke-width="10"/>
-    <path d="M30 116 L146 52" stroke="#8F90C0" stroke-width="8" stroke-linecap="round"/>
-    <path d="M30 138 L146 74" stroke="#8F90C0" stroke-width="8" stroke-linecap="round"/>
-    <text x="88" y="102" text-anchor="middle" fill="#232733" font-family="'Trebuchet MS', Arial, sans-serif" font-size="44" font-weight="700" letter-spacing="2">SP</text>
+    <rect x="12" y="12" width="152" height="152" rx="24" fill="#FEF8F0" stroke="#D28D4C" stroke-width="10"/>
+    <path d="M30 116 L146 52" stroke="#959ABF" stroke-width="8" stroke-linecap="round"/>
+    <path d="M30 138 L146 74" stroke="#959ABF" stroke-width="8" stroke-linecap="round"/>
+    <text x="88" y="102" text-anchor="middle" fill="#22252F" font-family="'Trebuchet MS', Arial, sans-serif" font-size="44" font-weight="700" letter-spacing="2">SP</text>
   </g>
 
-  <rect x="0" y="0" width="1200" height="238" fill="#2B2A3D" opacity="0.93"/>
-  <rect x="0" y="1454" width="1200" height="346" fill="#4A486E" opacity="0.95"/>
+  <rect x="0" y="0" width="1200" height="238" fill="#2F303D" opacity="0.93"/>
+  <rect x="0" y="1454" width="1200" height="346" fill="#565874" opacity="0.95"/>
   <text x="600" y="136" text-anchor="middle" fill="#FEF8F0" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">HAMILTON HELMER</text>
   <text x="600" y="208" text-anchor="middle" fill="#FEF8F0" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">STRATEGY</text>
-  <text x="600" y="1216" text-anchor="middle" fill="#232733" font-family="Georgia, 'Times New Roman', serif" font-size="108" font-weight="700" letter-spacing="2">SEVEN POWERS</text>
+  <text x="600" y="1216" text-anchor="middle" fill="#22252F" font-family="Georgia, 'Times New Roman', serif" font-size="108" font-weight="700" letter-spacing="2">SEVEN POWERS</text>
+  <g>
+    <rect x="417" y="1466" width="184" height="42" rx="21" fill="#FEF8F0" opacity="0.18" stroke="#FEF8F0" stroke-width="2"/>
+    <text x="509" y="1494" text-anchor="middle" fill="#FEF8F0" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">COMPETITION</text>
+  </g>
+  <g>
+    <rect x="623" y="1466" width="160" height="42" rx="21" fill="#FEF8F0" opacity="0.18" stroke="#FEF8F0" stroke-width="2"/>
+    <text x="703" y="1494" text-anchor="middle" fill="#FEF8F0" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">ADVANTAGE</text>
+  </g>
   <text x="600" y="1538" text-anchor="middle" fill="#FEF8F0" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">COMPETITION  ·  ADVANTAGE  ·  LEADERSHIP</text>
-  <text x="600" y="1604" text-anchor="middle" fill="#FEF8F0" font-family="Georgia, serif" font-size="30">Position, timing, and leverage</text>
+  <text x="600" y="1604" text-anchor="middle" fill="#FEF8F0" font-family="Georgia, serif" font-size="30">Build durable strategic advantages</text>
   <text x="600" y="1668" text-anchor="middle" fill="#FEF8F0" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
 </svg>

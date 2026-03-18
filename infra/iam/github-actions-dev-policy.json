@@ -26,7 +26,10 @@
         "dynamodb:GetItem",
         "dynamodb:UpdateItem"
       ],
-      "Resource": "arn:aws:dynamodb:us-east-1:928413605677:table/SecureDocApp"
+      "Resource": [
+        "arn:aws:dynamodb:us-east-1:928413605677:table/SecureDocApp",
+        "arn:aws:dynamodb:us-east-1:928413605677:table/ChapterFlowAnalytics"
+      ]
     }
   ]
 }

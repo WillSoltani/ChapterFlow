@@ -10,11 +10,23 @@
 
   <rect width="1200" height="1800" fill="url(#g323016015)"/>
 
-  <rect x="0" y="300" width="1200" height="1180" fill="#8E8E8E" opacity="0.12"/>
-  <rect x="140" y="360" width="920" height="1050" rx="48" fill="#FFF8EE" opacity="0.22"/>
-  <path d="M0 560 Q300 458 600 560 T1200 560" stroke="#FFF8EE" stroke-width="22" opacity="0.24"/>
-  <path d="M0 1180 Q300 1078 600 1180 T1200 1180" stroke="#C9782A" stroke-width="16" opacity="0.22"/>
+  <rect x="0" y="300" width="1200" height="1180" fill="#8E8E8E" opacity="0.1"/>
+  <g fill="#FFF8EE" opacity="0.19">
+    <circle cx="210" cy="560" r="124"/>
+    <circle cx="1020" cy="640" r="110"/>
+    <circle cx="920" cy="1220" r="132"/>
+    <circle cx="230" cy="1190" r="96"/>
+  </g>
+  <path d="M70 730 Q300 608 600 740 T1130 760" stroke="#C9782A" stroke-width="20" opacity="0.2"/>
+  <path d="M70 960 Q320 1098 600 940 T1130 920" stroke="#FFF8EE" stroke-width="16" opacity="0.24"/>
+  <ellipse cx="600" cy="812" rx="470" ry="382" fill="#FFF8EE" opacity="0.08"/>
   <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F1ECE4" stroke="#BFB3A5" stroke-width="10"/>
+<g opacity="0.24" transform="translate(0 -26)">
+  <g transform="translate(400 562)">
+    <path d="M182 26 L326 84 V192 C326 286 262 350 182 384 C102 350 38 286 38 192 V84 Z" fill="#8E8E8E" opacity="0.88"/>
+    <path d="M182 70 L286 112 V192 C286 260 244 310 182 340 C120 310 78 260 78 192 V112 Z" fill="#F1ECE4" opacity="0.9"/>
+    <path d="M132 198 L166 232 L236 160" fill="none" stroke="#191512" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  </g></g>
 
   <g transform="translate(413 553)">
     <path d="M182 26 L326 84 V192 C326 286 262 350 182 384 C102 350 38 286 38 192 V84 Z" fill="#C9782A" opacity="0.88"/>
@@ -33,7 +45,15 @@
   <text x="600" y="136" text-anchor="middle" fill="#FFF8EE" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">DAVID GOGGINS</text>
   <text x="600" y="208" text-anchor="middle" fill="#FFF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">RESILIENCE</text>
   <text x="600" y="1216" text-anchor="middle" fill="#191512" font-family="Georgia, 'Times New Roman', serif" font-size="92" font-weight="700" letter-spacing="2">CAN&#39;T HURT ME</text>
+  <g>
+    <rect x="417" y="1466" width="172" height="42" rx="21" fill="#FFF8EE" opacity="0.18" stroke="#FFF8EE" stroke-width="2"/>
+    <text x="503" y="1494" text-anchor="middle" fill="#FFF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">DISCIPLINE</text>
+  </g>
+  <g>
+    <rect x="611" y="1466" width="172" height="42" rx="21" fill="#FFF8EE" opacity="0.18" stroke="#FFF8EE" stroke-width="2"/>
+    <text x="697" y="1494" text-anchor="middle" fill="#FFF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">RESILIENCE</text>
+  </g>
   <text x="600" y="1538" text-anchor="middle" fill="#FFF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">DISCIPLINE  ·  RESILIENCE  ·  ACCOUNTABILITY</text>
-  <text x="600" y="1604" text-anchor="middle" fill="#FFF8EE" font-family="Georgia, serif" font-size="30">Mental toughness through deliberate adversity</text>
+  <text x="600" y="1604" text-anchor="middle" fill="#FFF8EE" font-family="Georgia, serif" font-size="30">Build disciplined mental toughness</text>
   <text x="600" y="1668" text-anchor="middle" fill="#FFF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
 </svg>

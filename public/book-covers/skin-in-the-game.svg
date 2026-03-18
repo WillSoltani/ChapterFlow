@@ -3,45 +3,59 @@
   <desc id="desc">Auto-generated themed cover for Skin in the Game by Nassim Nicholas Taleb.</desc>
   <defs>
     <linearGradient id="g1869898871" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#2A3F5B"/>
-      <stop offset="100%" stop-color="#3F5F86"/>
+      <stop offset="0%" stop-color="#243952"/>
+      <stop offset="100%" stop-color="#3D5F88"/>
     </linearGradient>
   </defs>
 
   <rect width="1200" height="1800" fill="url(#g1869898871)"/>
 
-  <rect x="0" y="300" width="1200" height="1180" fill="#93B0CE" opacity="0.12"/>
-  <rect x="110" y="370" width="420" height="420" rx="42" fill="#FDF8EE" opacity="0.2"/>
-  <rect x="670" y="360" width="420" height="430" rx="42" fill="#E4A150" opacity="0.16"/>
-  <rect x="110" y="980" width="420" height="360" rx="42" fill="#E4A150" opacity="0.15"/>
-  <rect x="670" y="950" width="420" height="390" rx="42" fill="#FDF8EE" opacity="0.2"/>
-  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F3ECE0" stroke="#C8B7A1" stroke-width="10"/>
+  <rect x="0" y="300" width="1200" height="1180" fill="#96B4D0" opacity="0.12"/>
+  <rect x="140" y="360" width="920" height="1050" rx="48" fill="#FDF8EE" opacity="0.22"/>
+  <path d="M0 560 Q300 418 600 560 T1200 560" stroke="#FDF8EE" stroke-width="22" opacity="0.24"/>
+  <path d="M0 1180 Q300 1038 600 1180 T1200 1180" stroke="#E6A053" stroke-width="16" opacity="0.22"/>
+  <ellipse cx="600" cy="812" rx="470" ry="382" fill="#FDF8EE" opacity="0.08"/>
+  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F3ECE0" stroke="#C5B29A" stroke-width="10"/>
+<g opacity="0.24" transform="translate(0 -26)">
+  <g transform="translate(419 562)">
+    <line x1="186" y1="64" x2="186" y2="318" stroke="#213041" stroke-width="12" stroke-linecap="round"/>
+    <line x1="88" y1="114" x2="284" y2="114" stroke="#213041" stroke-width="12" stroke-linecap="round"/>
+    <path d="M114 114 L84 184 H144 Z" fill="#96B4D0" opacity="0.86"/>
+    <path d="M258 114 L228 184 H288 Z" fill="#FDF8EE" opacity="0.9"/>
+    <rect x="126" y="318" width="120" height="18" rx="9" fill="#213041" opacity="0.88"/>
+    <circle cx="186" cy="74" r="20" fill="#F3ECE0" stroke="#FDF8EE" stroke-width="8"/>
+  </g></g>
 
-  <g transform="translate(382 559)">
-    <rect x="0" y="0" width="420" height="328" rx="24" fill="#FDF8EE" stroke="#93B0CE" stroke-width="8"/>
-    <path d="M56 258 C136 192 228 222 306 158" stroke="#233244" stroke-width="10" stroke-linecap="round"/>
-    <rect x="82" y="98" width="250" height="26" rx="13" fill="#93B0CE" opacity="0.55"/>
-    <rect x="82" y="132" width="212" height="26" rx="13" fill="#E4A150" opacity="0.45"/>
-    <g transform="translate(294 214) rotate(-18)">
-      <rect x="0" y="0" width="88" height="22" rx="10" fill="#E4A150" opacity="0.9"/>
-      <polygon points="88,11 108,0 108,22" fill="#233244"/>
-      <polygon points="108,0 118,11 108,22" fill="#FDF8EE"/>
-    </g>
+  <g transform="translate(402 553)">
+    <line x1="186" y1="64" x2="186" y2="318" stroke="#213041" stroke-width="12" stroke-linecap="round"/>
+    <line x1="88" y1="114" x2="284" y2="114" stroke="#213041" stroke-width="12" stroke-linecap="round"/>
+    <path d="M114 114 L84 184 H144 Z" fill="#E6A053" opacity="0.86"/>
+    <path d="M258 114 L228 184 H288 Z" fill="#96B4D0" opacity="0.9"/>
+    <rect x="126" y="318" width="120" height="18" rx="9" fill="#213041" opacity="0.88"/>
+    <circle cx="186" cy="74" r="20" fill="#FDF8EE" stroke="#96B4D0" stroke-width="8"/>
   </g>
 
   <g transform="translate(922 332)">
-    <rect x="12" y="12" width="152" height="152" rx="24" fill="#FDF8EE" stroke="#E4A150" stroke-width="10"/>
-    <path d="M30 116 L146 52" stroke="#93B0CE" stroke-width="8" stroke-linecap="round"/>
-    <path d="M30 138 L146 74" stroke="#93B0CE" stroke-width="8" stroke-linecap="round"/>
-    <text x="88" y="102" text-anchor="middle" fill="#233244" font-family="'Trebuchet MS', Arial, sans-serif" font-size="44" font-weight="700" letter-spacing="2">SG</text>
+    <rect x="12" y="12" width="152" height="152" rx="24" fill="#FDF8EE" stroke="#E6A053" stroke-width="10"/>
+    <path d="M30 116 L146 52" stroke="#96B4D0" stroke-width="8" stroke-linecap="round"/>
+    <path d="M30 138 L146 74" stroke="#96B4D0" stroke-width="8" stroke-linecap="round"/>
+    <text x="88" y="102" text-anchor="middle" fill="#213041" font-family="'Trebuchet MS', Arial, sans-serif" font-size="44" font-weight="700" letter-spacing="2">SG</text>
   </g>
 
-  <rect x="0" y="0" width="1200" height="238" fill="#2A3F5B" opacity="0.93"/>
-  <rect x="0" y="1454" width="1200" height="346" fill="#3F5F86" opacity="0.95"/>
+  <rect x="0" y="0" width="1200" height="238" fill="#243952" opacity="0.93"/>
+  <rect x="0" y="1454" width="1200" height="346" fill="#3D5F88" opacity="0.95"/>
   <text x="600" y="136" text-anchor="middle" fill="#FDF8EE" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">NASSIM NICHOLAS TALEB</text>
   <text x="600" y="208" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">THINKING</text>
-  <text x="600" y="1216" text-anchor="middle" fill="#233244" font-family="Georgia, 'Times New Roman', serif" font-size="92" font-weight="700" letter-spacing="2">SKIN IN THE GAME</text>
+  <text x="600" y="1216" text-anchor="middle" fill="#213041" font-family="Georgia, 'Times New Roman', serif" font-size="92" font-weight="700" letter-spacing="2">SKIN IN THE GAME</text>
+  <g>
+    <rect x="429" y="1466" width="220" height="42" rx="21" fill="#FDF8EE" opacity="0.18" stroke="#FDF8EE" stroke-width="2"/>
+    <text x="539" y="1494" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">ACCOUNTABILITY</text>
+  </g>
+  <g>
+    <rect x="671" y="1466" width="100" height="42" rx="21" fill="#FDF8EE" opacity="0.18" stroke="#FDF8EE" stroke-width="2"/>
+    <text x="721" y="1494" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">RISK</text>
+  </g>
   <text x="600" y="1538" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">ACCOUNTABILITY  ·  RISK  ·  SYMMETRY</text>
-  <text x="600" y="1604" text-anchor="middle" fill="#FDF8EE" font-family="Georgia, serif" font-size="30">Mental models and judgment</text>
+  <text x="600" y="1604" text-anchor="middle" fill="#FDF8EE" font-family="Georgia, serif" font-size="30">Align risk with accountability</text>
   <text x="600" y="1668" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
 </svg>

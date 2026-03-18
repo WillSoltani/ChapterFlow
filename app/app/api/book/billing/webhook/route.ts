@@ -1,12 +1,13 @@
 import "server-only";
 import { withBookApiErrors, bookOk } from "@/app/app/api/book/_lib/http";
-import { getBookTableName } from "@/app/app/api/book/_lib/env";
+import { getBookTableName, getBookAnalyticsTableName } from "@/app/app/api/book/_lib/env";
 import {
   getUserIdByStripeCustomer,
   mapStripeCustomerToUser,
   recordStripeWebhookEvent,
   updateUserEntitlementFromStripe,
 } from "@/app/app/api/book/_lib/repo";
+import { analyticsTrackSubscription } from "@/app/app/api/book/_lib/analytics-repo";
 import {
   getStripeClient,
   getStripeWebhookSecretOrThrow,
@@ -61,7 +62,10 @@ export async function POST(req: Request) {
       throw new BookApiError(400, "invalid_signature", "Invalid Stripe webhook signature.");
     }
 
-    const firstProcess = await recordStripeWebhookEvent(tableName, event.id, event.type);
+    const [firstProcess, analyticsTable] = await Promise.all([
+      recordStripeWebhookEvent(tableName, event.id, event.type),
+      getBookAnalyticsTableName(),
+    ]);
     if (!firstProcess) {
       return bookOk({ ok: true, duplicate: true });
     }
@@ -83,6 +87,16 @@ export async function POST(req: Request) {
           stripeCustomerId: customerId,
           stripeSubscriptionId: session.subscription ?? undefined,
         });
+        if (analyticsTable) {
+          analyticsTrackSubscription(analyticsTable, {
+            userId,
+            plan: "PRO",
+            proStatus: "active",
+            proSource: "stripe",
+            stripeCustomerId: customerId,
+            stripeSubscriptionId: session.subscription ?? undefined,
+          }).catch(() => {});
+        }
       }
     } else if (
       event.type === "customer.subscription.created" ||
@@ -112,6 +126,17 @@ export async function POST(req: Request) {
           stripeSubscriptionId: subscription.id,
           currentPeriodEnd: isoFromUnix(subscription.current_period_end),
         });
+        if (analyticsTable) {
+          analyticsTrackSubscription(analyticsTable, {
+            userId,
+            plan: mapped.plan,
+            proStatus: mapped.proStatus,
+            proSource: "stripe",
+            stripeCustomerId: subscription.customer,
+            stripeSubscriptionId: subscription.id,
+            currentPeriodEnd: isoFromUnix(subscription.current_period_end),
+          }).catch(() => {});
+        }
       }
     } else if (event.type === "invoice.payment_failed") {
       const invoice = event.data.object as {
@@ -128,6 +153,15 @@ export async function POST(req: Request) {
             stripeCustomerId: invoice.customer,
             stripeSubscriptionId: invoice.subscription ?? undefined,
           });
+          if (analyticsTable) {
+            analyticsTrackSubscription(analyticsTable, {
+              userId,
+              plan: "PRO",
+              proStatus: "past_due",
+              stripeCustomerId: invoice.customer,
+              stripeSubscriptionId: invoice.subscription ?? undefined,
+            }).catch(() => {});
+          }
         }
       }
     } else if (event.type === "invoice.paid") {
@@ -145,6 +179,15 @@ export async function POST(req: Request) {
             stripeCustomerId: invoice.customer,
             stripeSubscriptionId: invoice.subscription ?? undefined,
           });
+          if (analyticsTable) {
+            analyticsTrackSubscription(analyticsTable, {
+              userId,
+              plan: "PRO",
+              proStatus: "active",
+              stripeCustomerId: invoice.customer,
+              stripeSubscriptionId: invoice.subscription ?? undefined,
+            }).catch(() => {});
+          }
         }
       }
     }

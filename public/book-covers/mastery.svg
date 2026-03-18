@@ -3,14 +3,14 @@
   <desc id="desc">Auto-generated themed cover for Mastery by Robert Greene.</desc>
   <defs>
     <linearGradient id="g591428140" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#314C74"/>
-      <stop offset="100%" stop-color="#5578A6"/>
+      <stop offset="0%" stop-color="#2A4358"/>
+      <stop offset="100%" stop-color="#547693"/>
     </linearGradient>
   </defs>
 
   <rect width="1200" height="1800" fill="url(#g591428140)"/>
 
-  <rect x="0" y="300" width="1200" height="1180" fill="#9CB9DA" opacity="0.1"/>
+  <rect x="0" y="300" width="1200" height="1180" fill="#A2C2DA" opacity="0.1"/>
   <g stroke="#FEF8EF" opacity="0.2">
     <line x1="160" y1="320" x2="160" y2="1460" stroke-width="4"/>
     <line x1="320" y1="320" x2="320" y2="1460" stroke-width="3"/>
@@ -19,35 +19,48 @@
     <line x1="800" y1="320" x2="800" y2="1460" stroke-width="2"/>
     <line x1="960" y1="320" x2="960" y2="1460" stroke-width="3"/>
   </g>
-  <path d="M140 430 L1060 430" stroke="#DE9A4A" stroke-width="10" opacity="0.22"/>
-  <path d="M140 1330 L1060 1330" stroke="#DE9A4A" stroke-width="10" opacity="0.2"/>
-  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F3ECE1" stroke="#C8B8A2" stroke-width="10"/>
+  <path d="M140 430 L1060 430" stroke="#DB8A52" stroke-width="10" opacity="0.22"/>
+  <path d="M140 1330 L1060 1330" stroke="#DB8A52" stroke-width="10" opacity="0.2"/>
+  <ellipse cx="600" cy="812" rx="470" ry="382" fill="#FEF8EF" opacity="0.08"/>
+  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F3EBE1" stroke="#C3B19D" stroke-width="10"/>
+<g opacity="0.24" transform="translate(0 -26)">
+  <g transform="translate(398 577)">
+    <path d="M40 74 C126 44 198 70 198 128 V304 C146 270 94 262 40 292 Z" fill="#F3EBE1" stroke="#FEF8EF" stroke-width="8"/>
+    <path d="M356 74 C270 44 198 70 198 128 V304 C250 270 302 262 356 292 Z" fill="#A2C2DA" opacity="0.84"/>
+    <path d="M198 128 V316" stroke="#243546" stroke-width="10" stroke-linecap="round"/>
+    <path d="M74 120 C118 106 156 110 186 132" stroke="#A2C2DA" stroke-width="8" stroke-linecap="round"/>
+    <path d="M320 120 C278 106 240 110 210 132" stroke="#F3EBE1" stroke-width="8" stroke-linecap="round"/>
+  </g></g>
 
-  <g transform="translate(403 568)">
-    <rect x="0" y="0" width="420" height="328" rx="24" fill="#FEF8EF" stroke="#9CB9DA" stroke-width="8"/>
-    <path d="M56 258 C136 192 228 222 306 158" stroke="#25364A" stroke-width="10" stroke-linecap="round"/>
-    <rect x="82" y="98" width="250" height="26" rx="13" fill="#9CB9DA" opacity="0.55"/>
-    <rect x="82" y="132" width="212" height="26" rx="13" fill="#DE9A4A" opacity="0.45"/>
-    <g transform="translate(294 214) rotate(-18)">
-      <rect x="0" y="0" width="88" height="22" rx="10" fill="#DE9A4A" opacity="0.9"/>
-      <polygon points="88,11 108,0 108,22" fill="#25364A"/>
-      <polygon points="108,0 118,11 108,22" fill="#FEF8EF"/>
-    </g>
+  <g transform="translate(411 568)">
+    <path d="M40 74 C126 44 198 70 198 128 V304 C146 270 94 262 40 292 Z" fill="#FEF8EF" stroke="#A2C2DA" stroke-width="8"/>
+    <path d="M356 74 C270 44 198 70 198 128 V304 C250 270 302 262 356 292 Z" fill="#DB8A52" opacity="0.84"/>
+    <path d="M198 128 V316" stroke="#243546" stroke-width="10" stroke-linecap="round"/>
+    <path d="M74 120 C118 106 156 110 186 132" stroke="#DB8A52" stroke-width="8" stroke-linecap="round"/>
+    <path d="M320 120 C278 106 240 110 210 132" stroke="#FEF8EF" stroke-width="8" stroke-linecap="round"/>
   </g>
 
   <g transform="translate(924 332)">
-    <rect x="24" y="14" width="128" height="156" rx="64" fill="#FEF8EF" stroke="#DE9A4A" stroke-width="10"/>
-    <path d="M44 54 H132" stroke="#9CB9DA" stroke-width="10" stroke-linecap="round"/>
-    <path d="M44 80 H132" stroke="#9CB9DA" stroke-width="10" stroke-linecap="round"/>
-    <text x="88" y="128" text-anchor="middle" fill="#25364A" font-family="'Trebuchet MS', Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="2">MA</text>
+    <rect x="24" y="14" width="128" height="156" rx="64" fill="#FEF8EF" stroke="#DB8A52" stroke-width="10"/>
+    <path d="M44 54 H132" stroke="#A2C2DA" stroke-width="10" stroke-linecap="round"/>
+    <path d="M44 80 H132" stroke="#A2C2DA" stroke-width="10" stroke-linecap="round"/>
+    <text x="88" y="128" text-anchor="middle" fill="#243546" font-family="'Trebuchet MS', Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="2">MA</text>
   </g>
 
-  <rect x="0" y="0" width="1200" height="238" fill="#314C74" opacity="0.93"/>
-  <rect x="0" y="1454" width="1200" height="346" fill="#5578A6" opacity="0.95"/>
+  <rect x="0" y="0" width="1200" height="238" fill="#2A4358" opacity="0.93"/>
+  <rect x="0" y="1454" width="1200" height="346" fill="#547693" opacity="0.95"/>
   <text x="600" y="136" text-anchor="middle" fill="#FEF8EF" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">ROBERT GREENE</text>
   <text x="600" y="208" text-anchor="middle" fill="#FEF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">LEARNING</text>
-  <text x="600" y="1216" text-anchor="middle" fill="#25364A" font-family="'Trebuchet MS', Arial, sans-serif" font-size="108" font-weight="700" letter-spacing="2">MASTERY</text>
+  <text x="600" y="1216" text-anchor="middle" fill="#243546" font-family="'Trebuchet MS', Arial, sans-serif" font-size="108" font-weight="700" letter-spacing="2">MASTERY</text>
+  <g>
+    <rect x="411" y="1466" width="136" height="42" rx="21" fill="#FEF8EF" opacity="0.18" stroke="#FEF8EF" stroke-width="2"/>
+    <text x="479" y="1494" text-anchor="middle" fill="#FEF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">MASTERY</text>
+  </g>
+  <g>
+    <rect x="569" y="1466" width="220" height="42" rx="21" fill="#FEF8EF" opacity="0.18" stroke="#FEF8EF" stroke-width="2"/>
+    <text x="679" y="1494" text-anchor="middle" fill="#FEF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">APPRENTICESHIP</text>
+  </g>
   <text x="600" y="1538" text-anchor="middle" fill="#FEF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">MASTERY  ·  APPRENTICESHIP  ·  PRACTICE</text>
-  <text x="600" y="1604" text-anchor="middle" fill="#FEF8EF" font-family="Georgia, serif" font-size="30">Practice and skill building</text>
+  <text x="600" y="1604" text-anchor="middle" fill="#FEF8EF" font-family="Georgia, serif" font-size="30">Deliberate practice and apprenticeship to excellence</text>
   <text x="600" y="1668" text-anchor="middle" fill="#FEF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
 </svg>

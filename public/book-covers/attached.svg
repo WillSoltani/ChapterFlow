@@ -3,38 +3,58 @@
   <desc id="desc">Auto-generated themed cover for Attached by Amir Levine, Rachel Heller.</desc>
   <defs>
     <linearGradient id="g1119129810" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#6A3F52"/>
-      <stop offset="100%" stop-color="#8B5E6D"/>
+      <stop offset="0%" stop-color="#66394E"/>
+      <stop offset="100%" stop-color="#925C6D"/>
     </linearGradient>
   </defs>
 
   <rect width="1200" height="1800" fill="url(#g1119129810)"/>
 
-  <rect x="-120" y="310" width="820" height="1100" transform="rotate(-12 400 860)" fill="#C79BB1" opacity="0.24"/>
-  <rect x="560" y="260" width="760" height="1150" transform="rotate(8 940 835)" fill="#DD9A54" opacity="0.16"/>
-  <circle cx="266" cy="558" r="180" fill="#DD9A54" opacity="0.17"/>
-  <circle cx="964" cy="1042" r="220" fill="#C79BB1" opacity="0.2"/>
-  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F4ECE2" stroke="#C9B7A1" stroke-width="10"/>
+  <rect x="0" y="300" width="1200" height="1180" fill="#CA9DB4" opacity="0.08"/>
+  <g stroke="#FDF8EE" opacity="0.18">
+    <path d="M0 380 L1200 980" stroke-width="10"/>
+    <path d="M0 600 L1200 1200" stroke-width="8"/>
+    <path d="M0 820 L1200 1420" stroke-width="6"/>
+    <path d="M0 1040 L1040 1540" stroke-width="5"/>
+    <path d="M160 300 L1200 820" stroke-width="5"/>
+  </g>
+  <rect x="116" y="340" width="968" height="990" rx="46" fill="#FDF8EE" opacity="0.14"/>
+  <ellipse cx="600" cy="812" rx="470" ry="382" fill="#FDF8EE" opacity="0.08"/>
+  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F4ECE2" stroke="#C6B29A" stroke-width="10"/>
+<g opacity="0.24" transform="translate(0 -26)">
+  <g transform="translate(392 565)">
+    <circle cx="150" cy="176" r="88" fill="none" stroke="#CA9DB4" stroke-width="22"/>
+    <circle cx="254" cy="176" r="88" fill="none" stroke="#FDF8EE" stroke-width="22"/>
+    <rect x="56" y="50" width="292" height="252" rx="26" fill="none" stroke="#F4ECE2" stroke-width="8" opacity="0.78"/>
+  </g></g>
 
   <g transform="translate(405 556)">
-    <circle cx="150" cy="176" r="88" fill="none" stroke="#DD9A54" stroke-width="22"/>
-    <circle cx="254" cy="176" r="88" fill="none" stroke="#C79BB1" stroke-width="22"/>
+    <circle cx="150" cy="176" r="88" fill="none" stroke="#E09B56" stroke-width="22"/>
+    <circle cx="254" cy="176" r="88" fill="none" stroke="#CA9DB4" stroke-width="22"/>
     <rect x="56" y="50" width="292" height="252" rx="26" fill="none" stroke="#FDF8EE" stroke-width="8" opacity="0.78"/>
   </g>
 
   <g transform="translate(924 332)">
-    <rect x="24" y="14" width="128" height="156" rx="64" fill="#FDF8EE" stroke="#DD9A54" stroke-width="10"/>
-    <path d="M44 54 H132" stroke="#C79BB1" stroke-width="10" stroke-linecap="round"/>
-    <path d="M44 80 H132" stroke="#C79BB1" stroke-width="10" stroke-linecap="round"/>
-    <text x="88" y="128" text-anchor="middle" fill="#3A2A34" font-family="'Trebuchet MS', Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="2">AT</text>
+    <rect x="24" y="14" width="128" height="156" rx="64" fill="#FDF8EE" stroke="#E09B56" stroke-width="10"/>
+    <path d="M44 54 H132" stroke="#CA9DB4" stroke-width="10" stroke-linecap="round"/>
+    <path d="M44 80 H132" stroke="#CA9DB4" stroke-width="10" stroke-linecap="round"/>
+    <text x="88" y="128" text-anchor="middle" fill="#372731" font-family="'Trebuchet MS', Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="2">AT</text>
   </g>
 
-  <rect x="0" y="0" width="1200" height="238" fill="#6A3F52" opacity="0.93"/>
-  <rect x="0" y="1454" width="1200" height="346" fill="#8B5E6D" opacity="0.95"/>
+  <rect x="0" y="0" width="1200" height="238" fill="#66394E" opacity="0.93"/>
+  <rect x="0" y="1454" width="1200" height="346" fill="#925C6D" opacity="0.95"/>
   <text x="600" y="136" text-anchor="middle" fill="#FDF8EE" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">AMIR LEVINE, RACHEL HELLER</text>
   <text x="600" y="208" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">RELATIONSHIPS</text>
-  <text x="600" y="1216" text-anchor="middle" fill="#3A2A34" font-family="'Trebuchet MS', Arial, sans-serif" font-size="108" font-weight="700" letter-spacing="2">ATTACHED</text>
+  <text x="600" y="1216" text-anchor="middle" fill="#372731" font-family="'Trebuchet MS', Arial, sans-serif" font-size="108" font-weight="700" letter-spacing="2">ATTACHED</text>
+  <g>
+    <rect x="399" y="1466" width="172" height="42" rx="21" fill="#FDF8EE" opacity="0.18" stroke="#FDF8EE" stroke-width="2"/>
+    <text x="485" y="1494" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">ATTACHMENT</text>
+  </g>
+  <g>
+    <rect x="593" y="1466" width="208" height="42" rx="21" fill="#FDF8EE" opacity="0.18" stroke="#FDF8EE" stroke-width="2"/>
+    <text x="697" y="1494" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">RELATIONSHIPS</text>
+  </g>
   <text x="600" y="1538" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">ATTACHMENT  ·  RELATIONSHIPS  ·  DATING</text>
-  <text x="600" y="1604" text-anchor="middle" fill="#FDF8EE" font-family="Georgia, serif" font-size="30">Attachment patterns in modern relationships</text>
+  <text x="600" y="1604" text-anchor="middle" fill="#FDF8EE" font-family="Georgia, serif" font-size="30">Understand attachment patterns in love</text>
   <text x="600" y="1668" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
 </svg>

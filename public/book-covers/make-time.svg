@@ -3,37 +3,63 @@
   <desc id="desc">Auto-generated themed cover for Make Time by Jake Knapp, John Zeratsky.</desc>
   <defs>
     <linearGradient id="g707771827" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#274F4C"/>
-      <stop offset="100%" stop-color="#3E7364"/>
+      <stop offset="0%" stop-color="#25423C"/>
+      <stop offset="100%" stop-color="#426F5D"/>
     </linearGradient>
   </defs>
 
   <rect width="1200" height="1800" fill="url(#g707771827)"/>
 
-  <circle cx="600" cy="840" r="420" fill="#8AC0AB" opacity="0.16"/>
-  <circle cx="600" cy="840" r="300" fill="#FBF8EF" opacity="0.16"/>
-  <circle cx="612" cy="852" r="210" fill="#DB9F4F" opacity="0.18"/>
-  <circle cx="588" cy="828" r="130" fill="#FBF8EF" opacity="0.34"/>
-  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F2EEE3" stroke="#C6B9A3" stroke-width="10"/>
+  <rect x="0" y="300" width="1200" height="1180" fill="#90BFA8" opacity="0.1"/>
+  <g fill="#FBF8EF" opacity="0.19">
+    <circle cx="210" cy="560" r="124"/>
+    <circle cx="1020" cy="640" r="110"/>
+    <circle cx="920" cy="1220" r="132"/>
+    <circle cx="230" cy="1190" r="96"/>
+  </g>
+  <path d="M70 730 Q300 602 600 740 T1130 760" stroke="#D99057" stroke-width="20" opacity="0.2"/>
+  <path d="M70 960 Q320 1092 600 940 T1130 920" stroke="#FBF8EF" stroke-width="16" opacity="0.24"/>
+  <ellipse cx="600" cy="812" rx="470" ry="382" fill="#FBF8EF" opacity="0.08"/>
+  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F2EDE3" stroke="#C1B29E" stroke-width="10"/>
+<g opacity="0.24" transform="translate(0 -26)">
+  <g transform="translate(432 543)">
+    <rect x="0" y="0" width="356" height="352" rx="24" fill="#F2EDE3" stroke="#FBF8EF" stroke-width="8"/>
+    <path d="M88 72 H268 C264 112 236 146 200 176 C236 206 264 240 268 280 H88 C92 240 120 206 156 176 C120 146 92 112 88 72 Z" fill="#90BFA8" opacity="0.86"/>
+    <path d="M156 176 H200" stroke="#1F2E2C" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="178" cy="168" r="7" fill="#F2EDE3"/>
+    <circle cx="186" cy="186" r="6" fill="#F2EDE3"/>
+    <circle cx="172" cy="204" r="5" fill="#F2EDE3"/>
+  </g></g>
 
-  <g transform="translate(407 568)">
-    <rect x="0" y="0" width="380" height="332" rx="20" fill="#FBF8EF" stroke="#8AC0AB" stroke-width="8"/>
-    <rect x="62" y="64" width="256" height="188" rx="14" fill="#203230" opacity="0.9"/>
-    <rect x="92" y="278" width="196" height="20" rx="10" fill="#DB9F4F" opacity="0.86"/>
+  <g transform="translate(415 560)">
+    <rect x="0" y="0" width="356" height="352" rx="24" fill="#FBF8EF" stroke="#90BFA8" stroke-width="8"/>
+    <path d="M88 72 H268 C264 112 236 146 200 176 C236 206 264 240 268 280 H88 C92 240 120 206 156 176 C120 146 92 112 88 72 Z" fill="#D99057" opacity="0.86"/>
+    <path d="M156 176 H200" stroke="#1F2E2C" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="178" cy="168" r="7" fill="#FBF8EF"/>
+    <circle cx="186" cy="186" r="6" fill="#FBF8EF"/>
+    <circle cx="172" cy="204" r="5" fill="#FBF8EF"/>
   </g>
 
   <g transform="translate(928 336)">
-    <circle cx="84" cy="84" r="76" fill="#FBF8EF" stroke="#DB9F4F" stroke-width="10"/>
-    <circle cx="84" cy="84" r="56" fill="#8AC0AB" opacity="0.68"/>
-    <text x="84" y="98" text-anchor="middle" fill="#203230" font-family="'Trebuchet MS', Arial, sans-serif" font-size="44" font-weight="700" letter-spacing="2">MT</text>
+    <circle cx="84" cy="84" r="76" fill="#FBF8EF" stroke="#D99057" stroke-width="10"/>
+    <circle cx="84" cy="84" r="56" fill="#90BFA8" opacity="0.68"/>
+    <text x="84" y="98" text-anchor="middle" fill="#1F2E2C" font-family="'Trebuchet MS', Arial, sans-serif" font-size="44" font-weight="700" letter-spacing="2">MT</text>
   </g>
 
-  <rect x="0" y="0" width="1200" height="238" fill="#274F4C" opacity="0.93"/>
-  <rect x="0" y="1454" width="1200" height="346" fill="#3E7364" opacity="0.95"/>
+  <rect x="0" y="0" width="1200" height="238" fill="#25423C" opacity="0.93"/>
+  <rect x="0" y="1454" width="1200" height="346" fill="#426F5D" opacity="0.95"/>
   <text x="600" y="136" text-anchor="middle" fill="#FBF8EF" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">JAKE KNAPP, JOHN ZERATSKY</text>
   <text x="600" y="208" text-anchor="middle" fill="#FBF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">PRODUCTIVITY</text>
-  <text x="600" y="1216" text-anchor="middle" fill="#203230" font-family="'Trebuchet MS', Arial, sans-serif" font-size="108" font-weight="700" letter-spacing="2">MAKE TIME</text>
+  <text x="600" y="1216" text-anchor="middle" fill="#1F2E2C" font-family="'Trebuchet MS', Arial, sans-serif" font-size="108" font-weight="700" letter-spacing="2">MAKE TIME</text>
+  <g>
+    <rect x="483" y="1466" width="100" height="42" rx="21" fill="#FBF8EF" opacity="0.18" stroke="#FBF8EF" stroke-width="2"/>
+    <text x="533" y="1494" text-anchor="middle" fill="#FBF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">TIME</text>
+  </g>
+  <g>
+    <rect x="605" y="1466" width="112" height="42" rx="21" fill="#FBF8EF" opacity="0.18" stroke="#FBF8EF" stroke-width="2"/>
+    <text x="661" y="1494" text-anchor="middle" fill="#FBF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">FOCUS</text>
+  </g>
   <text x="600" y="1538" text-anchor="middle" fill="#FBF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">TIME  ·  FOCUS  ·  ATTENTION</text>
-  <text x="600" y="1604" text-anchor="middle" fill="#FBF8EF" font-family="Georgia, serif" font-size="30">Focus, habits, and execution</text>
+  <text x="600" y="1604" text-anchor="middle" fill="#FBF8EF" font-family="Georgia, serif" font-size="30">Design days around what matters most</text>
   <text x="600" y="1668" text-anchor="middle" fill="#FBF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
 </svg>

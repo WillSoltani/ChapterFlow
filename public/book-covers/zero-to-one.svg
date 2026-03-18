@@ -3,45 +3,54 @@
   <desc id="desc">Auto-generated themed cover for Zero to One by Peter Thiel, Blake Masters.</desc>
   <defs>
     <linearGradient id="g87680217" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#1F3C5C"/>
-      <stop offset="100%" stop-color="#345C85"/>
+      <stop offset="0%" stop-color="#183849"/>
+      <stop offset="100%" stop-color="#30627F"/>
     </linearGradient>
   </defs>
 
   <rect width="1200" height="1800" fill="url(#g87680217)"/>
 
-  <rect x="0" y="300" width="1200" height="1180" fill="#8EB0D4" opacity="0.1"/>
-  <g stroke="#FDF8EE" opacity="0.2">
-    <line x1="160" y1="320" x2="160" y2="1460" stroke-width="4"/>
-    <line x1="320" y1="320" x2="320" y2="1460" stroke-width="3"/>
-    <line x1="480" y1="320" x2="480" y2="1460" stroke-width="2"/>
-    <line x1="640" y1="320" x2="640" y2="1460" stroke-width="3"/>
-    <line x1="800" y1="320" x2="800" y2="1460" stroke-width="2"/>
-    <line x1="960" y1="320" x2="960" y2="1460" stroke-width="3"/>
-  </g>
-  <path d="M140 430 L1060 430" stroke="#F29B4B" stroke-width="10" opacity="0.22"/>
-  <path d="M140 1330 L1060 1330" stroke="#F29B4B" stroke-width="10" opacity="0.2"/>
-  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F3ECE1" stroke="#C7B8A3" stroke-width="10"/>
+  <rect x="0" y="300" width="1200" height="1180" fill="#91BBD6" opacity="0.12"/>
+  <rect x="140" y="360" width="920" height="1050" rx="48" fill="#FDF8EE" opacity="0.22"/>
+  <path d="M0 560 Q300 462 600 560 T1200 560" stroke="#FDF8EE" stroke-width="22" opacity="0.24"/>
+  <path d="M0 1180 Q300 1082 600 1180 T1200 1180" stroke="#F3874F" stroke-width="16" opacity="0.22"/>
+  <ellipse cx="600" cy="812" rx="470" ry="382" fill="#FDF8EE" opacity="0.08"/>
+  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F3EBE1" stroke="#C3B19C" stroke-width="10"/>
+<g opacity="0.24" transform="translate(0 -26)">
+  <g transform="translate(417 571)">
+    <rect x="0" y="0" width="388" height="334" rx="24" fill="#F3EBE1" stroke="#FDF8EE" stroke-width="8"/>
+    <text x="104" y="204" text-anchor="middle" fill="#1F3041" font-family="Georgia, serif" font-size="150" font-weight="700">0</text>
+    <text x="292" y="204" text-anchor="middle" fill="#91BBD6" font-family="Georgia, serif" font-size="150" font-weight="700">1</text>
+    <path d="M166 176 L222 176" stroke="#FDF8EE" stroke-width="14" stroke-linecap="round"/>
+  </g></g>
 
   <g transform="translate(400 562)">
-    <rect x="0" y="0" width="388" height="334" rx="24" fill="#FDF8EE" stroke="#8EB0D4" stroke-width="8"/>
-    <text x="104" y="204" text-anchor="middle" fill="#213244" font-family="Georgia, serif" font-size="150" font-weight="700">0</text>
-    <text x="292" y="204" text-anchor="middle" fill="#F29B4B" font-family="Georgia, serif" font-size="150" font-weight="700">1</text>
-    <path d="M166 176 L222 176" stroke="#8EB0D4" stroke-width="14" stroke-linecap="round"/>
+    <rect x="0" y="0" width="388" height="334" rx="24" fill="#FDF8EE" stroke="#91BBD6" stroke-width="8"/>
+    <text x="104" y="204" text-anchor="middle" fill="#1F3041" font-family="Georgia, serif" font-size="150" font-weight="700">0</text>
+    <text x="292" y="204" text-anchor="middle" fill="#F3874F" font-family="Georgia, serif" font-size="150" font-weight="700">1</text>
+    <path d="M166 176 L222 176" stroke="#91BBD6" stroke-width="14" stroke-linecap="round"/>
   </g>
 
   <g transform="translate(930 336)">
-    <path d="M82 8 L152 34 V90 C152 142 120 174 82 190 C44 174 12 142 12 90 V34 Z" fill="#FDF8EE" stroke="#F29B4B" stroke-width="10"/>
-    <rect x="30" y="64" width="104" height="64" rx="20" fill="#8EB0D4" opacity="0.72"/>
-    <text x="82" y="106" text-anchor="middle" fill="#213244" font-family="'Trebuchet MS', Arial, sans-serif" font-size="40" font-weight="700" letter-spacing="2">ZO</text>
+    <path d="M82 8 L152 34 V90 C152 142 120 174 82 190 C44 174 12 142 12 90 V34 Z" fill="#FDF8EE" stroke="#F3874F" stroke-width="10"/>
+    <rect x="30" y="64" width="104" height="64" rx="20" fill="#91BBD6" opacity="0.72"/>
+    <text x="82" y="106" text-anchor="middle" fill="#1F3041" font-family="'Trebuchet MS', Arial, sans-serif" font-size="40" font-weight="700" letter-spacing="2">ZO</text>
   </g>
 
-  <rect x="0" y="0" width="1200" height="238" fill="#1F3C5C" opacity="0.93"/>
-  <rect x="0" y="1454" width="1200" height="346" fill="#345C85" opacity="0.95"/>
+  <rect x="0" y="0" width="1200" height="238" fill="#183849" opacity="0.93"/>
+  <rect x="0" y="1454" width="1200" height="346" fill="#30627F" opacity="0.95"/>
   <text x="600" y="136" text-anchor="middle" fill="#FDF8EE" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">PETER THIEL, BLAKE MASTERS</text>
   <text x="600" y="208" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">INNOVATION</text>
-  <text x="600" y="1216" text-anchor="middle" fill="#213244" font-family="'Trebuchet MS', Arial, sans-serif" font-size="108" font-weight="700" letter-spacing="2">ZERO TO ONE</text>
+  <text x="600" y="1216" text-anchor="middle" fill="#1F3041" font-family="'Trebuchet MS', Arial, sans-serif" font-size="108" font-weight="700" letter-spacing="2">ZERO TO ONE</text>
+  <g>
+    <rect x="441" y="1466" width="148" height="42" rx="21" fill="#FDF8EE" opacity="0.18" stroke="#FDF8EE" stroke-width="2"/>
+    <text x="515" y="1494" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">STARTUPS</text>
+  </g>
+  <g>
+    <rect x="611" y="1466" width="148" height="42" rx="21" fill="#FDF8EE" opacity="0.18" stroke="#FDF8EE" stroke-width="2"/>
+    <text x="685" y="1494" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">STRATEGY</text>
+  </g>
   <text x="600" y="1538" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">STARTUPS  ·  STRATEGY  ·  INNOVATION</text>
-  <text x="600" y="1604" text-anchor="middle" fill="#FDF8EE" font-family="Georgia, serif" font-size="30">Move from incremental to truly new value</text>
+  <text x="600" y="1604" text-anchor="middle" fill="#FDF8EE" font-family="Georgia, serif" font-size="30">Create category defining value from scratch</text>
   <text x="600" y="1668" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
 </svg>

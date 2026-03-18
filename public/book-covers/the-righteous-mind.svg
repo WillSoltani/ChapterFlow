@@ -3,46 +3,59 @@
   <desc id="desc">Auto-generated themed cover for The Righteous Mind by Jonathan Haidt.</desc>
   <defs>
     <linearGradient id="g1828010361" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#4C3D30"/>
-      <stop offset="100%" stop-color="#6C5845"/>
+      <stop offset="0%" stop-color="#3F2F29"/>
+      <stop offset="100%" stop-color="#685044"/>
     </linearGradient>
   </defs>
 
   <rect width="1200" height="1800" fill="url(#g1828010361)"/>
 
-  <rect x="0" y="300" width="1200" height="1180" fill="#B7A28B" opacity="0.1"/>
-  <g stroke="#FDF7EC" opacity="0.2">
-    <line x1="160" y1="320" x2="160" y2="1460" stroke-width="4"/>
-    <line x1="320" y1="320" x2="320" y2="1460" stroke-width="3"/>
-    <line x1="480" y1="320" x2="480" y2="1460" stroke-width="2"/>
-    <line x1="640" y1="320" x2="640" y2="1460" stroke-width="3"/>
-    <line x1="800" y1="320" x2="800" y2="1460" stroke-width="2"/>
-    <line x1="960" y1="320" x2="960" y2="1460" stroke-width="3"/>
-  </g>
-  <path d="M140 430 L1060 430" stroke="#D8A060" stroke-width="10" opacity="0.22"/>
-  <path d="M140 1330 L1060 1330" stroke="#D8A060" stroke-width="10" opacity="0.2"/>
-  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F3ECE0" stroke="#C7B7A1" stroke-width="10"/>
+  <rect x="-120" y="310" width="820" height="1100" transform="rotate(-12 400 860)" fill="#B89E8F" opacity="0.24"/>
+  <rect x="560" y="260" width="760" height="1150" transform="rotate(8 940 835)" fill="#D89065" opacity="0.16"/>
+  <circle cx="266" cy="573" r="180" fill="#D89065" opacity="0.17"/>
+  <circle cx="964" cy="1027" r="220" fill="#B89E8F" opacity="0.2"/>
+  <ellipse cx="600" cy="812" rx="470" ry="382" fill="#FDF6EC" opacity="0.08"/>
+  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F3EBE0" stroke="#C3B09B" stroke-width="10"/>
+<g opacity="0.24" transform="translate(0 -26)">
+  <g transform="translate(398 550)">
+    <line x1="186" y1="64" x2="186" y2="318" stroke="#30261E" stroke-width="12" stroke-linecap="round"/>
+    <line x1="88" y1="114" x2="284" y2="114" stroke="#30261E" stroke-width="12" stroke-linecap="round"/>
+    <path d="M114 114 L84 184 H144 Z" fill="#B89E8F" opacity="0.86"/>
+    <path d="M258 114 L228 184 H288 Z" fill="#FDF6EC" opacity="0.9"/>
+    <rect x="126" y="318" width="120" height="18" rx="9" fill="#30261E" opacity="0.88"/>
+    <circle cx="186" cy="74" r="20" fill="#F3EBE0" stroke="#FDF6EC" stroke-width="8"/>
+  </g></g>
 
-  <g transform="translate(397 572)">
-    <circle cx="204" cy="72" r="44" fill="#D8A060" opacity="0.44"/>
-    <path d="M24 292 L132 144 L208 248 L296 114 L388 292 Z" fill="#B7A28B" opacity="0.82"/>
-    <path d="M84 292 L168 186 L226 260 L302 172 L360 292 Z" fill="#D8A060" opacity="0.82"/>
-    <path d="M34 292 H378" stroke="#FDF7EC" stroke-width="12" stroke-linecap="round" opacity="0.8"/>
+  <g transform="translate(411 568)">
+    <line x1="186" y1="64" x2="186" y2="318" stroke="#30261E" stroke-width="12" stroke-linecap="round"/>
+    <line x1="88" y1="114" x2="284" y2="114" stroke="#30261E" stroke-width="12" stroke-linecap="round"/>
+    <path d="M114 114 L84 184 H144 Z" fill="#D89065" opacity="0.86"/>
+    <path d="M258 114 L228 184 H288 Z" fill="#B89E8F" opacity="0.9"/>
+    <rect x="126" y="318" width="120" height="18" rx="9" fill="#30261E" opacity="0.88"/>
+    <circle cx="186" cy="74" r="20" fill="#FDF6EC" stroke="#B89E8F" stroke-width="8"/>
   </g>
 
   <g transform="translate(924 332)">
-    <rect x="24" y="14" width="128" height="156" rx="64" fill="#FDF7EC" stroke="#D8A060" stroke-width="10"/>
-    <path d="M44 54 H132" stroke="#B7A28B" stroke-width="10" stroke-linecap="round"/>
-    <path d="M44 80 H132" stroke="#B7A28B" stroke-width="10" stroke-linecap="round"/>
-    <text x="88" y="128" text-anchor="middle" fill="#332920" font-family="'Trebuchet MS', Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="2">RM</text>
+    <rect x="24" y="14" width="128" height="156" rx="64" fill="#FDF6EC" stroke="#D89065" stroke-width="10"/>
+    <path d="M44 54 H132" stroke="#B89E8F" stroke-width="10" stroke-linecap="round"/>
+    <path d="M44 80 H132" stroke="#B89E8F" stroke-width="10" stroke-linecap="round"/>
+    <text x="88" y="128" text-anchor="middle" fill="#30261E" font-family="'Trebuchet MS', Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="2">RM</text>
   </g>
 
-  <rect x="0" y="0" width="1200" height="238" fill="#4C3D30" opacity="0.93"/>
-  <rect x="0" y="1454" width="1200" height="346" fill="#6C5845" opacity="0.95"/>
-  <text x="600" y="136" text-anchor="middle" fill="#FDF7EC" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">JONATHAN HAIDT</text>
-  <text x="600" y="208" text-anchor="middle" fill="#FDF7EC" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">PHILOSOPHY</text>
-  <text x="600" y="1216" text-anchor="middle" fill="#332920" font-family="Georgia, 'Times New Roman', serif" font-size="92" font-weight="700" letter-spacing="2">THE RIGHTEOUS MIND</text>
-  <text x="600" y="1538" text-anchor="middle" fill="#FDF7EC" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">MORAL PSYCHOLOGY  ·  ETHICS  ·  POLITICS</text>
-  <text x="600" y="1604" text-anchor="middle" fill="#FDF7EC" font-family="Georgia, serif" font-size="30">Meaning and perspective</text>
-  <text x="600" y="1668" text-anchor="middle" fill="#FDF7EC" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
+  <rect x="0" y="0" width="1200" height="238" fill="#3F2F29" opacity="0.93"/>
+  <rect x="0" y="1454" width="1200" height="346" fill="#685044" opacity="0.95"/>
+  <text x="600" y="136" text-anchor="middle" fill="#FDF6EC" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">JONATHAN HAIDT</text>
+  <text x="600" y="208" text-anchor="middle" fill="#FDF6EC" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">PHILOSOPHY</text>
+  <text x="600" y="1216" text-anchor="middle" fill="#30261E" font-family="Georgia, 'Times New Roman', serif" font-size="92" font-weight="700" letter-spacing="2">THE RIGHTEOUS MIND</text>
+  <g>
+    <rect x="405" y="1466" width="244" height="42" rx="21" fill="#FDF6EC" opacity="0.18" stroke="#FDF6EC" stroke-width="2"/>
+    <text x="527" y="1494" text-anchor="middle" fill="#FDF6EC" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">MORAL PSYCHOLOGY</text>
+  </g>
+  <g>
+    <rect x="671" y="1466" width="124" height="42" rx="21" fill="#FDF6EC" opacity="0.18" stroke="#FDF6EC" stroke-width="2"/>
+    <text x="733" y="1494" text-anchor="middle" fill="#FDF6EC" font-family="'Trebuchet MS', Arial, sans-serif" font-size="20" letter-spacing="1">ETHICS</text>
+  </g>
+  <text x="600" y="1538" text-anchor="middle" fill="#FDF6EC" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">MORAL PSYCHOLOGY  ·  ETHICS  ·  POLITICS</text>
+  <text x="600" y="1604" text-anchor="middle" fill="#FDF6EC" font-family="Georgia, serif" font-size="30">Moral intuitions shape political disagreement</text>
+  <text x="600" y="1668" text-anchor="middle" fill="#FDF6EC" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
 </svg>

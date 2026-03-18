@@ -47,6 +47,10 @@ export async function getBookPaywallPriceDisplay(): Promise<string> {
   return (await getServerEnv("BOOK_PAYWALL_PRICE")) || "$7.99/month";
 }
 
+export async function getBookAnalyticsTableName(): Promise<string | undefined> {
+  return getServerEnv("BOOK_ANALYTICS_TABLE_NAME");
+}
+
 export async function getAppBaseUrl(reqUrl: string): Promise<string> {
   const url = new URL(reqUrl);
   const chapterFlowExplicit =
