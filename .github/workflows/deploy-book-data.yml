@@ -2,8 +2,12 @@ name: Deploy Book Data (Dev)
 
 # Triggers:
 #   1. Push to main that touches any seed/book script — e.g. adding new license keys
-#   2. After a successful infra deploy — so freshly-created DynamoDB tables are always seeded
-#   3. workflow_dispatch — manual re-seed at any time (e.g. after key revocation)
+#      without a corresponding infra change (infra deploy handles its own seeding inline)
+#   2. workflow_dispatch — manual re-seed at any time (e.g. after key revocation)
+#
+# NOTE: Post-infra-deploy seeding is handled by the seed-book-data job inside
+#       deploy-infra-dev.yml, which avoids the workflow_run OIDC sub-claim
+#       mismatch that causes "Credentials could not be loaded" errors.
 on:
   push:
     branches:
@@ -11,14 +15,7 @@ on:
     paths:
       - 'scripts/book/**'
       - '.github/workflows/deploy-book-data.yml'
-  workflow_run:
-    workflows: ['Deploy Infra (Dev)']
-    types: [completed]
   workflow_dispatch:
-
-permissions:
-  id-token: write
-  contents: read
 
 concurrency:
   group: deploy-book-data-dev
@@ -34,8 +31,11 @@ jobs:
     name: Seed Book Data
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    # For workflow_run triggers, only proceed when the upstream workflow succeeded.
-    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    # Explicit job-level permissions are required for OIDC token injection —
+    # relying solely on workflow-level permissions is not reliable across runner versions.
+    permissions:
+      id-token: write
+      contents: read
 
     steps:
       - name: Checkout
@@ -48,8 +48,8 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        # --ignore-scripts skips postinstall hooks (e.g. Puppeteer, canvas)
-        # --omit=optional skips large native optional deps not needed by the seed script
+        # --ignore-scripts: skips postinstall hooks (e.g. Puppeteer, canvas compilation)
+        # --omit=optional:  skips large native optional deps not needed by the seed script
         run: npm ci --ignore-scripts --omit=optional
 
       - name: Configure AWS credentials (OIDC)

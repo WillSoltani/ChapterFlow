@@ -1,0 +1,32 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "CDKBootstrapRoleAssume",
+      "Effect": "Allow",
+      "Action": "sts:AssumeRole",
+      "Resource": [
+        "arn:aws:iam::928413605677:role/cdk-willfresh1-deploy-role-928413605677-us-east-1",
+        "arn:aws:iam::928413605677:role/cdk-willfresh1-file-publishing-role-928413605677-us-east-1",
+        "arn:aws:iam::928413605677:role/cdk-willfresh1-image-publishing-role-928413605677-us-east-1",
+        "arn:aws:iam::928413605677:role/cdk-willfresh1-lookup-role-928413605677-us-east-1"
+      ]
+    },
+    {
+      "Sid": "CDKBootstrapVersionCheck",
+      "Effect": "Allow",
+      "Action": "ssm:GetParameter",
+      "Resource": "arn:aws:ssm:us-east-1:928413605677:parameter/cdk-bootstrap/willfresh1/version"
+    },
+    {
+      "Sid": "DynamoDBSeedLicenseKeys",
+      "Effect": "Allow",
+      "Action": [
+        "dynamodb:PutItem",
+        "dynamodb:GetItem",
+        "dynamodb:UpdateItem"
+      ],
+      "Resource": "arn:aws:dynamodb:us-east-1:928413605677:table/SecureDocApp"
+    }
+  ]
+}

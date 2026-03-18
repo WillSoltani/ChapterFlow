@@ -108,7 +108,14 @@ jobs:
     runs-on: ubuntu-latest
     needs: [deploy-dev]
     timeout-minutes: 10
-    if: ${{ inputs.skip_seed != 'true' }}
+    # Use github.event.inputs (not inputs) so the expression is safe on push triggers
+    # where workflow_dispatch inputs are absent — the job runs unless explicitly skipped.
+    if: ${{ github.event.inputs.skip_seed != 'true' }}
+    # Explicit job-level permissions are required for OIDC token injection —
+    # relying solely on workflow-level permissions is not reliable across runner versions.
+    permissions:
+      id-token: write
+      contents: read
 
     steps:
       - name: Checkout
