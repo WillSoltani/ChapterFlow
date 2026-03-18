@@ -18,7 +18,7 @@ export const REGION =
 const ddb = new DynamoDBClient({ region: REGION });
 
 export const ddbDoc = DynamoDBDocumentClient.from(ddb, {
-  marshallOptions: { removeUndefinedValues: true },
+  marshallOptions: { removeUndefinedValues: true, convertEmptyValues: true },
 });
 
 export async function getTableName(): Promise<string> {

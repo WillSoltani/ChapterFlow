@@ -367,7 +367,7 @@
         "questions": [
           {
             "questionId": "ch01-h-q01",
-            "prompt": "Which option best captures the main principle in \"Start With Uncertainty, Not Certainty\"?",
+            "prompt": "You are making a real-world decision tied to \"Start With Uncertainty, Not Certainty\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "Treating decisions as bets under uncertainty instead of as tests of certainty creates clearer judgment.",
@@ -378,7 +378,7 @@
           },
           {
             "questionId": "ch01-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Start With Uncertainty, Not Certainty\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Start With Uncertainty, Not Certainty\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "More urgency usually fixes the problem without changing the process.",
@@ -389,7 +389,7 @@
           },
           {
             "questionId": "ch01-h-q03",
-            "prompt": "Which option best explains why \"Start With Uncertainty, Not Certainty\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Start With Uncertainty, Not Certainty\"?",
             "choices": [
               "More urgency usually fixes the problem without changing the process.",
               "Visible effort matters more than clear feedback.",
@@ -400,7 +400,7 @@
           },
           {
             "questionId": "ch01-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Start With Uncertainty, Not Certainty\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Start With Uncertainty, Not Certainty\"?",
             "choices": [
               "A common mistake is judging a decision as if a good process should eliminate uncertainty.",
               "Visible effort matters more than clear feedback.",
@@ -411,7 +411,7 @@
           },
           {
             "questionId": "ch01-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Start With Uncertainty, Not Certainty\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Start With Uncertainty, Not Certainty\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The pattern becomes easier to see when people talk as if one outcome was always bound to happen.",
@@ -422,7 +422,7 @@
           },
           {
             "questionId": "ch01-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Start With Uncertainty, Not Certainty\"?",
+            "prompt": "You are making a real-world decision tied to \"Start With Uncertainty, Not Certainty\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is judging a decision as if a good process should eliminate uncertainty.",
@@ -433,7 +433,7 @@
           },
           {
             "questionId": "ch01-h-q07",
-            "prompt": "Which option connects \"Start With Uncertainty, Not Certainty\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Start With Uncertainty, Not Certainty\" into practice?",
             "choices": [
               "The right move is judging a decision as if a good process should eliminate uncertainty.",
               "It is better to react first and interpret later.",
@@ -444,7 +444,7 @@
           },
           {
             "questionId": "ch01-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Start With Uncertainty, Not Certainty\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Start With Uncertainty, Not Certainty\"?",
             "choices": [
               "Small defaults and routines often decide whether the principle survives pressure.",
               "It is better to react first and interpret later.",
@@ -455,7 +455,7 @@
           },
           {
             "questionId": "ch01-h-q09",
-            "prompt": "Which option best explains why \"Start With Uncertainty, Not Certainty\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Start With Uncertainty, Not Certainty\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "For students and early career readers, the principle matters because early habits shape trust, options, and learning speed.",
@@ -466,7 +466,7 @@
           },
           {
             "questionId": "ch01-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Start With Uncertainty, Not Certainty\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Start With Uncertainty, Not Certainty\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "Fast certainty matters more than checking assumptions.",
@@ -479,7 +479,7 @@
         "retryQuestions": [
           {
             "questionId": "ch01-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Start With Uncertainty, Not Certainty\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Start With Uncertainty, Not Certainty\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -490,7 +490,7 @@
           },
           {
             "questionId": "ch01-h-q02-retry-02",
-            "prompt": "Which option best connects \"Start With Uncertainty, Not Certainty\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Start With Uncertainty, Not Certainty\" into practice?",
             "choices": [
               "The long game improves when people treat evidence, reversibility, and tradeoffs as part of the same judgment process.",
               "The cleanest story is usually the most accurate one.",
@@ -501,7 +501,7 @@
           },
           {
             "questionId": "ch01-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Start With Uncertainty, Not Certainty\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Start With Uncertainty, Not Certainty\"?",
             "choices": [
               "The right move is judging a decision as if a good process should eliminate uncertainty.",
               "There is also an ethical dimension because clearer thinking should reduce avoidable harm instead of rewarding cleverness for its own sake.",
@@ -512,7 +512,7 @@
           },
           {
             "questionId": "ch01-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Start With Uncertainty, Not Certainty\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Start With Uncertainty, Not Certainty\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -523,7 +523,7 @@
           },
           {
             "questionId": "ch01-h-q05-retry-05",
-            "prompt": "Which option best applies \"Start With Uncertainty, Not Certainty\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Start With Uncertainty, Not Certainty\" into practice?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -876,7 +876,7 @@
         "questions": [
           {
             "questionId": "ch02-h-q01",
-            "prompt": "Which option best captures the main principle in \"Separate Decision Quality From Outcome Quality\"?",
+            "prompt": "You are making a real-world decision tied to \"Separate Decision Quality From Outcome Quality\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "The first reasonable answer is usually enough once pressure rises.",
@@ -887,7 +887,7 @@
           },
           {
             "questionId": "ch02-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Separate Decision Quality From Outcome Quality\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Separate Decision Quality From Outcome Quality\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "More urgency usually fixes the problem without changing the process.",
@@ -898,7 +898,7 @@
           },
           {
             "questionId": "ch02-h-q03",
-            "prompt": "Which option best explains why \"Separate Decision Quality From Outcome Quality\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Separate Decision Quality From Outcome Quality\"?",
             "choices": [
               "This matters because learning improves when luck stops disguising quality.",
               "More urgency usually fixes the problem without changing the process.",
@@ -909,7 +909,7 @@
           },
           {
             "questionId": "ch02-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Separate Decision Quality From Outcome Quality\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Separate Decision Quality From Outcome Quality\"?",
             "choices": [
               "Visible effort matters more than clear feedback.",
               "A common mistake is treating every win as proof and every loss as failure.",
@@ -920,7 +920,7 @@
           },
           {
             "questionId": "ch02-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Separate Decision Quality From Outcome Quality\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Separate Decision Quality From Outcome Quality\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -931,7 +931,7 @@
           },
           {
             "questionId": "ch02-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Separate Decision Quality From Outcome Quality\"?",
+            "prompt": "You are making a real-world decision tied to \"Separate Decision Quality From Outcome Quality\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is treating every win as proof and every loss as failure.",
@@ -942,7 +942,7 @@
           },
           {
             "questionId": "ch02-h-q07",
-            "prompt": "Which option connects \"Separate Decision Quality From Outcome Quality\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Separate Decision Quality From Outcome Quality\" into practice?",
             "choices": [
               "The idea gets stronger when people connect the immediate choice to incentives, feedback, and downstream effects.",
               "The right move is treating every win as proof and every loss as failure.",
@@ -953,7 +953,7 @@
           },
           {
             "questionId": "ch02-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Separate Decision Quality From Outcome Quality\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Separate Decision Quality From Outcome Quality\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Small defaults and routines often decide whether the principle survives pressure.",
@@ -964,7 +964,7 @@
           },
           {
             "questionId": "ch02-h-q09",
-            "prompt": "Which option best explains why \"Separate Decision Quality From Outcome Quality\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Separate Decision Quality From Outcome Quality\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -975,7 +975,7 @@
           },
           {
             "questionId": "ch02-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Separate Decision Quality From Outcome Quality\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Separate Decision Quality From Outcome Quality\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "Fast certainty matters more than checking assumptions.",
@@ -988,7 +988,7 @@
         "retryQuestions": [
           {
             "questionId": "ch02-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Separate Decision Quality From Outcome Quality\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Separate Decision Quality From Outcome Quality\"?",
             "choices": [
               "A deeper reading is that hidden assumptions and time horizons usually shape the result before the final decision is visible.",
               "Short term relief is a reliable guide to good judgment.",
@@ -999,7 +999,7 @@
           },
           {
             "questionId": "ch02-h-q02-retry-02",
-            "prompt": "Which option best connects \"Separate Decision Quality From Outcome Quality\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Separate Decision Quality From Outcome Quality\" into practice?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The long game improves when people treat evidence, reversibility, and tradeoffs as part of the same judgment process.",
@@ -1010,7 +1010,7 @@
           },
           {
             "questionId": "ch02-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Separate Decision Quality From Outcome Quality\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Separate Decision Quality From Outcome Quality\"?",
             "choices": [
               "The right move is treating every win as proof and every loss as failure.",
               "It is better to react first and interpret later.",
@@ -1021,7 +1021,7 @@
           },
           {
             "questionId": "ch02-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Separate Decision Quality From Outcome Quality\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Separate Decision Quality From Outcome Quality\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -1032,7 +1032,7 @@
           },
           {
             "questionId": "ch02-h-q05-retry-05",
-            "prompt": "Which option best applies \"Separate Decision Quality From Outcome Quality\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Separate Decision Quality From Outcome Quality\" into practice?",
             "choices": [
               "A practical starting move is to review the process before the result, write what made the decision reasonable, and separate luck from skill.",
               "Structure matters only after formal authority is secured.",
@@ -1385,7 +1385,7 @@
         "questions": [
           {
             "questionId": "ch03-h-q01",
-            "prompt": "Which option best captures the main principle in \"Think in Odds and Ranges\"?",
+            "prompt": "You are making a real-world decision tied to \"Think in Odds and Ranges\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "The first reasonable answer is usually enough once pressure rises.",
@@ -1396,7 +1396,7 @@
           },
           {
             "questionId": "ch03-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Think in Odds and Ranges\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Think in Odds and Ranges\" into practice?",
             "choices": [
               "Probabilistic language helps people match confidence to evidence.",
               "The first reasonable answer is usually enough once pressure rises.",
@@ -1407,7 +1407,7 @@
           },
           {
             "questionId": "ch03-h-q03",
-            "prompt": "Which option best explains why \"Think in Odds and Ranges\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Think in Odds and Ranges\"?",
             "choices": [
               "More urgency usually fixes the problem without changing the process.",
               "This matters because better forecasting starts when certainty gives way to measured confidence.",
@@ -1418,7 +1418,7 @@
           },
           {
             "questionId": "ch03-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Think in Odds and Ranges\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Think in Odds and Ranges\"?",
             "choices": [
               "Visible effort matters more than clear feedback.",
               "Short term relief is a reliable guide to good judgment.",
@@ -1429,7 +1429,7 @@
           },
           {
             "questionId": "ch03-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Think in Odds and Ranges\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Think in Odds and Ranges\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -1440,7 +1440,7 @@
           },
           {
             "questionId": "ch03-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Think in Odds and Ranges\"?",
+            "prompt": "You are making a real-world decision tied to \"Think in Odds and Ranges\". Which option is the strongest next move?",
             "choices": [
               "A practical starting move is to assign a probability, use ranges instead of point certainty, and compare confidence with evidence.",
               "The cleanest story is usually the most accurate one.",
@@ -1451,7 +1451,7 @@
           },
           {
             "questionId": "ch03-h-q07",
-            "prompt": "Which option connects \"Think in Odds and Ranges\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Think in Odds and Ranges\" into practice?",
             "choices": [
               "The right move is turning uncertainty into a confident binary claim.",
               "The idea gets stronger when people connect the immediate choice to incentives, feedback, and downstream effects.",
@@ -1462,7 +1462,7 @@
           },
           {
             "questionId": "ch03-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Think in Odds and Ranges\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Think in Odds and Ranges\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -1473,7 +1473,7 @@
           },
           {
             "questionId": "ch03-h-q09",
-            "prompt": "Which option best explains why \"Think in Odds and Ranges\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Think in Odds and Ranges\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -1484,7 +1484,7 @@
           },
           {
             "questionId": "ch03-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Think in Odds and Ranges\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Think in Odds and Ranges\"?",
             "choices": [
               "The real challenge is to stay deliberate without becoming rigid, reactive, or self defeating.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -1497,7 +1497,7 @@
         "retryQuestions": [
           {
             "questionId": "ch03-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Think in Odds and Ranges\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Think in Odds and Ranges\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "A deeper reading is that hidden assumptions and time horizons usually shape the result before the final decision is visible.",
@@ -1508,7 +1508,7 @@
           },
           {
             "questionId": "ch03-h-q02-retry-02",
-            "prompt": "Which option best connects \"Think in Odds and Ranges\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Think in Odds and Ranges\" into practice?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is turning uncertainty into a confident binary claim.",
@@ -1519,7 +1519,7 @@
           },
           {
             "questionId": "ch03-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Think in Odds and Ranges\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Think in Odds and Ranges\"?",
             "choices": [
               "The right move is turning uncertainty into a confident binary claim.",
               "It is better to react first and interpret later.",
@@ -1530,7 +1530,7 @@
           },
           {
             "questionId": "ch03-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Think in Odds and Ranges\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Think in Odds and Ranges\"?",
             "choices": [
               "The chapter is most useful when it strengthens calibration, restraint, and deliberate follow through at the same time.",
               "It is better to react first and interpret later.",
@@ -1541,7 +1541,7 @@
           },
           {
             "questionId": "ch03-h-q05-retry-05",
-            "prompt": "Which option best applies \"Think in Odds and Ranges\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Think in Odds and Ranges\" into practice?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "A practical starting move is to assign a probability, use ranges instead of point certainty, and compare confidence with evidence.",
@@ -1894,7 +1894,7 @@
         "questions": [
           {
             "questionId": "ch04-h-q01",
-            "prompt": "Which option best captures the main principle in \"Build Truth Seeking Groups\"?",
+            "prompt": "You are making a real-world decision tied to \"Build Truth Seeking Groups\". Which option is the strongest next move?",
             "choices": [
               "Using honest groups to sharpen thinking instead of defend ego creates clearer judgment.",
               "Fast certainty matters more than checking assumptions.",
@@ -1905,7 +1905,7 @@
           },
           {
             "questionId": "ch04-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Build Truth Seeking Groups\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Build Truth Seeking Groups\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "Good groups improve judgment when disagreement is safe and useful.",
@@ -1916,7 +1916,7 @@
           },
           {
             "questionId": "ch04-h-q03",
-            "prompt": "Which option best explains why \"Build Truth Seeking Groups\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Build Truth Seeking Groups\"?",
             "choices": [
               "More urgency usually fixes the problem without changing the process.",
               "Visible effort matters more than clear feedback.",
@@ -1927,7 +1927,7 @@
           },
           {
             "questionId": "ch04-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Build Truth Seeking Groups\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Build Truth Seeking Groups\"?",
             "choices": [
               "Visible effort matters more than clear feedback.",
               "Short term relief is a reliable guide to good judgment.",
@@ -1938,7 +1938,7 @@
           },
           {
             "questionId": "ch04-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Build Truth Seeking Groups\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Build Truth Seeking Groups\"?",
             "choices": [
               "The pattern becomes easier to see when the conversation protects status while weak assumptions survive untouched.",
               "Short term relief is a reliable guide to good judgment.",
@@ -1949,7 +1949,7 @@
           },
           {
             "questionId": "ch04-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Build Truth Seeking Groups\"?",
+            "prompt": "You are making a real-world decision tied to \"Build Truth Seeking Groups\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "A practical starting move is to invite a strong challenge, reward disagreement tied to evidence, and separate critique from status attack.",
@@ -1960,7 +1960,7 @@
           },
           {
             "questionId": "ch04-h-q07",
-            "prompt": "Which option connects \"Build Truth Seeking Groups\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Build Truth Seeking Groups\" into practice?",
             "choices": [
               "The right move is joining groups that reward certainty more than truth.",
               "It is better to react first and interpret later.",
@@ -1971,7 +1971,7 @@
           },
           {
             "questionId": "ch04-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Build Truth Seeking Groups\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Build Truth Seeking Groups\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -1982,7 +1982,7 @@
           },
           {
             "questionId": "ch04-h-q09",
-            "prompt": "Which option best explains why \"Build Truth Seeking Groups\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Build Truth Seeking Groups\"?",
             "choices": [
               "For students and early career readers, the principle matters because early habits shape trust, options, and learning speed.",
               "Structure matters only after formal authority is secured.",
@@ -1993,7 +1993,7 @@
           },
           {
             "questionId": "ch04-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Build Truth Seeking Groups\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Build Truth Seeking Groups\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "The real challenge is to stay deliberate without becoming rigid, reactive, or self defeating.",
@@ -2006,7 +2006,7 @@
         "retryQuestions": [
           {
             "questionId": "ch04-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Build Truth Seeking Groups\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Build Truth Seeking Groups\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -2017,7 +2017,7 @@
           },
           {
             "questionId": "ch04-h-q02-retry-02",
-            "prompt": "Which option best connects \"Build Truth Seeking Groups\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Build Truth Seeking Groups\" into practice?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is joining groups that reward certainty more than truth.",
@@ -2028,7 +2028,7 @@
           },
           {
             "questionId": "ch04-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Build Truth Seeking Groups\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Build Truth Seeking Groups\"?",
             "choices": [
               "There is also an ethical dimension because clearer thinking should reduce avoidable harm instead of rewarding cleverness for its own sake.",
               "The right move is joining groups that reward certainty more than truth.",
@@ -2039,7 +2039,7 @@
           },
           {
             "questionId": "ch04-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Build Truth Seeking Groups\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Build Truth Seeking Groups\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "The chapter is most useful when it strengthens calibration, restraint, and deliberate follow through at the same time.",
@@ -2050,7 +2050,7 @@
           },
           {
             "questionId": "ch04-h-q05-retry-05",
-            "prompt": "Which option best applies \"Build Truth Seeking Groups\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Build Truth Seeking Groups\" into practice?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -2403,7 +2403,7 @@
         "questions": [
           {
             "questionId": "ch05-h-q01",
-            "prompt": "Which option best captures the main principle in \"Manage Emotion Like a Bankroll\"?",
+            "prompt": "You are making a real-world decision tied to \"Manage Emotion Like a Bankroll\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "Protecting judgment by managing emotion, variance, and tilt creates clearer judgment.",
@@ -2414,7 +2414,7 @@
           },
           {
             "questionId": "ch05-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Manage Emotion Like a Bankroll\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Manage Emotion Like a Bankroll\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "More urgency usually fixes the problem without changing the process.",
@@ -2425,7 +2425,7 @@
           },
           {
             "questionId": "ch05-h-q03",
-            "prompt": "Which option best explains why \"Manage Emotion Like a Bankroll\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Manage Emotion Like a Bankroll\"?",
             "choices": [
               "More urgency usually fixes the problem without changing the process.",
               "Visible effort matters more than clear feedback.",
@@ -2436,7 +2436,7 @@
           },
           {
             "questionId": "ch05-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Manage Emotion Like a Bankroll\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Manage Emotion Like a Bankroll\"?",
             "choices": [
               "A common mistake is letting the last outcome dictate the next level of confidence or aggression.",
               "Visible effort matters more than clear feedback.",
@@ -2447,7 +2447,7 @@
           },
           {
             "questionId": "ch05-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Manage Emotion Like a Bankroll\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Manage Emotion Like a Bankroll\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The pattern becomes easier to see when the next move is mostly a reaction to the last pain or rush.",
@@ -2458,7 +2458,7 @@
           },
           {
             "questionId": "ch05-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Manage Emotion Like a Bankroll\"?",
+            "prompt": "You are making a real-world decision tied to \"Manage Emotion Like a Bankroll\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is letting the last outcome dictate the next level of confidence or aggression.",
@@ -2469,7 +2469,7 @@
           },
           {
             "questionId": "ch05-h-q07",
-            "prompt": "Which option connects \"Manage Emotion Like a Bankroll\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Manage Emotion Like a Bankroll\" into practice?",
             "choices": [
               "The right move is letting the last outcome dictate the next level of confidence or aggression.",
               "It is better to react first and interpret later.",
@@ -2480,7 +2480,7 @@
           },
           {
             "questionId": "ch05-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Manage Emotion Like a Bankroll\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Manage Emotion Like a Bankroll\"?",
             "choices": [
               "Small defaults and routines often decide whether the principle survives pressure.",
               "It is better to react first and interpret later.",
@@ -2491,7 +2491,7 @@
           },
           {
             "questionId": "ch05-h-q09",
-            "prompt": "Which option best explains why \"Manage Emotion Like a Bankroll\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Manage Emotion Like a Bankroll\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "For students and early career readers, the principle matters because early habits shape trust, options, and learning speed.",
@@ -2502,7 +2502,7 @@
           },
           {
             "questionId": "ch05-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Manage Emotion Like a Bankroll\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Manage Emotion Like a Bankroll\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "Fast certainty matters more than checking assumptions.",
@@ -2515,7 +2515,7 @@
         "retryQuestions": [
           {
             "questionId": "ch05-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Manage Emotion Like a Bankroll\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Manage Emotion Like a Bankroll\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -2526,7 +2526,7 @@
           },
           {
             "questionId": "ch05-h-q02-retry-02",
-            "prompt": "Which option best connects \"Manage Emotion Like a Bankroll\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Manage Emotion Like a Bankroll\" into practice?",
             "choices": [
               "The long game improves when people treat evidence, reversibility, and tradeoffs as part of the same judgment process.",
               "The cleanest story is usually the most accurate one.",
@@ -2537,7 +2537,7 @@
           },
           {
             "questionId": "ch05-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Manage Emotion Like a Bankroll\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Manage Emotion Like a Bankroll\"?",
             "choices": [
               "The right move is letting the last outcome dictate the next level of confidence or aggression.",
               "There is also an ethical dimension because clearer thinking should reduce avoidable harm instead of rewarding cleverness for its own sake.",
@@ -2548,7 +2548,7 @@
           },
           {
             "questionId": "ch05-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Manage Emotion Like a Bankroll\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Manage Emotion Like a Bankroll\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -2559,7 +2559,7 @@
           },
           {
             "questionId": "ch05-h-q05-retry-05",
-            "prompt": "Which option best applies \"Manage Emotion Like a Bankroll\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Manage Emotion Like a Bankroll\" into practice?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -2840,11 +2840,11 @@
           "contexts": [
             "personal"
           ],
-          "scenario": "Maya is dealing with building better judgment through repeated calibration and review in a personal setting. The long game improves when people track how often their confidence deserved to win. Trouble starts when never checking whether their certainty has actually earned its reputation. The situation becomes clearer when the same confidence style repeats whether or not it predicts well.",
+          "scenario": "Maya is dealing with building better judgment through repeated calibration and reviews in a personal setting. The long game improves when people track how often their confidence deserved to win. Trouble starts when never checking whether their certainty has actually earned its reputation. The situation becomes clearer when the same confidence style repeats whether or not it predicts well.",
           "whatToDo": [
             "Start by track your forecasts and compare confidence with outcomes, then adjust your ranges after review."
           ],
-          "whyItMatters": "This example matters because calibration matters because confidence without feedback drifts into ego. It turns the idea into a repeatable decision habit instead of a slogan."
+          "whyItMatters": "This example matters because calibration matters because confidence without feedback drifts into ego. It turns the idea into a repeatable decision habit instead of a slogan. This scenario is directly connected to calibrate over time."
         },
         {
           "exampleId": "ch06-ex02",
@@ -2852,11 +2852,11 @@
           "contexts": [
             "personal"
           ],
-          "scenario": "Jordan is dealing with building better judgment through repeated calibration and review in a personal setting. The long game improves when people track how often their confidence deserved to win. Trouble starts when never checking whether their certainty has actually earned its reputation. The situation becomes clearer when the same confidence style repeats whether or not it predicts well.",
+          "scenario": "Jordan is dealing with building better judgment through repeated calibration and reviews in a personal setting. The long game improves when people track how often their confidence deserved to win. Trouble starts when never checking whether their certainty has actually earned its reputation. The situation becomes clearer when the same confidence style repeats whether or not it predicts well.",
           "whatToDo": [
             "Start by compare confidence with outcomes and adjust your ranges after review, then treat calibration as a skill to train."
           ],
-          "whyItMatters": "This example matters because calibration matters because confidence without feedback drifts into ego. It turns the idea into a repeatable decision habit instead of a slogan."
+          "whyItMatters": "This example matters because calibration matters because confidence without feedback drifts into ego. It turns the idea into a repeatable decision habit instead of a slogan. This scenario is directly connected to calibrate over time."
         },
         {
           "exampleId": "ch06-ex03",
@@ -2864,11 +2864,11 @@
           "contexts": [
             "school"
           ],
-          "scenario": "Alex is dealing with building better judgment through repeated calibration and review in a school setting. The long game improves when people track how often their confidence deserved to win. Trouble starts when never checking whether their certainty has actually earned its reputation. The situation becomes clearer when the same confidence style repeats whether or not it predicts well.",
+          "scenario": "Alex is dealing with building better judgment through repeated calibration and reviews in a school setting. The long game improves when people track how often their confidence deserved to win. Trouble starts when never checking whether their certainty has actually earned its reputation. The situation becomes clearer when the same confidence style repeats whether or not it predicts well.",
           "whatToDo": [
             "Start by adjust your ranges after review and treat calibration as a skill to train, then define the real constraint before reacting."
           ],
-          "whyItMatters": "This example matters because calibration matters because confidence without feedback drifts into ego. It turns the idea into a repeatable decision habit instead of a slogan."
+          "whyItMatters": "This example matters because calibration matters because confidence without feedback drifts into ego. It turns the idea into a repeatable decision habit instead of a slogan. This scenario is directly connected to calibrate over time."
         },
         {
           "exampleId": "ch06-ex04",
@@ -2876,11 +2876,11 @@
           "contexts": [
             "school"
           ],
-          "scenario": "Priya is dealing with building better judgment through repeated calibration and review in a school setting. The long game improves when people track how often their confidence deserved to win. Trouble starts when never checking whether their certainty has actually earned its reputation. The situation becomes clearer when the same confidence style repeats whether or not it predicts well.",
+          "scenario": "Priya is dealing with building better judgment through repeated calibration and reviews in a school setting. The long game improves when people track how often their confidence deserved to win. Trouble starts when never checking whether their certainty has actually earned its reputation. The situation becomes clearer when the same confidence style repeats whether or not it predicts well.",
           "whatToDo": [
             "Start by treat calibration as a skill to train and define the real constraint before reacting, then write down the assumption you are testing."
           ],
-          "whyItMatters": "This example matters because calibration matters because confidence without feedback drifts into ego. It turns the idea into a repeatable decision habit instead of a slogan."
+          "whyItMatters": "This example matters because calibration matters because confidence without feedback drifts into ego. It turns the idea into a repeatable decision habit instead of a slogan. This scenario is directly connected to calibrate over time."
         },
         {
           "exampleId": "ch06-ex05",
@@ -2888,11 +2888,11 @@
           "contexts": [
             "work"
           ],
-          "scenario": "Noah is dealing with building better judgment through repeated calibration and review in a work setting. The long game improves when people track how often their confidence deserved to win. Trouble starts when never checking whether their certainty has actually earned its reputation. The situation becomes clearer when the same confidence style repeats whether or not it predicts well.",
+          "scenario": "Noah is dealing with building better judgment through repeated calibration and reviews in a work setting. The long game improves when people track how often their confidence deserved to win. Trouble starts when never checking whether their certainty has actually earned its reputation. The situation becomes clearer when the same confidence style repeats whether or not it predicts well.",
           "whatToDo": [
             "Start by track your forecasts and compare confidence with outcomes, then track your forecasts."
           ],
-          "whyItMatters": "This example matters because calibration matters because confidence without feedback drifts into ego. It turns the idea into a repeatable decision habit instead of a slogan."
+          "whyItMatters": "This example matters because calibration matters because confidence without feedback drifts into ego. It turns the idea into a repeatable decision habit instead of a slogan. This scenario is directly connected to calibrate over time."
         },
         {
           "exampleId": "ch06-ex06",
@@ -2900,11 +2900,11 @@
           "contexts": [
             "work"
           ],
-          "scenario": "Elena is dealing with building better judgment through repeated calibration and review in a work setting. The long game improves when people track how often their confidence deserved to win. Trouble starts when never checking whether their certainty has actually earned its reputation. The situation becomes clearer when the same confidence style repeats whether or not it predicts well.",
+          "scenario": "Elena is dealing with building better judgment through repeated calibration and reviews in a work setting. The long game improves when people track how often their confidence deserved to win. Trouble starts when never checking whether their certainty has actually earned its reputation. The situation becomes clearer when the same confidence style repeats whether or not it predicts well.",
           "whatToDo": [
             "Start by compare confidence with outcomes and adjust your ranges after review, then compare confidence with outcomes."
           ],
-          "whyItMatters": "This example matters because calibration matters because confidence without feedback drifts into ego. It turns the idea into a repeatable decision habit instead of a slogan."
+          "whyItMatters": "This example matters because calibration matters because confidence without feedback drifts into ego. It turns the idea into a repeatable decision habit instead of a slogan. This scenario is directly connected to calibrate over time."
         }
       ],
       "quiz": {
@@ -2912,7 +2912,7 @@
         "questions": [
           {
             "questionId": "ch06-h-q01",
-            "prompt": "Which option best captures the main principle in \"Calibrate Over Time\"?",
+            "prompt": "You are making a real-world decision tied to \"Calibrate Over Time\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "The first reasonable answer is usually enough once pressure rises.",
@@ -2923,7 +2923,7 @@
           },
           {
             "questionId": "ch06-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Calibrate Over Time\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Calibrate Over Time\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "More urgency usually fixes the problem without changing the process.",
@@ -2934,7 +2934,7 @@
           },
           {
             "questionId": "ch06-h-q03",
-            "prompt": "Which option best explains why \"Calibrate Over Time\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Calibrate Over Time\"?",
             "choices": [
               "This matters because calibration matters because confidence without feedback drifts into ego.",
               "More urgency usually fixes the problem without changing the process.",
@@ -2945,7 +2945,7 @@
           },
           {
             "questionId": "ch06-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Calibrate Over Time\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Calibrate Over Time\"?",
             "choices": [
               "Visible effort matters more than clear feedback.",
               "A common mistake is never checking whether your certainty has actually earned its reputation.",
@@ -2956,7 +2956,7 @@
           },
           {
             "questionId": "ch06-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Calibrate Over Time\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Calibrate Over Time\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -2967,7 +2967,7 @@
           },
           {
             "questionId": "ch06-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Calibrate Over Time\"?",
+            "prompt": "You are making a real-world decision tied to \"Calibrate Over Time\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is never checking whether your certainty has actually earned its reputation.",
@@ -2978,7 +2978,7 @@
           },
           {
             "questionId": "ch06-h-q07",
-            "prompt": "Which option connects \"Calibrate Over Time\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Calibrate Over Time\" into practice?",
             "choices": [
               "The idea gets stronger when people connect the immediate choice to incentives, feedback, and downstream effects.",
               "The right move is never checking whether your certainty has actually earned its reputation.",
@@ -2989,7 +2989,7 @@
           },
           {
             "questionId": "ch06-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Calibrate Over Time\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Calibrate Over Time\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Small defaults and routines often decide whether the principle survives pressure.",
@@ -3000,7 +3000,7 @@
           },
           {
             "questionId": "ch06-h-q09",
-            "prompt": "Which option best explains why \"Calibrate Over Time\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Calibrate Over Time\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -3011,7 +3011,7 @@
           },
           {
             "questionId": "ch06-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Calibrate Over Time\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Calibrate Over Time\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "Fast certainty matters more than checking assumptions.",
@@ -3024,7 +3024,7 @@
         "retryQuestions": [
           {
             "questionId": "ch06-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Calibrate Over Time\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Calibrate Over Time\"?",
             "choices": [
               "A deeper reading is that hidden assumptions and time horizons usually shape the result before the final decision is visible.",
               "Short term relief is a reliable guide to good judgment.",
@@ -3035,7 +3035,7 @@
           },
           {
             "questionId": "ch06-h-q02-retry-02",
-            "prompt": "Which option best connects \"Calibrate Over Time\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Calibrate Over Time\" into practice?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The long game improves when people treat evidence, reversibility, and tradeoffs as part of the same judgment process.",
@@ -3046,7 +3046,7 @@
           },
           {
             "questionId": "ch06-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Calibrate Over Time\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Calibrate Over Time\"?",
             "choices": [
               "The right move is never checking whether your certainty has actually earned its reputation.",
               "It is better to react first and interpret later.",
@@ -3057,7 +3057,7 @@
           },
           {
             "questionId": "ch06-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Calibrate Over Time\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Calibrate Over Time\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -3068,7 +3068,7 @@
           },
           {
             "questionId": "ch06-h-q05-retry-05",
-            "prompt": "Which option best applies \"Calibrate Over Time\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Calibrate Over Time\" into practice?",
             "choices": [
               "A practical starting move is to track your forecasts, compare confidence with outcomes, and adjust your ranges after review.",
               "Structure matters only after formal authority is secured.",

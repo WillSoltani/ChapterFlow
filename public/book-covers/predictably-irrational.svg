@@ -1,16 +1,55 @@
-<svg width="1200" height="1800" viewBox="0 0 1200 1800" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1200" height="1800" fill="#F4EFE7"/>
-  <rect width="1200" height="260" fill="#C94C2E"/>
-  <rect y="1430" width="1200" height="370" fill="#1E2A39"/>
-  <rect x="120" y="350" width="960" height="920" rx="26" fill="#FFF9F0" stroke="#D7C5AF" stroke-width="10"/>
-  <circle cx="430" cy="700" r="120" fill="#C94C2E" opacity="0.9"/>
-  <circle cx="760" cy="700" r="120" fill="#E0A52B" opacity="0.9"/>
-  <circle cx="595" cy="930" r="120" fill="#2B6F8B" opacity="0.9"/>
-  <path d="M430 700L760 700" stroke="#1E2A39" stroke-width="18" stroke-linecap="round"/>
-  <path d="M430 700L595 930" stroke="#1E2A39" stroke-width="18" stroke-linecap="round"/>
-  <path d="M760 700L595 930" stroke="#1E2A39" stroke-width="18" stroke-linecap="round"/>
-  <text x="600" y="158" text-anchor="middle" fill="#FFF9F0" font-family="Georgia, serif" font-size="92" letter-spacing="5">DAN ARIELY</text>
-  <text x="600" y="1225" text-anchor="middle" fill="#1E2A39" font-family="Georgia, serif" font-size="96" font-weight="700">PREDICTABLY</text>
-  <text x="600" y="1332" text-anchor="middle" fill="#1E2A39" font-family="Georgia, serif" font-size="96" font-weight="700">IRRATIONAL</text>
-  <text x="600" y="1568" text-anchor="middle" fill="#FFF9F0" font-family="Arial, sans-serif" font-size="40" letter-spacing="4">CHOICE  PRICE  SELF CONTROL  HONESTY</text>
+<svg width="1200" height="1800" viewBox="0 0 1200 1800" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Predictably Irrational cover</title>
+  <desc id="desc">Auto-generated themed cover for Predictably Irrational by Dan Ariely.</desc>
+  <defs>
+    <linearGradient id="g1693898631" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3A3E63"/>
+      <stop offset="100%" stop-color="#5A5A86"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="1800" fill="url(#g1693898631)"/>
+
+  <rect x="0" y="300" width="1200" height="1180" fill="#9FA8D9" opacity="0.1"/>
+  <g stroke="#FDF7EE" opacity="0.2">
+    <line x1="160" y1="320" x2="160" y2="1460" stroke-width="4"/>
+    <line x1="320" y1="320" x2="320" y2="1460" stroke-width="3"/>
+    <line x1="480" y1="320" x2="480" y2="1460" stroke-width="2"/>
+    <line x1="640" y1="320" x2="640" y2="1460" stroke-width="3"/>
+    <line x1="800" y1="320" x2="800" y2="1460" stroke-width="2"/>
+    <line x1="960" y1="320" x2="960" y2="1460" stroke-width="3"/>
+  </g>
+  <path d="M140 430 L1060 430" stroke="#D59D5A" stroke-width="10" opacity="0.22"/>
+  <path d="M140 1330 L1060 1330" stroke="#D59D5A" stroke-width="10" opacity="0.2"/>
+  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F2EDE3" stroke="#C8B8A7" stroke-width="10"/>
+
+  <g transform="translate(414 566)">
+    <circle cx="180" cy="180" r="158" fill="#FDF7EE" opacity="0.95" stroke="#9FA8D9" stroke-width="8"/>
+    <path d="M148 76 Q92 120 92 190 Q92 258 144 292 Q198 326 258 290 Q304 264 318 220 Q332 178 306 138 Q280 98 232 82 Q192 68 148 76 Z" fill="none" stroke="#24283A" stroke-width="10" opacity="0.72"/>
+    <g stroke="#D59D5A" stroke-width="6" opacity="0.88">
+      <line x1="126" y1="146" x2="188" y2="122"/>
+      <line x1="188" y1="122" x2="238" y2="156"/>
+      <line x1="188" y1="122" x2="184" y2="196"/>
+      <line x1="184" y1="196" x2="246" y2="230"/>
+      <line x1="126" y1="146" x2="128" y2="220"/>
+      <line x1="128" y1="220" x2="184" y2="196"/>
+    </g>
+    <g fill="#D59D5A">
+      <circle cx="126" cy="146" r="12"/>
+      <circle cx="188" cy="122" r="12"/>
+      <circle cx="238" cy="156" r="12"/>
+      <circle cx="184" cy="196" r="12"/>
+      <circle cx="128" cy="220" r="12"/>
+      <circle cx="246" cy="230" r="12"/>
+    </g>
+  </g>
+
+  <rect x="0" y="0" width="1200" height="238" fill="#3A3E63" opacity="0.93"/>
+  <rect x="0" y="1454" width="1200" height="346" fill="#5A5A86" opacity="0.95"/>
+  <text x="600" y="136" text-anchor="middle" fill="#FDF7EE" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">DAN ARIELY</text>
+  <text x="600" y="208" text-anchor="middle" fill="#FDF7EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">PSYCHOLOGY</text>
+  <text x="600" y="1216" text-anchor="middle" fill="#24283A" font-family="Georgia, 'Times New Roman', serif" font-size="78" font-weight="700" letter-spacing="2">PREDICTABLY IRRATIONAL</text>
+  <text x="600" y="1538" text-anchor="middle" fill="#FDF7EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">BIAS  ·  CHOICE  ·  IRRATIONALITY</text>
+  <text x="600" y="1604" text-anchor="middle" fill="#FDF7EE" font-family="Georgia, serif" font-size="30">Behavior, bias, and motivation</text>
+  <text x="600" y="1668" text-anchor="middle" fill="#FDF7EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
 </svg>

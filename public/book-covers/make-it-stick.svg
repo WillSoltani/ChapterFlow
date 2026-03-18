@@ -1,20 +1,39 @@
 <svg width="1200" height="1800" viewBox="0 0 1200 1800" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
   <title id="title">Make It Stick cover</title>
-  <desc id="desc">Auto-generated modern edition cover for Make It Stick by Peter C. Brown, Henry L. Roediger III, and Mark A. McDaniel.</desc>
-  <rect width="1200" height="1800" fill="#F0E8DA"/>
-  <rect width="1200" height="260" fill="#6A4B2F"/>
-  <rect y="1460" width="1200" height="340" fill="#2D2A28"/>
-  <rect x="120" y="340" width="960" height="980" rx="24" fill="#FCF7EE" stroke="#D1C3AD" stroke-width="10"/>
+  <desc id="desc">Auto-generated themed cover for Make It Stick by Peter C. Brown, Henry L. Roediger III, and Mark A. McDaniel.</desc>
+  <defs>
+    <linearGradient id="g1973052030" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#314C74"/>
+      <stop offset="100%" stop-color="#5578A6"/>
+    </linearGradient>
+  </defs>
 
-  <circle cx="547" cy="824" r="251" fill="#6A4B2F" opacity="0.94"/>
-  <circle cx="547" cy="824" r="173" fill="#C98B2E" opacity="0.74"/>
-  <circle cx="547" cy="824" r="45" fill="#2D2A28" opacity="0.86"/>
-  <circle cx="547" cy="824" r="293" stroke="#2D2A28" stroke-width="19" opacity="0.18"/>
-  <path d="M287 844C407 734 587 728 787 840" stroke="#FBF4E9" stroke-width="16" stroke-linecap="round" opacity="0.78"/>
-  <path d="M327 940C461 844 587 842 763 950" stroke="#FBF4E9" stroke-width="12" stroke-linecap="round" opacity="0.58"/>
+  <rect width="1200" height="1800" fill="url(#g1973052030)"/>
 
-  <text x="600" y="150" text-anchor="middle" fill="#FBF4E9" font-family="Georgia, serif" font-size="66" font-weight="700" letter-spacing="3">PETER C. BROWN, HENRY L. ROEDIGER III, AND MARK A. MCDANIEL</text>
-  <text x="600" y="1270" text-anchor="middle" fill="#2D2A28" font-family="Georgia, serif" font-size="96" font-weight="700" letter-spacing="2">MAKE IT STICK</text>
-  <text x="600" y="1568" text-anchor="middle" fill="#FBF4E9" font-family="Arial, sans-serif" font-size="34" letter-spacing="4">PRACTICE  MEMORY  FEEDBACK  TRAINING</text>
-  <text x="600" y="1642" text-anchor="middle" fill="#FBF4E9" font-family="Georgia, serif" font-size="30">A modern learning edition with summaries, scenarios, and quizzes</text>
+  <circle cx="600" cy="840" r="420" fill="#9CB9DA" opacity="0.16"/>
+  <circle cx="600" cy="840" r="300" fill="#FEF8EF" opacity="0.16"/>
+  <circle cx="607" cy="842" r="210" fill="#DE9A4A" opacity="0.18"/>
+  <circle cx="593" cy="838" r="130" fill="#FEF8EF" opacity="0.34"/>
+  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F3ECE1" stroke="#C8B8A2" stroke-width="10"/>
+
+  <g transform="translate(388 559)">
+    <path d="M18 56 Q118 6 218 56 V302 Q118 252 18 302 Z" fill="#FEF8EF" stroke="#9CB9DA" stroke-width="8"/>
+    <path d="M382 56 Q282 6 182 56 V302 Q282 252 382 302 Z" fill="#FEF8EF" stroke="#9CB9DA" stroke-width="8"/>
+    <path d="M200 62 Q200 22 200 8" stroke="#DE9A4A" stroke-width="10" stroke-linecap="round"/>
+    <rect x="76" y="106" width="94" height="12" rx="6" fill="#DE9A4A" opacity="0.76"/>
+    <rect x="76" y="138" width="112" height="12" rx="6" fill="#9CB9DA" opacity="0.76"/>
+    <rect x="76" y="170" width="98" height="12" rx="6" fill="#DE9A4A" opacity="0.76"/>
+    <rect x="226" y="106" width="94" height="12" rx="6" fill="#DE9A4A" opacity="0.76"/>
+    <rect x="214" y="138" width="112" height="12" rx="6" fill="#9CB9DA" opacity="0.76"/>
+    <rect x="224" y="170" width="98" height="12" rx="6" fill="#DE9A4A" opacity="0.76"/>
+  </g>
+
+  <rect x="0" y="0" width="1200" height="238" fill="#314C74" opacity="0.93"/>
+  <rect x="0" y="1454" width="1200" height="346" fill="#5578A6" opacity="0.95"/>
+  <text x="600" y="136" text-anchor="middle" fill="#FEF8EF" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">PETER C. BROWN, HENRY L. ROEDIGER III, AND MARK A. MCDANIEL</text>
+  <text x="600" y="208" text-anchor="middle" fill="#FEF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">LEARNING</text>
+  <text x="600" y="1216" text-anchor="middle" fill="#25364A" font-family="'Trebuchet MS', Arial, sans-serif" font-size="92" font-weight="700" letter-spacing="2">MAKE IT STICK</text>
+  <text x="600" y="1538" text-anchor="middle" fill="#FEF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">PRACTICE  ·  MEMORY  ·  FEEDBACK</text>
+  <text x="600" y="1604" text-anchor="middle" fill="#FEF8EF" font-family="Georgia, serif" font-size="30">Practice and skill building</text>
+  <text x="600" y="1668" text-anchor="middle" fill="#FEF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
 </svg>

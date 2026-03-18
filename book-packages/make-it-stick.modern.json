@@ -367,7 +367,7 @@
         "questions": [
           {
             "questionId": "ch01-h-q01",
-            "prompt": "Which option best captures the main principle in \"Retrieval Builds Stronger Memory Than Rereading\"?",
+            "prompt": "You are making a real-world decision tied to \"Retrieval Builds Stronger Memory Than Rereading\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "Using retrieval practice to strengthen learning more than passive review creates clearer judgment.",
@@ -378,7 +378,7 @@
           },
           {
             "questionId": "ch01-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Retrieval Builds Stronger Memory Than Rereading\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Retrieval Builds Stronger Memory Than Rereading\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "More urgency usually fixes the problem without changing the process.",
@@ -389,7 +389,7 @@
           },
           {
             "questionId": "ch01-h-q03",
-            "prompt": "Which option best explains why \"Retrieval Builds Stronger Memory Than Rereading\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Retrieval Builds Stronger Memory Than Rereading\"?",
             "choices": [
               "More urgency usually fixes the problem without changing the process.",
               "Visible effort matters more than clear feedback.",
@@ -400,7 +400,7 @@
           },
           {
             "questionId": "ch01-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Retrieval Builds Stronger Memory Than Rereading\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Retrieval Builds Stronger Memory Than Rereading\"?",
             "choices": [
               "A common mistake is confusing recognition during rereading with real mastery.",
               "Visible effort matters more than clear feedback.",
@@ -411,7 +411,7 @@
           },
           {
             "questionId": "ch01-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Retrieval Builds Stronger Memory Than Rereading\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Retrieval Builds Stronger Memory Than Rereading\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The pattern becomes easier to see when the material feels familiar but cannot be produced without the page.",
@@ -422,7 +422,7 @@
           },
           {
             "questionId": "ch01-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Retrieval Builds Stronger Memory Than Rereading\"?",
+            "prompt": "You are making a real-world decision tied to \"Retrieval Builds Stronger Memory Than Rereading\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is confusing recognition during rereading with real mastery.",
@@ -433,7 +433,7 @@
           },
           {
             "questionId": "ch01-h-q07",
-            "prompt": "Which option connects \"Retrieval Builds Stronger Memory Than Rereading\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Retrieval Builds Stronger Memory Than Rereading\" into practice?",
             "choices": [
               "The right move is confusing recognition during rereading with real mastery.",
               "It is better to react first and interpret later.",
@@ -444,7 +444,7 @@
           },
           {
             "questionId": "ch01-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Retrieval Builds Stronger Memory Than Rereading\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Retrieval Builds Stronger Memory Than Rereading\"?",
             "choices": [
               "Small defaults and routines often decide whether the principle survives pressure.",
               "It is better to react first and interpret later.",
@@ -455,7 +455,7 @@
           },
           {
             "questionId": "ch01-h-q09",
-            "prompt": "Which option best explains why \"Retrieval Builds Stronger Memory Than Rereading\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Retrieval Builds Stronger Memory Than Rereading\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "For students and early career readers, the principle matters because early habits shape trust, options, and learning speed.",
@@ -466,7 +466,7 @@
           },
           {
             "questionId": "ch01-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Retrieval Builds Stronger Memory Than Rereading\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Retrieval Builds Stronger Memory Than Rereading\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "Fast certainty matters more than checking assumptions.",
@@ -479,7 +479,7 @@
         "retryQuestions": [
           {
             "questionId": "ch01-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Retrieval Builds Stronger Memory Than Rereading\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Retrieval Builds Stronger Memory Than Rereading\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -490,7 +490,7 @@
           },
           {
             "questionId": "ch01-h-q02-retry-02",
-            "prompt": "Which option best connects \"Retrieval Builds Stronger Memory Than Rereading\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Retrieval Builds Stronger Memory Than Rereading\" into practice?",
             "choices": [
               "The long game improves when people treat evidence, reversibility, and tradeoffs as part of the same judgment process.",
               "The cleanest story is usually the most accurate one.",
@@ -501,7 +501,7 @@
           },
           {
             "questionId": "ch01-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Retrieval Builds Stronger Memory Than Rereading\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Retrieval Builds Stronger Memory Than Rereading\"?",
             "choices": [
               "The right move is confusing recognition during rereading with real mastery.",
               "There is also an ethical dimension because clearer thinking should reduce avoidable harm instead of rewarding cleverness for its own sake.",
@@ -512,7 +512,7 @@
           },
           {
             "questionId": "ch01-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Retrieval Builds Stronger Memory Than Rereading\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Retrieval Builds Stronger Memory Than Rereading\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -523,7 +523,7 @@
           },
           {
             "questionId": "ch01-h-q05-retry-05",
-            "prompt": "Which option best applies \"Retrieval Builds Stronger Memory Than Rereading\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Retrieval Builds Stronger Memory Than Rereading\" into practice?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -876,7 +876,7 @@
         "questions": [
           {
             "questionId": "ch02-h-q01",
-            "prompt": "Which option best captures the main principle in \"Spacing and Interleaving Improve Retention\"?",
+            "prompt": "You are making a real-world decision tied to \"Spacing and Interleaving Improve Retention\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "The first reasonable answer is usually enough once pressure rises.",
@@ -887,7 +887,7 @@
           },
           {
             "questionId": "ch02-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Spacing and Interleaving Improve Retention\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Spacing and Interleaving Improve Retention\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "More urgency usually fixes the problem without changing the process.",
@@ -898,7 +898,7 @@
           },
           {
             "questionId": "ch02-h-q03",
-            "prompt": "Which option best explains why \"Spacing and Interleaving Improve Retention\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Spacing and Interleaving Improve Retention\"?",
             "choices": [
               "This matters because people remember longer when practice returns after a little forgetting.",
               "More urgency usually fixes the problem without changing the process.",
@@ -909,7 +909,7 @@
           },
           {
             "questionId": "ch02-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Spacing and Interleaving Improve Retention\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Spacing and Interleaving Improve Retention\"?",
             "choices": [
               "Visible effort matters more than clear feedback.",
               "A common mistake is mass practice that feels fluent but fades quickly.",
@@ -920,7 +920,7 @@
           },
           {
             "questionId": "ch02-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Spacing and Interleaving Improve Retention\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Spacing and Interleaving Improve Retention\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -931,7 +931,7 @@
           },
           {
             "questionId": "ch02-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Spacing and Interleaving Improve Retention\"?",
+            "prompt": "You are making a real-world decision tied to \"Spacing and Interleaving Improve Retention\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is mass practice that feels fluent but fades quickly.",
@@ -942,7 +942,7 @@
           },
           {
             "questionId": "ch02-h-q07",
-            "prompt": "Which option connects \"Spacing and Interleaving Improve Retention\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Spacing and Interleaving Improve Retention\" into practice?",
             "choices": [
               "The idea gets stronger when people connect the immediate choice to incentives, feedback, and downstream effects.",
               "The right move is mass practice that feels fluent but fades quickly.",
@@ -953,7 +953,7 @@
           },
           {
             "questionId": "ch02-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Spacing and Interleaving Improve Retention\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Spacing and Interleaving Improve Retention\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Small defaults and routines often decide whether the principle survives pressure.",
@@ -964,7 +964,7 @@
           },
           {
             "questionId": "ch02-h-q09",
-            "prompt": "Which option best explains why \"Spacing and Interleaving Improve Retention\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Spacing and Interleaving Improve Retention\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -975,7 +975,7 @@
           },
           {
             "questionId": "ch02-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Spacing and Interleaving Improve Retention\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Spacing and Interleaving Improve Retention\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "Fast certainty matters more than checking assumptions.",
@@ -988,7 +988,7 @@
         "retryQuestions": [
           {
             "questionId": "ch02-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Spacing and Interleaving Improve Retention\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Spacing and Interleaving Improve Retention\"?",
             "choices": [
               "A deeper reading is that hidden assumptions and time horizons usually shape the result before the final decision is visible.",
               "Short term relief is a reliable guide to good judgment.",
@@ -999,7 +999,7 @@
           },
           {
             "questionId": "ch02-h-q02-retry-02",
-            "prompt": "Which option best connects \"Spacing and Interleaving Improve Retention\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Spacing and Interleaving Improve Retention\" into practice?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The long game improves when people treat evidence, reversibility, and tradeoffs as part of the same judgment process.",
@@ -1010,7 +1010,7 @@
           },
           {
             "questionId": "ch02-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Spacing and Interleaving Improve Retention\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Spacing and Interleaving Improve Retention\"?",
             "choices": [
               "The right move is mass practice that feels fluent but fades quickly.",
               "It is better to react first and interpret later.",
@@ -1021,7 +1021,7 @@
           },
           {
             "questionId": "ch02-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Spacing and Interleaving Improve Retention\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Spacing and Interleaving Improve Retention\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -1032,7 +1032,7 @@
           },
           {
             "questionId": "ch02-h-q05-retry-05",
-            "prompt": "Which option best applies \"Spacing and Interleaving Improve Retention\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Spacing and Interleaving Improve Retention\" into practice?",
             "choices": [
               "A practical starting move is to space practice over time, mix related topics, and return after a delay.",
               "Structure matters only after formal authority is secured.",
@@ -1385,7 +1385,7 @@
         "questions": [
           {
             "questionId": "ch03-h-q01",
-            "prompt": "Which option best captures the main principle in \"Useful Difficulty Beats Easy Fluency\"?",
+            "prompt": "You are making a real-world decision tied to \"Useful Difficulty Beats Easy Fluency\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "The first reasonable answer is usually enough once pressure rises.",
@@ -1396,7 +1396,7 @@
           },
           {
             "questionId": "ch03-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Useful Difficulty Beats Easy Fluency\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Useful Difficulty Beats Easy Fluency\" into practice?",
             "choices": [
               "Effort can strengthen understanding when it is tied to the right kind of challenge.",
               "The first reasonable answer is usually enough once pressure rises.",
@@ -1407,7 +1407,7 @@
           },
           {
             "questionId": "ch03-h-q03",
-            "prompt": "Which option best explains why \"Useful Difficulty Beats Easy Fluency\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Useful Difficulty Beats Easy Fluency\"?",
             "choices": [
               "More urgency usually fixes the problem without changing the process.",
               "This matters because learning often feels slower while it is becoming more durable.",
@@ -1418,7 +1418,7 @@
           },
           {
             "questionId": "ch03-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Useful Difficulty Beats Easy Fluency\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Useful Difficulty Beats Easy Fluency\"?",
             "choices": [
               "Visible effort matters more than clear feedback.",
               "Short term relief is a reliable guide to good judgment.",
@@ -1429,7 +1429,7 @@
           },
           {
             "questionId": "ch03-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Useful Difficulty Beats Easy Fluency\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Useful Difficulty Beats Easy Fluency\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -1440,7 +1440,7 @@
           },
           {
             "questionId": "ch03-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Useful Difficulty Beats Easy Fluency\"?",
+            "prompt": "You are making a real-world decision tied to \"Useful Difficulty Beats Easy Fluency\". Which option is the strongest next move?",
             "choices": [
               "A practical starting move is to choose challenge over comfort when it teaches, measure recall not just feeling, and let the struggle stay productive.",
               "The cleanest story is usually the most accurate one.",
@@ -1451,7 +1451,7 @@
           },
           {
             "questionId": "ch03-h-q07",
-            "prompt": "Which option connects \"Useful Difficulty Beats Easy Fluency\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Useful Difficulty Beats Easy Fluency\" into practice?",
             "choices": [
               "The right move is judging a learning method by how easy it feels in the moment.",
               "The idea gets stronger when people connect the immediate choice to incentives, feedback, and downstream effects.",
@@ -1462,7 +1462,7 @@
           },
           {
             "questionId": "ch03-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Useful Difficulty Beats Easy Fluency\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Useful Difficulty Beats Easy Fluency\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -1473,7 +1473,7 @@
           },
           {
             "questionId": "ch03-h-q09",
-            "prompt": "Which option best explains why \"Useful Difficulty Beats Easy Fluency\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Useful Difficulty Beats Easy Fluency\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -1484,7 +1484,7 @@
           },
           {
             "questionId": "ch03-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Useful Difficulty Beats Easy Fluency\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Useful Difficulty Beats Easy Fluency\"?",
             "choices": [
               "The real challenge is to stay deliberate without becoming rigid, reactive, or self defeating.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -1497,7 +1497,7 @@
         "retryQuestions": [
           {
             "questionId": "ch03-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Useful Difficulty Beats Easy Fluency\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Useful Difficulty Beats Easy Fluency\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "A deeper reading is that hidden assumptions and time horizons usually shape the result before the final decision is visible.",
@@ -1508,7 +1508,7 @@
           },
           {
             "questionId": "ch03-h-q02-retry-02",
-            "prompt": "Which option best connects \"Useful Difficulty Beats Easy Fluency\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Useful Difficulty Beats Easy Fluency\" into practice?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is judging a learning method by how easy it feels in the moment.",
@@ -1519,7 +1519,7 @@
           },
           {
             "questionId": "ch03-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Useful Difficulty Beats Easy Fluency\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Useful Difficulty Beats Easy Fluency\"?",
             "choices": [
               "The right move is judging a learning method by how easy it feels in the moment.",
               "It is better to react first and interpret later.",
@@ -1530,7 +1530,7 @@
           },
           {
             "questionId": "ch03-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Useful Difficulty Beats Easy Fluency\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Useful Difficulty Beats Easy Fluency\"?",
             "choices": [
               "The chapter is most useful when it strengthens calibration, restraint, and deliberate follow through at the same time.",
               "It is better to react first and interpret later.",
@@ -1541,7 +1541,7 @@
           },
           {
             "questionId": "ch03-h-q05-retry-05",
-            "prompt": "Which option best applies \"Useful Difficulty Beats Easy Fluency\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Useful Difficulty Beats Easy Fluency\" into practice?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "A practical starting move is to choose challenge over comfort when it teaches, measure recall not just feeling, and let the struggle stay productive.",
@@ -1826,7 +1826,7 @@
           "whatToDo": [
             "Start by test without the page and explain the concept from memory, then check transfer to a new problem."
           ],
-          "whyItMatters": "This example matters because many students feel ready because the material looks familiar, not because it is usable. It turns the idea into a repeatable decision habit instead of a slogan."
+          "whyItMatters": "This example matters because many students feel ready because the material looks familiar, not because it is usable. It turns the idea into a repeatable decision habit instead of a slogan. This scenario is directly connected to fluency can mislead you."
         },
         {
           "exampleId": "ch04-ex02",
@@ -1838,7 +1838,7 @@
           "whatToDo": [
             "Start by explain the concept from memory and check transfer to a new problem, then treat familiarity as a weak signal."
           ],
-          "whyItMatters": "This example matters because many students feel ready because the material looks familiar, not because it is usable. It turns the idea into a repeatable decision habit instead of a slogan."
+          "whyItMatters": "This example matters because many students feel ready because the material looks familiar, not because it is usable. It turns the idea into a repeatable decision habit instead of a slogan. This scenario is directly connected to fluency can mislead you."
         },
         {
           "exampleId": "ch04-ex03",
@@ -1850,7 +1850,7 @@
           "whatToDo": [
             "Start by check transfer to a new problem and treat familiarity as a weak signal, then define the real constraint before reacting."
           ],
-          "whyItMatters": "This example matters because many students feel ready because the material looks familiar, not because it is usable. It turns the idea into a repeatable decision habit instead of a slogan."
+          "whyItMatters": "This example matters because many students feel ready because the material looks familiar, not because it is usable. It turns the idea into a repeatable decision habit instead of a slogan. This scenario is directly connected to fluency can mislead you."
         },
         {
           "exampleId": "ch04-ex04",
@@ -1862,7 +1862,7 @@
           "whatToDo": [
             "Start by treat familiarity as a weak signal and define the real constraint before reacting, then write down the assumption you are testing."
           ],
-          "whyItMatters": "This example matters because many students feel ready because the material looks familiar, not because it is usable. It turns the idea into a repeatable decision habit instead of a slogan."
+          "whyItMatters": "This example matters because many students feel ready because the material looks familiar, not because it is usable. It turns the idea into a repeatable decision habit instead of a slogan. This scenario is directly connected to fluency can mislead you."
         },
         {
           "exampleId": "ch04-ex05",
@@ -1874,7 +1874,7 @@
           "whatToDo": [
             "Start by test without the page and explain the concept from memory, then test without the page."
           ],
-          "whyItMatters": "This example matters because many students feel ready because the material looks familiar, not because it is usable. It turns the idea into a repeatable decision habit instead of a slogan."
+          "whyItMatters": "This example matters because many students feel ready because the material looks familiar, not because it is usable. It turns the idea into a repeatable decision habit instead of a slogan. This scenario is directly connected to fluency can mislead you."
         },
         {
           "exampleId": "ch04-ex06",
@@ -1886,7 +1886,7 @@
           "whatToDo": [
             "Start by explain the concept from memory and check transfer to a new problem, then explain the concept from memory."
           ],
-          "whyItMatters": "This example matters because many students feel ready because the material looks familiar, not because it is usable. It turns the idea into a repeatable decision habit instead of a slogan."
+          "whyItMatters": "This example matters because many students feel ready because the material looks familiar, not because it is usable. It turns the idea into a repeatable decision habit instead of a slogan. This scenario is directly connected to fluency can mislead you."
         }
       ],
       "quiz": {
@@ -1894,7 +1894,7 @@
         "questions": [
           {
             "questionId": "ch04-h-q01",
-            "prompt": "Which option best captures the main principle in \"Fluency Can Mislead You\"?",
+            "prompt": "You are making a real-world decision tied to \"Fluency Can Mislead You\". Which option is the strongest next move?",
             "choices": [
               "Spotting the illusion that smooth review equals mastery creates clearer judgment.",
               "Fast certainty matters more than checking assumptions.",
@@ -1905,7 +1905,7 @@
           },
           {
             "questionId": "ch04-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Fluency Can Mislead You\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Fluency Can Mislead You\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "Clarity improves when learners distinguish ease of exposure from strength of memory.",
@@ -1916,7 +1916,7 @@
           },
           {
             "questionId": "ch04-h-q03",
-            "prompt": "Which option best explains why \"Fluency Can Mislead You\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Fluency Can Mislead You\"?",
             "choices": [
               "More urgency usually fixes the problem without changing the process.",
               "Visible effort matters more than clear feedback.",
@@ -1927,7 +1927,7 @@
           },
           {
             "questionId": "ch04-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Fluency Can Mislead You\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Fluency Can Mislead You\"?",
             "choices": [
               "Visible effort matters more than clear feedback.",
               "Short term relief is a reliable guide to good judgment.",
@@ -1938,7 +1938,7 @@
           },
           {
             "questionId": "ch04-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Fluency Can Mislead You\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Fluency Can Mislead You\"?",
             "choices": [
               "The pattern becomes easier to see when the lesson feels obvious until it must be explained or applied without help.",
               "Short term relief is a reliable guide to good judgment.",
@@ -1949,7 +1949,7 @@
           },
           {
             "questionId": "ch04-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Fluency Can Mislead You\"?",
+            "prompt": "You are making a real-world decision tied to \"Fluency Can Mislead You\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "A practical starting move is to test without the page, explain the concept from memory, and check transfer to a new problem.",
@@ -1960,7 +1960,7 @@
           },
           {
             "questionId": "ch04-h-q07",
-            "prompt": "Which option connects \"Fluency Can Mislead You\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Fluency Can Mislead You\" into practice?",
             "choices": [
               "The right move is using comfort as the main cue for readiness.",
               "It is better to react first and interpret later.",
@@ -1971,7 +1971,7 @@
           },
           {
             "questionId": "ch04-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Fluency Can Mislead You\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Fluency Can Mislead You\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -1982,7 +1982,7 @@
           },
           {
             "questionId": "ch04-h-q09",
-            "prompt": "Which option best explains why \"Fluency Can Mislead You\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Fluency Can Mislead You\"?",
             "choices": [
               "For students and early career readers, the principle matters because early habits shape trust, options, and learning speed.",
               "Structure matters only after formal authority is secured.",
@@ -1993,7 +1993,7 @@
           },
           {
             "questionId": "ch04-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Fluency Can Mislead You\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Fluency Can Mislead You\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "The real challenge is to stay deliberate without becoming rigid, reactive, or self defeating.",
@@ -2006,7 +2006,7 @@
         "retryQuestions": [
           {
             "questionId": "ch04-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Fluency Can Mislead You\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Fluency Can Mislead You\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -2017,7 +2017,7 @@
           },
           {
             "questionId": "ch04-h-q02-retry-02",
-            "prompt": "Which option best connects \"Fluency Can Mislead You\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Fluency Can Mislead You\" into practice?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is using comfort as the main cue for readiness.",
@@ -2028,7 +2028,7 @@
           },
           {
             "questionId": "ch04-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Fluency Can Mislead You\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Fluency Can Mislead You\"?",
             "choices": [
               "There is also an ethical dimension because clearer thinking should reduce avoidable harm instead of rewarding cleverness for its own sake.",
               "The right move is using comfort as the main cue for readiness.",
@@ -2039,7 +2039,7 @@
           },
           {
             "questionId": "ch04-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Fluency Can Mislead You\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Fluency Can Mislead You\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "The chapter is most useful when it strengthens calibration, restraint, and deliberate follow through at the same time.",
@@ -2050,7 +2050,7 @@
           },
           {
             "questionId": "ch04-h-q05-retry-05",
-            "prompt": "Which option best applies \"Fluency Can Mislead You\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Fluency Can Mislead You\" into practice?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -2403,7 +2403,7 @@
         "questions": [
           {
             "questionId": "ch05-h-q01",
-            "prompt": "Which option best captures the main principle in \"Feedback Sharpens Memory and Skill\"?",
+            "prompt": "You are making a real-world decision tied to \"Feedback Sharpens Memory and Skill\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "Using feedback to correct errors before they harden into false mastery creates clearer judgment.",
@@ -2414,7 +2414,7 @@
           },
           {
             "questionId": "ch05-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Feedback Sharpens Memory and Skill\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Feedback Sharpens Memory and Skill\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "More urgency usually fixes the problem without changing the process.",
@@ -2425,7 +2425,7 @@
           },
           {
             "questionId": "ch05-h-q03",
-            "prompt": "Which option best explains why \"Feedback Sharpens Memory and Skill\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Feedback Sharpens Memory and Skill\"?",
             "choices": [
               "More urgency usually fixes the problem without changing the process.",
               "Visible effort matters more than clear feedback.",
@@ -2436,7 +2436,7 @@
           },
           {
             "questionId": "ch05-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Feedback Sharpens Memory and Skill\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Feedback Sharpens Memory and Skill\"?",
             "choices": [
               "A common mistake is avoiding tests or practice because feedback feels uncomfortable.",
               "Visible effort matters more than clear feedback.",
@@ -2447,7 +2447,7 @@
           },
           {
             "questionId": "ch05-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Feedback Sharpens Memory and Skill\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Feedback Sharpens Memory and Skill\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The pattern becomes easier to see when the same error keeps returning because it was never corrected clearly.",
@@ -2458,7 +2458,7 @@
           },
           {
             "questionId": "ch05-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Feedback Sharpens Memory and Skill\"?",
+            "prompt": "You are making a real-world decision tied to \"Feedback Sharpens Memory and Skill\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is avoiding tests or practice because feedback feels uncomfortable.",
@@ -2469,7 +2469,7 @@
           },
           {
             "questionId": "ch05-h-q07",
-            "prompt": "Which option connects \"Feedback Sharpens Memory and Skill\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Feedback Sharpens Memory and Skill\" into practice?",
             "choices": [
               "The right move is avoiding tests or practice because feedback feels uncomfortable.",
               "It is better to react first and interpret later.",
@@ -2480,7 +2480,7 @@
           },
           {
             "questionId": "ch05-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Feedback Sharpens Memory and Skill\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Feedback Sharpens Memory and Skill\"?",
             "choices": [
               "Small defaults and routines often decide whether the principle survives pressure.",
               "It is better to react first and interpret later.",
@@ -2491,7 +2491,7 @@
           },
           {
             "questionId": "ch05-h-q09",
-            "prompt": "Which option best explains why \"Feedback Sharpens Memory and Skill\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Feedback Sharpens Memory and Skill\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "For students and early career readers, the principle matters because early habits shape trust, options, and learning speed.",
@@ -2502,7 +2502,7 @@
           },
           {
             "questionId": "ch05-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Feedback Sharpens Memory and Skill\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Feedback Sharpens Memory and Skill\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "Fast certainty matters more than checking assumptions.",
@@ -2515,7 +2515,7 @@
         "retryQuestions": [
           {
             "questionId": "ch05-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Feedback Sharpens Memory and Skill\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Feedback Sharpens Memory and Skill\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -2526,7 +2526,7 @@
           },
           {
             "questionId": "ch05-h-q02-retry-02",
-            "prompt": "Which option best connects \"Feedback Sharpens Memory and Skill\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Feedback Sharpens Memory and Skill\" into practice?",
             "choices": [
               "The long game improves when people treat evidence, reversibility, and tradeoffs as part of the same judgment process.",
               "The cleanest story is usually the most accurate one.",
@@ -2537,7 +2537,7 @@
           },
           {
             "questionId": "ch05-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Feedback Sharpens Memory and Skill\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Feedback Sharpens Memory and Skill\"?",
             "choices": [
               "The right move is avoiding tests or practice because feedback feels uncomfortable.",
               "There is also an ethical dimension because clearer thinking should reduce avoidable harm instead of rewarding cleverness for its own sake.",
@@ -2548,7 +2548,7 @@
           },
           {
             "questionId": "ch05-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Feedback Sharpens Memory and Skill\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Feedback Sharpens Memory and Skill\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -2559,7 +2559,7 @@
           },
           {
             "questionId": "ch05-h-q05-retry-05",
-            "prompt": "Which option best applies \"Feedback Sharpens Memory and Skill\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Feedback Sharpens Memory and Skill\" into practice?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -2840,7 +2840,7 @@
           "contexts": [
             "personal"
           ],
-          "scenario": "Maya is dealing with treating durable learning as a system of retrieval, spacing, feedback, and review in a personal setting. Consistency matters because strong memory is built across repeated cycles. Trouble starts when studying by mood without a structure for recall and review. The situation becomes clearer when the effort is real but the learning pattern is too random to last.",
+          "scenario": "Maya is dealing with treating durable learning as a system of retrieval, spacing, feedback, and reviews in a personal setting. Consistency matters because strong memory is built across repeated cycles. Trouble starts when studying by mood without a structure for recall and review. The situation becomes clearer when the effort is real but the learning pattern is too random to last.",
           "whatToDo": [
             "Start by schedule retrieval sessions and space the return dates, then track recurring mistakes."
           ],
@@ -2852,7 +2852,7 @@
           "contexts": [
             "personal"
           ],
-          "scenario": "Jordan is dealing with treating durable learning as a system of retrieval, spacing, feedback, and review in a personal setting. Consistency matters because strong memory is built across repeated cycles. Trouble starts when studying by mood without a structure for recall and review. The situation becomes clearer when the effort is real but the learning pattern is too random to last.",
+          "scenario": "Jordan is dealing with treating durable learning as a system of retrieval, spacing, feedback, and reviews in a personal setting. Consistency matters because strong memory is built across repeated cycles. Trouble starts when studying by mood without a structure for recall and review. The situation becomes clearer when the effort is real but the learning pattern is too random to last.",
           "whatToDo": [
             "Start by space the return dates and track recurring mistakes, then review whether the system is building durable recall."
           ],
@@ -2864,7 +2864,7 @@
           "contexts": [
             "school"
           ],
-          "scenario": "Alex is dealing with treating durable learning as a system of retrieval, spacing, feedback, and review in a school setting. Consistency matters because strong memory is built across repeated cycles. Trouble starts when studying by mood without a structure for recall and review. The situation becomes clearer when the effort is real but the learning pattern is too random to last.",
+          "scenario": "Alex is dealing with treating durable learning as a system of retrieval, spacing, feedback, and reviews in a school setting. Consistency matters because strong memory is built across repeated cycles. Trouble starts when studying by mood without a structure for recall and review. The situation becomes clearer when the effort is real but the learning pattern is too random to last.",
           "whatToDo": [
             "Start by track recurring mistakes and review whether the system is building durable recall, then define the real constraint before reacting."
           ],
@@ -2876,7 +2876,7 @@
           "contexts": [
             "school"
           ],
-          "scenario": "Priya is dealing with treating durable learning as a system of retrieval, spacing, feedback, and review in a school setting. Consistency matters because strong memory is built across repeated cycles. Trouble starts when studying by mood without a structure for recall and review. The situation becomes clearer when the effort is real but the learning pattern is too random to last.",
+          "scenario": "Priya is dealing with treating durable learning as a system of retrieval, spacing, feedback, and reviews in a school setting. Consistency matters because strong memory is built across repeated cycles. Trouble starts when studying by mood without a structure for recall and review. The situation becomes clearer when the effort is real but the learning pattern is too random to last.",
           "whatToDo": [
             "Start by review whether the system is building durable recall and define the real constraint before reacting, then write down the assumption you are testing."
           ],
@@ -2888,7 +2888,7 @@
           "contexts": [
             "work"
           ],
-          "scenario": "Noah is dealing with treating durable learning as a system of retrieval, spacing, feedback, and review in a work setting. Consistency matters because strong memory is built across repeated cycles. Trouble starts when studying by mood without a structure for recall and review. The situation becomes clearer when the effort is real but the learning pattern is too random to last.",
+          "scenario": "Noah is dealing with treating durable learning as a system of retrieval, spacing, feedback, and reviews in a work setting. Consistency matters because strong memory is built across repeated cycles. Trouble starts when studying by mood without a structure for recall and review. The situation becomes clearer when the effort is real but the learning pattern is too random to last.",
           "whatToDo": [
             "Start by schedule retrieval sessions and space the return dates, then schedule retrieval sessions."
           ],
@@ -2900,7 +2900,7 @@
           "contexts": [
             "work"
           ],
-          "scenario": "Elena is dealing with treating durable learning as a system of retrieval, spacing, feedback, and review in a work setting. Consistency matters because strong memory is built across repeated cycles. Trouble starts when studying by mood without a structure for recall and review. The situation becomes clearer when the effort is real but the learning pattern is too random to last.",
+          "scenario": "Elena is dealing with treating durable learning as a system of retrieval, spacing, feedback, and reviews in a work setting. Consistency matters because strong memory is built across repeated cycles. Trouble starts when studying by mood without a structure for recall and review. The situation becomes clearer when the effort is real but the learning pattern is too random to last.",
           "whatToDo": [
             "Start by space the return dates and track recurring mistakes, then space the return dates."
           ],
@@ -2912,7 +2912,7 @@
         "questions": [
           {
             "questionId": "ch06-h-q01",
-            "prompt": "Which option best captures the main principle in \"Build a Learning System You Can Repeat\"?",
+            "prompt": "You are making a real-world decision tied to \"Build a Learning System You Can Repeat\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "The first reasonable answer is usually enough once pressure rises.",
@@ -2923,7 +2923,7 @@
           },
           {
             "questionId": "ch06-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Build a Learning System You Can Repeat\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Build a Learning System You Can Repeat\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "More urgency usually fixes the problem without changing the process.",
@@ -2934,7 +2934,7 @@
           },
           {
             "questionId": "ch06-h-q03",
-            "prompt": "Which option best explains why \"Build a Learning System You Can Repeat\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Build a Learning System You Can Repeat\"?",
             "choices": [
               "This matters because learning improves when methods are designed instead of improvised.",
               "More urgency usually fixes the problem without changing the process.",
@@ -2945,7 +2945,7 @@
           },
           {
             "questionId": "ch06-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Build a Learning System You Can Repeat\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Build a Learning System You Can Repeat\"?",
             "choices": [
               "Visible effort matters more than clear feedback.",
               "A common mistake is studying by mood without a structure for recall and review.",
@@ -2956,7 +2956,7 @@
           },
           {
             "questionId": "ch06-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Build a Learning System You Can Repeat\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Build a Learning System You Can Repeat\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -2967,7 +2967,7 @@
           },
           {
             "questionId": "ch06-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Build a Learning System You Can Repeat\"?",
+            "prompt": "You are making a real-world decision tied to \"Build a Learning System You Can Repeat\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is studying by mood without a structure for recall and review.",
@@ -2978,7 +2978,7 @@
           },
           {
             "questionId": "ch06-h-q07",
-            "prompt": "Which option connects \"Build a Learning System You Can Repeat\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Build a Learning System You Can Repeat\" into practice?",
             "choices": [
               "The idea gets stronger when people connect the immediate choice to incentives, feedback, and downstream effects.",
               "The right move is studying by mood without a structure for recall and review.",
@@ -2989,7 +2989,7 @@
           },
           {
             "questionId": "ch06-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Build a Learning System You Can Repeat\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Build a Learning System You Can Repeat\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Small defaults and routines often decide whether the principle survives pressure.",
@@ -3000,7 +3000,7 @@
           },
           {
             "questionId": "ch06-h-q09",
-            "prompt": "Which option best explains why \"Build a Learning System You Can Repeat\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Build a Learning System You Can Repeat\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -3011,7 +3011,7 @@
           },
           {
             "questionId": "ch06-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Build a Learning System You Can Repeat\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Build a Learning System You Can Repeat\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "Fast certainty matters more than checking assumptions.",
@@ -3024,7 +3024,7 @@
         "retryQuestions": [
           {
             "questionId": "ch06-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Build a Learning System You Can Repeat\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Build a Learning System You Can Repeat\"?",
             "choices": [
               "A deeper reading is that hidden assumptions and time horizons usually shape the result before the final decision is visible.",
               "Short term relief is a reliable guide to good judgment.",
@@ -3035,7 +3035,7 @@
           },
           {
             "questionId": "ch06-h-q02-retry-02",
-            "prompt": "Which option best connects \"Build a Learning System You Can Repeat\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Build a Learning System You Can Repeat\" into practice?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The long game improves when people treat evidence, reversibility, and tradeoffs as part of the same judgment process.",
@@ -3046,7 +3046,7 @@
           },
           {
             "questionId": "ch06-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Build a Learning System You Can Repeat\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Build a Learning System You Can Repeat\"?",
             "choices": [
               "The right move is studying by mood without a structure for recall and review.",
               "It is better to react first and interpret later.",
@@ -3057,7 +3057,7 @@
           },
           {
             "questionId": "ch06-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Build a Learning System You Can Repeat\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Build a Learning System You Can Repeat\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -3068,7 +3068,7 @@
           },
           {
             "questionId": "ch06-h-q05-retry-05",
-            "prompt": "Which option best applies \"Build a Learning System You Can Repeat\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Build a Learning System You Can Repeat\" into practice?",
             "choices": [
               "A practical starting move is to schedule retrieval sessions, space the return dates, and track recurring mistakes.",
               "Structure matters only after formal authority is secured.",

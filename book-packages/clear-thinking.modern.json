@@ -367,7 +367,7 @@
         "questions": [
           {
             "questionId": "ch01-h-q01",
-            "prompt": "Which option best captures the main principle in \"See the Default Reaction Before It Runs You\"?",
+            "prompt": "You are making a real-world decision tied to \"See the Default Reaction Before It Runs You\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "Recognizing the default reaction before it becomes the decision creates clearer judgment.",
@@ -378,7 +378,7 @@
           },
           {
             "questionId": "ch01-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"See the Default Reaction Before It Runs You\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"See the Default Reaction Before It Runs You\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "More urgency usually fixes the problem without changing the process.",
@@ -389,7 +389,7 @@
           },
           {
             "questionId": "ch01-h-q03",
-            "prompt": "Which option best explains why \"See the Default Reaction Before It Runs You\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"See the Default Reaction Before It Runs You\"?",
             "choices": [
               "More urgency usually fixes the problem without changing the process.",
               "Visible effort matters more than clear feedback.",
@@ -400,7 +400,7 @@
           },
           {
             "questionId": "ch01-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"See the Default Reaction Before It Runs You\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"See the Default Reaction Before It Runs You\"?",
             "choices": [
               "A common mistake is mistaking the first emotional urge for a sound conclusion.",
               "Visible effort matters more than clear feedback.",
@@ -411,7 +411,7 @@
           },
           {
             "questionId": "ch01-h-q05",
-            "prompt": "Which option points to a reliable signal for \"See the Default Reaction Before It Runs You\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"See the Default Reaction Before It Runs You\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The pattern becomes easier to see when the body is already moving toward a decision before the reasoning is clear.",
@@ -422,7 +422,7 @@
           },
           {
             "questionId": "ch01-h-q06",
-            "prompt": "Which option shows a useful response when applying \"See the Default Reaction Before It Runs You\"?",
+            "prompt": "You are making a real-world decision tied to \"See the Default Reaction Before It Runs You\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is mistaking the first emotional urge for a sound conclusion.",
@@ -433,7 +433,7 @@
           },
           {
             "questionId": "ch01-h-q07",
-            "prompt": "Which option connects \"See the Default Reaction Before It Runs You\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"See the Default Reaction Before It Runs You\" into practice?",
             "choices": [
               "The right move is mistaking the first emotional urge for a sound conclusion.",
               "It is better to react first and interpret later.",
@@ -444,7 +444,7 @@
           },
           {
             "questionId": "ch01-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"See the Default Reaction Before It Runs You\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"See the Default Reaction Before It Runs You\"?",
             "choices": [
               "Small defaults and routines often decide whether the principle survives pressure.",
               "It is better to react first and interpret later.",
@@ -455,7 +455,7 @@
           },
           {
             "questionId": "ch01-h-q09",
-            "prompt": "Which option best explains why \"See the Default Reaction Before It Runs You\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"See the Default Reaction Before It Runs You\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "For students and early career readers, the principle matters because early habits shape trust, options, and learning speed.",
@@ -466,7 +466,7 @@
           },
           {
             "questionId": "ch01-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"See the Default Reaction Before It Runs You\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"See the Default Reaction Before It Runs You\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "Fast certainty matters more than checking assumptions.",
@@ -479,7 +479,7 @@
         "retryQuestions": [
           {
             "questionId": "ch01-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"See the Default Reaction Before It Runs You\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"See the Default Reaction Before It Runs You\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -490,7 +490,7 @@
           },
           {
             "questionId": "ch01-h-q02-retry-02",
-            "prompt": "Which option best connects \"See the Default Reaction Before It Runs You\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"See the Default Reaction Before It Runs You\" into practice?",
             "choices": [
               "The long game improves when people treat evidence, reversibility, and tradeoffs as part of the same judgment process.",
               "The cleanest story is usually the most accurate one.",
@@ -501,7 +501,7 @@
           },
           {
             "questionId": "ch01-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"See the Default Reaction Before It Runs You\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"See the Default Reaction Before It Runs You\"?",
             "choices": [
               "The right move is mistaking the first emotional urge for a sound conclusion.",
               "There is also an ethical dimension because clearer thinking should reduce avoidable harm instead of rewarding cleverness for its own sake.",
@@ -512,7 +512,7 @@
           },
           {
             "questionId": "ch01-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"See the Default Reaction Before It Runs You\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"See the Default Reaction Before It Runs You\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -523,7 +523,7 @@
           },
           {
             "questionId": "ch01-h-q05-retry-05",
-            "prompt": "Which option best applies \"See the Default Reaction Before It Runs You\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"See the Default Reaction Before It Runs You\" into practice?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -876,7 +876,7 @@
         "questions": [
           {
             "questionId": "ch02-h-q01",
-            "prompt": "Which option best captures the main principle in \"Create Space Between Event and Response\"?",
+            "prompt": "You are making a real-world decision tied to \"Create Space Between Event and Response\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "The first reasonable answer is usually enough once pressure rises.",
@@ -887,7 +887,7 @@
           },
           {
             "questionId": "ch02-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Create Space Between Event and Response\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Create Space Between Event and Response\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "More urgency usually fixes the problem without changing the process.",
@@ -898,7 +898,7 @@
           },
           {
             "questionId": "ch02-h-q03",
-            "prompt": "Which option best explains why \"Create Space Between Event and Response\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Create Space Between Event and Response\"?",
             "choices": [
               "This matters because a short gap often prevents a long chain of avoidable damage.",
               "More urgency usually fixes the problem without changing the process.",
@@ -909,7 +909,7 @@
           },
           {
             "questionId": "ch02-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Create Space Between Event and Response\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Create Space Between Event and Response\"?",
             "choices": [
               "Visible effort matters more than clear feedback.",
               "A common mistake is reacting in the same emotional frame that the event created.",
@@ -920,7 +920,7 @@
           },
           {
             "questionId": "ch02-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Create Space Between Event and Response\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Create Space Between Event and Response\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -931,7 +931,7 @@
           },
           {
             "questionId": "ch02-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Create Space Between Event and Response\"?",
+            "prompt": "You are making a real-world decision tied to \"Create Space Between Event and Response\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is reacting in the same emotional frame that the event created.",
@@ -942,7 +942,7 @@
           },
           {
             "questionId": "ch02-h-q07",
-            "prompt": "Which option connects \"Create Space Between Event and Response\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Create Space Between Event and Response\" into practice?",
             "choices": [
               "The idea gets stronger when people connect the immediate choice to incentives, feedback, and downstream effects.",
               "The right move is reacting in the same emotional frame that the event created.",
@@ -953,7 +953,7 @@
           },
           {
             "questionId": "ch02-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Create Space Between Event and Response\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Create Space Between Event and Response\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Small defaults and routines often decide whether the principle survives pressure.",
@@ -964,7 +964,7 @@
           },
           {
             "questionId": "ch02-h-q09",
-            "prompt": "Which option best explains why \"Create Space Between Event and Response\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Create Space Between Event and Response\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -975,7 +975,7 @@
           },
           {
             "questionId": "ch02-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Create Space Between Event and Response\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Create Space Between Event and Response\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "Fast certainty matters more than checking assumptions.",
@@ -988,7 +988,7 @@
         "retryQuestions": [
           {
             "questionId": "ch02-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Create Space Between Event and Response\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Create Space Between Event and Response\"?",
             "choices": [
               "A deeper reading is that hidden assumptions and time horizons usually shape the result before the final decision is visible.",
               "Short term relief is a reliable guide to good judgment.",
@@ -999,7 +999,7 @@
           },
           {
             "questionId": "ch02-h-q02-retry-02",
-            "prompt": "Which option best connects \"Create Space Between Event and Response\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Create Space Between Event and Response\" into practice?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The long game improves when people treat evidence, reversibility, and tradeoffs as part of the same judgment process.",
@@ -1010,7 +1010,7 @@
           },
           {
             "questionId": "ch02-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Create Space Between Event and Response\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Create Space Between Event and Response\"?",
             "choices": [
               "The right move is reacting in the same emotional frame that the event created.",
               "It is better to react first and interpret later.",
@@ -1021,7 +1021,7 @@
           },
           {
             "questionId": "ch02-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Create Space Between Event and Response\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Create Space Between Event and Response\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -1032,7 +1032,7 @@
           },
           {
             "questionId": "ch02-h-q05-retry-05",
-            "prompt": "Which option best applies \"Create Space Between Event and Response\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Create Space Between Event and Response\" into practice?",
             "choices": [
               "A practical starting move is to take one deliberate pause, ask what matters most here, and separate the trigger from the outcome you want.",
               "Structure matters only after formal authority is secured.",
@@ -1385,7 +1385,7 @@
         "questions": [
           {
             "questionId": "ch03-h-q01",
-            "prompt": "Which option best captures the main principle in \"Use Guardrails Instead of Trusting Willpower\"?",
+            "prompt": "You are making a real-world decision tied to \"Use Guardrails Instead of Trusting Willpower\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "The first reasonable answer is usually enough once pressure rises.",
@@ -1396,7 +1396,7 @@
           },
           {
             "questionId": "ch03-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Use Guardrails Instead of Trusting Willpower\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Use Guardrails Instead of Trusting Willpower\" into practice?",
             "choices": [
               "Strong defaults beat heroic discipline when the environment turns noisy.",
               "The first reasonable answer is usually enough once pressure rises.",
@@ -1407,7 +1407,7 @@
           },
           {
             "questionId": "ch03-h-q03",
-            "prompt": "Which option best explains why \"Use Guardrails Instead of Trusting Willpower\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Use Guardrails Instead of Trusting Willpower\"?",
             "choices": [
               "More urgency usually fixes the problem without changing the process.",
               "This matters because people are more reliable when the right move is easier to repeat.",
@@ -1418,7 +1418,7 @@
           },
           {
             "questionId": "ch03-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Use Guardrails Instead of Trusting Willpower\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Use Guardrails Instead of Trusting Willpower\"?",
             "choices": [
               "Visible effort matters more than clear feedback.",
               "Short term relief is a reliable guide to good judgment.",
@@ -1429,7 +1429,7 @@
           },
           {
             "questionId": "ch03-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Use Guardrails Instead of Trusting Willpower\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Use Guardrails Instead of Trusting Willpower\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -1440,7 +1440,7 @@
           },
           {
             "questionId": "ch03-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Use Guardrails Instead of Trusting Willpower\"?",
+            "prompt": "You are making a real-world decision tied to \"Use Guardrails Instead of Trusting Willpower\". Which option is the strongest next move?",
             "choices": [
               "A practical starting move is to write the rule before you need it, remove one predictable source of noise, and define the condition that triggers the guardrail.",
               "The cleanest story is usually the most accurate one.",
@@ -1451,7 +1451,7 @@
           },
           {
             "questionId": "ch03-h-q07",
-            "prompt": "Which option connects \"Use Guardrails Instead of Trusting Willpower\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Use Guardrails Instead of Trusting Willpower\" into practice?",
             "choices": [
               "The right move is waiting to improvise when the pressure is already high.",
               "The idea gets stronger when people connect the immediate choice to incentives, feedback, and downstream effects.",
@@ -1462,7 +1462,7 @@
           },
           {
             "questionId": "ch03-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Use Guardrails Instead of Trusting Willpower\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Use Guardrails Instead of Trusting Willpower\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -1473,7 +1473,7 @@
           },
           {
             "questionId": "ch03-h-q09",
-            "prompt": "Which option best explains why \"Use Guardrails Instead of Trusting Willpower\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Use Guardrails Instead of Trusting Willpower\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -1484,7 +1484,7 @@
           },
           {
             "questionId": "ch03-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Use Guardrails Instead of Trusting Willpower\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Use Guardrails Instead of Trusting Willpower\"?",
             "choices": [
               "The real challenge is to stay deliberate without becoming rigid, reactive, or self defeating.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -1497,7 +1497,7 @@
         "retryQuestions": [
           {
             "questionId": "ch03-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Use Guardrails Instead of Trusting Willpower\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Use Guardrails Instead of Trusting Willpower\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "A deeper reading is that hidden assumptions and time horizons usually shape the result before the final decision is visible.",
@@ -1508,7 +1508,7 @@
           },
           {
             "questionId": "ch03-h-q02-retry-02",
-            "prompt": "Which option best connects \"Use Guardrails Instead of Trusting Willpower\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Use Guardrails Instead of Trusting Willpower\" into practice?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is waiting to improvise when the pressure is already high.",
@@ -1519,7 +1519,7 @@
           },
           {
             "questionId": "ch03-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Use Guardrails Instead of Trusting Willpower\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Use Guardrails Instead of Trusting Willpower\"?",
             "choices": [
               "The right move is waiting to improvise when the pressure is already high.",
               "It is better to react first and interpret later.",
@@ -1530,7 +1530,7 @@
           },
           {
             "questionId": "ch03-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Use Guardrails Instead of Trusting Willpower\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Use Guardrails Instead of Trusting Willpower\"?",
             "choices": [
               "The chapter is most useful when it strengthens calibration, restraint, and deliberate follow through at the same time.",
               "It is better to react first and interpret later.",
@@ -1541,7 +1541,7 @@
           },
           {
             "questionId": "ch03-h-q05-retry-05",
-            "prompt": "Which option best applies \"Use Guardrails Instead of Trusting Willpower\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Use Guardrails Instead of Trusting Willpower\" into practice?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "A practical starting move is to write the rule before you need it, remove one predictable source of noise, and define the condition that triggers the guardrail.",
@@ -1894,7 +1894,7 @@
         "questions": [
           {
             "questionId": "ch04-h-q01",
-            "prompt": "Which option best captures the main principle in \"Notice When Ego Starts Writing the Story\"?",
+            "prompt": "You are making a real-world decision tied to \"Notice When Ego Starts Writing the Story\". Which option is the strongest next move?",
             "choices": [
               "Spotting the self serving story before it disguises itself as reason creates clearer judgment.",
               "Fast certainty matters more than checking assumptions.",
@@ -1905,7 +1905,7 @@
           },
           {
             "questionId": "ch04-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Notice When Ego Starts Writing the Story\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Notice When Ego Starts Writing the Story\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "Clear thinking requires separating identity protection from evidence.",
@@ -1916,7 +1916,7 @@
           },
           {
             "questionId": "ch04-h-q03",
-            "prompt": "Which option best explains why \"Notice When Ego Starts Writing the Story\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Notice When Ego Starts Writing the Story\"?",
             "choices": [
               "More urgency usually fixes the problem without changing the process.",
               "Visible effort matters more than clear feedback.",
@@ -1927,7 +1927,7 @@
           },
           {
             "questionId": "ch04-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Notice When Ego Starts Writing the Story\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Notice When Ego Starts Writing the Story\"?",
             "choices": [
               "Visible effort matters more than clear feedback.",
               "Short term relief is a reliable guide to good judgment.",
@@ -1938,7 +1938,7 @@
           },
           {
             "questionId": "ch04-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Notice When Ego Starts Writing the Story\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Notice When Ego Starts Writing the Story\"?",
             "choices": [
               "The pattern becomes easier to see when the explanation keeps protecting status while ignoring the inconvenient fact.",
               "Short term relief is a reliable guide to good judgment.",
@@ -1949,7 +1949,7 @@
           },
           {
             "questionId": "ch04-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Notice When Ego Starts Writing the Story\"?",
+            "prompt": "You are making a real-world decision tied to \"Notice When Ego Starts Writing the Story\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "A practical starting move is to ask what your ego wants here, write the evidence against your preferred story, and separate dignity from being right.",
@@ -1960,7 +1960,7 @@
           },
           {
             "questionId": "ch04-h-q07",
-            "prompt": "Which option connects \"Notice When Ego Starts Writing the Story\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Notice When Ego Starts Writing the Story\" into practice?",
             "choices": [
               "The right move is treating personal pride like objective analysis.",
               "It is better to react first and interpret later.",
@@ -1971,7 +1971,7 @@
           },
           {
             "questionId": "ch04-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Notice When Ego Starts Writing the Story\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Notice When Ego Starts Writing the Story\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -1982,7 +1982,7 @@
           },
           {
             "questionId": "ch04-h-q09",
-            "prompt": "Which option best explains why \"Notice When Ego Starts Writing the Story\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Notice When Ego Starts Writing the Story\"?",
             "choices": [
               "For students and early career readers, the principle matters because early habits shape trust, options, and learning speed.",
               "Structure matters only after formal authority is secured.",
@@ -1993,7 +1993,7 @@
           },
           {
             "questionId": "ch04-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Notice When Ego Starts Writing the Story\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Notice When Ego Starts Writing the Story\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "The real challenge is to stay deliberate without becoming rigid, reactive, or self defeating.",
@@ -2006,7 +2006,7 @@
         "retryQuestions": [
           {
             "questionId": "ch04-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Notice When Ego Starts Writing the Story\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Notice When Ego Starts Writing the Story\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -2017,7 +2017,7 @@
           },
           {
             "questionId": "ch04-h-q02-retry-02",
-            "prompt": "Which option best connects \"Notice When Ego Starts Writing the Story\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Notice When Ego Starts Writing the Story\" into practice?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is treating personal pride like objective analysis.",
@@ -2028,7 +2028,7 @@
           },
           {
             "questionId": "ch04-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Notice When Ego Starts Writing the Story\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Notice When Ego Starts Writing the Story\"?",
             "choices": [
               "There is also an ethical dimension because clearer thinking should reduce avoidable harm instead of rewarding cleverness for its own sake.",
               "The right move is treating personal pride like objective analysis.",
@@ -2039,7 +2039,7 @@
           },
           {
             "questionId": "ch04-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Notice When Ego Starts Writing the Story\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Notice When Ego Starts Writing the Story\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "The chapter is most useful when it strengthens calibration, restraint, and deliberate follow through at the same time.",
@@ -2050,7 +2050,7 @@
           },
           {
             "questionId": "ch04-h-q05-retry-05",
-            "prompt": "Which option best applies \"Notice When Ego Starts Writing the Story\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Notice When Ego Starts Writing the Story\" into practice?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -2403,7 +2403,7 @@
         "questions": [
           {
             "questionId": "ch05-h-q01",
-            "prompt": "Which option best captures the main principle in \"Make Better Decisions in the Now\"?",
+            "prompt": "You are making a real-world decision tied to \"Make Better Decisions in the Now\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "Choosing the next move by current evidence rather than stale commitments creates clearer judgment.",
@@ -2414,7 +2414,7 @@
           },
           {
             "questionId": "ch05-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Make Better Decisions in the Now\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Make Better Decisions in the Now\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "More urgency usually fixes the problem without changing the process.",
@@ -2425,7 +2425,7 @@
           },
           {
             "questionId": "ch05-h-q03",
-            "prompt": "Which option best explains why \"Make Better Decisions in the Now\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Make Better Decisions in the Now\"?",
             "choices": [
               "More urgency usually fixes the problem without changing the process.",
               "Visible effort matters more than clear feedback.",
@@ -2436,7 +2436,7 @@
           },
           {
             "questionId": "ch05-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Make Better Decisions in the Now\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Make Better Decisions in the Now\"?",
             "choices": [
               "A common mistake is clinging to a path because too much has already been invested.",
               "Visible effort matters more than clear feedback.",
@@ -2447,7 +2447,7 @@
           },
           {
             "questionId": "ch05-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Make Better Decisions in the Now\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Make Better Decisions in the Now\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The pattern becomes easier to see when the plan is obviously weaker but the commitment keeps growing.",
@@ -2458,7 +2458,7 @@
           },
           {
             "questionId": "ch05-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Make Better Decisions in the Now\"?",
+            "prompt": "You are making a real-world decision tied to \"Make Better Decisions in the Now\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is clinging to a path because too much has already been invested.",
@@ -2469,7 +2469,7 @@
           },
           {
             "questionId": "ch05-h-q07",
-            "prompt": "Which option connects \"Make Better Decisions in the Now\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Make Better Decisions in the Now\" into practice?",
             "choices": [
               "The right move is clinging to a path because too much has already been invested.",
               "It is better to react first and interpret later.",
@@ -2480,7 +2480,7 @@
           },
           {
             "questionId": "ch05-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Make Better Decisions in the Now\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Make Better Decisions in the Now\"?",
             "choices": [
               "Small defaults and routines often decide whether the principle survives pressure.",
               "It is better to react first and interpret later.",
@@ -2491,7 +2491,7 @@
           },
           {
             "questionId": "ch05-h-q09",
-            "prompt": "Which option best explains why \"Make Better Decisions in the Now\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Make Better Decisions in the Now\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "For students and early career readers, the principle matters because early habits shape trust, options, and learning speed.",
@@ -2502,7 +2502,7 @@
           },
           {
             "questionId": "ch05-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Make Better Decisions in the Now\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Make Better Decisions in the Now\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "Fast certainty matters more than checking assumptions.",
@@ -2515,7 +2515,7 @@
         "retryQuestions": [
           {
             "questionId": "ch05-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Make Better Decisions in the Now\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Make Better Decisions in the Now\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -2526,7 +2526,7 @@
           },
           {
             "questionId": "ch05-h-q02-retry-02",
-            "prompt": "Which option best connects \"Make Better Decisions in the Now\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Make Better Decisions in the Now\" into practice?",
             "choices": [
               "The long game improves when people treat evidence, reversibility, and tradeoffs as part of the same judgment process.",
               "The cleanest story is usually the most accurate one.",
@@ -2537,7 +2537,7 @@
           },
           {
             "questionId": "ch05-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Make Better Decisions in the Now\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Make Better Decisions in the Now\"?",
             "choices": [
               "The right move is clinging to a path because too much has already been invested.",
               "There is also an ethical dimension because clearer thinking should reduce avoidable harm instead of rewarding cleverness for its own sake.",
@@ -2548,7 +2548,7 @@
           },
           {
             "questionId": "ch05-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Make Better Decisions in the Now\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Make Better Decisions in the Now\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -2559,7 +2559,7 @@
           },
           {
             "questionId": "ch05-h-q05-retry-05",
-            "prompt": "Which option best applies \"Make Better Decisions in the Now\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Make Better Decisions in the Now\" into practice?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -2844,7 +2844,7 @@
           "whatToDo": [
             "Start by repeat one clear process daily and protect time for reflection, then review the decision pattern weekly."
           ],
-          "whyItMatters": "This example matters because stable outcomes usually come from ordinary disciplined decisions. It turns the idea into a repeatable decision habit instead of a slogan."
+          "whyItMatters": "This example matters because stable outcomes usually come from ordinary disciplined decisions. It turns the idea into a repeatable decision habit instead of a slogan. This scenario is directly connected to choose consistency over intensity."
         },
         {
           "exampleId": "ch06-ex02",
@@ -2856,7 +2856,7 @@
           "whatToDo": [
             "Start by protect time for reflection and review the decision pattern weekly, then measure whether your process holds on low energy days."
           ],
-          "whyItMatters": "This example matters because stable outcomes usually come from ordinary disciplined decisions. It turns the idea into a repeatable decision habit instead of a slogan."
+          "whyItMatters": "This example matters because stable outcomes usually come from ordinary disciplined decisions. It turns the idea into a repeatable decision habit instead of a slogan. This scenario is directly connected to choose consistency over intensity."
         },
         {
           "exampleId": "ch06-ex03",
@@ -2868,7 +2868,7 @@
           "whatToDo": [
             "Start by review the decision pattern weekly and measure whether your process holds on low energy days, then define the real constraint before reacting."
           ],
-          "whyItMatters": "This example matters because stable outcomes usually come from ordinary disciplined decisions. It turns the idea into a repeatable decision habit instead of a slogan."
+          "whyItMatters": "This example matters because stable outcomes usually come from ordinary disciplined decisions. It turns the idea into a repeatable decision habit instead of a slogan. This scenario is directly connected to choose consistency over intensity."
         },
         {
           "exampleId": "ch06-ex04",
@@ -2880,7 +2880,7 @@
           "whatToDo": [
             "Start by measure whether your process holds on low energy days and define the real constraint before reacting, then write down the assumption you are testing."
           ],
-          "whyItMatters": "This example matters because stable outcomes usually come from ordinary disciplined decisions. It turns the idea into a repeatable decision habit instead of a slogan."
+          "whyItMatters": "This example matters because stable outcomes usually come from ordinary disciplined decisions. It turns the idea into a repeatable decision habit instead of a slogan. This scenario is directly connected to choose consistency over intensity."
         },
         {
           "exampleId": "ch06-ex05",
@@ -2892,7 +2892,7 @@
           "whatToDo": [
             "Start by repeat one clear process daily and protect time for reflection, then repeat one clear process daily."
           ],
-          "whyItMatters": "This example matters because stable outcomes usually come from ordinary disciplined decisions. It turns the idea into a repeatable decision habit instead of a slogan."
+          "whyItMatters": "This example matters because stable outcomes usually come from ordinary disciplined decisions. It turns the idea into a repeatable decision habit instead of a slogan. This scenario is directly connected to choose consistency over intensity."
         },
         {
           "exampleId": "ch06-ex06",
@@ -2904,7 +2904,7 @@
           "whatToDo": [
             "Start by protect time for reflection and review the decision pattern weekly, then protect time for reflection."
           ],
-          "whyItMatters": "This example matters because stable outcomes usually come from ordinary disciplined decisions. It turns the idea into a repeatable decision habit instead of a slogan."
+          "whyItMatters": "This example matters because stable outcomes usually come from ordinary disciplined decisions. It turns the idea into a repeatable decision habit instead of a slogan. This scenario is directly connected to choose consistency over intensity."
         }
       ],
       "quiz": {
@@ -2912,7 +2912,7 @@
         "questions": [
           {
             "questionId": "ch06-h-q01",
-            "prompt": "Which option best captures the main principle in \"Choose Consistency Over Intensity\"?",
+            "prompt": "You are making a real-world decision tied to \"Choose Consistency Over Intensity\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "The first reasonable answer is usually enough once pressure rises.",
@@ -2923,7 +2923,7 @@
           },
           {
             "questionId": "ch06-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Choose Consistency Over Intensity\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Choose Consistency Over Intensity\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "More urgency usually fixes the problem without changing the process.",
@@ -2934,7 +2934,7 @@
           },
           {
             "questionId": "ch06-h-q03",
-            "prompt": "Which option best explains why \"Choose Consistency Over Intensity\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Choose Consistency Over Intensity\"?",
             "choices": [
               "This matters because stable outcomes usually come from ordinary disciplined decisions.",
               "More urgency usually fixes the problem without changing the process.",
@@ -2945,7 +2945,7 @@
           },
           {
             "questionId": "ch06-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Choose Consistency Over Intensity\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Choose Consistency Over Intensity\"?",
             "choices": [
               "Visible effort matters more than clear feedback.",
               "A common mistake is chasing a powerful moment instead of building a repeatable process.",
@@ -2956,7 +2956,7 @@
           },
           {
             "questionId": "ch06-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Choose Consistency Over Intensity\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Choose Consistency Over Intensity\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -2967,7 +2967,7 @@
           },
           {
             "questionId": "ch06-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Choose Consistency Over Intensity\"?",
+            "prompt": "You are making a real-world decision tied to \"Choose Consistency Over Intensity\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is chasing a powerful moment instead of building a repeatable process.",
@@ -2978,7 +2978,7 @@
           },
           {
             "questionId": "ch06-h-q07",
-            "prompt": "Which option connects \"Choose Consistency Over Intensity\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Choose Consistency Over Intensity\" into practice?",
             "choices": [
               "The idea gets stronger when people connect the immediate choice to incentives, feedback, and downstream effects.",
               "The right move is chasing a powerful moment instead of building a repeatable process.",
@@ -2989,7 +2989,7 @@
           },
           {
             "questionId": "ch06-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Choose Consistency Over Intensity\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Choose Consistency Over Intensity\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Small defaults and routines often decide whether the principle survives pressure.",
@@ -3000,7 +3000,7 @@
           },
           {
             "questionId": "ch06-h-q09",
-            "prompt": "Which option best explains why \"Choose Consistency Over Intensity\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Choose Consistency Over Intensity\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -3011,7 +3011,7 @@
           },
           {
             "questionId": "ch06-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Choose Consistency Over Intensity\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Choose Consistency Over Intensity\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "Fast certainty matters more than checking assumptions.",
@@ -3024,7 +3024,7 @@
         "retryQuestions": [
           {
             "questionId": "ch06-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Choose Consistency Over Intensity\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Choose Consistency Over Intensity\"?",
             "choices": [
               "A deeper reading is that hidden assumptions and time horizons usually shape the result before the final decision is visible.",
               "Short term relief is a reliable guide to good judgment.",
@@ -3035,7 +3035,7 @@
           },
           {
             "questionId": "ch06-h-q02-retry-02",
-            "prompt": "Which option best connects \"Choose Consistency Over Intensity\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Choose Consistency Over Intensity\" into practice?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The long game improves when people treat evidence, reversibility, and tradeoffs as part of the same judgment process.",
@@ -3046,7 +3046,7 @@
           },
           {
             "questionId": "ch06-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Choose Consistency Over Intensity\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Choose Consistency Over Intensity\"?",
             "choices": [
               "The right move is chasing a powerful moment instead of building a repeatable process.",
               "It is better to react first and interpret later.",
@@ -3057,7 +3057,7 @@
           },
           {
             "questionId": "ch06-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Choose Consistency Over Intensity\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Choose Consistency Over Intensity\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -3068,7 +3068,7 @@
           },
           {
             "questionId": "ch06-h-q05-retry-05",
-            "prompt": "Which option best applies \"Choose Consistency Over Intensity\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Choose Consistency Over Intensity\" into practice?",
             "choices": [
               "A practical starting move is to repeat one clear process daily, protect time for reflection, and review the decision pattern weekly.",
               "Structure matters only after formal authority is secured.",

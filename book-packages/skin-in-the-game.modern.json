@@ -367,7 +367,7 @@
         "questions": [
           {
             "questionId": "ch01-h-q01",
-            "prompt": "Which option best captures the main principle in \"Symmetry Makes Judgment More Honest\"?",
+            "prompt": "You are making a real-world decision tied to \"Symmetry Makes Judgment More Honest\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "Treating symmetry of risk as a basic test of judgment and ethics creates clearer judgment.",
@@ -378,7 +378,7 @@
           },
           {
             "questionId": "ch01-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Symmetry Makes Judgment More Honest\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Symmetry Makes Judgment More Honest\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "More urgency usually fixes the problem without changing the process.",
@@ -389,7 +389,7 @@
           },
           {
             "questionId": "ch01-h-q03",
-            "prompt": "Which option best explains why \"Symmetry Makes Judgment More Honest\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Symmetry Makes Judgment More Honest\"?",
             "choices": [
               "More urgency usually fixes the problem without changing the process.",
               "Visible effort matters more than clear feedback.",
@@ -400,7 +400,7 @@
           },
           {
             "questionId": "ch01-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Symmetry Makes Judgment More Honest\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Symmetry Makes Judgment More Honest\"?",
             "choices": [
               "A common mistake is trusting experts who can be wrong without paying much for it.",
               "Visible effort matters more than clear feedback.",
@@ -411,7 +411,7 @@
           },
           {
             "questionId": "ch01-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Symmetry Makes Judgment More Honest\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Symmetry Makes Judgment More Honest\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The pattern becomes easier to see when the loudest advice comes from someone with little personal downside.",
@@ -422,7 +422,7 @@
           },
           {
             "questionId": "ch01-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Symmetry Makes Judgment More Honest\"?",
+            "prompt": "You are making a real-world decision tied to \"Symmetry Makes Judgment More Honest\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is trusting experts who can be wrong without paying much for it.",
@@ -433,7 +433,7 @@
           },
           {
             "questionId": "ch01-h-q07",
-            "prompt": "Which option connects \"Symmetry Makes Judgment More Honest\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Symmetry Makes Judgment More Honest\" into practice?",
             "choices": [
               "The right move is trusting experts who can be wrong without paying much for it.",
               "It is better to react first and interpret later.",
@@ -444,7 +444,7 @@
           },
           {
             "questionId": "ch01-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Symmetry Makes Judgment More Honest\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Symmetry Makes Judgment More Honest\"?",
             "choices": [
               "Small defaults and routines often decide whether the principle survives pressure.",
               "It is better to react first and interpret later.",
@@ -455,7 +455,7 @@
           },
           {
             "questionId": "ch01-h-q09",
-            "prompt": "Which option best explains why \"Symmetry Makes Judgment More Honest\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Symmetry Makes Judgment More Honest\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "For students and early career readers, the principle matters because early habits shape trust, options, and learning speed.",
@@ -466,7 +466,7 @@
           },
           {
             "questionId": "ch01-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Symmetry Makes Judgment More Honest\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Symmetry Makes Judgment More Honest\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "Fast certainty matters more than checking assumptions.",
@@ -479,7 +479,7 @@
         "retryQuestions": [
           {
             "questionId": "ch01-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Symmetry Makes Judgment More Honest\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Symmetry Makes Judgment More Honest\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -490,7 +490,7 @@
           },
           {
             "questionId": "ch01-h-q02-retry-02",
-            "prompt": "Which option best connects \"Symmetry Makes Judgment More Honest\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Symmetry Makes Judgment More Honest\" into practice?",
             "choices": [
               "The long game improves when people treat evidence, reversibility, and tradeoffs as part of the same judgment process.",
               "The cleanest story is usually the most accurate one.",
@@ -501,7 +501,7 @@
           },
           {
             "questionId": "ch01-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Symmetry Makes Judgment More Honest\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Symmetry Makes Judgment More Honest\"?",
             "choices": [
               "The right move is trusting experts who can be wrong without paying much for it.",
               "There is also an ethical dimension because clearer thinking should reduce avoidable harm instead of rewarding cleverness for its own sake.",
@@ -512,7 +512,7 @@
           },
           {
             "questionId": "ch01-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Symmetry Makes Judgment More Honest\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Symmetry Makes Judgment More Honest\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -523,7 +523,7 @@
           },
           {
             "questionId": "ch01-h-q05-retry-05",
-            "prompt": "Which option best applies \"Symmetry Makes Judgment More Honest\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Symmetry Makes Judgment More Honest\" into practice?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -876,7 +876,7 @@
         "questions": [
           {
             "questionId": "ch02-h-q01",
-            "prompt": "Which option best captures the main principle in \"Hidden Downside Is a Dangerous Kind of Expertise\"?",
+            "prompt": "You are making a real-world decision tied to \"Hidden Downside Is a Dangerous Kind of Expertise\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "The first reasonable answer is usually enough once pressure rises.",
@@ -887,7 +887,7 @@
           },
           {
             "questionId": "ch02-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Hidden Downside Is a Dangerous Kind of Expertise\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Hidden Downside Is a Dangerous Kind of Expertise\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "More urgency usually fixes the problem without changing the process.",
@@ -898,7 +898,7 @@
           },
           {
             "questionId": "ch02-h-q03",
-            "prompt": "Which option best explains why \"Hidden Downside Is a Dangerous Kind of Expertise\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Hidden Downside Is a Dangerous Kind of Expertise\"?",
             "choices": [
               "This matters because clarity improves when invisible downside is made visible early.",
               "More urgency usually fixes the problem without changing the process.",
@@ -909,7 +909,7 @@
           },
           {
             "questionId": "ch02-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Hidden Downside Is a Dangerous Kind of Expertise\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Hidden Downside Is a Dangerous Kind of Expertise\"?",
             "choices": [
               "Visible effort matters more than clear feedback.",
               "A common mistake is judging a system by smooth short term performance alone.",
@@ -920,7 +920,7 @@
           },
           {
             "questionId": "ch02-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Hidden Downside Is a Dangerous Kind of Expertise\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Hidden Downside Is a Dangerous Kind of Expertise\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -931,7 +931,7 @@
           },
           {
             "questionId": "ch02-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Hidden Downside Is a Dangerous Kind of Expertise\"?",
+            "prompt": "You are making a real-world decision tied to \"Hidden Downside Is a Dangerous Kind of Expertise\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is judging a system by smooth short term performance alone.",
@@ -942,7 +942,7 @@
           },
           {
             "questionId": "ch02-h-q07",
-            "prompt": "Which option connects \"Hidden Downside Is a Dangerous Kind of Expertise\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Hidden Downside Is a Dangerous Kind of Expertise\" into practice?",
             "choices": [
               "The idea gets stronger when people connect the immediate choice to incentives, feedback, and downstream effects.",
               "The right move is judging a system by smooth short term performance alone.",
@@ -953,7 +953,7 @@
           },
           {
             "questionId": "ch02-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Hidden Downside Is a Dangerous Kind of Expertise\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Hidden Downside Is a Dangerous Kind of Expertise\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Small defaults and routines often decide whether the principle survives pressure.",
@@ -964,7 +964,7 @@
           },
           {
             "questionId": "ch02-h-q09",
-            "prompt": "Which option best explains why \"Hidden Downside Is a Dangerous Kind of Expertise\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Hidden Downside Is a Dangerous Kind of Expertise\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -975,7 +975,7 @@
           },
           {
             "questionId": "ch02-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Hidden Downside Is a Dangerous Kind of Expertise\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Hidden Downside Is a Dangerous Kind of Expertise\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "Fast certainty matters more than checking assumptions.",
@@ -988,7 +988,7 @@
         "retryQuestions": [
           {
             "questionId": "ch02-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Hidden Downside Is a Dangerous Kind of Expertise\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Hidden Downside Is a Dangerous Kind of Expertise\"?",
             "choices": [
               "A deeper reading is that hidden assumptions and time horizons usually shape the result before the final decision is visible.",
               "Short term relief is a reliable guide to good judgment.",
@@ -999,7 +999,7 @@
           },
           {
             "questionId": "ch02-h-q02-retry-02",
-            "prompt": "Which option best connects \"Hidden Downside Is a Dangerous Kind of Expertise\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Hidden Downside Is a Dangerous Kind of Expertise\" into practice?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The long game improves when people treat evidence, reversibility, and tradeoffs as part of the same judgment process.",
@@ -1010,7 +1010,7 @@
           },
           {
             "questionId": "ch02-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Hidden Downside Is a Dangerous Kind of Expertise\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Hidden Downside Is a Dangerous Kind of Expertise\"?",
             "choices": [
               "The right move is judging a system by smooth short term performance alone.",
               "It is better to react first and interpret later.",
@@ -1021,7 +1021,7 @@
           },
           {
             "questionId": "ch02-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Hidden Downside Is a Dangerous Kind of Expertise\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Hidden Downside Is a Dangerous Kind of Expertise\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -1032,7 +1032,7 @@
           },
           {
             "questionId": "ch02-h-q05-retry-05",
-            "prompt": "Which option best applies \"Hidden Downside Is a Dangerous Kind of Expertise\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Hidden Downside Is a Dangerous Kind of Expertise\" into practice?",
             "choices": [
               "A practical starting move is to trace where the downside lands, ask who pays when things go wrong, and review long term rather than only near term performance.",
               "Structure matters only after formal authority is secured.",
@@ -1385,7 +1385,7 @@
         "questions": [
           {
             "questionId": "ch03-h-q01",
-            "prompt": "Which option best captures the main principle in \"Local Knowledge Beats Abstract Distance in Many Domains\"?",
+            "prompt": "You are making a real-world decision tied to \"Local Knowledge Beats Abstract Distance in Many Domains\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "The first reasonable answer is usually enough once pressure rises.",
@@ -1396,7 +1396,7 @@
           },
           {
             "questionId": "ch03-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Local Knowledge Beats Abstract Distance in Many Domains\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Local Knowledge Beats Abstract Distance in Many Domains\" into practice?",
             "choices": [
               "People closer to the consequences often see constraints better than distant planners.",
               "The first reasonable answer is usually enough once pressure rises.",
@@ -1407,7 +1407,7 @@
           },
           {
             "questionId": "ch03-h-q03",
-            "prompt": "Which option best explains why \"Local Knowledge Beats Abstract Distance in Many Domains\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Local Knowledge Beats Abstract Distance in Many Domains\"?",
             "choices": [
               "More urgency usually fixes the problem without changing the process.",
               "This matters because judgment improves when the person exposed to the reality has more voice in the decision.",
@@ -1418,7 +1418,7 @@
           },
           {
             "questionId": "ch03-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Local Knowledge Beats Abstract Distance in Many Domains\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Local Knowledge Beats Abstract Distance in Many Domains\"?",
             "choices": [
               "Visible effort matters more than clear feedback.",
               "Short term relief is a reliable guide to good judgment.",
@@ -1429,7 +1429,7 @@
           },
           {
             "questionId": "ch03-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Local Knowledge Beats Abstract Distance in Many Domains\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Local Knowledge Beats Abstract Distance in Many Domains\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -1440,7 +1440,7 @@
           },
           {
             "questionId": "ch03-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Local Knowledge Beats Abstract Distance in Many Domains\"?",
+            "prompt": "You are making a real-world decision tied to \"Local Knowledge Beats Abstract Distance in Many Domains\". Which option is the strongest next move?",
             "choices": [
               "A practical starting move is to ask who is closest to the consequence, listen to context rich knowledge, and compare abstraction with ground truth.",
               "The cleanest story is usually the most accurate one.",
@@ -1451,7 +1451,7 @@
           },
           {
             "questionId": "ch03-h-q07",
-            "prompt": "Which option connects \"Local Knowledge Beats Abstract Distance in Many Domains\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Local Knowledge Beats Abstract Distance in Many Domains\" into practice?",
             "choices": [
               "The right move is treating abstraction as superior to lived knowledge in every setting.",
               "The idea gets stronger when people connect the immediate choice to incentives, feedback, and downstream effects.",
@@ -1462,7 +1462,7 @@
           },
           {
             "questionId": "ch03-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Local Knowledge Beats Abstract Distance in Many Domains\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Local Knowledge Beats Abstract Distance in Many Domains\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -1473,7 +1473,7 @@
           },
           {
             "questionId": "ch03-h-q09",
-            "prompt": "Which option best explains why \"Local Knowledge Beats Abstract Distance in Many Domains\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Local Knowledge Beats Abstract Distance in Many Domains\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -1484,7 +1484,7 @@
           },
           {
             "questionId": "ch03-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Local Knowledge Beats Abstract Distance in Many Domains\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Local Knowledge Beats Abstract Distance in Many Domains\"?",
             "choices": [
               "The real challenge is to stay deliberate without becoming rigid, reactive, or self defeating.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -1497,7 +1497,7 @@
         "retryQuestions": [
           {
             "questionId": "ch03-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Local Knowledge Beats Abstract Distance in Many Domains\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Local Knowledge Beats Abstract Distance in Many Domains\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "A deeper reading is that hidden assumptions and time horizons usually shape the result before the final decision is visible.",
@@ -1508,7 +1508,7 @@
           },
           {
             "questionId": "ch03-h-q02-retry-02",
-            "prompt": "Which option best connects \"Local Knowledge Beats Abstract Distance in Many Domains\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Local Knowledge Beats Abstract Distance in Many Domains\" into practice?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is treating abstraction as superior to lived knowledge in every setting.",
@@ -1519,7 +1519,7 @@
           },
           {
             "questionId": "ch03-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Local Knowledge Beats Abstract Distance in Many Domains\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Local Knowledge Beats Abstract Distance in Many Domains\"?",
             "choices": [
               "The right move is treating abstraction as superior to lived knowledge in every setting.",
               "It is better to react first and interpret later.",
@@ -1530,7 +1530,7 @@
           },
           {
             "questionId": "ch03-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Local Knowledge Beats Abstract Distance in Many Domains\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Local Knowledge Beats Abstract Distance in Many Domains\"?",
             "choices": [
               "The chapter is most useful when it strengthens calibration, restraint, and deliberate follow through at the same time.",
               "It is better to react first and interpret later.",
@@ -1541,7 +1541,7 @@
           },
           {
             "questionId": "ch03-h-q05-retry-05",
-            "prompt": "Which option best applies \"Local Knowledge Beats Abstract Distance in Many Domains\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Local Knowledge Beats Abstract Distance in Many Domains\" into practice?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "A practical starting move is to ask who is closest to the consequence, listen to context rich knowledge, and compare abstraction with ground truth.",
@@ -1894,7 +1894,7 @@
         "questions": [
           {
             "questionId": "ch04-h-q01",
-            "prompt": "Which option best captures the main principle in \"Small Determined Groups Can Shape Big Outcomes\"?",
+            "prompt": "You are making a real-world decision tied to \"Small Determined Groups Can Shape Big Outcomes\". Which option is the strongest next move?",
             "choices": [
               "Seeing how small determined minorities can shape norms and systems creates clearer judgment.",
               "Fast certainty matters more than checking assumptions.",
@@ -1905,7 +1905,7 @@
           },
           {
             "questionId": "ch04-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Small Determined Groups Can Shape Big Outcomes\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Small Determined Groups Can Shape Big Outcomes\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "Collective outcomes can change through asymmetry rather than through average opinion.",
@@ -1916,7 +1916,7 @@
           },
           {
             "questionId": "ch04-h-q03",
-            "prompt": "Which option best explains why \"Small Determined Groups Can Shape Big Outcomes\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Small Determined Groups Can Shape Big Outcomes\"?",
             "choices": [
               "More urgency usually fixes the problem without changing the process.",
               "Visible effort matters more than clear feedback.",
@@ -1927,7 +1927,7 @@
           },
           {
             "questionId": "ch04-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Small Determined Groups Can Shape Big Outcomes\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Small Determined Groups Can Shape Big Outcomes\"?",
             "choices": [
               "Visible effort matters more than clear feedback.",
               "Short term relief is a reliable guide to good judgment.",
@@ -1938,7 +1938,7 @@
           },
           {
             "questionId": "ch04-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Small Determined Groups Can Shape Big Outcomes\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Small Determined Groups Can Shape Big Outcomes\"?",
             "choices": [
               "The pattern becomes easier to see when the final norm reflects the group that could not compromise rather than the average view.",
               "Short term relief is a reliable guide to good judgment.",
@@ -1949,7 +1949,7 @@
           },
           {
             "questionId": "ch04-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Small Determined Groups Can Shape Big Outcomes\"?",
+            "prompt": "You are making a real-world decision tied to \"Small Determined Groups Can Shape Big Outcomes\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "A practical starting move is to ask who cannot bend, map the asymmetry in commitment, and watch how systems respond to inflexibility.",
@@ -1960,7 +1960,7 @@
           },
           {
             "questionId": "ch04-h-q07",
-            "prompt": "Which option connects \"Small Determined Groups Can Shape Big Outcomes\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Small Determined Groups Can Shape Big Outcomes\" into practice?",
             "choices": [
               "The right move is assuming majority preference always controls the outcome.",
               "It is better to react first and interpret later.",
@@ -1971,7 +1971,7 @@
           },
           {
             "questionId": "ch04-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Small Determined Groups Can Shape Big Outcomes\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Small Determined Groups Can Shape Big Outcomes\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -1982,7 +1982,7 @@
           },
           {
             "questionId": "ch04-h-q09",
-            "prompt": "Which option best explains why \"Small Determined Groups Can Shape Big Outcomes\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Small Determined Groups Can Shape Big Outcomes\"?",
             "choices": [
               "For students and early career readers, the principle matters because early habits shape trust, options, and learning speed.",
               "Structure matters only after formal authority is secured.",
@@ -1993,7 +1993,7 @@
           },
           {
             "questionId": "ch04-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Small Determined Groups Can Shape Big Outcomes\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Small Determined Groups Can Shape Big Outcomes\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "The real challenge is to stay deliberate without becoming rigid, reactive, or self defeating.",
@@ -2006,7 +2006,7 @@
         "retryQuestions": [
           {
             "questionId": "ch04-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Small Determined Groups Can Shape Big Outcomes\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Small Determined Groups Can Shape Big Outcomes\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -2017,7 +2017,7 @@
           },
           {
             "questionId": "ch04-h-q02-retry-02",
-            "prompt": "Which option best connects \"Small Determined Groups Can Shape Big Outcomes\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Small Determined Groups Can Shape Big Outcomes\" into practice?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is assuming majority preference always controls the outcome.",
@@ -2028,7 +2028,7 @@
           },
           {
             "questionId": "ch04-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Small Determined Groups Can Shape Big Outcomes\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Small Determined Groups Can Shape Big Outcomes\"?",
             "choices": [
               "There is also an ethical dimension because clearer thinking should reduce avoidable harm instead of rewarding cleverness for its own sake.",
               "The right move is assuming majority preference always controls the outcome.",
@@ -2039,7 +2039,7 @@
           },
           {
             "questionId": "ch04-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Small Determined Groups Can Shape Big Outcomes\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Small Determined Groups Can Shape Big Outcomes\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "The chapter is most useful when it strengthens calibration, restraint, and deliberate follow through at the same time.",
@@ -2050,7 +2050,7 @@
           },
           {
             "questionId": "ch04-h-q05-retry-05",
-            "prompt": "Which option best applies \"Small Determined Groups Can Shape Big Outcomes\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Small Determined Groups Can Shape Big Outcomes\" into practice?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -2403,7 +2403,7 @@
         "questions": [
           {
             "questionId": "ch05-h-q01",
-            "prompt": "Which option best captures the main principle in \"Expertise Without Incentive Alignment Is Fragile\"?",
+            "prompt": "You are making a real-world decision tied to \"Expertise Without Incentive Alignment Is Fragile\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "Judging expertise through incentives and exposure rather than credentials alone creates clearer judgment.",
@@ -2414,7 +2414,7 @@
           },
           {
             "questionId": "ch05-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Expertise Without Incentive Alignment Is Fragile\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Expertise Without Incentive Alignment Is Fragile\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "More urgency usually fixes the problem without changing the process.",
@@ -2425,7 +2425,7 @@
           },
           {
             "questionId": "ch05-h-q03",
-            "prompt": "Which option best explains why \"Expertise Without Incentive Alignment Is Fragile\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Expertise Without Incentive Alignment Is Fragile\"?",
             "choices": [
               "More urgency usually fixes the problem without changing the process.",
               "Visible effort matters more than clear feedback.",
@@ -2436,7 +2436,7 @@
           },
           {
             "questionId": "ch05-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Expertise Without Incentive Alignment Is Fragile\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Expertise Without Incentive Alignment Is Fragile\"?",
             "choices": [
               "A common mistake is treating credentials as enough proof of trustworthiness.",
               "Visible effort matters more than clear feedback.",
@@ -2447,7 +2447,7 @@
           },
           {
             "questionId": "ch05-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Expertise Without Incentive Alignment Is Fragile\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Expertise Without Incentive Alignment Is Fragile\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The pattern becomes easier to see when the expert's status is high but exposure to the result is low.",
@@ -2458,7 +2458,7 @@
           },
           {
             "questionId": "ch05-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Expertise Without Incentive Alignment Is Fragile\"?",
+            "prompt": "You are making a real-world decision tied to \"Expertise Without Incentive Alignment Is Fragile\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is treating credentials as enough proof of trustworthiness.",
@@ -2469,7 +2469,7 @@
           },
           {
             "questionId": "ch05-h-q07",
-            "prompt": "Which option connects \"Expertise Without Incentive Alignment Is Fragile\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Expertise Without Incentive Alignment Is Fragile\" into practice?",
             "choices": [
               "The right move is treating credentials as enough proof of trustworthiness.",
               "It is better to react first and interpret later.",
@@ -2480,7 +2480,7 @@
           },
           {
             "questionId": "ch05-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Expertise Without Incentive Alignment Is Fragile\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Expertise Without Incentive Alignment Is Fragile\"?",
             "choices": [
               "Small defaults and routines often decide whether the principle survives pressure.",
               "It is better to react first and interpret later.",
@@ -2491,7 +2491,7 @@
           },
           {
             "questionId": "ch05-h-q09",
-            "prompt": "Which option best explains why \"Expertise Without Incentive Alignment Is Fragile\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Expertise Without Incentive Alignment Is Fragile\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "For students and early career readers, the principle matters because early habits shape trust, options, and learning speed.",
@@ -2502,7 +2502,7 @@
           },
           {
             "questionId": "ch05-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Expertise Without Incentive Alignment Is Fragile\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Expertise Without Incentive Alignment Is Fragile\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "Fast certainty matters more than checking assumptions.",
@@ -2515,7 +2515,7 @@
         "retryQuestions": [
           {
             "questionId": "ch05-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Expertise Without Incentive Alignment Is Fragile\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Expertise Without Incentive Alignment Is Fragile\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -2526,7 +2526,7 @@
           },
           {
             "questionId": "ch05-h-q02-retry-02",
-            "prompt": "Which option best connects \"Expertise Without Incentive Alignment Is Fragile\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Expertise Without Incentive Alignment Is Fragile\" into practice?",
             "choices": [
               "The long game improves when people treat evidence, reversibility, and tradeoffs as part of the same judgment process.",
               "The cleanest story is usually the most accurate one.",
@@ -2537,7 +2537,7 @@
           },
           {
             "questionId": "ch05-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Expertise Without Incentive Alignment Is Fragile\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Expertise Without Incentive Alignment Is Fragile\"?",
             "choices": [
               "The right move is treating credentials as enough proof of trustworthiness.",
               "There is also an ethical dimension because clearer thinking should reduce avoidable harm instead of rewarding cleverness for its own sake.",
@@ -2548,7 +2548,7 @@
           },
           {
             "questionId": "ch05-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Expertise Without Incentive Alignment Is Fragile\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Expertise Without Incentive Alignment Is Fragile\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -2559,7 +2559,7 @@
           },
           {
             "questionId": "ch05-h-q05-retry-05",
-            "prompt": "Which option best applies \"Expertise Without Incentive Alignment Is Fragile\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Expertise Without Incentive Alignment Is Fragile\" into practice?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -2912,7 +2912,7 @@
         "questions": [
           {
             "questionId": "ch06-h-q01",
-            "prompt": "Which option best captures the main principle in \"Ethics Begins With Exposure to Consequences\"?",
+            "prompt": "You are making a real-world decision tied to \"Ethics Begins With Exposure to Consequences\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "The first reasonable answer is usually enough once pressure rises.",
@@ -2923,7 +2923,7 @@
           },
           {
             "questionId": "ch06-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Ethics Begins With Exposure to Consequences\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Ethics Begins With Exposure to Consequences\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "More urgency usually fixes the problem without changing the process.",
@@ -2934,7 +2934,7 @@
           },
           {
             "questionId": "ch06-h-q03",
-            "prompt": "Which option best explains why \"Ethics Begins With Exposure to Consequences\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Ethics Begins With Exposure to Consequences\"?",
             "choices": [
               "This matters because moral language rings hollow when burden is shifted downward.",
               "More urgency usually fixes the problem without changing the process.",
@@ -2945,7 +2945,7 @@
           },
           {
             "questionId": "ch06-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Ethics Begins With Exposure to Consequences\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Ethics Begins With Exposure to Consequences\"?",
             "choices": [
               "Visible effort matters more than clear feedback.",
               "A common mistake is praising sacrifice or risk that somebody else is forced to absorb.",
@@ -2956,7 +2956,7 @@
           },
           {
             "questionId": "ch06-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Ethics Begins With Exposure to Consequences\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Ethics Begins With Exposure to Consequences\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -2967,7 +2967,7 @@
           },
           {
             "questionId": "ch06-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Ethics Begins With Exposure to Consequences\"?",
+            "prompt": "You are making a real-world decision tied to \"Ethics Begins With Exposure to Consequences\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is praising sacrifice or risk that somebody else is forced to absorb.",
@@ -2978,7 +2978,7 @@
           },
           {
             "questionId": "ch06-h-q07",
-            "prompt": "Which option connects \"Ethics Begins With Exposure to Consequences\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Ethics Begins With Exposure to Consequences\" into practice?",
             "choices": [
               "The idea gets stronger when people connect the immediate choice to incentives, feedback, and downstream effects.",
               "The right move is praising sacrifice or risk that somebody else is forced to absorb.",
@@ -2989,7 +2989,7 @@
           },
           {
             "questionId": "ch06-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Ethics Begins With Exposure to Consequences\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Ethics Begins With Exposure to Consequences\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Small defaults and routines often decide whether the principle survives pressure.",
@@ -3000,7 +3000,7 @@
           },
           {
             "questionId": "ch06-h-q09",
-            "prompt": "Which option best explains why \"Ethics Begins With Exposure to Consequences\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Ethics Begins With Exposure to Consequences\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -3011,7 +3011,7 @@
           },
           {
             "questionId": "ch06-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Ethics Begins With Exposure to Consequences\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Ethics Begins With Exposure to Consequences\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "Fast certainty matters more than checking assumptions.",
@@ -3024,7 +3024,7 @@
         "retryQuestions": [
           {
             "questionId": "ch06-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Ethics Begins With Exposure to Consequences\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Ethics Begins With Exposure to Consequences\"?",
             "choices": [
               "A deeper reading is that hidden assumptions and time horizons usually shape the result before the final decision is visible.",
               "Short term relief is a reliable guide to good judgment.",
@@ -3035,7 +3035,7 @@
           },
           {
             "questionId": "ch06-h-q02-retry-02",
-            "prompt": "Which option best connects \"Ethics Begins With Exposure to Consequences\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Ethics Begins With Exposure to Consequences\" into practice?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The long game improves when people treat evidence, reversibility, and tradeoffs as part of the same judgment process.",
@@ -3046,7 +3046,7 @@
           },
           {
             "questionId": "ch06-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Ethics Begins With Exposure to Consequences\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Ethics Begins With Exposure to Consequences\"?",
             "choices": [
               "The right move is praising sacrifice or risk that somebody else is forced to absorb.",
               "It is better to react first and interpret later.",
@@ -3057,7 +3057,7 @@
           },
           {
             "questionId": "ch06-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Ethics Begins With Exposure to Consequences\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Ethics Begins With Exposure to Consequences\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -3068,7 +3068,7 @@
           },
           {
             "questionId": "ch06-h-q05-retry-05",
-            "prompt": "Which option best applies \"Ethics Begins With Exposure to Consequences\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Ethics Begins With Exposure to Consequences\" into practice?",
             "choices": [
               "A practical starting move is to ask who pays for the policy, judge ethics through shared consequence, and prefer rules that bind the rule maker too.",
               "Structure matters only after formal authority is secured.",

@@ -1,13 +1,48 @@
-<svg width="1200" height="1800" viewBox="0 0 1200 1800" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1200" height="1800" fill="#EFE6D8"/>
-  <rect width="1200" height="260" fill="#8A5A2B"/>
-  <rect y="1460" width="1200" height="340" fill="#202E37"/>
-  <rect x="120" y="340" width="960" height="980" rx="24" fill="#FBF6EE" stroke="#D0BEA7" stroke-width="10"/>
-  <path d="M600 560C684 560 752 628 752 712C752 769 721 819 675 845C722 863 760 908 760 968C760 1051 692 1119 609 1119H591C508 1119 440 1051 440 968C440 908 478 863 525 845C479 819 448 769 448 712C448 628 516 560 600 560Z" fill="#8A5A2B"/>
-  <rect x="563" y="618" width="74" height="360" rx="37" fill="#202E37"/>
-  <circle cx="520" cy="712" r="34" fill="#D88A40"/>
-  <circle cx="680" cy="712" r="34" fill="#D88A40"/>
-  <text x="600" y="145" text-anchor="middle" fill="#FBF6EE" font-family="Georgia, serif" font-size="66" letter-spacing="2">NASSIM NICHOLAS TALEB</text>
-  <text x="600" y="1240" text-anchor="middle" fill="#202E37" font-family="Georgia, serif" font-size="132" font-weight="700">ANTIFRAGILE</text>
-  <text x="600" y="1568" text-anchor="middle" fill="#FBF6EE" font-family="Arial, sans-serif" font-size="31" letter-spacing="4">OPTIONALITY  RISK  EXPOSURE  VARIABILITY</text>
+<svg width="1200" height="1800" viewBox="0 0 1200 1800" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Antifragile cover</title>
+  <desc id="desc">Auto-generated themed cover for Antifragile by Nassim Nicholas Taleb.</desc>
+  <defs>
+    <linearGradient id="g1832546767" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2A3F5B"/>
+      <stop offset="100%" stop-color="#3F5F86"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="1800" fill="url(#g1832546767)"/>
+
+  <rect x="0" y="300" width="1200" height="1180" fill="#93B0CE" opacity="0.12"/>
+  <rect x="140" y="360" width="920" height="1050" rx="48" fill="#FDF8EE" opacity="0.22"/>
+  <path d="M0 560 Q300 421 600 560 T1200 560" stroke="#FDF8EE" stroke-width="22" opacity="0.24"/>
+  <path d="M0 1180 Q300 1041 600 1180 T1200 1180" stroke="#E4A150" stroke-width="16" opacity="0.22"/>
+  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F3ECE0" stroke="#C8B7A1" stroke-width="10"/>
+
+  <g transform="translate(383 556)">
+    <rect x="20" y="36" width="364" height="324" rx="26" fill="#FDF8EE" stroke="#93B0CE" stroke-width="8"/>
+    <g stroke="#E4A150" stroke-width="8" opacity="0.86">
+      <line x1="82" y1="92" x2="184" y2="146"/>
+      <line x1="184" y1="146" x2="286" y2="108"/>
+      <line x1="184" y1="146" x2="168" y2="248"/>
+      <line x1="168" y1="248" x2="286" y2="288"/>
+      <line x1="286" y1="108" x2="286" y2="288"/>
+      <line x1="82" y1="92" x2="90" y2="232"/>
+      <line x1="90" y1="232" x2="168" y2="248"/>
+    </g>
+    <g fill="#233244">
+      <circle cx="82" cy="92" r="14"/>
+      <circle cx="184" cy="146" r="14"/>
+      <circle cx="286" cy="108" r="14"/>
+      <circle cx="90" cy="232" r="14"/>
+      <circle cx="168" cy="248" r="14"/>
+      <circle cx="286" cy="288" r="14"/>
+    </g>
+  </g>
+
+  <rect x="0" y="0" width="1200" height="238" fill="#2A3F5B" opacity="0.93"/>
+  <rect x="0" y="1454" width="1200" height="346" fill="#3F5F86" opacity="0.95"/>
+  <text x="600" y="136" text-anchor="middle" fill="#FDF8EE" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">NASSIM NICHOLAS TALEB</text>
+  <text x="600" y="208" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">THINKING</text>
+  <text x="600" y="1216" text-anchor="middle" fill="#233244" font-family="Georgia, 'Times New Roman', serif" font-size="108" font-weight="700" letter-spacing="2">ANTIFRAGILE</text>
+  <text x="600" y="1538" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">RISK  ·  OPTIONALITY  ·  FRAGILITY</text>
+  <text x="600" y="1604" text-anchor="middle" fill="#FDF8EE" font-family="Georgia, serif" font-size="30">Mental models and judgment</text>
+  <text x="600" y="1668" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
 </svg>

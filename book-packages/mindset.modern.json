@@ -296,7 +296,7 @@
           "contexts": [
             "personal"
           ],
-          "scenario": "Riley wants to start drawing, coding, or lifting, but Riley keeps delaying because being bad at the beginning feels like evidence that Riley is not the kind of person who can do it. The fear is less about the task and more about what early struggle seems to say about Riley's identity.",
+          "scenario": "Riley wants to start drawing, coding, or lifting, but Riley keeps delaying because being bad at the beginning feels like evidence that Riley is not the kind of person who can do it. The fear is less about the task and more about what early struggle seems to say about their identity.",
           "whatToDo": [
             "Start with a short practice block and treat early mistakes as proof that you are inside the learning process. Tell yourself that a rough first attempt is information about where to focus rather than a verdict on your ceiling."
           ],
@@ -308,11 +308,11 @@
           "contexts": [
             "personal"
           ],
-          "scenario": "Alex bomb a small goal such as a race, an interview, or a personal challenge and spend days replaying it as proof that Alex does not have what it takes. The event becomes a personal label instead of a specific outcome.",
+          "scenario": "Alex bombs a small goal such as a race, an interview, or a personal challenge and spends days replaying it as proof that Alex does not have what it takes. The event becomes a personal label instead of a specific outcome.",
           "whatToDo": [
             "Write down what happened, what was under your control, and what one change would improve the next attempt. Separate your worth from the result so the result can become useful feedback."
           ],
-          "whyItMatters": "This matters because people grow faster when they learn from outcomes instead of turning outcomes into identity statements."
+          "whyItMatters": "This matters because people grow faster when they learn from outcomes instead of turning outcomes into identity statements. This scenario is directly connected to how beliefs about growth shape life."
         },
         {
           "exampleId": "ch01-ex03",
@@ -332,11 +332,11 @@
           "contexts": [
             "school"
           ],
-          "scenario": "Maya is choosing next term classes and feel pulled toward the easiest option because Maya wants to protect Maya's GPA and avoid looking average. The safer choice may limit learning Maya actually want.",
+          "scenario": "Maya is choosing next term classes and feels pulled toward the easiest option because Maya wants to protect their GPA and avoid looking average. The safer choice may limit learning Maya actually want.",
           "whatToDo": [
             "Balance risk and responsibility, but notice when you are choosing mainly to preserve image. If the harder class serves your goals, enter it with a plan for office hours, practice, and revision."
           ],
-          "whyItMatters": "This matters because mindset often appears in the courses, projects, and opportunities people either pursue or avoid."
+          "whyItMatters": "This matters because mindset often appears in the courses, projects, and opportunities people either pursue or avoid. This scenario is directly connected to how beliefs about growth shape life."
         },
         {
           "exampleId": "ch01-ex05",
@@ -344,7 +344,7 @@
           "contexts": [
             "work"
           ],
-          "scenario": "A manager offers Riley a task that is slightly above Riley's comfort zone, and Riley wants to decline because a messy first draft might make Riley look less capable. Protecting reputation starts to matter more than gaining skill.",
+          "scenario": "A manager offers Riley a task that is slightly above their comfort zone, and Riley wants to decline because a messy first draft might make Riley look less capable. Protecting reputation starts to matter more than gaining skill.",
           "whatToDo": [
             "Accept the stretch work and set expectations that you are learning while delivering. Ask for fast feedback early so the process becomes iterative rather than all or nothing."
           ],
@@ -356,7 +356,7 @@
           "contexts": [
             "work"
           ],
-          "scenario": "Alex finish work and hope nobody looks too closely because criticism feels like a threat to competence. As a result, Alex miss the chance to improve Alex's craft.",
+          "scenario": "Alex finishes work and hopes nobody looks too closely because criticism feels like a threat to competence. As a result, Alex misses the chance to improve their craft.",
           "whatToDo": [
             "Invite one specific piece of feedback on structure, clarity, or execution. Treat criticism as information attached to the work product rather than as an attack on your identity."
           ],
@@ -368,9 +368,9 @@
         "questions": [
           {
             "questionId": "ch01-h-q01",
-            "prompt": "Which option shows why this principle matters: the idea that people often operate from either a fixed mindset or a growth mindset when they face?",
+            "prompt": "You are making a real-world decision tied to \"How Beliefs About Growth Shape Life\". Which option is the strongest next move?",
             "choices": [
-              "This chapter introduces the idea that people often operate from either a fixed mindset or a growth mindset when they face challenge, feedback, and uncertainty.",
+              "The idea that people often operate from either a fixed mindset or a growth mindset when they face challenge, feedback, and uncertainty.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
               "It says that challenge should usually be avoided because struggle mainly proves limitation.",
               "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
@@ -379,7 +379,7 @@
           },
           {
             "questionId": "ch01-h-q02",
-            "prompt": "Which option shows why this principle matters: a fixed mindset treats ability as something largely settled, which makes mistakes feel like proof of limits rather?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"How Beliefs About Growth Shape Life\" into practice?",
             "choices": [
               "A fixed mindset treats ability as something largely settled, which makes mistakes feel like proof of limits rather than part of learning.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -390,7 +390,7 @@
           },
           {
             "questionId": "ch01-h-q03",
-            "prompt": "Which option shows why this principle matters: a growth mindset treats ability as something that can expand through effort, strategy, help, and time?",
+            "prompt": "When pressure rises, which response best reflects \"How Beliefs About Growth Shape Life\"?",
             "choices": [
               "A growth mindset treats ability as something that can expand through effort, strategy, help, and time.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -401,7 +401,7 @@
           },
           {
             "questionId": "ch01-h-q04",
-            "prompt": "Which option shows why this principle matters: that these mindsets influence what people seek, whether they protect image or build capacity?",
+            "prompt": "Which option would be most effective in a realistic situation for \"How Beliefs About Growth Shape Life\"?",
             "choices": [
               "The chapter explains that these mindsets influence what people seek, whether they protect image or build capacity.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -412,7 +412,7 @@
           },
           {
             "questionId": "ch01-h-q05",
-            "prompt": "Which option shows why this principle matters: when people focus on looking smart, they often avoid difficulty that could expose weakness in the short term?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"How Beliefs About Growth Shape Life\"?",
             "choices": [
               "When people focus on looking smart, they often avoid difficulty that could expose weakness in the short term.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -423,7 +423,7 @@
           },
           {
             "questionId": "ch01-h-q06",
-            "prompt": "Which option shows why this principle matters: when people focus on getting better, they are more willing to enter situations where they might struggle before?",
+            "prompt": "You are making a real-world decision tied to \"How Beliefs About Growth Shape Life\". Which option is the strongest next move?",
             "choices": [
               "When people focus on getting better, they are more willing to enter situations where they might struggle before they improve.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -434,7 +434,7 @@
           },
           {
             "questionId": "ch01-h-q07",
-            "prompt": "Which option shows why this principle matters: that mindset matters because beliefs about ability quietly shape choices, habits, and emotional reactions?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"How Beliefs About Growth Shape Life\" into practice?",
             "choices": [
               "The chapter argues that mindset matters because beliefs about ability quietly shape choices, habits, and emotional reactions.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -445,7 +445,7 @@
           },
           {
             "questionId": "ch01-h-q08",
-            "prompt": "Which option shows why this principle matters: the main lesson is that development starts with the stories people tell themselves about what talent and effort?",
+            "prompt": "When pressure rises, which response best reflects \"How Beliefs About Growth Shape Life\"?",
             "choices": [
               "The main lesson is that development starts with the stories people tell themselves about what talent and effort mean.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -456,7 +456,7 @@
           },
           {
             "questionId": "ch01-h-q09",
-            "prompt": "Which option shows why this principle matters: a deeper reading shows that mindset is really about incentives inside the self, because people pursue whichever actions?",
+            "prompt": "Which option would be most effective in a realistic situation for \"How Beliefs About Growth Shape Life\"?",
             "choices": [
               "A deeper reading shows that mindset is really about incentives inside the self, because people pursue whichever actions best protect the identity they value most.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -467,7 +467,7 @@
           },
           {
             "questionId": "ch01-h-q10",
-            "prompt": "Which option shows why this principle matters: the deepest takeaway is that beliefs about human potential function like hidden rules that govern ambition, courage, and?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"How Beliefs About Growth Shape Life\"?",
             "choices": [
               "The deepest takeaway is that beliefs about human potential function like hidden rules that govern ambition, courage, and the meaning of effort.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -480,18 +480,18 @@
         "retryQuestions": [
           {
             "questionId": "ch01-h-q01-retry-01",
-            "prompt": "Which option best applies this principle to real decisions: the idea that people often operate from either a fixed mindset or a growth mindset when they face?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"How Beliefs About Growth Shape Life\"?",
             "choices": [
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
               "It says that challenge should usually be avoided because struggle mainly proves limitation.",
               "It says that feedback matters very little compared with preserving confidence and looking naturally capable.",
-              "This chapter introduces the idea that people often operate from either a fixed mindset or a growth mindset when they face challenge, feedback, and uncertainty."
+              "The idea that people often operate from either a fixed mindset or a growth mindset when they face challenge, feedback, and uncertainty."
             ],
             "correctIndex": 3
           },
           {
             "questionId": "ch01-h-q02-retry-02",
-            "prompt": "Which option best applies this principle to real decisions: a fixed mindset treats ability as something largely settled, which makes mistakes feel like proof of limits rather?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"How Beliefs About Growth Shape Life\" into practice?",
             "choices": [
               "It says that challenge should usually be avoided because struggle mainly proves limitation.",
               "It says that feedback matters very little compared with preserving confidence and looking naturally capable.",
@@ -502,7 +502,7 @@
           },
           {
             "questionId": "ch01-h-q03-retry-03",
-            "prompt": "Which option best applies this principle to real decisions: a growth mindset treats ability as something that can expand through effort, strategy, help, and time?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"How Beliefs About Growth Shape Life\"?",
             "choices": [
               "It says that feedback matters very little compared with preserving confidence and looking naturally capable.",
               "A growth mindset treats ability as something that can expand through effort, strategy, help, and time.",
@@ -513,7 +513,7 @@
           },
           {
             "questionId": "ch01-h-q04-retry-04",
-            "prompt": "Which option best applies this principle to real decisions: that these mindsets influence what people seek, whether they protect image or build capacity?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"How Beliefs About Growth Shape Life\"?",
             "choices": [
               "The chapter explains that these mindsets influence what people seek, whether they protect image or build capacity.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -524,7 +524,7 @@
           },
           {
             "questionId": "ch01-h-q05-retry-05",
-            "prompt": "Which option best applies this principle to real decisions: when people focus on looking smart, they often avoid difficulty that could expose weakness in the short term?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"How Beliefs About Growth Shape Life\" into practice?",
             "choices": [
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
               "It says that challenge should usually be avoided because struggle mainly proves limitation.",
@@ -805,7 +805,7 @@
           "contexts": [
             "personal"
           ],
-          "scenario": "A friend learns a skill quickly and Maya starts telling themselves that they have the gift and Maya does not. Their progress feels like proof of Maya's own ceiling instead of a reminder that practice methods matter.",
+          "scenario": "A friend learns a skill quickly and Maya starts telling themselves that they have the gift and Maya does not. Their progress feels like proof of their own ceiling instead of a reminder that practice methods matter.",
           "whatToDo": [
             "Notice the comparison script and rewrite it into a study question. Ask what they are doing consistently that you can test in your own practice instead of turning their progress into your identity story."
           ],
@@ -817,7 +817,7 @@
           "contexts": [
             "personal"
           ],
-          "scenario": "Jordan share something small online and one critical comment ruins the whole experience because it feels like exposure. Jordan stop focusing on the work and start focusing on what the comment says about Jordan.",
+          "scenario": "Jordan shares something small online and one critical comment ruins the whole experience because it feels like exposure. Jordan stops focusing on the work and starts focusing on what the comment says about Jordan.",
           "whatToDo": [
             "Separate the signal from the sting by asking whether the comment contains actionable information. Use what helps and discard what is purely mean, but do not let one reaction become your whole identity."
           ],
@@ -853,7 +853,7 @@
           "contexts": [
             "work"
           ],
-          "scenario": "Someone on Maya's team gets praised and Maya instantly feel smaller, as if their win reduced Maya's own future. The emotion makes collaboration harder.",
+          "scenario": "Someone on their team gets praised and Maya instantly feel smaller, as if their win reduced their own future. The emotion makes collaboration harder.",
           "whatToDo": [
             "Use the moment to study what they did well and where you can build similar strengths. Let their success expand your view of what is possible rather than narrow your confidence."
           ],
@@ -877,7 +877,7 @@
         "questions": [
           {
             "questionId": "ch02-h-q01",
-            "prompt": "Which option shows why this principle matters: moves from the definition of mindset to the lived experience of it, showing how each mindset shapes self?",
+            "prompt": "You are making a real-world decision tied to \"What Each Mindset Sounds Like Inside\". Which option is the strongest next move?",
             "choices": [
               "This chapter moves from the definition of mindset to the lived experience of it, showing how each mindset shapes self talk during success, setback, and comparison.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -888,7 +888,7 @@
           },
           {
             "questionId": "ch02-h-q02",
-            "prompt": "Which option shows why this principle matters: a fixed mindset voice often asks whether a moment proves intelligence, talent, or worth?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"What Each Mindset Sounds Like Inside\" into practice?",
             "choices": [
               "A fixed mindset voice often asks whether a moment proves intelligence, talent, or worth.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -899,7 +899,7 @@
           },
           {
             "questionId": "ch02-h-q03",
-            "prompt": "Which option shows why this principle matters: a growth mindset voice is more likely to ask what can be learned, practiced, or adjusted next?",
+            "prompt": "When pressure rises, which response best reflects \"What Each Mindset Sounds Like Inside\"?",
             "choices": [
               "A growth mindset voice is more likely to ask what can be learned, practiced, or adjusted next.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -910,7 +910,7 @@
           },
           {
             "questionId": "ch02-h-q04",
-            "prompt": "Which option shows why this principle matters: that these internal scripts influence whether people feel shame, curiosity, panic, or determination after difficulty?",
+            "prompt": "Which option would be most effective in a realistic situation for \"What Each Mindset Sounds Like Inside\"?",
             "choices": [
               "The chapter explains that these internal scripts influence whether people feel shame, curiosity, panic, or determination after difficulty.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -921,7 +921,7 @@
           },
           {
             "questionId": "ch02-h-q05",
-            "prompt": "Which option shows why this principle matters: because mindset becomes a private conversation, it can drive behavior even when nobody else sees it?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"What Each Mindset Sounds Like Inside\"?",
             "choices": [
               "Because mindset becomes a private conversation, it can drive behavior even when nobody else sees it.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -932,7 +932,7 @@
           },
           {
             "questionId": "ch02-h-q06",
-            "prompt": "Which option shows why this principle matters: people in a fixed mindset often interpret effort as evidence that they lacked natural ability in the first?",
+            "prompt": "You are making a real-world decision tied to \"What Each Mindset Sounds Like Inside\". Which option is the strongest next move?",
             "choices": [
               "People in a fixed mindset often interpret effort as evidence that they lacked natural ability in the first place.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -943,7 +943,7 @@
           },
           {
             "questionId": "ch02-h-q07",
-            "prompt": "Which option shows why this principle matters: people in a growth mindset are more likely to see effort as the path by which ability becomes?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"What Each Mindset Sounds Like Inside\" into practice?",
             "choices": [
               "People in a growth mindset are more likely to see effort as the path by which ability becomes visible and reliable.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -954,7 +954,7 @@
           },
           {
             "questionId": "ch02-h-q08",
-            "prompt": "Which option shows why this principle matters: the central lesson is that changing results often begins with changing the meaning attached to struggle and feedback?",
+            "prompt": "When pressure rises, which response best reflects \"What Each Mindset Sounds Like Inside\"?",
             "choices": [
               "The central lesson is that changing results often begins with changing the meaning attached to struggle and feedback.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -965,7 +965,7 @@
           },
           {
             "questionId": "ch02-h-q09",
-            "prompt": "Which option shows why this principle matters: a deeper reading suggests that mindset is maintained by language habits, since repeated interpretations become the default lens?",
+            "prompt": "Which option would be most effective in a realistic situation for \"What Each Mindset Sounds Like Inside\"?",
             "choices": [
               "A deeper reading suggests that mindset is maintained by language habits, since repeated interpretations become the default lens for future events.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -976,7 +976,7 @@
           },
           {
             "questionId": "ch02-h-q10",
-            "prompt": "Which option shows why this principle matters: the deepest takeaway is that mindset work is a discipline of meaning making, where people decide whether experience?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"What Each Mindset Sounds Like Inside\"?",
             "choices": [
               "The deepest takeaway is that mindset work is a discipline of meaning making, where people decide whether experience will shrink the self or educate it.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -989,7 +989,7 @@
         "retryQuestions": [
           {
             "questionId": "ch02-h-q01-retry-01",
-            "prompt": "Which option best applies this principle to real decisions: moves from the definition of mindset to the lived experience of it, showing how each mindset shapes self?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"What Each Mindset Sounds Like Inside\"?",
             "choices": [
               "It says that challenge should usually be avoided because struggle mainly proves limitation.",
               "It says that feedback matters very little compared with preserving confidence and looking naturally capable.",
@@ -1000,7 +1000,7 @@
           },
           {
             "questionId": "ch02-h-q02-retry-02",
-            "prompt": "Which option best applies this principle to real decisions: a fixed mindset voice often asks whether a moment proves intelligence, talent, or worth?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"What Each Mindset Sounds Like Inside\" into practice?",
             "choices": [
               "It says that feedback matters very little compared with preserving confidence and looking naturally capable.",
               "A fixed mindset voice often asks whether a moment proves intelligence, talent, or worth.",
@@ -1011,7 +1011,7 @@
           },
           {
             "questionId": "ch02-h-q03-retry-03",
-            "prompt": "Which option best applies this principle to real decisions: a growth mindset voice is more likely to ask what can be learned, practiced, or adjusted next?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"What Each Mindset Sounds Like Inside\"?",
             "choices": [
               "A growth mindset voice is more likely to ask what can be learned, practiced, or adjusted next.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -1022,7 +1022,7 @@
           },
           {
             "questionId": "ch02-h-q04-retry-04",
-            "prompt": "Which option best applies this principle to real decisions: that these internal scripts influence whether people feel shame, curiosity, panic, or determination after difficulty?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"What Each Mindset Sounds Like Inside\"?",
             "choices": [
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
               "It says that challenge should usually be avoided because struggle mainly proves limitation.",
@@ -1033,7 +1033,7 @@
           },
           {
             "questionId": "ch02-h-q05-retry-05",
-            "prompt": "Which option best applies this principle to real decisions: because mindset becomes a private conversation, it can drive behavior even when nobody else sees it?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"What Each Mindset Sounds Like Inside\" into practice?",
             "choices": [
               "It says that challenge should usually be avoided because struggle mainly proves limitation.",
               "It says that feedback matters very little compared with preserving confidence and looking naturally capable.",
@@ -1314,11 +1314,11 @@
           "contexts": [
             "personal"
           ],
-          "scenario": "Riley is trying to get better at a personal goal and feel discouraged because progress is slower than Riley imagined. Part of Riley believes that if Riley really had talent it would already look easy.",
+          "scenario": "Riley is trying to get better at a personal goal and feels discouraged because progress is slower than Riley imagined. Part of Riley believes that if Riley really had talent it would already look easy.",
           "whatToDo": [
             "Document your practice over several weeks so you can see small gains in consistency, accuracy, or stamina. Judge progress by the quality of your process as well as the visible result."
           ],
-          "whyItMatters": "This matters because growth usually looks ordinary while it is happening. People quit when they mistake slow progress for no capacity."
+          "whyItMatters": "This matters because growth usually looks ordinary while it is happening. People quit when they mistake slow progress for no capacity. This scenario is directly connected to ability accomplishment and the role of effort."
         },
         {
           "exampleId": "ch03-ex02",
@@ -1326,7 +1326,7 @@
           "contexts": [
             "personal"
           ],
-          "scenario": "Alex keeps comparing themselves with people who seem naturally gifted and overlook the years of repetition behind their current skill. That comparison makes Alex's own work feel futile.",
+          "scenario": "Alex keeps comparing themselves with people who seem naturally gifted and overlook the years of repetition behind their current skill. That comparison makes their own work feel futile.",
           "whatToDo": [
             "Look for the routines, coaching, and repetitions behind someone you admire. Use that information to set a realistic practice plan rather than chasing the fantasy of effortless excellence."
           ],
@@ -1350,11 +1350,11 @@
           "contexts": [
             "school"
           ],
-          "scenario": "Maya stop improving in a quantitative course and assume the subject is simply not for Maya. Because the identity conclusion feels so final, Maya reduce practice at the exact time Maya needs more targeted work.",
+          "scenario": "Maya stops improving in a quantitative course and assume the subject is simply not for Maya. Because the identity conclusion feels so final, Maya reduces practice at the exact time Maya needs more targeted work.",
           "whatToDo": [
             "Break the subject into narrower skills and practice the weakest one with help and repetition. Let strategy become more precise instead of letting identity become more negative."
           ],
-          "whyItMatters": "This matters because plateaus often call for better method, not surrender."
+          "whyItMatters": "This matters because plateaus often call for better method, not surrender. This scenario is directly connected to ability accomplishment and the role of effort."
         },
         {
           "exampleId": "ch03-ex05",
@@ -1362,7 +1362,7 @@
           "contexts": [
             "work"
           ],
-          "scenario": "Riley starts a role and expect to be impressive quickly, so basic practice tasks feel beneath Riley or embarrassing. Riley wants results before Riley builds foundations.",
+          "scenario": "Riley starts a role and expects to be impressive quickly, so basic practice tasks feel beneath Riley or embarrassing. Riley wants results before Riley builds foundations.",
           "whatToDo": [
             "Use repetitive tasks to build speed, judgment, and pattern recognition. Treat the early phase as skill construction rather than as a stage for proving you were a good hire."
           ],
@@ -1378,7 +1378,7 @@
           "whatToDo": [
             "Study preparation habits, storytelling choices, and rehearsal patterns behind strong presentations. Then practice those components directly instead of treating speaking as a fixed trait."
           ],
-          "whyItMatters": "This matters because many work skills look innate from the outside but are built through repeated preparation."
+          "whyItMatters": "This matters because many work skills look innate from the outside but are built through repeated preparation. This scenario is directly connected to ability accomplishment and the role of effort."
         }
       ],
       "quiz": {
@@ -1386,7 +1386,7 @@
         "questions": [
           {
             "questionId": "ch03-h-q01",
-            "prompt": "Which option shows why this principle matters: challenges the idea that high achievement is mostly the expression of inborn talent that reveals itself early and?",
+            "prompt": "You are making a real-world decision tied to \"Ability Accomplishment And The Role Of Effort\". Which option is the strongest next move?",
             "choices": [
               "This chapter challenges the idea that high achievement is mostly the expression of inborn talent that reveals itself early and cleanly.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -1397,9 +1397,9 @@
           },
           {
             "questionId": "ch03-h-q02",
-            "prompt": "Which option shows why this principle matters: it argues that accomplishment usually grows through sustained effort, deliberate practice, mistakes, and revision?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Ability Accomplishment And The Role Of Effort\" into practice?",
             "choices": [
-              "It argues that accomplishment usually grows through sustained effort, deliberate practice, mistakes, and revision.",
+              "Accomplishment usually grows through sustained effort, deliberate practice, mistakes, and revision.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
               "It says that challenge should usually be avoided because struggle mainly proves limitation.",
               "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
@@ -1408,7 +1408,7 @@
           },
           {
             "questionId": "ch03-h-q03",
-            "prompt": "Which option shows why this principle matters: does not deny differences in starting points, but it rejects the belief that starting point is the whole?",
+            "prompt": "When pressure rises, which response best reflects \"Ability Accomplishment And The Role Of Effort\"?",
             "choices": [
               "The chapter does not deny differences in starting points, but it rejects the belief that starting point is the whole story.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -1419,7 +1419,7 @@
           },
           {
             "questionId": "ch03-h-q04",
-            "prompt": "Which option shows why this principle matters: a fixed mindset tends to romanticize effortless success and to treat hard work as a sign of lesser?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Ability Accomplishment And The Role Of Effort\"?",
             "choices": [
               "A fixed mindset tends to romanticize effortless success and to treat hard work as a sign of lesser ability.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -1430,7 +1430,7 @@
           },
           {
             "questionId": "ch03-h-q05",
-            "prompt": "Which option shows why this principle matters: a growth mindset treats effort as the mechanism by which skill becomes stronger and more dependable?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Ability Accomplishment And The Role Of Effort\"?",
             "choices": [
               "A growth mindset treats effort as the mechanism by which skill becomes stronger and more dependable.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -1441,7 +1441,7 @@
           },
           {
             "questionId": "ch03-h-q06",
-            "prompt": "Which option shows why this principle matters: that people often plateau not because they lack talent, but because they stop using challenge to extend themselves?",
+            "prompt": "You are making a real-world decision tied to \"Ability Accomplishment And The Role Of Effort\". Which option is the strongest next move?",
             "choices": [
               "The chapter explains that people often plateau not because they lack talent, but because they stop using challenge to extend themselves.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -1452,7 +1452,7 @@
           },
           {
             "questionId": "ch03-h-q07",
-            "prompt": "Which option shows why this principle matters: real accomplishment therefore depends on process habits such as persistence, strategy, and response to setbacks?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Ability Accomplishment And The Role Of Effort\" into practice?",
             "choices": [
               "Real accomplishment therefore depends on process habits such as persistence, strategy, and response to setbacks.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -1463,7 +1463,7 @@
           },
           {
             "questionId": "ch03-h-q08",
-            "prompt": "Which option shows why this principle matters: the main lesson is that effort is not the opposite of ability but one of the main ways?",
+            "prompt": "When pressure rises, which response best reflects \"Ability Accomplishment And The Role Of Effort\"?",
             "choices": [
               "The main lesson is that effort is not the opposite of ability but one of the main ways ability is developed.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -1474,7 +1474,7 @@
           },
           {
             "questionId": "ch03-h-q09",
-            "prompt": "Which option shows why this principle matters: a deeper reading reveals that talent myths are socially attractive because they make success look magical and failure?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Ability Accomplishment And The Role Of Effort\"?",
             "choices": [
               "A deeper reading reveals that talent myths are socially attractive because they make success look magical and failure look final, which simplifies reality.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -1485,7 +1485,7 @@
           },
           {
             "questionId": "ch03-h-q10",
-            "prompt": "Which option shows why this principle matters: the deepest takeaway is that accomplishment becomes more attainable when people stop worshipping natural ease and start investing?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Ability Accomplishment And The Role Of Effort\"?",
             "choices": [
               "The deepest takeaway is that accomplishment becomes more attainable when people stop worshipping natural ease and start investing in the mechanics of improvement.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -1498,7 +1498,7 @@
         "retryQuestions": [
           {
             "questionId": "ch03-h-q01-retry-01",
-            "prompt": "Which option best applies this principle to real decisions: challenges the idea that high achievement is mostly the expression of inborn talent that reveals itself early and?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Ability Accomplishment And The Role Of Effort\"?",
             "choices": [
               "It says that feedback matters very little compared with preserving confidence and looking naturally capable.",
               "This chapter challenges the idea that high achievement is mostly the expression of inborn talent that reveals itself early and cleanly.",
@@ -1509,9 +1509,9 @@
           },
           {
             "questionId": "ch03-h-q02-retry-02",
-            "prompt": "Which option best applies this principle to real decisions: it argues that accomplishment usually grows through sustained effort, deliberate practice, mistakes, and revision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Ability Accomplishment And The Role Of Effort\" into practice?",
             "choices": [
-              "It argues that accomplishment usually grows through sustained effort, deliberate practice, mistakes, and revision.",
+              "Accomplishment usually grows through sustained effort, deliberate practice, mistakes, and revision.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
               "It says that challenge should usually be avoided because struggle mainly proves limitation.",
               "It says that feedback matters very little compared with preserving confidence and looking naturally capable."
@@ -1520,7 +1520,7 @@
           },
           {
             "questionId": "ch03-h-q03-retry-03",
-            "prompt": "Which option best applies this principle to real decisions: does not deny differences in starting points, but it rejects the belief that starting point is the whole?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Ability Accomplishment And The Role Of Effort\"?",
             "choices": [
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
               "It says that challenge should usually be avoided because struggle mainly proves limitation.",
@@ -1531,7 +1531,7 @@
           },
           {
             "questionId": "ch03-h-q04-retry-04",
-            "prompt": "Which option best applies this principle to real decisions: a fixed mindset tends to romanticize effortless success and to treat hard work as a sign of lesser?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Ability Accomplishment And The Role Of Effort\"?",
             "choices": [
               "It says that challenge should usually be avoided because struggle mainly proves limitation.",
               "It says that feedback matters very little compared with preserving confidence and looking naturally capable.",
@@ -1542,7 +1542,7 @@
           },
           {
             "questionId": "ch03-h-q05-retry-05",
-            "prompt": "Which option best applies this principle to real decisions: a growth mindset treats effort as the mechanism by which skill becomes stronger and more dependable?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Ability Accomplishment And The Role Of Effort\" into practice?",
             "choices": [
               "It says that feedback matters very little compared with preserving confidence and looking naturally capable.",
               "A growth mindset treats effort as the mechanism by which skill becomes stronger and more dependable.",
@@ -1823,7 +1823,7 @@
           "contexts": [
             "personal"
           ],
-          "scenario": "Jordan stop trying new exercises because being weak at them feels embarrassing, so Jordan's training stays comfortable but stagnant. Protecting image begins to outrank getting stronger.",
+          "scenario": "Jordan stops trying new exercises because being weak at them feels embarrassing, so their training stays comfortable but stagnant. Protecting image begins to outrank getting stronger.",
           "whatToDo": [
             "Pick one exercise you avoid and practice it with manageable form and consistency. Treat awkwardness as the entry price for future competence rather than as proof you should stay away."
           ],
@@ -1835,7 +1835,7 @@
           "contexts": [
             "personal"
           ],
-          "scenario": "Maya lose a friendly game and spend the rest of the day angry because the result feels like a statement about Maya's athletic worth. The loss becomes bigger than the event itself.",
+          "scenario": "Maya loses a friendly game and spends the rest of the day angry because the result feels like a statement about their athletic worth. The loss becomes bigger than the event itself.",
           "whatToDo": [
             "Ask what the game revealed about conditioning, technique, focus, or decision making. Use the result to set one concrete practice target instead of replaying it as humiliation."
           ],
@@ -1851,7 +1851,7 @@
           "whatToDo": [
             "Enter the tryout with a two part goal of competing well and collecting information about what level is required. Whether you make it or not, build a follow up plan from what you learn."
           ],
-          "whyItMatters": "This matters because opportunities are often lost long before any official rejection. Mindset influences whether people even step forward."
+          "whyItMatters": "This matters because opportunities are often lost long before any official rejection. Mindset influences whether people even step forward. This scenario is directly connected to competition training and growth in sports."
         },
         {
           "exampleId": "ch04-ex04",
@@ -1863,7 +1863,7 @@
           "whatToDo": [
             "Write down the key correction after practice and rehearse it deliberately next session. Let criticism become technical guidance instead of social shame."
           ],
-          "whyItMatters": "This matters because athletic coaching is often direct. Players who can separate correction from identity improve faster."
+          "whyItMatters": "This matters because athletic coaching is often direct. Players who can separate correction from identity improve faster. This scenario is directly connected to competition training and growth in sports."
         },
         {
           "exampleId": "ch04-ex05",
@@ -1883,11 +1883,11 @@
           "contexts": [
             "work"
           ],
-          "scenario": "Maya freeze during an important presentation because Maya relied on hope and confidence instead of rehearsal and repetition. Pressure exposes weak preparation.",
+          "scenario": "Maya freezes during an important presentation because Maya relied on hope and confidence instead of rehearsal and repetition. Pressure exposes weak preparation.",
           "whatToDo": [
             "Build pressure practice into preparation by rehearsing out loud, refining transitions, and seeking critique before the event. Let preparation become the source of confidence."
           ],
-          "whyItMatters": "This matters because performance is more dependable when confidence rests on reps rather than self image."
+          "whyItMatters": "This matters because performance is more dependable when confidence rests on reps rather than self image. This scenario is directly connected to competition training and growth in sports."
         }
       ],
       "quiz": {
@@ -1895,7 +1895,7 @@
         "questions": [
           {
             "questionId": "ch04-h-q01",
-            "prompt": "Which option shows why this principle matters: uses sports to show how mindset shapes preparation, response to losses, and relationship to pressure?",
+            "prompt": "You are making a real-world decision tied to \"Competition Training And Growth In Sports\". Which option is the strongest next move?",
             "choices": [
               "This chapter uses sports to show how mindset shapes preparation, response to losses, and relationship to pressure.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -1906,7 +1906,7 @@
           },
           {
             "questionId": "ch04-h-q02",
-            "prompt": "Which option shows why this principle matters: athletes with a fixed mindset often feel that every performance exposes their permanent level, which makes failure especially?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Competition Training And Growth In Sports\" into practice?",
             "choices": [
               "Athletes with a fixed mindset often feel that every performance exposes their permanent level, which makes failure especially threatening.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -1917,7 +1917,7 @@
           },
           {
             "questionId": "ch04-h-q03",
-            "prompt": "Which option shows why this principle matters: athletes with a growth mindset are more likely to use losses, fatigue, and criticism as material for improvement?",
+            "prompt": "When pressure rises, which response best reflects \"Competition Training And Growth In Sports\"?",
             "choices": [
               "Athletes with a growth mindset are more likely to use losses, fatigue, and criticism as material for improvement.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -1928,7 +1928,7 @@
           },
           {
             "questionId": "ch04-h-q04",
-            "prompt": "Which option shows why this principle matters: that champions are usually built through disciplined training rather than through confidence alone?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Competition Training And Growth In Sports\"?",
             "choices": [
               "The chapter highlights that champions are usually built through disciplined training rather than through confidence alone.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -1939,7 +1939,7 @@
           },
           {
             "questionId": "ch04-h-q05",
-            "prompt": "Which option shows why this principle matters: a fixed mindset can lead people to avoid strong opponents or hard drills that might reveal weakness?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Competition Training And Growth In Sports\"?",
             "choices": [
               "A fixed mindset can lead people to avoid strong opponents or hard drills that might reveal weakness.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -1950,7 +1950,7 @@
           },
           {
             "questionId": "ch04-h-q06",
-            "prompt": "Which option shows why this principle matters: a growth mindset makes it easier to value practice quality over image protection?",
+            "prompt": "You are making a real-world decision tied to \"Competition Training And Growth In Sports\". Which option is the strongest next move?",
             "choices": [
               "A growth mindset makes it easier to value practice quality over image protection.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -1961,7 +1961,7 @@
           },
           {
             "questionId": "ch04-h-q07",
-            "prompt": "Which option shows why this principle matters: coaching also matters because the messages leaders send can either cultivate fragility or resilience?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Competition Training And Growth In Sports\" into practice?",
             "choices": [
               "Coaching also matters because the messages leaders send can either cultivate fragility or resilience.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -1972,7 +1972,7 @@
           },
           {
             "questionId": "ch04-h-q08",
-            "prompt": "Which option shows why this principle matters: the main lesson is that performance under pressure depends heavily on how a person has learned to interpret?",
+            "prompt": "When pressure rises, which response best reflects \"Competition Training And Growth In Sports\"?",
             "choices": [
               "The main lesson is that performance under pressure depends heavily on how a person has learned to interpret pressure before the big moment arrives.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -1983,7 +1983,7 @@
           },
           {
             "questionId": "ch04-h-q09",
-            "prompt": "Which option shows why this principle matters: a deeper reading suggests that sports are a compressed laboratory of life because effort, ego, feedback, and visible?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Competition Training And Growth In Sports\"?",
             "choices": [
               "A deeper reading suggests that sports are a compressed laboratory of life because effort, ego, feedback, and visible failure all appear quickly and repeatedly.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -1994,7 +1994,7 @@
           },
           {
             "questionId": "ch04-h-q10",
-            "prompt": "Which option shows why this principle matters: the deepest takeaway is that resilient performance grows from a long habit of turning pressure into information and?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Competition Training And Growth In Sports\"?",
             "choices": [
               "The deepest takeaway is that resilient performance grows from a long habit of turning pressure into information and training into identity.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -2007,7 +2007,7 @@
         "retryQuestions": [
           {
             "questionId": "ch04-h-q01-retry-01",
-            "prompt": "Which option best applies this principle to real decisions: uses sports to show how mindset shapes preparation, response to losses, and relationship to pressure?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Competition Training And Growth In Sports\"?",
             "choices": [
               "This chapter uses sports to show how mindset shapes preparation, response to losses, and relationship to pressure.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -2018,7 +2018,7 @@
           },
           {
             "questionId": "ch04-h-q02-retry-02",
-            "prompt": "Which option best applies this principle to real decisions: athletes with a fixed mindset often feel that every performance exposes their permanent level, which makes failure especially?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Competition Training And Growth In Sports\" into practice?",
             "choices": [
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
               "It says that challenge should usually be avoided because struggle mainly proves limitation.",
@@ -2029,7 +2029,7 @@
           },
           {
             "questionId": "ch04-h-q03-retry-03",
-            "prompt": "Which option best applies this principle to real decisions: athletes with a growth mindset are more likely to use losses, fatigue, and criticism as material for improvement?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Competition Training And Growth In Sports\"?",
             "choices": [
               "It says that challenge should usually be avoided because struggle mainly proves limitation.",
               "It says that feedback matters very little compared with preserving confidence and looking naturally capable.",
@@ -2040,7 +2040,7 @@
           },
           {
             "questionId": "ch04-h-q04-retry-04",
-            "prompt": "Which option best applies this principle to real decisions: that champions are usually built through disciplined training rather than through confidence alone?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Competition Training And Growth In Sports\"?",
             "choices": [
               "It says that feedback matters very little compared with preserving confidence and looking naturally capable.",
               "The chapter highlights that champions are usually built through disciplined training rather than through confidence alone.",
@@ -2051,7 +2051,7 @@
           },
           {
             "questionId": "ch04-h-q05-retry-05",
-            "prompt": "Which option best applies this principle to real decisions: a fixed mindset can lead people to avoid strong opponents or hard drills that might reveal weakness?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Competition Training And Growth In Sports\" into practice?",
             "choices": [
               "A fixed mindset can lead people to avoid strong opponents or hard drills that might reveal weakness.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -2344,7 +2344,7 @@
           "contexts": [
             "personal"
           ],
-          "scenario": "Alex coordinate a small volunteer event and feel tempted to do everything themselves so nobody sees mistakes. Control protects image but weakens the group.",
+          "scenario": "Alex coordinates a small volunteer event and feels tempted to do everything themselves so nobody sees mistakes. Control protects image but weakens the group.",
           "whatToDo": [
             "Delegate real responsibility, invite feedback, and treat rough spots as part of building team capability. Let leadership mean developing others, not only protecting your reputation."
           ],
@@ -2372,7 +2372,7 @@
           "whatToDo": [
             "Name the shared goal, surface what is not working, and divide improvements clearly. Make it acceptable to admit mistakes without turning the meeting into a blame contest."
           ],
-          "whyItMatters": "This matters because collaborative work improves when truth is safer than posturing."
+          "whyItMatters": "This matters because collaborative work improves when truth is safer than posturing. This scenario is directly connected to mindset in business leadership and culture."
         },
         {
           "exampleId": "ch05-ex05",
@@ -2396,7 +2396,7 @@
           "whatToDo": [
             "Hold a review that distinguishes outcomes, assumptions, execution gaps, and next actions. Reward people who surface uncomfortable facts early."
           ],
-          "whyItMatters": "This matters because organizations improve only when they can face reality without treating reality as humiliation."
+          "whyItMatters": "This matters because organizations improve only when they can face reality without treating reality as humiliation. This scenario is directly connected to mindset in business leadership and culture."
         }
       ],
       "quiz": {
@@ -2404,7 +2404,7 @@
         "questions": [
           {
             "questionId": "ch05-h-q01",
-            "prompt": "Which option shows why this principle matters: applies mindset ideas to business, showing how leaders and cultures can either encourage growth or protect status?",
+            "prompt": "You are making a real-world decision tied to \"Mindset In Business Leadership And Culture\". Which option is the strongest next move?",
             "choices": [
               "This chapter applies mindset ideas to business, showing how leaders and cultures can either encourage growth or protect status.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -2415,7 +2415,7 @@
           },
           {
             "questionId": "ch05-h-q02",
-            "prompt": "Which option shows why this principle matters: a fixed mindset organization often becomes preoccupied with looking brilliant, avoiding blame, and defending hierarchy?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Mindset In Business Leadership And Culture\" into practice?",
             "choices": [
               "A fixed mindset organization often becomes preoccupied with looking brilliant, avoiding blame, and defending hierarchy.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -2426,7 +2426,7 @@
           },
           {
             "questionId": "ch05-h-q03",
-            "prompt": "Which option shows why this principle matters: a growth mindset organization values learning, adaptation, candor, and development over image management?",
+            "prompt": "When pressure rises, which response best reflects \"Mindset In Business Leadership And Culture\"?",
             "choices": [
               "A growth mindset organization values learning, adaptation, candor, and development over image management.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -2437,7 +2437,7 @@
           },
           {
             "questionId": "ch05-h-q04",
-            "prompt": "Which option shows why this principle matters: leaders reveal their mindset in how they hire, give feedback, handle failure, and respond to other talented people?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Mindset In Business Leadership And Culture\"?",
             "choices": [
               "Leaders reveal their mindset in how they hire, give feedback, handle failure, and respond to other talented people.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -2448,7 +2448,7 @@
           },
           {
             "questionId": "ch05-h-q05",
-            "prompt": "Which option shows why this principle matters: if leaders feel threatened by strong teammates, they often create cultures of fear and political protection?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Mindset In Business Leadership And Culture\"?",
             "choices": [
               "If leaders feel threatened by strong teammates, they often create cultures of fear and political protection.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -2459,7 +2459,7 @@
           },
           {
             "questionId": "ch05-h-q06",
-            "prompt": "Which option shows why this principle matters: if leaders value growth, they are more likely to build teams where feedback and improvement are normal?",
+            "prompt": "You are making a real-world decision tied to \"Mindset In Business Leadership And Culture\". Which option is the strongest next move?",
             "choices": [
               "If leaders value growth, they are more likely to build teams where feedback and improvement are normal.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -2470,7 +2470,7 @@
           },
           {
             "questionId": "ch05-h-q07",
-            "prompt": "Which option shows why this principle matters: that companies suffer when short term image replaces long term learning?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Mindset In Business Leadership And Culture\" into practice?",
             "choices": [
               "The chapter argues that companies suffer when short term image replaces long term learning.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -2481,7 +2481,7 @@
           },
           {
             "questionId": "ch05-h-q08",
-            "prompt": "Which option shows why this principle matters: the main lesson is that organizational success depends not only on strategy but also on the beliefs leaders?",
+            "prompt": "When pressure rises, which response best reflects \"Mindset In Business Leadership And Culture\"?",
             "choices": [
               "The main lesson is that organizational success depends not only on strategy but also on the beliefs leaders hold about talent and growth.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -2492,7 +2492,7 @@
           },
           {
             "questionId": "ch05-h-q09",
-            "prompt": "Which option shows why this principle matters: a deeper reading suggests that culture is the collective form of mindset, since daily incentives teach people whether?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Mindset In Business Leadership And Culture\"?",
             "choices": [
               "A deeper reading suggests that culture is the collective form of mindset, since daily incentives teach people whether their job is to protect image or improve reality.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -2503,7 +2503,7 @@
           },
           {
             "questionId": "ch05-h-q10",
-            "prompt": "Which option shows why this principle matters: the deepest takeaway is that growth minded leadership is less about slogans and more about building institutions where?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Mindset In Business Leadership And Culture\"?",
             "choices": [
               "The deepest takeaway is that growth minded leadership is less about slogans and more about building institutions where truth can travel and people can develop.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -2516,7 +2516,7 @@
         "retryQuestions": [
           {
             "questionId": "ch05-h-q01-retry-01",
-            "prompt": "Which option best applies this principle to real decisions: applies mindset ideas to business, showing how leaders and cultures can either encourage growth or protect status?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Mindset In Business Leadership And Culture\"?",
             "choices": [
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
               "It says that challenge should usually be avoided because struggle mainly proves limitation.",
@@ -2527,7 +2527,7 @@
           },
           {
             "questionId": "ch05-h-q02-retry-02",
-            "prompt": "Which option best applies this principle to real decisions: a fixed mindset organization often becomes preoccupied with looking brilliant, avoiding blame, and defending hierarchy?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Mindset In Business Leadership And Culture\" into practice?",
             "choices": [
               "It says that challenge should usually be avoided because struggle mainly proves limitation.",
               "It says that feedback matters very little compared with preserving confidence and looking naturally capable.",
@@ -2538,7 +2538,7 @@
           },
           {
             "questionId": "ch05-h-q03-retry-03",
-            "prompt": "Which option best applies this principle to real decisions: a growth mindset organization values learning, adaptation, candor, and development over image management?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Mindset In Business Leadership And Culture\"?",
             "choices": [
               "It says that feedback matters very little compared with preserving confidence and looking naturally capable.",
               "A growth mindset organization values learning, adaptation, candor, and development over image management.",
@@ -2549,7 +2549,7 @@
           },
           {
             "questionId": "ch05-h-q04-retry-04",
-            "prompt": "Which option best applies this principle to real decisions: leaders reveal their mindset in how they hire, give feedback, handle failure, and respond to other talented people?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Mindset In Business Leadership And Culture\"?",
             "choices": [
               "Leaders reveal their mindset in how they hire, give feedback, handle failure, and respond to other talented people.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -2560,7 +2560,7 @@
           },
           {
             "questionId": "ch05-h-q05-retry-05",
-            "prompt": "Which option best applies this principle to real decisions: if leaders feel threatened by strong teammates, they often create cultures of fear and political protection?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Mindset In Business Leadership And Culture\" into practice?",
             "choices": [
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
               "It says that challenge should usually be avoided because struggle mainly proves limitation.",
@@ -2901,7 +2901,7 @@
           "contexts": [
             "work"
           ],
-          "scenario": "A manager gives hard feedback and Maya assumes they do not respect Maya, so Maya withdraw instead of engaging. The relationship stiffens because the meaning of the moment is never discussed.",
+          "scenario": "A manager gives hard feedback and Maya assumes they do not respect Maya, so Maya withdraws instead of engaging. The relationship stiffens because the meaning of the moment is never discussed.",
           "whatToDo": [
             "Clarify what success looks like and ask for examples and next steps. Treat the conversation as part of building a stronger working relationship rather than as a fixed verdict."
           ],
@@ -2913,7 +2913,7 @@
         "questions": [
           {
             "questionId": "ch06-h-q01",
-            "prompt": "Which option shows why this principle matters: that mindset does not only affect achievement but also shapes intimacy, friendship, and conflict?",
+            "prompt": "You are making a real-world decision tied to \"Love Friendship And Relationships Under Different Mindsets\". Which option is the strongest next move?",
             "choices": [
               "This chapter explains that mindset does not only affect achievement but also shapes intimacy, friendship, and conflict.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -2924,7 +2924,7 @@
           },
           {
             "questionId": "ch06-h-q02",
-            "prompt": "Which option shows why this principle matters: a fixed mindset in relationships often expects smooth compatibility and treats conflict as proof that something is wrong?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Love Friendship And Relationships Under Different Mindsets\" into practice?",
             "choices": [
               "A fixed mindset in relationships often expects smooth compatibility and treats conflict as proof that something is wrong with the bond or the people in it.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -2935,7 +2935,7 @@
           },
           {
             "questionId": "ch06-h-q03",
-            "prompt": "Which option shows why this principle matters: a growth mindset sees relationships as things that require communication, adjustment, forgiveness, and effort?",
+            "prompt": "When pressure rises, which response best reflects \"Love Friendship And Relationships Under Different Mindsets\"?",
             "choices": [
               "A growth mindset sees relationships as things that require communication, adjustment, forgiveness, and effort.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -2946,7 +2946,7 @@
           },
           {
             "questionId": "ch06-h-q04",
-            "prompt": "Which option shows why this principle matters: because of this difference, people with different mindsets interpret disagreement very differently?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Love Friendship And Relationships Under Different Mindsets\"?",
             "choices": [
               "Because of this difference, people with different mindsets interpret disagreement very differently.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -2957,7 +2957,7 @@
           },
           {
             "questionId": "ch06-h-q05",
-            "prompt": "Which option shows why this principle matters: a fixed mindset can make people chase validation, mind reading, or perfect understanding instead of honest conversation?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Love Friendship And Relationships Under Different Mindsets\"?",
             "choices": [
               "A fixed mindset can make people chase validation, mind reading, or perfect understanding instead of honest conversation.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -2968,7 +2968,7 @@
           },
           {
             "questionId": "ch06-h-q06",
-            "prompt": "Which option shows why this principle matters: a growth mindset supports direct communication and the belief that relationships can deepen through working on problems well?",
+            "prompt": "You are making a real-world decision tied to \"Love Friendship And Relationships Under Different Mindsets\". Which option is the strongest next move?",
             "choices": [
               "A growth mindset supports direct communication and the belief that relationships can deepen through working on problems well.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -2979,7 +2979,7 @@
           },
           {
             "questionId": "ch06-h-q07",
-            "prompt": "Which option shows why this principle matters: that labels such as needy, selfish, or difficult can freeze people instead of helping them change together?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Love Friendship And Relationships Under Different Mindsets\" into practice?",
             "choices": [
               "The chapter argues that labels such as needy, selfish, or difficult can freeze people instead of helping them change together.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -2990,7 +2990,7 @@
           },
           {
             "questionId": "ch06-h-q08",
-            "prompt": "Which option shows why this principle matters: the main lesson is that healthy relationships depend partly on whether people believe connection can be developed?",
+            "prompt": "When pressure rises, which response best reflects \"Love Friendship And Relationships Under Different Mindsets\"?",
             "choices": [
               "The main lesson is that healthy relationships depend partly on whether people believe connection can be developed.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -3001,7 +3001,7 @@
           },
           {
             "questionId": "ch06-h-q09",
-            "prompt": "Which option shows why this principle matters: a deeper reading suggests that mindset shapes vulnerability itself, because a person must believe people can change in?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Love Friendship And Relationships Under Different Mindsets\"?",
             "choices": [
               "A deeper reading suggests that mindset shapes vulnerability itself, because a person must believe people can change in order to risk difficult honesty.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -3012,7 +3012,7 @@
           },
           {
             "questionId": "ch06-h-q10",
-            "prompt": "Which option shows why this principle matters: the deepest takeaway is that love becomes more durable when people treat character as formable and repair as?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Love Friendship And Relationships Under Different Mindsets\"?",
             "choices": [
               "The deepest takeaway is that love becomes more durable when people treat character as formable and repair as part of real closeness.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -3025,7 +3025,7 @@
         "retryQuestions": [
           {
             "questionId": "ch06-h-q01-retry-01",
-            "prompt": "Which option best applies this principle to real decisions: that mindset does not only affect achievement but also shapes intimacy, friendship, and conflict?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Love Friendship And Relationships Under Different Mindsets\"?",
             "choices": [
               "It says that challenge should usually be avoided because struggle mainly proves limitation.",
               "It says that feedback matters very little compared with preserving confidence and looking naturally capable.",
@@ -3036,7 +3036,7 @@
           },
           {
             "questionId": "ch06-h-q02-retry-02",
-            "prompt": "Which option best applies this principle to real decisions: a fixed mindset in relationships often expects smooth compatibility and treats conflict as proof that something is wrong?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Love Friendship And Relationships Under Different Mindsets\" into practice?",
             "choices": [
               "It says that feedback matters very little compared with preserving confidence and looking naturally capable.",
               "A fixed mindset in relationships often expects smooth compatibility and treats conflict as proof that something is wrong with the bond or the people in it.",
@@ -3047,7 +3047,7 @@
           },
           {
             "questionId": "ch06-h-q03-retry-03",
-            "prompt": "Which option best applies this principle to real decisions: a growth mindset sees relationships as things that require communication, adjustment, forgiveness, and effort?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Love Friendship And Relationships Under Different Mindsets\"?",
             "choices": [
               "A growth mindset sees relationships as things that require communication, adjustment, forgiveness, and effort.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -3058,7 +3058,7 @@
           },
           {
             "questionId": "ch06-h-q04-retry-04",
-            "prompt": "Which option best applies this principle to real decisions: because of this difference, people with different mindsets interpret disagreement very differently?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Love Friendship And Relationships Under Different Mindsets\"?",
             "choices": [
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
               "It says that challenge should usually be avoided because struggle mainly proves limitation.",
@@ -3069,7 +3069,7 @@
           },
           {
             "questionId": "ch06-h-q05-retry-05",
-            "prompt": "Which option best applies this principle to real decisions: a fixed mindset can make people chase validation, mind reading, or perfect understanding instead of honest conversation?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Love Friendship And Relationships Under Different Mindsets\" into practice?",
             "choices": [
               "It says that challenge should usually be avoided because struggle mainly proves limitation.",
               "It says that feedback matters very little compared with preserving confidence and looking naturally capable.",
@@ -3374,11 +3374,11 @@
           "contexts": [
             "school"
           ],
-          "scenario": "Jordan is tutoring a classmate and they keep saying they are just bad at the subject. If Jordan respond with empty reassurance, the fixed story stays intact.",
+          "scenario": "Jordan is tutoring a classmate and they keep saying they are just bad at the subject. If Jordan responds with empty reassurance, the fixed story stays intact.",
           "whatToDo": [
             "Point to a specific improvement they made and name the strategy that produced it. Then set one next step so progress feels concrete and repeatable."
           ],
-          "whyItMatters": "This matters because good teaching translates effort into visible progress rather than into generic positivity."
+          "whyItMatters": "This matters because good teaching translates effort into visible progress rather than into generic positivity. This scenario is directly connected to how adults shape the growth of others."
         },
         {
           "exampleId": "ch07-ex04",
@@ -3386,7 +3386,7 @@
           "contexts": [
             "school"
           ],
-          "scenario": "Maya lead a peer workshop and want to motivate participants, so Maya praise only the students who finish quickly. Others quietly learn that speed equals ability.",
+          "scenario": "Maya leads a peer workshop and wants to motivate participants, so Maya praises only the students who finish quickly. Others quietly learn that speed equals ability.",
           "whatToDo": [
             "Praise persistence, revision, and good questions along with strong outcomes. Make the room feel like a place where growth is visible and respected."
           ],
@@ -3398,7 +3398,7 @@
           "contexts": [
             "work"
           ],
-          "scenario": "A new hire struggles with part of the workflow and Riley can either label them as not ready or coach them through the learning curve. The message Riley send will shape future risk taking.",
+          "scenario": "A new hire struggles with part of the workflow and Riley can either label them as not ready or coach them through the learning curve. The message Riley sends will shape future risk taking.",
           "whatToDo": [
             "Give specific feedback, explain what improvement looks like, and make clear that the standard is high because the skill can be learned. Stay demanding and supportive at the same time."
           ],
@@ -3414,7 +3414,7 @@
           "whatToDo": [
             "Address the exact mistake, the principle behind it, and how to avoid it next time. Keep the correction tied to the work and the path forward."
           ],
-          "whyItMatters": "This matters because professional development depends on feedback that is clear without becoming identity damage."
+          "whyItMatters": "This matters because professional development depends on feedback that is clear without becoming identity damage. This scenario is directly connected to how adults shape the growth of others."
         }
       ],
       "quiz": {
@@ -3422,7 +3422,7 @@
         "questions": [
           {
             "questionId": "ch07-h-q01",
-            "prompt": "Which option shows why this principle matters: looks at the adults who shape development and shows how their messages can either support growth or lock?",
+            "prompt": "You are making a real-world decision tied to \"How Adults Shape The Growth Of Others\". Which option is the strongest next move?",
             "choices": [
               "This chapter looks at the adults who shape development and shows how their messages can either support growth or lock people into fragile beliefs about ability.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -3433,7 +3433,7 @@
           },
           {
             "questionId": "ch07-h-q02",
-            "prompt": "Which option shows why this principle matters: parents, teachers, and coaches influence not only performance but also how young people interpret effort, failure, and praise?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"How Adults Shape The Growth Of Others\" into practice?",
             "choices": [
               "Parents, teachers, and coaches influence not only performance but also how young people interpret effort, failure, and praise.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -3444,7 +3444,7 @@
           },
           {
             "questionId": "ch07-h-q03",
-            "prompt": "Which option shows why this principle matters: when adults praise fixed traits alone, they can unintentionally make children afraid of challenge and mistake making?",
+            "prompt": "When pressure rises, which response best reflects \"How Adults Shape The Growth Of Others\"?",
             "choices": [
               "When adults praise fixed traits alone, they can unintentionally make children afraid of challenge and mistake making.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -3455,7 +3455,7 @@
           },
           {
             "questionId": "ch07-h-q04",
-            "prompt": "Which option shows why this principle matters: when adults praise strategy, persistence, and learning, they help children connect effort with improvement?",
+            "prompt": "Which option would be most effective in a realistic situation for \"How Adults Shape The Growth Of Others\"?",
             "choices": [
               "When adults praise strategy, persistence, and learning, they help children connect effort with improvement.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -3466,7 +3466,7 @@
           },
           {
             "questionId": "ch07-h-q05",
-            "prompt": "Which option shows why this principle matters: that high standards and warmth should work together rather than against each other?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"How Adults Shape The Growth Of Others\"?",
             "choices": [
               "The chapter argues that high standards and warmth should work together rather than against each other.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -3477,7 +3477,7 @@
           },
           {
             "questionId": "ch07-h-q06",
-            "prompt": "Which option shows why this principle matters: growth oriented guidance does not mean lowering expectations or pretending results do not matter?",
+            "prompt": "You are making a real-world decision tied to \"How Adults Shape The Growth Of Others\". Which option is the strongest next move?",
             "choices": [
               "Growth oriented guidance does not mean lowering expectations or pretending results do not matter.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -3488,7 +3488,7 @@
           },
           {
             "questionId": "ch07-h-q07",
-            "prompt": "Which option shows why this principle matters: instead, it means teaching that capability can be built through disciplined work and helpful support?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"How Adults Shape The Growth Of Others\" into practice?",
             "choices": [
               "Instead, it means teaching that capability can be built through disciplined work and helpful support.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -3499,7 +3499,7 @@
           },
           {
             "questionId": "ch07-h-q08",
-            "prompt": "Which option shows why this principle matters: the main lesson is that leaders of learners should communicate belief in development while still telling the truth?",
+            "prompt": "When pressure rises, which response best reflects \"How Adults Shape The Growth Of Others\"?",
             "choices": [
               "The main lesson is that leaders of learners should communicate belief in development while still telling the truth about what needs work.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -3510,7 +3510,7 @@
           },
           {
             "questionId": "ch07-h-q09",
-            "prompt": "Which option shows why this principle matters: a deeper reading shows that developmental leadership is ethical work, because adults help define what effort, worth, and?",
+            "prompt": "Which option would be most effective in a realistic situation for \"How Adults Shape The Growth Of Others\"?",
             "choices": [
               "A deeper reading shows that developmental leadership is ethical work, because adults help define what effort, worth, and potential mean for the people they influence.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -3521,7 +3521,7 @@
           },
           {
             "questionId": "ch07-h-q10",
-            "prompt": "Which option shows why this principle matters: the deepest takeaway is that strong mentors combine demanding expectations with a steady belief that people can become?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"How Adults Shape The Growth Of Others\"?",
             "choices": [
               "The deepest takeaway is that strong mentors combine demanding expectations with a steady belief that people can become more than they are today.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -3534,7 +3534,7 @@
         "retryQuestions": [
           {
             "questionId": "ch07-h-q01-retry-01",
-            "prompt": "Which option best applies this principle to real decisions: looks at the adults who shape development and shows how their messages can either support growth or lock?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"How Adults Shape The Growth Of Others\"?",
             "choices": [
               "It says that feedback matters very little compared with preserving confidence and looking naturally capable.",
               "This chapter looks at the adults who shape development and shows how their messages can either support growth or lock people into fragile beliefs about ability.",
@@ -3545,7 +3545,7 @@
           },
           {
             "questionId": "ch07-h-q02-retry-02",
-            "prompt": "Which option best applies this principle to real decisions: parents, teachers, and coaches influence not only performance but also how young people interpret effort, failure, and praise?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"How Adults Shape The Growth Of Others\" into practice?",
             "choices": [
               "Parents, teachers, and coaches influence not only performance but also how young people interpret effort, failure, and praise.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -3556,7 +3556,7 @@
           },
           {
             "questionId": "ch07-h-q03-retry-03",
-            "prompt": "Which option best applies this principle to real decisions: when adults praise fixed traits alone, they can unintentionally make children afraid of challenge and mistake making?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"How Adults Shape The Growth Of Others\"?",
             "choices": [
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
               "It says that challenge should usually be avoided because struggle mainly proves limitation.",
@@ -3567,7 +3567,7 @@
           },
           {
             "questionId": "ch07-h-q04-retry-04",
-            "prompt": "Which option best applies this principle to real decisions: when adults praise strategy, persistence, and learning, they help children connect effort with improvement?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"How Adults Shape The Growth Of Others\"?",
             "choices": [
               "It says that challenge should usually be avoided because struggle mainly proves limitation.",
               "It says that feedback matters very little compared with preserving confidence and looking naturally capable.",
@@ -3578,7 +3578,7 @@
           },
           {
             "questionId": "ch07-h-q05-retry-05",
-            "prompt": "Which option best applies this principle to real decisions: that high standards and warmth should work together rather than against each other?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"How Adults Shape The Growth Of Others\" into practice?",
             "choices": [
               "It says that feedback matters very little compared with preserving confidence and looking naturally capable.",
               "The chapter argues that high standards and warmth should work together rather than against each other.",
@@ -3871,11 +3871,11 @@
           "contexts": [
             "personal"
           ],
-          "scenario": "Alex stopped a personal goal months ago after early struggle and still feel embarrassed about returning to it. Restarting feels like admitting weakness.",
+          "scenario": "Alex stopped a personal goal months ago after early struggle and still feels embarrassed about returning to it. Restarting feels like admitting weakness.",
           "whatToDo": [
             "Return with a small repeatable plan and a different definition of success that values consistency over instant competence. Let restarting become evidence of growth instead of proof of failure."
           ],
-          "whyItMatters": "This matters because many meaningful changes happen on the second or third attempt, not the first."
+          "whyItMatters": "This matters because many meaningful changes happen on the second or third attempt, not the first. This scenario is directly connected to changing your mindset in practice."
         },
         {
           "exampleId": "ch08-ex03",
@@ -3887,7 +3887,7 @@
           "whatToDo": [
             "Replace the identity label with a process commitment such as when you will start, what help you will use, and how you will revise. Focus on building a new pattern rather than defending an old story."
           ],
-          "whyItMatters": "This matters because academic change becomes easier when students stop treating past habits as destiny."
+          "whyItMatters": "This matters because academic change becomes easier when students stop treating past habits as destiny. This scenario is directly connected to changing your mindset in practice."
         },
         {
           "exampleId": "ch08-ex04",
@@ -3899,7 +3899,7 @@
           "whatToDo": [
             "Review the term for specific habits, systems, and choices that can change next term. Build a narrow plan for attendance, study timing, and feedback use rather than carrying a global negative label forward."
           ],
-          "whyItMatters": "This matters because recovery in school depends on whether students treat bad periods as permanent identity or as information for redesign."
+          "whyItMatters": "This matters because recovery in school depends on whether students treat bad periods as permanent identity or as information for redesign. This scenario is directly connected to changing your mindset in practice."
         },
         {
           "exampleId": "ch08-ex05",
@@ -3907,7 +3907,7 @@
           "contexts": [
             "work"
           ],
-          "scenario": "Riley wants to move into a new role, but the beginner phase feels too exposing because Riley is used to competence in Riley's current lane. The transition threatens Riley's identity.",
+          "scenario": "Riley wants to move into a new role, but the beginner phase feels too exposing because Riley is used to competence in their current lane. The transition threatens their identity.",
           "whatToDo": [
             "Frame the move as a structured apprenticeship and choose metrics for early learning such as conversations, projects, and feedback loops. Let temporary awkwardness be part of the plan."
           ],
@@ -3923,7 +3923,7 @@
           "whatToDo": [
             "Acknowledge the mistake, correct what you can, and show a visible pattern of improved preparation and reliability over time. Let new behavior rewrite the reputation story gradually."
           ],
-          "whyItMatters": "This matters because trust is usually repaired through consistent action. A growth view makes that long process feel possible."
+          "whyItMatters": "This matters because trust is usually repaired through consistent action. A growth view makes that long process feel possible. This scenario is directly connected to changing your mindset in practice."
         }
       ],
       "quiz": {
@@ -3931,7 +3931,7 @@
         "questions": [
           {
             "questionId": "ch08-h-q01",
-            "prompt": "Which option shows why this principle matters: on change, arguing that mindset is powerful but not immovable?",
+            "prompt": "You are making a real-world decision tied to \"Changing Your Mindset In Practice\". Which option is the strongest next move?",
             "choices": [
               "This chapter focuses on change, arguing that mindset is powerful but not immovable.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -3942,7 +3942,7 @@
           },
           {
             "questionId": "ch08-h-q02",
-            "prompt": "Which option shows why this principle matters: people can learn to notice fixed mindset triggers and respond to them in more growth oriented ways?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Changing Your Mindset In Practice\" into practice?",
             "choices": [
               "People can learn to notice fixed mindset triggers and respond to them in more growth oriented ways.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -3953,7 +3953,7 @@
           },
           {
             "questionId": "ch08-h-q03",
-            "prompt": "Which option shows why this principle matters: that change begins with awareness of the situations that activate fear, defensiveness, or avoidance?",
+            "prompt": "When pressure rises, which response best reflects \"Changing Your Mindset In Practice\"?",
             "choices": [
               "The chapter explains that change begins with awareness of the situations that activate fear, defensiveness, or avoidance.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -3964,7 +3964,7 @@
           },
           {
             "questionId": "ch08-h-q04",
-            "prompt": "Which option shows why this principle matters: once those moments are visible, people can practice new interpretations and new behaviors?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Changing Your Mindset In Practice\"?",
             "choices": [
               "Once those moments are visible, people can practice new interpretations and new behaviors.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -3975,7 +3975,7 @@
           },
           {
             "questionId": "ch08-h-q05",
-            "prompt": "Which option shows why this principle matters: a growth mindset is not achieved by repeating slogans but by acting differently when challenge appears?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Changing Your Mindset In Practice\"?",
             "choices": [
               "A growth mindset is not achieved by repeating slogans but by acting differently when challenge appears.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -3986,7 +3986,7 @@
           },
           {
             "questionId": "ch08-h-q06",
-            "prompt": "Which option shows why this principle matters: also emphasizes that change is gradual because old habits of interpretation return under stress?",
+            "prompt": "You are making a real-world decision tied to \"Changing Your Mindset In Practice\". Which option is the strongest next move?",
             "choices": [
               "The chapter also emphasizes that change is gradual because old habits of interpretation return under stress.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -3997,7 +3997,7 @@
           },
           {
             "questionId": "ch08-h-q07",
-            "prompt": "Which option shows why this principle matters: progress comes from repeated practice of better responses to setbacks, criticism, and effort?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Changing Your Mindset In Practice\" into practice?",
             "choices": [
               "Progress comes from repeated practice of better responses to setbacks, criticism, and effort.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -4008,7 +4008,7 @@
           },
           {
             "questionId": "ch08-h-q08",
-            "prompt": "Which option shows why this principle matters: the main lesson is that mindset change becomes real when people build new habits of meaning, effort, and?",
+            "prompt": "When pressure rises, which response best reflects \"Changing Your Mindset In Practice\"?",
             "choices": [
               "The main lesson is that mindset change becomes real when people build new habits of meaning, effort, and action.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -4019,7 +4019,7 @@
           },
           {
             "questionId": "ch08-h-q09",
-            "prompt": "Which option shows why this principle matters: a deeper reading suggests that mindset change is less about replacing one belief in the abstract and more?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Changing Your Mindset In Practice\"?",
             "choices": [
               "A deeper reading suggests that mindset change is less about replacing one belief in the abstract and more about redesigning one response at a time across different parts of life.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -4030,7 +4030,7 @@
           },
           {
             "questionId": "ch08-h-q10",
-            "prompt": "Which option shows why this principle matters: the deepest takeaway is that real change happens when people face challenge with honesty, mercy, and disciplined repetition?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Changing Your Mindset In Practice\"?",
             "choices": [
               "The deepest takeaway is that real change happens when people face challenge with honesty, mercy, and disciplined repetition until a new identity becomes believable.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -4043,7 +4043,7 @@
         "retryQuestions": [
           {
             "questionId": "ch08-h-q01-retry-01",
-            "prompt": "Which option best applies this principle to real decisions: on change, arguing that mindset is powerful but not immovable?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Changing Your Mindset In Practice\"?",
             "choices": [
               "This chapter focuses on change, arguing that mindset is powerful but not immovable.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
@@ -4054,7 +4054,7 @@
           },
           {
             "questionId": "ch08-h-q02-retry-02",
-            "prompt": "Which option best applies this principle to real decisions: people can learn to notice fixed mindset triggers and respond to them in more growth oriented ways?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Changing Your Mindset In Practice\" into practice?",
             "choices": [
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",
               "It says that challenge should usually be avoided because struggle mainly proves limitation.",
@@ -4065,7 +4065,7 @@
           },
           {
             "questionId": "ch08-h-q03-retry-03",
-            "prompt": "Which option best applies this principle to real decisions: that change begins with awareness of the situations that activate fear, defensiveness, or avoidance?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Changing Your Mindset In Practice\"?",
             "choices": [
               "It says that challenge should usually be avoided because struggle mainly proves limitation.",
               "It says that feedback matters very little compared with preserving confidence and looking naturally capable.",
@@ -4076,7 +4076,7 @@
           },
           {
             "questionId": "ch08-h-q04-retry-04",
-            "prompt": "Which option best applies this principle to real decisions: once those moments are visible, people can practice new interpretations and new behaviors?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Changing Your Mindset In Practice\"?",
             "choices": [
               "It says that feedback matters very little compared with preserving confidence and looking naturally capable.",
               "Once those moments are visible, people can practice new interpretations and new behaviors.",
@@ -4087,7 +4087,7 @@
           },
           {
             "questionId": "ch08-h-q05-retry-05",
-            "prompt": "Which option best applies this principle to real decisions: a growth mindset is not achieved by repeating slogans but by acting differently when challenge appears?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Changing Your Mindset In Practice\" into practice?",
             "choices": [
               "A growth mindset is not achieved by repeating slogans but by acting differently when challenge appears.",
               "It says that ability and character are mostly fixed, so protecting image is usually wiser than risking growth.",

@@ -296,7 +296,7 @@
           "contexts": [
             "personal"
           ],
-          "scenario": "Alex keeps telling themselves Alex will sleep earlier, yet every night Alex ends up checking Alex's phone far past the time Alex meant to stop. The routine feels automatic, and by the time Alex notices it fully Alex is already deep into the behavior.",
+          "scenario": "Alex keeps telling themselves Alex will sleep earlier, yet every night Alex ends up checking their phone far past the time Alex meant to stop. The routine feels automatic, and by the time Alex notices it fully Alex is already deep into the behavior.",
           "whatToDo": [
             "Map the cue, the routine, and the reward instead of only blaming discipline. Test whether the reward is stimulation, escape, or relief from stress, then build a replacement routine that serves the same need with less damage to sleep."
           ],
@@ -320,7 +320,7 @@
           "contexts": [
             "school"
           ],
-          "scenario": "Maya says Maya will study steadily across the week, but Maya's real habit is to wait until stress becomes high enough to force action. The cue is panic, the routine is cramming, and the reward is short term relief.",
+          "scenario": "Maya says Maya will study steadily across the week, but their real habit is to wait until stress becomes high enough to force action. The cue is panic, the routine is cramming, and the reward is short term relief.",
           "whatToDo": [
             "Treat the pattern as a habit loop instead of a personality flaw. Build earlier cues, smaller routines, and rewards that make regular studying feel more repeatable before the panic cycle begins."
           ],
@@ -368,111 +368,111 @@
         "questions": [
           {
             "questionId": "ch01-h-q01",
-            "prompt": "Which option shows why this principle matters: repeated behavior is shaped by a structured loop that can be studied and redesigned?",
+            "prompt": "You are making a real-world decision tied to \"The Habit Loop In Daily Life\". Which option is the strongest next move?",
             "choices": [
-              "Behavior changes mainly through motivation alone",
-              "Repeated behavior is shaped by a structured loop that can be studied and redesigned",
-              "Habits affect only personal life",
-              "Rewards matter less than personality"
+              "Behavior changes mainly through motivation alone.",
+              "Repeated behavior is shaped by a structured loop that can be studied and redesigned.",
+              "Habits affect only personal life.",
+              "Rewards matter less than personality."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch01-h-q02",
-            "prompt": "Which option shows why this principle matters: because they help explain why a behavior starts and why it keeps being repeated?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"The Habit Loop In Daily Life\" into practice?",
             "choices": [
-              "Because routines are never important",
-              "Because they help explain why a behavior starts and why it keeps being repeated",
-              "Because they remove responsibility",
-              "Because they matter only in business settings"
+              "Because routines are never important.",
+              "Because they help explain why a behavior starts and why it keeps being repeated.",
+              "Because they remove responsibility.",
+              "Because they matter only in business settings."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch01-h-q03",
-            "prompt": "Which option shows why this principle matters: the loop already saves effort and often carries an expected reward?",
+            "prompt": "When pressure rises, which response best reflects \"The Habit Loop In Daily Life\"?",
             "choices": [
-              "The brain dislikes all routines",
-              "The loop already saves effort and often carries an expected reward",
-              "People never know their cues",
-              "Only strong habits have rewards"
+              "The brain dislikes all routines.",
+              "The loop already saves effort and often carries an expected reward.",
+              "People never know their cues.",
+              "Only strong habits have rewards."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch01-h-q04",
-            "prompt": "Which option shows why this principle matters: treat change as a design and experimentation problem?",
+            "prompt": "Which option would be most effective in a realistic situation for \"The Habit Loop In Daily Life\"?",
             "choices": [
-              "Attack the behavior without studying the pattern",
-              "Treat change as a design and experimentation problem",
-              "Wait until motivation becomes constant",
-              "Focus only on punishment"
+              "Attack the behavior without studying the pattern.",
+              "Treat change as a design and experimentation problem.",
+              "Wait until motivation becomes constant.",
+              "Focus only on punishment."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch01-h-q05",
-            "prompt": "Which option shows why this principle matters: they affect wider systems and can trigger broader change?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"The Habit Loop In Daily Life\"?",
             "choices": [
-              "They affect wider systems and can trigger broader change",
-              "They are easier than all other habits",
-              "They work only for organizations",
-              "They remove the need for accountability"
+              "They affect wider systems and can trigger broader change.",
+              "They are easier than all other habits.",
+              "They work only for organizations.",
+              "They remove the need for accountability."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch01-h-q06",
-            "prompt": "Which option shows why this principle matters: it can be strengthened through routine, planning, and practice?",
+            "prompt": "You are making a real-world decision tied to \"The Habit Loop In Daily Life\". Which option is the strongest next move?",
             "choices": [
-              "It is fixed and mostly inherited",
-              "It can be strengthened through routine, planning, and practice",
-              "It only matters in school",
-              "It disappears when habits form"
+              "It is fixed and mostly inherited.",
+              "It can be strengthened through routine, planning, and practice.",
+              "It only matters in school.",
+              "It disappears when habits form."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch01-h-q07",
-            "prompt": "Which option shows why this principle matters: groups also run on repeated routines, expectations, and cues?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"The Habit Loop In Daily Life\" into practice?",
             "choices": [
-              "Habits are mostly private and personal",
-              "Groups also run on repeated routines, expectations, and cues",
-              "Social habits matter only in protests",
-              "Organizations do not really have habits"
+              "Habits are mostly private and personal.",
+              "Groups also run on repeated routines, expectations, and cues.",
+              "Social habits matter only in protests.",
+              "Organizations do not really have habits."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch01-h-q08",
-            "prompt": "Which option shows why this principle matters: whether habit science should be used to expand freedom or manipulate behavior invisibly?",
+            "prompt": "When pressure rises, which response best reflects \"The Habit Loop In Daily Life\"?",
             "choices": [
-              "Whether habit science should be used to expand freedom or manipulate behavior invisibly",
-              "Whether habits should exist at all",
-              "Whether responsibility is impossible",
-              "Whether rewards should be hidden"
+              "Whether habit science should be used to expand freedom or manipulate behavior invisibly.",
+              "Whether habits should exist at all.",
+              "Whether responsibility is impossible.",
+              "Whether rewards should be hidden."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch01-h-q09",
-            "prompt": "Which option shows why this principle matters: experimental discipline that learns from failure and adjusts the loop?",
+            "prompt": "Which option would be most effective in a realistic situation for \"The Habit Loop In Daily Life\"?",
             "choices": [
-              "Perfection from the beginning",
-              "Experimental discipline that learns from failure and adjusts the loop",
-              "Pure self blame",
-              "Ignoring the environment"
+              "Perfection from the beginning.",
+              "Experimental discipline that learns from failure and adjusts the loop.",
+              "Pure self blame.",
+              "Ignoring the environment."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch01-h-q10",
-            "prompt": "Which option shows why this principle matters: it helps people and institutions make change more deliberate and effective?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"The Habit Loop In Daily Life\"?",
             "choices": [
-              "It helps people and institutions make change more deliberate and effective",
-              "It guarantees instant transformation",
-              "It removes the need for goals",
-              "It works only when pressure is high"
+              "It helps people and institutions make change more deliberate and effective.",
+              "It guarantees instant transformation.",
+              "It removes the need for goals.",
+              "It works only when pressure is high."
             ],
             "correctIndex": 0
           }
@@ -480,56 +480,56 @@
         "retryQuestions": [
           {
             "questionId": "ch01-h-q01-retry-01",
-            "prompt": "Which option best applies this principle to real decisions: repeated behavior is shaped by a structured loop that can be studied and redesigned?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"The Habit Loop In Daily Life\"?",
             "choices": [
-              "Behavior changes mainly through motivation alone",
-              "Habits affect only personal life",
-              "Rewards matter less than personality",
-              "Repeated behavior is shaped by a structured loop that can be studied and redesigned"
+              "Behavior changes mainly through motivation alone.",
+              "Habits affect only personal life.",
+              "Rewards matter less than personality.",
+              "Repeated behavior is shaped by a structured loop that can be studied and redesigned."
             ],
             "correctIndex": 3
           },
           {
             "questionId": "ch01-h-q02-retry-02",
-            "prompt": "Which option best applies this principle to real decisions: because they help explain why a behavior starts and why it keeps being repeated?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"The Habit Loop In Daily Life\" into practice?",
             "choices": [
-              "Because they remove responsibility",
-              "Because they matter only in business settings",
-              "Because they help explain why a behavior starts and why it keeps being repeated",
-              "Because routines are never important"
+              "Because they remove responsibility.",
+              "Because they matter only in business settings.",
+              "Because they help explain why a behavior starts and why it keeps being repeated.",
+              "Because routines are never important."
             ],
             "correctIndex": 2
           },
           {
             "questionId": "ch01-h-q03-retry-03",
-            "prompt": "Which option best applies this principle to real decisions: the loop already saves effort and often carries an expected reward?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"The Habit Loop In Daily Life\"?",
             "choices": [
-              "Only strong habits have rewards",
-              "The loop already saves effort and often carries an expected reward",
-              "The brain dislikes all routines",
-              "People never know their cues"
+              "Only strong habits have rewards.",
+              "The loop already saves effort and often carries an expected reward.",
+              "The brain dislikes all routines.",
+              "People never know their cues."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch01-h-q04-retry-04",
-            "prompt": "Which option best applies this principle to real decisions: treat change as a design and experimentation problem?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"The Habit Loop In Daily Life\"?",
             "choices": [
-              "Treat change as a design and experimentation problem",
-              "Attack the behavior without studying the pattern",
-              "Wait until motivation becomes constant",
-              "Focus only on punishment"
+              "Treat change as a design and experimentation problem.",
+              "Attack the behavior without studying the pattern.",
+              "Wait until motivation becomes constant.",
+              "Focus only on punishment."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch01-h-q05-retry-05",
-            "prompt": "Which option best applies this principle to real decisions: they affect wider systems and can trigger broader change?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"The Habit Loop In Daily Life\" into practice?",
             "choices": [
-              "They are easier than all other habits",
-              "They work only for organizations",
-              "They remove the need for accountability",
-              "They affect wider systems and can trigger broader change"
+              "They are easier than all other habits.",
+              "They work only for organizations.",
+              "They remove the need for accountability.",
+              "They affect wider systems and can trigger broader change."
             ],
             "correctIndex": 3
           }
@@ -805,7 +805,7 @@
           "contexts": [
             "personal"
           ],
-          "scenario": "Jordan keeps telling themselves Jordan will sleep earlier, yet every night Jordan ends up checking Jordan's phone far past the time Jordan meant to stop. The routine feels automatic, and by the time Jordan notices it fully Jordan is already deep into the behavior.",
+          "scenario": "Jordan keeps telling themselves Jordan will sleep earlier, yet every night Jordan ends up checking their phone far past the time Jordan meant to stop. The routine feels automatic, and by the time Jordan notices it fully Jordan is already deep into the behavior.",
           "whatToDo": [
             "Map the cue, the routine, and the reward instead of only blaming discipline. Test whether the reward is stimulation, escape, or relief from stress, then build a replacement routine that serves the same need with less damage to sleep."
           ],
@@ -829,7 +829,7 @@
           "contexts": [
             "school"
           ],
-          "scenario": "Riley says Riley will study steadily across the week, but Riley's real habit is to wait until stress becomes high enough to force action. The cue is panic, the routine is cramming, and the reward is short term relief.",
+          "scenario": "Riley says Riley will study steadily across the week, but their real habit is to wait until stress becomes high enough to force action. The cue is panic, the routine is cramming, and the reward is short term relief.",
           "whatToDo": [
             "Treat the pattern as a habit loop instead of a personality flaw. Build earlier cues, smaller routines, and rewards that make regular studying feel more repeatable before the panic cycle begins."
           ],
@@ -845,7 +845,7 @@
           "whatToDo": [
             "Identify one keystone habit for the group, such as a fixed weekly checkpoint with clear ownership and visible follow up. Build the routine so that participation becomes expected rather than improvised each time."
           ],
-          "whyItMatters": "The book is not only about personal habits. This scenario helps students see how group patterns become predictable and how one well chosen routine can reshape the whole system."
+          "whyItMatters": "The book is not only about personal habits. This scenario helps students see how group patterns become predictable and how one well chosen routine can reshape the whole system. This scenario is directly connected to craving makes the loop stick."
         },
         {
           "exampleId": "ch02-ex05",
@@ -857,7 +857,7 @@
           "whatToDo": [
             "Watch for the cues and rewards that sustain the team pattern, then decide where you can build a better routine for your own work. If possible, look for a keystone habit that improves clarity, preparation, or communication across the team."
           ],
-          "whyItMatters": "Workplace behavior is often shaped by organizational habits more than by official values. This example helps readers understand how routines spread through systems and why changing one core habit can matter so much."
+          "whyItMatters": "Workplace behavior is often shaped by organizational habits more than by official values. This example helps readers understand how routines spread through systems and why changing one core habit can matter so much. This scenario is directly connected to craving makes the loop stick."
         },
         {
           "exampleId": "ch02-ex06",
@@ -877,111 +877,111 @@
         "questions": [
           {
             "questionId": "ch02-h-q01",
-            "prompt": "Which option shows why this principle matters: repeated behavior is shaped by a structured loop that can be studied and redesigned?",
+            "prompt": "You are making a real-world decision tied to \"Craving Makes The Loop Stick\". Which option is the strongest next move?",
             "choices": [
-              "Behavior changes mainly through motivation alone",
-              "Repeated behavior is shaped by a structured loop that can be studied and redesigned",
-              "Habits affect only personal life",
-              "Rewards matter less than personality"
+              "Behavior changes mainly through motivation alone.",
+              "Repeated behavior is shaped by a structured loop that can be studied and redesigned.",
+              "Habits affect only personal life.",
+              "Rewards matter less than personality."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch02-h-q02",
-            "prompt": "Which option shows why this principle matters: because they help explain why a behavior starts and why it keeps being repeated?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Craving Makes The Loop Stick\" into practice?",
             "choices": [
-              "Because routines are never important",
-              "Because they help explain why a behavior starts and why it keeps being repeated",
-              "Because they remove responsibility",
-              "Because they matter only in business settings"
+              "Because routines are never important.",
+              "Because they help explain why a behavior starts and why it keeps being repeated.",
+              "Because they remove responsibility.",
+              "Because they matter only in business settings."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch02-h-q03",
-            "prompt": "Which option shows why this principle matters: the loop already saves effort and often carries an expected reward?",
+            "prompt": "When pressure rises, which response best reflects \"Craving Makes The Loop Stick\"?",
             "choices": [
-              "The brain dislikes all routines",
-              "The loop already saves effort and often carries an expected reward",
-              "People never know their cues",
-              "Only strong habits have rewards"
+              "The brain dislikes all routines.",
+              "The loop already saves effort and often carries an expected reward.",
+              "People never know their cues.",
+              "Only strong habits have rewards."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch02-h-q04",
-            "prompt": "Which option shows why this principle matters: treat change as a design and experimentation problem?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Craving Makes The Loop Stick\"?",
             "choices": [
-              "Attack the behavior without studying the pattern",
-              "Treat change as a design and experimentation problem",
-              "Wait until motivation becomes constant",
-              "Focus only on punishment"
+              "Attack the behavior without studying the pattern.",
+              "Treat change as a design and experimentation problem.",
+              "Wait until motivation becomes constant.",
+              "Focus only on punishment."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch02-h-q05",
-            "prompt": "Which option shows why this principle matters: they affect wider systems and can trigger broader change?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Craving Makes The Loop Stick\"?",
             "choices": [
-              "They affect wider systems and can trigger broader change",
-              "They are easier than all other habits",
-              "They work only for organizations",
-              "They remove the need for accountability"
+              "They affect wider systems and can trigger broader change.",
+              "They are easier than all other habits.",
+              "They work only for organizations.",
+              "They remove the need for accountability."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch02-h-q06",
-            "prompt": "Which option shows why this principle matters: it can be strengthened through routine, planning, and practice?",
+            "prompt": "You are making a real-world decision tied to \"Craving Makes The Loop Stick\". Which option is the strongest next move?",
             "choices": [
-              "It is fixed and mostly inherited",
-              "It can be strengthened through routine, planning, and practice",
-              "It only matters in school",
-              "It disappears when habits form"
+              "It is fixed and mostly inherited.",
+              "It can be strengthened through routine, planning, and practice.",
+              "It only matters in school.",
+              "It disappears when habits form."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch02-h-q07",
-            "prompt": "Which option shows why this principle matters: groups also run on repeated routines, expectations, and cues?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Craving Makes The Loop Stick\" into practice?",
             "choices": [
-              "Habits are mostly private and personal",
-              "Groups also run on repeated routines, expectations, and cues",
-              "Social habits matter only in protests",
-              "Organizations do not really have habits"
+              "Habits are mostly private and personal.",
+              "Groups also run on repeated routines, expectations, and cues.",
+              "Social habits matter only in protests.",
+              "Organizations do not really have habits."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch02-h-q08",
-            "prompt": "Which option shows why this principle matters: whether habit science should be used to expand freedom or manipulate behavior invisibly?",
+            "prompt": "When pressure rises, which response best reflects \"Craving Makes The Loop Stick\"?",
             "choices": [
-              "Whether habit science should be used to expand freedom or manipulate behavior invisibly",
-              "Whether habits should exist at all",
-              "Whether responsibility is impossible",
-              "Whether rewards should be hidden"
+              "Whether habit science should be used to expand freedom or manipulate behavior invisibly.",
+              "Whether habits should exist at all.",
+              "Whether responsibility is impossible.",
+              "Whether rewards should be hidden."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch02-h-q09",
-            "prompt": "Which option shows why this principle matters: experimental discipline that learns from failure and adjusts the loop?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Craving Makes The Loop Stick\"?",
             "choices": [
-              "Perfection from the beginning",
-              "Experimental discipline that learns from failure and adjusts the loop",
-              "Pure self blame",
-              "Ignoring the environment"
+              "Perfection from the beginning.",
+              "Experimental discipline that learns from failure and adjusts the loop.",
+              "Pure self blame.",
+              "Ignoring the environment."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch02-h-q10",
-            "prompt": "Which option shows why this principle matters: it helps people and institutions make change more deliberate and effective?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Craving Makes The Loop Stick\"?",
             "choices": [
-              "It helps people and institutions make change more deliberate and effective",
-              "It guarantees instant transformation",
-              "It removes the need for goals",
-              "It works only when pressure is high"
+              "It helps people and institutions make change more deliberate and effective.",
+              "It guarantees instant transformation.",
+              "It removes the need for goals.",
+              "It works only when pressure is high."
             ],
             "correctIndex": 0
           }
@@ -989,56 +989,56 @@
         "retryQuestions": [
           {
             "questionId": "ch02-h-q01-retry-01",
-            "prompt": "Which option best applies this principle to real decisions: repeated behavior is shaped by a structured loop that can be studied and redesigned?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Craving Makes The Loop Stick\"?",
             "choices": [
-              "Habits affect only personal life",
-              "Rewards matter less than personality",
-              "Repeated behavior is shaped by a structured loop that can be studied and redesigned",
-              "Behavior changes mainly through motivation alone"
+              "Habits affect only personal life.",
+              "Rewards matter less than personality.",
+              "Repeated behavior is shaped by a structured loop that can be studied and redesigned.",
+              "Behavior changes mainly through motivation alone."
             ],
             "correctIndex": 2
           },
           {
             "questionId": "ch02-h-q02-retry-02",
-            "prompt": "Which option best applies this principle to real decisions: because they help explain why a behavior starts and why it keeps being repeated?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Craving Makes The Loop Stick\" into practice?",
             "choices": [
-              "Because they matter only in business settings",
-              "Because they help explain why a behavior starts and why it keeps being repeated",
-              "Because routines are never important",
-              "Because they remove responsibility"
+              "Because they matter only in business settings.",
+              "Because they help explain why a behavior starts and why it keeps being repeated.",
+              "Because routines are never important.",
+              "Because they remove responsibility."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch02-h-q03-retry-03",
-            "prompt": "Which option best applies this principle to real decisions: the loop already saves effort and often carries an expected reward?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Craving Makes The Loop Stick\"?",
             "choices": [
-              "The loop already saves effort and often carries an expected reward",
-              "The brain dislikes all routines",
-              "People never know their cues",
-              "Only strong habits have rewards"
+              "The loop already saves effort and often carries an expected reward.",
+              "The brain dislikes all routines.",
+              "People never know their cues.",
+              "Only strong habits have rewards."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch02-h-q04-retry-04",
-            "prompt": "Which option best applies this principle to real decisions: treat change as a design and experimentation problem?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Craving Makes The Loop Stick\"?",
             "choices": [
-              "Attack the behavior without studying the pattern",
-              "Wait until motivation becomes constant",
-              "Focus only on punishment",
-              "Treat change as a design and experimentation problem"
+              "Attack the behavior without studying the pattern.",
+              "Wait until motivation becomes constant.",
+              "Focus only on punishment.",
+              "Treat change as a design and experimentation problem."
             ],
             "correctIndex": 3
           },
           {
             "questionId": "ch02-h-q05-retry-05",
-            "prompt": "Which option best applies this principle to real decisions: they affect wider systems and can trigger broader change?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Craving Makes The Loop Stick\" into practice?",
             "choices": [
-              "They work only for organizations",
-              "They remove the need for accountability",
-              "They affect wider systems and can trigger broader change",
-              "They are easier than all other habits"
+              "They work only for organizations.",
+              "They remove the need for accountability.",
+              "They affect wider systems and can trigger broader change.",
+              "They are easier than all other habits."
             ],
             "correctIndex": 2
           }
@@ -1314,7 +1314,7 @@
           "contexts": [
             "personal"
           ],
-          "scenario": "Maya keeps telling themselves Maya will sleep earlier, yet every night Maya ends up checking Maya's phone far past the time Maya meant to stop. The routine feels automatic, and by the time Maya notices it fully Maya is already deep into the behavior.",
+          "scenario": "Maya keeps telling themselves Maya will sleep earlier, yet every night Maya ends up checking their phone far past the time Maya meant to stop. The routine feels automatic, and by the time Maya notices it fully Maya is already deep into the behavior.",
           "whatToDo": [
             "Map the cue, the routine, and the reward instead of only blaming discipline. Test whether the reward is stimulation, escape, or relief from stress, then build a replacement routine that serves the same need with less damage to sleep."
           ],
@@ -1338,7 +1338,7 @@
           "contexts": [
             "school"
           ],
-          "scenario": "Alex says Alex will study steadily across the week, but Alex's real habit is to wait until stress becomes high enough to force action. The cue is panic, the routine is cramming, and the reward is short term relief.",
+          "scenario": "Alex says Alex will study steadily across the week, but their real habit is to wait until stress becomes high enough to force action. The cue is panic, the routine is cramming, and the reward is short term relief.",
           "whatToDo": [
             "Treat the pattern as a habit loop instead of a personality flaw. Build earlier cues, smaller routines, and rewards that make regular studying feel more repeatable before the panic cycle begins."
           ],
@@ -1386,111 +1386,111 @@
         "questions": [
           {
             "questionId": "ch03-h-q01",
-            "prompt": "Which option shows why this principle matters: repeated behavior is shaped by a structured loop that can be studied and redesigned?",
+            "prompt": "You are making a real-world decision tied to \"Replace The Routine Not The Whole Loop\". Which option is the strongest next move?",
             "choices": [
-              "Behavior changes mainly through motivation alone",
-              "Repeated behavior is shaped by a structured loop that can be studied and redesigned",
-              "Habits affect only personal life",
-              "Rewards matter less than personality"
+              "Behavior changes mainly through motivation alone.",
+              "Repeated behavior is shaped by a structured loop that can be studied and redesigned.",
+              "Habits affect only personal life.",
+              "Rewards matter less than personality."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch03-h-q02",
-            "prompt": "Which option shows why this principle matters: because they help explain why a behavior starts and why it keeps being repeated?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Replace The Routine Not The Whole Loop\" into practice?",
             "choices": [
-              "Because routines are never important",
-              "Because they help explain why a behavior starts and why it keeps being repeated",
-              "Because they remove responsibility",
-              "Because they matter only in business settings"
+              "Because routines are never important.",
+              "Because they help explain why a behavior starts and why it keeps being repeated.",
+              "Because they remove responsibility.",
+              "Because they matter only in business settings."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch03-h-q03",
-            "prompt": "Which option shows why this principle matters: the loop already saves effort and often carries an expected reward?",
+            "prompt": "When pressure rises, which response best reflects \"Replace The Routine Not The Whole Loop\"?",
             "choices": [
-              "The brain dislikes all routines",
-              "The loop already saves effort and often carries an expected reward",
-              "People never know their cues",
-              "Only strong habits have rewards"
+              "The brain dislikes all routines.",
+              "The loop already saves effort and often carries an expected reward.",
+              "People never know their cues.",
+              "Only strong habits have rewards."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch03-h-q04",
-            "prompt": "Which option shows why this principle matters: treat change as a design and experimentation problem?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Replace The Routine Not The Whole Loop\"?",
             "choices": [
-              "Attack the behavior without studying the pattern",
-              "Treat change as a design and experimentation problem",
-              "Wait until motivation becomes constant",
-              "Focus only on punishment"
+              "Attack the behavior without studying the pattern.",
+              "Treat change as a design and experimentation problem.",
+              "Wait until motivation becomes constant.",
+              "Focus only on punishment."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch03-h-q05",
-            "prompt": "Which option shows why this principle matters: they affect wider systems and can trigger broader change?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Replace The Routine Not The Whole Loop\"?",
             "choices": [
-              "They affect wider systems and can trigger broader change",
-              "They are easier than all other habits",
-              "They work only for organizations",
-              "They remove the need for accountability"
+              "They affect wider systems and can trigger broader change.",
+              "They are easier than all other habits.",
+              "They work only for organizations.",
+              "They remove the need for accountability."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch03-h-q06",
-            "prompt": "Which option shows why this principle matters: it can be strengthened through routine, planning, and practice?",
+            "prompt": "You are making a real-world decision tied to \"Replace The Routine Not The Whole Loop\". Which option is the strongest next move?",
             "choices": [
-              "It is fixed and mostly inherited",
-              "It can be strengthened through routine, planning, and practice",
-              "It only matters in school",
-              "It disappears when habits form"
+              "It is fixed and mostly inherited.",
+              "It can be strengthened through routine, planning, and practice.",
+              "It only matters in school.",
+              "It disappears when habits form."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch03-h-q07",
-            "prompt": "Which option shows why this principle matters: groups also run on repeated routines, expectations, and cues?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Replace The Routine Not The Whole Loop\" into practice?",
             "choices": [
-              "Habits are mostly private and personal",
-              "Groups also run on repeated routines, expectations, and cues",
-              "Social habits matter only in protests",
-              "Organizations do not really have habits"
+              "Habits are mostly private and personal.",
+              "Groups also run on repeated routines, expectations, and cues.",
+              "Social habits matter only in protests.",
+              "Organizations do not really have habits."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch03-h-q08",
-            "prompt": "Which option shows why this principle matters: whether habit science should be used to expand freedom or manipulate behavior invisibly?",
+            "prompt": "When pressure rises, which response best reflects \"Replace The Routine Not The Whole Loop\"?",
             "choices": [
-              "Whether habit science should be used to expand freedom or manipulate behavior invisibly",
-              "Whether habits should exist at all",
-              "Whether responsibility is impossible",
-              "Whether rewards should be hidden"
+              "Whether habit science should be used to expand freedom or manipulate behavior invisibly.",
+              "Whether habits should exist at all.",
+              "Whether responsibility is impossible.",
+              "Whether rewards should be hidden."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch03-h-q09",
-            "prompt": "Which option shows why this principle matters: experimental discipline that learns from failure and adjusts the loop?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Replace The Routine Not The Whole Loop\"?",
             "choices": [
-              "Perfection from the beginning",
-              "Experimental discipline that learns from failure and adjusts the loop",
-              "Pure self blame",
-              "Ignoring the environment"
+              "Perfection from the beginning.",
+              "Experimental discipline that learns from failure and adjusts the loop.",
+              "Pure self blame.",
+              "Ignoring the environment."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch03-h-q10",
-            "prompt": "Which option shows why this principle matters: it helps people and institutions make change more deliberate and effective?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Replace The Routine Not The Whole Loop\"?",
             "choices": [
-              "It helps people and institutions make change more deliberate and effective",
-              "It guarantees instant transformation",
-              "It removes the need for goals",
-              "It works only when pressure is high"
+              "It helps people and institutions make change more deliberate and effective.",
+              "It guarantees instant transformation.",
+              "It removes the need for goals.",
+              "It works only when pressure is high."
             ],
             "correctIndex": 0
           }
@@ -1498,56 +1498,56 @@
         "retryQuestions": [
           {
             "questionId": "ch03-h-q01-retry-01",
-            "prompt": "Which option best applies this principle to real decisions: repeated behavior is shaped by a structured loop that can be studied and redesigned?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Replace The Routine Not The Whole Loop\"?",
             "choices": [
-              "Rewards matter less than personality",
-              "Repeated behavior is shaped by a structured loop that can be studied and redesigned",
-              "Behavior changes mainly through motivation alone",
-              "Habits affect only personal life"
+              "Rewards matter less than personality.",
+              "Repeated behavior is shaped by a structured loop that can be studied and redesigned.",
+              "Behavior changes mainly through motivation alone.",
+              "Habits affect only personal life."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch03-h-q02-retry-02",
-            "prompt": "Which option best applies this principle to real decisions: because they help explain why a behavior starts and why it keeps being repeated?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Replace The Routine Not The Whole Loop\" into practice?",
             "choices": [
-              "Because they help explain why a behavior starts and why it keeps being repeated",
-              "Because routines are never important",
-              "Because they remove responsibility",
-              "Because they matter only in business settings"
+              "Because they help explain why a behavior starts and why it keeps being repeated.",
+              "Because routines are never important.",
+              "Because they remove responsibility.",
+              "Because they matter only in business settings."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch03-h-q03-retry-03",
-            "prompt": "Which option best applies this principle to real decisions: the loop already saves effort and often carries an expected reward?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Replace The Routine Not The Whole Loop\"?",
             "choices": [
-              "The brain dislikes all routines",
-              "People never know their cues",
-              "Only strong habits have rewards",
-              "The loop already saves effort and often carries an expected reward"
+              "The brain dislikes all routines.",
+              "People never know their cues.",
+              "Only strong habits have rewards.",
+              "The loop already saves effort and often carries an expected reward."
             ],
             "correctIndex": 3
           },
           {
             "questionId": "ch03-h-q04-retry-04",
-            "prompt": "Which option best applies this principle to real decisions: treat change as a design and experimentation problem?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Replace The Routine Not The Whole Loop\"?",
             "choices": [
-              "Wait until motivation becomes constant",
-              "Focus only on punishment",
-              "Treat change as a design and experimentation problem",
-              "Attack the behavior without studying the pattern"
+              "Wait until motivation becomes constant.",
+              "Focus only on punishment.",
+              "Treat change as a design and experimentation problem.",
+              "Attack the behavior without studying the pattern."
             ],
             "correctIndex": 2
           },
           {
             "questionId": "ch03-h-q05-retry-05",
-            "prompt": "Which option best applies this principle to real decisions: they affect wider systems and can trigger broader change?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Replace The Routine Not The Whole Loop\" into practice?",
             "choices": [
-              "They remove the need for accountability",
-              "They affect wider systems and can trigger broader change",
-              "They are easier than all other habits",
-              "They work only for organizations"
+              "They remove the need for accountability.",
+              "They affect wider systems and can trigger broader change.",
+              "They are easier than all other habits.",
+              "They work only for organizations."
             ],
             "correctIndex": 1
           }
@@ -1823,11 +1823,11 @@
           "contexts": [
             "personal"
           ],
-          "scenario": "Jordan keeps telling themselves Jordan will sleep earlier, yet every night Jordan ends up checking Jordan's phone far past the time Jordan meant to stop. The routine feels automatic, and by the time Jordan notices it fully Jordan is already deep into the behavior.",
+          "scenario": "Jordan keeps telling themselves Jordan will sleep earlier, yet every night Jordan ends up checking their phone far past the time Jordan meant to stop. The routine feels automatic, and by the time Jordan notices it fully Jordan is already deep into the behavior.",
           "whatToDo": [
             "Map the cue, the routine, and the reward instead of only blaming discipline. Test whether the reward is stimulation, escape, or relief from stress, then build a replacement routine that serves the same need with less damage to sleep."
           ],
-          "whyItMatters": "Personal habit change often fails because people attack the routine without understanding the loop holding it in place. This example helps readers apply the book method to a common problem in their twenties."
+          "whyItMatters": "Personal habit change often fails because people attack the routine without understanding the loop holding it in place. This example helps readers apply the book method to a common problem in their twenties. This scenario is directly connected to keystone habits reshape other patterns."
         },
         {
           "exampleId": "ch04-ex02",
@@ -1847,11 +1847,11 @@
           "contexts": [
             "school"
           ],
-          "scenario": "Riley says Riley will study steadily across the week, but Riley's real habit is to wait until stress becomes high enough to force action. The cue is panic, the routine is cramming, and the reward is short term relief.",
+          "scenario": "Riley says Riley will study steadily across the week, but their real habit is to wait until stress becomes high enough to force action. The cue is panic, the routine is cramming, and the reward is short term relief.",
           "whatToDo": [
             "Treat the pattern as a habit loop instead of a personality flaw. Build earlier cues, smaller routines, and rewards that make regular studying feel more repeatable before the panic cycle begins."
           ],
-          "whyItMatters": "Students often confuse emergency productivity with effective learning. This example helps readers see how habit loops can quietly shape academic performance and emotional strain."
+          "whyItMatters": "Students often confuse emergency productivity with effective learning. This example helps readers see how habit loops can quietly shape academic performance and emotional strain. This scenario is directly connected to keystone habits reshape other patterns."
         },
         {
           "exampleId": "ch04-ex04",
@@ -1895,111 +1895,111 @@
         "questions": [
           {
             "questionId": "ch04-h-q01",
-            "prompt": "Which option shows why this principle matters: repeated behavior is shaped by a structured loop that can be studied and redesigned?",
+            "prompt": "You are making a real-world decision tied to \"Keystone Habits Reshape Other Patterns\". Which option is the strongest next move?",
             "choices": [
-              "Behavior changes mainly through motivation alone",
-              "Repeated behavior is shaped by a structured loop that can be studied and redesigned",
-              "Habits affect only personal life",
-              "Rewards matter less than personality"
+              "Behavior changes mainly through motivation alone.",
+              "Repeated behavior is shaped by a structured loop that can be studied and redesigned.",
+              "Habits affect only personal life.",
+              "Rewards matter less than personality."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch04-h-q02",
-            "prompt": "Which option shows why this principle matters: because they help explain why a behavior starts and why it keeps being repeated?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Keystone Habits Reshape Other Patterns\" into practice?",
             "choices": [
-              "Because routines are never important",
-              "Because they help explain why a behavior starts and why it keeps being repeated",
-              "Because they remove responsibility",
-              "Because they matter only in business settings"
+              "Because routines are never important.",
+              "Because they help explain why a behavior starts and why it keeps being repeated.",
+              "Because they remove responsibility.",
+              "Because they matter only in business settings."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch04-h-q03",
-            "prompt": "Which option shows why this principle matters: the loop already saves effort and often carries an expected reward?",
+            "prompt": "When pressure rises, which response best reflects \"Keystone Habits Reshape Other Patterns\"?",
             "choices": [
-              "The brain dislikes all routines",
-              "The loop already saves effort and often carries an expected reward",
-              "People never know their cues",
-              "Only strong habits have rewards"
+              "The brain dislikes all routines.",
+              "The loop already saves effort and often carries an expected reward.",
+              "People never know their cues.",
+              "Only strong habits have rewards."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch04-h-q04",
-            "prompt": "Which option shows why this principle matters: treat change as a design and experimentation problem?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Keystone Habits Reshape Other Patterns\"?",
             "choices": [
-              "Attack the behavior without studying the pattern",
-              "Treat change as a design and experimentation problem",
-              "Wait until motivation becomes constant",
-              "Focus only on punishment"
+              "Attack the behavior without studying the pattern.",
+              "Treat change as a design and experimentation problem.",
+              "Wait until motivation becomes constant.",
+              "Focus only on punishment."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch04-h-q05",
-            "prompt": "Which option shows why this principle matters: they affect wider systems and can trigger broader change?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Keystone Habits Reshape Other Patterns\"?",
             "choices": [
-              "They affect wider systems and can trigger broader change",
-              "They are easier than all other habits",
-              "They work only for organizations",
-              "They remove the need for accountability"
+              "They affect wider systems and can trigger broader change.",
+              "They are easier than all other habits.",
+              "They work only for organizations.",
+              "They remove the need for accountability."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch04-h-q06",
-            "prompt": "Which option shows why this principle matters: it can be strengthened through routine, planning, and practice?",
+            "prompt": "You are making a real-world decision tied to \"Keystone Habits Reshape Other Patterns\". Which option is the strongest next move?",
             "choices": [
-              "It is fixed and mostly inherited",
-              "It can be strengthened through routine, planning, and practice",
-              "It only matters in school",
-              "It disappears when habits form"
+              "It is fixed and mostly inherited.",
+              "It can be strengthened through routine, planning, and practice.",
+              "It only matters in school.",
+              "It disappears when habits form."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch04-h-q07",
-            "prompt": "Which option shows why this principle matters: groups also run on repeated routines, expectations, and cues?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Keystone Habits Reshape Other Patterns\" into practice?",
             "choices": [
-              "Habits are mostly private and personal",
-              "Groups also run on repeated routines, expectations, and cues",
-              "Social habits matter only in protests",
-              "Organizations do not really have habits"
+              "Habits are mostly private and personal.",
+              "Groups also run on repeated routines, expectations, and cues.",
+              "Social habits matter only in protests.",
+              "Organizations do not really have habits."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch04-h-q08",
-            "prompt": "Which option shows why this principle matters: whether habit science should be used to expand freedom or manipulate behavior invisibly?",
+            "prompt": "When pressure rises, which response best reflects \"Keystone Habits Reshape Other Patterns\"?",
             "choices": [
-              "Whether habit science should be used to expand freedom or manipulate behavior invisibly",
-              "Whether habits should exist at all",
-              "Whether responsibility is impossible",
-              "Whether rewards should be hidden"
+              "Whether habit science should be used to expand freedom or manipulate behavior invisibly.",
+              "Whether habits should exist at all.",
+              "Whether responsibility is impossible.",
+              "Whether rewards should be hidden."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch04-h-q09",
-            "prompt": "Which option shows why this principle matters: experimental discipline that learns from failure and adjusts the loop?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Keystone Habits Reshape Other Patterns\"?",
             "choices": [
-              "Perfection from the beginning",
-              "Experimental discipline that learns from failure and adjusts the loop",
-              "Pure self blame",
-              "Ignoring the environment"
+              "Perfection from the beginning.",
+              "Experimental discipline that learns from failure and adjusts the loop.",
+              "Pure self blame.",
+              "Ignoring the environment."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch04-h-q10",
-            "prompt": "Which option shows why this principle matters: it helps people and institutions make change more deliberate and effective?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Keystone Habits Reshape Other Patterns\"?",
             "choices": [
-              "It helps people and institutions make change more deliberate and effective",
-              "It guarantees instant transformation",
-              "It removes the need for goals",
-              "It works only when pressure is high"
+              "It helps people and institutions make change more deliberate and effective.",
+              "It guarantees instant transformation.",
+              "It removes the need for goals.",
+              "It works only when pressure is high."
             ],
             "correctIndex": 0
           }
@@ -2007,56 +2007,56 @@
         "retryQuestions": [
           {
             "questionId": "ch04-h-q01-retry-01",
-            "prompt": "Which option best applies this principle to real decisions: repeated behavior is shaped by a structured loop that can be studied and redesigned?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Keystone Habits Reshape Other Patterns\"?",
             "choices": [
-              "Repeated behavior is shaped by a structured loop that can be studied and redesigned",
-              "Behavior changes mainly through motivation alone",
-              "Habits affect only personal life",
-              "Rewards matter less than personality"
+              "Repeated behavior is shaped by a structured loop that can be studied and redesigned.",
+              "Behavior changes mainly through motivation alone.",
+              "Habits affect only personal life.",
+              "Rewards matter less than personality."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch04-h-q02-retry-02",
-            "prompt": "Which option best applies this principle to real decisions: because they help explain why a behavior starts and why it keeps being repeated?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Keystone Habits Reshape Other Patterns\" into practice?",
             "choices": [
-              "Because routines are never important",
-              "Because they remove responsibility",
-              "Because they matter only in business settings",
-              "Because they help explain why a behavior starts and why it keeps being repeated"
+              "Because routines are never important.",
+              "Because they remove responsibility.",
+              "Because they matter only in business settings.",
+              "Because they help explain why a behavior starts and why it keeps being repeated."
             ],
             "correctIndex": 3
           },
           {
             "questionId": "ch04-h-q03-retry-03",
-            "prompt": "Which option best applies this principle to real decisions: the loop already saves effort and often carries an expected reward?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Keystone Habits Reshape Other Patterns\"?",
             "choices": [
-              "People never know their cues",
-              "Only strong habits have rewards",
-              "The loop already saves effort and often carries an expected reward",
-              "The brain dislikes all routines"
+              "People never know their cues.",
+              "Only strong habits have rewards.",
+              "The loop already saves effort and often carries an expected reward.",
+              "The brain dislikes all routines."
             ],
             "correctIndex": 2
           },
           {
             "questionId": "ch04-h-q04-retry-04",
-            "prompt": "Which option best applies this principle to real decisions: treat change as a design and experimentation problem?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Keystone Habits Reshape Other Patterns\"?",
             "choices": [
-              "Focus only on punishment",
-              "Treat change as a design and experimentation problem",
-              "Attack the behavior without studying the pattern",
-              "Wait until motivation becomes constant"
+              "Focus only on punishment.",
+              "Treat change as a design and experimentation problem.",
+              "Attack the behavior without studying the pattern.",
+              "Wait until motivation becomes constant."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch04-h-q05-retry-05",
-            "prompt": "Which option best applies this principle to real decisions: they affect wider systems and can trigger broader change?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Keystone Habits Reshape Other Patterns\" into practice?",
             "choices": [
-              "They affect wider systems and can trigger broader change",
-              "They are easier than all other habits",
-              "They work only for organizations",
-              "They remove the need for accountability"
+              "They affect wider systems and can trigger broader change.",
+              "They are easier than all other habits.",
+              "They work only for organizations.",
+              "They remove the need for accountability."
             ],
             "correctIndex": 0
           }
@@ -2332,11 +2332,11 @@
           "contexts": [
             "personal"
           ],
-          "scenario": "Jordan keeps telling themselves Jordan will sleep earlier, yet every night Jordan ends up checking Jordan's phone far past the time Jordan meant to stop. The routine feels automatic, and by the time Jordan notices it fully Jordan is already deep into the behavior.",
+          "scenario": "Jordan keeps telling themselves Jordan will sleep earlier, yet every night Jordan ends up checking their phone far past the time Jordan meant to stop. The routine feels automatic, and by the time Jordan notices it fully Jordan is already deep into the behavior.",
           "whatToDo": [
             "Map the cue, the routine, and the reward instead of only blaming discipline. Test whether the reward is stimulation, escape, or relief from stress, then build a replacement routine that serves the same need with less damage to sleep."
           ],
-          "whyItMatters": "Personal habit change often fails because people attack the routine without understanding the loop holding it in place. This example helps readers apply the book method to a common problem in their twenties."
+          "whyItMatters": "Personal habit change often fails because people attack the routine without understanding the loop holding it in place. This example helps readers apply the book method to a common problem in their twenties. This scenario is directly connected to willpower can be trained."
         },
         {
           "exampleId": "ch05-ex02",
@@ -2348,7 +2348,7 @@
           "whatToDo": [
             "Create a visible cue and a simple routine that can happen on low energy days. Pair it with an immediate reward that makes repetition easier while you build the longer term identity and results."
           ],
-          "whyItMatters": "This scenario shows why good intentions often collapse when the loop is poorly designed. It helps readers connect the theory of habits to behavior they care about changing right now."
+          "whyItMatters": "This scenario shows why good intentions often collapse when the loop is poorly designed. It helps readers connect the theory of habits to behavior they care about changing right now. This scenario is directly connected to willpower can be trained."
         },
         {
           "exampleId": "ch05-ex03",
@@ -2356,11 +2356,11 @@
           "contexts": [
             "school"
           ],
-          "scenario": "Riley says Riley will study steadily across the week, but Riley's real habit is to wait until stress becomes high enough to force action. The cue is panic, the routine is cramming, and the reward is short term relief.",
+          "scenario": "Riley says Riley will study steadily across the week, but their real habit is to wait until stress becomes high enough to force action. The cue is panic, the routine is cramming, and the reward is short term relief.",
           "whatToDo": [
             "Treat the pattern as a habit loop instead of a personality flaw. Build earlier cues, smaller routines, and rewards that make regular studying feel more repeatable before the panic cycle begins."
           ],
-          "whyItMatters": "Students often confuse emergency productivity with effective learning. This example helps readers see how habit loops can quietly shape academic performance and emotional strain."
+          "whyItMatters": "Students often confuse emergency productivity with effective learning. This example helps readers see how habit loops can quietly shape academic performance and emotional strain. This scenario is directly connected to willpower can be trained."
         },
         {
           "exampleId": "ch05-ex04",
@@ -2372,7 +2372,7 @@
           "whatToDo": [
             "Identify one keystone habit for the group, such as a fixed weekly checkpoint with clear ownership and visible follow up. Build the routine so that participation becomes expected rather than improvised each time."
           ],
-          "whyItMatters": "The book is not only about personal habits. This scenario helps students see how group patterns become predictable and how one well chosen routine can reshape the whole system."
+          "whyItMatters": "The book is not only about personal habits. This scenario helps students see how group patterns become predictable and how one well chosen routine can reshape the whole system. This scenario is directly connected to willpower can be trained."
         },
         {
           "exampleId": "ch05-ex05",
@@ -2384,7 +2384,7 @@
           "whatToDo": [
             "Watch for the cues and rewards that sustain the team pattern, then decide where you can build a better routine for your own work. If possible, look for a keystone habit that improves clarity, preparation, or communication across the team."
           ],
-          "whyItMatters": "Workplace behavior is often shaped by organizational habits more than by official values. This example helps readers understand how routines spread through systems and why changing one core habit can matter so much."
+          "whyItMatters": "Workplace behavior is often shaped by organizational habits more than by official values. This example helps readers understand how routines spread through systems and why changing one core habit can matter so much. This scenario is directly connected to willpower can be trained."
         },
         {
           "exampleId": "ch05-ex06",
@@ -2396,7 +2396,7 @@
           "whatToDo": [
             "Use the moment to define a clearer process with visible cues, responsibilities, and feedback loops rather than only demanding more effort. Treat the crisis as a window to redesign the routine before people slip back into the previous pattern."
           ],
-          "whyItMatters": "This scenario captures one of the book’s main organizational ideas, which is that pressure can reveal and reshape institutional habits. It helps readers see the link between routine, leadership, and culture."
+          "whyItMatters": "This scenario captures one of the book’s main organizational ideas, which is that pressure can reveal and reshape institutional habits. It helps readers see the link between routine, leadership, and culture. This scenario is directly connected to willpower can be trained."
         }
       ],
       "quiz": {
@@ -2404,111 +2404,111 @@
         "questions": [
           {
             "questionId": "ch05-h-q01",
-            "prompt": "Which option shows why this principle matters: repeated behavior is shaped by a structured loop that can be studied and redesigned?",
+            "prompt": "You are making a real-world decision tied to \"Willpower Can Be Trained\". Which option is the strongest next move?",
             "choices": [
-              "Behavior changes mainly through motivation alone",
-              "Repeated behavior is shaped by a structured loop that can be studied and redesigned",
-              "Habits affect only personal life",
-              "Rewards matter less than personality"
+              "Behavior changes mainly through motivation alone.",
+              "Repeated behavior is shaped by a structured loop that can be studied and redesigned.",
+              "Habits affect only personal life.",
+              "Rewards matter less than personality."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch05-h-q02",
-            "prompt": "Which option shows why this principle matters: because they help explain why a behavior starts and why it keeps being repeated?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Willpower Can Be Trained\" into practice?",
             "choices": [
-              "Because routines are never important",
-              "Because they help explain why a behavior starts and why it keeps being repeated",
-              "Because they remove responsibility",
-              "Because they matter only in business settings"
+              "Because routines are never important.",
+              "Because they help explain why a behavior starts and why it keeps being repeated.",
+              "Because they remove responsibility.",
+              "Because they matter only in business settings."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch05-h-q03",
-            "prompt": "Which option shows why this principle matters: the loop already saves effort and often carries an expected reward?",
+            "prompt": "When pressure rises, which response best reflects \"Willpower Can Be Trained\"?",
             "choices": [
-              "The brain dislikes all routines",
-              "The loop already saves effort and often carries an expected reward",
-              "People never know their cues",
-              "Only strong habits have rewards"
+              "The brain dislikes all routines.",
+              "The loop already saves effort and often carries an expected reward.",
+              "People never know their cues.",
+              "Only strong habits have rewards."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch05-h-q04",
-            "prompt": "Which option shows why this principle matters: treat change as a design and experimentation problem?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Willpower Can Be Trained\"?",
             "choices": [
-              "Attack the behavior without studying the pattern",
-              "Treat change as a design and experimentation problem",
-              "Wait until motivation becomes constant",
-              "Focus only on punishment"
+              "Attack the behavior without studying the pattern.",
+              "Treat change as a design and experimentation problem.",
+              "Wait until motivation becomes constant.",
+              "Focus only on punishment."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch05-h-q05",
-            "prompt": "Which option shows why this principle matters: they affect wider systems and can trigger broader change?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Willpower Can Be Trained\"?",
             "choices": [
-              "They affect wider systems and can trigger broader change",
-              "They are easier than all other habits",
-              "They work only for organizations",
-              "They remove the need for accountability"
+              "They affect wider systems and can trigger broader change.",
+              "They are easier than all other habits.",
+              "They work only for organizations.",
+              "They remove the need for accountability."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch05-h-q06",
-            "prompt": "Which option shows why this principle matters: it can be strengthened through routine, planning, and practice?",
+            "prompt": "You are making a real-world decision tied to \"Willpower Can Be Trained\". Which option is the strongest next move?",
             "choices": [
-              "It is fixed and mostly inherited",
-              "It can be strengthened through routine, planning, and practice",
-              "It only matters in school",
-              "It disappears when habits form"
+              "It is fixed and mostly inherited.",
+              "It can be strengthened through routine, planning, and practice.",
+              "It only matters in school.",
+              "It disappears when habits form."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch05-h-q07",
-            "prompt": "Which option shows why this principle matters: groups also run on repeated routines, expectations, and cues?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Willpower Can Be Trained\" into practice?",
             "choices": [
-              "Habits are mostly private and personal",
-              "Groups also run on repeated routines, expectations, and cues",
-              "Social habits matter only in protests",
-              "Organizations do not really have habits"
+              "Habits are mostly private and personal.",
+              "Groups also run on repeated routines, expectations, and cues.",
+              "Social habits matter only in protests.",
+              "Organizations do not really have habits."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch05-h-q08",
-            "prompt": "Which option shows why this principle matters: whether habit science should be used to expand freedom or manipulate behavior invisibly?",
+            "prompt": "When pressure rises, which response best reflects \"Willpower Can Be Trained\"?",
             "choices": [
-              "Whether habit science should be used to expand freedom or manipulate behavior invisibly",
-              "Whether habits should exist at all",
-              "Whether responsibility is impossible",
-              "Whether rewards should be hidden"
+              "Whether habit science should be used to expand freedom or manipulate behavior invisibly.",
+              "Whether habits should exist at all.",
+              "Whether responsibility is impossible.",
+              "Whether rewards should be hidden."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch05-h-q09",
-            "prompt": "Which option shows why this principle matters: experimental discipline that learns from failure and adjusts the loop?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Willpower Can Be Trained\"?",
             "choices": [
-              "Perfection from the beginning",
-              "Experimental discipline that learns from failure and adjusts the loop",
-              "Pure self blame",
-              "Ignoring the environment"
+              "Perfection from the beginning.",
+              "Experimental discipline that learns from failure and adjusts the loop.",
+              "Pure self blame.",
+              "Ignoring the environment."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch05-h-q10",
-            "prompt": "Which option shows why this principle matters: it helps people and institutions make change more deliberate and effective?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Willpower Can Be Trained\"?",
             "choices": [
-              "It helps people and institutions make change more deliberate and effective",
-              "It guarantees instant transformation",
-              "It removes the need for goals",
-              "It works only when pressure is high"
+              "It helps people and institutions make change more deliberate and effective.",
+              "It guarantees instant transformation.",
+              "It removes the need for goals.",
+              "It works only when pressure is high."
             ],
             "correctIndex": 0
           }
@@ -2516,56 +2516,56 @@
         "retryQuestions": [
           {
             "questionId": "ch05-h-q01-retry-01",
-            "prompt": "Which option best applies this principle to real decisions: repeated behavior is shaped by a structured loop that can be studied and redesigned?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Willpower Can Be Trained\"?",
             "choices": [
-              "Behavior changes mainly through motivation alone",
-              "Habits affect only personal life",
-              "Rewards matter less than personality",
-              "Repeated behavior is shaped by a structured loop that can be studied and redesigned"
+              "Behavior changes mainly through motivation alone.",
+              "Habits affect only personal life.",
+              "Rewards matter less than personality.",
+              "Repeated behavior is shaped by a structured loop that can be studied and redesigned."
             ],
             "correctIndex": 3
           },
           {
             "questionId": "ch05-h-q02-retry-02",
-            "prompt": "Which option best applies this principle to real decisions: because they help explain why a behavior starts and why it keeps being repeated?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Willpower Can Be Trained\" into practice?",
             "choices": [
-              "Because they remove responsibility",
-              "Because they matter only in business settings",
-              "Because they help explain why a behavior starts and why it keeps being repeated",
-              "Because routines are never important"
+              "Because they remove responsibility.",
+              "Because they matter only in business settings.",
+              "Because they help explain why a behavior starts and why it keeps being repeated.",
+              "Because routines are never important."
             ],
             "correctIndex": 2
           },
           {
             "questionId": "ch05-h-q03-retry-03",
-            "prompt": "Which option best applies this principle to real decisions: the loop already saves effort and often carries an expected reward?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Willpower Can Be Trained\"?",
             "choices": [
-              "Only strong habits have rewards",
-              "The loop already saves effort and often carries an expected reward",
-              "The brain dislikes all routines",
-              "People never know their cues"
+              "Only strong habits have rewards.",
+              "The loop already saves effort and often carries an expected reward.",
+              "The brain dislikes all routines.",
+              "People never know their cues."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch05-h-q04-retry-04",
-            "prompt": "Which option best applies this principle to real decisions: treat change as a design and experimentation problem?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Willpower Can Be Trained\"?",
             "choices": [
-              "Treat change as a design and experimentation problem",
-              "Attack the behavior without studying the pattern",
-              "Wait until motivation becomes constant",
-              "Focus only on punishment"
+              "Treat change as a design and experimentation problem.",
+              "Attack the behavior without studying the pattern.",
+              "Wait until motivation becomes constant.",
+              "Focus only on punishment."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch05-h-q05-retry-05",
-            "prompt": "Which option best applies this principle to real decisions: they affect wider systems and can trigger broader change?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Willpower Can Be Trained\" into practice?",
             "choices": [
-              "They are easier than all other habits",
-              "They work only for organizations",
-              "They remove the need for accountability",
-              "They affect wider systems and can trigger broader change"
+              "They are easier than all other habits.",
+              "They work only for organizations.",
+              "They remove the need for accountability.",
+              "They affect wider systems and can trigger broader change."
             ],
             "correctIndex": 3
           }
@@ -2841,11 +2841,11 @@
           "contexts": [
             "personal"
           ],
-          "scenario": "Riley keeps telling themselves Riley will sleep earlier, yet every night Riley ends up checking Riley's phone far past the time Riley meant to stop. The routine feels automatic, and by the time Riley notices it fully Riley is already deep into the behavior.",
+          "scenario": "Riley keeps telling themselves Riley will sleep earlier, yet every night Riley ends up checking their phone far past the time Riley meant to stop. The routine feels automatic, and by the time Riley notices it fully Riley is already deep into the behavior.",
           "whatToDo": [
             "Map the cue, the routine, and the reward instead of only blaming discipline. Test whether the reward is stimulation, escape, or relief from stress, then build a replacement routine that serves the same need with less damage to sleep."
           ],
-          "whyItMatters": "Personal habit change often fails because people attack the routine without understanding the loop holding it in place. This example helps readers apply the book method to a common problem in their twenties."
+          "whyItMatters": "Personal habit change often fails because people attack the routine without understanding the loop holding it in place. This example helps readers apply the book method to a common problem in their twenties. This scenario is directly connected to crisis reshapes organizations."
         },
         {
           "exampleId": "ch06-ex02",
@@ -2857,7 +2857,7 @@
           "whatToDo": [
             "Create a visible cue and a simple routine that can happen on low energy days. Pair it with an immediate reward that makes repetition easier while you build the longer term identity and results."
           ],
-          "whyItMatters": "This scenario shows why good intentions often collapse when the loop is poorly designed. It helps readers connect the theory of habits to behavior they care about changing right now."
+          "whyItMatters": "This scenario shows why good intentions often collapse when the loop is poorly designed. It helps readers connect the theory of habits to behavior they care about changing right now. This scenario is directly connected to crisis reshapes organizations."
         },
         {
           "exampleId": "ch06-ex03",
@@ -2865,11 +2865,11 @@
           "contexts": [
             "school"
           ],
-          "scenario": "Jordan says Jordan will study steadily across the week, but Jordan's real habit is to wait until stress becomes high enough to force action. The cue is panic, the routine is cramming, and the reward is short term relief.",
+          "scenario": "Jordan says Jordan will study steadily across the week, but their real habit is to wait until stress becomes high enough to force action. The cue is panic, the routine is cramming, and the reward is short term relief.",
           "whatToDo": [
             "Treat the pattern as a habit loop instead of a personality flaw. Build earlier cues, smaller routines, and rewards that make regular studying feel more repeatable before the panic cycle begins."
           ],
-          "whyItMatters": "Students often confuse emergency productivity with effective learning. This example helps readers see how habit loops can quietly shape academic performance and emotional strain."
+          "whyItMatters": "Students often confuse emergency productivity with effective learning. This example helps readers see how habit loops can quietly shape academic performance and emotional strain. This scenario is directly connected to crisis reshapes organizations."
         },
         {
           "exampleId": "ch06-ex04",
@@ -2881,7 +2881,7 @@
           "whatToDo": [
             "Identify one keystone habit for the group, such as a fixed weekly checkpoint with clear ownership and visible follow up. Build the routine so that participation becomes expected rather than improvised each time."
           ],
-          "whyItMatters": "The book is not only about personal habits. This scenario helps students see how group patterns become predictable and how one well chosen routine can reshape the whole system."
+          "whyItMatters": "The book is not only about personal habits. This scenario helps students see how group patterns become predictable and how one well chosen routine can reshape the whole system. This scenario is directly connected to crisis reshapes organizations."
         },
         {
           "exampleId": "ch06-ex05",
@@ -2893,7 +2893,7 @@
           "whatToDo": [
             "Watch for the cues and rewards that sustain the team pattern, then decide where you can build a better routine for your own work. If possible, look for a keystone habit that improves clarity, preparation, or communication across the team."
           ],
-          "whyItMatters": "Workplace behavior is often shaped by organizational habits more than by official values. This example helps readers understand how routines spread through systems and why changing one core habit can matter so much."
+          "whyItMatters": "Workplace behavior is often shaped by organizational habits more than by official values. This example helps readers understand how routines spread through systems and why changing one core habit can matter so much. This scenario is directly connected to crisis reshapes organizations."
         },
         {
           "exampleId": "ch06-ex06",
@@ -2913,111 +2913,111 @@
         "questions": [
           {
             "questionId": "ch06-h-q01",
-            "prompt": "Which option shows why this principle matters: repeated behavior is shaped by a structured loop that can be studied and redesigned?",
+            "prompt": "You are making a real-world decision tied to \"Crisis Reshapes Organizations\". Which option is the strongest next move?",
             "choices": [
-              "Behavior changes mainly through motivation alone",
-              "Repeated behavior is shaped by a structured loop that can be studied and redesigned",
-              "Habits affect only personal life",
-              "Rewards matter less than personality"
+              "Behavior changes mainly through motivation alone.",
+              "Repeated behavior is shaped by a structured loop that can be studied and redesigned.",
+              "Habits affect only personal life.",
+              "Rewards matter less than personality."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch06-h-q02",
-            "prompt": "Which option shows why this principle matters: because they help explain why a behavior starts and why it keeps being repeated?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Crisis Reshapes Organizations\" into practice?",
             "choices": [
-              "Because routines are never important",
-              "Because they help explain why a behavior starts and why it keeps being repeated",
-              "Because they remove responsibility",
-              "Because they matter only in business settings"
+              "Because routines are never important.",
+              "Because they help explain why a behavior starts and why it keeps being repeated.",
+              "Because they remove responsibility.",
+              "Because they matter only in business settings."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch06-h-q03",
-            "prompt": "Which option shows why this principle matters: the loop already saves effort and often carries an expected reward?",
+            "prompt": "When pressure rises, which response best reflects \"Crisis Reshapes Organizations\"?",
             "choices": [
-              "The brain dislikes all routines",
-              "The loop already saves effort and often carries an expected reward",
-              "People never know their cues",
-              "Only strong habits have rewards"
+              "The brain dislikes all routines.",
+              "The loop already saves effort and often carries an expected reward.",
+              "People never know their cues.",
+              "Only strong habits have rewards."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch06-h-q04",
-            "prompt": "Which option shows why this principle matters: treat change as a design and experimentation problem?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Crisis Reshapes Organizations\"?",
             "choices": [
-              "Attack the behavior without studying the pattern",
-              "Treat change as a design and experimentation problem",
-              "Wait until motivation becomes constant",
-              "Focus only on punishment"
+              "Attack the behavior without studying the pattern.",
+              "Treat change as a design and experimentation problem.",
+              "Wait until motivation becomes constant.",
+              "Focus only on punishment."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch06-h-q05",
-            "prompt": "Which option shows why this principle matters: they affect wider systems and can trigger broader change?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Crisis Reshapes Organizations\"?",
             "choices": [
-              "They affect wider systems and can trigger broader change",
-              "They are easier than all other habits",
-              "They work only for organizations",
-              "They remove the need for accountability"
+              "They affect wider systems and can trigger broader change.",
+              "They are easier than all other habits.",
+              "They work only for organizations.",
+              "They remove the need for accountability."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch06-h-q06",
-            "prompt": "Which option shows why this principle matters: it can be strengthened through routine, planning, and practice?",
+            "prompt": "You are making a real-world decision tied to \"Crisis Reshapes Organizations\". Which option is the strongest next move?",
             "choices": [
-              "It is fixed and mostly inherited",
-              "It can be strengthened through routine, planning, and practice",
-              "It only matters in school",
-              "It disappears when habits form"
+              "It is fixed and mostly inherited.",
+              "It can be strengthened through routine, planning, and practice.",
+              "It only matters in school.",
+              "It disappears when habits form."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch06-h-q07",
-            "prompt": "Which option shows why this principle matters: groups also run on repeated routines, expectations, and cues?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Crisis Reshapes Organizations\" into practice?",
             "choices": [
-              "Habits are mostly private and personal",
-              "Groups also run on repeated routines, expectations, and cues",
-              "Social habits matter only in protests",
-              "Organizations do not really have habits"
+              "Habits are mostly private and personal.",
+              "Groups also run on repeated routines, expectations, and cues.",
+              "Social habits matter only in protests.",
+              "Organizations do not really have habits."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch06-h-q08",
-            "prompt": "Which option shows why this principle matters: whether habit science should be used to expand freedom or manipulate behavior invisibly?",
+            "prompt": "When pressure rises, which response best reflects \"Crisis Reshapes Organizations\"?",
             "choices": [
-              "Whether habit science should be used to expand freedom or manipulate behavior invisibly",
-              "Whether habits should exist at all",
-              "Whether responsibility is impossible",
-              "Whether rewards should be hidden"
+              "Whether habit science should be used to expand freedom or manipulate behavior invisibly.",
+              "Whether habits should exist at all.",
+              "Whether responsibility is impossible.",
+              "Whether rewards should be hidden."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch06-h-q09",
-            "prompt": "Which option shows why this principle matters: experimental discipline that learns from failure and adjusts the loop?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Crisis Reshapes Organizations\"?",
             "choices": [
-              "Perfection from the beginning",
-              "Experimental discipline that learns from failure and adjusts the loop",
-              "Pure self blame",
-              "Ignoring the environment"
+              "Perfection from the beginning.",
+              "Experimental discipline that learns from failure and adjusts the loop.",
+              "Pure self blame.",
+              "Ignoring the environment."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch06-h-q10",
-            "prompt": "Which option shows why this principle matters: it helps people and institutions make change more deliberate and effective?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Crisis Reshapes Organizations\"?",
             "choices": [
-              "It helps people and institutions make change more deliberate and effective",
-              "It guarantees instant transformation",
-              "It removes the need for goals",
-              "It works only when pressure is high"
+              "It helps people and institutions make change more deliberate and effective.",
+              "It guarantees instant transformation.",
+              "It removes the need for goals.",
+              "It works only when pressure is high."
             ],
             "correctIndex": 0
           }
@@ -3025,56 +3025,56 @@
         "retryQuestions": [
           {
             "questionId": "ch06-h-q01-retry-01",
-            "prompt": "Which option best applies this principle to real decisions: repeated behavior is shaped by a structured loop that can be studied and redesigned?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Crisis Reshapes Organizations\"?",
             "choices": [
-              "Habits affect only personal life",
-              "Rewards matter less than personality",
-              "Repeated behavior is shaped by a structured loop that can be studied and redesigned",
-              "Behavior changes mainly through motivation alone"
+              "Habits affect only personal life.",
+              "Rewards matter less than personality.",
+              "Repeated behavior is shaped by a structured loop that can be studied and redesigned.",
+              "Behavior changes mainly through motivation alone."
             ],
             "correctIndex": 2
           },
           {
             "questionId": "ch06-h-q02-retry-02",
-            "prompt": "Which option best applies this principle to real decisions: because they help explain why a behavior starts and why it keeps being repeated?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Crisis Reshapes Organizations\" into practice?",
             "choices": [
-              "Because they matter only in business settings",
-              "Because they help explain why a behavior starts and why it keeps being repeated",
-              "Because routines are never important",
-              "Because they remove responsibility"
+              "Because they matter only in business settings.",
+              "Because they help explain why a behavior starts and why it keeps being repeated.",
+              "Because routines are never important.",
+              "Because they remove responsibility."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch06-h-q03-retry-03",
-            "prompt": "Which option best applies this principle to real decisions: the loop already saves effort and often carries an expected reward?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Crisis Reshapes Organizations\"?",
             "choices": [
-              "The loop already saves effort and often carries an expected reward",
-              "The brain dislikes all routines",
-              "People never know their cues",
-              "Only strong habits have rewards"
+              "The loop already saves effort and often carries an expected reward.",
+              "The brain dislikes all routines.",
+              "People never know their cues.",
+              "Only strong habits have rewards."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch06-h-q04-retry-04",
-            "prompt": "Which option best applies this principle to real decisions: treat change as a design and experimentation problem?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Crisis Reshapes Organizations\"?",
             "choices": [
-              "Attack the behavior without studying the pattern",
-              "Wait until motivation becomes constant",
-              "Focus only on punishment",
-              "Treat change as a design and experimentation problem"
+              "Attack the behavior without studying the pattern.",
+              "Wait until motivation becomes constant.",
+              "Focus only on punishment.",
+              "Treat change as a design and experimentation problem."
             ],
             "correctIndex": 3
           },
           {
             "questionId": "ch06-h-q05-retry-05",
-            "prompt": "Which option best applies this principle to real decisions: they affect wider systems and can trigger broader change?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Crisis Reshapes Organizations\" into practice?",
             "choices": [
-              "They work only for organizations",
-              "They remove the need for accountability",
-              "They affect wider systems and can trigger broader change",
-              "They are easier than all other habits"
+              "They work only for organizations.",
+              "They remove the need for accountability.",
+              "They affect wider systems and can trigger broader change.",
+              "They are easier than all other habits."
             ],
             "correctIndex": 2
           }
@@ -3350,11 +3350,11 @@
           "contexts": [
             "personal"
           ],
-          "scenario": "Jordan keeps telling themselves Jordan will sleep earlier, yet every night Jordan ends up checking Jordan's phone far past the time Jordan meant to stop. The routine feels automatic, and by the time Jordan notices it fully Jordan is already deep into the behavior.",
+          "scenario": "Jordan keeps telling themselves Jordan will sleep earlier, yet every night Jordan ends up checking their phone far past the time Jordan meant to stop. The routine feels automatic, and by the time Jordan notices it fully Jordan is already deep into the behavior.",
           "whatToDo": [
             "Map the cue, the routine, and the reward instead of only blaming discipline. Test whether the reward is stimulation, escape, or relief from stress, then build a replacement routine that serves the same need with less damage to sleep."
           ],
-          "whyItMatters": "Personal habit change often fails because people attack the routine without understanding the loop holding it in place. This example helps readers apply the book method to a common problem in their twenties."
+          "whyItMatters": "Personal habit change often fails because people attack the routine without understanding the loop holding it in place. This example helps readers apply the book method to a common problem in their twenties. This scenario is directly connected to companies shape consumer habits."
         },
         {
           "exampleId": "ch07-ex02",
@@ -3374,7 +3374,7 @@
           "contexts": [
             "school"
           ],
-          "scenario": "Riley says Riley will study steadily across the week, but Riley's real habit is to wait until stress becomes high enough to force action. The cue is panic, the routine is cramming, and the reward is short term relief.",
+          "scenario": "Riley says Riley will study steadily across the week, but their real habit is to wait until stress becomes high enough to force action. The cue is panic, the routine is cramming, and the reward is short term relief.",
           "whatToDo": [
             "Treat the pattern as a habit loop instead of a personality flaw. Build earlier cues, smaller routines, and rewards that make regular studying feel more repeatable before the panic cycle begins."
           ],
@@ -3422,111 +3422,111 @@
         "questions": [
           {
             "questionId": "ch07-h-q01",
-            "prompt": "Which option shows why this principle matters: repeated behavior is shaped by a structured loop that can be studied and redesigned?",
+            "prompt": "You are making a real-world decision tied to \"Companies Shape Consumer Habits\". Which option is the strongest next move?",
             "choices": [
-              "Behavior changes mainly through motivation alone",
-              "Repeated behavior is shaped by a structured loop that can be studied and redesigned",
-              "Habits affect only personal life",
-              "Rewards matter less than personality"
+              "Behavior changes mainly through motivation alone.",
+              "Repeated behavior is shaped by a structured loop that can be studied and redesigned.",
+              "Habits affect only personal life.",
+              "Rewards matter less than personality."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch07-h-q02",
-            "prompt": "Which option shows why this principle matters: because they help explain why a behavior starts and why it keeps being repeated?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Companies Shape Consumer Habits\" into practice?",
             "choices": [
-              "Because routines are never important",
-              "Because they help explain why a behavior starts and why it keeps being repeated",
-              "Because they remove responsibility",
-              "Because they matter only in business settings"
+              "Because routines are never important.",
+              "Because they help explain why a behavior starts and why it keeps being repeated.",
+              "Because they remove responsibility.",
+              "Because they matter only in business settings."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch07-h-q03",
-            "prompt": "Which option shows why this principle matters: the loop already saves effort and often carries an expected reward?",
+            "prompt": "When pressure rises, which response best reflects \"Companies Shape Consumer Habits\"?",
             "choices": [
-              "The brain dislikes all routines",
-              "The loop already saves effort and often carries an expected reward",
-              "People never know their cues",
-              "Only strong habits have rewards"
+              "The brain dislikes all routines.",
+              "The loop already saves effort and often carries an expected reward.",
+              "People never know their cues.",
+              "Only strong habits have rewards."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch07-h-q04",
-            "prompt": "Which option shows why this principle matters: treat change as a design and experimentation problem?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Companies Shape Consumer Habits\"?",
             "choices": [
-              "Attack the behavior without studying the pattern",
-              "Treat change as a design and experimentation problem",
-              "Wait until motivation becomes constant",
-              "Focus only on punishment"
+              "Attack the behavior without studying the pattern.",
+              "Treat change as a design and experimentation problem.",
+              "Wait until motivation becomes constant.",
+              "Focus only on punishment."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch07-h-q05",
-            "prompt": "Which option shows why this principle matters: they affect wider systems and can trigger broader change?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Companies Shape Consumer Habits\"?",
             "choices": [
-              "They affect wider systems and can trigger broader change",
-              "They are easier than all other habits",
-              "They work only for organizations",
-              "They remove the need for accountability"
+              "They affect wider systems and can trigger broader change.",
+              "They are easier than all other habits.",
+              "They work only for organizations.",
+              "They remove the need for accountability."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch07-h-q06",
-            "prompt": "Which option shows why this principle matters: it can be strengthened through routine, planning, and practice?",
+            "prompt": "You are making a real-world decision tied to \"Companies Shape Consumer Habits\". Which option is the strongest next move?",
             "choices": [
-              "It is fixed and mostly inherited",
-              "It can be strengthened through routine, planning, and practice",
-              "It only matters in school",
-              "It disappears when habits form"
+              "It is fixed and mostly inherited.",
+              "It can be strengthened through routine, planning, and practice.",
+              "It only matters in school.",
+              "It disappears when habits form."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch07-h-q07",
-            "prompt": "Which option shows why this principle matters: groups also run on repeated routines, expectations, and cues?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Companies Shape Consumer Habits\" into practice?",
             "choices": [
-              "Habits are mostly private and personal",
-              "Groups also run on repeated routines, expectations, and cues",
-              "Social habits matter only in protests",
-              "Organizations do not really have habits"
+              "Habits are mostly private and personal.",
+              "Groups also run on repeated routines, expectations, and cues.",
+              "Social habits matter only in protests.",
+              "Organizations do not really have habits."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch07-h-q08",
-            "prompt": "Which option shows why this principle matters: whether habit science should be used to expand freedom or manipulate behavior invisibly?",
+            "prompt": "When pressure rises, which response best reflects \"Companies Shape Consumer Habits\"?",
             "choices": [
-              "Whether habit science should be used to expand freedom or manipulate behavior invisibly",
-              "Whether habits should exist at all",
-              "Whether responsibility is impossible",
-              "Whether rewards should be hidden"
+              "Whether habit science should be used to expand freedom or manipulate behavior invisibly.",
+              "Whether habits should exist at all.",
+              "Whether responsibility is impossible.",
+              "Whether rewards should be hidden."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch07-h-q09",
-            "prompt": "Which option shows why this principle matters: experimental discipline that learns from failure and adjusts the loop?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Companies Shape Consumer Habits\"?",
             "choices": [
-              "Perfection from the beginning",
-              "Experimental discipline that learns from failure and adjusts the loop",
-              "Pure self blame",
-              "Ignoring the environment"
+              "Perfection from the beginning.",
+              "Experimental discipline that learns from failure and adjusts the loop.",
+              "Pure self blame.",
+              "Ignoring the environment."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch07-h-q10",
-            "prompt": "Which option shows why this principle matters: it helps people and institutions make change more deliberate and effective?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Companies Shape Consumer Habits\"?",
             "choices": [
-              "It helps people and institutions make change more deliberate and effective",
-              "It guarantees instant transformation",
-              "It removes the need for goals",
-              "It works only when pressure is high"
+              "It helps people and institutions make change more deliberate and effective.",
+              "It guarantees instant transformation.",
+              "It removes the need for goals.",
+              "It works only when pressure is high."
             ],
             "correctIndex": 0
           }
@@ -3534,56 +3534,56 @@
         "retryQuestions": [
           {
             "questionId": "ch07-h-q01-retry-01",
-            "prompt": "Which option best applies this principle to real decisions: repeated behavior is shaped by a structured loop that can be studied and redesigned?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Companies Shape Consumer Habits\"?",
             "choices": [
-              "Rewards matter less than personality",
-              "Repeated behavior is shaped by a structured loop that can be studied and redesigned",
-              "Behavior changes mainly through motivation alone",
-              "Habits affect only personal life"
+              "Rewards matter less than personality.",
+              "Repeated behavior is shaped by a structured loop that can be studied and redesigned.",
+              "Behavior changes mainly through motivation alone.",
+              "Habits affect only personal life."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch07-h-q02-retry-02",
-            "prompt": "Which option best applies this principle to real decisions: because they help explain why a behavior starts and why it keeps being repeated?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Companies Shape Consumer Habits\" into practice?",
             "choices": [
-              "Because they help explain why a behavior starts and why it keeps being repeated",
-              "Because routines are never important",
-              "Because they remove responsibility",
-              "Because they matter only in business settings"
+              "Because they help explain why a behavior starts and why it keeps being repeated.",
+              "Because routines are never important.",
+              "Because they remove responsibility.",
+              "Because they matter only in business settings."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch07-h-q03-retry-03",
-            "prompt": "Which option best applies this principle to real decisions: the loop already saves effort and often carries an expected reward?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Companies Shape Consumer Habits\"?",
             "choices": [
-              "The brain dislikes all routines",
-              "People never know their cues",
-              "Only strong habits have rewards",
-              "The loop already saves effort and often carries an expected reward"
+              "The brain dislikes all routines.",
+              "People never know their cues.",
+              "Only strong habits have rewards.",
+              "The loop already saves effort and often carries an expected reward."
             ],
             "correctIndex": 3
           },
           {
             "questionId": "ch07-h-q04-retry-04",
-            "prompt": "Which option best applies this principle to real decisions: treat change as a design and experimentation problem?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Companies Shape Consumer Habits\"?",
             "choices": [
-              "Wait until motivation becomes constant",
-              "Focus only on punishment",
-              "Treat change as a design and experimentation problem",
-              "Attack the behavior without studying the pattern"
+              "Wait until motivation becomes constant.",
+              "Focus only on punishment.",
+              "Treat change as a design and experimentation problem.",
+              "Attack the behavior without studying the pattern."
             ],
             "correctIndex": 2
           },
           {
             "questionId": "ch07-h-q05-retry-05",
-            "prompt": "Which option best applies this principle to real decisions: they affect wider systems and can trigger broader change?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Companies Shape Consumer Habits\" into practice?",
             "choices": [
-              "They remove the need for accountability",
-              "They affect wider systems and can trigger broader change",
-              "They are easier than all other habits",
-              "They work only for organizations"
+              "They remove the need for accountability.",
+              "They affect wider systems and can trigger broader change.",
+              "They are easier than all other habits.",
+              "They work only for organizations."
             ],
             "correctIndex": 1
           }
@@ -3859,11 +3859,11 @@
           "contexts": [
             "personal"
           ],
-          "scenario": "Maya keeps telling themselves Maya will sleep earlier, yet every night Maya ends up checking Maya's phone far past the time Maya meant to stop. The routine feels automatic, and by the time Maya notices it fully Maya is already deep into the behavior.",
+          "scenario": "Maya keeps telling themselves Maya will sleep earlier, yet every night Maya ends up checking their phone far past the time Maya meant to stop. The routine feels automatic, and by the time Maya notices it fully Maya is already deep into the behavior.",
           "whatToDo": [
             "Map the cue, the routine, and the reward instead of only blaming discipline. Test whether the reward is stimulation, escape, or relief from stress, then build a replacement routine that serves the same need with less damage to sleep."
           ],
-          "whyItMatters": "Personal habit change often fails because people attack the routine without understanding the loop holding it in place. This example helps readers apply the book method to a common problem in their twenties."
+          "whyItMatters": "Personal habit change often fails because people attack the routine without understanding the loop holding it in place. This example helps readers apply the book method to a common problem in their twenties. This scenario is directly connected to social movements grow from habits."
         },
         {
           "exampleId": "ch08-ex02",
@@ -3883,11 +3883,11 @@
           "contexts": [
             "school"
           ],
-          "scenario": "Alex says Alex will study steadily across the week, but Alex's real habit is to wait until stress becomes high enough to force action. The cue is panic, the routine is cramming, and the reward is short term relief.",
+          "scenario": "Alex says Alex will study steadily across the week, but their real habit is to wait until stress becomes high enough to force action. The cue is panic, the routine is cramming, and the reward is short term relief.",
           "whatToDo": [
             "Treat the pattern as a habit loop instead of a personality flaw. Build earlier cues, smaller routines, and rewards that make regular studying feel more repeatable before the panic cycle begins."
           ],
-          "whyItMatters": "Students often confuse emergency productivity with effective learning. This example helps readers see how habit loops can quietly shape academic performance and emotional strain."
+          "whyItMatters": "Students often confuse emergency productivity with effective learning. This example helps readers see how habit loops can quietly shape academic performance and emotional strain. This scenario is directly connected to social movements grow from habits."
         },
         {
           "exampleId": "ch08-ex04",
@@ -3931,111 +3931,111 @@
         "questions": [
           {
             "questionId": "ch08-h-q01",
-            "prompt": "Which option shows why this principle matters: repeated behavior is shaped by a structured loop that can be studied and redesigned?",
+            "prompt": "You are making a real-world decision tied to \"Social Movements Grow From Habits\". Which option is the strongest next move?",
             "choices": [
-              "Behavior changes mainly through motivation alone",
-              "Repeated behavior is shaped by a structured loop that can be studied and redesigned",
-              "Habits affect only personal life",
-              "Rewards matter less than personality"
+              "Behavior changes mainly through motivation alone.",
+              "Repeated behavior is shaped by a structured loop that can be studied and redesigned.",
+              "Habits affect only personal life.",
+              "Rewards matter less than personality."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch08-h-q02",
-            "prompt": "Which option shows why this principle matters: because they help explain why a behavior starts and why it keeps being repeated?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Social Movements Grow From Habits\" into practice?",
             "choices": [
-              "Because routines are never important",
-              "Because they help explain why a behavior starts and why it keeps being repeated",
-              "Because they remove responsibility",
-              "Because they matter only in business settings"
+              "Because routines are never important.",
+              "Because they help explain why a behavior starts and why it keeps being repeated.",
+              "Because they remove responsibility.",
+              "Because they matter only in business settings."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch08-h-q03",
-            "prompt": "Which option shows why this principle matters: the loop already saves effort and often carries an expected reward?",
+            "prompt": "When pressure rises, which response best reflects \"Social Movements Grow From Habits\"?",
             "choices": [
-              "The brain dislikes all routines",
-              "The loop already saves effort and often carries an expected reward",
-              "People never know their cues",
-              "Only strong habits have rewards"
+              "The brain dislikes all routines.",
+              "The loop already saves effort and often carries an expected reward.",
+              "People never know their cues.",
+              "Only strong habits have rewards."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch08-h-q04",
-            "prompt": "Which option shows why this principle matters: treat change as a design and experimentation problem?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Social Movements Grow From Habits\"?",
             "choices": [
-              "Attack the behavior without studying the pattern",
-              "Treat change as a design and experimentation problem",
-              "Wait until motivation becomes constant",
-              "Focus only on punishment"
+              "Attack the behavior without studying the pattern.",
+              "Treat change as a design and experimentation problem.",
+              "Wait until motivation becomes constant.",
+              "Focus only on punishment."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch08-h-q05",
-            "prompt": "Which option shows why this principle matters: they affect wider systems and can trigger broader change?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Social Movements Grow From Habits\"?",
             "choices": [
-              "They affect wider systems and can trigger broader change",
-              "They are easier than all other habits",
-              "They work only for organizations",
-              "They remove the need for accountability"
+              "They affect wider systems and can trigger broader change.",
+              "They are easier than all other habits.",
+              "They work only for organizations.",
+              "They remove the need for accountability."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch08-h-q06",
-            "prompt": "Which option shows why this principle matters: it can be strengthened through routine, planning, and practice?",
+            "prompt": "You are making a real-world decision tied to \"Social Movements Grow From Habits\". Which option is the strongest next move?",
             "choices": [
-              "It is fixed and mostly inherited",
-              "It can be strengthened through routine, planning, and practice",
-              "It only matters in school",
-              "It disappears when habits form"
+              "It is fixed and mostly inherited.",
+              "It can be strengthened through routine, planning, and practice.",
+              "It only matters in school.",
+              "It disappears when habits form."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch08-h-q07",
-            "prompt": "Which option shows why this principle matters: groups also run on repeated routines, expectations, and cues?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Social Movements Grow From Habits\" into practice?",
             "choices": [
-              "Habits are mostly private and personal",
-              "Groups also run on repeated routines, expectations, and cues",
-              "Social habits matter only in protests",
-              "Organizations do not really have habits"
+              "Habits are mostly private and personal.",
+              "Groups also run on repeated routines, expectations, and cues.",
+              "Social habits matter only in protests.",
+              "Organizations do not really have habits."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch08-h-q08",
-            "prompt": "Which option shows why this principle matters: whether habit science should be used to expand freedom or manipulate behavior invisibly?",
+            "prompt": "When pressure rises, which response best reflects \"Social Movements Grow From Habits\"?",
             "choices": [
-              "Whether habit science should be used to expand freedom or manipulate behavior invisibly",
-              "Whether habits should exist at all",
-              "Whether responsibility is impossible",
-              "Whether rewards should be hidden"
+              "Whether habit science should be used to expand freedom or manipulate behavior invisibly.",
+              "Whether habits should exist at all.",
+              "Whether responsibility is impossible.",
+              "Whether rewards should be hidden."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch08-h-q09",
-            "prompt": "Which option shows why this principle matters: experimental discipline that learns from failure and adjusts the loop?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Social Movements Grow From Habits\"?",
             "choices": [
-              "Perfection from the beginning",
-              "Experimental discipline that learns from failure and adjusts the loop",
-              "Pure self blame",
-              "Ignoring the environment"
+              "Perfection from the beginning.",
+              "Experimental discipline that learns from failure and adjusts the loop.",
+              "Pure self blame.",
+              "Ignoring the environment."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch08-h-q10",
-            "prompt": "Which option shows why this principle matters: it helps people and institutions make change more deliberate and effective?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Social Movements Grow From Habits\"?",
             "choices": [
-              "It helps people and institutions make change more deliberate and effective",
-              "It guarantees instant transformation",
-              "It removes the need for goals",
-              "It works only when pressure is high"
+              "It helps people and institutions make change more deliberate and effective.",
+              "It guarantees instant transformation.",
+              "It removes the need for goals.",
+              "It works only when pressure is high."
             ],
             "correctIndex": 0
           }
@@ -4043,56 +4043,56 @@
         "retryQuestions": [
           {
             "questionId": "ch08-h-q01-retry-01",
-            "prompt": "Which option best applies this principle to real decisions: repeated behavior is shaped by a structured loop that can be studied and redesigned?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Social Movements Grow From Habits\"?",
             "choices": [
-              "Repeated behavior is shaped by a structured loop that can be studied and redesigned",
-              "Behavior changes mainly through motivation alone",
-              "Habits affect only personal life",
-              "Rewards matter less than personality"
+              "Repeated behavior is shaped by a structured loop that can be studied and redesigned.",
+              "Behavior changes mainly through motivation alone.",
+              "Habits affect only personal life.",
+              "Rewards matter less than personality."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch08-h-q02-retry-02",
-            "prompt": "Which option best applies this principle to real decisions: because they help explain why a behavior starts and why it keeps being repeated?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Social Movements Grow From Habits\" into practice?",
             "choices": [
-              "Because routines are never important",
-              "Because they remove responsibility",
-              "Because they matter only in business settings",
-              "Because they help explain why a behavior starts and why it keeps being repeated"
+              "Because routines are never important.",
+              "Because they remove responsibility.",
+              "Because they matter only in business settings.",
+              "Because they help explain why a behavior starts and why it keeps being repeated."
             ],
             "correctIndex": 3
           },
           {
             "questionId": "ch08-h-q03-retry-03",
-            "prompt": "Which option best applies this principle to real decisions: the loop already saves effort and often carries an expected reward?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Social Movements Grow From Habits\"?",
             "choices": [
-              "People never know their cues",
-              "Only strong habits have rewards",
-              "The loop already saves effort and often carries an expected reward",
-              "The brain dislikes all routines"
+              "People never know their cues.",
+              "Only strong habits have rewards.",
+              "The loop already saves effort and often carries an expected reward.",
+              "The brain dislikes all routines."
             ],
             "correctIndex": 2
           },
           {
             "questionId": "ch08-h-q04-retry-04",
-            "prompt": "Which option best applies this principle to real decisions: treat change as a design and experimentation problem?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Social Movements Grow From Habits\"?",
             "choices": [
-              "Focus only on punishment",
-              "Treat change as a design and experimentation problem",
-              "Attack the behavior without studying the pattern",
-              "Wait until motivation becomes constant"
+              "Focus only on punishment.",
+              "Treat change as a design and experimentation problem.",
+              "Attack the behavior without studying the pattern.",
+              "Wait until motivation becomes constant."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch08-h-q05-retry-05",
-            "prompt": "Which option best applies this principle to real decisions: they affect wider systems and can trigger broader change?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Social Movements Grow From Habits\" into practice?",
             "choices": [
-              "They affect wider systems and can trigger broader change",
-              "They are easier than all other habits",
-              "They work only for organizations",
-              "They remove the need for accountability"
+              "They affect wider systems and can trigger broader change.",
+              "They are easier than all other habits.",
+              "They work only for organizations.",
+              "They remove the need for accountability."
             ],
             "correctIndex": 0
           }
@@ -4368,7 +4368,7 @@
           "contexts": [
             "personal"
           ],
-          "scenario": "Jordan keeps telling themselves Jordan will sleep earlier, yet every night Jordan ends up checking Jordan's phone far past the time Jordan meant to stop. The routine feels automatic, and by the time Jordan notices it fully Jordan is already deep into the behavior.",
+          "scenario": "Jordan keeps telling themselves Jordan will sleep earlier, yet every night Jordan ends up checking their phone far past the time Jordan meant to stop. The routine feels automatic, and by the time Jordan notices it fully Jordan is already deep into the behavior.",
           "whatToDo": [
             "Map the cue, the routine, and the reward instead of only blaming discipline. Test whether the reward is stimulation, escape, or relief from stress, then build a replacement routine that serves the same need with less damage to sleep."
           ],
@@ -4392,7 +4392,7 @@
           "contexts": [
             "school"
           ],
-          "scenario": "Riley says Riley will study steadily across the week, but Riley's real habit is to wait until stress becomes high enough to force action. The cue is panic, the routine is cramming, and the reward is short term relief.",
+          "scenario": "Riley says Riley will study steadily across the week, but their real habit is to wait until stress becomes high enough to force action. The cue is panic, the routine is cramming, and the reward is short term relief.",
           "whatToDo": [
             "Treat the pattern as a habit loop instead of a personality flaw. Build earlier cues, smaller routines, and rewards that make regular studying feel more repeatable before the panic cycle begins."
           ],
@@ -4440,111 +4440,111 @@
         "questions": [
           {
             "questionId": "ch09-h-q01",
-            "prompt": "Which option shows why this principle matters: repeated behavior is shaped by a structured loop that can be studied and redesigned?",
+            "prompt": "You are making a real-world decision tied to \"Responsibility And Choice Inside Habit\". Which option is the strongest next move?",
             "choices": [
-              "Behavior changes mainly through motivation alone",
-              "Repeated behavior is shaped by a structured loop that can be studied and redesigned",
-              "Habits affect only personal life",
-              "Rewards matter less than personality"
+              "Behavior changes mainly through motivation alone.",
+              "Repeated behavior is shaped by a structured loop that can be studied and redesigned.",
+              "Habits affect only personal life.",
+              "Rewards matter less than personality."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch09-h-q02",
-            "prompt": "Which option shows why this principle matters: because they help explain why a behavior starts and why it keeps being repeated?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Responsibility And Choice Inside Habit\" into practice?",
             "choices": [
-              "Because routines are never important",
-              "Because they help explain why a behavior starts and why it keeps being repeated",
-              "Because they remove responsibility",
-              "Because they matter only in business settings"
+              "Because routines are never important.",
+              "Because they help explain why a behavior starts and why it keeps being repeated.",
+              "Because they remove responsibility.",
+              "Because they matter only in business settings."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch09-h-q03",
-            "prompt": "Which option shows why this principle matters: the loop already saves effort and often carries an expected reward?",
+            "prompt": "When pressure rises, which response best reflects \"Responsibility And Choice Inside Habit\"?",
             "choices": [
-              "The brain dislikes all routines",
-              "The loop already saves effort and often carries an expected reward",
-              "People never know their cues",
-              "Only strong habits have rewards"
+              "The brain dislikes all routines.",
+              "The loop already saves effort and often carries an expected reward.",
+              "People never know their cues.",
+              "Only strong habits have rewards."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch09-h-q04",
-            "prompt": "Which option shows why this principle matters: treat change as a design and experimentation problem?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Responsibility And Choice Inside Habit\"?",
             "choices": [
-              "Attack the behavior without studying the pattern",
-              "Treat change as a design and experimentation problem",
-              "Wait until motivation becomes constant",
-              "Focus only on punishment"
+              "Attack the behavior without studying the pattern.",
+              "Treat change as a design and experimentation problem.",
+              "Wait until motivation becomes constant.",
+              "Focus only on punishment."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch09-h-q05",
-            "prompt": "Which option shows why this principle matters: they affect wider systems and can trigger broader change?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Responsibility And Choice Inside Habit\"?",
             "choices": [
-              "They affect wider systems and can trigger broader change",
-              "They are easier than all other habits",
-              "They work only for organizations",
-              "They remove the need for accountability"
+              "They affect wider systems and can trigger broader change.",
+              "They are easier than all other habits.",
+              "They work only for organizations.",
+              "They remove the need for accountability."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch09-h-q06",
-            "prompt": "Which option shows why this principle matters: it can be strengthened through routine, planning, and practice?",
+            "prompt": "You are making a real-world decision tied to \"Responsibility And Choice Inside Habit\". Which option is the strongest next move?",
             "choices": [
-              "It is fixed and mostly inherited",
-              "It can be strengthened through routine, planning, and practice",
-              "It only matters in school",
-              "It disappears when habits form"
+              "It is fixed and mostly inherited.",
+              "It can be strengthened through routine, planning, and practice.",
+              "It only matters in school.",
+              "It disappears when habits form."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch09-h-q07",
-            "prompt": "Which option shows why this principle matters: groups also run on repeated routines, expectations, and cues?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Responsibility And Choice Inside Habit\" into practice?",
             "choices": [
-              "Habits are mostly private and personal",
-              "Groups also run on repeated routines, expectations, and cues",
-              "Social habits matter only in protests",
-              "Organizations do not really have habits"
+              "Habits are mostly private and personal.",
+              "Groups also run on repeated routines, expectations, and cues.",
+              "Social habits matter only in protests.",
+              "Organizations do not really have habits."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch09-h-q08",
-            "prompt": "Which option shows why this principle matters: whether habit science should be used to expand freedom or manipulate behavior invisibly?",
+            "prompt": "When pressure rises, which response best reflects \"Responsibility And Choice Inside Habit\"?",
             "choices": [
-              "Whether habit science should be used to expand freedom or manipulate behavior invisibly",
-              "Whether habits should exist at all",
-              "Whether responsibility is impossible",
-              "Whether rewards should be hidden"
+              "Whether habit science should be used to expand freedom or manipulate behavior invisibly.",
+              "Whether habits should exist at all.",
+              "Whether responsibility is impossible.",
+              "Whether rewards should be hidden."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch09-h-q09",
-            "prompt": "Which option shows why this principle matters: experimental discipline that learns from failure and adjusts the loop?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Responsibility And Choice Inside Habit\"?",
             "choices": [
-              "Perfection from the beginning",
-              "Experimental discipline that learns from failure and adjusts the loop",
-              "Pure self blame",
-              "Ignoring the environment"
+              "Perfection from the beginning.",
+              "Experimental discipline that learns from failure and adjusts the loop.",
+              "Pure self blame.",
+              "Ignoring the environment."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch09-h-q10",
-            "prompt": "Which option shows why this principle matters: it helps people and institutions make change more deliberate and effective?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Responsibility And Choice Inside Habit\"?",
             "choices": [
-              "It helps people and institutions make change more deliberate and effective",
-              "It guarantees instant transformation",
-              "It removes the need for goals",
-              "It works only when pressure is high"
+              "It helps people and institutions make change more deliberate and effective.",
+              "It guarantees instant transformation.",
+              "It removes the need for goals.",
+              "It works only when pressure is high."
             ],
             "correctIndex": 0
           }
@@ -4552,56 +4552,56 @@
         "retryQuestions": [
           {
             "questionId": "ch09-h-q01-retry-01",
-            "prompt": "Which option best applies this principle to real decisions: repeated behavior is shaped by a structured loop that can be studied and redesigned?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Responsibility And Choice Inside Habit\"?",
             "choices": [
-              "Behavior changes mainly through motivation alone",
-              "Habits affect only personal life",
-              "Rewards matter less than personality",
-              "Repeated behavior is shaped by a structured loop that can be studied and redesigned"
+              "Behavior changes mainly through motivation alone.",
+              "Habits affect only personal life.",
+              "Rewards matter less than personality.",
+              "Repeated behavior is shaped by a structured loop that can be studied and redesigned."
             ],
             "correctIndex": 3
           },
           {
             "questionId": "ch09-h-q02-retry-02",
-            "prompt": "Which option best applies this principle to real decisions: because they help explain why a behavior starts and why it keeps being repeated?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Responsibility And Choice Inside Habit\" into practice?",
             "choices": [
-              "Because they remove responsibility",
-              "Because they matter only in business settings",
-              "Because they help explain why a behavior starts and why it keeps being repeated",
-              "Because routines are never important"
+              "Because they remove responsibility.",
+              "Because they matter only in business settings.",
+              "Because they help explain why a behavior starts and why it keeps being repeated.",
+              "Because routines are never important."
             ],
             "correctIndex": 2
           },
           {
             "questionId": "ch09-h-q03-retry-03",
-            "prompt": "Which option best applies this principle to real decisions: the loop already saves effort and often carries an expected reward?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Responsibility And Choice Inside Habit\"?",
             "choices": [
-              "Only strong habits have rewards",
-              "The loop already saves effort and often carries an expected reward",
-              "The brain dislikes all routines",
-              "People never know their cues"
+              "Only strong habits have rewards.",
+              "The loop already saves effort and often carries an expected reward.",
+              "The brain dislikes all routines.",
+              "People never know their cues."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch09-h-q04-retry-04",
-            "prompt": "Which option best applies this principle to real decisions: treat change as a design and experimentation problem?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Responsibility And Choice Inside Habit\"?",
             "choices": [
-              "Treat change as a design and experimentation problem",
-              "Attack the behavior without studying the pattern",
-              "Wait until motivation becomes constant",
-              "Focus only on punishment"
+              "Treat change as a design and experimentation problem.",
+              "Attack the behavior without studying the pattern.",
+              "Wait until motivation becomes constant.",
+              "Focus only on punishment."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch09-h-q05-retry-05",
-            "prompt": "Which option best applies this principle to real decisions: they affect wider systems and can trigger broader change?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Responsibility And Choice Inside Habit\" into practice?",
             "choices": [
-              "They are easier than all other habits",
-              "They work only for organizations",
-              "They remove the need for accountability",
-              "They affect wider systems and can trigger broader change"
+              "They are easier than all other habits.",
+              "They work only for organizations.",
+              "They remove the need for accountability.",
+              "They affect wider systems and can trigger broader change."
             ],
             "correctIndex": 3
           }

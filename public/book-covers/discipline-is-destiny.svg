@@ -1,14 +1,44 @@
-<svg width="1200" height="1800" viewBox="0 0 1200 1800" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1200" height="1800" fill="#EEE6D8"/>
-  <rect width="1200" height="260" fill="#8A5A2A"/>
-  <rect y="1460" width="1200" height="340" fill="#22313B"/>
-  <rect x="120" y="340" width="960" height="980" rx="24" fill="#FBF6EE" stroke="#D2BEA8" stroke-width="10"/>
-  <path d="M600 560L770 660V890C770 1000 697 1096 600 1128C503 1096 430 1000 430 890V660L600 560Z" fill="#8A5A2A"/>
-  <path d="M600 660V1010" stroke="#FBF6EE" stroke-width="22" stroke-linecap="round"/>
-  <path d="M500 780H700" stroke="#FBF6EE" stroke-width="22" stroke-linecap="round"/>
-  <circle cx="600" cy="900" r="40" fill="#D88A40"/>
-  <text x="600" y="150" text-anchor="middle" fill="#FBF6EE" font-family="Georgia, serif" font-size="82" letter-spacing="3">RYAN HOLIDAY</text>
-  <text x="600" y="1220" text-anchor="middle" fill="#22313B" font-family="Georgia, serif" font-size="84">DISCIPLINE IS</text>
-  <text x="600" y="1355" text-anchor="middle" fill="#22313B" font-family="Georgia, serif" font-size="142" font-weight="700">DESTINY</text>
-  <text x="600" y="1568" text-anchor="middle" fill="#FBF6EE" font-family="Arial, sans-serif" font-size="31" letter-spacing="4">TEMPERANCE  SELF CONTROL  CHARACTER  DUTY</text>
+<svg width="1200" height="1800" viewBox="0 0 1200 1800" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Discipline Is Destiny cover</title>
+  <desc id="desc">Auto-generated themed cover for Discipline Is Destiny by Ryan Holiday.</desc>
+  <defs>
+    <linearGradient id="g247506451" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#274F4C"/>
+      <stop offset="100%" stop-color="#3E7364"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="1800" fill="url(#g247506451)"/>
+
+  <rect x="0" y="300" width="1200" height="1180" fill="#8AC0AB" opacity="0.12"/>
+  <rect x="110" y="370" width="420" height="420" rx="42" fill="#FBF8EF" opacity="0.2"/>
+  <rect x="670" y="360" width="420" height="430" rx="42" fill="#DB9F4F" opacity="0.16"/>
+  <rect x="110" y="980" width="420" height="360" rx="42" fill="#DB9F4F" opacity="0.15"/>
+  <rect x="670" y="950" width="420" height="390" rx="42" fill="#FBF8EF" opacity="0.2"/>
+  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F2EEE3" stroke="#C6B9A3" stroke-width="10"/>
+
+  <g transform="translate(419 575)">
+    <rect x="0" y="0" width="384" height="334" rx="26" fill="#FBF8EF" stroke="#8AC0AB" stroke-width="8"/>
+    <rect x="34" y="46" width="316" height="28" rx="12" fill="#8AC0AB" opacity="0.55"/>
+    <g stroke="#203230" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="42" y="108" width="40" height="40" rx="8" fill="none"/>
+      <path d="M52 128 L62 138 L82 116"/>
+      <rect x="42" y="174" width="40" height="40" rx="8" fill="none"/>
+      <path d="M52 194 L62 204 L82 182"/>
+      <rect x="42" y="240" width="40" height="40" rx="8" fill="none"/>
+      <path d="M52 260 L62 270 L82 248"/>
+    </g>
+    <rect x="106" y="112" width="240" height="28" rx="10" fill="#DB9F4F" opacity="0.8"/>
+    <rect x="106" y="178" width="224" height="28" rx="10" fill="#8AC0AB" opacity="0.72"/>
+    <rect x="106" y="244" width="258" height="28" rx="10" fill="#DB9F4F" opacity="0.7"/>
+  </g>
+
+  <rect x="0" y="0" width="1200" height="238" fill="#274F4C" opacity="0.93"/>
+  <rect x="0" y="1454" width="1200" height="346" fill="#3E7364" opacity="0.95"/>
+  <text x="600" y="136" text-anchor="middle" fill="#FBF8EF" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">RYAN HOLIDAY</text>
+  <text x="600" y="208" text-anchor="middle" fill="#FBF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">PRODUCTIVITY</text>
+  <text x="600" y="1216" text-anchor="middle" fill="#203230" font-family="'Trebuchet MS', Arial, sans-serif" font-size="78" font-weight="700" letter-spacing="2">DISCIPLINE IS DESTINY</text>
+  <text x="600" y="1538" text-anchor="middle" fill="#FBF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">DISCIPLINE  ·  SELF CONTROL  ·  STOICISM</text>
+  <text x="600" y="1604" text-anchor="middle" fill="#FBF8EF" font-family="Georgia, serif" font-size="30">Focus, habits, and execution</text>
+  <text x="600" y="1668" text-anchor="middle" fill="#FBF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
 </svg>

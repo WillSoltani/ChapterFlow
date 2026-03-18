@@ -1,23 +1,45 @@
-<svg width="1200" height="1800" viewBox="0 0 1200 1800" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1200" height="1800" fill="#F3EFE6"/>
-  <rect x="72" y="72" width="1056" height="1656" rx="32" fill="#FFFDF8" stroke="#1F3440" stroke-width="8"/>
-  <rect x="132" y="132" width="936" height="360" rx="28" fill="#1F3440"/>
-  <circle cx="600" cy="316" r="148" fill="#D9A24C"/>
-  <circle cx="600" cy="316" r="108" fill="#FFFDF8"/>
-  <path d="M600 236L618 290L676 290L628 326L646 382L600 348L554 382L572 326L524 290L582 290L600 236Z" fill="#C8623A"/>
-  <path d="M332 722H868" stroke="#1F3440" stroke-width="24" stroke-linecap="round"/>
-  <path d="M332 854H868" stroke="#1F3440" stroke-width="24" stroke-linecap="round"/>
-  <path d="M332 986H868" stroke="#1F3440" stroke-width="24" stroke-linecap="round"/>
-  <path d="M332 1118H868" stroke="#1F3440" stroke-width="24" stroke-linecap="round"/>
-  <circle cx="276" cy="722" r="34" fill="#D9A24C"/>
-  <circle cx="924" cy="722" r="34" fill="#C8623A"/>
-  <circle cx="276" cy="854" r="34" fill="#D9A24C"/>
-  <circle cx="924" cy="854" r="34" fill="#C8623A"/>
-  <circle cx="276" cy="986" r="34" fill="#D9A24C"/>
-  <circle cx="924" cy="986" r="34" fill="#C8623A"/>
-  <circle cx="276" cy="1118" r="34" fill="#D9A24C"/>
-  <circle cx="924" cy="1118" r="34" fill="#C8623A"/>
-  <text x="132" y="1450" fill="#1F3440" font-family="Georgia, 'Times New Roman', serif" font-size="86" font-weight="700">The 7 Habits of Highly</text>
-  <text x="132" y="1548" fill="#1F3440" font-family="Georgia, 'Times New Roman', serif" font-size="86" font-weight="700">Effective People</text>
-  <text x="136" y="1648" fill="#C8623A" font-family="Arial, Helvetica, sans-serif" font-size="40" letter-spacing="4">STEPHEN R. COVEY</text>
+<svg width="1200" height="1800" viewBox="0 0 1200 1800" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">The 7 Habits of Highly Effective People cover</title>
+  <desc id="desc">Auto-generated themed cover for The 7 Habits of Highly Effective People by Stephen R. Covey.</desc>
+  <defs>
+    <linearGradient id="g1896454746" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#205F5D"/>
+      <stop offset="100%" stop-color="#3A8279"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="1800" fill="url(#g1896454746)"/>
+
+  <rect x="0" y="300" width="1200" height="1180" fill="#7FC5B8" opacity="0.12"/>
+  <rect x="140" y="360" width="920" height="1050" rx="48" fill="#FDF8EE" opacity="0.22"/>
+  <path d="M0 560 Q300 433 600 560 T1200 560" stroke="#FDF8EE" stroke-width="22" opacity="0.24"/>
+  <path d="M0 1180 Q300 1053 600 1180 T1200 1180" stroke="#E2A457" stroke-width="16" opacity="0.22"/>
+  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F4EEE3" stroke="#C8B9A3" stroke-width="10"/>
+
+  <g transform="translate(414 559)">
+    <rect x="0" y="0" width="384" height="334" rx="26" fill="#FDF8EE" stroke="#7FC5B8" stroke-width="8"/>
+    <rect x="34" y="46" width="316" height="28" rx="12" fill="#7FC5B8" opacity="0.55"/>
+    <g stroke="#1F3331" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="42" y="108" width="40" height="40" rx="8" fill="none"/>
+      <path d="M52 128 L62 138 L82 116"/>
+      <rect x="42" y="174" width="40" height="40" rx="8" fill="none"/>
+      <path d="M52 194 L62 204 L82 182"/>
+      <rect x="42" y="240" width="40" height="40" rx="8" fill="none"/>
+      <path d="M52 260 L62 270 L82 248"/>
+    </g>
+    <rect x="106" y="112" width="240" height="28" rx="10" fill="#E2A457" opacity="0.8"/>
+    <rect x="106" y="178" width="224" height="28" rx="10" fill="#7FC5B8" opacity="0.72"/>
+    <rect x="106" y="244" width="258" height="28" rx="10" fill="#E2A457" opacity="0.7"/>
+  </g>
+
+  <rect x="0" y="0" width="1200" height="238" fill="#205F5D" opacity="0.93"/>
+  <rect x="0" y="1454" width="1200" height="346" fill="#3A8279" opacity="0.95"/>
+  <text x="600" y="136" text-anchor="middle" fill="#FDF8EE" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">STEPHEN R. COVEY</text>
+  <text x="600" y="208" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">PRODUCTIVITY</text>
+  <text x="600" y="1114" text-anchor="middle" fill="#1F3331" font-family="'Trebuchet MS', Arial, sans-serif" font-size="78" font-weight="700" letter-spacing="2">THE 7 HABITS</text>
+  <text x="600" y="1198" text-anchor="middle" fill="#1F3331" font-family="'Trebuchet MS', Arial, sans-serif" font-size="78" font-weight="700" letter-spacing="2">OF HIGHLY EFFECTIVE</text>
+  <text x="600" y="1282" text-anchor="middle" fill="#1F3331" font-family="'Trebuchet MS', Arial, sans-serif" font-size="78" font-weight="700" letter-spacing="2">PEOPLE</text>
+  <text x="600" y="1538" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">HABITS  ·  LEADERSHIP  ·  PRINCIPLES</text>
+  <text x="600" y="1604" text-anchor="middle" fill="#FDF8EE" font-family="Georgia, serif" font-size="30">Focus, habits, and execution</text>
+  <text x="600" y="1668" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
 </svg>

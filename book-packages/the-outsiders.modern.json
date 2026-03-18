@@ -367,7 +367,7 @@
         "questions": [
           {
             "questionId": "ch01-h-q01",
-            "prompt": "Which option best captures the main principle in \"Capital Allocation Is the Core Executive Skill\"?",
+            "prompt": "You are making a real-world decision tied to \"Capital Allocation Is the Core Executive Skill\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "Treating capital allocation as the center of leadership rather than a finance side task creates clearer judgment.",
@@ -378,7 +378,7 @@
           },
           {
             "questionId": "ch01-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Capital Allocation Is the Core Executive Skill\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Capital Allocation Is the Core Executive Skill\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "More urgency usually fixes the problem without changing the process.",
@@ -389,7 +389,7 @@
           },
           {
             "questionId": "ch01-h-q03",
-            "prompt": "Which option best explains why \"Capital Allocation Is the Core Executive Skill\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Capital Allocation Is the Core Executive Skill\"?",
             "choices": [
               "More urgency usually fixes the problem without changing the process.",
               "Visible effort matters more than clear feedback.",
@@ -400,7 +400,7 @@
           },
           {
             "questionId": "ch01-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Capital Allocation Is the Core Executive Skill\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Capital Allocation Is the Core Executive Skill\"?",
             "choices": [
               "A common mistake is confusing visible activity with intelligent capital use.",
               "Visible effort matters more than clear feedback.",
@@ -411,7 +411,7 @@
           },
           {
             "questionId": "ch01-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Capital Allocation Is the Core Executive Skill\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Capital Allocation Is the Core Executive Skill\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The pattern becomes easier to see when the company is busy yet cash keeps flowing into weak uses.",
@@ -422,7 +422,7 @@
           },
           {
             "questionId": "ch01-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Capital Allocation Is the Core Executive Skill\"?",
+            "prompt": "You are making a real-world decision tied to \"Capital Allocation Is the Core Executive Skill\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is confusing visible activity with intelligent capital use.",
@@ -433,7 +433,7 @@
           },
           {
             "questionId": "ch01-h-q07",
-            "prompt": "Which option connects \"Capital Allocation Is the Core Executive Skill\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Capital Allocation Is the Core Executive Skill\" into practice?",
             "choices": [
               "The right move is confusing visible activity with intelligent capital use.",
               "It is better to react first and interpret later.",
@@ -444,7 +444,7 @@
           },
           {
             "questionId": "ch01-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Capital Allocation Is the Core Executive Skill\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Capital Allocation Is the Core Executive Skill\"?",
             "choices": [
               "Small defaults and routines often decide whether the principle survives pressure.",
               "It is better to react first and interpret later.",
@@ -455,7 +455,7 @@
           },
           {
             "questionId": "ch01-h-q09",
-            "prompt": "Which option best explains why \"Capital Allocation Is the Core Executive Skill\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Capital Allocation Is the Core Executive Skill\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "For students and early career readers, the principle matters because early habits shape trust, options, and learning speed.",
@@ -466,7 +466,7 @@
           },
           {
             "questionId": "ch01-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Capital Allocation Is the Core Executive Skill\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Capital Allocation Is the Core Executive Skill\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "Fast certainty matters more than checking assumptions.",
@@ -479,7 +479,7 @@
         "retryQuestions": [
           {
             "questionId": "ch01-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Capital Allocation Is the Core Executive Skill\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Capital Allocation Is the Core Executive Skill\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -490,7 +490,7 @@
           },
           {
             "questionId": "ch01-h-q02-retry-02",
-            "prompt": "Which option best connects \"Capital Allocation Is the Core Executive Skill\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Capital Allocation Is the Core Executive Skill\" into practice?",
             "choices": [
               "The long game improves when people treat evidence, reversibility, and tradeoffs as part of the same judgment process.",
               "The cleanest story is usually the most accurate one.",
@@ -501,7 +501,7 @@
           },
           {
             "questionId": "ch01-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Capital Allocation Is the Core Executive Skill\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Capital Allocation Is the Core Executive Skill\"?",
             "choices": [
               "The right move is confusing visible activity with intelligent capital use.",
               "There is also an ethical dimension because clearer thinking should reduce avoidable harm instead of rewarding cleverness for its own sake.",
@@ -512,7 +512,7 @@
           },
           {
             "questionId": "ch01-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Capital Allocation Is the Core Executive Skill\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Capital Allocation Is the Core Executive Skill\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -523,7 +523,7 @@
           },
           {
             "questionId": "ch01-h-q05-retry-05",
-            "prompt": "Which option best applies \"Capital Allocation Is the Core Executive Skill\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Capital Allocation Is the Core Executive Skill\" into practice?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -876,7 +876,7 @@
         "questions": [
           {
             "questionId": "ch02-h-q01",
-            "prompt": "Which option best captures the main principle in \"Decentralization Works With the Right Standards\"?",
+            "prompt": "You are making a real-world decision tied to \"Decentralization Works With the Right Standards\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "The first reasonable answer is usually enough once pressure rises.",
@@ -887,7 +887,7 @@
           },
           {
             "questionId": "ch02-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Decentralization Works With the Right Standards\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Decentralization Works With the Right Standards\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "More urgency usually fixes the problem without changing the process.",
@@ -898,7 +898,7 @@
           },
           {
             "questionId": "ch02-h-q03",
-            "prompt": "Which option best explains why \"Decentralization Works With the Right Standards\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Decentralization Works With the Right Standards\"?",
             "choices": [
               "This matters because decentralization matters because information is local even when capital is centralized.",
               "More urgency usually fixes the problem without changing the process.",
@@ -909,7 +909,7 @@
           },
           {
             "questionId": "ch02-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Decentralization Works With the Right Standards\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Decentralization Works With the Right Standards\"?",
             "choices": [
               "Visible effort matters more than clear feedback.",
               "A common mistake is centralizing every operating choice because control feels safer.",
@@ -920,7 +920,7 @@
           },
           {
             "questionId": "ch02-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Decentralization Works With the Right Standards\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Decentralization Works With the Right Standards\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -931,7 +931,7 @@
           },
           {
             "questionId": "ch02-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Decentralization Works With the Right Standards\"?",
+            "prompt": "You are making a real-world decision tied to \"Decentralization Works With the Right Standards\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is centralizing every operating choice because control feels safer.",
@@ -942,7 +942,7 @@
           },
           {
             "questionId": "ch02-h-q07",
-            "prompt": "Which option connects \"Decentralization Works With the Right Standards\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Decentralization Works With the Right Standards\" into practice?",
             "choices": [
               "The idea gets stronger when people connect the immediate choice to incentives, feedback, and downstream effects.",
               "The right move is centralizing every operating choice because control feels safer.",
@@ -953,7 +953,7 @@
           },
           {
             "questionId": "ch02-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Decentralization Works With the Right Standards\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Decentralization Works With the Right Standards\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Small defaults and routines often decide whether the principle survives pressure.",
@@ -964,7 +964,7 @@
           },
           {
             "questionId": "ch02-h-q09",
-            "prompt": "Which option best explains why \"Decentralization Works With the Right Standards\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Decentralization Works With the Right Standards\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -975,7 +975,7 @@
           },
           {
             "questionId": "ch02-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Decentralization Works With the Right Standards\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Decentralization Works With the Right Standards\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "Fast certainty matters more than checking assumptions.",
@@ -988,7 +988,7 @@
         "retryQuestions": [
           {
             "questionId": "ch02-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Decentralization Works With the Right Standards\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Decentralization Works With the Right Standards\"?",
             "choices": [
               "A deeper reading is that hidden assumptions and time horizons usually shape the result before the final decision is visible.",
               "Short term relief is a reliable guide to good judgment.",
@@ -999,7 +999,7 @@
           },
           {
             "questionId": "ch02-h-q02-retry-02",
-            "prompt": "Which option best connects \"Decentralization Works With the Right Standards\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Decentralization Works With the Right Standards\" into practice?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The long game improves when people treat evidence, reversibility, and tradeoffs as part of the same judgment process.",
@@ -1010,7 +1010,7 @@
           },
           {
             "questionId": "ch02-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Decentralization Works With the Right Standards\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Decentralization Works With the Right Standards\"?",
             "choices": [
               "The right move is centralizing every operating choice because control feels safer.",
               "It is better to react first and interpret later.",
@@ -1021,7 +1021,7 @@
           },
           {
             "questionId": "ch02-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Decentralization Works With the Right Standards\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Decentralization Works With the Right Standards\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -1032,7 +1032,7 @@
           },
           {
             "questionId": "ch02-h-q05-retry-05",
-            "prompt": "Which option best applies \"Decentralization Works With the Right Standards\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Decentralization Works With the Right Standards\" into practice?",
             "choices": [
               "A practical starting move is to push decisions closer to the facts, keep capital discipline visible, and define the standard clearly.",
               "Structure matters only after formal authority is secured.",
@@ -1385,7 +1385,7 @@
         "questions": [
           {
             "questionId": "ch03-h-q01",
-            "prompt": "Which option best captures the main principle in \"Cash Flow Tells a Harder Truth Than Optics\"?",
+            "prompt": "You are making a real-world decision tied to \"Cash Flow Tells a Harder Truth Than Optics\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "The first reasonable answer is usually enough once pressure rises.",
@@ -1396,7 +1396,7 @@
           },
           {
             "questionId": "ch03-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Cash Flow Tells a Harder Truth Than Optics\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Cash Flow Tells a Harder Truth Than Optics\" into practice?",
             "choices": [
               "Strong capital allocation starts with what cash is actually available to deploy.",
               "The first reasonable answer is usually enough once pressure rises.",
@@ -1407,7 +1407,7 @@
           },
           {
             "questionId": "ch03-h-q03",
-            "prompt": "Which option best explains why \"Cash Flow Tells a Harder Truth Than Optics\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Cash Flow Tells a Harder Truth Than Optics\"?",
             "choices": [
               "More urgency usually fixes the problem without changing the process.",
               "This matters because clarity improves when leaders privilege durable cash generation over appearances.",
@@ -1418,7 +1418,7 @@
           },
           {
             "questionId": "ch03-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Cash Flow Tells a Harder Truth Than Optics\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Cash Flow Tells a Harder Truth Than Optics\"?",
             "choices": [
               "Visible effort matters more than clear feedback.",
               "Short term relief is a reliable guide to good judgment.",
@@ -1429,7 +1429,7 @@
           },
           {
             "questionId": "ch03-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Cash Flow Tells a Harder Truth Than Optics\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Cash Flow Tells a Harder Truth Than Optics\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -1440,7 +1440,7 @@
           },
           {
             "questionId": "ch03-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Cash Flow Tells a Harder Truth Than Optics\"?",
+            "prompt": "You are making a real-world decision tied to \"Cash Flow Tells a Harder Truth Than Optics\". Which option is the strongest next move?",
             "choices": [
               "A practical starting move is to review cash before celebrating earnings, ask what actually funds the next move, and compare accounting results with cash reality.",
               "The cleanest story is usually the most accurate one.",
@@ -1451,7 +1451,7 @@
           },
           {
             "questionId": "ch03-h-q07",
-            "prompt": "Which option connects \"Cash Flow Tells a Harder Truth Than Optics\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Cash Flow Tells a Harder Truth Than Optics\" into practice?",
             "choices": [
               "The right move is falling for growth or earnings narratives that hide weak cash reality.",
               "The idea gets stronger when people connect the immediate choice to incentives, feedback, and downstream effects.",
@@ -1462,7 +1462,7 @@
           },
           {
             "questionId": "ch03-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Cash Flow Tells a Harder Truth Than Optics\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Cash Flow Tells a Harder Truth Than Optics\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -1473,7 +1473,7 @@
           },
           {
             "questionId": "ch03-h-q09",
-            "prompt": "Which option best explains why \"Cash Flow Tells a Harder Truth Than Optics\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Cash Flow Tells a Harder Truth Than Optics\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -1484,7 +1484,7 @@
           },
           {
             "questionId": "ch03-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Cash Flow Tells a Harder Truth Than Optics\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Cash Flow Tells a Harder Truth Than Optics\"?",
             "choices": [
               "The real challenge is to stay deliberate without becoming rigid, reactive, or self defeating.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -1497,7 +1497,7 @@
         "retryQuestions": [
           {
             "questionId": "ch03-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Cash Flow Tells a Harder Truth Than Optics\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Cash Flow Tells a Harder Truth Than Optics\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "A deeper reading is that hidden assumptions and time horizons usually shape the result before the final decision is visible.",
@@ -1508,7 +1508,7 @@
           },
           {
             "questionId": "ch03-h-q02-retry-02",
-            "prompt": "Which option best connects \"Cash Flow Tells a Harder Truth Than Optics\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Cash Flow Tells a Harder Truth Than Optics\" into practice?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is falling for growth or earnings narratives that hide weak cash reality.",
@@ -1519,7 +1519,7 @@
           },
           {
             "questionId": "ch03-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Cash Flow Tells a Harder Truth Than Optics\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Cash Flow Tells a Harder Truth Than Optics\"?",
             "choices": [
               "The right move is falling for growth or earnings narratives that hide weak cash reality.",
               "It is better to react first and interpret later.",
@@ -1530,7 +1530,7 @@
           },
           {
             "questionId": "ch03-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Cash Flow Tells a Harder Truth Than Optics\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Cash Flow Tells a Harder Truth Than Optics\"?",
             "choices": [
               "The chapter is most useful when it strengthens calibration, restraint, and deliberate follow through at the same time.",
               "It is better to react first and interpret later.",
@@ -1541,7 +1541,7 @@
           },
           {
             "questionId": "ch03-h-q05-retry-05",
-            "prompt": "Which option best applies \"Cash Flow Tells a Harder Truth Than Optics\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Cash Flow Tells a Harder Truth Than Optics\" into practice?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "A practical starting move is to review cash before celebrating earnings, ask what actually funds the next move, and compare accounting results with cash reality.",
@@ -1894,7 +1894,7 @@
         "questions": [
           {
             "questionId": "ch04-h-q01",
-            "prompt": "Which option best captures the main principle in \"Repurchases and Patience Require Judgment\"?",
+            "prompt": "You are making a real-world decision tied to \"Repurchases and Patience Require Judgment\". Which option is the strongest next move?",
             "choices": [
               "Using repurchases and patience when the economics justify them creates clearer judgment.",
               "Fast certainty matters more than checking assumptions.",
@@ -1905,7 +1905,7 @@
           },
           {
             "questionId": "ch04-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Repurchases and Patience Require Judgment\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Repurchases and Patience Require Judgment\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "Disciplined leaders wait for strong opportunities instead of spending capital to look active.",
@@ -1916,7 +1916,7 @@
           },
           {
             "questionId": "ch04-h-q03",
-            "prompt": "Which option best explains why \"Repurchases and Patience Require Judgment\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Repurchases and Patience Require Judgment\"?",
             "choices": [
               "More urgency usually fixes the problem without changing the process.",
               "Visible effort matters more than clear feedback.",
@@ -1927,7 +1927,7 @@
           },
           {
             "questionId": "ch04-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Repurchases and Patience Require Judgment\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Repurchases and Patience Require Judgment\"?",
             "choices": [
               "Visible effort matters more than clear feedback.",
               "Short term relief is a reliable guide to good judgment.",
@@ -1938,7 +1938,7 @@
           },
           {
             "questionId": "ch04-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Repurchases and Patience Require Judgment\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Repurchases and Patience Require Judgment\"?",
             "choices": [
               "The pattern becomes easier to see when cash is moving largely because idle capital makes leaders uncomfortable.",
               "Short term relief is a reliable guide to good judgment.",
@@ -1949,7 +1949,7 @@
           },
           {
             "questionId": "ch04-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Repurchases and Patience Require Judgment\"?",
+            "prompt": "You are making a real-world decision tied to \"Repurchases and Patience Require Judgment\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "A practical starting move is to ask whether the capital is best used now, compare repurchases with other uses, and wait when the price is wrong.",
@@ -1960,7 +1960,7 @@
           },
           {
             "questionId": "ch04-h-q07",
-            "prompt": "Which option connects \"Repurchases and Patience Require Judgment\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Repurchases and Patience Require Judgment\" into practice?",
             "choices": [
               "The right move is treating action as better than waiting.",
               "It is better to react first and interpret later.",
@@ -1971,7 +1971,7 @@
           },
           {
             "questionId": "ch04-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Repurchases and Patience Require Judgment\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Repurchases and Patience Require Judgment\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -1982,7 +1982,7 @@
           },
           {
             "questionId": "ch04-h-q09",
-            "prompt": "Which option best explains why \"Repurchases and Patience Require Judgment\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Repurchases and Patience Require Judgment\"?",
             "choices": [
               "For students and early career readers, the principle matters because early habits shape trust, options, and learning speed.",
               "Structure matters only after formal authority is secured.",
@@ -1993,7 +1993,7 @@
           },
           {
             "questionId": "ch04-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Repurchases and Patience Require Judgment\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Repurchases and Patience Require Judgment\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "The real challenge is to stay deliberate without becoming rigid, reactive, or self defeating.",
@@ -2006,7 +2006,7 @@
         "retryQuestions": [
           {
             "questionId": "ch04-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Repurchases and Patience Require Judgment\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Repurchases and Patience Require Judgment\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -2017,7 +2017,7 @@
           },
           {
             "questionId": "ch04-h-q02-retry-02",
-            "prompt": "Which option best connects \"Repurchases and Patience Require Judgment\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Repurchases and Patience Require Judgment\" into practice?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is treating action as better than waiting.",
@@ -2028,7 +2028,7 @@
           },
           {
             "questionId": "ch04-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Repurchases and Patience Require Judgment\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Repurchases and Patience Require Judgment\"?",
             "choices": [
               "There is also an ethical dimension because clearer thinking should reduce avoidable harm instead of rewarding cleverness for its own sake.",
               "The right move is treating action as better than waiting.",
@@ -2039,7 +2039,7 @@
           },
           {
             "questionId": "ch04-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Repurchases and Patience Require Judgment\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Repurchases and Patience Require Judgment\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "The chapter is most useful when it strengthens calibration, restraint, and deliberate follow through at the same time.",
@@ -2050,7 +2050,7 @@
           },
           {
             "questionId": "ch04-h-q05-retry-05",
-            "prompt": "Which option best applies \"Repurchases and Patience Require Judgment\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Repurchases and Patience Require Judgment\" into practice?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -2403,7 +2403,7 @@
         "questions": [
           {
             "questionId": "ch05-h-q01",
-            "prompt": "Which option best captures the main principle in \"Acquisitions Need Discipline More Than Appetite\"?",
+            "prompt": "You are making a real-world decision tied to \"Acquisitions Need Discipline More Than Appetite\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "Approaching acquisitions with discipline rather than empire building creates clearer judgment.",
@@ -2414,7 +2414,7 @@
           },
           {
             "questionId": "ch05-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Acquisitions Need Discipline More Than Appetite\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Acquisitions Need Discipline More Than Appetite\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "More urgency usually fixes the problem without changing the process.",
@@ -2425,7 +2425,7 @@
           },
           {
             "questionId": "ch05-h-q03",
-            "prompt": "Which option best explains why \"Acquisitions Need Discipline More Than Appetite\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Acquisitions Need Discipline More Than Appetite\"?",
             "choices": [
               "More urgency usually fixes the problem without changing the process.",
               "Visible effort matters more than clear feedback.",
@@ -2436,7 +2436,7 @@
           },
           {
             "questionId": "ch05-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Acquisitions Need Discipline More Than Appetite\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Acquisitions Need Discipline More Than Appetite\"?",
             "choices": [
               "A common mistake is treating deal making as proof of leadership.",
               "Visible effort matters more than clear feedback.",
@@ -2447,7 +2447,7 @@
           },
           {
             "questionId": "ch05-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Acquisitions Need Discipline More Than Appetite\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Acquisitions Need Discipline More Than Appetite\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The pattern becomes easier to see when the story is compelling but the economics and integration logic are weak.",
@@ -2458,7 +2458,7 @@
           },
           {
             "questionId": "ch05-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Acquisitions Need Discipline More Than Appetite\"?",
+            "prompt": "You are making a real-world decision tied to \"Acquisitions Need Discipline More Than Appetite\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is treating deal making as proof of leadership.",
@@ -2469,7 +2469,7 @@
           },
           {
             "questionId": "ch05-h-q07",
-            "prompt": "Which option connects \"Acquisitions Need Discipline More Than Appetite\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Acquisitions Need Discipline More Than Appetite\" into practice?",
             "choices": [
               "The right move is treating deal making as proof of leadership.",
               "It is better to react first and interpret later.",
@@ -2480,7 +2480,7 @@
           },
           {
             "questionId": "ch05-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Acquisitions Need Discipline More Than Appetite\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Acquisitions Need Discipline More Than Appetite\"?",
             "choices": [
               "Small defaults and routines often decide whether the principle survives pressure.",
               "It is better to react first and interpret later.",
@@ -2491,7 +2491,7 @@
           },
           {
             "questionId": "ch05-h-q09",
-            "prompt": "Which option best explains why \"Acquisitions Need Discipline More Than Appetite\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Acquisitions Need Discipline More Than Appetite\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "For students and early career readers, the principle matters because early habits shape trust, options, and learning speed.",
@@ -2502,7 +2502,7 @@
           },
           {
             "questionId": "ch05-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Acquisitions Need Discipline More Than Appetite\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Acquisitions Need Discipline More Than Appetite\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "Fast certainty matters more than checking assumptions.",
@@ -2515,7 +2515,7 @@
         "retryQuestions": [
           {
             "questionId": "ch05-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Acquisitions Need Discipline More Than Appetite\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Acquisitions Need Discipline More Than Appetite\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -2526,7 +2526,7 @@
           },
           {
             "questionId": "ch05-h-q02-retry-02",
-            "prompt": "Which option best connects \"Acquisitions Need Discipline More Than Appetite\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Acquisitions Need Discipline More Than Appetite\" into practice?",
             "choices": [
               "The long game improves when people treat evidence, reversibility, and tradeoffs as part of the same judgment process.",
               "The cleanest story is usually the most accurate one.",
@@ -2537,7 +2537,7 @@
           },
           {
             "questionId": "ch05-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Acquisitions Need Discipline More Than Appetite\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Acquisitions Need Discipline More Than Appetite\"?",
             "choices": [
               "The right move is treating deal making as proof of leadership.",
               "There is also an ethical dimension because clearer thinking should reduce avoidable harm instead of rewarding cleverness for its own sake.",
@@ -2548,7 +2548,7 @@
           },
           {
             "questionId": "ch05-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Acquisitions Need Discipline More Than Appetite\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Acquisitions Need Discipline More Than Appetite\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -2559,7 +2559,7 @@
           },
           {
             "questionId": "ch05-h-q05-retry-05",
-            "prompt": "Which option best applies \"Acquisitions Need Discipline More Than Appetite\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Acquisitions Need Discipline More Than Appetite\" into practice?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -2912,7 +2912,7 @@
         "questions": [
           {
             "questionId": "ch06-h-q01",
-            "prompt": "Which option best captures the main principle in \"Temperament Shapes Capital Allocation Quality\"?",
+            "prompt": "You are making a real-world decision tied to \"Temperament Shapes Capital Allocation Quality\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "The first reasonable answer is usually enough once pressure rises.",
@@ -2923,7 +2923,7 @@
           },
           {
             "questionId": "ch06-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Temperament Shapes Capital Allocation Quality\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Temperament Shapes Capital Allocation Quality\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "More urgency usually fixes the problem without changing the process.",
@@ -2934,7 +2934,7 @@
           },
           {
             "questionId": "ch06-h-q03",
-            "prompt": "Which option best explains why \"Temperament Shapes Capital Allocation Quality\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Temperament Shapes Capital Allocation Quality\"?",
             "choices": [
               "This matters because better decisions come from leaders who can resist crowd pressure and ego.",
               "More urgency usually fixes the problem without changing the process.",
@@ -2945,7 +2945,7 @@
           },
           {
             "questionId": "ch06-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Temperament Shapes Capital Allocation Quality\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Temperament Shapes Capital Allocation Quality\"?",
             "choices": [
               "Visible effort matters more than clear feedback.",
               "A common mistake is letting public opinion or personal excitement drive allocation choices.",
@@ -2956,7 +2956,7 @@
           },
           {
             "questionId": "ch06-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Temperament Shapes Capital Allocation Quality\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Temperament Shapes Capital Allocation Quality\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -2967,7 +2967,7 @@
           },
           {
             "questionId": "ch06-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Temperament Shapes Capital Allocation Quality\"?",
+            "prompt": "You are making a real-world decision tied to \"Temperament Shapes Capital Allocation Quality\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is letting public opinion or personal excitement drive allocation choices.",
@@ -2978,7 +2978,7 @@
           },
           {
             "questionId": "ch06-h-q07",
-            "prompt": "Which option connects \"Temperament Shapes Capital Allocation Quality\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Temperament Shapes Capital Allocation Quality\" into practice?",
             "choices": [
               "The idea gets stronger when people connect the immediate choice to incentives, feedback, and downstream effects.",
               "The right move is letting public opinion or personal excitement drive allocation choices.",
@@ -2989,7 +2989,7 @@
           },
           {
             "questionId": "ch06-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Temperament Shapes Capital Allocation Quality\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Temperament Shapes Capital Allocation Quality\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Small defaults and routines often decide whether the principle survives pressure.",
@@ -3000,7 +3000,7 @@
           },
           {
             "questionId": "ch06-h-q09",
-            "prompt": "Which option best explains why \"Temperament Shapes Capital Allocation Quality\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Temperament Shapes Capital Allocation Quality\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -3011,7 +3011,7 @@
           },
           {
             "questionId": "ch06-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Temperament Shapes Capital Allocation Quality\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Temperament Shapes Capital Allocation Quality\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "Fast certainty matters more than checking assumptions.",
@@ -3024,7 +3024,7 @@
         "retryQuestions": [
           {
             "questionId": "ch06-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Temperament Shapes Capital Allocation Quality\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Temperament Shapes Capital Allocation Quality\"?",
             "choices": [
               "A deeper reading is that hidden assumptions and time horizons usually shape the result before the final decision is visible.",
               "Short term relief is a reliable guide to good judgment.",
@@ -3035,7 +3035,7 @@
           },
           {
             "questionId": "ch06-h-q02-retry-02",
-            "prompt": "Which option best connects \"Temperament Shapes Capital Allocation Quality\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Temperament Shapes Capital Allocation Quality\" into practice?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The long game improves when people treat evidence, reversibility, and tradeoffs as part of the same judgment process.",
@@ -3046,7 +3046,7 @@
           },
           {
             "questionId": "ch06-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Temperament Shapes Capital Allocation Quality\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Temperament Shapes Capital Allocation Quality\"?",
             "choices": [
               "The right move is letting public opinion or personal excitement drive allocation choices.",
               "It is better to react first and interpret later.",
@@ -3057,7 +3057,7 @@
           },
           {
             "questionId": "ch06-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Temperament Shapes Capital Allocation Quality\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Temperament Shapes Capital Allocation Quality\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -3068,7 +3068,7 @@
           },
           {
             "questionId": "ch06-h-q05-retry-05",
-            "prompt": "Which option best applies \"Temperament Shapes Capital Allocation Quality\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Temperament Shapes Capital Allocation Quality\" into practice?",
             "choices": [
               "A practical starting move is to notice when ego is active, slow down when the crowd is loud, and protect independent judgment.",
               "Structure matters only after formal authority is secured.",

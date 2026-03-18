@@ -367,7 +367,7 @@
         "questions": [
           {
             "questionId": "ch01-h-q01",
-            "prompt": "Which option best captures the main principle in \"Noise Is Different From Bias\"?",
+            "prompt": "You are making a real-world decision tied to \"Noise Is Different From Bias\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "Distinguishing noise from bias in judgment creates clearer judgment.",
@@ -378,7 +378,7 @@
           },
           {
             "questionId": "ch01-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Noise Is Different From Bias\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Noise Is Different From Bias\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "More urgency usually fixes the problem without changing the process.",
@@ -389,7 +389,7 @@
           },
           {
             "questionId": "ch01-h-q03",
-            "prompt": "Which option best explains why \"Noise Is Different From Bias\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Noise Is Different From Bias\"?",
             "choices": [
               "More urgency usually fixes the problem without changing the process.",
               "Visible effort matters more than clear feedback.",
@@ -400,7 +400,7 @@
           },
           {
             "questionId": "ch01-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Noise Is Different From Bias\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Noise Is Different From Bias\"?",
             "choices": [
               "A common mistake is treating every decision error as bias alone.",
               "Visible effort matters more than clear feedback.",
@@ -411,7 +411,7 @@
           },
           {
             "questionId": "ch01-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Noise Is Different From Bias\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Noise Is Different From Bias\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The pattern becomes easier to see when the average judgment looks acceptable while individual judgments vary wildly.",
@@ -422,7 +422,7 @@
           },
           {
             "questionId": "ch01-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Noise Is Different From Bias\"?",
+            "prompt": "You are making a real-world decision tied to \"Noise Is Different From Bias\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is treating every decision error as bias alone.",
@@ -433,7 +433,7 @@
           },
           {
             "questionId": "ch01-h-q07",
-            "prompt": "Which option connects \"Noise Is Different From Bias\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Noise Is Different From Bias\" into practice?",
             "choices": [
               "The right move is treating every decision error as bias alone.",
               "It is better to react first and interpret later.",
@@ -444,7 +444,7 @@
           },
           {
             "questionId": "ch01-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Noise Is Different From Bias\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Noise Is Different From Bias\"?",
             "choices": [
               "Small defaults and routines often decide whether the principle survives pressure.",
               "It is better to react first and interpret later.",
@@ -455,7 +455,7 @@
           },
           {
             "questionId": "ch01-h-q09",
-            "prompt": "Which option best explains why \"Noise Is Different From Bias\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Noise Is Different From Bias\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "For students and early career readers, the principle matters because early habits shape trust, options, and learning speed.",
@@ -466,7 +466,7 @@
           },
           {
             "questionId": "ch01-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Noise Is Different From Bias\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Noise Is Different From Bias\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "Fast certainty matters more than checking assumptions.",
@@ -479,7 +479,7 @@
         "retryQuestions": [
           {
             "questionId": "ch01-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Noise Is Different From Bias\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Noise Is Different From Bias\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -490,7 +490,7 @@
           },
           {
             "questionId": "ch01-h-q02-retry-02",
-            "prompt": "Which option best connects \"Noise Is Different From Bias\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Noise Is Different From Bias\" into practice?",
             "choices": [
               "The long game improves when people treat evidence, reversibility, and tradeoffs as part of the same judgment process.",
               "The cleanest story is usually the most accurate one.",
@@ -501,7 +501,7 @@
           },
           {
             "questionId": "ch01-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Noise Is Different From Bias\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Noise Is Different From Bias\"?",
             "choices": [
               "The right move is treating every decision error as bias alone.",
               "There is also an ethical dimension because clearer thinking should reduce avoidable harm instead of rewarding cleverness for its own sake.",
@@ -512,7 +512,7 @@
           },
           {
             "questionId": "ch01-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Noise Is Different From Bias\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Noise Is Different From Bias\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -523,7 +523,7 @@
           },
           {
             "questionId": "ch01-h-q05-retry-05",
-            "prompt": "Which option best applies \"Noise Is Different From Bias\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Noise Is Different From Bias\" into practice?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -876,7 +876,7 @@
         "questions": [
           {
             "questionId": "ch02-h-q01",
-            "prompt": "Which option best captures the main principle in \"Context Creates Occasion Noise\"?",
+            "prompt": "You are making a real-world decision tied to \"Context Creates Occasion Noise\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "The first reasonable answer is usually enough once pressure rises.",
@@ -887,7 +887,7 @@
           },
           {
             "questionId": "ch02-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Context Creates Occasion Noise\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Context Creates Occasion Noise\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "More urgency usually fixes the problem without changing the process.",
@@ -898,7 +898,7 @@
           },
           {
             "questionId": "ch02-h-q03",
-            "prompt": "Which option best explains why \"Context Creates Occasion Noise\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Context Creates Occasion Noise\"?",
             "choices": [
               "This matters because consistency matters because fairness and quality both suffer when context drives the answer.",
               "More urgency usually fixes the problem without changing the process.",
@@ -909,7 +909,7 @@
           },
           {
             "questionId": "ch02-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Context Creates Occasion Noise\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Context Creates Occasion Noise\"?",
             "choices": [
               "Visible effort matters more than clear feedback.",
               "A common mistake is assuming your own judgment is stable across changing conditions.",
@@ -920,7 +920,7 @@
           },
           {
             "questionId": "ch02-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Context Creates Occasion Noise\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Context Creates Occasion Noise\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -931,7 +931,7 @@
           },
           {
             "questionId": "ch02-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Context Creates Occasion Noise\"?",
+            "prompt": "You are making a real-world decision tied to \"Context Creates Occasion Noise\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is assuming your own judgment is stable across changing conditions.",
@@ -942,7 +942,7 @@
           },
           {
             "questionId": "ch02-h-q07",
-            "prompt": "Which option connects \"Context Creates Occasion Noise\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Context Creates Occasion Noise\" into practice?",
             "choices": [
               "The idea gets stronger when people connect the immediate choice to incentives, feedback, and downstream effects.",
               "The right move is assuming your own judgment is stable across changing conditions.",
@@ -953,7 +953,7 @@
           },
           {
             "questionId": "ch02-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Context Creates Occasion Noise\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Context Creates Occasion Noise\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Small defaults and routines often decide whether the principle survives pressure.",
@@ -964,7 +964,7 @@
           },
           {
             "questionId": "ch02-h-q09",
-            "prompt": "Which option best explains why \"Context Creates Occasion Noise\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Context Creates Occasion Noise\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -975,7 +975,7 @@
           },
           {
             "questionId": "ch02-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Context Creates Occasion Noise\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Context Creates Occasion Noise\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "Fast certainty matters more than checking assumptions.",
@@ -988,7 +988,7 @@
         "retryQuestions": [
           {
             "questionId": "ch02-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Context Creates Occasion Noise\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Context Creates Occasion Noise\"?",
             "choices": [
               "A deeper reading is that hidden assumptions and time horizons usually shape the result before the final decision is visible.",
               "Short term relief is a reliable guide to good judgment.",
@@ -999,7 +999,7 @@
           },
           {
             "questionId": "ch02-h-q02-retry-02",
-            "prompt": "Which option best connects \"Context Creates Occasion Noise\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Context Creates Occasion Noise\" into practice?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The long game improves when people treat evidence, reversibility, and tradeoffs as part of the same judgment process.",
@@ -1010,7 +1010,7 @@
           },
           {
             "questionId": "ch02-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Context Creates Occasion Noise\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Context Creates Occasion Noise\"?",
             "choices": [
               "The right move is assuming your own judgment is stable across changing conditions.",
               "It is better to react first and interpret later.",
@@ -1021,7 +1021,7 @@
           },
           {
             "questionId": "ch02-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Context Creates Occasion Noise\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Context Creates Occasion Noise\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -1032,7 +1032,7 @@
           },
           {
             "questionId": "ch02-h-q05-retry-05",
-            "prompt": "Which option best applies \"Context Creates Occasion Noise\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Context Creates Occasion Noise\" into practice?",
             "choices": [
               "A practical starting move is to check whether the condition changed the judgment, delay high stakes calls in poor conditions, and use a written standard.",
               "Structure matters only after formal authority is secured.",
@@ -1385,7 +1385,7 @@
         "questions": [
           {
             "questionId": "ch03-h-q01",
-            "prompt": "Which option best captures the main principle in \"System Noise Accumulates Quietly\"?",
+            "prompt": "You are making a real-world decision tied to \"System Noise Accumulates Quietly\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "The first reasonable answer is usually enough once pressure rises.",
@@ -1396,7 +1396,7 @@
           },
           {
             "questionId": "ch03-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"System Noise Accumulates Quietly\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"System Noise Accumulates Quietly\" into practice?",
             "choices": [
               "Organizations can normalize wide variation without noticing the cost.",
               "The first reasonable answer is usually enough once pressure rises.",
@@ -1407,7 +1407,7 @@
           },
           {
             "questionId": "ch03-h-q03",
-            "prompt": "Which option best explains why \"System Noise Accumulates Quietly\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"System Noise Accumulates Quietly\"?",
             "choices": [
               "More urgency usually fixes the problem without changing the process.",
               "This matters because system noise matters because it damages trust, quality, and fairness at scale.",
@@ -1418,7 +1418,7 @@
           },
           {
             "questionId": "ch03-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"System Noise Accumulates Quietly\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"System Noise Accumulates Quietly\"?",
             "choices": [
               "Visible effort matters more than clear feedback.",
               "Short term relief is a reliable guide to good judgment.",
@@ -1429,7 +1429,7 @@
           },
           {
             "questionId": "ch03-h-q05",
-            "prompt": "Which option points to a reliable signal for \"System Noise Accumulates Quietly\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"System Noise Accumulates Quietly\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -1440,7 +1440,7 @@
           },
           {
             "questionId": "ch03-h-q06",
-            "prompt": "Which option shows a useful response when applying \"System Noise Accumulates Quietly\"?",
+            "prompt": "You are making a real-world decision tied to \"System Noise Accumulates Quietly\". Which option is the strongest next move?",
             "choices": [
               "A practical starting move is to measure variation across the system, compare like cases to like cases, and find where the range is too wide.",
               "The cleanest story is usually the most accurate one.",
@@ -1451,7 +1451,7 @@
           },
           {
             "questionId": "ch03-h-q07",
-            "prompt": "Which option connects \"System Noise Accumulates Quietly\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"System Noise Accumulates Quietly\" into practice?",
             "choices": [
               "The right move is accepting variation as natural when the task should be standardized.",
               "The idea gets stronger when people connect the immediate choice to incentives, feedback, and downstream effects.",
@@ -1462,7 +1462,7 @@
           },
           {
             "questionId": "ch03-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"System Noise Accumulates Quietly\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"System Noise Accumulates Quietly\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -1473,7 +1473,7 @@
           },
           {
             "questionId": "ch03-h-q09",
-            "prompt": "Which option best explains why \"System Noise Accumulates Quietly\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"System Noise Accumulates Quietly\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -1484,7 +1484,7 @@
           },
           {
             "questionId": "ch03-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"System Noise Accumulates Quietly\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"System Noise Accumulates Quietly\"?",
             "choices": [
               "The real challenge is to stay deliberate without becoming rigid, reactive, or self defeating.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -1497,7 +1497,7 @@
         "retryQuestions": [
           {
             "questionId": "ch03-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"System Noise Accumulates Quietly\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"System Noise Accumulates Quietly\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "A deeper reading is that hidden assumptions and time horizons usually shape the result before the final decision is visible.",
@@ -1508,7 +1508,7 @@
           },
           {
             "questionId": "ch03-h-q02-retry-02",
-            "prompt": "Which option best connects \"System Noise Accumulates Quietly\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"System Noise Accumulates Quietly\" into practice?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is accepting variation as natural when the task should be standardized.",
@@ -1519,7 +1519,7 @@
           },
           {
             "questionId": "ch03-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"System Noise Accumulates Quietly\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"System Noise Accumulates Quietly\"?",
             "choices": [
               "The right move is accepting variation as natural when the task should be standardized.",
               "It is better to react first and interpret later.",
@@ -1530,7 +1530,7 @@
           },
           {
             "questionId": "ch03-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"System Noise Accumulates Quietly\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"System Noise Accumulates Quietly\"?",
             "choices": [
               "The chapter is most useful when it strengthens calibration, restraint, and deliberate follow through at the same time.",
               "It is better to react first and interpret later.",
@@ -1541,7 +1541,7 @@
           },
           {
             "questionId": "ch03-h-q05-retry-05",
-            "prompt": "Which option best applies \"System Noise Accumulates Quietly\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"System Noise Accumulates Quietly\" into practice?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "A practical starting move is to measure variation across the system, compare like cases to like cases, and find where the range is too wide.",
@@ -1894,7 +1894,7 @@
         "questions": [
           {
             "questionId": "ch04-h-q01",
-            "prompt": "Which option best captures the main principle in \"Structure Reduces Noise\"?",
+            "prompt": "You are making a real-world decision tied to \"Structure Reduces Noise\". Which option is the strongest next move?",
             "choices": [
               "Using structure, criteria, and ordered evaluation to reduce judgment noise creates clearer judgment.",
               "Fast certainty matters more than checking assumptions.",
@@ -1905,7 +1905,7 @@
           },
           {
             "questionId": "ch04-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Structure Reduces Noise\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Structure Reduces Noise\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "Better decisions emerge when the process becomes more explicit and comparable.",
@@ -1916,7 +1916,7 @@
           },
           {
             "questionId": "ch04-h-q03",
-            "prompt": "Which option best explains why \"Structure Reduces Noise\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Structure Reduces Noise\"?",
             "choices": [
               "More urgency usually fixes the problem without changing the process.",
               "Visible effort matters more than clear feedback.",
@@ -1927,7 +1927,7 @@
           },
           {
             "questionId": "ch04-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Structure Reduces Noise\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Structure Reduces Noise\"?",
             "choices": [
               "Visible effort matters more than clear feedback.",
               "Short term relief is a reliable guide to good judgment.",
@@ -1938,7 +1938,7 @@
           },
           {
             "questionId": "ch04-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Structure Reduces Noise\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Structure Reduces Noise\"?",
             "choices": [
               "The pattern becomes easier to see when judgments sound thoughtful but vary too much to trust.",
               "Short term relief is a reliable guide to good judgment.",
@@ -1949,7 +1949,7 @@
           },
           {
             "questionId": "ch04-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Structure Reduces Noise\"?",
+            "prompt": "You are making a real-world decision tied to \"Structure Reduces Noise\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "A practical starting move is to define the criteria in advance, score components separately, and combine them after evaluation.",
@@ -1960,7 +1960,7 @@
           },
           {
             "questionId": "ch04-h-q07",
-            "prompt": "Which option connects \"Structure Reduces Noise\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Structure Reduces Noise\" into practice?",
             "choices": [
               "The right move is protecting total discretion when the task needs a cleaner standard.",
               "It is better to react first and interpret later.",
@@ -1971,7 +1971,7 @@
           },
           {
             "questionId": "ch04-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Structure Reduces Noise\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Structure Reduces Noise\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -1982,7 +1982,7 @@
           },
           {
             "questionId": "ch04-h-q09",
-            "prompt": "Which option best explains why \"Structure Reduces Noise\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Structure Reduces Noise\"?",
             "choices": [
               "For students and early career readers, the principle matters because early habits shape trust, options, and learning speed.",
               "Structure matters only after formal authority is secured.",
@@ -1993,7 +1993,7 @@
           },
           {
             "questionId": "ch04-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Structure Reduces Noise\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Structure Reduces Noise\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "The real challenge is to stay deliberate without becoming rigid, reactive, or self defeating.",
@@ -2006,7 +2006,7 @@
         "retryQuestions": [
           {
             "questionId": "ch04-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Structure Reduces Noise\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Structure Reduces Noise\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -2017,7 +2017,7 @@
           },
           {
             "questionId": "ch04-h-q02-retry-02",
-            "prompt": "Which option best connects \"Structure Reduces Noise\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Structure Reduces Noise\" into practice?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is protecting total discretion when the task needs a cleaner standard.",
@@ -2028,7 +2028,7 @@
           },
           {
             "questionId": "ch04-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Structure Reduces Noise\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Structure Reduces Noise\"?",
             "choices": [
               "There is also an ethical dimension because clearer thinking should reduce avoidable harm instead of rewarding cleverness for its own sake.",
               "The right move is protecting total discretion when the task needs a cleaner standard.",
@@ -2039,7 +2039,7 @@
           },
           {
             "questionId": "ch04-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Structure Reduces Noise\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Structure Reduces Noise\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "The chapter is most useful when it strengthens calibration, restraint, and deliberate follow through at the same time.",
@@ -2050,7 +2050,7 @@
           },
           {
             "questionId": "ch04-h-q05-retry-05",
-            "prompt": "Which option best applies \"Structure Reduces Noise\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Structure Reduces Noise\" into practice?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -2403,7 +2403,7 @@
         "questions": [
           {
             "questionId": "ch05-h-q01",
-            "prompt": "Which option best captures the main principle in \"Aggregates and Rules Often Beat Lone Intuition\"?",
+            "prompt": "You are making a real-world decision tied to \"Aggregates and Rules Often Beat Lone Intuition\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "Using aggregates and rules to improve consistency and fairness creates clearer judgment.",
@@ -2414,7 +2414,7 @@
           },
           {
             "questionId": "ch05-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Aggregates and Rules Often Beat Lone Intuition\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Aggregates and Rules Often Beat Lone Intuition\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "More urgency usually fixes the problem without changing the process.",
@@ -2425,7 +2425,7 @@
           },
           {
             "questionId": "ch05-h-q03",
-            "prompt": "Which option best explains why \"Aggregates and Rules Often Beat Lone Intuition\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Aggregates and Rules Often Beat Lone Intuition\"?",
             "choices": [
               "More urgency usually fixes the problem without changing the process.",
               "Visible effort matters more than clear feedback.",
@@ -2436,7 +2436,7 @@
           },
           {
             "questionId": "ch05-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Aggregates and Rules Often Beat Lone Intuition\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Aggregates and Rules Often Beat Lone Intuition\"?",
             "choices": [
               "A common mistake is assuming a single confident expert is always the best decision method.",
               "Visible effort matters more than clear feedback.",
@@ -2447,7 +2447,7 @@
           },
           {
             "questionId": "ch05-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Aggregates and Rules Often Beat Lone Intuition\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Aggregates and Rules Often Beat Lone Intuition\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The pattern becomes easier to see when the lone judgment swings more than a simple rule based average would.",
@@ -2458,7 +2458,7 @@
           },
           {
             "questionId": "ch05-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Aggregates and Rules Often Beat Lone Intuition\"?",
+            "prompt": "You are making a real-world decision tied to \"Aggregates and Rules Often Beat Lone Intuition\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is assuming a single confident expert is always the best decision method.",
@@ -2469,7 +2469,7 @@
           },
           {
             "questionId": "ch05-h-q07",
-            "prompt": "Which option connects \"Aggregates and Rules Often Beat Lone Intuition\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Aggregates and Rules Often Beat Lone Intuition\" into practice?",
             "choices": [
               "The right move is assuming a single confident expert is always the best decision method.",
               "It is better to react first and interpret later.",
@@ -2480,7 +2480,7 @@
           },
           {
             "questionId": "ch05-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Aggregates and Rules Often Beat Lone Intuition\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Aggregates and Rules Often Beat Lone Intuition\"?",
             "choices": [
               "Small defaults and routines often decide whether the principle survives pressure.",
               "It is better to react first and interpret later.",
@@ -2491,7 +2491,7 @@
           },
           {
             "questionId": "ch05-h-q09",
-            "prompt": "Which option best explains why \"Aggregates and Rules Often Beat Lone Intuition\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Aggregates and Rules Often Beat Lone Intuition\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "For students and early career readers, the principle matters because early habits shape trust, options, and learning speed.",
@@ -2502,7 +2502,7 @@
           },
           {
             "questionId": "ch05-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Aggregates and Rules Often Beat Lone Intuition\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Aggregates and Rules Often Beat Lone Intuition\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "Fast certainty matters more than checking assumptions.",
@@ -2515,7 +2515,7 @@
         "retryQuestions": [
           {
             "questionId": "ch05-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Aggregates and Rules Often Beat Lone Intuition\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Aggregates and Rules Often Beat Lone Intuition\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -2526,7 +2526,7 @@
           },
           {
             "questionId": "ch05-h-q02-retry-02",
-            "prompt": "Which option best connects \"Aggregates and Rules Often Beat Lone Intuition\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Aggregates and Rules Often Beat Lone Intuition\" into practice?",
             "choices": [
               "The long game improves when people treat evidence, reversibility, and tradeoffs as part of the same judgment process.",
               "The cleanest story is usually the most accurate one.",
@@ -2537,7 +2537,7 @@
           },
           {
             "questionId": "ch05-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Aggregates and Rules Often Beat Lone Intuition\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Aggregates and Rules Often Beat Lone Intuition\"?",
             "choices": [
               "The right move is assuming a single confident expert is always the best decision method.",
               "There is also an ethical dimension because clearer thinking should reduce avoidable harm instead of rewarding cleverness for its own sake.",
@@ -2548,7 +2548,7 @@
           },
           {
             "questionId": "ch05-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Aggregates and Rules Often Beat Lone Intuition\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Aggregates and Rules Often Beat Lone Intuition\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -2559,7 +2559,7 @@
           },
           {
             "questionId": "ch05-h-q05-retry-05",
-            "prompt": "Which option best applies \"Aggregates and Rules Often Beat Lone Intuition\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Aggregates and Rules Often Beat Lone Intuition\" into practice?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -2912,7 +2912,7 @@
         "questions": [
           {
             "questionId": "ch06-h-q01",
-            "prompt": "Which option best captures the main principle in \"Fairness Depends on Consistency\"?",
+            "prompt": "You are making a real-world decision tied to \"Fairness Depends on Consistency\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "The first reasonable answer is usually enough once pressure rises.",
@@ -2923,7 +2923,7 @@
           },
           {
             "questionId": "ch06-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Fairness Depends on Consistency\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Fairness Depends on Consistency\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "More urgency usually fixes the problem without changing the process.",
@@ -2934,7 +2934,7 @@
           },
           {
             "questionId": "ch06-h-q03",
-            "prompt": "Which option best explains why \"Fairness Depends on Consistency\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Fairness Depends on Consistency\"?",
             "choices": [
               "This matters because fairness improves when similar cases are treated more similarly.",
               "More urgency usually fixes the problem without changing the process.",
@@ -2945,7 +2945,7 @@
           },
           {
             "questionId": "ch06-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Fairness Depends on Consistency\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Fairness Depends on Consistency\"?",
             "choices": [
               "Visible effort matters more than clear feedback.",
               "A common mistake is talking about values while tolerating wide judgment swings.",
@@ -2956,7 +2956,7 @@
           },
           {
             "questionId": "ch06-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Fairness Depends on Consistency\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Fairness Depends on Consistency\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -2967,7 +2967,7 @@
           },
           {
             "questionId": "ch06-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Fairness Depends on Consistency\"?",
+            "prompt": "You are making a real-world decision tied to \"Fairness Depends on Consistency\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is talking about values while tolerating wide judgment swings.",
@@ -2978,7 +2978,7 @@
           },
           {
             "questionId": "ch06-h-q07",
-            "prompt": "Which option connects \"Fairness Depends on Consistency\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Fairness Depends on Consistency\" into practice?",
             "choices": [
               "The idea gets stronger when people connect the immediate choice to incentives, feedback, and downstream effects.",
               "The right move is talking about values while tolerating wide judgment swings.",
@@ -2989,7 +2989,7 @@
           },
           {
             "questionId": "ch06-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Fairness Depends on Consistency\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Fairness Depends on Consistency\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Small defaults and routines often decide whether the principle survives pressure.",
@@ -3000,7 +3000,7 @@
           },
           {
             "questionId": "ch06-h-q09",
-            "prompt": "Which option best explains why \"Fairness Depends on Consistency\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Fairness Depends on Consistency\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -3011,7 +3011,7 @@
           },
           {
             "questionId": "ch06-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Fairness Depends on Consistency\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Fairness Depends on Consistency\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "Fast certainty matters more than checking assumptions.",
@@ -3024,7 +3024,7 @@
         "retryQuestions": [
           {
             "questionId": "ch06-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Fairness Depends on Consistency\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Fairness Depends on Consistency\"?",
             "choices": [
               "A deeper reading is that hidden assumptions and time horizons usually shape the result before the final decision is visible.",
               "Short term relief is a reliable guide to good judgment.",
@@ -3035,7 +3035,7 @@
           },
           {
             "questionId": "ch06-h-q02-retry-02",
-            "prompt": "Which option best connects \"Fairness Depends on Consistency\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Fairness Depends on Consistency\" into practice?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The long game improves when people treat evidence, reversibility, and tradeoffs as part of the same judgment process.",
@@ -3046,7 +3046,7 @@
           },
           {
             "questionId": "ch06-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Fairness Depends on Consistency\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Fairness Depends on Consistency\"?",
             "choices": [
               "The right move is talking about values while tolerating wide judgment swings.",
               "It is better to react first and interpret later.",
@@ -3057,7 +3057,7 @@
           },
           {
             "questionId": "ch06-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Fairness Depends on Consistency\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Fairness Depends on Consistency\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -3068,7 +3068,7 @@
           },
           {
             "questionId": "ch06-h-q05-retry-05",
-            "prompt": "Which option best applies \"Fairness Depends on Consistency\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Fairness Depends on Consistency\" into practice?",
             "choices": [
               "A practical starting move is to measure fairness through consistency, review outlier cases, and tighten the process where variation is unjustified.",
               "Structure matters only after formal authority is secured.",

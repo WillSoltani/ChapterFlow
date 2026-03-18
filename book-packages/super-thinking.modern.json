@@ -367,7 +367,7 @@
         "questions": [
           {
             "questionId": "ch01-h-q01",
-            "prompt": "Which option best captures the main principle in \"Map Problems With More Than One Model\"?",
+            "prompt": "You are making a real-world decision tied to \"Map Problems With More Than One Model\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "Using multiple mental models to understand a problem more accurately creates clearer judgment.",
@@ -378,7 +378,7 @@
           },
           {
             "questionId": "ch01-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Map Problems With More Than One Model\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Map Problems With More Than One Model\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "More urgency usually fixes the problem without changing the process.",
@@ -389,7 +389,7 @@
           },
           {
             "questionId": "ch01-h-q03",
-            "prompt": "Which option best explains why \"Map Problems With More Than One Model\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Map Problems With More Than One Model\"?",
             "choices": [
               "More urgency usually fixes the problem without changing the process.",
               "Visible effort matters more than clear feedback.",
@@ -400,7 +400,7 @@
           },
           {
             "questionId": "ch01-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Map Problems With More Than One Model\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Map Problems With More Than One Model\"?",
             "choices": [
               "A common mistake is locking onto the first neat answer and treating it as the whole picture.",
               "Visible effort matters more than clear feedback.",
@@ -411,7 +411,7 @@
           },
           {
             "questionId": "ch01-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Map Problems With More Than One Model\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Map Problems With More Than One Model\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The pattern becomes easier to see when different explanations highlight different tradeoffs, incentives, and second order effects.",
@@ -422,7 +422,7 @@
           },
           {
             "questionId": "ch01-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Map Problems With More Than One Model\"?",
+            "prompt": "You are making a real-world decision tied to \"Map Problems With More Than One Model\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is locking onto the first neat answer and treating it as the whole picture.",
@@ -433,7 +433,7 @@
           },
           {
             "questionId": "ch01-h-q07",
-            "prompt": "Which option connects \"Map Problems With More Than One Model\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Map Problems With More Than One Model\" into practice?",
             "choices": [
               "The right move is locking onto the first neat answer and treating it as the whole picture.",
               "It is better to react first and interpret later.",
@@ -444,7 +444,7 @@
           },
           {
             "questionId": "ch01-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Map Problems With More Than One Model\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Map Problems With More Than One Model\"?",
             "choices": [
               "Small defaults and routines often decide whether the principle survives pressure.",
               "It is better to react first and interpret later.",
@@ -455,7 +455,7 @@
           },
           {
             "questionId": "ch01-h-q09",
-            "prompt": "Which option best explains why \"Map Problems With More Than One Model\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Map Problems With More Than One Model\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "For students and early career readers, the principle matters because early habits shape trust, options, and learning speed.",
@@ -466,7 +466,7 @@
           },
           {
             "questionId": "ch01-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Map Problems With More Than One Model\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Map Problems With More Than One Model\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "Fast certainty matters more than checking assumptions.",
@@ -479,7 +479,7 @@
         "retryQuestions": [
           {
             "questionId": "ch01-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Map Problems With More Than One Model\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Map Problems With More Than One Model\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -490,7 +490,7 @@
           },
           {
             "questionId": "ch01-h-q02-retry-02",
-            "prompt": "Which option best connects \"Map Problems With More Than One Model\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Map Problems With More Than One Model\" into practice?",
             "choices": [
               "The long game improves when people treat evidence, reversibility, and tradeoffs as part of the same judgment process.",
               "The cleanest story is usually the most accurate one.",
@@ -501,7 +501,7 @@
           },
           {
             "questionId": "ch01-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Map Problems With More Than One Model\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Map Problems With More Than One Model\"?",
             "choices": [
               "The right move is locking onto the first neat answer and treating it as the whole picture.",
               "There is also an ethical dimension because clearer thinking should reduce avoidable harm instead of rewarding cleverness for its own sake.",
@@ -512,7 +512,7 @@
           },
           {
             "questionId": "ch01-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Map Problems With More Than One Model\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Map Problems With More Than One Model\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -523,7 +523,7 @@
           },
           {
             "questionId": "ch01-h-q05-retry-05",
-            "prompt": "Which option best applies \"Map Problems With More Than One Model\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Map Problems With More Than One Model\" into practice?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -820,7 +820,7 @@
           "whatToDo": [
             "Start by write the assumption you are relying on and ask what would prove you wrong, then defer when the evidence is thin."
           ],
-          "whyItMatters": "This example matters because overreach creates preventable mistakes because borrowed certainty breaks under pressure. It turns the idea into a repeatable decision habit instead of a slogan."
+          "whyItMatters": "This example matters because overreach creates preventable mistakes because borrowed certainty breaks under pressure. It turns the idea into a repeatable decision habit instead of a slogan. This scenario is directly connected to know where your judgment is strongest."
         },
         {
           "exampleId": "ch02-ex03",
@@ -832,7 +832,7 @@
           "whatToDo": [
             "Start by ask what would prove you wrong and defer when the evidence is thin, then define the real constraint before reacting."
           ],
-          "whyItMatters": "This example matters because overreach creates preventable mistakes because borrowed certainty breaks under pressure. It turns the idea into a repeatable decision habit instead of a slogan."
+          "whyItMatters": "This example matters because overreach creates preventable mistakes because borrowed certainty breaks under pressure. It turns the idea into a repeatable decision habit instead of a slogan. This scenario is directly connected to know where your judgment is strongest."
         },
         {
           "exampleId": "ch02-ex04",
@@ -844,7 +844,7 @@
           "whatToDo": [
             "Start by defer when the evidence is thin and define the real constraint before reacting, then write down the assumption you are testing."
           ],
-          "whyItMatters": "This example matters because overreach creates preventable mistakes because borrowed certainty breaks under pressure. It turns the idea into a repeatable decision habit instead of a slogan."
+          "whyItMatters": "This example matters because overreach creates preventable mistakes because borrowed certainty breaks under pressure. It turns the idea into a repeatable decision habit instead of a slogan. This scenario is directly connected to know where your judgment is strongest."
         },
         {
           "exampleId": "ch02-ex05",
@@ -868,7 +868,7 @@
           "whatToDo": [
             "Start by write the assumption you are relying on and ask what would prove you wrong, then write the assumption you are relying on."
           ],
-          "whyItMatters": "This example matters because overreach creates preventable mistakes because borrowed certainty breaks under pressure. It turns the idea into a repeatable decision habit instead of a slogan."
+          "whyItMatters": "This example matters because overreach creates preventable mistakes because borrowed certainty breaks under pressure. It turns the idea into a repeatable decision habit instead of a slogan. This scenario is directly connected to know where your judgment is strongest."
         }
       ],
       "quiz": {
@@ -876,7 +876,7 @@
         "questions": [
           {
             "questionId": "ch02-h-q01",
-            "prompt": "Which option best captures the main principle in \"Know Where Your Judgment Is Strongest\"?",
+            "prompt": "You are making a real-world decision tied to \"Know Where Your Judgment Is Strongest\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "The first reasonable answer is usually enough once pressure rises.",
@@ -887,7 +887,7 @@
           },
           {
             "questionId": "ch02-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Know Where Your Judgment Is Strongest\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Know Where Your Judgment Is Strongest\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "More urgency usually fixes the problem without changing the process.",
@@ -898,7 +898,7 @@
           },
           {
             "questionId": "ch02-h-q03",
-            "prompt": "Which option best explains why \"Know Where Your Judgment Is Strongest\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Know Where Your Judgment Is Strongest\"?",
             "choices": [
               "This matters because overreach creates preventable mistakes because borrowed certainty breaks under pressure.",
               "More urgency usually fixes the problem without changing the process.",
@@ -909,7 +909,7 @@
           },
           {
             "questionId": "ch02-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Know Where Your Judgment Is Strongest\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Know Where Your Judgment Is Strongest\"?",
             "choices": [
               "Visible effort matters more than clear feedback.",
               "A common mistake is confusing familiarity with actual mastery.",
@@ -920,7 +920,7 @@
           },
           {
             "questionId": "ch02-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Know Where Your Judgment Is Strongest\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Know Where Your Judgment Is Strongest\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -931,7 +931,7 @@
           },
           {
             "questionId": "ch02-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Know Where Your Judgment Is Strongest\"?",
+            "prompt": "You are making a real-world decision tied to \"Know Where Your Judgment Is Strongest\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is confusing familiarity with actual mastery.",
@@ -942,7 +942,7 @@
           },
           {
             "questionId": "ch02-h-q07",
-            "prompt": "Which option connects \"Know Where Your Judgment Is Strongest\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Know Where Your Judgment Is Strongest\" into practice?",
             "choices": [
               "The idea gets stronger when people connect the immediate choice to incentives, feedback, and downstream effects.",
               "The right move is confusing familiarity with actual mastery.",
@@ -953,7 +953,7 @@
           },
           {
             "questionId": "ch02-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Know Where Your Judgment Is Strongest\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Know Where Your Judgment Is Strongest\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Small defaults and routines often decide whether the principle survives pressure.",
@@ -964,7 +964,7 @@
           },
           {
             "questionId": "ch02-h-q09",
-            "prompt": "Which option best explains why \"Know Where Your Judgment Is Strongest\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Know Where Your Judgment Is Strongest\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -975,7 +975,7 @@
           },
           {
             "questionId": "ch02-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Know Where Your Judgment Is Strongest\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Know Where Your Judgment Is Strongest\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "Fast certainty matters more than checking assumptions.",
@@ -988,7 +988,7 @@
         "retryQuestions": [
           {
             "questionId": "ch02-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Know Where Your Judgment Is Strongest\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Know Where Your Judgment Is Strongest\"?",
             "choices": [
               "A deeper reading is that hidden assumptions and time horizons usually shape the result before the final decision is visible.",
               "Short term relief is a reliable guide to good judgment.",
@@ -999,7 +999,7 @@
           },
           {
             "questionId": "ch02-h-q02-retry-02",
-            "prompt": "Which option best connects \"Know Where Your Judgment Is Strongest\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Know Where Your Judgment Is Strongest\" into practice?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The long game improves when people treat evidence, reversibility, and tradeoffs as part of the same judgment process.",
@@ -1010,7 +1010,7 @@
           },
           {
             "questionId": "ch02-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Know Where Your Judgment Is Strongest\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Know Where Your Judgment Is Strongest\"?",
             "choices": [
               "The right move is confusing familiarity with actual mastery.",
               "It is better to react first and interpret later.",
@@ -1021,7 +1021,7 @@
           },
           {
             "questionId": "ch02-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Know Where Your Judgment Is Strongest\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Know Where Your Judgment Is Strongest\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -1032,7 +1032,7 @@
           },
           {
             "questionId": "ch02-h-q05-retry-05",
-            "prompt": "Which option best applies \"Know Where Your Judgment Is Strongest\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Know Where Your Judgment Is Strongest\" into practice?",
             "choices": [
               "A practical starting move is to name what you truly know, write the assumption you are relying on, and ask what would prove you wrong.",
               "Structure matters only after formal authority is secured.",
@@ -1385,7 +1385,7 @@
         "questions": [
           {
             "questionId": "ch03-h-q01",
-            "prompt": "Which option best captures the main principle in \"See Feedback Loops Early\"?",
+            "prompt": "You are making a real-world decision tied to \"See Feedback Loops Early\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "The first reasonable answer is usually enough once pressure rises.",
@@ -1396,7 +1396,7 @@
           },
           {
             "questionId": "ch03-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"See Feedback Loops Early\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"See Feedback Loops Early\" into practice?",
             "choices": [
               "Small moves can change outcomes when people see how the parts interact.",
               "The first reasonable answer is usually enough once pressure rises.",
@@ -1407,7 +1407,7 @@
           },
           {
             "questionId": "ch03-h-q03",
-            "prompt": "Which option best explains why \"See Feedback Loops Early\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"See Feedback Loops Early\"?",
             "choices": [
               "More urgency usually fixes the problem without changing the process.",
               "This matters because many bad decisions come from fixing a symptom while worsening the system underneath.",
@@ -1418,7 +1418,7 @@
           },
           {
             "questionId": "ch03-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"See Feedback Loops Early\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"See Feedback Loops Early\"?",
             "choices": [
               "Visible effort matters more than clear feedback.",
               "Short term relief is a reliable guide to good judgment.",
@@ -1429,7 +1429,7 @@
           },
           {
             "questionId": "ch03-h-q05",
-            "prompt": "Which option points to a reliable signal for \"See Feedback Loops Early\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"See Feedback Loops Early\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -1440,7 +1440,7 @@
           },
           {
             "questionId": "ch03-h-q06",
-            "prompt": "Which option shows a useful response when applying \"See Feedback Loops Early\"?",
+            "prompt": "You are making a real-world decision tied to \"See Feedback Loops Early\". Which option is the strongest next move?",
             "choices": [
               "A practical starting move is to map the loop before acting, identify the constraint, and check for delayed effects.",
               "The cleanest story is usually the most accurate one.",
@@ -1451,7 +1451,7 @@
           },
           {
             "questionId": "ch03-h-q07",
-            "prompt": "Which option connects \"See Feedback Loops Early\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"See Feedback Loops Early\" into practice?",
             "choices": [
               "The right move is treating events as isolated instead of connected.",
               "The idea gets stronger when people connect the immediate choice to incentives, feedback, and downstream effects.",
@@ -1462,7 +1462,7 @@
           },
           {
             "questionId": "ch03-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"See Feedback Loops Early\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"See Feedback Loops Early\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -1473,7 +1473,7 @@
           },
           {
             "questionId": "ch03-h-q09",
-            "prompt": "Which option best explains why \"See Feedback Loops Early\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"See Feedback Loops Early\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -1484,7 +1484,7 @@
           },
           {
             "questionId": "ch03-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"See Feedback Loops Early\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"See Feedback Loops Early\"?",
             "choices": [
               "The real challenge is to stay deliberate without becoming rigid, reactive, or self defeating.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -1497,7 +1497,7 @@
         "retryQuestions": [
           {
             "questionId": "ch03-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"See Feedback Loops Early\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"See Feedback Loops Early\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "A deeper reading is that hidden assumptions and time horizons usually shape the result before the final decision is visible.",
@@ -1508,7 +1508,7 @@
           },
           {
             "questionId": "ch03-h-q02-retry-02",
-            "prompt": "Which option best connects \"See Feedback Loops Early\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"See Feedback Loops Early\" into practice?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is treating events as isolated instead of connected.",
@@ -1519,7 +1519,7 @@
           },
           {
             "questionId": "ch03-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"See Feedback Loops Early\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"See Feedback Loops Early\"?",
             "choices": [
               "The right move is treating events as isolated instead of connected.",
               "It is better to react first and interpret later.",
@@ -1530,7 +1530,7 @@
           },
           {
             "questionId": "ch03-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"See Feedback Loops Early\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"See Feedback Loops Early\"?",
             "choices": [
               "The chapter is most useful when it strengthens calibration, restraint, and deliberate follow through at the same time.",
               "It is better to react first and interpret later.",
@@ -1541,7 +1541,7 @@
           },
           {
             "questionId": "ch03-h-q05-retry-05",
-            "prompt": "Which option best applies \"See Feedback Loops Early\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"See Feedback Loops Early\" into practice?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "A practical starting move is to map the loop before acting, identify the constraint, and check for delayed effects.",
@@ -1894,7 +1894,7 @@
         "questions": [
           {
             "questionId": "ch04-h-q01",
-            "prompt": "Which option best captures the main principle in \"Think in Probabilities Instead of Certainties\"?",
+            "prompt": "You are making a real-world decision tied to \"Think in Probabilities Instead of Certainties\". Which option is the strongest next move?",
             "choices": [
               "Treating judgment as probabilistic rather than pretending the future is guaranteed creates clearer judgment.",
               "Fast certainty matters more than checking assumptions.",
@@ -1905,7 +1905,7 @@
           },
           {
             "questionId": "ch04-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Think in Probabilities Instead of Certainties\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Think in Probabilities Instead of Certainties\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "Better decisions come from ranges, odds, and alternative paths.",
@@ -1916,7 +1916,7 @@
           },
           {
             "questionId": "ch04-h-q03",
-            "prompt": "Which option best explains why \"Think in Probabilities Instead of Certainties\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Think in Probabilities Instead of Certainties\"?",
             "choices": [
               "More urgency usually fixes the problem without changing the process.",
               "Visible effort matters more than clear feedback.",
@@ -1927,7 +1927,7 @@
           },
           {
             "questionId": "ch04-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Think in Probabilities Instead of Certainties\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Think in Probabilities Instead of Certainties\"?",
             "choices": [
               "Visible effort matters more than clear feedback.",
               "Short term relief is a reliable guide to good judgment.",
@@ -1938,7 +1938,7 @@
           },
           {
             "questionId": "ch04-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Think in Probabilities Instead of Certainties\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Think in Probabilities Instead of Certainties\"?",
             "choices": [
               "The pattern becomes easier to see when a forecast ignores base rates, spread, and downside exposure.",
               "Short term relief is a reliable guide to good judgment.",
@@ -1949,7 +1949,7 @@
           },
           {
             "questionId": "ch04-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Think in Probabilities Instead of Certainties\"?",
+            "prompt": "You are making a real-world decision tied to \"Think in Probabilities Instead of Certainties\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "A practical starting move is to state the probability out loud, compare base rates before predicting, and plan for more than one path.",
@@ -1960,7 +1960,7 @@
           },
           {
             "questionId": "ch04-h-q07",
-            "prompt": "Which option connects \"Think in Probabilities Instead of Certainties\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Think in Probabilities Instead of Certainties\" into practice?",
             "choices": [
               "The right move is acting as if one outcome is certain because it feels emotionally tidy.",
               "It is better to react first and interpret later.",
@@ -1971,7 +1971,7 @@
           },
           {
             "questionId": "ch04-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Think in Probabilities Instead of Certainties\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Think in Probabilities Instead of Certainties\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -1982,7 +1982,7 @@
           },
           {
             "questionId": "ch04-h-q09",
-            "prompt": "Which option best explains why \"Think in Probabilities Instead of Certainties\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Think in Probabilities Instead of Certainties\"?",
             "choices": [
               "For students and early career readers, the principle matters because early habits shape trust, options, and learning speed.",
               "Structure matters only after formal authority is secured.",
@@ -1993,7 +1993,7 @@
           },
           {
             "questionId": "ch04-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Think in Probabilities Instead of Certainties\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Think in Probabilities Instead of Certainties\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "The real challenge is to stay deliberate without becoming rigid, reactive, or self defeating.",
@@ -2006,7 +2006,7 @@
         "retryQuestions": [
           {
             "questionId": "ch04-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Think in Probabilities Instead of Certainties\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Think in Probabilities Instead of Certainties\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -2017,7 +2017,7 @@
           },
           {
             "questionId": "ch04-h-q02-retry-02",
-            "prompt": "Which option best connects \"Think in Probabilities Instead of Certainties\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Think in Probabilities Instead of Certainties\" into practice?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is acting as if one outcome is certain because it feels emotionally tidy.",
@@ -2028,7 +2028,7 @@
           },
           {
             "questionId": "ch04-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Think in Probabilities Instead of Certainties\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Think in Probabilities Instead of Certainties\"?",
             "choices": [
               "There is also an ethical dimension because clearer thinking should reduce avoidable harm instead of rewarding cleverness for its own sake.",
               "The right move is acting as if one outcome is certain because it feels emotionally tidy.",
@@ -2039,7 +2039,7 @@
           },
           {
             "questionId": "ch04-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Think in Probabilities Instead of Certainties\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Think in Probabilities Instead of Certainties\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "The chapter is most useful when it strengthens calibration, restraint, and deliberate follow through at the same time.",
@@ -2050,7 +2050,7 @@
           },
           {
             "questionId": "ch04-h-q05-retry-05",
-            "prompt": "Which option best applies \"Think in Probabilities Instead of Certainties\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Think in Probabilities Instead of Certainties\" into practice?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -2403,7 +2403,7 @@
         "questions": [
           {
             "questionId": "ch05-h-q01",
-            "prompt": "Which option best captures the main principle in \"Check Incentives Before Trusting Behavior\"?",
+            "prompt": "You are making a real-world decision tied to \"Check Incentives Before Trusting Behavior\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "Reading incentives before trusting appearances, promises, or surface logic creates clearer judgment.",
@@ -2414,7 +2414,7 @@
           },
           {
             "questionId": "ch05-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Check Incentives Before Trusting Behavior\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Check Incentives Before Trusting Behavior\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "More urgency usually fixes the problem without changing the process.",
@@ -2425,7 +2425,7 @@
           },
           {
             "questionId": "ch05-h-q03",
-            "prompt": "Which option best explains why \"Check Incentives Before Trusting Behavior\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Check Incentives Before Trusting Behavior\"?",
             "choices": [
               "More urgency usually fixes the problem without changing the process.",
               "Visible effort matters more than clear feedback.",
@@ -2436,7 +2436,7 @@
           },
           {
             "questionId": "ch05-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Check Incentives Before Trusting Behavior\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Check Incentives Before Trusting Behavior\"?",
             "choices": [
               "A common mistake is taking stated motives at face value without checking the payoff structure.",
               "Visible effort matters more than clear feedback.",
@@ -2447,7 +2447,7 @@
           },
           {
             "questionId": "ch05-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Check Incentives Before Trusting Behavior\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Check Incentives Before Trusting Behavior\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The pattern becomes easier to see when the language sounds idealistic but repeated behavior keeps following the same rewards.",
@@ -2458,7 +2458,7 @@
           },
           {
             "questionId": "ch05-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Check Incentives Before Trusting Behavior\"?",
+            "prompt": "You are making a real-world decision tied to \"Check Incentives Before Trusting Behavior\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is taking stated motives at face value without checking the payoff structure.",
@@ -2469,7 +2469,7 @@
           },
           {
             "questionId": "ch05-h-q07",
-            "prompt": "Which option connects \"Check Incentives Before Trusting Behavior\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Check Incentives Before Trusting Behavior\" into practice?",
             "choices": [
               "The right move is taking stated motives at face value without checking the payoff structure.",
               "It is better to react first and interpret later.",
@@ -2480,7 +2480,7 @@
           },
           {
             "questionId": "ch05-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Check Incentives Before Trusting Behavior\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Check Incentives Before Trusting Behavior\"?",
             "choices": [
               "Small defaults and routines often decide whether the principle survives pressure.",
               "It is better to react first and interpret later.",
@@ -2491,7 +2491,7 @@
           },
           {
             "questionId": "ch05-h-q09",
-            "prompt": "Which option best explains why \"Check Incentives Before Trusting Behavior\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Check Incentives Before Trusting Behavior\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "For students and early career readers, the principle matters because early habits shape trust, options, and learning speed.",
@@ -2502,7 +2502,7 @@
           },
           {
             "questionId": "ch05-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Check Incentives Before Trusting Behavior\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Check Incentives Before Trusting Behavior\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "Fast certainty matters more than checking assumptions.",
@@ -2515,7 +2515,7 @@
         "retryQuestions": [
           {
             "questionId": "ch05-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Check Incentives Before Trusting Behavior\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Check Incentives Before Trusting Behavior\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -2526,7 +2526,7 @@
           },
           {
             "questionId": "ch05-h-q02-retry-02",
-            "prompt": "Which option best connects \"Check Incentives Before Trusting Behavior\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Check Incentives Before Trusting Behavior\" into practice?",
             "choices": [
               "The long game improves when people treat evidence, reversibility, and tradeoffs as part of the same judgment process.",
               "The cleanest story is usually the most accurate one.",
@@ -2537,7 +2537,7 @@
           },
           {
             "questionId": "ch05-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Check Incentives Before Trusting Behavior\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Check Incentives Before Trusting Behavior\"?",
             "choices": [
               "The right move is taking stated motives at face value without checking the payoff structure.",
               "There is also an ethical dimension because clearer thinking should reduce avoidable harm instead of rewarding cleverness for its own sake.",
@@ -2548,7 +2548,7 @@
           },
           {
             "questionId": "ch05-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Check Incentives Before Trusting Behavior\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Check Incentives Before Trusting Behavior\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -2559,7 +2559,7 @@
           },
           {
             "questionId": "ch05-h-q05-retry-05",
-            "prompt": "Which option best applies \"Check Incentives Before Trusting Behavior\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Check Incentives Before Trusting Behavior\" into practice?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -2856,7 +2856,7 @@
           "whatToDo": [
             "Start by separate identity from the conclusion and reward honest revision, then run a short after action review."
           ],
-          "whyItMatters": "This example matters because learning speed matters because rigid certainty turns early error into lasting damage. It turns the idea into a repeatable decision habit instead of a slogan."
+          "whyItMatters": "This example matters because learning speed matters because rigid certainty turns early error into lasting damage. It turns the idea into a repeatable decision habit instead of a slogan. This scenario is directly connected to update faster than your ego."
         },
         {
           "exampleId": "ch06-ex03",
@@ -2868,7 +2868,7 @@
           "whatToDo": [
             "Start by reward honest revision and run a short after action review, then define the real constraint before reacting."
           ],
-          "whyItMatters": "This example matters because learning speed matters because rigid certainty turns early error into lasting damage. It turns the idea into a repeatable decision habit instead of a slogan."
+          "whyItMatters": "This example matters because learning speed matters because rigid certainty turns early error into lasting damage. It turns the idea into a repeatable decision habit instead of a slogan. This scenario is directly connected to update faster than your ego."
         },
         {
           "exampleId": "ch06-ex04",
@@ -2880,7 +2880,7 @@
           "whatToDo": [
             "Start by run a short after action review and define the real constraint before reacting, then write down the assumption you are testing."
           ],
-          "whyItMatters": "This example matters because learning speed matters because rigid certainty turns early error into lasting damage. It turns the idea into a repeatable decision habit instead of a slogan."
+          "whyItMatters": "This example matters because learning speed matters because rigid certainty turns early error into lasting damage. It turns the idea into a repeatable decision habit instead of a slogan. This scenario is directly connected to update faster than your ego."
         },
         {
           "exampleId": "ch06-ex05",
@@ -2904,7 +2904,7 @@
           "whatToDo": [
             "Start by separate identity from the conclusion and reward honest revision, then separate identity from the conclusion."
           ],
-          "whyItMatters": "This example matters because learning speed matters because rigid certainty turns early error into lasting damage. It turns the idea into a repeatable decision habit instead of a slogan."
+          "whyItMatters": "This example matters because learning speed matters because rigid certainty turns early error into lasting damage. It turns the idea into a repeatable decision habit instead of a slogan. This scenario is directly connected to update faster than your ego."
         }
       ],
       "quiz": {
@@ -2912,7 +2912,7 @@
         "questions": [
           {
             "questionId": "ch06-h-q01",
-            "prompt": "Which option best captures the main principle in \"Update Faster Than Your Ego\"?",
+            "prompt": "You are making a real-world decision tied to \"Update Faster Than Your Ego\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "The first reasonable answer is usually enough once pressure rises.",
@@ -2923,7 +2923,7 @@
           },
           {
             "questionId": "ch06-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Update Faster Than Your Ego\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Update Faster Than Your Ego\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "More urgency usually fixes the problem without changing the process.",
@@ -2934,7 +2934,7 @@
           },
           {
             "questionId": "ch06-h-q03",
-            "prompt": "Which option best explains why \"Update Faster Than Your Ego\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Update Faster Than Your Ego\"?",
             "choices": [
               "This matters because learning speed matters because rigid certainty turns early error into lasting damage.",
               "More urgency usually fixes the problem without changing the process.",
@@ -2945,7 +2945,7 @@
           },
           {
             "questionId": "ch06-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Update Faster Than Your Ego\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Update Faster Than Your Ego\"?",
             "choices": [
               "Visible effort matters more than clear feedback.",
               "A common mistake is defending identity when the evidence should be changing the view.",
@@ -2956,7 +2956,7 @@
           },
           {
             "questionId": "ch06-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Update Faster Than Your Ego\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Update Faster Than Your Ego\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -2967,7 +2967,7 @@
           },
           {
             "questionId": "ch06-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Update Faster Than Your Ego\"?",
+            "prompt": "You are making a real-world decision tied to \"Update Faster Than Your Ego\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is defending identity when the evidence should be changing the view.",
@@ -2978,7 +2978,7 @@
           },
           {
             "questionId": "ch06-h-q07",
-            "prompt": "Which option connects \"Update Faster Than Your Ego\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Update Faster Than Your Ego\" into practice?",
             "choices": [
               "The idea gets stronger when people connect the immediate choice to incentives, feedback, and downstream effects.",
               "The right move is defending identity when the evidence should be changing the view.",
@@ -2989,7 +2989,7 @@
           },
           {
             "questionId": "ch06-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Update Faster Than Your Ego\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Update Faster Than Your Ego\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Small defaults and routines often decide whether the principle survives pressure.",
@@ -3000,7 +3000,7 @@
           },
           {
             "questionId": "ch06-h-q09",
-            "prompt": "Which option best explains why \"Update Faster Than Your Ego\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Update Faster Than Your Ego\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -3011,7 +3011,7 @@
           },
           {
             "questionId": "ch06-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Update Faster Than Your Ego\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Update Faster Than Your Ego\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "Fast certainty matters more than checking assumptions.",
@@ -3024,7 +3024,7 @@
         "retryQuestions": [
           {
             "questionId": "ch06-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Update Faster Than Your Ego\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Update Faster Than Your Ego\"?",
             "choices": [
               "A deeper reading is that hidden assumptions and time horizons usually shape the result before the final decision is visible.",
               "Short term relief is a reliable guide to good judgment.",
@@ -3035,7 +3035,7 @@
           },
           {
             "questionId": "ch06-h-q02-retry-02",
-            "prompt": "Which option best connects \"Update Faster Than Your Ego\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Update Faster Than Your Ego\" into practice?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The long game improves when people treat evidence, reversibility, and tradeoffs as part of the same judgment process.",
@@ -3046,7 +3046,7 @@
           },
           {
             "questionId": "ch06-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Update Faster Than Your Ego\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Update Faster Than Your Ego\"?",
             "choices": [
               "The right move is defending identity when the evidence should be changing the view.",
               "It is better to react first and interpret later.",
@@ -3057,7 +3057,7 @@
           },
           {
             "questionId": "ch06-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Update Faster Than Your Ego\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Update Faster Than Your Ego\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -3068,7 +3068,7 @@
           },
           {
             "questionId": "ch06-h-q05-retry-05",
-            "prompt": "Which option best applies \"Update Faster Than Your Ego\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Update Faster Than Your Ego\" into practice?",
             "choices": [
               "A practical starting move is to write what changed your mind, separate identity from the conclusion, and reward honest revision.",
               "Structure matters only after formal authority is secured.",

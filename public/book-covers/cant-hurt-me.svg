@@ -1,14 +1,35 @@
-<svg width="1200" height="1800" viewBox="0 0 1200 1800" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1200" height="1800" fill="#EFE7DC"/>
-  <rect width="1200" height="260" fill="#C9672F"/>
-  <rect y="1460" width="1200" height="340" fill="#262D35"/>
-  <rect x="120" y="340" width="960" height="980" rx="24" fill="#FBF6EE" stroke="#D3C0A7" stroke-width="10"/>
-  <path d="M520 610C520 560 560 520 610 520H700V700C700 744 664 780 620 780H520V610Z" fill="#262D35"/>
-  <path d="M500 770H708C758 770 798 810 798 860V910C798 960 758 1000 708 1000H500V770Z" fill="#C9672F"/>
-  <rect x="450" y="700" width="120" height="180" rx="24" fill="#262D35"/>
-  <rect x="420" y="860" width="110" height="180" rx="24" fill="#262D35"/>
-  <text x="600" y="150" text-anchor="middle" fill="#FBF6EE" font-family="Georgia, serif" font-size="86" letter-spacing="4">DAVID GOGGINS</text>
-  <text x="600" y="1230" text-anchor="middle" fill="#262D35" font-family="Georgia, serif" font-size="92">CAN'T HURT</text>
-  <text x="600" y="1360" text-anchor="middle" fill="#262D35" font-family="Georgia, serif" font-size="132" font-weight="700">ME</text>
-  <text x="600" y="1568" text-anchor="middle" fill="#FBF6EE" font-family="Arial, sans-serif" font-size="38" letter-spacing="4">DISCIPLINE  RESILIENCE  TRUTH  GRIT</text>
+<svg width="1200" height="1800" viewBox="0 0 1200 1800" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Can&#39;t Hurt Me cover</title>
+  <desc id="desc">Auto-generated themed cover for Can&#39;t Hurt Me by David Goggins.</desc>
+  <defs>
+    <linearGradient id="g323016015" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#32425A"/>
+      <stop offset="100%" stop-color="#4D627D"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="1800" fill="url(#g323016015)"/>
+
+  <rect x="0" y="300" width="1200" height="1180" fill="#9FB3C9" opacity="0.12"/>
+  <rect x="140" y="360" width="920" height="1050" rx="48" fill="#FDF8EE" opacity="0.22"/>
+  <path d="M0 560 Q300 458 600 560 T1200 560" stroke="#FDF8EE" stroke-width="22" opacity="0.24"/>
+  <path d="M0 1180 Q300 1078 600 1180 T1200 1180" stroke="#DFA052" stroke-width="16" opacity="0.22"/>
+  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F2ECE1" stroke="#C8B7A1" stroke-width="10"/>
+
+  <g transform="translate(395 565)">
+    <circle cx="204" cy="72" r="44" fill="#DFA052" opacity="0.44"/>
+    <path d="M24 292 L132 144 L208 248 L296 114 L388 292 Z" fill="#9FB3C9" opacity="0.82"/>
+    <path d="M84 292 L168 186 L226 260 L302 172 L360 292 Z" fill="#DFA052" opacity="0.82"/>
+    <path d="M34 292 H378" stroke="#FDF8EE" stroke-width="12" stroke-linecap="round" opacity="0.8"/>
+    <path d="M196 146 L210 166 L232 170 L216 186 L220 208 L198 196 L176 208 L180 186 L164 170 L186 166 Z" fill="#FDF8EE" opacity="0.9"/>
+  </g>
+
+  <rect x="0" y="0" width="1200" height="238" fill="#32425A" opacity="0.93"/>
+  <rect x="0" y="1454" width="1200" height="346" fill="#4D627D" opacity="0.95"/>
+  <text x="600" y="136" text-anchor="middle" fill="#FDF8EE" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">DAVID GOGGINS</text>
+  <text x="600" y="208" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">RESILIENCE</text>
+  <text x="600" y="1216" text-anchor="middle" fill="#273648" font-family="Georgia, 'Times New Roman', serif" font-size="92" font-weight="700" letter-spacing="2">CAN&#39;T HURT ME</text>
+  <text x="600" y="1538" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">DISCIPLINE  ·  RESILIENCE  ·  ACCOUNTABILITY</text>
+  <text x="600" y="1604" text-anchor="middle" fill="#FDF8EE" font-family="Georgia, serif" font-size="30">Stoicism and mental toughness</text>
+  <text x="600" y="1668" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
 </svg>

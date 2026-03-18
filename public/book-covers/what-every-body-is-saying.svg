@@ -1,16 +1,51 @@
-<svg width="1200" height="1800" viewBox="0 0 1200 1800" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1200" height="1800" fill="#EEE4D4"/>
-  <rect x="0" y="0" width="1200" height="240" fill="#243746"/>
-  <rect x="0" y="1470" width="1200" height="330" fill="#243746"/>
-  <rect x="120" y="360" width="960" height="900" rx="36" fill="#D9C5A1" stroke="#243746" stroke-width="14"/>
-  <ellipse cx="600" cy="810" rx="230" ry="150" fill="#243746"/>
-  <ellipse cx="600" cy="810" rx="145" ry="92" fill="#F4F0E6"/>
-  <circle cx="600" cy="810" r="56" fill="#243746"/>
-  <path d="M250 810C340 705 455 650 600 650C745 650 860 705 950 810" stroke="#8C6B3F" stroke-width="18" stroke-linecap="round"/>
-  <path d="M250 810C340 915 455 970 600 970C745 970 860 915 950 810" stroke="#8C6B3F" stroke-width="18" stroke-linecap="round"/>
-  <text x="600" y="150" text-anchor="middle" fill="#F4F0E6" font-family="Georgia, serif" font-size="64" font-weight="700">JOE NAVARRO</text>
-  <text x="600" y="1325" text-anchor="middle" fill="#243746" font-family="Georgia, serif" font-size="104" font-weight="700">WHAT EVERY</text>
-  <text x="600" y="1440" text-anchor="middle" fill="#243746" font-family="Georgia, serif" font-size="104" font-weight="700">BODY IS SAYING</text>
-  <text x="600" y="1598" text-anchor="middle" fill="#F4F0E6" font-family="Georgia, serif" font-size="42">Nonverbal cues   baseline   context</text>
-  <text x="600" y="1670" text-anchor="middle" fill="#F4F0E6" font-family="Georgia, serif" font-size="34">A modern learning edition for communication and observation</text>
+<svg width="1200" height="1800" viewBox="0 0 1200 1800" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">What Every BODY is Saying cover</title>
+  <desc id="desc">Auto-generated themed cover for What Every BODY is Saying by Joe Navarro.</desc>
+  <defs>
+    <linearGradient id="g1624117100" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2D3656"/>
+      <stop offset="100%" stop-color="#4E5E8A"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="1800" fill="url(#g1624117100)"/>
+
+  <rect x="0" y="300" width="1200" height="1180" fill="#9AACD2" opacity="0.12"/>
+  <rect x="110" y="370" width="420" height="420" rx="42" fill="#FDF8EF" opacity="0.2"/>
+  <rect x="670" y="360" width="420" height="430" rx="42" fill="#D88D57" opacity="0.16"/>
+  <rect x="110" y="980" width="420" height="360" rx="42" fill="#D88D57" opacity="0.15"/>
+  <rect x="670" y="950" width="420" height="390" rx="42" fill="#FDF8EF" opacity="0.2"/>
+  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F3ECE2" stroke="#C9B8A2" stroke-width="10"/>
+
+  <g transform="translate(399 556)">
+    <circle cx="180" cy="180" r="158" fill="#FDF8EF" opacity="0.95" stroke="#9AACD2" stroke-width="8"/>
+    <path d="M148 76 Q92 120 92 190 Q92 258 144 292 Q198 326 258 290 Q304 264 318 220 Q332 178 306 138 Q280 98 232 82 Q192 68 148 76 Z" fill="none" stroke="#232B3B" stroke-width="10" opacity="0.72"/>
+    <g stroke="#D88D57" stroke-width="6" opacity="0.88">
+      <line x1="126" y1="146" x2="188" y2="122"/>
+      <line x1="188" y1="122" x2="238" y2="156"/>
+      <line x1="188" y1="122" x2="184" y2="196"/>
+      <line x1="184" y1="196" x2="246" y2="230"/>
+      <line x1="126" y1="146" x2="128" y2="220"/>
+      <line x1="128" y1="220" x2="184" y2="196"/>
+    </g>
+    <g fill="#D88D57">
+      <circle cx="126" cy="146" r="12"/>
+      <circle cx="188" cy="122" r="12"/>
+      <circle cx="238" cy="156" r="12"/>
+      <circle cx="184" cy="196" r="12"/>
+      <circle cx="128" cy="220" r="12"/>
+      <circle cx="246" cy="230" r="12"/>
+    </g>
+  </g>
+
+  <rect x="0" y="0" width="1200" height="238" fill="#2D3656" opacity="0.93"/>
+  <rect x="0" y="1454" width="1200" height="346" fill="#4E5E8A" opacity="0.95"/>
+  <text x="600" y="136" text-anchor="middle" fill="#FDF8EF" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">JOE NAVARRO</text>
+  <text x="600" y="208" text-anchor="middle" fill="#FDF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">PSYCHOLOGY</text>
+  <text x="600" y="1114" text-anchor="middle" fill="#232B3B" font-family="Georgia, 'Times New Roman', serif" font-size="108" font-weight="700" letter-spacing="2">WHAT EVERY</text>
+  <text x="600" y="1231" text-anchor="middle" fill="#232B3B" font-family="Georgia, 'Times New Roman', serif" font-size="108" font-weight="700" letter-spacing="2">BODY IS</text>
+  <text x="600" y="1348" text-anchor="middle" fill="#232B3B" font-family="Georgia, 'Times New Roman', serif" font-size="108" font-weight="700" letter-spacing="2">SAYING</text>
+  <text x="600" y="1538" text-anchor="middle" fill="#FDF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">BODY-LANGUAGE  ·  OBSERVATION  ·  NONVERBAL</text>
+  <text x="600" y="1604" text-anchor="middle" fill="#FDF8EF" font-family="Georgia, serif" font-size="30">Behavior, bias, and motivation</text>
+  <text x="600" y="1668" text-anchor="middle" fill="#FDF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
 </svg>

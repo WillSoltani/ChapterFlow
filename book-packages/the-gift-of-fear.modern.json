@@ -367,7 +367,7 @@
         "questions": [
           {
             "questionId": "ch01-h-q01",
-            "prompt": "Which option best captures the main principle in \"Treat Intuition as a Signal Worth Respecting\"?",
+            "prompt": "You are making a real-world decision tied to \"Treat Intuition as a Signal Worth Respecting\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "Respecting intuition as information rather than dismissing it as irrational noise creates clearer judgment.",
@@ -378,7 +378,7 @@
           },
           {
             "questionId": "ch01-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Treat Intuition as a Signal Worth Respecting\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Treat Intuition as a Signal Worth Respecting\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "More urgency usually fixes the problem without changing the process.",
@@ -389,7 +389,7 @@
           },
           {
             "questionId": "ch01-h-q03",
-            "prompt": "Which option best explains why \"Treat Intuition as a Signal Worth Respecting\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Treat Intuition as a Signal Worth Respecting\"?",
             "choices": [
               "More urgency usually fixes the problem without changing the process.",
               "Visible effort matters more than clear feedback.",
@@ -400,7 +400,7 @@
           },
           {
             "questionId": "ch01-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Treat Intuition as a Signal Worth Respecting\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Treat Intuition as a Signal Worth Respecting\"?",
             "choices": [
               "A common mistake is suppressing a warning sign because it feels socially awkward.",
               "Visible effort matters more than clear feedback.",
@@ -411,7 +411,7 @@
           },
           {
             "questionId": "ch01-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Treat Intuition as a Signal Worth Respecting\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Treat Intuition as a Signal Worth Respecting\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The pattern becomes easier to see when your body is alert before the social script has a polite explanation.",
@@ -422,7 +422,7 @@
           },
           {
             "questionId": "ch01-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Treat Intuition as a Signal Worth Respecting\"?",
+            "prompt": "You are making a real-world decision tied to \"Treat Intuition as a Signal Worth Respecting\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is suppressing a warning sign because it feels socially awkward.",
@@ -433,7 +433,7 @@
           },
           {
             "questionId": "ch01-h-q07",
-            "prompt": "Which option connects \"Treat Intuition as a Signal Worth Respecting\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Treat Intuition as a Signal Worth Respecting\" into practice?",
             "choices": [
               "The right move is suppressing a warning sign because it feels socially awkward.",
               "It is better to react first and interpret later.",
@@ -444,7 +444,7 @@
           },
           {
             "questionId": "ch01-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Treat Intuition as a Signal Worth Respecting\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Treat Intuition as a Signal Worth Respecting\"?",
             "choices": [
               "Small defaults and routines often decide whether the principle survives pressure.",
               "It is better to react first and interpret later.",
@@ -455,7 +455,7 @@
           },
           {
             "questionId": "ch01-h-q09",
-            "prompt": "Which option best explains why \"Treat Intuition as a Signal Worth Respecting\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Treat Intuition as a Signal Worth Respecting\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "For students and early career readers, the principle matters because early habits shape trust, options, and learning speed.",
@@ -466,7 +466,7 @@
           },
           {
             "questionId": "ch01-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Treat Intuition as a Signal Worth Respecting\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Treat Intuition as a Signal Worth Respecting\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "Fast certainty matters more than checking assumptions.",
@@ -479,7 +479,7 @@
         "retryQuestions": [
           {
             "questionId": "ch01-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Treat Intuition as a Signal Worth Respecting\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Treat Intuition as a Signal Worth Respecting\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -490,7 +490,7 @@
           },
           {
             "questionId": "ch01-h-q02-retry-02",
-            "prompt": "Which option best connects \"Treat Intuition as a Signal Worth Respecting\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Treat Intuition as a Signal Worth Respecting\" into practice?",
             "choices": [
               "The long game improves when people treat evidence, reversibility, and tradeoffs as part of the same judgment process.",
               "The cleanest story is usually the most accurate one.",
@@ -501,7 +501,7 @@
           },
           {
             "questionId": "ch01-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Treat Intuition as a Signal Worth Respecting\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Treat Intuition as a Signal Worth Respecting\"?",
             "choices": [
               "The right move is suppressing a warning sign because it feels socially awkward.",
               "There is also an ethical dimension because clearer thinking should reduce avoidable harm instead of rewarding cleverness for its own sake.",
@@ -512,7 +512,7 @@
           },
           {
             "questionId": "ch01-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Treat Intuition as a Signal Worth Respecting\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Treat Intuition as a Signal Worth Respecting\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -523,7 +523,7 @@
           },
           {
             "questionId": "ch01-h-q05-retry-05",
-            "prompt": "Which option best applies \"Treat Intuition as a Signal Worth Respecting\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Treat Intuition as a Signal Worth Respecting\" into practice?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -876,7 +876,7 @@
         "questions": [
           {
             "questionId": "ch02-h-q01",
-            "prompt": "Which option best captures the main principle in \"Learn the Indicators That Show Up Before Harm\"?",
+            "prompt": "You are making a real-world decision tied to \"Learn the Indicators That Show Up Before Harm\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "The first reasonable answer is usually enough once pressure rises.",
@@ -887,7 +887,7 @@
           },
           {
             "questionId": "ch02-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Learn the Indicators That Show Up Before Harm\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Learn the Indicators That Show Up Before Harm\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "More urgency usually fixes the problem without changing the process.",
@@ -898,7 +898,7 @@
           },
           {
             "questionId": "ch02-h-q03",
-            "prompt": "Which option best explains why \"Learn the Indicators That Show Up Before Harm\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Learn the Indicators That Show Up Before Harm\"?",
             "choices": [
               "This matters because small boundary violations often matter because they forecast a larger pattern.",
               "More urgency usually fixes the problem without changing the process.",
@@ -909,7 +909,7 @@
           },
           {
             "questionId": "ch02-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Learn the Indicators That Show Up Before Harm\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Learn the Indicators That Show Up Before Harm\"?",
             "choices": [
               "Visible effort matters more than clear feedback.",
               "A common mistake is waiting for certainty while early warning behavior keeps accumulating.",
@@ -920,7 +920,7 @@
           },
           {
             "questionId": "ch02-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Learn the Indicators That Show Up Before Harm\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Learn the Indicators That Show Up Before Harm\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -931,7 +931,7 @@
           },
           {
             "questionId": "ch02-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Learn the Indicators That Show Up Before Harm\"?",
+            "prompt": "You are making a real-world decision tied to \"Learn the Indicators That Show Up Before Harm\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is waiting for certainty while early warning behavior keeps accumulating.",
@@ -942,7 +942,7 @@
           },
           {
             "questionId": "ch02-h-q07",
-            "prompt": "Which option connects \"Learn the Indicators That Show Up Before Harm\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Learn the Indicators That Show Up Before Harm\" into practice?",
             "choices": [
               "The idea gets stronger when people connect the immediate choice to incentives, feedback, and downstream effects.",
               "The right move is waiting for certainty while early warning behavior keeps accumulating.",
@@ -953,7 +953,7 @@
           },
           {
             "questionId": "ch02-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Learn the Indicators That Show Up Before Harm\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Learn the Indicators That Show Up Before Harm\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Small defaults and routines often decide whether the principle survives pressure.",
@@ -964,7 +964,7 @@
           },
           {
             "questionId": "ch02-h-q09",
-            "prompt": "Which option best explains why \"Learn the Indicators That Show Up Before Harm\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Learn the Indicators That Show Up Before Harm\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -975,7 +975,7 @@
           },
           {
             "questionId": "ch02-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Learn the Indicators That Show Up Before Harm\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Learn the Indicators That Show Up Before Harm\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "Fast certainty matters more than checking assumptions.",
@@ -988,7 +988,7 @@
         "retryQuestions": [
           {
             "questionId": "ch02-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Learn the Indicators That Show Up Before Harm\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Learn the Indicators That Show Up Before Harm\"?",
             "choices": [
               "A deeper reading is that hidden assumptions and time horizons usually shape the result before the final decision is visible.",
               "Short term relief is a reliable guide to good judgment.",
@@ -999,7 +999,7 @@
           },
           {
             "questionId": "ch02-h-q02-retry-02",
-            "prompt": "Which option best connects \"Learn the Indicators That Show Up Before Harm\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Learn the Indicators That Show Up Before Harm\" into practice?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The long game improves when people treat evidence, reversibility, and tradeoffs as part of the same judgment process.",
@@ -1010,7 +1010,7 @@
           },
           {
             "questionId": "ch02-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Learn the Indicators That Show Up Before Harm\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Learn the Indicators That Show Up Before Harm\"?",
             "choices": [
               "The right move is waiting for certainty while early warning behavior keeps accumulating.",
               "It is better to react first and interpret later.",
@@ -1021,7 +1021,7 @@
           },
           {
             "questionId": "ch02-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Learn the Indicators That Show Up Before Harm\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Learn the Indicators That Show Up Before Harm\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -1032,7 +1032,7 @@
           },
           {
             "questionId": "ch02-h-q05-retry-05",
-            "prompt": "Which option best applies \"Learn the Indicators That Show Up Before Harm\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Learn the Indicators That Show Up Before Harm\" into practice?",
             "choices": [
               "A practical starting move is to watch for repeated boundary pressure, treat pattern as data, and leave when the indicators stack up.",
               "Structure matters only after formal authority is secured.",
@@ -1385,7 +1385,7 @@
         "questions": [
           {
             "questionId": "ch03-h-q01",
-            "prompt": "Which option best captures the main principle in \"Boundary Violations Deserve a Clear Response\"?",
+            "prompt": "You are making a real-world decision tied to \"Boundary Violations Deserve a Clear Response\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "The first reasonable answer is usually enough once pressure rises.",
@@ -1396,7 +1396,7 @@
           },
           {
             "questionId": "ch03-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Boundary Violations Deserve a Clear Response\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Boundary Violations Deserve a Clear Response\" into practice?",
             "choices": [
               "Safety improves when boundaries are treated as information not as invitations to negotiate.",
               "The first reasonable answer is usually enough once pressure rises.",
@@ -1407,7 +1407,7 @@
           },
           {
             "questionId": "ch03-h-q03",
-            "prompt": "Which option best explains why \"Boundary Violations Deserve a Clear Response\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Boundary Violations Deserve a Clear Response\"?",
             "choices": [
               "More urgency usually fixes the problem without changing the process.",
               "This matters because clear boundaries reduce ambiguity that dangerous people often exploit.",
@@ -1418,7 +1418,7 @@
           },
           {
             "questionId": "ch03-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Boundary Violations Deserve a Clear Response\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Boundary Violations Deserve a Clear Response\"?",
             "choices": [
               "Visible effort matters more than clear feedback.",
               "Short term relief is a reliable guide to good judgment.",
@@ -1429,7 +1429,7 @@
           },
           {
             "questionId": "ch03-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Boundary Violations Deserve a Clear Response\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Boundary Violations Deserve a Clear Response\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -1440,7 +1440,7 @@
           },
           {
             "questionId": "ch03-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Boundary Violations Deserve a Clear Response\"?",
+            "prompt": "You are making a real-world decision tied to \"Boundary Violations Deserve a Clear Response\". Which option is the strongest next move?",
             "choices": [
               "A practical starting move is to state the boundary clearly, do not over explain the limit, and notice the response to the boundary.",
               "The cleanest story is usually the most accurate one.",
@@ -1451,7 +1451,7 @@
           },
           {
             "questionId": "ch03-h-q07",
-            "prompt": "Which option connects \"Boundary Violations Deserve a Clear Response\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Boundary Violations Deserve a Clear Response\" into practice?",
             "choices": [
               "The right move is softening a boundary so much that it no longer functions.",
               "The idea gets stronger when people connect the immediate choice to incentives, feedback, and downstream effects.",
@@ -1462,7 +1462,7 @@
           },
           {
             "questionId": "ch03-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Boundary Violations Deserve a Clear Response\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Boundary Violations Deserve a Clear Response\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -1473,7 +1473,7 @@
           },
           {
             "questionId": "ch03-h-q09",
-            "prompt": "Which option best explains why \"Boundary Violations Deserve a Clear Response\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Boundary Violations Deserve a Clear Response\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -1484,7 +1484,7 @@
           },
           {
             "questionId": "ch03-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Boundary Violations Deserve a Clear Response\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Boundary Violations Deserve a Clear Response\"?",
             "choices": [
               "The real challenge is to stay deliberate without becoming rigid, reactive, or self defeating.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -1497,7 +1497,7 @@
         "retryQuestions": [
           {
             "questionId": "ch03-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Boundary Violations Deserve a Clear Response\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Boundary Violations Deserve a Clear Response\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "A deeper reading is that hidden assumptions and time horizons usually shape the result before the final decision is visible.",
@@ -1508,7 +1508,7 @@
           },
           {
             "questionId": "ch03-h-q02-retry-02",
-            "prompt": "Which option best connects \"Boundary Violations Deserve a Clear Response\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Boundary Violations Deserve a Clear Response\" into practice?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is softening a boundary so much that it no longer functions.",
@@ -1519,7 +1519,7 @@
           },
           {
             "questionId": "ch03-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Boundary Violations Deserve a Clear Response\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Boundary Violations Deserve a Clear Response\"?",
             "choices": [
               "The right move is softening a boundary so much that it no longer functions.",
               "It is better to react first and interpret later.",
@@ -1530,7 +1530,7 @@
           },
           {
             "questionId": "ch03-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Boundary Violations Deserve a Clear Response\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Boundary Violations Deserve a Clear Response\"?",
             "choices": [
               "The chapter is most useful when it strengthens calibration, restraint, and deliberate follow through at the same time.",
               "It is better to react first and interpret later.",
@@ -1541,7 +1541,7 @@
           },
           {
             "questionId": "ch03-h-q05-retry-05",
-            "prompt": "Which option best applies \"Boundary Violations Deserve a Clear Response\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Boundary Violations Deserve a Clear Response\" into practice?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "A practical starting move is to state the boundary clearly, do not over explain the limit, and notice the response to the boundary.",
@@ -1894,7 +1894,7 @@
         "questions": [
           {
             "questionId": "ch04-h-q01",
-            "prompt": "Which option best captures the main principle in \"Do Not Let Social Pressure Override Safety\"?",
+            "prompt": "You are making a real-world decision tied to \"Do Not Let Social Pressure Override Safety\". Which option is the strongest next move?",
             "choices": [
               "Refusing social pressure when politeness conflicts with safety creates clearer judgment.",
               "Fast certainty matters more than checking assumptions.",
@@ -1905,7 +1905,7 @@
           },
           {
             "questionId": "ch04-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Do Not Let Social Pressure Override Safety\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Do Not Let Social Pressure Override Safety\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "Many unsafe decisions begin with the desire to seem nice, calm, or cooperative.",
@@ -1916,7 +1916,7 @@
           },
           {
             "questionId": "ch04-h-q03",
-            "prompt": "Which option best explains why \"Do Not Let Social Pressure Override Safety\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Do Not Let Social Pressure Override Safety\"?",
             "choices": [
               "More urgency usually fixes the problem without changing the process.",
               "Visible effort matters more than clear feedback.",
@@ -1927,7 +1927,7 @@
           },
           {
             "questionId": "ch04-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Do Not Let Social Pressure Override Safety\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Do Not Let Social Pressure Override Safety\"?",
             "choices": [
               "Visible effort matters more than clear feedback.",
               "Short term relief is a reliable guide to good judgment.",
@@ -1938,7 +1938,7 @@
           },
           {
             "questionId": "ch04-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Do Not Let Social Pressure Override Safety\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Do Not Let Social Pressure Override Safety\"?",
             "choices": [
               "The pattern becomes easier to see when you keep saying yes because no feels rude even though the risk keeps rising.",
               "Short term relief is a reliable guide to good judgment.",
@@ -1949,7 +1949,7 @@
           },
           {
             "questionId": "ch04-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Do Not Let Social Pressure Override Safety\"?",
+            "prompt": "You are making a real-world decision tied to \"Do Not Let Social Pressure Override Safety\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "A practical starting move is to prioritize safety over politeness, practice a direct no, and leave rather than explain too long.",
@@ -1960,7 +1960,7 @@
           },
           {
             "questionId": "ch04-h-q07",
-            "prompt": "Which option connects \"Do Not Let Social Pressure Override Safety\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Do Not Let Social Pressure Override Safety\" into practice?",
             "choices": [
               "The right move is choosing courtesy over self protection in a risky situation.",
               "It is better to react first and interpret later.",
@@ -1971,7 +1971,7 @@
           },
           {
             "questionId": "ch04-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Do Not Let Social Pressure Override Safety\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Do Not Let Social Pressure Override Safety\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -1982,7 +1982,7 @@
           },
           {
             "questionId": "ch04-h-q09",
-            "prompt": "Which option best explains why \"Do Not Let Social Pressure Override Safety\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Do Not Let Social Pressure Override Safety\"?",
             "choices": [
               "For students and early career readers, the principle matters because early habits shape trust, options, and learning speed.",
               "Structure matters only after formal authority is secured.",
@@ -1993,7 +1993,7 @@
           },
           {
             "questionId": "ch04-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Do Not Let Social Pressure Override Safety\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Do Not Let Social Pressure Override Safety\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "The real challenge is to stay deliberate without becoming rigid, reactive, or self defeating.",
@@ -2006,7 +2006,7 @@
         "retryQuestions": [
           {
             "questionId": "ch04-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Do Not Let Social Pressure Override Safety\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Do Not Let Social Pressure Override Safety\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -2017,7 +2017,7 @@
           },
           {
             "questionId": "ch04-h-q02-retry-02",
-            "prompt": "Which option best connects \"Do Not Let Social Pressure Override Safety\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Do Not Let Social Pressure Override Safety\" into practice?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is choosing courtesy over self protection in a risky situation.",
@@ -2028,7 +2028,7 @@
           },
           {
             "questionId": "ch04-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Do Not Let Social Pressure Override Safety\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Do Not Let Social Pressure Override Safety\"?",
             "choices": [
               "There is also an ethical dimension because clearer thinking should reduce avoidable harm instead of rewarding cleverness for its own sake.",
               "The right move is choosing courtesy over self protection in a risky situation.",
@@ -2039,7 +2039,7 @@
           },
           {
             "questionId": "ch04-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Do Not Let Social Pressure Override Safety\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Do Not Let Social Pressure Override Safety\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "The chapter is most useful when it strengthens calibration, restraint, and deliberate follow through at the same time.",
@@ -2050,7 +2050,7 @@
           },
           {
             "questionId": "ch04-h-q05-retry-05",
-            "prompt": "Which option best applies \"Do Not Let Social Pressure Override Safety\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Do Not Let Social Pressure Override Safety\" into practice?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -2403,7 +2403,7 @@
         "questions": [
           {
             "questionId": "ch05-h-q01",
-            "prompt": "Which option best captures the main principle in \"Safety Gets Stronger With a Plan\"?",
+            "prompt": "You are making a real-world decision tied to \"Safety Gets Stronger With a Plan\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "Using simple safety plans instead of relying on improvisation creates clearer judgment.",
@@ -2414,7 +2414,7 @@
           },
           {
             "questionId": "ch05-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Safety Gets Stronger With a Plan\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Safety Gets Stronger With a Plan\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "More urgency usually fixes the problem without changing the process.",
@@ -2425,7 +2425,7 @@
           },
           {
             "questionId": "ch05-h-q03",
-            "prompt": "Which option best explains why \"Safety Gets Stronger With a Plan\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Safety Gets Stronger With a Plan\"?",
             "choices": [
               "More urgency usually fixes the problem without changing the process.",
               "Visible effort matters more than clear feedback.",
@@ -2436,7 +2436,7 @@
           },
           {
             "questionId": "ch05-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Safety Gets Stronger With a Plan\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Safety Gets Stronger With a Plan\"?",
             "choices": [
               "A common mistake is hoping you will figure it out cleanly in a high stress moment.",
               "Visible effort matters more than clear feedback.",
@@ -2447,7 +2447,7 @@
           },
           {
             "questionId": "ch05-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Safety Gets Stronger With a Plan\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Safety Gets Stronger With a Plan\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The pattern becomes easier to see when the danger feels obvious but there is no plan for who to call, where to go, or what to do.",
@@ -2458,7 +2458,7 @@
           },
           {
             "questionId": "ch05-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Safety Gets Stronger With a Plan\"?",
+            "prompt": "You are making a real-world decision tied to \"Safety Gets Stronger With a Plan\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is hoping you will figure it out cleanly in a high stress moment.",
@@ -2469,7 +2469,7 @@
           },
           {
             "questionId": "ch05-h-q07",
-            "prompt": "Which option connects \"Safety Gets Stronger With a Plan\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Safety Gets Stronger With a Plan\" into practice?",
             "choices": [
               "The right move is hoping you will figure it out cleanly in a high stress moment.",
               "It is better to react first and interpret later.",
@@ -2480,7 +2480,7 @@
           },
           {
             "questionId": "ch05-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Safety Gets Stronger With a Plan\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Safety Gets Stronger With a Plan\"?",
             "choices": [
               "Small defaults and routines often decide whether the principle survives pressure.",
               "It is better to react first and interpret later.",
@@ -2491,7 +2491,7 @@
           },
           {
             "questionId": "ch05-h-q09",
-            "prompt": "Which option best explains why \"Safety Gets Stronger With a Plan\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Safety Gets Stronger With a Plan\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "For students and early career readers, the principle matters because early habits shape trust, options, and learning speed.",
@@ -2502,7 +2502,7 @@
           },
           {
             "questionId": "ch05-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Safety Gets Stronger With a Plan\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Safety Gets Stronger With a Plan\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "Fast certainty matters more than checking assumptions.",
@@ -2515,7 +2515,7 @@
         "retryQuestions": [
           {
             "questionId": "ch05-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Safety Gets Stronger With a Plan\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Safety Gets Stronger With a Plan\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -2526,7 +2526,7 @@
           },
           {
             "questionId": "ch05-h-q02-retry-02",
-            "prompt": "Which option best connects \"Safety Gets Stronger With a Plan\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Safety Gets Stronger With a Plan\" into practice?",
             "choices": [
               "The long game improves when people treat evidence, reversibility, and tradeoffs as part of the same judgment process.",
               "The cleanest story is usually the most accurate one.",
@@ -2537,7 +2537,7 @@
           },
           {
             "questionId": "ch05-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Safety Gets Stronger With a Plan\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Safety Gets Stronger With a Plan\"?",
             "choices": [
               "The right move is hoping you will figure it out cleanly in a high stress moment.",
               "There is also an ethical dimension because clearer thinking should reduce avoidable harm instead of rewarding cleverness for its own sake.",
@@ -2548,7 +2548,7 @@
           },
           {
             "questionId": "ch05-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Safety Gets Stronger With a Plan\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Safety Gets Stronger With a Plan\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -2559,7 +2559,7 @@
           },
           {
             "questionId": "ch05-h-q05-retry-05",
-            "prompt": "Which option best applies \"Safety Gets Stronger With a Plan\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Safety Gets Stronger With a Plan\" into practice?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -2912,7 +2912,7 @@
         "questions": [
           {
             "questionId": "ch06-h-q01",
-            "prompt": "Which option best captures the main principle in \"Separate Real Fear From General Anxiety\"?",
+            "prompt": "You are making a real-world decision tied to \"Separate Real Fear From General Anxiety\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "The first reasonable answer is usually enough once pressure rises.",
@@ -2923,7 +2923,7 @@
           },
           {
             "questionId": "ch06-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Separate Real Fear From General Anxiety\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Separate Real Fear From General Anxiety\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "More urgency usually fixes the problem without changing the process.",
@@ -2934,7 +2934,7 @@
           },
           {
             "questionId": "ch06-h-q03",
-            "prompt": "Which option best explains why \"Separate Real Fear From General Anxiety\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Separate Real Fear From General Anxiety\"?",
             "choices": [
               "This matters because both states matter, but they call for different responses.",
               "More urgency usually fixes the problem without changing the process.",
@@ -2945,7 +2945,7 @@
           },
           {
             "questionId": "ch06-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Separate Real Fear From General Anxiety\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Separate Real Fear From General Anxiety\"?",
             "choices": [
               "Visible effort matters more than clear feedback.",
               "A common mistake is treating every anxious feeling like a danger cue or every fear cue like anxiety.",
@@ -2956,7 +2956,7 @@
           },
           {
             "questionId": "ch06-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Separate Real Fear From General Anxiety\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Separate Real Fear From General Anxiety\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -2967,7 +2967,7 @@
           },
           {
             "questionId": "ch06-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Separate Real Fear From General Anxiety\"?",
+            "prompt": "You are making a real-world decision tied to \"Separate Real Fear From General Anxiety\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is treating every anxious feeling like a danger cue or every fear cue like anxiety.",
@@ -2978,7 +2978,7 @@
           },
           {
             "questionId": "ch06-h-q07",
-            "prompt": "Which option connects \"Separate Real Fear From General Anxiety\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Separate Real Fear From General Anxiety\" into practice?",
             "choices": [
               "The idea gets stronger when people connect the immediate choice to incentives, feedback, and downstream effects.",
               "The right move is treating every anxious feeling like a danger cue or every fear cue like anxiety.",
@@ -2989,7 +2989,7 @@
           },
           {
             "questionId": "ch06-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Separate Real Fear From General Anxiety\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Separate Real Fear From General Anxiety\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Small defaults and routines often decide whether the principle survives pressure.",
@@ -3000,7 +3000,7 @@
           },
           {
             "questionId": "ch06-h-q09",
-            "prompt": "Which option best explains why \"Separate Real Fear From General Anxiety\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Separate Real Fear From General Anxiety\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -3011,7 +3011,7 @@
           },
           {
             "questionId": "ch06-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Separate Real Fear From General Anxiety\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Separate Real Fear From General Anxiety\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "Fast certainty matters more than checking assumptions.",
@@ -3024,7 +3024,7 @@
         "retryQuestions": [
           {
             "questionId": "ch06-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Separate Real Fear From General Anxiety\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Separate Real Fear From General Anxiety\"?",
             "choices": [
               "A deeper reading is that hidden assumptions and time horizons usually shape the result before the final decision is visible.",
               "Short term relief is a reliable guide to good judgment.",
@@ -3035,7 +3035,7 @@
           },
           {
             "questionId": "ch06-h-q02-retry-02",
-            "prompt": "Which option best connects \"Separate Real Fear From General Anxiety\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Separate Real Fear From General Anxiety\" into practice?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The long game improves when people treat evidence, reversibility, and tradeoffs as part of the same judgment process.",
@@ -3046,7 +3046,7 @@
           },
           {
             "questionId": "ch06-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Separate Real Fear From General Anxiety\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Separate Real Fear From General Anxiety\"?",
             "choices": [
               "The right move is treating every anxious feeling like a danger cue or every fear cue like anxiety.",
               "It is better to react first and interpret later.",
@@ -3057,7 +3057,7 @@
           },
           {
             "questionId": "ch06-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Separate Real Fear From General Anxiety\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Separate Real Fear From General Anxiety\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -3068,7 +3068,7 @@
           },
           {
             "questionId": "ch06-h-q05-retry-05",
-            "prompt": "Which option best applies \"Separate Real Fear From General Anxiety\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Separate Real Fear From General Anxiety\" into practice?",
             "choices": [
               "A practical starting move is to ask what the signal is tied to, separate the present threat from the old pattern, and respond to the specific risk you can verify.",
               "Structure matters only after formal authority is secured.",

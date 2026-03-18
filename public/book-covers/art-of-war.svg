@@ -1,25 +1,42 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1400" role="img" aria-labelledby="title desc">
-  <title id="title">The Art of War book cover</title>
-  <desc id="desc">A dark cover with a red header, large serif title, and a red emblem inspired by a classic Art of War design.</desc>
+<svg width="1200" height="1800" viewBox="0 0 1200 1800" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">The Art of War cover</title>
+  <desc id="desc">Auto-generated themed cover for The Art of War by Sun Tzu.</desc>
   <defs>
-    <linearGradient id="bg" x1="0" x2="0" y1="0" y2="1">
-      <stop offset="0%" stop-color="#07141a"/>
-      <stop offset="100%" stop-color="#061116"/>
+    <linearGradient id="g852295292" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2B2A3D"/>
+      <stop offset="100%" stop-color="#4A486E"/>
     </linearGradient>
   </defs>
-  <rect width="900" height="1400" rx="42" fill="url(#bg)"/>
-  <rect x="0" y="0" width="900" height="220" fill="#c51a22"/>
-  <text x="450" y="135" text-anchor="middle" fill="#f4dcb0" font-family="Georgia, 'Times New Roman', serif" font-size="104" letter-spacing="8">SUN TZU</text>
-  <rect x="112" y="256" width="172" height="62" rx="8" fill="#c51a22" stroke="#f4dcb0" stroke-width="3"/>
-  <text x="198" y="298" text-anchor="middle" fill="#f7ead0" font-family="Arial, sans-serif" font-size="36" font-weight="700" letter-spacing="5">TUTTLE</text>
-  <text x="450" y="430" text-anchor="middle" fill="#f2dfbf" font-family="Georgia, 'Times New Roman', serif" font-size="96" letter-spacing="4">THE</text>
-  <text x="450" y="650" text-anchor="middle" fill="#f2dfbf" font-family="Georgia, 'Times New Roman', serif" font-size="202" letter-spacing="6">ART</text>
-  <text x="450" y="810" text-anchor="middle" fill="#f2dfbf" font-family="Georgia, 'Times New Roman', serif" font-size="104" letter-spacing="5">OF</text>
-  <text x="450" y="1040" text-anchor="middle" fill="#f2dfbf" font-family="Georgia, 'Times New Roman', serif" font-size="210" letter-spacing="8">WAR</text>
-  <g transform="translate(450 1125)">
-    <path d="M-92 40c18-38 44-67 76-84 24-13 52-19 83-18-13 13-27 27-32 46 43 10 80 38 104 75-34-14-75-18-114-8 10 8 18 18 22 31-31-8-64-7-96 5 5-15 17-31 33-42-31-3-58-1-76 8z" fill="#d21923"/>
-    <path d="M-8 -18c11-24 30-41 55-53-2 13-4 25 1 36 23 6 45 18 61 37-18-4-38-4-58 2 7 6 10 13 11 22-18-4-36-2-53 6 1-10 7-20 16-28-17-2-28-1-33 1z" fill="#07141a" opacity="0.16"/>
+
+  <rect width="1200" height="1800" fill="url(#g852295292)"/>
+
+  <rect x="0" y="300" width="1200" height="1180" fill="#8F90C0" opacity="0.12"/>
+  <rect x="110" y="370" width="420" height="420" rx="42" fill="#FEF8F0" opacity="0.2"/>
+  <rect x="670" y="360" width="420" height="430" rx="42" fill="#D59A43" opacity="0.16"/>
+  <rect x="110" y="980" width="420" height="360" rx="42" fill="#D59A43" opacity="0.15"/>
+  <rect x="670" y="950" width="420" height="390" rx="42" fill="#FEF8F0" opacity="0.2"/>
+  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F2ECE1" stroke="#C7B9A3" stroke-width="10"/>
+
+  <g transform="translate(415 558)">
+    <rect x="0" y="0" width="370" height="330" rx="24" fill="#FEF8F0" opacity="0.92" stroke="#8F90C0" stroke-width="8"/>
+    <g stroke="#8F90C0" stroke-width="3" opacity="0.8">
+      <line x1="92" y1="0" x2="92" y2="330"/>
+      <line x1="184" y1="0" x2="184" y2="330"/>
+      <line x1="276" y1="0" x2="276" y2="330"/>
+      <line x1="0" y1="82" x2="370" y2="82"/>
+      <line x1="0" y1="164" x2="370" y2="164"/>
+      <line x1="0" y1="246" x2="370" y2="246"/>
+    </g>
+    <path d="M46 260 L136 182 L198 222 L318 112" stroke="#D59A43" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+    <polygon points="318,112 284,114 304,140" fill="#D59A43"/>
   </g>
-  <text x="450" y="1272" text-anchor="middle" fill="#f0dfc0" font-family="Georgia, 'Times New Roman', serif" font-size="58">A modern reading of strategy, incentives, and leadership</text>
-  <text x="450" y="1344" text-anchor="middle" fill="#f0dfc0" font-family="Georgia, 'Times New Roman', serif" font-size="44" letter-spacing="2">FOR STUDENTS AND EARLY CAREER BUILDERS</text>
+
+  <rect x="0" y="0" width="1200" height="238" fill="#2B2A3D" opacity="0.93"/>
+  <rect x="0" y="1454" width="1200" height="346" fill="#4A486E" opacity="0.95"/>
+  <text x="600" y="136" text-anchor="middle" fill="#FEF8F0" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">SUN TZU</text>
+  <text x="600" y="208" text-anchor="middle" fill="#FEF8F0" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">STRATEGY</text>
+  <text x="600" y="1216" text-anchor="middle" fill="#232733" font-family="Georgia, 'Times New Roman', serif" font-size="92" font-weight="700" letter-spacing="2">THE ART OF WAR</text>
+  <text x="600" y="1538" text-anchor="middle" fill="#FEF8F0" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">STRATEGY  ·  TIMING  ·  LEADERSHIP</text>
+  <text x="600" y="1604" text-anchor="middle" fill="#FEF8F0" font-family="Georgia, serif" font-size="30">Position, timing, and leverage</text>
+  <text x="600" y="1668" text-anchor="middle" fill="#FEF8F0" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
 </svg>

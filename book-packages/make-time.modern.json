@@ -296,11 +296,11 @@
           "contexts": [
             "personal"
           ],
-          "scenario": "Jordan wakes up and instantly start checking messages, news, and social apps, and before long the first hour of the day belongs to whatever reached Jordan first. By the time Jordan tries to focus on something meaningful, Jordan's attention already feels scattered.",
+          "scenario": "Jordan wakes up and instantly start checking messages, news, and social apps, and before long the first hour of the day belongs to whatever reached Jordan first. By the time Jordan tries to focus on something meaningful, their attention already feels scattered.",
           "whatToDo": [
             "Choose a highlight before bed and create a morning setup that delays the phone long enough to begin with intention. Make the first action of the day support your priority instead of feeding the default pull of infinite content."
           ],
-          "whyItMatters": "A lot of people in their twenties lose time before the day has properly begun because defaults are stronger than intention. This example makes the book’s daily design philosophy immediately practical."
+          "whyItMatters": "A lot of people in their twenties lose time before the day has properly begun because defaults are stronger than intention. This example makes the book’s daily design philosophy immediately practical. This scenario is directly connected to how the framework works."
         },
         {
           "exampleId": "ch01-ex02",
@@ -324,7 +324,7 @@
           "whatToDo": [
             "Pick a single academic highlight for the day and define what completed progress looks like before you begin. Then shape your environment so your easiest next action supports that one priority instead of every possible task at once."
           ],
-          "whyItMatters": "Students often confuse a full day with a meaningful day. This example shows how choosing a highlight can turn vague busyness into visible progress."
+          "whyItMatters": "Students often confuse a full day with a meaningful day. This example shows how choosing a highlight can turn vague busyness into visible progress. This scenario is directly connected to how the framework works."
         },
         {
           "exampleId": "ch01-ex04",
@@ -336,7 +336,7 @@
           "whatToDo": [
             "Separate communication time from focus time and protect at least one window where the project gets full attention. Use the laser principle to reduce the most common interruptions before they happen instead of fighting them one by one."
           ],
-          "whyItMatters": "School work increasingly happens in environments built for quick coordination, not deep thought. This example helps readers see why focus must be intentionally defended when collaboration is always on."
+          "whyItMatters": "School work increasingly happens in environments built for quick coordination, not deep thought. This example helps readers see why focus must be intentionally defended when collaboration is always on. This scenario is directly connected to how the framework works."
         },
         {
           "exampleId": "ch01-ex05",
@@ -356,7 +356,7 @@
           "contexts": [
             "work"
           ],
-          "scenario": "Maya plans to finish important work after the urgent tasks are done, but by late afternoon Maya's energy is low and Maya's attention is weak. The day may have been full, but Maya's best thinking capacity was spent somewhere else.",
+          "scenario": "Maya plans to finish important work after the urgent tasks are done, but by late afternoon their energy is low and their attention is weak. The day may have been full, but their best thinking capacity was spent somewhere else.",
           "whatToDo": [
             "Treat energy as part of time design by placing demanding work earlier or by supporting focus through breaks, movement, and better pacing. Use reflection to notice when your attention is strongest and let that shape future scheduling."
           ],
@@ -368,111 +368,111 @@
         "questions": [
           {
             "questionId": "ch01-h-q01",
-            "prompt": "Which option shows why this principle matters: better days come from deliberately shaping attention, energy, and priorities?",
+            "prompt": "You are making a real-world decision tied to \"How The Framework Works\". Which option is the strongest next move?",
             "choices": [
-              "Better days come from adding more tasks efficiently",
-              "Better days come from deliberately shaping attention, energy, and priorities",
-              "Motivation is the only real productivity tool",
-              "Schedules matter less than flexibility in every case"
+              "Better days come from adding more tasks efficiently.",
+              "Better days come from deliberately shaping attention, energy, and priorities.",
+              "Motivation is the only real productivity tool.",
+              "Schedules matter less than flexibility in every case."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch01-h-q02",
-            "prompt": "Which option shows why this principle matters: because it gives the day a clear center instead of letting reactivity define it?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"How The Framework Works\" into practice?",
             "choices": [
-              "Because it gives the day a clear center instead of letting reactivity define it",
-              "Because all other tasks should be ignored completely",
-              "Because one task is always enough for any day",
-              "Because urgency is always the best guide"
+              "Because it gives the day a clear center instead of letting reactivity define it.",
+              "Because all other tasks should be ignored completely.",
+              "Because one task is always enough for any day.",
+              "Because urgency is always the best guide."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch01-h-q03",
-            "prompt": "Which option shows why this principle matters: to reduce attention loss by redesigning distractions before they take over?",
+            "prompt": "When pressure rises, which response best reflects \"How The Framework Works\"?",
             "choices": [
-              "To increase multitasking capacity",
-              "To reduce attention loss by redesigning distractions before they take over",
-              "To make every tool available at all times",
-              "To avoid any planning"
+              "To increase multitasking capacity.",
+              "To reduce attention loss by redesigning distractions before they take over.",
+              "To make every tool available at all times.",
+              "To avoid any planning."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch01-h-q04",
-            "prompt": "Which option shows why this principle matters: because attention works differently depending on rest, movement, and physiology?",
+            "prompt": "Which option would be most effective in a realistic situation for \"How The Framework Works\"?",
             "choices": [
-              "Because time and focus are unaffected by physical state",
-              "Because attention works differently depending on rest, movement, and physiology",
-              "Because energy matters only in athletics",
-              "Because energy replaces the need for tactics"
+              "Because time and focus are unaffected by physical state.",
+              "Because attention works differently depending on rest, movement, and physiology.",
+              "Because energy matters only in athletics.",
+              "Because energy replaces the need for tactics."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch01-h-q05",
-            "prompt": "Which option shows why this principle matters: it turns success and failure into learning about what actually works?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"How The Framework Works\"?",
             "choices": [
-              "It turns success and failure into learning about what actually works",
-              "It proves whether you are disciplined enough",
-              "It eliminates the need for experimentation",
-              "It matters only after perfect days"
+              "It turns success and failure into learning about what actually works.",
+              "It proves whether you are disciplined enough.",
+              "It eliminates the need for experimentation.",
+              "It matters only after perfect days."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch01-h-q06",
-            "prompt": "Which option shows why this principle matters: as powerful forces that shape behavior unless deliberately redesigned?",
+            "prompt": "You are making a real-world decision tied to \"How The Framework Works\". Which option is the strongest next move?",
             "choices": [
-              "As neutral background conditions",
-              "As powerful forces that shape behavior unless deliberately redesigned",
-              "As irrelevant once a goal is chosen",
-              "As helpful for everyone equally"
+              "As neutral background conditions.",
+              "As powerful forces that shape behavior unless deliberately redesigned.",
+              "As irrelevant once a goal is chosen.",
+              "As helpful for everyone equally."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch01-h-q07",
-            "prompt": "Which option shows why this principle matters: a culture of endless reactivity and attention capture?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"How The Framework Works\" into practice?",
             "choices": [
-              "A culture of endless reactivity and attention capture",
-              "A shortage of apps and tools",
-              "A lack of goals among ambitious people",
-              "A refusal to work hard"
+              "A culture of endless reactivity and attention capture.",
+              "A shortage of apps and tools.",
+              "A lack of goals among ambitious people.",
+              "A refusal to work hard."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch01-h-q08",
-            "prompt": "Which option shows why this principle matters: because small design changes are easier to repeat and test in real life?",
+            "prompt": "When pressure rises, which response best reflects \"How The Framework Works\"?",
             "choices": [
-              "Because small design changes are easier to repeat and test in real life",
-              "Because large goals are always bad",
-              "Because tactics replace values",
-              "Because habits cannot change quickly"
+              "Because small design changes are easier to repeat and test in real life.",
+              "Because large goals are always bad.",
+              "Because tactics replace values.",
+              "Because habits cannot change quickly."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch01-h-q09",
-            "prompt": "Which option shows why this principle matters: treat each day as an experiment in designing better defaults?",
+            "prompt": "Which option would be most effective in a realistic situation for \"How The Framework Works\"?",
             "choices": [
-              "Treat each day as an experiment in designing better defaults",
-              "Treat each day as a test of self worth",
-              "Keep every option open all the time",
-              "Wait for free time to appear naturally"
+              "Treat each day as an experiment in designing better defaults.",
+              "Treat each day as a test of self worth.",
+              "Keep every option open all the time.",
+              "Wait for free time to appear naturally."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch01-h-q10",
-            "prompt": "Which option shows why this principle matters: a way to reclaim attention for the things that matter most day by day?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"How The Framework Works\"?",
             "choices": [
-              "A way to fit more into the same rushed life",
-              "A way to reclaim attention for the things that matter most day by day",
-              "A way to eliminate all obligations",
-              "A way to avoid structure entirely"
+              "A way to fit more into the same rushed life.",
+              "A way to reclaim attention for the things that matter most day by day.",
+              "A way to eliminate all obligations.",
+              "A way to avoid structure entirely."
             ],
             "correctIndex": 1
           }
@@ -480,56 +480,56 @@
         "retryQuestions": [
           {
             "questionId": "ch01-h-q01-retry-01",
-            "prompt": "Which option best applies this principle to real decisions: better days come from deliberately shaping attention, energy, and priorities?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"How The Framework Works\"?",
             "choices": [
-              "Better days come from adding more tasks efficiently",
-              "Motivation is the only real productivity tool",
-              "Schedules matter less than flexibility in every case",
-              "Better days come from deliberately shaping attention, energy, and priorities"
+              "Better days come from adding more tasks efficiently.",
+              "Motivation is the only real productivity tool.",
+              "Schedules matter less than flexibility in every case.",
+              "Better days come from deliberately shaping attention, energy, and priorities."
             ],
             "correctIndex": 3
           },
           {
             "questionId": "ch01-h-q02-retry-02",
-            "prompt": "Which option best applies this principle to real decisions: because it gives the day a clear center instead of letting reactivity define it?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"How The Framework Works\" into practice?",
             "choices": [
-              "Because one task is always enough for any day",
-              "Because urgency is always the best guide",
-              "Because it gives the day a clear center instead of letting reactivity define it",
-              "Because all other tasks should be ignored completely"
+              "Because one task is always enough for any day.",
+              "Because urgency is always the best guide.",
+              "Because it gives the day a clear center instead of letting reactivity define it.",
+              "Because all other tasks should be ignored completely."
             ],
             "correctIndex": 2
           },
           {
             "questionId": "ch01-h-q03-retry-03",
-            "prompt": "Which option best applies this principle to real decisions: to reduce attention loss by redesigning distractions before they take over?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"How The Framework Works\"?",
             "choices": [
-              "To avoid any planning",
-              "To reduce attention loss by redesigning distractions before they take over",
-              "To increase multitasking capacity",
-              "To make every tool available at all times"
+              "To avoid any planning.",
+              "To reduce attention loss by redesigning distractions before they take over.",
+              "To increase multitasking capacity.",
+              "To make every tool available at all times."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch01-h-q04-retry-04",
-            "prompt": "Which option best applies this principle to real decisions: because attention works differently depending on rest, movement, and physiology?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"How The Framework Works\"?",
             "choices": [
-              "Because attention works differently depending on rest, movement, and physiology",
-              "Because time and focus are unaffected by physical state",
-              "Because energy matters only in athletics",
-              "Because energy replaces the need for tactics"
+              "Because attention works differently depending on rest, movement, and physiology.",
+              "Because time and focus are unaffected by physical state.",
+              "Because energy matters only in athletics.",
+              "Because energy replaces the need for tactics."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch01-h-q05-retry-05",
-            "prompt": "Which option best applies this principle to real decisions: it turns success and failure into learning about what actually works?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"How The Framework Works\" into practice?",
             "choices": [
-              "It proves whether you are disciplined enough",
-              "It eliminates the need for experimentation",
-              "It matters only after perfect days",
-              "It turns success and failure into learning about what actually works"
+              "It proves whether you are disciplined enough.",
+              "It eliminates the need for experimentation.",
+              "It matters only after perfect days.",
+              "It turns success and failure into learning about what actually works."
             ],
             "correctIndex": 3
           }
@@ -805,7 +805,7 @@
           "contexts": [
             "personal"
           ],
-          "scenario": "Jordan wakes up and instantly start checking messages, news, and social apps, and before long the first hour of the day belongs to whatever reached Jordan first. By the time Jordan tries to focus on something meaningful, Jordan's attention already feels scattered.",
+          "scenario": "Jordan wakes up and instantly start checking messages, news, and social apps, and before long the first hour of the day belongs to whatever reached Jordan first. By the time Jordan tries to focus on something meaningful, their attention already feels scattered.",
           "whatToDo": [
             "Choose a highlight before bed and create a morning setup that delays the phone long enough to begin with intention. Make the first action of the day support your priority instead of feeding the default pull of infinite content."
           ],
@@ -845,7 +845,7 @@
           "whatToDo": [
             "Separate communication time from focus time and protect at least one window where the project gets full attention. Use the laser principle to reduce the most common interruptions before they happen instead of fighting them one by one."
           ],
-          "whyItMatters": "School work increasingly happens in environments built for quick coordination, not deep thought. This example helps readers see why focus must be intentionally defended when collaboration is always on."
+          "whyItMatters": "School work increasingly happens in environments built for quick coordination, not deep thought. This example helps readers see why focus must be intentionally defended when collaboration is always on. This scenario is directly connected to choose a daily highlight."
         },
         {
           "exampleId": "ch02-ex05",
@@ -865,11 +865,11 @@
           "contexts": [
             "work"
           ],
-          "scenario": "Maya plans to finish important work after the urgent tasks are done, but by late afternoon Maya's energy is low and Maya's attention is weak. The day may have been full, but Maya's best thinking capacity was spent somewhere else.",
+          "scenario": "Maya plans to finish important work after the urgent tasks are done, but by late afternoon their energy is low and their attention is weak. The day may have been full, but their best thinking capacity was spent somewhere else.",
           "whatToDo": [
             "Treat energy as part of time design by placing demanding work earlier or by supporting focus through breaks, movement, and better pacing. Use reflection to notice when your attention is strongest and let that shape future scheduling."
           ],
-          "whyItMatters": "Many people try to solve time problems without noticing energy patterns. This example connects the Energize and Reflect parts of the framework to better real world decision making."
+          "whyItMatters": "Many people try to solve time problems without noticing energy patterns. This example connects the Energize and Reflect parts of the framework to better real world decision making. This scenario is directly connected to choose a daily highlight."
         }
       ],
       "quiz": {
@@ -877,111 +877,111 @@
         "questions": [
           {
             "questionId": "ch02-h-q01",
-            "prompt": "Which option shows why this principle matters: better days come from deliberately shaping attention, energy, and priorities?",
+            "prompt": "You are making a real-world decision tied to \"Choose A Daily Highlight\". Which option is the strongest next move?",
             "choices": [
-              "Better days come from adding more tasks efficiently",
-              "Better days come from deliberately shaping attention, energy, and priorities",
-              "Motivation is the only real productivity tool",
-              "Schedules matter less than flexibility in every case"
+              "Better days come from adding more tasks efficiently.",
+              "Better days come from deliberately shaping attention, energy, and priorities.",
+              "Motivation is the only real productivity tool.",
+              "Schedules matter less than flexibility in every case."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch02-h-q02",
-            "prompt": "Which option shows why this principle matters: because it gives the day a clear center instead of letting reactivity define it?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Choose A Daily Highlight\" into practice?",
             "choices": [
-              "Because it gives the day a clear center instead of letting reactivity define it",
-              "Because all other tasks should be ignored completely",
-              "Because one task is always enough for any day",
-              "Because urgency is always the best guide"
+              "Because it gives the day a clear center instead of letting reactivity define it.",
+              "Because all other tasks should be ignored completely.",
+              "Because one task is always enough for any day.",
+              "Because urgency is always the best guide."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch02-h-q03",
-            "prompt": "Which option shows why this principle matters: to reduce attention loss by redesigning distractions before they take over?",
+            "prompt": "When pressure rises, which response best reflects \"Choose A Daily Highlight\"?",
             "choices": [
-              "To increase multitasking capacity",
-              "To reduce attention loss by redesigning distractions before they take over",
-              "To make every tool available at all times",
-              "To avoid any planning"
+              "To increase multitasking capacity.",
+              "To reduce attention loss by redesigning distractions before they take over.",
+              "To make every tool available at all times.",
+              "To avoid any planning."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch02-h-q04",
-            "prompt": "Which option shows why this principle matters: because attention works differently depending on rest, movement, and physiology?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Choose A Daily Highlight\"?",
             "choices": [
-              "Because time and focus are unaffected by physical state",
-              "Because attention works differently depending on rest, movement, and physiology",
-              "Because energy matters only in athletics",
-              "Because energy replaces the need for tactics"
+              "Because time and focus are unaffected by physical state.",
+              "Because attention works differently depending on rest, movement, and physiology.",
+              "Because energy matters only in athletics.",
+              "Because energy replaces the need for tactics."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch02-h-q05",
-            "prompt": "Which option shows why this principle matters: it turns success and failure into learning about what actually works?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Choose A Daily Highlight\"?",
             "choices": [
-              "It turns success and failure into learning about what actually works",
-              "It proves whether you are disciplined enough",
-              "It eliminates the need for experimentation",
-              "It matters only after perfect days"
+              "It turns success and failure into learning about what actually works.",
+              "It proves whether you are disciplined enough.",
+              "It eliminates the need for experimentation.",
+              "It matters only after perfect days."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch02-h-q06",
-            "prompt": "Which option shows why this principle matters: as powerful forces that shape behavior unless deliberately redesigned?",
+            "prompt": "You are making a real-world decision tied to \"Choose A Daily Highlight\". Which option is the strongest next move?",
             "choices": [
-              "As neutral background conditions",
-              "As powerful forces that shape behavior unless deliberately redesigned",
-              "As irrelevant once a goal is chosen",
-              "As helpful for everyone equally"
+              "As neutral background conditions.",
+              "As powerful forces that shape behavior unless deliberately redesigned.",
+              "As irrelevant once a goal is chosen.",
+              "As helpful for everyone equally."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch02-h-q07",
-            "prompt": "Which option shows why this principle matters: a culture of endless reactivity and attention capture?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Choose A Daily Highlight\" into practice?",
             "choices": [
-              "A culture of endless reactivity and attention capture",
-              "A shortage of apps and tools",
-              "A lack of goals among ambitious people",
-              "A refusal to work hard"
+              "A culture of endless reactivity and attention capture.",
+              "A shortage of apps and tools.",
+              "A lack of goals among ambitious people.",
+              "A refusal to work hard."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch02-h-q08",
-            "prompt": "Which option shows why this principle matters: because small design changes are easier to repeat and test in real life?",
+            "prompt": "When pressure rises, which response best reflects \"Choose A Daily Highlight\"?",
             "choices": [
-              "Because small design changes are easier to repeat and test in real life",
-              "Because large goals are always bad",
-              "Because tactics replace values",
-              "Because habits cannot change quickly"
+              "Because small design changes are easier to repeat and test in real life.",
+              "Because large goals are always bad.",
+              "Because tactics replace values.",
+              "Because habits cannot change quickly."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch02-h-q09",
-            "prompt": "Which option shows why this principle matters: treat each day as an experiment in designing better defaults?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Choose A Daily Highlight\"?",
             "choices": [
-              "Treat each day as an experiment in designing better defaults",
-              "Treat each day as a test of self worth",
-              "Keep every option open all the time",
-              "Wait for free time to appear naturally"
+              "Treat each day as an experiment in designing better defaults.",
+              "Treat each day as a test of self worth.",
+              "Keep every option open all the time.",
+              "Wait for free time to appear naturally."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch02-h-q10",
-            "prompt": "Which option shows why this principle matters: a way to reclaim attention for the things that matter most day by day?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Choose A Daily Highlight\"?",
             "choices": [
-              "A way to fit more into the same rushed life",
-              "A way to reclaim attention for the things that matter most day by day",
-              "A way to eliminate all obligations",
-              "A way to avoid structure entirely"
+              "A way to fit more into the same rushed life.",
+              "A way to reclaim attention for the things that matter most day by day.",
+              "A way to eliminate all obligations.",
+              "A way to avoid structure entirely."
             ],
             "correctIndex": 1
           }
@@ -989,56 +989,56 @@
         "retryQuestions": [
           {
             "questionId": "ch02-h-q01-retry-01",
-            "prompt": "Which option best applies this principle to real decisions: better days come from deliberately shaping attention, energy, and priorities?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Choose A Daily Highlight\"?",
             "choices": [
-              "Motivation is the only real productivity tool",
-              "Schedules matter less than flexibility in every case",
-              "Better days come from deliberately shaping attention, energy, and priorities",
-              "Better days come from adding more tasks efficiently"
+              "Motivation is the only real productivity tool.",
+              "Schedules matter less than flexibility in every case.",
+              "Better days come from deliberately shaping attention, energy, and priorities.",
+              "Better days come from adding more tasks efficiently."
             ],
             "correctIndex": 2
           },
           {
             "questionId": "ch02-h-q02-retry-02",
-            "prompt": "Which option best applies this principle to real decisions: because it gives the day a clear center instead of letting reactivity define it?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Choose A Daily Highlight\" into practice?",
             "choices": [
-              "Because urgency is always the best guide",
-              "Because it gives the day a clear center instead of letting reactivity define it",
-              "Because all other tasks should be ignored completely",
-              "Because one task is always enough for any day"
+              "Because urgency is always the best guide.",
+              "Because it gives the day a clear center instead of letting reactivity define it.",
+              "Because all other tasks should be ignored completely.",
+              "Because one task is always enough for any day."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch02-h-q03-retry-03",
-            "prompt": "Which option best applies this principle to real decisions: to reduce attention loss by redesigning distractions before they take over?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Choose A Daily Highlight\"?",
             "choices": [
-              "To reduce attention loss by redesigning distractions before they take over",
-              "To increase multitasking capacity",
-              "To make every tool available at all times",
-              "To avoid any planning"
+              "To reduce attention loss by redesigning distractions before they take over.",
+              "To increase multitasking capacity.",
+              "To make every tool available at all times.",
+              "To avoid any planning."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch02-h-q04-retry-04",
-            "prompt": "Which option best applies this principle to real decisions: because attention works differently depending on rest, movement, and physiology?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Choose A Daily Highlight\"?",
             "choices": [
-              "Because time and focus are unaffected by physical state",
-              "Because energy matters only in athletics",
-              "Because energy replaces the need for tactics",
-              "Because attention works differently depending on rest, movement, and physiology"
+              "Because time and focus are unaffected by physical state.",
+              "Because energy matters only in athletics.",
+              "Because energy replaces the need for tactics.",
+              "Because attention works differently depending on rest, movement, and physiology."
             ],
             "correctIndex": 3
           },
           {
             "questionId": "ch02-h-q05-retry-05",
-            "prompt": "Which option best applies this principle to real decisions: it turns success and failure into learning about what actually works?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Choose A Daily Highlight\" into practice?",
             "choices": [
-              "It eliminates the need for experimentation",
-              "It matters only after perfect days",
-              "It turns success and failure into learning about what actually works",
-              "It proves whether you are disciplined enough"
+              "It eliminates the need for experimentation.",
+              "It matters only after perfect days.",
+              "It turns success and failure into learning about what actually works.",
+              "It proves whether you are disciplined enough."
             ],
             "correctIndex": 2
           }
@@ -1314,11 +1314,11 @@
           "contexts": [
             "personal"
           ],
-          "scenario": "Jordan wakes up and instantly start checking messages, news, and social apps, and before long the first hour of the day belongs to whatever reached Jordan first. By the time Jordan tries to focus on something meaningful, Jordan's attention already feels scattered.",
+          "scenario": "Jordan wakes up and instantly start checking messages, news, and social apps, and before long the first hour of the day belongs to whatever reached Jordan first. By the time Jordan tries to focus on something meaningful, their attention already feels scattered.",
           "whatToDo": [
             "Choose a highlight before bed and create a morning setup that delays the phone long enough to begin with intention. Make the first action of the day support your priority instead of feeding the default pull of infinite content."
           ],
-          "whyItMatters": "A lot of people in their twenties lose time before the day has properly begun because defaults are stronger than intention. This example makes the book’s daily design philosophy immediately practical."
+          "whyItMatters": "A lot of people in their twenties lose time before the day has properly begun because defaults are stronger than intention. This example makes the book’s daily design philosophy immediately practical. This scenario is directly connected to laser away distractions."
         },
         {
           "exampleId": "ch03-ex02",
@@ -1342,7 +1342,7 @@
           "whatToDo": [
             "Pick a single academic highlight for the day and define what completed progress looks like before you begin. Then shape your environment so your easiest next action supports that one priority instead of every possible task at once."
           ],
-          "whyItMatters": "Students often confuse a full day with a meaningful day. This example shows how choosing a highlight can turn vague busyness into visible progress."
+          "whyItMatters": "Students often confuse a full day with a meaningful day. This example shows how choosing a highlight can turn vague busyness into visible progress. This scenario is directly connected to laser away distractions."
         },
         {
           "exampleId": "ch03-ex04",
@@ -1366,7 +1366,7 @@
           "whatToDo": [
             "Pick a highlight that reflects your highest value work and schedule time for it before the day gets claimed by reactive tasks. Then reduce unnecessary availability during that block so the work has a real chance to happen."
           ],
-          "whyItMatters": "Work culture often praises constant responsiveness even when it erodes meaningful output. This example makes the book’s framework relevant to early career knowledge work where time gets absorbed quickly."
+          "whyItMatters": "Work culture often praises constant responsiveness even when it erodes meaningful output. This example makes the book’s framework relevant to early career knowledge work where time gets absorbed quickly. This scenario is directly connected to laser away distractions."
         },
         {
           "exampleId": "ch03-ex06",
@@ -1374,11 +1374,11 @@
           "contexts": [
             "work"
           ],
-          "scenario": "Maya plans to finish important work after the urgent tasks are done, but by late afternoon Maya's energy is low and Maya's attention is weak. The day may have been full, but Maya's best thinking capacity was spent somewhere else.",
+          "scenario": "Maya plans to finish important work after the urgent tasks are done, but by late afternoon their energy is low and their attention is weak. The day may have been full, but their best thinking capacity was spent somewhere else.",
           "whatToDo": [
             "Treat energy as part of time design by placing demanding work earlier or by supporting focus through breaks, movement, and better pacing. Use reflection to notice when your attention is strongest and let that shape future scheduling."
           ],
-          "whyItMatters": "Many people try to solve time problems without noticing energy patterns. This example connects the Energize and Reflect parts of the framework to better real world decision making."
+          "whyItMatters": "Many people try to solve time problems without noticing energy patterns. This example connects the Energize and Reflect parts of the framework to better real world decision making. This scenario is directly connected to laser away distractions."
         }
       ],
       "quiz": {
@@ -1386,111 +1386,111 @@
         "questions": [
           {
             "questionId": "ch03-h-q01",
-            "prompt": "Which option shows why this principle matters: better days come from deliberately shaping attention, energy, and priorities?",
+            "prompt": "You are making a real-world decision tied to \"Laser Away Distractions\". Which option is the strongest next move?",
             "choices": [
-              "Better days come from adding more tasks efficiently",
-              "Better days come from deliberately shaping attention, energy, and priorities",
-              "Motivation is the only real productivity tool",
-              "Schedules matter less than flexibility in every case"
+              "Better days come from adding more tasks efficiently.",
+              "Better days come from deliberately shaping attention, energy, and priorities.",
+              "Motivation is the only real productivity tool.",
+              "Schedules matter less than flexibility in every case."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch03-h-q02",
-            "prompt": "Which option shows why this principle matters: because it gives the day a clear center instead of letting reactivity define it?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Laser Away Distractions\" into practice?",
             "choices": [
-              "Because it gives the day a clear center instead of letting reactivity define it",
-              "Because all other tasks should be ignored completely",
-              "Because one task is always enough for any day",
-              "Because urgency is always the best guide"
+              "Because it gives the day a clear center instead of letting reactivity define it.",
+              "Because all other tasks should be ignored completely.",
+              "Because one task is always enough for any day.",
+              "Because urgency is always the best guide."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch03-h-q03",
-            "prompt": "Which option shows why this principle matters: to reduce attention loss by redesigning distractions before they take over?",
+            "prompt": "When pressure rises, which response best reflects \"Laser Away Distractions\"?",
             "choices": [
-              "To increase multitasking capacity",
-              "To reduce attention loss by redesigning distractions before they take over",
-              "To make every tool available at all times",
-              "To avoid any planning"
+              "To increase multitasking capacity.",
+              "To reduce attention loss by redesigning distractions before they take over.",
+              "To make every tool available at all times.",
+              "To avoid any planning."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch03-h-q04",
-            "prompt": "Which option shows why this principle matters: because attention works differently depending on rest, movement, and physiology?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Laser Away Distractions\"?",
             "choices": [
-              "Because time and focus are unaffected by physical state",
-              "Because attention works differently depending on rest, movement, and physiology",
-              "Because energy matters only in athletics",
-              "Because energy replaces the need for tactics"
+              "Because time and focus are unaffected by physical state.",
+              "Because attention works differently depending on rest, movement, and physiology.",
+              "Because energy matters only in athletics.",
+              "Because energy replaces the need for tactics."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch03-h-q05",
-            "prompt": "Which option shows why this principle matters: it turns success and failure into learning about what actually works?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Laser Away Distractions\"?",
             "choices": [
-              "It turns success and failure into learning about what actually works",
-              "It proves whether you are disciplined enough",
-              "It eliminates the need for experimentation",
-              "It matters only after perfect days"
+              "It turns success and failure into learning about what actually works.",
+              "It proves whether you are disciplined enough.",
+              "It eliminates the need for experimentation.",
+              "It matters only after perfect days."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch03-h-q06",
-            "prompt": "Which option shows why this principle matters: as powerful forces that shape behavior unless deliberately redesigned?",
+            "prompt": "You are making a real-world decision tied to \"Laser Away Distractions\". Which option is the strongest next move?",
             "choices": [
-              "As neutral background conditions",
-              "As powerful forces that shape behavior unless deliberately redesigned",
-              "As irrelevant once a goal is chosen",
-              "As helpful for everyone equally"
+              "As neutral background conditions.",
+              "As powerful forces that shape behavior unless deliberately redesigned.",
+              "As irrelevant once a goal is chosen.",
+              "As helpful for everyone equally."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch03-h-q07",
-            "prompt": "Which option shows why this principle matters: a culture of endless reactivity and attention capture?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Laser Away Distractions\" into practice?",
             "choices": [
-              "A culture of endless reactivity and attention capture",
-              "A shortage of apps and tools",
-              "A lack of goals among ambitious people",
-              "A refusal to work hard"
+              "A culture of endless reactivity and attention capture.",
+              "A shortage of apps and tools.",
+              "A lack of goals among ambitious people.",
+              "A refusal to work hard."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch03-h-q08",
-            "prompt": "Which option shows why this principle matters: because small design changes are easier to repeat and test in real life?",
+            "prompt": "When pressure rises, which response best reflects \"Laser Away Distractions\"?",
             "choices": [
-              "Because small design changes are easier to repeat and test in real life",
-              "Because large goals are always bad",
-              "Because tactics replace values",
-              "Because habits cannot change quickly"
+              "Because small design changes are easier to repeat and test in real life.",
+              "Because large goals are always bad.",
+              "Because tactics replace values.",
+              "Because habits cannot change quickly."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch03-h-q09",
-            "prompt": "Which option shows why this principle matters: treat each day as an experiment in designing better defaults?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Laser Away Distractions\"?",
             "choices": [
-              "Treat each day as an experiment in designing better defaults",
-              "Treat each day as a test of self worth",
-              "Keep every option open all the time",
-              "Wait for free time to appear naturally"
+              "Treat each day as an experiment in designing better defaults.",
+              "Treat each day as a test of self worth.",
+              "Keep every option open all the time.",
+              "Wait for free time to appear naturally."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch03-h-q10",
-            "prompt": "Which option shows why this principle matters: a way to reclaim attention for the things that matter most day by day?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Laser Away Distractions\"?",
             "choices": [
-              "A way to fit more into the same rushed life",
-              "A way to reclaim attention for the things that matter most day by day",
-              "A way to eliminate all obligations",
-              "A way to avoid structure entirely"
+              "A way to fit more into the same rushed life.",
+              "A way to reclaim attention for the things that matter most day by day.",
+              "A way to eliminate all obligations.",
+              "A way to avoid structure entirely."
             ],
             "correctIndex": 1
           }
@@ -1498,56 +1498,56 @@
         "retryQuestions": [
           {
             "questionId": "ch03-h-q01-retry-01",
-            "prompt": "Which option best applies this principle to real decisions: better days come from deliberately shaping attention, energy, and priorities?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Laser Away Distractions\"?",
             "choices": [
-              "Schedules matter less than flexibility in every case",
-              "Better days come from deliberately shaping attention, energy, and priorities",
-              "Better days come from adding more tasks efficiently",
-              "Motivation is the only real productivity tool"
+              "Schedules matter less than flexibility in every case.",
+              "Better days come from deliberately shaping attention, energy, and priorities.",
+              "Better days come from adding more tasks efficiently.",
+              "Motivation is the only real productivity tool."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch03-h-q02-retry-02",
-            "prompt": "Which option best applies this principle to real decisions: because it gives the day a clear center instead of letting reactivity define it?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Laser Away Distractions\" into practice?",
             "choices": [
-              "Because it gives the day a clear center instead of letting reactivity define it",
-              "Because all other tasks should be ignored completely",
-              "Because one task is always enough for any day",
-              "Because urgency is always the best guide"
+              "Because it gives the day a clear center instead of letting reactivity define it.",
+              "Because all other tasks should be ignored completely.",
+              "Because one task is always enough for any day.",
+              "Because urgency is always the best guide."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch03-h-q03-retry-03",
-            "prompt": "Which option best applies this principle to real decisions: to reduce attention loss by redesigning distractions before they take over?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Laser Away Distractions\"?",
             "choices": [
-              "To increase multitasking capacity",
-              "To make every tool available at all times",
-              "To avoid any planning",
-              "To reduce attention loss by redesigning distractions before they take over"
+              "To increase multitasking capacity.",
+              "To make every tool available at all times.",
+              "To avoid any planning.",
+              "To reduce attention loss by redesigning distractions before they take over."
             ],
             "correctIndex": 3
           },
           {
             "questionId": "ch03-h-q04-retry-04",
-            "prompt": "Which option best applies this principle to real decisions: because attention works differently depending on rest, movement, and physiology?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Laser Away Distractions\"?",
             "choices": [
-              "Because energy matters only in athletics",
-              "Because energy replaces the need for tactics",
-              "Because attention works differently depending on rest, movement, and physiology",
-              "Because time and focus are unaffected by physical state"
+              "Because energy matters only in athletics.",
+              "Because energy replaces the need for tactics.",
+              "Because attention works differently depending on rest, movement, and physiology.",
+              "Because time and focus are unaffected by physical state."
             ],
             "correctIndex": 2
           },
           {
             "questionId": "ch03-h-q05-retry-05",
-            "prompt": "Which option best applies this principle to real decisions: it turns success and failure into learning about what actually works?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Laser Away Distractions\" into practice?",
             "choices": [
-              "It matters only after perfect days",
-              "It turns success and failure into learning about what actually works",
-              "It proves whether you are disciplined enough",
-              "It eliminates the need for experimentation"
+              "It matters only after perfect days.",
+              "It turns success and failure into learning about what actually works.",
+              "It proves whether you are disciplined enough.",
+              "It eliminates the need for experimentation."
             ],
             "correctIndex": 1
           }
@@ -1823,11 +1823,11 @@
           "contexts": [
             "personal"
           ],
-          "scenario": "Maya wakes up and instantly start checking messages, news, and social apps, and before long the first hour of the day belongs to whatever reached Maya first. By the time Maya tries to focus on something meaningful, Maya's attention already feels scattered.",
+          "scenario": "Maya wakes up and instantly start checking messages, news, and social apps, and before long the first hour of the day belongs to whatever reached Maya first. By the time Maya tries to focus on something meaningful, their attention already feels scattered.",
           "whatToDo": [
             "Choose a highlight before bed and create a morning setup that delays the phone long enough to begin with intention. Make the first action of the day support your priority instead of feeding the default pull of infinite content."
           ],
-          "whyItMatters": "A lot of people in their twenties lose time before the day has properly begun because defaults are stronger than intention. This example makes the book’s daily design philosophy immediately practical."
+          "whyItMatters": "A lot of people in their twenties lose time before the day has properly begun because defaults are stronger than intention. This example makes the book’s daily design philosophy immediately practical. This scenario is directly connected to energize the brain and body."
         },
         {
           "exampleId": "ch04-ex02",
@@ -1839,7 +1839,7 @@
           "whatToDo": [
             "Use the highlight idea to give the project a clear place in the day and make a specific plan for when the work will happen. Reduce the distractions most likely to interrupt that block before the work begins."
           ],
-          "whyItMatters": "Important personal work often fails because it is never protected with the same seriousness as other obligations. This example helps readers connect the framework to projects they genuinely care about."
+          "whyItMatters": "Important personal work often fails because it is never protected with the same seriousness as other obligations. This example helps readers connect the framework to projects they genuinely care about. This scenario is directly connected to energize the brain and body."
         },
         {
           "exampleId": "ch04-ex03",
@@ -1851,7 +1851,7 @@
           "whatToDo": [
             "Pick a single academic highlight for the day and define what completed progress looks like before you begin. Then shape your environment so your easiest next action supports that one priority instead of every possible task at once."
           ],
-          "whyItMatters": "Students often confuse a full day with a meaningful day. This example shows how choosing a highlight can turn vague busyness into visible progress."
+          "whyItMatters": "Students often confuse a full day with a meaningful day. This example shows how choosing a highlight can turn vague busyness into visible progress. This scenario is directly connected to energize the brain and body."
         },
         {
           "exampleId": "ch04-ex04",
@@ -1863,7 +1863,7 @@
           "whatToDo": [
             "Separate communication time from focus time and protect at least one window where the project gets full attention. Use the laser principle to reduce the most common interruptions before they happen instead of fighting them one by one."
           ],
-          "whyItMatters": "School work increasingly happens in environments built for quick coordination, not deep thought. This example helps readers see why focus must be intentionally defended when collaboration is always on."
+          "whyItMatters": "School work increasingly happens in environments built for quick coordination, not deep thought. This example helps readers see why focus must be intentionally defended when collaboration is always on. This scenario is directly connected to energize the brain and body."
         },
         {
           "exampleId": "ch04-ex05",
@@ -1875,7 +1875,7 @@
           "whatToDo": [
             "Pick a highlight that reflects your highest value work and schedule time for it before the day gets claimed by reactive tasks. Then reduce unnecessary availability during that block so the work has a real chance to happen."
           ],
-          "whyItMatters": "Work culture often praises constant responsiveness even when it erodes meaningful output. This example makes the book’s framework relevant to early career knowledge work where time gets absorbed quickly."
+          "whyItMatters": "Work culture often praises constant responsiveness even when it erodes meaningful output. This example makes the book’s framework relevant to early career knowledge work where time gets absorbed quickly. This scenario is directly connected to energize the brain and body."
         },
         {
           "exampleId": "ch04-ex06",
@@ -1883,7 +1883,7 @@
           "contexts": [
             "work"
           ],
-          "scenario": "Jordan plans to finish important work after the urgent tasks are done, but by late afternoon Jordan's energy is low and Jordan's attention is weak. The day may have been full, but Jordan's best thinking capacity was spent somewhere else.",
+          "scenario": "Jordan plans to finish important work after the urgent tasks are done, but by late afternoon their energy is low and their attention is weak. The day may have been full, but their best thinking capacity was spent somewhere else.",
           "whatToDo": [
             "Treat energy as part of time design by placing demanding work earlier or by supporting focus through breaks, movement, and better pacing. Use reflection to notice when your attention is strongest and let that shape future scheduling."
           ],
@@ -1895,111 +1895,111 @@
         "questions": [
           {
             "questionId": "ch04-h-q01",
-            "prompt": "Which option shows why this principle matters: better days come from deliberately shaping attention, energy, and priorities?",
+            "prompt": "You are making a real-world decision tied to \"Energize The Brain And Body\". Which option is the strongest next move?",
             "choices": [
-              "Better days come from adding more tasks efficiently",
-              "Better days come from deliberately shaping attention, energy, and priorities",
-              "Motivation is the only real productivity tool",
-              "Schedules matter less than flexibility in every case"
+              "Better days come from adding more tasks efficiently.",
+              "Better days come from deliberately shaping attention, energy, and priorities.",
+              "Motivation is the only real productivity tool.",
+              "Schedules matter less than flexibility in every case."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch04-h-q02",
-            "prompt": "Which option shows why this principle matters: because it gives the day a clear center instead of letting reactivity define it?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Energize The Brain And Body\" into practice?",
             "choices": [
-              "Because it gives the day a clear center instead of letting reactivity define it",
-              "Because all other tasks should be ignored completely",
-              "Because one task is always enough for any day",
-              "Because urgency is always the best guide"
+              "Because it gives the day a clear center instead of letting reactivity define it.",
+              "Because all other tasks should be ignored completely.",
+              "Because one task is always enough for any day.",
+              "Because urgency is always the best guide."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch04-h-q03",
-            "prompt": "Which option shows why this principle matters: to reduce attention loss by redesigning distractions before they take over?",
+            "prompt": "When pressure rises, which response best reflects \"Energize The Brain And Body\"?",
             "choices": [
-              "To increase multitasking capacity",
-              "To reduce attention loss by redesigning distractions before they take over",
-              "To make every tool available at all times",
-              "To avoid any planning"
+              "To increase multitasking capacity.",
+              "To reduce attention loss by redesigning distractions before they take over.",
+              "To make every tool available at all times.",
+              "To avoid any planning."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch04-h-q04",
-            "prompt": "Which option shows why this principle matters: because attention works differently depending on rest, movement, and physiology?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Energize The Brain And Body\"?",
             "choices": [
-              "Because time and focus are unaffected by physical state",
-              "Because attention works differently depending on rest, movement, and physiology",
-              "Because energy matters only in athletics",
-              "Because energy replaces the need for tactics"
+              "Because time and focus are unaffected by physical state.",
+              "Because attention works differently depending on rest, movement, and physiology.",
+              "Because energy matters only in athletics.",
+              "Because energy replaces the need for tactics."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch04-h-q05",
-            "prompt": "Which option shows why this principle matters: it turns success and failure into learning about what actually works?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Energize The Brain And Body\"?",
             "choices": [
-              "It turns success and failure into learning about what actually works",
-              "It proves whether you are disciplined enough",
-              "It eliminates the need for experimentation",
-              "It matters only after perfect days"
+              "It turns success and failure into learning about what actually works.",
+              "It proves whether you are disciplined enough.",
+              "It eliminates the need for experimentation.",
+              "It matters only after perfect days."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch04-h-q06",
-            "prompt": "Which option shows why this principle matters: as powerful forces that shape behavior unless deliberately redesigned?",
+            "prompt": "You are making a real-world decision tied to \"Energize The Brain And Body\". Which option is the strongest next move?",
             "choices": [
-              "As neutral background conditions",
-              "As powerful forces that shape behavior unless deliberately redesigned",
-              "As irrelevant once a goal is chosen",
-              "As helpful for everyone equally"
+              "As neutral background conditions.",
+              "As powerful forces that shape behavior unless deliberately redesigned.",
+              "As irrelevant once a goal is chosen.",
+              "As helpful for everyone equally."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch04-h-q07",
-            "prompt": "Which option shows why this principle matters: a culture of endless reactivity and attention capture?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Energize The Brain And Body\" into practice?",
             "choices": [
-              "A culture of endless reactivity and attention capture",
-              "A shortage of apps and tools",
-              "A lack of goals among ambitious people",
-              "A refusal to work hard"
+              "A culture of endless reactivity and attention capture.",
+              "A shortage of apps and tools.",
+              "A lack of goals among ambitious people.",
+              "A refusal to work hard."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch04-h-q08",
-            "prompt": "Which option shows why this principle matters: because small design changes are easier to repeat and test in real life?",
+            "prompt": "When pressure rises, which response best reflects \"Energize The Brain And Body\"?",
             "choices": [
-              "Because small design changes are easier to repeat and test in real life",
-              "Because large goals are always bad",
-              "Because tactics replace values",
-              "Because habits cannot change quickly"
+              "Because small design changes are easier to repeat and test in real life.",
+              "Because large goals are always bad.",
+              "Because tactics replace values.",
+              "Because habits cannot change quickly."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch04-h-q09",
-            "prompt": "Which option shows why this principle matters: treat each day as an experiment in designing better defaults?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Energize The Brain And Body\"?",
             "choices": [
-              "Treat each day as an experiment in designing better defaults",
-              "Treat each day as a test of self worth",
-              "Keep every option open all the time",
-              "Wait for free time to appear naturally"
+              "Treat each day as an experiment in designing better defaults.",
+              "Treat each day as a test of self worth.",
+              "Keep every option open all the time.",
+              "Wait for free time to appear naturally."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch04-h-q10",
-            "prompt": "Which option shows why this principle matters: a way to reclaim attention for the things that matter most day by day?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Energize The Brain And Body\"?",
             "choices": [
-              "A way to fit more into the same rushed life",
-              "A way to reclaim attention for the things that matter most day by day",
-              "A way to eliminate all obligations",
-              "A way to avoid structure entirely"
+              "A way to fit more into the same rushed life.",
+              "A way to reclaim attention for the things that matter most day by day.",
+              "A way to eliminate all obligations.",
+              "A way to avoid structure entirely."
             ],
             "correctIndex": 1
           }
@@ -2007,56 +2007,56 @@
         "retryQuestions": [
           {
             "questionId": "ch04-h-q01-retry-01",
-            "prompt": "Which option best applies this principle to real decisions: better days come from deliberately shaping attention, energy, and priorities?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Energize The Brain And Body\"?",
             "choices": [
-              "Better days come from deliberately shaping attention, energy, and priorities",
-              "Better days come from adding more tasks efficiently",
-              "Motivation is the only real productivity tool",
-              "Schedules matter less than flexibility in every case"
+              "Better days come from deliberately shaping attention, energy, and priorities.",
+              "Better days come from adding more tasks efficiently.",
+              "Motivation is the only real productivity tool.",
+              "Schedules matter less than flexibility in every case."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch04-h-q02-retry-02",
-            "prompt": "Which option best applies this principle to real decisions: because it gives the day a clear center instead of letting reactivity define it?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Energize The Brain And Body\" into practice?",
             "choices": [
-              "Because all other tasks should be ignored completely",
-              "Because one task is always enough for any day",
-              "Because urgency is always the best guide",
-              "Because it gives the day a clear center instead of letting reactivity define it"
+              "Because all other tasks should be ignored completely.",
+              "Because one task is always enough for any day.",
+              "Because urgency is always the best guide.",
+              "Because it gives the day a clear center instead of letting reactivity define it."
             ],
             "correctIndex": 3
           },
           {
             "questionId": "ch04-h-q03-retry-03",
-            "prompt": "Which option best applies this principle to real decisions: to reduce attention loss by redesigning distractions before they take over?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Energize The Brain And Body\"?",
             "choices": [
-              "To make every tool available at all times",
-              "To avoid any planning",
-              "To reduce attention loss by redesigning distractions before they take over",
-              "To increase multitasking capacity"
+              "To make every tool available at all times.",
+              "To avoid any planning.",
+              "To reduce attention loss by redesigning distractions before they take over.",
+              "To increase multitasking capacity."
             ],
             "correctIndex": 2
           },
           {
             "questionId": "ch04-h-q04-retry-04",
-            "prompt": "Which option best applies this principle to real decisions: because attention works differently depending on rest, movement, and physiology?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Energize The Brain And Body\"?",
             "choices": [
-              "Because energy replaces the need for tactics",
-              "Because attention works differently depending on rest, movement, and physiology",
-              "Because time and focus are unaffected by physical state",
-              "Because energy matters only in athletics"
+              "Because energy replaces the need for tactics.",
+              "Because attention works differently depending on rest, movement, and physiology.",
+              "Because time and focus are unaffected by physical state.",
+              "Because energy matters only in athletics."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch04-h-q05-retry-05",
-            "prompt": "Which option best applies this principle to real decisions: it turns success and failure into learning about what actually works?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Energize The Brain And Body\" into practice?",
             "choices": [
-              "It turns success and failure into learning about what actually works",
-              "It proves whether you are disciplined enough",
-              "It eliminates the need for experimentation",
-              "It matters only after perfect days"
+              "It turns success and failure into learning about what actually works.",
+              "It proves whether you are disciplined enough.",
+              "It eliminates the need for experimentation.",
+              "It matters only after perfect days."
             ],
             "correctIndex": 0
           }
@@ -2332,7 +2332,7 @@
           "contexts": [
             "personal"
           ],
-          "scenario": "Maya wakes up and instantly start checking messages, news, and social apps, and before long the first hour of the day belongs to whatever reached Maya first. By the time Maya tries to focus on something meaningful, Maya's attention already feels scattered.",
+          "scenario": "Maya wakes up and instantly start checking messages, news, and social apps, and before long the first hour of the day belongs to whatever reached Maya first. By the time Maya tries to focus on something meaningful, their attention already feels scattered.",
           "whatToDo": [
             "Choose a highlight before bed and create a morning setup that delays the phone long enough to begin with intention. Make the first action of the day support your priority instead of feeding the default pull of infinite content."
           ],
@@ -2348,7 +2348,7 @@
           "whatToDo": [
             "Use the highlight idea to give the project a clear place in the day and make a specific plan for when the work will happen. Reduce the distractions most likely to interrupt that block before the work begins."
           ],
-          "whyItMatters": "Important personal work often fails because it is never protected with the same seriousness as other obligations. This example helps readers connect the framework to projects they genuinely care about."
+          "whyItMatters": "Important personal work often fails because it is never protected with the same seriousness as other obligations. This example helps readers connect the framework to projects they genuinely care about. This scenario is directly connected to reflect and adjust daily."
         },
         {
           "exampleId": "ch05-ex03",
@@ -2360,7 +2360,7 @@
           "whatToDo": [
             "Pick a single academic highlight for the day and define what completed progress looks like before you begin. Then shape your environment so your easiest next action supports that one priority instead of every possible task at once."
           ],
-          "whyItMatters": "Students often confuse a full day with a meaningful day. This example shows how choosing a highlight can turn vague busyness into visible progress."
+          "whyItMatters": "Students often confuse a full day with a meaningful day. This example shows how choosing a highlight can turn vague busyness into visible progress. This scenario is directly connected to reflect and adjust daily."
         },
         {
           "exampleId": "ch05-ex04",
@@ -2372,7 +2372,7 @@
           "whatToDo": [
             "Separate communication time from focus time and protect at least one window where the project gets full attention. Use the laser principle to reduce the most common interruptions before they happen instead of fighting them one by one."
           ],
-          "whyItMatters": "School work increasingly happens in environments built for quick coordination, not deep thought. This example helps readers see why focus must be intentionally defended when collaboration is always on."
+          "whyItMatters": "School work increasingly happens in environments built for quick coordination, not deep thought. This example helps readers see why focus must be intentionally defended when collaboration is always on. This scenario is directly connected to reflect and adjust daily."
         },
         {
           "exampleId": "ch05-ex05",
@@ -2392,7 +2392,7 @@
           "contexts": [
             "work"
           ],
-          "scenario": "Jordan plans to finish important work after the urgent tasks are done, but by late afternoon Jordan's energy is low and Jordan's attention is weak. The day may have been full, but Jordan's best thinking capacity was spent somewhere else.",
+          "scenario": "Jordan plans to finish important work after the urgent tasks are done, but by late afternoon their energy is low and their attention is weak. The day may have been full, but their best thinking capacity was spent somewhere else.",
           "whatToDo": [
             "Treat energy as part of time design by placing demanding work earlier or by supporting focus through breaks, movement, and better pacing. Use reflection to notice when your attention is strongest and let that shape future scheduling."
           ],
@@ -2404,111 +2404,111 @@
         "questions": [
           {
             "questionId": "ch05-h-q01",
-            "prompt": "Which option shows why this principle matters: better days come from deliberately shaping attention, energy, and priorities?",
+            "prompt": "You are making a real-world decision tied to \"Reflect And Adjust Daily\". Which option is the strongest next move?",
             "choices": [
-              "Better days come from adding more tasks efficiently",
-              "Better days come from deliberately shaping attention, energy, and priorities",
-              "Motivation is the only real productivity tool",
-              "Schedules matter less than flexibility in every case"
+              "Better days come from adding more tasks efficiently.",
+              "Better days come from deliberately shaping attention, energy, and priorities.",
+              "Motivation is the only real productivity tool.",
+              "Schedules matter less than flexibility in every case."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch05-h-q02",
-            "prompt": "Which option shows why this principle matters: because it gives the day a clear center instead of letting reactivity define it?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Reflect And Adjust Daily\" into practice?",
             "choices": [
-              "Because it gives the day a clear center instead of letting reactivity define it",
-              "Because all other tasks should be ignored completely",
-              "Because one task is always enough for any day",
-              "Because urgency is always the best guide"
+              "Because it gives the day a clear center instead of letting reactivity define it.",
+              "Because all other tasks should be ignored completely.",
+              "Because one task is always enough for any day.",
+              "Because urgency is always the best guide."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch05-h-q03",
-            "prompt": "Which option shows why this principle matters: to reduce attention loss by redesigning distractions before they take over?",
+            "prompt": "When pressure rises, which response best reflects \"Reflect And Adjust Daily\"?",
             "choices": [
-              "To increase multitasking capacity",
-              "To reduce attention loss by redesigning distractions before they take over",
-              "To make every tool available at all times",
-              "To avoid any planning"
+              "To increase multitasking capacity.",
+              "To reduce attention loss by redesigning distractions before they take over.",
+              "To make every tool available at all times.",
+              "To avoid any planning."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch05-h-q04",
-            "prompt": "Which option shows why this principle matters: because attention works differently depending on rest, movement, and physiology?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Reflect And Adjust Daily\"?",
             "choices": [
-              "Because time and focus are unaffected by physical state",
-              "Because attention works differently depending on rest, movement, and physiology",
-              "Because energy matters only in athletics",
-              "Because energy replaces the need for tactics"
+              "Because time and focus are unaffected by physical state.",
+              "Because attention works differently depending on rest, movement, and physiology.",
+              "Because energy matters only in athletics.",
+              "Because energy replaces the need for tactics."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch05-h-q05",
-            "prompt": "Which option shows why this principle matters: it turns success and failure into learning about what actually works?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Reflect And Adjust Daily\"?",
             "choices": [
-              "It turns success and failure into learning about what actually works",
-              "It proves whether you are disciplined enough",
-              "It eliminates the need for experimentation",
-              "It matters only after perfect days"
+              "It turns success and failure into learning about what actually works.",
+              "It proves whether you are disciplined enough.",
+              "It eliminates the need for experimentation.",
+              "It matters only after perfect days."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch05-h-q06",
-            "prompt": "Which option shows why this principle matters: as powerful forces that shape behavior unless deliberately redesigned?",
+            "prompt": "You are making a real-world decision tied to \"Reflect And Adjust Daily\". Which option is the strongest next move?",
             "choices": [
-              "As neutral background conditions",
-              "As powerful forces that shape behavior unless deliberately redesigned",
-              "As irrelevant once a goal is chosen",
-              "As helpful for everyone equally"
+              "As neutral background conditions.",
+              "As powerful forces that shape behavior unless deliberately redesigned.",
+              "As irrelevant once a goal is chosen.",
+              "As helpful for everyone equally."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch05-h-q07",
-            "prompt": "Which option shows why this principle matters: a culture of endless reactivity and attention capture?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Reflect And Adjust Daily\" into practice?",
             "choices": [
-              "A culture of endless reactivity and attention capture",
-              "A shortage of apps and tools",
-              "A lack of goals among ambitious people",
-              "A refusal to work hard"
+              "A culture of endless reactivity and attention capture.",
+              "A shortage of apps and tools.",
+              "A lack of goals among ambitious people.",
+              "A refusal to work hard."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch05-h-q08",
-            "prompt": "Which option shows why this principle matters: because small design changes are easier to repeat and test in real life?",
+            "prompt": "When pressure rises, which response best reflects \"Reflect And Adjust Daily\"?",
             "choices": [
-              "Because small design changes are easier to repeat and test in real life",
-              "Because large goals are always bad",
-              "Because tactics replace values",
-              "Because habits cannot change quickly"
+              "Because small design changes are easier to repeat and test in real life.",
+              "Because large goals are always bad.",
+              "Because tactics replace values.",
+              "Because habits cannot change quickly."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch05-h-q09",
-            "prompt": "Which option shows why this principle matters: treat each day as an experiment in designing better defaults?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Reflect And Adjust Daily\"?",
             "choices": [
-              "Treat each day as an experiment in designing better defaults",
-              "Treat each day as a test of self worth",
-              "Keep every option open all the time",
-              "Wait for free time to appear naturally"
+              "Treat each day as an experiment in designing better defaults.",
+              "Treat each day as a test of self worth.",
+              "Keep every option open all the time.",
+              "Wait for free time to appear naturally."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch05-h-q10",
-            "prompt": "Which option shows why this principle matters: a way to reclaim attention for the things that matter most day by day?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Reflect And Adjust Daily\"?",
             "choices": [
-              "A way to fit more into the same rushed life",
-              "A way to reclaim attention for the things that matter most day by day",
-              "A way to eliminate all obligations",
-              "A way to avoid structure entirely"
+              "A way to fit more into the same rushed life.",
+              "A way to reclaim attention for the things that matter most day by day.",
+              "A way to eliminate all obligations.",
+              "A way to avoid structure entirely."
             ],
             "correctIndex": 1
           }
@@ -2516,56 +2516,56 @@
         "retryQuestions": [
           {
             "questionId": "ch05-h-q01-retry-01",
-            "prompt": "Which option best applies this principle to real decisions: better days come from deliberately shaping attention, energy, and priorities?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Reflect And Adjust Daily\"?",
             "choices": [
-              "Better days come from adding more tasks efficiently",
-              "Motivation is the only real productivity tool",
-              "Schedules matter less than flexibility in every case",
-              "Better days come from deliberately shaping attention, energy, and priorities"
+              "Better days come from adding more tasks efficiently.",
+              "Motivation is the only real productivity tool.",
+              "Schedules matter less than flexibility in every case.",
+              "Better days come from deliberately shaping attention, energy, and priorities."
             ],
             "correctIndex": 3
           },
           {
             "questionId": "ch05-h-q02-retry-02",
-            "prompt": "Which option best applies this principle to real decisions: because it gives the day a clear center instead of letting reactivity define it?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Reflect And Adjust Daily\" into practice?",
             "choices": [
-              "Because one task is always enough for any day",
-              "Because urgency is always the best guide",
-              "Because it gives the day a clear center instead of letting reactivity define it",
-              "Because all other tasks should be ignored completely"
+              "Because one task is always enough for any day.",
+              "Because urgency is always the best guide.",
+              "Because it gives the day a clear center instead of letting reactivity define it.",
+              "Because all other tasks should be ignored completely."
             ],
             "correctIndex": 2
           },
           {
             "questionId": "ch05-h-q03-retry-03",
-            "prompt": "Which option best applies this principle to real decisions: to reduce attention loss by redesigning distractions before they take over?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Reflect And Adjust Daily\"?",
             "choices": [
-              "To avoid any planning",
-              "To reduce attention loss by redesigning distractions before they take over",
-              "To increase multitasking capacity",
-              "To make every tool available at all times"
+              "To avoid any planning.",
+              "To reduce attention loss by redesigning distractions before they take over.",
+              "To increase multitasking capacity.",
+              "To make every tool available at all times."
             ],
             "correctIndex": 1
           },
           {
             "questionId": "ch05-h-q04-retry-04",
-            "prompt": "Which option best applies this principle to real decisions: because attention works differently depending on rest, movement, and physiology?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Reflect And Adjust Daily\"?",
             "choices": [
-              "Because attention works differently depending on rest, movement, and physiology",
-              "Because time and focus are unaffected by physical state",
-              "Because energy matters only in athletics",
-              "Because energy replaces the need for tactics"
+              "Because attention works differently depending on rest, movement, and physiology.",
+              "Because time and focus are unaffected by physical state.",
+              "Because energy matters only in athletics.",
+              "Because energy replaces the need for tactics."
             ],
             "correctIndex": 0
           },
           {
             "questionId": "ch05-h-q05-retry-05",
-            "prompt": "Which option best applies this principle to real decisions: it turns success and failure into learning about what actually works?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Reflect And Adjust Daily\" into practice?",
             "choices": [
-              "It proves whether you are disciplined enough",
-              "It eliminates the need for experimentation",
-              "It matters only after perfect days",
-              "It turns success and failure into learning about what actually works"
+              "It proves whether you are disciplined enough.",
+              "It eliminates the need for experimentation.",
+              "It matters only after perfect days.",
+              "It turns success and failure into learning about what actually works."
             ],
             "correctIndex": 3
           }

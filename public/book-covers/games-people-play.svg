@@ -1,24 +1,48 @@
-<svg width="1200" height="1800" viewBox="0 0 1200 1800" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1200" height="1800" fill="#121212"/>
-  <rect x="84" y="84" width="1032" height="1632" rx="48" fill="#18181B" stroke="#3F3F46" stroke-width="8"/>
-  <rect x="84" y="84" width="1032" height="214" rx="48" fill="#F59E0B"/>
-  <text x="600" y="194" text-anchor="middle" fill="#FFFBEB" font-family="Georgia, serif" font-size="82" letter-spacing="8">ERIC BERNE</text>
+<svg width="1200" height="1800" viewBox="0 0 1200 1800" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Games People Play cover</title>
+  <desc id="desc">Auto-generated themed cover for Games People Play by Eric Berne.</desc>
+  <defs>
+    <linearGradient id="g116034736" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2D3656"/>
+      <stop offset="100%" stop-color="#4E5E8A"/>
+    </linearGradient>
+  </defs>
 
-  <rect x="278" y="386" width="644" height="644" rx="40" fill="#0F172A" stroke="#64748B" stroke-width="6"/>
-  <rect x="338" y="446" width="524" height="524" rx="24" fill="#F8FAFC"/>
-  <rect x="338" y="446" width="262" height="262" fill="#111827"/>
-  <rect x="600" y="708" width="262" height="262" fill="#111827"/>
-  <circle cx="470" cy="578" r="62" fill="#FBBF24"/>
-  <circle cx="730" cy="838" r="62" fill="#FBBF24"/>
-  <path d="M712 560C748 520 804 512 848 542" stroke="#FCA5A5" stroke-width="16" stroke-linecap="round"/>
-  <path d="M354 826C400 782 470 780 520 818" stroke="#93C5FD" stroke-width="16" stroke-linecap="round"/>
+  <rect width="1200" height="1800" fill="url(#g116034736)"/>
 
-  <text x="600" y="1156" text-anchor="middle" fill="#F8FAFC" font-family="Georgia, serif" font-size="118" letter-spacing="6">GAMES PEOPLE</text>
-  <text x="600" y="1270" text-anchor="middle" fill="#F8FAFC" font-family="Georgia, serif" font-size="132" letter-spacing="6">PLAY</text>
-  <text x="600" y="1372" text-anchor="middle" fill="#FCD34D" font-family="Arial, sans-serif" font-size="38" letter-spacing="4">TRANSACTIONAL ANALYSIS • SCRIPTS • AUTONOMY</text>
+  <rect x="0" y="300" width="1200" height="1180" fill="#9AACD2" opacity="0.12"/>
+  <rect x="140" y="360" width="920" height="1050" rx="48" fill="#FDF8EF" opacity="0.22"/>
+  <path d="M0 560 Q300 448 600 560 T1200 560" stroke="#FDF8EF" stroke-width="22" opacity="0.24"/>
+  <path d="M0 1180 Q300 1068 600 1180 T1200 1180" stroke="#D88D57" stroke-width="16" opacity="0.22"/>
+  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F3ECE2" stroke="#C9B8A2" stroke-width="10"/>
 
-  <rect x="176" y="1424" width="848" height="202" rx="26" fill="#1F1F23" stroke="#3F3F46" stroke-width="4"/>
-  <text x="600" y="1498" text-anchor="middle" fill="#E5E7EB" font-family="Arial, sans-serif" font-size="40" letter-spacing="4">READ THE PATTERN UNDER THE TALK</text>
-  <text x="600" y="1562" text-anchor="middle" fill="#D4D4D8" font-family="Arial, sans-serif" font-size="34">A modern learning edition on repeated social games,</text>
-  <text x="600" y="1608" text-anchor="middle" fill="#D4D4D8" font-family="Arial, sans-serif" font-size="34">hidden payoffs, and what autonomy actually requires.</text>
+  <g transform="translate(419 549)">
+    <circle cx="180" cy="180" r="158" fill="#FDF8EF" opacity="0.95" stroke="#9AACD2" stroke-width="8"/>
+    <path d="M148 76 Q92 120 92 190 Q92 258 144 292 Q198 326 258 290 Q304 264 318 220 Q332 178 306 138 Q280 98 232 82 Q192 68 148 76 Z" fill="none" stroke="#232B3B" stroke-width="10" opacity="0.72"/>
+    <g stroke="#D88D57" stroke-width="6" opacity="0.88">
+      <line x1="126" y1="146" x2="188" y2="122"/>
+      <line x1="188" y1="122" x2="238" y2="156"/>
+      <line x1="188" y1="122" x2="184" y2="196"/>
+      <line x1="184" y1="196" x2="246" y2="230"/>
+      <line x1="126" y1="146" x2="128" y2="220"/>
+      <line x1="128" y1="220" x2="184" y2="196"/>
+    </g>
+    <g fill="#D88D57">
+      <circle cx="126" cy="146" r="12"/>
+      <circle cx="188" cy="122" r="12"/>
+      <circle cx="238" cy="156" r="12"/>
+      <circle cx="184" cy="196" r="12"/>
+      <circle cx="128" cy="220" r="12"/>
+      <circle cx="246" cy="230" r="12"/>
+    </g>
+  </g>
+
+  <rect x="0" y="0" width="1200" height="238" fill="#2D3656" opacity="0.93"/>
+  <rect x="0" y="1454" width="1200" height="346" fill="#4E5E8A" opacity="0.95"/>
+  <text x="600" y="136" text-anchor="middle" fill="#FDF8EF" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">ERIC BERNE</text>
+  <text x="600" y="208" text-anchor="middle" fill="#FDF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">PSYCHOLOGY</text>
+  <text x="600" y="1216" text-anchor="middle" fill="#232B3B" font-family="Georgia, 'Times New Roman', serif" font-size="92" font-weight="700" letter-spacing="2">GAMES PEOPLE PLAY</text>
+  <text x="600" y="1538" text-anchor="middle" fill="#FDF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">TRANSACTIONAL ANALYSIS  ·  RELATIONSHIPS  ·  COMMUNICATION</text>
+  <text x="600" y="1604" text-anchor="middle" fill="#FDF8EF" font-family="Georgia, serif" font-size="30">Behavior, bias, and motivation</text>
+  <text x="600" y="1668" text-anchor="middle" fill="#FDF8EF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
 </svg>

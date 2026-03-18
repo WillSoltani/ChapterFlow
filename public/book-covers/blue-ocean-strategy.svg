@@ -1,15 +1,39 @@
-<svg width="1200" height="1800" viewBox="0 0 1200 1800" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1200" height="1800" fill="#EAF0EE"/>
-  <rect width="1200" height="260" fill="#0E6A8B"/>
-  <rect y="1460" width="1200" height="340" fill="#20313C"/>
-  <rect x="120" y="340" width="960" height="980" rx="24" fill="#F9FCFB" stroke="#C3D5D2" stroke-width="10"/>
-  <path d="M220 930C320 760 420 860 520 720C620 580 720 840 820 680C900 552 960 612 1020 540V1030H220V930Z" fill="#0E6A8B"/>
-  <path d="M220 1030C310 930 420 990 520 900C620 810 730 980 830 890C900 828 960 854 1020 810V1110H220V1030Z" fill="#3AA1C0"/>
-  <circle cx="360" cy="650" r="18" fill="#D88D43"/>
-  <circle cx="600" cy="590" r="18" fill="#D88D43"/>
-  <circle cx="820" cy="520" r="18" fill="#D88D43"/>
-  <text x="600" y="132" text-anchor="middle" fill="#F9FCFB" font-family="Georgia, serif" font-size="60" letter-spacing="2">W. CHAN KIM  RENEE MAUBORGNE</text>
-  <text x="600" y="1235" text-anchor="middle" fill="#20313C" font-family="Georgia, serif" font-size="108">BLUE OCEAN</text>
-  <text x="600" y="1368" text-anchor="middle" fill="#20313C" font-family="Georgia, serif" font-size="134" font-weight="700">STRATEGY</text>
-  <text x="600" y="1568" text-anchor="middle" fill="#F9FCFB" font-family="Arial, sans-serif" font-size="32" letter-spacing="4">MARKET CREATION  DIFFERENTIATION  EXECUTION</text>
+<svg width="1200" height="1800" viewBox="0 0 1200 1800" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Blue Ocean Strategy cover</title>
+  <desc id="desc">Auto-generated themed cover for Blue Ocean Strategy by W. Chan Kim, Renee Mauborgne.</desc>
+  <defs>
+    <linearGradient id="g1864563459" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1F3C5C"/>
+      <stop offset="100%" stop-color="#345C85"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="1800" fill="url(#g1864563459)"/>
+
+  <rect x="0" y="300" width="1200" height="1180" fill="#8EB0D4" opacity="0.12"/>
+  <rect x="110" y="370" width="420" height="420" rx="42" fill="#FDF8EE" opacity="0.2"/>
+  <rect x="670" y="360" width="420" height="430" rx="42" fill="#F29B4B" opacity="0.16"/>
+  <rect x="110" y="980" width="420" height="360" rx="42" fill="#F29B4B" opacity="0.15"/>
+  <rect x="670" y="950" width="420" height="390" rx="42" fill="#FDF8EE" opacity="0.2"/>
+  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F3ECE1" stroke="#C7B8A3" stroke-width="10"/>
+
+  <g transform="translate(421 551)">
+    <path d="M198 20 C272 74 304 146 304 212 C304 284 254 332 198 364 C142 332 92 284 92 212 C92 146 124 74 198 20 Z" fill="#F29B4B" opacity="0.9"/>
+    <circle cx="198" cy="156" r="44" fill="#FDF8EE" opacity="0.95"/>
+    <path d="M176 224 L220 224 L236 320 L160 320 Z" fill="#FDF8EE" opacity="0.94"/>
+    <path d="M110 270 L58 302 L104 314 Z" fill="#8EB0D4" opacity="0.9"/>
+    <path d="M286 270 L338 302 L292 314 Z" fill="#8EB0D4" opacity="0.9"/>
+    <circle cx="72" cy="94" r="8" fill="#FDF8EE"/>
+    <circle cx="328" cy="114" r="10" fill="#FDF8EE"/>
+    <circle cx="304" cy="56" r="6" fill="#FDF8EE"/>
+  </g>
+
+  <rect x="0" y="0" width="1200" height="238" fill="#1F3C5C" opacity="0.93"/>
+  <rect x="0" y="1454" width="1200" height="346" fill="#345C85" opacity="0.95"/>
+  <text x="600" y="136" text-anchor="middle" fill="#FDF8EE" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">W. CHAN KIM, RENEE MAUBORGNE</text>
+  <text x="600" y="208" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">INNOVATION</text>
+  <text x="600" y="1216" text-anchor="middle" fill="#213244" font-family="'Trebuchet MS', Arial, sans-serif" font-size="78" font-weight="700" letter-spacing="2">BLUE OCEAN STRATEGY</text>
+  <text x="600" y="1538" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">STRATEGY  ·  INNOVATION  ·  MARKET CREATION</text>
+  <text x="600" y="1604" text-anchor="middle" fill="#FDF8EE" font-family="Georgia, serif" font-size="30">Entrepreneurship and growth</text>
+  <text x="600" y="1668" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
 </svg>

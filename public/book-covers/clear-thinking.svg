@@ -1,20 +1,48 @@
 <svg width="1200" height="1800" viewBox="0 0 1200 1800" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
   <title id="title">Clear Thinking cover</title>
-  <desc id="desc">Auto-generated modern edition cover for Clear Thinking by Shane Parrish.</desc>
-  <rect width="1200" height="1800" fill="#F3EBDD"/>
-  <rect width="1200" height="260" fill="#1D4E7A"/>
-  <rect y="1460" width="1200" height="340" fill="#1F2F38"/>
-  <rect x="120" y="340" width="960" height="980" rx="24" fill="#FBF6EE" stroke="#D0C1AB" stroke-width="10"/>
+  <desc id="desc">Auto-generated themed cover for Clear Thinking by Shane Parrish.</desc>
+  <defs>
+    <linearGradient id="g540719699" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2A3F5B"/>
+      <stop offset="100%" stop-color="#3F5F86"/>
+    </linearGradient>
+  </defs>
 
-  <circle cx="629" cy="782" r="246" fill="#1D4E7A" opacity="0.94"/>
-  <circle cx="629" cy="782" r="168" fill="#E58B3D" opacity="0.74"/>
-  <circle cx="629" cy="782" r="44" fill="#1F2F38" opacity="0.86"/>
-  <circle cx="629" cy="782" r="288" stroke="#1F2F38" stroke-width="21" opacity="0.18"/>
-  <path d="M369 802C489 692 669 686 869 798" stroke="#FBF6EE" stroke-width="16" stroke-linecap="round" opacity="0.78"/>
-  <path d="M409 898C543 802 669 800 845 908" stroke="#FBF6EE" stroke-width="12" stroke-linecap="round" opacity="0.58"/>
+  <rect width="1200" height="1800" fill="url(#g540719699)"/>
 
-  <text x="600" y="150" text-anchor="middle" fill="#FBF6EE" font-family="Georgia, serif" font-size="66" font-weight="700" letter-spacing="3">SHANE PARRISH</text>
-  <text x="600" y="1270" text-anchor="middle" fill="#1F2F38" font-family="Georgia, serif" font-size="96" font-weight="700" letter-spacing="2">CLEAR THINKING</text>
-  <text x="600" y="1568" text-anchor="middle" fill="#FBF6EE" font-family="Arial, sans-serif" font-size="34" letter-spacing="4">REASONING  JUDGMENT  SYSTEMS  PROBABILITY</text>
-  <text x="600" y="1642" text-anchor="middle" fill="#FBF6EE" font-family="Georgia, serif" font-size="30">A modern learning edition with summaries, scenarios, and quizzes</text>
+  <rect x="0" y="300" width="1200" height="1180" fill="#93B0CE" opacity="0.12"/>
+  <rect x="140" y="360" width="920" height="1050" rx="48" fill="#FDF8EE" opacity="0.22"/>
+  <path d="M0 560 Q300 454 600 560 T1200 560" stroke="#FDF8EE" stroke-width="22" opacity="0.24"/>
+  <path d="M0 1180 Q300 1074 600 1180 T1200 1180" stroke="#E4A150" stroke-width="16" opacity="0.22"/>
+  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F3ECE0" stroke="#C8B7A1" stroke-width="10"/>
+
+  <g transform="translate(410 557)">
+    <rect x="20" y="36" width="364" height="324" rx="26" fill="#FDF8EE" stroke="#93B0CE" stroke-width="8"/>
+    <g stroke="#E4A150" stroke-width="8" opacity="0.86">
+      <line x1="82" y1="92" x2="184" y2="146"/>
+      <line x1="184" y1="146" x2="286" y2="108"/>
+      <line x1="184" y1="146" x2="168" y2="248"/>
+      <line x1="168" y1="248" x2="286" y2="288"/>
+      <line x1="286" y1="108" x2="286" y2="288"/>
+      <line x1="82" y1="92" x2="90" y2="232"/>
+      <line x1="90" y1="232" x2="168" y2="248"/>
+    </g>
+    <g fill="#233244">
+      <circle cx="82" cy="92" r="14"/>
+      <circle cx="184" cy="146" r="14"/>
+      <circle cx="286" cy="108" r="14"/>
+      <circle cx="90" cy="232" r="14"/>
+      <circle cx="168" cy="248" r="14"/>
+      <circle cx="286" cy="288" r="14"/>
+    </g>
+  </g>
+
+  <rect x="0" y="0" width="1200" height="238" fill="#2A3F5B" opacity="0.93"/>
+  <rect x="0" y="1454" width="1200" height="346" fill="#3F5F86" opacity="0.95"/>
+  <text x="600" y="136" text-anchor="middle" fill="#FDF8EE" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">SHANE PARRISH</text>
+  <text x="600" y="208" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">THINKING</text>
+  <text x="600" y="1216" text-anchor="middle" fill="#233244" font-family="Georgia, 'Times New Roman', serif" font-size="92" font-weight="700" letter-spacing="2">CLEAR THINKING</text>
+  <text x="600" y="1538" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">REASONING  ·  JUDGMENT  ·  SYSTEMS</text>
+  <text x="600" y="1604" text-anchor="middle" fill="#FDF8EE" font-family="Georgia, serif" font-size="30">Mental models and judgment</text>
+  <text x="600" y="1668" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
 </svg>

@@ -1,15 +1,37 @@
-<svg width="1200" height="1800" viewBox="0 0 1200 1800" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1200" height="1800" fill="#F6E3C8"/>
-  <rect x="0" y="0" width="1200" height="230" fill="#8B2E2E"/>
-  <rect x="0" y="1440" width="1200" height="360" fill="#8B2E2E"/>
-  <rect x="110" y="310" width="980" height="980" rx="28" fill="#F0D4A9" stroke="#5C2C1A" stroke-width="12"/>
-  <circle cx="600" cy="790" r="250" fill="#D9B382" stroke="#5C2C1A" stroke-width="10"/>
-  <path d="M470 760C520 700 570 690 620 725C665 756 715 758 760 718" stroke="#5C2C1A" stroke-width="18" stroke-linecap="round"/>
-  <path d="M485 865C530 815 585 805 650 835C700 858 747 850 790 815" stroke="#5C2C1A" stroke-width="18" stroke-linecap="round"/>
-  <path d="M440 665C490 630 545 622 602 640C660 658 716 650 768 612" stroke="#5C2C1A" stroke-width="16" stroke-linecap="round"/>
-  <text x="600" y="145" text-anchor="middle" fill="#F6E3C8" font-family="Georgia, serif" font-size="76" font-weight="700">COMMUNICATION CLASSIC</text>
-  <text x="600" y="1280" text-anchor="middle" fill="#5C2C1A" font-family="Georgia, serif" font-size="122" font-weight="700">DIFFICULT</text>
-  <text x="600" y="1408" text-anchor="middle" fill="#5C2C1A" font-family="Georgia, serif" font-size="122" font-weight="700">CONVERSATIONS</text>
-  <text x="600" y="1615" text-anchor="middle" fill="#F6E3C8" font-family="Georgia, serif" font-size="72">STONE   PATTON   HEEN</text>
-  <text x="600" y="1708" text-anchor="middle" fill="#F6E3C8" font-family="Georgia, serif" font-size="36">A modern learning edition for high stakes communication</text>
+<svg width="1200" height="1800" viewBox="0 0 1200 1800" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Difficult Conversations cover</title>
+  <desc id="desc">Auto-generated themed cover for Difficult Conversations by Douglas Stone, Bruce Patton, Sheila Heen.</desc>
+  <defs>
+    <linearGradient id="g281082806" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1F3E50"/>
+      <stop offset="100%" stop-color="#396A76"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="1800" fill="url(#g281082806)"/>
+
+  <rect x="0" y="300" width="1200" height="1180" fill="#7CB0A3" opacity="0.12"/>
+  <rect x="140" y="360" width="920" height="1050" rx="48" fill="#FEF8EE" opacity="0.22"/>
+  <path d="M0 560 Q300 418 600 560 T1200 560" stroke="#FEF8EE" stroke-width="22" opacity="0.24"/>
+  <path d="M0 1180 Q300 1038 600 1180 T1200 1180" stroke="#D98540" stroke-width="16" opacity="0.22"/>
+  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F4ECE0" stroke="#CAB7A0" stroke-width="10"/>
+
+  <g transform="translate(389 566)">
+    <path d="M30 46 H270 Q304 46 304 80 V188 Q304 222 270 222 H150 L110 260 L110 222 H30 Q-4 222 -4 188 V80 Q-4 46 30 46 Z" fill="#FEF8EE" stroke="#7CB0A3" stroke-width="8"/>
+    <path d="M194 142 H366 Q398 142 398 174 V280 Q398 312 366 312 H280 L244 346 V312 H194 Q162 312 162 280 V174 Q162 142 194 142 Z" fill="#D98540" opacity="0.86"/>
+    <circle cx="86" cy="132" r="12" fill="#1E2E33"/>
+    <circle cx="148" cy="132" r="12" fill="#1E2E33"/>
+    <circle cx="210" cy="132" r="12" fill="#1E2E33"/>
+    <rect x="214" y="222" width="132" height="14" rx="7" fill="#FEF8EE" opacity="0.92"/>
+    <rect x="214" y="252" width="102" height="14" rx="7" fill="#FEF8EE" opacity="0.92"/>
+  </g>
+
+  <rect x="0" y="0" width="1200" height="238" fill="#1F3E50" opacity="0.93"/>
+  <rect x="0" y="1454" width="1200" height="346" fill="#396A76" opacity="0.95"/>
+  <text x="600" y="136" text-anchor="middle" fill="#FEF8EE" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">DOUGLAS STONE, BRUCE PATTON, SHEILA HEEN</text>
+  <text x="600" y="208" text-anchor="middle" fill="#FEF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">COMMUNICATION</text>
+  <text x="600" y="1216" text-anchor="middle" fill="#1E2E33" font-family="'Trebuchet MS', Arial, sans-serif" font-size="78" font-weight="700" letter-spacing="2">DIFFICULT CONVERSATIONS</text>
+  <text x="600" y="1538" text-anchor="middle" fill="#FEF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">FEEDBACK  ·  LISTENING  ·  IDENTITY</text>
+  <text x="600" y="1604" text-anchor="middle" fill="#FEF8EE" font-family="Georgia, serif" font-size="30">Influence, dialogue, and trust</text>
+  <text x="600" y="1668" text-anchor="middle" fill="#FEF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
 </svg>

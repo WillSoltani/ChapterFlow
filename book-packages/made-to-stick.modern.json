@@ -367,7 +367,7 @@
         "questions": [
           {
             "questionId": "ch01-h-q01",
-            "prompt": "Which option best captures the main principle in \"Simple Ideas Travel Farther\"?",
+            "prompt": "You are making a real-world decision tied to \"Simple Ideas Travel Farther\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "Making an idea simple enough to travel without making it empty creates clearer judgment.",
@@ -378,7 +378,7 @@
           },
           {
             "questionId": "ch01-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Simple Ideas Travel Farther\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Simple Ideas Travel Farther\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "More urgency usually fixes the problem without changing the process.",
@@ -389,7 +389,7 @@
           },
           {
             "questionId": "ch01-h-q03",
-            "prompt": "Which option best explains why \"Simple Ideas Travel Farther\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Simple Ideas Travel Farther\"?",
             "choices": [
               "More urgency usually fixes the problem without changing the process.",
               "Visible effort matters more than clear feedback.",
@@ -400,7 +400,7 @@
           },
           {
             "questionId": "ch01-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Simple Ideas Travel Farther\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Simple Ideas Travel Farther\"?",
             "choices": [
               "A common mistake is trying to say everything important at once.",
               "Visible effort matters more than clear feedback.",
@@ -411,7 +411,7 @@
           },
           {
             "questionId": "ch01-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Simple Ideas Travel Farther\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Simple Ideas Travel Farther\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The pattern becomes easier to see when people remember pieces but cannot repeat the core point.",
@@ -422,7 +422,7 @@
           },
           {
             "questionId": "ch01-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Simple Ideas Travel Farther\"?",
+            "prompt": "You are making a real-world decision tied to \"Simple Ideas Travel Farther\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is trying to say everything important at once.",
@@ -433,7 +433,7 @@
           },
           {
             "questionId": "ch01-h-q07",
-            "prompt": "Which option connects \"Simple Ideas Travel Farther\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Simple Ideas Travel Farther\" into practice?",
             "choices": [
               "The right move is trying to say everything important at once.",
               "It is better to react first and interpret later.",
@@ -444,7 +444,7 @@
           },
           {
             "questionId": "ch01-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Simple Ideas Travel Farther\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Simple Ideas Travel Farther\"?",
             "choices": [
               "Small defaults and routines often decide whether the principle survives pressure.",
               "It is better to react first and interpret later.",
@@ -455,7 +455,7 @@
           },
           {
             "questionId": "ch01-h-q09",
-            "prompt": "Which option best explains why \"Simple Ideas Travel Farther\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Simple Ideas Travel Farther\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "For students and early career readers, the principle matters because early habits shape trust, options, and learning speed.",
@@ -466,7 +466,7 @@
           },
           {
             "questionId": "ch01-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Simple Ideas Travel Farther\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Simple Ideas Travel Farther\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "Fast certainty matters more than checking assumptions.",
@@ -479,7 +479,7 @@
         "retryQuestions": [
           {
             "questionId": "ch01-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Simple Ideas Travel Farther\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Simple Ideas Travel Farther\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -490,7 +490,7 @@
           },
           {
             "questionId": "ch01-h-q02-retry-02",
-            "prompt": "Which option best connects \"Simple Ideas Travel Farther\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Simple Ideas Travel Farther\" into practice?",
             "choices": [
               "The long game improves when people treat evidence, reversibility, and tradeoffs as part of the same judgment process.",
               "The cleanest story is usually the most accurate one.",
@@ -501,7 +501,7 @@
           },
           {
             "questionId": "ch01-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Simple Ideas Travel Farther\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Simple Ideas Travel Farther\"?",
             "choices": [
               "The right move is trying to say everything important at once.",
               "There is also an ethical dimension because clearer thinking should reduce avoidable harm instead of rewarding cleverness for its own sake.",
@@ -512,7 +512,7 @@
           },
           {
             "questionId": "ch01-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Simple Ideas Travel Farther\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Simple Ideas Travel Farther\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -523,7 +523,7 @@
           },
           {
             "questionId": "ch01-h-q05-retry-05",
-            "prompt": "Which option best applies \"Simple Ideas Travel Farther\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Simple Ideas Travel Farther\" into practice?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -876,7 +876,7 @@
         "questions": [
           {
             "questionId": "ch02-h-q01",
-            "prompt": "Which option best captures the main principle in \"Unexpectedness Creates Attention\"?",
+            "prompt": "You are making a real-world decision tied to \"Unexpectedness Creates Attention\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "The first reasonable answer is usually enough once pressure rises.",
@@ -887,7 +887,7 @@
           },
           {
             "questionId": "ch02-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Unexpectedness Creates Attention\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Unexpectedness Creates Attention\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "More urgency usually fixes the problem without changing the process.",
@@ -898,7 +898,7 @@
           },
           {
             "questionId": "ch02-h-q03",
-            "prompt": "Which option best explains why \"Unexpectedness Creates Attention\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Unexpectedness Creates Attention\"?",
             "choices": [
               "This matters because attention matters because no idea sticks if it never truly lands.",
               "More urgency usually fixes the problem without changing the process.",
@@ -909,7 +909,7 @@
           },
           {
             "questionId": "ch02-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Unexpectedness Creates Attention\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Unexpectedness Creates Attention\"?",
             "choices": [
               "Visible effort matters more than clear feedback.",
               "A common mistake is delivering a message in a fully predictable way.",
@@ -920,7 +920,7 @@
           },
           {
             "questionId": "ch02-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Unexpectedness Creates Attention\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Unexpectedness Creates Attention\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -931,7 +931,7 @@
           },
           {
             "questionId": "ch02-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Unexpectedness Creates Attention\"?",
+            "prompt": "You are making a real-world decision tied to \"Unexpectedness Creates Attention\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is delivering a message in a fully predictable way.",
@@ -942,7 +942,7 @@
           },
           {
             "questionId": "ch02-h-q07",
-            "prompt": "Which option connects \"Unexpectedness Creates Attention\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Unexpectedness Creates Attention\" into practice?",
             "choices": [
               "The idea gets stronger when people connect the immediate choice to incentives, feedback, and downstream effects.",
               "The right move is delivering a message in a fully predictable way.",
@@ -953,7 +953,7 @@
           },
           {
             "questionId": "ch02-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Unexpectedness Creates Attention\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Unexpectedness Creates Attention\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Small defaults and routines often decide whether the principle survives pressure.",
@@ -964,7 +964,7 @@
           },
           {
             "questionId": "ch02-h-q09",
-            "prompt": "Which option best explains why \"Unexpectedness Creates Attention\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Unexpectedness Creates Attention\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -975,7 +975,7 @@
           },
           {
             "questionId": "ch02-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Unexpectedness Creates Attention\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Unexpectedness Creates Attention\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "Fast certainty matters more than checking assumptions.",
@@ -988,7 +988,7 @@
         "retryQuestions": [
           {
             "questionId": "ch02-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Unexpectedness Creates Attention\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Unexpectedness Creates Attention\"?",
             "choices": [
               "A deeper reading is that hidden assumptions and time horizons usually shape the result before the final decision is visible.",
               "Short term relief is a reliable guide to good judgment.",
@@ -999,7 +999,7 @@
           },
           {
             "questionId": "ch02-h-q02-retry-02",
-            "prompt": "Which option best connects \"Unexpectedness Creates Attention\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Unexpectedness Creates Attention\" into practice?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The long game improves when people treat evidence, reversibility, and tradeoffs as part of the same judgment process.",
@@ -1010,7 +1010,7 @@
           },
           {
             "questionId": "ch02-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Unexpectedness Creates Attention\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Unexpectedness Creates Attention\"?",
             "choices": [
               "The right move is delivering a message in a fully predictable way.",
               "It is better to react first and interpret later.",
@@ -1021,7 +1021,7 @@
           },
           {
             "questionId": "ch02-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Unexpectedness Creates Attention\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Unexpectedness Creates Attention\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -1032,7 +1032,7 @@
           },
           {
             "questionId": "ch02-h-q05-retry-05",
-            "prompt": "Which option best applies \"Unexpectedness Creates Attention\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Unexpectedness Creates Attention\" into practice?",
             "choices": [
               "A practical starting move is to open with a real surprise, pose a question the audience needs resolved, and break the routine expectation.",
               "Structure matters only after formal authority is secured.",
@@ -1385,7 +1385,7 @@
         "questions": [
           {
             "questionId": "ch03-h-q01",
-            "prompt": "Which option best captures the main principle in \"Concrete Language Improves Memory\"?",
+            "prompt": "You are making a real-world decision tied to \"Concrete Language Improves Memory\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "The first reasonable answer is usually enough once pressure rises.",
@@ -1396,7 +1396,7 @@
           },
           {
             "questionId": "ch03-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Concrete Language Improves Memory\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Concrete Language Improves Memory\" into practice?",
             "choices": [
               "People remember what they can imagine and test.",
               "The first reasonable answer is usually enough once pressure rises.",
@@ -1407,7 +1407,7 @@
           },
           {
             "questionId": "ch03-h-q03",
-            "prompt": "Which option best explains why \"Concrete Language Improves Memory\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Concrete Language Improves Memory\"?",
             "choices": [
               "More urgency usually fixes the problem without changing the process.",
               "This matters because abstractions fade faster when they never touch sensory or practical reality.",
@@ -1418,7 +1418,7 @@
           },
           {
             "questionId": "ch03-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Concrete Language Improves Memory\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Concrete Language Improves Memory\"?",
             "choices": [
               "Visible effort matters more than clear feedback.",
               "Short term relief is a reliable guide to good judgment.",
@@ -1429,7 +1429,7 @@
           },
           {
             "questionId": "ch03-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Concrete Language Improves Memory\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Concrete Language Improves Memory\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -1440,7 +1440,7 @@
           },
           {
             "questionId": "ch03-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Concrete Language Improves Memory\"?",
+            "prompt": "You are making a real-world decision tied to \"Concrete Language Improves Memory\". Which option is the strongest next move?",
             "choices": [
               "A practical starting move is to turn abstraction into a concrete example, use language people can picture, and tie the idea to a real situation.",
               "The cleanest story is usually the most accurate one.",
@@ -1451,7 +1451,7 @@
           },
           {
             "questionId": "ch03-h-q07",
-            "prompt": "Which option connects \"Concrete Language Improves Memory\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Concrete Language Improves Memory\" into practice?",
             "choices": [
               "The right move is hiding behind abstract language that sounds smart but cannot be pictured.",
               "The idea gets stronger when people connect the immediate choice to incentives, feedback, and downstream effects.",
@@ -1462,7 +1462,7 @@
           },
           {
             "questionId": "ch03-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Concrete Language Improves Memory\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Concrete Language Improves Memory\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -1473,7 +1473,7 @@
           },
           {
             "questionId": "ch03-h-q09",
-            "prompt": "Which option best explains why \"Concrete Language Improves Memory\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Concrete Language Improves Memory\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -1484,7 +1484,7 @@
           },
           {
             "questionId": "ch03-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Concrete Language Improves Memory\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Concrete Language Improves Memory\"?",
             "choices": [
               "The real challenge is to stay deliberate without becoming rigid, reactive, or self defeating.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -1497,7 +1497,7 @@
         "retryQuestions": [
           {
             "questionId": "ch03-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Concrete Language Improves Memory\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Concrete Language Improves Memory\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "A deeper reading is that hidden assumptions and time horizons usually shape the result before the final decision is visible.",
@@ -1508,7 +1508,7 @@
           },
           {
             "questionId": "ch03-h-q02-retry-02",
-            "prompt": "Which option best connects \"Concrete Language Improves Memory\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Concrete Language Improves Memory\" into practice?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is hiding behind abstract language that sounds smart but cannot be pictured.",
@@ -1519,7 +1519,7 @@
           },
           {
             "questionId": "ch03-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Concrete Language Improves Memory\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Concrete Language Improves Memory\"?",
             "choices": [
               "The right move is hiding behind abstract language that sounds smart but cannot be pictured.",
               "It is better to react first and interpret later.",
@@ -1530,7 +1530,7 @@
           },
           {
             "questionId": "ch03-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Concrete Language Improves Memory\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Concrete Language Improves Memory\"?",
             "choices": [
               "The chapter is most useful when it strengthens calibration, restraint, and deliberate follow through at the same time.",
               "It is better to react first and interpret later.",
@@ -1541,7 +1541,7 @@
           },
           {
             "questionId": "ch03-h-q05-retry-05",
-            "prompt": "Which option best applies \"Concrete Language Improves Memory\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Concrete Language Improves Memory\" into practice?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "A practical starting move is to turn abstraction into a concrete example, use language people can picture, and tie the idea to a real situation.",
@@ -1894,7 +1894,7 @@
         "questions": [
           {
             "questionId": "ch04-h-q01",
-            "prompt": "Which option best captures the main principle in \"Credibility Helps the Idea Survive Skepticism\"?",
+            "prompt": "You are making a real-world decision tied to \"Credibility Helps the Idea Survive Skepticism\". Which option is the strongest next move?",
             "choices": [
               "Building credibility so the message can survive doubt and resistance creates clearer judgment.",
               "Fast certainty matters more than checking assumptions.",
@@ -1905,7 +1905,7 @@
           },
           {
             "questionId": "ch04-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Credibility Helps the Idea Survive Skepticism\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Credibility Helps the Idea Survive Skepticism\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "Trust rises when evidence, specificity, and believable sourcing support the idea.",
@@ -1916,7 +1916,7 @@
           },
           {
             "questionId": "ch04-h-q03",
-            "prompt": "Which option best explains why \"Credibility Helps the Idea Survive Skepticism\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Credibility Helps the Idea Survive Skepticism\"?",
             "choices": [
               "More urgency usually fixes the problem without changing the process.",
               "Visible effort matters more than clear feedback.",
@@ -1927,7 +1927,7 @@
           },
           {
             "questionId": "ch04-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Credibility Helps the Idea Survive Skepticism\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Credibility Helps the Idea Survive Skepticism\"?",
             "choices": [
               "Visible effort matters more than clear feedback.",
               "Short term relief is a reliable guide to good judgment.",
@@ -1938,7 +1938,7 @@
           },
           {
             "questionId": "ch04-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Credibility Helps the Idea Survive Skepticism\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Credibility Helps the Idea Survive Skepticism\"?",
             "choices": [
               "The pattern becomes easier to see when the point sounds good but nobody can tell why they should trust it.",
               "Short term relief is a reliable guide to good judgment.",
@@ -1949,7 +1949,7 @@
           },
           {
             "questionId": "ch04-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Credibility Helps the Idea Survive Skepticism\"?",
+            "prompt": "You are making a real-world decision tied to \"Credibility Helps the Idea Survive Skepticism\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "A practical starting move is to add a believable proof point, use specifics not vague claims, and show the evidence in plain language.",
@@ -1960,7 +1960,7 @@
           },
           {
             "questionId": "ch04-h-q07",
-            "prompt": "Which option connects \"Credibility Helps the Idea Survive Skepticism\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Credibility Helps the Idea Survive Skepticism\" into practice?",
             "choices": [
               "The right move is relying on assertion when the audience needs proof or demonstration.",
               "It is better to react first and interpret later.",
@@ -1971,7 +1971,7 @@
           },
           {
             "questionId": "ch04-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Credibility Helps the Idea Survive Skepticism\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Credibility Helps the Idea Survive Skepticism\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -1982,7 +1982,7 @@
           },
           {
             "questionId": "ch04-h-q09",
-            "prompt": "Which option best explains why \"Credibility Helps the Idea Survive Skepticism\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Credibility Helps the Idea Survive Skepticism\"?",
             "choices": [
               "For students and early career readers, the principle matters because early habits shape trust, options, and learning speed.",
               "Structure matters only after formal authority is secured.",
@@ -1993,7 +1993,7 @@
           },
           {
             "questionId": "ch04-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Credibility Helps the Idea Survive Skepticism\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Credibility Helps the Idea Survive Skepticism\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "The real challenge is to stay deliberate without becoming rigid, reactive, or self defeating.",
@@ -2006,7 +2006,7 @@
         "retryQuestions": [
           {
             "questionId": "ch04-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Credibility Helps the Idea Survive Skepticism\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Credibility Helps the Idea Survive Skepticism\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -2017,7 +2017,7 @@
           },
           {
             "questionId": "ch04-h-q02-retry-02",
-            "prompt": "Which option best connects \"Credibility Helps the Idea Survive Skepticism\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Credibility Helps the Idea Survive Skepticism\" into practice?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is relying on assertion when the audience needs proof or demonstration.",
@@ -2028,7 +2028,7 @@
           },
           {
             "questionId": "ch04-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Credibility Helps the Idea Survive Skepticism\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Credibility Helps the Idea Survive Skepticism\"?",
             "choices": [
               "There is also an ethical dimension because clearer thinking should reduce avoidable harm instead of rewarding cleverness for its own sake.",
               "The right move is relying on assertion when the audience needs proof or demonstration.",
@@ -2039,7 +2039,7 @@
           },
           {
             "questionId": "ch04-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Credibility Helps the Idea Survive Skepticism\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Credibility Helps the Idea Survive Skepticism\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "The chapter is most useful when it strengthens calibration, restraint, and deliberate follow through at the same time.",
@@ -2050,7 +2050,7 @@
           },
           {
             "questionId": "ch04-h-q05-retry-05",
-            "prompt": "Which option best applies \"Credibility Helps the Idea Survive Skepticism\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Credibility Helps the Idea Survive Skepticism\" into practice?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -2403,7 +2403,7 @@
         "questions": [
           {
             "questionId": "ch05-h-q01",
-            "prompt": "Which option best captures the main principle in \"Emotion Gives the Idea Weight\"?",
+            "prompt": "You are making a real-world decision tied to \"Emotion Gives the Idea Weight\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "Using emotion so the message matters instead of merely being understood creates clearer judgment.",
@@ -2414,7 +2414,7 @@
           },
           {
             "questionId": "ch05-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Emotion Gives the Idea Weight\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Emotion Gives the Idea Weight\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "More urgency usually fixes the problem without changing the process.",
@@ -2425,7 +2425,7 @@
           },
           {
             "questionId": "ch05-h-q03",
-            "prompt": "Which option best explains why \"Emotion Gives the Idea Weight\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Emotion Gives the Idea Weight\"?",
             "choices": [
               "More urgency usually fixes the problem without changing the process.",
               "Visible effort matters more than clear feedback.",
@@ -2436,7 +2436,7 @@
           },
           {
             "questionId": "ch05-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Emotion Gives the Idea Weight\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Emotion Gives the Idea Weight\"?",
             "choices": [
               "A common mistake is communicating only at the level of facts while the audience has no felt reason to move.",
               "Visible effort matters more than clear feedback.",
@@ -2447,7 +2447,7 @@
           },
           {
             "questionId": "ch05-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Emotion Gives the Idea Weight\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Emotion Gives the Idea Weight\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The pattern becomes easier to see when the audience agrees in theory but does nothing afterward.",
@@ -2458,7 +2458,7 @@
           },
           {
             "questionId": "ch05-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Emotion Gives the Idea Weight\"?",
+            "prompt": "You are making a real-world decision tied to \"Emotion Gives the Idea Weight\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is communicating only at the level of facts while the audience has no felt reason to move.",
@@ -2469,7 +2469,7 @@
           },
           {
             "questionId": "ch05-h-q07",
-            "prompt": "Which option connects \"Emotion Gives the Idea Weight\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Emotion Gives the Idea Weight\" into practice?",
             "choices": [
               "The right move is communicating only at the level of facts while the audience has no felt reason to move.",
               "It is better to react first and interpret later.",
@@ -2480,7 +2480,7 @@
           },
           {
             "questionId": "ch05-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Emotion Gives the Idea Weight\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Emotion Gives the Idea Weight\"?",
             "choices": [
               "Small defaults and routines often decide whether the principle survives pressure.",
               "It is better to react first and interpret later.",
@@ -2491,7 +2491,7 @@
           },
           {
             "questionId": "ch05-h-q09",
-            "prompt": "Which option best explains why \"Emotion Gives the Idea Weight\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Emotion Gives the Idea Weight\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "For students and early career readers, the principle matters because early habits shape trust, options, and learning speed.",
@@ -2502,7 +2502,7 @@
           },
           {
             "questionId": "ch05-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Emotion Gives the Idea Weight\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Emotion Gives the Idea Weight\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "Fast certainty matters more than checking assumptions.",
@@ -2515,7 +2515,7 @@
         "retryQuestions": [
           {
             "questionId": "ch05-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Emotion Gives the Idea Weight\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Emotion Gives the Idea Weight\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -2526,7 +2526,7 @@
           },
           {
             "questionId": "ch05-h-q02-retry-02",
-            "prompt": "Which option best connects \"Emotion Gives the Idea Weight\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Emotion Gives the Idea Weight\" into practice?",
             "choices": [
               "The long game improves when people treat evidence, reversibility, and tradeoffs as part of the same judgment process.",
               "The cleanest story is usually the most accurate one.",
@@ -2537,7 +2537,7 @@
           },
           {
             "questionId": "ch05-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Emotion Gives the Idea Weight\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Emotion Gives the Idea Weight\"?",
             "choices": [
               "The right move is communicating only at the level of facts while the audience has no felt reason to move.",
               "There is also an ethical dimension because clearer thinking should reduce avoidable harm instead of rewarding cleverness for its own sake.",
@@ -2548,7 +2548,7 @@
           },
           {
             "questionId": "ch05-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Emotion Gives the Idea Weight\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Emotion Gives the Idea Weight\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -2559,7 +2559,7 @@
           },
           {
             "questionId": "ch05-h-q05-retry-05",
-            "prompt": "Which option best applies \"Emotion Gives the Idea Weight\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Emotion Gives the Idea Weight\" into practice?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -2840,7 +2840,7 @@
           "contexts": [
             "personal"
           ],
-          "scenario": "Maya is dealing with using stories to help people remember, simulate, and act in a personal setting. Stories work because they let listeners rehearse what action looks like. Trouble starts when treating story as decoration instead of as a carrier of action. The situation becomes clearer when the lesson is understood abstractly but never translated into behavior.",
+          "scenario": "Maya is dealing with using stories to help people remember, simulate, and acts in a personal setting. Stories work because they let listeners rehearse what action looks like. Trouble starts when treating story as decoration instead of as a carrier of action. The situation becomes clearer when the lesson is understood abstractly but never translated into behavior.",
           "whatToDo": [
             "Start by use a story that shows the idea in motion and make the conflict and choice clear, then let the story carry the action."
           ],
@@ -2852,7 +2852,7 @@
           "contexts": [
             "personal"
           ],
-          "scenario": "Jordan is dealing with using stories to help people remember, simulate, and act in a personal setting. Stories work because they let listeners rehearse what action looks like. Trouble starts when treating story as decoration instead of as a carrier of action. The situation becomes clearer when the lesson is understood abstractly but never translated into behavior.",
+          "scenario": "Jordan is dealing with using stories to help people remember, simulate, and acts in a personal setting. Stories work because they let listeners rehearse what action looks like. Trouble starts when treating story as decoration instead of as a carrier of action. The situation becomes clearer when the lesson is understood abstractly but never translated into behavior.",
           "whatToDo": [
             "Start by make the conflict and choice clear and let the story carry the action, then review whether people can retell and use it."
           ],
@@ -2864,7 +2864,7 @@
           "contexts": [
             "school"
           ],
-          "scenario": "Alex is dealing with using stories to help people remember, simulate, and act in a school setting. Stories work because they let listeners rehearse what action looks like. Trouble starts when treating story as decoration instead of as a carrier of action. The situation becomes clearer when the lesson is understood abstractly but never translated into behavior.",
+          "scenario": "Alex is dealing with using stories to help people remember, simulate, and acts in a school setting. Stories work because they let listeners rehearse what action looks like. Trouble starts when treating story as decoration instead of as a carrier of action. The situation becomes clearer when the lesson is understood abstractly but never translated into behavior.",
           "whatToDo": [
             "Start by let the story carry the action and review whether people can retell and use it, then define the real constraint before reacting."
           ],
@@ -2876,7 +2876,7 @@
           "contexts": [
             "school"
           ],
-          "scenario": "Priya is dealing with using stories to help people remember, simulate, and act in a school setting. Stories work because they let listeners rehearse what action looks like. Trouble starts when treating story as decoration instead of as a carrier of action. The situation becomes clearer when the lesson is understood abstractly but never translated into behavior.",
+          "scenario": "Priya is dealing with using stories to help people remember, simulate, and acts in a school setting. Stories work because they let listeners rehearse what action looks like. Trouble starts when treating story as decoration instead of as a carrier of action. The situation becomes clearer when the lesson is understood abstractly but never translated into behavior.",
           "whatToDo": [
             "Start by review whether people can retell and use it and define the real constraint before reacting, then write down the assumption you are testing."
           ],
@@ -2888,7 +2888,7 @@
           "contexts": [
             "work"
           ],
-          "scenario": "Noah is dealing with using stories to help people remember, simulate, and act in a work setting. Stories work because they let listeners rehearse what action looks like. Trouble starts when treating story as decoration instead of as a carrier of action. The situation becomes clearer when the lesson is understood abstractly but never translated into behavior.",
+          "scenario": "Noah is dealing with using stories to help people remember, simulate, and acts in a work setting. Stories work because they let listeners rehearse what action looks like. Trouble starts when treating story as decoration instead of as a carrier of action. The situation becomes clearer when the lesson is understood abstractly but never translated into behavior.",
           "whatToDo": [
             "Start by use a story that shows the idea in motion and make the conflict and choice clear, then use a story that shows the idea in motion."
           ],
@@ -2900,7 +2900,7 @@
           "contexts": [
             "work"
           ],
-          "scenario": "Elena is dealing with using stories to help people remember, simulate, and act in a work setting. Stories work because they let listeners rehearse what action looks like. Trouble starts when treating story as decoration instead of as a carrier of action. The situation becomes clearer when the lesson is understood abstractly but never translated into behavior.",
+          "scenario": "Elena is dealing with using stories to help people remember, simulate, and acts in a work setting. Stories work because they let listeners rehearse what action looks like. Trouble starts when treating story as decoration instead of as a carrier of action. The situation becomes clearer when the lesson is understood abstractly but never translated into behavior.",
           "whatToDo": [
             "Start by make the conflict and choice clear and let the story carry the action, then make the conflict and choice clear."
           ],
@@ -2912,7 +2912,7 @@
         "questions": [
           {
             "questionId": "ch06-h-q01",
-            "prompt": "Which option best captures the main principle in \"Stories Turn Information Into Action\"?",
+            "prompt": "You are making a real-world decision tied to \"Stories Turn Information Into Action\". Which option is the strongest next move?",
             "choices": [
               "Fast certainty matters more than checking assumptions.",
               "The first reasonable answer is usually enough once pressure rises.",
@@ -2923,7 +2923,7 @@
           },
           {
             "questionId": "ch06-h-q02",
-            "prompt": "Which option best explains a supporting idea behind \"Stories Turn Information Into Action\"?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Stories Turn Information Into Action\" into practice?",
             "choices": [
               "The first reasonable answer is usually enough once pressure rises.",
               "More urgency usually fixes the problem without changing the process.",
@@ -2934,7 +2934,7 @@
           },
           {
             "questionId": "ch06-h-q03",
-            "prompt": "Which option best explains why \"Stories Turn Information Into Action\" matters in practice?",
+            "prompt": "When pressure rises, which response best reflects \"Stories Turn Information Into Action\"?",
             "choices": [
               "This matters because good stories carry meaning farther than instructions alone.",
               "More urgency usually fixes the problem without changing the process.",
@@ -2945,7 +2945,7 @@
           },
           {
             "questionId": "ch06-h-q04",
-            "prompt": "Which option identifies a common mistake to avoid when applying \"Stories Turn Information Into Action\"?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Stories Turn Information Into Action\"?",
             "choices": [
               "Visible effort matters more than clear feedback.",
               "A common mistake is treating story as decoration instead of as a carrier of action.",
@@ -2956,7 +2956,7 @@
           },
           {
             "questionId": "ch06-h-q05",
-            "prompt": "Which option points to a reliable signal for \"Stories Turn Information Into Action\" in real situations?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Stories Turn Information Into Action\"?",
             "choices": [
               "Short term relief is a reliable guide to good judgment.",
               "The cleanest story is usually the most accurate one.",
@@ -2967,7 +2967,7 @@
           },
           {
             "questionId": "ch06-h-q06",
-            "prompt": "Which option shows a useful response when applying \"Stories Turn Information Into Action\"?",
+            "prompt": "You are making a real-world decision tied to \"Stories Turn Information Into Action\". Which option is the strongest next move?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The right move is treating story as decoration instead of as a carrier of action.",
@@ -2978,7 +2978,7 @@
           },
           {
             "questionId": "ch06-h-q07",
-            "prompt": "Which option connects \"Stories Turn Information Into Action\" to incentives and downstream effects?",
+            "prompt": "In a relatable day-to-day scenario, which choice best puts \"Stories Turn Information Into Action\" into practice?",
             "choices": [
               "The idea gets stronger when people connect the immediate choice to incentives, feedback, and downstream effects.",
               "The right move is treating story as decoration instead of as a carrier of action.",
@@ -2989,7 +2989,7 @@
           },
           {
             "questionId": "ch06-h-q08",
-            "prompt": "Which option shows why routines matter when applying \"Stories Turn Information Into Action\" under pressure?",
+            "prompt": "When pressure rises, which response best reflects \"Stories Turn Information Into Action\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Small defaults and routines often decide whether the principle survives pressure.",
@@ -3000,7 +3000,7 @@
           },
           {
             "questionId": "ch06-h-q09",
-            "prompt": "Which option best explains why \"Stories Turn Information Into Action\" matters early in a career?",
+            "prompt": "Which option would be most effective in a realistic situation for \"Stories Turn Information Into Action\"?",
             "choices": [
               "Structure matters only after formal authority is secured.",
               "Good outcomes come mainly from intensity rather than consistency.",
@@ -3011,7 +3011,7 @@
           },
           {
             "questionId": "ch06-h-q10",
-            "prompt": "Which option describes the hardest part of applying \"Stories Turn Information Into Action\" well?",
+            "prompt": "For someone in their twenties handling real constraints, which choice best applies \"Stories Turn Information Into Action\"?",
             "choices": [
               "Good outcomes come mainly from intensity rather than consistency.",
               "Fast certainty matters more than checking assumptions.",
@@ -3024,7 +3024,7 @@
         "retryQuestions": [
           {
             "questionId": "ch06-h-q01-retry-01",
-            "prompt": "Which option reflects a deeper interpretation of \"Stories Turn Information Into Action\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Stories Turn Information Into Action\"?",
             "choices": [
               "A deeper reading is that hidden assumptions and time horizons usually shape the result before the final decision is visible.",
               "Short term relief is a reliable guide to good judgment.",
@@ -3035,7 +3035,7 @@
           },
           {
             "questionId": "ch06-h-q02-retry-02",
-            "prompt": "Which option best connects \"Stories Turn Information Into Action\" to long term tradeoffs?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Stories Turn Information Into Action\" into practice?",
             "choices": [
               "The cleanest story is usually the most accurate one.",
               "The long game improves when people treat evidence, reversibility, and tradeoffs as part of the same judgment process.",
@@ -3046,7 +3046,7 @@
           },
           {
             "questionId": "ch06-h-q03-retry-03",
-            "prompt": "Which option best captures the ethical edge of \"Stories Turn Information Into Action\"?",
+            "prompt": "In a relatable follow-up situation, which option is the strongest application of \"Stories Turn Information Into Action\"?",
             "choices": [
               "The right move is treating story as decoration instead of as a carrier of action.",
               "It is better to react first and interpret later.",
@@ -3057,7 +3057,7 @@
           },
           {
             "questionId": "ch06-h-q04-retry-04",
-            "prompt": "Which option best states the long game behind \"Stories Turn Information Into Action\"?",
+            "prompt": "After reflecting on your first attempt, which option now best applies \"Stories Turn Information Into Action\"?",
             "choices": [
               "It is better to react first and interpret later.",
               "Structure matters only after formal authority is secured.",
@@ -3068,7 +3068,7 @@
           },
           {
             "questionId": "ch06-h-q05-retry-05",
-            "prompt": "Which option best applies \"Stories Turn Information Into Action\" to a real decision?",
+            "prompt": "You get a second attempt in a realistic scenario. Which choice best puts \"Stories Turn Information Into Action\" into practice?",
             "choices": [
               "A practical starting move is to use a story that shows the idea in motion, make the conflict and choice clear, and let the story carry the action.",
               "Structure matters only after formal authority is secured.",
