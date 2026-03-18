@@ -106,7 +106,13 @@ async function loadFromSsm(key: string): Promise<string | undefined> {
   }
 
   if (lastError) {
-    throw lastError;
+    // Only propagate SSM errors when SSM is explicitly configured via SSM_PREFIX.
+    // Without a prefix, SSM is an optional fallback — credential/network failures
+    // should not crash the request.
+    if (SSM_PREFIX) throw lastError;
+    console.warn("book_ssm_fallback_skipped", {
+      message: lastError instanceof Error ? lastError.message : String(lastError),
+    });
   }
   return undefined;
 }
