@@ -24,6 +24,12 @@
     <rect x="292" y="278" width="34" height="12" rx="6" fill="#1C2B34"/>
   </g>
 
+  <g transform="translate(928 336)">
+    <circle cx="84" cy="84" r="76" fill="#FFF8EE" stroke="#D19A34" stroke-width="10"/>
+    <circle cx="84" cy="84" r="56" fill="#7AA4C4" opacity="0.68"/>
+    <text x="84" y="98" text-anchor="middle" fill="#1C2B34" font-family="'Trebuchet MS', Arial, sans-serif" font-size="44" font-weight="700" letter-spacing="2">BL</text>
+  </g>
+
   <rect x="0" y="0" width="1200" height="238" fill="#0E2A44" opacity="0.93"/>
   <rect x="0" y="1454" width="1200" height="346" fill="#1E486A" opacity="0.95"/>
   <text x="600" y="136" text-anchor="middle" fill="#FFF8EE" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">JIM COLLINS AND JERRY I. PORRAS</text>

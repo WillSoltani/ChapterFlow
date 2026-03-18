@@ -30,6 +30,12 @@
     <path d="M166 176 L222 176" stroke="#8EB0D4" stroke-width="14" stroke-linecap="round"/>
   </g>
 
+  <g transform="translate(930 336)">
+    <path d="M82 8 L152 34 V90 C152 142 120 174 82 190 C44 174 12 142 12 90 V34 Z" fill="#FDF8EE" stroke="#F29B4B" stroke-width="10"/>
+    <rect x="30" y="64" width="104" height="64" rx="20" fill="#8EB0D4" opacity="0.72"/>
+    <text x="82" y="106" text-anchor="middle" fill="#213244" font-family="'Trebuchet MS', Arial, sans-serif" font-size="40" font-weight="700" letter-spacing="2">ZO</text>
+  </g>
+
   <rect x="0" y="0" width="1200" height="238" fill="#1F3C5C" opacity="0.93"/>
   <rect x="0" y="1454" width="1200" height="346" fill="#345C85" opacity="0.95"/>
   <text x="600" y="136" text-anchor="middle" fill="#FDF8EE" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">PETER THIEL, BLAKE MASTERS</text>

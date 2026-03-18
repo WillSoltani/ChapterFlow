@@ -16,18 +16,19 @@
   <circle cx="603" cy="862" r="130" fill="#FFF8EE" opacity="0.34"/>
   <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F4ECDD" stroke="#CDBA9D" stroke-width="10"/>
 
-  <g transform="translate(427 569)">
-    <rect x="0" y="0" width="370" height="330" rx="24" fill="#FFF8EE" opacity="0.92" stroke="#7AA4C4" stroke-width="8"/>
-    <g stroke="#7AA4C4" stroke-width="3" opacity="0.8">
-      <line x1="92" y1="0" x2="92" y2="330"/>
-      <line x1="184" y1="0" x2="184" y2="330"/>
-      <line x1="276" y1="0" x2="276" y2="330"/>
-      <line x1="0" y1="82" x2="370" y2="82"/>
-      <line x1="0" y1="164" x2="370" y2="164"/>
-      <line x1="0" y1="246" x2="370" y2="246"/>
-    </g>
-    <path d="M46 260 L136 182 L198 222 L318 112" stroke="#D19A34" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
-    <polygon points="318,112 284,114 304,140" fill="#D19A34"/>
+  <g transform="translate(414 558)">
+    <rect x="0" y="0" width="396" height="336" rx="24" fill="#FFF8EE" stroke="#7AA4C4" stroke-width="8"/>
+    <rect x="52" y="52" width="74" height="64" rx="8" fill="#7AA4C4" opacity="0.56"/><rect x="126" y="52" width="74" height="64" rx="8" fill="#D19A34" opacity="0.56"/><rect x="200" y="52" width="74" height="64" rx="8" fill="#7AA4C4" opacity="0.56"/><rect x="274" y="52" width="74" height="64" rx="8" fill="#D19A34" opacity="0.56"/>
+<rect x="52" y="116" width="74" height="64" rx="8" fill="#D19A34" opacity="0.56"/><rect x="126" y="116" width="74" height="64" rx="8" fill="#7AA4C4" opacity="0.56"/><rect x="200" y="116" width="74" height="64" rx="8" fill="#D19A34" opacity="0.56"/><rect x="274" y="116" width="74" height="64" rx="8" fill="#7AA4C4" opacity="0.56"/>
+<rect x="52" y="180" width="74" height="64" rx="8" fill="#7AA4C4" opacity="0.56"/><rect x="126" y="180" width="74" height="64" rx="8" fill="#D19A34" opacity="0.56"/><rect x="200" y="180" width="74" height="64" rx="8" fill="#7AA4C4" opacity="0.56"/><rect x="274" y="180" width="74" height="64" rx="8" fill="#D19A34" opacity="0.56"/>
+<rect x="52" y="244" width="74" height="64" rx="8" fill="#D19A34" opacity="0.56"/><rect x="126" y="244" width="74" height="64" rx="8" fill="#7AA4C4" opacity="0.56"/><rect x="200" y="244" width="74" height="64" rx="8" fill="#D19A34" opacity="0.56"/><rect x="274" y="244" width="74" height="64" rx="8" fill="#7AA4C4" opacity="0.56"/>
+    <path d="M206 128 C174 128 154 148 154 174 C154 194 168 210 188 216 C176 228 166 244 166 266 H246 C246 244 236 228 224 216 C244 210 258 194 258 174 C258 148 238 128 206 128 Z" fill="#1C2B34" opacity="0.9"/>
+  </g>
+
+  <g transform="translate(930 336)">
+    <path d="M82 8 L152 34 V90 C152 142 120 174 82 190 C44 174 12 142 12 90 V34 Z" fill="#FFF8EE" stroke="#D19A34" stroke-width="10"/>
+    <rect x="30" y="64" width="104" height="64" rx="20" fill="#7AA4C4" opacity="0.72"/>
+    <text x="82" y="106" text-anchor="middle" fill="#1C2B34" font-family="'Trebuchet MS', Arial, sans-serif" font-size="40" font-weight="700" letter-spacing="2">3S</text>
   </g>
 
   <rect x="0" y="0" width="1200" height="238" fill="#0E2A44" opacity="0.93"/>

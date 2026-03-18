@@ -23,6 +23,12 @@
     <circle cx="252" cy="122" r="8" fill="#1D1D1D"/>
   </g>
 
+  <g transform="translate(928 336)">
+    <circle cx="84" cy="84" r="76" fill="#FFFFFF" stroke="#101010" stroke-width="10"/>
+    <circle cx="84" cy="84" r="56" fill="#7B7B7B" opacity="0.68"/>
+    <text x="84" y="98" text-anchor="middle" fill="#1D1D1D" font-family="'Trebuchet MS', Arial, sans-serif" font-size="44" font-weight="700" letter-spacing="2">BS</text>
+  </g>
+
   <rect x="0" y="0" width="1200" height="238" fill="#0F0F0F" opacity="0.93"/>
   <rect x="0" y="1454" width="1200" height="346" fill="#2A2A2A" opacity="0.95"/>
   <text x="600" y="136" text-anchor="middle" fill="#FFFFFF" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">NASSIM NICHOLAS TALEB</text>

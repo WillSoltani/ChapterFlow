@@ -16,11 +16,17 @@
   <circle cx="964" cy="1042" r="220" fill="#C79BB1" opacity="0.2"/>
   <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F4ECE2" stroke="#C9B7A1" stroke-width="10"/>
 
-  <g transform="translate(405 552)">
-    <circle cx="146" cy="174" r="92" fill="none" stroke="#DD9A54" stroke-width="20"/>
-    <circle cx="258" cy="174" r="92" fill="none" stroke="#C79BB1" stroke-width="20"/>
-    <path d="M144 286 Q202 350 258 286" stroke="#3A2A34" stroke-width="12" stroke-linecap="round"/>
-    <rect x="82" y="52" width="240" height="282" rx="28" fill="none" stroke="#FDF8EE" stroke-width="7" opacity="0.82"/>
+  <g transform="translate(405 556)">
+    <circle cx="150" cy="176" r="88" fill="none" stroke="#DD9A54" stroke-width="22"/>
+    <circle cx="254" cy="176" r="88" fill="none" stroke="#C79BB1" stroke-width="22"/>
+    <rect x="56" y="50" width="292" height="252" rx="26" fill="none" stroke="#FDF8EE" stroke-width="8" opacity="0.78"/>
+  </g>
+
+  <g transform="translate(924 332)">
+    <rect x="24" y="14" width="128" height="156" rx="64" fill="#FDF8EE" stroke="#DD9A54" stroke-width="10"/>
+    <path d="M44 54 H132" stroke="#C79BB1" stroke-width="10" stroke-linecap="round"/>
+    <path d="M44 80 H132" stroke="#C79BB1" stroke-width="10" stroke-linecap="round"/>
+    <text x="88" y="128" text-anchor="middle" fill="#3A2A34" font-family="'Trebuchet MS', Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="2">AT</text>
   </g>
 
   <rect x="0" y="0" width="1200" height="238" fill="#6A3F52" opacity="0.93"/>

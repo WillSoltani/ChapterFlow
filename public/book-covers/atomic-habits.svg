@@ -32,6 +32,13 @@
 <circle cx="72" cy="294" r="13" fill="#3B4C6B" opacity="0.88"/><circle cx="134" cy="294" r="13" fill="#D9B24B" opacity="0.88"/><circle cx="196" cy="294" r="13" fill="#3B4C6B" opacity="0.88"/><circle cx="258" cy="294" r="13" fill="#D9B24B" opacity="0.88"/><circle cx="320" cy="294" r="13" fill="#3B4C6B" opacity="0.88"/>
   </g>
 
+  <g transform="translate(924 332)">
+    <rect x="24" y="14" width="128" height="156" rx="64" fill="#FFFDF6" stroke="#3B4C6B" stroke-width="10"/>
+    <path d="M44 54 H132" stroke="#D9B24B" stroke-width="10" stroke-linecap="round"/>
+    <path d="M44 80 H132" stroke="#D9B24B" stroke-width="10" stroke-linecap="round"/>
+    <text x="88" y="128" text-anchor="middle" fill="#2B2B22" font-family="'Trebuchet MS', Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="2">AH</text>
+  </g>
+
   <rect x="0" y="0" width="1200" height="238" fill="#D6A91F" opacity="0.93"/>
   <rect x="0" y="1454" width="1200" height="346" fill="#F1C94C" opacity="0.95"/>
   <text x="600" y="136" text-anchor="middle" fill="#FFFDF6" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">JAMES CLEAR</text>

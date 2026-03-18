@@ -35,6 +35,13 @@
     </g>
   </g>
 
+  <g transform="translate(922 332)">
+    <rect x="12" y="12" width="152" height="152" rx="24" fill="#FFFFFF" stroke="#E3A542" stroke-width="10"/>
+    <path d="M30 116 L146 52" stroke="#8DA0B3" stroke-width="8" stroke-linecap="round"/>
+    <path d="M30 138 L146 74" stroke="#8DA0B3" stroke-width="8" stroke-linecap="round"/>
+    <text x="88" y="102" text-anchor="middle" fill="#2A3139" font-family="'Trebuchet MS', Arial, sans-serif" font-size="44" font-weight="700" letter-spacing="2">TF</text>
+  </g>
+
   <rect x="0" y="0" width="1200" height="238" fill="#E9ECEF" opacity="0.93"/>
   <rect x="0" y="1454" width="1200" height="346" fill="#C9D0D8" opacity="0.95"/>
   <text x="600" y="136" text-anchor="middle" fill="#FFFFFF" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">DANIEL KAHNEMAN</text>

@@ -30,6 +30,12 @@
     <circle cx="196" cy="186" r="24" fill="#2D1A15"/>
   </g>
 
+  <g transform="translate(930 336)">
+    <path d="M82 8 L152 34 V90 C152 142 120 174 82 190 C44 174 12 142 12 90 V34 Z" fill="#FFF8F0" stroke="#F1C15F" stroke-width="10"/>
+    <rect x="30" y="64" width="104" height="64" rx="20" fill="#CB7474" opacity="0.72"/>
+    <text x="82" y="106" text-anchor="middle" fill="#2D1A15" font-family="'Trebuchet MS', Arial, sans-serif" font-size="40" font-weight="700" letter-spacing="2">SW</text>
+  </g>
+
   <rect x="0" y="0" width="1200" height="238" fill="#8A1E1E" opacity="0.93"/>
   <rect x="0" y="1454" width="1200" height="346" fill="#B73535" opacity="0.95"/>
   <text x="600" y="136" text-anchor="middle" fill="#FFF8F0" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">SIMON SINEK</text>

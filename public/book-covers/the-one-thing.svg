@@ -22,6 +22,12 @@
     <rect x="84" y="214" width="172" height="20" rx="10" fill="#3D3D3D" opacity="0.88"/>
   </g>
 
+  <g transform="translate(926 334)">
+    <polygon points="88,8 162,52 162,136 88,180 14,136 14,52" fill="#FFFFFF" stroke="#3D3D3D" stroke-width="10"/>
+    <circle cx="88" cy="94" r="44" fill="#8E8E8E" opacity="0.7"/>
+    <text x="88" y="108" text-anchor="middle" fill="#141414" font-family="'Trebuchet MS', Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="2">OT</text>
+  </g>
+
   <rect x="0" y="0" width="1200" height="238" fill="#1D1D1D" opacity="0.93"/>
   <rect x="0" y="1454" width="1200" height="346" fill="#3B3B3B" opacity="0.95"/>
   <text x="600" y="136" text-anchor="middle" fill="#FFFFFF" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">GARY KELLER, JAY PAPASAN</text>

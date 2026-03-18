@@ -17,25 +17,17 @@
   <rect x="670" y="950" width="420" height="390" rx="42" fill="#FDF8EF" opacity="0.2"/>
   <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F3ECE2" stroke="#C9B8A2" stroke-width="10"/>
 
-  <g transform="translate(413 547)">
-    <circle cx="180" cy="180" r="158" fill="#FDF8EF" opacity="0.95" stroke="#9AACD2" stroke-width="8"/>
-    <path d="M148 76 Q92 120 92 190 Q92 258 144 292 Q198 326 258 290 Q304 264 318 220 Q332 178 306 138 Q280 98 232 82 Q192 68 148 76 Z" fill="none" stroke="#232B3B" stroke-width="10" opacity="0.72"/>
-    <g stroke="#D88D57" stroke-width="6" opacity="0.88">
-      <line x1="126" y1="146" x2="188" y2="122"/>
-      <line x1="188" y1="122" x2="238" y2="156"/>
-      <line x1="188" y1="122" x2="184" y2="196"/>
-      <line x1="184" y1="196" x2="246" y2="230"/>
-      <line x1="126" y1="146" x2="128" y2="220"/>
-      <line x1="128" y1="220" x2="184" y2="196"/>
-    </g>
-    <g fill="#D88D57">
-      <circle cx="126" cy="146" r="12"/>
-      <circle cx="188" cy="122" r="12"/>
-      <circle cx="238" cy="156" r="12"/>
-      <circle cx="184" cy="196" r="12"/>
-      <circle cx="128" cy="220" r="12"/>
-      <circle cx="246" cy="230" r="12"/>
-    </g>
+  <g transform="translate(399 551)">
+    <circle cx="204" cy="72" r="44" fill="#D88D57" opacity="0.44"/>
+    <path d="M24 292 L132 144 L208 248 L296 114 L388 292 Z" fill="#9AACD2" opacity="0.82"/>
+    <path d="M84 292 L168 186 L226 260 L302 172 L360 292 Z" fill="#D88D57" opacity="0.82"/>
+    <path d="M34 292 H378" stroke="#FDF8EF" stroke-width="12" stroke-linecap="round" opacity="0.8"/>
+  </g>
+
+  <g transform="translate(928 336)">
+    <circle cx="84" cy="84" r="76" fill="#FDF8EF" stroke="#D88D57" stroke-width="10"/>
+    <circle cx="84" cy="84" r="56" fill="#9AACD2" opacity="0.68"/>
+    <text x="84" y="98" text-anchor="middle" fill="#232B3B" font-family="'Trebuchet MS', Arial, sans-serif" font-size="44" font-weight="700" letter-spacing="2">GR</text>
   </g>
 
   <rect x="0" y="0" width="1200" height="238" fill="#2D3656" opacity="0.93"/>

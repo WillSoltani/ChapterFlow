@@ -16,25 +16,19 @@
   <circle cx="979" cy="1064" r="220" fill="#9AACD2" opacity="0.2"/>
   <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F3ECE2" stroke="#C9B8A2" stroke-width="10"/>
 
-  <g transform="translate(396 555)">
-    <circle cx="180" cy="180" r="158" fill="#FDF8EF" opacity="0.95" stroke="#9AACD2" stroke-width="8"/>
-    <path d="M148 76 Q92 120 92 190 Q92 258 144 292 Q198 326 258 290 Q304 264 318 220 Q332 178 306 138 Q280 98 232 82 Q192 68 148 76 Z" fill="none" stroke="#232B3B" stroke-width="10" opacity="0.72"/>
-    <g stroke="#D88D57" stroke-width="6" opacity="0.88">
-      <line x1="126" y1="146" x2="188" y2="122"/>
-      <line x1="188" y1="122" x2="238" y2="156"/>
-      <line x1="188" y1="122" x2="184" y2="196"/>
-      <line x1="184" y1="196" x2="246" y2="230"/>
-      <line x1="126" y1="146" x2="128" y2="220"/>
-      <line x1="128" y1="220" x2="184" y2="196"/>
-    </g>
-    <g fill="#D88D57">
-      <circle cx="126" cy="146" r="12"/>
-      <circle cx="188" cy="122" r="12"/>
-      <circle cx="238" cy="156" r="12"/>
-      <circle cx="184" cy="196" r="12"/>
-      <circle cx="128" cy="220" r="12"/>
-      <circle cx="246" cy="230" r="12"/>
-    </g>
+  <g transform="translate(392 553)">
+    <rect x="42" y="56" width="58" height="250" rx="8" fill="#D88D57" opacity="0.84"/>
+    <rect x="294" y="56" width="58" height="250" rx="8" fill="#D88D57" opacity="0.84"/>
+    <path d="M100 90 C136 40 258 40 294 90 V132 H100 Z" fill="#FDF8EF" stroke="#9AACD2" stroke-width="8"/>
+    <rect x="126" y="132" width="168" height="174" rx="14" fill="#FDF8EF" stroke="#9AACD2" stroke-width="8"/>
+    <line x1="100" y1="198" x2="294" y2="198" stroke="#9AACD2" stroke-width="8"/>
+  </g>
+
+  <g transform="translate(922 332)">
+    <rect x="12" y="12" width="152" height="152" rx="24" fill="#FDF8EF" stroke="#D88D57" stroke-width="10"/>
+    <path d="M30 116 L146 52" stroke="#9AACD2" stroke-width="8" stroke-linecap="round"/>
+    <path d="M30 138 L146 74" stroke="#9AACD2" stroke-width="8" stroke-linecap="round"/>
+    <text x="88" y="102" text-anchor="middle" fill="#232B3B" font-family="'Trebuchet MS', Arial, sans-serif" font-size="44" font-weight="700" letter-spacing="2">CD</text>
   </g>
 
   <rect x="0" y="0" width="1200" height="238" fill="#2D3656" opacity="0.93"/>

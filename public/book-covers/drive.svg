@@ -23,6 +23,13 @@
     <circle cx="196" cy="186" r="24" fill="#232B3B"/>
   </g>
 
+  <g transform="translate(924 332)">
+    <rect x="24" y="14" width="128" height="156" rx="64" fill="#FDF8EF" stroke="#D88D57" stroke-width="10"/>
+    <path d="M44 54 H132" stroke="#9AACD2" stroke-width="10" stroke-linecap="round"/>
+    <path d="M44 80 H132" stroke="#9AACD2" stroke-width="10" stroke-linecap="round"/>
+    <text x="88" y="128" text-anchor="middle" fill="#232B3B" font-family="'Trebuchet MS', Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="2">DR</text>
+  </g>
+
   <rect x="0" y="0" width="1200" height="238" fill="#2D3656" opacity="0.93"/>
   <rect x="0" y="1454" width="1200" height="346" fill="#4E5E8A" opacity="0.95"/>
   <text x="600" y="136" text-anchor="middle" fill="#FDF8EF" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">DANIEL H. PINK</text>

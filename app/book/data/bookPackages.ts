@@ -861,17 +861,67 @@ function formatSynopsisTopics(topics: string[]): string {
   return `${topics.slice(0, -1).join(", ")}, and ${topics[topics.length - 1]}`;
 }
 
-function inferPresentationIcon(categories: string[]): string {
-  const source = categories.join(" ").toLowerCase();
-  if (source.includes("thinking") || source.includes("mental model")) return "🧠";
-  if (source.includes("strategy")) return "♟️";
-  if (source.includes("productivity")) return "⏱️";
-  if (source.includes("learning")) return "🧠";
-  if (source.includes("psychology")) return "🧭";
-  if (source.includes("communication")) return "💬";
-  if (source.includes("philosophy")) return "🏛️";
-  if (source.includes("business")) return "📈";
-  return "📘";
+function hashText(value: string): number {
+  let hash = 0;
+  for (let i = 0; i < value.length; i += 1) {
+    hash = ((hash << 5) - hash + value.charCodeAt(i)) | 0;
+  }
+  return Math.abs(hash);
+}
+
+function inferPresentationIcon(bookPackage: BookPackage): string {
+  const categories = Array.isArray(bookPackage.book.categories)
+    ? bookPackage.book.categories.filter(Boolean)
+    : [];
+  const tags = Array.isArray(bookPackage.book.tags)
+    ? bookPackage.book.tags.filter(Boolean)
+    : [];
+  const source = [bookPackage.book.title, ...categories, ...tags]
+    .join(" ")
+    .toLowerCase();
+  const normalized = source.replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
+  const tokenSet = new Set(normalized.split(" ").filter(Boolean));
+  const hasAny = (...terms: string[]): boolean => {
+    return terms.some((term) => {
+      const cleanTerm = term.toLowerCase().trim();
+      if (!cleanTerm) return false;
+      if (cleanTerm.includes(" ")) return normalized.includes(cleanTerm);
+      return tokenSet.has(cleanTerm);
+    });
+  };
+
+  if (hasAny("black swan", "swan")) return "🦢";
+  if (hasAny("checklist")) return "✅";
+  if (hasAny("forecast", "superforecasting")) return "🔮";
+  if (hasAny("mental model", "mental models")) return "🧩";
+  if (hasAny("denial of death", "death")) return "🕯️";
+  if (hasAny("gift of fear", "fear")) return "🚨";
+  if (hasAny("ultralearning")) return "📚";
+  if (hasAny("innovators dilemma", "innovation")) return "💡";
+  if (hasAny("noise")) return "📉";
+  if (hasAny("peak")) return "🏔️";
+  if (hasAny("war")) return "⚔️";
+  if (hasAny("money", "wealth", "finance")) return "💰";
+
+  const strategyPool = ["♟️", "🧠", "🧭", "🎯", "⚖️"];
+  const productivityPool = ["⏱️", "📌", "🗂️", "✅", "🎯"];
+  const learningPool = ["📘", "🧠", "📚", "🧪", "🛠️"];
+  const communicationPool = ["💬", "🗣️", "🤝", "🎤", "📣"];
+  const philosophyPool = ["🏛️", "🕯️", "📜", "🧭", "⚖️"];
+  const businessPool = ["📈", "🏢", "💼", "📊", "🚀"];
+  const psychologyPool = ["🧠", "🫀", "🧭", "🧩", "👁️"];
+  const generalPool = ["📘", "📗", "📙", "📕", "📓"];
+
+  let pool = generalPool;
+  if (source.includes("strategy")) pool = strategyPool;
+  else if (source.includes("productivity")) pool = productivityPool;
+  else if (source.includes("learning") || source.includes("skill")) pool = learningPool;
+  else if (source.includes("communication") || source.includes("negotiation")) pool = communicationPool;
+  else if (source.includes("philosophy") || source.includes("meaning")) pool = philosophyPool;
+  else if (source.includes("business") || source.includes("startup")) pool = businessPool;
+  else if (source.includes("psychology") || source.includes("behavior")) pool = psychologyPool;
+
+  return pool[hashText(bookPackage.book.bookId) % pool.length];
 }
 
 function inferPresentationDifficulty(categories: string[]): BookPackagePresentation["difficulty"] {
@@ -918,7 +968,7 @@ function inferFallbackPresentation(bookId: string): BookPackagePresentation {
   );
 
   return {
-    icon: inferPresentationIcon(categories),
+    icon: inferPresentationIcon(bookPackage),
     coverImage: `/book-covers/${bookId}.svg`,
     difficulty: inferPresentationDifficulty(categories),
     synopsis: `A modern reading of ${formatSynopsisTopics(topics)} with concise summaries, scenarios, quizzes, and gated chapter progression.`,

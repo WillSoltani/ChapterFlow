@@ -32,6 +32,12 @@
     <text x="198" y="114" text-anchor="middle" fill="#FDF8EE" font-family="Georgia, serif" font-size="40" font-weight="700">$</text>
   </g>
 
+  <g transform="translate(924 332)">
+    <polygon points="88,8 168,88 88,168 8,88" fill="#FDF8EE" stroke="#EB9A4F" stroke-width="10"/>
+    <circle cx="88" cy="88" r="38" fill="#8CBCC6" opacity="0.72"/>
+    <text x="88" y="102" text-anchor="middle" fill="#22343B" font-family="'Trebuchet MS', Arial, sans-serif" font-size="40" font-weight="700" letter-spacing="2">MF</text>
+  </g>
+
   <rect x="0" y="0" width="1200" height="238" fill="#234057" opacity="0.93"/>
   <rect x="0" y="1454" width="1200" height="346" fill="#3C6E7C" opacity="0.95"/>
   <text x="600" y="136" text-anchor="middle" fill="#FDF8EE" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">MJ DEMARCO</text>

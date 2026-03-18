@@ -16,25 +16,19 @@
   <path d="M0 1180 Q300 1036 600 1180 T1200 1180" stroke="#D59D5A" stroke-width="16" opacity="0.22"/>
   <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F2EDE3" stroke="#C8B8A7" stroke-width="10"/>
 
-  <g transform="translate(416 557)">
-    <circle cx="180" cy="180" r="158" fill="#FDF7EE" opacity="0.95" stroke="#9FA8D9" stroke-width="8"/>
-    <path d="M148 76 Q92 120 92 190 Q92 258 144 292 Q198 326 258 290 Q304 264 318 220 Q332 178 306 138 Q280 98 232 82 Q192 68 148 76 Z" fill="none" stroke="#24283A" stroke-width="10" opacity="0.72"/>
-    <g stroke="#D59D5A" stroke-width="6" opacity="0.88">
-      <line x1="126" y1="146" x2="188" y2="122"/>
-      <line x1="188" y1="122" x2="238" y2="156"/>
-      <line x1="188" y1="122" x2="184" y2="196"/>
-      <line x1="184" y1="196" x2="246" y2="230"/>
-      <line x1="126" y1="146" x2="128" y2="220"/>
-      <line x1="128" y1="220" x2="184" y2="196"/>
-    </g>
-    <g fill="#D59D5A">
-      <circle cx="126" cy="146" r="12"/>
-      <circle cx="188" cy="122" r="12"/>
-      <circle cx="238" cy="156" r="12"/>
-      <circle cx="184" cy="196" r="12"/>
-      <circle cx="128" cy="220" r="12"/>
-      <circle cx="246" cy="230" r="12"/>
-    </g>
+  <g transform="translate(420 557)">
+    <rect x="30" y="44" width="332" height="292" rx="24" fill="#FDF7EE" stroke="#9FA8D9" stroke-width="8"/>
+    <path d="M74 246 L104 118 L176 186 L222 110 L286 186 L318 118 L346 246 Z" fill="#D59D5A" opacity="0.9"/>
+    <rect x="88" y="244" width="248" height="38" rx="14" fill="#24283A" opacity="0.88"/>
+    <circle cx="104" cy="112" r="10" fill="#24283A"/>
+    <circle cx="222" cy="102" r="11" fill="#24283A"/>
+    <circle cx="318" cy="112" r="10" fill="#24283A"/>
+  </g>
+
+  <g transform="translate(930 336)">
+    <path d="M82 8 L152 34 V90 C152 142 120 174 82 190 C44 174 12 142 12 90 V34 Z" fill="#FDF7EE" stroke="#D59D5A" stroke-width="10"/>
+    <rect x="30" y="64" width="104" height="64" rx="20" fill="#9FA8D9" opacity="0.72"/>
+    <text x="82" y="106" text-anchor="middle" fill="#24283A" font-family="'Trebuchet MS', Arial, sans-serif" font-size="40" font-weight="700" letter-spacing="2">LH</text>
   </g>
 
   <rect x="0" y="0" width="1200" height="238" fill="#3A3E63" opacity="0.93"/>

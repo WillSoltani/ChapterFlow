@@ -31,6 +31,13 @@
     <circle cx="196" cy="170" r="32" fill="#24283A" opacity="0.82"/>
   </g>
 
+  <g transform="translate(924 332)">
+    <rect x="24" y="14" width="128" height="156" rx="64" fill="#FDF7EE" stroke="#D59D5A" stroke-width="10"/>
+    <path d="M44 54 H132" stroke="#9FA8D9" stroke-width="10" stroke-linecap="round"/>
+    <path d="M44 80 H132" stroke="#9FA8D9" stroke-width="10" stroke-linecap="round"/>
+    <text x="88" y="128" text-anchor="middle" fill="#24283A" font-family="'Trebuchet MS', Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="2">GF</text>
+  </g>
+
   <rect x="0" y="0" width="1200" height="238" fill="#3A3E63" opacity="0.93"/>
   <rect x="0" y="1454" width="1200" height="346" fill="#5A5A86" opacity="0.95"/>
   <text x="600" y="136" text-anchor="middle" fill="#FDF7EE" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">GAVIN DE BECKER</text>

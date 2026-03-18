@@ -23,16 +23,18 @@
   <path d="M140 1330 L1060 1330" stroke="#D8A060" stroke-width="10" opacity="0.2"/>
   <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F3ECE0" stroke="#C7B7A1" stroke-width="10"/>
 
-  <g transform="translate(411 554)">
-    <circle cx="190" cy="112" r="58" fill="#D8A060" opacity="0.3"/>
-    <rect x="70" y="130" width="240" height="24" rx="10" fill="#B7A28B" opacity="0.8"/>
-    <rect x="92" y="152" width="196" height="34" rx="12" fill="#FDF7EC" stroke="#B7A28B" stroke-width="6"/>
-    <g fill="#FDF7EC" stroke="#B7A28B" stroke-width="6">
-      <rect x="106" y="184" width="38" height="170" rx="10"/>
-      <rect x="170" y="184" width="38" height="170" rx="10"/>
-      <rect x="234" y="184" width="38" height="170" rx="10"/>
-    </g>
-    <rect x="78" y="356" width="224" height="26" rx="10" fill="#D8A060" opacity="0.78"/>
+  <g transform="translate(397 572)">
+    <circle cx="204" cy="72" r="44" fill="#D8A060" opacity="0.44"/>
+    <path d="M24 292 L132 144 L208 248 L296 114 L388 292 Z" fill="#B7A28B" opacity="0.82"/>
+    <path d="M84 292 L168 186 L226 260 L302 172 L360 292 Z" fill="#D8A060" opacity="0.82"/>
+    <path d="M34 292 H378" stroke="#FDF7EC" stroke-width="12" stroke-linecap="round" opacity="0.8"/>
+  </g>
+
+  <g transform="translate(924 332)">
+    <rect x="24" y="14" width="128" height="156" rx="64" fill="#FDF7EC" stroke="#D8A060" stroke-width="10"/>
+    <path d="M44 54 H132" stroke="#B7A28B" stroke-width="10" stroke-linecap="round"/>
+    <path d="M44 80 H132" stroke="#B7A28B" stroke-width="10" stroke-linecap="round"/>
+    <text x="88" y="128" text-anchor="middle" fill="#332920" font-family="'Trebuchet MS', Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="2">RM</text>
   </g>
 
   <rect x="0" y="0" width="1200" height="238" fill="#4C3D30" opacity="0.93"/>

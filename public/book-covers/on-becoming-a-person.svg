@@ -24,6 +24,12 @@
     <circle cx="196" cy="170" r="32" fill="#232B3B" opacity="0.82"/>
   </g>
 
+  <g transform="translate(928 336)">
+    <circle cx="84" cy="84" r="76" fill="#FDF8EF" stroke="#D88D57" stroke-width="10"/>
+    <circle cx="84" cy="84" r="56" fill="#9AACD2" opacity="0.68"/>
+    <text x="84" y="98" text-anchor="middle" fill="#232B3B" font-family="'Trebuchet MS', Arial, sans-serif" font-size="44" font-weight="700" letter-spacing="2">BP</text>
+  </g>
+
   <rect x="0" y="0" width="1200" height="238" fill="#2D3656" opacity="0.93"/>
   <rect x="0" y="1454" width="1200" height="346" fill="#4E5E8A" opacity="0.95"/>
   <text x="600" y="136" text-anchor="middle" fill="#FDF8EF" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">CARL ROGERS</text>

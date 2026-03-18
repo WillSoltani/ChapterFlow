@@ -25,6 +25,12 @@
     <rect x="292" y="278" width="34" height="12" rx="6" fill="#2E1A13"/>
   </g>
 
+  <g transform="translate(930 336)">
+    <path d="M82 8 L152 34 V90 C152 142 120 174 82 190 C44 174 12 142 12 90 V34 Z" fill="#FFF6EA" stroke="#B98A3C" stroke-width="10"/>
+    <rect x="30" y="64" width="104" height="64" rx="20" fill="#AC6A5A" opacity="0.72"/>
+    <text x="82" y="106" text-anchor="middle" fill="#2E1A13" font-family="'Trebuchet MS', Arial, sans-serif" font-size="40" font-weight="700" letter-spacing="2">AW</text>
+  </g>
+
   <rect x="0" y="0" width="1200" height="238" fill="#541B1B" opacity="0.93"/>
   <rect x="0" y="1454" width="1200" height="346" fill="#7A2A2A" opacity="0.95"/>
   <text x="600" y="136" text-anchor="middle" fill="#FFF6EA" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">SUN TZU</text>

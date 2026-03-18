@@ -16,11 +16,17 @@
   <circle cx="583" cy="820" r="130" fill="#FDF8EE" opacity="0.34"/>
   <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F4EDE2" stroke="#CAB9A3" stroke-width="10"/>
 
-  <g transform="translate(406 548)">
-    <circle cx="196" cy="196" r="188" fill="#FDF8EE" opacity="0.95" stroke="#88A8C7" stroke-width="10"/>
-    <circle cx="196" cy="196" r="124" fill="none" stroke="#DA9A49" stroke-width="14" opacity="0.8"/>
-    <polygon points="196,52 226,166 340,196 226,226 196,340 166,226 52,196 166,166" fill="#DA9A49" opacity="0.92"/>
-    <circle cx="196" cy="196" r="36" fill="#223142" opacity="0.84"/>
+  <g transform="translate(398 556)">
+    <circle cx="204" cy="72" r="44" fill="#DA9A49" opacity="0.44"/>
+    <path d="M24 292 L132 144 L208 248 L296 114 L388 292 Z" fill="#88A8C7" opacity="0.82"/>
+    <path d="M84 292 L168 186 L226 260 L302 172 L360 292 Z" fill="#DA9A49" opacity="0.82"/>
+    <path d="M34 292 H378" stroke="#FDF8EE" stroke-width="12" stroke-linecap="round" opacity="0.8"/>
+  </g>
+
+  <g transform="translate(924 332)">
+    <polygon points="88,8 168,88 88,168 8,88" fill="#FDF8EE" stroke="#DA9A49" stroke-width="10"/>
+    <circle cx="88" cy="88" r="38" fill="#88A8C7" opacity="0.72"/>
+    <text x="88" y="102" text-anchor="middle" fill="#223142" font-family="'Trebuchet MS', Arial, sans-serif" font-size="40" font-weight="700" letter-spacing="2">HT</text>
   </g>
 
   <rect x="0" y="0" width="1200" height="238" fill="#1E3352" opacity="0.93"/>

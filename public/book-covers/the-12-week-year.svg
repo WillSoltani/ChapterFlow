@@ -16,20 +16,24 @@
   <circle cx="598" cy="816" r="130" fill="#FBF8EF" opacity="0.34"/>
   <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F2EEE3" stroke="#C6B9A3" stroke-width="10"/>
 
-  <g transform="translate(395 565)">
-    <rect x="0" y="0" width="384" height="334" rx="26" fill="#FBF8EF" stroke="#8AC0AB" stroke-width="8"/>
-    <rect x="34" y="46" width="316" height="28" rx="12" fill="#8AC0AB" opacity="0.55"/>
-    <g stroke="#203230" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="42" y="108" width="40" height="40" rx="8" fill="none"/>
-      <path d="M52 128 L62 138 L82 116"/>
-      <rect x="42" y="174" width="40" height="40" rx="8" fill="none"/>
-      <path d="M52 194 L62 204 L82 182"/>
-      <rect x="42" y="240" width="40" height="40" rx="8" fill="none"/>
-      <path d="M52 260 L62 270 L82 248"/>
-    </g>
-    <rect x="106" y="112" width="240" height="28" rx="10" fill="#DB9F4F" opacity="0.8"/>
-    <rect x="106" y="178" width="224" height="28" rx="10" fill="#8AC0AB" opacity="0.72"/>
-    <rect x="106" y="244" width="258" height="28" rx="10" fill="#DB9F4F" opacity="0.7"/>
+  <g transform="translate(391 557)">
+    <rect x="0" y="0" width="392" height="332" rx="24" fill="#FBF8EF" stroke="#8AC0AB" stroke-width="8"/>
+    <rect x="54" y="58" width="282" height="224" rx="18" fill="#DB9F4F" opacity="0.16"/>
+    <rect x="82" y="92" width="24" height="24" rx="6" fill="#8AC0AB" opacity="0.86"/>
+    <path d="M86 104 L92 110 L104 96" fill="none" stroke="#203230" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="120" y="96" width="186" height="14" rx="7" fill="#DB9F4F" opacity="0.82"/>
+    <rect x="82" y="144" width="24" height="24" rx="6" fill="#8AC0AB" opacity="0.86"/>
+    <path d="M86 156 L92 162 L104 148" fill="none" stroke="#203230" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="120" y="148" width="164" height="14" rx="7" fill="#DB9F4F" opacity="0.78"/>
+    <rect x="82" y="196" width="24" height="24" rx="6" fill="#8AC0AB" opacity="0.86"/>
+    <path d="M86 208 L92 214 L104 200" fill="none" stroke="#203230" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="120" y="200" width="206" height="14" rx="7" fill="#DB9F4F" opacity="0.74"/>
+  </g>
+
+  <g transform="translate(926 334)">
+    <polygon points="88,8 162,52 162,136 88,180 14,136 14,52" fill="#FBF8EF" stroke="#DB9F4F" stroke-width="10"/>
+    <circle cx="88" cy="94" r="44" fill="#8AC0AB" opacity="0.7"/>
+    <text x="88" y="108" text-anchor="middle" fill="#203230" font-family="'Trebuchet MS', Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="2">1W</text>
   </g>
 
   <rect x="0" y="0" width="1200" height="238" fill="#274F4C" opacity="0.93"/>

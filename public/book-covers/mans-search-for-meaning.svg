@@ -17,16 +17,18 @@
   <rect x="670" y="950" width="420" height="390" rx="42" fill="#FEF8EE" opacity="0.2"/>
   <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F3ECE2" stroke="#C8B8A2" stroke-width="10"/>
 
-  <g transform="translate(424 548)">
-    <circle cx="190" cy="112" r="58" fill="#D6A160" opacity="0.3"/>
-    <rect x="70" y="130" width="240" height="24" rx="10" fill="#B39F88" opacity="0.8"/>
-    <rect x="92" y="152" width="196" height="34" rx="12" fill="#FEF8EE" stroke="#B39F88" stroke-width="6"/>
-    <g fill="#FEF8EE" stroke="#B39F88" stroke-width="6">
-      <rect x="106" y="184" width="38" height="170" rx="10"/>
-      <rect x="170" y="184" width="38" height="170" rx="10"/>
-      <rect x="234" y="184" width="38" height="170" rx="10"/>
-    </g>
-    <rect x="78" y="356" width="224" height="26" rx="10" fill="#D6A160" opacity="0.78"/>
+  <g transform="translate(420 560)">
+    <rect x="42" y="56" width="58" height="250" rx="8" fill="#D6A160" opacity="0.84"/>
+    <rect x="294" y="56" width="58" height="250" rx="8" fill="#D6A160" opacity="0.84"/>
+    <path d="M100 90 C136 40 258 40 294 90 V132 H100 Z" fill="#FEF8EE" stroke="#B39F88" stroke-width="8"/>
+    <rect x="126" y="132" width="168" height="174" rx="14" fill="#FEF8EE" stroke="#B39F88" stroke-width="8"/>
+    <line x1="100" y1="198" x2="294" y2="198" stroke="#B39F88" stroke-width="8"/>
+  </g>
+
+  <g transform="translate(924 332)">
+    <polygon points="88,8 168,88 88,168 8,88" fill="#FEF8EE" stroke="#D6A160" stroke-width="10"/>
+    <circle cx="88" cy="88" r="38" fill="#B39F88" opacity="0.72"/>
+    <text x="88" y="102" text-anchor="middle" fill="#322C25" font-family="'Trebuchet MS', Arial, sans-serif" font-size="40" font-weight="700" letter-spacing="2">MS</text>
   </g>
 
   <rect x="0" y="0" width="1200" height="238" fill="#3F3A32" opacity="0.93"/>

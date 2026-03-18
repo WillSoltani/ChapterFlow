@@ -23,16 +23,19 @@
   <path d="M140 1330 L1060 1330" stroke="#CFA34C" stroke-width="10" opacity="0.2"/>
   <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F4F1E5" stroke="#B8B193" stroke-width="10"/>
 
-  <g transform="translate(408 562)">
-    <rect x="0" y="0" width="396" height="336" rx="24" fill="#FCFAF1" stroke="#89B39C" stroke-width="8"/>
-    <rect x="58" y="214" width="56" height="90" rx="12" fill="#89B39C" opacity="0.85"/>
-    <rect x="142" y="174" width="56" height="130" rx="12" fill="#CFA34C" opacity="0.82"/>
-    <rect x="226" y="128" width="56" height="176" rx="12" fill="#89B39C" opacity="0.88"/>
-    <rect x="310" y="92" width="56" height="212" rx="12" fill="#CFA34C" opacity="0.9"/>
-    <path d="M44 236 L112 206 L170 184 L252 134 L332 108" stroke="#1E3128" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
-    <circle cx="334" cy="108" r="16" fill="#1E3128"/>
-    <circle cx="84" cy="78" r="34" fill="#CFA34C" opacity="0.88"/>
-    <text x="84" y="89" text-anchor="middle" fill="#FCFAF1" font-family="Georgia, serif" font-size="34" font-weight="700">$</text>
+  <g transform="translate(410 562)">
+    <rect x="0" y="0" width="392" height="332" rx="24" fill="#FCFAF1" stroke="#89B39C" stroke-width="8"/>
+    <rect x="74" y="192" width="46" height="94" rx="10" fill="#CFA34C" opacity="0.84"/>
+    <rect x="142" y="150" width="46" height="136" rx="10" fill="#89B39C" opacity="0.86"/>
+    <rect x="210" y="122" width="46" height="164" rx="10" fill="#CFA34C" opacity="0.88"/>
+    <circle cx="302" cy="188" r="58" fill="#1E3128" opacity="0.82"/>
+    <text x="302" y="206" text-anchor="middle" fill="#FCFAF1" font-family="Georgia, serif" font-size="48" font-weight="700">$</text>
+  </g>
+
+  <g transform="translate(930 336)">
+    <path d="M82 8 L152 34 V90 C152 142 120 174 82 190 C44 174 12 142 12 90 V34 Z" fill="#FCFAF1" stroke="#CFA34C" stroke-width="10"/>
+    <rect x="30" y="64" width="104" height="64" rx="20" fill="#89B39C" opacity="0.72"/>
+    <text x="82" y="106" text-anchor="middle" fill="#1E3128" font-family="'Trebuchet MS', Arial, sans-serif" font-size="40" font-weight="700" letter-spacing="2">PM</text>
   </g>
 
   <rect x="0" y="0" width="1200" height="238" fill="#1F513A" opacity="0.93"/>

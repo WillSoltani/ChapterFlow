@@ -1301,6 +1301,233 @@ function renderCoverMotif(motif, theme, palette, seed) {
   const sy = ((seed >> 4) % 26) - 13;
 
   switch (motif) {
+    case "chess-grid":
+      return `
+  <g transform="translate(${402 + sx} ${554 + sy})">
+    <rect x="0" y="0" width="396" height="336" rx="24" fill="${palette.light}" stroke="${palette.accentSoft}" stroke-width="8"/>
+    ${Array.from({ length: 4 })
+      .map((_r, row) =>
+        Array.from({ length: 4 })
+          .map((_c, col) => {
+            const x = 52 + col * 74;
+            const y = 52 + row * 64;
+            const fill = (row + col) % 2 === 0 ? palette.accentSoft : palette.accent;
+            return `<rect x="${x}" y="${y}" width="74" height="64" rx="8" fill="${fill}" opacity="0.56"/>`;
+          })
+          .join("")
+      )
+      .join("\n")}
+    <path d="M206 128 C174 128 154 148 154 174 C154 194 168 210 188 216 C176 228 166 244 166 266 H246 C246 244 236 228 224 216 C244 210 258 194 258 174 C258 148 238 128 206 128 Z" fill="${palette.ink}" opacity="0.9"/>
+  </g>`;
+    case "compass-star":
+      return `
+  <g transform="translate(${404 + sx} ${556 + sy})">
+    <circle cx="196" cy="172" r="144" fill="${palette.light}" stroke="${palette.accentSoft}" stroke-width="8"/>
+    <circle cx="196" cy="172" r="94" fill="none" stroke="${palette.accent}" stroke-width="12" opacity="0.86"/>
+    <polygon points="196,46 230,138 322,172 230,206 196,298 162,206 70,172 162,138" fill="${palette.ink}" opacity="0.88"/>
+    <polygon points="196,88 214,146 272,172 214,198 196,256 178,198 120,172 178,146" fill="${palette.light}" opacity="0.92"/>
+  </g>`;
+    case "speech-bubbles":
+      return `
+  <g transform="translate(${398 + sx} ${568 + sy})">
+    <rect x="22" y="32" width="238" height="156" rx="28" fill="${palette.light}" stroke="${palette.accentSoft}" stroke-width="8"/>
+    <polygon points="108,188 140,188 120,220" fill="${palette.light}" stroke="${palette.accentSoft}" stroke-width="8"/>
+    <rect x="166" y="128" width="218" height="162" rx="28" fill="${palette.accent}" opacity="0.84"/>
+    <polygon points="302,290 336,290 318,322" fill="${palette.accent}" opacity="0.84"/>
+    <rect x="62" y="82" width="160" height="14" rx="7" fill="${palette.accentSoft}" opacity="0.72"/>
+    <rect x="62" y="112" width="124" height="14" rx="7" fill="${palette.accent}" opacity="0.7"/>
+    <rect x="194" y="182" width="156" height="14" rx="7" fill="${palette.light}" opacity="0.78"/>
+    <rect x="194" y="212" width="128" height="14" rx="7" fill="${palette.light}" opacity="0.68"/>
+  </g>`;
+    case "mind-network":
+      return `
+  <g transform="translate(${396 + sx} ${556 + sy})">
+    <rect x="18" y="24" width="364" height="334" rx="26" fill="${palette.light}" stroke="${palette.accentSoft}" stroke-width="8"/>
+    <g stroke="${palette.accent}" stroke-width="8" opacity="0.86">
+      <line x1="84" y1="96" x2="174" y2="144"/>
+      <line x1="174" y1="144" x2="282" y2="110"/>
+      <line x1="174" y1="144" x2="166" y2="244"/>
+      <line x1="166" y1="244" x2="280" y2="286"/>
+      <line x1="84" y1="96" x2="96" y2="232"/>
+      <line x1="96" y1="232" x2="166" y2="244"/>
+      <line x1="282" y1="110" x2="280" y2="286"/>
+    </g>
+    <g fill="${palette.ink}">
+      <circle cx="84" cy="96" r="14"/>
+      <circle cx="174" cy="144" r="14"/>
+      <circle cx="282" cy="110" r="14"/>
+      <circle cx="96" cy="232" r="14"/>
+      <circle cx="166" cy="244" r="14"/>
+      <circle cx="280" cy="286" r="14"/>
+    </g>
+  </g>`;
+    case "mask-dual":
+      return `
+  <g transform="translate(${406 + sx} ${562 + sy})">
+    <path d="M82 68 H188 C216 68 238 90 238 118 V238 C238 294 194 340 136 340 C78 340 34 294 34 238 V118 C34 90 56 68 82 68 Z" fill="${palette.light}" stroke="${palette.accentSoft}" stroke-width="8"/>
+    <path d="M208 68 H314 C342 68 364 90 364 118 V238 C364 294 320 340 262 340 C204 340 160 294 160 238 V118 C160 90 182 68 208 68 Z" fill="${palette.accent}" opacity="0.84"/>
+    <circle cx="102" cy="182" r="10" fill="${palette.ink}"/>
+    <circle cx="164" cy="182" r="10" fill="${palette.ink}"/>
+    <path d="M94 242 Q132 270 172 242" fill="none" stroke="${palette.ink}" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="228" cy="182" r="10" fill="${palette.light}"/>
+    <circle cx="290" cy="182" r="10" fill="${palette.light}"/>
+    <path d="M220 250 Q258 222 298 250" fill="none" stroke="${palette.light}" stroke-width="10" stroke-linecap="round"/>
+  </g>`;
+    case "interlocked-rings":
+      return `
+  <g transform="translate(${404 + sx} ${566 + sy})">
+    <circle cx="150" cy="176" r="88" fill="none" stroke="${palette.accent}" stroke-width="22"/>
+    <circle cx="254" cy="176" r="88" fill="none" stroke="${palette.accentSoft}" stroke-width="22"/>
+    <rect x="56" y="50" width="292" height="252" rx="26" fill="none" stroke="${palette.light}" stroke-width="8" opacity="0.78"/>
+  </g>`;
+    case "hourglass-track":
+      return `
+  <g transform="translate(${418 + sx} ${552 + sy})">
+    <rect x="0" y="0" width="356" height="352" rx="24" fill="${palette.light}" stroke="${palette.accentSoft}" stroke-width="8"/>
+    <path d="M88 72 H268 C264 112 236 146 200 176 C236 206 264 240 268 280 H88 C92 240 120 206 156 176 C120 146 92 112 88 72 Z" fill="${palette.accent}" opacity="0.86"/>
+    <path d="M156 176 H200" stroke="${palette.ink}" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="178" cy="168" r="7" fill="${palette.light}"/>
+    <circle cx="186" cy="186" r="6" fill="${palette.light}"/>
+    <circle cx="172" cy="204" r="5" fill="${palette.light}"/>
+  </g>`;
+    case "crown-sigil":
+      return `
+  <g transform="translate(${414 + sx} ${560 + sy})">
+    <rect x="30" y="44" width="332" height="292" rx="24" fill="${palette.light}" stroke="${palette.accentSoft}" stroke-width="8"/>
+    <path d="M74 246 L104 118 L176 186 L222 110 L286 186 L318 118 L346 246 Z" fill="${palette.accent}" opacity="0.9"/>
+    <rect x="88" y="244" width="248" height="38" rx="14" fill="${palette.ink}" opacity="0.88"/>
+    <circle cx="104" cy="112" r="10" fill="${palette.ink}"/>
+    <circle cx="222" cy="102" r="11" fill="${palette.ink}"/>
+    <circle cx="318" cy="112" r="10" fill="${palette.ink}"/>
+  </g>`;
+    case "flag-peak":
+      return `
+  <g transform="translate(${398 + sx} ${570 + sy})">
+    <rect x="0" y="0" width="404" height="312" rx="24" fill="${palette.light}" stroke="${palette.accentSoft}" stroke-width="8"/>
+    <path d="M34 266 L132 144 L194 224 L278 112 L370 266 Z" fill="${palette.accent}" opacity="0.88"/>
+    <path d="M118 154 V84" stroke="${palette.ink}" stroke-width="10" stroke-linecap="round"/>
+    <path d="M118 86 L188 106 L118 126 Z" fill="${palette.ink}" opacity="0.9"/>
+    <circle cx="320" cy="78" r="22" fill="${palette.accentSoft}" opacity="0.72"/>
+  </g>`;
+    case "bar-coin":
+      return `
+  <g transform="translate(${404 + sx} ${566 + sy})">
+    <rect x="0" y="0" width="392" height="332" rx="24" fill="${palette.light}" stroke="${palette.accentSoft}" stroke-width="8"/>
+    <rect x="74" y="192" width="46" height="94" rx="10" fill="${palette.accent}" opacity="0.84"/>
+    <rect x="142" y="150" width="46" height="136" rx="10" fill="${palette.accentSoft}" opacity="0.86"/>
+    <rect x="210" y="122" width="46" height="164" rx="10" fill="${palette.accent}" opacity="0.88"/>
+    <circle cx="302" cy="188" r="58" fill="${palette.ink}" opacity="0.82"/>
+    <text x="302" y="206" text-anchor="middle" fill="${palette.light}" font-family="Georgia, serif" font-size="48" font-weight="700">$</text>
+  </g>`;
+    case "line-chart":
+      return `
+  <g transform="translate(${402 + sx} ${568 + sy})">
+    <rect x="0" y="0" width="396" height="324" rx="24" fill="${palette.light}" stroke="${palette.accentSoft}" stroke-width="8"/>
+    <line x1="62" y1="272" x2="334" y2="272" stroke="${palette.accentSoft}" stroke-width="10" stroke-linecap="round"/>
+    <line x1="62" y1="272" x2="62" y2="74" stroke="${palette.accentSoft}" stroke-width="10" stroke-linecap="round"/>
+    <path d="M78 236 L144 210 L194 226 L248 154 L318 122" fill="none" stroke="${palette.accent}" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="318" cy="122" r="12" fill="${palette.ink}"/>
+  </g>`;
+    case "open-book":
+      return `
+  <g transform="translate(${398 + sx} ${566 + sy})">
+    <path d="M40 74 C126 44 198 70 198 128 V304 C146 270 94 262 40 292 Z" fill="${palette.light}" stroke="${palette.accentSoft}" stroke-width="8"/>
+    <path d="M356 74 C270 44 198 70 198 128 V304 C250 270 302 262 356 292 Z" fill="${palette.accent}" opacity="0.84"/>
+    <path d="M198 128 V316" stroke="${palette.ink}" stroke-width="10" stroke-linecap="round"/>
+    <path d="M74 120 C118 106 156 110 186 132" stroke="${palette.accent}" stroke-width="8" stroke-linecap="round"/>
+    <path d="M320 120 C278 106 240 110 210 132" stroke="${palette.light}" stroke-width="8" stroke-linecap="round"/>
+  </g>`;
+    case "node-map":
+      return `
+  <g transform="translate(${404 + sx} ${562 + sy})">
+    <rect x="14" y="24" width="368" height="332" rx="24" fill="${palette.light}" stroke="${palette.accentSoft}" stroke-width="8"/>
+    <g stroke="${palette.accent}" stroke-width="8" opacity="0.86">
+      <line x1="94" y1="96" x2="184" y2="140"/>
+      <line x1="184" y1="140" x2="288" y2="108"/>
+      <line x1="184" y1="140" x2="174" y2="242"/>
+      <line x1="174" y1="242" x2="286" y2="284"/>
+      <line x1="94" y1="96" x2="104" y2="228"/>
+      <line x1="104" y1="228" x2="174" y2="242"/>
+      <line x1="288" y1="108" x2="286" y2="284"/>
+    </g>
+    <g fill="${palette.ink}">
+      <circle cx="94" cy="96" r="13"/>
+      <circle cx="184" cy="140" r="13"/>
+      <circle cx="288" cy="108" r="13"/>
+      <circle cx="104" cy="228" r="13"/>
+      <circle cx="174" cy="242" r="13"/>
+      <circle cx="286" cy="284" r="13"/>
+    </g>
+  </g>`;
+    case "column-arch":
+      return `
+  <g transform="translate(${406 + sx} ${558 + sy})">
+    <rect x="42" y="56" width="58" height="250" rx="8" fill="${palette.accent}" opacity="0.84"/>
+    <rect x="294" y="56" width="58" height="250" rx="8" fill="${palette.accent}" opacity="0.84"/>
+    <path d="M100 90 C136 40 258 40 294 90 V132 H100 Z" fill="${palette.light}" stroke="${palette.accentSoft}" stroke-width="8"/>
+    <rect x="126" y="132" width="168" height="174" rx="14" fill="${palette.light}" stroke="${palette.accentSoft}" stroke-width="8"/>
+    <line x1="100" y1="198" x2="294" y2="198" stroke="${palette.accentSoft}" stroke-width="8"/>
+  </g>`;
+    case "scale-balance":
+      return `
+  <g transform="translate(${410 + sx} ${560 + sy})">
+    <line x1="186" y1="64" x2="186" y2="318" stroke="${palette.ink}" stroke-width="12" stroke-linecap="round"/>
+    <line x1="88" y1="114" x2="284" y2="114" stroke="${palette.ink}" stroke-width="12" stroke-linecap="round"/>
+    <path d="M114 114 L84 184 H144 Z" fill="${palette.accent}" opacity="0.86"/>
+    <path d="M258 114 L228 184 H288 Z" fill="${palette.accentSoft}" opacity="0.9"/>
+    <rect x="126" y="318" width="120" height="18" rx="9" fill="${palette.ink}" opacity="0.88"/>
+    <circle cx="186" cy="74" r="20" fill="${palette.light}" stroke="${palette.accentSoft}" stroke-width="8"/>
+  </g>`;
+    case "mountain-sun":
+      return `
+  <g transform="translate(${396 + sx} ${564 + sy})">
+    <circle cx="204" cy="72" r="44" fill="${palette.accent}" opacity="0.44"/>
+    <path d="M24 292 L132 144 L208 248 L296 114 L388 292 Z" fill="${palette.accentSoft}" opacity="0.82"/>
+    <path d="M84 292 L168 186 L226 260 L302 172 L360 292 Z" fill="${palette.accent}" opacity="0.82"/>
+    <path d="M34 292 H378" stroke="${palette.light}" stroke-width="12" stroke-linecap="round" opacity="0.8"/>
+  </g>`;
+    case "bridge-arc":
+      return `
+  <g transform="translate(${396 + sx} ${574 + sy})">
+    <rect x="0" y="0" width="408" height="304" rx="24" fill="${palette.light}" stroke="${palette.accentSoft}" stroke-width="8"/>
+    <path d="M50 242 Q204 92 358 242" fill="none" stroke="${palette.accent}" stroke-width="16" stroke-linecap="round"/>
+    <line x1="98" y1="214" x2="98" y2="242" stroke="${palette.accentSoft}" stroke-width="10" stroke-linecap="round"/>
+    <line x1="146" y1="174" x2="146" y2="242" stroke="${palette.accentSoft}" stroke-width="10" stroke-linecap="round"/>
+    <line x1="204" y1="150" x2="204" y2="242" stroke="${palette.accentSoft}" stroke-width="10" stroke-linecap="round"/>
+    <line x1="262" y1="174" x2="262" y2="242" stroke="${palette.accentSoft}" stroke-width="10" stroke-linecap="round"/>
+    <line x1="310" y1="214" x2="310" y2="242" stroke="${palette.accentSoft}" stroke-width="10" stroke-linecap="round"/>
+  </g>`;
+    case "heart-link":
+      return `
+  <g transform="translate(${410 + sx} ${564 + sy})">
+    <path d="M196 304 C128 250 64 202 64 140 C64 96 96 66 138 66 C166 66 186 78 196 98 C206 78 226 66 254 66 C296 66 328 96 328 140 C328 202 264 250 196 304 Z" fill="${palette.accent}" opacity="0.84"/>
+    <path d="M146 182 L182 220 L250 148" fill="none" stroke="${palette.light}" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="104" cy="236" r="16" fill="${palette.accentSoft}" opacity="0.9"/>
+    <circle cx="286" cy="236" r="16" fill="${palette.accentSoft}" opacity="0.9"/>
+  </g>`;
+    case "rocket":
+      return `
+  <g transform="translate(${408 + sx} ${552 + sy})">
+    <path d="M198 24 C272 78 304 152 304 220 C304 292 254 342 198 374 C142 342 92 292 92 220 C92 152 124 78 198 24 Z" fill="${palette.accent}" opacity="0.9"/>
+    <circle cx="198" cy="162" r="44" fill="${palette.light}" opacity="0.95"/>
+    <path d="M176 226 L220 226 L236 322 L160 322 Z" fill="${palette.light}" opacity="0.94"/>
+    <path d="M108 272 L58 304 L102 316 Z" fill="${palette.accentSoft}" opacity="0.9"/>
+    <path d="M288 272 L338 304 L294 316 Z" fill="${palette.accentSoft}" opacity="0.9"/>
+  </g>`;
+    case "maze-grid":
+      return `
+  <g transform="translate(${406 + sx} ${564 + sy})">
+    <rect x="0" y="0" width="388" height="332" rx="24" fill="${palette.light}" stroke="${palette.accentSoft}" stroke-width="8"/>
+    <path d="M52 62 H338 V270 H82 V100 H286 V228 H136 V152 H236" fill="none" stroke="${palette.accent}" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="236" cy="152" r="12" fill="${palette.ink}"/>
+  </g>`;
+    case "anvil-mark":
+      return `
+  <g transform="translate(${410 + sx} ${572 + sy})">
+    <path d="M54 194 H254 C278 194 298 174 298 150 H180 C150 150 126 126 126 96 H294 C326 96 352 122 352 154 C352 226 298 278 228 278 H166 L154 318 H76 Z" fill="${palette.accent}" opacity="0.88"/>
+    <rect x="120" y="278" width="154" height="28" rx="12" fill="${palette.ink}" opacity="0.86"/>
+    <rect x="146" y="244" width="110" height="22" rx="10" fill="${palette.light}" opacity="0.82"/>
+  </g>`;
     case "focus-block":
       return `
   <g transform="translate(${410 + sx} ${560 + sy})">
@@ -1324,6 +1551,21 @@ function renderCoverMotif(motif, theme, palette, seed) {
           .join("")
       )
       .join("\n")}
+  </g>`;
+    case "checklist-board":
+      return `
+  <g transform="translate(${404 + sx} ${560 + sy})">
+    <rect x="0" y="0" width="392" height="332" rx="24" fill="${palette.light}" stroke="${palette.accentSoft}" stroke-width="8"/>
+    <rect x="54" y="58" width="282" height="224" rx="18" fill="${palette.accent}" opacity="0.16"/>
+    <rect x="82" y="92" width="24" height="24" rx="6" fill="${palette.accentSoft}" opacity="0.86"/>
+    <path d="M86 104 L92 110 L104 96" fill="none" stroke="${palette.ink}" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="120" y="96" width="186" height="14" rx="7" fill="${palette.accent}" opacity="0.82"/>
+    <rect x="82" y="144" width="24" height="24" rx="6" fill="${palette.accentSoft}" opacity="0.86"/>
+    <path d="M86 156 L92 162 L104 148" fill="none" stroke="${palette.ink}" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="120" y="148" width="164" height="14" rx="7" fill="${palette.accent}" opacity="0.78"/>
+    <rect x="82" y="196" width="24" height="24" rx="6" fill="${palette.accentSoft}" opacity="0.86"/>
+    <path d="M86 208 L92 214 L104 200" fill="none" stroke="${palette.ink}" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="120" y="200" width="206" height="14" rx="7" fill="${palette.accent}" opacity="0.74"/>
   </g>`;
     case "pencil-line":
       return `
@@ -1459,6 +1701,70 @@ function renderCoverMotif(motif, theme, palette, seed) {
   }
 }
 
+function titleInitials(title) {
+  const words = cleanSpaces(title)
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, " ")
+    .split(/\s+/)
+    .filter((word) => word && !STOP_WORDS.has(word));
+  if (words.length === 0) return "BK";
+  if (words.length === 1) return words[0].slice(0, 2).toUpperCase();
+  return `${words[0][0]}${words[1][0]}`.toUpperCase();
+}
+
+function renderCoverSigil(book, palette, seed) {
+  const initials = titleInitials(book.title);
+  const variant = seed % 6;
+
+  switch (variant) {
+    case 0:
+      return `
+  <g transform="translate(928 336)">
+    <circle cx="84" cy="84" r="76" fill="${palette.light}" stroke="${palette.accent}" stroke-width="10"/>
+    <circle cx="84" cy="84" r="56" fill="${palette.accentSoft}" opacity="0.68"/>
+    <text x="84" y="98" text-anchor="middle" fill="${palette.ink}" font-family="'Trebuchet MS', Arial, sans-serif" font-size="44" font-weight="700" letter-spacing="2">${esc(initials)}</text>
+  </g>`;
+    case 1:
+      return `
+  <g transform="translate(922 332)">
+    <rect x="12" y="12" width="152" height="152" rx="24" fill="${palette.light}" stroke="${palette.accent}" stroke-width="10"/>
+    <path d="M30 116 L146 52" stroke="${palette.accentSoft}" stroke-width="8" stroke-linecap="round"/>
+    <path d="M30 138 L146 74" stroke="${palette.accentSoft}" stroke-width="8" stroke-linecap="round"/>
+    <text x="88" y="102" text-anchor="middle" fill="${palette.ink}" font-family="'Trebuchet MS', Arial, sans-serif" font-size="44" font-weight="700" letter-spacing="2">${esc(initials)}</text>
+  </g>`;
+    case 2:
+      return `
+  <g transform="translate(926 334)">
+    <polygon points="88,8 162,52 162,136 88,180 14,136 14,52" fill="${palette.light}" stroke="${palette.accent}" stroke-width="10"/>
+    <circle cx="88" cy="94" r="44" fill="${palette.accentSoft}" opacity="0.7"/>
+    <text x="88" y="108" text-anchor="middle" fill="${palette.ink}" font-family="'Trebuchet MS', Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="2">${esc(initials)}</text>
+  </g>`;
+    case 3:
+      return `
+  <g transform="translate(930 336)">
+    <path d="M82 8 L152 34 V90 C152 142 120 174 82 190 C44 174 12 142 12 90 V34 Z" fill="${palette.light}" stroke="${palette.accent}" stroke-width="10"/>
+    <rect x="30" y="64" width="104" height="64" rx="20" fill="${palette.accentSoft}" opacity="0.72"/>
+    <text x="82" y="106" text-anchor="middle" fill="${palette.ink}" font-family="'Trebuchet MS', Arial, sans-serif" font-size="40" font-weight="700" letter-spacing="2">${esc(initials)}</text>
+  </g>`;
+    case 4:
+      return `
+  <g transform="translate(924 332)">
+    <rect x="24" y="14" width="128" height="156" rx="64" fill="${palette.light}" stroke="${palette.accent}" stroke-width="10"/>
+    <path d="M44 54 H132" stroke="${palette.accentSoft}" stroke-width="10" stroke-linecap="round"/>
+    <path d="M44 80 H132" stroke="${palette.accentSoft}" stroke-width="10" stroke-linecap="round"/>
+    <text x="88" y="128" text-anchor="middle" fill="${palette.ink}" font-family="'Trebuchet MS', Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="2">${esc(initials)}</text>
+  </g>`;
+    case 5:
+    default:
+      return `
+  <g transform="translate(924 332)">
+    <polygon points="88,8 168,88 88,168 8,88" fill="${palette.light}" stroke="${palette.accent}" stroke-width="10"/>
+    <circle cx="88" cy="88" r="38" fill="${palette.accentSoft}" opacity="0.72"/>
+    <text x="88" y="102" text-anchor="middle" fill="${palette.ink}" font-family="'Trebuchet MS', Arial, sans-serif" font-size="40" font-weight="700" letter-spacing="2">${esc(initials)}</text>
+  </g>`;
+  }
+}
+
 function createCoverSvg(pkg) {
   const id = pkg.book.bookId;
   const override = COVER_BOOK_OVERRIDES[id] || null;
@@ -1475,6 +1781,7 @@ function createCoverSvg(pkg) {
   const fontSize = titleFontSize(titleLines);
   const keywordText = keywordLine(pkg.book, meta.label);
   const subtitle = override?.subtitle || meta.subtitle;
+  const sigilSvg = renderCoverSigil(pkg.book, palette, seed);
   const lineGap = Math.round(fontSize * 1.08);
   const firstLineY = titleLines.length === 1 ? 1216 : titleLines.length === 2 ? 1162 : 1114;
   const titleSvg = titleLines
@@ -1498,6 +1805,7 @@ function createCoverSvg(pkg) {
 ${renderCoverLayout(layoutVariant, palette, seed)}
   <rect x="116" y="304" width="968" height="1036" rx="38" fill="${palette.panel}" stroke="${palette.panelStroke}" stroke-width="10"/>
 ${renderCoverMotif(motif, theme, palette, seed)}
+${sigilSvg}
 
   <rect x="0" y="0" width="1200" height="238" fill="${palette.bgTop}" opacity="0.93"/>
   <rect x="0" y="1454" width="1200" height="346" fill="${palette.bgBottom}" opacity="0.95"/>
