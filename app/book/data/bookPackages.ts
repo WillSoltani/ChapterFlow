@@ -54,6 +54,47 @@ import disciplineIsDestinyPackageJson from "@/book-packages/discipline-is-destin
 import meditationsPackageJson from "@/book-packages/meditations.modern.json";
 import mansSearchForMeaningPackageJson from "@/book-packages/mans-search-for-meaning.modern.json";
 
+import builtToLastModernPackageJson from "@/book-packages/built-to-last.modern.json";
+import clearThinkingModernPackageJson from "@/book-packages/clear-thinking.modern.json";
+import competingAgainstLuckModernPackageJson from "@/book-packages/competing-against-luck.modern.json";
+import egoIsTheEnemyModernPackageJson from "@/book-packages/ego-is-the-enemy.modern.json";
+import executionModernPackageJson from "@/book-packages/execution.modern.json";
+import flowModernPackageJson from "@/book-packages/flow.modern.json";
+import gettingThingsDoneModernPackageJson from "@/book-packages/getting-things-done.modern.json";
+import limitlessModernPackageJson from "@/book-packages/limitless.modern.json";
+import madeToStickModernPackageJson from "@/book-packages/made-to-stick.modern.json";
+import makeItStickModernPackageJson from "@/book-packages/make-it-stick.modern.json";
+import measureWhatMattersModernPackageJson from "@/book-packages/measure-what-matters.modern.json";
+import mistakesWereMadeButNotByMeModernPackageJson from "@/book-packages/mistakes-were-made-but-not-by-me.modern.json";
+import neverEatAloneModernPackageJson from "@/book-packages/never-eat-alone.modern.json";
+import noiseModernPackageJson from "@/book-packages/noise.modern.json";
+import onBecomingAPersonModernPackageJson from "@/book-packages/on-becoming-a-person.modern.json";
+import peakModernPackageJson from "@/book-packages/peak.modern.json";
+import playingToWinModernPackageJson from "@/book-packages/playing-to-win.modern.json";
+import seekingWisdomModernPackageJson from "@/book-packages/seeking-wisdom.modern.json";
+import sevenPowersModernPackageJson from "@/book-packages/seven-powers.modern.json";
+import skinInTheGameModernPackageJson from "@/book-packages/skin-in-the-game.modern.json";
+import smarterFasterBetterModernPackageJson from "@/book-packages/smarter-faster-better.modern.json";
+import superThinkingModernPackageJson from "@/book-packages/super-thinking.modern.json";
+import superforecastingModernPackageJson from "@/book-packages/superforecasting.modern.json";
+import the12WeekYearModernPackageJson from "@/book-packages/the-12-week-year.modern.json";
+import theArtOfThinkingClearlyModernPackageJson from "@/book-packages/the-art-of-thinking-clearly.modern.json";
+import theBlackSwanModernPackageJson from "@/book-packages/the-black-swan.modern.json";
+import theChecklistManifestoModernPackageJson from "@/book-packages/the-checklist-manifesto.modern.json";
+import theDenialOfDeathModernPackageJson from "@/book-packages/the-denial-of-death.modern.json";
+import theElephantInTheBrainModernPackageJson from "@/book-packages/the-elephant-in-the-brain.modern.json";
+import theFirst20HoursModernPackageJson from "@/book-packages/the-first-20-hours.modern.json";
+import theGiftOfFearModernPackageJson from "@/book-packages/the-gift-of-fear.modern.json";
+import theGreatMentalModelsVol1ModernPackageJson from "@/book-packages/the-great-mental-models-vol-1.modern.json";
+import theGreatMentalModelsVol2ModernPackageJson from "@/book-packages/the-great-mental-models-vol-2.modern.json";
+import theInnovatorsDilemmaModernPackageJson from "@/book-packages/the-innovators-dilemma.modern.json";
+import theMolePeopleModernPackageJson from "@/book-packages/the-mole-people.modern.json";
+import theOutsidersModernPackageJson from "@/book-packages/the-outsiders.modern.json";
+import thePyramidPrincipleModernPackageJson from "@/book-packages/the-pyramid-principle.modern.json";
+import theWarOfArtModernPackageJson from "@/book-packages/the-war-of-art.modern.json";
+import thinkingInBetsModernPackageJson from "@/book-packages/thinking-in-bets.modern.json";
+import ultralearningModernPackageJson from "@/book-packages/ultralearning.modern.json";
+
 export type VariantFamily = "EMH" | "PBC";
 export type VariantKey =
   | "easy"
@@ -227,6 +268,47 @@ export const MEDITATIONS_PACKAGE = meditationsPackageJson as BookPackage;
 export const MANS_SEARCH_FOR_MEANING_PACKAGE =
   mansSearchForMeaningPackageJson as BookPackage;
 
+export const BUILT_TO_LAST_MODERN_PACKAGE = builtToLastModernPackageJson as BookPackage;
+export const CLEAR_THINKING_MODERN_PACKAGE = clearThinkingModernPackageJson as BookPackage;
+export const COMPETING_AGAINST_LUCK_MODERN_PACKAGE = competingAgainstLuckModernPackageJson as BookPackage;
+export const EGO_IS_THE_ENEMY_MODERN_PACKAGE = egoIsTheEnemyModernPackageJson as BookPackage;
+export const EXECUTION_MODERN_PACKAGE = executionModernPackageJson as BookPackage;
+export const FLOW_MODERN_PACKAGE = flowModernPackageJson as BookPackage;
+export const GETTING_THINGS_DONE_MODERN_PACKAGE = gettingThingsDoneModernPackageJson as BookPackage;
+export const LIMITLESS_MODERN_PACKAGE = limitlessModernPackageJson as BookPackage;
+export const MADE_TO_STICK_MODERN_PACKAGE = madeToStickModernPackageJson as BookPackage;
+export const MAKE_IT_STICK_MODERN_PACKAGE = makeItStickModernPackageJson as BookPackage;
+export const MEASURE_WHAT_MATTERS_MODERN_PACKAGE = measureWhatMattersModernPackageJson as BookPackage;
+export const MISTAKES_WERE_MADE_BUT_NOT_BY_ME_MODERN_PACKAGE = mistakesWereMadeButNotByMeModernPackageJson as BookPackage;
+export const NEVER_EAT_ALONE_MODERN_PACKAGE = neverEatAloneModernPackageJson as BookPackage;
+export const NOISE_MODERN_PACKAGE = noiseModernPackageJson as BookPackage;
+export const ON_BECOMING_A_PERSON_MODERN_PACKAGE = onBecomingAPersonModernPackageJson as BookPackage;
+export const PEAK_MODERN_PACKAGE = peakModernPackageJson as BookPackage;
+export const PLAYING_TO_WIN_MODERN_PACKAGE = playingToWinModernPackageJson as BookPackage;
+export const SEEKING_WISDOM_MODERN_PACKAGE = seekingWisdomModernPackageJson as BookPackage;
+export const SEVEN_POWERS_MODERN_PACKAGE = sevenPowersModernPackageJson as BookPackage;
+export const SKIN_IN_THE_GAME_MODERN_PACKAGE = skinInTheGameModernPackageJson as BookPackage;
+export const SMARTER_FASTER_BETTER_MODERN_PACKAGE = smarterFasterBetterModernPackageJson as BookPackage;
+export const SUPER_THINKING_MODERN_PACKAGE = superThinkingModernPackageJson as BookPackage;
+export const SUPERFORECASTING_MODERN_PACKAGE = superforecastingModernPackageJson as BookPackage;
+export const THE_12_WEEK_YEAR_MODERN_PACKAGE = the12WeekYearModernPackageJson as BookPackage;
+export const THE_ART_OF_THINKING_CLEARLY_MODERN_PACKAGE = theArtOfThinkingClearlyModernPackageJson as BookPackage;
+export const THE_BLACK_SWAN_MODERN_PACKAGE = theBlackSwanModernPackageJson as BookPackage;
+export const THE_CHECKLIST_MANIFESTO_MODERN_PACKAGE = theChecklistManifestoModernPackageJson as BookPackage;
+export const THE_DENIAL_OF_DEATH_MODERN_PACKAGE = theDenialOfDeathModernPackageJson as BookPackage;
+export const THE_ELEPHANT_IN_THE_BRAIN_MODERN_PACKAGE = theElephantInTheBrainModernPackageJson as BookPackage;
+export const THE_FIRST_20_HOURS_MODERN_PACKAGE = theFirst20HoursModernPackageJson as BookPackage;
+export const THE_GIFT_OF_FEAR_MODERN_PACKAGE = theGiftOfFearModernPackageJson as BookPackage;
+export const THE_GREAT_MENTAL_MODELS_VOL_1_MODERN_PACKAGE = theGreatMentalModelsVol1ModernPackageJson as BookPackage;
+export const THE_GREAT_MENTAL_MODELS_VOL_2_MODERN_PACKAGE = theGreatMentalModelsVol2ModernPackageJson as BookPackage;
+export const THE_INNOVATORS_DILEMMA_MODERN_PACKAGE = theInnovatorsDilemmaModernPackageJson as BookPackage;
+export const THE_MOLE_PEOPLE_MODERN_PACKAGE = theMolePeopleModernPackageJson as BookPackage;
+export const THE_OUTSIDERS_MODERN_PACKAGE = theOutsidersModernPackageJson as BookPackage;
+export const THE_PYRAMID_PRINCIPLE_MODERN_PACKAGE = thePyramidPrincipleModernPackageJson as BookPackage;
+export const THE_WAR_OF_ART_MODERN_PACKAGE = theWarOfArtModernPackageJson as BookPackage;
+export const THINKING_IN_BETS_MODERN_PACKAGE = thinkingInBetsModernPackageJson as BookPackage;
+export const ULTRALEARNING_MODERN_PACKAGE = ultralearningModernPackageJson as BookPackage;
+
 export const BOOK_PACKAGES: BookPackage[] = [
   FRIENDS_AND_INFLUENCE_PACKAGE,
   ART_OF_WAR_PACKAGE,
@@ -283,6 +365,46 @@ export const BOOK_PACKAGES: BookPackage[] = [
   DISCIPLINE_IS_DESTINY_PACKAGE,
   MEDITATIONS_PACKAGE,
   MANS_SEARCH_FOR_MEANING_PACKAGE,
+  BUILT_TO_LAST_MODERN_PACKAGE,
+  CLEAR_THINKING_MODERN_PACKAGE,
+  COMPETING_AGAINST_LUCK_MODERN_PACKAGE,
+  EGO_IS_THE_ENEMY_MODERN_PACKAGE,
+  EXECUTION_MODERN_PACKAGE,
+  FLOW_MODERN_PACKAGE,
+  GETTING_THINGS_DONE_MODERN_PACKAGE,
+  LIMITLESS_MODERN_PACKAGE,
+  MADE_TO_STICK_MODERN_PACKAGE,
+  MAKE_IT_STICK_MODERN_PACKAGE,
+  MEASURE_WHAT_MATTERS_MODERN_PACKAGE,
+  MISTAKES_WERE_MADE_BUT_NOT_BY_ME_MODERN_PACKAGE,
+  NEVER_EAT_ALONE_MODERN_PACKAGE,
+  NOISE_MODERN_PACKAGE,
+  ON_BECOMING_A_PERSON_MODERN_PACKAGE,
+  PEAK_MODERN_PACKAGE,
+  PLAYING_TO_WIN_MODERN_PACKAGE,
+  SEEKING_WISDOM_MODERN_PACKAGE,
+  SEVEN_POWERS_MODERN_PACKAGE,
+  SKIN_IN_THE_GAME_MODERN_PACKAGE,
+  SMARTER_FASTER_BETTER_MODERN_PACKAGE,
+  SUPER_THINKING_MODERN_PACKAGE,
+  SUPERFORECASTING_MODERN_PACKAGE,
+  THE_12_WEEK_YEAR_MODERN_PACKAGE,
+  THE_ART_OF_THINKING_CLEARLY_MODERN_PACKAGE,
+  THE_BLACK_SWAN_MODERN_PACKAGE,
+  THE_CHECKLIST_MANIFESTO_MODERN_PACKAGE,
+  THE_DENIAL_OF_DEATH_MODERN_PACKAGE,
+  THE_ELEPHANT_IN_THE_BRAIN_MODERN_PACKAGE,
+  THE_FIRST_20_HOURS_MODERN_PACKAGE,
+  THE_GIFT_OF_FEAR_MODERN_PACKAGE,
+  THE_GREAT_MENTAL_MODELS_VOL_1_MODERN_PACKAGE,
+  THE_GREAT_MENTAL_MODELS_VOL_2_MODERN_PACKAGE,
+  THE_INNOVATORS_DILEMMA_MODERN_PACKAGE,
+  THE_MOLE_PEOPLE_MODERN_PACKAGE,
+  THE_OUTSIDERS_MODERN_PACKAGE,
+  THE_PYRAMID_PRINCIPLE_MODERN_PACKAGE,
+  THE_WAR_OF_ART_MODERN_PACKAGE,
+  THINKING_IN_BETS_MODERN_PACKAGE,
+  ULTRALEARNING_MODERN_PACKAGE,
 ];
 
 export const BOOK_PACKAGE_PRESENTATION: Record<string, BookPackagePresentation> = {
@@ -732,14 +854,78 @@ export function getBookPackageById(bookId: string): BookPackage | undefined {
   return BOOK_PACKAGES.find((pkg) => pkg.book.bookId === bookId);
 }
 
-export function getBookPackagePresentation(bookId: string): BookPackagePresentation {
-  return (
-    BOOK_PACKAGE_PRESENTATION[bookId] ?? {
+function formatSynopsisTopics(topics: string[]): string {
+  if (topics.length === 0) return "practical thinking and real world decision making";
+  if (topics.length === 1) return topics[0];
+  if (topics.length === 2) return `${topics[0]} and ${topics[1]}`;
+  return `${topics.slice(0, -1).join(", ")}, and ${topics[topics.length - 1]}`;
+}
+
+function inferPresentationIcon(categories: string[]): string {
+  const source = categories.join(" ").toLowerCase();
+  if (source.includes("thinking") || source.includes("mental model")) return "🧠";
+  if (source.includes("strategy")) return "♟️";
+  if (source.includes("productivity")) return "⏱️";
+  if (source.includes("learning")) return "🧠";
+  if (source.includes("psychology")) return "🧭";
+  if (source.includes("communication")) return "💬";
+  if (source.includes("philosophy")) return "🏛️";
+  if (source.includes("business")) return "📈";
+  return "📘";
+}
+
+function inferPresentationDifficulty(categories: string[]): BookPackagePresentation["difficulty"] {
+  const source = categories.join(" ").toLowerCase();
+  if (
+    source.includes("strategy") ||
+    source.includes("philosophy") ||
+    source.includes("decision making")
+  ) {
+    return "Hard";
+  }
+  if (
+    source.includes("productivity") ||
+    source.includes("learning") ||
+    source.includes("communication")
+  ) {
+    return "Medium";
+  }
+  return "Medium";
+}
+
+function inferFallbackPresentation(bookId: string): BookPackagePresentation {
+  const bookPackage = getBookPackageById(bookId);
+  if (!bookPackage) {
+    return {
       icon: "📘",
       coverImage: `/book-covers/${bookId}.svg`,
       difficulty: "Medium",
       synopsis:
         "A focused, chapter-based learning experience with examples, quizzes, and measurable progress.",
-    }
+    };
+  }
+
+  const categories = Array.isArray(bookPackage.book.categories)
+    ? bookPackage.book.categories.filter(Boolean)
+    : [];
+  const tags = Array.isArray(bookPackage.book.tags)
+    ? bookPackage.book.tags.filter(Boolean)
+    : [];
+  const topics = [...new Set([...tags, ...categories].map((item) => item.toLowerCase()))].slice(0, 5);
+  const totalMinutes = bookPackage.chapters.reduce(
+    (sum, chapter) => sum + Math.max(chapter.readingTimeMinutes, 1),
+    0
   );
+
+  return {
+    icon: inferPresentationIcon(categories),
+    coverImage: `/book-covers/${bookId}.svg`,
+    difficulty: inferPresentationDifficulty(categories),
+    synopsis: `A modern reading of ${formatSynopsisTopics(topics)} with concise summaries, scenarios, quizzes, and gated chapter progression.`,
+    pages: Math.max(160, Math.round(totalMinutes * 3.2)),
+  };
+}
+
+export function getBookPackagePresentation(bookId: string): BookPackagePresentation {
+  return BOOK_PACKAGE_PRESENTATION[bookId] ?? inferFallbackPresentation(bookId);
 }

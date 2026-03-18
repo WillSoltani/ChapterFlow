@@ -15,7 +15,7 @@ const controls: Array<{ id: FontScale; label: string; short: string }> = [
 
 export function FontSizeControls({ value, onChange }: FontSizeControlsProps) {
   return (
-    <div className="inline-flex rounded-xl border border-white/40 bg-white/3 p-0.5">
+    <div className="inline-flex rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) p-0.5">
       {controls.map((control) => {
         const active = control.id === value;
         return (
@@ -26,8 +26,8 @@ export function FontSizeControls({ value, onChange }: FontSizeControlsProps) {
             className={[
               "rounded-lg px-2.5 py-1 text-sm transition",
               active
-                ? "bg-white/15 text-slate-100"
-                : "text-slate-400 hover:bg-white/8 hover:text-slate-200",
+                ? "bg-(--cf-surface-strong) text-(--cf-text-1) shadow-sm"
+                : "text-(--cf-text-3) hover:bg-(--cf-surface) hover:text-(--cf-text-2)",
             ].join(" ")}
             aria-label={control.label}
             aria-pressed={active}

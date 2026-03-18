@@ -5,9 +5,9 @@ import type { BookStatus, RecentBookProgress } from "@/app/book/data/mockProgres
 import { BookCover } from "@/app/book/components/BookCover";
 
 const statusStyles: Record<BookStatus, string> = {
-  completed: "border-emerald-300/30 bg-emerald-400/12 text-emerald-200",
-  in_progress: "border-sky-300/30 bg-sky-400/12 text-sky-200",
-  not_started: "border-white/20 bg-white/8 text-slate-300",
+  completed: "border-(--cf-success-border) bg-(--cf-success-soft) text-(--cf-success-text)",
+  in_progress: "border-(--cf-accent-border) bg-(--cf-accent-soft) text-(--cf-info-text)",
+  not_started: "border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-2)",
 };
 
 const statusLabel: Record<BookStatus, string> = {
@@ -27,7 +27,7 @@ export function BookMiniCard({ book, progress, onOpen }: BookMiniCardProps) {
     <button
       type="button"
       onClick={onOpen}
-      className="group w-full rounded-3xl border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.07),rgba(255,255,255,0.03))] p-4 text-left transition duration-200 hover:-translate-y-0.5 hover:border-white/20 hover:shadow-[0_14px_35px_rgba(2,6,23,0.5)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300/45"
+      className="group w-full rounded-3xl border border-(--cf-border) bg-(--cf-surface) p-4 text-left shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-(--cf-border-strong) hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)"
     >
       <div className="flex items-start justify-between gap-3">
         <BookCover
@@ -35,7 +35,7 @@ export function BookMiniCard({ book, progress, onOpen }: BookMiniCardProps) {
           title={book.title}
           icon={book.icon}
           coverImage={book.coverImage}
-          className="h-12 w-11 rounded-xl border border-white/15 bg-white/8"
+          className="h-12 w-11 rounded-xl border border-(--cf-border) bg-(--cf-surface-muted)"
           fallbackClassName="text-2xl"
           sizes="44px"
         />
@@ -49,21 +49,21 @@ export function BookMiniCard({ book, progress, onOpen }: BookMiniCardProps) {
         </span>
       </div>
 
-      <h4 className="mt-4 text-lg font-semibold text-slate-100">{book.title}</h4>
-      <p className="text-sm text-slate-300">{book.author}</p>
-      <p className="mt-2 text-xs text-slate-400">
+      <h4 className="mt-4 text-lg font-semibold text-(--cf-text-1)">{book.title}</h4>
+      <p className="text-sm text-(--cf-text-2)">{book.author}</p>
+      <p className="mt-2 text-xs text-(--cf-text-3)">
         {progress.chapter > 0
           ? `Chapter ${progress.chapter} of ${progress.totalChapters}`
           : `${progress.totalChapters} chapters`}
       </p>
 
-      <div className="mt-3 h-2 overflow-hidden rounded-full bg-slate-900/45">
+      <div className="mt-3 h-2 overflow-hidden rounded-full bg-(--cf-border)">
         <div
-          className="h-full rounded-full bg-linear-to-r from-sky-300 to-cyan-200"
+          className="h-full rounded-full bg-linear-to-r from-(--cf-accent) to-(--cf-accent-strong)"
           style={{ width: `${Math.max(progress.progressPercent, 0)}%` }}
         />
       </div>
-      <p className="mt-2 text-xs text-slate-400">{progress.progressPercent}% progress</p>
+      <p className="mt-2 text-xs text-(--cf-text-3)">{progress.progressPercent}% progress</p>
     </button>
   );
 }

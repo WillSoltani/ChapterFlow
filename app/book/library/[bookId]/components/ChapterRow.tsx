@@ -25,15 +25,15 @@ export function ChapterRow({ chapter, state, score, onClick, hint }: ChapterRowP
       title={locked ? hint : undefined}
       className={[
         "group w-full rounded-2xl border px-4 py-3 text-left transition duration-200",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300/45",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-soft)",
         current
-          ? "border-sky-300/40 bg-sky-500/10 shadow-[0_0_0_1px_rgba(56,189,248,0.25)]"
+          ? "border-(--cf-accent-border) bg-(--cf-accent-muted) shadow-[0_0_0_1px_var(--cf-accent-soft)]"
           : completed
-            ? "border-emerald-300/20 bg-emerald-500/6 hover:border-emerald-300/30"
-            : "border-white/8 bg-white/2",
+            ? "border-(--cf-success-border) bg-(--cf-success-bg) hover:border-(--cf-success-border)"
+            : "border-(--cf-border) bg-(--cf-surface)",
         locked
           ? "cursor-not-allowed opacity-40"
-          : "hover:-translate-y-0.5 hover:border-white/20",
+          : "hover:-translate-y-0.5 hover:border-(--cf-border-strong)",
       ].join(" ")}
       aria-disabled={locked}
     >
@@ -42,10 +42,10 @@ export function ChapterRow({ chapter, state, score, onClick, hint }: ChapterRowP
           className={[
             "inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border",
             completed
-              ? "border-emerald-300/30 bg-emerald-400/12 text-emerald-200"
+              ? "border-(--cf-success-border) bg-(--cf-success-bg) text-(--cf-success-text)"
               : current
-                ? "border-sky-300/30 bg-sky-400/12 text-sky-200"
-                : "border-white/12 bg-white/5 text-slate-400",
+                ? "border-(--cf-accent-border) bg-(--cf-accent-soft) text-(--cf-accent)"
+                : "border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-3)",
           ].join(" ")}
         >
           {completed ? (
@@ -59,18 +59,18 @@ export function ChapterRow({ chapter, state, score, onClick, hint }: ChapterRowP
 
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-3">
-            <span className="text-sm font-medium tracking-wide text-slate-400">{chapter.code}</span>
-            <span className="truncate text-2xl font-semibold text-slate-100">{chapter.title}</span>
+            <span className="text-sm font-medium tracking-wide text-(--cf-text-3)">{chapter.code}</span>
+            <span className="truncate text-2xl font-semibold text-(--cf-text-1)">{chapter.title}</span>
           </div>
         </div>
 
         <div className="ml-2 flex items-center gap-3">
           {typeof score === "number" ? (
-            <span className="rounded-xl border border-emerald-300/25 bg-emerald-400/12 px-2.5 py-1 text-sm font-semibold text-emerald-200">
+            <span className="cf-pill cf-pill-success rounded-xl px-2.5 py-1 text-sm font-semibold">
               {Math.round(score)}%
             </span>
           ) : null}
-          <span className="whitespace-nowrap text-lg text-slate-400">{chapter.minutes} min</span>
+          <span className="whitespace-nowrap text-lg text-(--cf-text-3)">{chapter.minutes} min</span>
         </div>
       </div>
     </button>

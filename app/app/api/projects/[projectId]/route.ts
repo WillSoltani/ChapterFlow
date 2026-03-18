@@ -9,6 +9,7 @@ import { DeleteObjectCommand } from "@aws-sdk/client-s3";
 
 import { ddbDoc, getTableName, s3 } from "../../_lib/aws";
 import { requireUser } from "../../_lib/auth";
+import { slugify } from "../../_lib/slugify";
 
 export const runtime = "nodejs";
 
@@ -52,17 +53,6 @@ function isConditionalCheckFailed(e: unknown) {
   );
 }
 
-// Align with uploads slugify: no "untitled-project" string.
-function slugify(input: string): string {
-  const s = (input || "").trim().toLowerCase();
-  const cleaned = s
-    .normalize("NFKD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "")
-    .slice(0, 60);
-  return cleaned || "untitled";
-}
 
 type ProjectFound = {
   key: { PK: string; SK: string };

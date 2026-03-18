@@ -300,9 +300,8 @@ export function ChapterReaderClient({
     !onboarding.setupComplete
   ) {
     return (
-      <main className="relative min-h-screen text-slate-100">
-        <div className="pointer-events-none absolute inset-0 -z-20 bg-[#050813]" />
-        <div className="mx-auto flex min-h-screen items-center justify-center px-4 text-slate-300">
+      <main className="cf-app-shell">
+        <div className="mx-auto flex min-h-screen items-center justify-center px-4 text-(--cf-text-2)">
           Loading chapter...
         </div>
       </main>
@@ -311,18 +310,17 @@ export function ChapterReaderClient({
 
   if (isLocked) {
     return (
-      <main className="relative min-h-screen overflow-x-hidden text-slate-100">
-        <div className="pointer-events-none absolute inset-0 -z-20 bg-[#050813]" />
+      <main className="cf-app-shell">
         <section className="mx-auto flex min-h-screen w-full max-w-3xl items-center px-4 py-10 sm:px-6">
-          <div className="w-full rounded-[28px] border border-white/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.07),rgba(255,255,255,0.03))] p-8 text-center shadow-[0_24px_60px_rgba(2,6,23,0.55)]">
-            <BookLock className="mx-auto h-10 w-10 text-slate-300" />
-            <h1 className="mt-4 text-3xl font-semibold text-slate-100">Chapter locked</h1>
-            <p className="mt-2 text-slate-300">
+          <div className="w-full rounded-[28px] border border-(--cf-border) bg-(--cf-surface) p-8 text-center shadow-xl">
+            <BookLock className="mx-auto h-10 w-10 text-(--cf-text-3)" />
+            <h1 className="mt-4 text-3xl font-semibold text-(--cf-text-1)">Chapter locked</h1>
+            <p className="mt-2 text-(--cf-text-2)">
               Pass the current chapter quiz to unlock this chapter.
             </p>
             <Link
               href={`/book/library/${encodeURIComponent(bookId)}`}
-              className="mt-5 inline-flex rounded-xl border border-sky-300/35 bg-sky-500/14 px-4 py-2 text-sm font-medium text-sky-100"
+              className="mt-5 inline-flex rounded-xl border border-(--cf-accent-border) bg-(--cf-accent-soft) px-4 py-2 text-sm font-medium text-(--cf-info-text)"
             >
               Back to chapters
             </Link>
@@ -504,8 +502,8 @@ export function ChapterReaderClient({
   const showQuiz = state.activeTab === "quiz";
 
   return (
-    <main className="relative min-h-screen overflow-x-hidden text-slate-100">
-      <div className="pointer-events-none absolute inset-0 -z-20 bg-[#050813]" />
+    <main className="relative min-h-screen overflow-x-hidden text-(--cf-text-1)">
+      <div className="pointer-events-none absolute inset-0 -z-20 bg-(--cf-page-bg)" />
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(880px_circle_at_12%_-6%,rgba(56,189,248,0.12),transparent_58%),radial-gradient(780px_circle_at_100%_0%,rgba(2,132,199,0.08),transparent_60%)]" />
 
       <section
@@ -618,7 +616,7 @@ export function ChapterReaderClient({
           <button
             type="button"
             onClick={() => router.push(`/book/library/${encodeURIComponent(bookId)}/chapter/${encodeURIComponent(currentChapter.id)}`)}
-            className="w-full rounded-2xl bg-linear-to-r from-sky-500 to-cyan-400 px-4 py-3 text-base font-semibold text-white shadow-[0_16px_35px_rgba(14,165,233,0.36)]"
+            className="w-full rounded-2xl bg-linear-to-r from-(--cf-accent) to-(--cf-accent-strong) px-4 py-3 text-base font-semibold text-white shadow-[0_16px_35px_rgba(14,165,233,0.36)]"
           >
             Continue Chapter {currentChapter.order} →
           </button>
@@ -626,18 +624,18 @@ export function ChapterReaderClient({
       ) : null}
 
       {toast ? (
-        <div className="fixed bottom-24 left-1/2 z-50 -translate-x-1/2 rounded-xl border border-white/18 bg-[#0b1120]/95 px-3 py-2 text-sm text-slate-100 shadow-[0_14px_28px_rgba(2,6,23,0.55)]">
+        <div className="fixed bottom-24 left-1/2 z-50 -translate-x-1/2 rounded-xl border border-(--cf-border) bg-(--cf-surface-strong) px-3 py-2 text-sm text-(--cf-text-1) shadow-[0_14px_28px_rgba(0,0,0,0.22)]">
           {toast}
         </div>
       ) : null}
 
       {state.focusMode ? (
-        <div className="pointer-events-none fixed bottom-6 right-6 hidden rounded-xl border border-emerald-300/30 bg-emerald-500/12 px-3 py-1.5 text-xs text-emerald-200 md:inline-flex md:items-center md:gap-1.5">
+        <div className="pointer-events-none fixed bottom-6 right-6 hidden rounded-xl border border-(--cf-success-border) bg-(--cf-success-soft) px-3 py-1.5 text-xs text-(--cf-success-text) md:inline-flex md:items-center md:gap-1.5">
           <CheckCircle2 className="h-4 w-4" />
           Focus mode enabled
         </div>
       ) : (
-        <div className="pointer-events-none fixed bottom-6 right-6 hidden rounded-xl border border-white/20 bg-white/4 px-3 py-1.5 text-xs text-slate-300 md:inline-flex md:items-center md:gap-1.5">
+        <div className="pointer-events-none fixed bottom-6 right-6 hidden rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) px-3 py-1.5 text-xs text-(--cf-text-2) md:inline-flex md:items-center md:gap-1.5">
           <Sparkles className="h-4 w-4" />
           Tip: press N for notes, F for focus
         </div>

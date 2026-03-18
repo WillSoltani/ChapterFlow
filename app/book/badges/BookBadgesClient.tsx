@@ -103,9 +103,8 @@ export function BookBadgesClient() {
 
   if (!onboardingHydrated || !badgeSystem.hydrated || !onboarding.setupComplete) {
     return (
-      <main className="relative min-h-screen text-slate-100">
-        <div className="pointer-events-none absolute inset-0 -z-20 bg-[#050813]" />
-        <div className="mx-auto flex min-h-screen items-center justify-center px-4 text-slate-300">
+      <main className="cf-app-shell">
+        <div className="mx-auto flex min-h-screen items-center justify-center px-4 text-(--cf-text-2)">
           Loading achievements...
         </div>
       </main>
@@ -113,10 +112,7 @@ export function BookBadgesClient() {
   }
 
   return (
-    <main className="relative min-h-screen overflow-x-hidden text-slate-100">
-      <div className="pointer-events-none absolute inset-0 -z-20 bg-[#050813]" />
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(980px_circle_at_8%_-8%,rgba(56,189,248,0.12),transparent_58%),radial-gradient(820px_circle_at_100%_0%,rgba(251,191,36,0.08),transparent_52%)]" />
-
+    <main className="cf-app-shell">
       <TopNav
         name={onboarding.name || "Reader"}
         activeTab="badges"
@@ -128,14 +124,14 @@ export function BookBadgesClient() {
 
       <section className="mx-auto w-full max-w-7xl px-4 pb-28 pt-7 sm:px-6 sm:pt-8 md:pb-24">
         <div className="grid gap-4 xl:grid-cols-[1.12fr_0.88fr]">
-          <Card className="overflow-hidden border-white/10 bg-[linear-gradient(145deg,rgba(9,14,28,0.96),rgba(14,20,37,0.88))] p-6 sm:p-7">
+          <Card className="overflow-hidden p-6 sm:p-7">
             <div className="flex flex-wrap items-start justify-between gap-4">
               <div>
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/12 bg-white/8 text-slate-100">
+                <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-2)">
                   <Award className="h-6 w-6" />
                 </div>
-                <h1 className="mt-4 text-4xl font-semibold tracking-tight text-slate-50 sm:text-5xl">Badges and milestones</h1>
-                <p className="mt-3 max-w-3xl text-base leading-7 text-slate-300">
+                <h1 className="mt-4 text-4xl font-semibold tracking-tight text-(--cf-text-1) sm:text-5xl">Badges and milestones</h1>
+                <p className="mt-3 max-w-3xl text-base leading-7 text-(--cf-text-2)">
                   Achievements reward depth, consistency, and completion. The system stays quiet most of the time, but the next meaningful milestone is always visible.
                 </p>
               </div>
@@ -144,9 +140,9 @@ export function BookBadgesClient() {
                 <StatPill label="Visible" value={badgeSystem.visibleCount} tone="sky" />
               </div>
             </div>
-            <div className="mt-6 flex flex-wrap items-center gap-3 rounded-[24px] border border-white/10 bg-black/16 px-4 py-3">
-              <Search className="h-4 w-4 text-slate-500" />
-              <p className="text-sm text-slate-300">
+            <div className="mt-6 flex flex-wrap items-center gap-3 rounded-[24px] border border-(--cf-border) bg-(--cf-surface-muted) px-4 py-3">
+              <Search className="h-4 w-4 text-(--cf-text-soft)" />
+              <p className="text-sm text-(--cf-text-2)">
                 Search matches badge names, descriptions, and unlock guidance so it stays fast even as the system grows.
               </p>
             </div>
@@ -158,12 +154,12 @@ export function BookBadgesClient() {
             secondary={
               <div className="grid gap-3 sm:grid-cols-2">
                 <MiniNote
-                  icon={<Sparkles className="h-4 w-4 text-sky-300" />}
+                  icon={<Sparkles className="h-4 w-4 text-(--cf-accent)" />}
                   label="Unlock cadence"
                   value="Small wins stay subtle. Major milestones earn richer reveal treatment."
                 />
                 <MiniNote
-                  icon={<Compass className="h-4 w-4 text-amber-300" />}
+                  icon={<Compass className="h-4 w-4 text-(--cf-warning-text)" />}
                   label="Design principle"
                   value="Progress matters more than noise, so visible tracks focus on meaningful movement."
                 />
@@ -182,8 +178,8 @@ export function BookBadgesClient() {
 
         {featuredBadges.length ? (
           <div className="mt-6">
-            <div className="mb-3 flex items-center gap-2 text-sm text-slate-400">
-              <Trophy className="h-4 w-4 text-amber-300" />
+            <div className="mb-3 flex items-center gap-2 text-sm text-(--cf-text-3)">
+              <Trophy className="h-4 w-4 text-(--cf-warning-text)" />
               Featured badges
             </div>
             <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
@@ -212,10 +208,10 @@ export function BookBadgesClient() {
                 />
               ))
             ) : (
-              <Card className="border-white/10 bg-white/[0.03]">
+              <Card>
                 <div className="py-8 text-center">
-                  <p className="text-lg font-semibold text-slate-100">No badges match this view</p>
-                  <p className="mt-2 text-sm text-slate-400">
+                  <p className="text-lg font-semibold text-(--cf-text-1)">No badges match this view</p>
+                  <p className="mt-2 text-sm text-(--cf-text-3)">
                     Try a broader filter or search term to see more achievements.
                   </p>
                 </div>
@@ -224,11 +220,11 @@ export function BookBadgesClient() {
           </div>
 
           <div className="space-y-5">
-            <Card className="border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.03))]">
+            <Card>
               <div className="flex items-center justify-between gap-3">
                 <div>
-                  <p className="text-[11px] uppercase tracking-[0.22em] text-slate-500">Recent unlocks</p>
-                  <h2 className="mt-2 text-xl font-semibold tracking-tight text-slate-50">Badge timeline</h2>
+                  <p className="text-[11px] uppercase tracking-[0.22em] text-(--cf-text-soft)">Recent unlocks</p>
+                  <h2 className="mt-2 text-xl font-semibold tracking-tight text-(--cf-text-1)">Badge timeline</h2>
                 </div>
                 <Chip tone="neutral">{timelineEntries.length} shown</Chip>
               </div>
@@ -245,17 +241,17 @@ export function BookBadgesClient() {
                     />
                   ))
                 ) : (
-                  <div className="rounded-[22px] border border-white/8 bg-black/12 px-4 py-4 text-sm leading-6 text-slate-400">
+                  <div className="rounded-[22px] border border-(--cf-border) bg-(--cf-surface-muted) px-4 py-4 text-sm leading-6 text-(--cf-text-3)">
                     Earned badges will land here over time so progress feels reflective instead of noisy.
                   </div>
                 )}
               </div>
             </Card>
 
-            <Card className="border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.03))]">
-              <p className="text-[11px] uppercase tracking-[0.22em] text-slate-500">Locked design</p>
-              <h2 className="mt-2 text-xl font-semibold tracking-tight text-slate-50">Progressive reveal</h2>
-              <p className="mt-2 text-sm leading-6 text-slate-300">
+            <Card>
+              <p className="text-[11px] uppercase tracking-[0.22em] text-(--cf-text-soft)">Locked design</p>
+              <h2 className="mt-2 text-xl font-semibold tracking-tight text-(--cf-text-1)">Progressive reveal</h2>
+              <p className="mt-2 text-sm leading-6 text-(--cf-text-2)">
                 Hidden milestones stay out of the way until progress begins. Locked badges hint at what matters without flooding the page with empty goals.
               </p>
               <div className="mt-5 space-y-3">
@@ -264,16 +260,16 @@ export function BookBadgesClient() {
                     key={badge.id}
                     type="button"
                     onClick={() => setSelectedBadge(badge)}
-                    className="flex w-full items-center justify-between gap-3 rounded-[22px] border border-white/8 bg-black/12 px-4 py-3 text-left transition hover:border-white/14"
+                    className="flex w-full items-center justify-between gap-3 rounded-[22px] border border-(--cf-border) bg-(--cf-surface-muted) px-4 py-3 text-left transition hover:border-(--cf-border-strong)"
                   >
                     <div className="flex min-w-0 items-center gap-3">
                       <span className="text-2xl opacity-40 grayscale">{badge.icon}</span>
                       <div className="min-w-0">
-                        <p className="truncate text-sm font-semibold text-slate-200">{badge.name}</p>
-                        <p className="mt-1 truncate text-xs uppercase tracking-[0.18em] text-slate-500">{badge.progressLabel}</p>
+                        <p className="truncate text-sm font-semibold text-(--cf-text-1)">{badge.name}</p>
+                        <p className="mt-1 truncate text-xs uppercase tracking-[0.18em] text-(--cf-text-soft)">{badge.progressLabel}</p>
                       </div>
                     </div>
-                    <Lock className="h-4 w-4 shrink-0 text-slate-600" />
+                    <Lock className="h-4 w-4 shrink-0 text-(--cf-text-soft)" />
                   </button>
                 ))}
               </div>
@@ -305,9 +301,9 @@ function StatPill({
   tone: "amber" | "sky";
 }) {
   return (
-    <div className="rounded-[22px] border border-white/10 bg-black/16 px-4 py-3">
-      <p className="text-[11px] uppercase tracking-[0.22em] text-slate-500">{label}</p>
-      <p className={tone === "amber" ? "mt-2 text-2xl font-semibold text-amber-100" : "mt-2 text-2xl font-semibold text-sky-100"}>
+    <div className="rounded-[22px] border border-(--cf-border) bg-(--cf-surface-muted) px-4 py-3">
+      <p className="text-[11px] uppercase tracking-[0.22em] text-(--cf-text-soft)">{label}</p>
+      <p className={tone === "amber" ? "mt-2 text-2xl font-semibold text-(--cf-warning-text)" : "mt-2 text-2xl font-semibold text-(--cf-info-text)"}>
         {value}
       </p>
     </div>
@@ -316,12 +312,12 @@ function StatPill({
 
 function MiniNote({ icon, label, value }: { icon: ReactNode; label: string; value: string }) {
   return (
-    <div className="rounded-2xl border border-white/10 bg-black/16 p-4">
-      <div className="flex items-center gap-2 text-sm text-slate-400">
+    <div className="rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) p-4">
+      <div className="flex items-center gap-2 text-sm text-(--cf-text-3)">
         {icon}
         <span>{label}</span>
       </div>
-      <p className="mt-2 text-sm leading-6 text-slate-300">{value}</p>
+      <p className="mt-2 text-sm leading-6 text-(--cf-text-2)">{value}</p>
     </div>
   );
 }

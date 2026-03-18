@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
       {
         source: "/book/home",
         destination: "/book/workspace",
-        permanent: false,
+        permanent: true,
       },
     ];
   },

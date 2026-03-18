@@ -49,7 +49,7 @@ export async function POST(req: Request) {
       typeof body.occurredAt === "string" && body.occurredAt.trim()
         ? body.occurredAt
         : nowIso();
-    const dayKey = toDayKey(occurredAt);
+    const dayKey = toDayKey(occurredAt) || toDayKey(nowIso());
 
     const readingDay = await addReadingDayActivity(tableName, {
       userId: user.sub,

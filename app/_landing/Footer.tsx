@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { BookOpen } from 'lucide-react'
 
 const LINKS = {
@@ -15,12 +16,12 @@ export function Footer() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <a href="/" className="flex items-center gap-2.5 mb-4 group">
+            <Link href="/" className="flex items-center gap-2.5 mb-4 group">
               <div className="w-8 h-8 rounded-lg bg-linear-to-br from-indigo-500 to-violet-600 flex items-center justify-center shadow-lg shadow-indigo-500/25">
                 <BookOpen className="w-4 h-4 text-white" strokeWidth={2.2} />
               </div>
               <span className="text-[15px] font-bold text-white tracking-tight">ChapterFlow</span>
-            </a>
+            </Link>
             <p className="text-[13.5px] text-slate-500 leading-relaxed max-w-[260px]">
               Guided reading for people who want depth, momentum, and real retention.
             </p>

@@ -17,7 +17,7 @@ export function ProjectMenu(props: {
       {menu.open ? (
         <>
           <motion.div
-            className="fixed inset-0 z-40"
+            className="cf-overlay fixed inset-0 z-40"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -25,7 +25,7 @@ export function ProjectMenu(props: {
           />
 
           <motion.div
-            className="fixed z-50 w-44 overflow-hidden rounded-2xl border border-white/10 bg-[#0b1224]/95 shadow-[0_20px_60px_rgba(0,0,0,0.55)] backdrop-blur"
+            className="cf-panel-strong fixed z-50 w-44 overflow-hidden rounded-2xl"
             style={{
               left: Math.max(
                 12,
@@ -39,14 +39,14 @@ export function ProjectMenu(props: {
           >
             <button
               type="button"
-              className="w-full px-4 py-3 text-left text-sm text-slate-200 hover:bg-white/10"
+              className="w-full px-4 py-3 text-left text-sm text-[var(--cf-text-2)] hover:bg-[var(--cf-accent-muted)] hover:text-[var(--cf-text-1)]"
               onClick={() => props.onRename(menu.projectId)}
             >
               Rename
             </button>
             <button
               type="button"
-              className="w-full px-4 py-3 text-left text-sm text-rose-200 hover:bg-rose-500/10"
+              className="w-full px-4 py-3 text-left text-sm text-[var(--cf-danger-text)] hover:bg-[var(--cf-danger-soft)]"
               onClick={() => props.onDelete(menu.projectId)}
             >
               Delete

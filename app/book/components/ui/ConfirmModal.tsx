@@ -27,10 +27,10 @@ export function ConfirmModal({
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/65 px-4">
-      <div className="w-full max-w-md rounded-3xl border border-white/12 bg-[#0b1120] p-5 shadow-[0_24px_60px_rgba(2,6,23,0.62)]">
-        <h3 className="text-xl font-semibold text-slate-100">{title}</h3>
-        <div className="mt-2 text-sm text-slate-300">{description}</div>
+    <div className="cf-overlay fixed inset-0 z-50 flex items-center justify-center px-4">
+      <div className="cf-panel-strong w-full max-w-md rounded-3xl p-5">
+        <h3 className="text-xl font-semibold text-(--cf-text-1)">{title}</h3>
+        <div className="mt-2 text-sm text-(--cf-text-2)">{description}</div>
         <div className="mt-5 flex gap-2.5">
           <Button variant="secondary" onClick={onCancel} className="flex-1">
             {cancelLabel}

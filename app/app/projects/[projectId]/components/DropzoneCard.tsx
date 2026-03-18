@@ -77,13 +77,13 @@ export function DropzoneCard(props: {
   }, [stageFiles]);
 
   return (
-    <div className="rounded-[26px] border border-white/10 bg-white/3 p-4 shadow-[0_20px_80px_rgba(0,0,0,0.45)] sm:rounded-[32px] sm:p-6">
+    <div className="cf-panel rounded-[26px] p-4 sm:rounded-[32px] sm:p-6">
       <div
         className={[
-          "rounded-[22px] border border-dashed p-6 transition sm:rounded-[28px] sm:p-10",
+          "rounded-[22px] border-2 border-dashed p-6 transition sm:rounded-[28px] sm:p-10",
           isDragActive
-            ? "border-sky-300/70 bg-sky-500/10 ring-2 ring-sky-300/35"
-            : "border-white/15 bg-white/2",
+            ? "border-[var(--cf-accent)] bg-[var(--cf-accent-muted)] ring-2 ring-[var(--cf-accent-soft)]"
+            : "border-[var(--cf-border-strong)] bg-[var(--cf-surface-muted)]",
         ].join(" ")}
         onDragEnter={handleDragEnter}
         onDragOver={handleDragOver}
@@ -91,14 +91,14 @@ export function DropzoneCard(props: {
         onDrop={handleDrop}
       >
         <div className="mx-auto flex max-w-lg flex-col items-center text-center">
-          <div className="grid h-16 w-16 place-items-center rounded-2xl border border-white/10 bg-white/5">
-            <Upload className="h-7 w-7 text-sky-200" />
+          <div className="cf-icon-wrap grid h-16 w-16 place-items-center rounded-2xl">
+            <Upload className="h-7 w-7 text-[var(--cf-accent)]" />
           </div>
 
-          <h2 className="mt-5 text-lg font-semibold text-slate-100 sm:mt-6 sm:text-xl">
+          <h2 className="mt-5 text-lg font-semibold text-[var(--cf-text-1)] sm:mt-6 sm:text-xl">
             Drop files to convert
           </h2>
-          <p className="mt-2 text-sm text-slate-400">
+          <p className="mt-2 text-sm text-[var(--cf-text-3)]">
             {isDragActive
               ? "Drop files to add"
               : SUPPORTED_UPLOAD_FORMATS_TEXT}
@@ -121,10 +121,10 @@ export function DropzoneCard(props: {
             <button
               type="button"
               onClick={() => inputRef.current?.click()}
-              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-sm text-slate-100 hover:bg-white/10"
+              className="cf-btn cf-btn-secondary w-full px-5 py-3 text-sm sm:w-auto"
             >
-              <span className="grid h-6 w-6 place-items-center rounded-lg border border-white/10 bg-white/5">
-                <Upload className="h-4 w-4 text-slate-200" />
+              <span className="cf-icon-wrap grid h-6 w-6 place-items-center rounded-lg">
+                <Upload className="h-4 w-4" />
               </span>
               Browse Files
             </button>
@@ -133,12 +133,7 @@ export function DropzoneCard(props: {
               type="button"
               onClick={onUploadClick}
               disabled={uploadDisabled}
-              className={[
-                "inline-flex min-h-11 items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-semibold transition",
-                uploadDisabled
-                  ? "cursor-not-allowed border border-white/10 bg-white/5 text-slate-500"
-                  : "bg-sky-600/90 text-white shadow-[0_10px_30px_rgba(2,132,199,0.25)] hover:bg-sky-500",
-              ].join(" ")}
+              className="cf-btn cf-btn-primary w-full px-5 py-3 text-sm sm:w-auto"
             >
               <ArrowUpFromLine className="h-4 w-4" />
               Upload{pendingCount ? ` (${pendingCount})` : ""}
@@ -147,8 +142,8 @@ export function DropzoneCard(props: {
 
           {stagedItems.length > 0 ? (
             <div className="mt-5 w-full text-left">
-              <div className="text-xs text-slate-400">
-                <span className="font-semibold text-slate-200">
+              <div className="text-xs text-[var(--cf-text-3)]">
+                <span className="font-semibold text-[var(--cf-text-1)]">
                   {stagedItems.length}
                 </span>{" "}
                 staged for upload
@@ -160,19 +155,17 @@ export function DropzoneCard(props: {
                   return (
                     <div
                       key={it.id}
-                      className={[
-                        "flex items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/5 px-3 py-2",
-                      ].join(" ")}
+                      className="cf-panel-muted flex items-center justify-between gap-3 rounded-2xl px-3 py-2"
                     >
                       <div className="min-w-0">
-                        <p className="truncate text-sm font-semibold text-slate-100" title={it.name}>
+                        <p className="truncate text-sm font-semibold text-[var(--cf-text-1)]" title={it.name}>
                           {it.name}
                         </p>
-                        <p className="mt-0.5 text-xs text-slate-400">
+                        <p className="mt-0.5 text-xs text-[var(--cf-text-3)]">
                           {it.sizeLabel}
-                          <span className="text-slate-600"> • </span>
+                          <span className="text-[var(--cf-text-soft)]"> • </span>
                           {it.detectedType}
-                          <span className="text-slate-600"> • </span>
+                          <span className="text-[var(--cf-text-soft)]"> • </span>
                           .{it.extension.toLowerCase()}
                         </p>
                       </div>
@@ -182,7 +175,7 @@ export function DropzoneCard(props: {
                           <button
                             type="button"
                             onClick={() => onFillPdf({ name: it.name, source: "staged" })}
-                            className="inline-flex min-h-9 items-center rounded-xl border border-amber-300/30 bg-amber-400/10 px-2.5 py-1 text-xs font-semibold text-amber-100 hover:bg-amber-400/20"
+                            className="cf-btn min-h-9 rounded-xl border-[var(--cf-warning-border)] bg-[var(--cf-warning-bg)] px-2.5 py-1 text-xs font-semibold text-[var(--cf-warning-text)]"
                             aria-label={`Fill PDF for ${it.name}`}
                             title="Fill PDF"
                           >
@@ -193,7 +186,7 @@ export function DropzoneCard(props: {
                         <button
                           type="button"
                           onClick={() => onRemoveStagedItem(it.id)}
-                          className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-300 hover:bg-rose-500/15 hover:text-rose-200"
+                          className="cf-btn cf-btn-ghost h-9 w-9 rounded-xl px-0 text-[var(--cf-text-2)] hover:bg-[var(--cf-danger-soft)] hover:text-[var(--cf-danger-text)]"
                           aria-label={`Remove ${it.name} from upload staging`}
                           title="Remove"
                         >
@@ -208,10 +201,10 @@ export function DropzoneCard(props: {
           ) : null}
 
           {pickError ? (
-            <p className="mt-3 text-xs text-rose-300">{pickError}</p>
+            <p className="mt-3 text-xs text-[var(--cf-danger-text)]">{pickError}</p>
           ) : null}
 
-          <p className="mt-4 text-xs text-slate-500">
+          <p className="mt-4 text-xs text-[var(--cf-text-soft)]">
             Browse adds files to staging. Upload sends all staged files.
           </p>
         </div>

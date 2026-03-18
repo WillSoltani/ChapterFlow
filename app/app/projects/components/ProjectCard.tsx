@@ -19,11 +19,11 @@ export function ProjectCard(props: {
     props.fileCount > 0 ? (
       <>
         Latest activity <ClientDate iso={props.latestActivityAt} /> •{" "}
-        <span className="text-slate-300">{props.fileCount} files</span>
+        <span className="text-[var(--cf-text-2)]">{props.fileCount} files</span>
       </>
     ) : (
       <>
-        No activity yet • <span className="text-slate-300">0 files</span>
+        No activity yet • <span className="text-[var(--cf-text-2)]">0 files</span>
       </>
     );
 
@@ -40,15 +40,14 @@ export function ProjectCard(props: {
 
       <Link
         href={`/app/projects/${encodeURIComponent(p.projectId)}`}
-        className="relative block rounded-[26px] border border-white/10 bg-white/5 p-5 shadow-[0_14px_40px_rgba(0,0,0,0.40)] sm:rounded-[30px] sm:p-7
-          transition group-hover:border-white/15 group-hover:bg-white/7"
+        className="cf-panel cf-panel-hover relative block rounded-[26px] p-5 sm:rounded-[30px] sm:p-7"
       >
         <div className="flex items-start justify-between gap-4">
           <div className="min-w-0">
-            <h3 className="truncate text-lg font-semibold text-slate-100">
+            <h3 className="truncate text-lg font-semibold text-[var(--cf-text-1)]">
               {p.name}
             </h3>
-            <p className="mt-3 text-xs text-slate-400">{activityLine}</p>
+            <p className="mt-3 text-xs text-[var(--cf-text-3)]">{activityLine}</p>
           </div>
 
           <button
@@ -58,7 +57,7 @@ export function ProjectCard(props: {
             aria-label="Project options"
             title="Options"
           >
-            <div className="rounded-full border border-white/10 bg-white/8 p-2 text-slate-200 hover:bg-white/12">
+            <div className="rounded-full border border-[var(--cf-border)] bg-[var(--cf-surface-muted)] p-2 text-[var(--cf-text-2)] hover:bg-[var(--cf-accent-muted)]">
               <MoreHorizontal className="h-4 w-4" />
             </div>
           </button>
@@ -66,11 +65,11 @@ export function ProjectCard(props: {
 
         <div className="mt-6 flex items-center justify-end text-xs">
           {props.busy ? (
-            <span className="rounded-full border border-white/10 bg-white/8 px-3 py-1 text-slate-200">
+            <span className="rounded-full border border-[var(--cf-border)] bg-[var(--cf-surface-muted)] px-3 py-1 text-[var(--cf-text-2)]">
               Working…
             </span>
           ) : (
-            <span className="opacity-0 transition group-hover:opacity-100 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-slate-200">
+            <span className="opacity-0 transition group-hover:opacity-100 rounded-full border border-[var(--cf-border)] bg-[var(--cf-surface-muted)] px-3 py-1 text-[var(--cf-text-2)]">
               Open →
             </span>
           )}

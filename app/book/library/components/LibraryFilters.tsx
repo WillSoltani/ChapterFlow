@@ -19,11 +19,10 @@ function FilterChip({ label, selected, onClick }: FilterChipProps) {
       type="button"
       onClick={onClick}
       className={[
-        "rounded-full border px-3.5 py-1.5 text-sm transition",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300/45",
+        "rounded-full px-3.5 py-1.5 text-sm transition",
         selected
-          ? "border-sky-300/55 bg-sky-400/20 text-sky-100"
-          : "border-white/35 bg-white/2 text-slate-300 hover:border-white/50 hover:text-slate-100",
+          ? "cf-chip cf-chip-active"
+          : "cf-chip hover:border-(--cf-border-strong) hover:text-(--cf-text-1)",
       ].join(" ")}
       aria-pressed={selected}
     >
@@ -47,7 +46,7 @@ function FilterGroup<T extends string>({
 }: FilterGroupProps<T>) {
   return (
     <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
-      <p className="min-w-24 text-sm font-medium text-slate-300">{label}</p>
+      <p className="min-w-24 text-sm font-medium text-(--cf-text-2)">{label}</p>
       <div className="flex flex-wrap gap-2">
         {options.map((option) => (
           <FilterChip
@@ -99,12 +98,12 @@ function CategoryGroup({
     <div className="space-y-3">
       <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
         <div className="sm:max-w-xs">
-          <p className="text-sm font-medium text-slate-300">Category</p>
-          <p className="mt-1 text-xs leading-5 text-slate-400">
+          <p className="text-sm font-medium text-(--cf-text-2)">Category</p>
+          <p className="mt-1 text-xs leading-5 text-(--cf-text-3)">
             Most relevant categories appear first. Reveal more in curated groups of five.
           </p>
         </div>
-        <p className="text-xs uppercase tracking-[0.18em] text-slate-500">
+        <p className="text-xs uppercase tracking-[0.18em] text-(--cf-text-3)">
           {effectiveVisibleCount >= actualCategories.length
             ? `All ${actualCategories.length} categories visible`
             : `${effectiveVisibleCount} of ${actualCategories.length} categories visible`}
@@ -138,7 +137,7 @@ function CategoryGroup({
               return 5;
             })
           }
-          className="inline-flex items-center rounded-full border border-white/12 bg-white/[0.04] px-3.5 py-1.5 text-sm text-slate-200 transition hover:border-white/20 hover:bg-white/[0.08] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300/45"
+          className="cf-btn cf-btn-secondary rounded-full px-3.5 py-1.5 text-sm"
         >
           {hasMoreCategories ? "Show more categories" : "Show fewer categories"}
         </button>
@@ -175,7 +174,7 @@ export function LibraryFilters({
   onClearFilters,
 }: LibraryFiltersProps) {
   return (
-    <div className="rounded-3xl border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.03))] p-4 sm:p-5">
+    <div className="cf-panel rounded-3xl p-4 sm:p-5">
       <div className="space-y-4">
         <CategoryGroup options={categoryOptions} selected={category} onSelect={onCategoryChange} />
 
@@ -198,7 +197,7 @@ export function LibraryFilters({
         <button
           type="button"
           onClick={onClearFilters}
-          className="mt-4 text-sm text-sky-200 transition hover:text-sky-100"
+          className="cf-link mt-4 text-sm"
         >
           Clear filters
         </button>

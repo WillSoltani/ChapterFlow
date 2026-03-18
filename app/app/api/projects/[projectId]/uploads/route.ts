@@ -7,6 +7,7 @@ import { QueryCommand, UpdateCommand } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc, getTableName, s3, mustEnv } from "@/app/app/api/_lib/aws";
 import { requireActorForProject } from "@/app/app/api/_lib/actor";
 import { isGuestProjectId } from "@/app/app/api/_lib/guest-session";
+import { slugify } from "@/app/app/api/_lib/slugify";
 
 export const runtime = "nodejs";
 
@@ -43,16 +44,6 @@ function normalizeContentType(ct: string): string {
   return (v || "application/octet-stream").slice(0, 200);
 }
 
-function slugify(input: string): string {
-  const s = (input || "").trim().toLowerCase();
-  const cleaned = s
-    .normalize("NFKD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "")
-    .slice(0, 60);
-  return cleaned || "untitled";
-}
 
 function readString(obj: unknown, key: string): string | undefined {
   if (typeof obj !== "object" || obj === null) return undefined;

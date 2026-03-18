@@ -22,7 +22,7 @@ export const SearchBox = forwardRef<HTMLInputElement, SearchBoxProps>(
   ) {
     return (
       <label className="relative block w-full max-w-md">
-        <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+        <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-(--cf-text-3)" />
         <input
           ref={ref}
           type="search"
@@ -30,7 +30,7 @@ export const SearchBox = forwardRef<HTMLInputElement, SearchBoxProps>(
           onChange={(event) => onChange(event.target.value)}
           onFocus={onFocus}
           placeholder={placeholder}
-          className="w-full rounded-2xl border border-white/12 bg-white/6 px-10 py-2.5 text-sm text-slate-100 placeholder:text-slate-400 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300/45"
+          className="cf-input w-full rounded-2xl px-10 py-2.5 text-sm"
           aria-label="Search books"
         />
       </label>

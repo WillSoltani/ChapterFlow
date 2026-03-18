@@ -20,7 +20,9 @@ export async function POST(req: Request) {
       bodyRaw = {};
     }
     const body = requireBodyObject(bodyRaw);
-    const bookId = body.bookId ? requireString(body.bookId, "bookId", { maxLength: 120 }) : "pending";
+    const rawBookId = body.bookId ? requireString(body.bookId, "bookId", { maxLength: 120 }) : "pending";
+    // Strip any path-separator or shell-special characters so the bookId is safe as an S3 key segment.
+    const bookId = rawBookId.replace(/[^a-zA-Z0-9_.-]/g, "-").replace(/^-+|-+$/g, "") || "pending";
     const jobId = crypto.randomUUID();
     const key = `book-ingest/books/${bookId}/${jobId}/book.json`;
     const uploadUrl = await createPresignedJsonUploadUrl(ingestBucket, key, 900);

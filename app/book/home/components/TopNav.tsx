@@ -113,7 +113,7 @@ export function TopNav({
   return (
     <>
       {/* ── Top header ── */}
-      <header className="sticky top-0 z-30 border-b border-white/[0.07] bg-[#060a15]/90 backdrop-blur-xl">
+      <header className="cf-topbar sticky top-0 z-30">
         <div ref={headerRef} className="mx-auto w-full max-w-7xl px-4 py-2.5 sm:px-6">
           <div className="flex items-center justify-between gap-3">
 
@@ -134,15 +134,15 @@ export function TopNav({
                     className={[
                       "relative inline-flex items-center gap-1.5 rounded-xl px-3.5 py-2 text-sm font-medium transition duration-150",
                       active
-                        ? "bg-sky-500/16 text-sky-100"
-                        : "text-slate-400 hover:bg-white/6 hover:text-slate-200",
+                        ? "bg-(--cf-accent-soft) text-(--cf-accent)"
+                        : "text-(--cf-text-3) hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)",
                     ].join(" ")}
                     aria-current={active ? "page" : undefined}
                   >
-                    <Icon className={active ? "h-3.5 w-3.5 text-sky-300" : "h-3.5 w-3.5"} />
+                    <Icon className={active ? "h-3.5 w-3.5 text-(--cf-accent)" : "h-3.5 w-3.5"} />
                     {item.label}
                     {active && (
-                      <span className="absolute bottom-0 left-1/2 h-0.5 w-5 -translate-x-1/2 rounded-full bg-sky-400" />
+                      <span className="absolute bottom-0 left-1/2 h-0.5 w-5 -translate-x-1/2 rounded-full bg-(--cf-accent)" />
                     )}
                   </Link>
                 );
@@ -179,10 +179,10 @@ export function TopNav({
               <Link
                 href="/book/settings"
                 className={[
-                  "hidden h-9 w-9 items-center justify-center rounded-xl border transition hover:bg-white/8 md:inline-flex",
+                  "hidden h-9 w-9 items-center justify-center rounded-xl border transition md:inline-flex",
                   activeTab === "settings"
-                    ? "border-sky-300/35 bg-sky-500/16 text-sky-100"
-                    : "border-white/12 bg-white/4 text-slate-400 hover:text-slate-200",
+                    ? "border-(--cf-accent-border) bg-(--cf-accent-soft) text-(--cf-accent)"
+                    : "border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-3) hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)",
                 ].join(" ")}
                 aria-label="Settings"
               >
@@ -192,14 +192,14 @@ export function TopNav({
               <Link
                 href="/book/profile"
                 className={[
-                  "inline-flex h-9 items-center gap-2 rounded-xl border px-2.5 transition hover:bg-white/8",
+                  "inline-flex h-9 items-center gap-2 rounded-xl border px-2.5 transition",
                   activeTab === "profile"
-                    ? "border-sky-300/35 bg-sky-500/16 text-sky-100"
-                    : "border-white/12 bg-white/4 text-slate-200",
+                    ? "border-(--cf-accent-border) bg-(--cf-accent-soft) text-(--cf-accent)"
+                    : "border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-1) hover:bg-(--cf-accent-muted)",
                 ].join(" ")}
                 aria-label="Profile"
               >
-                <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-linear-to-br from-sky-400 to-cyan-300 text-xs font-bold text-slate-900 shadow-[0_0_10px_rgba(56,189,248,0.35)]">
+                <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-linear-to-br from-(--cf-accent) to-(--cf-accent-strong) text-xs font-bold text-white shadow-[0_0_10px_var(--cf-accent-shadow)]">
                   {initial}
                 </span>
                 <span className="hidden text-sm font-medium md:inline-flex">{name || "Reader"}</span>
@@ -209,10 +209,10 @@ export function TopNav({
                 type="button"
                 onClick={() => setShowProfileMenu((prev) => !prev)}
                 className={[
-                  "inline-flex h-9 w-9 items-center justify-center rounded-xl border transition hover:bg-white/8",
+                  "inline-flex h-9 w-9 items-center justify-center rounded-xl border transition",
                   activeTab === "profile"
-                    ? "border-sky-300/35 bg-sky-500/16 text-sky-100"
-                    : "border-white/12 bg-white/4 text-slate-400 hover:text-slate-200",
+                    ? "border-(--cf-accent-border) bg-(--cf-accent-soft) text-(--cf-accent)"
+                    : "border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-3) hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)",
                 ].join(" ")}
                 aria-label="Open profile menu"
                 aria-expanded={showProfileMenu}
@@ -221,31 +221,31 @@ export function TopNav({
               </button>
 
               {showProfileMenu ? (
-                <div className="absolute right-0 top-11 w-56 rounded-2xl border border-white/12 bg-[#0b1020]/98 p-2 shadow-[0_24px_50px_rgba(2,6,23,0.65)] backdrop-blur-md">
-                  <div className="border-b border-white/8 px-3 py-2.5">
-                    <p className="text-sm font-semibold text-slate-100">{name || "Reader"}</p>
-                    <p className="text-xs text-slate-400">ChapterFlow</p>
+                <div className="cf-panel-strong absolute right-0 top-11 w-56 rounded-2xl p-2">
+                  <div className="border-b border-(--cf-divider) px-3 py-2.5">
+                    <p className="text-sm font-semibold text-(--cf-text-1)">{name || "Reader"}</p>
+                    <p className="text-xs text-(--cf-text-3)">ChapterFlow</p>
                   </div>
                   <div className="mt-1 space-y-0.5">
                     <Link
                       href="/book/profile"
-                      className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-slate-300 transition hover:bg-white/6 hover:text-slate-100"
+                      className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-(--cf-text-2) transition hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)"
                     >
-                      <User className="h-3.5 w-3.5 text-slate-400" />
+                      <User className="h-3.5 w-3.5 text-(--cf-text-3)" />
                       Profile
                     </Link>
                     <Link
                       href="/book/saved"
-                      className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-slate-300 transition hover:bg-white/6 hover:text-slate-100"
+                      className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-(--cf-text-2) transition hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)"
                     >
-                      <Bookmark className="h-3.5 w-3.5 text-slate-400" />
+                      <Bookmark className="h-3.5 w-3.5 text-(--cf-text-3)" />
                       Read Next
                     </Link>
                     <Link
                       href="/book/settings"
-                      className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-slate-300 transition hover:bg-white/6 hover:text-slate-100"
+                      className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-(--cf-text-2) transition hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)"
                     >
-                      <Settings className="h-3.5 w-3.5 text-slate-400" />
+                      <Settings className="h-3.5 w-3.5 text-(--cf-text-3)" />
                       Settings
                     </Link>
                   </div>
@@ -280,7 +280,7 @@ export function TopNav({
       </header>
 
       {/* ── Mobile bottom tab bar ── */}
-      <nav className="fixed bottom-0 left-0 right-0 z-40 border-t border-white/[0.07] bg-[#060a15]/95 pb-safe backdrop-blur-xl md:hidden">
+      <nav className="cf-topbar fixed bottom-0 left-0 right-0 z-40 pb-safe md:hidden">
         <div className="flex items-stretch">
           {navItems.map((item) => {
             const active = item.id === activeTab;
@@ -290,16 +290,21 @@ export function TopNav({
                 key={item.id}
                 href={item.href}
                 className={[
-                  "flex flex-1 flex-col items-center gap-1 px-1 py-3 text-[10px] font-semibold transition duration-150",
-                  active ? "text-sky-300" : "text-slate-500 active:text-slate-300",
+                  "relative flex flex-1 flex-col items-center gap-1 px-1 py-3 text-[10px] font-semibold transition duration-150",
+                  active
+                    ? "text-(--cf-accent)"
+                    : "text-(--cf-text-3) active:text-(--cf-text-1)",
                 ].join(" ")}
                 aria-current={active ? "page" : undefined}
               >
+                {active && (
+                  <span className="absolute top-0 left-1/2 h-0.75 w-8 -translate-x-1/2 rounded-b-full bg-linear-to-r from-(--cf-accent) to-(--cf-accent-strong)" />
+                )}
                 <span className={[
-                  "flex h-6 w-6 items-center justify-center rounded-lg transition",
-                  active ? "bg-sky-500/20" : "",
+                  "flex h-7 w-7 items-center justify-center rounded-xl transition",
+                  active ? "bg-(--cf-accent-soft)" : "",
                 ].join(" ")}>
-                  <Icon className="h-4 w-4" />
+                  <Icon className="h-4.5 w-4.5" />
                 </span>
                 {item.label}
               </Link>
@@ -308,15 +313,20 @@ export function TopNav({
           <Link
             href="/book/settings"
             className={[
-              "flex flex-1 flex-col items-center gap-1 px-1 py-3 text-[10px] font-semibold transition duration-150",
-              activeTab === "settings" ? "text-sky-300" : "text-slate-500 active:text-slate-300",
+              "relative flex flex-1 flex-col items-center gap-1 px-1 py-3 text-[10px] font-semibold transition duration-150",
+              activeTab === "settings"
+                ? "text-(--cf-accent)"
+                : "text-(--cf-text-3) active:text-(--cf-text-1)",
             ].join(" ")}
           >
+            {activeTab === "settings" && (
+              <span className="absolute top-0 left-1/2 h-0.75 w-8 -translate-x-1/2 rounded-b-full bg-linear-to-r from-(--cf-accent) to-(--cf-accent-strong)" />
+            )}
             <span className={[
-              "flex h-6 w-6 items-center justify-center rounded-lg transition",
-              activeTab === "settings" ? "bg-sky-500/20" : "",
+              "flex h-7 w-7 items-center justify-center rounded-xl transition",
+              activeTab === "settings" ? "bg-(--cf-accent-soft)" : "",
             ].join(" ")}>
-              <Settings className="h-4 w-4" />
+              <Settings className="h-4.5 w-4.5" />
             </span>
             Settings
           </Link>

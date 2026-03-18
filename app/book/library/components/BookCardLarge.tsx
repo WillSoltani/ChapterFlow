@@ -12,25 +12,25 @@ function statusBadge(entry: LibraryBookEntry): {
   if (entry.status === "completed") {
     return {
       label: "Completed",
-      className: "border-emerald-300/30 bg-emerald-400/18 text-emerald-100",
+      className: "cf-pill cf-pill-success",
     };
   }
   if (entry.status === "in_progress") {
     return {
       label: "In Progress",
-      className: "border-sky-300/30 bg-sky-400/18 text-sky-100",
+      className: "cf-pill cf-pill-info",
     };
   }
   return {
     label: entry.isNew ? "New" : "Not Started",
-    className: "border-white/30 bg-white/8 text-slate-200",
+    className: "cf-pill",
   };
 }
 
 function difficultyChipClass(value: LibraryBookEntry["difficulty"]): string {
-  if (value === "Easy") return "border-emerald-300/28 bg-emerald-400/12 text-emerald-200";
-  if (value === "Medium") return "border-amber-300/28 bg-amber-400/12 text-amber-200";
-  return "border-rose-300/28 bg-rose-400/12 text-rose-200";
+  if (value === "Easy") return "cf-pill cf-pill-success";
+  if (value === "Medium") return "cf-pill cf-pill-warning";
+  return "cf-pill cf-pill-danger";
 }
 
 type BookCardLargeProps = {
@@ -47,9 +47,15 @@ export function BookCardLarge({
   onToggleSaved,
 }: BookCardLargeProps) {
   const badge = statusBadge(entry);
+  const progressTone =
+    entry.status === "completed"
+      ? "text-(--cf-success-text)"
+      : entry.status === "in_progress"
+        ? "text-(--cf-accent)"
+        : "text-(--cf-text-3)";
 
   return (
-    <div className="group relative w-full rounded-3xl border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.07),rgba(255,255,255,0.03))] p-4 transition duration-200 hover:-translate-y-1 hover:border-sky-300/30 hover:shadow-[0_22px_52px_rgba(2,6,23,0.58)] sm:p-5">
+    <div className="cf-panel cf-panel-hover group relative w-full rounded-3xl p-4 sm:p-5">
       {onToggleSaved ? (
         <div className="absolute left-6 top-6 z-10">
           <BookSaveButton saved={saved} onToggle={onToggleSaved} />
@@ -58,22 +64,22 @@ export function BookCardLarge({
       <button
         type="button"
         onClick={onOpen}
-        className="w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300/45"
+        className="w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-soft)"
         aria-label={`Open details for ${entry.title}`}
       >
-        <div className="relative h-72 overflow-hidden rounded-2xl border border-white/10 bg-[linear-gradient(140deg,rgba(51,65,85,0.6),rgba(30,41,59,0.65))] sm:h-80">
+        <div className="cf-panel-muted relative h-72 overflow-hidden rounded-2xl sm:h-80">
           <span
             aria-hidden="true"
-            className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_95%_at_0%_0%,rgba(56,189,248,0.10),transparent_56%)]"
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_95%_at_0%_0%,rgba(56,189,248,0.07),transparent_56%)]"
           />
           <span
             aria-hidden="true"
-            className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_95%_at_100%_100%,rgba(2,6,23,0.35),transparent_70%)]"
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_95%_at_100%_100%,rgba(0,0,0,0.04),transparent_70%)]"
           />
           <span className="absolute right-3 top-3">
             <span
               className={[
-                "inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-xs font-medium",
+                "px-2.5 py-1 text-xs font-medium",
                 badge.className,
               ].join(" ")}
             >
@@ -87,14 +93,14 @@ export function BookCardLarge({
               title={entry.title}
               icon={entry.icon}
               coverImage={entry.coverImage}
-              className="h-full w-full rounded-2xl border border-white/10 bg-white/6"
+              className="h-full w-full rounded-2xl border border-(--cf-border) bg-(--cf-surface)"
               imageClassName="object-contain bg-white"
               fallbackClassName="text-6xl drop-shadow-[0_10px_22px_rgba(2,6,23,0.55)]"
               sizes="(max-width: 768px) 70vw, 28vw"
             />
           </div>
           {entry.status === "in_progress" ? (
-            <span className="absolute bottom-3 left-3 inline-flex items-center gap-1 rounded-full border border-sky-300/25 bg-sky-400/12 px-2.5 py-1 text-xs text-sky-100 opacity-0 transition duration-200 group-hover:opacity-100">
+            <span className="cf-pill cf-pill-info absolute bottom-3 left-3 px-2.5 py-1 text-xs opacity-0 transition duration-200 group-hover:opacity-100">
               Continue
               <ArrowRight className="h-3.5 w-3.5" />
             </span>
@@ -102,45 +108,45 @@ export function BookCardLarge({
         </div>
 
         <div className="mt-4">
-          <h3 className="text-xl font-semibold tracking-tight text-slate-100 transition duration-150 group-hover:text-white">
+          <h3 className="text-xl font-semibold tracking-tight text-(--cf-text-1) transition duration-150 group-hover:text-(--cf-text-1)">
             {entry.title}
           </h3>
-          <p className="mt-0.5 text-sm text-slate-400">{entry.author}</p>
+          <p className="mt-0.5 text-sm text-(--cf-text-3)">{entry.author}</p>
 
           <div className="mt-2.5 flex flex-wrap gap-2 text-xs">
-            <span className="rounded-lg border border-white/20 bg-white/6 px-2.5 py-1 text-slate-300">
+            <span className="cf-pill rounded-lg px-2.5 py-1">
               {entry.category}
             </span>
             <span
               className={[
-                "rounded-lg border px-2.5 py-1",
+                "rounded-lg px-2.5 py-1",
                 difficultyChipClass(entry.difficulty),
               ].join(" ")}
             >
               {entry.difficulty}
             </span>
-            <span className="inline-flex items-center gap-1 rounded-lg border border-white/12 bg-white/3 px-2.5 py-1 text-slate-400">
+            <span className="cf-pill rounded-lg px-2.5 py-1">
               <Sparkles className="h-3 w-3" />
               ~{Math.round((entry.estimatedMinutes / 60) * 10) / 10}h
             </span>
           </div>
 
           <div className="mt-3.5">
-            <div className="flex items-center justify-between text-xs text-slate-400">
+            <div className="flex items-center justify-between text-xs text-(--cf-text-3)">
               <span>{entry.chaptersCompleted}/{entry.chaptersTotal} chapters</span>
-              <span className={entry.status === "completed" ? "font-medium text-emerald-300" : entry.status === "in_progress" ? "font-medium text-sky-300" : ""}>
+              <span className={["font-medium", progressTone].join(" ")}>
                 {entry.progressPercent}%
               </span>
             </div>
-            <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-slate-900/60">
+            <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-(--cf-border)">
               <div
                 className={[
                   "h-full rounded-full transition-[width] duration-500",
                   entry.status === "completed"
-                    ? "bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.5)]"
+                    ? "bg-(--cf-success-text)"
                     : entry.status === "in_progress"
-                      ? "bg-sky-400 shadow-[0_0_6px_rgba(56,189,248,0.4)]"
-                      : "bg-white/20",
+                      ? "bg-(--cf-accent)"
+                      : "bg-(--cf-text-soft)",
                 ].join(" ")}
                 style={{ width: `${Math.max(entry.progressPercent, 0)}%` }}
               />

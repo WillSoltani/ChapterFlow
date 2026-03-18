@@ -7,21 +7,19 @@ const badgeVariants = cva(
   [
     "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium",
     "transition-colors",
-    "focus:outline-none focus:ring-2 focus:ring-sky-300/40 focus:ring-offset-0",
-    // default text color on dark backgrounds
-    "text-slate-100",
+    "focus:outline-none focus:ring-2 focus:ring-[var(--cf-accent-soft)] focus:ring-offset-0",
   ].join(" "),
   {
     variants: {
       variant: {
         default:
-          "border-transparent bg-sky-500/15 text-sky-200 hover:bg-sky-500/20",
+          "border-[var(--cf-accent-border)] bg-[var(--cf-accent-soft)] text-[var(--cf-accent)]",
         secondary:
-          "border-transparent bg-white/10 text-slate-100 hover:bg-white/15",
+          "border-[var(--cf-border)] bg-[var(--cf-surface-muted)] text-[var(--cf-text-2)]",
         destructive:
-          "border-transparent bg-rose-500/15 text-rose-200 hover:bg-rose-500/20",
+          "border-[var(--cf-danger-border)] bg-[var(--cf-danger-soft)] text-[var(--cf-danger-text)]",
         outline:
-          "border-white/15 bg-white/5 text-slate-200 hover:bg-white/10",
+          "border-[var(--cf-border)] bg-transparent text-[var(--cf-text-2)]",
       },
     },
     defaultVariants: {

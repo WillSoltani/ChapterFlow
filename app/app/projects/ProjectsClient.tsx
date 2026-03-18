@@ -202,9 +202,9 @@ export default function ProjectsClient({ initialProjects, initialStats }: Props)
       {/* Header / Stats */}
       <div className="space-y-4 sm:space-y-5">
         <div>
-          <p className="text-xs uppercase tracking-[0.2em] text-slate-400">Portfolio</p>
-          <h1 className="mt-2 text-2xl font-semibold text-slate-100 sm:text-3xl">Serverless File Converter</h1>
-          <p className="mt-2 max-w-2xl text-sm text-slate-300">
+          <p className="text-xs uppercase tracking-[0.2em] text-[var(--cf-text-3)]">Workspace</p>
+          <h1 className="mt-2 text-2xl font-semibold text-[var(--cf-text-1)] sm:text-3xl">Serverless File Converter</h1>
+          <p className="mt-2 max-w-2xl text-sm text-[var(--cf-text-2)]">
             Projects are isolated per-user. Uploads go direct-to-S3 via presigned URLs, metadata
             lives in DynamoDB, and outputs become artifacts.
           </p>
@@ -221,15 +221,15 @@ export default function ProjectsClient({ initialProjects, initialStats }: Props)
       <div className="space-y-5">
         <div className="flex items-end justify-between gap-4">
           <div>
-            <h2 className="text-xl font-semibold text-slate-100">Your Projects</h2>
-            <p className="mt-1 text-sm text-slate-300">Each project is a workspace. Hover a card for actions.</p>
+            <h2 className="text-xl font-semibold text-[var(--cf-text-1)]">Your Projects</h2>
+            <p className="mt-1 text-sm text-[var(--cf-text-2)]">Each project is a workspace. Hover a card for actions.</p>
           </div>
         </div>
 
         {sorted.length === 0 ? (
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-8">
-            <p className="text-sm text-slate-300">No projects yet.</p>
-            <p className="mt-2 text-xs text-slate-400">
+          <div className="cf-empty-state rounded-3xl p-8">
+            <p className="text-sm text-[var(--cf-text-2)]">No projects yet.</p>
+            <p className="mt-2 text-xs text-[var(--cf-text-3)]">
               Click “New Project” in the top-right to create your first workspace.
             </p>
           </div>

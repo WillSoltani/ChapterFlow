@@ -1,7 +1,8 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
+import { applyDocumentTheme } from "@/app/_lib/document-theme";
 
 export type ReaderFontDefault = "sm" | "md" | "lg";
 
@@ -701,6 +702,8 @@ export function useBookPreferences() {
   const [hydrated, setHydrated] = useState(false);
   const [state, setState] = useState<BookPreferencesState>(defaultBookPreferencesState);
   const [serverReady, setServerReady] = useState(false);
+  // Prevents write-back on the state change caused by loading server settings.
+  const skipNextServerSave = useRef(false);
 
   useEffect(() => {
     const nextState =
@@ -715,8 +718,11 @@ export function useBookPreferences() {
     let mounted = true;
     fetchBookJson<{ settings: Partial<BookPreferencesState> | null }>("/app/api/book/me/settings")
       .then((payload) => {
-        if (!mounted || !payload.settings) return;
-        setState(parseStored(JSON.stringify(payload.settings)) ?? defaultBookPreferencesState);
+        if (!mounted) return;
+        if (payload.settings) {
+          skipNextServerSave.current = true;
+          setState(parseStored(JSON.stringify(payload.settings)) ?? defaultBookPreferencesState);
+        }
         setServerReady(true);
       })
       .catch(() => {
@@ -734,7 +740,33 @@ export function useBookPreferences() {
   }, [hydrated, state]);
 
   useEffect(() => {
+    if (!hydrated) return;
+
+    applyDocumentTheme({
+      theme: state.appearance.theme,
+      accentColor: state.appearance.accentColor,
+      interfaceDensity: state.appearance.interfaceDensity,
+      reducedMotion: state.appearance.reducedMotion,
+      highContrastMode: state.accessibility.highContrastMode,
+      focusRingStrength: state.accessibility.focusRingStrength,
+    });
+    window.dispatchEvent(new Event("book-theme-change"));
+  }, [
+    hydrated,
+    state.appearance.theme,
+    state.appearance.accentColor,
+    state.appearance.interfaceDensity,
+    state.appearance.reducedMotion,
+    state.accessibility.highContrastMode,
+    state.accessibility.focusRingStrength,
+  ]);
+
+  useEffect(() => {
     if (!hydrated || !serverReady) return;
+    if (skipNextServerSave.current) {
+      skipNextServerSave.current = false;
+      return;
+    }
     const timeout = window.setTimeout(() => {
       fetchBookJson("/app/api/book/me/settings", {
         method: "PATCH",

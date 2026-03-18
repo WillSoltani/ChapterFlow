@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { ChevronRight, Search } from "lucide-react";
+import { ArrowRight, ChevronRight, Search } from "lucide-react";
 import { TopNav } from "@/app/book/home/components/TopNav";
 import { InfoModal } from "@/app/book/home/components/InfoModal";
 import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
@@ -111,9 +111,8 @@ export function BookDetailClient({ bookId }: { bookId: string }) {
 
   if (!entry || !onboardingHydrated || !hydrated || !savedHydrated || !onboarding.setupComplete) {
     return (
-      <main className="relative min-h-screen text-slate-100">
-        <div className="pointer-events-none absolute inset-0 -z-20 bg-[#050813]" />
-        <div className="mx-auto flex min-h-screen items-center justify-center px-4 text-slate-300">
+      <main className="cf-app-shell">
+        <div className="mx-auto flex min-h-screen items-center justify-center px-4 text-(--cf-text-2)">
           Loading book details...
         </div>
       </main>
@@ -121,10 +120,7 @@ export function BookDetailClient({ bookId }: { bookId: string }) {
   }
 
   return (
-    <main className="relative min-h-screen overflow-x-hidden text-slate-100">
-      <div className="pointer-events-none absolute inset-0 -z-20 bg-[#050813]" />
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(980px_circle_at_8%_-8%,rgba(56,189,248,0.12),transparent_58%),radial-gradient(820px_circle_at_100%_0%,rgba(251,191,36,0.08),transparent_52%)]" />
-
+    <main className="cf-app-shell">
       <TopNav
         name={onboarding.name || "Reader"}
         activeTab="library"
@@ -135,12 +131,12 @@ export function BookDetailClient({ bookId }: { bookId: string }) {
       />
 
       <section className="mx-auto w-full max-w-7xl px-4 pb-28 pt-6 sm:px-6 md:pb-24">
-        <div className="mb-5 flex items-center gap-2 text-sm text-slate-300">
-          <Link href="/book/library" className="hover:text-slate-100">
+        <div className="mb-5 flex items-center gap-2 text-sm text-(--cf-text-2)">
+          <Link href="/book/library" className="hover:text-(--cf-text-1)">
             Library
           </Link>
-          <ChevronRight className="h-4 w-4 text-slate-500" />
-          <span className="text-slate-100">{entry.title}</span>
+          <ChevronRight className="h-4 w-4 text-(--cf-text-3)" />
+          <span className="text-(--cf-text-1)">{entry.title}</span>
         </div>
 
         <div className="grid grid-cols-1 gap-5 lg:grid-cols-[420px_1fr]">
@@ -169,19 +165,19 @@ export function BookDetailClient({ bookId }: { bookId: string }) {
             onRemoveFromLibrary={() => setShowRemoveModal(true)}
           />
 
-          <section className="rounded-[30px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.07),rgba(255,255,255,0.03))] p-5 shadow-[0_18px_45px_rgba(2,6,23,0.52)] sm:p-6">
+          <section className="cf-panel rounded-[30px] p-5 sm:p-6">
             <div className="flex items-center justify-between gap-3">
-              <h2 className="text-3xl font-semibold tracking-[0.1em] text-slate-100">
+              <h2 className="text-3xl font-semibold tracking-[0.1em] text-(--cf-text-1)">
                 CHAPTERS
               </h2>
-              <p className="text-sm text-slate-400">
+              <p className="text-sm text-(--cf-text-3)">
                 {completedCount}/{totalCount} completed
               </p>
             </div>
 
-            <div className="mt-4 rounded-2xl border border-sky-300/20 bg-sky-400/8 p-3">
-              <p className="text-xs uppercase tracking-[0.14em] text-sky-200">Resume</p>
-              <p className="mt-1 text-lg font-semibold text-slate-100">
+            <div className="cf-banner cf-banner-info mt-4 rounded-2xl p-3">
+              <p className="cf-kicker text-(--cf-accent)">Resume</p>
+              <p className="mt-1 text-lg font-semibold text-(--cf-text-1)">
                 {currentChapter?.code} {currentChapter?.title}
               </p>
               <button
@@ -190,22 +186,23 @@ export function BookDetailClient({ bookId }: { bookId: string }) {
                   currentChapter &&
                   openChapter(currentChapter, { sessionMode: progressPercent === 0 })
                 }
-                className="mt-2 rounded-xl border border-sky-300/35 bg-sky-500/16 px-3 py-1.5 text-sm text-sky-100"
+                className="cf-btn cf-btn-primary mt-2 rounded-xl px-3 py-1.5 text-sm"
               >
-                {completedCount > 0 ? "Continue ->" : "Start ->"}
+                {completedCount > 0 ? "Continue" : "Start"}
+                <ArrowRight className="h-4 w-4" />
               </button>
             </div>
 
             <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <label className="relative block flex-1">
-                <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+                <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-(--cf-text-3)" />
                 <input
                   ref={chapterSearchRef}
                   type="search"
                   value={chapterQuery}
                   onChange={(event) => setChapterQuery(event.target.value)}
                   placeholder="Search chapters..."
-                  className="w-full rounded-xl border border-white/12 bg-white/6 px-10 py-2.5 text-sm text-slate-100 placeholder:text-slate-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300/45"
+                  className="cf-input w-full rounded-xl px-10 py-2.5 text-sm"
                 />
               </label>
               <div className="flex flex-wrap gap-2">
@@ -215,10 +212,10 @@ export function BookDetailClient({ bookId }: { bookId: string }) {
                     type="button"
                     onClick={() => setChapterFilter(option.id)}
                     className={[
-                      "rounded-full border px-3 py-1.5 text-sm transition",
+                      "rounded-full px-3 py-1.5 text-sm transition",
                       chapterFilter === option.id
-                        ? "border-sky-300/50 bg-sky-400/18 text-sky-100"
-                        : "border-white/25 bg-white/5 text-slate-300 hover:border-white/40",
+                        ? "cf-chip cf-chip-active"
+                        : "cf-chip hover:border-(--cf-border-strong) hover:text-(--cf-text-1)",
                     ].join(" ")}
                   >
                     {option.label}
@@ -253,11 +250,12 @@ export function BookDetailClient({ bookId }: { bookId: string }) {
             onClick={() =>
               openChapter(currentChapter, { sessionMode: progressPercent === 0 })
             }
-            className="w-full rounded-2xl bg-linear-to-r from-sky-500 to-cyan-400 px-4 py-3 text-base font-semibold text-white shadow-[0_16px_35px_rgba(14,165,233,0.36)]"
+            className="cf-btn cf-btn-primary w-full rounded-2xl px-4 py-3 text-base"
           >
             {completedCount > 0
-              ? `Continue Chapter ${currentChapter.order} ->`
-              : `Start Chapter ${currentChapter.order} ->`}
+              ? `Continue Chapter ${currentChapter.order}`
+              : `Start Chapter ${currentChapter.order}`}
+            <ArrowRight className="h-4.5 w-4.5" />
           </button>
         </div>
       ) : null}
@@ -280,14 +278,14 @@ export function BookDetailClient({ bookId }: { bookId: string }) {
         <button
           type="button"
           onClick={() => setShowRemoveModal(false)}
-          className="mt-4 rounded-xl border border-white/20 bg-white/8 px-4 py-2 text-sm text-slate-200"
+          className="cf-btn cf-btn-secondary mt-4 rounded-xl px-4 py-2 text-sm"
         >
           Close
         </button>
       </InfoModal>
 
       {lockedToast ? (
-        <div className="fixed bottom-24 left-1/2 z-50 -translate-x-1/2 rounded-xl border border-white/18 bg-[#0b1120]/95 px-3 py-2 text-sm text-slate-100 shadow-[0_14px_28px_rgba(2,6,23,0.55)]">
+        <div className="cf-panel-strong fixed bottom-24 left-1/2 z-50 -translate-x-1/2 rounded-xl px-3 py-2 text-sm text-(--cf-text-1)">
           {lockedToast}
         </div>
       ) : null}

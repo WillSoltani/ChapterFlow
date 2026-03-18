@@ -33,13 +33,13 @@ export function SessionModeOverlay({
   const nextStep = steps[currentIndex + 1];
 
   return (
-    <div className="fixed inset-0 z-40 flex items-center justify-center bg-[#020617]/72 px-4 backdrop-blur-[2px] sm:px-6">
+    <div className="fixed inset-0 z-40 flex items-center justify-center bg-(--cf-overlay) px-4 backdrop-blur-[2px] sm:px-6">
       <div className="w-full max-w-3xl">
-        <div className="rounded-[32px] border border-sky-300/25 bg-[#081226]/96 p-5 shadow-[0_28px_80px_rgba(2,6,23,0.62)] sm:p-6">
+        <div className="rounded-[32px] border border-(--cf-accent-border) bg-(--cf-surface-strong) p-5 shadow-xl sm:p-6">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
-              <p className="text-xs uppercase tracking-[0.18em] text-sky-200">Session Mode</p>
-              <p className="mt-1 text-sm text-slate-300">A guided chapter tour: summary → examples → quiz</p>
+              <p className="text-xs uppercase tracking-[0.18em] text-(--cf-accent)">Session Mode</p>
+              <p className="mt-1 text-sm text-(--cf-text-2)">A guided chapter tour: summary → examples → quiz</p>
             </div>
             <div className="flex items-center gap-2">
               <Button variant="secondary" size="sm" onClick={onPause}>
@@ -49,7 +49,7 @@ export function SessionModeOverlay({
               <button
                 type="button"
                 onClick={onClose}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/15 bg-white/5 text-slate-300 transition hover:border-white/25 hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300/45"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-2) transition hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)"
                 aria-label="Exit session mode"
               >
                 <X className="h-4 w-4" />
@@ -70,10 +70,10 @@ export function SessionModeOverlay({
                   className={[
                     "rounded-xl border px-3 py-2 text-left transition",
                     active
-                      ? "border-sky-300/45 bg-sky-500/16 text-sky-100"
+                      ? "border-(--cf-accent-border) bg-(--cf-accent-soft) text-(--cf-info-text)"
                       : completed
-                        ? "border-emerald-300/35 bg-emerald-500/12 text-emerald-100"
-                        : "border-white/14 bg-white/3 text-slate-300 hover:border-white/25",
+                        ? "border-(--cf-success-border) bg-(--cf-success-soft) text-(--cf-success-text)"
+                        : "border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-2) hover:border-(--cf-border-strong)",
                   ].join(" ")}
                 >
                   <p className="text-sm font-semibold">{step.label}</p>
@@ -83,20 +83,20 @@ export function SessionModeOverlay({
             })}
           </div>
 
-          <div className="mt-5 rounded-2xl border border-white/10 bg-white/4 px-4 py-3 text-sm">
-            <p className="text-slate-200">
+          <div className="mt-5 rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) px-4 py-3 text-sm">
+            <p className="text-(--cf-text-2)">
               Use this flow like a tour: read the summary carefully, explore the examples that match your context, then pass the quiz to unlock the next chapter.
             </p>
           </div>
 
           <div className="mt-4 flex flex-wrap items-center justify-between gap-2 text-sm">
-            <p className="text-slate-300">
+            <p className="text-(--cf-text-2)">
               {quizPassed
                 ? "Session complete. Great retention run."
                 : `Current step: ${steps[currentIndex]?.label ?? "Summary"}`}
             </p>
             {quizPassed ? (
-              <span className="inline-flex items-center gap-1 rounded-full border border-emerald-300/35 bg-emerald-500/12 px-2.5 py-1 text-xs text-emerald-100">
+              <span className="inline-flex items-center gap-1 rounded-full border border-(--cf-success-border) bg-(--cf-success-soft) px-2.5 py-1 text-xs text-(--cf-success-text)">
                 <Sparkles className="h-3.5 w-3.5" />
                 Session complete
               </span>

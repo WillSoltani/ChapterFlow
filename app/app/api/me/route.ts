@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { requireUser } from "../_lib/auth";
+import { requireUser, AuthError } from "../_lib/auth";
 
 export async function GET() {
   try {
@@ -12,7 +12,11 @@ export async function GET() {
         email: user.email,
       },
     });
-  } catch {
-    return NextResponse.json({ authenticated: false }, { status: 401 });
+  } catch (error: unknown) {
+    if (error instanceof AuthError) {
+      return NextResponse.json({ authenticated: false }, { status: 401 });
+    }
+    console.error("GET /api/me unexpected error:", error);
+    return NextResponse.json({ authenticated: false }, { status: 500 });
   }
 }

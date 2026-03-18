@@ -489,21 +489,21 @@ export function useBadgeSystem({
     const newEntries = badges.filter((badge) => badge.earned && !earnedHistory[badge.id]);
     if (!newEntries.length) return;
 
-    setEarnedHistory((current) => {
-      const next = { ...current };
-      newEntries.forEach((badge, index) => {
-        next[badge.id] = new Date(now + index * 1000).toISOString();
-        fetchBookJson("/app/api/book/me/badges", {
-          method: "PUT",
-          body: JSON.stringify({
-            badgeId: badge.id,
-            earnedAt: next[badge.id],
-            tier: badge.tier,
-          }),
-        }).catch(() => {});
-      });
-      window.localStorage.setItem(BADGE_EARNED_KEY, JSON.stringify(next));
-      return next;
+    const next = { ...earnedHistory };
+    newEntries.forEach((badge, index) => {
+      next[badge.id] = new Date(now + index * 1000).toISOString();
+    });
+    setEarnedHistory(next);
+    window.localStorage.setItem(BADGE_EARNED_KEY, JSON.stringify(next));
+    newEntries.forEach((badge, index) => {
+      fetchBookJson("/app/api/book/me/badges", {
+        method: "PUT",
+        body: JSON.stringify({
+          badgeId: badge.id,
+          earnedAt: next[badge.id],
+          tier: badge.tier,
+        }),
+      }).catch(() => {});
     });
   }, [badges, earnedHistory]);
 

@@ -6,23 +6,24 @@ import {
   getBookStripeWebhookSecret,
 } from "./env";
 
-let stripeClientPromise: Promise<Stripe> | null = null;
+// Keyed cache: if the secret key changes (e.g. key rotation or dev hot-reload),
+// a fresh client is created rather than reusing the stale one.
+let cachedClient: { key: string; stripe: Stripe } | null = null;
 
 export async function getStripeClient(): Promise<Stripe> {
-  if (stripeClientPromise) return stripeClientPromise;
-  stripeClientPromise = (async () => {
-    const key = await getBookStripeSecretKey();
-    if (!key) {
-      throw new BookApiError(
-        503,
-        "stripe_not_configured",
-        "Stripe is not configured on the server."
-      );
-    }
-    const stripeMod = await import("stripe");
-    return new stripeMod.default(key);
-  })();
-  return stripeClientPromise;
+  const key = await getBookStripeSecretKey();
+  if (!key) {
+    throw new BookApiError(
+      503,
+      "stripe_not_configured",
+      "Stripe is not configured on the server."
+    );
+  }
+  if (cachedClient?.key === key) return cachedClient.stripe;
+  const stripeMod = await import("stripe");
+  const stripe = new stripeMod.default(key);
+  cachedClient = { key, stripe };
+  return stripe;
 }
 
 export async function getStripePriceIdOrThrow(): Promise<string> {

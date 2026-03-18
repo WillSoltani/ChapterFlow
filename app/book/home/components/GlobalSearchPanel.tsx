@@ -75,15 +75,15 @@ export function GlobalSearchPanel({ open, query, onClose }: GlobalSearchPanelPro
 
   return (
     <div className="absolute inset-x-0 top-12 z-40">
-      <div className="rounded-2xl border border-white/14 bg-[#0a1224]/96 p-3 shadow-[0_24px_60px_rgba(2,6,23,0.6)] backdrop-blur-xl">
+      <div className="cf-panel-strong rounded-2xl p-3">
         {!search ? (
-          <p className="px-2 py-6 text-center text-sm text-slate-400">
+          <p className="px-2 py-6 text-center text-sm text-(--cf-text-3)">
             Type to search books and chapters.
           </p>
         ) : (
           <div className="grid gap-3 md:grid-cols-2">
-            <section className="rounded-xl border border-white/10 bg-white/2 p-2">
-              <p className="px-2 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-slate-400">
+            <section className="cf-panel-muted rounded-xl p-2">
+              <p className="px-2 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-(--cf-text-3)">
                 Books
               </p>
               <div className="space-y-1">
@@ -96,21 +96,21 @@ export function GlobalSearchPanel({ open, query, onClose }: GlobalSearchPanelPro
                         onClose();
                         router.push(`/book/library/${encodeURIComponent(book.id)}`);
                       }}
-                      className="flex w-full items-center gap-2 rounded-lg px-2 py-2 text-left text-sm text-slate-200 transition hover:bg-white/8"
+                      className="flex w-full items-center gap-2 rounded-lg px-2 py-2 text-left text-sm text-(--cf-text-2) transition hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)"
                     >
-                      <BookText className="h-4 w-4 text-sky-300" />
+                      <BookText className="h-4 w-4 text-(--cf-accent)" />
                       <span className="flex-1 truncate">{book.title}</span>
-                      <span className="text-xs text-slate-400">{book.author}</span>
+                      <span className="text-xs text-(--cf-text-3)">{book.author}</span>
                     </button>
                   ))
                 ) : (
-                  <p className="px-2 py-2 text-sm text-slate-500">No book matches.</p>
+                  <p className="px-2 py-2 text-sm text-(--cf-text-3)">No book matches.</p>
                 )}
               </div>
             </section>
 
-            <section className="rounded-xl border border-white/10 bg-white/2 p-2">
-              <p className="px-2 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-slate-400">
+            <section className="cf-panel-muted rounded-xl p-2">
+              <p className="px-2 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-(--cf-text-3)">
                 Chapters
               </p>
               <div className="space-y-1">
@@ -125,16 +125,16 @@ export function GlobalSearchPanel({ open, query, onClose }: GlobalSearchPanelPro
                           `/book/library/${encodeURIComponent(chapter.bookId)}/chapter/${encodeURIComponent(chapter.chapterId)}`
                         );
                       }}
-                      className="flex w-full items-center gap-2 rounded-lg px-2 py-2 text-left text-sm text-slate-200 transition hover:bg-white/8"
+                      className="flex w-full items-center gap-2 rounded-lg px-2 py-2 text-left text-sm text-(--cf-text-2) transition hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)"
                     >
-                      <FileText className="h-4 w-4 text-cyan-300" />
+                      <FileText className="h-4 w-4 text-(--cf-accent)" />
                       <span className="min-w-0 flex-1 truncate">
                         {chapter.bookTitle} · {chapter.chapterLabel} {chapter.chapterTitle}
                       </span>
                     </button>
                   ))
                 ) : (
-                  <p className="px-2 py-2 text-sm text-slate-500">No chapter matches.</p>
+                  <p className="px-2 py-2 text-sm text-(--cf-text-3)">No chapter matches.</p>
                 )}
               </div>
             </section>

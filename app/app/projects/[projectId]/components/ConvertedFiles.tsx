@@ -213,10 +213,10 @@ export function ConvertedFiles({
     <div className="space-y-3">
       {/* Header */}
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="text-lg font-semibold text-slate-100 sm:text-xl">
+        <div className="text-lg font-semibold text-[var(--cf-text-1)] sm:text-xl">
           {title}
           {files.length > 0 && (
-            <span className="ml-2 text-sm font-normal text-slate-400">({files.length})</span>
+            <span className="ml-2 text-sm font-normal text-[var(--cf-text-3)]">({files.length})</span>
           )}
         </div>
         <div className="flex flex-wrap items-center gap-2">
@@ -226,7 +226,7 @@ export function ConvertedFiles({
                 type="button"
                 onClick={() => void handleBulkDownload()}
                 disabled={bulkDownloading || selectedDoneIds.length === 0}
-                className="inline-flex min-h-10 items-center gap-1.5 rounded-2xl border border-white/10 bg-white/5 px-3 py-2 text-xs text-slate-200 hover:bg-white/10 disabled:opacity-40"
+                className="cf-btn cf-btn-secondary min-h-10 rounded-2xl px-3 py-2 text-xs"
               >
                 {bulkDownloading
                   ? <Loader2 className="h-3.5 w-3.5 animate-spin" />
@@ -238,7 +238,7 @@ export function ConvertedFiles({
                   type="button"
                   onClick={() => void handleBulkDelete()}
                   disabled={bulkDeleting}
-                  className="inline-flex min-h-10 items-center gap-1.5 rounded-2xl border border-rose-500/20 bg-rose-500/10 px-3 py-2 text-xs text-rose-200 hover:bg-rose-500/15 disabled:opacity-40"
+                  className="cf-btn cf-btn-danger min-h-10 rounded-2xl px-3 py-2 text-xs"
                 >
                   <Trash2 className="h-3.5 w-3.5" />Delete ({selectedIds.size})
                 </button>
@@ -250,17 +250,20 @@ export function ConvertedFiles({
             type="button"
             onClick={() => void handleDownloadAll()}
             disabled={downloadingAll || doneFiles.length === 0}
-            className="inline-flex min-h-10 items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-200 hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-40"
+            className="cf-btn cf-btn-secondary min-h-10 rounded-2xl px-3 py-2 text-sm"
           >
             <Download className="h-4 w-4" />
             {downloadingAll ? "Downloading…" : "All"}
           </button>
 
-          <div className="flex overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+          <div className="flex overflow-hidden rounded-2xl border border-[var(--cf-border)] bg-[var(--cf-surface-muted)]">
             <button
               type="button"
               onClick={() => setView("list")}
-              className={["px-3 py-2 text-slate-200 transition hover:bg-white/10", view === "list" ? "bg-white/10" : ""].join(" ")}
+              className={[
+                "px-3 py-2 text-[var(--cf-text-2)] transition hover:bg-[var(--cf-input-bg-hover)] hover:text-[var(--cf-text-1)]",
+                view === "list" ? "bg-[var(--cf-accent-muted)] text-[var(--cf-text-1)]" : "",
+              ].join(" ")}
               aria-label="List view"
             >
               <List className="h-4 w-4" />
@@ -268,7 +271,10 @@ export function ConvertedFiles({
             <button
               type="button"
               onClick={() => setView("grid")}
-              className={["px-3 py-2 text-slate-200 transition hover:bg-white/10", view === "grid" ? "bg-white/10" : ""].join(" ")}
+              className={[
+                "px-3 py-2 text-[var(--cf-text-2)] transition hover:bg-[var(--cf-input-bg-hover)] hover:text-[var(--cf-text-1)]",
+                view === "grid" ? "bg-[var(--cf-accent-muted)] text-[var(--cf-text-1)]" : "",
+              ].join(" ")}
               aria-label="Grid view"
             >
               <Grid2X2 className="h-4 w-4" />
@@ -281,26 +287,26 @@ export function ConvertedFiles({
       {files.length > 0 && (
         <div className="flex flex-wrap items-center gap-2">
           <div className="relative min-w-[180px] flex-1">
-            <Search className="absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-slate-500 pointer-events-none" />
+            <Search className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[var(--cf-text-3)]" />
             <input
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search files…"
-              className="w-full rounded-2xl border border-white/10 bg-white/5 py-2 pl-8 pr-8 text-sm text-slate-200 placeholder:text-slate-500 focus:outline-none focus:border-sky-400/30"
+              className="cf-input w-full rounded-2xl py-2 pl-8 pr-8 text-sm"
             />
             {query && (
               <button
                 type="button"
                 onClick={() => setQuery("")}
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300"
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[var(--cf-text-3)] hover:text-[var(--cf-text-1)]"
               >
                 <X className="h-3.5 w-3.5" />
               </button>
             )}
           </div>
           <div className="flex flex-wrap items-center gap-1.5">
-            <span className="text-xs text-slate-500">Sort:</span>
+            <span className="text-xs text-[var(--cf-text-3)]">Sort:</span>
             <SortButton field="name" label="Name" current={sortBy} onChange={setSortBy} />
             <SortButton field="size" label="Size" current={sortBy} onChange={setSortBy} />
             <SortButton field="date" label="Date" current={sortBy} onChange={setSortBy} />
@@ -309,18 +315,18 @@ export function ConvertedFiles({
       )}
 
       {files.length === 0 ? (
-        <div className="rounded-[28px] border border-white/10 bg-white/3 px-5 py-8 text-sm text-slate-400">
+        <div className="cf-empty-state rounded-[28px] px-5 py-8 text-sm">
           {emptyMessage}
         </div>
       ) : displayFiles.length === 0 ? (
-        <div className="rounded-[28px] border border-white/10 bg-white/3 px-5 py-6 text-sm text-slate-400">
+        <div className="cf-empty-state rounded-[28px] px-5 py-6 text-sm">
           No files match &ldquo;{query}&rdquo;.
         </div>
       ) : view === "list" ? (
         <div className="space-y-2">
           <div className="flex items-center gap-3 px-1 py-1">
             <Checkbox checked={allDisplaySelected} onClick={toggleAllDisplay} label="Select all" />
-            <span className="text-xs text-slate-500">
+            <span className="text-xs text-[var(--cf-text-3)]">
               {someSelected ? `${selectedIds.size} selected` : "Select files"}
             </span>
           </div>
@@ -330,7 +336,7 @@ export function ConvertedFiles({
             return (
               <div
                 key={f.id}
-                className="overflow-hidden rounded-[24px] border border-white/10 bg-white/3 shadow-[0_14px_60px_rgba(0,0,0,0.35)]"
+                className="cf-panel overflow-hidden rounded-[24px]"
               >
               <div className="flex flex-wrap items-center gap-3 px-4 py-4 sm:px-5">
                 <Checkbox
@@ -341,19 +347,19 @@ export function ConvertedFiles({
                 <Thumb src={f.previewUrl} alt={f.name} fallbackLabel={f.toLabel} />
 
                 <div className="min-w-0 flex-1">
-                  <div className="truncate text-sm font-semibold text-slate-100">{f.name}</div>
-                  <div className="mt-0.5 flex flex-wrap items-center gap-2 text-xs text-slate-400">
+                  <div className="truncate text-sm font-semibold text-[var(--cf-text-1)]">{f.name}</div>
+                  <div className="mt-0.5 flex flex-wrap items-center gap-2 text-xs text-[var(--cf-text-3)]">
                     {f.sizeLabel && <span>{f.sizeLabel}</span>}
                     {f.whenLabel && (
                       <>
-                        <span className="text-slate-600">•</span>
+                        <span className="text-[var(--cf-text-soft)]">•</span>
                         <span>{formatTime(f.whenLabel)}</span>
                       </>
                     )}
                   </div>
                   <div className="mt-2 flex flex-wrap items-center gap-1.5 md:hidden">
                     <Badge>{f.fromLabel}</Badge>
-                    <span className="text-slate-600">→</span>
+                    <span className="text-[var(--cf-text-soft)]">→</span>
                     <Badge tone="active">{f.toLabel}</Badge>
                     <MultiOutputBadge file={f} />
                     <StatusBadge status={f.status} />
@@ -362,7 +368,7 @@ export function ConvertedFiles({
 
                 <div className="hidden items-center gap-2 md:flex">
                   <Badge>{f.fromLabel}</Badge>
-                  <span className="text-slate-600">→</span>
+                  <span className="text-[var(--cf-text-soft)]">→</span>
                   <Badge tone="active">{f.toLabel}</Badge>
                   <MultiOutputBadge file={f} />
                   <StatusBadge status={f.status} />
@@ -385,7 +391,7 @@ export function ConvertedFiles({
                         })
                       }
                       title="Preview"
-                      className="grid h-9 w-9 place-items-center rounded-xl text-slate-400 transition hover:bg-white/10 hover:text-slate-200"
+                      className="cf-btn cf-btn-ghost h-9 w-9 rounded-xl px-0 text-[var(--cf-text-3)] hover:text-[var(--cf-text-1)]"
                     >
                       <Eye className="h-4 w-4" />
                     </button>
@@ -396,7 +402,7 @@ export function ConvertedFiles({
                       onClick={() => void handleDownloadOne(f.id)}
                       disabled={downloadingId === f.id}
                       title="Download"
-                      className="grid h-9 w-9 place-items-center rounded-xl text-slate-400 transition hover:bg-white/10 hover:text-slate-200 disabled:opacity-40"
+                      className="cf-btn cf-btn-ghost h-9 w-9 rounded-xl px-0 text-[var(--cf-text-3)] hover:text-[var(--cf-text-1)]"
                     >
                       {downloadingId === f.id
                         ? <Loader2 className="h-4 w-4 animate-spin" />
@@ -409,10 +415,10 @@ export function ConvertedFiles({
                       onClick={() => setExpandedReconvert(expandedReconvert === f.id ? null : f.id)}
                       title="Reconvert"
                       className={[
-                        "grid h-9 w-9 place-items-center rounded-xl transition",
+                        "cf-btn h-9 w-9 rounded-xl px-0 transition",
                         expandedReconvert === f.id
-                          ? "bg-sky-500/20 text-sky-300"
-                          : "text-slate-500 hover:bg-white/10 hover:text-slate-200",
+                          ? "border-[var(--cf-accent-border)] bg-[var(--cf-accent-soft)] text-[var(--cf-accent)]"
+                          : "text-[var(--cf-text-3)] hover:bg-[var(--cf-input-bg-hover)] hover:text-[var(--cf-text-1)]",
                       ].join(" ")}
                     >
                       <RefreshCw className="h-4 w-4" />
@@ -423,7 +429,7 @@ export function ConvertedFiles({
                       type="button"
                       onClick={() => void onDeleteFile(f.id)}
                       title="Remove"
-                      className="grid h-9 w-9 place-items-center rounded-xl text-slate-500 transition hover:bg-rose-500/10 hover:text-rose-300"
+                      className="cf-btn cf-btn-ghost h-9 w-9 rounded-xl px-0 text-[var(--cf-text-3)] hover:bg-[var(--cf-danger-soft)] hover:text-[var(--cf-danger-text)]"
                     >
                       <Trash2 className="h-4 w-4" />
                     </button>
@@ -447,7 +453,7 @@ export function ConvertedFiles({
         <>
           <div className="flex items-center gap-3 px-1 py-1">
             <Checkbox checked={allDisplaySelected} onClick={toggleAllDisplay} label="Select all" />
-            <span className="text-xs text-slate-500">
+            <span className="text-xs text-[var(--cf-text-3)]">
               {someSelected ? `${selectedIds.size} selected` : "Select files"}
             </span>
           </div>
@@ -459,14 +465,14 @@ export function ConvertedFiles({
                 <div
                   key={f.id}
                   className={[
-                    "flex flex-col overflow-hidden rounded-[20px] border bg-white/3 shadow-[0_14px_60px_rgba(0,0,0,0.35)]",
-                    selectedIds.has(f.id) ? "border-sky-400/25" : "border-white/10",
+                    "cf-panel flex flex-col overflow-hidden rounded-[20px]",
+                    selectedIds.has(f.id) ? "border-[var(--cf-accent-border)]" : "",
                   ].join(" ")}
                 >
-                <div className="relative aspect-square w-full bg-white/5">
+                <div className="relative aspect-square w-full bg-[var(--cf-surface-muted)]">
                   {/* Always-visible fallback text behind the image */}
                   <div className="absolute inset-0 grid place-items-center">
-                    <span className="text-lg font-bold tracking-wide text-slate-400/60">
+                    <span className="text-lg font-bold tracking-wide text-[var(--cf-text-3)]/60">
                       {f.toLabel.toUpperCase()}
                     </span>
                   </div>
@@ -493,16 +499,16 @@ export function ConvertedFiles({
                 </div>
 
                 <div className="flex flex-col gap-1 px-3 py-2">
-                  <div className="truncate text-xs font-semibold text-slate-100">{f.name}</div>
+                  <div className="truncate text-xs font-semibold text-[var(--cf-text-1)]">{f.name}</div>
                   <div className="flex items-center gap-1.5">
                     <Badge>{f.fromLabel}</Badge>
-                    <span className="text-slate-600 text-xs">→</span>
+                    <span className="text-xs text-[var(--cf-text-soft)]">→</span>
                     <Badge tone="active">{f.toLabel}</Badge>
                     <MultiOutputBadge file={f} />
                   </div>
                 </div>
 
-                <div className="flex border-t border-white/10">
+                <div className="flex border-t border-[var(--cf-divider)]">
                   {previewEligibility.canPreview && (
                     <button
                       type="button"
@@ -518,7 +524,7 @@ export function ConvertedFiles({
                           hasLocalSource: false,
                         })
                       }
-                      className="flex items-center justify-center gap-1.5 py-2 px-3 text-xs text-slate-300 transition hover:bg-white/10"
+                      className="flex items-center justify-center gap-1.5 px-3 py-2 text-xs text-[var(--cf-text-2)] transition hover:bg-[var(--cf-input-bg-hover)] hover:text-[var(--cf-text-1)]"
                     >
                       <Eye className="h-3.5 w-3.5" />
                       Preview
@@ -530,8 +536,8 @@ export function ConvertedFiles({
                       onClick={() => void handleDownloadOne(f.id)}
                       disabled={downloadingId === f.id}
                       className={[
-                        "flex items-center justify-center gap-1.5 py-2 text-xs text-slate-300 transition hover:bg-white/10 disabled:opacity-40",
-                        previewEligibility.canPreview ? "flex-1 border-l border-white/10" : "flex-1",
+                        "flex items-center justify-center gap-1.5 py-2 text-xs text-[var(--cf-text-2)] transition hover:bg-[var(--cf-input-bg-hover)] hover:text-[var(--cf-text-1)] disabled:opacity-40",
+                        previewEligibility.canPreview ? "flex-1 border-l border-[var(--cf-divider)]" : "flex-1",
                       ].join(" ")}
                     >
                       {downloadingId === f.id
@@ -544,7 +550,7 @@ export function ConvertedFiles({
                     <button
                       type="button"
                       onClick={() => setExpandedReconvert(expandedReconvert === f.id ? null : f.id)}
-                      className="flex items-center justify-center gap-1.5 border-l border-white/10 px-3 py-2 text-xs text-slate-400 transition hover:bg-sky-500/10 hover:text-sky-300"
+                      className="flex items-center justify-center gap-1.5 border-l border-[var(--cf-divider)] px-3 py-2 text-xs text-[var(--cf-text-3)] transition hover:bg-[var(--cf-accent-muted)] hover:text-[var(--cf-accent)]"
                     >
                       <RefreshCw className="h-3.5 w-3.5" />
                     </button>
@@ -553,7 +559,7 @@ export function ConvertedFiles({
                     <button
                       type="button"
                       onClick={() => void onDeleteFile(f.id)}
-                      className="flex items-center justify-center gap-1.5 border-l border-white/10 px-3 py-2 text-xs text-slate-500 transition hover:bg-rose-500/10 hover:text-rose-300"
+                      className="flex items-center justify-center gap-1.5 border-l border-[var(--cf-divider)] px-3 py-2 text-xs text-[var(--cf-text-3)] transition hover:bg-[var(--cf-danger-soft)] hover:text-[var(--cf-danger-text)]"
                     >
                       <Trash2 className="h-3.5 w-3.5" />
                     </button>

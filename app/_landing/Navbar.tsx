@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { BookOpen, Menu, X } from 'lucide-react'
@@ -38,12 +39,12 @@ export function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-5 lg:px-8 h-16 flex items-center justify-between">
           {/* Logo */}
-          <a href="/" className="flex items-center gap-2.5 group">
+          <Link href="/" className="flex items-center gap-2.5 group">
             <div className="w-8 h-8 rounded-lg bg-linear-to-br from-indigo-500 to-violet-600 flex items-center justify-center shadow-lg shadow-indigo-500/30 group-hover:shadow-indigo-500/50 transition-shadow">
               <BookOpen className="w-4 h-4 text-white" strokeWidth={2.2} />
             </div>
             <span className="text-[15px] font-bold text-white tracking-tight">ChapterFlow</span>
-          </a>
+          </Link>
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-7">
@@ -60,18 +61,18 @@ export function Navbar() {
 
           {/* Desktop actions */}
           <div className="hidden md:flex items-center gap-3">
-            <a
+            <Link
               href={SIGN_IN_HREF}
               className="text-[13.5px] font-medium text-slate-400 hover:text-white transition-colors px-3 py-1.5"
             >
               Sign in
-            </a>
-            <a
+            </Link>
+            <Link
               href={START_FREE_HREF}
               className="text-[13.5px] font-semibold bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-full transition-all duration-200 shadow-lg shadow-indigo-600/25 hover:shadow-indigo-500/40"
             >
               Start for free →
-            </a>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -106,15 +107,15 @@ export function Navbar() {
               </a>
             ))}
             <div className="pt-3 border-t border-white/[0.07] flex flex-col gap-3">
-              <a href={SIGN_IN_HREF} className="text-[15px] font-medium text-slate-400 hover:text-white py-1">
+              <Link href={SIGN_IN_HREF} className="text-[15px] font-medium text-slate-400 hover:text-white py-1">
                 Sign in
-              </a>
-              <a
+              </Link>
+              <Link
                 href={START_FREE_HREF}
                 className="text-center text-[15px] font-semibold bg-indigo-600 text-white px-5 py-2.5 rounded-full"
               >
                 Start for free →
-              </a>
+              </Link>
             </div>
           </motion.div>
         )}

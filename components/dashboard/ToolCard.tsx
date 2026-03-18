@@ -12,27 +12,27 @@ const accentStyles = {
   sky: {
     border: "group-hover:border-sky-300/40 group-focus-visible:border-sky-300/45",
     ring: "focus-visible:ring-sky-300/45",
-    iconWrap: "border-sky-300/25 bg-sky-500/12 text-sky-200",
+    iconWrap: "border-sky-300/50 bg-sky-50 text-sky-600 dark:border-sky-300/25 dark:bg-sky-500/12 dark:text-sky-200",
     glow:
-      "from-sky-400/16 via-sky-400/3 to-transparent group-hover:from-sky-300/22",
-    category: "text-sky-200/80",
-    bullet: "text-sky-300/95",
+      "from-sky-400/10 via-sky-400/3 to-transparent group-hover:from-sky-300/16 dark:from-sky-400/16 dark:group-hover:from-sky-300/22",
+    category: "text-sky-600/80 dark:text-sky-200/80",
+    bullet: "text-sky-500 dark:text-sky-300/95",
     cta: "from-sky-500/95 via-sky-500/90 to-cyan-400/90",
     chip:
-      "border-sky-300/35 bg-sky-400/14 text-sky-100 group-hover:bg-sky-400/20",
+      "border-sky-300/50 bg-sky-50 text-sky-700 group-hover:bg-sky-100 dark:border-sky-300/35 dark:bg-sky-400/14 dark:text-sky-100 dark:group-hover:bg-sky-400/20",
   },
   amber: {
     border:
       "group-hover:border-amber-300/40 group-focus-visible:border-amber-300/45",
     ring: "focus-visible:ring-amber-300/45",
-    iconWrap: "border-amber-300/25 bg-amber-400/12 text-amber-200",
+    iconWrap: "border-amber-400/50 bg-amber-50 text-amber-600 dark:border-amber-300/25 dark:bg-amber-400/12 dark:text-amber-200",
     glow:
-      "from-amber-300/16 via-amber-300/3 to-transparent group-hover:from-amber-300/24",
-    category: "text-amber-200/80",
-    bullet: "text-amber-300/95",
+      "from-amber-300/10 via-amber-300/3 to-transparent group-hover:from-amber-300/18 dark:from-amber-300/16 dark:group-hover:from-amber-300/24",
+    category: "text-amber-600/80 dark:text-amber-200/80",
+    bullet: "text-amber-500 dark:text-amber-300/95",
     cta: "from-amber-400/95 via-amber-400/90 to-orange-400/90",
     chip:
-      "border-amber-300/35 bg-amber-400/14 text-amber-100 group-hover:bg-amber-400/22",
+      "border-amber-400/50 bg-amber-50 text-amber-700 group-hover:bg-amber-100 dark:border-amber-300/35 dark:bg-amber-400/14 dark:text-amber-100 dark:group-hover:bg-amber-400/22",
   },
 } as const;
 
@@ -49,11 +49,8 @@ export function ToolCard({ tool }: { tool: DashboardTool }) {
       href={tool.href}
       aria-label={`${tool.title} — ${tool.ctaLabel}`}
       className={[
-        "group relative isolate block overflow-hidden rounded-[28px] border border-white/10",
-        "bg-[linear-gradient(180deg,rgba(255,255,255,0.07),rgba(255,255,255,0.04))] px-6 py-6 sm:px-7 sm:py-7",
-        "shadow-[0_24px_80px_rgba(2,6,23,0.48)] backdrop-blur-xl",
+        "cf-panel cf-panel-hover group relative isolate block overflow-hidden rounded-[28px] px-6 py-6 sm:px-7 sm:py-7",
         "transition-all duration-200 ease-out",
-        "hover:-translate-y-1.5 hover:shadow-[0_30px_90px_rgba(2,6,23,0.56)]",
         "active:translate-y-0.5",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-0",
         accent.border,
@@ -104,15 +101,15 @@ export function ToolCard({ tool }: { tool: DashboardTool }) {
         {tool.category}
       </p>
 
-      <h2 className="mt-3 text-2xl font-semibold tracking-tight text-slate-50">
+      <h2 className="mt-3 text-2xl font-semibold tracking-tight text-(--cf-text-1)">
         {tool.title}
       </h2>
 
-      <p className="mt-3 text-sm leading-relaxed text-slate-300">{tool.description}</p>
+      <p className="mt-3 text-sm leading-relaxed text-(--cf-text-2)">{tool.description}</p>
 
       <ul className="mt-5 space-y-2.5">
         {tool.bullets.map((bullet) => (
-          <li key={bullet} className="flex items-center gap-2.5 text-sm text-slate-200">
+          <li key={bullet} className="flex items-center gap-2.5 text-sm text-(--cf-text-2)">
             <CheckCircle2 className={["h-4 w-4", accent.bullet].join(" ")} aria-hidden="true" />
             <span>{bullet}</span>
           </li>
@@ -124,7 +121,7 @@ export function ToolCard({ tool }: { tool: DashboardTool }) {
           "mt-8 inline-flex w-full items-center justify-center gap-2 rounded-2xl px-4 py-3 text-sm font-semibold text-white",
           "shadow-[0_14px_30px_rgba(2,132,199,0.22)] transition duration-200",
           "group-hover:brightness-105 group-active:brightness-95",
-          `bg-gradient-to-r ${accent.cta}`,
+          `bg-linear-to-r ${accent.cta}`,
         ].join(" ")}
       >
         {tool.ctaLabel}
@@ -133,11 +130,10 @@ export function ToolCard({ tool }: { tool: DashboardTool }) {
 
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute right-6 top-6 text-slate-500/35"
+        className="pointer-events-none absolute right-6 top-6 text-slate-400/35 dark:text-slate-500/35"
       >
         <Sparkles className="h-5 w-5" />
       </span>
     </Link>
   );
 }
-

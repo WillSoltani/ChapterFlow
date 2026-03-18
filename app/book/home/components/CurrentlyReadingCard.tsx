@@ -42,15 +42,15 @@ export function CurrentlyReadingCard({
     progress.status === "not_started" ? "Ready to Start" : "Currently Reading";
 
   return (
-    <article className="group relative overflow-hidden rounded-[30px] border border-sky-300/25 bg-[linear-gradient(135deg,rgba(14,116,144,0.32),rgba(15,23,42,0.88))] p-5 shadow-[0_20px_60px_rgba(2,132,199,0.28)] sm:p-7">
+    <article className="cf-panel group relative overflow-hidden rounded-[30px] border-(--cf-accent-border) bg-[linear-gradient(135deg,var(--cf-accent-soft),var(--cf-surface-strong))] p-5 sm:p-7">
       {/* Ambient glow */}
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute -right-16 -top-24 h-72 w-72 rounded-full bg-sky-400/10 blur-3xl transition duration-700 group-hover:bg-sky-400/16"
+        className="pointer-events-none absolute -right-16 -top-24 h-72 w-72 rounded-full bg-(--cf-accent-soft) blur-3xl transition duration-700"
       />
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute -bottom-12 -left-12 h-56 w-56 rounded-full bg-cyan-500/8 blur-3xl"
+        className="pointer-events-none absolute -bottom-12 -left-12 h-56 w-56 rounded-full bg-(--cf-accent-muted) blur-3xl"
       />
 
       <div className="relative flex flex-col gap-6 sm:flex-row sm:items-start">
@@ -61,7 +61,7 @@ export function CurrentlyReadingCard({
             title={book.title}
             icon={book.icon}
             coverImage={book.coverImage}
-            className="h-32 w-24 rounded-2xl border border-white/20 bg-white/8 shadow-[0_12px_30px_rgba(2,6,23,0.45)] transition duration-300 group-hover:shadow-[0_16px_36px_rgba(14,165,233,0.30)]"
+            className="h-32 w-24 rounded-2xl border border-(--cf-border) bg-(--cf-surface-strong) shadow-(--cf-shadow-sm) transition duration-300 group-hover:shadow-(--cf-shadow-md)"
             fallbackClassName="text-4xl"
             sizes="96px"
           />
@@ -69,38 +69,38 @@ export function CurrentlyReadingCard({
 
         {/* Content */}
         <div className="min-w-0 flex-1">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-sky-300/40 bg-sky-300/14 px-2.5 py-0.5 text-xs font-semibold uppercase tracking-[0.14em] text-sky-100">
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-(--cf-accent-border) bg-(--cf-accent-soft) px-2.5 py-0.5 text-xs font-semibold uppercase tracking-[0.14em] text-(--cf-accent)">
             <BookOpenText className="h-3 w-3" />
             {sectionLabel}
           </span>
 
-          <h2 className="mt-2.5 text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+          <h2 className="mt-2.5 text-2xl font-semibold tracking-tight text-(--cf-text-1) sm:text-3xl">
             {book.title}
           </h2>
-          <p className="mt-0.5 text-sm text-sky-200/80">by {book.author}</p>
+          <p className="mt-0.5 text-sm text-(--cf-accent)/85">by {book.author}</p>
 
           {/* Progress bar */}
           <div className="mt-4">
-            <div className="flex items-center justify-between text-xs text-slate-300">
+            <div className="flex items-center justify-between text-xs text-(--cf-text-2)">
               <span>Chapter {progress.chapter} of {progress.totalChapters}</span>
-              <span className="font-semibold text-sky-200">{progress.progressPercent}%</span>
+              <span className="font-semibold text-(--cf-accent)">{progress.progressPercent}%</span>
             </div>
-            <div className="mt-1.5 h-2 w-full overflow-hidden rounded-full bg-slate-900/50">
+            <div className="mt-1.5 h-2 w-full overflow-hidden rounded-full bg-(--cf-surface-muted)">
               <div
-                className="h-full rounded-full bg-linear-to-r from-sky-400 to-cyan-300 shadow-[0_0_8px_rgba(56,189,248,0.5)] transition-[width] duration-500"
+                className="h-full rounded-full bg-linear-to-r from-(--cf-accent) to-(--cf-accent-strong) shadow-[0_0_8px_var(--cf-accent-shadow)] transition-[width] duration-500"
                 style={{ width: `${Math.max(progress.progressPercent, 0)}%` }}
               />
             </div>
           </div>
 
           {/* Meta pills */}
-          <div className="mt-3 flex flex-wrap items-center gap-2 text-xs text-slate-300">
-            <span className="inline-flex items-center gap-1 rounded-lg border border-white/12 bg-white/5 px-2.5 py-1">
-              <Clock className="h-3 w-3 text-slate-400" />
+          <div className="mt-3 flex flex-wrap items-center gap-2 text-xs text-(--cf-text-2)">
+            <span className="inline-flex items-center gap-1 rounded-lg border border-(--cf-border) bg-(--cf-surface-muted) px-2.5 py-1">
+              <Clock className="h-3 w-3 text-(--cf-text-3)" />
               ~{remainingMinutes} min left
             </span>
-            <span className="inline-flex items-center gap-1 rounded-lg border border-white/12 bg-white/5 px-2.5 py-1">
-              <Layers className="h-3 w-3 text-slate-400" />
+            <span className="inline-flex items-center gap-1 rounded-lg border border-(--cf-border) bg-(--cf-surface-muted) px-2.5 py-1">
+              <Layers className="h-3 w-3 text-(--cf-text-3)" />
               {chaptersLeft} chapter{chaptersLeft !== 1 ? "s" : ""} remaining
             </span>
           </div>
@@ -110,7 +110,7 @@ export function CurrentlyReadingCard({
             <button
               type="button"
               onClick={onContinue}
-              className="inline-flex items-center gap-2 rounded-2xl bg-linear-to-r from-sky-500 to-cyan-400 px-5 py-2.5 text-sm font-semibold text-white shadow-[0_10px_24px_rgba(14,165,233,0.42)] transition hover:brightness-105 hover:shadow-[0_14px_28px_rgba(14,165,233,0.50)] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300/60"
+              className="cf-btn cf-btn-primary rounded-2xl px-5 py-2.5 text-sm"
             >
               {ctaLabel}
               <ArrowRight className="h-4 w-4" />

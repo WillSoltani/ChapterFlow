@@ -140,7 +140,7 @@ export async function POST(
           }
           const rec = entry as Record<string, unknown>;
           const questionId =
-            typeof rec.questionId === "string" ? rec.questionId.trim() : "";
+            typeof rec.questionId === "string" ? rec.questionId.trim().slice(0, 256) : "";
           const selectedIndex = rec.selectedIndex;
           if (!questionId) {
             throw new BookApiError(

@@ -45,11 +45,11 @@ function PageButton({
       onClick={onClick}
       className={cn(
         "inline-flex min-h-10 min-w-10 items-center justify-center rounded-2xl border px-3 text-sm font-medium transition",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300/45",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)",
         active
-          ? "border-sky-300/45 bg-sky-400/18 text-sky-100 shadow-[0_8px_22px_rgba(56,189,248,0.18)]"
-          : "border-white/12 bg-white/[0.04] text-slate-200 hover:border-white/20 hover:bg-white/[0.07]",
-        disabled && "cursor-not-allowed opacity-45 hover:border-white/12 hover:bg-white/[0.04]"
+          ? "border-(--cf-accent-border) bg-(--cf-accent-soft) text-(--cf-info-text) shadow-sm"
+          : "border-(--cf-border) bg-(--cf-surface) text-(--cf-text-2) hover:border-(--cf-border-strong) hover:bg-(--cf-surface-muted)",
+        disabled && "cursor-not-allowed opacity-45 hover:border-(--cf-border) hover:bg-(--cf-surface)"
       )}
     >
       {children}
@@ -78,7 +78,7 @@ export function LibraryPaginationControls({
   const showPagination = totalPages > 1;
 
   return (
-    <div className="rounded-[28px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.03))] p-4 sm:p-5">
+    <div className="cf-panel rounded-[28px] p-4 sm:p-5">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
         <div className="space-y-2">
           {showSummary ? (
@@ -89,7 +89,7 @@ export function LibraryPaginationControls({
                 </Chip>
                 {showPagination ? <Chip tone="neutral">Page {currentPage} of {totalPages}</Chip> : null}
               </div>
-              <p className="text-sm text-slate-300">
+              <p className="text-sm text-(--cf-text-2)">
                 {totalCount === 0
                   ? "No books match the current view."
                   : `Showing ${rangeStart} to ${rangeEnd} of ${totalCount} books`}
@@ -100,16 +100,16 @@ export function LibraryPaginationControls({
 
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between lg:justify-end">
           {showPageSize ? (
-            <label className="inline-flex items-center gap-3 text-sm text-slate-300">
+            <label className="inline-flex items-center gap-3 text-sm text-(--cf-text-2)">
               <span>Books per page</span>
               <select
                 value={pageSize}
                 onChange={(event) => onPageSizeChange(Number(event.target.value))}
-                className="rounded-2xl border border-white/15 bg-white/6 px-3 py-2 text-sm text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300/45"
+                className="cf-input rounded-2xl px-3 py-2 text-sm"
                 aria-label="Books per page"
               >
                 {pageSizeOptions.map((option) => (
-                  <option key={option} value={option} className="bg-[#111827]">
+                  <option key={option} value={option}>
                     {option}
                   </option>
                 ))}
@@ -131,7 +131,7 @@ export function LibraryPaginationControls({
                 {pageNumbers[0] > 1 ? (
                   <>
                     <PageButton onClick={() => onPageChange(1)}>1</PageButton>
-                    {pageNumbers[0] > 2 ? <span className="px-1 text-slate-500">…</span> : null}
+                    {pageNumbers[0] > 2 ? <span className="px-1 text-(--cf-text-soft)">…</span> : null}
                   </>
                 ) : null}
 
@@ -149,7 +149,7 @@ export function LibraryPaginationControls({
                 {pageNumbers[pageNumbers.length - 1] < totalPages ? (
                   <>
                     {pageNumbers[pageNumbers.length - 1] < totalPages - 1 ? (
-                      <span className="px-1 text-slate-500">…</span>
+                      <span className="px-1 text-(--cf-text-soft)">…</span>
                     ) : null}
                     <PageButton onClick={() => onPageChange(totalPages)}>{totalPages}</PageButton>
                   </>

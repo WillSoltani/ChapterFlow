@@ -175,6 +175,49 @@ function statusFromCounts(
   return "not_started";
 }
 
+function buildFallbackAnalytics(
+  localEntries: LibraryBookEntry[],
+  dailyGoalMinutes: number
+): AnalyticsState {
+  const bookSnapshots = localEntries.map((entry): BookProgressSnapshot => {
+    const chapters = getBookChaptersBundle(entry.id).chapters;
+    const totalChapters = chapters.length || entry.chaptersTotal;
+
+    return {
+      book: entry,
+      status: "not_started",
+      completedChapters: 0,
+      totalChapters,
+      progressPercent: 0,
+      bestScore: 0,
+      avgScore: 0,
+      lastOpenedLabel: "Not started",
+      lastActivityAt: entry.lastActivityAt,
+      resumeChapterId: chapters[0]?.id ?? "",
+    };
+  });
+
+  return {
+    streakDays: 0,
+    dailyGoalMinutes,
+    minutesReadToday: 0,
+    booksCompleted: 0,
+    avgQuizScore: 0,
+    maxQuizScore: 0,
+    totalCompletedChapters: 0,
+    longestStreak: 0,
+    lastActiveLabel: EMPTY_ACTIVITY_LABEL,
+    bookSnapshots,
+    engagedBookSnapshots: [],
+    completedBookSnapshots: [],
+    inProgressBookSnapshots: [],
+    heatmapCells: buildHeatmap(new Map()),
+    upcomingReviews: [],
+    hasAnyProgress: false,
+    hasAnyEngagement: false,
+  };
+}
+
 function buildActivities(
   bookId: string,
   chapterCompletedAt: Record<string, string>
@@ -305,16 +348,16 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
         const payload = await fetchBookJson<DashboardPayload>("/app/api/book/me/dashboard");
         if (!mounted) return;
 
+        const progressRows = Array.isArray(payload.progress) ? payload.progress : [];
+        const bookStateRows = Array.isArray(payload.bookStates) ? payload.bookStates : [];
+        const chapterStateRows = Array.isArray(payload.chapterStates) ? payload.chapterStates : [];
+        const readingDayRows = Array.isArray(payload.readingDays) ? payload.readingDays : [];
         const localEntries = buildLibraryCatalog();
-        const catalogIds =
-          payload.catalog.length > 0
-            ? new Set(payload.catalog.map((item) => item.bookId))
-            : new Set(localEntries.map((item) => item.id));
-        const entries = localEntries.filter((entry) => catalogIds.has(entry.id));
-        const progressByBook = new Map(payload.progress.map((item) => [item.bookId, item]));
-        const stateByBook = new Map(payload.bookStates.map((item) => [item.bookId, item]));
+        const entries = localEntries;
+        const progressByBook = new Map(progressRows.map((item) => [item.bookId, item]));
+        const stateByBook = new Map(bookStateRows.map((item) => [item.bookId, item]));
         const chapterStatesByBook = new Map<string, Array<DashboardPayload["chapterStates"][number]>>();
-        payload.chapterStates.forEach((item) => {
+        chapterStateRows.forEach((item) => {
           const current = chapterStatesByBook.get(item.bookId) ?? [];
           current.push(item);
           chapterStatesByBook.set(item.bookId, current);
@@ -322,7 +365,7 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
 
         const allActivities: CompletionActivity[] = [];
         const readingByDay = new Map<string, { activeMs: number; chapters: number }>();
-        payload.readingDays.forEach((item) => {
+        readingDayRows.forEach((item) => {
           readingByDay.set(item.dayKey, {
             activeMs: item.totalActiveMs,
             chapters: readingByDay.get(item.dayKey)?.chapters ?? 0,
@@ -496,6 +539,8 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
         setHydrated(true);
       } catch {
         if (!mounted) return;
+        const localEntries = buildLibraryCatalog();
+        setAnalytics(buildFallbackAnalytics(localEntries, dailyGoalMinutes));
         setHydrated(true);
       }
     };

@@ -43,8 +43,8 @@ function Toggle({
       disabled={disabled}
       onClick={() => onChange(!checked)}
       className={cn(
-        "relative h-6 w-11 shrink-0 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/50 disabled:cursor-not-allowed disabled:opacity-40",
-        checked ? "bg-sky-500" : "bg-slate-300 dark:bg-white/15"
+        "relative h-6 w-11 shrink-0 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border) disabled:cursor-not-allowed disabled:opacity-40",
+        checked ? "bg-(--cf-accent)" : "bg-(--cf-border-strong)"
       )}
     >
       <span
@@ -67,7 +67,7 @@ function SegPicker<T extends string>({
   onChange: (v: T) => void;
 }) {
   return (
-    <div className="flex gap-0.5 rounded-xl bg-slate-100 dark:bg-white/8 p-0.5">
+    <div className="flex gap-0.5 rounded-xl bg-(--cf-surface-muted) p-0.5">
       {options.map((opt) => (
         <button
           key={opt.value}
@@ -76,8 +76,8 @@ function SegPicker<T extends string>({
           className={cn(
             "rounded-[9px] px-3 py-1.5 text-sm font-medium transition-all",
             value === opt.value
-              ? "bg-white dark:bg-white/15 text-slate-900 dark:text-slate-50 shadow-sm"
-              : "text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200"
+              ? "bg-(--cf-surface-strong) text-(--cf-text-1) shadow-sm"
+              : "text-(--cf-text-3) hover:text-(--cf-text-2)"
           )}
         >
           {opt.label}
@@ -97,12 +97,12 @@ function SectionCard({
   children: ReactNode;
 }) {
   return (
-    <section className="rounded-[22px] border border-slate-200/80 dark:border-white/[0.07] bg-white dark:bg-white/2.5 shadow-[0_1px_3px_rgba(0,0,0,0.06)] dark:shadow-none overflow-hidden">
-      <div className="flex items-center gap-2.5 px-5 pt-5 pb-3">
-        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-slate-100 dark:bg-white/8 text-slate-600 dark:text-slate-300">
+    <section className="overflow-hidden rounded-[22px] border border-(--cf-border) bg-(--cf-surface) shadow-sm">
+      <div className="flex items-center gap-2.5 px-5 pb-3 pt-5">
+        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-(--cf-surface-muted) text-(--cf-text-2)">
           <Icon className="h-4 w-4" />
         </div>
-        <h2 className="text-[15px] font-semibold text-slate-800 dark:text-slate-100">{title}</h2>
+        <h2 className="text-[15px] font-semibold text-(--cf-text-1)">{title}</h2>
       </div>
       <div className="px-2 pb-2">{children}</div>
     </section>
@@ -119,11 +119,11 @@ function SettingRow({
   children: ReactNode;
 }) {
   return (
-    <div className="flex items-center justify-between gap-4 rounded-[13px] px-3 py-3 hover:bg-slate-50 dark:hover:bg-white/3 transition-colors">
-      <div className="flex-1 min-w-0">
-        <p className="text-sm font-medium text-slate-800 dark:text-slate-200">{label}</p>
+    <div className="flex items-center justify-between gap-4 rounded-[13px] px-3 py-3 transition-colors hover:bg-(--cf-surface-muted)">
+      <div className="min-w-0 flex-1">
+        <p className="text-sm font-medium text-(--cf-text-1)">{label}</p>
         {description && (
-          <p className="text-xs text-slate-500 dark:text-slate-500 mt-0.5 leading-relaxed">
+          <p className="mt-0.5 text-xs leading-relaxed text-(--cf-text-3)">
             {description}
           </p>
         )}
@@ -134,7 +134,7 @@ function SettingRow({
 }
 
 function Divider() {
-  return <div className="mx-3 h-px bg-slate-100 dark:bg-white/4" />;
+  return <div className="mx-3 h-px bg-(--cf-divider)" />;
 }
 
 // ---------------------------------------------------------------------------
@@ -147,7 +147,7 @@ type BookSettingsClientProps = {
   appVersion: string;
 };
 
-export function BookSettingsClient({ isAdmin: _isAdmin, userEmail: _userEmail, appVersion: _appVersion }: BookSettingsClientProps) {
+export function BookSettingsClient({}: BookSettingsClientProps) {
   const { state: preferences, patchSection, hydrated: prefsHydrated } = useBookPreferences();
   const {
     state: onboarding,
@@ -168,30 +168,6 @@ export function BookSettingsClient({ isAdmin: _isAdmin, userEmail: _userEmail, a
   const [saveState, setSaveState] = useState<"idle" | "saving">("idle");
   const saveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const lastSnapshotRef = useRef<string>("");
-
-  // ------------------------------------------------------------------
-  // Theme application
-  // ------------------------------------------------------------------
-  useEffect(() => {
-    if (!prefsHydrated) return;
-    const theme = preferences.appearance.theme;
-    const applyDark = (dark: boolean) =>
-      document.documentElement.classList.toggle("dark", dark);
-    if (theme === "dark") {
-      applyDark(true);
-      return;
-    }
-    if (theme === "light") {
-      applyDark(false);
-      return;
-    }
-    // system
-    const mq = window.matchMedia("(prefers-color-scheme: dark)");
-    applyDark(mq.matches);
-    const handler = (e: MediaQueryListEvent) => applyDark(e.matches);
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
-  }, [preferences.appearance.theme, prefsHydrated]);
 
   // ------------------------------------------------------------------
   // Auto-save indicator
@@ -232,26 +208,26 @@ export function BookSettingsClient({ isAdmin: _isAdmin, userEmail: _userEmail, a
   const hydrated = prefsHydrated && onboardingHydrated;
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#040812] px-4 py-10 sm:px-6">
+    <div className="cf-app-shell min-h-screen px-4 py-10 sm:px-6">
       {/* Header */}
-      <div className="max-w-2xl mx-auto mb-8 flex items-center justify-between">
+      <div className="mx-auto mb-8 flex max-w-2xl items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 tracking-tight">
+          <h1 className="text-2xl font-bold tracking-tight text-(--cf-text-1)">
             Settings
           </h1>
-          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+          <p className="mt-1 text-sm text-(--cf-text-3)">
             Your preferences are saved automatically.
           </p>
         </div>
         {saveState === "saving" && (
-          <div className="flex items-center gap-2 text-xs text-slate-400 dark:text-slate-500">
+          <div className="flex items-center gap-2 text-xs text-(--cf-text-3)">
             <Loader2 className="h-3.5 w-3.5 animate-spin" />
             <span>Saving…</span>
           </div>
         )}
       </div>
 
-      <div className="max-w-2xl mx-auto space-y-4">
+      <div className="mx-auto max-w-2xl space-y-4">
 
         {/* ── Reading ─────────────────────────────────────────── */}
         <SectionCard icon={BookOpen} title="Reading">
@@ -272,7 +248,7 @@ export function BookSettingsClient({ isAdmin: _isAdmin, userEmail: _userEmail, a
           <Divider />
           <SettingRow label="Font size" description="Reading text size in chapters.">
             <div className="flex items-center gap-3">
-              <span className="text-xs text-slate-400 dark:text-slate-500 w-6 text-right tabular-nums">
+              <span className="w-6 text-right text-xs tabular-nums text-(--cf-text-3)">
                 {hydrated ? preferences.reading.fontSize : 16}
               </span>
               <input
@@ -328,11 +304,11 @@ export function BookSettingsClient({ isAdmin: _isAdmin, userEmail: _userEmail, a
                     Math.max(10, (hydrated ? onboarding.dailyGoalMinutes : 20) - 5)
                   )
                 }
-                className="flex h-7 w-7 items-center justify-center rounded-lg border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/8 transition-colors text-base leading-none select-none"
+                className="flex h-7 w-7 items-center justify-center rounded-lg border border-(--cf-border) text-base leading-none select-none text-(--cf-text-2) transition-colors hover:bg-(--cf-surface-muted)"
               >
                 −
               </button>
-              <span className="w-14 text-center text-sm font-semibold text-slate-800 dark:text-slate-100 tabular-nums">
+              <span className="w-14 text-center text-sm font-semibold tabular-nums text-(--cf-text-1)">
                 {hydrated ? onboarding.dailyGoalMinutes : 20} min
               </span>
               <button
@@ -342,7 +318,7 @@ export function BookSettingsClient({ isAdmin: _isAdmin, userEmail: _userEmail, a
                     Math.min(240, (hydrated ? onboarding.dailyGoalMinutes : 20) + 5)
                   )
                 }
-                className="flex h-7 w-7 items-center justify-center rounded-lg border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/8 transition-colors text-base leading-none select-none"
+                className="flex h-7 w-7 items-center justify-center rounded-lg border border-(--cf-border) text-base leading-none select-none text-(--cf-text-2) transition-colors hover:bg-(--cf-surface-muted)"
               >
                 +
               </button>
@@ -386,11 +362,11 @@ export function BookSettingsClient({ isAdmin: _isAdmin, userEmail: _userEmail, a
                     ),
                   })
                 }
-                className="flex h-7 w-7 items-center justify-center rounded-lg border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/8 transition-colors text-base leading-none select-none"
+                className="flex h-7 w-7 items-center justify-center rounded-lg border border-(--cf-border) text-base leading-none select-none text-(--cf-text-2) transition-colors hover:bg-(--cf-surface-muted)"
               >
                 −
               </button>
-              <span className="w-8 text-center text-sm font-semibold text-slate-800 dark:text-slate-100 tabular-nums">
+              <span className="w-8 text-center text-sm font-semibold tabular-nums text-(--cf-text-1)">
                 {hydrated ? preferences.goals.weeklyChapterGoal : 3}
               </span>
               <button
@@ -403,7 +379,7 @@ export function BookSettingsClient({ isAdmin: _isAdmin, userEmail: _userEmail, a
                     ),
                   })
                 }
-                className="flex h-7 w-7 items-center justify-center rounded-lg border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/8 transition-colors text-base leading-none select-none"
+                className="flex h-7 w-7 items-center justify-center rounded-lg border border-(--cf-border) text-base leading-none select-none text-(--cf-text-2) transition-colors hover:bg-(--cf-surface-muted)"
               >
                 +
               </button>
@@ -471,7 +447,7 @@ export function BookSettingsClient({ isAdmin: _isAdmin, userEmail: _userEmail, a
               value={hydrated ? onboarding.reminderTime : "20:00"}
               onChange={(e) => setReminderTime(e.target.value)}
               disabled={hydrated ? !preferences.notifications.readingReminderEnabled : false}
-              className="rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 px-3 py-1.5 text-sm text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-400/40 disabled:opacity-40 disabled:cursor-not-allowed"
+              className="cf-input rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-(--cf-accent-border) disabled:cursor-not-allowed disabled:opacity-40"
             />
           </SettingRow>
           <Divider />
@@ -538,27 +514,27 @@ export function BookSettingsClient({ isAdmin: _isAdmin, userEmail: _userEmail, a
           <Divider />
           <div className="flex items-center justify-between gap-4 rounded-[13px] px-3 py-3">
             <div>
-              <p className="text-sm font-medium text-slate-800 dark:text-slate-200">Legal</p>
-              <p className="text-xs text-slate-500 dark:text-slate-500 mt-0.5">
+              <p className="text-sm font-medium text-(--cf-text-1)">Legal</p>
+              <p className="mt-0.5 text-xs text-(--cf-text-3)">
                 Review our policies
               </p>
             </div>
             <div className="flex gap-3 text-xs">
               <a
                 href="/legal/privacy"
-                className="text-sky-600 dark:text-sky-400 hover:underline font-medium"
+                className="font-medium text-(--cf-accent) hover:underline"
               >
                 Privacy
               </a>
               <a
                 href="/legal/terms"
-                className="text-sky-600 dark:text-sky-400 hover:underline font-medium"
+                className="font-medium text-(--cf-accent) hover:underline"
               >
                 Terms
               </a>
               <a
                 href="/legal/cookies"
-                className="text-sky-600 dark:text-sky-400 hover:underline font-medium"
+                className="font-medium text-(--cf-accent) hover:underline"
               >
                 Cookies
               </a>
@@ -567,33 +543,33 @@ export function BookSettingsClient({ isAdmin: _isAdmin, userEmail: _userEmail, a
         </SectionCard>
 
         {/* ── Advanced (collapsible) ───────────────────────────── */}
-        <section className="rounded-[22px] border border-slate-200/80 dark:border-white/[0.07] bg-white dark:bg-white/2.5 shadow-[0_1px_3px_rgba(0,0,0,0.06)] dark:shadow-none overflow-hidden">
+        <section className="overflow-hidden rounded-[22px] border border-(--cf-border) bg-(--cf-surface) shadow-sm">
           <button
             type="button"
             onClick={() => setAdvancedOpen((p) => !p)}
-            className="flex w-full items-center justify-between gap-4 px-5 py-4 hover:bg-slate-50 dark:hover:bg-white/2 transition-colors"
+            className="flex w-full items-center justify-between gap-4 px-5 py-4 transition-colors hover:bg-(--cf-surface-muted)"
           >
             <div className="flex items-center gap-2.5">
-              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-slate-100 dark:bg-white/8 text-slate-600 dark:text-slate-300">
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-(--cf-surface-muted) text-(--cf-text-2)">
                 <Settings2 className="h-4 w-4" />
               </div>
-              <span className="text-[15px] font-semibold text-slate-800 dark:text-slate-100">
+              <span className="text-[15px] font-semibold text-(--cf-text-1)">
                 Advanced
               </span>
             </div>
             <ChevronDown
               className={cn(
-                "h-4 w-4 text-slate-400 dark:text-slate-500 transition-transform",
+                "h-4 w-4 text-(--cf-text-soft) transition-transform",
                 advancedOpen && "rotate-180"
               )}
             />
           </button>
 
           {advancedOpen && (
-            <div className="border-t border-slate-100 dark:border-white/5 px-2 pb-2 pt-2">
+            <div className="border-t border-(--cf-divider) px-2 pb-2 pt-2">
               {/* Quiz */}
-              <div className="px-3 pt-2 pb-1">
-                <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-slate-400 dark:text-slate-500">
+              <div className="px-3 pb-1 pt-2">
+                <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-(--cf-text-soft)">
                   Quiz
                 </p>
               </div>
@@ -644,8 +620,8 @@ export function BookSettingsClient({ isAdmin: _isAdmin, userEmail: _userEmail, a
               </SettingRow>
 
               {/* Library */}
-              <div className="px-3 pt-4 pb-1">
-                <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-slate-400 dark:text-slate-500">
+              <div className="px-3 pb-1 pt-4">
+                <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-(--cf-text-soft)">
                   Library
                 </p>
               </div>
@@ -665,7 +641,7 @@ export function BookSettingsClient({ isAdmin: _isAdmin, userEmail: _userEmail, a
                         .value as typeof preferences.library.defaultLibrarySorting,
                     })
                   }
-                  className="rounded-lg border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 px-3 py-1.5 text-sm text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-400/40"
+                  className="cf-input rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-(--cf-accent-border)"
                 >
                   <option value="recommended">Recommended</option>
                   <option value="recently-opened">Recently opened</option>
@@ -690,8 +666,8 @@ export function BookSettingsClient({ isAdmin: _isAdmin, userEmail: _userEmail, a
               </SettingRow>
 
               {/* Accessibility */}
-              <div className="px-3 pt-4 pb-1">
-                <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-slate-400 dark:text-slate-500">
+              <div className="px-3 pb-1 pt-4">
+                <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-(--cf-text-soft)">
                   Accessibility
                 </p>
               </div>
@@ -735,24 +711,24 @@ export function BookSettingsClient({ isAdmin: _isAdmin, userEmail: _userEmail, a
               </SettingRow>
 
               {/* Account */}
-              <div className="px-3 pt-4 pb-1">
-                <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-slate-400 dark:text-slate-500">
+              <div className="px-3 pb-1 pt-4">
+                <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-(--cf-text-soft)">
                   Account
                 </p>
               </div>
-              <div className="px-3 py-2 space-y-1">
+              <div className="space-y-1 px-3 py-2">
                 <button
                   type="button"
                   onClick={() => setConfirmModal({ open: true, type: "reset" })}
-                  className="flex w-full items-center gap-2.5 rounded-[13px] px-3 py-2.5 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-white/4 transition-colors"
+                  className="flex w-full items-center gap-2.5 rounded-[13px] px-3 py-2.5 text-sm font-medium text-(--cf-text-2) transition-colors hover:bg-(--cf-surface-muted)"
                 >
-                  <RotateCcw className="h-4 w-4 text-slate-400 dark:text-slate-500" />
+                  <RotateCcw className="h-4 w-4 text-(--cf-text-soft)" />
                   Reset onboarding setup
                 </button>
                 <button
                   type="button"
                   onClick={() => setConfirmModal({ open: true, type: "deactivate" })}
-                  className="flex w-full items-center gap-2.5 rounded-[13px] px-3 py-2.5 text-sm font-medium text-amber-700 dark:text-amber-400 hover:bg-amber-50 dark:hover:bg-amber-500/8 transition-colors"
+                  className="flex w-full items-center gap-2.5 rounded-[13px] px-3 py-2.5 text-sm font-medium text-(--cf-warning-text) transition-colors hover:bg-(--cf-warning-soft)"
                 >
                   <LogOut className="h-4 w-4" />
                   Deactivate account
@@ -760,7 +736,7 @@ export function BookSettingsClient({ isAdmin: _isAdmin, userEmail: _userEmail, a
                 <button
                   type="button"
                   onClick={() => setConfirmModal({ open: true, type: "delete" })}
-                  className="flex w-full items-center gap-2.5 rounded-[13px] px-3 py-2.5 text-sm font-medium text-rose-700 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-500/8 transition-colors"
+                  className="flex w-full items-center gap-2.5 rounded-[13px] px-3 py-2.5 text-sm font-medium text-(--cf-danger-text) transition-colors hover:bg-(--cf-danger-soft)"
                 >
                   <Trash2 className="h-4 w-4" />
                   Delete account &amp; all data
@@ -798,7 +774,7 @@ export function BookSettingsClient({ isAdmin: _isAdmin, userEmail: _userEmail, a
         description={
           <span>
             This permanently erases your account, reading history, quiz results, and notes.{" "}
-            <strong className="text-rose-300">This cannot be undone.</strong>
+            <strong className="text-(--cf-danger-text)">This cannot be undone.</strong>
           </span>
         }
         confirmLabel="Delete permanently"

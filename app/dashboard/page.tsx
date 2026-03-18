@@ -9,13 +9,11 @@ export default async function DashboardToolPickerPage() {
   await requireDashboardAccess();
 
   return (
-    <main className="relative min-h-screen text-slate-100">
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(1000px_circle_at_14%_-6%,rgba(56,189,248,0.13),transparent_60%),radial-gradient(900px_circle_at_86%_0%,rgba(251,191,36,0.10),transparent_58%)]" />
-
+    <main className="cf-app-shell">
       <header className="mx-auto w-full max-w-6xl px-4 pb-3 pt-6 sm:px-6 sm:pt-8">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-slate-300 transition hover:bg-white/8 hover:text-slate-100"
+          className="cf-btn cf-btn-secondary rounded-full px-3 py-1.5 text-sm"
         >
           <ArrowLeft className="h-4 w-4" />
           Back to Portfolio
@@ -24,19 +22,19 @@ export default async function DashboardToolPickerPage() {
 
       <section className="mx-auto w-full max-w-6xl px-4 pb-16 pt-4 sm:px-6 sm:pb-20 sm:pt-6">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/6 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-slate-200">
-            <Sparkles className="h-3.5 w-3.5 text-sky-200" />
+          <p className="inline-flex items-center gap-2 rounded-full border border-[var(--cf-accent-border)] bg-[var(--cf-accent-soft)] px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--cf-accent)]">
+            <Sparkles className="h-3.5 w-3.5 text-[var(--cf-accent)]" />
             Pick your tool
           </p>
 
-          <h1 className="mt-5 text-4xl font-semibold tracking-tight text-slate-50 sm:text-5xl md:text-6xl">
+          <h1 className="mt-5 text-4xl font-semibold tracking-tight text-[var(--cf-text-1)] sm:text-5xl md:text-6xl">
             What are you{" "}
             <span className="bg-gradient-to-r from-sky-300 via-cyan-200 to-amber-300 bg-clip-text text-transparent">
               working on today?
             </span>
           </h1>
 
-          <p className="mt-4 text-base leading-relaxed text-slate-300 sm:text-lg">
+          <p className="mt-4 text-base leading-relaxed text-[var(--cf-text-2)] sm:text-lg">
             Two focused tools, each built for a specific job. Tap to explore.
           </p>
         </div>
@@ -47,11 +45,10 @@ export default async function DashboardToolPickerPage() {
           ))}
         </div>
 
-        <p className="mt-8 text-center text-sm text-slate-400">
+        <p className="mt-8 text-center text-sm text-[var(--cf-text-3)]">
           Click any card to enter the app <span aria-hidden="true">→</span>
         </p>
       </section>
     </main>
   );
 }
-

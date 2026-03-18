@@ -24,9 +24,9 @@ type QuizPanelProps = {
 };
 
 function questionCardClass(hasFailed: boolean, hasPassed: boolean): string {
-  if (hasPassed) return "border-emerald-300/25 bg-emerald-500/6";
-  if (hasFailed) return "border-rose-300/30 bg-rose-500/6";
-  return "border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))]";
+  if (hasPassed) return "border-(--cf-success-border) bg-(--cf-success-soft)";
+  if (hasFailed) return "border-(--cf-danger-border) bg-(--cf-danger-soft)";
+  return "border-(--cf-border) bg-(--cf-surface)";
 }
 
 export function QuizPanel({
@@ -52,21 +52,21 @@ export function QuizPanel({
   return (
     <section className="space-y-4">
       {/* Header bar */}
-      <div className="flex items-center justify-between rounded-2xl border border-sky-300/20 bg-sky-500/7 px-4 py-3">
-        <p className="flex items-center gap-2 text-sm text-sky-200">
+      <div className="flex items-center justify-between rounded-2xl border border-(--cf-accent-border) bg-(--cf-accent-soft) px-4 py-3">
+        <p className="flex items-center gap-2 text-sm text-(--cf-info-text)">
           <Target className="h-4 w-4 shrink-0" />
           Pass {requiredScore}% to unlock the next chapter
         </p>
-        <span className="text-xs font-semibold tabular-nums text-sky-300">
+        <span className="text-xs font-semibold tabular-nums text-(--cf-accent)">
           {answeredCount}/{questions.length}
         </span>
       </div>
 
       {/* Answer progress */}
       {!result && (
-        <div className="h-1 w-full overflow-hidden rounded-full bg-slate-800/60">
+        <div className="h-1 w-full overflow-hidden rounded-full bg-(--cf-border)">
           <div
-            className="h-full rounded-full bg-sky-500 transition-[width] duration-300"
+            className="h-full rounded-full bg-(--cf-accent) transition-[width] duration-300"
             style={{ width: questions.length ? `${(answeredCount / questions.length) * 100}%` : "0%" }}
           />
         </div>
@@ -78,19 +78,19 @@ export function QuizPanel({
           className={[
             "rounded-2xl border px-5 py-4",
             result.passed
-              ? "border-emerald-300/30 bg-emerald-500/10"
-              : "border-rose-300/30 bg-rose-500/10",
+              ? "border-(--cf-success-border) bg-(--cf-success-soft)"
+              : "border-(--cf-danger-border) bg-(--cf-danger-soft)",
           ].join(" ")}
         >
           <div className="flex items-center gap-3">
             {result.passed
-              ? <Trophy className="h-5 w-5 text-emerald-300" />
-              : <X className="h-5 w-5 text-rose-300" />}
+              ? <Trophy className="h-5 w-5 text-(--cf-success-text)" />
+              : <X className="h-5 w-5 text-(--cf-danger-text)" />}
             <div>
-              <p className={["text-lg font-bold", result.passed ? "text-emerald-100" : "text-rose-100"].join(" ")}>
+              <p className={["text-lg font-bold", result.passed ? "text-(--cf-success-text)" : "text-(--cf-danger-text)"].join(" ")}>
                 {result.score}% — {result.passed ? "Passed!" : "Not quite"}
               </p>
-              <p className="text-sm opacity-80 text-slate-200">
+              <p className="text-sm text-(--cf-text-2)">
                 {result.passed
                   ? "Well done. You can now unlock the next chapter."
                   : cooldownSeconds > 0
@@ -100,7 +100,7 @@ export function QuizPanel({
             </div>
           </div>
           {result && (
-            <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-black/20">
+            <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-(--cf-border)">
               <div
                 className={["h-full rounded-full transition-[width] duration-500", result.passed ? "bg-emerald-400" : "bg-rose-400"].join(" ")}
                 style={{ width: `${result.score}%` }}
@@ -123,25 +123,25 @@ export function QuizPanel({
             <article
               key={question.id}
               className={[
-                "rounded-[22px] border p-5 shadow-[0_12px_32px_rgba(2,6,23,0.35)]",
+                "rounded-[22px] border p-5 shadow-sm",
                 questionCardClass(hasFailed, hasPassed),
               ].join(" ")}
             >
               {/* Question header */}
               <div className="mb-4 flex items-start justify-between gap-3">
                 <div className="flex items-start gap-3">
-                  <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/6 text-xs font-bold text-slate-400">
+                  <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-(--cf-border) bg-(--cf-surface-muted) text-xs font-bold text-(--cf-text-3)">
                     {index + 1}
                   </span>
-                  <p className="text-base font-semibold leading-snug text-slate-100">
+                  <p className="text-base font-semibold leading-snug text-(--cf-text-1)">
                     {question.prompt}
                   </p>
                 </div>
                 {submitted && (
-                  <span className={["shrink-0 rounded-full p-1", answeredCorrectly ? "bg-emerald-500/20" : "bg-rose-500/20"].join(" ")}>
+                  <span className={["shrink-0 rounded-full p-1", answeredCorrectly ? "bg-(--cf-success-soft)" : "bg-(--cf-danger-soft)"].join(" ")}>
                     {answeredCorrectly
-                      ? <Check className="h-3.5 w-3.5 text-emerald-300" />
-                      : <X className="h-3.5 w-3.5 text-rose-300" />}
+                      ? <Check className="h-3.5 w-3.5 text-(--cf-success-text)" />
+                      : <X className="h-3.5 w-3.5 text-(--cf-danger-text)" />}
                   </span>
                 )}
               </div>
@@ -156,12 +156,12 @@ export function QuizPanel({
                   const optionClass = (() => {
                     if (!submitted) {
                       return selected
-                        ? "border-sky-300/45 bg-sky-500/16 text-sky-100"
-                        : "border-white/10 bg-white/2 text-slate-300 hover:border-white/22 hover:bg-white/5";
+                        ? "border-(--cf-accent-border) bg-(--cf-accent-soft) text-(--cf-text-1)"
+                        : "border-(--cf-border) bg-(--cf-surface) text-(--cf-text-2) hover:border-(--cf-border-strong) hover:bg-(--cf-surface-muted)";
                     }
-                    if (isCorrect) return "border-emerald-300/40 bg-emerald-500/12 text-emerald-100";
-                    if (selected) return "border-rose-300/40 bg-rose-500/12 text-rose-200";
-                    return "border-white/8 bg-white/2 text-slate-500";
+                    if (isCorrect) return "border-(--cf-success-border) bg-(--cf-success-soft) text-(--cf-success-text)";
+                    if (selected) return "border-(--cf-danger-border) bg-(--cf-danger-soft) text-(--cf-danger-text)";
+                    return "border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-soft)";
                   })();
 
                   return (
@@ -172,22 +172,22 @@ export function QuizPanel({
                       onClick={() => onAnswer(question.id, optionIndex)}
                       className={[
                         "flex w-full items-center gap-3 rounded-xl border px-3.5 py-2.5 text-left transition duration-150",
-                        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300/45",
+                        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)",
                         optionClass,
                       ].join(" ")}
                     >
                       <span className={[
                         "inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border text-xs font-bold",
-                        selected && !submitted ? "border-sky-300/50 bg-sky-500/20 text-sky-200"
-                          : submitted && isCorrect ? "border-emerald-300/50 bg-emerald-500/20 text-emerald-200"
-                          : submitted && selected ? "border-rose-300/50 bg-rose-500/20 text-rose-200"
-                          : "border-white/15 bg-white/5 text-slate-500",
+                        selected && !submitted ? "border-(--cf-accent-border) bg-(--cf-accent-soft) text-(--cf-accent)"
+                          : submitted && isCorrect ? "border-(--cf-success-border) bg-(--cf-success-soft) text-(--cf-success-text)"
+                          : submitted && selected ? "border-(--cf-danger-border) bg-(--cf-danger-soft) text-(--cf-danger-text)"
+                          : "border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-3)",
                       ].join(" ")}>
                         {label}
                       </span>
                       <span className="text-sm">{option}</span>
                       {submitted && isCorrect && (
-                        <Check className="ml-auto h-3.5 w-3.5 shrink-0 text-emerald-400" />
+                        <Check className="ml-auto h-3.5 w-3.5 shrink-0 text-(--cf-success-text)" />
                       )}
                     </button>
                   );
@@ -196,23 +196,23 @@ export function QuizPanel({
 
               {/* Explanation */}
               {submitted ? (
-                <div className="mt-3 border-t border-white/8 pt-3">
+                <div className="mt-3 border-t border-(--cf-divider) pt-3">
                   {!answeredCorrectly && (
-                    <p className="mb-2 text-xs text-rose-300">
+                    <p className="mb-2 text-xs text-(--cf-danger-text)">
                       Correct: <span className="font-semibold">{question.options[question.correctIndex]}</span>
                     </p>
                   )}
                   <button
                     type="button"
                     onClick={() => onToggleExplanation(question.id)}
-                    className="inline-flex items-center gap-1 text-xs text-sky-300 transition hover:text-sky-200"
+                    className="inline-flex items-center gap-1 text-xs text-(--cf-accent) transition hover:text-(--cf-accent-strong)"
                   >
                     {explanationOpen[question.id]
                       ? <><ChevronUp className="h-3.5 w-3.5" /> Hide explanation</>
                       : <><ChevronDown className="h-3.5 w-3.5" /> Why this answer?</>}
                   </button>
                   {explanationOpen[question.id] ? (
-                    <p className="mt-2 rounded-xl border border-white/8 bg-white/3 px-3 py-2.5 text-sm text-slate-300">
+                    <p className="mt-2 rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) px-3 py-2.5 text-sm text-(--cf-text-2)">
                       {question.explanation}
                     </p>
                   ) : null}
@@ -229,7 +229,7 @@ export function QuizPanel({
           <button
             type="button"
             onClick={onUnlockNext}
-            className="w-full rounded-2xl border border-emerald-300/30 bg-emerald-500/16 px-4 py-3.5 text-base font-semibold text-emerald-50 shadow-[0_10px_28px_rgba(16,185,129,0.22)] transition hover:bg-emerald-500/24 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300/50"
+            className="cf-btn cf-btn-success w-full rounded-2xl px-4 py-3.5 text-base font-semibold"
           >
             <span className="flex items-center justify-center gap-2">
               <Trophy className="h-4 w-4" />
@@ -241,7 +241,7 @@ export function QuizPanel({
             <button
               type="button"
               onClick={onReviewSummary}
-              className="rounded-2xl border border-white/15 bg-white/4 px-4 py-3 text-sm font-semibold text-slate-200 transition hover:bg-white/8"
+              className="cf-btn cf-btn-secondary rounded-2xl px-4 py-3 text-sm font-semibold"
             >
               Review Summary
             </button>
@@ -251,8 +251,8 @@ export function QuizPanel({
               className={[
                 "rounded-2xl border px-4 py-3 text-sm font-semibold transition",
                 cooldownSeconds > 0
-                  ? "cursor-not-allowed border-white/10 bg-white/4 text-slate-500"
-                  : "border-sky-300/30 bg-sky-500/14 text-sky-100 hover:bg-sky-500/22",
+                  ? "cursor-not-allowed border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-soft)"
+                  : "border-(--cf-accent-border) bg-(--cf-accent-soft) text-(--cf-info-text) hover:bg-(--cf-accent-muted)",
               ].join(" ")}
               disabled={cooldownSeconds > 0}
             >
@@ -270,8 +270,8 @@ export function QuizPanel({
           className={[
             "w-full rounded-2xl px-4 py-3.5 text-base font-semibold transition",
             canSubmit
-              ? "bg-linear-to-r from-sky-500 to-cyan-400 text-white shadow-[0_14px_32px_rgba(14,165,233,0.34)] hover:brightness-105 active:scale-[0.99]"
-              : "cursor-not-allowed border border-white/10 bg-white/3 text-slate-600",
+              ? "cf-btn cf-btn-primary"
+              : "cursor-not-allowed border border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-soft)",
           ].join(" ")}
         >
           {cooldownSeconds > 0

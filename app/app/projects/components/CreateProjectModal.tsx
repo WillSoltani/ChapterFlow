@@ -18,7 +18,7 @@ export function CreateProjectModal(props: {
       {props.open ? (
         <>
           <motion.div
-            className="fixed inset-0 z-50 bg-black/40"
+            className="cf-overlay fixed inset-0 z-50"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -31,17 +31,17 @@ export function CreateProjectModal(props: {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.98 }}
           >
-            <div className="rounded-[28px] border border-white/10 bg-[#0b1224]/95 p-4 shadow-[0_30px_90px_rgba(0,0,0,0.65)] backdrop-blur sm:rounded-[32px] sm:p-6">
+            <div className="cf-panel-strong rounded-[28px] p-4 sm:rounded-[32px] sm:p-6">
               <div className="flex items-start justify-between gap-4">
                 <div className="flex items-center gap-3">
-                  <div className="grid h-11 w-11 place-items-center rounded-2xl border border-white/10 bg-white/6">
+                  <div className="cf-icon-wrap grid h-11 w-11 place-items-center rounded-2xl">
                     <span className="text-xl">＋</span>
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-slate-100">
+                    <p className="text-sm font-semibold text-[var(--cf-text-1)]">
                       New Project
                     </p>
-                    <p className="text-xs text-slate-400">
+                    <p className="text-xs text-[var(--cf-text-3)]">
                       Create a workspace for uploads and conversions
                     </p>
                   </div>
@@ -50,7 +50,7 @@ export function CreateProjectModal(props: {
                 <button
                   type="button"
                   onClick={props.onClose}
-                  className="rounded-full border border-white/10 bg-white/5 p-2 text-slate-200 hover:bg-white/10"
+                  className="rounded-full border border-[var(--cf-border)] bg-[var(--cf-surface-muted)] p-2 text-[var(--cf-text-2)] hover:bg-[var(--cf-accent-muted)]"
                   aria-label="Close"
                 >
                   <X className="h-4 w-4" />
@@ -65,7 +65,7 @@ export function CreateProjectModal(props: {
                     if (e.key === "Enter") props.onCreate();
                   }}
                   placeholder="Enter project name..."
-                  className="w-full rounded-2xl border border-white/10 bg-[#070b16]/40 px-4 py-3 text-sm text-slate-100 placeholder:text-slate-500 outline-none focus:border-white/20 focus:shadow-[0_0_0_4px_rgba(56,189,248,0.12)]"
+                  className="cf-input w-full rounded-2xl px-4 py-3 text-sm"
                 />
 
                 <div className="flex items-center gap-2">
@@ -73,7 +73,7 @@ export function CreateProjectModal(props: {
                     type="button"
                     onClick={props.onCreate}
                     disabled={props.busy || !props.name.trim()}
-                    className="flex-1 rounded-2xl bg-sky-600/90 px-4 py-3 text-sm font-semibold text-white hover:bg-sky-500 disabled:opacity-50 disabled:hover:bg-sky-600/90 transition shadow-[0_10px_30px_rgba(2,132,199,0.25)]"
+                    className="cf-btn cf-btn-primary flex-1 rounded-2xl px-4 py-3 text-sm"
                   >
                     {props.busy ? "Creating..." : "Create Project"}
                   </button>
@@ -81,7 +81,7 @@ export function CreateProjectModal(props: {
                   <button
                     type="button"
                     onClick={props.onClear}
-                    className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-200 hover:bg-white/10 transition"
+                    className="cf-btn cf-btn-secondary rounded-2xl px-4 py-3 text-sm"
                     aria-label="Clear"
                     title="Clear"
                   >
@@ -90,7 +90,7 @@ export function CreateProjectModal(props: {
                 </div>
 
                 {props.err ? (
-                  <p className="text-xs text-rose-200">{props.err}</p>
+                  <p className="text-xs text-[var(--cf-danger-text)]">{props.err}</p>
                 ) : null}
               </div>
             </div>

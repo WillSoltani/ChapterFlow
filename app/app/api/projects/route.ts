@@ -4,6 +4,7 @@ import { PutCommand, QueryCommand } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc, getTableName } from "../_lib/aws";
 import { requireUser } from "../_lib/auth";
 import { withApiErrors, ok, badRequest, conflict } from "../_lib/http";
+import { slugify } from "../_lib/slugify";
 
 export const runtime = "nodejs";
 
@@ -33,16 +34,6 @@ function isConditionalCheckFailed(e: unknown) {
   );
 }
 
-function slugify(input: string) {
-  const s = (input || "").trim().toLowerCase();
-  const cleaned = s
-    .normalize("NFKD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "")
-    .slice(0, 60);
-  return cleaned || "untitled-project";
-}
 
 export async function POST(req: Request) {
   return withApiErrors<
@@ -74,7 +65,7 @@ export async function POST(req: Request) {
 
     const projectId = newId();
     const createdAt = nowIso();
-    const projectSlug = slugify(name); // ✅ immutable key slug
+    const projectSlug = slugify(name, "untitled-project"); // ✅ immutable key slug
 
     const PK = `USER#${user.sub}`;
     const SK = `PROJECT#${createdAt}#${projectId}`;

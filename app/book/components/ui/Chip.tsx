@@ -6,11 +6,11 @@ import { cn } from "@/app/book/components/ui/cn";
 type ChipTone = "neutral" | "sky" | "emerald" | "amber" | "rose";
 
 const toneClass: Record<ChipTone, string> = {
-  neutral: "border-white/25 bg-white/6 text-slate-200",
-  sky: "border-sky-300/35 bg-sky-500/14 text-sky-100",
-  emerald: "border-emerald-300/35 bg-emerald-500/14 text-emerald-100",
-  amber: "border-amber-300/35 bg-amber-500/14 text-amber-100",
-  rose: "border-rose-300/35 bg-rose-500/14 text-rose-100",
+  neutral: "border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-2)",
+  sky: "border-(--cf-accent-border) bg-(--cf-accent-soft) text-(--cf-accent)",
+  emerald: "border-(--cf-success-border) bg-(--cf-success-soft) text-(--cf-success-text)",
+  amber: "border-(--cf-warning-border) bg-(--cf-warning-soft) text-(--cf-warning-text)",
+  rose: "border-(--cf-danger-border) bg-(--cf-danger-soft) text-(--cf-danger-text)",
 };
 
 type BaseProps = {
@@ -41,9 +41,9 @@ export function ChipButton({
   return (
     <button
       className={cn(
-        "inline-flex items-center rounded-full border px-3 py-1.5 text-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300/45",
+        "inline-flex items-center rounded-full border px-3 py-1.5 text-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)",
         toneClass[tone],
-        active && "shadow-[0_0_0_1px_rgba(56,189,248,0.25)]",
+        active && "shadow-(--cf-focus-ring)",
         !active && "opacity-85 hover:opacity-100",
         className
       )}

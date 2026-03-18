@@ -20,10 +20,10 @@ export function SortButton({
       type="button"
       onClick={() => onChange({ field, dir: active && current.dir === "asc" ? "desc" : "asc" })}
       className={[
-        "inline-flex items-center gap-1 rounded-xl border px-2.5 py-1.5 text-xs font-semibold transition",
+        "inline-flex items-center gap-1 rounded-xl px-2.5 py-1.5 text-xs font-semibold transition",
         active
-          ? "border-sky-400/30 bg-sky-500/15 text-sky-200"
-          : "border-white/10 bg-white/5 text-slate-400 hover:text-slate-200",
+          ? "cf-pill cf-pill-info"
+          : "cf-pill hover:border-[var(--cf-border-strong)] hover:text-[var(--cf-text-1)]",
       ].join(" ")}
     >
       {label}

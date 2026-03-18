@@ -536,29 +536,29 @@ export default function ProjectDetailClient({ projectId, initialFiles, guestMode
       <div className="mx-auto grid max-w-[1900px] grid-cols-1 gap-4 px-3 pb-24 pt-3 sm:gap-6 sm:px-5 sm:pb-12 sm:pt-5 xl:grid-cols-[minmax(0,1fr)_390px] xl:px-6 xl:pb-8">
         <div className="space-y-6">
           {error ? (
-            <div className="rounded-2xl border border-rose-500/20 bg-rose-500/10 px-4 py-3 text-sm text-rose-200">
+            <div className="cf-banner cf-banner-danger rounded-2xl px-4 py-3 text-sm">
               {error}
             </div>
           ) : null}
           {notice ? (
-            <div className="rounded-2xl border border-sky-400/20 bg-sky-500/10 px-4 py-3 text-sm text-sky-100">
+            <div className="cf-banner cf-banner-info rounded-2xl px-4 py-3 text-sm">
               {notice}
             </div>
           ) : null}
           {quota ? (
             <div
               className={[
-                "rounded-2xl border px-4 py-3 text-sm",
+                "cf-banner rounded-2xl px-4 py-3 text-sm",
                 quota.exhausted
-                  ? "border-amber-300/30 bg-amber-500/10 text-amber-100"
-                  : "border-white/10 bg-white/5 text-slate-200",
+                  ? "cf-banner-warning"
+                  : "",
               ].join(" ")}
             >
               <p className="font-medium">
                 {quota.remaining} of {quota.limit} conversions remaining
               </p>
               {quota.exhausted ? (
-                <p className="mt-1 text-xs text-amber-200/90">
+                <p className="mt-1 text-xs opacity-90">
                   You&apos;ve reached your conversion limit.{" "}
                   {quota.scope === "guest"
                     ? "Sign in to get 10 conversions."
@@ -566,7 +566,7 @@ export default function ProjectDetailClient({ projectId, initialFiles, guestMode
                 </p>
               ) : null}
               {!quota.exhausted && selectedExceedsQuota ? (
-                <p className="mt-1 text-xs text-amber-200/90">
+                <p className="mt-1 text-xs text-[var(--cf-warning-text)]">
                   Reduce your selection to {quota.remaining} file
                   {quota.remaining === 1 ? "" : "s"} or fewer.
                 </p>
@@ -641,7 +641,7 @@ export default function ProjectDetailClient({ projectId, initialFiles, guestMode
       <button
         type="button"
         onClick={() => setMobileSettingsOpen(true)}
-        className="fixed bottom-4 right-4 z-40 inline-flex items-center gap-2 rounded-full border border-sky-300/30 bg-sky-500/90 px-4 py-2.5 text-sm font-semibold text-white shadow-[0_20px_50px_rgba(2,132,199,0.45)] transition hover:bg-sky-400 xl:hidden"
+        className="cf-btn cf-btn-primary fixed bottom-4 right-4 z-40 rounded-full px-4 py-2.5 text-sm xl:hidden"
       >
         <SlidersHorizontal className="h-4 w-4" />
         Settings
@@ -652,20 +652,20 @@ export default function ProjectDetailClient({ projectId, initialFiles, guestMode
           <button
             type="button"
             aria-label="Close settings"
-            className="absolute inset-0 bg-slate-950/65 backdrop-blur-sm"
+            className="cf-overlay absolute inset-0"
             onClick={() => setMobileSettingsOpen(false)}
           />
 
-          <div className="absolute inset-x-0 bottom-0 top-24 overflow-auto rounded-t-[28px] border-t border-white/10 bg-[#081025] p-3 pb-5 shadow-[0_-20px_60px_rgba(0,0,0,0.6)]">
+          <div className="cf-panel-strong absolute inset-x-0 bottom-0 top-24 overflow-auto rounded-t-[28px] p-3 pb-5">
             <div className="mb-3 flex items-center justify-between px-1">
               <div>
-                <p className="text-xs uppercase tracking-[0.18em] text-sky-200/80">Conversion</p>
-                <p className="text-base font-semibold text-slate-100">Settings</p>
+                <p className="cf-kicker">Conversion</p>
+                <p className="text-base font-semibold text-[var(--cf-text-1)]">Settings</p>
               </div>
               <button
                 type="button"
                 onClick={() => setMobileSettingsOpen(false)}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/15 bg-white/5 text-slate-200 hover:bg-white/10"
+                className="cf-btn cf-btn-secondary h-10 w-10 rounded-xl px-0"
                 aria-label="Close settings panel"
               >
                 <X className="h-4 w-4" />

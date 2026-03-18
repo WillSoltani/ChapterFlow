@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
 import { getChapterReaderStorageKey } from "@/app/book/_lib/reader-storage";
 import type { ReadingDepth } from "@/app/book/data/mockChapters";
@@ -177,6 +177,7 @@ export function useChapterState(bookId: string, chapterId: string, chapterNumber
   const [hydrated, setHydrated] = useState(false);
   const [state, setState] = useState<PersistedChapterState>(defaultState);
   const [serverReady, setServerReady] = useState(false);
+  const skipNextServerSave = useRef(false);
 
   useEffect(() => {
     const parsed = parseStored(window.localStorage.getItem(storageKey));
@@ -196,6 +197,7 @@ export function useChapterState(bookId: string, chapterId: string, chapterNumber
     )
       .then((payload) => {
         if (!mounted || !payload.state?.state) return;
+        skipNextServerSave.current = true;
         setState((prev) => ({
           ...prev,
           ...(parseStored(JSON.stringify(payload.state?.state)) ?? prev),
@@ -219,6 +221,10 @@ export function useChapterState(bookId: string, chapterId: string, chapterNumber
 
   useEffect(() => {
     if (!hydrated || !serverReady) return;
+    if (skipNextServerSave.current) {
+      skipNextServerSave.current = false;
+      return;
+    }
     const timeout = window.setTimeout(() => {
       fetchBookJson(
         `/app/api/book/me/books/${encodeURIComponent(bookId)}/chapters/${resolvedChapterNumber}/state`,

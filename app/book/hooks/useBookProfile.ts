@@ -12,6 +12,11 @@ export type BookProfileState = {
   bio: string;
   timezone: string;
   country: string;
+  city: string;
+  email: string;
+  occupation: string;
+  readingGoal: string;
+  referralSource: string;
   pronouns: string;
   avatarDataUrl: string | null;
   avatarAccent: "sky" | "emerald" | "amber" | "rose";
@@ -52,6 +57,11 @@ function createDefaultState(seed: BookProfileSeed): BookProfileState {
     bio: "Using ChapterFlow to turn reading into retained insight, sharper decisions, and better follow through.",
     timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || "America/Halifax",
     country: "",
+    city: "",
+    email: "",
+    occupation: "",
+    readingGoal: "",
+    referralSource: "",
     pronouns: seed.pronouns,
     avatarDataUrl: null,
     avatarAccent: "sky",
@@ -87,6 +97,11 @@ function parseStored(raw: string | null, seed: BookProfileSeed): BookProfileStat
           ? parsed.timezone
           : defaults.timezone,
       country: typeof parsed.country === "string" ? parsed.country : defaults.country,
+      city: typeof parsed.city === "string" ? parsed.city : defaults.city,
+      email: typeof parsed.email === "string" ? parsed.email : defaults.email,
+      occupation: typeof parsed.occupation === "string" ? parsed.occupation : defaults.occupation,
+      readingGoal: typeof parsed.readingGoal === "string" ? parsed.readingGoal : defaults.readingGoal,
+      referralSource: typeof parsed.referralSource === "string" ? parsed.referralSource : defaults.referralSource,
       pronouns:
         typeof parsed.pronouns === "string" ? parsed.pronouns : defaults.pronouns,
       avatarDataUrl:

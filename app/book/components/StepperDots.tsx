@@ -20,8 +20,8 @@ export function StepperDots({ total, current }: StepperDotsProps) {
             className={[
               "rounded-full transition-all duration-200",
               isActive
-                ? "h-2.5 w-12 bg-sky-400 shadow-[0_0_20px_rgba(56,189,248,0.55)]"
-                : "h-2.5 w-2.5 bg-white/20",
+                ? "h-2.5 w-12 bg-(--cf-accent) shadow-[0_0_20px_rgba(56,189,248,0.55)]"
+                : "h-2.5 w-2.5 bg-(--cf-border-strong)",
             ].join(" ")}
           />
         );
@@ -29,4 +29,3 @@ export function StepperDots({ total, current }: StepperDotsProps) {
     </div>
   );
 }
-

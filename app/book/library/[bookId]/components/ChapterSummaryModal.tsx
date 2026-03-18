@@ -27,14 +27,14 @@ export function ChapterSummaryModal({
       {chapter ? (
         <div className="space-y-4">
           {typeof score === "number" ? (
-            <p className="inline-flex rounded-full border border-emerald-300/30 bg-emerald-400/12 px-3 py-1 text-xs font-medium text-emerald-200">
+            <p className="inline-flex rounded-full border border-(--cf-success-border) bg-(--cf-success-soft) px-3 py-1 text-xs font-medium text-(--cf-success-text)">
               Quiz score: {Math.round(score)}%
             </p>
           ) : null}
 
           <div>
-            <p className="text-sm font-medium text-slate-200">Summary</p>
-            <div className="mt-2 space-y-1.5 text-sm text-slate-300">
+            <p className="text-sm font-medium text-(--cf-text-1)">Summary</p>
+            <div className="mt-2 space-y-1.5 text-sm text-(--cf-text-2)">
               {chapter.summaryByDepth.standard.map((block) => (
                 block.type === "paragraph" ? (
                   <p key={block.id}>{block.text}</p>
@@ -48,8 +48,8 @@ export function ChapterSummaryModal({
           </div>
 
           <div>
-            <p className="text-sm font-medium text-slate-200">Examples</p>
-            <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-slate-300">
+            <p className="text-sm font-medium text-(--cf-text-1)">Examples</p>
+            <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-(--cf-text-2)">
               {chapter.examplesDetailed.map((example) => (
                 <li key={example.id}>{example.title}</li>
               ))}
@@ -59,7 +59,7 @@ export function ChapterSummaryModal({
           <button
             type="button"
             onClick={onOpenReader}
-            className="rounded-xl bg-linear-to-r from-sky-500 to-cyan-400 px-4 py-2 text-sm font-semibold text-white"
+            className="rounded-xl bg-linear-to-r from-(--cf-accent) to-(--cf-accent-strong) px-4 py-2 text-sm font-semibold text-white"
           >
             Open Chapter Reader
           </button>

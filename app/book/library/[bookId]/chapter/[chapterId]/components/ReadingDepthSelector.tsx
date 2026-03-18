@@ -16,7 +16,7 @@ type ReadingDepthSelectorProps = {
 export function ReadingDepthSelector({ value, onChange }: ReadingDepthSelectorProps) {
   return (
     <div className="flex flex-wrap items-center gap-3">
-      <p className="text-2xl text-slate-400">Reading depth:</p>
+      <p className="text-2xl text-(--cf-text-3)">Reading depth:</p>
       {options.map((option) => {
         const active = option.id === value;
         return (
@@ -26,10 +26,10 @@ export function ReadingDepthSelector({ value, onChange }: ReadingDepthSelectorPr
             onClick={() => onChange(option.id)}
             className={[
               "rounded-xl border px-4 py-1.5 text-xl font-medium transition",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300/45",
+              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)",
               active
-                ? "border-sky-300/45 bg-sky-500/14 text-sky-100"
-                : "border-white/25 bg-white/5 text-slate-300 hover:border-white/40",
+                ? "border-(--cf-accent-border) bg-(--cf-accent-soft) text-(--cf-info-text)"
+                : "border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-2) hover:border-(--cf-border-strong)",
             ].join(" ")}
             aria-pressed={active}
           >

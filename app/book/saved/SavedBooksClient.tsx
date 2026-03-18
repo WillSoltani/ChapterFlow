@@ -57,9 +57,8 @@ export function SavedBooksClient() {
 
   if (!onboardingHydrated || !analyticsHydrated || !savedHydrated || !onboarding.setupComplete) {
     return (
-      <main className="relative min-h-screen text-slate-100">
-        <div className="pointer-events-none absolute inset-0 -z-20 bg-[#050813]" />
-        <div className="mx-auto flex min-h-screen items-center justify-center px-4 text-slate-300">
+      <main className="cf-app-shell">
+        <div className="mx-auto flex min-h-screen items-center justify-center px-4 text-(--cf-text-2)">
           Loading your saved books...
         </div>
       </main>
@@ -67,10 +66,7 @@ export function SavedBooksClient() {
   }
 
   return (
-    <main className="relative min-h-screen overflow-x-hidden text-slate-100">
-      <div className="pointer-events-none absolute inset-0 -z-20 bg-[#050813]" />
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(980px_circle_at_8%_-8%,rgba(56,189,248,0.12),transparent_58%),radial-gradient(820px_circle_at_100%_0%,rgba(251,191,36,0.08),transparent_52%)]" />
-
+    <main className="cf-app-shell">
       <TopNav
         name={onboarding.name || "Reader"}
         activeTab="saved"
@@ -83,30 +79,30 @@ export function SavedBooksClient() {
       <section className="mx-auto w-full max-w-7xl px-4 pb-28 pt-7 sm:px-6 sm:pt-8">
         <div className="mb-5 flex items-end justify-between gap-3">
           <div>
-            <h1 className="text-5xl font-semibold tracking-tight text-slate-50">Read Next</h1>
-            <p className="mt-2 text-sm text-slate-400">
+            <h1 className="text-5xl font-semibold tracking-tight text-(--cf-text-1)">Read Next</h1>
+            <p className="mt-2 text-sm text-(--cf-text-3)">
               Books you intentionally saved for your next stretch of reading.
             </p>
           </div>
-          <p className="text-sm text-slate-400">
+          <p className="text-sm text-(--cf-text-soft)">
             {entries.length} {entries.length === 1 ? "book" : "books"} saved
           </p>
         </div>
 
         {loading ? (
-          <div className="rounded-3xl border border-white/12 bg-white/4 px-6 py-12 text-slate-300">
+          <div className="rounded-3xl border border-(--cf-border) bg-(--cf-surface-muted) px-6 py-12 text-(--cf-text-2)">
             Loading saved books...
           </div>
         ) : entries.length === 0 ? (
-          <div className="rounded-3xl border border-white/12 bg-white/4 px-6 py-12 text-center">
-            <h2 className="text-2xl font-semibold text-slate-100">No saved books yet</h2>
-            <p className="mt-2 text-slate-300">
+          <div className="rounded-3xl border border-(--cf-border) bg-(--cf-surface-muted) px-6 py-12 text-center">
+            <h2 className="text-2xl font-semibold text-(--cf-text-1)">No saved books yet</h2>
+            <p className="mt-2 text-(--cf-text-2)">
               Save books from the library and they will appear here as your reading queue.
             </p>
             <button
               type="button"
               onClick={() => router.push("/book/library")}
-              className="mt-5 rounded-2xl border border-sky-300/35 bg-sky-500/14 px-4 py-2.5 text-sm font-medium text-sky-100 transition hover:bg-sky-500/22"
+              className="mt-5 rounded-2xl border border-(--cf-accent-border) bg-(--cf-accent-soft) px-4 py-2.5 text-sm font-medium text-(--cf-accent) transition hover:bg-(--cf-accent-muted)"
             >
               Browse library
             </button>

@@ -13,22 +13,17 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 };
 
 const variantClass: Record<ButtonVariant, string> = {
-  primary:
-    "border border-sky-300/35 bg-linear-to-r from-sky-500 to-cyan-400 text-white shadow-[0_12px_24px_rgba(14,165,233,0.3)] hover:brightness-105",
-  secondary:
-    "border border-white/22 bg-white/6 text-slate-100 hover:bg-white/11",
-  ghost:
-    "border border-transparent bg-transparent text-slate-200 hover:bg-white/8",
-  danger:
-    "border border-rose-400/40 bg-rose-500/15 text-rose-100 hover:bg-rose-500/24",
-  success:
-    "border border-emerald-300/40 bg-emerald-500/18 text-emerald-100 hover:bg-emerald-500/26",
+  primary: "cf-btn-primary",
+  secondary: "cf-btn-secondary",
+  ghost: "cf-btn-ghost",
+  danger: "cf-btn-danger",
+  success: "cf-btn-success",
 };
 
 const sizeClass: Record<ButtonSize, string> = {
-  sm: "h-9 rounded-xl px-3 text-sm",
-  md: "h-10 rounded-xl px-4 text-sm",
-  lg: "h-12 rounded-2xl px-5 text-base",
+  sm: "h-(--cf-control-height-sm) rounded-xl px-3 text-sm",
+  md: "h-(--cf-control-height-md) rounded-2xl px-4 text-sm",
+  lg: "h-(--cf-control-height-lg) rounded-2xl px-5 text-base",
 };
 
 export function Button({
@@ -43,7 +38,7 @@ export function Button({
     <button
       type={type}
       className={cn(
-        "inline-flex items-center justify-center gap-2 font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300/45 disabled:cursor-not-allowed disabled:opacity-45",
+        "cf-btn inline-flex items-center justify-center gap-2 font-medium",
         variantClass[variant],
         sizeClass[size],
         fullWidth && "w-full",

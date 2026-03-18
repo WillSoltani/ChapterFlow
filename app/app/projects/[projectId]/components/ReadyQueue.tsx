@@ -46,8 +46,8 @@ export function ReadyQueue({
 
   return (
     <>
-      <div className="overflow-hidden rounded-[26px] border border-white/10 bg-white/3 shadow-[0_18px_70px_rgba(0,0,0,0.45)] sm:rounded-[32px]">
-        <div className="flex flex-col gap-3 border-b border-white/10 bg-white/2 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-5">
+      <div className="cf-panel overflow-hidden rounded-[26px] sm:rounded-[32px]">
+        <div className="flex flex-col gap-3 border-b border-[var(--cf-divider)] bg-[var(--cf-surface-muted)] px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-5">
           <div className="flex items-center gap-3">
             <button
               type="button"
@@ -55,16 +55,16 @@ export function ReadyQueue({
               className={[
                 "grid h-6 w-6 place-items-center rounded-md border transition",
                 allSelected
-                  ? "border-sky-400/40 bg-sky-500/20 text-sky-200"
-                  : "border-white/15 bg-white/5 text-transparent hover:bg-white/10",
+                  ? "border-[var(--cf-accent-border)] bg-[var(--cf-accent-soft)] text-[var(--cf-accent)]"
+                  : "border-[var(--cf-border)] bg-[var(--cf-surface)] text-transparent hover:border-[var(--cf-border-strong)] hover:bg-[var(--cf-input-bg-hover)]",
               ].join(" ")}
               aria-label="Select all"
             >
               <Check className="h-3.5 w-3.5" />
             </button>
-            <div className="text-sm font-semibold text-slate-100 sm:text-base">
+            <div className="text-sm font-semibold text-[var(--cf-text-1)] sm:text-base">
               Ready to Convert{" "}
-              <span className="ml-2 text-sm font-normal text-slate-400">({total} files)</span>
+              <span className="ml-2 text-sm font-normal text-[var(--cf-text-3)]">({total} files)</span>
             </div>
           </div>
 
@@ -74,8 +74,10 @@ export function ReadyQueue({
               onClick={onRemoveSelected}
               disabled={removeDisabled}
               className={[
-                "inline-flex min-h-10 flex-1 items-center justify-center gap-2 rounded-2xl px-3 py-2 text-sm transition sm:flex-none",
-                removeDisabled ? "cursor-not-allowed text-slate-500" : "text-rose-200 hover:bg-rose-500/10",
+                "cf-btn min-h-10 flex-1 rounded-2xl px-3 py-2 text-sm sm:flex-none",
+                removeDisabled
+                  ? "text-[var(--cf-text-3)]"
+                  : "text-[var(--cf-danger-text)] hover:bg-[var(--cf-danger-soft)]",
               ].join(" ")}
             >
               <Trash2 className="h-4 w-4" />
@@ -85,12 +87,7 @@ export function ReadyQueue({
               type="button"
               onClick={onConvert}
               disabled={convertDisabled}
-              className={[
-                "inline-flex min-h-10 flex-1 items-center justify-center gap-2 rounded-2xl px-4 py-2.5 text-sm font-semibold transition sm:flex-none",
-                convertDisabled
-                  ? "cursor-not-allowed border border-white/10 bg-white/5 text-slate-500"
-                  : "bg-sky-600/90 text-white shadow-[0_10px_30px_rgba(2,132,199,0.25)] hover:bg-sky-500",
-              ].join(" ")}
+              className="cf-btn cf-btn-primary min-h-10 flex-1 rounded-2xl px-4 py-2.5 text-sm sm:flex-none"
             >
               <Play className="h-4 w-4" />
               {convertBusy ? "Converting…" : quotaExhausted ? "Limit reached" : `Convert (${selected})`}
@@ -99,11 +96,11 @@ export function ReadyQueue({
         </div>
 
         {total === 0 ? (
-          <div className="px-4 py-8 text-sm text-slate-400 sm:px-5">
-            No files uploaded yet. Click <span className="text-slate-200">Browse Files</span>.
+          <div className="cf-empty-state rounded-2xl px-4 py-8 text-sm sm:px-5">
+            No files uploaded yet. Click <span className="text-[var(--cf-text-1)]">Browse Files</span>.
           </div>
         ) : (
-          <div className="divide-y divide-white/10">
+          <div className="divide-y divide-[var(--cf-divider)]">
             {files.map((f) => {
               const name = f.file?.name || f.id;
               const upperSource = f.fromLabel.toUpperCase();
@@ -137,7 +134,7 @@ export function ReadyQueue({
               );
 
               return (
-                <div key={f.id} className="flex flex-wrap items-start gap-3 px-4 py-4 sm:flex-nowrap sm:items-center sm:px-5">
+                <div key={f.id} className="flex flex-wrap items-start gap-3 px-4 py-4 transition-colors hover:bg-[var(--cf-surface-muted)] sm:flex-nowrap sm:items-center sm:px-5">
                   {/* Checkbox */}
                   <button
                     type="button"
@@ -145,8 +142,8 @@ export function ReadyQueue({
                     className={[
                       "grid h-6 w-6 shrink-0 place-items-center rounded-md border transition",
                       f.selected
-                        ? "border-sky-400/40 bg-sky-500/20 text-sky-200"
-                        : "border-white/15 bg-white/5 text-transparent hover:bg-white/10",
+                        ? "border-[var(--cf-accent-border)] bg-[var(--cf-accent-soft)] text-[var(--cf-accent)]"
+                        : "border-[var(--cf-border)] bg-[var(--cf-surface-muted)] text-transparent hover:border-[var(--cf-border-strong)] hover:bg-[var(--cf-input-bg-hover)]",
                     ].join(" ")}
                     aria-label={`Select ${name}`}
                   >
@@ -158,8 +155,8 @@ export function ReadyQueue({
 
                   {/* File info */}
                   <div className="min-w-0 flex-1 basis-[calc(100%-72px)] sm:basis-auto">
-                    <div className="truncate text-sm font-semibold text-slate-100">{name || "Untitled"}</div>
-                    <div className="text-xs text-slate-400">{f.sizeLabel}</div>
+                    <div className="truncate text-sm font-semibold text-[var(--cf-text-1)]">{name || "Untitled"}</div>
+                    <div className="text-xs text-[var(--cf-text-3)]">{f.sizeLabel}</div>
                   </div>
 
                   {/* Per-item format selector — only valid formats for this input type */}
@@ -168,11 +165,11 @@ export function ReadyQueue({
                       <div className="w-full sm:w-[29rem]">
                         <div className="mb-2 flex items-center gap-2">
                           <Badge>{f.fromLabel}</Badge>
-                          <span className="text-slate-600 text-xs">→</span>
+                          <span className="text-xs text-[var(--cf-text-soft)]">→</span>
                           <Badge tone="active">{f.toFormat}</Badge>
                         </div>
 
-                        <div className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">
+                        <div className="text-[10px] font-semibold uppercase tracking-wide text-[var(--cf-text-3)]">
                           Recommended
                         </div>
                         <div className="mt-1 flex flex-wrap gap-1.5">
@@ -180,26 +177,26 @@ export function ReadyQueue({
                             <button
                               key={`rec-${fmt}`}
                               type="button"
-                              onClick={() => onSetItemFormat(f.id, fmt)}
-                              className={[
+                            onClick={() => onSetItemFormat(f.id, fmt)}
+                            className={[
                                 "rounded-full border px-2 py-0.5 text-xs font-semibold transition",
                                 f.toFormat === fmt
-                                  ? "border-sky-400/40 bg-sky-500/20 text-sky-200"
-                                  : "border-white/10 bg-white/5 text-slate-300 hover:bg-white/10 hover:text-slate-100",
+                                  ? "border-[var(--cf-accent-border)] bg-[var(--cf-accent-soft)] text-[var(--cf-accent)]"
+                                  : "border-[var(--cf-border)] bg-[var(--cf-surface-muted)] text-[var(--cf-text-2)] hover:border-[var(--cf-border-strong)] hover:bg-[var(--cf-input-bg-hover)] hover:text-[var(--cf-text-1)]",
                               ].join(" ")}
                             >
                               {fmt}
                             </button>
                           ))}
                         </div>
-                        <div className="mt-1 text-[10px] text-slate-500">
+                        <div className="mt-1 text-[10px] text-[var(--cf-text-soft)]">
                           Choose any other target format from Conversion Settings on the right.
                         </div>
                       </div>
                     ) : (
                       <div className="flex items-center gap-2">
                         <Badge>{f.fromLabel}</Badge>
-                        <span className="text-xs text-slate-600">select to configure</span>
+                        <span className="text-xs text-[var(--cf-text-soft)]">select to configure</span>
                       </div>
                     )}
 
@@ -219,7 +216,7 @@ export function ReadyQueue({
                               hasLocalSource: f.previewUrl.startsWith("blob:"),
                             })
                           }
-                          className="inline-flex min-h-9 items-center gap-1 rounded-xl border border-white/20 bg-white/5 px-2.5 py-1 text-xs font-semibold text-slate-200 hover:bg-white/10"
+                          className="cf-btn cf-btn-secondary min-h-9 rounded-xl px-2.5 py-1 text-xs"
                           aria-label={`Preview ${name}`}
                         >
                           <Eye className="h-3.5 w-3.5" />
@@ -231,7 +228,7 @@ export function ReadyQueue({
                         <button
                           type="button"
                           onClick={() => onFillPdf({ name, source: "uploaded", fileId: f.id })}
-                          className="inline-flex min-h-9 items-center rounded-xl border border-amber-300/30 bg-amber-400/10 px-2.5 py-1 text-xs font-semibold text-amber-100 hover:bg-amber-400/20"
+                          className="cf-btn min-h-9 rounded-xl border-[var(--cf-warning-border)] bg-[var(--cf-warning-bg)] px-2.5 py-1 text-xs font-semibold text-[var(--cf-warning-text)]"
                           aria-label={`Fill PDF for ${name}`}
                         >
                           Fill & Sign
@@ -263,10 +260,8 @@ function Badge(props: { children: React.ReactNode; tone?: "active" }) {
   return (
     <span
       className={[
-        "inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-semibold",
-        tone === "active"
-          ? "border-sky-400/40 bg-sky-500/20 text-sky-200"
-          : "border-white/10 bg-white/5 text-slate-200",
+        "inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold",
+        tone === "active" ? "cf-pill cf-pill-info" : "cf-pill",
       ].join(" ")}
     >
       {props.children}

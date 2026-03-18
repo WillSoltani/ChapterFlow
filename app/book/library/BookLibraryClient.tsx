@@ -26,12 +26,12 @@ const LIBRARY_PAGE_SIZE_OPTIONS = [10, 20, 30, 50];
 
 function SkeletonCard() {
   return (
-    <div className="animate-pulse rounded-3xl border border-white/10 bg-white/3 p-4 sm:p-5">
-      <div className="h-72 rounded-2xl bg-slate-800/55 sm:h-80" />
-      <div className="mt-4 h-7 w-2/3 rounded bg-slate-800/55" />
-      <div className="mt-2 h-5 w-1/2 rounded bg-slate-800/45" />
-      <div className="mt-3 h-8 w-full rounded bg-slate-800/40" />
-      <div className="mt-4 h-2.5 w-full rounded bg-slate-800/45" />
+    <div className="animate-pulse rounded-3xl border border-(--cf-border) bg-(--cf-surface-muted) p-4 sm:p-5">
+      <div className="h-72 rounded-2xl bg-(--cf-border) sm:h-80" />
+      <div className="mt-4 h-7 w-2/3 rounded bg-(--cf-border)" />
+      <div className="mt-2 h-5 w-1/2 rounded bg-(--cf-border)" />
+      <div className="mt-3 h-8 w-full rounded bg-(--cf-border)" />
+      <div className="mt-4 h-2.5 w-full rounded bg-(--cf-border)" />
     </div>
   );
 }
@@ -121,9 +121,8 @@ export function BookLibraryClient() {
 
   if (!onboardingHydrated || !analyticsHydrated || !hydrated || !savedHydrated || !onboarding.setupComplete) {
     return (
-      <main className="relative min-h-screen text-slate-100">
-        <div className="pointer-events-none absolute inset-0 -z-20 bg-[#050813]" />
-        <div className="mx-auto flex min-h-screen items-center justify-center px-4 text-slate-300">
+      <main className="cf-app-shell">
+        <div className="mx-auto flex min-h-screen items-center justify-center px-4 text-(--cf-text-2)">
           Loading library...
         </div>
       </main>
@@ -131,10 +130,7 @@ export function BookLibraryClient() {
   }
 
   return (
-    <main className="relative min-h-screen overflow-x-hidden text-slate-100">
-      <div className="pointer-events-none absolute inset-0 -z-20 bg-[#050813]" />
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(980px_circle_at_8%_-8%,rgba(56,189,248,0.12),transparent_58%),radial-gradient(820px_circle_at_100%_0%,rgba(251,191,36,0.08),transparent_52%)]" />
-
+    <main className="cf-app-shell">
       <TopNav
         name={onboarding.name || "Reader"}
         activeTab="library"
@@ -146,8 +142,8 @@ export function BookLibraryClient() {
 
       <section className="mx-auto w-full max-w-7xl px-4 pb-28 pt-7 sm:px-6 sm:pt-8">
         <div className="mb-5 flex items-end justify-between gap-3">
-          <h1 className="text-5xl font-semibold tracking-tight text-slate-50">Library</h1>
-          <p className="text-sm text-slate-400">
+          <h1 className="text-5xl font-semibold tracking-tight text-(--cf-text-1)">Library</h1>
+          <p className="text-sm text-(--cf-text-3)">
             {totalCount} {totalCount === 1 ? "book" : "books"} found
           </p>
         </div>
@@ -177,19 +173,19 @@ export function BookLibraryClient() {
           />
         </div>
 
-        <div className="mt-6 border-t border-white/10 pt-6">
+        <div className="mt-6 border-t border-(--cf-divider) pt-6">
           {onboarding.selectedBookIds.length === 0 ? (
-            <div className="rounded-3xl border border-white/12 bg-white/3 px-6 py-14 text-center">
-              <h2 className="text-2xl font-semibold text-slate-100">
+            <div className="rounded-3xl border border-(--cf-border) bg-(--cf-surface-muted) px-6 py-14 text-center">
+              <h2 className="text-2xl font-semibold text-(--cf-text-1)">
                 Your library is empty.
               </h2>
-              <p className="mt-2 text-slate-300">
+              <p className="mt-2 text-(--cf-text-2)">
                 Finish setup to choose your first book and start your reading path.
               </p>
               <button
                 type="button"
                 onClick={() => router.push("/book")}
-                className="mt-5 rounded-2xl border border-sky-300/35 bg-sky-400/15 px-4 py-2.5 text-sm font-medium text-sky-100 transition hover:bg-sky-400/22"
+                className="mt-5 rounded-2xl border border-(--cf-accent-border) bg-(--cf-accent-soft) px-4 py-2.5 text-sm font-medium text-(--cf-info-text) transition hover:bg-(--cf-accent-muted)"
               >
                 Finish setup
               </button>
@@ -201,17 +197,17 @@ export function BookLibraryClient() {
               ))}
             </div>
           ) : displayedEntries.length === 0 ? (
-            <div className="rounded-3xl border border-white/12 bg-white/3 px-6 py-14 text-center">
-              <h2 className="text-2xl font-semibold text-slate-100">
+            <div className="rounded-3xl border border-(--cf-border) bg-(--cf-surface-muted) px-6 py-14 text-center">
+              <h2 className="text-2xl font-semibold text-(--cf-text-1)">
                 No books match your filters.
               </h2>
-              <p className="mt-2 text-slate-300">
+              <p className="mt-2 text-(--cf-text-2)">
                 Try clearing your filters or searching for a different title.
               </p>
               <button
                 type="button"
                 onClick={clearChipFilters}
-                className="mt-5 rounded-2xl border border-sky-300/35 bg-sky-400/15 px-4 py-2.5 text-sm font-medium text-sky-100 transition hover:bg-sky-400/22"
+                className="mt-5 rounded-2xl border border-(--cf-accent-border) bg-(--cf-accent-soft) px-4 py-2.5 text-sm font-medium text-(--cf-info-text) transition hover:bg-(--cf-accent-muted)"
               >
                 Clear filters
               </button>

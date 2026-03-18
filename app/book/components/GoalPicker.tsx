@@ -21,7 +21,7 @@ type GoalPickerProps = {
 
 export function GoalPicker({ value, onChange }: GoalPickerProps) {
   return (
-    <div className="rounded-[30px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.07),rgba(255,255,255,0.04))] px-4 py-5 sm:px-6 sm:py-6">
+    <div className="rounded-[30px] border border-(--cf-border) bg-(--cf-surface) px-4 py-5 sm:px-6 sm:py-6">
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-5">
         {quickPickOptions.map((option) => {
           const selected = option === value;
@@ -32,10 +32,10 @@ export function GoalPicker({ value, onChange }: GoalPickerProps) {
               onClick={() => onChange(option)}
               className={[
                 "rounded-2xl border px-3 py-4 text-center transition duration-200",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/50",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-warning-border)",
                 selected
-                  ? "border-amber-300/60 bg-amber-300/20 text-amber-100 shadow-[0_0_0_1px_rgba(251,191,36,0.3)]"
-                  : "border-white/25 bg-white/5 text-slate-200 hover:border-white/45",
+                  ? "border-(--cf-warning-border) bg-(--cf-warning-soft) text-(--cf-warning-text) shadow-[0_0_0_1px_rgba(251,191,36,0.3)]"
+                  : "border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-2) hover:border-(--cf-border-strong)",
               ].join(" ")}
               aria-pressed={selected}
             >
@@ -48,7 +48,7 @@ export function GoalPicker({ value, onChange }: GoalPickerProps) {
       </div>
 
       <div className="mt-6 space-y-3">
-        <div className="flex items-center justify-between text-sm text-slate-300">
+        <div className="flex items-center justify-between text-sm text-(--cf-text-2)">
           <span>Custom goal</span>
           <span>{formatMinutesLabel(value)} / day</span>
         </div>
@@ -71,12 +71,11 @@ export function GoalPicker({ value, onChange }: GoalPickerProps) {
             step={5}
             value={value}
             onChange={(event) => onChange(clampGoal(Number(event.target.value || 0)))}
-            className="w-28 rounded-xl border border-white/20 bg-white/5 px-3 py-2 text-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/45"
+            className="cf-input w-28 rounded-xl px-3 py-2 text-sm"
           />
-          <span className="text-sm text-slate-400">minutes per day</span>
+          <span className="text-sm text-(--cf-text-3)">minutes per day</span>
         </div>
       </div>
     </div>
   );
 }
-

@@ -24,15 +24,12 @@ export function OnboardingShell({
   actions,
 }: OnboardingShellProps) {
   return (
-    <main className="relative min-h-screen overflow-x-hidden text-slate-100">
-      <div className="pointer-events-none absolute inset-0 -z-20 bg-[#050813]" />
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(920px_circle_at_10%_-6%,rgba(34,211,238,0.16),transparent_58%),radial-gradient(880px_circle_at_100%_0%,rgba(244,114,182,0.08),transparent_52%)]" />
-
+    <main className="cf-app-shell">
       <header className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 pb-3 pt-6 sm:px-6 sm:pt-8">
         <ChapterFlowMark compact />
         <Link
           href="/"
-          className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-slate-300 transition hover:bg-white/10 hover:text-slate-100"
+          className="cf-btn cf-btn-secondary rounded-full px-3 py-1.5 text-sm"
         >
           <ArrowLeft className="h-4 w-4" />
           Back to home
@@ -43,10 +40,10 @@ export function OnboardingShell({
         <StepperDots total={totalSteps} current={step} />
 
         <div className="mx-auto mt-7 max-w-3xl text-center">
-          <h1 className="text-4xl font-semibold tracking-tight text-slate-50 sm:text-5xl">
+          <h1 className="text-4xl font-semibold tracking-tight text-(--cf-text-1) sm:text-5xl">
             {title}
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-slate-300">
+          <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-(--cf-text-2)">
             {subtitle}
           </p>
         </div>

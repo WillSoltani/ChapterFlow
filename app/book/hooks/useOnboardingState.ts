@@ -11,15 +11,43 @@ export type PronounOption =
   | "She / Her"
   | "He / Him"
   | "They / Them";
+export type OccupationOption =
+  | "Student"
+  | "Professional"
+  | "Entrepreneur"
+  | "Creative"
+  | "Other";
+export type ReadingGoalOption =
+  | "career"
+  | "decisions"
+  | "skills"
+  | "personal"
+  | "curiosity";
+export type ReferralSourceOption =
+  | "Social media"
+  | "Word of mouth"
+  | "Search engine"
+  | "Newsletter"
+  | "Other";
 
 export type BookOnboardingState = {
   currentStep: number;
   setupComplete: boolean;
   completedAt: string | null;
+  // Step 1 — who you are
   name: string;
+  email: string;
+  city: string;
   pronoun: PronounOption;
+  occupation: OccupationOption | null;
+  // Step 2 — what brings you here
+  readingGoal: ReadingGoalOption | null;
+  referralSource: ReferralSourceOption | null;
+  // Step 3 — book selection
   selectedBookIds: string[];
+  // Step 4 — daily goal
   dailyGoalMinutes: number;
+  // Step 5 — preferences
   reminderTime: string;
   learningStyle: LearningStyle;
   quizIntensity: QuizIntensity;
@@ -27,7 +55,7 @@ export type BookOnboardingState = {
   motivationStyle: MotivationStyle;
 };
 
-const MAX_STEPS = 5;
+const MAX_STEPS = 6;
 const MAX_BOOK_SELECTION = Math.max(1, BOOKS_CATALOG.length);
 const STORAGE_KEY = "book-accelerator:onboarding:v2";
 const AVAILABLE_BOOK_IDS = new Set(BOOKS_CATALOG.map((book) => book.id));
@@ -37,7 +65,12 @@ const defaultState: BookOnboardingState = {
   setupComplete: false,
   completedAt: null,
   name: "",
+  email: "",
+  city: "",
   pronoun: "Prefer not to say",
+  occupation: null,
+  readingGoal: null,
+  referralSource: null,
   selectedBookIds: [],
   dailyGoalMinutes: 20,
   reminderTime: "20:00",
@@ -111,22 +144,37 @@ export function useOnboardingState() {
     setState((prev) => ({ ...prev, name }));
   }, []);
 
+  const setEmail = useCallback((email: string) => {
+    setState((prev) => ({ ...prev, email }));
+  }, []);
+
+  const setCity = useCallback((city: string) => {
+    setState((prev) => ({ ...prev, city }));
+  }, []);
+
   const setPronoun = useCallback((pronoun: PronounOption) => {
     setState((prev) => ({ ...prev, pronoun }));
+  }, []);
+
+  const setOccupation = useCallback((occupation: OccupationOption) => {
+    setState((prev) => ({ ...prev, occupation }));
+  }, []);
+
+  const setReadingGoal = useCallback((readingGoal: ReadingGoalOption) => {
+    setState((prev) => ({ ...prev, readingGoal }));
+  }, []);
+
+  const setReferralSource = useCallback((referralSource: ReferralSourceOption) => {
+    setState((prev) => ({ ...prev, referralSource }));
   }, []);
 
   const toggleBookSelection = useCallback((bookId: string) => {
     setState((prev) => {
       const selected = prev.selectedBookIds;
       if (selected.includes(bookId)) {
-        return {
-          ...prev,
-          selectedBookIds: selected.filter((id) => id !== bookId),
-        };
+        return { ...prev, selectedBookIds: selected.filter((id) => id !== bookId) };
       }
-      if (selected.length >= MAX_BOOK_SELECTION) {
-        return prev;
-      }
+      if (selected.length >= MAX_BOOK_SELECTION) return prev;
       return { ...prev, selectedBookIds: [...selected, bookId] };
     });
   }, []);
@@ -181,7 +229,12 @@ export function useOnboardingState() {
     goNextStep,
     goPreviousStep,
     setName,
+    setEmail,
+    setCity,
     setPronoun,
+    setOccupation,
+    setReadingGoal,
+    setReferralSource,
     toggleBookSelection,
     setDailyGoalMinutes,
     setReminderTime,

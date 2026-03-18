@@ -184,19 +184,17 @@ export function BookHomeClient() {
 
   if (!onboardingHydrated || !dashboard.hydrated || !badgeSystem.hydrated || !savedHydrated || !onboarding.setupComplete) {
     return (
-      <main className="relative min-h-screen text-slate-100">
-        <div className="pointer-events-none absolute inset-0 -z-20 bg-[#050813]" />
-        <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(920px_circle_at_10%_-6%,rgba(56,189,248,0.12),transparent_58%),radial-gradient(860px_circle_at_100%_0%,rgba(251,191,36,0.08),transparent_52%)]" />
+      <main className="cf-app-shell">
         <div className="mx-auto w-full max-w-7xl animate-pulse px-4 pb-16 pt-10 sm:px-6">
-          <div className="h-11 w-72 rounded-xl bg-slate-800/60" />
-          <div className="mt-3 h-6 w-56 rounded-xl bg-slate-800/40" />
+          <div className="h-11 w-72 rounded-xl bg-(--cf-surface-muted)" />
+          <div className="mt-3 h-6 w-56 rounded-xl bg-(--cf-surface)" />
           <div className="mt-6 grid grid-cols-1 gap-4 lg:grid-cols-[1.55fr_1fr]">
-            <div className="h-72 rounded-3xl bg-slate-800/50" />
-            <div className="h-72 rounded-3xl bg-slate-800/40" />
+            <div className="h-72 rounded-3xl bg-(--cf-surface)" />
+            <div className="h-72 rounded-3xl bg-(--cf-surface-muted)" />
           </div>
           <div className="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-3">
-            <div className="h-28 rounded-3xl bg-slate-800/40 lg:col-span-2" />
-            <div className="h-28 rounded-3xl bg-slate-800/40" />
+            <div className="h-28 rounded-3xl bg-(--cf-surface-muted) lg:col-span-2" />
+            <div className="h-28 rounded-3xl bg-(--cf-surface-muted)" />
           </div>
         </div>
       </main>
@@ -204,10 +202,7 @@ export function BookHomeClient() {
   }
 
   return (
-    <main className="relative min-h-screen overflow-x-hidden text-slate-100">
-      <div className="pointer-events-none absolute inset-0 -z-20 bg-[#050813]" />
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(980px_circle_at_8%_-8%,rgba(56,189,248,0.12),transparent_58%),radial-gradient(820px_circle_at_100%_0%,rgba(251,191,36,0.08),transparent_52%)]" />
-
+    <main className="cf-app-shell">
       <TopNav
         name={onboarding.name || "Reader"}
         activeTab="home"
@@ -219,16 +214,16 @@ export function BookHomeClient() {
       <section className="mx-auto w-full max-w-7xl px-4 pb-28 pt-7 sm:px-6 sm:pt-8 md:pb-24">
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div>
-            <h1 className="text-4xl font-semibold tracking-tight text-slate-50 sm:text-5xl">
+            <h1 className="text-4xl font-semibold tracking-tight text-(--cf-text-1) sm:text-5xl">
               Good morning, {onboarding.name || "Reader"} 👋
             </h1>
-            <p className="mt-2 text-lg text-slate-300">
+            <p className="mt-2 text-lg text-(--cf-text-2)">
               {analytics && analytics.streakDays > 0
                 ? `You're on a ${analytics.streakDays}-day streak. Keep it up.`
                 : "Start your first chapter and your reading streak will begin here."}
             </p>
           </div>
-          <span className="inline-flex items-center gap-2 rounded-full border border-amber-300/35 bg-amber-300/14 px-3.5 py-1.5 text-sm font-medium text-amber-100">
+          <span className="inline-flex items-center gap-2 rounded-full border border-(--cf-warning-border) bg-(--cf-warning-soft) px-3.5 py-1.5 text-sm font-medium text-(--cf-warning-text)">
             <Flame className="h-4 w-4" />
             {(analytics?.streakDays ?? 0) > 0
               ? `${analytics?.streakDays ?? 0} day streak`
@@ -248,7 +243,7 @@ export function BookHomeClient() {
               }}
             />
           ) : (
-            <div className="rounded-[30px] border border-white/10 bg-white/3 p-6 text-slate-300">
+            <div className="cf-panel rounded-[30px] p-6 text-(--cf-text-2)">
               Finish onboarding to unlock your first book and start reading.
             </div>
           )}
@@ -264,14 +259,14 @@ export function BookHomeClient() {
         </div>
 
         <div className="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-3">
-          <article className="rounded-3xl border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] p-5 lg:col-span-2">
+          <article className="cf-panel rounded-3xl p-5 lg:col-span-2">
             <div className="flex items-center gap-2">
-              <Sparkles className="h-4 w-4 text-amber-400/70" />
-              <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Daily Insight</h3>
+              <Sparkles className="h-4 w-4 text-(--cf-warning-text)" />
+              <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-(--cf-text-3)">Daily Insight</h3>
             </div>
-            <p className="mt-3 border-l-2 border-amber-400/40 pl-3 text-base leading-relaxed text-slate-200">{dailyInsight.takeaway}</p>
-            <p className="mt-3 text-sm text-slate-400">
-              <span className="font-medium text-slate-300">Try this: </span>{dailyInsight.action}
+            <p className="mt-3 border-l-2 border-(--cf-warning-border) pl-3 text-base leading-relaxed text-(--cf-text-1)">{dailyInsight.takeaway}</p>
+            <p className="mt-3 text-sm text-(--cf-text-2)">
+              <span className="font-medium text-(--cf-text-1)">Try this: </span>{dailyInsight.action}
             </p>
           </article>
           <GoalMeter
@@ -280,13 +275,13 @@ export function BookHomeClient() {
           />
         </div>
 
-        <div className="mt-4 rounded-3xl border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.07),rgba(255,255,255,0.03))] p-5">
+        <div className="cf-panel rounded-3xl p-5">
           <div className="flex items-center justify-between gap-2">
-            <h3 className="text-lg font-semibold text-slate-100">Quick Review</h3>
+            <h3 className="text-lg font-semibold text-(--cf-text-1)">Quick Review</h3>
             <button
               type="button"
               onClick={() => setShowQuickReviewModal(true)}
-              className="inline-flex items-center gap-1.5 rounded-full border border-sky-300/25 bg-sky-500/10 px-2.5 py-1 text-xs text-sky-300 transition hover:bg-sky-500/18"
+              className="inline-flex items-center gap-1.5 rounded-full border border-(--cf-accent-border) bg-(--cf-accent-soft) px-2.5 py-1 text-xs text-(--cf-accent) transition hover:brightness-105"
             >
               <Sparkles className="h-3 w-3" />
               Review
@@ -298,9 +293,9 @@ export function BookHomeClient() {
                 key={prompt}
                 type="button"
                 onClick={() => setShowQuickReviewModal(true)}
-                className="group rounded-2xl border border-white/10 bg-white/3 px-4 py-3.5 text-left text-sm text-slate-300 transition hover:border-sky-300/25 hover:bg-sky-500/8 hover:text-slate-100"
+                className="cf-panel-muted group rounded-2xl px-4 py-3.5 text-left text-sm text-(--cf-text-2) transition hover:border-(--cf-accent-border) hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)"
               >
-                <span className="mb-1 block text-[10px] font-semibold uppercase tracking-[0.12em] text-sky-400/55 group-hover:text-sky-400/80">Reflect</span>
+                <span className="mb-1 block text-[10px] font-semibold uppercase tracking-[0.12em] text-(--cf-accent)/70">Reflect</span>
                 {prompt}
               </button>
             ))}
@@ -310,14 +305,14 @@ export function BookHomeClient() {
         <div className="mt-7">
           <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
             <div>
-              <h2 className="text-2xl font-semibold text-slate-100">Read Next</h2>
-              <p className="mt-1 text-sm text-slate-400">
+              <h2 className="text-2xl font-semibold text-(--cf-text-1)">Read Next</h2>
+              <p className="mt-1 text-sm text-(--cf-text-3)">
                 {saved.length > 0
                   ? `${saved.length} saved book${saved.length === 1 ? "" : "s"} ready when you are.`
                   : "Save books from the library and they will appear here."}
               </p>
             </div>
-            <Link href="/book/saved" className="text-sm text-sky-200 hover:text-sky-100">
+            <Link href="/book/saved" className="text-sm text-(--cf-accent) hover:brightness-110">
               View all →
             </Link>
           </div>
@@ -334,14 +329,14 @@ export function BookHomeClient() {
               ))}
             </div>
           ) : (
-            <div className="rounded-3xl border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.07),rgba(255,255,255,0.03))] p-5 text-slate-300">
-              <p className="text-base text-slate-200">No saved books yet.</p>
-              <p className="mt-2 text-sm text-slate-400">
+            <div className="cf-panel rounded-3xl p-5 text-(--cf-text-2)">
+              <p className="text-base text-(--cf-text-1)">No saved books yet.</p>
+              <p className="mt-2 text-sm text-(--cf-text-3)">
                 Use the bookmark control in the library to build a reading queue you can return to quickly.
               </p>
               <Link
                 href="/book/library"
-                className="mt-4 inline-flex rounded-xl border border-sky-300/35 bg-sky-500/14 px-3 py-2 text-sm text-sky-100 transition hover:bg-sky-500/22"
+                className="mt-4 inline-flex rounded-xl border border-(--cf-accent-border) bg-(--cf-accent-soft) px-3 py-2 text-sm text-(--cf-info-text) transition hover:bg-(--cf-accent-muted)"
               >
                 Browse library
               </Link>
@@ -351,8 +346,8 @@ export function BookHomeClient() {
 
         <div className="mt-7">
           <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-            <h2 className="text-2xl font-semibold text-slate-100">Recent Books</h2>
-            <Link href="/book/library" className="text-sm text-sky-200 hover:text-sky-100">
+            <h2 className="text-2xl font-semibold text-(--cf-text-1)">Recent Books</h2>
+            <Link href="/book/library" className="text-sm text-(--cf-accent) hover:text-(--cf-accent-strong)">
               View Library →
             </Link>
           </div>
@@ -374,7 +369,7 @@ export function BookHomeClient() {
 
         <div className="mt-7">
           <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-            <h2 className="text-2xl font-semibold text-slate-100">Achievements</h2>
+            <h2 className="text-2xl font-semibold text-(--cf-text-1)">Achievements</h2>
           </div>
           <DashboardAchievementWidget
             recentBadge={badgeSystem.recentlyEarned[0] ?? null}
@@ -389,7 +384,7 @@ export function BookHomeClient() {
 
       {showStickyContinue && currentProgress ? (
         <div className="fixed bottom-20 left-4 right-4 z-50 md:hidden">
-          <div className="flex items-center gap-2 rounded-2xl border border-sky-300/35 bg-[#0b1324]/95 p-2 shadow-[0_16px_32px_rgba(2,6,23,0.5)] backdrop-blur">
+          <div className="flex items-center gap-2 rounded-2xl border border-(--cf-accent-border) bg-(--cf-surface-strong) p-2 shadow-[0_16px_32px_rgba(0,0,0,0.1)] backdrop-blur">
             <button
               type="button"
               onClick={() => {
@@ -405,7 +400,7 @@ export function BookHomeClient() {
             <button
               type="button"
               onClick={dashboard.dismissMobileCta}
-              className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/20 bg-white/5 text-slate-200"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-2)"
               aria-label="Dismiss continue banner"
             >
               <X className="h-4 w-4" />
@@ -439,7 +434,7 @@ export function BookHomeClient() {
         <button
           type="button"
           onClick={() => setShowQuickReviewModal(false)}
-          className="mt-4 inline-flex items-center gap-2 rounded-xl border border-sky-300/35 bg-sky-500/14 px-3 py-2 text-sm text-sky-100 transition hover:bg-sky-500/22"
+          className="mt-4 inline-flex items-center gap-2 rounded-xl border border-(--cf-accent-border) bg-(--cf-accent-soft) px-3 py-2 text-sm text-(--cf-info-text) transition hover:bg-(--cf-accent-muted)"
         >
           <Sparkles className="h-4 w-4" />
           Got it

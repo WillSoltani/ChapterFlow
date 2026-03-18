@@ -171,9 +171,9 @@ export function ExamplesList({
   }, [showPointsPopover]);
 
   const statusTone: Record<UserScenarioSubmission["status"], string> = {
-    pending: "border-amber-300/35 bg-amber-500/10 text-amber-200",
-    approved: "border-emerald-300/35 bg-emerald-500/10 text-emerald-200",
-    rejected: "border-rose-300/35 bg-rose-500/10 text-rose-200",
+    pending: "border-(--cf-warning-border) bg-(--cf-warning-soft) text-(--cf-warning-text)",
+    approved: "border-(--cf-success-border) bg-(--cf-success-soft) text-(--cf-success-text)",
+    rejected: "border-(--cf-danger-border) bg-(--cf-danger-soft) text-(--cf-danger-text)",
   };
 
   // Compute the next Flow Points milestone the user is working toward
@@ -188,18 +188,18 @@ export function ExamplesList({
     <section>
       {/* ── First-time onboarding banner ──────────────────────────────────── */}
       {showBanner ? (
-        <div className="mb-5 rounded-[22px] border border-violet-400/25 bg-[linear-gradient(135deg,rgba(139,92,246,0.12),rgba(99,102,241,0.07))] p-4 shadow-[0_12px_28px_rgba(139,92,246,0.1)]">
+        <div className="mb-5 rounded-[22px] border border-(--cf-accent-border) bg-(--cf-accent-soft) p-4">
           <div className="flex items-start gap-3">
-            <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-violet-400/30 bg-violet-500/15 text-violet-300">
+            <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-(--cf-accent-border) bg-(--cf-surface) text-(--cf-accent)">
               <Sparkles className="h-4 w-4" />
             </div>
             <div className="flex-1">
-              <p className="text-sm font-semibold text-violet-100">
+              <p className="text-sm font-semibold text-(--cf-text-1)">
                 Earn Flow Points by contributing
               </p>
-              <p className="mt-1 text-sm leading-relaxed text-slate-300">
+              <p className="mt-1 text-sm leading-relaxed text-(--cf-text-2)">
                 Post a relatable scenario and earn{" "}
-                <span className="font-semibold text-violet-200">
+                <span className="font-semibold text-(--cf-accent)">
                   +{SCENARIO_REWARD} Flow Points
                 </span>{" "}
                 once it&apos;s approved. Reach {POINTS_UNLOCK_BOOK} points to unlock a free
@@ -209,7 +209,7 @@ export function ExamplesList({
             <button
               type="button"
               onClick={dismissBanner}
-              className="mt-0.5 shrink-0 rounded-lg p-1.5 text-slate-500 transition hover:bg-white/8 hover:text-slate-300"
+              className="mt-0.5 shrink-0 rounded-lg p-1.5 text-(--cf-text-soft) transition hover:bg-(--cf-surface-muted) hover:text-(--cf-text-2)"
               aria-label="Dismiss"
             >
               <X className="h-3.5 w-3.5" />
@@ -222,14 +222,14 @@ export function ExamplesList({
       <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
         {/* Left: title + Flow Points badge */}
         <div className="flex flex-wrap items-center gap-3">
-          <h2 className="text-xl font-semibold text-slate-100">Real-world examples</h2>
+          <h2 className="text-xl font-semibold text-(--cf-text-1)">Real-world examples</h2>
 
           {/* Flow Points badge with popover */}
           <div ref={pointsContainerRef} className="relative">
             <button
               type="button"
               onClick={() => setShowPointsPopover((prev) => !prev)}
-              className="flex items-center gap-1.5 rounded-full border border-violet-400/30 bg-violet-500/12 px-3 py-1.5 text-xs font-semibold text-violet-200 transition hover:bg-violet-500/20"
+              className="flex items-center gap-1.5 rounded-full border border-(--cf-accent-border) bg-(--cf-accent-soft) px-3 py-1.5 text-xs font-semibold text-(--cf-info-text) transition hover:bg-(--cf-accent-muted)"
               aria-expanded={showPointsPopover}
               aria-haspopup="true"
             >
@@ -245,27 +245,27 @@ export function ExamplesList({
 
             {/* Points info popover */}
             {showPointsPopover ? (
-              <div className="absolute left-0 top-full z-30 mt-2 w-72 rounded-[20px] border border-white/12 bg-[#0c1526] p-4 shadow-[0_20px_50px_rgba(2,6,23,0.75)]">
-                <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
+              <div className="absolute left-0 top-full z-30 mt-2 w-72 rounded-[20px] border border-(--cf-border) bg-(--cf-surface-strong) p-4 shadow-xl">
+                <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-(--cf-text-soft)">
                   Flow Points
                 </p>
-                <p className="mt-1 text-2xl font-semibold text-slate-100">
+                <p className="mt-1 text-2xl font-semibold text-(--cf-text-1)">
                   {submissionPoints}
-                  <span className="ml-1.5 text-sm font-normal text-slate-400">pts</span>
+                  <span className="ml-1.5 text-sm font-normal text-(--cf-text-3)">pts</span>
                 </p>
 
                 {/* Progress toward next milestone */}
                 {nextMilestone ? (
                   <div className="mt-3">
-                    <div className="mb-1.5 flex justify-between text-xs text-slate-400">
+                    <div className="mb-1.5 flex justify-between text-xs text-(--cf-text-3)">
                       <span>Next: {nextMilestone.label}</span>
                       <span>
                         {submissionPoints} / {nextMilestone.threshold}
                       </span>
                     </div>
-                    <div className="h-1.5 overflow-hidden rounded-full bg-white/8">
+                    <div className="h-1.5 overflow-hidden rounded-full bg-(--cf-border)">
                       <div
-                        className="h-full rounded-full bg-linear-to-r from-violet-500 to-indigo-400 transition-all duration-300"
+                        className="h-full rounded-full bg-linear-to-r from-(--cf-accent) to-(--cf-accent-strong) transition-all duration-300"
                         style={{
                           width: `${Math.min(
                             100,
@@ -280,8 +280,8 @@ export function ExamplesList({
                 ) : null}
 
                 {/* How to earn */}
-                <div className="mt-3 space-y-2 border-t border-white/8 pt-3">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">
+                <div className="mt-3 space-y-2 border-t border-(--cf-divider) pt-3">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-(--cf-text-soft)">
                     How to earn
                   </p>
                   <div className="space-y-1.5">
@@ -298,8 +298,8 @@ export function ExamplesList({
                 </div>
 
                 {/* What you unlock */}
-                <div className="mt-3 space-y-2 border-t border-white/8 pt-3">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-500">
+                <div className="mt-3 space-y-2 border-t border-(--cf-divider) pt-3">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-(--cf-text-soft)">
                     What you unlock
                   </p>
                   <div className="space-y-1.5">
@@ -332,8 +332,8 @@ export function ExamplesList({
                 className={[
                   "rounded-full border px-3 py-1.5 text-sm transition",
                   active
-                    ? "border-sky-300/45 bg-sky-500/16 text-sky-100"
-                    : "border-white/20 bg-white/5 text-slate-300 hover:border-white/35",
+                    ? "border-(--cf-accent-border) bg-(--cf-accent-soft) text-(--cf-info-text)"
+                    : "border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-2) hover:border-(--cf-border-strong)",
                 ].join(" ")}
                 aria-pressed={active}
               >
@@ -342,15 +342,15 @@ export function ExamplesList({
             );
           })}
 
-          {/* Add a Scenario CTA — visually distinct from the filter pills */}
+          {/* Add a Scenario CTA */}
           <button
             type="button"
             onClick={() => setShowModal(true)}
-            className="flex items-center gap-1.5 rounded-full border border-violet-400/40 bg-[linear-gradient(135deg,rgba(139,92,246,0.18),rgba(99,102,241,0.13))] px-3.5 py-1.5 text-sm font-semibold text-violet-100 shadow-[0_0_18px_rgba(139,92,246,0.15)] transition-all hover:bg-[linear-gradient(135deg,rgba(139,92,246,0.26),rgba(99,102,241,0.20))] hover:shadow-[0_0_24px_rgba(139,92,246,0.22)]"
+            className="flex items-center gap-1.5 rounded-full border border-(--cf-accent-border) bg-(--cf-accent-soft) px-3.5 py-1.5 text-sm font-semibold text-(--cf-info-text) transition hover:bg-(--cf-accent-muted)"
           >
             <Plus className="h-3.5 w-3.5" />
             Add a Scenario
-            <span className="rounded-full border border-violet-400/35 bg-violet-500/20 px-2 py-0.5 text-[11px] font-bold text-violet-200">
+            <span className="rounded-full border border-(--cf-accent-border) bg-(--cf-surface) px-2 py-0.5 text-[11px] font-bold text-(--cf-accent)">
               +{SCENARIO_REWARD} pts
             </span>
           </button>
@@ -359,18 +359,18 @@ export function ExamplesList({
 
       {/* ── My submissions panel ──────────────────────────────────────────── */}
       {sortedSubmissions.length > 0 ? (
-        <section className="mb-5 rounded-[20px] border border-white/8 bg-white/[0.025] p-4">
-          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-400">
+        <section className="mb-5 rounded-[20px] border border-(--cf-border) bg-(--cf-surface-muted) p-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-(--cf-text-3)">
             Your submissions
           </p>
           <div className="mt-3 space-y-2">
             {sortedSubmissions.slice(0, 8).map((submission) => (
               <article
                 key={submission.submissionId}
-                className="rounded-xl border border-white/8 bg-[#060a15]/60 px-3 py-2.5"
+                className="rounded-xl border border-(--cf-border) bg-(--cf-surface) px-3 py-2.5"
               >
                 <div className="flex flex-wrap items-center justify-between gap-2">
-                  <p className="text-sm font-medium text-slate-100">{submission.title}</p>
+                  <p className="text-sm font-medium text-(--cf-text-1)">{submission.title}</p>
                   <span
                     className={[
                       "rounded-full border px-2 py-0.5 text-[11px] font-semibold uppercase tracking-[0.08em]",
@@ -380,11 +380,11 @@ export function ExamplesList({
                     {submission.status}
                   </span>
                 </div>
-                <p className="mt-1 text-xs text-slate-500">
+                <p className="mt-1 text-xs text-(--cf-text-soft)">
                   Submitted {new Date(submission.createdAt).toLocaleString()}
                 </p>
                 {submission.reviewNotes ? (
-                  <p className="mt-1 text-xs text-slate-400">{submission.reviewNotes}</p>
+                  <p className="mt-1 text-xs text-(--cf-text-3)">{submission.reviewNotes}</p>
                 ) : null}
               </article>
             ))}
@@ -395,12 +395,12 @@ export function ExamplesList({
       {/* ── Examples list ─────────────────────────────────────────────────── */}
       <div className="space-y-4">
         {examples.length === 0 ? (
-          <div className="rounded-[24px] border border-white/8 bg-white/[0.02] p-10 text-center">
-            <p className="text-sm text-slate-400">No examples for this filter yet.</p>
+          <div className="rounded-[24px] border border-(--cf-border) bg-(--cf-surface-muted) p-10 text-center">
+            <p className="text-sm text-(--cf-text-3)">No examples for this filter yet.</p>
             <button
               type="button"
               onClick={() => setShowModal(true)}
-              className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-violet-400/35 bg-violet-500/14 px-4 py-2 text-sm font-semibold text-violet-200 transition hover:bg-violet-500/22"
+              className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-(--cf-accent-border) bg-(--cf-accent-soft) px-4 py-2 text-sm font-semibold text-(--cf-info-text) transition hover:bg-(--cf-accent-muted)"
             >
               <Plus className="h-3.5 w-3.5" />
               Be the first to add one
@@ -410,31 +410,31 @@ export function ExamplesList({
           examples.map((example) => (
             <article
               key={example.id}
-              className="rounded-[24px] border border-white/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.03))] p-5 shadow-[0_18px_38px_rgba(2,6,23,0.42)]"
+              className="rounded-[24px] border border-(--cf-border) bg-(--cf-surface) p-5 shadow-sm"
             >
-              <h3 className="text-3xl font-semibold text-slate-100">{example.title}</h3>
+              <h3 className="text-3xl font-semibold text-(--cf-text-1)">{example.title}</h3>
               <div className="mt-4 space-y-3">
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-(--cf-text-3)">
                     Scenario
                   </p>
-                  <p className={["mt-1 text-slate-200", fontScaleClass].join(" ")}>
+                  <p className={["mt-1 text-(--cf-text-2)", fontScaleClass].join(" ")}>
                     {example.scenario}
                   </p>
                 </div>
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-sky-300">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-(--cf-accent)">
                     What to do
                   </p>
-                  <p className={["mt-1 text-slate-100", fontScaleClass].join(" ")}>
+                  <p className={["mt-1 text-(--cf-text-1)", fontScaleClass].join(" ")}>
                     {example.whatToDo}
                   </p>
                 </div>
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-emerald-300">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-(--cf-success-text)">
                     Why it matters
                   </p>
-                  <p className={["mt-1 text-slate-200", fontScaleClass].join(" ")}>
+                  <p className={["mt-1 text-(--cf-text-2)", fontScaleClass].join(" ")}>
                     {example.whyItMatters}
                   </p>
                 </div>
@@ -468,8 +468,8 @@ export function ExamplesList({
 function PointsRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex items-center justify-between">
-      <p className="text-xs text-slate-400">{label}</p>
-      <span className="text-xs font-semibold text-violet-300">{value} pts</span>
+      <p className="text-xs text-(--cf-text-3)">{label}</p>
+      <span className="text-xs font-semibold text-(--cf-accent)">{value} pts</span>
     </div>
   );
 }
@@ -485,10 +485,10 @@ function MilestoneRow({
 }) {
   return (
     <div className="flex items-center justify-between">
-      <p className={["text-xs", reached ? "text-emerald-300" : "text-slate-400"].join(" ")}>
+      <p className={["text-xs", reached ? "text-(--cf-success-text)" : "text-(--cf-text-3)"].join(" ")}>
         {label}
         {reached ? (
-          <span className="ml-1.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-emerald-400">
+          <span className="ml-1.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-(--cf-success-text)">
             ✓ reached
           </span>
         ) : null}
@@ -496,7 +496,7 @@ function MilestoneRow({
       <span
         className={[
           "text-xs font-semibold",
-          reached ? "text-emerald-400" : "text-slate-500",
+          reached ? "text-(--cf-success-text)" : "text-(--cf-text-soft)",
         ].join(" ")}
       >
         {value}
@@ -551,28 +551,28 @@ function AddScenarioModal({
     >
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-black/65 backdrop-blur-sm"
+        className="absolute inset-0 bg-(--cf-overlay) backdrop-blur-sm"
         onClick={onClose}
         aria-hidden="true"
       />
 
       {/* Panel */}
-      <div className="relative z-10 w-full max-w-xl overflow-y-auto rounded-[28px] border border-white/12 bg-[linear-gradient(180deg,#0d1426,#080f1e)] p-6 shadow-[0_32px_80px_rgba(2,6,23,0.85)] sm:max-h-[90vh]">
+      <div className="relative z-10 w-full max-w-xl overflow-y-auto rounded-[28px] border border-(--cf-border) bg-(--cf-surface-strong) p-6 shadow-2xl sm:max-h-[90vh]">
         {/* Modal header */}
         <div className="mb-5 flex items-start justify-between gap-3">
           <div>
             <div className="flex items-center gap-2">
-              <Sparkles className="h-4 w-4 text-violet-400" />
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-400">
+              <Sparkles className="h-4 w-4 text-(--cf-accent)" />
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-(--cf-accent)">
                 Flow Points reward
               </p>
             </div>
-            <h2 className="mt-1.5 text-lg font-semibold text-slate-100">
+            <h2 className="mt-1.5 text-lg font-semibold text-(--cf-text-1)">
               Add your scenario
             </h2>
-            <p className="mt-1 text-sm leading-relaxed text-slate-400">
+            <p className="mt-1 text-sm leading-relaxed text-(--cf-text-3)">
               Write a relatable real-world scenario for this chapter. Earn{" "}
-              <span className="font-semibold text-violet-200">
+              <span className="font-semibold text-(--cf-accent)">
                 +{SCENARIO_REWARD} Flow Points
               </span>{" "}
               once the team approves it.
@@ -581,7 +581,7 @@ function AddScenarioModal({
           <button
             type="button"
             onClick={onClose}
-            className="shrink-0 rounded-xl border border-white/10 p-2 text-slate-400 transition hover:bg-white/8 hover:text-slate-200"
+            className="shrink-0 rounded-xl border border-(--cf-border) p-2 text-(--cf-text-3) transition hover:bg-(--cf-surface-muted) hover:text-(--cf-text-2)"
             aria-label="Close"
           >
             <X className="h-4 w-4" />
@@ -592,7 +592,7 @@ function AddScenarioModal({
         <div className="space-y-4">
           {/* Title */}
           <div>
-            <label className="mb-1.5 block text-xs font-medium text-slate-400">
+            <label className="mb-1.5 block text-xs font-medium text-(--cf-text-3)">
               Title
             </label>
             <input
@@ -601,16 +601,16 @@ function AddScenarioModal({
                 setDraft((prev) => ({ ...prev, title: event.target.value }))
               }
               placeholder="A short, descriptive title for your scenario"
-              className="w-full rounded-xl border border-white/15 bg-white/6 px-3 py-2.5 text-sm text-slate-100 placeholder:text-slate-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/45"
+              className="cf-input w-full rounded-xl px-3 py-2.5 text-sm"
             />
-            <p className="mt-1 text-right text-xs text-slate-600">
+            <p className="mt-1 text-right text-xs text-(--cf-text-soft)">
               {draft.title.trim().length} / 6+ chars
             </p>
           </div>
 
           {/* Scenario */}
           <div>
-            <label className="mb-1.5 block text-xs font-medium text-slate-400">
+            <label className="mb-1.5 block text-xs font-medium text-(--cf-text-3)">
               Scenario
             </label>
             <textarea
@@ -620,16 +620,16 @@ function AddScenarioModal({
               }
               placeholder="Write the situation in third-person (e.g. Maya is leading a group project when…)"
               rows={4}
-              className="w-full rounded-xl border border-white/15 bg-white/6 px-3 py-2.5 text-sm text-slate-100 placeholder:text-slate-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/45"
+              className="cf-input w-full rounded-xl px-3 py-2.5 text-sm"
             />
-            <p className="mt-1 text-right text-xs text-slate-600">
+            <p className="mt-1 text-right text-xs text-(--cf-text-soft)">
               {draft.scenario.trim().length} / 40+ chars
             </p>
           </div>
 
           {/* What to do */}
           <div>
-            <label className="mb-1.5 block text-xs font-medium text-slate-400">
+            <label className="mb-1.5 block text-xs font-medium text-(--cf-text-3)">
               What to do
             </label>
             <textarea
@@ -639,16 +639,16 @@ function AddScenarioModal({
               }
               placeholder="What should the person do next? Describe the action clearly."
               rows={3}
-              className="w-full rounded-xl border border-white/15 bg-white/6 px-3 py-2.5 text-sm text-slate-100 placeholder:text-slate-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/45"
+              className="cf-input w-full rounded-xl px-3 py-2.5 text-sm"
             />
-            <p className="mt-1 text-right text-xs text-slate-600">
+            <p className="mt-1 text-right text-xs text-(--cf-text-soft)">
               {draft.whatToDo.trim().length} / 20+ chars
             </p>
           </div>
 
           {/* Why it matters */}
           <div>
-            <label className="mb-1.5 block text-xs font-medium text-slate-400">
+            <label className="mb-1.5 block text-xs font-medium text-(--cf-text-3)">
               Why it matters
             </label>
             <textarea
@@ -658,16 +658,16 @@ function AddScenarioModal({
               }
               placeholder="Why does applying this chapter here actually matter?"
               rows={3}
-              className="w-full rounded-xl border border-white/15 bg-white/6 px-3 py-2.5 text-sm text-slate-100 placeholder:text-slate-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/45"
+              className="cf-input w-full rounded-xl px-3 py-2.5 text-sm"
             />
-            <p className="mt-1 text-right text-xs text-slate-600">
+            <p className="mt-1 text-right text-xs text-(--cf-text-soft)">
               {draft.whyItMatters.trim().length} / 20+ chars
             </p>
           </div>
 
           {/* Category */}
           <div>
-            <label className="mb-1.5 block text-xs font-medium text-slate-400">
+            <label className="mb-1.5 block text-xs font-medium text-(--cf-text-3)">
               Category
             </label>
             <div className="flex flex-wrap gap-2">
@@ -681,8 +681,8 @@ function AddScenarioModal({
                     className={[
                       "rounded-full border px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.08em] transition",
                       active
-                        ? "border-violet-400/50 bg-violet-500/18 text-violet-100"
-                        : "border-white/20 bg-white/5 text-slate-400 hover:border-white/35",
+                        ? "border-(--cf-accent-border) bg-(--cf-accent-soft) text-(--cf-info-text)"
+                        : "border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-2) hover:border-(--cf-border-strong)",
                     ].join(" ")}
                   >
                     {scope}
@@ -694,7 +694,7 @@ function AddScenarioModal({
 
           {/* Error */}
           {submitError ? (
-            <p className="rounded-xl border border-rose-400/25 bg-rose-500/10 px-3 py-2 text-sm text-rose-300">
+            <p className="rounded-xl border border-(--cf-danger-border) bg-(--cf-danger-soft) px-3 py-2 text-sm text-(--cf-danger-text)">
               {submitError}
             </p>
           ) : null}
@@ -708,8 +708,8 @@ function AddScenarioModal({
               className={[
                 "flex w-full items-center justify-center gap-2 rounded-xl py-3 text-sm font-semibold transition",
                 canSubmit
-                  ? "border border-violet-400/40 bg-[linear-gradient(135deg,rgba(139,92,246,0.22),rgba(99,102,241,0.18))] text-violet-100 shadow-[0_8px_20px_rgba(139,92,246,0.2)] hover:shadow-[0_10px_26px_rgba(139,92,246,0.28)]"
-                  : "cursor-not-allowed border border-white/10 bg-white/4 text-slate-600",
+                  ? "border border-(--cf-accent-border) bg-(--cf-accent) text-white hover:opacity-90"
+                  : "cursor-not-allowed border border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-soft)",
               ].join(" ")}
             >
               <Sparkles className="h-4 w-4" />
@@ -717,7 +717,7 @@ function AddScenarioModal({
                 ? "Submitting…"
                 : `Submit for review — +${SCENARIO_REWARD} Flow Points`}
             </button>
-            <p className="mt-2.5 text-center text-xs text-slate-600">
+            <p className="mt-2.5 text-center text-xs text-(--cf-text-soft)">
               Scenarios are reviewed before going live for all readers.
             </p>
           </div>
