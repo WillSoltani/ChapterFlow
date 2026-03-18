@@ -16,11 +16,10 @@
   <circle cx="582" cy="864" r="130" fill="#FDF8EE" opacity="0.34"/>
   <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F4EDE2" stroke="#CAB9A3" stroke-width="10"/>
 
-  <g transform="translate(407 563)">
-    <circle cx="196" cy="196" r="188" fill="#FDF8EE" opacity="0.95" stroke="#88A8C7" stroke-width="10"/>
-    <circle cx="196" cy="196" r="124" fill="none" stroke="#DA9A49" stroke-width="14" opacity="0.8"/>
-    <polygon points="196,52 226,166 340,196 226,226 196,340 166,226 52,196 166,166" fill="#DA9A49" opacity="0.92"/>
-    <circle cx="196" cy="196" r="36" fill="#223142" opacity="0.84"/>
+  <g transform="translate(417 559)">
+    <path d="M182 26 L326 84 V192 C326 286 262 350 182 384 C102 350 38 286 38 192 V84 Z" fill="#DA9A49" opacity="0.88"/>
+    <path d="M182 70 L286 112 V192 C286 260 244 310 182 340 C120 310 78 260 78 192 V112 Z" fill="#FDF8EE" opacity="0.9"/>
+    <path d="M132 198 L166 232 L236 160" fill="none" stroke="#223142" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
   </g>
 
   <rect x="0" y="0" width="1200" height="238" fill="#1E3352" opacity="0.93"/>

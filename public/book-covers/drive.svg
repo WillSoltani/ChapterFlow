@@ -16,25 +16,11 @@
   <circle cx="572" cy="828" r="130" fill="#FDF8EF" opacity="0.34"/>
   <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F3ECE2" stroke="#C9B8A2" stroke-width="10"/>
 
-  <g transform="translate(423 567)">
-    <circle cx="180" cy="180" r="158" fill="#FDF8EF" opacity="0.95" stroke="#9AACD2" stroke-width="8"/>
-    <path d="M148 76 Q92 120 92 190 Q92 258 144 292 Q198 326 258 290 Q304 264 318 220 Q332 178 306 138 Q280 98 232 82 Q192 68 148 76 Z" fill="none" stroke="#232B3B" stroke-width="10" opacity="0.72"/>
-    <g stroke="#D88D57" stroke-width="6" opacity="0.88">
-      <line x1="126" y1="146" x2="188" y2="122"/>
-      <line x1="188" y1="122" x2="238" y2="156"/>
-      <line x1="188" y1="122" x2="184" y2="196"/>
-      <line x1="184" y1="196" x2="246" y2="230"/>
-      <line x1="126" y1="146" x2="128" y2="220"/>
-      <line x1="128" y1="220" x2="184" y2="196"/>
-    </g>
-    <g fill="#D88D57">
-      <circle cx="126" cy="146" r="12"/>
-      <circle cx="188" cy="122" r="12"/>
-      <circle cx="238" cy="156" r="12"/>
-      <circle cx="184" cy="196" r="12"/>
-      <circle cx="128" cy="220" r="12"/>
-      <circle cx="246" cy="230" r="12"/>
-    </g>
+  <g transform="translate(417 559)">
+    <circle cx="196" cy="186" r="152" fill="#FDF8EF" opacity="0.95" stroke="#9AACD2" stroke-width="8"/>
+    <circle cx="196" cy="186" r="104" fill="none" stroke="#D88D57" stroke-width="16"/>
+    <circle cx="196" cy="186" r="62" fill="none" stroke="#9AACD2" stroke-width="14"/>
+    <circle cx="196" cy="186" r="24" fill="#232B3B"/>
   </g>
 
   <rect x="0" y="0" width="1200" height="238" fill="#2D3656" opacity="0.93"/>

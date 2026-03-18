@@ -3,36 +3,32 @@
   <desc id="desc">Auto-generated themed cover for The Lean Startup by Eric Ries.</desc>
   <defs>
     <linearGradient id="g2075573472" x1="0" y1="0" x2="0" y2="1800" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#234057"/>
-      <stop offset="100%" stop-color="#3C6E7C"/>
+      <stop offset="0%" stop-color="#1F4E8C"/>
+      <stop offset="100%" stop-color="#2D73C2"/>
     </linearGradient>
   </defs>
 
   <rect width="1200" height="1800" fill="url(#g2075573472)"/>
 
-  <rect x="0" y="300" width="1200" height="1180" fill="#8CBCC6" opacity="0.12"/>
-  <rect x="140" y="360" width="920" height="1050" rx="48" fill="#FDF8EE" opacity="0.22"/>
-  <path d="M0 560 Q300 446 600 560 T1200 560" stroke="#FDF8EE" stroke-width="22" opacity="0.24"/>
-  <path d="M0 1180 Q300 1066 600 1180 T1200 1180" stroke="#EB9A4F" stroke-width="16" opacity="0.22"/>
-  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F4ECE2" stroke="#C8B8A2" stroke-width="10"/>
+  <rect x="0" y="300" width="1200" height="1180" fill="#8AB3DF" opacity="0.12"/>
+  <rect x="140" y="360" width="920" height="1050" rx="48" fill="#FFFFFF" opacity="0.22"/>
+  <path d="M0 560 Q300 446 600 560 T1200 560" stroke="#FFFFFF" stroke-width="22" opacity="0.24"/>
+  <path d="M0 1180 Q300 1066 600 1180 T1200 1180" stroke="#3B86D9" stroke-width="16" opacity="0.22"/>
+  <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F4F8FC" stroke="#B0C2D6" stroke-width="10"/>
 
-  <g transform="translate(412 564)">
-    <path d="M198 20 C272 74 304 146 304 212 C304 284 254 332 198 364 C142 332 92 284 92 212 C92 146 124 74 198 20 Z" fill="#EB9A4F" opacity="0.9"/>
-    <circle cx="198" cy="156" r="44" fill="#FDF8EE" opacity="0.95"/>
-    <path d="M176 224 L220 224 L236 320 L160 320 Z" fill="#FDF8EE" opacity="0.94"/>
-    <path d="M110 270 L58 302 L104 314 Z" fill="#8CBCC6" opacity="0.9"/>
-    <path d="M286 270 L338 302 L292 314 Z" fill="#8CBCC6" opacity="0.9"/>
-    <circle cx="72" cy="94" r="8" fill="#FDF8EE"/>
-    <circle cx="328" cy="114" r="10" fill="#FDF8EE"/>
-    <circle cx="304" cy="56" r="6" fill="#FDF8EE"/>
+  <g transform="translate(404 566)">
+    <circle cx="200" cy="188" r="146" fill="#FFFFFF" opacity="0.95" stroke="#8AB3DF" stroke-width="8"/>
+    <circle cx="200" cy="188" r="104" fill="none" stroke="#3B86D9" stroke-width="18" opacity="0.86"/>
+    <circle cx="200" cy="188" r="56" fill="none" stroke="#8AB3DF" stroke-width="14" opacity="0.86"/>
+    <path d="M306 168 L332 200 L292 204" fill="#3B86D9"/>
   </g>
 
-  <rect x="0" y="0" width="1200" height="238" fill="#234057" opacity="0.93"/>
-  <rect x="0" y="1454" width="1200" height="346" fill="#3C6E7C" opacity="0.95"/>
-  <text x="600" y="136" text-anchor="middle" fill="#FDF8EE" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">ERIC RIES</text>
-  <text x="600" y="208" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">INNOVATION</text>
-  <text x="600" y="1216" text-anchor="middle" fill="#22343B" font-family="'Trebuchet MS', Arial, sans-serif" font-size="92" font-weight="700" letter-spacing="2">THE LEAN STARTUP</text>
-  <text x="600" y="1538" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">STARTUP  ·  EXPERIMENTS  ·  INNOVATION</text>
-  <text x="600" y="1604" text-anchor="middle" fill="#FDF8EE" font-family="Georgia, serif" font-size="30">Entrepreneurship and growth</text>
-  <text x="600" y="1668" text-anchor="middle" fill="#FDF8EE" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
+  <rect x="0" y="0" width="1200" height="238" fill="#1F4E8C" opacity="0.93"/>
+  <rect x="0" y="1454" width="1200" height="346" fill="#2D73C2" opacity="0.95"/>
+  <text x="600" y="136" text-anchor="middle" fill="#FFFFFF" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="3">ERIC RIES</text>
+  <text x="600" y="208" text-anchor="middle" fill="#FFFFFF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">INNOVATION</text>
+  <text x="600" y="1216" text-anchor="middle" fill="#1B2F46" font-family="'Trebuchet MS', Arial, sans-serif" font-size="92" font-weight="700" letter-spacing="2">THE LEAN STARTUP</text>
+  <text x="600" y="1538" text-anchor="middle" fill="#FFFFFF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">STARTUP  ·  EXPERIMENTS  ·  INNOVATION</text>
+  <text x="600" y="1604" text-anchor="middle" fill="#FFFFFF" font-family="Georgia, serif" font-size="30">Build, measure, learn in tight cycles</text>
+  <text x="600" y="1668" text-anchor="middle" fill="#FFFFFF" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
 </svg>

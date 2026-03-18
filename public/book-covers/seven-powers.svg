@@ -16,18 +16,12 @@
   <circle cx="617" cy="854" r="130" fill="#FEF8F0" opacity="0.34"/>
   <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F2ECE1" stroke="#C7B9A3" stroke-width="10"/>
 
-  <g transform="translate(413 570)">
-    <rect x="0" y="0" width="370" height="330" rx="24" fill="#FEF8F0" opacity="0.92" stroke="#8F90C0" stroke-width="8"/>
-    <g stroke="#8F90C0" stroke-width="3" opacity="0.8">
-      <line x1="92" y1="0" x2="92" y2="330"/>
-      <line x1="184" y1="0" x2="184" y2="330"/>
-      <line x1="276" y1="0" x2="276" y2="330"/>
-      <line x1="0" y1="82" x2="370" y2="82"/>
-      <line x1="0" y1="164" x2="370" y2="164"/>
-      <line x1="0" y1="246" x2="370" y2="246"/>
-    </g>
-    <path d="M46 260 L136 182 L198 222 L318 112" stroke="#D59A43" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
-    <polygon points="318,112 284,114 304,140" fill="#D59A43"/>
+  <g transform="translate(402 553)">
+    <rect x="38" y="28" width="320" height="300" rx="24" fill="#FEF8F0" stroke="#8F90C0" stroke-width="8"/>
+    <path d="M86 288 L302 72" stroke="#D59A43" stroke-width="16" stroke-linecap="round"/>
+    <path d="M302 288 L86 72" stroke="#8F90C0" stroke-width="16" stroke-linecap="round"/>
+    <rect x="74" y="278" width="34" height="12" rx="6" fill="#232733"/>
+    <rect x="292" y="278" width="34" height="12" rx="6" fill="#232733"/>
   </g>
 
   <rect x="0" y="0" width="1200" height="238" fill="#2B2A3D" opacity="0.93"/>

@@ -12,7 +12,7 @@ const links = [
   { label: 'Pricing', href: '#pricing' },
 ]
 
-const SIGN_IN_HREF = '/auth/login'
+const SIGN_IN_HREF = '/auth/login?returnTo=%2Fbook'
 const START_FREE_HREF = '/auth/login?returnTo=%2Fbook'
 
 export function Navbar() {

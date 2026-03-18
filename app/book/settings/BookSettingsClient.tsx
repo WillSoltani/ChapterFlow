@@ -1,8 +1,10 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback, type ReactNode } from "react";
+import { useRouter } from "next/navigation";
 import type { LucideIcon } from "lucide-react";
 import {
+  ArrowLeft,
   BookOpen,
   Target,
   Palette,
@@ -276,6 +278,7 @@ type BookSettingsClientProps = {
 };
 
 export function BookSettingsClient({}: BookSettingsClientProps) {
+  const router = useRouter();
   const { state: preferences, patchSection, hydrated: prefsHydrated } = useBookPreferences();
   const {
     state: onboarding,
@@ -339,13 +342,23 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
     <div className="cf-app-shell min-h-screen px-4 py-10 sm:px-6">
       {/* Header */}
       <div className="mx-auto mb-8 flex max-w-2xl items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight text-(--cf-text-1)">
-            Settings
-          </h1>
-          <p className="mt-1 text-sm text-(--cf-text-3)">
-            Your preferences are saved automatically.
-          </p>
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={() => router.back()}
+            aria-label="Go back"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-(--cf-border) bg-(--cf-surface) text-(--cf-text-2) transition hover:bg-(--cf-surface-muted) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)"
+          >
+            <ArrowLeft className="h-4 w-4" />
+          </button>
+          <div>
+            <h1 className="text-2xl font-bold tracking-tight text-(--cf-text-1)">
+              Settings
+            </h1>
+            <p className="mt-1 text-sm text-(--cf-text-3)">
+              Your preferences are saved automatically.
+            </p>
+          </div>
         </div>
         {saveState === "saving" && (
           <div className="flex items-center gap-2 text-xs text-(--cf-text-3)">

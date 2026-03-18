@@ -17,24 +17,15 @@
   <rect x="670" y="950" width="420" height="390" rx="42" fill="#FDF8EF" opacity="0.2"/>
   <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F3ECE2" stroke="#C9B8A2" stroke-width="10"/>
 
-  <g transform="translate(404 554)">
-    <circle cx="180" cy="180" r="158" fill="#FDF8EF" opacity="0.95" stroke="#9AACD2" stroke-width="8"/>
-    <path d="M148 76 Q92 120 92 190 Q92 258 144 292 Q198 326 258 290 Q304 264 318 220 Q332 178 306 138 Q280 98 232 82 Q192 68 148 76 Z" fill="none" stroke="#232B3B" stroke-width="10" opacity="0.72"/>
-    <g stroke="#D88D57" stroke-width="6" opacity="0.88">
-      <line x1="126" y1="146" x2="188" y2="122"/>
-      <line x1="188" y1="122" x2="238" y2="156"/>
-      <line x1="188" y1="122" x2="184" y2="196"/>
-      <line x1="184" y1="196" x2="246" y2="230"/>
-      <line x1="126" y1="146" x2="128" y2="220"/>
-      <line x1="128" y1="220" x2="184" y2="196"/>
-    </g>
-    <g fill="#D88D57">
-      <circle cx="126" cy="146" r="12"/>
-      <circle cx="188" cy="122" r="12"/>
-      <circle cx="238" cy="156" r="12"/>
-      <circle cx="184" cy="196" r="12"/>
-      <circle cx="128" cy="220" r="12"/>
-      <circle cx="246" cy="230" r="12"/>
+  <g transform="translate(384 560)">
+    <rect x="0" y="0" width="420" height="328" rx="24" fill="#FDF8EF" stroke="#9AACD2" stroke-width="8"/>
+    <path d="M56 258 C136 192 228 222 306 158" stroke="#232B3B" stroke-width="10" stroke-linecap="round"/>
+    <rect x="82" y="98" width="250" height="26" rx="13" fill="#9AACD2" opacity="0.55"/>
+    <rect x="82" y="132" width="212" height="26" rx="13" fill="#D88D57" opacity="0.45"/>
+    <g transform="translate(294 214) rotate(-18)">
+      <rect x="0" y="0" width="88" height="22" rx="10" fill="#D88D57" opacity="0.9"/>
+      <polygon points="88,11 108,0 108,22" fill="#232B3B"/>
+      <polygon points="108,0 118,11 108,22" fill="#FDF8EF"/>
     </g>
   </g>
 

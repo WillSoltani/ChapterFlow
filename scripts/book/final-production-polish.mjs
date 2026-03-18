@@ -879,6 +879,131 @@ const COVER_THEME_KEYWORDS = {
   resilience: ["resilience", "grit", "toughness", "obstacle", "adversity", "courage", "endurance"],
 };
 
+const COVER_THEME_DEFAULT_MOTIFS = {
+  strategy: ["chess-grid", "crossed-swords", "compass-star"],
+  communication: ["speech-bubbles", "microphone", "handshake-split"],
+  psychology: ["mind-network", "mask-dual", "interlocked-rings"],
+  productivity: ["checklist-board", "dot-grid", "hourglass-track"],
+  leadership: ["compass-star", "crown-sigil", "flag-peak"],
+  finance: ["bar-coin", "stacked-coins", "line-chart"],
+  learning: ["open-book", "pencil-line", "node-map"],
+  philosophy: ["column-arch", "scale-balance", "mountain-sun"],
+  relationships: ["interlocked-rings", "bridge-arc", "heart-link"],
+  innovation: ["rocket", "flywheel", "wave-surge"],
+  thinking: ["node-map", "maze-grid", "zero-one"],
+  resilience: ["mountain-sun", "shield-mark", "anvil-mark"],
+};
+
+const COVER_MOTIF_KEYWORDS = {
+  "dot-grid": ["habit", "habits", "tiny", "atomic", "consistency", "small"],
+  "focus-block": ["focus", "deep", "indistractable", "attention", "concentration"],
+  "pencil-line": ["thinking", "clearly", "learn", "learning", "study"],
+  "loop-arrows": ["habit", "loop", "routine", "behavior-change", "behavior"],
+  "bullet-dot": ["one", "essentialism", "priority", "single", "thing"],
+  "target-rings": ["why", "purpose", "okrs", "measure", "goal", "goals"],
+  "crown-sigil": ["power", "prince", "laws", "authority", "status"],
+  "crossed-swords": ["war", "strategy", "battle", "conflict"],
+  "handshake-split": ["negotiation", "split", "difference", "deal", "conflict"],
+  "magnet-u": ["influence", "persuasion", "pre-suasion", "charisma"],
+  "microphone": ["talk", "ted", "pitch", "speak", "speaking", "presentation"],
+  "wave-surge": ["ocean", "flow", "blue", "momentum"],
+  "swan-curve": ["black", "swan", "uncertainty", "tail-risk"],
+  flywheel: ["startup", "lean", "iteration", "product", "innovation"],
+  "zero-one": ["zero", "one", "differentiation", "monopoly", "new"],
+  "stacked-coins": ["money", "wealth", "finance", "investing", "capital"],
+  "bar-coin": ["psychology-of-money", "economics", "incentives"],
+  "column-arch": ["meditations", "stoicism", "philosophy", "meaning", "wisdom"],
+  "mountain-sun": ["obstacle", "grit", "resilience", "discipline", "hard"],
+  "checklist-board": ["checklist", "execution", "gtd", "productivity"],
+  "shield-mark": ["ownership", "toughness", "cant-hurt-me", "fear"],
+  pyramid: ["pyramid", "principle", "structure", "logic"],
+};
+
+const COVER_BOOK_OVERRIDES = {
+  "atomic-habits": { motif: "dot-grid", theme: "productivity", subtitle: "Small habits compound into big outcomes" },
+  "deep-work": { motif: "focus-block", theme: "productivity", subtitle: "Focus deeply on work that truly matters" },
+  "thinking-fast-and-slow": { motif: "pencil-line", theme: "thinking", subtitle: "Two systems of thought in tension" },
+  "the-power-of-habit": { motif: "loop-arrows", theme: "productivity", subtitle: "Cue, routine, and reward in daily life" },
+  "the-one-thing": { motif: "bullet-dot", theme: "productivity", subtitle: "One priority that makes everything easier" },
+  "start-with-why": { motif: "target-rings", theme: "leadership", subtitle: "Purpose first, then action and execution" },
+  "the-48-laws-of-power": { motif: "crown-sigil", theme: "strategy", subtitle: "Status, timing, and strategic positioning" },
+  "art-of-war": { motif: "crossed-swords", theme: "strategy", subtitle: "Win through positioning, not just force" },
+  "33-strategies-of-war": { motif: "chess-grid", theme: "strategy", subtitle: "Tactical choices under pressure" },
+  "never-split-the-difference": { motif: "handshake-split", theme: "communication", subtitle: "Negotiation through calibrated empathy" },
+  influence: { motif: "magnet-u", theme: "communication", subtitle: "Psychology of persuasion in real decisions" },
+  "pre-suasion": { motif: "magnet-u", theme: "communication", subtitle: "Prime attention before you make the ask" },
+  "talk-like-ted": { motif: "microphone", theme: "communication", subtitle: "Stories and delivery that move people" },
+  "how-to-talk-to-anyone": { motif: "speech-bubbles", theme: "communication", subtitle: "Social ease through practical communication skills" },
+  "the-psychology-of-money": { motif: "bar-coin", theme: "finance", subtitle: "Behavior and incentives behind money decisions" },
+  "rich-dad-poor-dad": { motif: "stacked-coins", theme: "finance", subtitle: "Mindset and systems for building wealth" },
+  "blue-ocean-strategy": { motif: "wave-surge", theme: "strategy", subtitle: "Create uncontested space instead of competing harder" },
+  "the-black-swan": { motif: "swan-curve", theme: "thinking", subtitle: "Outlier events and hidden uncertainty" },
+  "the-lean-startup": { motif: "flywheel", theme: "innovation", subtitle: "Build, measure, learn in tight cycles" },
+  "zero-to-one": { motif: "zero-one", theme: "innovation", subtitle: "Move from incremental to truly new value" },
+  "the-checklist-manifesto": { motif: "checklist-board", theme: "productivity", subtitle: "Reliability through simple disciplined systems" },
+  meditations: { motif: "column-arch", theme: "philosophy", subtitle: "Calm judgment under pressure and uncertainty" },
+  "the-obstacle-is-the-way": { motif: "mountain-sun", theme: "resilience", subtitle: "Turn friction into progress and strength" },
+  "cant-hurt-me": { motif: "shield-mark", theme: "resilience", subtitle: "Mental toughness through deliberate adversity" },
+  "the-prince": { motif: "crown-sigil", theme: "strategy", subtitle: "Power, governance, and political realism" },
+  "the-pyramid-principle": { motif: "pyramid", theme: "thinking", subtitle: "Structured argument and clear executive communication" },
+  attached: { motif: "interlocked-rings", theme: "relationships", subtitle: "Attachment patterns in modern relationships" },
+};
+
+const COVER_PALETTE_OVERRIDES = {
+  "atomic-habits": { bgTop: "#D6A91F", bgBottom: "#F1C94C", panel: "#FFF9E8", panelStroke: "#D0B25D", ink: "#2B2B22", accent: "#3B4C6B", accentSoft: "#D9B24B", light: "#FFFDF6" },
+  "deep-work": { bgTop: "#0F2F58", bgBottom: "#20518A", panel: "#F8FBFF", panelStroke: "#B6C5D8", ink: "#15253B", accent: "#1B3F73", accentSoft: "#88A9D0", light: "#FFFFFF" },
+  "the-48-laws-of-power": { bgTop: "#131313", bgBottom: "#2A2A2A", panel: "#F0E5D0", panelStroke: "#BDA57D", ink: "#1B140D", accent: "#9E1B1B", accentSoft: "#6C6C6C", light: "#FFF9EE" },
+  "art-of-war": { bgTop: "#541B1B", bgBottom: "#7A2A2A", panel: "#F3E5D2", panelStroke: "#C5A276", ink: "#2E1A13", accent: "#B98A3C", accentSoft: "#AC6A5A", light: "#FFF6EA" },
+  "the-psychology-of-money": { bgTop: "#1F513A", bgBottom: "#2F7A58", panel: "#F4F1E5", panelStroke: "#B8B193", ink: "#1E3128", accent: "#CFA34C", accentSoft: "#89B39C", light: "#FCFAF1" },
+  "rich-dad-poor-dad": { bgTop: "#4C2D7A", bgBottom: "#6E44A3", panel: "#F4EDEE", panelStroke: "#C3B0C9", ink: "#2E2240", accent: "#E0B043", accentSoft: "#A890C2", light: "#FDF7FF" },
+  "thinking-fast-and-slow": { bgTop: "#E9ECEF", bgBottom: "#C9D0D8", panel: "#FFFFFF", panelStroke: "#BFC7D0", ink: "#2A3139", accent: "#E3A542", accentSoft: "#8DA0B3", light: "#FFFFFF" },
+  "the-one-thing": { bgTop: "#1D1D1D", bgBottom: "#3B3B3B", panel: "#FAFAFA", panelStroke: "#D3D3D3", ink: "#141414", accent: "#3D3D3D", accentSoft: "#8E8E8E", light: "#FFFFFF" },
+  "start-with-why": { bgTop: "#8A1E1E", bgBottom: "#B73535", panel: "#F9EFE5", panelStroke: "#D2B8A1", ink: "#2D1A15", accent: "#F1C15F", accentSoft: "#CB7474", light: "#FFF8F0" },
+  "blue-ocean-strategy": { bgTop: "#1D4A6D", bgBottom: "#2B7BA6", panel: "#F1F8FC", panelStroke: "#AAC5D8", ink: "#1C2F3E", accent: "#58A8D6", accentSoft: "#9ED3E8", light: "#F8FDFF" },
+  "the-black-swan": { bgTop: "#0F0F0F", bgBottom: "#2A2A2A", panel: "#F5F4EF", panelStroke: "#BFBBAF", ink: "#1D1D1D", accent: "#101010", accentSoft: "#7B7B7B", light: "#FFFFFF" },
+  "the-lean-startup": { bgTop: "#1F4E8C", bgBottom: "#2D73C2", panel: "#F4F8FC", panelStroke: "#B0C2D6", ink: "#1B2F46", accent: "#3B86D9", accentSoft: "#8AB3DF", light: "#FFFFFF" },
+  "cant-hurt-me": { bgTop: "#1A1A1A", bgBottom: "#3B3B3B", panel: "#F1ECE4", panelStroke: "#BFB3A5", ink: "#191512", accent: "#C9782A", accentSoft: "#8E8E8E", light: "#FFF8EE" },
+};
+
+function chooseCoverMotif(book, theme, bookId) {
+  const override = COVER_BOOK_OVERRIDES[bookId];
+  if (override?.motif) return override.motif;
+
+  const words = cleanSpaces([book.title, ...(book.categories || []), ...(book.tags || [])].join(" "))
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, " ")
+    .split(/\s+/)
+    .filter(Boolean);
+
+  const scores = new Map();
+  for (const [motif, keywords] of Object.entries(COVER_MOTIF_KEYWORDS)) {
+    let value = 0;
+    for (const word of words) {
+      if (keywords.includes(word)) value += 2;
+      if (word.includes("-")) {
+        const normalized = word.replace(/-/g, "");
+        if (keywords.includes(normalized)) value += 1;
+      }
+    }
+    if (value > 0) scores.set(motif, value);
+  }
+
+  if (scores.size > 0) {
+    let best = null;
+    let bestScore = -1;
+    for (const [motif, value] of scores.entries()) {
+      if (value > bestScore) {
+        best = motif;
+        bestScore = value;
+      }
+    }
+    if (best) return best;
+  }
+
+  const defaults = COVER_THEME_DEFAULT_MOTIFS[theme] || COVER_THEME_DEFAULT_MOTIFS.thinking;
+  return defaults[hash(`${bookId}|${theme}|motif`) % defaults.length];
+}
+
 function chooseCoverTheme(book) {
   const score = new Map(Object.keys(COVER_THEME_META).map((key) => [key, 0]));
   const categories = Array.isArray(book.categories) ? book.categories : [];
@@ -1171,18 +1296,185 @@ function renderThemeSymbol(theme, palette, seed) {
   }
 }
 
+function renderCoverMotif(motif, theme, palette, seed) {
+  const sx = (seed % 30) - 15;
+  const sy = ((seed >> 4) % 26) - 13;
+
+  switch (motif) {
+    case "focus-block":
+      return `
+  <g transform="translate(${410 + sx} ${560 + sy})">
+    <rect x="0" y="0" width="380" height="332" rx="20" fill="${palette.light}" stroke="${palette.accentSoft}" stroke-width="8"/>
+    <rect x="62" y="64" width="256" height="188" rx="14" fill="${palette.ink}" opacity="0.9"/>
+    <rect x="92" y="278" width="196" height="20" rx="10" fill="${palette.accent}" opacity="0.86"/>
+  </g>`;
+    case "dot-grid":
+      return `
+  <g transform="translate(${404 + sx} ${556 + sy})">
+    <rect x="0" y="0" width="392" height="340" rx="24" fill="${palette.light}" stroke="${palette.accentSoft}" stroke-width="8"/>
+    ${Array.from({ length: 5 })
+      .map((_row, r) =>
+        Array.from({ length: 5 })
+          .map((_col, c) => {
+            const cx = 72 + c * 62;
+            const cy = 70 + r * 56;
+            const fill = (r + c) % 2 === 0 ? palette.accent : palette.accentSoft;
+            return `<circle cx="${cx}" cy="${cy}" r="13" fill="${fill}" opacity="0.88"/>`;
+          })
+          .join("")
+      )
+      .join("\n")}
+  </g>`;
+    case "pencil-line":
+      return `
+  <g transform="translate(${390 + sx} ${566 + sy})">
+    <rect x="0" y="0" width="420" height="328" rx="24" fill="${palette.light}" stroke="${palette.accentSoft}" stroke-width="8"/>
+    <path d="M56 258 C136 192 228 222 306 158" stroke="${palette.ink}" stroke-width="10" stroke-linecap="round"/>
+    <rect x="82" y="98" width="250" height="26" rx="13" fill="${palette.accentSoft}" opacity="0.55"/>
+    <rect x="82" y="132" width="212" height="26" rx="13" fill="${palette.accent}" opacity="0.45"/>
+    <g transform="translate(294 214) rotate(-18)">
+      <rect x="0" y="0" width="88" height="22" rx="10" fill="${palette.accent}" opacity="0.9"/>
+      <polygon points="88,11 108,0 108,22" fill="${palette.ink}"/>
+      <polygon points="108,0 118,11 108,22" fill="${palette.light}"/>
+    </g>
+  </g>`;
+    case "loop-arrows":
+      return `
+  <g transform="translate(${404 + sx} ${558 + sy})">
+    <circle cx="196" cy="170" r="128" fill="none" stroke="${palette.accent}" stroke-width="20" opacity="0.88"/>
+    <circle cx="196" cy="170" r="76" fill="none" stroke="${palette.accentSoft}" stroke-width="18" opacity="0.86"/>
+    <polygon points="316,170 274,154 284,186" fill="${palette.accent}"/>
+    <polygon points="118,96 132,136 98,126" fill="${palette.accentSoft}"/>
+    <circle cx="196" cy="170" r="32" fill="${palette.ink}" opacity="0.82"/>
+  </g>`;
+    case "bullet-dot":
+      return `
+  <g transform="translate(${430 + sx} ${590 + sy})">
+    <rect x="0" y="0" width="340" height="276" rx="22" fill="${palette.light}" stroke="${palette.accentSoft}" stroke-width="8"/>
+    <circle cx="170" cy="130" r="68" fill="${palette.ink}" opacity="0.92"/>
+    <rect x="84" y="214" width="172" height="20" rx="10" fill="${palette.accent}" opacity="0.88"/>
+  </g>`;
+    case "target-rings":
+      return `
+  <g transform="translate(${404 + sx} ${552 + sy})">
+    <circle cx="196" cy="186" r="152" fill="${palette.light}" opacity="0.95" stroke="${palette.accentSoft}" stroke-width="8"/>
+    <circle cx="196" cy="186" r="104" fill="none" stroke="${palette.accent}" stroke-width="16"/>
+    <circle cx="196" cy="186" r="62" fill="none" stroke="${palette.accentSoft}" stroke-width="14"/>
+    <circle cx="196" cy="186" r="24" fill="${palette.ink}"/>
+  </g>`;
+    case "crossed-swords":
+      return `
+  <g transform="translate(${404 + sx} ${548 + sy})">
+    <rect x="38" y="28" width="320" height="300" rx="24" fill="${palette.light}" stroke="${palette.accentSoft}" stroke-width="8"/>
+    <path d="M86 288 L302 72" stroke="${palette.accent}" stroke-width="16" stroke-linecap="round"/>
+    <path d="M302 288 L86 72" stroke="${palette.accentSoft}" stroke-width="16" stroke-linecap="round"/>
+    <rect x="74" y="278" width="34" height="12" rx="6" fill="${palette.ink}"/>
+    <rect x="292" y="278" width="34" height="12" rx="6" fill="${palette.ink}"/>
+  </g>`;
+    case "handshake-split":
+      return `
+  <g transform="translate(${402 + sx} ${560 + sy})">
+    <rect x="0" y="0" width="396" height="332" rx="24" fill="${palette.light}" stroke="${palette.accentSoft}" stroke-width="8"/>
+    <rect x="194" y="40" width="8" height="252" rx="4" fill="${palette.accent}" opacity="0.84"/>
+    <path d="M68 204 Q120 152 178 190 L194 206" fill="none" stroke="${palette.ink}" stroke-width="14" stroke-linecap="round"/>
+    <path d="M328 204 Q276 152 218 190 L202 206" fill="none" stroke="${palette.ink}" stroke-width="14" stroke-linecap="round"/>
+    <rect x="86" y="90" width="94" height="22" rx="11" fill="${palette.accentSoft}" opacity="0.72"/>
+    <rect x="214" y="90" width="96" height="22" rx="11" fill="${palette.accent}" opacity="0.72"/>
+  </g>`;
+    case "magnet-u":
+      return `
+  <g transform="translate(${408 + sx} ${562 + sy})">
+    <path d="M80 68 V214 Q80 304 170 304 H230 Q320 304 320 214 V68" fill="none" stroke="${palette.accent}" stroke-width="34" stroke-linecap="round"/>
+    <rect x="66" y="40" width="44" height="68" rx="12" fill="${palette.light}"/>
+    <rect x="290" y="40" width="44" height="68" rx="12" fill="${palette.light}"/>
+    <circle cx="198" cy="182" r="54" fill="${palette.accentSoft}" opacity="0.7"/>
+    <circle cx="198" cy="182" r="26" fill="${palette.ink}" opacity="0.86"/>
+  </g>`;
+    case "microphone":
+      return `
+  <g transform="translate(${426 + sx} ${556 + sy})">
+    <rect x="96" y="18" width="146" height="186" rx="72" fill="${palette.accent}" opacity="0.9"/>
+    <rect x="116" y="42" width="106" height="138" rx="52" fill="${palette.light}" opacity="0.9"/>
+    <path d="M64 174 Q64 248 132 268 H206 Q274 248 274 174" fill="none" stroke="${palette.ink}" stroke-width="12" stroke-linecap="round"/>
+    <rect x="164" y="264" width="16" height="68" rx="8" fill="${palette.ink}"/>
+    <rect x="122" y="330" width="100" height="16" rx="8" fill="${palette.ink}"/>
+  </g>`;
+    case "wave-surge":
+      return `
+  <g transform="translate(${392 + sx} ${574 + sy})">
+    <rect x="0" y="0" width="416" height="308" rx="24" fill="${palette.light}" stroke="${palette.accentSoft}" stroke-width="8"/>
+    <path d="M20 198 C86 132 148 132 214 198 C278 262 340 262 396 198" fill="none" stroke="${palette.accent}" stroke-width="16" stroke-linecap="round"/>
+    <path d="M20 242 C88 176 150 176 216 242 C278 304 340 304 396 242" fill="none" stroke="${palette.accentSoft}" stroke-width="14" stroke-linecap="round"/>
+  </g>`;
+    case "swan-curve":
+      return `
+  <g transform="translate(${400 + sx} ${564 + sy})">
+    <rect x="0" y="0" width="400" height="324" rx="24" fill="${palette.light}" stroke="${palette.accentSoft}" stroke-width="8"/>
+    <path d="M98 232 C122 166 196 142 236 178 C264 204 246 248 202 256 C180 260 158 254 138 236 C170 274 232 284 278 246 C324 208 320 138 266 104 C226 80 176 84 138 112" fill="none" stroke="${palette.ink}" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="252" cy="122" r="8" fill="${palette.ink}"/>
+  </g>`;
+    case "flywheel":
+      return `
+  <g transform="translate(${400 + sx} ${554 + sy})">
+    <circle cx="200" cy="188" r="146" fill="${palette.light}" opacity="0.95" stroke="${palette.accentSoft}" stroke-width="8"/>
+    <circle cx="200" cy="188" r="104" fill="none" stroke="${palette.accent}" stroke-width="18" opacity="0.86"/>
+    <circle cx="200" cy="188" r="56" fill="none" stroke="${palette.accentSoft}" stroke-width="14" opacity="0.86"/>
+    <path d="M306 168 L332 200 L292 204" fill="${palette.accent}"/>
+  </g>`;
+    case "zero-one":
+      return `
+  <g transform="translate(${406 + sx} ${566 + sy})">
+    <rect x="0" y="0" width="388" height="334" rx="24" fill="${palette.light}" stroke="${palette.accentSoft}" stroke-width="8"/>
+    <text x="104" y="204" text-anchor="middle" fill="${palette.ink}" font-family="Georgia, serif" font-size="150" font-weight="700">0</text>
+    <text x="292" y="204" text-anchor="middle" fill="${palette.accent}" font-family="Georgia, serif" font-size="150" font-weight="700">1</text>
+    <path d="M166 176 L222 176" stroke="${palette.accentSoft}" stroke-width="14" stroke-linecap="round"/>
+  </g>`;
+    case "stacked-coins":
+      return `
+  <g transform="translate(${408 + sx} ${566 + sy})">
+    <ellipse cx="198" cy="286" rx="144" ry="34" fill="${palette.accentSoft}" opacity="0.72"/>
+    <ellipse cx="198" cy="248" rx="144" ry="34" fill="${palette.accent}" opacity="0.8"/>
+    <ellipse cx="198" cy="210" rx="144" ry="34" fill="${palette.accentSoft}" opacity="0.86"/>
+    <ellipse cx="198" cy="172" rx="144" ry="34" fill="${palette.accent}" opacity="0.92"/>
+    <circle cx="198" cy="100" r="44" fill="${palette.ink}" opacity="0.85"/>
+    <text x="198" y="114" text-anchor="middle" fill="${palette.light}" font-family="Georgia, serif" font-size="40" font-weight="700">$</text>
+  </g>`;
+    case "shield-mark":
+      return `
+  <g transform="translate(${414 + sx} ${552 + sy})">
+    <path d="M182 26 L326 84 V192 C326 286 262 350 182 384 C102 350 38 286 38 192 V84 Z" fill="${palette.accent}" opacity="0.88"/>
+    <path d="M182 70 L286 112 V192 C286 260 244 310 182 340 C120 310 78 260 78 192 V112 Z" fill="${palette.light}" opacity="0.9"/>
+    <path d="M132 198 L166 232 L236 160" fill="none" stroke="${palette.ink}" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>`;
+    case "pyramid":
+      return `
+  <g transform="translate(${408 + sx} ${560 + sy})">
+    <polygon points="198,34 344,304 52,304" fill="${palette.accent}" opacity="0.9"/>
+    <polygon points="198,74 304,272 92,272" fill="${palette.light}" opacity="0.88"/>
+    <line x1="198" y1="74" x2="198" y2="272" stroke="${palette.accentSoft}" stroke-width="10"/>
+    <line x1="144" y1="174" x2="252" y2="174" stroke="${palette.accentSoft}" stroke-width="10"/>
+  </g>`;
+    default:
+      return renderThemeSymbol(theme, palette, seed);
+  }
+}
+
 function createCoverSvg(pkg) {
   const id = pkg.book.bookId;
-  const theme = chooseCoverTheme(pkg.book);
+  const override = COVER_BOOK_OVERRIDES[id] || null;
+  const theme = override?.theme || chooseCoverTheme(pkg.book);
   const meta = COVER_THEME_META[theme] || COVER_THEME_META.thinking;
   const seed = hash(`${id}|${pkg.book.author}|${pkg.book.title}|${theme}`);
-  const palette = meta.palettes[hash(`${id}|${theme}`) % meta.palettes.length];
+  const motif = chooseCoverMotif(pkg.book, theme, id);
+  const basePalette = meta.palettes[hash(`${id}|${theme}`) % meta.palettes.length];
+  const palette = { ...basePalette, ...(COVER_PALETTE_OVERRIDES[id] || {}) };
   const layoutVariant = hash(`${pkg.book.title}|${pkg.book.author}`) % 5;
   const gradId = `g${hash(`${id}-${theme}`)}`;
   const author = cleanSpaces(pkg.book.author).toUpperCase();
   const titleLines = splitTitle(pkg.book.title);
   const fontSize = titleFontSize(titleLines);
   const keywordText = keywordLine(pkg.book, meta.label);
+  const subtitle = override?.subtitle || meta.subtitle;
   const lineGap = Math.round(fontSize * 1.08);
   const firstLineY = titleLines.length === 1 ? 1216 : titleLines.length === 2 ? 1162 : 1114;
   const titleSvg = titleLines
@@ -1205,7 +1497,7 @@ function createCoverSvg(pkg) {
   <rect width="1200" height="1800" fill="url(#${gradId})"/>
 ${renderCoverLayout(layoutVariant, palette, seed)}
   <rect x="116" y="304" width="968" height="1036" rx="38" fill="${palette.panel}" stroke="${palette.panelStroke}" stroke-width="10"/>
-${renderThemeSymbol(theme, palette, seed)}
+${renderCoverMotif(motif, theme, palette, seed)}
 
   <rect x="0" y="0" width="1200" height="238" fill="${palette.bgTop}" opacity="0.93"/>
   <rect x="0" y="1454" width="1200" height="346" fill="${palette.bgBottom}" opacity="0.95"/>
@@ -1213,7 +1505,7 @@ ${renderThemeSymbol(theme, palette, seed)}
   <text x="600" y="208" text-anchor="middle" fill="${palette.light}" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="4">${esc(meta.label)}</text>
 ${titleSvg}
   <text x="600" y="1538" text-anchor="middle" fill="${palette.light}" font-family="'Trebuchet MS', Arial, sans-serif" font-size="30" letter-spacing="3">${esc(keywordText)}</text>
-  <text x="600" y="1604" text-anchor="middle" fill="${palette.light}" font-family="Georgia, serif" font-size="30">${esc(meta.subtitle)}</text>
+  <text x="600" y="1604" text-anchor="middle" fill="${palette.light}" font-family="Georgia, serif" font-size="30">${esc(subtitle)}</text>
   <text x="600" y="1668" text-anchor="middle" fill="${palette.light}" font-family="'Trebuchet MS', Arial, sans-serif" font-size="26" letter-spacing="2">Modern Edition · Practical Lessons · Real Scenarios</text>
 </svg>
 `;

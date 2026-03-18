@@ -284,12 +284,29 @@ export function BookOnboardingClient() {
     completeSetup,
   } = useOnboardingState();
 
+  // Redirect locally if already complete
   useEffect(() => {
     if (!hydrated) return;
     if (state.setupComplete) {
       router.replace("/book/workspace");
     }
   }, [hydrated, router, state.setupComplete]);
+
+  // On a fresh device localStorage is empty — check the backend so returning
+  // users are never sent through onboarding again.
+  useEffect(() => {
+    if (!hydrated) return;
+    if (state.setupComplete) return;
+    fetch("/app/api/book/me/profile")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => {
+        if (data?.profile?.onboardingCompleted === true) {
+          completeSetup();
+          router.replace("/book/workspace");
+        }
+      })
+      .catch(() => {});
+  }, [hydrated, state.setupComplete, completeSetup, router]);
 
   const step = state.currentStep;
   const selectedCount = state.selectedBookIds.length;
@@ -330,6 +347,7 @@ export function BookOnboardingClient() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           profile: {
+            onboardingCompleted: true,
             displayName: state.name.trim() || undefined,
             pronouns:
               state.pronoun !== "Prefer not to say" ? state.pronoun : undefined,

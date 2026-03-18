@@ -16,25 +16,10 @@
   <path d="M0 1180 Q300 1041 600 1180 T1200 1180" stroke="#E4A150" stroke-width="16" opacity="0.22"/>
   <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F3ECE0" stroke="#C8B7A1" stroke-width="10"/>
 
-  <g transform="translate(383 556)">
-    <rect x="20" y="36" width="364" height="324" rx="26" fill="#FDF8EE" stroke="#93B0CE" stroke-width="8"/>
-    <g stroke="#E4A150" stroke-width="8" opacity="0.86">
-      <line x1="82" y1="92" x2="184" y2="146"/>
-      <line x1="184" y1="146" x2="286" y2="108"/>
-      <line x1="184" y1="146" x2="168" y2="248"/>
-      <line x1="168" y1="248" x2="286" y2="288"/>
-      <line x1="286" y1="108" x2="286" y2="288"/>
-      <line x1="82" y1="92" x2="90" y2="232"/>
-      <line x1="90" y1="232" x2="168" y2="248"/>
-    </g>
-    <g fill="#233244">
-      <circle cx="82" cy="92" r="14"/>
-      <circle cx="184" cy="146" r="14"/>
-      <circle cx="286" cy="108" r="14"/>
-      <circle cx="90" cy="232" r="14"/>
-      <circle cx="168" cy="248" r="14"/>
-      <circle cx="286" cy="288" r="14"/>
-    </g>
+  <g transform="translate(387 562)">
+    <rect x="0" y="0" width="400" height="324" rx="24" fill="#FDF8EE" stroke="#93B0CE" stroke-width="8"/>
+    <path d="M98 232 C122 166 196 142 236 178 C264 204 246 248 202 256 C180 260 158 254 138 236 C170 274 232 284 278 246 C324 208 320 138 266 104 C226 80 176 84 138 112" fill="none" stroke="#233244" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="252" cy="122" r="8" fill="#233244"/>
   </g>
 
   <rect x="0" y="0" width="1200" height="238" fill="#2A3F5B" opacity="0.93"/>

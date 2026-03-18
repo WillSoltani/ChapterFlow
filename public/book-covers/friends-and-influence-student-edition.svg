@@ -16,14 +16,12 @@
   <path d="M0 1180 Q300 1077 600 1180 T1200 1180" stroke="#E19345" stroke-width="16" opacity="0.22"/>
   <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F4EFE4" stroke="#CBBBA3" stroke-width="10"/>
 
-  <g transform="translate(412 587)">
-    <path d="M30 46 H270 Q304 46 304 80 V188 Q304 222 270 222 H150 L110 260 L110 222 H30 Q-4 222 -4 188 V80 Q-4 46 30 46 Z" fill="#FDF8EE" stroke="#8DBBCB" stroke-width="8"/>
-    <path d="M194 142 H366 Q398 142 398 174 V280 Q398 312 366 312 H280 L244 346 V312 H194 Q162 312 162 280 V174 Q162 142 194 142 Z" fill="#E19345" opacity="0.86"/>
-    <circle cx="86" cy="132" r="12" fill="#20313C"/>
-    <circle cx="148" cy="132" r="12" fill="#20313C"/>
-    <circle cx="210" cy="132" r="12" fill="#20313C"/>
-    <rect x="214" y="222" width="132" height="14" rx="7" fill="#FDF8EE" opacity="0.92"/>
-    <rect x="214" y="252" width="102" height="14" rx="7" fill="#FDF8EE" opacity="0.92"/>
+  <g transform="translate(420 574)">
+    <path d="M80 68 V214 Q80 304 170 304 H230 Q320 304 320 214 V68" fill="none" stroke="#E19345" stroke-width="34" stroke-linecap="round"/>
+    <rect x="66" y="40" width="44" height="68" rx="12" fill="#FDF8EE"/>
+    <rect x="290" y="40" width="44" height="68" rx="12" fill="#FDF8EE"/>
+    <circle cx="198" cy="182" r="54" fill="#8DBBCB" opacity="0.7"/>
+    <circle cx="198" cy="182" r="26" fill="#20313C" opacity="0.86"/>
   </g>
 
   <rect x="0" y="0" width="1200" height="238" fill="#2D4A64" opacity="0.93"/>

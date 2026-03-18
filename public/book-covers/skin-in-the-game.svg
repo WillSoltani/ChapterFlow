@@ -17,24 +17,15 @@
   <rect x="670" y="950" width="420" height="390" rx="42" fill="#FDF8EE" opacity="0.2"/>
   <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F3ECE0" stroke="#C8B7A1" stroke-width="10"/>
 
-  <g transform="translate(388 551)">
-    <rect x="20" y="36" width="364" height="324" rx="26" fill="#FDF8EE" stroke="#93B0CE" stroke-width="8"/>
-    <g stroke="#E4A150" stroke-width="8" opacity="0.86">
-      <line x1="82" y1="92" x2="184" y2="146"/>
-      <line x1="184" y1="146" x2="286" y2="108"/>
-      <line x1="184" y1="146" x2="168" y2="248"/>
-      <line x1="168" y1="248" x2="286" y2="288"/>
-      <line x1="286" y1="108" x2="286" y2="288"/>
-      <line x1="82" y1="92" x2="90" y2="232"/>
-      <line x1="90" y1="232" x2="168" y2="248"/>
-    </g>
-    <g fill="#233244">
-      <circle cx="82" cy="92" r="14"/>
-      <circle cx="184" cy="146" r="14"/>
-      <circle cx="286" cy="108" r="14"/>
-      <circle cx="90" cy="232" r="14"/>
-      <circle cx="168" cy="248" r="14"/>
-      <circle cx="286" cy="288" r="14"/>
+  <g transform="translate(382 559)">
+    <rect x="0" y="0" width="420" height="328" rx="24" fill="#FDF8EE" stroke="#93B0CE" stroke-width="8"/>
+    <path d="M56 258 C136 192 228 222 306 158" stroke="#233244" stroke-width="10" stroke-linecap="round"/>
+    <rect x="82" y="98" width="250" height="26" rx="13" fill="#93B0CE" opacity="0.55"/>
+    <rect x="82" y="132" width="212" height="26" rx="13" fill="#E4A150" opacity="0.45"/>
+    <g transform="translate(294 214) rotate(-18)">
+      <rect x="0" y="0" width="88" height="22" rx="10" fill="#E4A150" opacity="0.9"/>
+      <polygon points="88,11 108,0 108,22" fill="#233244"/>
+      <polygon points="108,0 118,11 108,22" fill="#FDF8EE"/>
     </g>
   </g>
 

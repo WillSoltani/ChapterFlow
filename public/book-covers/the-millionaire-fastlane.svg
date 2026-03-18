@@ -23,15 +23,13 @@
   <path d="M140 1330 L1060 1330" stroke="#EB9A4F" stroke-width="10" opacity="0.2"/>
   <rect x="116" y="304" width="968" height="1036" rx="38" fill="#F4ECE2" stroke="#C8B8A2" stroke-width="10"/>
 
-  <g transform="translate(410 562)">
-    <path d="M198 20 C272 74 304 146 304 212 C304 284 254 332 198 364 C142 332 92 284 92 212 C92 146 124 74 198 20 Z" fill="#EB9A4F" opacity="0.9"/>
-    <circle cx="198" cy="156" r="44" fill="#FDF8EE" opacity="0.95"/>
-    <path d="M176 224 L220 224 L236 320 L160 320 Z" fill="#FDF8EE" opacity="0.94"/>
-    <path d="M110 270 L58 302 L104 314 Z" fill="#8CBCC6" opacity="0.9"/>
-    <path d="M286 270 L338 302 L292 314 Z" fill="#8CBCC6" opacity="0.9"/>
-    <circle cx="72" cy="94" r="8" fill="#FDF8EE"/>
-    <circle cx="328" cy="114" r="10" fill="#FDF8EE"/>
-    <circle cx="304" cy="56" r="6" fill="#FDF8EE"/>
+  <g transform="translate(410 576)">
+    <ellipse cx="198" cy="286" rx="144" ry="34" fill="#8CBCC6" opacity="0.72"/>
+    <ellipse cx="198" cy="248" rx="144" ry="34" fill="#EB9A4F" opacity="0.8"/>
+    <ellipse cx="198" cy="210" rx="144" ry="34" fill="#8CBCC6" opacity="0.86"/>
+    <ellipse cx="198" cy="172" rx="144" ry="34" fill="#EB9A4F" opacity="0.92"/>
+    <circle cx="198" cy="100" r="44" fill="#22343B" opacity="0.85"/>
+    <text x="198" y="114" text-anchor="middle" fill="#FDF8EE" font-family="Georgia, serif" font-size="40" font-weight="700">$</text>
   </g>
 
   <rect x="0" y="0" width="1200" height="238" fill="#234057" opacity="0.93"/>
