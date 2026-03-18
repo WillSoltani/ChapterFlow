@@ -1,0 +1,65 @@
+name: Deploy Book Data (Dev)
+
+# Triggers:
+#   1. Push to main that touches any seed/book script — e.g. adding new license keys
+#   2. After a successful infra deploy — so freshly-created DynamoDB tables are always seeded
+#   3. workflow_dispatch — manual re-seed at any time (e.g. after key revocation)
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'scripts/book/**'
+      - '.github/workflows/deploy-book-data.yml'
+  workflow_run:
+    workflows: ['Deploy Infra (Dev)']
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+concurrency:
+  group: deploy-book-data-dev
+  cancel-in-progress: false
+
+env:
+  AWS_REGION: us-east-1
+  # Must match tableName in infra/lib/storage-stack.ts
+  SECURE_DOC_TABLE: SecureDocApp
+
+jobs:
+  seed-book-data:
+    name: Seed Book Data
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # For workflow_run triggers, only proceed when the upstream workflow succeeded.
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        # --ignore-scripts skips postinstall hooks (e.g. Puppeteer, canvas)
+        # --omit=optional skips large native optional deps not needed by the seed script
+        run: npm ci --ignore-scripts --omit=optional
+
+      - name: Configure AWS credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME_DEV }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Seed license keys
+        run: node scripts/book/seed-license-keys.mjs
+        env:
+          AWS_REGION: ${{ env.AWS_REGION }}
+          SECURE_DOC_TABLE: ${{ env.SECURE_DOC_TABLE }}

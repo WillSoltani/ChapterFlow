@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import {
@@ -298,6 +298,20 @@ export function BookOnboardingClient() {
     [state.selectedBookIds]
   );
   const limitReached = selectedCount >= MAX_BOOKS;
+
+  // ── Book selection pagination ────────────────────────────────────────────
+  const [bookPage, setBookPage] = useState(0);
+  const [booksPerPage, setBooksPerPage] = useState(10);
+  const totalBookPages = Math.ceil(BOOKS_CATALOG.length / booksPerPage);
+  const paginatedBooks = useMemo(
+    () => BOOKS_CATALOG.slice(bookPage * booksPerPage, (bookPage + 1) * booksPerPage),
+    [bookPage, booksPerPage]
+  );
+
+  // Reset to first page when leaving and re-entering the book step
+  useEffect(() => {
+    if (step === 3) setBookPage(0);
+  }, [step]);
 
   const emailValid = isValidEmailOrEmpty(state.email);
 
@@ -602,18 +616,42 @@ export function BookOnboardingClient() {
             {/* ── Step 3: Book selection ───────────────────────────────────── */}
             {step === 3 ? (
               <div className="space-y-4">
-                <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                {/* Header: selection count + per-page selector */}
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                   <p className="text-sm text-(--cf-text-2)">
                     {selectedCount}/{MAX_BOOKS} selected
+                    <span className="ml-2 text-(--cf-text-3)">
+                      · {BOOKS_CATALOG.length} books available
+                    </span>
                   </p>
-                  <p className="text-sm text-(--cf-text-3)">
-                    Start with this book and unlock the rest of the experience chapter by
-                    chapter.
-                  </p>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs text-(--cf-text-3)">Show</span>
+                    {([10, 20, 50] as const).map((n) => (
+                      <button
+                        key={n}
+                        type="button"
+                        onClick={() => {
+                          setBooksPerPage(n);
+                          setBookPage(0);
+                        }}
+                        className={[
+                          "rounded-lg border px-2.5 py-1 text-xs font-medium transition",
+                          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)",
+                          booksPerPage === n
+                            ? "border-(--cf-accent-border) bg-(--cf-accent-soft) text-(--cf-info-text)"
+                            : "border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-2) hover:border-(--cf-border-strong)",
+                        ].join(" ")}
+                      >
+                        {n}
+                      </button>
+                    ))}
+                    <span className="text-xs text-(--cf-text-3)">per page</span>
+                  </div>
                 </div>
 
+                {/* Book grid */}
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                  {BOOKS_CATALOG.map((book) => {
+                  {paginatedBooks.map((book) => {
                     const selected = selectedBooksSet.has(book.id);
                     const disabled = !selected && limitReached;
                     return (
@@ -627,6 +665,62 @@ export function BookOnboardingClient() {
                     );
                   })}
                 </div>
+
+                {/* Pagination controls */}
+                {totalBookPages > 1 && (
+                  <div className="flex items-center justify-between gap-2">
+                    <button
+                      type="button"
+                      disabled={bookPage === 0}
+                      onClick={() => setBookPage((p) => p - 1)}
+                      className={[
+                        "flex items-center gap-1.5 rounded-xl border px-3 py-2 text-sm font-medium transition",
+                        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)",
+                        bookPage === 0
+                          ? "cursor-not-allowed border-(--cf-border) text-(--cf-text-soft) opacity-40"
+                          : "border-(--cf-border) bg-(--cf-surface) text-(--cf-text-2) hover:border-(--cf-border-strong) hover:bg-(--cf-surface-muted)",
+                      ].join(" ")}
+                    >
+                      <ArrowLeft className="h-4 w-4" />
+                      Prev
+                    </button>
+
+                    <div className="flex items-center gap-1">
+                      {Array.from({ length: totalBookPages }, (_, i) => (
+                        <button
+                          key={i}
+                          type="button"
+                          onClick={() => setBookPage(i)}
+                          className={[
+                            "h-8 min-w-[2rem] rounded-xl border px-2 text-sm font-medium transition",
+                            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)",
+                            bookPage === i
+                              ? "border-(--cf-accent-border) bg-(--cf-accent-soft) text-(--cf-info-text)"
+                              : "border-(--cf-border) bg-(--cf-surface) text-(--cf-text-2) hover:border-(--cf-border-strong)",
+                          ].join(" ")}
+                        >
+                          {i + 1}
+                        </button>
+                      ))}
+                    </div>
+
+                    <button
+                      type="button"
+                      disabled={bookPage === totalBookPages - 1}
+                      onClick={() => setBookPage((p) => p + 1)}
+                      className={[
+                        "flex items-center gap-1.5 rounded-xl border px-3 py-2 text-sm font-medium transition",
+                        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)",
+                        bookPage === totalBookPages - 1
+                          ? "cursor-not-allowed border-(--cf-border) text-(--cf-text-soft) opacity-40"
+                          : "border-(--cf-border) bg-(--cf-surface) text-(--cf-text-2) hover:border-(--cf-border-strong) hover:bg-(--cf-surface-muted)",
+                      ].join(" ")}
+                    >
+                      Next
+                      <ArrowRight className="h-4 w-4" />
+                    </button>
+                  </div>
+                )}
               </div>
             ) : null}
 

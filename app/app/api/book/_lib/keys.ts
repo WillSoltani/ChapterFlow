@@ -138,6 +138,15 @@ export function stripeCustomerSk(): string {
   return "USER";
 }
 
+/** PK for a license key record. Code is stored uppercase for case-insensitive lookups. */
+export function licenseKeyPk(code: string): string {
+  return `BOOKLICENSE#KEY#${code.toUpperCase()}`;
+}
+
+export function licenseKeySk(): string {
+  return "META";
+}
+
 export function buildContentPrefix(bookId: string, version: number): string {
   return `book-content/books/${bookId}/v${padVersion(version)}`;
 }

@@ -154,12 +154,31 @@ export type BookUserEntitlement = {
   userId: string;
   plan: "FREE" | "PRO";
   proStatus?: "inactive" | "active" | "past_due" | "canceled";
+  /** How the user obtained PRO — "stripe" for paid subscription, "license" for a free-pass key */
+  proSource?: "stripe" | "license";
   freeBookSlots: number;
   unlockedBookIds: string[];
   stripeCustomerId?: string;
   stripeSubscriptionId?: string;
   currentPeriodEnd?: string;
+  /** The license key code that granted PRO access (if proSource === "license") */
+  licenseKey?: string;
+  /** ISO date when the license-based PRO expires (if proSource === "license") */
+  licenseExpiresAt?: string;
   updatedAt: string;
+};
+
+/** A single pre-generated free-pass license key stored in DynamoDB */
+export type LicenseKeyItem = {
+  code: string;
+  plan: "PRO";
+  validMonths: number;
+  status: "available" | "redeemed" | "revoked";
+  redeemedBy?: string;
+  redeemedAt?: string;
+  createdAt: string;
+  /** Optional human note for tracking (e.g., "Given to John Doe") */
+  note?: string;
 };
 
 export type BookUserProgress = {

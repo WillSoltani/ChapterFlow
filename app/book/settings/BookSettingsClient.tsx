@@ -9,14 +9,18 @@ import {
   Bell,
   Shield,
   ChevronDown,
+  Key,
   Loader2,
   Settings2,
   LogOut,
   Trash2,
   RotateCcw,
+  CheckCircle2,
+  XCircle,
 } from "lucide-react";
 import { useBookPreferences } from "@/app/book/hooks/useBookPreferences";
 import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
+import { useBookEntitlements } from "@/app/book/hooks/useBookEntitlements";
 import { useToast } from "@/app/book/hooks/useToast";
 import { ConfirmModal } from "@/app/book/components/ui/ConfirmModal";
 import { Toast } from "@/app/book/components/ui/Toast";
@@ -135,6 +139,130 @@ function SettingRow({
 
 function Divider() {
   return <div className="mx-3 h-px bg-(--cf-divider)" />;
+}
+
+// ---------------------------------------------------------------------------
+// License key section
+// ---------------------------------------------------------------------------
+
+function LicenseKeySection() {
+  const { billingState, redeemLicenseKey } = useBookEntitlements(true);
+  const [code, setCode] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [message, setMessage] = useState("");
+
+  const entitlement = billingState.payload?.entitlement;
+  const hasActiveLicense =
+    entitlement?.plan === "PRO" &&
+    entitlement.proSource === "license" &&
+    entitlement.licenseExpiresAt != null;
+
+  const formattedExpiry = hasActiveLicense && entitlement?.licenseExpiresAt
+    ? new Date(entitlement.licenseExpiresAt).toLocaleDateString(undefined, {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })
+    : null;
+
+  async function handleRedeem(e: React.FormEvent) {
+    e.preventDefault();
+    const trimmed = code.trim().toUpperCase();
+    if (!trimmed) return;
+    setStatus("loading");
+    setMessage("");
+    const error = await redeemLicenseKey(trimmed);
+    if (error) {
+      setStatus("error");
+      setMessage(error);
+    } else {
+      setStatus("success");
+      setMessage("Pro access activated! Your plan has been upgraded.");
+      setCode("");
+    }
+  }
+
+  return (
+    <section className="overflow-hidden rounded-[22px] border border-(--cf-border) bg-(--cf-surface) shadow-sm">
+      <div className="flex items-center gap-2.5 px-5 pb-3 pt-5">
+        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-(--cf-surface-muted) text-(--cf-text-2)">
+          <Key className="h-4 w-4" />
+        </div>
+        <h2 className="text-[15px] font-semibold text-(--cf-text-1)">License Key</h2>
+      </div>
+      <div className="px-2 pb-4">
+        <div className="rounded-[13px] px-3 py-2">
+          {hasActiveLicense && formattedExpiry ? (
+            <div className="mb-4 flex items-start gap-3 rounded-xl border border-(--cf-success-border) bg-(--cf-success-soft) px-4 py-3">
+              <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-(--cf-success-text)" />
+              <div>
+                <p className="text-sm font-semibold text-(--cf-success-text)">Pro access active</p>
+                <p className="mt-0.5 text-xs text-(--cf-text-3)">
+                  Your free-pass license is active until{" "}
+                  <span className="font-medium text-(--cf-text-2)">{formattedExpiry}</span>.
+                  {entitlement?.licenseKey && (
+                    <span className="ml-1 font-mono text-(--cf-text-soft)">
+                      ({entitlement.licenseKey})
+                    </span>
+                  )}
+                </p>
+              </div>
+            </div>
+          ) : null}
+
+          <p className="mb-3 text-xs leading-relaxed text-(--cf-text-3)">
+            Have a free-pass license key? Enter it below to activate Pro access for one month at no
+            charge.
+          </p>
+          <form onSubmit={handleRedeem} className="flex gap-2">
+            <input
+              type="text"
+              value={code}
+              onChange={(e) => {
+                setCode(e.target.value.toUpperCase());
+                if (status !== "idle") { setStatus("idle"); setMessage(""); }
+              }}
+              placeholder="CF-XXXX-XXXX-XXXX"
+              maxLength={17}
+              spellCheck={false}
+              autoComplete="off"
+              className="cf-input min-w-0 flex-1 rounded-xl px-3 py-2 font-mono text-sm uppercase tracking-widest"
+            />
+            <button
+              type="submit"
+              disabled={status === "loading" || code.trim().length === 0}
+              className={cn(
+                "shrink-0 rounded-xl px-4 py-2 text-sm font-semibold transition",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)",
+                status === "loading"
+                  ? "cursor-wait opacity-60 bg-(--cf-surface-muted) text-(--cf-text-2) border border-(--cf-border)"
+                  : "bg-linear-to-r from-(--cf-accent) to-(--cf-accent-strong) text-white shadow-sm hover:brightness-105 active:translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-40"
+              )}
+            >
+              {status === "loading" ? (
+                <Loader2 className="h-4 w-4 animate-spin" />
+              ) : (
+                "Redeem"
+              )}
+            </button>
+          </form>
+
+          {status === "success" && (
+            <div className="mt-3 flex items-center gap-2 text-sm text-(--cf-success-text)">
+              <CheckCircle2 className="h-4 w-4 shrink-0" />
+              <span>{message}</span>
+            </div>
+          )}
+          {status === "error" && (
+            <div className="mt-3 flex items-center gap-2 text-sm text-(--cf-danger-text)">
+              <XCircle className="h-4 w-4 shrink-0" />
+              <span>{message}</span>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  );
 }
 
 // ---------------------------------------------------------------------------
@@ -541,6 +669,9 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
             </div>
           </div>
         </SectionCard>
+
+        {/* ── License Key ─────────────────────────────────────── */}
+        <LicenseKeySection />
 
         {/* ── Advanced (collapsible) ───────────────────────────── */}
         <section className="overflow-hidden rounded-[22px] border border-(--cf-border) bg-(--cf-surface) shadow-sm">

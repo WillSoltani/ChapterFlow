@@ -7,10 +7,13 @@ export type EntitlementsResponse = {
   entitlement: {
     plan: "FREE" | "PRO";
     proStatus: "inactive" | "active" | "past_due" | "canceled";
+    proSource?: "stripe" | "license";
     freeBookSlots: number;
     unlockedBookIds: string[];
     unlockedBooksCount: number;
     remainingFreeStarts: number;
+    licenseKey?: string;
+    licenseExpiresAt?: string;
   };
   paywall: {
     price: string;
@@ -86,9 +89,26 @@ export function useBookEntitlements(enabled: boolean) {
     }
   }, []);
 
+  /** Redeem a license key. Returns null on success or an error message string on failure. */
+  const redeemLicenseKey = useCallback(async (code: string): Promise<string | null> => {
+    try {
+      await fetchBookJson<{ message: string }>("/app/api/book/billing/license", {
+        method: "POST",
+        body: JSON.stringify({ code }),
+      });
+      // Refresh entitlement state after successful redemption
+      const payload = await fetchBookJson<EntitlementsResponse>("/app/api/book/me/entitlements");
+      setBillingState({ loading: false, payload, error: null });
+      return null;
+    } catch (error: unknown) {
+      return error instanceof Error ? error.message : "Unable to redeem license key.";
+    }
+  }, []);
+
   return {
     billingState,
     billingAction,
     launchBillingAction,
+    redeemLicenseKey,
   };
 }

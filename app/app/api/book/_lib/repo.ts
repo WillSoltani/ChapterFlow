@@ -4,6 +4,7 @@ import {
   QueryCommand,
   UpdateCommand,
   DeleteCommand,
+  TransactWriteCommand,
 } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { BookApiError } from "./errors";
@@ -40,6 +41,8 @@ import {
   stripeCustomerSk,
   webhookPk,
   webhookSk,
+  licenseKeyPk,
+  licenseKeySk,
 } from "./keys";
 import type {
   BookCatalogItem,
@@ -59,6 +62,7 @@ import type {
   BookUserScenarioSubmissionItem,
   BookUserSettingsItem,
   BookVersionItem,
+  LicenseKeyItem,
   QuizAttemptItem,
 } from "./types";
 
@@ -562,21 +566,42 @@ export async function getUserEntitlement(
   );
   const item = res.Item;
   if (!item) return null;
+
+  const proSource =
+    item.proSource === "stripe" ? "stripe" : item.proSource === "license" ? "license" : undefined;
+  const licenseKey = readStr(item.licenseKey);
+  const licenseExpiresAt = readStr(item.licenseExpiresAt);
+
+  // Compute effective plan: if the user's PRO came from a license key, check expiry inline.
+  const storedPlan = item.plan === "PRO" ? "PRO" : "FREE";
+  const licenseExpired =
+    storedPlan === "PRO" &&
+    proSource === "license" &&
+    licenseExpiresAt != null &&
+    new Date(licenseExpiresAt) < new Date();
+  const plan: "FREE" | "PRO" = licenseExpired ? "FREE" : storedPlan;
+  const proStatus =
+    licenseExpired
+      ? "inactive"
+      : item.proStatus === "active" ||
+        item.proStatus === "past_due" ||
+        item.proStatus === "canceled" ||
+        item.proStatus === "inactive"
+      ? item.proStatus
+      : undefined;
+
   return {
     userId,
-    plan: item.plan === "PRO" ? "PRO" : "FREE",
-    proStatus:
-      item.proStatus === "active" ||
-      item.proStatus === "past_due" ||
-      item.proStatus === "canceled" ||
-      item.proStatus === "inactive"
-        ? item.proStatus
-        : undefined,
+    plan,
+    proStatus,
+    proSource,
     freeBookSlots: readNum(item.freeBookSlots) ?? 2,
     unlockedBookIds: parseStringArray(item.unlockedBookIds),
     stripeCustomerId: readStr(item.stripeCustomerId),
     stripeSubscriptionId: readStr(item.stripeSubscriptionId),
     currentPeriodEnd: readStr(item.currentPeriodEnd),
+    licenseKey,
+    licenseExpiresAt,
     updatedAt: readStr(item.updatedAt) || "",
   };
 }
@@ -600,11 +625,22 @@ export async function reserveBookEntitlement(
         },
         UpdateExpression:
           "SET plan = if_not_exists(plan, :freePlan), freeBookSlots = if_not_exists(freeBookSlots, :freeSlots), updatedAt = :updatedAt ADD unlockedBookIds :bookSet",
-        ConditionExpression:
-          "plan = :proPlan OR contains(unlockedBookIds, :bookId) OR attribute_not_exists(unlockedBookIds) OR attribute_not_exists(freeBookSlots) OR size(unlockedBookIds) < freeBookSlots",
+        // A user may bypass the slot limit only when they are PRO with a non-expired entitlement:
+        //   - Stripe PRO: plan=PRO and proSource is not "license"
+        //   - License PRO: plan=PRO and proSource="license" and licenseExpiresAt is in the future
+        // In all other cases the slot-count check applies.
+        ConditionExpression: [
+          "(plan = :proPlan AND (attribute_not_exists(proSource) OR proSource <> :licenseSource OR licenseExpiresAt >= :now))",
+          "OR contains(unlockedBookIds, :bookId)",
+          "OR attribute_not_exists(unlockedBookIds)",
+          "OR attribute_not_exists(freeBookSlots)",
+          "OR size(unlockedBookIds) < freeBookSlots",
+        ].join(" "),
         ExpressionAttributeValues: {
           ":freePlan": "FREE",
           ":proPlan": "PRO",
+          ":licenseSource": "license",
+          ":now": ts,
           ":freeSlots": params.freeSlotsDefault,
           ":updatedAt": ts,
           ":bookId": params.bookId,
@@ -614,6 +650,8 @@ export async function reserveBookEntitlement(
       })
     );
     const item = res.Attributes ?? {};
+    const proSource =
+      item.proSource === "stripe" ? "stripe" : item.proSource === "license" ? "license" : undefined;
     return {
       userId: params.userId,
       plan: item.plan === "PRO" ? "PRO" : "FREE",
@@ -624,11 +662,14 @@ export async function reserveBookEntitlement(
         item.proStatus === "inactive"
           ? item.proStatus
           : undefined,
+      proSource,
       freeBookSlots: readNum(item.freeBookSlots) ?? params.freeSlotsDefault,
       unlockedBookIds: parseStringArray(item.unlockedBookIds),
       stripeCustomerId: readStr(item.stripeCustomerId),
       stripeSubscriptionId: readStr(item.stripeSubscriptionId),
       currentPeriodEnd: readStr(item.currentPeriodEnd),
+      licenseKey: readStr(item.licenseKey),
+      licenseExpiresAt: readStr(item.licenseExpiresAt),
       updatedAt: readStr(item.updatedAt) || ts,
     };
   } catch (error: unknown) {
@@ -2101,4 +2142,157 @@ export async function putBookManifest(
   if (params.publishNow) {
     await publishBookVersion(tableName, params.bookId, params.version, params.createdBy);
   }
+}
+
+// ─── License key operations ───────────────────────────────────────────────────
+
+function parseLicenseKeyItem(item: Record<string, unknown>, code: string): LicenseKeyItem | null {
+  const status = item.status;
+  if (status !== "available" && status !== "redeemed" && status !== "revoked") return null;
+  return {
+    code: readStr(item.code) || code,
+    plan: "PRO",
+    validMonths: readNum(item.validMonths) ?? 1,
+    status,
+    redeemedBy: readStr(item.redeemedBy),
+    redeemedAt: readStr(item.redeemedAt),
+    createdAt: readStr(item.createdAt) || "",
+    note: readStr(item.note),
+  };
+}
+
+export async function getLicenseKey(
+  tableName: string,
+  code: string
+): Promise<LicenseKeyItem | null> {
+  const normalized = code.toUpperCase().trim();
+  const res = await ddbDoc.send(
+    new GetCommand({
+      TableName: tableName,
+      Key: {
+        PK: licenseKeyPk(normalized),
+        SK: licenseKeySk(),
+      },
+    })
+  );
+  if (!res.Item) return null;
+  return parseLicenseKeyItem(res.Item, normalized);
+}
+
+/**
+ * Atomically claims a license key for a user and upgrades their entitlement to PRO.
+ * Uses a DynamoDB transaction so two concurrent requests cannot both redeem the same key.
+ */
+export async function redeemLicenseKey(
+  tableName: string,
+  params: { userId: string; code: string; validMonths: number }
+): Promise<void> {
+  const now = nowIso();
+  const expiresAt = (() => {
+    const d = new Date();
+    d.setMonth(d.getMonth() + params.validMonths);
+    return d.toISOString();
+  })();
+  const normalized = params.code.toUpperCase().trim();
+
+  try {
+    await ddbDoc.send(
+      new TransactWriteCommand({
+        TransactItems: [
+          {
+            // Mark the key as redeemed — fails if already redeemed or revoked
+            Update: {
+              TableName: tableName,
+              Key: {
+                PK: licenseKeyPk(normalized),
+                SK: licenseKeySk(),
+              },
+              UpdateExpression:
+                "SET #status = :redeemed, redeemedBy = :userId, redeemedAt = :now, updatedAt = :now",
+              ConditionExpression: "#status = :available",
+              ExpressionAttributeNames: { "#status": "status" },
+              ExpressionAttributeValues: {
+                ":redeemed": "redeemed",
+                ":available": "available",
+                ":userId": params.userId,
+                ":now": now,
+              },
+            },
+          },
+          {
+            // Upgrade the user's entitlement to PRO (license-based)
+            Update: {
+              TableName: tableName,
+              Key: {
+                PK: bookUserPk(params.userId),
+                SK: entitlementSk(),
+              },
+              UpdateExpression: [
+                "SET #plan = :pro,",
+                "proStatus = :active,",
+                "proSource = :licenseSource,",
+                "licenseKey = :code,",
+                "licenseExpiresAt = :expiresAt,",
+                "updatedAt = :now,",
+                "freeBookSlots = if_not_exists(freeBookSlots, :defaultSlots),",
+                "unlockedBookIds = if_not_exists(unlockedBookIds, :emptySet)",
+              ].join(" "),
+              ExpressionAttributeNames: { "#plan": "plan" },
+              ExpressionAttributeValues: {
+                ":pro": "PRO",
+                ":active": "active",
+                ":licenseSource": "license",
+                ":code": normalized,
+                ":expiresAt": expiresAt,
+                ":now": now,
+                ":defaultSlots": 2,
+                ":emptySet": new Set<string>(),
+              },
+            },
+          },
+        ],
+      })
+    );
+  } catch (error: unknown) {
+    // If the transaction was cancelled it means the ConditionExpression on the key failed —
+    // the key was already redeemed or revoked between our read and this write.
+    if (
+      error &&
+      typeof error === "object" &&
+      ((error as Record<string, unknown>).name === "TransactionCanceledException" ||
+        (error as Record<string, unknown>).__type === "TransactionCanceledException")
+    ) {
+      throw new BookApiError(409, "code_already_redeemed", "This license key has already been claimed.");
+    }
+    throw error;
+  }
+}
+
+/** Insert a license key record (used by the seed script / admin tooling). */
+export async function seedLicenseKey(
+  tableName: string,
+  key: Omit<LicenseKeyItem, "status"> & { status?: LicenseKeyItem["status"] }
+): Promise<void> {
+  const normalized = key.code.toUpperCase().trim();
+  await ddbDoc.send(
+    new PutCommand({
+      TableName: tableName,
+      Item: {
+        PK: licenseKeyPk(normalized),
+        SK: licenseKeySk(),
+        entity: "BOOK_LICENSE_KEY",
+        code: normalized,
+        plan: "PRO",
+        validMonths: key.validMonths,
+        status: key.status ?? "available",
+        createdAt: key.createdAt,
+        note: key.note ?? null,
+        updatedAt: key.createdAt,
+      },
+      // Do not overwrite an already-redeemed key if re-seeding
+      ConditionExpression: "attribute_not_exists(PK) OR #status = :available",
+      ExpressionAttributeNames: { "#status": "status" },
+      ExpressionAttributeValues: { ":available": "available" },
+    })
+  );
 }
