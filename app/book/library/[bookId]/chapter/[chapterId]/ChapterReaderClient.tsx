@@ -7,8 +7,11 @@ import { BookLock, CheckCircle2, Sparkles } from "lucide-react";
 import {
   getBookChaptersBundle,
   getChapterById,
+  personalizeChapterForMotivation,
+  type ChapterMotivationStyle,
   type ChapterExample,
   type ChapterQuizQuestion,
+  type ReadingDepth,
 } from "@/app/book/data/mockChapters";
 import { getLibraryBookById } from "@/app/book/data/mockUserLibraryState";
 import { BookClientError, fetchBookJson } from "@/app/book/_lib/book-api";
@@ -33,6 +36,12 @@ import { useReadingSessionTracker } from "@/app/book/library/hooks/useReadingSes
 const REQUIRED_SCORE = 80;
 const BASE_COOLDOWN_SECONDS = 60;
 const SCENARIO_SUBMISSION_POINTS = 25;
+
+function mapLearningStyleToDepth(value: string): ReadingDepth {
+  if (value === "concise") return "simple";
+  if (value === "deep") return "deeper";
+  return "standard";
+}
 
 type QuizSessionQuestion = ChapterQuizQuestion & {
   displayOptions: [string, string, string, string];
@@ -148,11 +157,22 @@ export function ChapterReaderClient({
   };
 
   const { state: onboarding, hydrated: onboardingHydrated } = useOnboardingState();
+  const preferredReadingDepth = mapLearningStyleToDepth(onboarding.learningStyle);
 
   const entry = useMemo(() => getLibraryBookById(bookId), [bookId]);
   const bundle = useMemo(() => getBookChaptersBundle(bookId), [bookId]);
   const chapters = bundle.chapters;
-  const chapter = useMemo(() => getChapterById(bookId, chapterId), [bookId, chapterId]);
+  const baseChapter = useMemo(() => getChapterById(bookId, chapterId), [bookId, chapterId]);
+  const chapter = useMemo(
+    () =>
+      baseChapter
+        ? personalizeChapterForMotivation(
+            baseChapter,
+            onboarding.motivationStyle as ChapterMotivationStyle
+          )
+        : undefined,
+    [baseChapter, onboarding.motivationStyle]
+  );
 
   const {
     hydrated,
@@ -178,7 +198,7 @@ export function ChapterReaderClient({
     setFontScale,
     toggleRecap,
     toggleExplanation,
-  } = useChapterState(bookId, chapterId, chapter?.order);
+  } = useChapterState(bookId, chapterId, baseChapter?.order, preferredReadingDepth);
 
   useKeyboardShortcut(
     "n",

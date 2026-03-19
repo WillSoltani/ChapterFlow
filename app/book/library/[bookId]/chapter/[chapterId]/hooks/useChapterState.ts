@@ -168,7 +168,12 @@ function inferChapterNumber(chapterId: string) {
   return Number.isFinite(value) && value > 0 ? Math.floor(value) : 1;
 }
 
-export function useChapterState(bookId: string, chapterId: string, chapterNumber?: number) {
+export function useChapterState(
+  bookId: string,
+  chapterId: string,
+  chapterNumber?: number,
+  preferredReadingDepth: ReadingDepth = "standard"
+) {
   const storageKey = useMemo(
     () => getChapterReaderStorageKey(bookId, chapterId),
     [bookId, chapterId]
@@ -177,18 +182,38 @@ export function useChapterState(bookId: string, chapterId: string, chapterNumber
   const [hydrated, setHydrated] = useState(false);
   const [state, setState] = useState<PersistedChapterState>(defaultState);
   const [serverReady, setServerReady] = useState(false);
+  const [hasPersistedState, setHasPersistedState] = useState(false);
   const skipNextServerSave = useRef(false);
 
   useEffect(() => {
     const parsed = parseStored(window.localStorage.getItem(storageKey));
     const prefs = parsePrefs(window.localStorage.getItem(PREFS_KEY));
     setState({
-      ...(parsed ?? defaultState),
+      ...(parsed ?? { ...defaultState, readingDepth: preferredReadingDepth }),
       focusMode: prefs?.focusMode ?? parsed?.focusMode ?? defaultState.focusMode,
       fontScale: prefs?.fontScale ?? parsed?.fontScale ?? defaultState.fontScale,
     });
+    setHasPersistedState(Boolean(parsed));
     setHydrated(true);
-  }, [storageKey]);
+  }, [preferredReadingDepth, storageKey]);
+
+  useEffect(() => {
+    if (!hydrated || hasPersistedState) return;
+    setState((prev) =>
+      prev.readingDepth === preferredReadingDepth
+        ? prev
+        : {
+            ...prev,
+            readingDepth: preferredReadingDepth,
+            quizAnswers: {},
+            quizResult: null,
+            quizRetakeCount: 0,
+            quizFailureStreak: 0,
+            quizCooldownUntil: null,
+            explanationOpen: {},
+          }
+    );
+  }, [hasPersistedState, hydrated, preferredReadingDepth]);
 
   useEffect(() => {
     let mounted = true;
@@ -198,6 +223,7 @@ export function useChapterState(bookId: string, chapterId: string, chapterNumber
       .then((payload) => {
         if (!mounted || !payload.state?.state) return;
         skipNextServerSave.current = true;
+        setHasPersistedState(true);
         setState((prev) => ({
           ...prev,
           ...(parseStored(JSON.stringify(payload.state?.state)) ?? prev),

@@ -94,6 +94,7 @@ import thePyramidPrincipleModernPackageJson from "@/book-packages/the-pyramid-pr
 import theWarOfArtModernPackageJson from "@/book-packages/the-war-of-art.modern.json";
 import thinkingInBetsModernPackageJson from "@/book-packages/thinking-in-bets.modern.json";
 import ultralearningModernPackageJson from "@/book-packages/ultralearning.modern.json";
+//import leadersEatLastModernPackageJson from "@/book-packages/leaders-eat-last.modern.json";
 
 export type VariantFamily = "EMH" | "PBC";
 export type VariantKey =
@@ -308,6 +309,7 @@ export const THE_PYRAMID_PRINCIPLE_MODERN_PACKAGE = thePyramidPrincipleModernPac
 export const THE_WAR_OF_ART_MODERN_PACKAGE = theWarOfArtModernPackageJson as BookPackage;
 export const THINKING_IN_BETS_MODERN_PACKAGE = thinkingInBetsModernPackageJson as BookPackage;
 export const ULTRALEARNING_MODERN_PACKAGE = ultralearningModernPackageJson as BookPackage;
+//export const LEADERS_EAT_LAST_MODERN_PACKAGE = leadersEatLastModernPackageJson as BookPackage;
 
 export const BOOK_PACKAGES: BookPackage[] = [
   FRIENDS_AND_INFLUENCE_PACKAGE,
@@ -405,6 +407,7 @@ export const BOOK_PACKAGES: BookPackage[] = [
   THE_WAR_OF_ART_MODERN_PACKAGE,
   THINKING_IN_BETS_MODERN_PACKAGE,
   ULTRALEARNING_MODERN_PACKAGE,
+  //LEADERS_EAT_LAST_MODERN_PACKAGE,
 ];
 
 export const BOOK_PACKAGE_PRESENTATION: Record<string, BookPackagePresentation> = {
@@ -655,6 +658,14 @@ export const BOOK_PACKAGE_PRESENTATION: Record<string, BookPackagePresentation> 
     synopsis:
       "A modern reading of wealth, leverage, judgment, happiness, freedom, and practical philosophy for students and early career builders.",
     pages: 242,
+  },
+  "leaders-eat-last": {
+    icon: "👥",
+    coverImage: "/book-covers/leaders-eat-last.svg",
+    difficulty: "Medium",
+    synopsis:
+      "A modern reading of leadership, trust, organizational safety, human biology, belonging, and the courage to put people first in work and life.",
+    pages: 354,
   },
   "extreme-ownership": {
     icon: "🪖",
