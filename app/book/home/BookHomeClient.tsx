@@ -4,6 +4,13 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Sparkles, X } from "lucide-react";
+import {
+  buildPersonalizationRecommendation,
+  formatReminderTimeLabel,
+  getChapterStartModeShortLabel,
+  getMotivationStyleLabel,
+  getPreferredExampleContextShortLabel,
+} from "@/app/book/_lib/onboarding-personalization";
 import { getBookById } from "@/app/book/data/booksCatalog";
 import { getBookChaptersBundle } from "@/app/book/data/mockChapters";
 import type { RecentBookProgress } from "@/app/book/data/mockProgress";
@@ -78,6 +85,8 @@ export function BookHomeClient() {
   const dashboard = useBookState({
     selectedBookIds: onboarding.selectedBookIds,
     dailyGoalMinutes: onboarding.dailyGoalMinutes,
+    chapterStartMode: onboarding.chapterStartMode,
+    preferredExampleContext: onboarding.preferredExampleContext,
   });
   const { saved, hydrated: savedHydrated } = useSavedBooks(onboarding.setupComplete);
   const badgeSystem = useBadgeSystem({
@@ -197,6 +206,36 @@ export function BookHomeClient() {
     currentProgress?.status !== "completed" &&
     !dashboard.state.dismissMobileCta;
   const viewerName = viewerIdentity.displayName || "Reader";
+  const primarySelectedBookTitle = getBookById(onboarding.selectedBookIds[0] || "")?.title ?? null;
+  const workspaceRecommendation = useMemo(
+    () =>
+      buildPersonalizationRecommendation({
+        readingGoalLabel: onboarding.readingGoal
+          ? ({
+              career: "Career Growth",
+              decisions: "Better Decisions",
+              skills: "Learn New Skills",
+              personal: "Personal Growth",
+              curiosity: "Pure Curiosity",
+            }[onboarding.readingGoal] ?? null)
+          : null,
+        chapterStartMode: onboarding.chapterStartMode,
+        preferredExampleContext: onboarding.preferredExampleContext,
+        learningStyle: onboarding.learningStyle,
+        motivationStyle: onboarding.motivationStyle,
+        dailyGoalMinutes: onboarding.dailyGoalMinutes,
+        selectedBookTitle: primarySelectedBookTitle,
+      }),
+    [
+      onboarding.chapterStartMode,
+      onboarding.dailyGoalMinutes,
+      onboarding.learningStyle,
+      onboarding.motivationStyle,
+      onboarding.preferredExampleContext,
+      onboarding.readingGoal,
+      primarySelectedBookTitle,
+    ]
+  );
 
   const sessionRoute = useMemo(() => {
     if (!currentBook || !currentProgress) return "";
@@ -262,6 +301,34 @@ export function BookHomeClient() {
               ? `Continuing ${currentBook.title}`
               : "Pick up where you left off."}
           </p>
+
+          <div className="mt-4 rounded-[26px] border border-(--cf-accent-border) bg-[linear-gradient(135deg,var(--cf-accent-soft),var(--cf-surface))] p-4 sm:p-5">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-(--cf-text-3)">
+              Personalized Setup
+            </p>
+            <p className="mt-2 text-lg font-semibold text-(--cf-text-1)">
+              {workspaceRecommendation.headline}
+            </p>
+            <p className="mt-2 text-sm leading-relaxed text-(--cf-text-2)">
+              {workspaceRecommendation.body}
+            </p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              <span className="inline-flex rounded-full border border-(--cf-accent-border) bg-(--cf-surface) px-3 py-1 text-xs font-semibold text-(--cf-info-text)">
+                {getChapterStartModeShortLabel(onboarding.chapterStartMode)}
+              </span>
+              <span className="inline-flex rounded-full border border-(--cf-border) bg-(--cf-surface) px-3 py-1 text-xs font-semibold text-(--cf-text-2)">
+                {getPreferredExampleContextShortLabel(onboarding.preferredExampleContext)}
+              </span>
+              <span className="inline-flex rounded-full border border-(--cf-border) bg-(--cf-surface) px-3 py-1 text-xs font-semibold text-(--cf-text-2)">
+                {getMotivationStyleLabel(onboarding.motivationStyle)}
+              </span>
+              {onboarding.reminderTime ? (
+                <span className="inline-flex rounded-full border border-(--cf-border) bg-(--cf-surface) px-3 py-1 text-xs font-semibold text-(--cf-text-2)">
+                  {formatReminderTimeLabel(onboarding.reminderTime)}
+                </span>
+              ) : null}
+            </div>
+          </div>
         </div>
 
         {/* ── Main action area ── */}

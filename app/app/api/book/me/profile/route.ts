@@ -16,6 +16,10 @@ import { analyticsTrackOnboarding } from "@/app/app/api/book/_lib/analytics-repo
 import { resolveBookIdentity } from "@/app/app/api/book/_lib/identity";
 import { inferLocationFromHeaders } from "@/app/app/api/book/_lib/location";
 import { applyDeviceIdCookie, getOrCreateDeviceId, recordRiskSignals } from "@/app/app/api/book/_lib/abuse";
+import {
+  CHAPTER_START_MODE_VALUES,
+  PREFERRED_EXAMPLE_CONTEXT_VALUES,
+} from "@/app/book/_lib/onboarding-personalization";
 
 const AVATAR_ACCENTS = new Set(["sky", "emerald", "amber", "rose"]);
 const PROFILE_VISIBILITY = new Set(["private", "friends", "public"]);
@@ -31,6 +35,8 @@ const LEARNING_STYLES = new Set(["concise", "balanced", "deep"]);
 const QUIZ_INTENSITIES = new Set(["easy", "standard", "challenging"]);
 const MOTIVATION_STYLES = new Set(["gentle", "direct", "competitive"]);
 const REFERRAL_OTHER_TEXT_MAX_LENGTH = 120;
+const CHAPTER_START_MODES = new Set(CHAPTER_START_MODE_VALUES);
+const PREFERRED_EXAMPLE_CONTEXTS = new Set(PREFERRED_EXAMPLE_CONTEXT_VALUES);
 
 function parseRecord(value: unknown): Record<string, unknown> {
   if (!value || typeof value !== "object" || Array.isArray(value)) return {};
@@ -91,6 +97,11 @@ function cleanMinutes(value: unknown): number | undefined {
 
 function cleanReminderTime(value: unknown): string | undefined {
   return typeof value === "string" && /^\d{2}:\d{2}$/.test(value) ? value : undefined;
+}
+
+function cleanNullableReminderTime(value: unknown): string | null | undefined {
+  if (value === null) return null;
+  return cleanReminderTime(value);
 }
 
 function cleanAvatarDataUrl(value: unknown): string | null | undefined {
@@ -155,14 +166,25 @@ function sanitizeProfile(profile: Record<string, unknown> | null | undefined): R
   const learningStyle = cleanEnum(raw.learningStyle, LEARNING_STYLES);
   if (learningStyle) next.learningStyle = learningStyle;
 
+  const chapterStartMode = cleanEnum(raw.chapterStartMode, CHAPTER_START_MODES);
+  if (chapterStartMode) next.chapterStartMode = chapterStartMode;
+
+  const preferredExampleContext = cleanEnum(
+    raw.preferredExampleContext,
+    PREFERRED_EXAMPLE_CONTEXTS
+  );
+  if (preferredExampleContext) next.preferredExampleContext = preferredExampleContext;
+
   const quizIntensity = cleanEnum(raw.quizIntensity, QUIZ_INTENSITIES);
   if (quizIntensity) next.quizIntensity = quizIntensity;
 
   const motivationStyle = cleanEnum(raw.motivationStyle, MOTIVATION_STYLES);
   if (motivationStyle) next.motivationStyle = motivationStyle;
 
-  const reminderTime = cleanReminderTime(raw.reminderTime);
-  if (reminderTime) next.reminderTime = reminderTime;
+  const hasReminderTime = hasOwnField(raw, "reminderTime");
+  const reminderTime = cleanNullableReminderTime(raw.reminderTime);
+  if (typeof reminderTime === "string") next.reminderTime = reminderTime;
+  else if (hasReminderTime && reminderTime === null) next.reminderTime = null;
 
   const avatarAccent = cleanEnum(raw.avatarAccent, AVATAR_ACCENTS);
   if (avatarAccent) next.avatarAccent = avatarAccent;

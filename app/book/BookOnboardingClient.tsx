@@ -25,6 +25,7 @@ import {
   FileText,
   Flame,
   GraduationCap,
+  Layers,
   Lightbulb,
   Mail,
   MapPin,
@@ -45,6 +46,20 @@ import { OnboardingShell } from "@/app/book/components/OnboardingShell";
 import { BookCard } from "@/app/book/components/BookCard";
 import { GoalPicker, formatMinutesLabel } from "@/app/book/components/GoalPicker";
 import { BookClientError, fetchBookJson } from "@/app/book/_lib/book-api";
+import {
+  buildPersonalizationRecommendation,
+  type ChapterStartMode,
+  formatReminderTimeLabel,
+  getChapterStartModeLabel,
+  getChapterStartModeShortLabel,
+  getMotivationStyleLabel,
+  getPreferredExampleContextLabel,
+  getPreferredExampleContextShortLabel,
+  getReminderPresetForTime,
+  reminderPresetToTime,
+  type PreferredExampleContext,
+  type ReminderPreset,
+} from "@/app/book/_lib/onboarding-personalization";
 import { BOOKS_CATALOG } from "@/app/book/data/booksCatalog";
 import {
   type BookOnboardingState,
@@ -52,7 +67,6 @@ import {
   type MotivationStyle,
   type OccupationOption,
   type PronounOption,
-  type QuizIntensity,
   type ReadingGoalOption,
   type ReferralSourceOption,
   useOnboardingState,
@@ -70,7 +84,7 @@ const STEP_LABELS = [
   "Interests",
   "Books",
   "Pace",
-  "Preferences",
+  "Tailor",
 ];
 
 type InterestCategoryDef = {
@@ -254,22 +268,120 @@ const referralSourceOptions: ReferralSourceCardOptionDef[] = [
   },
 ];
 
-const learningStyleOptions: Array<{ value: LearningStyle; label: string }> = [
-  { value: "concise", label: "Concise" },
-  { value: "balanced", label: "Balanced" },
-  { value: "deep", label: "Deep" },
+const learningStyleCards: Array<{
+  value: LearningStyle;
+  label: string;
+  description: string;
+  icon: ComponentType<{ className?: string }>;
+}> = [
+  {
+    value: "concise",
+    label: "Quick read",
+    description: "Keep the first pass lean so you can get to the main idea fast.",
+    icon: Zap,
+  },
+  {
+    value: "balanced",
+    label: "Balanced detail",
+    description: "Start clear and practical without feeling too brief or too dense.",
+    icon: Compass,
+  },
+  {
+    value: "deep",
+    label: "Deeper read",
+    description: "Keep more context and explanation before you move on.",
+    icon: Layers,
+  },
 ];
 
-const quizIntensityOptions: Array<{ value: QuizIntensity; label: string }> = [
-  { value: "easy", label: "Easy" },
-  { value: "standard", label: "Standard" },
-  { value: "challenging", label: "Challenging" },
+const chapterStartModeOptions: Array<{
+  value: ChapterStartMode;
+  label: string;
+  description: string;
+  icon: ComponentType<{ className?: string }>;
+}> = [
+  {
+    value: "summary-first",
+    label: "Summary first",
+    description: "Open each chapter with the main point, then branch into examples and quiz.",
+    icon: FileText,
+  },
+  {
+    value: "practical-first",
+    label: "Scenarios first",
+    description: "Jump straight into real-life situations, then read the core idea with context.",
+    icon: Lightbulb,
+  },
+  {
+    value: "balanced",
+    label: "Balanced flow",
+    description: "Move through summary, scenarios, and quiz in a steady product-guided order.",
+    icon: Compass,
+  },
 ];
 
-const motivationStyleOptions: Array<{ value: MotivationStyle; label: string }> = [
-  { value: "gentle", label: "Gentle" },
-  { value: "direct", label: "Direct" },
-  { value: "competitive", label: "Competitive" },
+const preferredExampleContextOptions: Array<{
+  value: PreferredExampleContext;
+  label: string;
+  description: string;
+}> = [
+  {
+    value: "all",
+    label: "Mix of everything",
+    description: "Keep school, work, and personal life equally available.",
+  },
+  {
+    value: "work",
+    label: "Work first",
+    description: "Surface team, project, and career scenarios first.",
+  },
+  {
+    value: "school",
+    label: "School first",
+    description: "Surface classes, studying, and academic decisions first.",
+  },
+  {
+    value: "personal",
+    label: "Personal life first",
+    description: "Surface habit, relationship, and day-to-day life scenarios first.",
+  },
+];
+
+const motivationStyleCards: Array<{
+  value: MotivationStyle;
+  label: string;
+  description: string;
+  icon: ComponentType<{ className?: string }>;
+}> = [
+  {
+    value: "gentle",
+    label: "Calm consistency",
+    description: "Keep the tone warm, steady, and easy to return to each day.",
+    icon: Sprout,
+  },
+  {
+    value: "direct",
+    label: "Clear accountability",
+    description: "Keep the tone sharper and more action oriented when you need a push.",
+    icon: Target,
+  },
+  {
+    value: "competitive",
+    label: "Visible milestones",
+    description: "Keep progress cues and momentum more front and center.",
+    icon: Trophy,
+  },
+];
+
+const reminderPresetOptions: Array<{
+  value: ReminderPreset;
+  label: string;
+}> = [
+  { value: "none", label: "No reminder" },
+  { value: "morning", label: "Morning" },
+  { value: "midday", label: "Midday" },
+  { value: "evening", label: "Evening" },
+  { value: "custom", label: "Custom" },
 ];
 
 const readingGoalOptions: Array<{
@@ -342,9 +454,9 @@ const stepContent = [
       "A realistic daily rhythm makes the whole product feel easier to use.",
   },
   {
-    title: "Tune the learning experience",
+    title: "Choose how ChapterFlow should guide you",
     subtitle:
-      "Finish with a few preferences so summaries, quizzes, and reminders feel right.",
+      "A few smart defaults shape how chapters open, which scenarios show first, and how the app keeps you moving.",
   },
 ];
 
@@ -355,7 +467,7 @@ const PRIMARY_ACTION_LABELS = [
   "See matching books",
   "Set my reading pace",
   "Tune preferences",
-  "Launch ChapterFlow",
+  "Launch my workspace",
 ];
 
 const readingGoalLabelMap: Record<ReadingGoalOption, string> = {
@@ -367,21 +479,9 @@ const readingGoalLabelMap: Record<ReadingGoalOption, string> = {
 };
 
 const learningStyleLabelMap: Record<LearningStyle, string> = {
-  concise: "Concise",
-  balanced: "Balanced",
-  deep: "Deep",
-};
-
-const quizIntensityLabelMap: Record<QuizIntensity, string> = {
-  easy: "Easy",
-  standard: "Standard",
-  challenging: "Challenging",
-};
-
-const motivationStyleLabelMap: Record<MotivationStyle, string> = {
-  gentle: "Gentle",
-  direct: "Direct",
-  competitive: "Competitive",
+  concise: "Quick read",
+  balanced: "Balanced detail",
+  deep: "Deeper read",
 };
 
 type TourStageId = "summary" | "examples" | "quiz" | "rewards";
@@ -542,6 +642,54 @@ function GoalCard({ icon: Icon, label, description, selected, onSelect }: GoalCa
         <p className="mt-1 text-sm leading-relaxed text-(--cf-text-3)">
           {description}
         </p>
+      </div>
+    </button>
+  );
+}
+
+function CompactChoiceCard({
+  label,
+  description,
+  selected,
+  onSelect,
+}: {
+  label: string;
+  description: string;
+  selected: boolean;
+  onSelect: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onSelect}
+      aria-pressed={selected}
+      className={[
+        "rounded-[22px] border p-4 text-left shadow-sm transition duration-200",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)",
+        selected
+          ? "border-(--cf-accent-border) bg-[linear-gradient(180deg,var(--cf-accent-soft),var(--cf-surface))]"
+          : "border-(--cf-border) bg-(--cf-surface) hover:-translate-y-0.5 hover:border-(--cf-border-strong) hover:bg-(--cf-surface-muted)",
+      ].join(" ")}
+    >
+      <div className="flex items-start justify-between gap-3">
+        <div className="min-w-0">
+          <p
+            className={[
+              "text-sm font-semibold",
+              selected ? "text-(--cf-info-text)" : "text-(--cf-text-1)",
+            ].join(" ")}
+          >
+            {label}
+          </p>
+          <p className="mt-1 text-sm leading-relaxed text-(--cf-text-3)">
+            {description}
+          </p>
+        </div>
+        {selected ? (
+          <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-(--cf-accent-border) bg-(--cf-accent) text-white">
+            <Check className="h-3.5 w-3.5" />
+          </span>
+        ) : null}
       </div>
     </button>
   );
@@ -906,9 +1054,11 @@ function InfoListRow({
       <span className="mt-2 h-2.5 w-2.5 rounded-full bg-(--cf-accent)" />
       <div className="min-w-0">
         <p className="text-sm font-semibold text-(--cf-text-1)">{title}</p>
-        <p className="mt-1 text-sm leading-relaxed text-(--cf-text-3)">
-          {description}
-        </p>
+        {description ? (
+          <p className="mt-1 text-sm leading-relaxed text-(--cf-text-3)">
+            {description}
+          </p>
+        ) : null}
       </div>
     </div>
   );
@@ -1218,14 +1368,30 @@ function SetupSummaryPanel({
   viewerName: string;
   selectedBooks: Array<(typeof BOOKS_CATALOG)[number]>;
 }) {
+  const recommendation = buildPersonalizationRecommendation({
+    readingGoalLabel: state.readingGoal ? readingGoalLabelMap[state.readingGoal] : null,
+    chapterStartMode: state.chapterStartMode,
+    preferredExampleContext: state.preferredExampleContext,
+    learningStyle: state.learningStyle,
+    motivationStyle: state.motivationStyle,
+    dailyGoalMinutes: state.dailyGoalMinutes,
+    selectedBookTitle: selectedBooks[0]?.title ?? null,
+  });
+
   return (
     <SupportPanel
       tone="accent"
       eyebrow="Your Setup"
-      title="This is what your first experience will feel like"
-      description="A quick preview before you launch into the app."
+      title="This is how your first sessions will feel"
+      description={recommendation.headline}
       icon={<Sparkles className="h-5 w-5" />}
     >
+      <div className="mt-4 rounded-[22px] border border-(--cf-accent-border) bg-(--cf-surface) px-4 py-3">
+        <p className="text-sm leading-relaxed text-(--cf-text-2)">
+          {recommendation.body}
+        </p>
+      </div>
+
       <div className="mt-4 space-y-3">
         <SummaryLine label="Reader" value={viewerName} />
         <SummaryLine
@@ -1247,12 +1413,20 @@ function SetupSummaryPanel({
           value={`${formatMinutesLabel(state.dailyGoalMinutes)} / day`}
         />
         <SummaryLine
-          label="Summary style"
+          label="Chapter flow"
+          value={getChapterStartModeLabel(state.chapterStartMode)}
+        />
+        <SummaryLine
+          label="Examples first"
+          value={getPreferredExampleContextLabel(state.preferredExampleContext)}
+        />
+        <SummaryLine
+          label="Detail level"
           value={learningStyleLabelMap[state.learningStyle]}
         />
         <SummaryLine
-          label="Quiz style"
-          value={quizIntensityLabelMap[state.quizIntensity]}
+          label="Support style"
+          value={getMotivationStyleLabel(state.motivationStyle)}
         />
       </div>
     </SupportPanel>
@@ -1279,8 +1453,8 @@ export function BookOnboardingClient() {
     setDailyGoalMinutes,
     setReminderTime,
     setLearningStyle,
-    setQuizIntensity,
-    setStreakMode,
+    setChapterStartMode,
+    setPreferredExampleContext,
     setMotivationStyle,
     completeSetup,
   } = useOnboardingState();
@@ -1359,6 +1533,16 @@ export function BookOnboardingClient() {
   const categoryLimitReached = state.selectedCategories.length >= MAX_CATEGORIES;
   const viewerName = viewerIdentity.displayName || "Reader";
   const welcomeName = viewerIdentity.givenName || viewerName;
+  const reminderPreset = getReminderPresetForTime(state.reminderTime);
+  const personalizationRecommendation = buildPersonalizationRecommendation({
+    readingGoalLabel: state.readingGoal ? readingGoalLabelMap[state.readingGoal] : null,
+    chapterStartMode: state.chapterStartMode,
+    preferredExampleContext: state.preferredExampleContext,
+    learningStyle: state.learningStyle,
+    motivationStyle: state.motivationStyle,
+    dailyGoalMinutes: state.dailyGoalMinutes,
+    selectedBookTitle: selectedBooks[0]?.title ?? null,
+  });
   const referralOtherValidationError = getReferralSourceOtherError(
     state.referralSource,
     state.referralSourceOtherText
@@ -1449,6 +1633,20 @@ export function BookOnboardingClient() {
     }
   };
 
+  const handleReminderPresetSelect = (value: ReminderPreset) => {
+    if (value === "none") {
+      setReminderTime("");
+      return;
+    }
+    if (value === "custom") {
+      if (!state.reminderTime.trim() || reminderPreset !== "custom") {
+        setReminderTime("20:15");
+      }
+      return;
+    }
+    setReminderTime(reminderPresetToTime(value));
+  };
+
   const canContinue = (() => {
     if (step === 3) return state.selectedCategories.length === MAX_CATEGORIES;
     if (step === 4) return selectedCount === MAX_BOOKS;
@@ -1467,6 +1665,9 @@ export function BookOnboardingClient() {
     }
     if (step === 3) return `Pick exactly ${MAX_CATEGORIES} categories to continue.`;
     if (step === 4) return `Choose exactly ${MAX_BOOKS} books to build your starter shelf.`;
+    if (step === 6) {
+      return "These defaults shape your chapter flow, example context, and workspace guidance from the start.";
+    }
     return null;
   })();
 
@@ -1504,8 +1705,9 @@ export function BookOnboardingClient() {
               selectedBookIds: state.selectedBookIds,
               dailyGoalMinutes: state.dailyGoalMinutes,
               learningStyle: state.learningStyle,
-              quizIntensity: state.quizIntensity,
-              streakMode: state.streakMode,
+              chapterStartMode: state.chapterStartMode,
+              preferredExampleContext: state.preferredExampleContext,
+              reminderTime: state.reminderTime.trim() ? state.reminderTime : null,
               motivationStyle: state.motivationStyle,
             },
           }),
@@ -2381,31 +2583,30 @@ export function BookOnboardingClient() {
             {step === 6 ? (
               <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_320px]">
                 <div className="rounded-[34px] border border-(--cf-border) bg-(--cf-surface) p-5 shadow-sm sm:p-7">
-                  <div className="space-y-6">
+                  <div className="space-y-8">
                     <div>
-                      <label className="mb-2 block text-sm font-medium text-(--cf-text-2)">
-                        When should we remind you?
-                      </label>
-                      <input
-                        type="time"
-                        value={state.reminderTime}
-                        onChange={(event) => setReminderTime(event.target.value)}
-                        className="cf-input w-48 rounded-2xl px-3 py-2.5"
-                      />
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-(--cf-text-3)">
+                        Tailored guidance
+                      </p>
+                      <p className="mt-2 text-base leading-relaxed text-(--cf-text-2)">
+                        These choices shape how chapters open, which scenarios feel
+                        closest to you, and how the app frames your first sessions.
+                      </p>
                     </div>
 
                     <div>
                       <p className="mb-2 text-sm font-medium text-(--cf-text-2)">
-                        Summaries style
+                        How much detail do you want at the start?
                       </p>
-                      <div className="flex flex-wrap gap-2">
-                        {learningStyleOptions.map((option) => (
-                          <SegmentedOption
+                      <div className="grid grid-cols-1 gap-3 lg:grid-cols-3">
+                        {learningStyleCards.map((option) => (
+                          <GoalCard
                             key={option.value}
                             label={option.label}
-                            value={option.value}
+                            icon={option.icon}
+                            description={option.description}
                             selected={state.learningStyle === option.value}
-                            onSelect={setLearningStyle}
+                            onSelect={() => setLearningStyle(option.value)}
                           />
                         ))}
                       </div>
@@ -2413,63 +2614,113 @@ export function BookOnboardingClient() {
 
                     <div>
                       <p className="mb-2 text-sm font-medium text-(--cf-text-2)">
-                        Quiz difficulty
+                        How should each chapter begin?
                       </p>
-                      <div className="flex flex-wrap gap-2">
-                        {quizIntensityOptions.map((option) => (
-                          <SegmentedOption
+                      <div className="grid grid-cols-1 gap-3 lg:grid-cols-3">
+                        {chapterStartModeOptions.map((option) => (
+                          <GoalCard
                             key={option.value}
                             label={option.label}
-                            value={option.value}
-                            selected={state.quizIntensity === option.value}
-                            onSelect={setQuizIntensity}
+                            icon={option.icon}
+                            description={option.description}
+                            selected={state.chapterStartMode === option.value}
+                            onSelect={() => setChapterStartMode(option.value)}
                           />
                         ))}
                       </div>
                     </div>
 
-                    <div className="flex items-center justify-between rounded-[24px] border border-(--cf-border) bg-(--cf-surface-muted) px-4 py-3.5">
-                      <div>
-                        <p className="text-sm font-medium text-(--cf-text-1)">Track streaks</p>
-                        <p className="mt-1 text-sm leading-relaxed text-(--cf-text-3)">
-                          Keep a visible streak for steady daily progress.
+                    <div>
+                      <p className="mb-2 text-sm font-medium text-(--cf-text-2)">
+                        Which real-life examples should feel closest to home?
+                      </p>
+                      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                        {preferredExampleContextOptions.map((option) => (
+                          <CompactChoiceCard
+                            key={option.value}
+                            label={option.label}
+                            description={option.description}
+                            selected={state.preferredExampleContext === option.value}
+                            onSelect={() => setPreferredExampleContext(option.value)}
+                          />
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <p className="mb-2 text-sm font-medium text-(--cf-text-2)">
+                        What kind of support fits you best?
+                      </p>
+                      <div className="grid grid-cols-1 gap-3 lg:grid-cols-3">
+                        {motivationStyleCards.map((option) => (
+                          <GoalCard
+                            key={option.value}
+                            label={option.label}
+                            icon={option.icon}
+                            description={option.description}
+                            selected={state.motivationStyle === option.value}
+                            onSelect={() => setMotivationStyle(option.value)}
+                          />
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="rounded-[28px] border border-(--cf-border) bg-[linear-gradient(180deg,var(--cf-surface),var(--cf-surface-muted))] p-4 sm:p-5">
+                      <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+                        <div>
+                          <p className="text-sm font-medium text-(--cf-text-1)">
+                            Want a gentle reading nudge?
+                          </p>
+                          <p className="mt-1 text-sm leading-relaxed text-(--cf-text-3)">
+                            Optional. If you set one, we&apos;ll keep that time visible in
+                            your setup and future notification preferences.
+                          </p>
+                        </div>
+                        <p className="rounded-full border border-(--cf-border) bg-(--cf-surface) px-3 py-1 text-xs font-semibold text-(--cf-text-2)">
+                          {formatReminderTimeLabel(state.reminderTime)}
                         </p>
                       </div>
-                      <button
-                        type="button"
-                        role="switch"
-                        aria-checked={state.streakMode}
-                        onClick={() => setStreakMode(!state.streakMode)}
-                        className={[
-                          "relative inline-flex h-7 w-12 items-center rounded-full transition",
-                          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)",
-                          state.streakMode ? "bg-(--cf-accent)" : "bg-(--cf-border-strong)",
-                        ].join(" ")}
-                      >
-                        <span
-                          className={[
-                            "inline-block h-5 w-5 transform rounded-full bg-white transition",
-                            state.streakMode ? "translate-x-6" : "translate-x-1",
-                          ].join(" ")}
-                        />
-                      </button>
-                    </div>
 
-                    <div>
-                      <p className="mb-2 text-sm font-medium text-(--cf-text-2)">
-                        Motivation style
-                      </p>
-                      <div className="flex flex-wrap gap-2">
-                        {motivationStyleOptions.map((option) => (
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        {reminderPresetOptions.map((option) => (
                           <SegmentedOption
                             key={option.value}
                             label={option.label}
                             value={option.value}
-                            selected={state.motivationStyle === option.value}
-                            onSelect={setMotivationStyle}
+                            selected={reminderPreset === option.value}
+                            onSelect={handleReminderPresetSelect}
                           />
                         ))}
                       </div>
+
+                      <AnimatePresence initial={false}>
+                        {reminderPreset === "custom" ? (
+                          <motion.div
+                            initial={
+                              prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: 8 }
+                            }
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={
+                              prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: -6 }
+                            }
+                            transition={{
+                              duration: prefersReducedMotion ? 0 : 0.18,
+                              ease: "easeOut",
+                            }}
+                            className="mt-4"
+                          >
+                            <label className="mb-2 block text-sm font-medium text-(--cf-text-2)">
+                              Choose a time
+                            </label>
+                            <input
+                              type="time"
+                              value={state.reminderTime}
+                              onChange={(event) => setReminderTime(event.target.value)}
+                              className="cf-input w-52 rounded-2xl px-3 py-2.5"
+                            />
+                          </motion.div>
+                        ) : null}
+                      </AnimatePresence>
                     </div>
                   </div>
                 </div>
@@ -2482,21 +2733,37 @@ export function BookOnboardingClient() {
                   />
 
                   <SupportPanel
-                    tone="warm"
-                    eyebrow="Rewards"
-                    title="Badges for progress, Flow Points for unlocks"
-                    description="Badges keep your momentum visible. Flow Points can unlock more books for free, a free monthly pass, and future premium features."
-                    icon={<Trophy className="h-5 w-5" />}
+                    tone="neutral"
+                    eyebrow="What changes first"
+                    title="These choices show up immediately after onboarding"
+                    description={personalizationRecommendation.body}
+                    icon={<Compass className="h-5 w-5" />}
                   >
                     <div className="mt-4 space-y-3">
-                      <SummaryLine
-                        label="Reminder"
-                        value={state.reminderTime || "No reminder set"}
-                      />
-                      <SummaryLine
-                        label="Motivation"
-                        value={motivationStyleLabelMap[state.motivationStyle]}
-                      />
+                      {personalizationRecommendation.bullets.map((item) => (
+                        <InfoListRow key={item} title={item} description="" />
+                      ))}
+                      <div className="rounded-[22px] border border-(--cf-border) bg-(--cf-surface) px-4 py-3">
+                        <p className="text-sm font-semibold text-(--cf-text-1)">
+                          First chapter defaults
+                        </p>
+                        <p className="mt-1 text-sm leading-relaxed text-(--cf-text-3)">
+                          We&apos;ll open chapters in{" "}
+                          <span className="font-semibold text-(--cf-text-1)">
+                            {getChapterStartModeShortLabel(state.chapterStartMode).toLowerCase()}
+                          </span>{" "}
+                          mode with{" "}
+                          <span className="font-semibold text-(--cf-text-1)">
+                            {getPreferredExampleContextShortLabel(
+                              state.preferredExampleContext
+                            ).toLowerCase()}
+                          </span>{" "}
+                          examples ready when you need them.
+                        </p>
+                      </div>
+                      <div className="rounded-[22px] border border-(--cf-warning-border) bg-(--cf-warning-soft) px-4 py-3 text-sm text-(--cf-warning-text)">
+                        These are smart starting defaults. The goal is to make the first experience feel right from day one without turning setup into a survey.
+                      </div>
                     </div>
                   </SupportPanel>
                 </div>

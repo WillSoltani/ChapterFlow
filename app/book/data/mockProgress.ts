@@ -1,4 +1,9 @@
 import { BOOKS_CATALOG } from "@/app/book/data/booksCatalog";
+import {
+  type ChapterStartMode,
+  type PreferredExampleContext,
+  getExampleContextTaskLabel,
+} from "@/app/book/_lib/onboarding-personalization";
 import { getBookChaptersBundle } from "@/app/book/data/mockChapters";
 
 export type BookStatus = "completed" | "in_progress" | "not_started";
@@ -62,8 +67,73 @@ export function buildRecentBooks(selectedBookIds: string[]): RecentBookProgress[
 }
 
 export function buildTodaySessionTasks(
-  currentChapter: number
+  currentChapter: number,
+  options?: {
+    chapterStartMode?: ChapterStartMode;
+    preferredExampleContext?: PreferredExampleContext;
+  }
 ): SessionTask[] {
+  const chapterStartMode = options?.chapterStartMode ?? "balanced";
+  const preferredExampleContext = options?.preferredExampleContext ?? "all";
+
+  if (chapterStartMode === "summary-first") {
+    return [
+      {
+        id: "summary",
+        label: `Read the main point for Chapter ${currentChapter}`,
+        minutes: 7,
+        complete: false,
+      },
+      {
+        id: "examples",
+        label: getExampleContextTaskLabel(preferredExampleContext),
+        minutes: 4,
+        complete: false,
+      },
+      {
+        id: "quiz",
+        label: `Take the Chapter ${currentChapter} quiz`,
+        minutes: 5,
+        complete: false,
+      },
+      {
+        id: "recap",
+        label: "Capture one takeaway you can use today",
+        minutes: 2,
+        complete: false,
+      },
+    ];
+  }
+
+  if (chapterStartMode === "practical-first") {
+    return [
+      {
+        id: "examples",
+        label: getExampleContextTaskLabel(preferredExampleContext),
+        minutes: 5,
+        complete: false,
+      },
+      {
+        id: "summary",
+        label: `Read the core idea for Chapter ${currentChapter}`,
+        minutes: 6,
+        complete: false,
+      },
+      {
+        id: "quiz",
+        label: `Check your understanding in the quiz`,
+        minutes: 5,
+        complete: false,
+      },
+      {
+        id: "recap",
+        label: "Write one real-world move you want to try",
+        minutes: 2,
+        complete: false,
+      },
+    ];
+  }
+
   return [
     {
       id: "review",
@@ -72,9 +142,15 @@ export function buildTodaySessionTasks(
       complete: false,
     },
     {
-      id: "read",
-      label: `Read Chapter ${currentChapter}`,
+      id: "summary",
+      label: `Read the main idea for Chapter ${currentChapter}`,
       minutes: 10,
+      complete: false,
+    },
+    {
+      id: "examples",
+      label: getExampleContextTaskLabel(preferredExampleContext),
+      minutes: 4,
       complete: false,
     },
     {
@@ -85,8 +161,8 @@ export function buildTodaySessionTasks(
     },
     {
       id: "recap",
-      label: "1-min recap",
-      minutes: 1,
+      label: "Note one takeaway to keep",
+      minutes: 2,
       complete: false,
     },
   ];

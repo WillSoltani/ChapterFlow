@@ -15,6 +15,9 @@ import {
 } from "@/app/book/data/mockChapters";
 import { getLibraryBookById } from "@/app/book/data/mockUserLibraryState";
 import { BookClientError, fetchBookJson } from "@/app/book/_lib/book-api";
+import {
+  chapterStartModeToInitialTab,
+} from "@/app/book/_lib/onboarding-personalization";
 import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
 import { useKeyboardShortcut } from "@/app/book/hooks/useKeyboardShortcut";
 import { ChapterHeader } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/ChapterHeader";
@@ -162,6 +165,8 @@ export function ChapterReaderClient({
 
   const { state: onboarding, hydrated: onboardingHydrated } = useOnboardingState();
   const preferredReadingDepth = mapLearningStyleToDepth(onboarding.learningStyle);
+  const preferredActiveTab = chapterStartModeToInitialTab(onboarding.chapterStartMode);
+  const preferredExampleFilter = onboarding.preferredExampleContext;
 
   const entry = useMemo(() => getLibraryBookById(bookId), [bookId]);
   const bundle = useMemo(() => getBookChaptersBundle(bookId), [bookId]);
@@ -202,7 +207,14 @@ export function ChapterReaderClient({
     setFontScale,
     toggleRecap,
     toggleExplanation,
-  } = useChapterState(bookId, chapterId, baseChapter?.order, preferredReadingDepth);
+  } = useChapterState(
+    bookId,
+    chapterId,
+    baseChapter?.order,
+    preferredReadingDepth,
+    preferredActiveTab,
+    preferredExampleFilter
+  );
 
   useKeyboardShortcut(
     "n",

@@ -172,7 +172,9 @@ export function useChapterState(
   bookId: string,
   chapterId: string,
   chapterNumber?: number,
-  preferredReadingDepth: ReadingDepth = "standard"
+  preferredReadingDepth: ReadingDepth = "standard",
+  preferredActiveTab: ChapterTab = "summary",
+  preferredExampleFilter: ExampleFilter = "all"
 ) {
   const storageKey = useMemo(
     () => getChapterReaderStorageKey(bookId, chapterId),
@@ -189,22 +191,38 @@ export function useChapterState(
     const parsed = parseStored(window.localStorage.getItem(storageKey));
     const prefs = parsePrefs(window.localStorage.getItem(PREFS_KEY));
     setState({
-      ...(parsed ?? { ...defaultState, readingDepth: preferredReadingDepth }),
+      ...(
+        parsed ?? {
+          ...defaultState,
+          activeTab: preferredActiveTab,
+          readingDepth: preferredReadingDepth,
+          exampleFilter: preferredExampleFilter,
+        }
+      ),
       focusMode: prefs?.focusMode ?? parsed?.focusMode ?? defaultState.focusMode,
       fontScale: prefs?.fontScale ?? parsed?.fontScale ?? defaultState.fontScale,
     });
     setHasPersistedState(Boolean(parsed));
     setHydrated(true);
-  }, [preferredReadingDepth, storageKey]);
+  }, [
+    preferredActiveTab,
+    preferredExampleFilter,
+    preferredReadingDepth,
+    storageKey,
+  ]);
 
   useEffect(() => {
     if (!hydrated || hasPersistedState) return;
     setState((prev) =>
-      prev.readingDepth === preferredReadingDepth
+      prev.readingDepth === preferredReadingDepth &&
+      prev.activeTab === preferredActiveTab &&
+      prev.exampleFilter === preferredExampleFilter
         ? prev
         : {
             ...prev,
+            activeTab: preferredActiveTab,
             readingDepth: preferredReadingDepth,
+            exampleFilter: preferredExampleFilter,
             quizAnswers: {},
             quizResult: null,
             quizRetakeCount: 0,
@@ -213,7 +231,13 @@ export function useChapterState(
             explanationOpen: {},
           }
     );
-  }, [hasPersistedState, hydrated, preferredReadingDepth]);
+  }, [
+    hasPersistedState,
+    hydrated,
+    preferredActiveTab,
+    preferredExampleFilter,
+    preferredReadingDepth,
+  ]);
 
   useEffect(() => {
     let mounted = true;

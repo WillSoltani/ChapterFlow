@@ -334,7 +334,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
       streakMode: onboarding.streakMode,
       motivationStyle: onboarding.motivationStyle,
       dailyGoalMinutes: onboarding.dailyGoalMinutes,
-      reminderTime: onboarding.reminderTime,
+      reminderTime: onboarding.reminderTime.trim() ? onboarding.reminderTime : null,
     });
     if (snapshot === lastOnboardingPrefsRef.current) return;
     lastOnboardingPrefsRef.current = snapshot;

@@ -1,6 +1,10 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
+import {
+  type ChapterStartMode,
+  type PreferredExampleContext,
+} from "@/app/book/_lib/onboarding-personalization";
 import { BOOKS_CATALOG } from "@/app/book/data/booksCatalog";
 import {
   type RecentBookProgress,
@@ -21,9 +25,11 @@ export type BookDashboardState = {
 type DashboardSeed = {
   selectedBookIds: string[];
   dailyGoalMinutes: number;
+  chapterStartMode: ChapterStartMode;
+  preferredExampleContext: PreferredExampleContext;
 };
 
-const STORAGE_KEY = "book-accelerator:dashboard:v3";
+const STORAGE_KEY = "book-accelerator:dashboard:v4";
 const AVAILABLE_BOOK_IDS = new Set(BOOKS_CATALOG.map((book) => book.id));
 
 function createDefaultState(seed: DashboardSeed): BookDashboardState {
@@ -36,8 +42,43 @@ function createDefaultState(seed: DashboardSeed): BookDashboardState {
     searchQuery: "",
     dismissMobileCta: false,
     recentBooks,
-    todaySession: buildTodaySessionTasks(currentChapter),
+    todaySession: buildTodaySessionTasks(currentChapter, {
+      chapterStartMode: seed.chapterStartMode,
+      preferredExampleContext: seed.preferredExampleContext,
+    }),
   };
+}
+
+function mergeTodaySession(
+  recentBooks: RecentBookProgress[],
+  currentBookId: string,
+  storedTasks: unknown,
+  seed: DashboardSeed
+): SessionTask[] {
+  const currentBook =
+    recentBooks.find((book) => book.bookId === currentBookId) ?? recentBooks[0] ?? null;
+  const defaults = buildTodaySessionTasks(Math.max(1, currentBook?.chapter ?? 1), {
+    chapterStartMode: seed.chapterStartMode,
+    preferredExampleContext: seed.preferredExampleContext,
+  });
+
+  if (!Array.isArray(storedTasks) || storedTasks.length === 0) {
+    return defaults;
+  }
+
+  const completionById = new Map(
+    storedTasks
+      .filter(
+        (task): task is { id: string; complete?: boolean } =>
+          Boolean(task) && typeof task === "object" && typeof task.id === "string"
+      )
+      .map((task) => [task.id, Boolean(task.complete)])
+  );
+
+  return defaults.map((task) => ({
+    ...task,
+    complete: completionById.get(task.id) ?? false,
+  }));
 }
 
 function parseStored(value: string | null, seed: DashboardSeed): BookDashboardState | null {
@@ -61,16 +102,19 @@ function parseStored(value: string | null, seed: DashboardSeed): BookDashboardSt
       AVAILABLE_BOOK_IDS.has(parsed.currentBookId)
         ? parsed.currentBookId
         : fallbackCurrent;
+    const todaySession = mergeTodaySession(
+      normalizedRecentBooks,
+      currentBookId,
+      parsed.todaySession,
+      seed
+    );
 
     return {
       ...defaults,
       ...parsed,
       currentBookId,
       recentBooks: normalizedRecentBooks,
-      todaySession:
-        Array.isArray(parsed.todaySession) && parsed.todaySession.length
-          ? parsed.todaySession
-          : defaults.todaySession,
+      todaySession,
       searchQuery:
         typeof parsed.searchQuery === "string" ? parsed.searchQuery : defaults.searchQuery,
       dismissMobileCta: Boolean(parsed.dismissMobileCta),
@@ -85,8 +129,15 @@ export function useBookState(seed: DashboardSeed) {
     () => ({
       selectedBookIds: [...seed.selectedBookIds],
       dailyGoalMinutes: seed.dailyGoalMinutes,
+      chapterStartMode: seed.chapterStartMode,
+      preferredExampleContext: seed.preferredExampleContext,
     }),
-    [seed.dailyGoalMinutes, seed.selectedBookIds]
+    [
+      seed.chapterStartMode,
+      seed.dailyGoalMinutes,
+      seed.preferredExampleContext,
+      seed.selectedBookIds,
+    ]
   );
 
   const [hydrated, setHydrated] = useState(false);

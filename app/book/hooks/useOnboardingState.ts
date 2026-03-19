@@ -1,6 +1,12 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
+import {
+  type ChapterStartMode,
+  type PreferredExampleContext,
+  isChapterStartMode,
+  isPreferredExampleContext,
+} from "@/app/book/_lib/onboarding-personalization";
 import { BOOKS_CATALOG } from "@/app/book/data/booksCatalog";
 
 export type LearningStyle = "concise" | "balanced" | "deep";
@@ -50,6 +56,8 @@ export type BookOnboardingState = {
   // Step 6 — preferences
   reminderTime: string;
   learningStyle: LearningStyle;
+  chapterStartMode: ChapterStartMode;
+  preferredExampleContext: PreferredExampleContext;
   quizIntensity: QuizIntensity;
   streakMode: boolean;
   motivationStyle: MotivationStyle;
@@ -58,9 +66,47 @@ export type BookOnboardingState = {
 const MAX_STEPS = 7;
 const MAX_BOOK_SELECTION = 3;
 const MAX_CATEGORY_SELECTION = 3;
-const STORAGE_KEYS = ["book-accelerator:onboarding:v3", "book-accelerator:onboarding:v2"] as const;
-const STORAGE_KEY = STORAGE_KEYS[0];
+const STORAGE_KEY = "book-accelerator:onboarding:v4";
+const LEGACY_STORAGE_KEYS = [
+  "book-accelerator:onboarding:v3",
+  "book-accelerator:onboarding:v2",
+] as const;
+const STORAGE_KEYS = [STORAGE_KEY, ...LEGACY_STORAGE_KEYS] as const;
 const AVAILABLE_BOOK_IDS = new Set(BOOKS_CATALOG.map((book) => book.id));
+const PRONOUN_OPTIONS: readonly PronounOption[] = [
+  "Prefer not to say",
+  "She / Her",
+  "He / Him",
+  "They / Them",
+];
+const OCCUPATION_OPTIONS: readonly OccupationOption[] = [
+  "Student",
+  "Professional",
+  "Entrepreneur",
+  "Creative",
+  "Other",
+];
+const READING_GOALS: readonly ReadingGoalOption[] = [
+  "career",
+  "decisions",
+  "skills",
+  "personal",
+  "curiosity",
+];
+const REFERRAL_SOURCES: readonly ReferralSourceOption[] = [
+  "Social media",
+  "Word of mouth",
+  "Search engine",
+  "Newsletter",
+  "Other",
+];
+const LEARNING_STYLES: readonly LearningStyle[] = ["concise", "balanced", "deep"];
+const QUIZ_INTENSITIES: readonly QuizIntensity[] = ["easy", "standard", "challenging"];
+const MOTIVATION_STYLES: readonly MotivationStyle[] = [
+  "gentle",
+  "direct",
+  "competitive",
+];
 
 const defaultState: BookOnboardingState = {
   currentStep: 0,
@@ -74,8 +120,10 @@ const defaultState: BookOnboardingState = {
   selectedCategories: [],
   selectedBookIds: [],
   dailyGoalMinutes: 20,
-  reminderTime: "20:00",
+  reminderTime: "",
   learningStyle: "balanced",
+  chapterStartMode: "balanced",
+  preferredExampleContext: "all",
   quizIntensity: "standard",
   streakMode: true,
   motivationStyle: "gentle",
@@ -89,16 +137,80 @@ function clampGoal(goal: number) {
   return Math.min(Math.max(goal, 10), 240);
 }
 
-function parseStoredState(value: string | null): BookOnboardingState | null {
+function isTimeValue(value: unknown): value is string {
+  return typeof value === "string" && /^([01]\d|2[0-3]):[0-5]\d$/.test(value);
+}
+
+function pickEnumValue<T extends string>(
+  value: unknown,
+  options: readonly T[],
+  fallback: T
+): T {
+  return typeof value === "string" && options.includes(value as T) ? (value as T) : fallback;
+}
+
+function pickNullableEnumValue<T extends string>(
+  value: unknown,
+  options: readonly T[]
+): T | null {
+  return typeof value === "string" && options.includes(value as T) ? (value as T) : null;
+}
+
+function parseStoredState(
+  storageKey: (typeof STORAGE_KEYS)[number],
+  value: string | null
+): BookOnboardingState | null {
   if (!value) return null;
   try {
     const parsed = JSON.parse(value) as Partial<BookOnboardingState>;
+    const isLegacyKey = storageKey !== STORAGE_KEY;
+    const reminderTime =
+      isTimeValue(parsed.reminderTime) &&
+      !(isLegacyKey && parsed.setupComplete !== true && parsed.reminderTime === "20:00")
+        ? parsed.reminderTime
+        : defaultState.reminderTime;
+
     return {
       ...defaultState,
       ...parsed,
       currentStep: clampStep(Number(parsed.currentStep ?? defaultState.currentStep)),
+      setupComplete: parsed.setupComplete === true,
+      completedAt:
+        typeof parsed.completedAt === "string" ? parsed.completedAt : defaultState.completedAt,
+      pronoun: pickEnumValue(parsed.pronoun, PRONOUN_OPTIONS, defaultState.pronoun),
+      occupation: pickNullableEnumValue(parsed.occupation, OCCUPATION_OPTIONS),
+      readingGoal: pickNullableEnumValue(parsed.readingGoal, READING_GOALS),
+      referralSource: pickNullableEnumValue(parsed.referralSource, REFERRAL_SOURCES),
+      referralSourceOtherText:
+        typeof parsed.referralSourceOtherText === "string"
+          ? parsed.referralSourceOtherText
+          : defaultState.referralSourceOtherText,
       dailyGoalMinutes: clampGoal(
         Number(parsed.dailyGoalMinutes ?? defaultState.dailyGoalMinutes)
+      ),
+      reminderTime,
+      learningStyle: pickEnumValue(
+        parsed.learningStyle,
+        LEARNING_STYLES,
+        defaultState.learningStyle
+      ),
+      chapterStartMode: isChapterStartMode(parsed.chapterStartMode)
+        ? parsed.chapterStartMode
+        : defaultState.chapterStartMode,
+      preferredExampleContext: isPreferredExampleContext(parsed.preferredExampleContext)
+        ? parsed.preferredExampleContext
+        : defaultState.preferredExampleContext,
+      quizIntensity: pickEnumValue(
+        parsed.quizIntensity,
+        QUIZ_INTENSITIES,
+        defaultState.quizIntensity
+      ),
+      streakMode:
+        typeof parsed.streakMode === "boolean" ? parsed.streakMode : defaultState.streakMode,
+      motivationStyle: pickEnumValue(
+        parsed.motivationStyle,
+        MOTIVATION_STYLES,
+        defaultState.motivationStyle
       ),
       selectedCategories: Array.isArray(parsed.selectedCategories)
         ? parsed.selectedCategories
@@ -124,10 +236,21 @@ export function useOnboardingState() {
   const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
-    const stored = STORAGE_KEYS.map((key) => parseStoredState(window.localStorage.getItem(key))).find(
-      (value): value is BookOnboardingState => value !== null
+    const storedEntry = STORAGE_KEYS.map((key) => ({
+      key,
+      state: parseStoredState(key, window.localStorage.getItem(key)),
+    })).find(
+      (
+        value
+      ): value is {
+        key: (typeof STORAGE_KEYS)[number];
+        state: BookOnboardingState;
+      } => value.state !== null
     );
-    if (stored) setState(stored);
+    if (storedEntry) {
+      setState(storedEntry.state);
+      LEGACY_STORAGE_KEYS.forEach((key) => window.localStorage.removeItem(key));
+    }
     setHydrated(true);
   }, []);
 
@@ -206,6 +329,17 @@ export function useOnboardingState() {
     setState((prev) => ({ ...prev, learningStyle }));
   }, []);
 
+  const setChapterStartMode = useCallback((chapterStartMode: ChapterStartMode) => {
+    setState((prev) => ({ ...prev, chapterStartMode }));
+  }, []);
+
+  const setPreferredExampleContext = useCallback(
+    (preferredExampleContext: PreferredExampleContext) => {
+      setState((prev) => ({ ...prev, preferredExampleContext }));
+    },
+    []
+  );
+
   const setQuizIntensity = useCallback((quizIntensity: QuizIntensity) => {
     setState((prev) => ({ ...prev, quizIntensity }));
   }, []);
@@ -228,7 +362,7 @@ export function useOnboardingState() {
 
   const resetSetup = useCallback(() => {
     setState(defaultState);
-    window.localStorage.removeItem(STORAGE_KEY);
+    STORAGE_KEYS.forEach((key) => window.localStorage.removeItem(key));
   }, []);
 
   const selectionsRemaining = useMemo(
@@ -260,6 +394,8 @@ export function useOnboardingState() {
     setDailyGoalMinutes,
     setReminderTime,
     setLearningStyle,
+    setChapterStartMode,
+    setPreferredExampleContext,
     setQuizIntensity,
     setStreakMode,
     setMotivationStyle,
