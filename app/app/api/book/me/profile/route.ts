@@ -12,6 +12,189 @@ import {
   putUserProfileItem,
 } from "@/app/app/api/book/_lib/repo";
 import { analyticsTrackOnboarding } from "@/app/app/api/book/_lib/analytics-repo";
+import { resolveBookIdentity } from "@/app/app/api/book/_lib/identity";
+import { inferLocationFromHeaders } from "@/app/app/api/book/_lib/location";
+import { applyDeviceIdCookie, getOrCreateDeviceId, recordRiskSignals } from "@/app/app/api/book/_lib/abuse";
+
+const AVATAR_ACCENTS = new Set(["sky", "emerald", "amber", "rose"]);
+const PROFILE_VISIBILITY = new Set(["private", "friends", "public"]);
+const READING_GOALS = new Set(["career", "decisions", "skills", "personal", "curiosity"]);
+const REFERRAL_SOURCES = new Set([
+  "Social media",
+  "Word of mouth",
+  "Search engine",
+  "Newsletter",
+  "Other",
+]);
+const LEARNING_STYLES = new Set(["concise", "balanced", "deep"]);
+const QUIZ_INTENSITIES = new Set(["easy", "standard", "challenging"]);
+const MOTIVATION_STYLES = new Set(["gentle", "direct", "competitive"]);
+
+function parseRecord(value: unknown): Record<string, unknown> {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return {};
+  return value as Record<string, unknown>;
+}
+
+function cleanString(value: unknown, maxLength: number): string | undefined {
+  if (typeof value !== "string") return undefined;
+  const trimmed = value.trim();
+  if (!trimmed) return undefined;
+  return trimmed.slice(0, maxLength);
+}
+
+function cleanBoolean(value: unknown): boolean | undefined {
+  return typeof value === "boolean" ? value : undefined;
+}
+
+function cleanEnum<T extends string>(value: unknown, allowed: Set<T>): T | undefined {
+  return typeof value === "string" && allowed.has(value as T) ? (value as T) : undefined;
+}
+
+function cleanStringArray(value: unknown, maxItems: number, maxLength: number): string[] | undefined {
+  if (!Array.isArray(value)) return undefined;
+  return value
+    .filter((entry): entry is string => typeof entry === "string")
+    .map((entry) => entry.trim())
+    .filter(Boolean)
+    .slice(0, maxItems)
+    .map((entry) => entry.slice(0, maxLength));
+}
+
+function cleanDisplayName(value: unknown): string | undefined {
+  return cleanString(value, 80);
+}
+
+function cleanUsername(value: unknown): string | undefined {
+  if (typeof value !== "string") return undefined;
+  const normalized = value.trim().toLowerCase().replace(/[^a-z0-9_]/g, "").slice(0, 24);
+  return normalized || undefined;
+}
+
+function cleanMinutes(value: unknown): number | undefined {
+  if (typeof value !== "number" || !Number.isFinite(value)) return undefined;
+  return Math.min(240, Math.max(10, Math.round(value)));
+}
+
+function cleanReminderTime(value: unknown): string | undefined {
+  return typeof value === "string" && /^\d{2}:\d{2}$/.test(value) ? value : undefined;
+}
+
+function cleanAvatarDataUrl(value: unknown): string | null | undefined {
+  if (value === null) return null;
+  if (typeof value !== "string") return undefined;
+  const trimmed = value.trim();
+  return trimmed ? trimmed.slice(0, 400_000) : null;
+}
+
+function sanitizeProfile(profile: Record<string, unknown> | null | undefined): Record<string, unknown> {
+  const raw = parseRecord(profile);
+  const next: Record<string, unknown> = {};
+
+  const displayName = cleanDisplayName(raw.displayName);
+  if (displayName) next.displayName = displayName;
+
+  const username = cleanUsername(raw.username);
+  if (username) next.username = username;
+
+  const tagline = cleanString(raw.tagline, 160);
+  if (tagline) next.tagline = tagline;
+
+  const bio = cleanString(raw.bio, 1_200);
+  if (bio) next.bio = bio;
+
+  const timezone = cleanString(raw.timezone, 80);
+  if (timezone) next.timezone = timezone;
+
+  const country = cleanString(raw.country, 80);
+  if (country) next.country = country;
+
+  const occupation = cleanString(raw.occupation, 80);
+  if (occupation) next.occupation = occupation;
+
+  const pronouns = cleanString(raw.pronouns, 80);
+  if (pronouns) next.pronouns = pronouns;
+
+  const readingGoal = cleanEnum(raw.readingGoal, READING_GOALS);
+  if (readingGoal) next.readingGoal = readingGoal;
+
+  const referralSource = cleanEnum(raw.referralSource, REFERRAL_SOURCES);
+  if (referralSource) next.referralSource = referralSource;
+
+  const learningStyle = cleanEnum(raw.learningStyle, LEARNING_STYLES);
+  if (learningStyle) next.learningStyle = learningStyle;
+
+  const quizIntensity = cleanEnum(raw.quizIntensity, QUIZ_INTENSITIES);
+  if (quizIntensity) next.quizIntensity = quizIntensity;
+
+  const motivationStyle = cleanEnum(raw.motivationStyle, MOTIVATION_STYLES);
+  if (motivationStyle) next.motivationStyle = motivationStyle;
+
+  const reminderTime = cleanReminderTime(raw.reminderTime);
+  if (reminderTime) next.reminderTime = reminderTime;
+
+  const avatarAccent = cleanEnum(raw.avatarAccent, AVATAR_ACCENTS);
+  if (avatarAccent) next.avatarAccent = avatarAccent;
+
+  const avatarDataUrl = cleanAvatarDataUrl(raw.avatarDataUrl);
+  if (avatarDataUrl !== undefined) next.avatarDataUrl = avatarDataUrl;
+
+  const createdAt = cleanString(raw.createdAt, 64);
+  if (createdAt) next.createdAt = createdAt;
+
+  const profileVisibility = cleanEnum(raw.profileVisibility, PROFILE_VISIBILITY);
+  if (profileVisibility) next.profileVisibility = profileVisibility;
+
+  const selectedCategories = cleanStringArray(raw.selectedCategories, 3, 48);
+  if (selectedCategories) next.selectedCategories = selectedCategories;
+
+  const selectedBookIds = cleanStringArray(raw.selectedBookIds, 3, 80);
+  if (selectedBookIds) next.selectedBookIds = selectedBookIds;
+
+  const dailyGoalMinutes = cleanMinutes(raw.dailyGoalMinutes);
+  if (dailyGoalMinutes !== undefined) next.dailyGoalMinutes = dailyGoalMinutes;
+
+  const onboardingCompleted = cleanBoolean(raw.onboardingCompleted);
+  if (onboardingCompleted === true) next.onboardingCompleted = true;
+
+  const streakMode = cleanBoolean(raw.streakMode);
+  if (streakMode !== undefined) next.streakMode = streakMode;
+
+  const showReadingStatsPublic = cleanBoolean(raw.showReadingStatsPublic);
+  if (showReadingStatsPublic !== undefined) next.showReadingStatsPublic = showReadingStatsPublic;
+
+  const showBadgesPublic = cleanBoolean(raw.showBadgesPublic);
+  if (showBadgesPublic !== undefined) next.showBadgesPublic = showBadgesPublic;
+
+  const showReadingHistoryPublic = cleanBoolean(raw.showReadingHistoryPublic);
+  if (showReadingHistoryPublic !== undefined) {
+    next.showReadingHistoryPublic = showReadingHistoryPublic;
+  }
+
+  return next;
+}
+
+function buildProfileResponse(
+  req: Request,
+  user: Awaited<ReturnType<typeof requireUser>>,
+  profile: Record<string, unknown> | null,
+  updatedAt: string | null,
+  options?: { deviceId?: string; issuedDeviceId?: boolean }
+) {
+  const sanitizedProfile = sanitizeProfile(profile);
+  const response = bookOk({
+    profile: Object.keys(sanitizedProfile).length ? sanitizedProfile : null,
+    identity: resolveBookIdentity(user, sanitizedProfile),
+    inferredLocation: inferLocationFromHeaders(req.headers),
+    updatedAt,
+  });
+  const existingDevice = getOrCreateDeviceId(req);
+  const deviceId = options?.deviceId ?? existingDevice.deviceId;
+  const issued = options?.issuedDeviceId ?? existingDevice.issued;
+  if (issued && deviceId) {
+    applyDeviceIdCookie(response, deviceId, true);
+  }
+  return response;
+}
 
 export const runtime = "nodejs";
 
@@ -20,10 +203,7 @@ export async function GET(req: Request) {
     const user = await requireUser();
     const tableName = await getBookTableName();
     const item = await getUserProfileItem(tableName, user.sub);
-    return bookOk({
-      profile: item?.profile ?? null,
-      updatedAt: item?.updatedAt ?? null,
-    });
+    return buildProfileResponse(req, user, item?.profile ?? null, item?.updatedAt ?? null);
   });
 }
 
@@ -41,10 +221,16 @@ export async function PATCH(req: Request) {
     }
 
     const body = requireBodyObject(bodyRaw);
-    const profile =
+    const incomingProfile =
       body.profile && typeof body.profile === "object" && !Array.isArray(body.profile)
         ? (body.profile as Record<string, unknown>)
         : body;
+    const previousProfile = sanitizeProfile(existing?.profile ?? null);
+    const sanitizedIncoming = sanitizeProfile(incomingProfile);
+    const profile = {
+      ...previousProfile,
+      ...sanitizedIncoming,
+    };
 
     const saved = await putUserProfileItem(tableName, {
       userId: user.sub,
@@ -52,14 +238,25 @@ export async function PATCH(req: Request) {
       createdAt: existing?.createdAt,
     });
 
-    // Analytics — fire-and-forget when onboarding is being completed
-    if (profile.onboardingCompleted === true) {
+    const completedOnboardingNow =
+      previousProfile.onboardingCompleted !== true && profile.onboardingCompleted === true;
+    let riskDevice: Awaited<ReturnType<typeof recordRiskSignals>> | null = null;
+
+    if (completedOnboardingNow) {
+      riskDevice = await recordRiskSignals(tableName, req, user, "onboarding_completed").catch(
+        () => null
+      );
       getBookAnalyticsTableName().then((analyticsTable) => {
         if (!analyticsTable) return;
         analyticsTrackOnboarding(analyticsTable, {
           userId: user.sub,
           email: user.email,
-          goal: typeof profile.goal === "string" ? profile.goal : undefined,
+          goal:
+            typeof profile.readingGoal === "string"
+              ? profile.readingGoal
+              : typeof profile.goal === "string"
+                ? profile.goal
+                : undefined,
           dailyGoalMinutes:
             typeof profile.dailyGoalMinutes === "number" ? profile.dailyGoalMinutes : undefined,
           selectedCategories: Array.isArray(profile.selectedCategories)
@@ -76,9 +273,9 @@ export async function PATCH(req: Request) {
       }).catch(() => {});
     }
 
-    return bookOk({
-      profile: saved.profile,
-      updatedAt: saved.updatedAt,
+    return buildProfileResponse(req, user, saved.profile, saved.updatedAt, {
+      deviceId: riskDevice?.deviceId,
+      issuedDeviceId: riskDevice?.issuedDeviceId,
     });
   });
 }

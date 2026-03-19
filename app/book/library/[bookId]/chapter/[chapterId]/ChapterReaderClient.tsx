@@ -144,6 +144,10 @@ export function ChapterReaderClient({
   const [approvedUserExamples, setApprovedUserExamples] = useState<ChapterExample[]>([]);
   const [userSubmissions, setUserSubmissions] = useState<UserScenarioSubmission[]>([]);
   const [engagementPoints, setEngagementPoints] = useState(0);
+  const [bookAccessStatus, setBookAccessStatus] = useState<"loading" | "ready" | "blocked">(
+    "loading"
+  );
+  const [bookAccessMessage, setBookAccessMessage] = useState<string | null>(null);
 
   const pauseSessionMode = () => {
     setSessionMode(false);
@@ -243,9 +247,33 @@ export function ChapterReaderClient({
 
   useEffect(() => {
     if (!entry || !chapter || !onboardingHydrated || !onboarding.setupComplete) return;
+    let cancelled = false;
+    setBookAccessStatus("loading");
+    setBookAccessMessage(null);
     fetchBookJson(`/app/api/book/me/books/${encodeURIComponent(bookId)}/start`, {
       method: "POST",
-    }).catch(() => {});
+    })
+      .then(() => {
+        if (cancelled) return;
+        setBookAccessStatus("ready");
+      })
+      .catch((error: unknown) => {
+        if (cancelled) return;
+        if (
+          error instanceof BookClientError &&
+          (error.code === "paywall_book_limit" ||
+            error.code === "email_verification_required" ||
+            error.code === "free_access_review_required")
+        ) {
+          setBookAccessMessage(error.message);
+          setBookAccessStatus("blocked");
+          return;
+        }
+        setBookAccessStatus("ready");
+      });
+    return () => {
+      cancelled = true;
+    };
   }, [bookId, chapter, entry, onboarding.setupComplete, onboardingHydrated]);
 
   useEffect(() => {
@@ -314,6 +342,7 @@ export function ChapterReaderClient({
       hydrated &&
       chapterHydrated &&
       onboarding.setupComplete &&
+      bookAccessStatus === "ready" &&
       !isLocked,
   });
 
@@ -323,13 +352,39 @@ export function ChapterReaderClient({
     !onboardingHydrated ||
     !hydrated ||
     !chapterHydrated ||
-    !onboarding.setupComplete
+    !onboarding.setupComplete ||
+    bookAccessStatus === "loading"
   ) {
     return (
       <main className="cf-app-shell">
         <div className="mx-auto flex min-h-screen items-center justify-center px-4 text-(--cf-text-2)">
           Loading chapter...
         </div>
+      </main>
+    );
+  }
+
+  if (bookAccessStatus === "blocked") {
+    return (
+      <main className="cf-app-shell">
+        <section className="mx-auto flex min-h-screen w-full max-w-3xl items-center px-4 py-10 sm:px-6">
+          <div className="w-full rounded-[28px] border border-(--cf-border) bg-(--cf-surface) p-8 text-center shadow-xl">
+            <BookLock className="mx-auto h-10 w-10 text-(--cf-text-3)" />
+            <h1 className="mt-4 text-3xl font-semibold text-(--cf-text-1)">
+              Book access paused
+            </h1>
+            <p className="mt-2 text-(--cf-text-2)">
+              {bookAccessMessage ||
+                "We couldn't unlock this book right now. Please head back and try again."}
+            </p>
+            <Link
+              href={`/book/library/${encodeURIComponent(bookId)}`}
+              className="mt-5 inline-flex rounded-xl border border-(--cf-accent-border) bg-(--cf-accent-soft) px-4 py-2 text-sm font-medium text-(--cf-info-text)"
+            >
+              Back to book
+            </Link>
+          </div>
+        </section>
       </main>
     );
   }

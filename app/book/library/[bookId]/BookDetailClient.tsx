@@ -9,6 +9,7 @@ import { InfoModal } from "@/app/book/home/components/InfoModal";
 import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
 import { useKeyboardShortcut } from "@/app/book/hooks/useKeyboardShortcut";
 import { useSavedBooks } from "@/app/book/hooks/useSavedBooks";
+import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { getLibraryBookById } from "@/app/book/data/mockUserLibraryState";
 import { getBookSynopsis } from "@/app/book/data/booksCatalog";
 import { getBookChaptersBundle, type BookChapter } from "@/app/book/data/mockChapters";
@@ -36,6 +37,7 @@ export function BookDetailClient({ bookId }: { bookId: string }) {
   const [showRemoveModal, setShowRemoveModal] = useState(false);
 
   const { state: onboarding, hydrated: onboardingHydrated } = useOnboardingState();
+  const { identity: viewerIdentity } = useBookViewer();
   const { savedSet, toggleSaved, hydrated: savedHydrated } = useSavedBooks(
     onboarding.setupComplete
   );
@@ -108,6 +110,7 @@ export function BookDetailClient({ bookId }: { bookId: string }) {
     const route = `/book/library/${encodeURIComponent(bookId)}/chapter/${encodeURIComponent(chapter.id)}`;
     router.push(options?.sessionMode ? `${route}?session=1` : route);
   };
+  const viewerName = viewerIdentity.displayName || "Reader";
 
   if (!entry || !onboardingHydrated || !hydrated || !savedHydrated || !onboarding.setupComplete) {
     return (
@@ -122,7 +125,7 @@ export function BookDetailClient({ bookId }: { bookId: string }) {
   return (
     <main className="cf-app-shell">
       <TopNav
-        name={onboarding.name || "Reader"}
+        name={viewerName}
         activeTab="library"
         searchQuery=""
         onSearchChange={() => {}}

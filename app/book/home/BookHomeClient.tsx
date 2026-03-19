@@ -3,14 +3,10 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Flame, Sparkles, X } from "lucide-react";
+import { Sparkles, X } from "lucide-react";
 import { getBookById } from "@/app/book/data/booksCatalog";
 import { getBookChaptersBundle } from "@/app/book/data/mockChapters";
-import {
-  QUICK_REVIEW_PROMPTS,
-  type RecentBookProgress,
-  buildDailyInsight,
-} from "@/app/book/data/mockProgress";
+import type { RecentBookProgress } from "@/app/book/data/mockProgress";
 import type { BadgeState } from "@/app/book/data/mockBadges";
 import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
 import { useBadgeSystem } from "@/app/book/hooks/useBadgeSystem";
@@ -18,6 +14,7 @@ import { useBookState } from "@/app/book/hooks/useBookState";
 import { type BookProgressSnapshot } from "@/app/book/hooks/useBookAnalytics";
 import { useKeyboardShortcut } from "@/app/book/hooks/useKeyboardShortcut";
 import { useSavedBooks } from "@/app/book/hooks/useSavedBooks";
+import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import {
   BadgeDetailPanel,
   DashboardAchievementWidget,
@@ -53,12 +50,18 @@ function mapSnapshotToRecentProgress(
   };
 }
 
+function getGreeting(): string {
+  const hour = new Date().getHours();
+  if (hour < 12) return "Good morning";
+  if (hour < 17) return "Good afternoon";
+  return "Good evening";
+}
+
 export function BookHomeClient() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const searchInputRef = useRef<HTMLInputElement | null>(null);
   const [selectedBadge, setSelectedBadge] = useState<BadgeState | null>(null);
-  const [showQuickReviewModal, setShowQuickReviewModal] = useState(false);
   const [showProBanner, setShowProBanner] = useState(false);
 
   // Show a success banner when Stripe redirects back after payment, then
@@ -71,6 +74,7 @@ export function BookHomeClient() {
   }, [searchParams, router]);
 
   const { state: onboarding, hydrated: onboardingHydrated } = useOnboardingState();
+  const { identity: viewerIdentity } = useBookViewer();
   const dashboard = useBookState({
     selectedBookIds: onboarding.selectedBookIds,
     dailyGoalMinutes: onboarding.dailyGoalMinutes,
@@ -176,15 +180,23 @@ export function BookHomeClient() {
       .slice(0, 3);
   }, [recentBooks, saved]);
 
-  const dailyInsight = useMemo(
-    () => buildDailyInsight(currentBook?.title || "your current book"),
-    [currentBook?.title]
-  );
+  // Unified books list: recent (sorted by relevance) + saved (deduped), capped at 6
+  const yourBooks = useMemo(() => {
+    const result = [...filteredRecentBooks];
+    const existingIds = new Set(result.map((e) => e.book.id));
+    for (const { book, progress } of savedBooksPreview) {
+      if (!existingIds.has(book.id)) {
+        result.push({ book, progress });
+      }
+    }
+    return result.slice(0, 6);
+  }, [filteredRecentBooks, savedBooksPreview]);
 
   const showStickyContinue =
     Boolean(currentProgress) &&
     currentProgress?.status !== "completed" &&
     !dashboard.state.dismissMobileCta;
+  const viewerName = viewerIdentity.displayName || "Reader";
 
   const sessionRoute = useMemo(() => {
     if (!currentBook || !currentProgress) return "";
@@ -197,16 +209,13 @@ export function BookHomeClient() {
     return (
       <main className="cf-app-shell">
         <div className="mx-auto w-full max-w-7xl animate-pulse px-4 pb-16 pt-10 sm:px-6">
-          <div className="h-11 w-72 rounded-xl bg-(--cf-surface-muted)" />
-          <div className="mt-3 h-6 w-56 rounded-xl bg-(--cf-surface)" />
+          <div className="h-9 w-64 rounded-xl bg-(--cf-surface-muted)" />
+          <div className="mt-2 h-5 w-48 rounded-xl bg-(--cf-surface)" />
           <div className="mt-6 grid grid-cols-1 gap-4 lg:grid-cols-[1.55fr_1fr]">
             <div className="h-72 rounded-3xl bg-(--cf-surface)" />
             <div className="h-72 rounded-3xl bg-(--cf-surface-muted)" />
           </div>
-          <div className="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-3">
-            <div className="h-28 rounded-3xl bg-(--cf-surface-muted) lg:col-span-2" />
-            <div className="h-28 rounded-3xl bg-(--cf-surface-muted)" />
-          </div>
+          <div className="mt-4 h-28 rounded-3xl bg-(--cf-surface-muted)" />
         </div>
       </main>
     );
@@ -234,7 +243,7 @@ export function BookHomeClient() {
       )}
 
       <TopNav
-        name={onboarding.name || "Reader"}
+        name={viewerName}
         activeTab="home"
         searchQuery={dashboard.state.searchQuery}
         onSearchChange={dashboard.setSearchQuery}
@@ -242,26 +251,21 @@ export function BookHomeClient() {
       />
 
       <section className="mx-auto w-full max-w-7xl px-4 pb-28 pt-7 sm:px-6 sm:pt-8 md:pb-24">
-        <div className="flex flex-wrap items-end justify-between gap-3">
-          <div>
-            <h1 className="text-4xl font-semibold tracking-tight text-(--cf-text-1) sm:text-5xl">
-              Good morning, {onboarding.name || "Reader"} 👋
-            </h1>
-            <p className="mt-2 text-lg text-(--cf-text-2)">
-              {analytics && analytics.streakDays > 0
-                ? `You're on a ${analytics.streakDays}-day streak. Keep it up.`
-                : "Start your first chapter and your reading streak will begin here."}
-            </p>
-          </div>
-          <span className="inline-flex items-center gap-2 rounded-full border border-(--cf-warning-border) bg-(--cf-warning-soft) px-3.5 py-1.5 text-sm font-medium text-(--cf-warning-text)">
-            <Flame className="h-4 w-4" />
-            {(analytics?.streakDays ?? 0) > 0
-              ? `${analytics?.streakDays ?? 0} day streak`
-              : "No streak yet"}
-          </span>
+
+        {/* ── Greeting ── */}
+        <div>
+          <h1 className="text-3xl font-semibold tracking-tight text-(--cf-text-1) sm:text-4xl">
+            {getGreeting()}, {viewerName}
+          </h1>
+          <p className="mt-1.5 text-base text-(--cf-text-2)">
+            {currentBook
+              ? `Continuing ${currentBook.title}`
+              : "Pick up where you left off."}
+          </p>
         </div>
 
-        <div className="mt-7 grid grid-cols-1 gap-4 lg:grid-cols-[1.55fr_1fr]">
+        {/* ── Main action area ── */}
+        <div className="mt-6 grid grid-cols-1 gap-4 lg:grid-cols-[1.55fr_1fr]">
           {currentBook && currentProgress ? (
             <CurrentlyReadingCard
               book={currentBook}
@@ -288,102 +292,37 @@ export function BookHomeClient() {
           />
         </div>
 
-        <div className="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-3">
-          <article className="cf-panel rounded-3xl p-5 lg:col-span-2">
-            <div className="flex items-center gap-2">
-              <Sparkles className="h-4 w-4 text-(--cf-warning-text)" />
-              <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-(--cf-text-3)">Daily Insight</h3>
-            </div>
-            <p className="mt-3 border-l-2 border-(--cf-warning-border) pl-3 text-base leading-relaxed text-(--cf-text-1)">{dailyInsight.takeaway}</p>
-            <p className="mt-3 text-sm text-(--cf-text-2)">
-              <span className="font-medium text-(--cf-text-1)">Try this: </span>{dailyInsight.action}
-            </p>
-          </article>
+        {/* ── Daily progress: goal + streak ── */}
+        <div className="mt-4">
           <GoalMeter
             goalMinutes={onboarding.dailyGoalMinutes}
             minutesReadToday={analytics?.minutesReadToday ?? 0}
+            streakDays={analytics?.streakDays ?? 0}
+            totalChapters={analytics?.totalCompletedChapters ?? 0}
+            booksCompleted={analytics?.booksCompleted ?? 0}
+            avgQuizScore={analytics?.avgQuizScore ?? 0}
           />
         </div>
 
-        <div className="cf-panel rounded-3xl p-5">
-          <div className="flex items-center justify-between gap-2">
-            <h3 className="text-lg font-semibold text-(--cf-text-1)">Quick Review</h3>
-            <button
-              type="button"
-              onClick={() => setShowQuickReviewModal(true)}
-              className="inline-flex items-center gap-1.5 rounded-full border border-(--cf-accent-border) bg-(--cf-accent-soft) px-2.5 py-1 text-xs text-(--cf-accent) transition hover:brightness-105"
-            >
-              <Sparkles className="h-3 w-3" />
-              Review
-            </button>
-          </div>
-          <div className="mt-3 grid grid-cols-1 gap-2.5 md:grid-cols-3">
-            {QUICK_REVIEW_PROMPTS.map((prompt) => (
-              <button
-                key={prompt}
-                type="button"
-                onClick={() => setShowQuickReviewModal(true)}
-                className="cf-panel-muted group rounded-2xl px-4 py-3.5 text-left text-sm text-(--cf-text-2) transition hover:border-(--cf-accent-border) hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)"
-              >
-                <span className="mb-1 block text-[10px] font-semibold uppercase tracking-[0.12em] text-(--cf-accent)/70">Reflect</span>
-                {prompt}
-              </button>
-            ))}
-          </div>
-        </div>
-
+        {/* ── Your Books ── */}
         <div className="mt-7">
           <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
             <div>
-              <h2 className="text-2xl font-semibold text-(--cf-text-1)">Read Next</h2>
+              <h2 className="text-2xl font-semibold text-(--cf-text-1)">Your Books</h2>
               <p className="mt-1 text-sm text-(--cf-text-3)">
-                {saved.length > 0
-                  ? `${saved.length} saved book${saved.length === 1 ? "" : "s"} ready when you are.`
-                  : "Save books from the library and they will appear here."}
+                {yourBooks.length > 0
+                  ? `${yourBooks.length} book${yourBooks.length !== 1 ? "s" : ""} in your library`
+                  : "Browse the library to add books to your reading list."}
               </p>
             </div>
-            <Link href="/book/saved" className="text-sm text-(--cf-accent) hover:brightness-110">
-              View all →
-            </Link>
-          </div>
-
-          {savedBooksPreview.length > 0 ? (
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {savedBooksPreview.map(({ book, progress }) => (
-                <BookMiniCard
-                  key={book.id}
-                  book={book}
-                  progress={progress}
-                  onOpen={() => router.push(`/book/library/${encodeURIComponent(book.id)}`)}
-                />
-              ))}
-            </div>
-          ) : (
-            <div className="cf-panel rounded-3xl p-5 text-(--cf-text-2)">
-              <p className="text-base text-(--cf-text-1)">No saved books yet.</p>
-              <p className="mt-2 text-sm text-(--cf-text-3)">
-                Use the bookmark control in the library to build a reading queue you can return to quickly.
-              </p>
-              <Link
-                href="/book/library"
-                className="mt-4 inline-flex rounded-xl border border-(--cf-accent-border) bg-(--cf-accent-soft) px-3 py-2 text-sm text-(--cf-info-text) transition hover:bg-(--cf-accent-muted)"
-              >
-                Browse library
-              </Link>
-            </div>
-          )}
-        </div>
-
-        <div className="mt-7">
-          <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-            <h2 className="text-2xl font-semibold text-(--cf-text-1)">Recent Books</h2>
             <Link href="/book/library" className="text-sm text-(--cf-accent) hover:text-(--cf-accent-strong)">
-              View Library →
+              Browse Library →
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {filteredRecentBooks.slice(0, 5).map(({ book, progress }) => (
+          {yourBooks.length > 0 ? (
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {yourBooks.map(({ book, progress }) => (
                 <BookMiniCard
                   key={book.id}
                   book={book}
@@ -394,11 +333,26 @@ export function BookHomeClient() {
                   }}
                 />
               ))}
-          </div>
+            </div>
+          ) : (
+            <div className="cf-panel rounded-3xl p-5">
+              <p className="text-base text-(--cf-text-1)">No books yet.</p>
+              <p className="mt-2 text-sm text-(--cf-text-3)">
+                Browse the library to start your reading journey.
+              </p>
+              <Link
+                href="/book/library"
+                className="mt-4 inline-flex rounded-xl border border-(--cf-accent-border) bg-(--cf-accent-soft) px-3 py-2 text-sm text-(--cf-info-text) transition hover:bg-(--cf-accent-muted)"
+              >
+                Browse Library
+              </Link>
+            </div>
+          )}
         </div>
 
+        {/* ── Achievements ── */}
         <div className="mt-7">
-          <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+          <div className="mb-3">
             <h2 className="text-2xl font-semibold text-(--cf-text-1)">Achievements</h2>
           </div>
           <DashboardAchievementWidget
@@ -412,6 +366,7 @@ export function BookHomeClient() {
         </div>
       </section>
 
+      {/* ── Mobile sticky continue ── */}
       {showStickyContinue && currentProgress ? (
         <div className="fixed bottom-20 left-4 right-4 z-50 md:hidden">
           <div className="flex items-center gap-2 rounded-2xl border border-(--cf-accent-border) bg-(--cf-surface-strong) p-2 shadow-[0_16px_32px_rgba(0,0,0,0.1)] backdrop-blur">
@@ -439,6 +394,7 @@ export function BookHomeClient() {
         </div>
       ) : null}
 
+      {/* ── Badge detail modal ── */}
       <InfoModal
         open={Boolean(selectedBadge)}
         title={selectedBadge?.name || "Badge"}
@@ -450,25 +406,6 @@ export function BookHomeClient() {
             nextTier={badgeSystem.badges.find((badge) => badge.id === selectedBadge.nextTierId) ?? null}
           />
         ) : null}
-      </InfoModal>
-
-      <InfoModal
-        open={showQuickReviewModal}
-        title="Quick Review"
-        onClose={() => setShowQuickReviewModal(false)}
-      >
-        <p>
-          We&apos;ll add interactive flashcards and spaced repetition prompts so your
-          key ideas stick over time.
-        </p>
-        <button
-          type="button"
-          onClick={() => setShowQuickReviewModal(false)}
-          className="mt-4 inline-flex items-center gap-2 rounded-xl border border-(--cf-accent-border) bg-(--cf-accent-soft) px-3 py-2 text-sm text-(--cf-info-text) transition hover:bg-(--cf-accent-muted)"
-        >
-          <Sparkles className="h-4 w-4" />
-          Got it
-        </button>
       </InfoModal>
     </main>
   );

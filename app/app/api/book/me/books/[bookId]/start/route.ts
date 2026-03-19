@@ -12,6 +12,11 @@ import {
 } from "@/app/app/api/book/_lib/repo";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import { nowIso } from "@/app/app/api/book/_lib/keys";
+import {
+  applyDeviceIdCookie,
+  assertFreeUnlockAllowed,
+  recordRiskSignals,
+} from "@/app/app/api/book/_lib/abuse";
 
 export const runtime = "nodejs";
 
@@ -37,6 +42,18 @@ export async function POST(
     }
 
     const freeSlotsDefault = await getBookFreeSlotsDefault();
+    const currentEntitlement = await getUserEntitlement(tableName, user.sub);
+    const alreadyUnlocked = currentEntitlement?.unlockedBookIds.includes(bookId) ?? false;
+    const requiresFreeUnlockGuard =
+      !alreadyUnlocked && (currentEntitlement?.plan ?? "FREE") === "FREE";
+    let riskDeviceId: string | null = null;
+    let issuedDeviceId = false;
+
+    if (requiresFreeUnlockGuard) {
+      const assessment = await assertFreeUnlockAllowed(tableName, req, user);
+      riskDeviceId = assessment.deviceId;
+      issuedDeviceId = assessment.issuedDeviceId;
+    }
 
     let entitlement;
     try {
@@ -92,7 +109,13 @@ export async function POST(
       throw new BookApiError(500, "progress_init_failed", "Could not initialize progress.");
     }
 
-    return bookOk({
+    if (requiresFreeUnlockGuard) {
+      await recordRiskSignals(tableName, req, user, "free_unlock_granted", {
+        deviceId: riskDeviceId ?? undefined,
+      }).catch(() => null);
+    }
+
+    const response = bookOk({
       bookId,
       entitlement: {
         plan: entitlement.plan,
@@ -107,5 +130,11 @@ export async function POST(
         completedChapters: progress.completedChapters,
       },
     });
+
+    if (issuedDeviceId && riskDeviceId) {
+      applyDeviceIdCookie(response, riskDeviceId, true);
+    }
+
+    return response;
   });
 }

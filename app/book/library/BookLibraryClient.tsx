@@ -7,6 +7,7 @@ import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
 import { useBookAnalytics } from "@/app/book/hooks/useBookAnalytics";
 import { useKeyboardShortcut } from "@/app/book/hooks/useKeyboardShortcut";
 import { useSavedBooks } from "@/app/book/hooks/useSavedBooks";
+import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import {
   LIBRARY_CATEGORY_OPTIONS,
   LIBRARY_DIFFICULTY_OPTIONS,
@@ -41,6 +42,7 @@ export function BookLibraryClient() {
   const searchInputRef = useRef<HTMLInputElement | null>(null);
 
   const { state: onboarding, hydrated: onboardingHydrated } = useOnboardingState();
+  const { identity: viewerIdentity } = useBookViewer();
   const { analytics, hydrated: analyticsHydrated } = useBookAnalytics(
     onboarding.selectedBookIds,
     onboarding.dailyGoalMinutes
@@ -102,6 +104,7 @@ export function BookLibraryClient() {
     defaultPageSize: 10,
     pageSizeOptions: LIBRARY_PAGE_SIZE_OPTIONS,
   });
+  const viewerName = viewerIdentity.displayName || "Reader";
 
   useKeyboardShortcut(
     "/",
@@ -132,7 +135,7 @@ export function BookLibraryClient() {
   return (
     <main className="cf-app-shell">
       <TopNav
-        name={onboarding.name || "Reader"}
+        name={viewerName}
         activeTab="library"
         searchQuery={filters.searchQuery}
         onSearchChange={setSearchQuery}

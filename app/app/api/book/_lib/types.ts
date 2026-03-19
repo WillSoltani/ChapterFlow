@@ -278,6 +278,20 @@ export type BookUserProfileItem = {
   updatedAt: string;
 };
 
+export type BookRiskEventScope = "device" | "network" | "network_ua";
+export type BookRiskEventType = "onboarding_completed" | "free_unlock_granted";
+
+export type BookRiskEventItem = {
+  scope: BookRiskEventScope;
+  fingerprint: string;
+  eventType: BookRiskEventType;
+  userId: string;
+  createdAt: string;
+  emailVerified?: boolean;
+  deviceId?: string;
+  metadata?: Record<string, unknown>;
+};
+
 export type BookUserSettingsItem = {
   userId: string;
   settings: Record<string, unknown>;

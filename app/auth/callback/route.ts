@@ -4,6 +4,7 @@ import { resolvePublicOrigin } from "@/app/app/_lib/server-origin";
 import { resolveCognitoDomain } from "../_lib/cognito-domain";
 import { getAuthCookieBase } from "../_lib/auth-cookie";
 import { sanitizeReturnTo } from "../_lib/return-to";
+import { applyDeviceIdCookie, getOrCreateDeviceId } from "@/app/app/api/book/_lib/abuse";
 
 function readString(value: unknown): string | null {
   return typeof value === "string" && value.trim().length > 0 ? value : null;
@@ -81,6 +82,10 @@ export async function GET(req: NextRequest) {
     res.cookies.set("pkce_verifier", "", { ...cookieBase, maxAge: 0 });
     res.cookies.set("oauth_state", "", { ...cookieBase, maxAge: 0 });
     res.cookies.set("post_auth_redirect", "", { ...cookieBase, maxAge: 0 });
+    const { deviceId, issued } = getOrCreateDeviceId(req);
+    if (issued) {
+      applyDeviceIdCookie(res, deviceId, true);
+    }
 
     return res;
   } catch (error: unknown) {

@@ -1,8 +1,12 @@
-import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
+import { requireUser } from "@/app/app/api/_lib/auth";
+import { resolveBookIdentity } from "@/app/app/api/book/_lib/identity";
 
 export async function GET() {
-  const jar = await cookies();
-  const hasIdToken = Boolean(jar.get("id_token")?.value);
-  return NextResponse.json({ loggedIn: hasIdToken });
+  try {
+    const user = await requireUser();
+    return NextResponse.json({ loggedIn: true, user: resolveBookIdentity(user) });
+  } catch {
+    return NextResponse.json({ loggedIn: false });
+  }
 }

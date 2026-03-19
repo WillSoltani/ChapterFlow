@@ -28,6 +28,8 @@ import {
   progressSk,
   quizAttemptPk,
   quizAttemptSk,
+  riskEventPk,
+  riskEventSk,
   profileSk,
   readingDaySk,
   savedBookSk,
@@ -55,6 +57,7 @@ import type {
   BookUserBookStateItem,
   BookUserChapterStateItem,
   BookUserEntitlement,
+  BookRiskEventItem,
   BookUserProfileItem,
   BookUserProgress,
   BookUserReadingDayItem,
@@ -1654,6 +1657,77 @@ export async function putUserProfileItem(
     createdAt,
     updatedAt: now,
   };
+}
+
+export async function recordRiskEvent(
+  tableName: string,
+  event: BookRiskEventItem
+): Promise<void> {
+  await ddbDoc.send(
+    new PutCommand({
+      TableName: tableName,
+      Item: {
+        PK: riskEventPk(event.scope, event.fingerprint),
+        SK: riskEventSk(event.createdAt, event.eventType, event.userId),
+        entity: "BOOK_RISK_EVENT",
+        ...event,
+      },
+    })
+  );
+}
+
+export async function listRecentRiskEvents(
+  tableName: string,
+  params: {
+    scope: BookRiskEventItem["scope"];
+    fingerprint: string;
+    limit?: number;
+  }
+): Promise<BookRiskEventItem[]> {
+  const res = await ddbDoc.send(
+    new QueryCommand({
+      TableName: tableName,
+      KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
+      ExpressionAttributeValues: {
+        ":pk": riskEventPk(params.scope, params.fingerprint),
+        ":prefix": "EVENT#",
+      },
+      ScanIndexForward: false,
+      Limit: Math.max(1, Math.min(100, Math.floor(params.limit ?? 40))),
+    })
+  );
+
+  const items: Array<BookRiskEventItem | null> = (res.Items ?? []).map((item) => {
+      const scope =
+        item.scope === "device"
+          ? "device"
+          : item.scope === "network"
+            ? "network"
+            : item.scope === "network_ua"
+              ? "network_ua"
+              : null;
+      const eventType =
+        item.eventType === "onboarding_completed"
+          ? "onboarding_completed"
+          : item.eventType === "free_unlock_granted"
+            ? "free_unlock_granted"
+            : null;
+      const fingerprint = readStr(item.fingerprint);
+      const userId = readStr(item.userId);
+      const createdAt = readStr(item.createdAt);
+      if (!scope || !eventType || !fingerprint || !userId || !createdAt) return null;
+      return {
+        scope,
+        eventType,
+        fingerprint,
+        userId,
+        createdAt,
+        emailVerified: typeof item.emailVerified === "boolean" ? item.emailVerified : undefined,
+        deviceId: readStr(item.deviceId),
+        metadata: parseRecord(item.metadata),
+      } satisfies BookRiskEventItem;
+    });
+  return items.filter((item): item is BookRiskEventItem => item !== null);
 }
 
 export async function getUserSettingsItem(

@@ -1,15 +1,16 @@
 import { NextResponse } from "next/server";
 import { requireUser, AuthError } from "../_lib/auth";
+import { resolveBookIdentity } from "../book/_lib/identity";
 
 export async function GET() {
   try {
     const user = await requireUser();
+    const identity = resolveBookIdentity(user);
 
     return NextResponse.json({
       authenticated: true,
       user: {
-        sub: user.sub,
-        email: user.email,
+        ...identity,
       },
     });
   } catch (error: unknown) {

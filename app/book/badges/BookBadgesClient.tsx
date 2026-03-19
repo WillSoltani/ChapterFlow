@@ -8,6 +8,7 @@ import { InfoModal } from "@/app/book/home/components/InfoModal";
 import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
 import { useKeyboardShortcut } from "@/app/book/hooks/useKeyboardShortcut";
 import { useBadgeSystem } from "@/app/book/hooks/useBadgeSystem";
+import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { BADGE_FILTERS, filterBadges, type BadgeFilter, type BadgeState } from "@/app/book/data/mockBadges";
 import {
   BadgeCategorySection,
@@ -29,10 +30,12 @@ export function BookBadgesClient() {
   const [selectedBadge, setSelectedBadge] = useState<BadgeState | null>(null);
 
   const { state: onboarding, hydrated: onboardingHydrated } = useOnboardingState();
+  const { identity: viewerIdentity } = useBookViewer();
   const badgeSystem = useBadgeSystem({
     selectedBookIds: onboarding.selectedBookIds,
     dailyGoalMinutes: onboarding.dailyGoalMinutes,
   });
+  const viewerName = viewerIdentity.displayName || "Reader";
 
   useKeyboardShortcut(
     "/",
@@ -114,7 +117,7 @@ export function BookBadgesClient() {
   return (
     <main className="cf-app-shell">
       <TopNav
-        name={onboarding.name || "Reader"}
+        name={viewerName}
         activeTab="badges"
         searchQuery={query}
         onSearchChange={setQuery}

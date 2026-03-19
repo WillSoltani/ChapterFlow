@@ -34,10 +34,7 @@ export type BookOnboardingState = {
   currentStep: number;
   setupComplete: boolean;
   completedAt: string | null;
-  // Step 1 — who you are
-  name: string;
-  email: string;
-  city: string;
+  // Step 1 — optional personalization
   pronoun: PronounOption;
   occupation: OccupationOption | null;
   // Step 2 — what brings you here
@@ -60,16 +57,14 @@ export type BookOnboardingState = {
 const MAX_STEPS = 7;
 const MAX_BOOK_SELECTION = 3;
 const MAX_CATEGORY_SELECTION = 3;
-const STORAGE_KEY = "book-accelerator:onboarding:v2";
+const STORAGE_KEYS = ["book-accelerator:onboarding:v3", "book-accelerator:onboarding:v2"] as const;
+const STORAGE_KEY = STORAGE_KEYS[0];
 const AVAILABLE_BOOK_IDS = new Set(BOOKS_CATALOG.map((book) => book.id));
 
 const defaultState: BookOnboardingState = {
   currentStep: 0,
   setupComplete: false,
   completedAt: null,
-  name: "",
-  email: "",
-  city: "",
   pronoun: "Prefer not to say",
   occupation: null,
   readingGoal: null,
@@ -127,7 +122,9 @@ export function useOnboardingState() {
   const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
-    const stored = parseStoredState(window.localStorage.getItem(STORAGE_KEY));
+    const stored = STORAGE_KEYS.map((key) => parseStoredState(window.localStorage.getItem(key))).find(
+      (value): value is BookOnboardingState => value !== null
+    );
     if (stored) setState(stored);
     setHydrated(true);
   }, []);
@@ -147,18 +144,6 @@ export function useOnboardingState() {
 
   const goPreviousStep = useCallback(() => {
     setState((prev) => ({ ...prev, currentStep: clampStep(prev.currentStep - 1) }));
-  }, []);
-
-  const setName = useCallback((name: string) => {
-    setState((prev) => ({ ...prev, name }));
-  }, []);
-
-  const setEmail = useCallback((email: string) => {
-    setState((prev) => ({ ...prev, email }));
-  }, []);
-
-  const setCity = useCallback((city: string) => {
-    setState((prev) => ({ ...prev, city }));
   }, []);
 
   const setPronoun = useCallback((pronoun: PronounOption) => {
@@ -258,9 +243,6 @@ export function useOnboardingState() {
     setCurrentStep,
     goNextStep,
     goPreviousStep,
-    setName,
-    setEmail,
-    setCity,
     setPronoun,
     setOccupation,
     setReadingGoal,

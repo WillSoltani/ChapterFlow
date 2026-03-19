@@ -35,6 +35,7 @@ type DashboardPayload = {
     chapterCompletedAt: Record<string, string>;
     lastReadChapterId: string;
     lastOpenedAt: string;
+    updatedAt: string;
   }>;
   chapterStates: Array<{
     bookId: string;
@@ -87,6 +88,7 @@ export type AnalyticsState = {
   streakDays: number;
   dailyGoalMinutes: number;
   minutesReadToday: number;
+  totalMinutesRead: number;
   booksCompleted: number;
   avgQuizScore: number;
   maxQuizScore: number;
@@ -95,6 +97,7 @@ export type AnalyticsState = {
   lastActiveLabel: string;
   bookSnapshots: BookProgressSnapshot[];
   engagedBookSnapshots: BookProgressSnapshot[];
+  recentlyOpenedSnapshots: BookProgressSnapshot[];
   completedBookSnapshots: BookProgressSnapshot[];
   inProgressBookSnapshots: BookProgressSnapshot[];
   heatmapCells: HeatmapCell[];
@@ -201,6 +204,7 @@ function buildFallbackAnalytics(
     streakDays: 0,
     dailyGoalMinutes,
     minutesReadToday: 0,
+    totalMinutesRead: 0,
     booksCompleted: 0,
     avgQuizScore: 0,
     maxQuizScore: 0,
@@ -209,6 +213,7 @@ function buildFallbackAnalytics(
     lastActiveLabel: EMPTY_ACTIVITY_LABEL,
     bookSnapshots,
     engagedBookSnapshots: [],
+    recentlyOpenedSnapshots: [],
     completedBookSnapshots: [],
     inProgressBookSnapshots: [],
     heatmapCells: buildHeatmap(new Map()),
@@ -434,8 +439,12 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
             chapters[0]?.id ||
             "";
 
+          const epochIso = new Date(0).toISOString();
           const lastActivityAt =
-            state?.lastOpenedAt ||
+            (state?.lastOpenedAt && state.lastOpenedAt !== epochIso
+              ? state.lastOpenedAt
+              : null) ||
+            (state?.updatedAt && state.updatedAt !== epochIso ? state.updatedAt : null) ||
             progress?.lastActiveAt ||
             progress?.lastOpenedAt ||
             entry.lastActivityAt;
@@ -449,9 +458,11 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
             bestScore,
             avgScore,
             lastOpenedLabel:
-              state?.lastReadChapterId && state.lastOpenedAt !== new Date(0).toISOString()
+              state?.lastReadChapterId && state.lastOpenedAt !== epochIso
                 ? chapterLabelById(entry.id, state.lastReadChapterId)
-                : "Not started",
+                : state
+                  ? "Browsed"
+                  : "Not started",
             lastActivityAt,
             resumeChapterId,
           };
@@ -460,6 +471,8 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
         const engagedBookSnapshots = bookSnapshots.filter((snapshot) => {
           const state = stateByBook.get(snapshot.book.id);
           const chapterStates = chapterStatesByBook.get(snapshot.book.id) ?? [];
+          // A persisted server state means the user has opened this book at least once
+          const hasServerState = !!state;
           const hasCompletedChapter = snapshot.completedChapters > 0;
           const hasQuizScore = Object.values(state?.chapterScores ?? {}).some(
             (score) => Number(score) > 0
@@ -467,7 +480,14 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
           const hasReaderActivity = chapterStates.some((item) =>
             hasMeaningfulReaderActivity(item.state as StoredReaderStateSnapshot | null)
           );
-          return hasCompletedChapter || hasQuizScore || hasReaderActivity;
+          return hasServerState || hasCompletedChapter || hasQuizScore || hasReaderActivity;
+        });
+
+        // Sort by most recently active first
+        engagedBookSnapshots.sort((a, b) => {
+          const timeA = new Date(a.lastActivityAt).getTime();
+          const timeB = new Date(b.lastActivityAt).getTime();
+          return timeB - timeA;
         });
 
         for (const activity of allActivities) {
@@ -484,6 +504,14 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
           .sort();
         const todayKey = toDayKey(new Date());
         const todayStats = readingByDay.get(todayKey) ?? { activeMs: 0, chapters: 0 };
+
+        const recentlyOpenedSnapshots = engagedBookSnapshots
+          .filter((item) => item.status !== "completed")
+          .slice(0, 3);
+
+        const totalMinutesRead = Math.floor(
+          readingDayRows.reduce((sum, row) => sum + row.totalActiveMs, 0) / 60000
+        );
 
         const scoreValues = bookSnapshots
           .map((item) => item.avgScore)
@@ -521,6 +549,7 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
           streakDays: currentStreak,
           dailyGoalMinutes,
           minutesReadToday: Math.floor(todayStats.activeMs / 60000),
+          totalMinutesRead,
           booksCompleted,
           avgQuizScore,
           maxQuizScore,
@@ -529,6 +558,7 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
           lastActiveLabel: formatRelativeDayLabel(activityDays.at(-1) ?? null),
           bookSnapshots,
           engagedBookSnapshots,
+          recentlyOpenedSnapshots,
           completedBookSnapshots,
           inProgressBookSnapshots,
           heatmapCells,

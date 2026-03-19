@@ -7,6 +7,7 @@ import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
 import { useBookAnalytics } from "@/app/book/hooks/useBookAnalytics";
 import { useKeyboardShortcut } from "@/app/book/hooks/useKeyboardShortcut";
 import { useSavedBooks } from "@/app/book/hooks/useSavedBooks";
+import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { buildLibraryCatalog, type LibraryBookEntry } from "@/app/book/data/mockUserLibraryState";
 import { BookCardLarge } from "@/app/book/library/components/BookCardLarge";
 
@@ -14,6 +15,7 @@ export function SavedBooksClient() {
   const router = useRouter();
   const searchInputRef = useRef<HTMLInputElement | null>(null);
   const { state: onboarding, hydrated: onboardingHydrated } = useOnboardingState();
+  const { identity: viewerIdentity } = useBookViewer();
   const { analytics, hydrated: analyticsHydrated } = useBookAnalytics(
     onboarding.selectedBookIds,
     onboarding.dailyGoalMinutes
@@ -54,6 +56,7 @@ export function SavedBooksClient() {
       .map((item) => byId.get(item.bookId))
       .filter((entry): entry is LibraryBookEntry => Boolean(entry));
   }, [analytics, saved]);
+  const viewerName = viewerIdentity.displayName || "Reader";
 
   if (!onboardingHydrated || !analyticsHydrated || !savedHydrated || !onboarding.setupComplete) {
     return (
@@ -68,7 +71,7 @@ export function SavedBooksClient() {
   return (
     <main className="cf-app-shell">
       <TopNav
-        name={onboarding.name || "Reader"}
+        name={viewerName}
         activeTab="saved"
         searchQuery=""
         onSearchChange={() => {}}

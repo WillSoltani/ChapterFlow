@@ -58,6 +58,14 @@ export function settingsSk(): string {
   return "SETTINGS";
 }
 
+export function riskEventPk(scope: string, fingerprint: string): string {
+  return `BOOKRISK#${scope.toUpperCase()}#${fingerprint}`;
+}
+
+export function riskEventSk(timestampIso: string, eventType: string, userId: string): string {
+  return `EVENT#${timestampIso}#${eventType.toUpperCase()}#${userId}`;
+}
+
 export function savedBookSk(bookId: string): string {
   return `SAVED#${bookId}`;
 }

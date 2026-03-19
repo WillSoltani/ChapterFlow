@@ -46,6 +46,7 @@ import { useBookEntitlements } from "@/app/book/hooks/useBookEntitlements";
 import { useBookProfile } from "@/app/book/hooks/useBookProfile";
 import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
 import { useToast } from "@/app/book/hooks/useToast";
+import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import {
   BadgeDetailPanel,
   BadgeTimelineItem,
@@ -156,13 +157,14 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
   const [selectedBadge, setSelectedBadge] = useState<BadgeState | null>(null);
   const { toast, showToast } = useToast();
 
-  const { state: onboarding, hydrated: onboardingHydrated, setName, setPronoun } = useOnboardingState();
+  const { state: onboarding, hydrated: onboardingHydrated } = useOnboardingState();
+  const { identity: viewerIdentity } = useBookViewer();
   const { analytics, hydrated: analyticsHydrated } = useBookAnalytics(
     onboarding.selectedBookIds,
     onboarding.dailyGoalMinutes
   );
   const { state: profile, hydrated: profileHydrated, patch: patchProfile } = useBookProfile({
-    displayName: onboarding.name || "Reader",
+    displayName: viewerIdentity.displayName || "Reader",
     pronouns: onboarding.pronoun,
     createdAt: onboarding.completedAt,
   });
@@ -433,8 +435,6 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
 
   const saveProfile = async (values: Partial<typeof profile>) => {
     patchProfile(values);
-    if (typeof values.displayName === "string") setName(values.displayName);
-    if (typeof values.pronouns === "string") setPronoun(values.pronouns as typeof onboarding.pronoun);
     setEditOpen(false);
     showToast("Profile updated", "success");
   };
@@ -454,10 +454,12 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
     );
   }
 
+  const viewerName = profile.displayName || viewerIdentity.displayName || "Reader";
+
   return (
     <main className="cf-app-shell">
       <TopNav
-        name={profile.displayName || onboarding.name || "Reader"}
+        name={viewerName}
         activeTab="profile"
         searchQuery=""
         onSearchChange={() => undefined}
@@ -468,9 +470,9 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
       <section className="mx-auto w-full max-w-[1500px] space-y-6 px-4 pb-28 pt-7 sm:px-6 lg:px-8 lg:pt-8">
         <ProfileHeroCard
           avatar={profile.avatarDataUrl}
-          initials={initialsFromName(profile.displayName || onboarding.name || "Reader")}
+          initials={initialsFromName(viewerName)}
           accent={profile.avatarAccent}
-          name={profile.displayName || onboarding.name || "Reader"}
+          name={viewerName}
           username={profile.username}
           tagline={profile.tagline}
           plan={billingState.payload?.entitlement.plan === "PRO" ? "Pro" : "Free"}
@@ -1000,7 +1002,7 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
       <EditProfileModal
         open={editOpen}
         profile={profile}
-        email={userEmail}
+        email={viewerIdentity.email ?? userEmail}
         onClose={() => setEditOpen(false)}
         onSave={saveProfile}
       />
