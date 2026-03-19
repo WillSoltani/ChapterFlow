@@ -2010,6 +2010,1932 @@ const CHAPTER_REVISIONS = [
       ),
     ],
   }),
+  chapter({
+    chapterId: "ch10-beware-the-fragile-ego",
+    number: 10,
+    title: "Beware the Fragile Ego",
+    readingTimeMinutes: 13,
+    summary: {
+      p1: t(
+        "Envy grows from comparison, and Greene argues that people are most threatened not by the far away success of strangers but by the nearby success of peers, friends, siblings, and colleagues. The pain comes from similarity, because another person's rise can feel like a judgment on your own standing.",
+        "This law teaches the reader to recognize envy as a hidden force that rarely announces itself honestly. It often appears as cool distance, faint praise, small sabotage, moral criticism, or sudden delight when the envied person stumbles.",
+        "Greene wants you to understand envy as a major social pressure precisely because it hides so well. People are ashamed of it, so they disguise it."
+      ),
+      p2: t(
+        "This matters because envy can quietly corrode trust long before open conflict appears. Success changes relationships, and some people cannot bear to remain close to what makes them feel smaller.",
+        "The deeper lesson is double sided. You need to detect envy in others, but you also need to study your own envious impulses before they harden into bitterness or disguised attack.",
+        "In practice, the law asks for realism and restraint. Do not flaunt advantages carelessly, and do not assume admiration is always as clean as it sounds."
+      ),
+    },
+    standardBullets: [
+      bullet(
+        "Envy thrives on similarity. People usually feel it most strongly toward those they see as close comparisons.",
+        "A peer's success can feel more painful than a distant celebrity's success."
+      ),
+      bullet(
+        "Envy hides behind masks. Greene shows how it often appears as subtle coldness, faint praise, moral criticism, or small obstruction.",
+        "Because the feeling is shameful, it rarely arrives openly."
+      ),
+      bullet(
+        "Watch the emotional shift after success. Some people become harder to read, less warm, or oddly detached once you gain status, attention, or momentum.",
+        "That shift matters even if their words remain supportive."
+      ),
+      bullet(
+        "Do not broadcast every advantage. Visible ease, bragging, and constant proof of superiority can trigger avoidable resentment.",
+        "Restraint protects relationships without requiring false humility."
+      ),
+      bullet(
+        "Read sabotage in small forms. Delayed help, private undermining, and quiet pleasure in your setback can all signal envy at work.",
+        "The pattern matters more than one awkward remark."
+      ),
+      bullet(
+        "Admiration and envy can coexist. A person may genuinely respect you while also feeling pained by your rise.",
+        "Human feeling is often mixed, not pure."
+      ),
+      bullet(
+        "Study your own comparisons. Envy becomes less dangerous once you can name the wound instead of disguising it.",
+        "Awareness turns corrosive feeling into usable information."
+      ),
+      bullet(
+        "Transform envy into direction. Another person's strength can reveal what you actually want to build rather than what you merely resent.",
+        "That shift keeps comparison from turning destructive."
+      ),
+      bullet(
+        "Limit trust where envy deepens. Some relationships cannot carry asymmetry well once status gaps become visible.",
+        "Realism can be kinder than repeated surprise."
+      ),
+      bullet(
+        "The final lesson is sober. Success changes emotional weather around you, and not everyone can stand in that new climate gracefully.",
+        "Greene wants you alert without becoming paranoid."
+      ),
+    ],
+    deeperBullets: [
+      bullet(
+        "Envy often attaches to what feels unfairly close. Shared background, similar age, or parallel ambition can make comparison especially sharp.",
+        "Proximity intensifies the wound."
+      ),
+      bullet(
+        "People often moralize envy. Instead of admitting pain, they recast the envied person as shallow, lucky, compromised, or undeserving.",
+        "That story protects self image while preserving resentment."
+      ),
+      bullet(
+        "The envied person can self sabotage by overdisplaying ease. Visible comfort can inflame the feeling more than achievement itself.",
+        "Understatement is sometimes a form of social intelligence."
+      ),
+      bullet(
+        "Your own envy becomes most useful when it points to neglected desire. The question is not only whom you envy, but what that envy is revealing about your hunger.",
+        "Properly read, the feeling can become directional rather than corrosive."
+      ),
+      bullet(
+        "The strategic gain of this law is cleaner trust management. Once you notice who grows bitter around comparison, you can adjust exposure, expectation, and alliance with less confusion.",
+        "Envy is easier to survive when it is not misnamed as random mood."
+      ),
+    ],
+    takeaways: [
+      "Envy feeds on similarity",
+      "It often hides behind politeness",
+      "Success can change old relationships",
+      "Do not overdisplay advantage",
+      "Read your own comparisons honestly",
+      "Envy can become direction or sabotage",
+    ],
+    practice: [
+      "Notice one relationship that changed after visible success",
+      "Understate one advantage instead of showcasing it",
+      "Name one envy and ask what desire sits underneath it",
+      "Track small sabotage instead of explaining it away",
+    ],
+    examples: [
+      example(
+        "ch10-ex01",
+        "Friend grows cold after your award",
+        ["school"],
+        "After you win a scholarship, a friend congratulates you politely but stops sharing information, withdraws warmth, and jokes more sharply about your ambition.",
+        [
+          "Treat the emotional shift as meaningful data and lower how much validation or strategic trust you keep expecting from the friendship for now.",
+          "Stay civil, but do not ignore the pattern because the words stayed technically supportive."
+        ],
+        "Envy often arrives as a change in warmth rather than as open confession. Greene wants you to read the shift without melodrama."
+      ),
+      example(
+        "ch10-ex02",
+        "Classmate celebrates your setback",
+        ["school"],
+        "A classmate who always compared themselves to you seems oddly energized when you stumble on an exam, even though they still talk like a supportive friend.",
+        [
+          "Notice the mismatch between the stated support and the emotional reaction to your failure before deciding how much closeness or cooperation still makes sense.",
+          "Keep the observation grounded in pattern, not in a single dramatic accusation."
+        ],
+        "Pleasure at another person's fall is one of the clearest signs that comparison has turned toxic."
+      ),
+      example(
+        "ch10-ex03",
+        "Peer on the team starts undermining quietly",
+        ["work"],
+        "A colleague with a similar role becomes noticeably less helpful after your work gets public praise and begins questioning your ideas in subtle ways outside the meeting.",
+        [
+          "Read the timing and pattern clearly and protect your work with documentation, calmer exposure, and lower dependence on their goodwill.",
+          "Do not feed the comparison further through unnecessary display."
+        ],
+        "The law matters because envy often moves sideways through private undermining long before open conflict appears."
+      ),
+      example(
+        "ch10-ex04",
+        "Your own resentment after someone else's promotion",
+        ["work"],
+        "A coworker gets promoted, and you catch yourself downgrading their talent and replaying every lucky break they ever had.",
+        [
+          "Name the envy directly and ask what it is revealing about your own neglected ambition or frustration.",
+          "Turn the pain into a clearer plan instead of into a secret campaign against their legitimacy."
+        ],
+        "Greene does not want the reader to act above envy. He wants you to use self honesty before the feeling hardens into sabotage."
+      ),
+      example(
+        "ch10-ex05",
+        "Sibling comparison after a visible win",
+        ["personal"],
+        "After a big personal milestone, a sibling becomes more sarcastic and less available even though they continue using the language of family support.",
+        [
+          "Respect the possibility that your gain has activated an old comparison dynamic and adjust how much celebration or disclosure you keep routing through them.",
+          "Stay kind without forcing closeness they cannot currently hold."
+        ],
+        "Envy is especially sharp in close comparison relationships because history gives the feeling more fuel."
+      ),
+      example(
+        "ch10-ex06",
+        "You feel stung by a friend's new relationship",
+        ["personal"],
+        "A close friend enters a relationship that seems stable and happy, and you feel yourself becoming more dismissive of their choices than the situation really warrants.",
+        [
+          "Treat the reaction as information about your own unmet longing instead of disguising it as superior judgment about their life.",
+          "Use the feeling to understand what you want rather than to reduce what they have."
+        ],
+        "The law teaches that envy becomes less corrosive when it is faced as pain and desire instead of hidden under contempt."
+      ),
+    ],
+    directQuestions: [
+      question(
+        "ch10-q01",
+        "Why is envy often strongest toward peers rather than distant stars?",
+        [
+          "Because peers are easier to judge morally.",
+          "Because similarity makes their success feel like a comparison with your own standing.",
+          "Because strangers can never trigger envy.",
+          "Because envy depends only on money."
+        ],
+        1,
+        "Greene emphasizes similarity and proximity as the main intensifiers of envy."
+      ),
+      question(
+        "ch10-q02",
+        "Which reaction most strongly suggests envy rather than simple disagreement?",
+        [
+          "A friend asks practical questions about how you achieved something.",
+          "A person becomes quietly colder and more undermining after your visible success.",
+          "A colleague wants clearer details about a plan.",
+          "A sibling needs time after a stressful week."
+        ],
+        1,
+        "The emotional shift after your rise is a stronger clue than polite surface language."
+      ),
+      question(
+        "ch10-q03",
+        "What is the healthiest inward response to your own envy?",
+        [
+          "Deny it and call it objective standards.",
+          "Use it to identify what you want and build toward that honestly.",
+          "Punish yourself for feeling it.",
+          "Distance yourself from everyone doing well."
+        ],
+        1,
+        "Greene wants envy transformed into clearer self knowledge and direction."
+      ),
+      question(
+        "ch10-q04",
+        "What is the chapter's clearest advice for handling your own visible advantages?",
+        [
+          "Hide all success completely.",
+          "Display ease and superiority so people accept the hierarchy.",
+          "Use restraint and do not inflame comparison unnecessarily.",
+          "Apologize for every win."
+        ],
+        2,
+        "The law favors understatement and awareness over flaunting or false guilt."
+      ),
+    ],
+  }),
+  chapter({
+    chapterId: "ch11-know-your-limits",
+    number: 11,
+    title: "Know Your Limits",
+    readingTimeMinutes: 13,
+    summary: {
+      p1: t(
+        "Grandiosity makes people lose contact with reality by inflating their power, insight, importance, or immunity to error. Greene argues that success often feeds this delusion because praise and momentum make self belief expand faster than judgment.",
+        "The law is not against ambition. It is against the swelling fantasy that makes a person stop reading limits, feedback, and actual capability accurately.",
+        "Greene treats grandiosity as dangerous because it turns strength into blindness. The person begins believing their story more than the field they are operating in."
+      ),
+      p2: t(
+        "This matters because many collapses begin not in weakness but in overreach. People who stop respecting limits take bolder and poorer risks, silence correction, and assume the future must keep rewarding them.",
+        "The deeper lesson is that reality connection is a discipline. You need structures, feedback, and humility strong enough to survive success, not only failure.",
+        "In practice, the law asks for grounded ambition. Build big, but keep enough friction with reality that growth does not turn into self deception."
+      ),
+    },
+    standardBullets: [
+      bullet(
+        "Grandiosity expands faster than reality. Success can make a person believe their story more than the actual conditions around them.",
+        "That gap is where overreach begins."
+      ),
+      bullet(
+        "Ambition is not the problem. Greene distinguishes real aspiration from inflated self myth.",
+        "The danger is not wanting much. It is believing too much about yourself."
+      ),
+      bullet(
+        "Praise is an inflaming factor. Constant admiration can reduce self correction and increase fantasy.",
+        "Success needs stronger grounding, not less."
+      ),
+      bullet(
+        "Limits protect intelligence. Knowing where your range ends keeps strategy closer to reality.",
+        "A clear boundary is often a source of strength."
+      ),
+      bullet(
+        "Feedback becomes harder to hear under grandiosity. The ego starts filtering out anything that dents the heroic story.",
+        "This is how warning signs get missed."
+      ),
+      bullet(
+        "Overconfidence invites larger errors. Once self belief loses proportion, risk taking stops being strategic and becomes theatrical.",
+        "The person acts as if consequences now apply less to them."
+      ),
+      bullet(
+        "Return to the work. Greene repeatedly favors concrete practice and measurable reality over inflated self image.",
+        "Reality contact grows through doing, not through admiring yourself."
+      ),
+      bullet(
+        "Keep advisers who are not captured by your mood. Independent correction helps defend against the success delusion.",
+        "A leader without honest feedback is already in danger."
+      ),
+      bullet(
+        "Use confidence in measured form. Practical grandiosity can energize you, but it must stay tied to preparation and fact.",
+        "Belief should support performance, not replace it."
+      ),
+      bullet(
+        "The closing lesson is to stay proportionate. Greene wants boldness disciplined by reality rather than fantasy dressed as vision.",
+        "That proportion is what keeps ambition durable."
+      ),
+    ],
+    deeperBullets: [
+      bullet(
+        "Grandiosity often begins as compensation. Early insecurity can later flip into exaggerated self importance once the person tastes success.",
+        "The old wound remains underneath the bigger image."
+      ),
+      bullet(
+        "The most dangerous moment is often after a streak of wins. Repeated success can persuade you that your intuition has become infallible.",
+        "That is when error checking matters most."
+      ),
+      bullet(
+        "Reality based confidence is specific. It knows what has been tested, what remains uncertain, and where help is still needed.",
+        "Grandiosity prefers fog because fog helps self myth expand."
+      ),
+      bullet(
+        "Some people confuse scale with depth. Bigger goals, louder language, and grander identity can hide shallow preparation.",
+        "Greene keeps returning the reader to substance."
+      ),
+      bullet(
+        "The strategic gain of this law is longevity. People who respect limits can keep growing because they do not keep forcing reality to punish them back to size.",
+        "Humility here is a practical survival tool."
+      ),
+    ],
+    takeaways: [
+      "Grandiosity breaks contact with reality",
+      "Ambition needs proportion",
+      "Praise can inflate self myth",
+      "Feedback protects against overreach",
+      "Return to the work not the image",
+      "Limits support durability",
+    ],
+    practice: [
+      "List one area where success may be making you less teachable",
+      "Ask one person for correction you do not control",
+      "Name a limit that protects quality rather than shrinking you",
+      "Replace one fantasy statement with one tested fact",
+    ],
+    examples: [
+      example(
+        "ch11-ex01",
+        "Student leader who stops preparing",
+        ["school"],
+        "After a few visible wins, a student leader starts assuming they can improvise every important presentation and no longer checks details the way they used to.",
+        [
+          "Treat the new casualness as a grandiosity warning and return to the preparation habits that originally made the leader effective.",
+          "Visible confidence should not replace the quiet work that keeps results real."
+        ],
+        "Success often creates the illusion that the rules no longer apply. Greene wants the reader to catch that drift early."
+      ),
+      example(
+        "ch11-ex02",
+        "Top student ignores warning signs",
+        ["school"],
+        "A student who usually does well takes on too many hard commitments at once because they now assume they can handle any load through natural ability alone.",
+        [
+          "Reassess from actual capacity instead of from self image and cut back before the overreach becomes public failure.",
+          "Respecting limits here protects performance rather than shrinking ambition."
+        ],
+        "Grandiosity often enters through the belief that prior success guarantees future immunity from overload."
+      ),
+      example(
+        "ch11-ex03",
+        "Founder believes the hype",
+        ["work"],
+        "A founder receives glowing press and starts making major decisions from instinct alone, dismissing the product data and the team members who still track the numbers carefully.",
+        [
+          "Rebuild decision making around evidence and independent correction before the inflated self story starts steering the company.",
+          "Separate public praise from operational reality."
+        ],
+        "The law matters because admiration can make self belief expand faster than the underlying business deserves."
+      ),
+      example(
+        "ch11-ex04",
+        "High performer expands beyond competence",
+        ["work"],
+        "A strong operator begins taking control of areas they do not understand because their success in one domain has convinced them that judgment automatically transfers everywhere.",
+        [
+          "Test the new domain with smaller scope, outside expertise, and clear measures instead of assuming competence scales by confidence alone.",
+          "Honor the difference between momentum and mastery."
+        ],
+        "Overreach often comes from importing justified confidence from one field into another where it has not been earned."
+      ),
+      example(
+        "ch11-ex05",
+        "You start believing your own image",
+        ["personal"],
+        "After repeated praise in a social circle, you begin expecting special treatment and feel unusually irritated when ordinary limits or criticism return.",
+        [
+          "Notice the inflation early and reconnect with the tasks, relationships, and routines that do not care about your image.",
+          "Use reality contact to cool the swelling story."
+        ],
+        "Grandiosity is dangerous because it can grow quietly inside normal success and attention."
+      ),
+      example(
+        "ch11-ex06",
+        "Relationship harmed by never being wrong",
+        ["personal"],
+        "You become attached to being the wise one in a relationship and start treating any correction from your partner as proof they are not seeing the big picture.",
+        [
+          "Drop the identity of being beyond correction and reenter the conversation as someone who can still be mistaken.",
+          "Closeness often depends more on reality contact than on preserving superiority."
+        ],
+        "Grandiosity damages intimacy because it makes humility feel like status loss instead of contact with truth."
+      ),
+    ],
+    directQuestions: [
+      question(
+        "ch11-q01",
+        "What is the core difference between ambition and grandiosity in this law?",
+        [
+          "Ambition wants growth, while grandiosity inflates self belief beyond reality.",
+          "Ambition is moral and grandiosity is immoral.",
+          "Ambition is quiet and grandiosity is loud.",
+          "Ambition belongs only to leaders."
+        ],
+        0,
+        "Greene opposes self delusion, not large aspiration."
+      ),
+      question(
+        "ch11-q02",
+        "Why is success a dangerous phase for grandiosity?",
+        [
+          "Because success proves most people were wrong about you.",
+          "Because praise and momentum can weaken self correction right when confidence is rising fastest.",
+          "Because failure is easier to manage than success.",
+          "Because success makes feedback unnecessary."
+        ],
+        1,
+        "The success delusion comes from letting admiration replace reality contact."
+      ),
+      question(
+        "ch11-q03",
+        "Which habit best protects against overreach?",
+        [
+          "Trusting intuition more each time you win.",
+          "Avoiding all ambitious goals.",
+          "Keeping strong feedback loops and respect for tested limits.",
+          "Reducing your circle to admirers only."
+        ],
+        2,
+        "Reality based feedback is one of Greene's main antidotes to grandiosity."
+      ),
+      question(
+        "ch11-q04",
+        "What does practical grandiosity mean here?",
+        [
+          "Using belief as energy while keeping it tied to preparation and fact.",
+          "Letting confidence replace evidence.",
+          "Projecting absolute certainty so others submit.",
+          "Pretending you have no limits."
+        ],
+        0,
+        "Greene allows for energizing self belief, but only when it stays anchored to reality."
+      ),
+    ],
+  }),
+  chapter({
+    chapterId: "ch12-reconnect-to-the-masculine-or-feminine-within-you",
+    number: 12,
+    title: "Reconnect to the Masculine or Feminine Within You",
+    readingTimeMinutes: 12,
+    summary: {
+      p1: t(
+        "Gender rigidity narrows human range, and Greene argues that people become less capable when they overidentify with a fixed performance of what a man or woman is supposed to be. In his language, each person loses access to traits culturally coded as the opposite sex and becomes harder, flatter, and less adaptive.",
+        "The chapter uses older binary language, but its practical lesson is broader: social roles can cut people off from emotional range, patience, intuition, assertiveness, or receptivity that they actually need.",
+        "Greene wants the reader to become more complete by recovering the traits they were taught to suppress for the sake of role conformity."
+      ),
+      p2: t(
+        "This matters because rigid identity performances can damage judgment, relationships, leadership, and self knowledge. When a person clings to one narrow style, they lose flexibility and misread the kinds of strength a situation actually requires.",
+        "The deeper lesson is to reclaim a fuller internal range without turning that range into another performance. Real integration makes a person calmer, more creative, and less dependent on stereotype for direction.",
+        "In practice, the law asks you to notice what qualities you dismiss as not for someone like you, and then recover them as human capacities rather than forbidden territory."
+      ),
+    },
+    standardBullets: [
+      bullet(
+        "Rigid roles reduce range. Greene argues that forced gender performance can make a person less responsive to reality.",
+        "What looks like identity strength may actually be adaptation weakness."
+      ),
+      bullet(
+        "Suppressed traits do not disappear. Qualities a person rejects as unfit for their role often remain underused rather than absent.",
+        "The loss is practical as well as emotional."
+      ),
+      bullet(
+        "A fuller range improves judgment. Assertiveness, empathy, patience, boldness, receptivity, and intuition all have situational value.",
+        "No one style serves every moment well."
+      ),
+      bullet(
+        "Stereotype can become a prison. People often mistake social approval for authenticity.",
+        "The chapter invites a harder look at what was trained rather than chosen."
+      ),
+      bullet(
+        "Relationships benefit from range. Rigid role performance can produce misunderstanding, contempt, and repetitive conflict.",
+        "More flexibility usually means more accurate contact."
+      ),
+      bullet(
+        "Leadership needs both strength and receptivity. A person who only commands or only accommodates becomes easier to predict and easier to outmaneuver.",
+        "Balance improves influence."
+      ),
+      bullet(
+        "Do not romanticize the role you reject. Greene is not telling the reader to flip from one costume to another.",
+        "The aim is integration, not inversion."
+      ),
+      bullet(
+        "Study what traits you mock. Dismissal often points to a quality you have been taught to disown.",
+        "Judgment can reveal the border of your own rigidity."
+      ),
+      bullet(
+        "Build from actual usefulness. Recover the traits that make you more whole and more capable in real situations.",
+        "Practical range matters more than symbolic identity work."
+      ),
+      bullet(
+        "The closing lesson is expansion. Greene wants a person less ruled by stereotype and more able to bring the right quality to the right moment.",
+        "That is the form of freedom inside this law."
+      ),
+    ],
+    deeperBullets: [
+      bullet(
+        "The chapter reflects Greene's binary frame, and that frame is narrower than many readers will find adequate today. The durable lesson lies in recovering a fuller human range from social rigidity.",
+        "That keeps fidelity without pretending the language has no limit."
+      ),
+      bullet(
+        "People often defend rigid roles because they provide status, certainty, and belonging. Letting the performance loosen can feel like loss before it feels like freedom.",
+        "That makes this law emotionally harder than it first appears."
+      ),
+      bullet(
+        "Suppressed traits often return in distorted form. A denied need for softness may become collapse, while denied assertiveness may emerge as resentment or passive control.",
+        "Integration is cleaner than leakage."
+      ),
+      bullet(
+        "The strongest people are often the least role bound. They can combine firmness with sensitivity and confidence with receptivity as the situation demands.",
+        "Range increases adaptability."
+      ),
+      bullet(
+        "The strategic gain is social depth. Once you stop needing to prove a rigid identity, you can pay more attention to reality and less attention to maintaining a costume.",
+        "That improves presence, judgment, and relationship quality."
+      ),
+    ],
+    takeaways: [
+      "Rigid roles shrink human range",
+      "Suppressed traits still matter",
+      "Range improves judgment and closeness",
+      "Balance beats role performance",
+      "Mocked traits may reveal blind spots",
+      "Integration is expansion not costume change",
+    ],
+    practice: [
+      "Name one useful trait you were taught not to value in yourself",
+      "Notice where role performance feels stronger than authenticity",
+      "Use one neglected quality in a real conversation this week",
+      "Watch for contempt that may hide disowned need",
+    ],
+    examples: [
+      example(
+        "ch12-ex01",
+        "Student leader afraid to show warmth",
+        ["school"],
+        "A student leader thinks authority means staying emotionally distant, so meetings become efficient but cold and people stop bringing problems early.",
+        [
+          "Bring more warmth and receptivity into the role without giving up standards, so people experience leadership as both clear and approachable.",
+          "Treat responsiveness as strength instead of as softness that weakens authority."
+        ],
+        "Rigid role performance can damage leadership because it confuses one style with the whole of strength."
+      ),
+      example(
+        "ch12-ex02",
+        "Classmate who hides ambition",
+        ["school"],
+        "A classmate has strong ideas but keeps minimizing them because they fear being seen as too assertive or too visible for the role they think they should play.",
+        [
+          "Encourage them to use more direct voice and claim authorship of their thinking without turning that shift into a theatrical new persona.",
+          "Capability often needs traits a person was taught to suppress."
+        ],
+        "The law applies because social scripts can make someone smaller than their actual range requires."
+      ),
+      example(
+        "ch12-ex03",
+        "Manager who equates care with weakness",
+        ["work"],
+        "A manager prides themselves on being tough and decisive, but the team keeps misreading priorities because the manager refuses to listen closely or acknowledge emotional reality.",
+        [
+          "Recover receptivity as a practical leadership skill and use it to hear what the room knows before locking the next decision.",
+          "Firmness becomes stronger when it is informed by more than one internal mode."
+        ],
+        "The chapter teaches that leadership weakens when one narrow performance is treated as the only legitimate way to be strong."
+      ),
+      example(
+        "ch12-ex04",
+        "People pleasing professional avoids hard calls",
+        ["work"],
+        "A thoughtful employee is excellent at harmony and support but keeps delaying necessary conflict because directness feels too harsh or unlike the kind of person they think they should be.",
+        [
+          "Practice clearer assertion as a human skill rather than as a betrayal of identity and pair it with the empathy they already have.",
+          "The goal is a fuller range, not a new costume."
+        ],
+        "Suppressed firmness often returns later as resentment. Integration lets a person act earlier and more cleanly."
+      ),
+      example(
+        "ch12-ex05",
+        "Dating script feels performative",
+        ["personal"],
+        "In dating, you keep performing a version of yourself that feels socially recognizable, but the performance leaves little room for tenderness, direct desire, or honest uncertainty.",
+        [
+          "Notice which parts of yourself are being edited out for the sake of role and gradually bring them back in truthful ways.",
+          "Closeness improves when identity is less scripted."
+        ],
+        "Rigid roles can look smooth while quietly blocking real contact."
+      ),
+      example(
+        "ch12-ex06",
+        "Family mocks one trait in you",
+        ["personal"],
+        "Your family repeatedly mocks a trait in you as not fitting the kind of person you are supposed to be, and over time you have started distrusting that part of yourself too.",
+        [
+          "Reclaim the trait by testing where it is genuinely useful and humane in your current life instead of letting old role language define it.",
+          "Use lived evidence to weaken the inherited script."
+        ],
+        "The law matters because disowned capacities often stay buried under family and cultural performance long after they are needed."
+      ),
+    ],
+    directQuestions: [
+      question(
+        "ch12-q01",
+        "What is the central cost of gender rigidity in this law?",
+        [
+          "It makes social life simpler.",
+          "It cuts people off from useful traits and narrows their adaptive range.",
+          "It removes all difference between people.",
+          "It matters only in intimate relationships."
+        ],
+        1,
+        "Greene's practical point is that rigid role performance makes a person less complete and less responsive."
+      ),
+      question(
+        "ch12-q02",
+        "Which response best reflects the strongest modern use of this chapter?",
+        [
+          "Replace one rigid role with the opposite rigid role.",
+          "Treat culturally coded traits as human capacities you can recover where useful.",
+          "Ignore the topic because the language feels dated.",
+          "Choose one style and perform it more confidently."
+        ],
+        1,
+        "The usable lesson is expansion of range rather than obedience to stereotype."
+      ),
+      question(
+        "ch12-q03",
+        "Why do suppressed traits matter even when they are hidden well?",
+        [
+          "Because they disappear completely.",
+          "Because unused capacities reduce flexibility and may return in distorted ways.",
+          "Because everyone should express every trait equally.",
+          "Because role performance is always dishonest."
+        ],
+        1,
+        "The chapter treats denied qualities as lost range that later leaks or weakens judgment."
+      ),
+      question(
+        "ch12-q04",
+        "What is the chapter's clearest warning about identity performance?",
+        [
+          "It can be mistaken for authenticity even when it is just social approval hardened into habit.",
+          "It never helps anyone belong.",
+          "It only harms leaders.",
+          "It disappears automatically with age."
+        ],
+        0,
+        "Greene wants the reader to ask which traits were truly chosen and which were merely rewarded."
+      ),
+    ],
+  }),
+  chapter({
+    chapterId: "ch13-advance-with-a-sense-of-purpose",
+    number: 13,
+    title: "Advance with a Sense of Purpose",
+    readingTimeMinutes: 13,
+    summary: {
+      p1: t(
+        "Aimlessness scatters energy, and Greene argues that people become easier to distract, flatter, and derail when they do not have a clear inner direction. Purpose gathers attention into a stronger line, making decisions cleaner because they answer to something larger than mood.",
+        "The chapter treats purpose less as a slogan about passion and more as a disciplined relationship to what matters enough to organize your life around.",
+        "For Greene, purpose is protective. It helps the reader resist drift, social contagion, false ambitions, and the hunger for constant external validation."
+      ),
+      p2: t(
+        "This matters because a person without direction becomes highly available to other people's agendas. Their energy gets spent in reaction, performance, and scattered opportunity rather than in coherent building.",
+        "The deeper lesson is that purpose grows through sustained contact with your strengths, curiosity, and contribution, not through fantasy identity alone. It becomes reliable once it is practiced.",
+        "In daily life, the law asks you to choose a line and keep returning to it. That repetition is what turns vague desire into real direction."
+      ),
+    },
+    standardBullets: [
+      bullet(
+        "Purpose concentrates energy. Greene argues that inner direction reduces waste because choices can be judged against a stronger line.",
+        "Scattered energy usually reflects scattered aim."
+      ),
+      bullet(
+        "Aimlessness invites drift. Without a clear line, people become easier to pull into status games, distraction, and borrowed goals.",
+        "Lack of direction makes outside noise more powerful."
+      ),
+      bullet(
+        "Purpose is practiced, not merely declared. A strong sense of direction grows through repeated work and recurring choice.",
+        "Identity becomes sturdier when action keeps confirming it."
+      ),
+      bullet(
+        "Look for the work that keeps drawing you back. Greene favors long attraction over temporary excitement.",
+        "Repeated pull is often more revealing than sudden intensity."
+      ),
+      bullet(
+        "False purposes are seductive. Fame, image, or borrowed prestige can feel like direction while quietly leaving you empty and unstable.",
+        "The test is whether the aim can sustain effort and meaning over time."
+      ),
+      bullet(
+        "Purpose improves resilience. Hard periods become easier to endure when effort answers to a larger reason.",
+        "Meaning changes the emotional weight of struggle."
+      ),
+      bullet(
+        "Cut what weakens the line. Not every opportunity deserves entry once your direction becomes clearer.",
+        "Purpose depends on exclusion as much as inclusion."
+      ),
+      bullet(
+        "Use service as a test. Strong purpose often creates value beyond your own image.",
+        "Contribution helps separate durable direction from vanity performance."
+      ),
+      bullet(
+        "Return to your voice. Greene wants the reader to hear the quieter inner line beneath comparison, pressure, and imitation.",
+        "That voice becomes clearer through solitude and work."
+      ),
+      bullet(
+        "The final lesson is coherence. Purpose lets a person move through the world with less fragmentation and less borrowed motion.",
+        "It is the difference between being carried and choosing a path."
+      ),
+    ],
+    deeperBullets: [
+      bullet(
+        "Purpose often emerges from wound as well as talent. Some of the strongest directions come from what you have suffered, studied, or deeply needed.",
+        "Difficulty can shape vocation when it is processed well."
+      ),
+      bullet(
+        "Many people fear purpose because it closes doors. Drift can feel safer because it postpones the pain of exclusion and commitment.",
+        "Greene asks the reader to accept that real direction costs optionality."
+      ),
+      bullet(
+        "Purpose is stronger when embodied in routine. Without structure, even meaningful aims stay aspirational.",
+        "Daily rhythm gives direction material force."
+      ),
+      bullet(
+        "False purpose often feeds the ego quickly and empties the self slowly. It gives image, but not durable inner authority.",
+        "That is why borrowed ambition feels impressive and strangely hollow."
+      ),
+      bullet(
+        "The strategic gain of this law is reduced manipulability. A person with real direction is harder to flatter off course and harder to panic out of motion.",
+        "Purpose becomes inner ballast."
+      ),
+    ],
+    takeaways: [
+      "Purpose gathers scattered energy",
+      "Drift makes you easier to steer",
+      "Direction must be practiced",
+      "False purpose looks bright and feels hollow",
+      "Exclusion protects coherence",
+      "Purpose reduces manipulability",
+    ],
+    practice: [
+      "Write the line of work or contribution that keeps returning",
+      "Cut one commitment that weakens your main direction",
+      "Translate one purpose idea into a weekly routine",
+      "Ask whether one current goal feeds image more than meaning",
+    ],
+    examples: [
+      example(
+        "ch13-ex01",
+        "Choosing too many campus paths",
+        ["school"],
+        "You keep joining interesting opportunities, but the result is a schedule full of motion with no clear direction and a growing sense that none of the work is deepening into anything.",
+        [
+          "Choose the one or two commitments that most clearly match your longer line and start cutting the rest even if each one looks good in isolation.",
+          "Let coherence matter more than surface variety."
+        ],
+        "Aimlessness often disguises itself as openness. Greene wants the reader to notice when endless yes is really scattered drift."
+      ),
+      example(
+        "ch13-ex02",
+        "Class choice driven by image",
+        ["school"],
+        "You are about to choose a course load mainly because it looks impressive to others, even though the subjects that actually hold your attention point in a different direction.",
+        [
+          "Check whether the choice serves your developing purpose or mostly your image, and give more weight to the path that creates durable skill and meaning.",
+          "Use outside prestige as a weak signal, not the deciding one."
+        ],
+        "False purpose thrives on comparison. The law asks for a quieter and more stable test of direction."
+      ),
+      example(
+        "ch13-ex03",
+        "Promising project but no core line",
+        ["work"],
+        "At work you are competent across many tasks, but because you have never named a stronger direction you keep becoming the person who handles whatever lands nearby.",
+        [
+          "Define the line you want your work to build toward and start making choices that align responsibility, skill growth, and visibility with that path.",
+          "Do not confuse usefulness in general with direction in particular."
+        ],
+        "A person without purpose gets used by circumstance. Greene wants energy organized rather than merely spent."
+      ),
+      example(
+        "ch13-ex04",
+        "Startup chasing every shiny opportunity",
+        ["work"],
+        "A small company keeps pivoting toward whatever trend is getting attention, and each move sounds promising until the team realizes it no longer knows what it is actually trying to build.",
+        [
+          "Return to the core purpose that justifies the work and judge new opportunities by whether they deepen that line or dissolve it.",
+          "Use focus as a strategic filter, not as a refusal to adapt."
+        ],
+        "Purpose reduces chaos because it gives each new possibility a real test."
+      ),
+      example(
+        "ch13-ex05",
+        "Personal project that keeps getting postponed",
+        ["personal"],
+        "A creative or meaningful project matters to you, but it keeps losing to easier activities because it has not yet been given a protected place in your life.",
+        [
+          "Stop waiting for pure motivation and build a recurring structure that lets the purpose survive ordinary distraction.",
+          "Treat the project as part of your direction, not as a hobby you honor only when time feels abundant."
+        ],
+        "Purpose becomes believable to yourself when it starts shaping the calendar."
+      ),
+      example(
+        "ch13-ex06",
+        "Relationship choice that conflicts with direction",
+        ["personal"],
+        "Someone wants more of your time and future than you can honestly give without abandoning a line of work or growth that matters deeply to you.",
+        [
+          "Be clear about the direction you are actually committed to instead of promising closeness you cannot sustain without resentment.",
+          "Purpose is not an excuse for selfishness, but it does require honest boundaries."
+        ],
+        "A strong line helps you make difficult relational choices with less drift and less false promise."
+      ),
+    ],
+    directQuestions: [
+      question(
+        "ch13-q01",
+        "What is the clearest effect of real purpose in this law?",
+        [
+          "It eliminates uncertainty entirely.",
+          "It concentrates energy and makes choices more coherent.",
+          "It removes the need for sacrifice.",
+          "It guarantees visible status."
+        ],
+        1,
+        "Greene treats purpose as a way of gathering attention, effort, and judgment into a stronger line."
+      ),
+      question(
+        "ch13-q02",
+        "How can you tell a false purpose from a stronger one?",
+        [
+          "False purpose usually provides fast image but weak long term meaning.",
+          "False purpose always looks boring.",
+          "Stronger purpose never includes ambition.",
+          "Stronger purpose attracts instant praise."
+        ],
+        0,
+        "A false purpose often feeds the ego quickly while failing to sustain deep commitment."
+      ),
+      question(
+        "ch13-q03",
+        "What is the most practical way to strengthen purpose?",
+        [
+          "Talk about it more often.",
+          "Wait for perfect certainty before acting.",
+          "Translate it into recurring choices and routines.",
+          "Keep every option open."
+        ],
+        2,
+        "Purpose becomes real through repetition and structure, not through abstract self description."
+      ),
+      question(
+        "ch13-q04",
+        "Why does purpose reduce manipulability?",
+        [
+          "Because people with purpose never need others.",
+          "Because a stronger inner line makes flattery and distraction less controlling.",
+          "Because purpose eliminates emotion.",
+          "Because direction is always obvious to everyone."
+        ],
+        1,
+        "Inner direction gives outside pressure less room to steer you."
+      ),
+    ],
+  }),
+  chapter({
+    chapterId: "ch14-resist-the-downward-pull-of-the-group",
+    number: 14,
+    title: "Resist the Downward Pull of the Group",
+    readingTimeMinutes: 13,
+    summary: {
+      p1: t(
+        "Conformity is powerful because groups quickly shape what feels normal, sayable, admirable, and safe. Greene argues that once people enter a strong collective mood they can surrender judgment, exaggerate certainty, and perform loyalty in ways they would never choose alone.",
+        "The chapter studies how courts, teams, movements, and social circles generate emotional contagion and subtle pressure toward sameness.",
+        "For Greene, the danger is not only open mob behavior. It is the quieter way a group can bend attention, language, and courage until reality itself feels harder to name."
+      ),
+      p2: t(
+        "This matters because much social error begins with wanting harmony, status, or belonging more than accuracy. The person starts reading the room instead of reading the situation.",
+        "The deeper lesson is not total independence theater. Greene wants a reality based relation to groups in which you can belong without dissolving your judgment into them.",
+        "In practice, the law asks you to track mood, incentives, and court politics while building ties to people who still care about truth more than performance."
+      ),
+    },
+    standardBullets: [
+      bullet(
+        "Groups shape perception fast. What a room rewards or punishes quickly becomes part of what members feel able to say and see.",
+        "Belonging pressure changes judgment before people realize it."
+      ),
+      bullet(
+        "Mood is contagious. Anxiety, excitement, outrage, and certainty can spread through a group like weather.",
+        "Emotional climate matters as much as formal policy."
+      ),
+      bullet(
+        "Courts create performers. Greene warns that status focused environments train people to read favor more than reality.",
+        "Once approval becomes the main currency, candor gets expensive."
+      ),
+      bullet(
+        "Harmony can become cowardice. People often call it being supportive when they are really avoiding the risk of truthful dissent.",
+        "Comfort inside the group can cost accuracy."
+      ),
+      bullet(
+        "Keep a reality group. You need at least a few people whose loyalty to the truth stays stronger than their loyalty to mood.",
+        "Such ties protect independence under pressure."
+      ),
+      bullet(
+        "Notice how language shifts. Euphemism, slogans, and repeated phrases can signal when a group is enforcing feeling more than thought.",
+        "Language is one of the first places conformity becomes visible."
+      ),
+      bullet(
+        "Do not let collective emotion decide timing. A charged group often pushes premature certainty and action.",
+        "Distance helps you recover judgment."
+      ),
+      bullet(
+        "Belong without dissolving. Greene is not asking for permanent outsider identity. He is asking for internal separation where it matters.",
+        "You can participate without surrendering your mind."
+      ),
+      bullet(
+        "Read the incentives around agreement. Sometimes people conform because truth is costly, not because the consensus is strong.",
+        "That distinction matters for judgment."
+      ),
+      bullet(
+        "The final lesson is vigilance. The pull of the group is strong precisely because it often feels warm, righteous, and obvious while it is distorting your sight.",
+        "Independent thought must be actively defended."
+      ),
+    ],
+    deeperBullets: [
+      bullet(
+        "Conformity often works through fear of exclusion more than love of the belief itself. People adopt the mood to stay safe inside the group body.",
+        "This makes social pressure deeper than mere argument."
+      ),
+      bullet(
+        "A group can become a substitute self. The more unsure a person feels inwardly, the more total collective certainty can attract them.",
+        "Belonging then becomes identity support."
+      ),
+      bullet(
+        "Dissent is easiest before the mood hardens. Once a room has publicly committed to one emotional line, correction becomes much costlier.",
+        "Timing therefore matters for independent judgment too."
+      ),
+      bullet(
+        "Some people gain status by amplifying conformity. They become interpreters of the official mood and punish deviation to strengthen their own place.",
+        "Court politics feeds on this dynamic."
+      ),
+      bullet(
+        "The strategic gain of this law is cleaner reality contact. If you can feel the group pull without obeying it automatically, you gain a rare advantage in judgment and leadership.",
+        "Distance inside belonging is a powerful skill."
+      ),
+    ],
+    takeaways: [
+      "Groups reshape what feels normal",
+      "Mood spreads fast",
+      "Court politics rewards performance",
+      "Truth needs a reality group",
+      "Belonging can hide fear",
+      "Independence requires active defense",
+    ],
+    practice: [
+      "Notice one room where approval matters too much",
+      "Track one repeated phrase that signals group pressure",
+      "Build one tie with someone who values candor over mood",
+      "Pause before joining a collective emotional rush",
+    ],
+    examples: [
+      example(
+        "ch14-ex01",
+        "Seminar mood turns moralistic",
+        ["school"],
+        "A seminar discussion quickly settles into one approved emotional tone, and students begin speaking more to display alignment than to explore the idea honestly.",
+        [
+          "Notice the shift from inquiry to performance and reintroduce one concrete question that brings the room back to the actual issue.",
+          "If the room cannot hold it, keep your inner distance instead of fusing with the mood."
+        ],
+        "Conformity often first appears as the shrinking of what can be asked without social cost."
+      ),
+      example(
+        "ch14-ex02",
+        "Club starts revolving around a favored inner circle",
+        ["school"],
+        "A campus group develops a small court around its most visible leaders, and members begin echoing the preferred tone rather than bringing useful disagreement.",
+        [
+          "Read the environment as a court dynamic and create smaller channels where candid planning can survive outside the performance center.",
+          "Do not confuse visible unity with healthy reality contact."
+        ],
+        "Greene's court language matters because status hunger often drives conformity more than shared conviction does."
+      ),
+      example(
+        "ch14-ex03",
+        "Team rushes into group certainty",
+        ["work"],
+        "A team becomes excited about one strategy and quickly starts treating hesitation as negativity even though major assumptions remain untested.",
+        [
+          "Slow the emotional momentum by naming the assumptions that still need proof and separating loyalty to the team from loyalty to the current mood.",
+          "Create a structured space for dissent before the consensus hardens further."
+        ],
+        "Collective enthusiasm can distort judgment just as powerfully as collective fear."
+      ),
+      example(
+        "ch14-ex04",
+        "Office culture punishes bad news",
+        ["work"],
+        "In your office everyone talks about openness, but people who surface unwelcome facts quietly lose favor while optimistic framing gets rewarded.",
+        [
+          "Read the incentive system clearly and find the people or channels where truth still has protection before raising critical issues.",
+          "Do not mistake the official language for the real group norm."
+        ],
+        "Conformity is often maintained by hidden costs around honesty rather than by explicit rules."
+      ),
+      example(
+        "ch14-ex05",
+        "Friend group shares one target",
+        ["personal"],
+        "A friend group starts bonding through collective criticism of one absent person, and it becomes easier to join in than to challenge the growing certainty.",
+        [
+          "Notice the emotional reward of belonging that the group is offering and refuse to strengthen a judgment you have not examined yourself.",
+          "If needed, step back from the conversation rather than feed the group body."
+        ],
+        "The downward pull often feels warm because it offers closeness in exchange for independent thought."
+      ),
+      example(
+        "ch14-ex06",
+        "Family mood decides what can be said",
+        ["personal"],
+        "In your family, one emotional script dominates every gathering, and people quickly learn which truths will be treated as betrayal.",
+        [
+          "Keep inner clarity about the actual pattern and choose carefully where honest conversation is possible instead of automatically obeying the script.",
+          "Reality may need to be preserved inwardly before it can be spoken outwardly."
+        ],
+        "Not every group can hold truth at all times. Greene's law includes knowing how strong the collective pull really is."
+      ),
+    ],
+    directQuestions: [
+      question(
+        "ch14-q01",
+        "What makes conformity dangerous in Greene's account?",
+        [
+          "It always produces explicit violence.",
+          "It can quietly replace reality based judgment with mood, performance, and fear of exclusion.",
+          "It means people care too much about belonging.",
+          "It affects only political movements."
+        ],
+        1,
+        "The danger lies in subtle distortion of perception and courage, not only in dramatic mob behavior."
+      ),
+      question(
+        "ch14-q02",
+        "What is a reality group?",
+        [
+          "A circle that always agrees quickly.",
+          "A set of people who share the same background.",
+          "A few people whose commitment to truth can survive collective pressure.",
+          "Any group that meets privately."
+        ],
+        2,
+        "Greene wants the reader to maintain relationships where candor can outlast mood."
+      ),
+      question(
+        "ch14-q03",
+        "How does court politics usually affect a group?",
+        [
+          "It rewards substance over image.",
+          "It trains people to read favor and status instead of reality.",
+          "It removes the need for leadership.",
+          "It always begins with formal hierarchy."
+        ],
+        1,
+        "Court dynamics push people toward performance and alignment with the center of approval."
+      ),
+      question(
+        "ch14-q04",
+        "What is the strongest way to resist the downward pull of the group?",
+        [
+          "Reject all belonging and stand outside every group.",
+          "Stay inside the group while preserving inner distance, better questions, and ties to truthful people.",
+          "Wait until the mood becomes extreme before thinking independently.",
+          "Fight every consensus publicly."
+        ],
+        1,
+        "Greene calls for disciplined inner separation, not theatrical outsider identity."
+      ),
+    ],
+  }),
+  chapter({
+    chapterId: "ch15-make-them-want-to-follow-you",
+    number: 15,
+    title: "Make Them Want to Follow You",
+    readingTimeMinutes: 13,
+    summary: {
+      p1: t(
+        "Fickleness makes people restless, skeptical, and hard to lead for long, and Greene argues that authority must therefore be earned emotionally as well as structurally. People want guidance, but they also resist feeling used, ignored, or trapped under someone weak, vain, or chaotic.",
+        "The chapter teaches leadership through steadiness, fairness, competence, and a larger sense of purpose that invites willing followership instead of mere compliance.",
+        "Greene is especially alert to entitlement and resentment. Followers often expect more than they give, so authority has to be built with both standards and psychological intelligence."
+      ),
+      p2: t(
+        "This matters because groups do not follow for long on title alone. If people sense confusion, self indulgence, or emotional volatility at the center, loyalty thins quickly.",
+        "The deeper lesson is that authority begins inside. A leader who cannot govern mood, timing, and standards in themselves will struggle to stabilize them in others.",
+        "In real life, the law asks you to create trust through consistency and direction. People follow more willingly when they feel the leader is carrying burden, not merely extracting obedience."
+      ),
+    },
+    standardBullets: [
+      bullet(
+        "People are emotionally fickle. Greene argues that support can rise and fall quickly when a leader does not create steadiness.",
+        "Authority must therefore be renewed through behavior, not assumed as permanent."
+      ),
+      bullet(
+        "Title is not enough. Formal position can secure compliance for a while, but it rarely secures willing followership on its own.",
+        "People judge the person holding power as much as the power itself."
+      ),
+      bullet(
+        "Carry yourself with calm authority. Followers read the emotional center of a leader closely.",
+        "Panic, vanity, and indecision spread outward fast."
+      ),
+      bullet(
+        "Make standards visible. Fairness and consistency reduce the resentment that grows in ambiguous leadership climates.",
+        "Clear expectations are a stabilizing force."
+      ),
+      bullet(
+        "Show competence through action. Authority deepens when people see that your decisions improve reality rather than merely decorate your image.",
+        "Results earn followership more reliably than rhetoric."
+      ),
+      bullet(
+        "Take on burden. Greene stresses that leaders must absorb pressure and responsibility rather than only distribute demand.",
+        "People follow more easily when sacrifice is visible at the top."
+      ),
+      bullet(
+        "Recognize entitlement without surrendering to it. Groups often want more ease, praise, and reward than the situation permits.",
+        "A leader must balance empathy with standards."
+      ),
+      bullet(
+        "Give meaning, not only instruction. People become steadier when they understand what the effort serves.",
+        "Purpose strengthens obedience into commitment."
+      ),
+      bullet(
+        "Avoid emotional favoritism. Uneven treatment poisons authority faster than many technical mistakes do.",
+        "Perceived fairness is central to legitimacy."
+      ),
+      bullet(
+        "The closing lesson is inner authority. Greene wants leadership that begins in self control and radiates outward as trust, clarity, and direction.",
+        "Without inner authority, outer authority stays brittle."
+      ),
+    ],
+    deeperBullets: [
+      bullet(
+        "Fickleness grows under unclear leadership because uncertainty invites rumor, grievance, and status competition among followers.",
+        "A weak center creates noisy edges."
+      ),
+      bullet(
+        "Authority is partly theatrical, but the theater must be backed by substance. Visible calm without competence becomes hollow quickly.",
+        "Image can open the door, but it cannot carry the weight alone."
+      ),
+      bullet(
+        "People often test authority indirectly. Delay, complaint, cynicism, and selective obedience can all be probes of the leader's steadiness.",
+        "How you answer those probes teaches the group what authority means under you."
+      ),
+      bullet(
+        "A leader's self pity is especially corrosive. Once followers feel the center is emotionally needy, respect tends to thin into management of the leader's feelings.",
+        "Burden should travel up more than down."
+      ),
+      bullet(
+        "The strategic gain of this law is durable legitimacy. When people want to follow, enforcement costs drop and group energy can go toward the mission instead of toward internal friction.",
+        "Strong authority reduces wasted emotional motion."
+      ),
+    ],
+    takeaways: [
+      "Followers are emotionally changeable",
+      "Title alone is thin authority",
+      "Calm and fairness stabilize groups",
+      "Visible burden earns trust",
+      "Meaning strengthens obedience",
+      "Inner authority is the core",
+    ],
+    practice: [
+      "Name one standard your group experiences as unclear",
+      "Carry one difficult burden instead of pushing it downward",
+      "Check whether your behavior teaches calm or confusion",
+      "Explain one decision through purpose not only instruction",
+    ],
+    examples: [
+      example(
+        "ch15-ex01",
+        "Team captain loses credibility",
+        ["school"],
+        "A team captain keeps asking for discipline while showing up late and changing expectations from week to week, so teammates start following only when watched.",
+        [
+          "Rebuild authority through visible consistency, shared standards, and personal example before demanding more buy in from others.",
+          "People follow more readily when the leader carries the standard first."
+        ],
+        "Fickleness grows when leadership feels uneven. Authority needs behavior that reduces resentment and uncertainty."
+      ),
+      example(
+        "ch15-ex02",
+        "Club leader over relies on popularity",
+        ["school"],
+        "A club leader wants to stay liked by everyone and avoids hard calls, but the lack of clear standards is making the group more frustrated and less committed.",
+        [
+          "Choose fairness and consistency over broad popularity and explain the reasoning behind the harder decisions clearly.",
+          "Willing followership usually grows from legitimacy more than from constant comfort."
+        ],
+        "People often say they want a soft leader, then lose trust when softness creates disorder."
+      ),
+      example(
+        "ch15-ex03",
+        "Manager gives orders without context",
+        ["work"],
+        "A manager keeps changing priorities and issuing tasks without explaining the larger goal, and the team is becoming passive, cynical, and slow.",
+        [
+          "Reconnect the work to a clear direction and show steadier prioritization so the team feels guided instead of jerked around.",
+          "Authority strengthens when instruction is joined to meaning."
+        ],
+        "People follow more willingly when they can see that the burden being asked of them serves something coherent."
+      ),
+      example(
+        "ch15-ex04",
+        "Founder seeks admiration from the team",
+        ["work"],
+        "A founder wants constant emotional reassurance from employees and becomes erratic when the room is not visibly excited enough.",
+        [
+          "Shift leadership away from the need to be fed and back toward steadiness, competence, and real responsibility for the group's problems.",
+          "Authority weakens when followers must parent the center."
+        ],
+        "Greene's leadership law depends on inner authority. A needy center produces brittle followership."
+      ),
+      example(
+        "ch15-ex05",
+        "Friend group needs direction on a trip",
+        ["personal"],
+        "A friend group trip starts going poorly because nobody wants to make clear calls, and the person who informally takes over keeps changing plans based on whoever complained last.",
+        [
+          "Create a simple, fair structure for decisions and stick to it instead of governing by the last wave of pressure.",
+          "People usually relax when leadership becomes steadier and more predictable."
+        ],
+        "Fickleness is not only political. Small groups also test whether the person in charge can absorb pressure without dissolving."
+      ),
+      example(
+        "ch15-ex06",
+        "Family member trusted only in crisis",
+        ["personal"],
+        "Your family turns to one person during emergencies because they stay calm, but ignores another member with the louder title because that person becomes dramatic and inconsistent under pressure.",
+        [
+          "Notice that real authority is being granted to steadiness rather than to formal status and build more of that inner authority if you want people to trust your lead.",
+          "Emotional center matters more than position when stress rises."
+        ],
+        "Greene's point is that people follow the person who carries uncertainty best, not merely the person who claims the seat."
+      ),
+    ],
+    directQuestions: [
+      question(
+        "ch15-q01",
+        "Why is title alone weak authority in this law?",
+        [
+          "Because people dislike all hierarchy.",
+          "Because followers judge steadiness, fairness, and competence in the person using the title.",
+          "Because authority should always be hidden.",
+          "Because rules never matter."
+        ],
+        1,
+        "Formal power may secure compliance, but willing followership depends on lived legitimacy."
+      ),
+      question(
+        "ch15-q02",
+        "What most quickly weakens leadership legitimacy?",
+        [
+          "Visible consistency and burden carrying.",
+          "Fair standards that apply to everyone.",
+          "Emotional volatility and self indulgence at the center.",
+          "Explaining the larger mission."
+        ],
+        2,
+        "Followers lose trust quickly when the center feels chaotic, vain, or needy."
+      ),
+      question(
+        "ch15-q03",
+        "How should a leader respond to group entitlement?",
+        [
+          "Give the group whatever keeps them happy in the moment.",
+          "Ignore morale completely.",
+          "Balance empathy with standards rather than surrendering authority to complaint.",
+          "Punish complaints publicly."
+        ],
+        2,
+        "Greene's leader stays human and firm at the same time."
+      ),
+      question(
+        "ch15-q04",
+        "What creates inner authority?",
+        [
+          "Being admired often.",
+          "Self control, steadiness, and clear relation to burden and standards.",
+          "Speaking with maximum certainty.",
+          "Avoiding all closeness with followers."
+        ],
+        1,
+        "The chapter grounds outer authority in disciplined inward command."
+      ),
+    ],
+  }),
+  chapter({
+    chapterId: "ch16-see-the-hostility-behind-the-friendly-facade",
+    number: 16,
+    title: "See the Hostility Behind the Friendly Facade",
+    readingTimeMinutes: 13,
+    summary: {
+      p1: t(
+        "Aggression is a permanent part of human nature, and Greene argues that it often appears in indirect or polished forms long before it appears openly. The friendly facade can hide rivalry, resentment, passive punishment, territory defense, or a quiet wish to diminish another person.",
+        "The chapter teaches the reader to stop assuming hostility always looks loud. Sophisticated aggression often arrives as delay, guilt, mock innocence, selective forgetfulness, and smiling obstruction.",
+        "Greene also turns the law inward by arguing that your own aggressive energy must be recognized and governed instead of denied until it leaks out destructively."
+      ),
+      p2: t(
+        "This matters because people who only watch for open attack are easy to wear down by subtler forms of hostility. Much personal and professional damage happens through passive pressure that remains deniable on the surface.",
+        "The deeper lesson is to respond at the level of pattern, not at the level of the aggressor's preferred disguise. If you keep debating the mask, the aggression keeps working.",
+        "In practice, the law asks for clean boundaries and controlled force. Better to name and channel aggression honestly than to let it become poison under a polite surface."
+      ),
+    },
+    standardBullets: [
+      bullet(
+        "Aggression is often indirect. Greene warns that hostility frequently hides behind friendliness, helplessness, or civility.",
+        "The smoother the surface, the easier it can be to miss the pattern."
+      ),
+      bullet(
+        "Passive aggression is real aggression. Delay, guilt, sabotage, selective silence, and convenient forgetting can all serve hostile aims.",
+        "The lack of overt attack does not make the pattern harmless."
+      ),
+      bullet(
+        "Watch for deniable repetition. One ambiguous act proves little, but a repeated pattern of obstruction or sting matters.",
+        "Aggression often depends on making you doubt your own reading."
+      ),
+      bullet(
+        "Do not argue with the mask. If you spend all your energy debating whether the person is really hostile, you may ignore the actual effect of the behavior.",
+        "Respond to pattern and consequence."
+      ),
+      bullet(
+        "Set clear consequences early. Subtle aggressors often advance when the cost of their behavior stays vague.",
+        "Clean boundaries reduce room for hidden warfare."
+      ),
+      bullet(
+        "Use directness over passive retaliation. Greene prefers controlled confrontation to joining the same murky style yourself.",
+        "Matching indirect hostility usually thickens the fog."
+      ),
+      bullet(
+        "Study your own aggression honestly. Denied aggressive energy often turns into sarcasm, resentment, or delayed punishment.",
+        "What you cannot admit is harder to govern."
+      ),
+      bullet(
+        "Channel force toward protection. Aggression can be useful when it defends boundaries, standards, and necessary action.",
+        "The aim is controlled force, not uncontrolled discharge."
+      ),
+      bullet(
+        "Do not reward chronic hostility with naivete. Some people repeatedly choose indirect warfare because it gives them both injury and innocence.",
+        "Realism protects your time and trust."
+      ),
+      bullet(
+        "The final lesson is to clear the field. Greene wants fewer hidden battles and more honest power around conflict.",
+        "What is named becomes easier to manage."
+      ),
+    ],
+    deeperBullets: [
+      bullet(
+        "Sophisticated aggressors often prefer moral cover. They cast themselves as hurt, principled, or misunderstood while continuing the hostile pattern.",
+        "This cover keeps others arguing about intent instead of addressing effect."
+      ),
+      bullet(
+        "Passive aggression is attractive because it offers discharge without full responsibility. The person can punish while preserving a cleaner self image.",
+        "That is part of its persistence."
+      ),
+      bullet(
+        "Your own fear of conflict can empower hidden aggression. People who hate directness often tolerate too much indirect warfare before they respond.",
+        "Avoiding open tension can increase covert tension."
+      ),
+      bullet(
+        "Controlled aggression is not cruelty. Greene means the capacity to act decisively, set limits, and protect your ground without sentimental hesitation.",
+        "Force can be clean when it is conscious."
+      ),
+      bullet(
+        "The strategic gain of this law is faster pattern recognition. Once you stop expecting hostility to look dramatic, you become harder to manipulate through guilt, confusion, and delay.",
+        "Seeing the true form of aggression changes the whole response."
+      ),
+    ],
+    takeaways: [
+      "Aggression often hides well",
+      "Passive aggression is still aggression",
+      "Read repeated effect not surface innocence",
+      "Set consequences early",
+      "Name your own aggression honestly",
+      "Controlled force beats murky retaliation",
+    ],
+    practice: [
+      "Notice one repeated hostile pattern you keep minimizing",
+      "State one boundary without apology or fog",
+      "Name one indirect way your own aggression leaks out",
+      "Respond to effect instead of debating hidden intent forever",
+    ],
+    examples: [
+      example(
+        "ch16-ex01",
+        "Classmate who keeps forgetting the hard part",
+        ["school"],
+        "A classmate always volunteers for visible parts of a project and repeatedly forgets the invisible work that would actually help you, then acts surprised when you are frustrated.",
+        [
+          "Treat the repeated pattern as real aggression against fairness and reset the work structure with clear tasks and consequences instead of accepting another innocent explanation.",
+          "Do not let deniability erase the effect."
+        ],
+        "Passive aggression works by making the target feel unreasonable for noticing it. Greene wants you to stay with the pattern."
+      ),
+      example(
+        "ch16-ex02",
+        "Friend who jokes only at your expense",
+        ["school"],
+        "A friend keeps making cutting jokes about you in group settings and then hides behind humor whenever you show discomfort.",
+        [
+          "Name the pattern directly and make clear that humor does not excuse repeated humiliation.",
+          "If the behavior continues, reduce access instead of arguing about their intentions."
+        ],
+        "Friendly packaging does not make a hostile pattern harmless. The chapter teaches you to read what the jokes are doing socially."
+      ),
+      example(
+        "ch16-ex03",
+        "Coworker slows your work through nice language",
+        ["work"],
+        "A coworker always sounds cooperative but repeatedly delays the approvals only your work needs, forcing you to chase them while they keep a polite tone.",
+        [
+          "Move the issue into clearer process, deadlines, and visible accountability so the passive pattern loses room to operate in private.",
+          "Respond to the obstruction as a real behavior problem, not as a misunderstanding of tone."
+        ],
+        "Indirect aggression survives in ambiguity. Structure can make hidden hostility more expensive."
+      ),
+      example(
+        "ch16-ex04",
+        "Manager punishes through distance",
+        ["work"],
+        "After you disagree with a manager, they become outwardly civil but start excluding you from useful information and small opportunities.",
+        [
+          "Recognize the pattern as retaliatory instead of accepting the polite surface at face value, and document the exclusions while deciding what formal boundary or escalation is needed.",
+          "Do not keep debating whether the coldness is intentional if the effect is consistent."
+        ],
+        "Greene's point is that sophistication can make aggression harder to name but no less damaging."
+      ),
+      example(
+        "ch16-ex05",
+        "Partner punishes through silence",
+        ["personal"],
+        "During conflict, your partner rarely raises their voice, but they withdraw warmth, delay important answers, and let you sit in uncertainty until you give in.",
+        [
+          "Name the pattern as coercive rather than treating it as harmless quietness, and set a standard for direct communication during conflict.",
+          "If the pattern does not change, respond from self respect rather than from increasing appeasement."
+        ],
+        "Silence can be used as aggression when it is repeatedly weaponized to control the emotional field."
+      ),
+      example(
+        "ch16-ex06",
+        "You keep becoming sarcastic instead of direct",
+        ["personal"],
+        "You tell yourself you are easygoing, but when resentment builds you start delivering it through sarcasm and little punishments rather than through clean honesty.",
+        [
+          "Admit the aggressive energy early and practice direct statement before it curdles into indirect attack.",
+          "Use aggression for boundary and truth, not for disguised revenge."
+        ],
+        "The law turns inward because denied aggression often leaks out in the very forms we claim to dislike in others."
+      ),
+    ],
+    directQuestions: [
+      question(
+        "ch16-q01",
+        "What makes passive aggression especially effective?",
+        [
+          "It is more honest than direct conflict.",
+          "It allows harm while preserving deniability and innocence on the surface.",
+          "It is always accidental.",
+          "It affects only very sensitive people."
+        ],
+        1,
+        "Greene emphasizes the combination of injury and plausible innocence that makes passive aggression hard to confront."
+      ),
+      question(
+        "ch16-q02",
+        "What is the strongest response to a repeated subtle hostile pattern?",
+        [
+          "Keep debating whether the person meant it.",
+          "Mirror the same indirect style back to them.",
+          "Address the pattern and set clearer consequences around effect.",
+          "Ignore it until they become openly aggressive."
+        ],
+        2,
+        "The law favors responding to the lived pattern rather than getting trapped inside the disguise."
+      ),
+      question(
+        "ch16-q03",
+        "Why is it important to admit your own aggression?",
+        [
+          "So you can use it against people more efficiently.",
+          "Because admitted aggression is easier to direct and less likely to leak destructively.",
+          "Because direct anger always improves relationships.",
+          "Because everyone else is more aggressive than you are."
+        ],
+        1,
+        "Integration makes force more governable. Denial tends to produce murkier and less controlled expressions."
+      ),
+      question(
+        "ch16-q04",
+        "What is controlled aggression in this chapter?",
+        [
+          "Cruelty with better language.",
+          "The refusal to feel any anger.",
+          "Clear force used for boundary, protection, and decisive action.",
+          "Winning every conflict quickly."
+        ],
+        2,
+        "Greene is distinguishing conscious force from disguised hostility and uncontrolled discharge."
+      ),
+    ],
+  }),
+  chapter({
+    chapterId: "ch17-seize-the-historical-moment",
+    number: 17,
+    title: "Seize the Historical Moment",
+    readingTimeMinutes: 12,
+    summary: {
+      p1: t(
+        "Generational myopia makes people assume their own habits, tastes, fears, and hopes are timeless when they are actually shaped by the era that formed them. Greene argues that every generation develops a distinct emotional tone and that successful action often depends on reading the larger mood of the time.",
+        "The chapter teaches the reader to study the spirit of the age rather than acting as if personal preference alone can explain social change.",
+        "For Greene, timing is historical as well as individual. Some ideas, styles, and moves only land when they meet a broader wave that is already rising."
+      ),
+      p2: t(
+        "This matters because many people miss opportunity by fighting the era instead of understanding it. Others become prisoners of their generation and cannot see when the culture has moved on.",
+        "The deeper lesson is to balance adaptation with independence. You want enough distance to see the pattern, but enough flexibility to work with it rather than against it blindly.",
+        "In practice, the law asks you to read recurring generational needs, anxieties, and desires, then position your work and choices where the current is already building force."
+      ),
+    },
+    standardBullets: [
+      bullet(
+        "Each generation is shaped by its era. Greene argues that shared events and conditions leave an emotional imprint on a cohort.",
+        "That imprint influences taste, fear, ambition, and reaction."
+      ),
+      bullet(
+        "Do not mistake the present mood for timeless truth. What feels natural to one generation can feel stale or oppressive to the next.",
+        "Historical perspective reduces arrogance about your own assumptions."
+      ),
+      bullet(
+        "Read the spirit of the times. Successful action often aligns with a larger social current already gathering strength.",
+        "Timing matters because some moves are powerful only in the right era."
+      ),
+      bullet(
+        "Generational conflict often hides different emotional experiences of the world. What looks like stubbornness can reflect formation under very different pressures.",
+        "Reading those pressures improves judgment."
+      ),
+      bullet(
+        "Spot rising needs and frustrations. Change often begins where a generation feels constrained, unseen, or underserved.",
+        "Desire at scale creates historical momentum."
+      ),
+      bullet(
+        "Avoid nostalgic blindness. Attachment to the old mood can stop you from noticing what the new one demands.",
+        "What once worked may now repel."
+      ),
+      bullet(
+        "Do not become a simple trend follower. Greene wants active reading, not empty imitation.",
+        "You still need substance and independent thought."
+      ),
+      bullet(
+        "Position work where the wave is rising. Timing and fit can multiply the impact of a strong idea or skill.",
+        "Historical awareness improves leverage."
+      ),
+      bullet(
+        "Study the generation above and below you. Perspective widens when you compare the emotional climate that formed each group.",
+        "This reduces lazy caricature."
+      ),
+      bullet(
+        "The closing lesson is to become historically awake. Greene wants you to move with time consciously instead of being carried by it unconsciously.",
+        "That awareness improves both strategy and self understanding."
+      ),
+    ],
+    deeperBullets: [
+      bullet(
+        "Generational identity can become a soft prison. People repeat the emotional style of their cohort even after conditions have changed.",
+        "Formation is powerful, but it should not become fate."
+      ),
+      bullet(
+        "Historical moments are often legible before they are fully named. Small shifts in language, aspiration, and irritation can signal a deeper turn already underway.",
+        "Attentive observers can see the wave early."
+      ),
+      bullet(
+        "Aging increases the risk of historical blindness if people confuse maturity with timeless correctness. Adaptation becomes harder once identity fuses with one era's rules.",
+        "Greene is warning against that fusion."
+      ),
+      bullet(
+        "Reading the moment is not surrendering to fashion. The stronger move is to understand the current deeply enough to bring something real to it.",
+        "Substance plus timing beats mimicry."
+      ),
+      bullet(
+        "The strategic gain of this law is leverage. When your work meets an already rising social need, the same effort can travel much farther.",
+        "Historical awareness lets you ride force instead of manufacturing all of it alone."
+      ),
+    ],
+    takeaways: [
+      "Generations are shaped by shared conditions",
+      "The current mood is not timeless",
+      "Read the spirit of the age",
+      "Timing multiplies substance",
+      "Avoid nostalgic blindness",
+      "Historical awareness creates leverage",
+    ],
+    practice: [
+      "List one major condition that shaped your cohort",
+      "Notice one rising social frustration or desire around you",
+      "Compare how two generations read the same issue differently",
+      "Ask whether your current plan fits the time or only your preference",
+    ],
+    examples: [
+      example(
+        "ch17-ex01",
+        "Campus project aimed at an outdated mood",
+        ["school"],
+        "You are designing a campus initiative using a tone and format that appealed strongly a few years ago, but current students are responding to different needs and different forms of trust.",
+        [
+          "Study what the present cohort is actually responding to now and redesign from the live mood rather than from nostalgic certainty about what used to work.",
+          "Keep the core value, but adapt the form to the current moment."
+        ],
+        "The law matters because even a good idea can miss when it speaks to the wrong emotional climate."
+      ),
+      example(
+        "ch17-ex02",
+        "Conflict with an older mentor",
+        ["school"],
+        "An older mentor keeps giving advice that made sense in their own formation period, but parts of it do not fit the current environment you are actually entering.",
+        [
+          "Read the advice through the era that shaped it, take what remains structurally strong, and separate that from what is dated by changed conditions.",
+          "Respect does not require historical blindness."
+        ],
+        "Generational myopia weakens judgment when people mistake their own formation for timeless truth."
+      ),
+      example(
+        "ch17-ex03",
+        "Product misses a rising shift",
+        ["work"],
+        "A team keeps refining a product for an audience whose priorities are shifting faster than the roadmap, and each release feels more polished but less relevant.",
+        [
+          "Study the broader mood and emerging frustrations around the market now, then reposition the product where the social current is actually moving.",
+          "Do not let attachment to yesterday's fit block tomorrow's opening."
+        ],
+        "Seizing the historical moment means reading the wave early enough to meet it with substance."
+      ),
+      example(
+        "ch17-ex04",
+        "Leader clings to an old communication style",
+        ["work"],
+        "A leader insists on a style of authority that worked in an earlier professional era, but the current team reads the same behavior as distance and opacity.",
+        [
+          "Separate the enduring need for leadership from the dated performance style and adapt the form without losing the standard.",
+          "Authority survives better when it understands the time it is leading in."
+        ],
+        "The chapter is not anti tradition. It is anti blindness about whether the old form still reaches the present mind."
+      ),
+      example(
+        "ch17-ex05",
+        "Family conflict over life timing",
+        ["personal"],
+        "Your family sees career and relationship milestones through one historical script, while your generation is navigating a different economic and social landscape altogether.",
+        [
+          "Interpret the conflict through the different conditions that shaped each side rather than through simple accusations of laziness or rigidity.",
+          "Use that understanding to negotiate expectations more intelligently."
+        ],
+        "Generational tension often becomes more manageable once you stop pretending both groups were formed by the same world."
+      ),
+      example(
+        "ch17-ex06",
+        "You dismiss a new cultural shift too quickly",
+        ["personal"],
+        "You catch yourself mocking a rising taste or platform because it looks shallow from the outside, yet the energy around it may be pointing to a deeper unmet need.",
+        [
+          "Look past the first distaste reaction and ask what broader desire, fear, or frustration the shift is expressing.",
+          "Reading the need beneath the form is often more useful than mocking the form itself."
+        ],
+        "Historical awareness begins when you stop assuming your own taste is the measure of what matters now."
+      ),
+    ],
+    directQuestions: [
+      question(
+        "ch17-q01",
+        "What is generational myopia in this law?",
+        [
+          "The belief that every generation is identical.",
+          "The tendency to mistake the outlook shaped by your era for timeless truth.",
+          "The habit of studying history too much.",
+          "The refusal to learn from older people."
+        ],
+        1,
+        "Greene uses the law to show how formation by an era can become invisible to the people inside it."
+      ),
+      question(
+        "ch17-q02",
+        "Why does reading the spirit of the times matter strategically?",
+        [
+          "Because timing can multiply the force of a good idea or skill.",
+          "Because trends remove the need for substance.",
+          "Because older approaches are always useless.",
+          "Because every cultural shift is worth following."
+        ],
+        0,
+        "Historical awareness helps strong work meet a rising social need instead of missing it."
+      ),
+      question(
+        "ch17-q03",
+        "What is the strongest response to conflict between generations?",
+        [
+          "Assume the older side is always rigid.",
+          "Assume the younger side is always entitled.",
+          "Read how each group was formed by different conditions before judging too quickly.",
+          "Avoid the topic completely."
+        ],
+        2,
+        "The law improves judgment by locating the different emotional and material worlds that shaped each side."
+      ),
+      question(
+        "ch17-q04",
+        "What does this chapter warn against in successful people?",
+        [
+          "Adapting too quickly.",
+          "Confusing the methods of their own rise with permanently valid law.",
+          "Taking pride in past work.",
+          "Studying younger audiences."
+        ],
+        1,
+        "Historical blindness often grows when people think what once worked must still fit unchanged conditions."
+      ),
+    ],
+  }),
+  chapter({
+    chapterId: "ch18-meditate-on-our-common-mortality",
+    number: 18,
+    title: "Meditate on Our Common Mortality",
+    readingTimeMinutes: 12,
+    summary: {
+      p1: t(
+        "Death denial distorts life by encouraging distraction, pettiness, and the fantasy of endless time. Greene argues that when people refuse to face mortality, they often live more timidly, not more freely, because they keep postponing what matters and clinging to trivial emotional battles.",
+        "The chapter treats awareness of death as a clarifying force rather than a morbid obsession.",
+        "For Greene, mortality is the final teacher because it exposes scale. It shows what deserves urgency, what deserves gratitude, and what does not deserve so much of your life."
+      ),
+      p2: t(
+        "This matters because remembering finitude can cut through drift, vanity, and fear of judgment. Many things lose power once you ask whether they deserve a meaningful portion of a limited life.",
+        "The deeper lesson is not reckless living but intensified presence. Mortality sharpens purpose, courage, and appreciation because time is no longer treated as abstract surplus.",
+        "In practice, the law helps you live with more proportion. It reduces the temptation to sleepwalk through years or spend them on conflicts and performances that never really mattered."
+      ),
+    },
+    standardBullets: [
+      bullet(
+        "Mortality creates clarity. Greene argues that awareness of death can reorder what feels important.",
+        "Limited time changes the scale of daily decisions."
+      ),
+      bullet(
+        "Death denial encourages postponement. People act as if life's real work can always begin later.",
+        "That fantasy quietly wastes years."
+      ),
+      bullet(
+        "Many conflicts shrink under mortality. Petty status fights and stale resentments lose force when viewed against finite life.",
+        "Perspective can dissolve false urgency."
+      ),
+      bullet(
+        "Awareness of death can deepen presence. Ordinary moments become more vivid when they are not treated as endlessly replaceable.",
+        "Finitude can increase gratitude."
+      ),
+      bullet(
+        "Use mortality to strengthen courage. Fear of embarrassment and delay weakens once time itself becomes the clearer cost.",
+        "A limited life asks for cleaner priority."
+      ),
+      bullet(
+        "Do not confuse urgency with frenzy. Greene is not calling for frantic consumption of experience.",
+        "He is calling for more intentional use of time."
+      ),
+      bullet(
+        "Mortality can clarify purpose. What matters most becomes easier to identify when the horizon is real.",
+        "Death awareness sharpens selection."
+      ),
+      bullet(
+        "Shared mortality can soften arrogance. Everyone is moving under the same ultimate limit.",
+        "That recognition can deepen empathy and humility."
+      ),
+      bullet(
+        "Build a philosophy of life, not just fear of loss. The point is not to dread death daily but to let it improve how you live.",
+        "A good death meditation returns you to fuller life."
+      ),
+      bullet(
+        "The final lesson is to spend time like it matters because it does. Greene closes by turning mortality into a discipline of meaning, proportion, and aliveness.",
+        "Facing the end can make the middle more honest."
+      ),
+    ],
+    deeperBullets: [
+      bullet(
+        "Death denial often looks like busyness, not only fear. People can hide from mortality by filling life with noise that prevents contact with deeper questions.",
+        "Distraction becomes a shield against finitude."
+      ),
+      bullet(
+        "Mortality awareness exposes false endlessness in relationships, work, and self presentation. It becomes harder to justify wasting years on what you do not respect.",
+        "This is why the law can be so liberating."
+      ),
+      bullet(
+        "The chapter is not anti planning. It is anti unconscious postponement. Long term building matters more, not less, once you accept that time is finite.",
+        "Death awareness can actually improve discipline."
+      ),
+      bullet(
+        "Shared mortality also widens compassion. Other people's vanity, fear, and confusion can look different once you remember they too are finite creatures under uncertainty.",
+        "The law balances urgency with tenderness."
+      ),
+      bullet(
+        "The strategic gain of this law is proportion. When death becomes thinkable, you stop granting trivial things a level of importance they never deserved.",
+        "Perspective can return force to what is truly worth a life."
+      ),
+    ],
+    takeaways: [
+      "Mortality clarifies priority",
+      "Death denial feeds postponement",
+      "Finitude can deepen presence",
+      "Urgency should be intentional not frantic",
+      "Shared mortality softens arrogance",
+      "Time deserves proportionate use",
+    ],
+    practice: [
+      "Ask what current conflict would matter from a larger life horizon",
+      "Choose one delayed important act and move it forward now",
+      "Notice one way busyness is hiding deeper avoidance",
+      "Spend one hour this week in line with what would still matter years from now",
+    ],
+    examples: [
+      example(
+        "ch18-ex01",
+        "Waiting to start the real work",
+        ["school"],
+        "You keep telling yourself that the work you care about will begin after this semester, after next year, or after some cleaner version of life arrives.",
+        [
+          "Use mortality as a corrective and move one meaningful part of that work into the present instead of protecting the fantasy of endless later.",
+          "A finite horizon makes postponement more visible."
+        ],
+        "The law matters because delay often survives on the illusion that real life has not started yet."
+      ),
+      example(
+        "ch18-ex02",
+        "Campus conflict feels huge until perspective returns",
+        ["school"],
+        "A social conflict at school is consuming your emotional energy, but when you step back it is clear the fight is taking more life than it deserves.",
+        [
+          "Ask whether this conflict is worthy of a meaningful slice of your limited time and respond from that larger measure.",
+          "Do not confuse constant mental rehearsal with importance."
+        ],
+        "Mortality perspective shrinks some battles not by denying them, but by placing them in true proportion."
+      ),
+      example(
+        "ch18-ex03",
+        "Career plan built on endless deferral",
+        ["work"],
+        "You stay in a work pattern that drains you because making a change feels uncomfortable, and the mind keeps promising there will be a later season for more meaningful direction.",
+        [
+          "Use the fact of finite time to test the story of endless later and take one concrete step toward the work that actually deserves your life.",
+          "Fear often weakens when time becomes the clearer cost."
+        ],
+        "Death awareness can make career drift harder to justify because life stops feeling like an abstract surplus."
+      ),
+      example(
+        "ch18-ex04",
+        "Team obsessed with trivial internal drama",
+        ["work"],
+        "A team is spending weeks on prestige friction and bruised egos while the work that could genuinely matter to users keeps losing time and attention.",
+        [
+          "Recenter the group on what actually merits limited human effort and refuse to keep feeding trivial theater as if it were the core mission.",
+          "Mortality perspective can restore seriousness without becoming grim."
+        ],
+        "Some organizational drama survives only because nobody asks whether it deserves a real portion of life."
+      ),
+      example(
+        "ch18-ex05",
+        "You keep waiting to say what matters",
+        ["personal"],
+        "There is something important you need to say to someone you love, but discomfort keeps pushing the conversation into a vague future date that never arrives.",
+        [
+          "Let finitude sharpen courage and say the necessary thing while time still exists for honesty, repair, or appreciation.",
+          "Mortality often clarifies the real cost of avoidance."
+        ],
+        "The law is useful because death awareness can turn emotional hesitation into timely presence."
+      ),
+      example(
+        "ch18-ex06",
+        "Losing days to numb distraction",
+        ["personal"],
+        "You finish many days feeling occupied but not alive, as if your time has been spent rather than used in any way you would later respect.",
+        [
+          "Treat that dullness as a mortality signal and redesign part of your routine around presence, meaning, and fuller engagement instead of endless numb filling.",
+          "A finite life deserves more than passive expenditure."
+        ],
+        "Greene ends the book by asking what kind of life your habits are actually building under the limit of time."
+      ),
+    ],
+    directQuestions: [
+      question(
+        "ch18-q01",
+        "What is the strongest practical benefit of mortality awareness in this law?",
+        [
+          "It removes all fear instantly.",
+          "It clarifies priority and reduces wasted time on what matters less.",
+          "It makes planning unnecessary.",
+          "It encourages reckless living."
+        ],
+        1,
+        "Greene uses mortality to sharpen proportion, courage, and meaningful selection."
+      ),
+      question(
+        "ch18-q02",
+        "What does death denial most often encourage?",
+        [
+          "Intentional living.",
+          "Deep gratitude.",
+          "Postponement and life drift under the fantasy of endless later.",
+          "Better long term planning."
+        ],
+        2,
+        "The law argues that people often delay what matters because they act as if real time pressure does not exist."
+      ),
+      question(
+        "ch18-q03",
+        "Which response best reflects the chapter's tone?",
+        [
+          "Live frantically because life is short.",
+          "Use awareness of finitude to act with more intention and presence.",
+          "Avoid thinking about death because it lowers morale.",
+          "Cut yourself off from ordinary pleasures."
+        ],
+        1,
+        "Greene is aiming for clarified life, not panic or grim austerity."
+      ),
+      question(
+        "ch18-q04",
+        "Why does this law soften arrogance as well as intensify urgency?",
+        [
+          "Because everyone shares the same ultimate limit of mortality.",
+          "Because death makes everyone equally successful.",
+          "Because urgency always creates compassion.",
+          "Because people become perfect when they think about death."
+        ],
+        0,
+        "Shared finitude can widen empathy and reduce the illusion that some lives stand above the human condition."
+      ),
+    ],
+  }),
 ];
 
 function buildScenarioQuestions(chapterNumber, examples) {
