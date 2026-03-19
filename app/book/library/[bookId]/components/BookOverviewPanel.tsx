@@ -61,7 +61,7 @@ export function BookOverviewPanel({
 
   return (
     <aside className="cf-panel rounded-[30px] p-5 sm:p-6 lg:sticky lg:top-24">
-      <div className="relative overflow-hidden rounded-3xl border border-(--cf-accent-border) bg-[linear-gradient(160deg,var(--cf-accent-soft),rgba(15,23,42,0.08))] p-4">
+      <div className="relative overflow-hidden rounded-3xl border border-(--cf-accent-border) bg-[linear-gradient(160deg,var(--cf-accent-soft),var(--cf-surface-strong))] p-4">
         <span
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_95%_at_100%_0%,rgba(255,255,255,0.14),transparent_60%)]"

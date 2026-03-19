@@ -152,7 +152,7 @@ export function BookProgressClient() {
           <Card>
             <div className="flex items-center justify-between">
               <p className="text-xs font-semibold uppercase tracking-[0.12em] text-(--cf-text-3)">Streak</p>
-              <Flame className="h-4 w-4 text-amber-400/60" />
+              <Flame className="h-4 w-4 text-(--cf-warning-text) opacity-60" />
             </div>
             <p className="mt-3 text-3xl font-bold tabular-nums text-(--cf-warning-text)">
               {analytics.streakDays}
@@ -167,7 +167,7 @@ export function BookProgressClient() {
           <Card>
             <div className="flex items-center justify-between">
               <p className="text-xs font-semibold uppercase tracking-[0.12em] text-(--cf-text-3)">Completed</p>
-              <GraduationCap className="h-4 w-4 text-emerald-400/60" />
+              <GraduationCap className="h-4 w-4 text-(--cf-success-text) opacity-60" />
             </div>
             <p className="mt-3 text-3xl font-bold tabular-nums text-(--cf-success-text)">
               {analytics.booksCompleted}

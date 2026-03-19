@@ -106,7 +106,7 @@ export function AdminScenarioReviewClient() {
 
   return (
     <main className="relative min-h-screen overflow-x-hidden bg-(--cf-page-bg) px-4 py-10 text-(--cf-text-1) sm:px-6">
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(960px_circle_at_10%_-10%,rgba(56,189,248,0.16),transparent_58%),radial-gradient(780px_circle_at_100%_0%,rgba(14,165,233,0.08),transparent_60%)]" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(960px_circle_at_10%_-10%,var(--cf-accent-muted),transparent_58%),radial-gradient(780px_circle_at_100%_0%,var(--cf-warm-soft),transparent_60%)]" />
       <section className="mx-auto max-w-5xl space-y-4">
         <header className="cf-panel rounded-3xl p-5">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-(--cf-text-3)">

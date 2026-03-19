@@ -530,7 +530,7 @@ export function ChapterReaderClient({
   return (
     <main className="relative min-h-screen overflow-x-hidden text-(--cf-text-1)">
       <div className="pointer-events-none absolute inset-0 -z-20 bg-(--cf-page-bg)" />
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(880px_circle_at_12%_-6%,rgba(56,189,248,0.12),transparent_58%),radial-gradient(780px_circle_at_100%_0%,rgba(2,132,199,0.08),transparent_60%)]" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(880px_circle_at_12%_-6%,var(--cf-accent-muted),transparent_58%),radial-gradient(780px_circle_at_100%_0%,var(--cf-warm-soft),transparent_60%)]" />
 
       <section
         className={[
@@ -636,7 +636,7 @@ export function ChapterReaderClient({
           <button
             type="button"
             onClick={() => router.push(`/book/library/${encodeURIComponent(bookId)}/chapter/${encodeURIComponent(currentChapter.id)}`)}
-            className="w-full rounded-2xl bg-linear-to-r from-(--cf-accent) to-(--cf-accent-strong) px-4 py-3 text-base font-semibold text-white shadow-[0_16px_35px_rgba(14,165,233,0.36)]"
+            className="w-full rounded-2xl bg-linear-to-r from-(--cf-accent) to-(--cf-accent-strong) px-4 py-3 text-base font-semibold text-white shadow-[0_8px_24px_var(--cf-accent-shadow)]"
           >
             Continue Chapter {currentChapter.order} →
           </button>

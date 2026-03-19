@@ -66,7 +66,7 @@ export function SessionModeOverlay({ onDone }: Props) {
                   className={[
                     "flex items-center gap-3 rounded-2xl border px-3.5 py-3 transition-all duration-500",
                     isActive
-                      ? "scale-[1.02] border-(--cf-accent-border) bg-(--cf-accent-soft) shadow-[0_0_0_3px_rgba(14,165,233,0.12)]"
+                      ? "scale-[1.02] border-(--cf-accent-border) bg-(--cf-accent-soft) shadow-[0_0_0_3px_var(--cf-accent-muted)]"
                       : isPast
                         ? "border-(--cf-success-border) bg-(--cf-success-soft) opacity-70"
                         : "border-(--cf-border) bg-(--cf-surface-muted) opacity-30",
@@ -76,7 +76,7 @@ export function SessionModeOverlay({ onDone }: Props) {
                     className={[
                       "flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-xl transition-all duration-500",
                       isActive
-                        ? "bg-(--cf-accent) text-white shadow-[0_2px_8px_rgba(14,165,233,0.4)]"
+                        ? "bg-(--cf-accent) text-white shadow-[0_2px_8px_var(--cf-accent-shadow)]"
                         : isPast
                           ? "bg-(--cf-success-soft) text-(--cf-success-text)"
                           : "bg-(--cf-surface) text-(--cf-text-3)",
@@ -123,7 +123,7 @@ export function SessionModeOverlay({ onDone }: Props) {
               <button
                 type="button"
                 onClick={onDone}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-(--cf-accent) px-4 py-3 text-sm font-semibold text-white shadow-[0_4px_16px_rgba(14,165,233,0.35)] transition-opacity hover:opacity-90"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-(--cf-accent) px-4 py-3 text-sm font-semibold text-white shadow-[0_4px_16px_var(--cf-accent-shadow)] transition-opacity hover:opacity-90"
               >
                 Start Reading
                 <ArrowRight className="h-4 w-4" />

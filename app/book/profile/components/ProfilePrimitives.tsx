@@ -58,7 +58,7 @@ export function ProfileHeroCard({
 }: {
   avatar: string | null;
   initials: string;
-  accent?: "sky" | "emerald" | "amber" | "rose";
+  accent?: "sky" | "emerald" | "amber" | "rose" | "violet";
   name: string;
   username: string;
   tagline: string;
@@ -70,15 +70,16 @@ export function ProfileHeroCard({
   onShare: () => void;
 }) {
   const accentClass = {
-    sky: "from-sky-500/28 via-cyan-400/12 to-transparent",
-    emerald: "from-emerald-500/24 via-teal-400/12 to-transparent",
-    amber: "from-amber-500/24 via-orange-400/10 to-transparent",
-    rose: "from-rose-500/24 via-pink-400/12 to-transparent",
+    violet: "from-violet-500/22 via-indigo-400/10 to-transparent",
+    sky: "from-sky-500/22 via-cyan-400/10 to-transparent",
+    emerald: "from-emerald-500/20 via-teal-400/10 to-transparent",
+    amber: "from-amber-500/20 via-orange-400/8 to-transparent",
+    rose: "from-rose-500/20 via-pink-400/10 to-transparent",
   } as const;
 
   return (
     <div className="relative overflow-hidden rounded-[34px] border border-(--cf-border) bg-(--cf-surface-strong) p-6 shadow-sm sm:p-7 lg:p-8">
-      <div className={cn("pointer-events-none absolute inset-0 bg-radial-[circle_at_top_left]", accentClass[accent])} />
+      <div className={cn("pointer-events-none absolute inset-0 bg-radial-[circle_at_top_left]", accentClass[accent ?? "violet"])} />
       <div className="pointer-events-none absolute -right-20 top-0 h-72 w-72 rounded-full bg-white/[0.04] blur-3xl" />
       <div className="relative flex flex-col gap-6 xl:flex-row xl:items-start xl:justify-between">
         <div className="flex flex-col gap-5 sm:flex-row sm:items-start">

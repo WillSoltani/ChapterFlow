@@ -102,7 +102,7 @@ export function QuizPanel({
           {result && (
             <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-(--cf-border)">
               <div
-                className={["h-full rounded-full transition-[width] duration-500", result.passed ? "bg-emerald-400" : "bg-rose-400"].join(" ")}
+                className={["h-full rounded-full transition-[width] duration-500", result.passed ? "bg-(--cf-success-text)" : "bg-(--cf-danger-text)"].join(" ")}
                 style={{ width: `${result.score}%` }}
               />
             </div>

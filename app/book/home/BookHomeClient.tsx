@@ -421,7 +421,7 @@ export function BookHomeClient() {
                 if (!sessionRoute) return;
                 router.push(sessionRoute);
               }}
-              className="flex-1 rounded-xl bg-linear-to-r from-sky-500 to-cyan-400 px-3 py-2.5 text-sm font-semibold text-white"
+              className="flex-1 rounded-xl bg-linear-to-r from-(--cf-accent) to-(--cf-accent-strong) px-3 py-2.5 text-sm font-semibold text-white shadow-[0_4px_14px_var(--cf-accent-shadow)]"
             >
               {currentProgress.status === "not_started"
                 ? `Start Chapter ${currentProgress.chapter} →`

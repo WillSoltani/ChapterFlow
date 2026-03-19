@@ -70,7 +70,7 @@ export function BookCardLarge({
         <div className="cf-panel-muted relative h-72 overflow-hidden rounded-2xl sm:h-80">
           <span
             aria-hidden="true"
-            className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_95%_at_0%_0%,rgba(56,189,248,0.07),transparent_56%)]"
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_95%_at_0%_0%,var(--cf-accent-muted),transparent_56%)]"
           />
           <span
             aria-hidden="true"

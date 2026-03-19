@@ -44,7 +44,7 @@ export function BookCard({
         "bg-(--cf-surface)",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)",
         selected
-          ? "border-(--cf-accent-border) bg-(--cf-accent-soft) shadow-[0_0_0_1px_rgba(56,189,248,0.4),0_18px_45px_rgba(2,132,199,0.12)]"
+          ? "border-(--cf-accent-border) bg-(--cf-accent-soft) shadow-[0_0_0_2px_var(--cf-accent-border),0_8px_28px_var(--cf-accent-shadow)]"
           : "border-(--cf-border) hover:-translate-y-0.5 hover:border-(--cf-border-strong) hover:shadow-md",
         disabled && !selected ? "cursor-not-allowed opacity-45" : "",
       ].join(" ")}

@@ -83,7 +83,7 @@ export function TodaySessionCard({
           "mt-4 inline-flex w-full items-center justify-center gap-2 rounded-2xl px-4 py-3 text-sm font-semibold transition",
           allDone
             ? "cf-btn cf-btn-success"
-            : "cf-btn border-(--cf-warning-border) bg-amber-500 text-white shadow-[0_12px_24px_rgba(245,158,11,0.22)] hover:bg-amber-400",
+            : "cf-btn border-(--cf-warning-border) bg-(--cf-warning-text) text-(--cf-page-bg) shadow-[0_4px_16px_var(--cf-accent-shadow)] hover:opacity-90",
         ].join(" ")}
       >
         <PlayCircle className="h-4 w-4" />

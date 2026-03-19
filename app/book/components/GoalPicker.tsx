@@ -34,7 +34,7 @@ export function GoalPicker({ value, onChange }: GoalPickerProps) {
                 "rounded-2xl border px-3 py-4 text-center transition duration-200",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-warning-border)",
                 selected
-                  ? "border-(--cf-warning-border) bg-(--cf-warning-soft) text-(--cf-warning-text) shadow-[0_0_0_1px_rgba(251,191,36,0.3)]"
+                  ? "border-(--cf-warning-border) bg-(--cf-warning-soft) text-(--cf-warning-text) shadow-[0_0_0_2px_var(--cf-warning-border)]"
                   : "border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-2) hover:border-(--cf-border-strong)",
               ].join(" ")}
               aria-pressed={selected}

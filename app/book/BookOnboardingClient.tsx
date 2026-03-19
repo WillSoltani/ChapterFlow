@@ -404,7 +404,7 @@ function CategoryCard({
         "relative flex flex-col gap-2.5 rounded-2xl border p-3.5 text-left transition-all duration-200",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)",
         selected
-          ? "border-(--cf-accent-border) bg-(--cf-accent-soft) shadow-[0_0_0_3px_rgba(14,165,233,0.12)]"
+          ? "border-(--cf-accent-border) bg-(--cf-accent-soft) shadow-[0_0_0_3px_var(--cf-accent-muted)]"
           : disabled
             ? "cursor-not-allowed border-(--cf-border) bg-(--cf-surface-muted) opacity-30"
             : "border-(--cf-border) bg-(--cf-surface-muted) hover:border-(--cf-border-strong) hover:bg-(--cf-surface)",
@@ -414,7 +414,7 @@ function CategoryCard({
         className={[
           "inline-flex h-9 w-9 items-center justify-center rounded-xl border transition-all duration-200",
           selected
-            ? "border-(--cf-accent-border) bg-(--cf-accent) text-white shadow-[0_2px_8px_rgba(14,165,233,0.35)]"
+            ? "border-(--cf-accent-border) bg-(--cf-accent) text-white shadow-[0_2px_8px_var(--cf-accent-shadow)]"
             : "border-(--cf-border) bg-(--cf-surface) text-(--cf-text-2)",
         ].join(" ")}
       >
@@ -619,7 +619,7 @@ export function BookOnboardingClient() {
         <button
           type="button"
           onClick={handleContinue}
-          className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-linear-to-r from-(--cf-accent) to-(--cf-accent-strong) px-5 py-3.5 text-lg font-semibold text-white shadow-[0_10px_30px_rgba(14,165,233,0.38)] transition hover:brightness-105 active:translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)"
+          className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-linear-to-r from-(--cf-accent) to-(--cf-accent-strong) px-5 py-3.5 text-lg font-semibold text-white shadow-[0_8px_24px_var(--cf-accent-shadow)] transition hover:brightness-105 active:translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)"
         >
           Get Started
           <ArrowRight className="h-5 w-5" />
@@ -643,7 +643,7 @@ export function BookOnboardingClient() {
             "inline-flex flex-1 items-center justify-center gap-2 rounded-2xl px-4 py-3 text-lg font-semibold transition focus-visible:outline-none focus-visible:ring-2",
             step === TOTAL_STEPS - 1
               ? "bg-linear-to-r from-amber-400 to-yellow-300 text-slate-900 shadow-[0_12px_28px_rgba(250,204,21,0.38)] focus-visible:ring-(--cf-warning-border)"
-              : "bg-linear-to-r from-(--cf-accent) to-(--cf-accent-strong) text-white shadow-[0_12px_28px_rgba(14,165,233,0.35)] focus-visible:ring-(--cf-accent-border)",
+              : "bg-linear-to-r from-(--cf-accent) to-(--cf-accent-strong) text-white shadow-[0_8px_20px_var(--cf-accent-shadow)] focus-visible:ring-(--cf-accent-border)",
             canContinue
               ? "hover:brightness-105 active:translate-y-0.5"
               : "cursor-not-allowed opacity-45",
@@ -683,7 +683,7 @@ export function BookOnboardingClient() {
             {/* ── Step 0: Welcome ─────────────────────────────────────────── */}
             {step === 0 ? (
               <div className="mx-auto max-w-4xl space-y-5">
-                <div className="mx-auto inline-flex h-24 w-24 items-center justify-center rounded-[28px] border border-(--cf-accent-border) bg-(--cf-accent-soft) text-(--cf-accent) shadow-[0_0_35px_rgba(56,189,248,0.28)]">
+                <div className="mx-auto inline-flex h-24 w-24 items-center justify-center rounded-[28px] border border-(--cf-accent-border) bg-(--cf-accent-soft) text-(--cf-accent) shadow-[0_0_32px_var(--cf-accent-shadow)]">
                   <BookOpen className="h-10 w-10" />
                 </div>
 

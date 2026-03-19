@@ -34,7 +34,7 @@ export function GoalMeter({
           className="relative h-18 w-18 shrink-0 rounded-full"
           style={{
             background: `conic-gradient(${ringColor} ${safeProgress * 3.6}deg, var(--cf-border) 0deg)`,
-            boxShadow: isComplete ? "0 0 18px rgba(52,211,153,0.28)" : undefined,
+            boxShadow: isComplete ? "0 0 18px var(--cf-success-border)" : undefined,
           }}
         >
           {/* Inner circle */}
