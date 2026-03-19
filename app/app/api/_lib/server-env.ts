@@ -1,4 +1,5 @@
 import "server-only";
+import { GetParameterCommand, SSMClient } from "@aws-sdk/client-ssm";
 
 const REGION =
   process.env.AWS_REGION ||
@@ -7,9 +8,7 @@ const REGION =
 
 const SSM_PREFIX = (process.env.SSM_PARAMETER_PREFIX || "").trim();
 let ssmClientPromise: Promise<{
-  getParameter(
-    params: { Name: string; WithDecryption: boolean }
-  ): { promise(): Promise<{ Parameter?: { Value?: string } }> };
+  send(command: GetParameterCommand): Promise<{ Parameter?: { Value?: string } }>;
 }> | null = null;
 
 const resolvedValueCache = new Map<string, string>();
@@ -19,8 +18,7 @@ async function getSsmClient() {
   if (ssmClientPromise) return ssmClientPromise;
 
   ssmClientPromise = (async () => {
-    const mod = await import("aws-sdk");
-    return new mod.default.SSM({ region: REGION });
+    return new SSMClient({ region: REGION });
   })();
 
   return ssmClientPromise;
@@ -89,12 +87,12 @@ async function loadFromSsm(key: string): Promise<string | undefined> {
   let lastError: unknown;
   for (const paramName of candidates) {
     try {
-      const res = await ssm
-        .getParameter({
+      const res = await ssm.send(
+        new GetParameterCommand({
           Name: paramName,
           WithDecryption: true,
         })
-        .promise();
+      );
       const value = res.Parameter?.Value;
       if (value != null && value !== "") {
         return value;

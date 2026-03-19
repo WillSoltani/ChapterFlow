@@ -106,8 +106,11 @@ const NEXT_TIER_MAP: Record<string, string> = {
   "goal-5": "goal-10",
   "perfect-one": "perfect-three",
   "quiz-pass-10": "quiz-pass-25",
+  "first-chapter": "ten-chapters",
+  "ten-chapters": "first-book",
   "first-book": "three-books",
   "three-books": "five-books",
+  "focus-finish": "deep-focus-five",
 };
 
 function splitNotes(notes: string): string[] {
@@ -332,6 +335,7 @@ function deriveBadgeStats(
     totalQuizQuestionsAnswered,
     completedGoalDays,
     activeWeeks: uniqueWeeks.size,
+    totalActiveDays: activityDayKeys.length,
     weekendActiveDays,
     weekdayActiveDays,
     recoveredAfterMiss,

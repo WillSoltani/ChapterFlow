@@ -26,6 +26,8 @@ export type BadgeDefinition = {
   notificationStyle: BadgeNotificationStyle;
   hiddenUntilDiscovered?: boolean;
   accent: "sky" | "emerald" | "amber" | "violet" | "rose";
+  /** Flow Points awarded when this badge is earned. */
+  flowPoints: number;
 };
 
 export type BadgeProgressStats = {
@@ -44,6 +46,7 @@ export type BadgeProgressStats = {
   totalQuizQuestionsAnswered: number;
   completedGoalDays: number;
   activeWeeks: number;
+  totalActiveDays: number;
   weekendActiveDays: number;
   weekdayActiveDays: number;
   recoveredAfterMiss: number;
@@ -87,6 +90,7 @@ export type BadgeState = BadgeDefinition & {
 };
 
 export const BADGE_DEFINITIONS: BadgeDefinition[] = [
+  // ─── Getting Started ────────────────────────────────────────────────────────
   {
     id: "first-chapter",
     name: "First Chapter",
@@ -98,6 +102,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 1,
     notificationStyle: "quiet",
     accent: "sky",
+    flowPoints: 15,
   },
   {
     id: "first-quiz-pass",
@@ -110,6 +115,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 1,
     notificationStyle: "quiet",
     accent: "emerald",
+    flowPoints: 15,
   },
   {
     id: "first-note",
@@ -122,6 +128,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 1,
     notificationStyle: "quiet",
     accent: "amber",
+    flowPoints: 10,
   },
   {
     id: "first-book-started",
@@ -134,6 +141,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 1,
     notificationStyle: "quiet",
     accent: "sky",
+    flowPoints: 10,
   },
   {
     id: "first-goal-hit",
@@ -146,6 +154,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 1,
     notificationStyle: "quiet",
     accent: "emerald",
+    flowPoints: 15,
   },
   {
     id: "first-examples-viewed",
@@ -158,6 +167,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 1,
     notificationStyle: "quiet",
     accent: "amber",
+    flowPoints: 10,
   },
   {
     id: "first-standard-depth",
@@ -170,7 +180,10 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 1,
     notificationStyle: "quiet",
     accent: "sky",
+    flowPoints: 15,
   },
+
+  // ─── Consistency ─────────────────────────────────────────────────────────────
   {
     id: "streak-3",
     name: "Rhythm Bronze",
@@ -183,6 +196,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 2,
     notificationStyle: "toast",
     accent: "amber",
+    flowPoints: 25,
   },
   {
     id: "streak-7",
@@ -196,6 +210,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 2,
     notificationStyle: "toast",
     accent: "amber",
+    flowPoints: 35,
   },
   {
     id: "streak-14",
@@ -209,6 +224,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 3,
     notificationStyle: "toast",
     accent: "amber",
+    flowPoints: 55,
   },
   {
     id: "streak-30",
@@ -223,6 +239,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     notificationStyle: "celebration",
     accent: "amber",
     hiddenUntilDiscovered: true,
+    flowPoints: 75,
   },
   {
     id: "goal-5",
@@ -236,6 +253,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 2,
     notificationStyle: "toast",
     accent: "emerald",
+    flowPoints: 25,
   },
   {
     id: "goal-10",
@@ -249,6 +267,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 3,
     notificationStyle: "toast",
     accent: "emerald",
+    flowPoints: 40,
   },
   {
     id: "week-reader",
@@ -261,6 +280,20 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 2,
     notificationStyle: "toast",
     accent: "sky",
+    flowPoints: 30,
+  },
+  {
+    id: "active-days-ten",
+    name: "Active Reader",
+    category: "Consistency",
+    description: "Read on ten different days.",
+    whyItMatters: "Total active days matter as much as consecutive ones for building a real habit.",
+    howToEarn: "Read on any ten days.",
+    icon: "📅",
+    prestige: 2,
+    notificationStyle: "toast",
+    accent: "emerald",
+    flowPoints: 30,
   },
   {
     id: "weekend-weekday",
@@ -273,6 +306,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 2,
     notificationStyle: "quiet",
     accent: "emerald",
+    flowPoints: 25,
   },
   {
     id: "comeback-reader",
@@ -285,7 +319,10 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 2,
     notificationStyle: "quiet",
     accent: "sky",
+    flowPoints: 20,
   },
+
+  // ─── Reading Depth ────────────────────────────────────────────────────────────
   {
     id: "standard-five",
     name: "Standard Form",
@@ -297,6 +334,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 2,
     notificationStyle: "toast",
     accent: "sky",
+    flowPoints: 25,
   },
   {
     id: "deeper-five",
@@ -309,6 +347,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 3,
     notificationStyle: "toast",
     accent: "violet",
+    flowPoints: 45,
   },
   {
     id: "mode-explorer",
@@ -321,6 +360,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 2,
     notificationStyle: "quiet",
     accent: "sky",
+    flowPoints: 30,
   },
   {
     id: "focus-finish",
@@ -333,6 +373,20 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 2,
     notificationStyle: "quiet",
     accent: "violet",
+    flowPoints: 20,
+  },
+  {
+    id: "deep-focus-five",
+    name: "Deep Focus",
+    category: "Reading Depth",
+    description: "Complete five chapters with focus mode on.",
+    whyItMatters: "Five sessions of deliberate focus signals a genuine practice, not a one-time attempt.",
+    howToEarn: "Finish five chapters while using focus mode.",
+    icon: "🎯",
+    prestige: 3,
+    notificationStyle: "toast",
+    accent: "violet",
+    flowPoints: 40,
   },
   {
     id: "annotated-run",
@@ -345,6 +399,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 3,
     notificationStyle: "toast",
     accent: "amber",
+    flowPoints: 50,
   },
   {
     id: "deeper-book",
@@ -358,7 +413,10 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     notificationStyle: "celebration",
     accent: "violet",
     hiddenUntilDiscovered: true,
+    flowPoints: 70,
   },
+
+  // ─── Mastery ──────────────────────────────────────────────────────────────────
   {
     id: "perfect-one",
     name: "Perfect Pass",
@@ -370,6 +428,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 2,
     notificationStyle: "toast",
     accent: "emerald",
+    flowPoints: 30,
   },
   {
     id: "perfect-three",
@@ -382,6 +441,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 3,
     notificationStyle: "toast",
     accent: "emerald",
+    flowPoints: 50,
   },
   {
     id: "quiz-pass-10",
@@ -395,6 +455,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 2,
     notificationStyle: "toast",
     accent: "emerald",
+    flowPoints: 30,
   },
   {
     id: "quiz-pass-25",
@@ -409,6 +470,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     notificationStyle: "celebration",
     accent: "emerald",
     hiddenUntilDiscovered: true,
+    flowPoints: 65,
   },
   {
     id: "deeper-pass",
@@ -421,6 +483,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 2,
     notificationStyle: "quiet",
     accent: "violet",
+    flowPoints: 25,
   },
   {
     id: "score-80-ten",
@@ -433,6 +496,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 3,
     notificationStyle: "toast",
     accent: "emerald",
+    flowPoints: 50,
   },
   {
     id: "hundred-answers",
@@ -445,6 +509,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 3,
     notificationStyle: "toast",
     accent: "sky",
+    flowPoints: 45,
   },
   {
     id: "mastery-three-books",
@@ -457,6 +522,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 3,
     notificationStyle: "toast",
     accent: "emerald",
+    flowPoints: 55,
   },
   {
     id: "recap-finish",
@@ -469,6 +535,22 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 2,
     notificationStyle: "quiet",
     accent: "sky",
+    flowPoints: 20,
+  },
+
+  // ─── Books ────────────────────────────────────────────────────────────────────
+  {
+    id: "ten-chapters",
+    name: "Ten Chapters",
+    category: "Books",
+    description: "Complete ten chapters across any books.",
+    whyItMatters: "Ten chapters is real progress — it shows the habit is holding past the first burst.",
+    howToEarn: "Complete ten chapters in total.",
+    icon: "📖",
+    prestige: 2,
+    notificationStyle: "toast",
+    accent: "amber",
+    flowPoints: 30,
   },
   {
     id: "first-book",
@@ -482,6 +564,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 3,
     notificationStyle: "toast",
     accent: "amber",
+    flowPoints: 50,
   },
   {
     id: "three-books",
@@ -495,6 +578,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 3,
     notificationStyle: "toast",
     accent: "amber",
+    flowPoints: 60,
   },
   {
     id: "five-books",
@@ -509,6 +593,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     notificationStyle: "celebration",
     accent: "amber",
     hiddenUntilDiscovered: true,
+    flowPoints: 80,
   },
   {
     id: "challenging-finish",
@@ -521,6 +606,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 4,
     notificationStyle: "celebration",
     accent: "amber",
+    flowPoints: 75,
   },
   {
     id: "strategy-finish",
@@ -533,6 +619,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 3,
     notificationStyle: "toast",
     accent: "sky",
+    flowPoints: 50,
   },
   {
     id: "psychology-finish",
@@ -545,6 +632,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 3,
     notificationStyle: "toast",
     accent: "violet",
+    flowPoints: 50,
   },
   {
     id: "category-triad",
@@ -558,6 +646,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     notificationStyle: "celebration",
     accent: "sky",
     hiddenUntilDiscovered: true,
+    flowPoints: 70,
   },
   {
     id: "mastered-book",
@@ -571,7 +660,10 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     notificationStyle: "celebration",
     accent: "emerald",
     hiddenUntilDiscovered: true,
+    flowPoints: 80,
   },
+
+  // ─── Examples ─────────────────────────────────────────────────────────────────
   {
     id: "context-triad",
     name: "Context Switcher",
@@ -583,6 +675,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 2,
     notificationStyle: "quiet",
     accent: "sky",
+    flowPoints: 25,
   },
   {
     id: "personal-five",
@@ -595,6 +688,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 2,
     notificationStyle: "quiet",
     accent: "rose",
+    flowPoints: 25,
   },
   {
     id: "school-five",
@@ -607,6 +701,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 2,
     notificationStyle: "quiet",
     accent: "sky",
+    flowPoints: 25,
   },
   {
     id: "work-five",
@@ -619,6 +714,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 2,
     notificationStyle: "quiet",
     accent: "amber",
+    flowPoints: 25,
   },
   {
     id: "examples-ten",
@@ -631,7 +727,10 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 3,
     notificationStyle: "toast",
     accent: "amber",
+    flowPoints: 40,
   },
+
+  // ─── Notes ────────────────────────────────────────────────────────────────────
   {
     id: "notes-ten",
     name: "Notebook Builder",
@@ -644,6 +743,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 3,
     notificationStyle: "toast",
     accent: "amber",
+    flowPoints: 40,
   },
   {
     id: "notes-three-books",
@@ -656,6 +756,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 3,
     notificationStyle: "toast",
     accent: "amber",
+    flowPoints: 45,
   },
   {
     id: "reflection-finish",
@@ -668,7 +769,10 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 3,
     notificationStyle: "quiet",
     accent: "rose",
+    flowPoints: 35,
   },
+
+  // ─── Exploration ──────────────────────────────────────────────────────────────
   {
     id: "category-explorer",
     name: "Explorer",
@@ -680,6 +784,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 2,
     notificationStyle: "quiet",
     accent: "sky",
+    flowPoints: 25,
   },
   {
     id: "challenging-trial",
@@ -692,6 +797,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 2,
     notificationStyle: "quiet",
     accent: "amber",
+    flowPoints: 20,
   },
   {
     id: "long-gap-return",
@@ -704,6 +810,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 2,
     notificationStyle: "quiet",
     accent: "emerald",
+    flowPoints: 20,
   },
   {
     id: "reading-list-five",
@@ -716,7 +823,10 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     prestige: 2,
     notificationStyle: "quiet",
     accent: "sky",
+    flowPoints: 20,
   },
+
+  // ─── Premium ──────────────────────────────────────────────────────────────────
   {
     id: "pro-activated",
     name: "Pro Activated",
@@ -729,6 +839,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     notificationStyle: "toast",
     accent: "violet",
     hiddenUntilDiscovered: true,
+    flowPoints: 30,
   },
   {
     id: "pro-multi-track",
@@ -742,6 +853,7 @@ export const BADGE_DEFINITIONS: BadgeDefinition[] = [
     notificationStyle: "toast",
     accent: "violet",
     hiddenUntilDiscovered: true,
+    flowPoints: 45,
   },
 ];
 
@@ -789,6 +901,8 @@ function progressForBadge(id: string, stats: BadgeProgressStats) {
       return { current: stats.completedGoalDays, target: 10, label: `${Math.min(stats.completedGoalDays, 10)} of 10 days` };
     case "week-reader":
       return { current: stats.activeWeeks, target: 4, label: `${Math.min(stats.activeWeeks, 4)} of 4 weeks` };
+    case "active-days-ten":
+      return { current: stats.totalActiveDays, target: 10, label: `${Math.min(stats.totalActiveDays, 10)} of 10 days` };
     case "weekend-weekday":
       return { current: Math.min(stats.weekendActiveDays, 4) + Math.min(stats.weekdayActiveDays, 10), target: 14, label: `${Math.min(stats.weekendActiveDays, 4)} weekend days and ${Math.min(stats.weekdayActiveDays, 10)} weekdays` };
     case "comeback-reader":
@@ -801,6 +915,8 @@ function progressForBadge(id: string, stats: BadgeProgressStats) {
       return { current: stats.usedAllReadingModes ? 3 : Number(stats.chaptersSimpleCompleted > 0) + Number(stats.chaptersStandardCompleted > 0) + Number(stats.chaptersDeeperCompleted > 0), target: 3, label: `${Number(stats.chaptersSimpleCompleted > 0) + Number(stats.chaptersStandardCompleted > 0) + Number(stats.chaptersDeeperCompleted > 0)} of 3 modes` };
     case "focus-finish":
       return { current: stats.chaptersCompletedWithFocusMode, target: 1, label: `${Math.min(stats.chaptersCompletedWithFocusMode, 1)} of 1 chapter` };
+    case "deep-focus-five":
+      return { current: stats.chaptersCompletedWithFocusMode, target: 5, label: `${Math.min(stats.chaptersCompletedWithFocusMode, 5)} of 5 chapters` };
     case "annotated-run":
       return { current: stats.completedChaptersWithNotes, target: 10, label: `${Math.min(stats.completedChaptersWithNotes, 10)} of 10 chapters` };
     case "deeper-book":
@@ -823,6 +939,8 @@ function progressForBadge(id: string, stats: BadgeProgressStats) {
       return { current: stats.distinctQuizBooks, target: 3, label: `${Math.min(stats.distinctQuizBooks, 3)} of 3 books` };
     case "recap-finish":
       return { current: stats.recapCompletions, target: 1, label: `${Math.min(stats.recapCompletions, 1)} of 1 recap` };
+    case "ten-chapters":
+      return { current: stats.totalCompletedChapters, target: 10, label: `${Math.min(stats.totalCompletedChapters, 10)} of 10 chapters` };
     case "first-book":
       return { current: stats.completedBooks, target: 1, label: `${Math.min(stats.completedBooks, 1)} of 1 book` };
     case "three-books":
