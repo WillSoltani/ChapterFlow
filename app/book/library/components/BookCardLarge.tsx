@@ -93,8 +93,8 @@ export function BookCardLarge({
               title={entry.title}
               icon={entry.icon}
               coverImage={entry.coverImage}
-              className="h-full w-full rounded-2xl border border-(--cf-border) bg-(--cf-surface)"
-              imageClassName="object-contain bg-white"
+              className="h-full w-auto max-w-full aspect-[2/3] rounded-2xl border border-(--cf-border) bg-(--cf-surface) shadow-[0_14px_30px_rgba(15,23,42,0.18)]"
+              imageClassName="object-cover bg-white"
               fallbackClassName="text-6xl drop-shadow-[0_10px_22px_rgba(2,6,23,0.55)]"
               sizes="(max-width: 768px) 70vw, 28vw"
             />

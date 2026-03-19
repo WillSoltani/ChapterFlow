@@ -383,7 +383,7 @@ export async function analyticsTrackSubscription(
 
 /**
  * Track onboarding completion and initial user profile.
- * Captures email, goal, daily goal — never overwrites once set.
+ * Captures email, goal, daily goal, selected categories and books — never overwrites once set.
  */
 export async function analyticsTrackOnboarding(
   table: string,
@@ -392,6 +392,8 @@ export async function analyticsTrackOnboarding(
     email?: string;
     goal?: string;
     dailyGoalMinutes?: number;
+    selectedCategories?: string[];
+    selectedBookIds?: string[];
   }
 ): Promise<void> {
   const now = nowIso();
@@ -442,6 +444,16 @@ export async function analyticsTrackOnboarding(
     names["#dailyGoalMinutes"] = "dailyGoalMinutes";
     values[":dgm"] = args.dailyGoalMinutes;
   }
+  if (args.selectedCategories && args.selectedCategories.length > 0) {
+    sets.push("#selectedCategories = if_not_exists(#selectedCategories, :selCats)");
+    names["#selectedCategories"] = "selectedCategories";
+    values[":selCats"] = args.selectedCategories;
+  }
+  if (args.selectedBookIds && args.selectedBookIds.length > 0) {
+    sets.push("#selectedBookIds = if_not_exists(#selectedBookIds, :selBooks)");
+    names["#selectedBookIds"] = "selectedBookIds";
+    values[":selBooks"] = args.selectedBookIds;
+  }
 
   await Promise.all([
     ddbDoc.send(
@@ -457,6 +469,8 @@ export async function analyticsTrackOnboarding(
       email: args.email,
       goal: args.goal,
       dailyGoalMinutes: args.dailyGoalMinutes,
+      selectedCategories: args.selectedCategories,
+      selectedBookIds: args.selectedBookIds,
     }),
   ]);
 }

@@ -62,6 +62,16 @@ export async function PATCH(req: Request) {
           goal: typeof profile.goal === "string" ? profile.goal : undefined,
           dailyGoalMinutes:
             typeof profile.dailyGoalMinutes === "number" ? profile.dailyGoalMinutes : undefined,
+          selectedCategories: Array.isArray(profile.selectedCategories)
+            ? (profile.selectedCategories as unknown[]).filter(
+                (c): c is string => typeof c === "string"
+              )
+            : undefined,
+          selectedBookIds: Array.isArray(profile.selectedBookIds)
+            ? (profile.selectedBookIds as unknown[]).filter(
+                (id): id is string => typeof id === "string"
+              )
+            : undefined,
         }).catch(() => {});
       }).catch(() => {});
     }

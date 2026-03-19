@@ -1,111 +1,144 @@
 "use client";
 
-import { Pause, Play, Sparkles, X } from "lucide-react";
-import { Button } from "@/app/book/components/ui/Button";
-import type { ChapterTab } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterState";
+import { useEffect, useState } from "react";
+import { ArrowRight, BookOpen, Brain, Lightbulb } from "lucide-react";
 
-const steps: Array<{ tab: ChapterTab; label: string; subtitle: string }> = [
-  { tab: "summary", label: "Step 1 · Summary", subtitle: "Read the chapter highlights" },
-  { tab: "examples", label: "Step 2 · Examples", subtitle: "Connect ideas to scenarios" },
-  { tab: "quiz", label: "Step 3 · Quiz", subtitle: "Pass with 80% to unlock next" },
-];
+const STEPS = [
+  {
+    key: "summary",
+    Icon: BookOpen,
+    label: "Summary",
+    desc: "Read the key highlights at your chosen depth",
+  },
+  {
+    key: "examples",
+    Icon: Lightbulb,
+    label: "Examples",
+    desc: "Explore scenarios and connect ideas to your context",
+  },
+  {
+    key: "quiz",
+    Icon: Brain,
+    label: "Quiz",
+    desc: "Pass with 80% to unlock the next chapter",
+  },
+] as const;
 
-type SessionModeOverlayProps = {
-  activeTab: ChapterTab;
-  quizPassed: boolean;
-  onSelectStep: (tab: ChapterTab) => void;
-  onPause: () => void;
-  onClose: () => void;
+type Props = {
+  onDone: () => void;
 };
 
-export function SessionModeOverlay({
-  activeTab,
-  quizPassed,
-  onSelectStep,
-  onPause,
-  onClose,
-}: SessionModeOverlayProps) {
-  const currentIndex = Math.max(
-    0,
-    steps.findIndex((step) => step.tab === activeTab)
-  );
+export function SessionModeOverlay({ onDone }: Props) {
+  const [activeStep, setActiveStep] = useState(0);
+  const [tourComplete, setTourComplete] = useState(false);
 
-  const nextStep = steps[currentIndex + 1];
+  useEffect(() => {
+    const t1 = setTimeout(() => setActiveStep(1), 1300);
+    const t2 = setTimeout(() => setActiveStep(2), 2600);
+    const t3 = setTimeout(() => setTourComplete(true), 3600);
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+    };
+  }, []);
 
   return (
-    <div className="fixed inset-0 z-40 flex items-center justify-center bg-(--cf-overlay) px-4 backdrop-blur-[2px] sm:px-6">
-      <div className="w-full max-w-3xl">
-        <div className="rounded-[32px] border border-(--cf-accent-border) bg-(--cf-surface-strong) p-5 shadow-xl sm:p-6">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <div>
-              <p className="text-xs uppercase tracking-[0.18em] text-(--cf-accent)">Session Mode</p>
-              <p className="mt-1 text-sm text-(--cf-text-2)">A guided chapter tour: summary → examples → quiz</p>
-            </div>
-            <div className="flex items-center gap-2">
-              <Button variant="secondary" size="sm" onClick={onPause}>
-                <Pause className="h-4 w-4" />
-                Pause session
-              </Button>
-              <button
-                type="button"
-                onClick={onClose}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-2) transition hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)"
-                aria-label="Exit session mode"
-              >
-                <X className="h-4 w-4" />
-              </button>
-            </div>
+    <div className="fixed inset-0 z-40 flex items-center justify-center bg-(--cf-overlay) px-4 sm:px-6">
+      <div className="w-full max-w-sm">
+        <div className="rounded-[28px] border border-(--cf-accent-border) bg-(--cf-surface-strong) p-6 shadow-2xl">
+          <div className="text-center">
+            <p className="text-xs font-medium uppercase tracking-[0.18em] text-(--cf-accent)">
+              Session Mode
+            </p>
+            <p className="mt-1 text-base font-semibold text-(--cf-text-1)">
+              Here&apos;s how it works
+            </p>
           </div>
 
-          <div className="mt-5 grid grid-cols-1 gap-2 sm:grid-cols-3">
-            {steps.map((step, index) => {
-              const active = step.tab === activeTab;
-              const completed = index < currentIndex || (step.tab === "quiz" && quizPassed);
-
+          <div className="mt-5 space-y-2.5">
+            {STEPS.map(({ key, Icon, label, desc }, index) => {
+              const isActive = index === activeStep;
+              const isPast = index < activeStep;
               return (
-                <button
-                  key={step.tab}
-                  type="button"
-                  onClick={() => onSelectStep(step.tab)}
+                <div
+                  key={key}
                   className={[
-                    "rounded-xl border px-3 py-2 text-left transition",
-                    active
-                      ? "border-(--cf-accent-border) bg-(--cf-accent-soft) text-(--cf-info-text)"
-                      : completed
-                        ? "border-(--cf-success-border) bg-(--cf-success-soft) text-(--cf-success-text)"
-                        : "border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-2) hover:border-(--cf-border-strong)",
+                    "flex items-center gap-3 rounded-2xl border px-3.5 py-3 transition-all duration-500",
+                    isActive
+                      ? "scale-[1.02] border-(--cf-accent-border) bg-(--cf-accent-soft) shadow-[0_0_0_3px_rgba(14,165,233,0.12)]"
+                      : isPast
+                        ? "border-(--cf-success-border) bg-(--cf-success-soft) opacity-70"
+                        : "border-(--cf-border) bg-(--cf-surface-muted) opacity-30",
                   ].join(" ")}
                 >
-                  <p className="text-sm font-semibold">{step.label}</p>
-                  <p className="mt-0.5 text-xs opacity-90">{step.subtitle}</p>
-                </button>
+                  <span
+                    className={[
+                      "flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-xl transition-all duration-500",
+                      isActive
+                        ? "bg-(--cf-accent) text-white shadow-[0_2px_8px_rgba(14,165,233,0.4)]"
+                        : isPast
+                          ? "bg-(--cf-success-soft) text-(--cf-success-text)"
+                          : "bg-(--cf-surface) text-(--cf-text-3)",
+                    ].join(" ")}
+                  >
+                    <Icon className="h-4 w-4" />
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <p
+                      className={[
+                        "text-sm font-semibold transition-colors duration-300",
+                        isActive
+                          ? "text-(--cf-info-text)"
+                          : isPast
+                            ? "text-(--cf-success-text)"
+                            : "text-(--cf-text-3)",
+                      ].join(" ")}
+                    >
+                      {label}
+                    </p>
+                    <p
+                      className={[
+                        "mt-0.5 text-xs transition-colors duration-300",
+                        isActive
+                          ? "text-(--cf-info-text) opacity-80"
+                          : isPast
+                            ? "text-(--cf-success-text) opacity-70"
+                            : "text-(--cf-text-3)",
+                      ].join(" ")}
+                    >
+                      {desc}
+                    </p>
+                  </div>
+                  {isActive && (
+                    <span className="ml-auto h-2 w-2 flex-shrink-0 animate-pulse rounded-full bg-(--cf-accent)" />
+                  )}
+                </div>
               );
             })}
           </div>
 
-          <div className="mt-5 rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) px-4 py-3 text-sm">
-            <p className="text-(--cf-text-2)">
-              Use this flow like a tour: read the summary carefully, explore the examples that match your context, then pass the quiz to unlock the next chapter.
-            </p>
-          </div>
-
-          <div className="mt-4 flex flex-wrap items-center justify-between gap-2 text-sm">
-            <p className="text-(--cf-text-2)">
-              {quizPassed
-                ? "Session complete. Great retention run."
-                : `Current step: ${steps[currentIndex]?.label ?? "Summary"}`}
-            </p>
-            {quizPassed ? (
-              <span className="inline-flex items-center gap-1 rounded-full border border-(--cf-success-border) bg-(--cf-success-soft) px-2.5 py-1 text-xs text-(--cf-success-text)">
-                <Sparkles className="h-3.5 w-3.5" />
-                Session complete
-              </span>
-            ) : nextStep ? (
-              <Button variant="primary" size="sm" onClick={() => onSelectStep(nextStep.tab)}>
-                <Play className="h-4 w-4" />
-                Next: {nextStep.label}
-              </Button>
-            ) : null}
+          <div className="mt-5">
+            {tourComplete ? (
+              <button
+                type="button"
+                onClick={onDone}
+                className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-(--cf-accent) px-4 py-3 text-sm font-semibold text-white shadow-[0_4px_16px_rgba(14,165,233,0.35)] transition-opacity hover:opacity-90"
+              >
+                Start Reading
+                <ArrowRight className="h-4 w-4" />
+              </button>
+            ) : (
+              <div className="flex justify-center">
+                <button
+                  type="button"
+                  onClick={onDone}
+                  className="text-xs text-(--cf-text-3) transition hover:text-(--cf-text-2)"
+                >
+                  Skip intro
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>

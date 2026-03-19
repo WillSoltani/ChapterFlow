@@ -43,11 +43,13 @@ export type BookOnboardingState = {
   // Step 2 — what brings you here
   readingGoal: ReadingGoalOption | null;
   referralSource: ReferralSourceOption | null;
-  // Step 3 — book selection
+  // Step 3 — category interests
+  selectedCategories: string[];
+  // Step 4 — book selection
   selectedBookIds: string[];
-  // Step 4 — daily goal
+  // Step 5 — daily goal
   dailyGoalMinutes: number;
-  // Step 5 — preferences
+  // Step 6 — preferences
   reminderTime: string;
   learningStyle: LearningStyle;
   quizIntensity: QuizIntensity;
@@ -55,8 +57,9 @@ export type BookOnboardingState = {
   motivationStyle: MotivationStyle;
 };
 
-const MAX_STEPS = 6;
-const MAX_BOOK_SELECTION = Math.max(1, BOOKS_CATALOG.length);
+const MAX_STEPS = 7;
+const MAX_BOOK_SELECTION = 3;
+const MAX_CATEGORY_SELECTION = 3;
 const STORAGE_KEY = "book-accelerator:onboarding:v2";
 const AVAILABLE_BOOK_IDS = new Set(BOOKS_CATALOG.map((book) => book.id));
 
@@ -71,6 +74,7 @@ const defaultState: BookOnboardingState = {
   occupation: null,
   readingGoal: null,
   referralSource: null,
+  selectedCategories: [],
   selectedBookIds: [],
   dailyGoalMinutes: 20,
   reminderTime: "20:00",
@@ -99,6 +103,11 @@ function parseStoredState(value: string | null): BookOnboardingState | null {
       dailyGoalMinutes: clampGoal(
         Number(parsed.dailyGoalMinutes ?? defaultState.dailyGoalMinutes)
       ),
+      selectedCategories: Array.isArray(parsed.selectedCategories)
+        ? parsed.selectedCategories
+            .filter((c): c is string => typeof c === "string")
+            .slice(0, MAX_CATEGORY_SELECTION)
+        : [],
       selectedBookIds: Array.isArray(parsed.selectedBookIds)
         ? parsed.selectedBookIds
             .filter(
@@ -168,6 +177,21 @@ export function useOnboardingState() {
     setState((prev) => ({ ...prev, referralSource }));
   }, []);
 
+  const toggleCategorySelection = useCallback((categoryKey: string) => {
+    setState((prev) => {
+      const selected = prev.selectedCategories;
+      if (selected.includes(categoryKey)) {
+        return { ...prev, selectedCategories: selected.filter((k) => k !== categoryKey) };
+      }
+      if (selected.length >= MAX_CATEGORY_SELECTION) return prev;
+      return { ...prev, selectedCategories: [...selected, categoryKey] };
+    });
+  }, []);
+
+  const clearBookSelections = useCallback(() => {
+    setState((prev) => ({ ...prev, selectedBookIds: [] }));
+  }, []);
+
   const toggleBookSelection = useCallback((bookId: string) => {
     setState((prev) => {
       const selected = prev.selectedBookIds;
@@ -221,10 +245,16 @@ export function useOnboardingState() {
     [state.selectedBookIds.length]
   );
 
+  const categorySelectionsRemaining = useMemo(
+    () => Math.max(0, MAX_CATEGORY_SELECTION - state.selectedCategories.length),
+    [state.selectedCategories.length]
+  );
+
   return {
     state,
     hydrated,
     selectionsRemaining,
+    categorySelectionsRemaining,
     setCurrentStep,
     goNextStep,
     goPreviousStep,
@@ -235,6 +265,8 @@ export function useOnboardingState() {
     setOccupation,
     setReadingGoal,
     setReferralSource,
+    toggleCategorySelection,
+    clearBookSelections,
     toggleBookSelection,
     setDailyGoalMinutes,
     setReminderTime,

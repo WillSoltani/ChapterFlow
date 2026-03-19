@@ -21,7 +21,11 @@ import {
   XCircle,
 } from "lucide-react";
 import { useBookPreferences } from "@/app/book/hooks/useBookPreferences";
-import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
+import {
+  type QuizIntensity,
+  type MotivationStyle,
+  useOnboardingState,
+} from "@/app/book/hooks/useOnboardingState";
 import { useBookEntitlements } from "@/app/book/hooks/useBookEntitlements";
 import { useToast } from "@/app/book/hooks/useToast";
 import { ConfirmModal } from "@/app/book/components/ui/ConfirmModal";
@@ -285,8 +289,10 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
     hydrated: onboardingHydrated,
     setDailyGoalMinutes,
     setLearningStyle,
+    setQuizIntensity,
     setReminderTime,
     setStreakMode,
+    setMotivationStyle,
     resetSetup,
   } = useOnboardingState();
   const { toast, showToast } = useToast();
@@ -316,6 +322,39 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
     if (!prefsHydrated) return;
     triggerSave();
   }, [preferences, prefsHydrated, triggerSave]);
+
+  // Persist onboarding-derived prefs (learningStyle, quizIntensity, streakMode,
+  // motivationStyle, dailyGoalMinutes, reminderTime) to the backend profile.
+  const lastOnboardingPrefsRef = useRef<string>("");
+  useEffect(() => {
+    if (!onboardingHydrated) return;
+    const snapshot = JSON.stringify({
+      learningStyle: onboarding.learningStyle,
+      quizIntensity: onboarding.quizIntensity,
+      streakMode: onboarding.streakMode,
+      motivationStyle: onboarding.motivationStyle,
+      dailyGoalMinutes: onboarding.dailyGoalMinutes,
+      reminderTime: onboarding.reminderTime,
+    });
+    if (snapshot === lastOnboardingPrefsRef.current) return;
+    lastOnboardingPrefsRef.current = snapshot;
+    const timer = setTimeout(() => {
+      fetch("/app/api/book/me/profile", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ profile: JSON.parse(snapshot) }),
+      }).catch(() => {});
+    }, 800);
+    return () => clearTimeout(timer);
+  }, [
+    onboardingHydrated,
+    onboarding.learningStyle,
+    onboarding.quizIntensity,
+    onboarding.streakMode,
+    onboarding.motivationStyle,
+    onboarding.dailyGoalMinutes,
+    onboarding.reminderTime,
+  ]);
 
   // ------------------------------------------------------------------
   // Confirm actions
@@ -482,12 +521,42 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
           </SettingRow>
           <Divider />
           <SettingRow
+            label="Quiz difficulty"
+            description="How hard the quiz questions are when you take a chapter quiz."
+          >
+            <SegPicker
+              options={[
+                { value: "easy" as const satisfies QuizIntensity, label: "Easy" },
+                { value: "standard" as const satisfies QuizIntensity, label: "Standard" },
+                { value: "challenging" as const satisfies QuizIntensity, label: "Challenging" },
+              ]}
+              value={hydrated ? onboarding.quizIntensity : "standard"}
+              onChange={setQuizIntensity}
+            />
+          </SettingRow>
+          <Divider />
+          <SettingRow
             label="Streak tracking"
             description="Build a daily reading streak and get reminded when it's at risk."
           >
             <Toggle
               checked={hydrated ? onboarding.streakMode : true}
               onChange={setStreakMode}
+            />
+          </SettingRow>
+          <Divider />
+          <SettingRow
+            label="Motivation style"
+            description="Tone used in nudges, streaks, and progress messages."
+          >
+            <SegPicker
+              options={[
+                { value: "gentle" as const satisfies MotivationStyle, label: "Gentle" },
+                { value: "direct" as const satisfies MotivationStyle, label: "Direct" },
+                { value: "competitive" as const satisfies MotivationStyle, label: "Competitive" },
+              ]}
+              value={hydrated ? onboarding.motivationStyle : "gentle"}
+              onChange={setMotivationStyle}
             />
           </SettingRow>
           <Divider />

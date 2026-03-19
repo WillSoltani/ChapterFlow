@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import {
@@ -8,16 +8,25 @@ import {
   ArrowRight,
   BadgeHelp,
   BookOpen,
-  Briefcase,
   Brain,
+  Briefcase,
+  Check,
   Compass,
   FileText,
+  Flame,
   GraduationCap,
   Lightbulb,
+  MessageSquare,
+  RefreshCw,
+  Rocket,
+  Scale,
   Sparkles,
   Sprout,
+  Target,
   TrendingUp,
   Trophy,
+  Users,
+  Zap,
 } from "lucide-react";
 import { OnboardingShell } from "@/app/book/components/OnboardingShell";
 import { BookCard } from "@/app/book/components/BookCard";
@@ -34,8 +43,137 @@ import {
   useOnboardingState,
 } from "@/app/book/hooks/useOnboardingState";
 
-const TOTAL_STEPS = 6;
-const MAX_BOOKS = 1;
+const TOTAL_STEPS = 7;
+const MAX_BOOKS = 3;
+const MAX_CATEGORIES = 3;
+
+// ─── Category definitions ─────────────────────────────────────────────────────
+
+type InterestCategoryDef = {
+  key: string;
+  label: string;
+  description: string;
+  Icon: React.ComponentType<{ className?: string }>;
+  maps: string[];
+};
+
+const INTEREST_CATEGORIES: InterestCategoryDef[] = [
+  {
+    key: "psychology",
+    label: "Psychology & Behavior",
+    description: "Human nature, biases, and what drives decisions",
+    Icon: Brain,
+    maps: ["Psychology", "Human Behavior", "Behavior", "Behavioral Economics"],
+  },
+  {
+    key: "business",
+    label: "Business & Strategy",
+    description: "Building organizations and winning in markets",
+    Icon: Briefcase,
+    maps: ["Business", "Strategy", "Management", "Execution", "Governance"],
+  },
+  {
+    key: "productivity",
+    label: "Productivity & Focus",
+    description: "Systems for deep work and getting more done",
+    Icon: Zap,
+    maps: ["Productivity", "Focus", "Self Management", "Attention"],
+  },
+  {
+    key: "communication",
+    label: "Communication & Influence",
+    description: "Persuasion, negotiation, and reading people",
+    Icon: MessageSquare,
+    maps: [
+      "Communication",
+      "Persuasion",
+      "Negotiation",
+      "Social Skills",
+      "Presentation Skills",
+      "Public Speaking",
+      "Conflict",
+    ],
+  },
+  {
+    key: "self-development",
+    label: "Self Development",
+    description: "Habits, mindset, discipline, and becoming your best self",
+    Icon: Sprout,
+    maps: [
+      "Self Development",
+      "Self Improvement",
+      "Personal Development",
+      "Self Mastery",
+      "Self Discipline",
+      "Self Awareness",
+    ],
+  },
+  {
+    key: "finance",
+    label: "Finance & Wealth",
+    description: "Money management, investing, and building wealth",
+    Icon: TrendingUp,
+    maps: ["Finance", "Personal Finance", "Wealth"],
+  },
+  {
+    key: "leadership",
+    label: "Leadership & Career",
+    description: "Leading teams, driving results, and career growth",
+    Icon: Target,
+    maps: ["Leadership", "Career"],
+  },
+  {
+    key: "thinking",
+    label: "Decision Making",
+    description: "Mental models, reasoning, and reducing costly mistakes",
+    Icon: Lightbulb,
+    maps: ["Decision Making", "Mental Models", "Thinking", "Risk", "Behavioral Economics"],
+  },
+  {
+    key: "resilience",
+    label: "Resilience & Grit",
+    description: "Mental toughness and thriving under pressure",
+    Icon: Flame,
+    maps: ["Resilience", "Mental Toughness"],
+  },
+  {
+    key: "learning",
+    label: "Learning & Mastery",
+    description: "Accelerated learning and deep skill acquisition",
+    Icon: GraduationCap,
+    maps: ["Learning", "Education", "Skill Building"],
+  },
+  {
+    key: "habits",
+    label: "Habits & Behavior Change",
+    description: "Building routines that stick and breaking bad patterns",
+    Icon: RefreshCw,
+    maps: ["Behavior Change", "Attention"],
+  },
+  {
+    key: "relationships",
+    label: "Relationships",
+    description: "Deepening connections and understanding people",
+    Icon: Users,
+    maps: ["Relationships", "Social Skills"],
+  },
+  {
+    key: "philosophy",
+    label: "Philosophy & Meaning",
+    description: "Stoicism, ethics, and living with purpose",
+    Icon: Scale,
+    maps: ["Philosophy", "Stoicism", "Meaning", "Happiness", "Ethics"],
+  },
+  {
+    key: "entrepreneurship",
+    label: "Entrepreneurship",
+    description: "Starting companies, innovation, and product thinking",
+    Icon: Rocket,
+    maps: ["Entrepreneurship", "Innovation", "Product"],
+  },
+];
+
+// ─── Option sets ──────────────────────────────────────────────────────────────
 
 const pronounOptions: PronounOption[] = [
   "Prefer not to say",
@@ -131,9 +269,12 @@ const stepContent = [
     subtitle: "Understanding your goals helps us make ChapterFlow work better for you.",
   },
   {
-    title: "Pick your first book",
-    subtitle:
-      "Choose your starting book. You can add more titles later as the library grows.",
+    title: "What interests you?",
+    subtitle: `Pick ${MAX_CATEGORIES} categories — we'll find the best books for your goals.`,
+  },
+  {
+    title: "Pick your first books",
+    subtitle: `Choose ${MAX_BOOKS} books from your selected categories to get started.`,
   },
   {
     title: "Set your daily goal",
@@ -156,7 +297,7 @@ function isValidEmailOrEmpty(value: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed);
 }
 
-// ─── Shared primitive components ────────────────────────────────────────────
+// ─── Shared primitives ────────────────────────────────────────────────────────
 
 type SegmentedOptionProps<T extends string> = {
   label: string;
@@ -236,6 +377,69 @@ function GoalCard({ icon: Icon, label, description, selected, onSelect }: GoalCa
   );
 }
 
+type CategoryCardProps = {
+  Icon: React.ComponentType<{ className?: string }>;
+  label: string;
+  description: string;
+  selected: boolean;
+  disabled: boolean;
+  onSelect: () => void;
+};
+
+function CategoryCard({
+  Icon,
+  label,
+  description,
+  selected,
+  disabled,
+  onSelect,
+}: CategoryCardProps) {
+  return (
+    <button
+      type="button"
+      onClick={onSelect}
+      disabled={disabled}
+      aria-pressed={selected}
+      className={[
+        "relative flex flex-col gap-2.5 rounded-2xl border p-3.5 text-left transition-all duration-200",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)",
+        selected
+          ? "border-(--cf-accent-border) bg-(--cf-accent-soft) shadow-[0_0_0_3px_rgba(14,165,233,0.12)]"
+          : disabled
+            ? "cursor-not-allowed border-(--cf-border) bg-(--cf-surface-muted) opacity-30"
+            : "border-(--cf-border) bg-(--cf-surface-muted) hover:border-(--cf-border-strong) hover:bg-(--cf-surface)",
+      ].join(" ")}
+    >
+      <span
+        className={[
+          "inline-flex h-9 w-9 items-center justify-center rounded-xl border transition-all duration-200",
+          selected
+            ? "border-(--cf-accent-border) bg-(--cf-accent) text-white shadow-[0_2px_8px_rgba(14,165,233,0.35)]"
+            : "border-(--cf-border) bg-(--cf-surface) text-(--cf-text-2)",
+        ].join(" ")}
+      >
+        <Icon className="h-4 w-4" />
+      </span>
+      <div className="min-w-0">
+        <p
+          className={[
+            "text-sm font-semibold leading-tight",
+            selected ? "text-(--cf-info-text)" : "text-(--cf-text-1)",
+          ].join(" ")}
+        >
+          {label}
+        </p>
+        <p className="mt-1 text-xs leading-snug text-(--cf-text-3)">{description}</p>
+      </div>
+      {selected && (
+        <span className="absolute right-3 top-3 flex h-4 w-4 items-center justify-center rounded-full bg-(--cf-accent)">
+          <Check className="h-2.5 w-2.5 text-white" />
+        </span>
+      )}
+    </button>
+  );
+}
+
 function HowItWorksRow({
   icon,
   title,
@@ -258,7 +462,7 @@ function HowItWorksRow({
   );
 }
 
-// ─── Main component ──────────────────────────────────────────────────────────
+// ─── Main component ───────────────────────────────────────────────────────────
 
 export function BookOnboardingClient() {
   const router = useRouter();
@@ -274,6 +478,8 @@ export function BookOnboardingClient() {
     setOccupation,
     setReadingGoal,
     setReferralSource,
+    toggleCategorySelection,
+    clearBookSelections,
     toggleBookSelection,
     setDailyGoalMinutes,
     setReminderTime,
@@ -284,16 +490,13 @@ export function BookOnboardingClient() {
     completeSetup,
   } = useOnboardingState();
 
-  // Redirect locally if already complete
+  // Redirect if already complete
   useEffect(() => {
     if (!hydrated) return;
-    if (state.setupComplete) {
-      router.replace("/book/workspace");
-    }
+    if (state.setupComplete) router.replace("/book/workspace");
   }, [hydrated, router, state.setupComplete]);
 
-  // On a fresh device localStorage is empty — check the backend so returning
-  // users are never sent through onboarding again.
+  // On a fresh device localStorage is empty — check backend so returning users skip onboarding
   useEffect(() => {
     if (!hydrated) return;
     if (state.setupComplete) return;
@@ -309,39 +512,73 @@ export function BookOnboardingClient() {
   }, [hydrated, state.setupComplete, completeSetup, router]);
 
   const step = state.currentStep;
+
+  // ── Selection state ────────────────────────────────────────────────────────
   const selectedCount = state.selectedBookIds.length;
   const selectedBooksSet = useMemo(
     () => new Set(state.selectedBookIds),
     [state.selectedBookIds]
   );
-  const limitReached = selectedCount >= MAX_BOOKS;
+  const selectedCategoriesSet = useMemo(
+    () => new Set(state.selectedCategories),
+    [state.selectedCategories]
+  );
+  const bookLimitReached = selectedCount >= MAX_BOOKS;
+  const categoryLimitReached = state.selectedCategories.length >= MAX_CATEGORIES;
 
-  // ── Book selection pagination ────────────────────────────────────────────
+  // ── Clear books when categories change ────────────────────────────────────
+  const categoriesSignatureRef = useRef<string>("");
+  useEffect(() => {
+    const signature = [...state.selectedCategories].sort().join(",");
+    if (categoriesSignatureRef.current && signature !== categoriesSignatureRef.current) {
+      clearBookSelections();
+    }
+    categoriesSignatureRef.current = signature;
+  }, [state.selectedCategories, clearBookSelections]);
+
+  // ── Filtered books for step 4 ────────────────────────────────────────────
+  const expandedCategoryMaps = useMemo(() => {
+    const expanded = new Set<string>();
+    state.selectedCategories.forEach((key) => {
+      const cat = INTEREST_CATEGORIES.find((c) => c.key === key);
+      cat?.maps.forEach((m) => expanded.add(m));
+    });
+    return expanded;
+  }, [state.selectedCategories]);
+
+  const filteredBooks = useMemo(() => {
+    if (expandedCategoryMaps.size === 0) return BOOKS_CATALOG;
+    return BOOKS_CATALOG.filter((book) =>
+      book.categories.some((c) => expandedCategoryMaps.has(c))
+    );
+  }, [expandedCategoryMaps]);
+
+  // ── Book pagination ───────────────────────────────────────────────────────
   const [bookPage, setBookPage] = useState(0);
   const [booksPerPage, setBooksPerPage] = useState(10);
-  const totalBookPages = Math.ceil(BOOKS_CATALOG.length / booksPerPage);
+
+  const totalBookPages = Math.ceil(filteredBooks.length / booksPerPage);
   const paginatedBooks = useMemo(
-    () => BOOKS_CATALOG.slice(bookPage * booksPerPage, (bookPage + 1) * booksPerPage),
-    [bookPage, booksPerPage]
+    () => filteredBooks.slice(bookPage * booksPerPage, (bookPage + 1) * booksPerPage),
+    [filteredBooks, bookPage, booksPerPage]
   );
 
-  // Reset to first page when leaving and re-entering the book step
   useEffect(() => {
-    if (step === 3) setBookPage(0);
+    if (step === 4) setBookPage(0);
   }, [step]);
 
   const emailValid = isValidEmailOrEmpty(state.email);
 
   const canContinue = (() => {
     if (step === 1) return state.name.trim().length > 0 && emailValid;
-    if (step === 3) return selectedCount === MAX_BOOKS;
+    if (step === 3) return state.selectedCategories.length === MAX_CATEGORIES;
+    if (step === 4) return selectedCount === MAX_BOOKS;
     return true;
   })();
 
   const handleContinue = () => {
     if (!canContinue) return;
     if (step === TOTAL_STEPS - 1) {
-      // Fire-and-forget: persist profile data to server on completion
       fetch("/app/api/book/me/profile", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
@@ -356,6 +593,13 @@ export function BookOnboardingClient() {
             occupation: state.occupation ?? undefined,
             readingGoal: state.readingGoal ?? undefined,
             referralSource: state.referralSource ?? undefined,
+            selectedCategories: state.selectedCategories,
+            selectedBookIds: state.selectedBookIds,
+            dailyGoalMinutes: state.dailyGoalMinutes,
+            learningStyle: state.learningStyle,
+            quizIntensity: state.quizIntensity,
+            streakMode: state.streakMode,
+            motivationStyle: state.motivationStyle,
           },
         }),
       }).catch(() => {});
@@ -476,7 +720,6 @@ export function BookOnboardingClient() {
             {/* ── Step 1: Who you are ──────────────────────────────────────── */}
             {step === 1 ? (
               <div className="mx-auto max-w-3xl space-y-5 rounded-[30px] border border-(--cf-border) bg-(--cf-surface) p-5 sm:p-7">
-                {/* Name */}
                 <label className="block">
                   <span className="mb-2 block text-sm font-medium text-(--cf-text-2)">
                     What should we call you?{" "}
@@ -492,7 +735,6 @@ export function BookOnboardingClient() {
                   />
                 </label>
 
-                {/* Email + City side by side on larger screens */}
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <div>
                     <label className="block">
@@ -533,7 +775,6 @@ export function BookOnboardingClient() {
                   </label>
                 </div>
 
-                {/* Pronoun */}
                 <div>
                   <p className="mb-2 text-sm font-medium text-(--cf-text-2)">
                     Preferred pronoun{" "}
@@ -552,7 +793,6 @@ export function BookOnboardingClient() {
                   </div>
                 </div>
 
-                {/* Occupation */}
                 <div>
                   <p className="mb-2 text-sm font-medium text-(--cf-text-2)">
                     What best describes you?{" "}
@@ -571,13 +811,12 @@ export function BookOnboardingClient() {
                   </div>
                 </div>
 
-                {/* Confirmation nudge */}
                 <div className="rounded-2xl border border-(--cf-accent-border) bg-(--cf-accent-soft) px-4 py-3 text-(--cf-info-text)">
                   Nice to meet you,{" "}
                   <span className="font-semibold">
                     {state.name.trim() || "there"}
                   </span>
-                  . Let&apos;s set up your first book.
+                  . Let&apos;s set up your first books.
                 </div>
               </div>
             ) : null}
@@ -585,7 +824,6 @@ export function BookOnboardingClient() {
             {/* ── Step 2: What brings you here ────────────────────────────── */}
             {step === 2 ? (
               <div className="mx-auto max-w-3xl space-y-6 rounded-[30px] border border-(--cf-border) bg-(--cf-surface) p-5 sm:p-7">
-                {/* Reading goal cards */}
                 <div>
                   <p className="mb-3 text-sm font-medium text-(--cf-text-2)">
                     What do you most want to get from reading?{" "}
@@ -605,7 +843,6 @@ export function BookOnboardingClient() {
                   </div>
                 </div>
 
-                {/* Referral source */}
                 <div>
                   <p className="mb-2 text-sm font-medium text-(--cf-text-2)">
                     How did you hear about ChapterFlow?{" "}
@@ -624,22 +861,111 @@ export function BookOnboardingClient() {
                   </div>
                 </div>
 
-                {/* Skip nudge */}
                 <p className="text-center text-xs text-(--cf-text-3)">
                   Both fields are optional — hit Continue whenever you&apos;re ready.
                 </p>
               </div>
             ) : null}
 
-            {/* ── Step 3: Book selection ───────────────────────────────────── */}
+            {/* ── Step 3: Category selection ───────────────────────────────── */}
             {step === 3 ? (
+              <div className="space-y-5">
+                {/* Progress counter */}
+                <div className="flex items-center justify-between">
+                  <div className="flex gap-2">
+                    {state.selectedCategories.map((key) => {
+                      const cat = INTEREST_CATEGORIES.find((c) => c.key === key);
+                      if (!cat) return null;
+                      return (
+                        <button
+                          key={key}
+                          type="button"
+                          onClick={() => toggleCategorySelection(key)}
+                          className="inline-flex items-center gap-1.5 rounded-full border border-(--cf-accent-border) bg-(--cf-accent-soft) px-3 py-1 text-xs font-medium text-(--cf-info-text) transition hover:opacity-80"
+                        >
+                          <cat.Icon className="h-3 w-3" />
+                          {cat.label}
+                          <span className="ml-0.5 opacity-60">×</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                  <p
+                    className={[
+                      "shrink-0 text-sm font-semibold tabular-nums transition-colors",
+                      state.selectedCategories.length === MAX_CATEGORIES
+                        ? "text-(--cf-success-text)"
+                        : "text-(--cf-text-2)",
+                    ].join(" ")}
+                  >
+                    {state.selectedCategories.length} / {MAX_CATEGORIES} selected
+                  </p>
+                </div>
+
+                {/* Category grid */}
+                <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
+                  {INTEREST_CATEGORIES.map(({ key, label, description, Icon }) => {
+                    const selected = selectedCategoriesSet.has(key);
+                    const disabled = !selected && categoryLimitReached;
+                    return (
+                      <CategoryCard
+                        key={key}
+                        Icon={Icon}
+                        label={label}
+                        description={description}
+                        selected={selected}
+                        disabled={disabled}
+                        onSelect={() => toggleCategorySelection(key)}
+                      />
+                    );
+                  })}
+                </div>
+
+                {categoryLimitReached && (
+                  <p className="text-center text-xs text-(--cf-text-3)">
+                    Tap a selected category to swap it out.
+                  </p>
+                )}
+              </div>
+            ) : null}
+
+            {/* ── Step 4: Book selection (filtered) ───────────────────────── */}
+            {step === 4 ? (
               <div className="space-y-4">
+                {/* Category context chips */}
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="text-xs text-(--cf-text-3)">Showing books from:</span>
+                  {state.selectedCategories.map((key) => {
+                    const cat = INTEREST_CATEGORIES.find((c) => c.key === key);
+                    if (!cat) return null;
+                    return (
+                      <span
+                        key={key}
+                        className="inline-flex items-center gap-1.5 rounded-full border border-(--cf-accent-border) bg-(--cf-accent-soft) px-2.5 py-0.5 text-xs font-medium text-(--cf-info-text)"
+                      >
+                        <cat.Icon className="h-3 w-3" />
+                        {cat.label}
+                      </span>
+                    );
+                  })}
+                </div>
+
                 {/* Header: selection count + per-page selector */}
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                   <p className="text-sm text-(--cf-text-2)">
-                    {selectedCount}/{MAX_BOOKS} selected
+                    <span
+                      className={[
+                        "font-semibold",
+                        selectedCount === MAX_BOOKS
+                          ? "text-(--cf-success-text)"
+                          : "text-(--cf-text-1)",
+                      ].join(" ")}
+                    >
+                      {selectedCount}/{MAX_BOOKS}
+                    </span>{" "}
+                    books selected
                     <span className="ml-2 text-(--cf-text-3)">
-                      · {BOOKS_CATALOG.length} books available
+                      · {filteredBooks.length} books match
                     </span>
                   </p>
                   <div className="flex items-center gap-2">
@@ -671,7 +997,7 @@ export function BookOnboardingClient() {
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   {paginatedBooks.map((book) => {
                     const selected = selectedBooksSet.has(book.id);
-                    const disabled = !selected && limitReached;
+                    const disabled = !selected && bookLimitReached;
                     return (
                       <BookCard
                         key={book.id}
@@ -683,6 +1009,12 @@ export function BookOnboardingClient() {
                     );
                   })}
                 </div>
+
+                {filteredBooks.length === 0 && (
+                  <p className="rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) p-6 text-center text-sm text-(--cf-text-3)">
+                    No books found for your selected categories. Go back and try different ones.
+                  </p>
+                )}
 
                 {/* Pagination controls */}
                 {totalBookPages > 1 && (
@@ -742,8 +1074,8 @@ export function BookOnboardingClient() {
               </div>
             ) : null}
 
-            {/* ── Step 4: Daily goal ───────────────────────────────────────── */}
-            {step === 4 ? (
+            {/* ── Step 5: Daily goal ───────────────────────────────────────── */}
+            {step === 5 ? (
               <div className="mx-auto max-w-4xl space-y-4">
                 <GoalPicker value={state.dailyGoalMinutes} onChange={setDailyGoalMinutes} />
                 <p className="text-center text-lg text-(--cf-text-2)">
@@ -760,8 +1092,8 @@ export function BookOnboardingClient() {
               </div>
             ) : null}
 
-            {/* ── Step 5: Preferences ─────────────────────────────────────── */}
-            {step === 5 ? (
+            {/* ── Step 6: Preferences ─────────────────────────────────────── */}
+            {step === 6 ? (
               <div className="mx-auto max-w-4xl space-y-4 rounded-[30px] border border-(--cf-border) bg-(--cf-surface) p-5 sm:p-7">
                 <div>
                   <label className="mb-2 block text-sm font-medium text-(--cf-text-2)">

@@ -141,6 +141,12 @@ export function ChapterReaderClient({
     router.replace(pathname);
   };
 
+  const handleSessionTourDone = () => {
+    setSessionMode(false);
+    setActiveTab("summary");
+    router.replace(pathname);
+  };
+
   const { state: onboarding, hydrated: onboardingHydrated } = useOnboardingState();
 
   const entry = useMemo(() => getLibraryBookById(bookId), [bookId]);
@@ -602,13 +608,7 @@ export function ChapterReaderClient({
       />
 
       {sessionMode ? (
-        <SessionModeOverlay
-          activeTab={state.activeTab}
-          quizPassed={Boolean(state.quizResult?.passed)}
-          onSelectStep={setActiveTab}
-          onPause={pauseSessionMode}
-          onClose={pauseSessionMode}
-        />
+        <SessionModeOverlay onDone={handleSessionTourDone} />
       ) : null}
 
       {currentChapter ? (

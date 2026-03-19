@@ -12,6 +12,7 @@ export type BookCatalogItem = {
   title: string;
   author: string;
   category: string;
+  categories: string[];
   difficulty: BookDifficulty;
   estimatedMinutes: number;
 };
@@ -30,6 +31,7 @@ export const BOOKS_CATALOG: BookCatalogItem[] = BOOK_PACKAGES.map((pkg) => {
     title: pkg.book.title,
     author: pkg.book.author,
     category: pkg.book.categories[0] ?? "General",
+    categories: pkg.book.categories,
     difficulty: presentation.difficulty,
     estimatedMinutes: totalReadingMinutes(pkg.chapters),
   };
@@ -39,16 +41,36 @@ export function getBookById(bookId: string): BookCatalogItem | undefined {
   return BOOKS_CATALOG.find((book) => book.id === bookId);
 }
 
+const PREFER_GENERATED_COVER_IDS = new Set([
+  "pitch-anything",
+  "the-gift-of-fear",
+  "the-denial-of-death",
+]);
+
 export function getBookCoverCandidates(book: Pick<BookCatalogItem, "id" | "coverImage">): string[] {
-  if (book.coverImage) return [book.coverImage];
-  return [
-    `/book-covers/${book.id}.svg`,
-    `/book-covers/${book.id}.png`,
+  const realFirstCandidates = [
     `/book-covers/${book.id}.jpg`,
     `/book-covers/${book.id}.jpeg`,
+    `/book-covers/${book.id}.png`,
+    `/book-covers/${book.id}.webp`,
+    `/book-covers/${book.id}.avif`,
+    `/book-covers/${book.id}.svg`,
+  ];
+  const generatedFirstCandidates = [
+    `/book-covers/${book.id}.svg`,
+    `/book-covers/${book.id}.jpg`,
+    `/book-covers/${book.id}.jpeg`,
+    `/book-covers/${book.id}.png`,
     `/book-covers/${book.id}.webp`,
     `/book-covers/${book.id}.avif`,
   ];
+  const localCandidates = PREFER_GENERATED_COVER_IDS.has(book.id)
+    ? generatedFirstCandidates
+    : realFirstCandidates;
+
+  if (!book.coverImage) return localCandidates;
+  if (localCandidates.includes(book.coverImage)) return localCandidates;
+  return [book.coverImage, ...localCandidates];
 }
 
 export function getBookSynopsis(bookId: string): string {
