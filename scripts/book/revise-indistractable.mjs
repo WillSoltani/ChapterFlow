@@ -28,13 +28,27 @@ const example = (exampleId, title, contexts, scenario, whatToDo, whyItMatters) =
   whyItMatters,
 });
 
-const question = (questionId, prompt, choices, correctIndex, explanation) => ({
-  questionId,
-  prompt: sanitizePrompt(prompt),
-  choices,
-  correctIndex,
-  explanation,
-});
+function rotateQuestionChoices(choices, correctIndex, seed) {
+  const shift = seed % choices.length;
+  if (shift === 0) {
+    return { choices, correctIndex };
+  }
+  const rotated = choices.map((_, index) => choices[(index + shift) % choices.length]);
+  const nextCorrectIndex = (correctIndex - shift + choices.length) % choices.length;
+  return { choices: rotated, correctIndex: nextCorrectIndex };
+}
+
+const question = (questionId, prompt, choices, correctIndex, explanation) => {
+  const seed = Array.from(questionId).reduce((sum, char) => sum + char.charCodeAt(0), 0);
+  const rotated = rotateQuestionChoices(choices, correctIndex, seed);
+  return {
+    questionId,
+    prompt: sanitizePrompt(prompt),
+    choices: rotated.choices,
+    correctIndex: rotated.correctIndex,
+    explanation,
+  };
+};
 
 const sanitizePrompt = (value) =>
   value
@@ -2575,6 +2589,912 @@ const CHAPTER_REVISIONS = [
           "Treat every cue as equal",
         ],
         0
+      ),
+    ],
+  }),
+  chapter({
+    chapterId: "ch33-teach-kid-pacts",
+    number: 33,
+    title: "Teach Children To Make Their Own Pacts",
+    readingTimeMinutes: 15,
+    summary: {
+      p1: t(
+        "Teaching children to make their own pacts means helping them set clear limits and commitments for themselves instead of relying only on rules imposed from above.",
+        "Eyal argues that children become more indistractable when they participate in defining the boundary, understand why it exists, and use a concrete tool such as a timer or agreed cutoff to enforce it.",
+        "The core claim is that self chosen commitments build stronger attention habits than constant parental policing."
+      ),
+      p2: t(
+        "This matters because children eventually have to manage attention without a parent standing nearby.",
+        "When they practice making and revising their own pacts, they build autonomy, media literacy, and the belief that their time is theirs to protect.",
+        "The deeper lesson is that real self regulation grows through authorship. A child who can make a promise to themselves and keep it is gaining far more than one good screen rule."
+      ),
+    },
+    standardBullets: [
+      bullet(
+        "A self authored pact matters more. Children are more likely to respect a limit they helped create than one they only received.",
+        "Ownership changes the emotional meaning of the rule.",
+        "The pact feels like a chosen standard instead of a constant parental interruption.",
+        "That shift is crucial because attention skills should survive even when no adult is enforcing them."
+      ),
+      bullet(
+        "Pacts make the future decision easier. A timer, cutoff, or agreed stopping point reduces the need to renegotiate in the hot moment.",
+        "This follows the same precommitment logic used earlier in the book.",
+        "The best time to set the boundary is before temptation is active.",
+        "Clear rules made in advance protect children from having to win the same argument again and again."
+      ),
+      bullet(
+        "Explain the system behind the temptation. Children should understand that games, videos, and apps are built to hold attention for profit.",
+        "That does not require paranoia. It requires healthy skepticism.",
+        "Media literacy helps the pact make sense.",
+        "A child who understands the incentive structure is harder to manipulate passively."
+      ),
+      bullet(
+        "Keep the pact concrete. Vague promises like using screens less are weaker than specific agreements about time, place, or stopping cues.",
+        "Clarity makes success visible.",
+        "It also makes review more honest.",
+        "A clear pact is easier to keep and easier to learn from when it fails."
+      ),
+      bullet(
+        "Start with a pact the child can actually keep. The goal is not to win a dramatic battle, but to build reliable self trust.",
+        "A smaller successful commitment usually teaches more than an unrealistic one.",
+        "Progress grows from believable promises.",
+        "When the child experiences themselves keeping the pact, confidence and identity both strengthen."
+      ),
+      bullet(
+        "Use tools that shift enforcement away from arguments. Timers, schedules, and visible stopping points can carry some of the burden.",
+        "That keeps the adult from becoming the whole boundary.",
+        "The tool supports the promise.",
+        "Less direct policing often means less resentment and better learning."
+      ),
+      bullet(
+        "Review the pact together after real life tests it. A broken pact is information about friction, not proof that the child is hopeless.",
+        "Curious review keeps the learning alive.",
+        "Adjustment is part of the method.",
+        "Children need to see that refinement is normal when a promise did not hold."
+      ),
+      bullet(
+        "Adults should coach, not dominate. Guidance still matters, but the child should feel invited into responsibility rather than trapped by control.",
+        "This keeps dignity in the process.",
+        "It also builds long term skill.",
+        "A child who only obeys an adult has learned something different from a child who can self govern."
+      ),
+      bullet(
+        "Success should shape identity. Each kept pact is evidence that the child can protect time and attention.",
+        "Identity grows from repeated proof.",
+        "This is how discipline becomes more personal and less externally forced.",
+        "Small wins can quietly change how a child sees their own capabilities."
+      ),
+      bullet(
+        "The goal is independence, not endless supervision. A good pact prepares children to act wisely when no one else is watching.",
+        "That is why this chapter matters so much.",
+        "The method is training for later freedom.",
+        "Children become stronger when the boundary gradually becomes theirs."
+      ),
+    ],
+    deeperBullets: [
+      bullet(
+        "A pact only works if the child feels some genuine choice. Forced participation can imitate collaboration while still teaching powerlessness.",
+        "The chapter values guided authorship, not fake autonomy.",
+        "Children need to feel that their judgment has a real place in the process."
+      ),
+      bullet(
+        "Precommitment is also emotional education. The child learns that wanting something later does not mean the earlier promise was foolish.",
+        "That distinction matters for maturity.",
+        "It teaches that impulses can change without becoming the new authority."
+      ),
+      bullet(
+        "A review conversation is where much of the learning happens. It turns a kept pact into confidence and a broken pact into diagnosis.",
+        "Without review, the child may only remember the conflict.",
+        "Reflection converts events into skill."
+      ),
+      bullet(
+        "Parents who stay in pure enforcer mode can accidentally weaken the child's future competence. The child learns to wait for outside control instead of building inside control.",
+        "That is the deeper risk of overpolicing.",
+        "Short term compliance can hide long term dependence."
+      ),
+      bullet(
+        "The long game is a child who can create better defaults for themselves. Pacts are not only about one app or one bedtime. They teach authorship over attention.",
+        "That is why the chapter belongs near the end of the book.",
+        "It turns the method into something the next generation can carry forward."
+      ),
+    ],
+    takeaways: [
+      "Let children help write the rule",
+      "Use concrete pacts, not vague hopes",
+      "Teach why attention is being pulled",
+      "Use tools so arguments carry less weight",
+      "Review and revise after real tests",
+      "Aim for independent self regulation",
+    ],
+    practice: [
+      "Ask the child what limit feels fair and keepable",
+      "Turn that answer into one concrete pact",
+      "Choose a timer, schedule, or other visible enforcement tool",
+      "Explain the attention grabbing design behind the tempting app or show",
+      "Review together after a week and adjust the pact if needed",
+    ],
+    examples: [
+      example(
+        "ch33-ex01",
+        "Student chooses a research cutoff",
+        ["school"],
+        "A middle school student needs a laptop for homework but keeps sliding from research into videos and then argues when a parent tries to end the session.",
+        [
+          "Help the student create a clear stopping pact before work begins, such as finishing one assignment and then taking a timed break.",
+          "Use a timer or visible checklist so the rule comes from the agreement, not only from a parent's interruption."
+        ],
+        "This matters because children learn more when they help write the boundary. The pact teaches self management instead of endless bargaining."
+      ),
+      example(
+        "ch33-ex02",
+        "Study break turns into endless scrolling",
+        ["school"],
+        "A high school student says a short break between study blocks keeps stretching into half an hour of scrolling, and every reset becomes another argument at home.",
+        [
+          "Ask the student to choose a realistic break limit and the signal that ends it.",
+          "Review the result later so the student can see whether the pact was clear enough and honest enough."
+        ],
+        "The chapter helps because precommitment works best when the child defines the promise in calm conditions and then learns from the outcome."
+      ),
+      example(
+        "ch33-ex03",
+        "Program director wants less device policing",
+        ["work"],
+        "An after school program director is tired of staff spending all their energy policing tablet use during free time, which keeps creating the same arguments with the same children.",
+        [
+          "Shift some responsibility to child authored pacts that define time limits and stopping cues before free time begins.",
+          "Teach staff to review the pact with the child later instead of treating every slip as a fresh power struggle."
+        ],
+        "This work example shows that constant enforcement can consume adults without building real skill in children. Shared pacts create better learning and calmer supervision."
+      ),
+      example(
+        "ch33-ex04",
+        "Coach keeps confiscating phones",
+        ["work"],
+        "A youth coach keeps taking players' phones before practice because the team never stops checking them, but the behavior returns every day.",
+        [
+          "Have the players help create their own prepractice phone pact and choose how they will enforce it together.",
+          "Explain why the cue is strong and let them take part in designing the answer."
+        ],
+        "The lesson applies at work because leaders who only control from above often get short compliance but weak ownership. Better pacts build discipline inside the group."
+      ),
+      example(
+        "ch33-ex05",
+        "Five year old asks for one more episode",
+        ["personal"],
+        "A young child melts down every night at the end of screen time because the stopping point always feels sudden and personal.",
+        [
+          "Create a simple self chosen pact using a timer and a small clear rule the child can understand.",
+          "Keep the adult in a coaching role so the timer and the agreement carry more of the limit."
+        ],
+        "This matters because even very young children can begin practicing self authored boundaries when the pact is concrete and developmentally realistic."
+      ),
+      example(
+        "ch33-ex06",
+        "Parent keeps becoming the bad guy",
+        ["personal"],
+        "A parent notices that every digital rule ends with resentment because the child experiences the limit as the parent's control instead of as a shared plan.",
+        [
+          "Move from commands toward a conversation about what the child wants time for and what pact would protect it.",
+          "Use the next slip as a review moment instead of a lecture."
+        ],
+        "The deeper point is that children need practice governing themselves. If the parent remains the whole boundary, the skill may never fully transfer."
+      ),
+    ],
+    questions: [
+      question(
+        "ch33-q01",
+        "Why are self authored pacts usually stronger for children than imposed rules?",
+        [
+          "Because they reduce the need for all adult guidance",
+          "Because children take more ownership when they help create the limit",
+          "Because any child chosen rule is automatically wise",
+          "Because they make tempting apps less persuasive",
+        ],
+        1
+      ),
+      question(
+        "ch33-q02",
+        "A parent wants a child to stop watching videos after homework. Which approach best fits the chapter?",
+        [
+          "Pick a realistic viewing limit with the child and use a timer to enforce the agreement",
+          "Wait until the child gets absorbed and then argue about fairness",
+          "Hide the device every night without explaining why",
+          "Keep repeating that self control should be enough",
+        ],
+        0
+      ),
+      question(
+        "ch33-q03",
+        "Why does the chapter encourage explaining how apps and media compete for attention?",
+        [
+          "So children feel guilty for enjoying them",
+          "So children understand the business incentives shaping the temptation",
+          "So parents can frighten children away from all technology",
+          "So rules can stay vague and emotional",
+        ],
+        1
+      ),
+      question(
+        "ch33-q04",
+        "What is a sign that a child's pact is too weak?",
+        [
+          "It is concrete and easy to review",
+          "It uses a visible enforcement tool",
+          "It was chosen in a calm moment",
+          "It sounds like a vague hope instead of a specific commitment",
+        ],
+        3
+      ),
+      question(
+        "ch33-q05",
+        "A child keeps breaking an agreed limit. What is the best next move?",
+        [
+          "Treat the broken pact as information and review what friction or temptation the pact missed",
+          "Conclude that children are too immature for precommitment",
+          "Double the punishment without discussion",
+          "Abandon the idea of pacts and return to constant supervision",
+        ],
+        0
+      ),
+      question(
+        "ch33-q06",
+        "Why does the chapter recommend starting with a pact the child can actually keep?",
+        [
+          "Because the first pact should eliminate all temptation forever",
+          "Because believable promises build self trust and identity",
+          "Because children should never be challenged",
+          "Because small pacts matter only until high school",
+        ],
+        1
+      ),
+      question(
+        "ch33-q07",
+        "What is the risk if adults stay only in enforcer mode?",
+        [
+          "Children may wait for outside control instead of learning inside control",
+          "Children become too confident too quickly",
+          "Technology stops being attractive",
+          "Review conversations become unnecessary",
+        ],
+        0
+      ),
+      question(
+        "ch33-q08",
+        "A coach wants players off their phones before practice. Which response follows the chapter best?",
+        [
+          "Confiscate devices every day and avoid discussion",
+          "Ask the team to create a prepractice phone pact and choose how to enforce it",
+          "Ignore the issue because sports already build discipline",
+          "Keep changing the rule based on the coach's mood",
+        ],
+        1
+      ),
+      question(
+        "ch33-q09",
+        "What is the deeper purpose of reviewing a kept or broken pact with a child?",
+        [
+          "To make the child feel monitored",
+          "To convert the experience into skill and better self understanding",
+          "To show that all rules are temporary",
+          "To prove that adults already knew the right answer",
+        ],
+        1
+      ),
+      question(
+        "ch33-q10",
+        "What long term outcome is the chapter aiming for?",
+        [
+          "Children who follow rules only when adults are present",
+          "Children who avoid all screens permanently",
+          "Children who can author and protect their own attention over time",
+          "Children who never need adjustment after a setback",
+        ],
+        2
+      ),
+    ],
+  }),
+  chapter({
+    chapterId: "ch34-social-antibodies",
+    number: 34,
+    title: "Friendships Need Defenses Against Distraction",
+    readingTimeMinutes: 16,
+    summary: {
+      p1: t(
+        "Friendships need defenses against distraction because divided attention spreads socially and weakens the quality of time people share together.",
+        "Eyal introduces the idea of social antibodies, which are group norms that gently resist habits such as checking phones in the middle of connection.",
+        "The chapter's central point is that friendship quality depends partly on what a group treats as acceptable interruption."
+      ),
+      p2: t(
+        "This matters because distraction is contagious. One person's drift can quietly give everyone else permission to drift too.",
+        "When friends develop better norms, they protect conversation, trust, and the sense that being together is worth full presence.",
+        "The deeper lesson is that relationships are shaped by culture as much as by intention. Strong connection needs social standards, not only private good wishes."
+      ),
+    },
+    standardBullets: [
+      bullet(
+        "Distraction spreads socially. When one person checks out, others often follow without much thought.",
+        "That is why the chapter treats distraction as contagious behavior, not only a private habit.",
+        "Groups absorb cues quickly.",
+        "A room can lose depth before anyone openly decides to stop paying attention."
+      ),
+      bullet(
+        "Social antibodies are protective norms. They are the informal expectations that make distracting behavior feel less acceptable in shared time.",
+        "The comparison is to how societies changed around smoking.",
+        "Norms can shift over time.",
+        "What once felt ordinary can later feel clearly out of place."
+      ),
+      bullet(
+        "Friends should make distraction visible. A tactful question can interrupt mindless phone use without turning the moment into a fight.",
+        "The point is awareness, not humiliation.",
+        "Gentle honesty works better than silent resentment.",
+        "Often the person is barely aware how much they have drifted."
+      ),
+      bullet(
+        "Care should frame correction. Asking whether everything is all right gives space for a real emergency while also signaling that presence matters here.",
+        "This keeps the norm human.",
+        "Concern is more effective than scolding.",
+        "A good social antibody protects the relationship while defending the interaction."
+      ),
+      bullet(
+        "Phones are not the only threat. Televisions, background media, and constant interruptions can also fracture shared attention.",
+        "The chapter is really about protecting presence from whatever keeps splitting it.",
+        "Devices are common, but not unique.",
+        "Any recurring interruption can weaken closeness if the group keeps tolerating it."
+      ),
+      bullet(
+        "Hosts and planners can help. A setting designed for conversation gives better behavior a better chance.",
+        "Seating, screens, timing, and activity all matter.",
+        "Good gatherings are lightly designed.",
+        "Social norms grow faster when the environment supports them."
+      ),
+      bullet(
+        "State the norm early when useful. If a group wants deeper connection, saying so out loud can prevent confusion later.",
+        "This makes the expectation shared instead of implied.",
+        "Clarity reduces awkwardness.",
+        "People often cooperate better when they know what kind of time they are agreeing to have."
+      ),
+      bullet(
+        "Do not rely on private annoyance. Unspoken irritation usually lets the distracting habit keep winning.",
+        "A friendship improves when people can name what is weakening the time together.",
+        "Silence protects the old pattern.",
+        "Norms change only after someone is willing to surface the cost."
+      ),
+      bullet(
+        "Protecting presence strengthens closeness. Better attention makes conversations warmer, richer, and more memorable.",
+        "The benefit is relational, not merely polite.",
+        "Presence is how bonds deepen.",
+        "Attention is one of the clearest gifts friends can give each other."
+      ),
+      bullet(
+        "A healthy friend group guards what it values. If connection matters, the group should build customs that defend it.",
+        "This is the chapter's closing standard.",
+        "Relationships improve when the norm improves.",
+        "Friendship gets stronger when shared time stops being treated as disposable."
+      ),
+    ],
+    deeperBullets: [
+      bullet(
+        "Social antibodies are a cultural immune system. They do not eliminate all distraction, but they help a group recognize and correct drift before it becomes the norm.",
+        "That makes them preventive, not merely reactive.",
+        "Healthy cultures recover faster because they can detect what is weakening them."
+      ),
+      bullet(
+        "One person's phone use changes the moral weather of the room. It quietly lowers the standard for everyone else.",
+        "That is why small acts matter socially.",
+        "The group learns from what it sees tolerated."
+      ),
+      bullet(
+        "People often avoid naming distraction because they fear seeming controlling. The chapter argues that tactful care is kinder than letting shallow connection become normal.",
+        "Kindness sometimes requires a small social risk.",
+        "Silence can be the less caring option."
+      ),
+      bullet(
+        "The deepest loss is not etiquette but intimacy. Fragmented gatherings may still look social while failing to create real closeness.",
+        "A fun evening can remain oddly thin when no one is fully there.",
+        "Attention quality shapes emotional quality."
+      ),
+      bullet(
+        "Norms become durable when the group co owns them. A friendship circle that talks openly about presence can defend it far better than one person privately trying to hold the line.",
+        "Shared standards reduce friction and defensiveness.",
+        "The group becomes part of the solution."
+      ),
+    ],
+    takeaways: [
+      "Distraction is socially contagious",
+      "Groups need norms that protect presence",
+      "Make drift visible with tact",
+      "Design gatherings for connection",
+      "Silence keeps weak norms alive",
+      "Friendship grows where attention is protected",
+    ],
+    practice: [
+      "Notice one social setting where divided attention keeps becoming normal",
+      "Decide what better norm would protect the interaction",
+      "Use one tactful phrase to make drift visible when it happens",
+      "Reduce one environmental distraction before the next gathering",
+      "Talk with friends about what kind of presence the group wants to protect",
+    ],
+    examples: [
+      example(
+        "ch34-ex01",
+        "Study group keeps fragmenting",
+        ["school"],
+        "A study group meets to prepare for exams, but every time one person grabs a phone, the whole table slowly drifts into side conversations and scrolling.",
+        [
+          "Name the pattern and agree on a simple group norm for phones during work blocks.",
+          "Use a tactful reminder when someone slips instead of letting the group silently dissolve."
+        ],
+        "This matters because distraction spreads fast in groups. A better norm can protect everyone's focus and improve the quality of the time together."
+      ),
+      example(
+        "ch34-ex02",
+        "Friends hang out after class but never connect deeply",
+        ["school"],
+        "A group of college friends keeps meeting between classes, yet the time feels thin because everyone is half present and half checking updates.",
+        [
+          "Acknowledge that the group wants more real connection and set a clearer expectation for phone free conversation during part of the hangout.",
+          "Choose a setting with fewer background screens if possible."
+        ],
+        "The chapter helps because weak presence can become normal without anyone meaning for it to. Social antibodies restore the standard."
+      ),
+      example(
+        "ch34-ex03",
+        "Team lunch becomes silent scrolling",
+        ["work"],
+        "Coworkers say they want team lunches to strengthen relationships, but the moment food arrives the table fills with phones and attention collapses.",
+        [
+          "Make the cost visible and suggest one simple norm that protects part of the meal for real conversation.",
+          "Frame it around better connection, not around moral superiority."
+        ],
+        "This work example shows that social time does not automatically create closeness. Presence has to be protected if the relationship benefit is going to happen."
+      ),
+      example(
+        "ch34-ex04",
+        "Offsite conversation keeps getting broken",
+        ["work"],
+        "At an offsite, coworkers are finally having an honest conversation, but constant checking of messages keeps breaking the momentum before trust can build.",
+        [
+          "Ask whether the interruptions are urgent and agree on a better standard for the rest of the discussion.",
+          "Reduce obvious external triggers in the room so the norm is easier to keep."
+        ],
+        "The principle applies at work because group attention shapes the depth of conversation. Better norms can create a safer and more useful social environment."
+      ),
+      example(
+        "ch34-ex05",
+        "Dinner with friends turns into parallel scrolling",
+        ["personal"],
+        "A friend group meets for dinner, but the table keeps disappearing into phones whenever there is a pause in conversation.",
+        [
+          "Introduce a tactful phrase or shared norm that makes the drift visible without turning aggressive.",
+          "Protect the meal as time that deserves fuller presence."
+        ],
+        "This matters because friendships are built in ordinary moments like these. If drift keeps winning, the relationship slowly gets thinner."
+      ),
+      example(
+        "ch34-ex06",
+        "Game night competes with the television",
+        ["personal"],
+        "A group wants game night to feel lively, but a loud television in the background keeps pulling eyes and comments away from the people in the room.",
+        [
+          "Treat the television as part of the distraction problem and remove it from the setting.",
+          "Design the environment so the social norm has a better chance to hold."
+        ],
+        "The chapter is broader than phone etiquette. Friendships deepen more easily when the whole environment supports shared attention."
+      ),
+    ],
+    questions: [
+      question(
+        "ch34-q01",
+        "What does the idea of social antibodies refer to?",
+        [
+          "Private habits people use when they are alone",
+          "Informal group norms that resist distracting behavior in shared time",
+          "Strict punishments for friends who check phones",
+          "Apps that block social media during meals",
+        ],
+        1
+      ),
+      question(
+        "ch34-q02",
+        "Why does the chapter treat distraction among friends as especially important?",
+        [
+          "Because distraction spreads socially and weakens real connection",
+          "Because friendship time should never include devices of any kind",
+          "Because social settings matter less than work settings",
+          "Because people are more rational in groups",
+        ],
+        0
+      ),
+      question(
+        "ch34-q03",
+        "A friend keeps checking a phone during dinner. Which response best fits the chapter?",
+        [
+          "Say nothing and hope the behavior stops on its own",
+          "Mock the friend so the norm becomes clear",
+          "Use a tactful question that makes the distraction visible while leaving room for a real emergency",
+          "Start checking your own phone too so the moment feels less awkward",
+        ],
+        2
+      ),
+      question(
+        "ch34-q04",
+        "Why are norms compared to smoking rules in the chapter?",
+        [
+          "To show that social expectations can shift and make harmful behavior less acceptable",
+          "To argue that phones and smoking are the same type of health risk",
+          "To prove rules should always come from law",
+          "To show that friends need strict punishment systems",
+        ],
+        0
+      ),
+      question(
+        "ch34-q05",
+        "What is one mistake the chapter warns against?",
+        [
+          "Designing the setting to support conversation",
+          "Letting private annoyance replace an honest conversation about the norm",
+          "Protecting part of a gathering for fuller presence",
+          "Treating background media as a potential distraction too",
+        ],
+        1
+      ),
+      question(
+        "ch34-q06",
+        "Why does the chapter care about televisions and background media too?",
+        [
+          "Because any recurring interruption can fracture shared attention, not only phones",
+          "Because only older people are distracted by them",
+          "Because social norms apply only to screens on tables",
+          "Because background media always improves gatherings",
+        ],
+        0
+      ),
+      question(
+        "ch34-q07",
+        "A host wants deeper conversation at a gathering. What should they do?",
+        [
+          "Rely entirely on guests to improvise better habits",
+          "Design the setting and expectation so presence is easier to maintain",
+          "Assume good friends do not need social norms",
+          "Wait until the end of the night to mention the issue",
+        ],
+        1
+      ),
+      question(
+        "ch34-q08",
+        "What is the deeper loss when group distraction becomes normal?",
+        [
+          "The group starts violating formal policy",
+          "The group becomes less fun in every situation",
+          "The gathering can look social while failing to build real closeness",
+          "No one will ever want to meet again",
+        ],
+        2
+      ),
+      question(
+        "ch34-q09",
+        "Why is a shared norm usually stronger than one person privately holding the line?",
+        [
+          "Because group ownership makes the expectation clearer and less defensive",
+          "Because norms only work when everyone agrees instantly",
+          "Because one person can never influence a group",
+          "Because friendship should avoid all awkwardness",
+        ],
+        0
+      ),
+      question(
+        "ch34-q10",
+        "What standard closes the chapter?",
+        [
+          "Friends should accept divided attention as part of modern life",
+          "Good friendships do not need protection from distraction",
+          "A healthy group builds customs that defend the connection it says it values",
+          "Presence matters only during formal occasions",
+        ],
+        2
+      ),
+    ],
+  }),
+  chapter({
+    chapterId: "ch35-indistractable-intimacy",
+    number: 35,
+    title: "Intimacy Requires Protected Attention",
+    readingTimeMinutes: 12,
+    summary: {
+      p1: t(
+        "Intimacy requires protected attention because the person closest to you cannot feel fully met when your mind keeps leaving the room.",
+        "Eyal closes the book by showing that distraction is not only a productivity problem. It reaches into rest, romance, and the most private forms of connection.",
+        "The chapter argues that partners need deliberate protection from both digital interruption and the discomfort that sends them toward it."
+      ),
+      p2: t(
+        "This matters because devices often become a socially acceptable escape from boredom, anxiety, awkwardness, or vulnerability inside a relationship.",
+        "Simply removing one screen is not enough if the inner urge to flee contact remains untouched. Couples need the full method: understand the trigger, make time, remove cues, and use pacts where needed.",
+        "The deeper lesson is that attention is one of the clearest expressions of love. Protecting it is not cosmetic. It is part of keeping faith with the relationship."
+      ),
+    },
+    standardBullets: [
+      bullet(
+        "Intimacy runs on presence. A partner can be physically near you while still feeling abandoned if your attention keeps leaving.",
+        "This is why the chapter treats distraction as relational loss, not only lost efficiency.",
+        "Connection depends on felt presence.",
+        "Attention is one of the ways love becomes visible."
+      ),
+      bullet(
+        "Devices often serve as escape hatches. People reach for them not only from habit, but to avoid boredom, tension, or emotional exposure.",
+        "That links the chapter back to internal triggers.",
+        "The screen is often a response to discomfort.",
+        "Without naming that, couples can keep arguing about the object while missing the motive."
+      ),
+      bullet(
+        "External triggers matter in the bedroom and at home. Phones, laptops, alerts, and late night internet access can all fracture closeness.",
+        "The relationship environment needs design too.",
+        "Private space should not be cue saturated by default.",
+        "A room filled with interruptions rarely supports deep rest or intimacy."
+      ),
+      bullet(
+        "Removing one device may not solve the problem. If the discomfort remains, people often substitute another distraction.",
+        "That is why the method has to go deeper than surface cleanup.",
+        "The urge will search for a new outlet.",
+        "Real change requires understanding what the distraction is relieving."
+      ),
+      bullet(
+        "Make time for togetherness on purpose. Important connection loses ground when it depends only on whatever time survives the day.",
+        "Scheduling is not unromantic here. It is protective.",
+        "What matters needs a place to live.",
+        "Time that is never claimed is easy for habit and fatigue to steal."
+      ),
+      bullet(
+        "Use effort pacts when needed. Turning off internet access, moving devices out of reach, or creating evening cutoffs can support the relationship.",
+        "A pact is useful when clear intention keeps collapsing in the same place.",
+        "The goal is less temptation at the vulnerable hour.",
+        "Design can help couples stop fighting the same predictable battle."
+      ),
+      bullet(
+        "Talk openly about the real cost. Partners need language for how distraction is affecting closeness, not only annoyance about a device.",
+        "Honest naming creates a better target for change.",
+        "The issue is emotional before it is technical.",
+        "A clearer conversation makes better agreements possible."
+      ),
+      bullet(
+        "Protect sleep as part of intimacy. Exhaustion and late night digital drift can erode both mood and connection.",
+        "Rest is relationship infrastructure.",
+        "A tired couple is more distractible and less generous.",
+        "Better evenings often begin with fewer cues pulling the night apart."
+      ),
+      bullet(
+        "Repair should matter more than perfection. Slips are not proof that the relationship goal was fake.",
+        "What matters is noticing the drift and returning to the promise.",
+        "Gentle correction keeps the system alive.",
+        "Shame can make the next escape even more likely."
+      ),
+      bullet(
+        "An indistractable partner keeps choosing the relationship. That is the chapter's closing standard.",
+        "The promise is not flawless attention every second.",
+        "It is repeated, protected return.",
+        "Love gets stronger when attention stops being left to chance."
+      ),
+    ],
+    deeperBullets: [
+      bullet(
+        "Intimate distraction is often the most revealing kind because it shows what we do when no audience is grading us. Private habits expose private priorities.",
+        "That gives the chapter unusual honesty.",
+        "The final test of attention may happen at home, not at work."
+      ),
+      bullet(
+        "A couple can remove the device and still keep the avoidance. The deeper work is learning to stay with the discomfort that once sent both people elsewhere.",
+        "This is why internal trigger skill remains essential at the end of the book.",
+        "Surface order without emotional courage may not last."
+      ),
+      bullet(
+        "Pacts in relationships should protect closeness, not become another arena for control. The agreement works best when both people see it as service to the bond.",
+        "Shared intention matters here.",
+        "A pact imposed like punishment can damage the very connection it was meant to defend."
+      ),
+      bullet(
+        "Attention in love is cumulative. Many small moments of partial presence can quietly reduce trust, warmth, and desire over time.",
+        "The loss may feel subtle until it is not.",
+        "Tiny fractures repeated often can reshape the relationship climate."
+      ),
+      bullet(
+        "Protected attention is a form of honoring. It tells the other person that convenience, news, and endless input do not automatically outrank shared life.",
+        "That is why the chapter ends the book here.",
+        "Choosing presence is one of the strongest everyday signals of value."
+      ),
+    ],
+    takeaways: [
+      "Presence is essential to intimacy",
+      "Screens often mask discomfort",
+      "Private spaces need trigger control too",
+      "Use pacts when repeated drift keeps winning",
+      "Talk about the real relational cost",
+      "Protected attention is a form of love",
+    ],
+    practice: [
+      "Notice where shared time keeps being interrupted at home",
+      "Name the feeling that often sends you or your partner toward a screen",
+      "Choose one protected block for connection or rest",
+      "Remove one repeating cue from the bedroom or evening routine",
+      "Use a pact if the same digital drift keeps returning",
+    ],
+    examples: [
+      example(
+        "ch35-ex01",
+        "College couple studies together but never fully arrives",
+        ["school"],
+        "Two students say they want more meaningful time together, but every shared evening becomes half studying and half drifting into separate feeds whenever the work gets tiring.",
+        [
+          "Set a clear study period and a clear device free period so the time stops blending into one distracted block.",
+          "Talk about the discomfort that sends each person away from the interaction."
+        ],
+        "This matters because intimacy is weakened when together time is always partial. Protected attention helps the relationship feel real again."
+      ),
+      example(
+        "ch35-ex02",
+        "Late night messages crowd out connection",
+        ["school"],
+        "A student couple keeps bringing phones into bed because class chats, club messages, and updates feel impossible to ignore at night.",
+        [
+          "Create an evening cutoff and move the devices away from the bed so the cue is weaker when both are tired.",
+          "Treat the arrangement as a shared pact serving the relationship."
+        ],
+        "The chapter helps because private closeness needs environmental protection too. Good intentions usually lose when the strongest cues stay in reach."
+      ),
+      example(
+        "ch35-ex03",
+        "Work email keeps entering dinner",
+        ["work"],
+        "One partner says they are listening at dinner, but work email keeps pulling glances and fragmented replies into the conversation.",
+        [
+          "Agree on a protected dinner window and change the cue pattern that keeps work entering it.",
+          "Discuss whether the device is handling true urgency or only habitual anxiety."
+        ],
+        "This work linked example shows that relationship strain often comes from repeated small interruptions, not only dramatic conflict."
+      ),
+      example(
+        "ch35-ex04",
+        "Both partners decompress by disappearing online",
+        ["work"],
+        "After draining workdays, both partners collapse into separate digital escapes at night and then wonder why they feel disconnected.",
+        [
+          "Acknowledge that the screens are soothing discomfort, not merely filling time.",
+          "Create one easier path into shared rest or conversation before the automatic drift begins."
+        ],
+        "The deeper lesson is that external cleanup alone is not enough. Couples need a better answer to the tired feelings that make escape attractive."
+      ),
+      example(
+        "ch35-ex05",
+        "Bedroom has become another screen space",
+        ["personal"],
+        "A couple notices the bedroom now feels like an extension of the internet, with each person browsing until sleep and almost no real unwinding together.",
+        [
+          "Remove the strongest cues from the room and use a firm evening pact if needed.",
+          "Protect the space for rest, conversation, and closeness instead of endless input."
+        ],
+        "This matters because private spaces teach habits. When the room is built for distraction, intimacy has to fight uphill every night."
+      ),
+      example(
+        "ch35-ex06",
+        "One partner feels ignored but talks only about the phone",
+        ["personal"],
+        "A partner keeps complaining about device use, but the deeper pain is feeling less chosen and less seen during the time they hoped would feel shared.",
+        [
+          "Talk about the relational cost directly instead of arguing only about the object in someone's hand.",
+          "Use the full method to protect the time, the cues, and the underlying discomfort."
+        ],
+        "The chapter helps because device conflict is often really about neglected presence. The relationship improves when the true wound gets named."
+      ),
+    ],
+    questions: [
+      question(
+        "ch35-q01",
+        "What is the chapter's main claim about intimacy and attention?",
+        [
+          "Intimacy depends on protected presence, not only physical proximity",
+          "Intimacy is threatened only by phones in the bedroom",
+          "Romance should never involve structure",
+          "Attention matters more at work than at home",
+        ],
+        0
+      ),
+      question(
+        "ch35-q02",
+        "Why does the chapter link relationship distraction back to internal triggers?",
+        [
+          "Because people often use devices to escape discomfort inside the relationship moment",
+          "Because external triggers do not matter in private life",
+          "Because intimacy removes boredom completely",
+          "Because emotional discomfort is always a sign the relationship is failing",
+        ],
+        0
+      ),
+      question(
+        "ch35-q03",
+        "A couple removes phones from the bedroom but starts using laptops there instead. What does that show?",
+        [
+          "The original rule was too strict",
+          "The deeper discomfort driving the escape is still active",
+          "Laptops are less distracting than phones",
+          "Protected attention is unrealistic for most couples",
+        ],
+        1
+      ),
+      question(
+        "ch35-q04",
+        "Why does the chapter defend scheduling time for togetherness?",
+        [
+          "Because planning makes relationships feel less spontaneous",
+          "Because meaningful connection usually loses if it depends only on leftover time",
+          "Because couples should spend every hour together",
+          "Because schedules solve internal triggers on their own",
+        ],
+        1
+      ),
+      question(
+        "ch35-q05",
+        "What is the best use of a pact in a relationship according to the chapter?",
+        [
+          "To punish the partner who slips first",
+          "To create a shared structure that protects closeness where intention keeps collapsing",
+          "To avoid talking about why the distraction is happening",
+          "To prove which partner has more discipline",
+        ],
+        1
+      ),
+      question(
+        "ch35-q06",
+        "A partner keeps talking only about the phone itself, while the real hurt is feeling unseen. What is missing?",
+        [
+          "A more expensive blocking app",
+          "A stricter nightly punishment",
+          "A conversation about the true relational cost of divided attention",
+          "A promise to never use screens again",
+        ],
+        2
+      ),
+      question(
+        "ch35-q07",
+        "Why does the chapter mention sleep when discussing intimacy?",
+        [
+          "Because rest shapes mood, presence, and the couple's ability to connect well",
+          "Because tired people need more entertainment",
+          "Because sleep and intimacy are unrelated",
+          "Because sleep problems are always caused by technology",
+        ],
+        0
+      ),
+      question(
+        "ch35-q08",
+        "What does the chapter suggest after a couple slips back into digital drift one night?",
+        [
+          "Treat the slip as proof the relationship goal was fake",
+          "Repair and return to the promise instead of turning the setback into shame",
+          "Drop the pact because it failed once",
+          "Argue about whose fault it was before changing anything else",
+        ],
+        1
+      ),
+      question(
+        "ch35-q09",
+        "What is the deeper value of protected attention in a relationship?",
+        [
+          "It signals that convenience and endless input do not automatically outrank shared life",
+          "It makes all tension disappear",
+          "It proves one partner is morally stronger",
+          "It matters only for couples with children",
+        ],
+        0
+      ),
+      question(
+        "ch35-q10",
+        "What standard ends the book here?",
+        [
+          "A good partner should never need structure",
+          "Love means responding instantly to everyone else all the time",
+          "An indistractable partner keeps returning protected attention to the relationship",
+          "Private distraction matters less than public distraction",
+        ],
+        2
       ),
     ],
   }),

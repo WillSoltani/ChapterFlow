@@ -3368,7 +3368,7 @@ function buildRetryQuestions(chapterData) {
   }));
 }
 
-function renderReport(packageJson) {
+function renderReport() {
   const lines = [];
   lines.push("# 1. Book audit summary for Blue Ocean Strategy by W. Chan Kim, Renee Mauborgne");
   lines.push("");
@@ -3560,7 +3560,7 @@ function shouldIgnoreDashCheck(path) {
 function main() {
   const packageJson = buildPackage();
   validatePackage(packageJson);
-  const report = renderReport(packageJson);
+  const report = renderReport();
 
   mkdirSync(dirname(packagePath), { recursive: true });
   mkdirSync(dirname(reportPath), { recursive: true });

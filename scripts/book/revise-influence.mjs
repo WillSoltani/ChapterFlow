@@ -2011,7 +2011,6 @@ const CHAPTER_REVISIONS = [
     ],
   }),
 ];
-];
 
 function buildScenarioQuestions(chapterNumber, examples) {
   return examples.map((ex, index) => {

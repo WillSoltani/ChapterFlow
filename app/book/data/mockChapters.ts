@@ -988,6 +988,60 @@ const PRINCE_STYLE_COPY: Record<
   },
 };
 
+const BLUE_OCEAN_STYLE_COPY: Record<
+  ChapterMotivationStyle,
+  {
+    actionLead: string;
+    meaningTail: string;
+    quizLead: string;
+    recapLead: string;
+    summaryLead: string;
+    summaryWhy: string;
+  }
+> = {
+  gentle: {
+    actionLead: "Start with the clearest useful move for the buyer.",
+    meaningTail:
+      "That keeps the strategy grounded in real value instead of more noise.",
+    quizLead:
+      "The strongest answer widens demand and keeps the model workable.",
+    recapLead:
+      "Keep the curve clear and the next move useful.",
+    summaryLead:
+      "Stay close to the buyer problem and the real friction around it.",
+    summaryWhy:
+      "That is what turns blue ocean thinking from a slogan into a usable strategic move.",
+  },
+  direct: {
+    actionLead:
+      "Choose the move that changes value and removes waste cleanly.",
+    meaningTail:
+      "That keeps effort tied to market creation instead of crowded reaction.",
+    quizLead:
+      "The strongest answer creates buyer value, economic fit, and broader demand.",
+    recapLead:
+      "Keep the tradeoff clear and cut what the market no longer needs.",
+    summaryLead:
+      "Read where the market is crowded, where buyers are overpaying, and where demand is being left out.",
+    summaryWhy:
+      "That is how blue ocean strategy becomes a commercial discipline instead of an innovation mood.",
+  },
+  competitive: {
+    actionLead:
+      "Move where the curve opens space and rivals lose leverage.",
+    meaningTail:
+      "That is how you keep edge instead of fighting on crowded terms.",
+    quizLead:
+      "The strongest answer opens demand, removes waste, and protects the economic logic.",
+    recapLead:
+      "Use the next move to open cleaner space before the market crowds again.",
+    summaryLead:
+      "Read where the market is crowded and where cleaner value could still create edge.",
+    summaryWhy:
+      "Miss that and you spend effort inside a fight someone else already designed.",
+  },
+};
+
 const ONE_THING_STYLE_COPY: Record<
   ChapterMotivationStyle,
   {
@@ -1309,6 +1363,60 @@ const LAWS_OF_HUMAN_NATURE_STYLE_COPY: Record<
       "This is where sharper reading stops you from being outread, outmaneuvered, or quietly drained.",
     summaryWhy:
       "Miss the real human pattern here and someone more observant usually takes the advantage first.",
+  },
+};
+
+const INFLUENCE_STYLE_COPY: Record<
+  ChapterMotivationStyle,
+  {
+    actionLead: string;
+    meaningTail: string;
+    quizLead: string;
+    recapLead: string;
+    summaryLead: string;
+    summaryWhy: string;
+  }
+> = {
+  gentle: {
+    actionLead:
+      "Slow down, notice the cue, and choose the response that still matches your values.",
+    meaningTail:
+      "That helps you stay open to people without giving your judgment away.",
+    quizLead:
+      "The strongest answer notices the persuasion cue and responds with clear, steady judgment.",
+    recapLead:
+      "Keep the next interaction clear, human, and aware of the real persuasion cue.",
+    summaryLead:
+      "Read the persuasion cue calmly before deciding what it deserves from you.",
+    summaryWhy:
+      "The goal is not suspicion. It is clearer judgment and more ethical influence.",
+  },
+  direct: {
+    actionLead:
+      "Name the cue, judge the request on its own merits, and answer from the real standard.",
+    meaningTail:
+      "That keeps the principle useful instead of letting it quietly make the decision for you.",
+    quizLead:
+      "The strongest answer spots the cue fast and compares it against the real decision.",
+    recapLead: "Keep the cue clear and make the decision on purpose.",
+    summaryLead:
+      "Call the persuasion trigger plainly before it starts deciding for you.",
+    summaryWhy:
+      "That is how Cialdini becomes practical judgment instead of clever theory.",
+  },
+  competitive: {
+    actionLead:
+      "Spot the cue early and do not hand away a yes just because the trigger landed first.",
+    meaningTail:
+      "That is how you keep other people's influence from quietly costing you leverage.",
+    quizLead:
+      "The strongest answer catches the compliance trigger early and refuses to pay avoidable costs.",
+    recapLead:
+      "Use the cue to keep your footing and avoid giving away easy yes decisions.",
+    summaryLead:
+      "This is where sharper cue reading keeps you from being influenced before you even notice it.",
+    summaryWhy:
+      "Miss the trigger here and someone more alert controls the decision before you do.",
   },
 };
 
@@ -1938,6 +2046,304 @@ const RIGHTEOUS_MIND_STYLE_COPY: Record<
   },
 };
 
+type IndistractableSection =
+  | "foundations"
+  | "internal"
+  | "traction"
+  | "external"
+  | "pacts"
+  | "culture"
+  | "relationships";
+
+const INDISTRACTABLE_QUIZ_LEAD: Record<ChapterMotivationStyle, string> = {
+  gentle:
+    "The strongest answer protects attention with steadiness and self respect.",
+  direct:
+    "The strongest answer names the real source of drift and acts on it.",
+  competitive:
+    "The strongest answer protects the edge before drift takes more ground.",
+};
+
+const INDISTRACTABLE_SECTION_STYLE_COPY: Record<
+  IndistractableSection,
+  Record<
+    ChapterMotivationStyle,
+    {
+      summaryLead: string;
+      summaryWhy: string;
+      actionLead: string;
+      meaningTail: string;
+      recapLead: string;
+    }
+  >
+> = {
+  foundations: {
+    gentle: {
+      summaryLead:
+        "Approach the first diagnosis with patience. Clear seeing is already progress.",
+      summaryWhy:
+        "That calm honesty is what makes the rest of the method usable.",
+      actionLead:
+        "Take the next steady step that protects the time you meant to use.",
+      meaningTail:
+        "That keeps attention practice grounded in self honesty instead of self blame.",
+      recapLead: "Protect one block you already know matters.",
+    },
+    direct: {
+      summaryLead:
+        "Call distraction what it is: a break between intent and action.",
+      summaryWhy:
+        "Protect attention early or drift will keep choosing for you.",
+      actionLead:
+        "Take the next move that clearly protects the time you meant to use.",
+      meaningTail:
+        "That keeps the method anchored in observable behavior, not vague hope.",
+      recapLead: "Protect the next block before drift claims it.",
+    },
+    competitive: {
+      summaryLead:
+        "If you do not guard attention, easier pulls will keep stealing ground.",
+      summaryWhy:
+        "Compounding belongs to the person who protects the minutes first.",
+      actionLead:
+        "Take the next move that keeps easier pulls from taking more ground.",
+      meaningTail:
+        "That is how disciplined people stop leaking advantage one small escape at a time.",
+      recapLead: "Lock down the next block before it gets taken.",
+    },
+  },
+  internal: {
+    gentle: {
+      summaryLead:
+        "Look underneath the urge before trying to overpower it.",
+      summaryWhy:
+        "The calmer you are with discomfort, the less power it has to steer you.",
+      actionLead:
+        "Pause, name the feeling, and stay with the real discomfort for a beat.",
+      meaningTail:
+        "That weakens the escape loop instead of feeding it.",
+      recapLead: "Catch one urge earlier and name it plainly.",
+    },
+    direct: {
+      summaryLead: "Name the feeling instead of obeying it.",
+      summaryWhy:
+        "If you do not face the discomfort, it will keep choosing the escape.",
+      actionLead:
+        "Pause and name the exact feeling before you move toward relief.",
+      meaningTail:
+        "That gives you a real chance to interrupt the pattern at its source.",
+      recapLead: "Catch one urge early and call it what it is.",
+    },
+    competitive: {
+      summaryLead:
+        "Every time discomfort can redirect you on command, you are easy to pull off course.",
+      summaryWhy:
+        "People who can stay with the feeling keep the edge others keep giving away.",
+      actionLead:
+        "Hold the feeling for a beat and stop giving the escape automatic authority.",
+      meaningTail:
+        "That is how you stop handing control to every uncomfortable moment.",
+      recapLead: "Hold one urge without obeying it.",
+    },
+  },
+  traction: {
+    gentle: {
+      summaryLead:
+        "Use the calendar as a way to care for what matters, not to punish yourself.",
+      summaryWhy:
+        "Planned time makes good intentions easier to keep.",
+      actionLead:
+        "Put the next important block on the calendar and protect it gently.",
+      meaningTail:
+        "That turns values into time you can actually keep.",
+      recapLead: "Claim the next important block with care.",
+    },
+    direct: {
+      summaryLead:
+        "Put the value on the calendar or stop pretending it is protected.",
+      summaryWhy:
+        "Time that is not claimed gets spent by something else.",
+      actionLead:
+        "Put the next important block on the calendar and defend it.",
+      meaningTail:
+        "That turns intention into visible traction instead of wishful thinking.",
+      recapLead: "Claim the next block before something else does.",
+    },
+    competitive: {
+      summaryLead:
+        "If you leave time undefined, the loudest demand will keep taking it from you.",
+      summaryWhy:
+        "Edge comes from deciding your time before other people do.",
+      actionLead:
+        "Claim the next important block and stop giving it away by default.",
+      meaningTail:
+        "That is how people with standards keep their best time from being raided.",
+      recapLead: "Claim the next block before the noise takes it.",
+    },
+  },
+  external: {
+    gentle: {
+      summaryLead:
+        "Make the environment kinder to your attention.",
+      summaryWhy:
+        "Less cue pressure leaves more energy for what you chose.",
+      actionLead:
+        "Remove one repeating cue before the next session starts.",
+      meaningTail:
+        "That lowers the strain on attention without asking for constant inner battle.",
+      recapLead: "Shut off one cue that keeps breaking your rhythm.",
+    },
+    direct: {
+      summaryLead:
+        "Cut the cue before the cue cuts into the work.",
+      summaryWhy:
+        "Fewer triggers mean fewer weak moments to recover from.",
+      actionLead:
+        "Remove one repeating cue before it gets another chance to interrupt.",
+      meaningTail:
+        "That reduces the number of fights your attention has to win.",
+      recapLead: "Remove one trigger that keeps getting in.",
+    },
+    competitive: {
+      summaryLead:
+        "Stop giving every cue a chance to take your attention.",
+      summaryWhy:
+        "People who control the setup waste less time reclaiming it.",
+      actionLead:
+        "Kill one recurring trigger before it steals more of the session.",
+      meaningTail:
+        "That is how you stop paying the same attention tax again and again.",
+      recapLead: "Kill one trigger before it steals more ground.",
+    },
+  },
+  pacts: {
+    gentle: {
+      summaryLead:
+        "Use commitments as support, not as punishment.",
+      summaryWhy:
+        "A clear pact can carry you when the hard moment arrives.",
+      actionLead:
+        "Set one clear pact where drift keeps repeating.",
+      meaningTail:
+        "That gives your future self a kinder and firmer structure to lean on.",
+      recapLead: "Strengthen one recurring weak spot with a pact.",
+    },
+    direct: {
+      summaryLead: "Precommit before the urge shows up.",
+      summaryWhy:
+        "Waiting until temptation is active is a weak strategy.",
+      actionLead:
+        "Set one clear pact where the same drift keeps repeating.",
+      meaningTail:
+        "That gives your future self less room to bargain away the plan.",
+      recapLead: "Lock down one recurring weak spot now.",
+    },
+    competitive: {
+      summaryLead:
+        "Lock in the advantage before your future self starts bargaining.",
+      summaryWhy:
+        "Pacts keep easy excuses from stealing ground.",
+      actionLead:
+        "Set one pact that closes the weak spot before the next urge arrives.",
+      meaningTail:
+        "That is how you stop losing to the same predictable moment.",
+      recapLead: "Close one recurring weak spot before it costs you again.",
+    },
+  },
+  culture: {
+    gentle: {
+      summaryLead:
+        "Treat recurring distraction as information about the system.",
+      summaryWhy:
+        "Honest culture makes focus easier for everyone, not just the strongest person.",
+      actionLead:
+        "Name the norm or process that keeps splitting attention.",
+      meaningTail:
+        "That turns focus from private strain into a shared design question.",
+      recapLead: "Surface one system issue behind the distraction.",
+    },
+    direct: {
+      summaryLead:
+        "If everyone is drifting the same way, stop blaming only individuals.",
+      summaryWhy:
+        "Fix the norm or the process that keeps producing the problem.",
+      actionLead:
+        "Name the system condition that keeps pulling people off task.",
+      meaningTail:
+        "That puts the problem where the real leverage usually is.",
+      recapLead: "Call out one system cause instead of one symptom.",
+    },
+    competitive: {
+      summaryLead:
+        "A culture that burns attention casually gives away performance.",
+      summaryWhy:
+        "Teams that protect focus outrun teams trapped in reactive work.",
+      actionLead:
+        "Identify the norm that keeps wasting attention and challenge it.",
+      meaningTail:
+        "That is how a team stops bleeding performance through constant fragmentation.",
+      recapLead: "Expose one system habit that keeps burning attention.",
+    },
+  },
+  relationships: {
+    gentle: {
+      summaryLead:
+        "Protecting attention here is a form of care.",
+      summaryWhy:
+        "Presence is how people feel chosen.",
+      actionLead:
+        "Protect one shared moment before the usual interruption reaches it.",
+      meaningTail:
+        "That helps the relationship feel more deliberate and less accidental.",
+      recapLead: "Defend one shared moment that matters this week.",
+    },
+    direct: {
+      summaryLead:
+        "If you want the relationship to feel stronger, stop letting drift have open access to it.",
+      summaryWhy:
+        "Connection rarely survives on leftover attention.",
+      actionLead:
+        "Protect one shared moment before the usual interruption gets in.",
+      meaningTail:
+        "That makes the relationship feel more intentional instead of constantly secondary.",
+      recapLead: "Protect one shared moment before drift reaches it.",
+    },
+    competitive: {
+      summaryLead:
+        "The people closest to you should not keep losing to cheap interruptions.",
+      summaryWhy:
+        "Strong relationships are protected, not left exposed to constant drift.",
+      actionLead:
+        "Defend one shared moment before another cheap interruption takes it.",
+      meaningTail:
+        "That is how you stop letting low value noise outrank real connection.",
+      recapLead: "Defend one shared moment before the noise wins again.",
+    },
+  },
+};
+
+function getIndistractableSection(order: number): IndistractableSection {
+  if (order <= 2) return "foundations";
+  if (order <= 8) return "internal";
+  if (order <= 13) return "traction";
+  if (order <= 21) return "external";
+  if (order <= 25) return "pacts";
+  if (order <= 28) return "culture";
+  return "relationships";
+}
+
+function getIndistractableStyleCopy(
+  chapter: BookChapter,
+  style: ChapterMotivationStyle
+) {
+  const section = getIndistractableSection(chapter.order);
+  const sectionCopy = INDISTRACTABLE_SECTION_STYLE_COPY[section][style];
+  return {
+    ...sectionCopy,
+    quizLead: INDISTRACTABLE_QUIZ_LEAD[style],
+  };
+}
+
 function appendSentence(base: string, extra: string): string {
   const normalizedBase = cleanText(base);
   const normalizedExtra = cleanText(extra);
@@ -2009,6 +2415,17 @@ function personalizeSummaryBlocks(
 
   if (chapter.bookId === "the-prince") {
     const copy = PRINCE_STYLE_COPY[style];
+    let paragraphIndex = 0;
+    return blocks.map((block) => {
+      if (block.type !== "paragraph") return block;
+      const extra = paragraphIndex === 0 ? copy.summaryLead : copy.summaryWhy;
+      paragraphIndex += 1;
+      return { ...block, text: appendSentence(block.text, extra) };
+    });
+  }
+
+  if (chapter.bookId === "blue-ocean-strategy") {
+    const copy = BLUE_OCEAN_STYLE_COPY[style];
     let paragraphIndex = 0;
     return blocks.map((block) => {
       if (block.type !== "paragraph") return block;
@@ -2108,8 +2525,30 @@ function personalizeSummaryBlocks(
     });
   }
 
+  if (chapter.bookId === "influence") {
+    const copy = INFLUENCE_STYLE_COPY[style];
+    let paragraphIndex = 0;
+    return blocks.map((block) => {
+      if (block.type !== "paragraph") return block;
+      const extra = paragraphIndex === 0 ? copy.summaryLead : copy.summaryWhy;
+      paragraphIndex += 1;
+      return { ...block, text: appendSentence(block.text, extra) };
+    });
+  }
+
   if (chapter.bookId === "the-48-laws-of-power") {
     const copy = LAWS_OF_POWER_STYLE_COPY[style];
+    let paragraphIndex = 0;
+    return blocks.map((block) => {
+      if (block.type !== "paragraph") return block;
+      const extra = paragraphIndex === 0 ? copy.summaryLead : copy.summaryWhy;
+      paragraphIndex += 1;
+      return { ...block, text: appendSentence(block.text, extra) };
+    });
+  }
+
+  if (chapter.bookId === "indistractable") {
+    const copy = getIndistractableStyleCopy(chapter, style);
     let paragraphIndex = 0;
     return blocks.map((block) => {
       if (block.type !== "paragraph") return block;
@@ -2155,6 +2594,14 @@ function personalizeQuestions(
     }));
   }
 
+  if (chapter.bookId === "influence") {
+    const lead = INFLUENCE_STYLE_COPY[style].quizLead;
+    return questions.map((question) => ({
+      ...question,
+      explanation: appendSentence(lead, question.explanation),
+    }));
+  }
+
   if (chapter.bookId === "the-48-laws-of-power") {
     const lead = LAWS_OF_POWER_STYLE_COPY[style].quizLead;
     return questions.map((question) => ({
@@ -2165,6 +2612,14 @@ function personalizeQuestions(
 
   if (chapter.bookId === "the-prince") {
     const lead = PRINCE_STYLE_COPY[style].quizLead;
+    return questions.map((question) => ({
+      ...question,
+      explanation: appendSentence(lead, question.explanation),
+    }));
+  }
+
+  if (chapter.bookId === "blue-ocean-strategy") {
+    const lead = BLUE_OCEAN_STYLE_COPY[style].quizLead;
     return questions.map((question) => ({
       ...question,
       explanation: appendSentence(lead, question.explanation),
@@ -2243,6 +2698,14 @@ function personalizeQuestions(
     }));
   }
 
+  if (chapter.bookId === "indistractable") {
+    const lead = getIndistractableStyleCopy(chapter, style).quizLead;
+    return questions.map((question) => ({
+      ...question,
+      explanation: appendSentence(lead, question.explanation),
+    }));
+  }
+
   return questions.map((question) => ({
     ...question,
     explanation: appendTone(question.explanation, style, "quiz"),
@@ -2280,6 +2743,31 @@ export function personalizeChapterForMotivation(
 
   if (chapter.bookId === "laws-of-human-nature") {
     const copy = LAWS_OF_HUMAN_NATURE_STYLE_COPY[style];
+    return {
+      ...chapter,
+      summaryByDepth: {
+        simple: personalizeSummaryBlocks(chapter, chapter.summaryByDepth.simple, style),
+        standard: personalizeSummaryBlocks(chapter, chapter.summaryByDepth.standard, style),
+        deeper: personalizeSummaryBlocks(chapter, chapter.summaryByDepth.deeper, style),
+      },
+      recap: chapter.recap ? appendSentence(copy.recapLead, chapter.recap) : chapter.recap,
+      examplesDetailed: chapter.examplesDetailed.map((example) => ({
+        ...example,
+        whatToDo: appendSentence(copy.actionLead, example.whatToDo),
+        whyItMatters: appendSentence(example.whyItMatters, copy.meaningTail),
+      })),
+      quiz: personalizeQuestions(chapter, chapter.quiz, style),
+      quizByDepth: {
+        simple: personalizeQuestions(chapter, chapter.quizByDepth.simple, style),
+        standard: personalizeQuestions(chapter, chapter.quizByDepth.standard, style),
+        deeper: personalizeQuestions(chapter, chapter.quizByDepth.deeper, style),
+      },
+      quizRetryPool: personalizeQuestions(chapter, chapter.quizRetryPool, style),
+    };
+  }
+
+  if (chapter.bookId === "influence") {
+    const copy = INFLUENCE_STYLE_COPY[style];
     return {
       ...chapter,
       summaryByDepth: {
@@ -2380,6 +2868,31 @@ export function personalizeChapterForMotivation(
 
   if (chapter.bookId === "the-prince") {
     const copy = PRINCE_STYLE_COPY[style];
+    return {
+      ...chapter,
+      summaryByDepth: {
+        simple: personalizeSummaryBlocks(chapter, chapter.summaryByDepth.simple, style),
+        standard: personalizeSummaryBlocks(chapter, chapter.summaryByDepth.standard, style),
+        deeper: personalizeSummaryBlocks(chapter, chapter.summaryByDepth.deeper, style),
+      },
+      recap: chapter.recap ? appendSentence(copy.recapLead, chapter.recap) : chapter.recap,
+      examplesDetailed: chapter.examplesDetailed.map((example) => ({
+        ...example,
+        whatToDo: appendSentence(copy.actionLead, example.whatToDo),
+        whyItMatters: appendSentence(example.whyItMatters, copy.meaningTail),
+      })),
+      quiz: personalizeQuestions(chapter, chapter.quiz, style),
+      quizByDepth: {
+        simple: personalizeQuestions(chapter, chapter.quizByDepth.simple, style),
+        standard: personalizeQuestions(chapter, chapter.quizByDepth.standard, style),
+        deeper: personalizeQuestions(chapter, chapter.quizByDepth.deeper, style),
+      },
+      quizRetryPool: personalizeQuestions(chapter, chapter.quizRetryPool, style),
+    };
+  }
+
+  if (chapter.bookId === "blue-ocean-strategy") {
+    const copy = BLUE_OCEAN_STYLE_COPY[style];
     return {
       ...chapter,
       summaryByDepth: {
@@ -2605,6 +3118,31 @@ export function personalizeChapterForMotivation(
 
   if (chapter.bookId === "atomic-habits") {
     const copy = ATOMIC_HABITS_STYLE_COPY[style];
+    return {
+      ...chapter,
+      summaryByDepth: {
+        simple: personalizeSummaryBlocks(chapter, chapter.summaryByDepth.simple, style),
+        standard: personalizeSummaryBlocks(chapter, chapter.summaryByDepth.standard, style),
+        deeper: personalizeSummaryBlocks(chapter, chapter.summaryByDepth.deeper, style),
+      },
+      recap: chapter.recap ? appendSentence(copy.recapLead, chapter.recap) : chapter.recap,
+      examplesDetailed: chapter.examplesDetailed.map((example) => ({
+        ...example,
+        whatToDo: appendSentence(copy.actionLead, example.whatToDo),
+        whyItMatters: appendSentence(example.whyItMatters, copy.meaningTail),
+      })),
+      quiz: personalizeQuestions(chapter, chapter.quiz, style),
+      quizByDepth: {
+        simple: personalizeQuestions(chapter, chapter.quizByDepth.simple, style),
+        standard: personalizeQuestions(chapter, chapter.quizByDepth.standard, style),
+        deeper: personalizeQuestions(chapter, chapter.quizByDepth.deeper, style),
+      },
+      quizRetryPool: personalizeQuestions(chapter, chapter.quizRetryPool, style),
+    };
+  }
+
+  if (chapter.bookId === "indistractable") {
+    const copy = getIndistractableStyleCopy(chapter, style);
     return {
       ...chapter,
       summaryByDepth: {
