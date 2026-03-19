@@ -2,10 +2,12 @@
 
 import {
   useEffect,
+  useId,
   useMemo,
   useRef,
   useState,
   type ComponentType,
+  type RefObject,
   type ReactNode,
 } from "react";
 import { useRouter } from "next/navigation";
@@ -42,6 +44,7 @@ import {
 import { OnboardingShell } from "@/app/book/components/OnboardingShell";
 import { BookCard } from "@/app/book/components/BookCard";
 import { GoalPicker, formatMinutesLabel } from "@/app/book/components/GoalPicker";
+import { BookClientError, fetchBookJson } from "@/app/book/_lib/book-api";
 import { BOOKS_CATALOG } from "@/app/book/data/booksCatalog";
 import {
   type BookOnboardingState,
@@ -59,6 +62,7 @@ import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 const TOTAL_STEPS = 7;
 const MAX_BOOKS = 3;
 const MAX_CATEGORIES = 3;
+const REFERRAL_OTHER_TEXT_MAX_LENGTH = 120;
 const STEP_LABELS = [
   "Tour",
   "Start",
@@ -208,12 +212,46 @@ const occupationOptions: OccupationOption[] = [
   "Other",
 ];
 
-const referralSourceOptions: ReferralSourceOption[] = [
-  "Social media",
-  "Word of mouth",
-  "Search engine",
-  "Newsletter",
-  "Other",
+type ReferralSourceCardOptionDef = {
+  value: ReferralSourceOption;
+  label: string;
+  description: string;
+  Icon: ComponentType<{ className?: string }>;
+  featured?: boolean;
+};
+
+const referralSourceOptions: ReferralSourceCardOptionDef[] = [
+  {
+    value: "Social media",
+    label: "Social media",
+    description: "A post, reel, short video, or feed you came across online.",
+    Icon: Sparkles,
+  },
+  {
+    value: "Word of mouth",
+    label: "Word of mouth",
+    description: "A friend, coworker, classmate, teacher, or someone you trust.",
+    Icon: Users,
+  },
+  {
+    value: "Search engine",
+    label: "Search engine",
+    description: "You were actively looking for a better way to learn from books.",
+    Icon: Compass,
+  },
+  {
+    value: "Newsletter",
+    label: "Newsletter",
+    description: "An email roundup, creator newsletter, or curated recommendation.",
+    Icon: Mail,
+  },
+  {
+    value: "Other",
+    label: "Other",
+    description: "Something else pointed you here. Tell us in a few words.",
+    Icon: MessageSquare,
+    featured: true,
+  },
 ];
 
 const learningStyleOptions: Array<{ value: LearningStyle; label: string }> = [
@@ -506,6 +544,174 @@ function GoalCard({ icon: Icon, label, description, selected, onSelect }: GoalCa
         </p>
       </div>
     </button>
+  );
+}
+
+function getReferralSourceOtherError(
+  referralSource: ReferralSourceOption | null,
+  referralSourceOtherText: string
+) {
+  if (referralSource !== "Other") return null;
+  if (!referralSourceOtherText.trim()) {
+    return "Tell us where you found ChapterFlow so we can keep this attribution accurate.";
+  }
+  return null;
+}
+
+type ReferralSourceCardProps = {
+  option: ReferralSourceCardOptionDef;
+  selected: boolean;
+  prefersReducedMotion: boolean | null;
+  onSelect: () => void;
+  otherInputId: string;
+  otherErrorId: string;
+  otherValue: string;
+  otherError: string | null;
+  onOtherChange: (value: string) => void;
+  onOtherBlur: () => void;
+  otherInputRef: RefObject<HTMLInputElement | null>;
+};
+
+function ReferralSourceCard({
+  option,
+  selected,
+  prefersReducedMotion,
+  onSelect,
+  otherInputId,
+  otherErrorId,
+  otherValue,
+  otherError,
+  onOtherChange,
+  onOtherBlur,
+  otherInputRef,
+}: ReferralSourceCardProps) {
+  const isOther = option.value === "Other";
+  const revealId = `${otherInputId}-panel`;
+
+  return (
+    <motion.div
+      layout={prefersReducedMotion ? false : "position"}
+      className={option.featured ? "sm:col-span-2" : ""}
+    >
+      <div
+        className={[
+          "overflow-hidden rounded-[26px] border shadow-sm transition duration-200",
+          selected
+            ? "border-(--cf-accent-border) bg-[linear-gradient(180deg,var(--cf-accent-soft),var(--cf-surface))] shadow-[0_0_0_3px_var(--cf-accent-muted)]"
+            : "border-(--cf-border) bg-(--cf-surface) hover:-translate-y-0.5 hover:border-(--cf-border-strong) hover:bg-(--cf-surface-muted)",
+        ].join(" ")}
+      >
+        <button
+          type="button"
+          onClick={onSelect}
+          aria-pressed={selected}
+          aria-expanded={isOther ? selected : undefined}
+          aria-controls={isOther ? revealId : undefined}
+          className="flex w-full items-start gap-3 p-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)"
+        >
+          <span
+            className={[
+              "mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border transition-all duration-200",
+              selected
+                ? "border-(--cf-accent-border) bg-(--cf-accent) text-white shadow-[0_6px_18px_var(--cf-accent-shadow)]"
+                : "border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-2)",
+            ].join(" ")}
+          >
+            <option.Icon className="h-4 w-4" />
+          </span>
+
+          <div className="min-w-0 flex-1">
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <p
+                  className={[
+                    "text-sm font-semibold",
+                    selected ? "text-(--cf-info-text)" : "text-(--cf-text-1)",
+                  ].join(" ")}
+                >
+                  {option.label}
+                </p>
+                <p className="mt-1 text-sm leading-relaxed text-(--cf-text-3)">
+                  {option.description}
+                </p>
+              </div>
+              <span
+                className={[
+                  "mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border transition-all duration-200",
+                  selected
+                    ? "border-(--cf-accent-border) bg-(--cf-accent) text-white"
+                    : "border-(--cf-border) bg-(--cf-surface) text-transparent",
+                ].join(" ")}
+                aria-hidden="true"
+              >
+                <Check className="h-3.5 w-3.5" />
+              </span>
+            </div>
+          </div>
+        </button>
+
+        <AnimatePresence initial={false}>
+          {isOther && selected ? (
+            <motion.div
+              id={revealId}
+              layout={prefersReducedMotion ? false : "position"}
+              initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, height: 0 }}
+              animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, height: "auto" }}
+              exit={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, height: 0 }}
+              transition={{
+                duration: prefersReducedMotion ? 0 : 0.2,
+                ease: "easeOut",
+              }}
+              className="overflow-hidden border-t border-(--cf-accent-border)/60 bg-(--cf-surface)"
+            >
+              <div className="space-y-3 px-4 pb-4 pt-3.5">
+                <div>
+                  <label
+                    htmlFor={otherInputId}
+                    className="block text-sm font-medium text-(--cf-text-2)"
+                  >
+                    Tell us where you found us
+                  </label>
+                  <p className="mt-1 text-sm leading-relaxed text-(--cf-text-3)">
+                    A short answer is enough. We use this only when the main options do not fit.
+                  </p>
+                </div>
+
+                <div>
+                  <input
+                    ref={otherInputRef}
+                    id={otherInputId}
+                    type="text"
+                    value={otherValue}
+                    maxLength={REFERRAL_OTHER_TEXT_MAX_LENGTH}
+                    onChange={(event) => onOtherChange(event.target.value)}
+                    onBlur={onOtherBlur}
+                    aria-invalid={otherError ? "true" : "false"}
+                    aria-describedby={otherError ? otherErrorId : undefined}
+                    placeholder="For example, a friend, a blog, a forum, or somewhere else"
+                    className={[
+                      "cf-input w-full rounded-2xl px-4 py-3 text-sm",
+                      otherError
+                        ? "border-(--cf-danger-border) focus-visible:ring-(--cf-danger-border)"
+                        : "",
+                    ].join(" ")}
+                  />
+                  {otherError ? (
+                    <p id={otherErrorId} className="mt-2 text-sm text-(--cf-danger-text)">
+                      {otherError}
+                    </p>
+                  ) : (
+                    <p className="mt-2 text-xs text-(--cf-text-3)">
+                      Keep it short. This helps us understand what is actually driving interest.
+                    </p>
+                  )}
+                </div>
+              </div>
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
+      </div>
+    </motion.div>
   );
 }
 
@@ -1059,12 +1265,14 @@ export function BookOnboardingClient() {
   const {
     state,
     hydrated,
+    setCurrentStep,
     goNextStep,
     goPreviousStep,
     setPronoun,
     setOccupation,
     setReadingGoal,
     setReferralSource,
+    setReferralSourceOtherText,
     toggleCategorySelection,
     clearBookSelections,
     toggleBookSelection,
@@ -1087,6 +1295,12 @@ export function BookOnboardingClient() {
   const [bookPage, setBookPage] = useState(0);
   const [booksPerPage, setBooksPerPage] = useState(10);
   const [isSaving, setIsSaving] = useState(false);
+  const [referralOtherError, setReferralOtherError] = useState<string | null>(null);
+  const [saveError, setSaveError] = useState<string | null>(null);
+  const [shouldFocusReferralOther, setShouldFocusReferralOther] = useState(false);
+  const referralOtherInputId = useId();
+  const referralOtherErrorId = useId();
+  const referralOtherInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (!hydrated) return;
@@ -1145,6 +1359,43 @@ export function BookOnboardingClient() {
   const categoryLimitReached = state.selectedCategories.length >= MAX_CATEGORIES;
   const viewerName = viewerIdentity.displayName || "Reader";
   const welcomeName = viewerIdentity.givenName || viewerName;
+  const referralOtherValidationError = getReferralSourceOtherError(
+    state.referralSource,
+    state.referralSourceOtherText
+  );
+
+  const previousReferralSourceRef = useRef<ReferralSourceOption | null>(state.referralSource);
+  useEffect(() => {
+    const enteredOther =
+      state.referralSource === "Other" && previousReferralSourceRef.current !== "Other";
+    previousReferralSourceRef.current = state.referralSource;
+    if (!enteredOther) return;
+
+    const frame = window.requestAnimationFrame(() => {
+      referralOtherInputRef.current?.focus();
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [state.referralSource]);
+
+  useEffect(() => {
+    if (state.referralSource !== "Other") {
+      setReferralOtherError(null);
+      setShouldFocusReferralOther(false);
+      return;
+    }
+    if (state.referralSourceOtherText.trim()) {
+      setReferralOtherError(null);
+    }
+  }, [state.referralSource, state.referralSourceOtherText]);
+
+  useEffect(() => {
+    if (!shouldFocusReferralOther || step !== 2 || state.referralSource !== "Other") return;
+    const frame = window.requestAnimationFrame(() => {
+      referralOtherInputRef.current?.focus();
+    });
+    setShouldFocusReferralOther(false);
+    return () => window.cancelAnimationFrame(frame);
+  }, [shouldFocusReferralOther, step, state.referralSource]);
 
   const categoriesSignatureRef = useRef<string>("");
   useEffect(() => {
@@ -1185,6 +1436,19 @@ export function BookOnboardingClient() {
     setBookPage((current) => Math.min(current, Math.max(0, totalBookPages - 1)));
   }, [totalBookPages]);
 
+  const handleReferralSourceSelect = (value: ReferralSourceOption) => {
+    setReferralOtherError(null);
+    setShouldFocusReferralOther(false);
+    setReferralSource(state.referralSource === value ? null : value);
+  };
+
+  const handleReferralSourceOtherChange = (value: string) => {
+    setReferralSourceOtherText(value);
+    if (referralOtherError && value.trim()) {
+      setReferralOtherError(null);
+    }
+  };
+
   const canContinue = (() => {
     if (step === 3) return state.selectedCategories.length === MAX_CATEGORIES;
     if (step === 4) return selectedCount === MAX_BOOKS;
@@ -1198,6 +1462,9 @@ export function BookOnboardingClient() {
         ? "Connecting your account details..."
         : "We already filled the basics from your secure sign-in. Everything here is optional.";
     }
+    if (step === 2) {
+      return "Optional. If you choose Other, add a quick note so we can keep the attribution clean.";
+    }
     if (step === 3) return `Pick exactly ${MAX_CATEGORIES} categories to continue.`;
     if (step === 4) return `Choose exactly ${MAX_BOOKS} books to build your starter shelf.`;
     return null;
@@ -1205,13 +1472,22 @@ export function BookOnboardingClient() {
 
   const handleContinue = async () => {
     if (!canContinue || isSaving) return;
+    setSaveError(null);
+
+    if (step >= 2 && referralOtherValidationError) {
+      setReferralOtherError(referralOtherValidationError);
+      setShouldFocusReferralOther(true);
+      if (step !== 2) {
+        setCurrentStep(2);
+      }
+      return;
+    }
 
     if (step === TOTAL_STEPS - 1) {
       try {
         setIsSaving(true);
-        await fetch("/app/api/book/me/profile", {
+        await fetchBookJson("/app/api/book/me/profile", {
           method: "PATCH",
-          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             profile: {
               onboardingCompleted: true,
@@ -1219,7 +1495,11 @@ export function BookOnboardingClient() {
                 state.pronoun !== "Prefer not to say" ? state.pronoun : undefined,
               occupation: state.occupation ?? undefined,
               readingGoal: state.readingGoal ?? undefined,
-              referralSource: state.referralSource ?? undefined,
+              referralSource: state.referralSource ?? null,
+              referralSourceOtherText:
+                state.referralSource === "Other"
+                  ? state.referralSourceOtherText.trim()
+                  : null,
               selectedCategories: state.selectedCategories,
               selectedBookIds: state.selectedBookIds,
               dailyGoalMinutes: state.dailyGoalMinutes,
@@ -1229,10 +1509,20 @@ export function BookOnboardingClient() {
               motivationStyle: state.motivationStyle,
             },
           }),
-        }).catch(() => {});
+        });
 
         completeSetup();
         router.push("/book/workspace");
+      } catch (error: unknown) {
+        if (error instanceof BookClientError) {
+          if (error.code === "invalid_input") {
+            setSaveError(error.message);
+          } else {
+            setSaveError("We could not save your setup just now. Please try again.");
+          }
+        } else {
+          setSaveError("We could not save your setup just now. Please try again.");
+        }
       } finally {
         setIsSaving(false);
       }
@@ -1266,6 +1556,11 @@ export function BookOnboardingClient() {
       <div className="space-y-3">
         {actionHint ? (
           <p className="text-center text-sm text-(--cf-text-3)">{actionHint}</p>
+        ) : null}
+        {saveError ? (
+          <p className="rounded-2xl border border-(--cf-danger-border) bg-(--cf-danger-soft) px-4 py-3 text-sm text-(--cf-danger-text)">
+            {saveError}
+          </p>
         ) : null}
         <div className="flex flex-col gap-3 sm:flex-row">
           <button
@@ -1678,22 +1973,39 @@ export function BookOnboardingClient() {
                         How did you hear about ChapterFlow?{" "}
                         <span className="font-normal text-(--cf-text-3)">(optional)</span>
                       </p>
-                      <div className="flex flex-wrap gap-2">
+                      <div
+                        role="group"
+                        aria-label="How did you hear about ChapterFlow?"
+                        className="grid grid-cols-1 gap-3 sm:grid-cols-2"
+                      >
                         {referralSourceOptions.map((option) => (
-                          <SegmentedOption
-                            key={option}
-                            label={option}
-                            value={option}
-                            selected={state.referralSource === option}
-                            onSelect={setReferralSource}
+                          <ReferralSourceCard
+                            key={option.value}
+                            option={option}
+                            selected={state.referralSource === option.value}
+                            prefersReducedMotion={prefersReducedMotion}
+                            onSelect={() => handleReferralSourceSelect(option.value)}
+                            otherInputId={referralOtherInputId}
+                            otherErrorId={referralOtherErrorId}
+                            otherValue={state.referralSourceOtherText}
+                            otherError={state.referralSource === "Other" ? referralOtherError : null}
+                            onOtherChange={handleReferralSourceOtherChange}
+                            onOtherBlur={() =>
+                              setReferralOtherError(
+                                getReferralSourceOtherError(
+                                  state.referralSource,
+                                  state.referralSourceOtherText
+                                )
+                              )
+                            }
+                            otherInputRef={referralOtherInputRef}
                           />
                         ))}
                       </div>
                     </div>
 
                     <div className="rounded-[24px] border border-(--cf-border) bg-(--cf-surface-muted) px-4 py-3.5 text-sm text-(--cf-text-2)">
-                      Both fields are optional. Choose whatever helps us tailor the
-                      experience, then keep moving.
+                      Both fields are optional. If you choose <span className="font-semibold text-(--cf-text-1)">Other</span>, add a quick note so we can store it cleanly without guessing.
                     </div>
                   </div>
                 </div>

@@ -40,6 +40,7 @@ export type BookOnboardingState = {
   // Step 2 — what brings you here
   readingGoal: ReadingGoalOption | null;
   referralSource: ReferralSourceOption | null;
+  referralSourceOtherText: string;
   // Step 3 — category interests
   selectedCategories: string[];
   // Step 4 — book selection
@@ -69,6 +70,7 @@ const defaultState: BookOnboardingState = {
   occupation: null,
   readingGoal: null,
   referralSource: null,
+  referralSourceOtherText: "",
   selectedCategories: [],
   selectedBookIds: [],
   dailyGoalMinutes: 20,
@@ -158,8 +160,12 @@ export function useOnboardingState() {
     setState((prev) => ({ ...prev, readingGoal }));
   }, []);
 
-  const setReferralSource = useCallback((referralSource: ReferralSourceOption) => {
+  const setReferralSource = useCallback((referralSource: ReferralSourceOption | null) => {
     setState((prev) => ({ ...prev, referralSource }));
+  }, []);
+
+  const setReferralSourceOtherText = useCallback((referralSourceOtherText: string) => {
+    setState((prev) => ({ ...prev, referralSourceOtherText }));
   }, []);
 
   const toggleCategorySelection = useCallback((categoryKey: string) => {
@@ -247,6 +253,7 @@ export function useOnboardingState() {
     setOccupation,
     setReadingGoal,
     setReferralSource,
+    setReferralSourceOtherText,
     toggleCategorySelection,
     clearBookSelections,
     toggleBookSelection,

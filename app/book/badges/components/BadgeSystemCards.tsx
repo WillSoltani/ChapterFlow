@@ -1,7 +1,7 @@
 "use client";
 
-import type { ReactNode } from "react";
-import { ArrowUpRight, Lock, Sparkles, Trophy } from "lucide-react";
+import { useState, type ReactNode } from "react";
+import { ArrowUpRight, ChevronDown, Lock, Sparkles, Trophy, Zap } from "lucide-react";
 import { Button } from "@/app/book/components/ui/Button";
 import { Card } from "@/app/book/components/ui/Card";
 import { Chip, ChipButton } from "@/app/book/components/ui/Chip";
@@ -92,9 +92,15 @@ export function FeaturedBadgeCard({
           <h3 className="mt-2 text-xl font-semibold tracking-tight text-(--cf-text-1)">{badge.name}</h3>
           <p className="mt-2 text-sm leading-6 text-(--cf-text-2)">{badge.description}</p>
         </div>
-        <Chip tone={badge.earned ? "amber" : "neutral"} className="shrink-0">
-          {badge.earned ? "Earned" : badge.tier ?? badge.category}
-        </Chip>
+        <div className="flex flex-col items-end gap-2">
+          <Chip tone={badge.earned ? "amber" : "neutral"} className="shrink-0">
+            {badge.earned ? "Earned" : badge.tier ?? badge.category}
+          </Chip>
+          <span className="inline-flex items-center gap-1 text-xs text-(--cf-text-soft)">
+            <Zap className="h-3 w-3" />
+            {badge.flowPoints} FP
+          </span>
+        </div>
       </div>
     </button>
   );
@@ -138,9 +144,15 @@ export function BadgeCard({
       </p>
       <div className="mt-4 flex items-center justify-between gap-3 text-xs">
         <span className="uppercase tracking-[0.18em] text-(--cf-text-soft)">{badge.category}</span>
-        <span className={cn("font-medium", badge.earned ? "text-(--cf-warning-text)" : "text-(--cf-text-soft)")}>
-          {badge.earned ? "Earned" : badge.progressLabel}
-        </span>
+        <div className="flex items-center gap-2.5">
+          <span className={cn("inline-flex items-center gap-0.5", badge.earned ? "text-(--cf-warning-text)" : "text-(--cf-text-soft)")}>
+            <Zap className="h-3 w-3" />
+            {badge.flowPoints}
+          </span>
+          <span className={cn("font-medium", badge.earned ? "text-(--cf-warning-text)" : "text-(--cf-text-soft)")}>
+            {badge.earned ? "Earned" : badge.progressLabel}
+          </span>
+        </div>
       </div>
       {!badge.earned ? (
         <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-(--cf-border)">
@@ -161,39 +173,77 @@ export function BadgeCategorySection({
   description,
   badges,
   onOpen,
+  defaultOpen = false,
 }: {
   title: string;
   description: string;
   badges: BadgeState[];
   onOpen: (badge: BadgeState) => void;
+  defaultOpen?: boolean;
 }) {
+  const [open, setOpen] = useState(defaultOpen);
+
+  const earnedCount = badges.filter((b) => b.earned).length;
+  const totalFP = badges.reduce((sum, b) => sum + b.flowPoints, 0);
+  const earnedFP = badges.filter((b) => b.earned).reduce((sum, b) => sum + b.flowPoints, 0);
+
   return (
-    <Card>
-      <div className="flex flex-wrap items-end justify-between gap-3">
-        <div>
-          <p className="text-[11px] uppercase tracking-[0.22em] text-(--cf-text-soft)">Category</p>
-          <h2 className="mt-2 text-xl font-semibold tracking-tight text-(--cf-text-1)">{title}</h2>
-          <p className="mt-2 max-w-3xl text-sm leading-6 text-(--cf-text-2)">{description}</p>
+    <div className="overflow-hidden rounded-[28px] border border-(--cf-border) bg-(--cf-surface)">
+      <button
+        type="button"
+        onClick={() => setOpen((prev) => !prev)}
+        aria-expanded={open}
+        className="flex w-full items-center gap-4 px-5 py-4 text-left transition hover:bg-(--cf-surface-muted) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-(--cf-accent-border) sm:px-6 sm:py-5"
+      >
+        <div className="min-w-0 flex-1">
+          <div className="flex flex-wrap items-center gap-2.5">
+            <h2 className="text-base font-semibold tracking-tight text-(--cf-text-1)">{title}</h2>
+            <Chip tone={earnedCount > 0 ? "amber" : "neutral"}>
+              {earnedCount} of {badges.length}
+            </Chip>
+          </div>
+          <p className="mt-1 line-clamp-1 text-sm text-(--cf-text-3)">{description}</p>
         </div>
-        <Chip tone="neutral">{badges.filter((badge) => badge.earned).length} earned</Chip>
+        <div className="flex shrink-0 items-center gap-3">
+          <span className="hidden items-center gap-1 text-xs text-(--cf-text-soft) sm:inline-flex">
+            <Zap className="h-3 w-3" />
+            {earnedFP > 0 ? `${earnedFP} / ${totalFP}` : totalFP} FP
+          </span>
+          <ChevronDown
+            className={cn(
+              "h-4 w-4 text-(--cf-text-soft) transition-transform duration-200 motion-reduce:transition-none",
+              open && "rotate-180"
+            )}
+          />
+        </div>
+      </button>
+
+      <div
+        className="grid transition-[grid-template-rows] duration-200 ease-in-out motion-reduce:transition-none"
+        style={{ gridTemplateRows: open ? "1fr" : "0fr" }}
+      >
+        <div className="overflow-hidden">
+          <div className="border-t border-(--cf-border) px-5 pb-5 pt-4 sm:px-6 sm:pb-6">
+            <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+              {badges.map((badge) => (
+                <BadgeCard key={badge.id} badge={badge} onOpen={() => onOpen(badge)} />
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
-      <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-        {badges.map((badge) => (
-          <BadgeCard key={badge.id} badge={badge} onOpen={() => onOpen(badge)} />
-        ))}
-      </div>
-    </Card>
+    </div>
   );
 }
 
 export function ProgressToNextBadgeCard({
   milestone,
-  secondary,
   onOpen,
+  secondary,
 }: {
   milestone: NextMilestone | null;
-  secondary?: ReactNode;
   onOpen?: () => void;
+  secondary?: ReactNode;
 }) {
   if (!milestone) {
     return (
@@ -215,8 +265,14 @@ export function ProgressToNextBadgeCard({
           <h3 className="mt-2 text-2xl font-semibold tracking-tight text-(--cf-text-1)">{milestone.badge.name}</h3>
           <p className="mt-2 text-sm leading-6 text-(--cf-text-2)">{milestone.badge.description}</p>
         </div>
-        <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-(--cf-warning-border) bg-(--cf-surface) text-3xl">
-          <span className="opacity-85">{milestone.badge.icon}</span>
+        <div className="flex flex-col items-end gap-2">
+          <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-(--cf-warning-border) bg-(--cf-surface) text-3xl">
+            <span className="opacity-85">{milestone.badge.icon}</span>
+          </div>
+          <span className="inline-flex items-center gap-1 text-xs text-(--cf-warning-text)">
+            <Zap className="h-3 w-3" />
+            {milestone.badge.flowPoints} FP
+          </span>
         </div>
       </div>
       <div className="mt-5 rounded-2xl border border-(--cf-warning-border) bg-(--cf-surface) p-4">
@@ -308,6 +364,12 @@ export function BadgeDetailPanel({
       <div>
         <h3 className="text-2xl font-semibold tracking-tight text-(--cf-text-1)">{badge.name}</h3>
         <p className="mt-2 text-sm leading-6 text-(--cf-text-2)">{badge.description}</p>
+      </div>
+
+      <div className="inline-flex items-center gap-2 rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) px-3 py-2 text-sm">
+        <Zap className="h-3.5 w-3.5 text-(--cf-text-soft)" />
+        <span className="font-semibold text-(--cf-text-1)">{badge.flowPoints}</span>
+        <span className="text-(--cf-text-3)">Flow Points on earn</span>
       </div>
 
       <div className="grid gap-3 md:grid-cols-2">

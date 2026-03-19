@@ -2,6 +2,7 @@ import "server-only";
 
 import { requireUser } from "@/app/app/api/_lib/auth";
 import {
+  bookErr,
   bookOk,
   requireBodyObject,
   withBookApiErrors,
@@ -29,10 +30,15 @@ const REFERRAL_SOURCES = new Set([
 const LEARNING_STYLES = new Set(["concise", "balanced", "deep"]);
 const QUIZ_INTENSITIES = new Set(["easy", "standard", "challenging"]);
 const MOTIVATION_STYLES = new Set(["gentle", "direct", "competitive"]);
+const REFERRAL_OTHER_TEXT_MAX_LENGTH = 120;
 
 function parseRecord(value: unknown): Record<string, unknown> {
   if (!value || typeof value !== "object" || Array.isArray(value)) return {};
   return value as Record<string, unknown>;
+}
+
+function hasOwnField(record: Record<string, unknown>, key: string): boolean {
+  return Object.prototype.hasOwnProperty.call(record, key);
 }
 
 function cleanString(value: unknown, maxLength: number): string | undefined {
@@ -40,6 +46,14 @@ function cleanString(value: unknown, maxLength: number): string | undefined {
   const trimmed = value.trim();
   if (!trimmed) return undefined;
   return trimmed.slice(0, maxLength);
+}
+
+function cleanNullableString(
+  value: unknown,
+  maxLength: number
+): string | null | undefined {
+  if (value === null) return null;
+  return cleanString(value, maxLength);
 }
 
 function cleanBoolean(value: unknown): boolean | undefined {
@@ -117,8 +131,26 @@ function sanitizeProfile(profile: Record<string, unknown> | null | undefined): R
   const readingGoal = cleanEnum(raw.readingGoal, READING_GOALS);
   if (readingGoal) next.readingGoal = readingGoal;
 
+  const hasReferralSource = hasOwnField(raw, "referralSource");
   const referralSource = cleanEnum(raw.referralSource, REFERRAL_SOURCES);
   if (referralSource) next.referralSource = referralSource;
+  else if (hasReferralSource && raw.referralSource === null) next.referralSource = null;
+
+  const referralSourceOtherText = cleanNullableString(
+    raw.referralSourceOtherText,
+    REFERRAL_OTHER_TEXT_MAX_LENGTH
+  );
+  if (referralSource === "Other") {
+    if (typeof referralSourceOtherText === "string") {
+      next.referralSourceOtherText = referralSourceOtherText;
+    } else if (referralSourceOtherText === null || hasReferralSource) {
+      next.referralSourceOtherText = null;
+    }
+  } else if (referralSource && referralSource !== "Other") {
+    next.referralSourceOtherText = null;
+  } else if (referralSourceOtherText === null) {
+    next.referralSourceOtherText = null;
+  }
 
   const learningStyle = cleanEnum(raw.learningStyle, LEARNING_STYLES);
   if (learningStyle) next.learningStyle = learningStyle;
@@ -173,6 +205,17 @@ function sanitizeProfile(profile: Record<string, unknown> | null | undefined): R
   return next;
 }
 
+function sanitizeProfileForResponse(
+  profile: Record<string, unknown> | null | undefined
+): Record<string, unknown> {
+  const sanitized = sanitizeProfile(profile);
+  return Object.fromEntries(
+    Object.entries(sanitized).filter(
+      ([key, value]) => value !== null || key === "avatarDataUrl"
+    )
+  );
+}
+
 function buildProfileResponse(
   req: Request,
   user: Awaited<ReturnType<typeof requireUser>>,
@@ -180,7 +223,7 @@ function buildProfileResponse(
   updatedAt: string | null,
   options?: { deviceId?: string; issuedDeviceId?: boolean }
 ) {
-  const sanitizedProfile = sanitizeProfile(profile);
+  const sanitizedProfile = sanitizeProfileForResponse(profile);
   const response = bookOk({
     profile: Object.keys(sanitizedProfile).length ? sanitizedProfile : null,
     identity: resolveBookIdentity(user, sanitizedProfile),
@@ -225,6 +268,31 @@ export async function PATCH(req: Request) {
       body.profile && typeof body.profile === "object" && !Array.isArray(body.profile)
         ? (body.profile as Record<string, unknown>)
         : body;
+    const incomingReferralSource = cleanEnum(
+      incomingProfile.referralSource,
+      REFERRAL_SOURCES
+    );
+    const incomingReferralSourceOtherText = cleanString(
+      incomingProfile.referralSourceOtherText,
+      REFERRAL_OTHER_TEXT_MAX_LENGTH
+    );
+    const touchesReferralSource =
+      hasOwnField(incomingProfile, "referralSource") ||
+      hasOwnField(incomingProfile, "referralSourceOtherText");
+    if (
+      touchesReferralSource &&
+      incomingReferralSource === "Other" &&
+      !incomingReferralSourceOtherText
+    ) {
+      return bookErr(
+        req,
+        400,
+        "invalid_input",
+        "Tell us where you found ChapterFlow when you choose Other.",
+        { field: "referralSourceOtherText" }
+      );
+    }
+
     const previousProfile = sanitizeProfile(existing?.profile ?? null);
     const sanitizedIncoming = sanitizeProfile(incomingProfile);
     const profile = {

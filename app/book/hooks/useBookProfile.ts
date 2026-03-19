@@ -15,6 +15,7 @@ export type BookProfileState = {
   occupation: string;
   readingGoal: string;
   referralSource: string;
+  referralSourceOtherText: string;
   pronouns: string;
   avatarDataUrl: string | null;
   avatarAccent: "sky" | "emerald" | "amber" | "rose";
@@ -58,6 +59,7 @@ function createDefaultState(seed: BookProfileSeed): BookProfileState {
     occupation: "",
     readingGoal: "",
     referralSource: "",
+    referralSourceOtherText: "",
     pronouns: seed.pronouns,
     avatarDataUrl: null,
     avatarAccent: "sky",
@@ -96,6 +98,10 @@ function parseStored(raw: string | null, seed: BookProfileSeed): BookProfileStat
       occupation: typeof parsed.occupation === "string" ? parsed.occupation : defaults.occupation,
       readingGoal: typeof parsed.readingGoal === "string" ? parsed.readingGoal : defaults.readingGoal,
       referralSource: typeof parsed.referralSource === "string" ? parsed.referralSource : defaults.referralSource,
+      referralSourceOtherText:
+        typeof parsed.referralSourceOtherText === "string"
+          ? parsed.referralSourceOtherText
+          : defaults.referralSourceOtherText,
       pronouns:
         typeof parsed.pronouns === "string" ? parsed.pronouns : defaults.pronouns,
       avatarDataUrl:
