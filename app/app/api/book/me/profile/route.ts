@@ -12,14 +12,27 @@ import {
   getUserProfileItem,
   putUserProfileItem,
 } from "@/app/app/api/book/_lib/repo";
-import { analyticsTrackOnboarding } from "@/app/app/api/book/_lib/analytics-repo";
+import {
+  analyticsTrackFlowPointsTransaction,
+  analyticsTrackOnboarding,
+  analyticsTrackReferral,
+} from "@/app/app/api/book/_lib/analytics-repo";
 import { resolveBookIdentity } from "@/app/app/api/book/_lib/identity";
 import { inferLocationFromHeaders } from "@/app/app/api/book/_lib/location";
 import { applyDeviceIdCookie, getOrCreateDeviceId, recordRiskSignals } from "@/app/app/api/book/_lib/abuse";
+import { getAuthCookieBase } from "@/app/auth/_lib/auth-cookie";
 import {
   CHAPTER_START_MODE_VALUES,
   PREFERRED_EXAMPLE_CONTEXT_VALUES,
 } from "@/app/book/_lib/onboarding-personalization";
+import {
+  FLOW_POINTS_AMOUNTS,
+  FLOW_POINTS_COOKIE_NAME,
+} from "@/app/book/_lib/flow-points-economy";
+import {
+  awardFlowPoints,
+  createReferralClaimFromCode,
+} from "@/app/app/api/book/_lib/flow-points-repo";
 
 const AVATAR_ACCENTS = new Set(["sky", "emerald", "amber", "rose"]);
 const PROFILE_VISIBILITY = new Set(["private", "friends", "public"]);
@@ -45,6 +58,19 @@ function parseRecord(value: unknown): Record<string, unknown> {
 
 function hasOwnField(record: Record<string, unknown>, key: string): boolean {
   return Object.prototype.hasOwnProperty.call(record, key);
+}
+
+function readCookieValue(req: Request, name: string): string | null {
+  const cookieHeader = req.headers.get("cookie");
+  if (!cookieHeader) return null;
+  const prefix = `${name}=`;
+  for (const part of cookieHeader.split(";")) {
+    const trimmed = part.trim();
+    if (!trimmed.startsWith(prefix)) continue;
+    const value = decodeURIComponent(trimmed.slice(prefix.length)).trim();
+    return value || null;
+  }
+  return null;
 }
 
 function cleanString(value: unknown, maxLength: number): string | undefined {
@@ -331,41 +357,96 @@ export async function PATCH(req: Request) {
     const completedOnboardingNow =
       previousProfile.onboardingCompleted !== true && profile.onboardingCompleted === true;
     let riskDevice: Awaited<ReturnType<typeof recordRiskSignals>> | null = null;
+    let clearReferralCookie = false;
 
     if (completedOnboardingNow) {
+      const pointsAward = await awardFlowPoints(tableName, {
+        userId: user.sub,
+        amount: FLOW_POINTS_AMOUNTS.onboardingComplete,
+        sourceType: "onboarding_complete",
+        sourceId: "primary",
+        metadata: {
+          readingGoal:
+            typeof profile.readingGoal === "string" ? profile.readingGoal : undefined,
+        },
+      });
       riskDevice = await recordRiskSignals(tableName, req, user, "onboarding_completed").catch(
         () => null
       );
+      const pendingReferralCode = readCookieValue(req, FLOW_POINTS_COOKIE_NAME);
+      if (pendingReferralCode) {
+        clearReferralCookie = true;
+        const referralClaim = await createReferralClaimFromCode(tableName, {
+          invitedUserId: user.sub,
+          inviteCode: pendingReferralCode,
+        });
+
+        if (referralClaim.created) {
+          getBookAnalyticsTableName()
+            .then((analyticsTable) => {
+              if (!analyticsTable) return;
+              return analyticsTrackReferral(analyticsTable, {
+                userId: referralClaim.claim.inviterUserId,
+                eventType: "referral_claimed",
+                inviteCode: referralClaim.claim.inviteCode,
+                referredUserId: user.sub,
+              });
+            })
+            .catch(() => {});
+        }
+      }
       getBookAnalyticsTableName().then((analyticsTable) => {
         if (!analyticsTable) return;
-        analyticsTrackOnboarding(analyticsTable, {
-          userId: user.sub,
-          email: user.email,
-          goal:
-            typeof profile.readingGoal === "string"
-              ? profile.readingGoal
-              : typeof profile.goal === "string"
-                ? profile.goal
-                : undefined,
-          dailyGoalMinutes:
-            typeof profile.dailyGoalMinutes === "number" ? profile.dailyGoalMinutes : undefined,
-          selectedCategories: Array.isArray(profile.selectedCategories)
-            ? (profile.selectedCategories as unknown[]).filter(
-                (c): c is string => typeof c === "string"
-              )
-            : undefined,
-          selectedBookIds: Array.isArray(profile.selectedBookIds)
-            ? (profile.selectedBookIds as unknown[]).filter(
-                (id): id is string => typeof id === "string"
-              )
-            : undefined,
-        }).catch(() => {});
+        Promise.allSettled([
+          analyticsTrackOnboarding(analyticsTable, {
+            userId: user.sub,
+            email: user.email,
+            goal:
+              typeof profile.readingGoal === "string"
+                ? profile.readingGoal
+                : typeof profile.goal === "string"
+                  ? profile.goal
+                  : undefined,
+            dailyGoalMinutes:
+              typeof profile.dailyGoalMinutes === "number" ? profile.dailyGoalMinutes : undefined,
+            selectedCategories: Array.isArray(profile.selectedCategories)
+              ? (profile.selectedCategories as unknown[]).filter(
+                  (c): c is string => typeof c === "string"
+                )
+              : undefined,
+            selectedBookIds: Array.isArray(profile.selectedBookIds)
+              ? (profile.selectedBookIds as unknown[]).filter(
+                  (id): id is string => typeof id === "string"
+                )
+              : undefined,
+          }),
+          pointsAward.awarded
+            ? analyticsTrackFlowPointsTransaction(analyticsTable, {
+                userId: user.sub,
+                deltaPoints: FLOW_POINTS_AMOUNTS.onboardingComplete,
+                direction: "earn",
+                sourceType: "onboarding_complete",
+                sourceId: "primary",
+                metadata: {
+                  readingGoal:
+                    typeof profile.readingGoal === "string" ? profile.readingGoal : undefined,
+                },
+              })
+            : Promise.resolve(),
+        ]).catch(() => {});
       }).catch(() => {});
     }
 
-    return buildProfileResponse(req, user, saved.profile, saved.updatedAt, {
+    const response = buildProfileResponse(req, user, saved.profile, saved.updatedAt, {
       deviceId: riskDevice?.deviceId,
       issuedDeviceId: riskDevice?.issuedDeviceId,
     });
+    if (clearReferralCookie) {
+      response.cookies.set(FLOW_POINTS_COOKIE_NAME, "", {
+        ...getAuthCookieBase(),
+        maxAge: 0,
+      });
+    }
+    return response;
   });
 }

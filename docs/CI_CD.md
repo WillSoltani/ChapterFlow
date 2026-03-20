@@ -17,7 +17,7 @@ Two GitHub Actions workflows were added:
   - Deploys infra to AWS on pushes to `main` when `infra/**` changes.
   - Can also run manually from GitHub Actions (`workflow_dispatch`).
   - Uses GitHub OIDC + an IAM role (`AWS_ROLE_TO_ASSUME_DEV`).
-  - Deploy command: `cdk deploy CloudPortfolioStorage --require-approval never`.
+  - Deploy command: `cdk deploy ChapterFlowBackend --require-approval never`.
 
 ## 2) CI/CD flow in plain language
 
@@ -39,7 +39,7 @@ You need to set up GitHub OIDC trust in AWS once.
 
 ### Step B: Create IAM role for GitHub Actions deploys
 
-Create a role (example name: `GitHubActionsCloudPortfolioDevDeployRole`) that trusts GitHub OIDC.
+Create a role (example name: `GitHubActionsChapterFlowDevDeployRole`) that trusts GitHub OIDC.
 
 Example trust policy (replace placeholders):
 
@@ -88,9 +88,9 @@ npm --prefix infra run cdk -- bootstrap aws://<AWS_ACCOUNT_ID>/us-east-1
 In GitHub:
 
 - Go to `Settings -> Secrets and variables -> Actions -> New repository secret`
-- Add secret:
+  - Add secret:
   - `AWS_ROLE_TO_ASSUME_DEV` = full role ARN
-  - Example: `arn:aws:iam::<AWS_ACCOUNT_ID>:role/GitHubActionsCloudPortfolioDevDeployRole`
+  - Example: `arn:aws:iam::<AWS_ACCOUNT_ID>:role/GitHubActionsChapterFlowDevDeployRole`
 
 Optional variables (if you later make workflows env-driven):
 - `AWS_REGION`
@@ -153,6 +153,6 @@ npm --prefix infra run cdk -- synth
 Once this is stable, expand gradually:
 
 1. Add a separate production deploy workflow with manual approval.
-2. Add integration tests for conversion pipeline fixtures.
+2. Add integration tests for book ingestion and ChapterFlow backend migrations.
 3. Add notifications (Slack/email) for deploy failures.
 4. Tighten IAM policies for the deploy role.

@@ -4,18 +4,15 @@ import { useEffect, useMemo, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { TopNav } from "@/app/book/home/components/TopNav";
 import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
-import { useBookAnalytics } from "@/app/book/hooks/useBookAnalytics";
 import { useKeyboardShortcut } from "@/app/book/hooks/useKeyboardShortcut";
 import { useSavedBooks } from "@/app/book/hooks/useSavedBooks";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import {
-  LIBRARY_CATEGORY_OPTIONS,
-  LIBRARY_DIFFICULTY_OPTIONS,
   LIBRARY_SORT_OPTIONS,
   LIBRARY_STATUS_OPTIONS,
   type LibraryBookEntry,
-  buildLibraryCatalog,
-} from "@/app/book/data/mockUserLibraryState";
+} from "@/app/book/_lib/library-data";
+import { useLibraryCatalogData } from "@/app/book/library/hooks/useLibraryCatalogData";
 import { useLibraryFilters } from "@/app/book/library/hooks/useLibraryFilters";
 import { useLibraryPagination } from "@/app/book/library/hooks/useLibraryPagination";
 import { LibrarySearchBar } from "@/app/book/library/components/LibrarySearchBar";
@@ -43,48 +40,42 @@ export function BookLibraryClient() {
 
   const { state: onboarding, hydrated: onboardingHydrated } = useOnboardingState();
   const { identity: viewerIdentity } = useBookViewer();
-  const { analytics, hydrated: analyticsHydrated } = useBookAnalytics(
-    onboarding.selectedBookIds,
-    onboarding.dailyGoalMinutes
+  const {
+    entries,
+    categoryOptions,
+    difficultyOptions,
+    loading: catalogLoading,
+    hydrated: catalogHydrated,
+    error: catalogError,
+  } = useLibraryCatalogData(
+    onboarding.setupComplete
   );
   const { savedSet, toggleSaved, hydrated: savedHydrated } = useSavedBooks(
     onboarding.setupComplete
   );
 
   const libraryEntries = useMemo<LibraryBookEntry[]>(() => {
-    if (!analytics) return buildLibraryCatalog();
-
     const selectedSet = new Set(onboarding.selectedBookIds);
     const selectedOrder = new Map(
       onboarding.selectedBookIds.map((bookId, index) => [bookId, index])
     );
 
-    const ranked = [...analytics.bookSnapshots].sort((left, right) => {
-      const leftSelected = selectedSet.has(left.book.id);
-      const rightSelected = selectedSet.has(right.book.id);
+    return [...entries].sort((left, right) => {
+      const leftSelected = selectedSet.has(left.id);
+      const rightSelected = selectedSet.has(right.id);
       if (leftSelected !== rightSelected) return leftSelected ? -1 : 1;
       if (leftSelected && rightSelected) {
         return (
-          (selectedOrder.get(left.book.id) ?? Number.MAX_SAFE_INTEGER) -
-          (selectedOrder.get(right.book.id) ?? Number.MAX_SAFE_INTEGER)
+          (selectedOrder.get(left.id) ?? Number.MAX_SAFE_INTEGER) -
+          (selectedOrder.get(right.id) ?? Number.MAX_SAFE_INTEGER)
         );
       }
       if (left.progressPercent !== right.progressPercent) {
         return right.progressPercent - left.progressPercent;
       }
-      return left.book.title.localeCompare(right.book.title);
+      return left.title.localeCompare(right.title);
     });
-
-    return ranked.map((snapshot) => ({
-      ...snapshot.book,
-      status: snapshot.status,
-      progressPercent: snapshot.progressPercent,
-      chaptersTotal: snapshot.totalChapters,
-      chaptersCompleted: snapshot.completedChapters,
-      isNew: snapshot.status === "not_started",
-      lastActivityAt: snapshot.lastActivityAt,
-    }));
-  }, [analytics, onboarding.selectedBookIds]);
+  }, [entries, onboarding.selectedBookIds]);
   const {
     hydrated,
     loading,
@@ -122,7 +113,13 @@ export function BookLibraryClient() {
     }
   }, [onboarding.setupComplete, onboardingHydrated, router]);
 
-  if (!onboardingHydrated || !analyticsHydrated || !hydrated || !savedHydrated || !onboarding.setupComplete) {
+  if (
+    !onboardingHydrated ||
+    !catalogHydrated ||
+    !hydrated ||
+    !savedHydrated ||
+    !onboarding.setupComplete
+  ) {
     return (
       <main className="cf-app-shell">
         <div className="mx-auto flex min-h-screen items-center justify-center px-4 text-(--cf-text-2)">
@@ -165,8 +162,8 @@ export function BookLibraryClient() {
             category={filters.category}
             difficulty={filters.difficulty}
             status={filters.status}
-            categoryOptions={LIBRARY_CATEGORY_OPTIONS}
-            difficultyOptions={LIBRARY_DIFFICULTY_OPTIONS}
+            categoryOptions={categoryOptions}
+            difficultyOptions={difficultyOptions}
             statusOptions={LIBRARY_STATUS_OPTIONS}
             onCategoryChange={setCategory}
             onDifficultyChange={setDifficulty}
@@ -193,7 +190,21 @@ export function BookLibraryClient() {
                 Finish setup
               </button>
             </div>
-          ) : loading ? (
+          ) : catalogError ? (
+            <div className="rounded-3xl border border-(--cf-danger-border) bg-(--cf-danger-soft) px-6 py-14 text-center">
+              <h2 className="text-2xl font-semibold text-(--cf-text-1)">
+                Your library could not load right now.
+              </h2>
+              <p className="mt-2 text-(--cf-text-2)">{catalogError}</p>
+              <button
+                type="button"
+                onClick={() => router.refresh()}
+                className="mt-5 rounded-2xl border border-(--cf-accent-border) bg-(--cf-surface) px-4 py-2.5 text-sm font-medium text-(--cf-text-1) transition hover:bg-(--cf-surface-muted)"
+              >
+                Try again
+              </button>
+            </div>
+          ) : loading || catalogLoading ? (
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
               {Array.from({ length: 6 }).map((_, index) => (
                 <SkeletonCard key={index} />

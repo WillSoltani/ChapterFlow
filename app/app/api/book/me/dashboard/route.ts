@@ -2,9 +2,9 @@ import "server-only";
 
 import { requireUser } from "@/app/app/api/_lib/auth";
 import { bookOk, withBookApiErrors } from "@/app/app/api/book/_lib/http";
-import { getBookTableName } from "@/app/app/api/book/_lib/env";
+import { getBookContentBucket, getBookTableName } from "@/app/app/api/book/_lib/env";
+import { listPublishedLibraryCatalog } from "@/app/app/api/book/_lib/library-catalog";
 import {
-  listPublishedCatalogItems,
   getUserEntitlement,
   getUserProfileItem,
   getUserSettingsItem,
@@ -21,7 +21,10 @@ export const runtime = "nodejs";
 export async function GET(req: Request) {
   return withBookApiErrors(req, async () => {
     const user = await requireUser();
-    const tableName = await getBookTableName();
+    const [tableName, contentBucket] = await Promise.all([
+      getBookTableName(),
+      getBookContentBucket(),
+    ]);
 
     const [
       catalog,
@@ -35,7 +38,7 @@ export async function GET(req: Request) {
       readingDays,
       badgeAwards,
     ] = await Promise.all([
-      listPublishedCatalogItems(tableName),
+      listPublishedLibraryCatalog({ tableName, contentBucket }),
       getUserEntitlement(tableName, user.sub),
       getUserProfileItem(tableName, user.sub),
       getUserSettingsItem(tableName, user.sub),
@@ -48,7 +51,7 @@ export async function GET(req: Request) {
     ]);
 
     return bookOk({
-      catalog: catalog.filter((item) => item.status === "PUBLISHED" && !!item.currentPublishedVersion),
+      catalog,
       entitlement,
       profile: profile?.profile ?? null,
       settings: settings?.settings ?? null,

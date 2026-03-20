@@ -90,8 +90,7 @@ async function putEvent(
 
 /**
  * Track a quiz attempt.
- * Atomically increments quiz counters, tracks the book in activeBookIds.
- * Awards flow points on pass (10 pts per chapter completion).
+ * Atomically increments quiz counters and tracks the book in activeBookIds.
  */
 export async function analyticsTrackQuizAttempt(
   table: string,
@@ -99,14 +98,18 @@ export async function analyticsTrackQuizAttempt(
     userId: string;
     bookId: string;
     chapterNumber: number;
+    attemptNumber?: number;
     scorePercent: number;
+    correctCount?: number;
+    totalQuestions?: number;
     passed: boolean;
+    cooldownSeconds?: number;
+    unlockedNextChapter?: boolean;
   }
 ): Promise<void> {
   const now = nowIso();
   const passedDelta = args.passed ? 1 : 0;
   const chapterCompletedDelta = args.passed ? 1 : 0;
-  const pointsDelta = args.passed ? 10 : 0;
 
   await Promise.all([
     ddbDoc.send(
@@ -121,7 +124,7 @@ export async function analyticsTrackQuizAttempt(
           "#createdAt = if_not_exists(#createdAt, :now) " +
           "ADD #totalQuizAttempts :one, #totalQuizPasses :pd, " +
           "#totalQuizScoreSum :sc, #totalChaptersCompleted :cd, " +
-          "#flowPoints :pts, #activeBookIds :bkSet, #totalSessionCount :one",
+          "#activeBookIds :bkSet, #totalSessionCount :one",
         ExpressionAttributeNames: {
           "#updatedAt": "updatedAt",
           "#lastActiveAt": "lastActiveAt",
@@ -136,7 +139,6 @@ export async function analyticsTrackQuizAttempt(
           "#totalQuizPasses": "totalQuizPasses",
           "#totalQuizScoreSum": "totalQuizScoreSum",
           "#totalChaptersCompleted": "totalChaptersCompleted",
-          "#flowPoints": "flowPoints",
           "#activeBookIds": "activeBookIds",
           "#totalSessionCount": "totalSessionCount",
         },
@@ -151,7 +153,6 @@ export async function analyticsTrackQuizAttempt(
           ":pd": passedDelta,
           ":sc": args.scorePercent,
           ":cd": chapterCompletedDelta,
-          ":pts": pointsDelta,
           ":bkSet": new Set([args.bookId]),
         },
       })
@@ -159,10 +160,49 @@ export async function analyticsTrackQuizAttempt(
     putEvent(table, args.userId, "quiz_attempt", now, "FREE", {
       bookId: args.bookId,
       chapterNumber: args.chapterNumber,
+      attemptNumber: args.attemptNumber,
       scorePercent: args.scorePercent,
+      correctCount: args.correctCount,
+      totalQuestions: args.totalQuestions,
       passed: args.passed,
+      cooldownSeconds: args.cooldownSeconds,
+      unlockedNextChapter: args.unlockedNextChapter,
+      contextKey: `QUIZ#${args.bookId}#${String(args.chapterNumber).padStart(4, "0")}`,
     }),
   ]);
+}
+
+export async function analyticsTrackQuizInteraction(
+  table: string,
+  args: {
+    userId: string;
+    eventType:
+      | "quiz_passed"
+      | "quiz_failed"
+      | "chapter_unlocked"
+      | "quiz_explanation_opened"
+      | "next_chapter_clicked";
+    bookId: string;
+    chapterNumber: number;
+    attemptNumber?: number;
+    scorePercent?: number;
+    questionId?: string;
+    contextKey?: string;
+    metadata?: Record<string, unknown>;
+  }
+): Promise<void> {
+  const now = nowIso();
+  await putEvent(table, args.userId, args.eventType, now, "FREE", {
+    bookId: args.bookId,
+    chapterNumber: args.chapterNumber,
+    attemptNumber: args.attemptNumber,
+    scorePercent: args.scorePercent,
+    questionId: args.questionId,
+    contextKey:
+      args.contextKey ??
+      `QUIZ#${args.bookId}#${String(args.chapterNumber).padStart(4, "0")}`,
+    ...(args.metadata ?? {}),
+  });
 }
 
 /**
@@ -239,10 +279,10 @@ export async function analyticsTrackBadge(
     badgeId: string;
     tier?: string;
     earnedAt: string;
+    pointsAwarded?: number;
   }
 ): Promise<void> {
   const now = nowIso();
-  const BADGE_POINTS = 10;
 
   await Promise.all([
     ddbDoc.send(
@@ -255,7 +295,7 @@ export async function analyticsTrackBadge(
           "#plan = if_not_exists(#plan, :defPlan), " +
           "#firstSeenAt = if_not_exists(#firstSeenAt, :now), " +
           "#createdAt = if_not_exists(#createdAt, :now) " +
-          "ADD #badgeIds :bSet, #badgeCount :one, #flowPoints :pts",
+          "ADD #badgeIds :bSet, #badgeCount :one",
         ExpressionAttributeNames: {
           "#updatedAt": "updatedAt",
           "#lastActiveAt": "lastActiveAt",
@@ -266,7 +306,6 @@ export async function analyticsTrackBadge(
           "#createdAt": "createdAt",
           "#badgeIds": "badgeIds",
           "#badgeCount": "badgeCount",
-          "#flowPoints": "flowPoints",
         },
         ExpressionAttributeValues: {
           ":now": now,
@@ -275,7 +314,6 @@ export async function analyticsTrackBadge(
           ":defPlan": "FREE",
           ":bSet": new Set([args.badgeId]),
           ":one": 1,
-          ":pts": BADGE_POINTS,
         },
       })
     ),
@@ -283,6 +321,7 @@ export async function analyticsTrackBadge(
       badgeId: args.badgeId,
       tier: args.tier,
       earnedAt: args.earnedAt,
+      pointsAwarded: args.pointsAwarded,
     }),
   ]);
 }
@@ -476,8 +515,7 @@ export async function analyticsTrackOnboarding(
 }
 
 /**
- * Track a scenario submission.
- * Increments submission counter and flow points (25 pts per scenario).
+ * Track a scenario submission or approval.
  */
 export async function analyticsTrackScenario(
   table: string,
@@ -485,49 +523,60 @@ export async function analyticsTrackScenario(
     userId: string;
     bookId: string;
     chapterNumber: number;
+    stage: "submitted" | "approved";
     pointsAwarded: number;
   }
 ): Promise<void> {
   const now = nowIso();
+  const updateExpression =
+    args.stage === "approved"
+      ? "SET #updatedAt = :now, #lastActiveAt = :now, #sv = :sv, #userId = :uid, " +
+        "#plan = if_not_exists(#plan, :defPlan), " +
+        "#firstSeenAt = if_not_exists(#firstSeenAt, :now), " +
+        "#createdAt = if_not_exists(#createdAt, :now) " +
+        "ADD #approvedScenarios :one, #activeBookIds :bkSet"
+      : "SET #updatedAt = :now, #lastActiveAt = :now, #sv = :sv, #userId = :uid, " +
+        "#plan = if_not_exists(#plan, :defPlan), " +
+        "#firstSeenAt = if_not_exists(#firstSeenAt, :now), " +
+        "#createdAt = if_not_exists(#createdAt, :now) " +
+        "ADD #totalScenarios :one, #activeBookIds :bkSet";
+  const names: Record<string, string> = {
+    "#updatedAt": "updatedAt",
+    "#lastActiveAt": "lastActiveAt",
+    "#sv": "schemaVersion",
+    "#userId": "userId",
+    "#plan": "plan",
+    "#firstSeenAt": "firstSeenAt",
+    "#createdAt": "createdAt",
+    "#activeBookIds": "activeBookIds",
+    ...(args.stage === "approved"
+      ? { "#approvedScenarios": "approvedScenarios" }
+      : { "#totalScenarios": "totalScenarioSubmissions" }),
+  };
+  const values: Record<string, unknown> = {
+    ":now": now,
+    ":sv": SCHEMA_V,
+    ":uid": args.userId,
+    ":defPlan": "FREE",
+    ":one": 1,
+    ":bkSet": new Set([args.bookId]),
+  };
 
   await Promise.all([
     ddbDoc.send(
       new UpdateCommand({
         TableName: table,
         Key: { PK: pk(args.userId), SK: SNAPSHOT_SK },
-        UpdateExpression:
-          "SET #updatedAt = :now, #lastActiveAt = :now, #sv = :sv, #userId = :uid, " +
-          "#plan = if_not_exists(#plan, :defPlan), " +
-          "#firstSeenAt = if_not_exists(#firstSeenAt, :now), " +
-          "#createdAt = if_not_exists(#createdAt, :now) " +
-          "ADD #totalScenarios :one, #flowPoints :pts, #activeBookIds :bkSet",
-        ExpressionAttributeNames: {
-          "#updatedAt": "updatedAt",
-          "#lastActiveAt": "lastActiveAt",
-          "#sv": "schemaVersion",
-          "#userId": "userId",
-          "#plan": "plan",
-          "#firstSeenAt": "firstSeenAt",
-          "#createdAt": "createdAt",
-          "#totalScenarios": "totalScenarioSubmissions",
-          "#flowPoints": "flowPoints",
-          "#activeBookIds": "activeBookIds",
-        },
-        ExpressionAttributeValues: {
-          ":now": now,
-          ":sv": SCHEMA_V,
-          ":uid": args.userId,
-          ":defPlan": "FREE",
-          ":one": 1,
-          ":pts": args.pointsAwarded,
-          ":bkSet": new Set([args.bookId]),
-        },
+        UpdateExpression: updateExpression,
+        ExpressionAttributeNames: names,
+        ExpressionAttributeValues: values,
       })
     ),
-    putEvent(table, args.userId, "scenario_submitted", now, "FREE", {
+    putEvent(table, args.userId, args.stage === "approved" ? "scenario_approved" : "scenario_submitted", now, "FREE", {
       bookId: args.bookId,
       chapterNumber: args.chapterNumber,
       pointsAwarded: args.pointsAwarded,
+      stage: args.stage,
     }),
   ]);
 }
@@ -545,7 +594,6 @@ export async function analyticsTrackBookCompleted(
   }
 ): Promise<void> {
   const now = nowIso();
-  const BOOK_COMPLETION_POINTS = 100;
 
   await Promise.all([
     ddbDoc.send(
@@ -559,7 +607,7 @@ export async function analyticsTrackBookCompleted(
           "#firstSeenAt = if_not_exists(#firstSeenAt, :now), " +
           "#createdAt = if_not_exists(#createdAt, :now) " +
           "ADD #completedBookIds :bkSet, #booksCompleted :one, " +
-          "#flowPoints :pts, #activeBookIds :bkSet",
+          "#activeBookIds :bkSet",
         ExpressionAttributeNames: {
           "#updatedAt": "updatedAt",
           "#lastActiveAt": "lastActiveAt",
@@ -571,7 +619,6 @@ export async function analyticsTrackBookCompleted(
           "#createdAt": "createdAt",
           "#completedBookIds": "completedBookIds",
           "#booksCompleted": "booksCompleted",
-          "#flowPoints": "flowPoints",
           "#activeBookIds": "activeBookIds",
         },
         ExpressionAttributeValues: {
@@ -582,7 +629,6 @@ export async function analyticsTrackBookCompleted(
           ":defPlan": "FREE",
           ":bkSet": new Set([args.bookId]),
           ":one": 1,
-          ":pts": BOOK_COMPLETION_POINTS,
         },
       })
     ),
@@ -649,4 +695,79 @@ export async function analyticsTrackSettingsUpdate(
       ExpressionAttributeValues: values,
     })
   );
+}
+
+export async function analyticsTrackFlowPointsTransaction(
+  table: string,
+  args: {
+    userId: string;
+    deltaPoints: number;
+    direction: "earn" | "spend" | "adjustment";
+    sourceType: string;
+    sourceId: string;
+    rewardId?: string;
+    metadata?: Record<string, unknown>;
+  }
+): Promise<void> {
+  const now = nowIso();
+  const delta = Math.trunc(args.deltaPoints);
+  if (delta === 0) return;
+
+  await Promise.all([
+    ddbDoc.send(
+      new UpdateCommand({
+        TableName: table,
+        Key: { PK: pk(args.userId), SK: SNAPSHOT_SK },
+        UpdateExpression:
+          "SET #updatedAt = :now, #lastActiveAt = :now, #sv = :sv, #userId = :uid, " +
+          "#plan = if_not_exists(#plan, :defPlan), " +
+          "#firstSeenAt = if_not_exists(#firstSeenAt, :now), " +
+          "#createdAt = if_not_exists(#createdAt, :now) " +
+          "ADD #flowPoints :pts",
+        ExpressionAttributeNames: {
+          "#updatedAt": "updatedAt",
+          "#lastActiveAt": "lastActiveAt",
+          "#sv": "schemaVersion",
+          "#userId": "userId",
+          "#plan": "plan",
+          "#firstSeenAt": "firstSeenAt",
+          "#createdAt": "createdAt",
+          "#flowPoints": "flowPoints",
+        },
+        ExpressionAttributeValues: {
+          ":now": now,
+          ":sv": SCHEMA_V,
+          ":uid": args.userId,
+          ":defPlan": "FREE",
+          ":pts": delta,
+        },
+      })
+    ),
+    putEvent(table, args.userId, delta > 0 ? "flow_points_earned" : "flow_points_spent", now, "FREE", {
+      deltaPoints: delta,
+      direction: args.direction,
+      sourceType: args.sourceType,
+      sourceId: args.sourceId,
+      rewardId: args.rewardId,
+      ...(args.metadata ?? {}),
+    }),
+  ]);
+}
+
+export async function analyticsTrackReferral(
+  table: string,
+  args: {
+    userId: string;
+    eventType: "referral_claimed" | "referral_activated" | "referral_pro_rewarded";
+    inviteCode: string;
+    referredUserId?: string;
+    pointsAwarded?: number;
+  }
+): Promise<void> {
+  const now = nowIso();
+  await putEvent(table, args.userId, args.eventType, now, "FREE", {
+    inviteCode: args.inviteCode,
+    referredUserId: args.referredUserId,
+    pointsAwarded: args.pointsAwarded,
+  });
 }

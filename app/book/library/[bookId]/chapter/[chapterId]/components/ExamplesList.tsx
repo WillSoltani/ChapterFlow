@@ -11,6 +11,10 @@ import {
 import { ChevronDown, Plus, Sparkles, X } from "lucide-react";
 import type { ChapterExample } from "@/app/book/data/mockChapters";
 import type { ExampleFilter } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterState";
+import {
+  FLOW_POINTS_AMOUNTS,
+  FLOW_POINTS_REWARDS,
+} from "@/app/book/_lib/flow-points-economy";
 
 // ─── types ────────────────────────────────────────────────────────────────────
 
@@ -55,11 +59,13 @@ const FILTER_OPTIONS: Array<{ id: ExampleFilter; label: string }> = [
 ];
 
 const EXAMPLES_TOUR_KEY = "book-accelerator:examples-tour:v1";
-const SCENARIO_REWARD = 25;
-const POINTS_UNLOCK_BOOK = 600;
-const POINTS_PRO_MONTH = 1000;
-const POINTS_INVITE_FRIEND = 500;
-const POINTS_FRIEND_SUBSCRIBES = 1000;
+const SCENARIO_REWARD = FLOW_POINTS_AMOUNTS.scenarioApproved;
+const BONUS_BOOK_REWARD = FLOW_POINTS_REWARDS.find((reward) => reward.rewardId === "bonus_book_unlock");
+const PRO_PASS_REWARD = FLOW_POINTS_REWARDS.find((reward) => reward.rewardId === "pro_pass_7d");
+const POINTS_UNLOCK_BOOK = BONUS_BOOK_REWARD?.costPoints ?? 900;
+const POINTS_PRO_PASS = PRO_PASS_REWARD?.costPoints ?? 2400;
+const POINTS_REFERRAL_ACTIVATION = FLOW_POINTS_AMOUNTS.referralActivationInviter;
+const POINTS_REFERRAL_PRO = FLOW_POINTS_AMOUNTS.referralProInviter;
 
 // ─── inline hook: first-time tour ─────────────────────────────────────────────
 
@@ -179,9 +185,9 @@ export function ExamplesList({
   // Compute the next Flow Points milestone the user is working toward
   const nextMilestone =
     submissionPoints < POINTS_UNLOCK_BOOK
-      ? { label: "Unlock a free book", threshold: POINTS_UNLOCK_BOOK }
-      : submissionPoints < POINTS_PRO_MONTH
-        ? { label: "1 month Pro free", threshold: POINTS_PRO_MONTH }
+      ? { label: "Bonus book unlock", threshold: POINTS_UNLOCK_BOOK }
+      : submissionPoints < POINTS_PRO_PASS
+        ? { label: "7-day Pro pass", threshold: POINTS_PRO_PASS }
         : null;
 
   return (
@@ -202,8 +208,8 @@ export function ExamplesList({
                 <span className="font-semibold text-(--cf-accent)">
                   +{SCENARIO_REWARD} Flow Points
                 </span>{" "}
-                once it&apos;s approved. Reach {POINTS_UNLOCK_BOOK} points to unlock a free
-                book, or {POINTS_PRO_MONTH} for a month of Pro.
+                once it&apos;s approved. Reach {POINTS_UNLOCK_BOOK} points for a bonus
+                book unlock, or {POINTS_PRO_PASS} for a 7-day Pro pass.
               </p>
             </div>
             <button
@@ -285,14 +291,14 @@ export function ExamplesList({
                     How to earn
                   </p>
                   <div className="space-y-1.5">
-                    <PointsRow label="Post a scenario" value={`+${SCENARIO_REWARD}`} />
+                    <PointsRow label="Approved scenario" value={`+${SCENARIO_REWARD}`} />
                     <PointsRow
-                      label="Invite a friend"
-                      value={`+${POINTS_INVITE_FRIEND}`}
+                      label="Referral becomes active"
+                      value={`+${POINTS_REFERRAL_ACTIVATION}`}
                     />
                     <PointsRow
-                      label="Friend subscribes to Pro"
-                      value={`+${POINTS_FRIEND_SUBSCRIBES}`}
+                      label="Referral becomes Pro"
+                      value={`+${POINTS_REFERRAL_PRO}`}
                     />
                   </div>
                 </div>
@@ -304,14 +310,14 @@ export function ExamplesList({
                   </p>
                   <div className="space-y-1.5">
                     <MilestoneRow
-                      label="Unlock a free book"
+                      label="Bonus book unlock"
                       value={`${POINTS_UNLOCK_BOOK} pts`}
                       reached={submissionPoints >= POINTS_UNLOCK_BOOK}
                     />
                     <MilestoneRow
-                      label="1 month Pro free"
-                      value={`${POINTS_PRO_MONTH} pts`}
-                      reached={submissionPoints >= POINTS_PRO_MONTH}
+                      label="7-day Pro pass"
+                      value={`${POINTS_PRO_PASS} pts`}
+                      reached={submissionPoints >= POINTS_PRO_PASS}
                     />
                   </div>
                 </div>
@@ -351,7 +357,7 @@ export function ExamplesList({
             <Plus className="h-3.5 w-3.5" />
             Add a Scenario
             <span className="rounded-full border border-(--cf-accent-border) bg-(--cf-surface) px-2 py-0.5 text-[11px] font-bold text-(--cf-accent)">
-              +{SCENARIO_REWARD} pts
+              +{SCENARIO_REWARD} on approval
             </span>
           </button>
         </div>
@@ -573,7 +579,7 @@ function AddScenarioModal({
             <p className="mt-1 text-sm leading-relaxed text-(--cf-text-3)">
               Write a relatable real-world scenario for this chapter. Earn{" "}
               <span className="font-semibold text-(--cf-accent)">
-                +{SCENARIO_REWARD} Flow Points
+                +{SCENARIO_REWARD} Flow Points on approval
               </span>{" "}
               once the team approves it.
             </p>
@@ -715,7 +721,7 @@ function AddScenarioModal({
               <Sparkles className="h-4 w-4" />
               {submitting
                 ? "Submitting…"
-                : `Submit for review — +${SCENARIO_REWARD} Flow Points`}
+                : `Submit for review — +${SCENARIO_REWARD} on approval`}
             </button>
             <p className="mt-2.5 text-center text-xs text-(--cf-text-soft)">
               Scenarios are reviewed before going live for all readers.

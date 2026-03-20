@@ -2,13 +2,13 @@
 
 import { useEffect, useMemo, useState } from "react";
 import {
+  difficultyRank,
   type LibraryBookEntry,
   type LibraryCategoryFilter,
   type LibraryDifficultyFilter,
   type LibrarySortOption,
   type LibraryStatusFilter,
-  difficultyRank,
-} from "@/app/book/data/mockUserLibraryState";
+} from "@/app/book/_lib/library-data";
 
 type LibraryFilterState = {
   searchQuery: string;

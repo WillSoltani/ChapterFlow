@@ -29,7 +29,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`dark ${GeistSans.className} ${GeistMono.variable}`} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${GeistSans.className} ${GeistMono.variable}`}
+      data-accent="sky"
+      data-density="comfortable"
+      data-motion="normal"
+      data-contrast="standard"
+      data-focus-ring="strong"
+      suppressHydrationWarning
+    >
       <head>
         <script
           dangerouslySetInnerHTML={{

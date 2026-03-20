@@ -2,7 +2,29 @@
 
 import Image from "next/image";
 import { useMemo, useState } from "react";
-import { getBookCoverCandidates } from "@/app/book/data/booksCatalog";
+
+function getBookCoverCandidates(bookId: string, coverImage?: string): string[] {
+  const localCandidates = [
+    `/book-covers/${bookId}.svg`,
+    `/book-covers/${bookId}.jpg`,
+    `/book-covers/${bookId}.jpeg`,
+    `/book-covers/${bookId}.png`,
+    `/book-covers/${bookId}.webp`,
+    `/book-covers/${bookId}.avif`,
+  ];
+
+  if (!coverImage) return localCandidates;
+  if (localCandidates.includes(coverImage)) return localCandidates;
+  return [coverImage, ...localCandidates];
+}
+
+function isExternalSrc(src: string): boolean {
+  return /^https?:\/\//i.test(src);
+}
+
+function externalImageLoader({ src }: { src: string }): string {
+  return src;
+}
 
 type BookCoverProps = {
   bookId: string;
@@ -28,11 +50,18 @@ export function BookCover({
   interactive = true,
 }: BookCoverProps) {
   const candidates = useMemo(
-    () => getBookCoverCandidates({ id: bookId, coverImage }),
+    () => getBookCoverCandidates(bookId, coverImage),
     [bookId, coverImage]
   );
   const [activeIndex, setActiveIndex] = useState(0);
   const src = candidates[activeIndex];
+  const imageClasses = [
+    "object-contain bg-white transition-transform duration-500 ease-out",
+    interactive ? "motion-safe:hover:scale-[1.045]" : "",
+    imageClassName,
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   return (
     <div
@@ -52,13 +81,7 @@ export function BookCover({
           alt={`${title} cover`}
           fill
           sizes={sizes}
-          className={[
-            "object-contain bg-white transition-transform duration-500 ease-out",
-            interactive ? "motion-safe:hover:scale-[1.045]" : "",
-            imageClassName,
-          ]
-            .filter(Boolean)
-            .join(" ")}
+          className={imageClasses}
           onError={() => {
             setActiveIndex((prev) => {
               if (prev + 1 >= candidates.length) {
@@ -67,6 +90,7 @@ export function BookCover({
               return prev + 1;
             });
           }}
+          loader={isExternalSrc(src) ? externalImageLoader : undefined}
           unoptimized
         />
       ) : null}

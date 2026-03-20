@@ -1,12 +1,12 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import type { BookChapter } from "@/app/book/data/mockChapters";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
 import { getBookProgressStorageKey } from "@/app/book/_lib/reader-storage";
 import { emitBookStorageChanged } from "@/app/book/hooks/bookStorageEvents";
 
 type ChapterState = "completed" | "current" | "locked";
+type ProgressChapter = { id: string };
 
 type PersistedBookProgress = {
   currentChapterId: string;
@@ -22,7 +22,7 @@ function uniqueIds(values: string[]): string[] {
   return Array.from(new Set(values.filter(Boolean)));
 }
 
-function initialProgress(chapters: BookChapter[]): PersistedBookProgress {
+function initialProgress(chapters: ProgressChapter[]): PersistedBookProgress {
   const firstChapterId = chapters[0]?.id ?? "";
 
   return {
@@ -40,14 +40,14 @@ function isValidTimestamp(value: string): boolean {
   return Number.isFinite(new Date(value).getTime());
 }
 
-function getNextChapterId(chapters: BookChapter[], currentChapterId: string): string {
+function getNextChapterId(chapters: ProgressChapter[], currentChapterId: string): string {
   const index = chapters.findIndex((chapter) => chapter.id === currentChapterId);
   if (index < 0) return chapters[0]?.id ?? "";
   return chapters[index + 1]?.id ?? "";
 }
 
 function getFirstIncompleteUnlocked(
-  chapters: BookChapter[],
+  chapters: ProgressChapter[],
   completedSet: Set<string>,
   unlockedSet: Set<string>
 ): string {
@@ -61,7 +61,7 @@ function getFirstIncompleteUnlocked(
 function normalizeProgress(
   raw: Partial<PersistedBookProgress>,
   fallback: PersistedBookProgress,
-  chapters: BookChapter[]
+  chapters: ProgressChapter[]
 ): PersistedBookProgress {
   const chapterIds = new Set(chapters.map((chapter) => chapter.id));
 
@@ -146,7 +146,7 @@ function normalizeProgress(
 
 function parseStored(
   raw: string | null,
-  chapters: BookChapter[]
+  chapters: ProgressChapter[]
 ): PersistedBookProgress | null {
   if (!raw) return null;
   try {
@@ -157,7 +157,10 @@ function parseStored(
   }
 }
 
-export function useBookProgress(bookId: string, chapters: BookChapter[]) {
+export function useBookProgress<TChapter extends ProgressChapter>(
+  bookId: string,
+  chapters: TChapter[]
+) {
   const storageKey = getBookProgressStorageKey(bookId);
   const [hydrated, setHydrated] = useState(false);
   const [progress, setProgress] = useState<PersistedBookProgress>(() =>

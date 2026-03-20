@@ -17,6 +17,7 @@ import { SearchBox } from "@/app/book/home/components/SearchBox";
 import { GlobalSearchPanel } from "@/app/book/home/components/GlobalSearchPanel";
 import { useKeyboardShortcut } from "@/app/book/hooks/useKeyboardShortcut";
 import { ChapterFlowMark } from "@/app/book/components/ChapterFlowMark";
+import { ThemeModeToggle } from "@/components/ThemeModeToggle";
 
 export type BookNavTab = "home" | "library" | "saved" | "progress" | "badges" | "settings" | "profile";
 
@@ -118,7 +119,11 @@ export function TopNav({
           <div className="flex items-center justify-between gap-3">
 
             {/* Logo */}
-            <Link href="/book/workspace" className="shrink-0 flex items-center gap-2.5">
+            <Link
+              href="/book/workspace"
+              className="inline-flex shrink-0 rounded-[18px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)"
+              aria-label="Go to ChapterFlow workspace"
+            >
               <ChapterFlowMark compact />
             </Link>
 
@@ -176,6 +181,8 @@ export function TopNav({
 
             {/* Right: settings + profile */}
             <div className="relative flex items-center gap-1.5">
+              <ThemeModeToggle className="h-9" />
+
               <Link
                 href="/book/settings"
                 className={[

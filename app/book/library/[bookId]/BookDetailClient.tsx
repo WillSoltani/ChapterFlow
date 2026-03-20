@@ -4,15 +4,18 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowRight, ChevronRight, Search } from "lucide-react";
+import { fetchBookJson } from "@/app/book/_lib/book-api";
 import { TopNav } from "@/app/book/home/components/TopNav";
 import { InfoModal } from "@/app/book/home/components/InfoModal";
 import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
 import { useKeyboardShortcut } from "@/app/book/hooks/useKeyboardShortcut";
 import { useSavedBooks } from "@/app/book/hooks/useSavedBooks";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
-import { getLibraryBookById } from "@/app/book/data/mockUserLibraryState";
-import { getBookSynopsis } from "@/app/book/data/booksCatalog";
-import { getBookChaptersBundle, type BookChapter } from "@/app/book/data/mockChapters";
+import type {
+  LibraryBookDetail,
+  LibraryBookEntry,
+  LibraryChapterSummary,
+} from "@/app/book/_lib/library-data";
 import { useBookProgress } from "@/app/book/library/hooks/useBookProgress";
 import { BookOverviewPanel } from "@/app/book/library/[bookId]/components/BookOverviewPanel";
 import { ChapterRow, type ChapterRowState } from "@/app/book/library/[bookId]/components/ChapterRow";
@@ -26,7 +29,13 @@ const chapterFilterOptions: Array<{ id: ChapterFilter; label: string }> = [
   { id: "locked", label: "Locked" },
 ];
 
-export function BookDetailClient({ bookId }: { bookId: string }) {
+export function BookDetailClient({
+  bookId,
+  book,
+}: {
+  bookId: string;
+  book: LibraryBookDetail;
+}) {
   const router = useRouter();
   const chapterSearchRef = useRef<HTMLInputElement | null>(null);
 
@@ -42,9 +51,19 @@ export function BookDetailClient({ bookId }: { bookId: string }) {
     onboarding.setupComplete
   );
 
-  const entry = useMemo(() => getLibraryBookById(bookId), [bookId]);
-  const bundle = useMemo(() => getBookChaptersBundle(bookId), [bookId]);
-  const chapters = bundle.chapters;
+  const entry = useMemo<LibraryBookEntry>(
+    () => ({
+      ...book,
+      status: "not_started",
+      progressPercent: 0,
+      chaptersTotal: book.chapterCount,
+      chaptersCompleted: 0,
+      isNew: false,
+      lastActivityAt: new Date(0).toISOString(),
+    }),
+    [book]
+  );
+  const chapters = book.chapters;
   const {
     hydrated,
     progress,
@@ -76,16 +95,17 @@ export function BookDetailClient({ bookId }: { bookId: string }) {
   }, [onboarding.setupComplete, onboardingHydrated, router]);
 
   useEffect(() => {
-    if (!entry) {
-      router.replace("/book/library");
-    }
-  }, [entry, router]);
-
-  useEffect(() => {
     if (!lockedToast) return;
     const timeout = window.setTimeout(() => setLockedToast(null), 1600);
     return () => window.clearTimeout(timeout);
   }, [lockedToast]);
+
+  useEffect(() => {
+    if (!onboardingHydrated || !onboarding.setupComplete) return;
+    void fetchBookJson(`/app/api/book/me/books/${encodeURIComponent(bookId)}/start`, {
+      method: "POST",
+    }).catch(() => null);
+  }, [bookId, onboarding.setupComplete, onboardingHydrated]);
 
   const filteredChapters = useMemo(() => {
     const query = chapterQuery.trim().toLowerCase();
@@ -99,7 +119,7 @@ export function BookDetailClient({ bookId }: { bookId: string }) {
     });
   }, [chapterFilter, chapterQuery, chapters, getChapterState]);
 
-  const openChapter = (chapter: BookChapter, options?: { sessionMode?: boolean }) => {
+  const openChapter = (chapter: LibraryChapterSummary, options?: { sessionMode?: boolean }) => {
     const state = getChapterState(chapter.id);
     if (state === "locked") {
       setLockedToast("Locked. Pass the current chapter quiz to unlock.");
@@ -112,7 +132,7 @@ export function BookDetailClient({ bookId }: { bookId: string }) {
   };
   const viewerName = viewerIdentity.displayName || "Reader";
 
-  if (!entry || !onboardingHydrated || !hydrated || !savedHydrated || !onboarding.setupComplete) {
+  if (!onboardingHydrated || !hydrated || !savedHydrated || !onboarding.setupComplete) {
     return (
       <main className="cf-app-shell">
         <div className="mx-auto flex min-h-screen items-center justify-center px-4 text-(--cf-text-2)">
@@ -139,24 +159,29 @@ export function BookDetailClient({ bookId }: { bookId: string }) {
             Library
           </Link>
           <ChevronRight className="h-4 w-4 text-(--cf-text-3)" />
-          <span className="text-(--cf-text-1)">{entry.title}</span>
+          <span className="text-(--cf-text-1)">{book.title}</span>
         </div>
 
         <div className="grid grid-cols-1 gap-5 lg:grid-cols-[420px_1fr]">
           <BookOverviewPanel
             entry={entry}
-            pages={bundle.pages}
-            synopsis={getBookSynopsis(entry.id)}
+            pages={book.pages ?? Math.max(120, Math.round(book.estimatedMinutes * 2.8))}
+            synopsis={book.synopsis}
             estimatedDaysToFinish={Math.max(
               1,
-              Math.ceil(Math.max(bundle.pages / 2.8, 120) / Math.max(onboarding.dailyGoalMinutes, 10))
+              Math.ceil(
+                Math.max(
+                  (book.pages ?? Math.max(120, Math.round(book.estimatedMinutes * 2.8))) / 2.8,
+                  120
+                ) / Math.max(onboarding.dailyGoalMinutes, 10)
+              )
             )}
             progressPercent={progressPercent}
             avgScore={avgScore}
             unlockedCount={unlockedCount}
             completedCount={completedCount}
             totalCount={totalCount}
-            currentChapterOrder={currentChapter?.order ?? 1}
+            currentChapterOrder={currentChapter?.number ?? 1}
             currentChapterMinutes={currentChapter?.minutes ?? 10}
             onContinue={() =>
               currentChapter &&
@@ -256,8 +281,8 @@ export function BookDetailClient({ bookId }: { bookId: string }) {
             className="cf-btn cf-btn-primary w-full rounded-2xl px-4 py-3 text-base"
           >
             {completedCount > 0
-              ? `Continue Chapter ${currentChapter.order}`
-              : `Start Chapter ${currentChapter.order}`}
+              ? `Continue Chapter ${currentChapter.number}`
+              : `Start Chapter ${currentChapter.number}`}
             <ArrowRight className="h-4.5 w-4.5" />
           </button>
         </div>

@@ -11,6 +11,26 @@ type ProxyAuthConfig = {
 let cachedProxyAuthConfig: ProxyAuthConfig | null = null;
 let missingProxyConfigWarned = false;
 
+function firstForwardedValue(value: string | null): string | null {
+  if (!value) return null;
+  const first = value.split(",")[0]?.trim();
+  return first || null;
+}
+
+function resolveRequestOrigin(req: NextRequest): string {
+  const forwardedHost = firstForwardedValue(req.headers.get("x-forwarded-host"));
+  const host = forwardedHost || req.headers.get("host");
+  const proto =
+    firstForwardedValue(req.headers.get("x-forwarded-proto")) ||
+    (process.env.NODE_ENV === "production" ? "https" : "http");
+
+  if (host) {
+    return `${proto}://${host}`;
+  }
+
+  return req.nextUrl.origin;
+}
+
 function getProxyAuthConfig(): ProxyAuthConfig | null {
   if (cachedProxyAuthConfig) return cachedProxyAuthConfig;
 
@@ -87,8 +107,12 @@ export async function proxy(req: NextRequest) {
   const token = req.cookies.get("id_token")?.value;
 
   if (!token || !(await isValidToken(token, authConfig))) {
-    const currentTarget = req.nextUrl.clone();
-    const loginUrl = new URL("/auth/login", currentTarget.origin);
+    const publicOrigin = resolveRequestOrigin(req);
+    const currentTarget = new URL(
+      `${req.nextUrl.pathname}${req.nextUrl.search}`,
+      publicOrigin
+    );
+    const loginUrl = new URL("/auth/login", publicOrigin);
     loginUrl.searchParams.set("returnTo", currentTarget.toString());
     const res = NextResponse.redirect(loginUrl);
 

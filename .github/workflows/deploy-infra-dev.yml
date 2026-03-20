@@ -26,9 +26,9 @@ concurrency:
 
 env:
   AWS_REGION: us-east-1
-  CDK_STACK_NAME: CloudPortfolioStorage
-  # Must match tableName in infra/lib/storage-stack.ts
-  SECURE_DOC_TABLE: SecureDocApp
+  CDK_STACK_NAME: ChapterFlowBackend
+  # Must match tableName in infra/lib/chapterflow-backend-stack.ts
+  BOOK_TABLE_NAME: ChapterFlowApp
 
 jobs:
   deploy-dev:
@@ -140,4 +140,4 @@ jobs:
         run: node scripts/book/seed-license-keys.mjs
         env:
           AWS_REGION: ${{ env.AWS_REGION }}
-          SECURE_DOC_TABLE: ${{ env.SECURE_DOC_TABLE }}
+          BOOK_TABLE_NAME: ${{ env.BOOK_TABLE_NAME }}

@@ -76,6 +76,13 @@ export class StorageStack extends cdk.Stack {
       removalPolicy: cdk.RemovalPolicy.DESTROY,
     });
 
+    this.table.addGlobalSecondaryIndex({
+      indexName: "quiz-scope-createdAt-index",
+      partitionKey: { name: "quizScope", type: dynamodb.AttributeType.STRING },
+      sortKey: { name: "createdAt", type: dynamodb.AttributeType.STRING },
+      projectionType: dynamodb.ProjectionType.ALL,
+    });
+
     // Analytics table — separate from main app table for independent scaling and querying
     this.analyticsTable = new dynamodb.Table(this, "BookAnalyticsTable", {
       tableName: "ChapterFlowAnalytics",
@@ -101,6 +108,13 @@ export class StorageStack extends cdk.Stack {
       indexName: "plan-updatedAt-index",
       partitionKey: { name: "plan", type: dynamodb.AttributeType.STRING },
       sortKey: { name: "updatedAt", type: dynamodb.AttributeType.STRING },
+      projectionType: dynamodb.ProjectionType.ALL,
+    });
+
+    this.analyticsTable.addGlobalSecondaryIndex({
+      indexName: "contextKey-occurredAt-index",
+      partitionKey: { name: "contextKey", type: dynamodb.AttributeType.STRING },
+      sortKey: { name: "occurredAt", type: dynamodb.AttributeType.STRING },
       projectionType: dynamodb.ProjectionType.ALL,
     });
 

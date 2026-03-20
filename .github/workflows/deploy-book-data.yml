@@ -23,8 +23,10 @@ concurrency:
 
 env:
   AWS_REGION: us-east-1
-  # Must match tableName in infra/lib/storage-stack.ts
-  SECURE_DOC_TABLE: SecureDocApp
+  # Must match tableName in infra/lib/chapterflow-backend-stack.ts
+  BOOK_TABLE_NAME: ChapterFlowApp
+  BOOK_INGEST_BUCKET: chapterflowbackend-chapterflowingestbucketdb5de03f-3yot64zeyaq7
+  BOOK_CONTENT_BUCKET: chapterflowbackend-chapterflowcontentbucket2ed1848-qo8kewolurc0
 
 jobs:
   seed-book-data:
@@ -62,4 +64,18 @@ jobs:
         run: node scripts/book/seed-license-keys.mjs
         env:
           AWS_REGION: ${{ env.AWS_REGION }}
-          SECURE_DOC_TABLE: ${{ env.SECURE_DOC_TABLE }}
+          BOOK_TABLE_NAME: ${{ env.BOOK_TABLE_NAME }}
+
+      - name: Publish bundled book packages
+        run: npx tsx scripts/book/publish-bundled-packages.ts
+        env:
+          AWS_REGION: ${{ env.AWS_REGION }}
+          BOOK_TABLE_NAME: ${{ env.BOOK_TABLE_NAME }}
+          BOOK_INGEST_BUCKET: ${{ env.BOOK_INGEST_BUCKET }}
+          BOOK_CONTENT_BUCKET: ${{ env.BOOK_CONTENT_BUCKET }}
+
+      - name: Publish library catalog and covers
+        run: npx tsx scripts/book/publish-library-assets.ts
+        env:
+          AWS_REGION: ${{ env.AWS_REGION }}
+          BOOK_CONTENT_BUCKET: ${{ env.BOOK_CONTENT_BUCKET }}

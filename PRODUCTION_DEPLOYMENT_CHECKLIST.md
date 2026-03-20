@@ -1,6 +1,6 @@
 # Production Deployment Checklist
 
-This checklist covers the manual actions required to launch the current Cloud Portfolio and Book Accelerator stack in production. It is based on the code that exists in this repository today.
+This checklist covers the manual actions required to launch the standalone ChapterFlow backend and app in production.
 
 ## 1. Pre deploy verification
 
@@ -35,19 +35,16 @@ Set these in the web runtime environment for production:
 ### AWS runtime
 - `AWS_REGION`
 - `AWS_DEFAULT_REGION` if your host requires it
-- `SECURE_DOC_TABLE`
-- `RAW_BUCKET`
-- `OUTPUT_BUCKET`
-- `CONVERT_SFN_ARN`
 - `WEB_ALLOWED_ORIGINS`
 
 ### Optional server side config lookup
 - `SSM_PARAMETER_PREFIX` if you want the server to load secrets and config from AWS SSM Parameter Store
 
-### Book Accelerator
-- `BOOK_TABLE_NAME` if different from `SECURE_DOC_TABLE`
-- `BOOK_INGEST_BUCKET` if different from `RAW_BUCKET`
-- `BOOK_CONTENT_BUCKET` if different from `OUTPUT_BUCKET`
+### ChapterFlow backend
+- `BOOK_TABLE_NAME`
+- `BOOK_INGEST_BUCKET`
+- `BOOK_CONTENT_BUCKET`
+- `BOOK_ANALYTICS_TABLE_NAME`
 - `BOOK_ADMIN_GROUP`
 - `BOOK_FREE_SLOTS_DEFAULT`
 - `BOOK_PAYWALL_PRICE`
@@ -111,9 +108,9 @@ npm --prefix infra run cdk -- bootstrap aws://<ACCOUNT_ID>/<REGION>
 2. Confirm the target account has permission to manage:
    - DynamoDB
    - S3
-   - Step Functions
-   - Lambda
-   - any IAM roles used by the stack
+   - IAM
+   - SSM Parameter Store
+   - any App Runner runtime role used by the stack
 
 ### Deploy the infra stack
 
@@ -121,7 +118,7 @@ npm --prefix infra run cdk -- bootstrap aws://<ACCOUNT_ID>/<REGION>
 npm --prefix infra run cdk -- deploy <STACK_NAME> --require-approval never
 ```
 
-After deploy, capture the live resource names and update the application environment variables if they differ from your expected values.
+After deploy, capture the live resource names and update the application environment variables or SSM prefix if they differ from your expected values.
 
 ## 5. Stripe billing setup
 
@@ -161,7 +158,7 @@ Book Accelerator runtime content is published from strict package JSON files.
 
 Make sure:
 - `BOOK_INGEST_BUCKET` accepts the raw uploaded package
-- `BOOK_CONTENT_BUCKET` stores the published manifest, chapter payloads, and quiz payloads
+- `BOOK_CONTENT_BUCKET` stores the published manifest, chapter payloads, quiz payloads, and ingest error reports
 
 ### Admin ingest flow
 
@@ -193,7 +190,6 @@ This repo does not hardcode a single web host. For any host you choose:
    - Cognito
    - DynamoDB
    - S3
-   - Step Functions
    - Stripe
 4. Deploy the Next.js app with server route support
 5. Confirm the deployed domain matches:

@@ -3,21 +3,15 @@ import { mustServerEnv, getServerEnv } from "@/app/app/api/_lib/server-env";
 const DEFAULT_ADMIN_GROUP = "admin";
 
 export async function getBookTableName(): Promise<string> {
-  const explicit = await getServerEnv("BOOK_TABLE_NAME");
-  if (explicit) return explicit;
-  return mustServerEnv("SECURE_DOC_TABLE");
+  return mustServerEnv("BOOK_TABLE_NAME");
 }
 
 export async function getBookIngestBucket(): Promise<string> {
-  const explicit = await getServerEnv("BOOK_INGEST_BUCKET");
-  if (explicit) return explicit;
-  return mustServerEnv("RAW_BUCKET");
+  return mustServerEnv("BOOK_INGEST_BUCKET");
 }
 
 export async function getBookContentBucket(): Promise<string> {
-  const explicit = await getServerEnv("BOOK_CONTENT_BUCKET");
-  if (explicit) return explicit;
-  return mustServerEnv("OUTPUT_BUCKET");
+  return mustServerEnv("BOOK_CONTENT_BUCKET");
 }
 
 export async function getBookAdminGroupName(): Promise<string> {

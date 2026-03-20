@@ -205,7 +205,7 @@ export const defaultBookPreferencesState: BookPreferencesState = {
     defaultExamplesFilter: "all",
   },
   appearance: {
-    theme: "system",
+    theme: "light",
     accentColor: "sky",
     interfaceDensity: "comfortable",
     reducedMotion: false,

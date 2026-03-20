@@ -145,12 +145,12 @@ export function BookBadgesClient() {
               </p>
               <div className="mt-3 inline-flex items-center gap-1.5 text-xs text-(--cf-text-soft)">
                 <Zap className="h-3.5 w-3.5" />
-                Flow Points unlock rewards — full system coming soon
+                Badge points feed into your overall Flow Points balance and show up on the home rewards panel
               </div>
             </div>
             <div className="flex flex-wrap gap-3">
               <StatPill label="Earned" value={badgeSystem.earnedCount} tone="amber" />
-              <StatPill label="Flow Points" value={totalFlowPointsEarned} tone="zap" />
+              <StatPill label="Badge FP" value={totalFlowPointsEarned} tone="zap" />
               <StatPill label="Categories" value={groupedBadges.length} tone="neutral" />
             </div>
           </div>

@@ -7,10 +7,17 @@ import {
   requireString,
   withBookApiErrors,
 } from "@/app/app/api/book/_lib/http";
-import { getBookTableName, getBookAnalyticsTableName } from "@/app/app/api/book/_lib/env";
+import {
+  getBookAnalyticsTableName,
+  getBookContentBucket,
+  getBookTableName,
+} from "@/app/app/api/book/_lib/env";
+import {
+  applyStartDeviceCookie,
+  ensureUserBookStarted,
+} from "@/app/app/api/book/_lib/ensure-book-started";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import {
-  addUserEngagementPoints,
   getUserEngagement,
   listApprovedScenariosForChapter,
   listUserScenarioSubmissions,
@@ -26,10 +33,11 @@ import type {
 } from "@/app/app/api/book/_lib/types";
 import { analyticsTrackScenario } from "@/app/app/api/book/_lib/analytics-repo";
 import { nowIso } from "@/app/app/api/book/_lib/keys";
+import { FLOW_POINTS_AMOUNTS } from "@/app/book/_lib/flow-points-economy";
 
 export const runtime = "nodejs";
 
-const SCENARIO_SUBMISSION_POINTS = 25;
+const SCENARIO_APPROVAL_POINTS = FLOW_POINTS_AMOUNTS.scenarioApproved;
 
 function normalizeScenarioPerspective(value: string): string {
   const cleaned = value.replace(/\s+/g, " ").trim();
@@ -66,18 +74,30 @@ export async function GET(
       throw new BookApiError(400, "invalid_chapter", "Invalid chapter number.");
     }
 
-    const tableName = await getBookTableName();
+    const [tableName, contentBucket] = await Promise.all([
+      getBookTableName(),
+      getBookContentBucket(),
+    ]);
+    const chapterNumberInt = Math.floor(chapterNum);
+    const started = await ensureUserBookStarted({
+      req,
+      user,
+      tableName,
+      contentBucket,
+      bookId,
+      interactionChapterNumber: chapterNumberInt,
+    });
     const [approved, mine, engagement] = await Promise.all([
-      listApprovedScenariosForChapter(tableName, bookId, Math.floor(chapterNum), 300),
+      listApprovedScenariosForChapter(tableName, bookId, chapterNumberInt, 300),
       listUserScenarioSubmissions(tableName, user.sub, {
         bookId,
-        chapterNumber: Math.floor(chapterNum),
+        chapterNumber: chapterNumberInt,
         limit: 200,
       }),
       getUserEngagement(tableName, user.sub),
     ]);
 
-    return bookOk({
+    const response = bookOk({
       approvedScenarios: approved.map((item) => ({
         id: `community-${item.submissionId}`,
         title: item.title,
@@ -100,6 +120,7 @@ export async function GET(
       })),
       points: engagement?.points ?? 0,
     });
+    return applyStartDeviceCookie(response, started);
   });
 }
 
@@ -140,10 +161,21 @@ export async function POST(
         ? body.chapterId.trim()
         : undefined;
 
-    const tableName = await getBookTableName();
+    const [tableName, contentBucket] = await Promise.all([
+      getBookTableName(),
+      getBookContentBucket(),
+    ]);
     const createdAt = nowIso();
     const submissionId = crypto.randomUUID();
     const chapterNumberInt = Math.floor(chapterNum);
+    const started = await ensureUserBookStarted({
+      req,
+      user,
+      tableName,
+      contentBucket,
+      bookId,
+      interactionChapterNumber: chapterNumberInt,
+    });
 
     const submissionItem: BookUserScenarioSubmissionItem = {
       userId: user.sub,
@@ -157,7 +189,7 @@ export async function POST(
       whyItMatters,
       scope,
       status: "pending",
-      pointsAwarded: SCENARIO_SUBMISSION_POINTS,
+      pointsAwarded: SCENARIO_APPROVAL_POINTS,
       createdAt,
       updatedAt: createdAt,
     };
@@ -172,7 +204,7 @@ export async function POST(
       chapterNumber: chapterNumberInt,
       createdAt,
       status: "pending",
-      pointsAwarded: SCENARIO_SUBMISSION_POINTS,
+      pointsAwarded: SCENARIO_APPROVAL_POINTS,
       queuedAt: createdAt,
       updatedAt: createdAt,
     };
@@ -183,11 +215,6 @@ export async function POST(
       putScenarioLookup(tableName, lookupItem),
     ]);
 
-    const engagement = await addUserEngagementPoints(tableName, {
-      userId: user.sub,
-      deltaPoints: SCENARIO_SUBMISSION_POINTS,
-    });
-
     // Analytics — fire-and-forget
     getBookAnalyticsTableName().then((analyticsTable) => {
       if (!analyticsTable) return;
@@ -195,11 +222,12 @@ export async function POST(
         userId: user.sub,
         bookId,
         chapterNumber: chapterNumberInt,
-        pointsAwarded: SCENARIO_SUBMISSION_POINTS,
+        stage: "submitted",
+        pointsAwarded: 0,
       }).catch(() => {});
     }).catch(() => {});
 
-    return bookOk({
+    const response = bookOk({
       submission: {
         submissionId,
         title,
@@ -210,7 +238,8 @@ export async function POST(
         status: "pending",
         createdAt,
       },
-      points: engagement.points,
+      points: (await getUserEngagement(tableName, user.sub))?.points ?? 0,
     });
+    return applyStartDeviceCookie(response, started);
   });
 }

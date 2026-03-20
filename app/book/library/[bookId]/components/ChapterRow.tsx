@@ -1,12 +1,12 @@
 "use client";
 
 import { Check, Lock, Play } from "lucide-react";
-import type { BookChapter } from "@/app/book/data/mockChapters";
+import type { LibraryChapterSummary } from "@/app/book/_lib/library-data";
 
 export type ChapterRowState = "completed" | "current" | "locked";
 
 type ChapterRowProps = {
-  chapter: BookChapter;
+  chapter: LibraryChapterSummary;
   state: ChapterRowState;
   score?: number;
   onClick: () => void;

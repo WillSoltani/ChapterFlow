@@ -63,11 +63,12 @@ export type BookOnboardingState = {
   motivationStyle: MotivationStyle;
 };
 
-const MAX_STEPS = 7;
+const MAX_STEPS = 5;
 const MAX_BOOK_SELECTION = 3;
 const MAX_CATEGORY_SELECTION = 3;
-const STORAGE_KEY = "book-accelerator:onboarding:v4";
+const STORAGE_KEY = "book-accelerator:onboarding:v5";
 const LEGACY_STORAGE_KEYS = [
+  "book-accelerator:onboarding:v4",
   "book-accelerator:onboarding:v3",
   "book-accelerator:onboarding:v2",
 ] as const;
@@ -263,6 +264,29 @@ export function useOnboardingState() {
     setState((prev) => ({ ...prev, currentStep: clampStep(step) }));
   }, []);
 
+  const patchState = useCallback((patch: Partial<BookOnboardingState>) => {
+    setState((prev) => ({
+      ...prev,
+      ...patch,
+      currentStep:
+        patch.currentStep === undefined ? prev.currentStep : clampStep(patch.currentStep),
+      dailyGoalMinutes:
+        patch.dailyGoalMinutes === undefined
+          ? prev.dailyGoalMinutes
+          : clampGoal(patch.dailyGoalMinutes),
+      selectedCategories:
+        patch.selectedCategories === undefined
+          ? prev.selectedCategories
+          : patch.selectedCategories.slice(0, MAX_CATEGORY_SELECTION),
+      selectedBookIds:
+        patch.selectedBookIds === undefined
+          ? prev.selectedBookIds
+          : patch.selectedBookIds
+              .filter((bookId) => AVAILABLE_BOOK_IDS.has(bookId))
+              .slice(0, MAX_BOOK_SELECTION),
+    }));
+  }, []);
+
   const goNextStep = useCallback(() => {
     setState((prev) => ({ ...prev, currentStep: clampStep(prev.currentStep + 1) }));
   }, []);
@@ -304,6 +328,15 @@ export function useOnboardingState() {
 
   const clearBookSelections = useCallback(() => {
     setState((prev) => ({ ...prev, selectedBookIds: [] }));
+  }, []);
+
+  const replaceBookSelections = useCallback((bookIds: string[]) => {
+    setState((prev) => ({
+      ...prev,
+      selectedBookIds: bookIds
+        .filter((bookId) => AVAILABLE_BOOK_IDS.has(bookId))
+        .slice(0, MAX_BOOK_SELECTION),
+    }));
   }, []);
 
   const toggleBookSelection = useCallback((bookId: string) => {
@@ -380,6 +413,7 @@ export function useOnboardingState() {
     hydrated,
     selectionsRemaining,
     categorySelectionsRemaining,
+    patchState,
     setCurrentStep,
     goNextStep,
     goPreviousStep,
@@ -390,6 +424,7 @@ export function useOnboardingState() {
     setReferralSourceOtherText,
     toggleCategorySelection,
     clearBookSelections,
+    replaceBookSelections,
     toggleBookSelection,
     setDailyGoalMinutes,
     setReminderTime,

@@ -9,7 +9,6 @@ import {
 import {
   getBookContentBucket,
   getBookTableName,
-  getBookAnalyticsTableName,
 } from "@/app/app/api/book/_lib/env";
 import { getPublishedBookManifest } from "@/app/app/api/book/_lib/content-service";
 import {
@@ -20,7 +19,6 @@ import {
 } from "@/app/app/api/book/_lib/repo";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import type { BookUserBookStateItem } from "@/app/app/api/book/_lib/types";
-import { analyticsTrackBookCompleted } from "@/app/app/api/book/_lib/analytics-repo";
 import { nowIso } from "@/app/app/api/book/_lib/keys";
 
 function parseStringArray(value: unknown): string[] {
@@ -209,26 +207,6 @@ export async function PATCH(
         lastActiveAt: now,
         updatedAt: now,
       });
-    }
-
-    // Analytics: detect book completion (all chapters done)
-    const totalChapterCount = published.manifest.chapters.length;
-    const isBookCompleted =
-      totalChapterCount > 0 &&
-      nextState.completedChapterIds.length >= totalChapterCount;
-    const wasAlreadyCompleted =
-      existing !== null &&
-      existing.completedChapterIds.length >= totalChapterCount;
-
-    if (isBookCompleted && !wasAlreadyCompleted) {
-      getBookAnalyticsTableName().then((analyticsTable) => {
-        if (!analyticsTable) return;
-        analyticsTrackBookCompleted(analyticsTable, {
-          userId: user.sub,
-          bookId,
-          totalChapterCount,
-        }).catch(() => {});
-      }).catch(() => {});
     }
 
     return bookOk({ state: nextState });

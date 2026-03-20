@@ -1,8 +1,7 @@
 import "server-only";
 import { withBookApiErrors, bookOk } from "@/app/app/api/book/_lib/http";
 import { getBookContentBucket, getBookTableName } from "@/app/app/api/book/_lib/env";
-import { getCatalogBook } from "@/app/app/api/book/_lib/repo";
-import { getPublishedBookManifest } from "@/app/app/api/book/_lib/content-service";
+import { getPublishedLibraryBookDetail } from "@/app/app/api/book/_lib/library-catalog";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
 
 export const runtime = "nodejs";
@@ -20,29 +19,12 @@ export async function GET(
     const tableName = await getBookTableName();
     const contentBucket = await getBookContentBucket();
 
-    const catalog = await getCatalogBook(tableName, bookId);
-    if (!catalog || !catalog.currentPublishedVersion || catalog.status !== "PUBLISHED") {
-      throw new BookApiError(404, "book_not_found", "Book not found.");
-    }
-
-    const { version, manifest } = await getPublishedBookManifest({
+    const book = await getPublishedLibraryBookDetail({
       tableName,
       contentBucket,
       bookId,
     });
 
-    return bookOk({
-      book: {
-        ...catalog,
-        publishedVersion: version,
-        chapterCount: manifest.chapterCount,
-        chapters: manifest.chapters.map((ch) => ({
-          chapterId: ch.chapterId,
-          number: ch.number,
-          title: ch.title,
-          readingTimeMinutes: ch.readingTimeMinutes,
-        })),
-      },
-    });
+    return bookOk({ book });
   });
 }

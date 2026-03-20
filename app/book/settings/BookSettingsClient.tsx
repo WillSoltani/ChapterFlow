@@ -162,9 +162,20 @@ function LicenseKeySection() {
     entitlement?.plan === "PRO" &&
     entitlement.proSource === "license" &&
     entitlement.licenseExpiresAt != null;
+  const hasActiveFlowPass =
+    entitlement?.plan === "PRO" &&
+    entitlement.proSource === "flow_points" &&
+    entitlement.currentPeriodEnd != null;
 
   const formattedExpiry = hasActiveLicense && entitlement?.licenseExpiresAt
     ? new Date(entitlement.licenseExpiresAt).toLocaleDateString(undefined, {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })
+    : null;
+  const formattedFlowPassExpiry = hasActiveFlowPass && entitlement?.currentPeriodEnd
+    ? new Date(entitlement.currentPeriodEnd).toLocaleDateString(undefined, {
         year: "numeric",
         month: "long",
         day: "numeric",
@@ -211,6 +222,18 @@ function LicenseKeySection() {
                       ({entitlement.licenseKey})
                     </span>
                   )}
+                </p>
+              </div>
+            </div>
+          ) : null}
+          {hasActiveFlowPass && formattedFlowPassExpiry ? (
+            <div className="mb-4 flex items-start gap-3 rounded-xl border border-(--cf-success-border) bg-(--cf-success-soft) px-4 py-3">
+              <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-(--cf-success-text)" />
+              <div>
+                <p className="text-sm font-semibold text-(--cf-success-text)">Pro pass active</p>
+                <p className="mt-0.5 text-xs text-(--cf-text-3)">
+                  Your Flow Points Pro pass is active until{" "}
+                  <span className="font-medium text-(--cf-text-2)">{formattedFlowPassExpiry}</span>.
                 </p>
               </div>
             </div>
@@ -602,11 +625,11 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
           <SettingRow label="Theme" description="Choose your preferred color scheme.">
             <SegPicker
               options={[
-                { value: "dark" as const, label: "Dark" },
                 { value: "light" as const, label: "Light" },
+                { value: "dark" as const, label: "Dark" },
                 { value: "system" as const, label: "System" },
               ]}
-              value={hydrated ? preferences.appearance.theme : "dark"}
+              value={hydrated ? preferences.appearance.theme : "light"}
               onChange={(v) => patchSection("appearance", { theme: v })}
             />
           </SettingRow>

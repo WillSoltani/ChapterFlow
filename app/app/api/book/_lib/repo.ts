@@ -2,6 +2,7 @@ import {
   GetCommand,
   PutCommand,
   QueryCommand,
+  type TransactWriteCommandInput,
   UpdateCommand,
   DeleteCommand,
   TransactWriteCommand,
@@ -28,6 +29,8 @@ import {
   progressSk,
   quizAttemptPk,
   quizAttemptSk,
+  quizScopeKey,
+  quizStateSk,
   riskEventPk,
   riskEventSk,
   profileSk,
@@ -60,6 +63,7 @@ import type {
   BookRiskEventItem,
   BookUserProfileItem,
   BookUserProgress,
+  BookUserQuizStateItem,
   BookUserReadingDayItem,
   BookUserSavedBookItem,
   BookUserScenarioSubmissionItem,
@@ -119,6 +123,52 @@ function parseNumberRecord(value: unknown): Record<string, number> {
         Number.isFinite(entryValue)
     )
   ) as Record<string, number>;
+}
+
+function parseQuizResponses(
+  value: unknown
+): QuizAttemptItem["responses"] {
+  if (!Array.isArray(value)) return [];
+  return value.reduce<QuizAttemptItem["responses"]>((entries, entry) => {
+    if (!entry || typeof entry !== "object" || Array.isArray(entry)) return entries;
+    const rec = entry as Record<string, unknown>;
+    const questionId = readStr(rec.questionId);
+    if (!questionId) return entries;
+    const selectedChoiceId = readStr(rec.selectedChoiceId) ?? null;
+    const selectedIndexRaw = readNum(rec.selectedIndex);
+    entries.push({
+      questionId,
+      selectedChoiceId,
+      selectedIndex:
+        typeof selectedIndexRaw === "number" ? Math.floor(selectedIndexRaw) : null,
+    });
+    return entries;
+  }, []);
+}
+
+function parseQuizQuestionResults(
+  value: unknown
+): QuizAttemptItem["questionResults"] {
+  if (!Array.isArray(value)) return [];
+  return value.reduce<QuizAttemptItem["questionResults"]>((entries, entry) => {
+    if (!entry || typeof entry !== "object" || Array.isArray(entry)) return entries;
+    const rec = entry as Record<string, unknown>;
+    const questionId = readStr(rec.questionId);
+    const correctChoiceId = readStr(rec.correctChoiceId);
+    const correctIndex = readNum(rec.correctIndex);
+    if (!questionId || !correctChoiceId || typeof correctIndex !== "number") return entries;
+    const selectedIndexRaw = readNum(rec.selectedIndex);
+    entries.push({
+      questionId,
+      selectedChoiceId: readStr(rec.selectedChoiceId) ?? null,
+      selectedIndex:
+        typeof selectedIndexRaw === "number" ? Math.floor(selectedIndexRaw) : null,
+      correctChoiceId,
+      correctIndex: Math.floor(correctIndex),
+      isCorrect: rec.isCorrect === true,
+    });
+    return entries;
+  }, []);
 }
 
 function isConditionalCheckFailed(error: unknown): boolean {
@@ -571,20 +621,30 @@ export async function getUserEntitlement(
   if (!item) return null;
 
   const proSource =
-    item.proSource === "stripe" ? "stripe" : item.proSource === "license" ? "license" : undefined;
+    item.proSource === "stripe"
+      ? "stripe"
+      : item.proSource === "license"
+        ? "license"
+        : item.proSource === "flow_points"
+          ? "flow_points"
+          : undefined;
   const licenseKey = readStr(item.licenseKey);
   const licenseExpiresAt = readStr(item.licenseExpiresAt);
+  const currentPeriodEnd = readStr(item.currentPeriodEnd);
 
-  // Compute effective plan: if the user's PRO came from a license key, check expiry inline.
+  // Compute effective plan for time-limited grants inline.
   const storedPlan = item.plan === "PRO" ? "PRO" : "FREE";
-  const licenseExpired =
+  const grantExpired =
     storedPlan === "PRO" &&
-    proSource === "license" &&
-    licenseExpiresAt != null &&
-    new Date(licenseExpiresAt) < new Date();
-  const plan: "FREE" | "PRO" = licenseExpired ? "FREE" : storedPlan;
+    ((proSource === "license" &&
+      licenseExpiresAt != null &&
+      new Date(licenseExpiresAt) < new Date()) ||
+      (proSource === "flow_points" &&
+        currentPeriodEnd != null &&
+        new Date(currentPeriodEnd) < new Date()));
+  const plan: "FREE" | "PRO" = grantExpired ? "FREE" : storedPlan;
   const proStatus =
-    licenseExpired
+    grantExpired
       ? "inactive"
       : item.proStatus === "active" ||
         item.proStatus === "past_due" ||
@@ -602,7 +662,7 @@ export async function getUserEntitlement(
     unlockedBookIds: parseStringArray(item.unlockedBookIds),
     stripeCustomerId: readStr(item.stripeCustomerId),
     stripeSubscriptionId: readStr(item.stripeSubscriptionId),
-    currentPeriodEnd: readStr(item.currentPeriodEnd),
+    currentPeriodEnd,
     licenseKey,
     licenseExpiresAt,
     updatedAt: readStr(item.updatedAt) || "",
@@ -628,12 +688,9 @@ export async function reserveBookEntitlement(
         },
         UpdateExpression:
           "SET plan = if_not_exists(plan, :freePlan), freeBookSlots = if_not_exists(freeBookSlots, :freeSlots), updatedAt = :updatedAt ADD unlockedBookIds :bookSet",
-        // A user may bypass the slot limit only when they are PRO with a non-expired entitlement:
-        //   - Stripe PRO: plan=PRO and proSource is not "license"
-        //   - License PRO: plan=PRO and proSource="license" and licenseExpiresAt is in the future
-        // In all other cases the slot-count check applies.
+        // A user may bypass the slot limit only when they are PRO with a non-expired entitlement.
         ConditionExpression: [
-          "(plan = :proPlan AND (attribute_not_exists(proSource) OR proSource <> :licenseSource OR licenseExpiresAt >= :now))",
+          "(plan = :proPlan AND (attribute_not_exists(proSource) OR proSource = :stripeSource OR (proSource = :licenseSource AND licenseExpiresAt >= :now) OR (proSource = :flowPointsSource AND currentPeriodEnd >= :now)))",
           "OR contains(unlockedBookIds, :bookId)",
           "OR attribute_not_exists(unlockedBookIds)",
           "OR attribute_not_exists(freeBookSlots)",
@@ -642,7 +699,9 @@ export async function reserveBookEntitlement(
         ExpressionAttributeValues: {
           ":freePlan": "FREE",
           ":proPlan": "PRO",
+          ":stripeSource": "stripe",
           ":licenseSource": "license",
+          ":flowPointsSource": "flow_points",
           ":now": ts,
           ":freeSlots": params.freeSlotsDefault,
           ":updatedAt": ts,
@@ -654,7 +713,13 @@ export async function reserveBookEntitlement(
     );
     const item = res.Attributes ?? {};
     const proSource =
-      item.proSource === "stripe" ? "stripe" : item.proSource === "license" ? "license" : undefined;
+      item.proSource === "stripe"
+        ? "stripe"
+        : item.proSource === "license"
+          ? "license"
+          : item.proSource === "flow_points"
+            ? "flow_points"
+            : undefined;
     return {
       userId: params.userId,
       plan: item.plan === "PRO" ? "PRO" : "FREE",
@@ -812,7 +877,65 @@ export async function writeQuizAttempt(tableName: string, attempt: QuizAttemptIt
         PK: quizAttemptPk(attempt.userId, attempt.bookId, attempt.chapterNumber),
         SK: quizAttemptSk(attempt.createdAt),
         entity: "BOOK_QUIZ_ATTEMPT",
+        quizScope: quizScopeKey(attempt.bookId, attempt.chapterNumber),
         ...attempt,
+      },
+    })
+  );
+}
+
+export async function getUserQuizState(
+  tableName: string,
+  userId: string,
+  bookId: string,
+  chapterNumber: number
+): Promise<BookUserQuizStateItem | null> {
+  const res = await ddbDoc.send(
+    new GetCommand({
+      TableName: tableName,
+      Key: {
+        PK: bookUserPk(userId),
+        SK: quizStateSk(bookId, chapterNumber),
+      },
+    })
+  );
+  const item = res.Item;
+  if (!item) return null;
+  return {
+    userId,
+    bookId,
+    chapterNumber,
+    chapterId: readStr(item.chapterId),
+    quizId: readStr(item.quizId) || `${bookId}:${chapterNumber}`,
+    attemptsCount: Math.max(0, readNum(item.attemptsCount) ?? 0),
+    failureStreak: Math.max(0, readNum(item.failureStreak) ?? 0),
+    passed: item.passed === true,
+    highestScorePercent: Math.max(0, readNum(item.highestScorePercent) ?? 0),
+    lastScorePercent: Math.max(0, readNum(item.lastScorePercent) ?? 0),
+    lastCorrectCount: Math.max(0, readNum(item.lastCorrectCount) ?? 0),
+    lastTotalQuestions: Math.max(0, readNum(item.lastTotalQuestions) ?? 0),
+    lastAttemptAt: readStr(item.lastAttemptAt),
+    lastAttemptNumber: readNum(item.lastAttemptNumber),
+    nextEligibleAttemptAt: readStr(item.nextEligibleAttemptAt) ?? null,
+    passedAt: readStr(item.passedAt),
+    unlockedNextChapter: item.unlockedNextChapter === true,
+    createdAt: readStr(item.createdAt) || "",
+    updatedAt: readStr(item.updatedAt) || "",
+  };
+}
+
+export async function putUserQuizState(
+  tableName: string,
+  state: BookUserQuizStateItem
+): Promise<void> {
+  await ddbDoc.send(
+    new PutCommand({
+      TableName: tableName,
+      Item: {
+        PK: bookUserPk(state.userId),
+        SK: quizStateSk(state.bookId, state.chapterNumber),
+        entity: "BOOK_USER_QUIZ_STATE",
+        ...state,
       },
     })
   );
@@ -864,12 +987,110 @@ export async function listRecentQuizAttempts(
       userId,
       bookId,
       chapterNumber,
+      chapterId: readStr(item.chapterId),
+      quizId: readStr(item.quizId) || `${bookId}:${chapterNumber}`,
+      attemptNumber: Math.max(0, readNum(item.attemptNumber) ?? 0),
+      passingScorePercent: Math.max(0, readNum(item.passingScorePercent) ?? 80),
       scorePercent: readNum(item.scorePercent) ?? 0,
+      correctCount: Math.max(0, readNum(item.correctCount) ?? 0),
+      totalQuestions: Math.max(0, readNum(item.totalQuestions) ?? 0),
       passed: item.passed === true,
+      cooldownSeconds: Math.max(0, readNum(item.cooldownSeconds) ?? 0),
+      nextEligibleAttemptAt: readStr(item.nextEligibleAttemptAt) ?? null,
+      unlockedNextChapter: item.unlockedNextChapter === true,
+      responses: parseQuizResponses(item.responses),
+      questionResults: parseQuizQuestionResults(item.questionResults),
+      timeSpentSeconds: readNum(item.timeSpentSeconds),
       createdAt: readStr(item.createdAt) || "",
+      updatedAt: readStr(item.updatedAt) || readStr(item.createdAt) || "",
     });
   }
   return attempts;
+}
+
+export async function recordQuizAttemptOutcome(
+  tableName: string,
+  params: {
+    previousAttemptsCount: number;
+    attempt: QuizAttemptItem;
+    nextQuizState: BookUserQuizStateItem;
+    nextProgress?: BookUserProgress;
+  }
+): Promise<void> {
+  const transactItems: NonNullable<TransactWriteCommandInput["TransactItems"]> = [
+    {
+      Put: {
+        TableName: tableName,
+        Item: {
+          PK: quizAttemptPk(
+            params.attempt.userId,
+            params.attempt.bookId,
+            params.attempt.chapterNumber
+          ),
+          SK: quizAttemptSk(params.attempt.createdAt),
+          entity: "BOOK_QUIZ_ATTEMPT",
+          quizScope: quizScopeKey(params.attempt.bookId, params.attempt.chapterNumber),
+          ...params.attempt,
+        },
+        ConditionExpression: "attribute_not_exists(PK) AND attribute_not_exists(SK)",
+      },
+    },
+    {
+      Put: {
+        TableName: tableName,
+        Item: {
+          PK: bookUserPk(params.nextQuizState.userId),
+          SK: quizStateSk(
+            params.nextQuizState.bookId,
+            params.nextQuizState.chapterNumber
+          ),
+          entity: "BOOK_USER_QUIZ_STATE",
+          ...params.nextQuizState,
+        },
+        ConditionExpression:
+          "attribute_not_exists(PK) OR attribute_not_exists(attemptsCount) OR attemptsCount = :previousAttemptsCount",
+        ExpressionAttributeValues: {
+          ":previousAttemptsCount": params.previousAttemptsCount,
+        },
+      },
+    },
+  ];
+
+  if (params.nextProgress) {
+    transactItems.push({
+      Put: {
+        TableName: tableName,
+        Item: {
+          PK: bookUserPk(params.nextProgress.userId),
+          SK: progressSk(params.nextProgress.bookId),
+          entity: "BOOK_PROGRESS",
+          ...params.nextProgress,
+        },
+      },
+    });
+  }
+
+  try {
+    await ddbDoc.send(
+      new TransactWriteCommand({
+        TransactItems: transactItems,
+      })
+    );
+  } catch (error: unknown) {
+    if (
+      isConditionalCheckFailed(error) ||
+      (error &&
+        typeof error === "object" &&
+        (error as Record<string, unknown>).name === "TransactionCanceledException")
+    ) {
+      throw new BookApiError(
+        409,
+        "quiz_state_conflict",
+        "Quiz state changed. Refresh and try again."
+      );
+    }
+    throw error;
+  }
 }
 
 function parseScenarioScope(value: unknown): "work" | "school" | "personal" {
@@ -2153,7 +2374,7 @@ export async function putBadgeAward(
     earnedAt: string;
     tier?: string;
   }
-): Promise<void> {
+): Promise<boolean> {
   try {
     await ddbDoc.send(
       new PutCommand({
@@ -2171,8 +2392,9 @@ export async function putBadgeAward(
         ConditionExpression: "attribute_not_exists(PK) AND attribute_not_exists(SK)",
       })
     );
+    return true;
   } catch (error: unknown) {
-    if (isConditionalCheckFailed(error)) return;
+    if (isConditionalCheckFailed(error)) return false;
     throw error;
   }
 }

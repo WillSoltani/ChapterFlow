@@ -114,6 +114,38 @@ export function engagementSk(): string {
   return "ENGAGEMENT";
 }
 
+export function flowPointsLedgerSk(createdAt: string, transactionId: string): string {
+  return `FLOWPOINTS#${createdAt}#${transactionId}`;
+}
+
+export function flowPointsGrantSk(sourceType: string, sourceId: string): string {
+  return `POINTSGRANT#${sourceType}#${sourceId}`;
+}
+
+export function rewardRedemptionSk(createdAt: string, redemptionId: string): string {
+  return `REDEMPTION#${createdAt}#${redemptionId}`;
+}
+
+export function rewardClaimSk(rewardId: string): string {
+  return `REWARDCLAIM#${rewardId}`;
+}
+
+export function referralProfileSk(): string {
+  return "REFERRAL";
+}
+
+export function referralClaimSk(): string {
+  return "REFERRALCLAIM";
+}
+
+export function referralCodePk(inviteCode: string): string {
+  return `BOOKREFERRAL#CODE#${inviteCode.toUpperCase()}`;
+}
+
+export function referralCodeSk(): string {
+  return "META";
+}
+
 export function readingDaySk(dayKey: string): string {
   return `READINGDAY#${dayKey}`;
 }
@@ -128,6 +160,14 @@ export function quizAttemptPk(userId: string, bookId: string, chapterNumber: num
 
 export function quizAttemptSk(timestampIso: string): string {
   return timestampIso;
+}
+
+export function quizStateSk(bookId: string, chapterNumber: number): string {
+  return `QUIZSTATE#${bookId}#${padChapterNumber(chapterNumber)}`;
+}
+
+export function quizScopeKey(bookId: string, chapterNumber: number): string {
+  return `QUIZ#${bookId}#${padChapterNumber(chapterNumber)}`;
 }
 
 export function webhookPk(): string {

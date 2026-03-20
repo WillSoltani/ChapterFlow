@@ -1,16 +1,17 @@
 import "server-only";
 import { withBookApiErrors, bookOk } from "@/app/app/api/book/_lib/http";
-import { getBookTableName } from "@/app/app/api/book/_lib/env";
-import { listPublishedCatalogItems } from "@/app/app/api/book/_lib/repo";
+import { getBookContentBucket, getBookTableName } from "@/app/app/api/book/_lib/env";
+import { listPublishedLibraryCatalog } from "@/app/app/api/book/_lib/library-catalog";
 
 export const runtime = "nodejs";
 
 export async function GET(req: Request) {
   return withBookApiErrors(req, async () => {
-    const tableName = await getBookTableName();
-    const books = await listPublishedCatalogItems(tableName);
-    return bookOk({
-      books: books.filter((b) => b.status === "PUBLISHED" && !!b.currentPublishedVersion),
-    });
+    const [tableName, contentBucket] = await Promise.all([
+      getBookTableName(),
+      getBookContentBucket(),
+    ]);
+    const books = await listPublishedLibraryCatalog({ tableName, contentBucket });
+    return bookOk({ books });
   });
 }

@@ -9,7 +9,7 @@
  *   AWS_REGION           e.g. us-east-1
  *   AWS_ACCESS_KEY_ID
  *   AWS_SECRET_ACCESS_KEY
- *   BOOK_TABLE_NAME      (or SECURE_DOC_TABLE as fallback)
+ *   BOOK_TABLE_NAME
  *
  * The script is idempotent — it will not overwrite a key that has already been redeemed.
  * Running it twice on an available key is safe.
@@ -20,11 +20,10 @@ import { DynamoDBDocumentClient, PutCommand } from "@aws-sdk/lib-dynamodb";
 
 // ─── Config ──────────────────────────────────────────────────────────────────
 
-const TABLE_NAME =
-  process.env.BOOK_TABLE_NAME || process.env.SECURE_DOC_TABLE;
+const TABLE_NAME = process.env.BOOK_TABLE_NAME;
 
 if (!TABLE_NAME) {
-  console.error("ERROR: BOOK_TABLE_NAME (or SECURE_DOC_TABLE) is required.");
+  console.error("ERROR: BOOK_TABLE_NAME is required.");
   process.exit(1);
 }
 

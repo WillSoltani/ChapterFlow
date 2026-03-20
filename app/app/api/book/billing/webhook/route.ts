@@ -7,12 +7,22 @@ import {
   recordStripeWebhookEvent,
   updateUserEntitlementFromStripe,
 } from "@/app/app/api/book/_lib/repo";
-import { analyticsTrackSubscription } from "@/app/app/api/book/_lib/analytics-repo";
+import {
+  analyticsTrackFlowPointsTransaction,
+  analyticsTrackReferral,
+  analyticsTrackSubscription,
+} from "@/app/app/api/book/_lib/analytics-repo";
+import {
+  awardFlowPoints,
+  getUserReferralClaim,
+  markReferralProRewarded,
+} from "@/app/app/api/book/_lib/flow-points-repo";
 import {
   getStripeClient,
   getStripeWebhookSecretOrThrow,
 } from "@/app/app/api/book/_lib/stripe-service";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
+import { FLOW_POINTS_AMOUNTS } from "@/app/book/_lib/flow-points-economy";
 
 export const runtime = "nodejs";
 
@@ -41,6 +51,56 @@ async function resolveUserIdForEvent(
   if (metadataUserId) return metadataUserId;
   if (!customerId) return null;
   return getUserIdByStripeCustomer(tableName, customerId);
+}
+
+async function maybeAwardReferralProConversion(params: {
+  tableName: string;
+  analyticsTable: string | null;
+  userId: string;
+}) {
+  const claim = await getUserReferralClaim(params.tableName, params.userId);
+  if (!claim || claim.proRewardedAt) return;
+
+  const award = await awardFlowPoints(params.tableName, {
+    userId: claim.inviterUserId,
+    amount: FLOW_POINTS_AMOUNTS.referralProInviter,
+    sourceType: "referral_pro_inviter",
+    sourceId: claim.claimId,
+    metadata: {
+      inviteCode: claim.inviteCode,
+      referredUserId: params.userId,
+    },
+  });
+
+  if (!award.awarded) return;
+
+  await markReferralProRewarded(
+    params.tableName,
+    claim,
+    FLOW_POINTS_AMOUNTS.referralProInviter
+  ).catch(() => false);
+
+  if (!params.analyticsTable) return;
+  await Promise.allSettled([
+    analyticsTrackFlowPointsTransaction(params.analyticsTable, {
+      userId: claim.inviterUserId,
+      deltaPoints: FLOW_POINTS_AMOUNTS.referralProInviter,
+      direction: "earn",
+      sourceType: "referral_pro_inviter",
+      sourceId: claim.claimId,
+      metadata: {
+        inviteCode: claim.inviteCode,
+        referredUserId: params.userId,
+      },
+    }),
+    analyticsTrackReferral(params.analyticsTable, {
+      userId: claim.inviterUserId,
+      eventType: "referral_pro_rewarded",
+      inviteCode: claim.inviteCode,
+      referredUserId: params.userId,
+      pointsAwarded: FLOW_POINTS_AMOUNTS.referralProInviter,
+    }),
+  ]);
 }
 
 export async function POST(req: Request) {
@@ -97,6 +157,11 @@ export async function POST(req: Request) {
             stripeSubscriptionId: session.subscription ?? undefined,
           }).catch(() => {});
         }
+        maybeAwardReferralProConversion({
+          tableName,
+          analyticsTable: analyticsTable ?? null,
+          userId,
+        }).catch(() => {});
       }
     } else if (
       event.type === "customer.subscription.created" ||
@@ -135,6 +200,13 @@ export async function POST(req: Request) {
             stripeCustomerId: subscription.customer,
             stripeSubscriptionId: subscription.id,
             currentPeriodEnd: isoFromUnix(subscription.current_period_end),
+          }).catch(() => {});
+        }
+        if (mapped.plan === "PRO" && mapped.proStatus === "active") {
+          maybeAwardReferralProConversion({
+            tableName,
+            analyticsTable: analyticsTable ?? null,
+            userId,
           }).catch(() => {});
         }
       }
@@ -179,17 +251,22 @@ export async function POST(req: Request) {
             stripeCustomerId: invoice.customer,
             stripeSubscriptionId: invoice.subscription ?? undefined,
           });
-          if (analyticsTable) {
-            analyticsTrackSubscription(analyticsTable, {
-              userId,
-              plan: "PRO",
-              proStatus: "active",
-              stripeCustomerId: invoice.customer,
-              stripeSubscriptionId: invoice.subscription ?? undefined,
-            }).catch(() => {});
-          }
+        if (analyticsTable) {
+          analyticsTrackSubscription(analyticsTable, {
+            userId,
+            plan: "PRO",
+            proStatus: "active",
+            stripeCustomerId: invoice.customer,
+            stripeSubscriptionId: invoice.subscription ?? undefined,
+          }).catch(() => {});
         }
+        maybeAwardReferralProConversion({
+          tableName,
+          analyticsTable: analyticsTable ?? null,
+          userId,
+        }).catch(() => {});
       }
+    }
     }
 
     return bookOk({ ok: true });

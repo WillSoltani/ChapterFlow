@@ -19,10 +19,14 @@ export async function GET(req: Request) {
       entitlement: {
         plan: entitlement?.plan ?? "FREE",
         proStatus: entitlement?.proStatus ?? "inactive",
+        proSource: entitlement?.proSource,
         freeBookSlots,
         unlockedBookIds,
         unlockedBooksCount: unlockedBookIds.length,
         remainingFreeStarts: Math.max(0, freeBookSlots - unlockedBookIds.length),
+        currentPeriodEnd: entitlement?.currentPeriodEnd,
+        licenseKey: entitlement?.licenseKey,
+        licenseExpiresAt: entitlement?.licenseExpiresAt,
       },
       paywall: {
         price,

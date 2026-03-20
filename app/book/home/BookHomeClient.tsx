@@ -22,6 +22,7 @@ import { type BookProgressSnapshot } from "@/app/book/hooks/useBookAnalytics";
 import { useKeyboardShortcut } from "@/app/book/hooks/useKeyboardShortcut";
 import { useSavedBooks } from "@/app/book/hooks/useSavedBooks";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
+import { useFlowPoints } from "@/app/book/hooks/useFlowPoints";
 import {
   BadgeDetailPanel,
   DashboardAchievementWidget,
@@ -31,6 +32,7 @@ import { CurrentlyReadingCard } from "@/app/book/home/components/CurrentlyReadin
 import { TodaySessionCard } from "@/app/book/home/components/TodaySessionCard";
 import { GoalMeter } from "@/app/book/home/components/GoalMeter";
 import { BookMiniCard } from "@/app/book/home/components/BookMiniCard";
+import { FlowPointsSection } from "@/app/book/home/components/FlowPointsSection";
 import { InfoModal } from "@/app/book/home/components/InfoModal";
 
 function chapterFromResume(snapshot: BookProgressSnapshot): number {
@@ -89,6 +91,7 @@ export function BookHomeClient() {
     preferredExampleContext: onboarding.preferredExampleContext,
   });
   const { saved, hydrated: savedHydrated } = useSavedBooks(onboarding.setupComplete);
+  const flowPoints = useFlowPoints(onboarding.setupComplete);
   const badgeSystem = useBadgeSystem({
     selectedBookIds: onboarding.selectedBookIds,
     dailyGoalMinutes: onboarding.dailyGoalMinutes,
@@ -368,6 +371,17 @@ export function BookHomeClient() {
             totalChapters={analytics?.totalCompletedChapters ?? 0}
             booksCompleted={analytics?.booksCompleted ?? 0}
             avgQuizScore={analytics?.avgQuizScore ?? 0}
+          />
+        </div>
+
+        <div className="mt-7">
+          <FlowPointsSection
+            loading={flowPoints.loading}
+            payload={flowPoints.payload}
+            error={flowPoints.error}
+            redeemingRewardId={flowPoints.redeemingRewardId}
+            message={flowPoints.redeemMessage}
+            onRedeem={flowPoints.redeemReward}
           />
         </div>
 

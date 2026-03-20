@@ -21,7 +21,24 @@ async function streamToString(body: GetObjectCommandOutput["Body"]): Promise<str
 }
 
 export async function readJsonFromS3<T>(bucket: string, key: string): Promise<T> {
-  const res = await s3.send(new GetObjectCommand({ Bucket: bucket, Key: key }));
+  let res: GetObjectCommandOutput;
+  try {
+    res = await s3.send(new GetObjectCommand({ Bucket: bucket, Key: key }));
+  } catch (error: unknown) {
+    if (
+      error &&
+      typeof error === "object" &&
+      ((error as Record<string, unknown>).name === "NoSuchKey" ||
+        (error as Record<string, unknown>).name === "NotFound" ||
+        ((error as Record<string, unknown>).$metadata &&
+          typeof (error as Record<string, unknown>).$metadata === "object" &&
+          ((error as { $metadata?: { httpStatusCode?: number } }).$metadata?.httpStatusCode ===
+            404)))
+    ) {
+      throw new BookApiError(404, "content_not_found", "Requested book content is not available.");
+    }
+    throw error;
+  }
   const text = await streamToString(res.Body);
   if (!text.trim()) {
     throw new BookApiError(422, "empty_content", "Uploaded JSON file is empty.");

@@ -35,12 +35,12 @@ var __importStar = (this && this.__importStar) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 const cdk = __importStar(require("aws-cdk-lib"));
-const storage_stack_1 = require("../lib/storage-stack");
+const chapterflow_backend_stack_1 = require("../lib/chapterflow-backend-stack");
 const app = new cdk.App();
-new storage_stack_1.StorageStack(app, "CloudPortfolioStorage", {
+new chapterflow_backend_stack_1.ChapterFlowBackendStack(app, "ChapterFlowBackend", {
     env: {
         account: process.env.CDK_DEFAULT_ACCOUNT,
-        region: process.env.CDK_DEFAULT_REGION,
+        region: "us-east-1",
     },
     synthesizer: new cdk.DefaultStackSynthesizer({
         qualifier: "willfresh1",

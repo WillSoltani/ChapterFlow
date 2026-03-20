@@ -7,7 +7,7 @@ import {
   requireString,
   withBookApiErrors,
 } from "@/app/app/api/book/_lib/http";
-import { getBookTableName } from "@/app/app/api/book/_lib/env";
+import { getBookAnalyticsTableName, getBookTableName } from "@/app/app/api/book/_lib/env";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import {
   deleteApprovedScenario,
@@ -18,6 +18,11 @@ import {
   putScenarioLookup,
   putUserScenarioSubmission,
 } from "@/app/app/api/book/_lib/repo";
+import {
+  analyticsTrackFlowPointsTransaction,
+  analyticsTrackScenario,
+} from "@/app/app/api/book/_lib/analytics-repo";
+import { awardFlowPoints } from "@/app/app/api/book/_lib/flow-points-repo";
 import { nowIso } from "@/app/app/api/book/_lib/keys";
 
 export const runtime = "nodejs";
@@ -74,6 +79,7 @@ export async function PATCH(
     if (!existing) {
       throw new BookApiError(404, "not_found", "Scenario submission not found.");
     }
+    const wasApprovedAlready = lookup.status === "approved";
 
     const now = nowIso();
     const updatedSubmission = {
@@ -124,6 +130,48 @@ export async function PATCH(
       approvedAt: status === "approved" ? now : undefined,
       updatedAt: now,
     });
+
+    if (status === "approved" && !wasApprovedAlready) {
+      const awarded = await awardFlowPoints(tableName, {
+        userId: existing.userId,
+        amount: existing.pointsAwarded,
+        sourceType: "scenario_approved",
+        sourceId: submissionId,
+        metadata: {
+          scope: existing.scope,
+          bookId: existing.bookId,
+        },
+        createdAt: now,
+      });
+
+      getBookAnalyticsTableName()
+        .then((analyticsTable) => {
+          if (!analyticsTable) return;
+          return Promise.allSettled([
+            analyticsTrackScenario(analyticsTable, {
+              userId: existing.userId,
+              bookId: existing.bookId,
+              chapterNumber: existing.chapterNumber,
+              stage: "approved",
+              pointsAwarded: existing.pointsAwarded,
+            }),
+            awarded.awarded
+              ? analyticsTrackFlowPointsTransaction(analyticsTable, {
+                  userId: existing.userId,
+                  deltaPoints: existing.pointsAwarded,
+                  direction: "earn",
+                  sourceType: "scenario_approved",
+                  sourceId: submissionId,
+                  metadata: {
+                    scope: existing.scope,
+                    bookId: existing.bookId,
+                  },
+                })
+              : Promise.resolve(),
+          ]);
+        })
+        .catch(() => {});
+    }
 
     return bookOk({
       submission: {

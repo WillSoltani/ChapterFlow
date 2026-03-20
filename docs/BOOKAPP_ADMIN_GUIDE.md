@@ -11,9 +11,9 @@ This note covers two things:
 ### Prerequisites
 - You are signed in as a Cognito user in the admin group (`BOOK_ADMIN_GROUP`, defaults to `admin`).
 - Book API env vars are configured in runtime:
-  - `BOOK_TABLE_NAME` (or fallback `SECURE_DOC_TABLE`)
-  - `BOOK_INGEST_BUCKET` (or fallback `RAW_BUCKET`)
-  - `BOOK_CONTENT_BUCKET` (or fallback `OUTPUT_BUCKET`)
+  - `BOOK_TABLE_NAME`
+  - `BOOK_INGEST_BUCKET`
+  - `BOOK_CONTENT_BUCKET`
 - Your package JSON follows the backend validator format.
 
 ### Accepted JSON shapes (important)

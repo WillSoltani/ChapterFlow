@@ -6,6 +6,10 @@ import {
   getUserAccessibleChapter,
   selectVariantFromQuery,
 } from "@/app/app/api/book/_lib/content-service";
+import {
+  applyStartDeviceCookie,
+  ensureUserBookStarted,
+} from "@/app/app/api/book/_lib/ensure-book-started";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
 
 export const runtime = "nodejs";
@@ -24,6 +28,14 @@ export async function GET(
 
     const tableName = await getBookTableName();
     const contentBucket = await getBookContentBucket();
+    const started = await ensureUserBookStarted({
+      req,
+      user,
+      tableName,
+      contentBucket,
+      bookId,
+      interactionChapterNumber: Math.floor(chapterNum),
+    });
     const { progress, chapter } = await getUserAccessibleChapter({
       tableName,
       contentBucket,
@@ -44,7 +56,7 @@ export async function GET(
       throw new BookApiError(500, "variant_missing", "No chapter variants are available.");
     }
 
-    return bookOk({
+    const response = bookOk({
       chapter: {
         chapterId: chapter.chapterId,
         number: chapter.number,
@@ -61,5 +73,7 @@ export async function GET(
         completedChapters: progress.completedChapters,
       },
     });
+
+    return applyStartDeviceCookie(response, started);
   });
 }

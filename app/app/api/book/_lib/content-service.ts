@@ -45,7 +45,11 @@ export async function getUserAccessibleChapter(params: {
 }> {
   const progress = await getUserProgress(params.tableName, params.userId, params.bookId);
   if (!progress) {
-    throw new BookApiError(403, "book_not_started", "Start this book first.");
+    throw new BookApiError(
+      403,
+      "book_not_started",
+      "We couldn't prepare this book yet. Try opening it again."
+    );
   }
   if (params.chapterNumber > progress.unlockedThroughChapterNumber) {
     throw new BookApiError(403, "chapter_locked", "This chapter is locked.");
@@ -69,7 +73,11 @@ export async function getUserAccessibleQuiz(params: {
 }> {
   const progress = await getUserProgress(params.tableName, params.userId, params.bookId);
   if (!progress) {
-    throw new BookApiError(403, "book_not_started", "Start this book first.");
+    throw new BookApiError(
+      403,
+      "book_not_started",
+      "We couldn't prepare this book yet. Try opening it again."
+    );
   }
   if (params.chapterNumber > progress.unlockedThroughChapterNumber) {
     throw new BookApiError(403, "chapter_locked", "This chapter is locked.");

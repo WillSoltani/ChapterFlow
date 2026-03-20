@@ -48,6 +48,11 @@ COGNITO_DOMAIN=https://login.siliconx.ca
 COGNITO_CUSTOM_DOMAIN=https://login.siliconx.ca
 COGNITO_REDIRECT_URI=https://siliconx.ca/auth/callback
 COGNITO_LOGOUT_REDIRECT_URI=https://siliconx.ca/
+SSM_PARAMETER_PREFIX=/chapterflow/prod
+BOOK_TABLE_NAME=ChapterFlowApp
+BOOK_ANALYTICS_TABLE_NAME=ChapterFlowInsights
+BOOK_INGEST_BUCKET=<ChapterFlowBackend output>
+BOOK_CONTENT_BUCKET=<ChapterFlowBackend output>
 ```
 
 ## Local development

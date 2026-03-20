@@ -7,11 +7,12 @@ export type EntitlementsResponse = {
   entitlement: {
     plan: "FREE" | "PRO";
     proStatus: "inactive" | "active" | "past_due" | "canceled";
-    proSource?: "stripe" | "license";
+    proSource?: "stripe" | "license" | "flow_points";
     freeBookSlots: number;
     unlockedBookIds: string[];
     unlockedBooksCount: number;
     remainingFreeStarts: number;
+    currentPeriodEnd?: string;
     licenseKey?: string;
     licenseExpiresAt?: string;
   };

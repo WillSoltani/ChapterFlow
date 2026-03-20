@@ -3,9 +3,9 @@
 import { useState } from "react";
 import { ArrowRight, ChevronDown, ChevronUp } from "lucide-react";
 import { BookSaveButton } from "@/app/book/components/BookSaveButton";
-import type { LibraryBookEntry } from "@/app/book/data/mockUserLibraryState";
 import { StatTile } from "@/app/book/library/[bookId]/components/StatTile";
 import { BookCover } from "@/app/book/components/BookCover";
+import type { LibraryBookEntry } from "@/app/book/_lib/library-data";
 
 type BookOverviewPanelProps = {
   entry: LibraryBookEntry;

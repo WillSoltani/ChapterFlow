@@ -154,8 +154,8 @@ export type BookUserEntitlement = {
   userId: string;
   plan: "FREE" | "PRO";
   proStatus?: "inactive" | "active" | "past_due" | "canceled";
-  /** How the user obtained PRO — "stripe" for paid subscription, "license" for a free-pass key */
-  proSource?: "stripe" | "license";
+  /** How the user obtained PRO — "stripe" for paid subscription, "license" for a free-pass key, "flow_points" for a timed reward pass */
+  proSource?: "stripe" | "license" | "flow_points";
   freeBookSlots: number;
   unlockedBookIds: string[];
   stripeCustomerId?: string;
@@ -203,9 +203,55 @@ export type QuizAttemptItem = {
   userId: string;
   bookId: string;
   chapterNumber: number;
+  chapterId?: string;
+  quizId: string;
+  attemptNumber: number;
+  passingScorePercent: number;
   scorePercent: number;
+  correctCount: number;
+  totalQuestions: number;
   passed: boolean;
+  cooldownSeconds: number;
+  nextEligibleAttemptAt?: string | null;
+  unlockedNextChapter: boolean;
+  responses: Array<{
+    questionId: string;
+    selectedChoiceId?: string | null;
+    selectedIndex?: number | null;
+  }>;
+  questionResults: Array<{
+    questionId: string;
+    selectedChoiceId?: string | null;
+    selectedIndex?: number | null;
+    correctChoiceId: string;
+    correctIndex: number;
+    isCorrect: boolean;
+  }>;
+  timeSpentSeconds?: number;
   createdAt: string;
+  updatedAt: string;
+};
+
+export type BookUserQuizStateItem = {
+  userId: string;
+  bookId: string;
+  chapterNumber: number;
+  chapterId?: string;
+  quizId: string;
+  attemptsCount: number;
+  failureStreak: number;
+  passed: boolean;
+  highestScorePercent: number;
+  lastScorePercent: number;
+  lastCorrectCount: number;
+  lastTotalQuestions: number;
+  lastAttemptAt?: string;
+  lastAttemptNumber?: number;
+  nextEligibleAttemptAt?: string | null;
+  passedAt?: string;
+  unlockedNextChapter: boolean;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type ScenarioScope = "work" | "school" | "personal";
@@ -267,7 +313,104 @@ export type BookApprovedScenarioItem = {
 export type BookUserEngagementItem = {
   userId: string;
   points: number;
+  lifetimeEarned?: number;
+  lifetimeSpent?: number;
+  totalEarnEvents?: number;
+  totalSpendEvents?: number;
   createdAt: string;
+  updatedAt: string;
+};
+
+export type FlowPointsSourceType =
+  | "onboarding_complete"
+  | "first_book_started"
+  | "quiz_pass"
+  | "book_complete"
+  | "badge_earned"
+  | "scenario_approved"
+  | "referral_activation_inviter"
+  | "referral_activation_invitee"
+  | "referral_pro_inviter"
+  | "reward_redemption"
+  | "admin_adjustment";
+
+export type FlowPointsRewardId =
+  | "bonus_book_unlock"
+  | "pro_pass_7d"
+  | "pro_pass_30d";
+
+export type BookUserFlowPointsLedgerItem = {
+  userId: string;
+  transactionId: string;
+  direction: "earn" | "spend" | "adjustment";
+  amount: number;
+  sourceType: FlowPointsSourceType;
+  sourceId: string;
+  rewardId?: FlowPointsRewardId;
+  metadata?: Record<string, unknown>;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type BookUserFlowPointsGrantItem = {
+  userId: string;
+  sourceType: FlowPointsSourceType;
+  sourceId: string;
+  amount: number;
+  metadata?: Record<string, unknown>;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type BookUserRewardRedemptionItem = {
+  userId: string;
+  redemptionId: string;
+  rewardId: FlowPointsRewardId;
+  costPoints: number;
+  status: "fulfilled";
+  metadata?: Record<string, unknown>;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type BookUserRewardClaimItem = {
+  userId: string;
+  rewardId: FlowPointsRewardId;
+  redemptionId: string;
+  claimedAt: string;
+  updatedAt: string;
+};
+
+export type BookUserReferralProfileItem = {
+  userId: string;
+  inviteCode: string;
+  pendingInvites: number;
+  activatedInvites: number;
+  proInvites: number;
+  activationPointsEarned: number;
+  proPointsEarned: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type BookReferralCodeLookupItem = {
+  inviteCode: string;
+  inviterUserId: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type BookUserReferralClaimItem = {
+  userId: string;
+  claimId: string;
+  inviterUserId: string;
+  inviteCode: string;
+  status: "pending" | "activated" | "paid" | "blocked" | "expired";
+  claimedAt: string;
+  activationQualifiedAt?: string;
+  activationRewardedAt?: string;
+  proRewardedAt?: string;
+  blockedReason?: string;
   updatedAt: string;
 };
 
