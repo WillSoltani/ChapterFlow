@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState, type ComponentType } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
   ArrowRight,
@@ -509,6 +509,7 @@ function LoadingShell() {
 
 export function BookOnboardingClient() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const shouldReduceMotion = useReducedMotion();
   const [bootstrapping, setBootstrapping] = useState(true);
   const [saveError, setSaveError] = useState<string | null>(null);
@@ -533,6 +534,12 @@ export function BookOnboardingClient() {
     completeSetup,
   } = useOnboardingState();
 
+  const previewMode =
+    searchParams.get("preview") === "1" ||
+    searchParams.get("preview") === "true" ||
+    searchParams.get("inspect") === "1" ||
+    searchParams.get("inspect") === "true";
+
   useEffect(() => {
     if (!hydrated || bootstrapRequestedRef.current) return;
     bootstrapRequestedRef.current = true;
@@ -544,7 +551,7 @@ export function BookOnboardingClient() {
         if (!mounted) return;
         setIdentity(data.identity ?? null);
 
-        if (data?.profile?.onboardingCompleted === true) {
+        if (!previewMode && data?.profile?.onboardingCompleted === true) {
           completeSetup();
           router.replace("/book/workspace");
           return;
@@ -603,6 +610,7 @@ export function BookOnboardingClient() {
     completeSetup,
     hydrated,
     patchState,
+    previewMode,
     router,
     state.currentStep,
     state.readingGoal,

@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import {
   ArrowRight,
-  BookOpenText,
+  BookOpen,
   CheckCircle2,
-  Clock3,
-  LayoutGrid,
+  Layers,
+  Minus,
   Orbit,
   Sparkles,
   Target,
@@ -33,43 +33,13 @@ const FEATURED_BOOK_IDS = [
   "thinking-fast-and-slow",
 ] as const;
 
-const METHOD_CARDS = [
-  {
-    eyebrow: "Understand",
-    title: "Read the main point fast",
-    description:
-      "Each chapter opens with a structured breakdown so you can get the core idea clearly before moving on.",
-  },
-  {
-    eyebrow: "Apply",
-    title: "See how it works in real life",
-    description:
-      "Scenarios turn abstract ideas into practical decisions across everyday contexts, not just theory.",
-  },
-  {
-    eyebrow: "Retain",
-    title: "Check that it actually stuck",
-    description:
-      "Scenario-based quizzes, saved progress, badges, and Flow Points help momentum feel visible without overwhelming the reading experience.",
-  },
-] as const;
-
-const PRINCIPLE_CARDS = [
-  {
-    title: "Structured enough to be useful",
-    description:
-      "The app does not throw a wall of text at you. It organizes each chapter into a sequence you can follow in minutes.",
-  },
-  {
-    title: "Practical enough to remember",
-    description:
-      "Quizzes use active recall and application so the main point is easier to retrieve later, not just recognize in the moment.",
-  },
-  {
-    title: "Motivating without getting noisy",
-    description:
-      "Progress, badges, and rewards stay in the background as reinforcement. The product still feels like learning first.",
-  },
+const LIBRARY_PREVIEW_IDS = [
+  "atomic-habits",
+  "deep-work",
+  "thinking-fast-and-slow",
+  "the-power-of-habit",
+  "mindset",
+  "essentialism",
 ] as const;
 
 export const metadata: Metadata = {
@@ -88,19 +58,31 @@ export const metadata: Metadata = {
 };
 
 function getFeaturedBooks(): BookCatalogItem[] {
-  const selected = FEATURED_BOOK_IDS.map((bookId) => getBookById(bookId)).filter(
-    (book): book is BookCatalogItem => Boolean(book)
+  const selected = FEATURED_BOOK_IDS.map((id) => getBookById(id)).filter(
+    (b): b is BookCatalogItem => Boolean(b)
   );
-
   if (selected.length >= 3) return selected;
-
-  const seen = new Set(selected.map((book) => book.id));
+  const seen = new Set(selected.map((b) => b.id));
   for (const book of BOOKS_CATALOG) {
     if (seen.has(book.id)) continue;
     selected.push(book);
     if (selected.length === 3) break;
   }
   return selected;
+}
+
+function getLibraryPreviewBooks(): BookCatalogItem[] {
+  const selected = LIBRARY_PREVIEW_IDS.map((id) => getBookById(id)).filter(
+    (b): b is BookCatalogItem => Boolean(b)
+  );
+  const seen = new Set(selected.map((b) => b.id));
+  for (const book of BOOKS_CATALOG) {
+    if (seen.has(book.id)) continue;
+    selected.push(book);
+    seen.add(book.id);
+    if (selected.length >= 6) break;
+  }
+  return selected.slice(0, 6);
 }
 
 function SiteLinkButton({
@@ -112,9 +94,9 @@ function SiteLinkButton({
   children: React.ReactNode;
   variant?: "primary" | "secondary" | "ghost";
 }) {
-  const className =
+  const cls =
     variant === "primary"
-      ? "border-(--cf-accent) bg-(--cf-accent) text-white shadow-[0_18px_38px_var(--cf-accent-shadow)] hover:bg-(--cf-accent-strong) hover:border-(--cf-accent-strong)"
+      ? "border-(--cf-accent) bg-(--cf-accent) text-white shadow-[0_16px_32px_var(--cf-accent-shadow)] hover:bg-(--cf-accent-strong) hover:border-(--cf-accent-strong)"
       : variant === "secondary"
         ? "border-(--cf-border) bg-(--cf-surface) text-(--cf-text-1) hover:border-(--cf-border-strong) hover:bg-(--cf-surface-muted)"
         : "border-transparent bg-transparent text-(--cf-text-2) hover:bg-(--cf-surface-muted) hover:text-(--cf-text-1)";
@@ -126,7 +108,7 @@ function SiteLinkButton({
         "inline-flex items-center justify-center gap-2 rounded-full border px-5 py-3 text-sm font-semibold transition duration-200",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)",
         "motion-safe:hover:-translate-y-0.5",
-        className,
+        cls,
       ].join(" ")}
     >
       {children}
@@ -136,8 +118,8 @@ function SiteLinkButton({
 
 function LandingNav() {
   return (
-    <header className="sticky top-0 z-30 border-b border-(--cf-divider) bg-[color:rgba(247,244,238,0.82)] backdrop-blur-xl dark:bg-[color:rgba(18,17,15,0.82)]">
-      <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-3 px-4 py-3.5 sm:px-6">
+    <header className="sticky top-0 z-30 border-b border-(--cf-divider) bg-[color:rgba(247,244,238,0.88)] backdrop-blur-xl dark:bg-[color:rgba(18,17,15,0.88)]">
+      <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-3.5 sm:px-6">
         <Link
           href="/"
           className="inline-flex shrink-0 rounded-[18px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)"
@@ -146,24 +128,24 @@ function LandingNav() {
           <ChapterFlowMark compact />
         </Link>
 
-        <nav className="hidden items-center gap-6 lg:flex">
+        <nav className="hidden items-center gap-7 lg:flex" aria-label="Main navigation">
           <a
-            href="#method"
+            href="#how-it-works"
             className="text-sm font-medium text-(--cf-text-2) transition hover:text-(--cf-text-1)"
           >
             How it works
           </a>
           <a
-            href="#product"
+            href="#library"
             className="text-sm font-medium text-(--cf-text-2) transition hover:text-(--cf-text-1)"
           >
-            Product
+            Library
           </a>
           <a
-            href="#principles"
+            href="#pricing"
             className="text-sm font-medium text-(--cf-text-2) transition hover:text-(--cf-text-1)"
           >
-            Why it feels different
+            Pricing
           </a>
         </nav>
 
@@ -185,45 +167,24 @@ function LandingNav() {
   );
 }
 
-function SectionHeading({
-  eyebrow,
-  title,
-  description,
-}: {
-  eyebrow: string;
-  title: string;
-  description: string;
-}) {
-  return (
-    <div className="max-w-2xl">
-      <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-(--cf-accent)">
-        {eyebrow}
-      </p>
-      <h2 className="mt-3 text-3xl font-semibold tracking-tight text-(--cf-text-1) sm:text-4xl">
-        {title}
-      </h2>
-      <p className="mt-4 text-base leading-7 text-(--cf-text-2) sm:text-lg">
-        {description}
-      </p>
-    </div>
-  );
-}
-
 function HeroPreview({ books }: { books: BookCatalogItem[] }) {
   const [primary, secondary, tertiary] = books;
 
   return (
     <div
       aria-hidden="true"
-      className="relative mx-auto max-w-[42rem] px-2 lg:px-0"
+      className="relative mx-auto max-w-[44rem] px-2 lg:px-0"
     >
-      <div className="pointer-events-none absolute -left-10 top-10 h-44 w-44 rounded-full bg-(--cf-accent-soft) blur-3xl" />
-      <div className="pointer-events-none absolute -right-8 bottom-4 h-40 w-40 rounded-full bg-(--cf-warning-soft) blur-3xl" />
+      {/* Soft ambient glows behind the card */}
+      <div className="pointer-events-none absolute -left-8 top-12 h-48 w-48 rounded-full bg-(--cf-accent-soft) opacity-70 blur-3xl" />
+      <div className="pointer-events-none absolute -right-6 bottom-8 h-40 w-40 rounded-full bg-(--cf-warning-soft) opacity-80 blur-3xl" />
 
+      {/* Main card */}
       <div className="relative rounded-[36px] border border-(--cf-border) bg-[linear-gradient(180deg,var(--cf-surface),var(--cf-surface-muted))] p-4 shadow-[var(--cf-shadow-lg)] sm:p-5">
-        <div className="flex items-center justify-between rounded-[24px] border border-(--cf-divider) bg-(--cf-page-bg) px-4 py-3">
+        {/* Session header */}
+        <div className="flex items-center justify-between rounded-[22px] border border-(--cf-divider) bg-(--cf-page-bg) px-4 py-3">
           <div className="flex items-center gap-3">
-            <div className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-(--cf-accent-border) bg-(--cf-accent-soft)">
+            <div className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-(--cf-accent-border) bg-(--cf-accent-soft)">
               <Orbit className="h-5 w-5 text-(--cf-accent)" />
             </div>
             <div>
@@ -240,8 +201,10 @@ function HeroPreview({ books }: { books: BookCatalogItem[] }) {
           </span>
         </div>
 
-        <div className="mt-4 grid gap-4 xl:grid-cols-[212px_minmax(0,1fr)]">
-          <div className="rounded-[28px] border border-(--cf-border) bg-(--cf-surface) p-4 shadow-[var(--cf-shadow-sm)]">
+        {/* Content grid */}
+        <div className="mt-4 grid gap-4 xl:grid-cols-[200px_minmax(0,1fr)]">
+          {/* Library sidebar */}
+          <div className="rounded-[26px] border border-(--cf-border) bg-(--cf-surface) p-4 shadow-[var(--cf-shadow-sm)]">
             <div className="flex items-center justify-between">
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-(--cf-text-3)">
                 Library
@@ -250,7 +213,7 @@ function HeroPreview({ books }: { books: BookCatalogItem[] }) {
                 95 books live
               </span>
             </div>
-            <div className="mt-4 space-y-3">
+            <div className="mt-4 space-y-2.5">
               {[primary, secondary, tertiary].filter(Boolean).map((book) => (
                 <div
                   key={book.id}
@@ -261,8 +224,8 @@ function HeroPreview({ books }: { books: BookCatalogItem[] }) {
                     title={book.title}
                     icon={book.icon}
                     coverImage={book.coverImage}
-                    className="h-16 w-12 rounded-xl border border-(--cf-border) bg-(--cf-surface)"
-                    sizes="48px"
+                    className="h-14 w-10 shrink-0 rounded-xl border border-(--cf-border) bg-(--cf-surface)"
+                    sizes="40px"
                     interactive={false}
                   />
                   <div className="min-w-0">
@@ -276,9 +239,10 @@ function HeroPreview({ books }: { books: BookCatalogItem[] }) {
             </div>
           </div>
 
-          <div className="space-y-4">
+          {/* Main reading area */}
+          <div className="space-y-3">
             {primary ? (
-              <div className="rounded-[28px] border border-(--cf-border) bg-(--cf-surface) p-5 shadow-[var(--cf-shadow-sm)]">
+              <div className="rounded-[26px] border border-(--cf-border) bg-(--cf-surface) p-5 shadow-[var(--cf-shadow-sm)]">
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div className="flex items-center gap-3">
                     <BookCover
@@ -286,15 +250,15 @@ function HeroPreview({ books }: { books: BookCatalogItem[] }) {
                       title={primary.title}
                       icon={primary.icon}
                       coverImage={primary.coverImage}
-                      className="h-20 w-14 rounded-2xl border border-(--cf-border) bg-(--cf-page-bg)"
-                      sizes="56px"
+                      className="h-[72px] w-12 shrink-0 rounded-2xl border border-(--cf-border) bg-(--cf-page-bg)"
+                      sizes="48px"
                       interactive={false}
                     />
                     <div>
                       <p className="text-xs font-semibold uppercase tracking-[0.16em] text-(--cf-text-3)">
                         Now reading
                       </p>
-                      <p className="mt-1 text-lg font-semibold text-(--cf-text-1)">
+                      <p className="mt-1 text-base font-semibold text-(--cf-text-1)">
                         {primary.title}
                       </p>
                       <p className="text-sm text-(--cf-text-3)">Chapter 3 · main point first</p>
@@ -308,97 +272,85 @@ function HeroPreview({ books }: { books: BookCatalogItem[] }) {
                   </div>
                 </div>
 
-                <div className="mt-5 space-y-3">
-                  <div className="rounded-2xl border border-(--cf-divider) bg-(--cf-page-bg) p-4">
+                {/* Chapter steps */}
+                <div className="mt-4 space-y-2">
+                  <div className="rounded-xl border border-(--cf-divider) bg-(--cf-page-bg) p-3.5">
                     <p className="text-xs font-semibold uppercase tracking-[0.16em] text-(--cf-text-3)">
                       Summary
                     </p>
-                    <p className="mt-2 text-sm leading-6 text-(--cf-text-2)">
-                      Each chapter starts with a cleaner breakdown of the main idea, so you can understand the point before you decide how deep to go.
+                    <p className="mt-1.5 text-sm leading-6 text-(--cf-text-2)">
+                      The chapter idea, broken down clearly before you decide how deep to go.
                     </p>
                   </div>
-                  <div className="flex flex-wrap gap-2">
-                    {["Main idea", "Real-life scenarios", "Quiz review"].map((label) => (
-                      <span
-                        key={label}
-                        className="rounded-full border border-(--cf-accent-border) bg-(--cf-accent-soft) px-3 py-1 text-xs font-medium text-(--cf-accent)"
-                      >
-                        {label}
-                      </span>
-                    ))}
+                  <div className="grid gap-2 sm:grid-cols-2">
+                    <div className="rounded-xl border border-(--cf-divider) bg-(--cf-page-bg) p-3.5">
+                      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-(--cf-text-3)">
+                        Scenario
+                      </p>
+                      <p className="mt-1.5 text-sm leading-5 text-(--cf-text-2)">
+                        The idea in a real-world decision you can actually use.
+                      </p>
+                    </div>
+                    <div className="rounded-xl border border-(--cf-divider) bg-(--cf-page-bg) p-3.5">
+                      <div className="flex items-center justify-between gap-2">
+                        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-(--cf-text-3)">
+                          Quiz
+                        </p>
+                        <span className="rounded-full border border-(--cf-success-border) bg-(--cf-success-soft) px-2 py-0.5 text-[11px] font-semibold text-(--cf-success-text)">
+                          8/10 ✓
+                        </span>
+                      </div>
+                      <p className="mt-1.5 text-sm leading-5 text-(--cf-text-2)">
+                        Pass to unlock the next chapter.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
             ) : null}
-
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div className="rounded-[24px] border border-(--cf-border) bg-(--cf-surface) p-4 shadow-[var(--cf-shadow-sm)]">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-(--cf-text-3)">
-                  Scenario
-                </p>
-                <p className="mt-2 text-sm font-semibold text-(--cf-text-1)">
-                  Work context
-                </p>
-                <p className="mt-2 text-sm leading-6 text-(--cf-text-2)">
-                  The chapter idea is translated into a real decision, so the lesson feels usable instead of abstract.
-                </p>
-              </div>
-              <div className="rounded-[24px] border border-(--cf-border) bg-(--cf-surface) p-4 shadow-[var(--cf-shadow-sm)]">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-(--cf-text-3)">
-                  Quiz
-                </p>
-                <div className="mt-2 flex items-center justify-between">
-                  <p className="text-sm font-semibold text-(--cf-text-1)">Pass to unlock the next chapter</p>
-                  <span className="rounded-full border border-(--cf-success-border) bg-(--cf-success-soft) px-2.5 py-1 text-xs font-semibold text-(--cf-success-text)">
-                    8/10 correct
-                  </span>
-                </div>
-                <p className="mt-2 text-sm leading-6 text-(--cf-text-2)">
-                  Scenario-based questions check whether you understood the chapter well enough to use it later.
-                </p>
-              </div>
-            </div>
           </div>
         </div>
 
-        <div className="pointer-events-none absolute -left-6 top-16 hidden w-48 rounded-[24px] border border-(--cf-border) bg-(--cf-surface) p-4 shadow-[var(--cf-shadow-md)] xl:block">
+        {/* Floating Today panel — xl only */}
+        <div className="pointer-events-none absolute -left-6 top-20 hidden w-44 rounded-[22px] border border-(--cf-border) bg-(--cf-surface) p-4 shadow-[var(--cf-shadow-md)] xl:block">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-(--cf-text-3)">
             Today
           </p>
-          <div className="mt-3 space-y-2.5">
+          <div className="mt-3 space-y-2">
             {[
               "Read one chapter summary",
-              "Finish one scenario set",
-              "Pass the chapter quiz",
+              "Finish a scenario set",
+              "Pass the quiz",
             ].map((item) => (
               <div key={item} className="flex items-start gap-2">
-                <CheckCircle2 className="mt-0.5 h-4 w-4 text-(--cf-success-text)" />
-                <p className="text-sm leading-5 text-(--cf-text-2)">{item}</p>
+                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-(--cf-success-text)" />
+                <p className="text-xs leading-5 text-(--cf-text-2)">{item}</p>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="pointer-events-none absolute -bottom-6 right-2 hidden w-56 rounded-[24px] border border-(--cf-border) bg-(--cf-surface) p-4 shadow-[var(--cf-shadow-md)] xl:block">
+        {/* Floating Momentum panel — xl only */}
+        <div className="pointer-events-none absolute -bottom-5 right-2 hidden w-52 rounded-[22px] border border-(--cf-border) bg-(--cf-surface) p-4 shadow-[var(--cf-shadow-md)] xl:block">
           <div className="flex items-start justify-between gap-3">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-(--cf-text-3)">
                 Momentum
               </p>
-              <p className="mt-1 text-lg font-semibold text-(--cf-text-1)">7-day streak</p>
+              <p className="mt-1 text-base font-semibold text-(--cf-text-1)">7-day streak</p>
             </div>
-            <div className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-(--cf-warning-border) bg-(--cf-warning-soft)">
+            <div className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl border border-(--cf-warning-border) bg-(--cf-warning-soft)">
               <Trophy className="h-4 w-4 text-(--cf-warning-text)" />
             </div>
           </div>
-          <div className="mt-4 grid grid-cols-2 gap-2">
-            <div className="rounded-2xl border border-(--cf-divider) bg-(--cf-page-bg) p-3">
+          <div className="mt-3 grid grid-cols-2 gap-2">
+            <div className="rounded-xl border border-(--cf-divider) bg-(--cf-page-bg) p-2.5">
               <p className="text-xs text-(--cf-text-3)">Badges</p>
-              <p className="mt-1 text-base font-semibold text-(--cf-text-1)">3 earned</p>
+              <p className="mt-1 text-sm font-semibold text-(--cf-text-1)">3 earned</p>
             </div>
-            <div className="rounded-2xl border border-(--cf-divider) bg-(--cf-page-bg) p-3">
+            <div className="rounded-xl border border-(--cf-divider) bg-(--cf-page-bg) p-2.5">
               <p className="text-xs text-(--cf-text-3)">Flow Points</p>
-              <p className="mt-1 text-base font-semibold text-(--cf-text-1)">420</p>
+              <p className="mt-1 text-sm font-semibold text-(--cf-text-1)">420</p>
             </div>
           </div>
         </div>
@@ -407,37 +359,228 @@ function HeroPreview({ books }: { books: BookCatalogItem[] }) {
   );
 }
 
-function LearningMethodSection() {
+function HeroSection({ books }: { books: BookCatalogItem[] }) {
   return (
-    <section id="method" className="py-20 sm:py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <SectionHeading
-          eyebrow="How it works"
-          title="Every chapter is built to move from understanding to application"
-          description="ChapterFlow is not a summary dump. The product is organized around a simple loop that helps ideas make sense, feel useful, and stay retrievable later."
-        />
+    <section
+      className="relative overflow-hidden pb-20 pt-14 sm:pb-28 sm:pt-20"
+      aria-labelledby="hero-heading"
+    >
+      <div className="mx-auto grid max-w-7xl items-center gap-14 px-4 sm:px-6 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
+        {/* Left: copy */}
+        <div>
+          <p className="inline-flex items-center gap-2 rounded-full border border-(--cf-accent-border) bg-(--cf-accent-soft) px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-(--cf-accent)">
+            <Sparkles className="h-3.5 w-3.5" aria-hidden />
+            Guided reading
+          </p>
 
-        <div className="mt-10 grid gap-4 lg:grid-cols-3">
-          {METHOD_CARDS.map((card, index) => (
-            <article
-              key={card.title}
-              className="rounded-[28px] border border-(--cf-border) bg-(--cf-surface) p-6 shadow-[var(--cf-shadow-sm)] transition duration-200 motion-safe:hover:-translate-y-1 motion-safe:hover:shadow-[var(--cf-shadow-md)]"
+          <h1
+            id="hero-heading"
+            className="mt-6 max-w-xl text-5xl font-semibold tracking-tight text-(--cf-text-1) sm:text-6xl lg:text-[4rem] lg:leading-[1.08]"
+          >
+            Understand books well enough to actually use them.
+          </h1>
+
+          <p className="mt-6 max-w-lg text-lg leading-8 text-(--cf-text-2)">
+            ChapterFlow structures every chapter into a short learning loop: read the main
+            point, see it in a real situation, then take a quick quiz to make sure it stuck.
+          </p>
+
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <SiteLinkButton href={START_FREE_HREF}>
+              Start reading free
+              <ArrowRight className="h-4 w-4" />
+            </SiteLinkButton>
+            <SiteLinkButton href="#how-it-works" variant="secondary">
+              See how it works
+            </SiteLinkButton>
+          </div>
+
+          {/* Minimal trust line */}
+          <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2">
+            {["200+ books", "Free to start", "No credit card needed"].map((t) => (
+              <span
+                key={t}
+                className="flex items-center gap-1.5 text-sm text-(--cf-text-3)"
+              >
+                <CheckCircle2 className="h-4 w-4 shrink-0 text-(--cf-success-text)" aria-hidden />
+                {t}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Right: product preview */}
+        <HeroPreview books={books} />
+      </div>
+    </section>
+  );
+}
+
+const HOW_IT_WORKS_STEPS = [
+  {
+    number: "01",
+    icon: Layers,
+    label: "Understand",
+    title: "Read the main point at your depth",
+    description:
+      "Every chapter opens with a structured summary. Choose Simple for the core idea, Standard for the full breakdown, or Deeper for extended analysis — then move on with clarity.",
+  },
+  {
+    number: "02",
+    icon: Target,
+    label: "Apply",
+    title: "See the idea in a real situation",
+    description:
+      "Scenario examples translate abstract concepts into practical decisions. Work context, school context, or personal — so the lesson feels usable, not just understood in theory.",
+  },
+  {
+    number: "03",
+    icon: BookOpen,
+    label: "Retain",
+    title: "Prove it stuck before moving on",
+    description:
+      "Five scenario-based questions before the next chapter unlocks. Active recall — not passive re-reading — is what makes knowledge retrievable later.",
+  },
+] as const;
+
+function HowItWorksSection() {
+  return (
+    <section
+      id="how-it-works"
+      className="border-t border-(--cf-divider) py-20 sm:py-28"
+      aria-labelledby="how-it-works-heading"
+    >
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        {/* Section header */}
+        <div className="max-w-2xl">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-(--cf-accent)">
+            How it works
+          </p>
+          <h2
+            id="how-it-works-heading"
+            className="mt-3 text-3xl font-semibold tracking-tight text-(--cf-text-1) sm:text-4xl"
+          >
+            One chapter. Three steps. Real understanding.
+          </h2>
+          <p className="mt-4 text-base leading-7 text-(--cf-text-2) sm:text-lg">
+            ChapterFlow is not a summary app. It is a structured reading loop designed to
+            turn passive reading into something you can actually recall and apply.
+          </p>
+        </div>
+
+        {/* Step cards */}
+        <div className="mt-12 grid gap-4 sm:grid-cols-3">
+          {HOW_IT_WORKS_STEPS.map((step) => {
+            const Icon = step.icon;
+            return (
+              <article
+                key={step.number}
+                className="rounded-[28px] border border-(--cf-border) bg-(--cf-surface) p-6 shadow-[var(--cf-shadow-sm)] transition duration-200 motion-safe:hover:-translate-y-1 motion-safe:hover:shadow-[var(--cf-shadow-md)]"
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <div className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-(--cf-accent-border) bg-(--cf-accent-soft)">
+                    <Icon className="h-5 w-5 text-(--cf-accent)" aria-hidden />
+                  </div>
+                  <span className="text-2xl font-semibold tracking-tight text-(--cf-text-soft)">
+                    {step.number}
+                  </span>
+                </div>
+                <p className="mt-5 text-xs font-semibold uppercase tracking-[0.2em] text-(--cf-accent)">
+                  {step.label}
+                </p>
+                <h3 className="mt-2 text-xl font-semibold tracking-tight text-(--cf-text-1)">
+                  {step.title}
+                </h3>
+                <p className="mt-3 text-sm leading-7 text-(--cf-text-2)">
+                  {step.description}
+                </p>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function BookShowcaseSection({ books }: { books: BookCatalogItem[] }) {
+  const totalBooks = BOOKS_CATALOG.length;
+  const totalTopics = new Set(
+    BOOKS_CATALOG.flatMap((b) => b.categories.map((c) => c.toLowerCase()))
+  ).size;
+
+  return (
+    <section
+      id="library"
+      className="border-t border-(--cf-divider) py-20 sm:py-28"
+      aria-labelledby="library-heading"
+    >
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="flex flex-wrap items-end justify-between gap-8">
+          <div className="max-w-xl">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-(--cf-accent)">
+              The library
+            </p>
+            <h2
+              id="library-heading"
+              className="mt-3 text-3xl font-semibold tracking-tight text-(--cf-text-1) sm:text-4xl"
             >
-              <div className="flex items-center justify-between gap-3">
-                <span className="rounded-full border border-(--cf-accent-border) bg-(--cf-accent-soft) px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-(--cf-accent)">
-                  {card.eyebrow}
-                </span>
-                <span className="text-3xl font-semibold tracking-tight text-(--cf-text-soft)">
-                  0{index + 1}
-                </span>
-              </div>
-              <h3 className="mt-5 text-xl font-semibold tracking-tight text-(--cf-text-1)">
-                {card.title}
-              </h3>
-              <p className="mt-3 text-sm leading-7 text-(--cf-text-2) sm:text-base">
-                {card.description}
+              {totalBooks}+ books, each structured the same way.
+            </h2>
+            <p className="mt-4 text-base leading-7 text-(--cf-text-2)">
+              Pick any title and you get the same reliable chapter loop — summary, scenarios,
+              quiz. Across {totalTopics}+ topic clusters from productivity to philosophy.
+            </p>
+          </div>
+
+          <SiteLinkButton href={START_FREE_HREF}>
+            Browse the library
+            <ArrowRight className="h-4 w-4" />
+          </SiteLinkButton>
+        </div>
+
+        {/* Book grid */}
+        <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+          {books.map((book) => (
+            <div
+              key={book.id}
+              className="group rounded-[22px] border border-(--cf-border) bg-(--cf-surface) p-3 shadow-[var(--cf-shadow-sm)] transition duration-200 motion-safe:hover:-translate-y-1 motion-safe:hover:shadow-[var(--cf-shadow-md)]"
+            >
+              <BookCover
+                bookId={book.id}
+                title={book.title}
+                icon={book.icon}
+                coverImage={book.coverImage}
+                className="h-40 w-full rounded-2xl border border-(--cf-border) bg-(--cf-page-bg) sm:h-44"
+                imageClassName="object-cover bg-white"
+                sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 14vw"
+                interactive={false}
+              />
+              <p className="mt-3 truncate text-sm font-semibold text-(--cf-text-1)">
+                {book.title}
               </p>
-            </article>
+              <p className="mt-0.5 truncate text-xs text-(--cf-text-3)">{book.author}</p>
+              <span className="mt-2 inline-block rounded-full border border-(--cf-border) bg-(--cf-surface-muted) px-2.5 py-1 text-[11px] font-medium text-(--cf-text-2)">
+                {book.category}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        {/* Stats strip */}
+        <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3 rounded-[22px] border border-(--cf-border) bg-(--cf-surface) px-6 py-4 shadow-[var(--cf-shadow-sm)]">
+          {[
+            { label: "Books available", value: `${totalBooks}+` },
+            { label: "Topic clusters", value: `${totalTopics}+` },
+            { label: "Free to start", value: "2 books" },
+            { label: "Depth modes", value: "3 levels" },
+          ].map((stat) => (
+            <div key={stat.label} className="min-w-[6rem]">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-(--cf-text-3)">
+                {stat.label}
+              </p>
+              <p className="mt-1 text-xl font-semibold text-(--cf-text-1)">{stat.value}</p>
+            </div>
           ))}
         </div>
       </div>
@@ -445,263 +588,196 @@ function LearningMethodSection() {
   );
 }
 
-function ProductGallery({ books }: { books: BookCatalogItem[] }) {
-  const [primary, secondary, tertiary] = books;
+const PLANS = [
+  {
+    name: "Free",
+    price: "$0",
+    period: "",
+    description: "Try ChapterFlow with two complete books.",
+    cta: "Start reading free",
+    isPrimary: false,
+    badge: null as string | null,
+    features: [
+      "Access to 200+ book library",
+      "Finish up to 2 books",
+      "Simple and Standard depth modes",
+      "Chapter summaries and scenarios",
+      "Chapter quizzes",
+    ],
+    missing: ["Deeper depth mode", "Unlimited books"],
+  },
+  {
+    name: "Pro",
+    price: "$7.99",
+    period: "CAD / month",
+    description: "Unlimited books and the deepest reading mode.",
+    cta: "Try Pro free for 14 days",
+    isPrimary: true,
+    badge: "Most popular",
+    features: [
+      "Access to 200+ book library",
+      "Unlimited books",
+      "Simple and Standard depth modes",
+      "Chapter summaries and scenarios",
+      "Chapter quizzes",
+      "Deeper depth mode",
+      "Priority new title requests",
+    ],
+    missing: [] as string[],
+  },
+];
 
+function PricingSection() {
   return (
-    <section id="product" className="py-20 sm:py-24">
+    <section
+      id="pricing"
+      className="border-t border-(--cf-divider) py-20 sm:py-28"
+      aria-labelledby="pricing-heading"
+    >
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <SectionHeading
-          eyebrow="Inside the product"
-          title="The landing page now matches the actual experience"
-          description="The strongest proof is the interface itself. ChapterFlow is a calmer, more editorial product than a generic productivity app, and the homepage should feel that way immediately."
-        />
+        <div className="max-w-2xl">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-(--cf-accent)">
+            Pricing
+          </p>
+          <h2
+            id="pricing-heading"
+            className="mt-3 text-3xl font-semibold tracking-tight text-(--cf-text-1) sm:text-4xl"
+          >
+            Start free. Go deeper when you&apos;re ready.
+          </h2>
+          <p className="mt-4 text-base leading-7 text-(--cf-text-2)">
+            No annual lock-in. No confusing tiers. Two plans, one purpose.
+          </p>
+        </div>
 
-        <div className="mt-10 grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
-          <article className="rounded-[32px] border border-(--cf-border) bg-(--cf-surface) p-5 shadow-[var(--cf-shadow-md)] sm:p-6">
-            <div className="flex flex-wrap items-start justify-between gap-4">
-              <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-(--cf-accent)">
-                  Library
-                </p>
-                <h3 className="mt-2 text-2xl font-semibold tracking-tight text-(--cf-text-1)">
-                  Browse a real reading catalog, not a blank dashboard
-                </h3>
-              </div>
-              <span className="rounded-full border border-(--cf-border) bg-(--cf-page-bg) px-3 py-1 text-xs font-semibold text-(--cf-text-2)">
-                95 books across dozens of topics
-              </span>
-            </div>
+        <div className="mt-10 grid gap-4 pt-4 sm:grid-cols-2 sm:max-w-2xl">
+          {PLANS.map((plan) => (
+            <article
+              key={plan.name}
+              className={[
+                "relative flex flex-col rounded-[28px] border p-7 shadow-[var(--cf-shadow-sm)]",
+                plan.isPrimary
+                  ? "border-(--cf-accent-border) bg-[linear-gradient(160deg,var(--cf-accent-soft),var(--cf-surface)_60%)]"
+                  : "border-(--cf-border) bg-(--cf-surface)",
+              ].join(" ")}
+            >
+              {plan.badge && (
+                <div className="absolute -top-3.5 left-6">
+                  <span className="rounded-full border border-(--cf-accent-border) bg-(--cf-accent) px-3.5 py-1 text-[11px] font-bold text-white shadow-[0_4px_12px_var(--cf-accent-shadow)]">
+                    {plan.badge}
+                  </span>
+                </div>
+              )}
 
-            <div className="mt-6 grid gap-3 sm:grid-cols-3">
-              {[primary, secondary, tertiary].filter(Boolean).map((book) => (
-                <div
-                  key={book.id}
-                  className="rounded-[24px] border border-(--cf-divider) bg-(--cf-page-bg) p-3"
+              <div className="mb-6">
+                <p
+                  className={[
+                    "text-xs font-bold uppercase tracking-widest",
+                    plan.isPrimary ? "text-(--cf-accent)" : "text-(--cf-text-3)",
+                  ].join(" ")}
                 >
-                  <BookCover
-                    bookId={book.id}
-                    title={book.title}
-                    icon={book.icon}
-                    coverImage={book.coverImage}
-                    className="h-52 rounded-2xl border border-(--cf-border) bg-(--cf-surface)"
-                    imageClassName="object-cover bg-white"
-                    sizes="(max-width: 768px) 45vw, 18vw"
-                    interactive={false}
-                  />
-                  <p className="mt-3 truncate text-sm font-semibold text-(--cf-text-1)">
-                    {book.title}
-                  </p>
-                  <p className="mt-1 text-xs text-(--cf-text-3)">{book.author}</p>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    <span className="rounded-full border border-(--cf-border) bg-(--cf-surface) px-2.5 py-1 text-[11px] font-medium text-(--cf-text-2)">
-                      {book.category}
-                    </span>
-                    <span className="rounded-full border border-(--cf-accent-border) bg-(--cf-accent-soft) px-2.5 py-1 text-[11px] font-medium text-(--cf-accent)">
-                      ~{Math.round(book.estimatedMinutes / 60)}h
-                    </span>
-                  </div>
+                  {plan.name}
+                </p>
+                <div className="mt-3 flex items-end gap-1.5">
+                  <span className="text-4xl font-semibold tracking-tight text-(--cf-text-1)">
+                    {plan.price}
+                  </span>
+                  {plan.period && (
+                    <span className="mb-1 text-sm text-(--cf-text-3)">{plan.period}</span>
+                  )}
                 </div>
-              ))}
-            </div>
-          </article>
-
-          <div className="grid gap-4">
-            <article className="rounded-[32px] border border-(--cf-border) bg-(--cf-surface) p-5 shadow-[var(--cf-shadow-md)] sm:p-6">
-              <div className="flex items-center gap-3">
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-(--cf-accent-border) bg-(--cf-accent-soft)">
-                  <BookOpenText className="h-5 w-5 text-(--cf-accent)" />
-                </span>
-                <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-(--cf-text-3)">
-                    Chapter screen
-                  </p>
-                  <h3 className="mt-1 text-xl font-semibold tracking-tight text-(--cf-text-1)">
-                    Summary, scenarios, then quiz
-                  </h3>
-                </div>
+                <p className="mt-2 text-sm text-(--cf-text-2)">{plan.description}</p>
               </div>
 
-              <div className="mt-5 space-y-3">
-                <div className="rounded-2xl border border-(--cf-divider) bg-(--cf-page-bg) p-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-(--cf-text-3)">
-                    Summary
-                  </p>
-                  <p className="mt-2 text-sm leading-6 text-(--cf-text-2)">
-                    Clear chapter breakdowns, key takeaways, and a cleaner path into the main idea.
-                  </p>
-                </div>
-                <div className="rounded-2xl border border-(--cf-divider) bg-(--cf-page-bg) p-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-(--cf-text-3)">
-                    Practical scenario
-                  </p>
-                  <p className="mt-2 text-sm leading-6 text-(--cf-text-2)">
-                    The app reframes the chapter into real situations so the lesson is easier to connect to everyday choices.
-                  </p>
-                </div>
-                <div className="rounded-2xl border border-(--cf-divider) bg-(--cf-page-bg) p-4">
-                  <div className="flex items-center justify-between gap-3">
-                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-(--cf-text-3)">
-                      Quiz result
-                    </p>
-                    <span className="rounded-full border border-(--cf-success-border) bg-(--cf-success-soft) px-2.5 py-1 text-[11px] font-semibold text-(--cf-success-text)">
-                      Pass to unlock next
-                    </span>
-                  </div>
-                  <p className="mt-2 text-sm leading-6 text-(--cf-text-2)">
-                    Review what you missed, then move on with a stronger grasp of the chapter.
-                  </p>
-                </div>
-              </div>
-            </article>
-
-            <article className="rounded-[32px] border border-(--cf-border) bg-(--cf-surface) p-5 shadow-[var(--cf-shadow-md)] sm:p-6">
-              <div className="flex items-center gap-3">
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-(--cf-warning-border) bg-(--cf-warning-soft)">
-                  <Trophy className="h-5 w-5 text-(--cf-warning-text)" />
-                </span>
-                <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-(--cf-text-3)">
-                    Progress and rewards
-                  </p>
-                  <h3 className="mt-1 text-xl font-semibold tracking-tight text-(--cf-text-1)">
-                    Momentum stays visible
-                  </h3>
-                </div>
-              </div>
-
-              <div className="mt-5 grid gap-3 sm:grid-cols-2">
-                {[
-                  { label: "Current streak", value: "7 days" },
-                  { label: "Quiz average", value: "88%" },
-                  { label: "Badges earned", value: "3 badges" },
-                  { label: "Flow Points", value: "420 points" },
-                ].map((item) => (
-                  <div
-                    key={item.label}
-                    className="rounded-2xl border border-(--cf-divider) bg-(--cf-page-bg) p-4"
-                  >
-                    <p className="text-xs uppercase tracking-[0.16em] text-(--cf-text-3)">
-                      {item.label}
-                    </p>
-                    <p className="mt-2 text-lg font-semibold text-(--cf-text-1)">
-                      {item.value}
-                    </p>
-                  </div>
+              <ul className="mb-7 flex-1 space-y-3" aria-label={`${plan.name} plan features`}>
+                {plan.features.map((feat) => (
+                  <li key={feat} className="flex items-start gap-3">
+                    <CheckCircle2
+                      className="mt-0.5 h-4 w-4 shrink-0 text-(--cf-success-text)"
+                      aria-hidden
+                    />
+                    <span className="text-sm text-(--cf-text-1)">{feat}</span>
+                  </li>
                 ))}
-              </div>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
+                {plan.missing.map((feat) => (
+                  <li key={feat} className="flex items-start gap-3">
+                    <Minus
+                      className="mt-0.5 h-4 w-4 shrink-0 text-(--cf-text-soft)"
+                      aria-hidden
+                    />
+                    <span className="text-sm text-(--cf-text-soft)">{feat}</span>
+                  </li>
+                ))}
+              </ul>
 
-function PrinciplesSection() {
-  return (
-    <section id="principles" className="py-20 sm:py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <SectionHeading
-          eyebrow="Why it feels different"
-          title="A calmer product story, a clearer visual system, and a sharper reason to try it"
-          description="The redesign uses the same warm editorial palette as the app itself, keeps accent color focused on decisions that matter, and lets the product method do the persuasion."
-        />
-
-        <div className="mt-10 grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="grid gap-4">
-            {PRINCIPLE_CARDS.map((card) => (
-              <article
-                key={card.title}
-                className="rounded-[28px] border border-(--cf-border) bg-(--cf-surface) p-6 shadow-[var(--cf-shadow-sm)]"
+              <Link
+                href={START_FREE_HREF}
+                className={[
+                  "block rounded-2xl border px-5 py-3 text-center text-sm font-semibold transition duration-200",
+                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)",
+                  "motion-safe:hover:-translate-y-0.5",
+                  plan.isPrimary
+                    ? "border-(--cf-accent) bg-(--cf-accent) text-white shadow-[0_8px_24px_var(--cf-accent-shadow)] hover:bg-(--cf-accent-strong)"
+                    : "border-(--cf-border) bg-(--cf-page-bg) text-(--cf-text-1) hover:border-(--cf-border-strong)",
+                ].join(" ")}
               >
-                <h3 className="text-xl font-semibold tracking-tight text-(--cf-text-1)">
-                  {card.title}
-                </h3>
-                <p className="mt-3 text-sm leading-7 text-(--cf-text-2) sm:text-base">
-                  {card.description}
-                </p>
-              </article>
-            ))}
-          </div>
-
-          <article className="rounded-[32px] border border-(--cf-border) bg-[linear-gradient(180deg,var(--cf-surface),var(--cf-surface-muted))] p-6 shadow-[var(--cf-shadow-md)]">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-(--cf-accent)">
-              What the page now says clearly
-            </p>
-            <div className="mt-6 space-y-4">
-              {[
-                {
-                  icon: <LayoutGrid className="h-4 w-4 text-(--cf-accent)" />,
-                  title: "This is a reading product",
-                  body: "The page now leads with books, chapter flow, and real product surfaces instead of abstract startup framing.",
-                },
-                {
-                  icon: <Target className="h-4 w-4 text-(--cf-accent)" />,
-                  title: "The outcome is practical understanding",
-                  body: "The copy focuses on understanding, application, quizzes, and momentum rather than vague productivity language.",
-                },
-                {
-                  icon: <Sparkles className="h-4 w-4 text-(--cf-accent)" />,
-                  title: "Rewards support the habit, not the headline",
-                  body: "Badges and Flow Points appear as tasteful reinforcement, not as the main promise of the product.",
-                },
-              ].map((item) => (
-                <div
-                  key={item.title}
-                  className="rounded-[24px] border border-(--cf-divider) bg-(--cf-page-bg) p-4"
-                >
-                  <div className="flex items-center gap-2">
-                    <span className="inline-flex h-8 w-8 items-center justify-center rounded-xl border border-(--cf-accent-border) bg-(--cf-accent-soft)">
-                      {item.icon}
-                    </span>
-                    <p className="text-sm font-semibold text-(--cf-text-1)">{item.title}</p>
-                  </div>
-                  <p className="mt-3 text-sm leading-6 text-(--cf-text-2)">{item.body}</p>
-                </div>
-              ))}
-            </div>
-          </article>
+                {plan.cta}
+              </Link>
+            </article>
+          ))}
         </div>
+
+        <p className="mt-6 text-sm text-(--cf-text-3)">
+          Pro trial requires no credit card. Cancel before 14 days and you will never be
+          charged.
+        </p>
       </div>
     </section>
   );
 }
 
-function FinalCallToAction() {
+function FinalCTA() {
   return (
-    <section className="pb-24 pt-20 sm:pb-28 sm:pt-24">
+    <section
+      className="border-t border-(--cf-divider) pb-24 pt-20 sm:pb-28 sm:pt-24"
+      aria-labelledby="final-cta-heading"
+    >
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <div className="relative overflow-hidden rounded-[40px] border border-(--cf-accent-border) bg-[linear-gradient(135deg,var(--cf-accent-soft),var(--cf-surface),var(--cf-warning-soft))] px-6 py-10 shadow-[var(--cf-shadow-lg)] sm:px-10 sm:py-14">
-          <div className="pointer-events-none absolute -right-16 top-0 h-52 w-52 rounded-full bg-(--cf-accent-muted) blur-3xl" />
-          <div className="pointer-events-none absolute -left-8 bottom-0 h-40 w-40 rounded-full bg-(--cf-warning-soft) blur-3xl" />
+        <div className="relative overflow-hidden rounded-[36px] border border-(--cf-accent-border) bg-[linear-gradient(135deg,var(--cf-accent-soft),var(--cf-surface)_55%,var(--cf-warning-soft))] px-8 py-12 shadow-[var(--cf-shadow-lg)] sm:px-12 sm:py-16">
+          {/* Decorative glows */}
+          <div className="pointer-events-none absolute -right-12 -top-6 h-56 w-56 rounded-full bg-(--cf-accent-muted) blur-3xl" aria-hidden />
+          <div className="pointer-events-none absolute -bottom-8 -left-8 h-44 w-44 rounded-full bg-(--cf-warning-soft) blur-3xl" aria-hidden />
 
           <div className="relative flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
-            <div className="max-w-2xl">
+            <div className="max-w-xl">
               <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-(--cf-accent)">
                 Start with one chapter
               </p>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-(--cf-text-1) sm:text-4xl">
-                Try the reading flow that makes books easier to understand and easier to keep using.
+              <h2
+                id="final-cta-heading"
+                className="mt-3 text-3xl font-semibold tracking-tight text-(--cf-text-1) sm:text-4xl"
+              >
+                Try the reading flow that makes books easier to finish and easier to use.
               </h2>
               <p className="mt-4 text-base leading-7 text-(--cf-text-2)">
-                Start free, pick a book, and see how ChapterFlow turns summaries, scenarios, quizzes, and progress into one calmer learning loop.
+                Pick a book, read one chapter, take the quiz. It takes under 20 minutes and
+                you will know immediately whether ChapterFlow changes how you read.
               </p>
-              <div className="mt-5 flex flex-wrap gap-4 text-sm text-(--cf-text-2)">
+              <div className="mt-5 flex flex-wrap gap-5 text-sm text-(--cf-text-2)">
                 <span className="inline-flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4 text-(--cf-success-text)" />
-                  No credit card needed to start
+                  <CheckCircle2 className="h-4 w-4 text-(--cf-success-text)" aria-hidden />
+                  No credit card to start
                 </span>
                 <span className="inline-flex items-center gap-2">
-                  <Clock3 className="h-4 w-4 text-(--cf-accent)" />
-                  Built for short, repeatable sessions
+                  <CheckCircle2 className="h-4 w-4 text-(--cf-success-text)" aria-hidden />
+                  2 complete books free
                 </span>
               </div>
             </div>
 
             <div className="flex flex-wrap items-center gap-3">
               <SiteLinkButton href={START_FREE_HREF}>
-                Start free
+                Start reading free
                 <ArrowRight className="h-4 w-4" />
               </SiteLinkButton>
               <SiteLinkButton href={SIGN_IN_HREF} variant="secondary">
@@ -728,20 +804,23 @@ function Footer() {
             <ChapterFlowMark compact />
           </Link>
           <span className="hidden sm:inline">
-            Guided reading for people who want depth, momentum, and real retention.
+            Guided reading for depth, momentum, and real retention.
           </span>
         </div>
-        <div className="flex flex-wrap items-center gap-4">
-          <a href="#method" className="transition hover:text-(--cf-text-1)">
+        <nav className="flex flex-wrap items-center gap-5" aria-label="Footer navigation">
+          <a href="#how-it-works" className="transition hover:text-(--cf-text-1)">
             How it works
           </a>
-          <a href="#product" className="transition hover:text-(--cf-text-1)">
-            Product
+          <a href="#library" className="transition hover:text-(--cf-text-1)">
+            Library
+          </a>
+          <a href="#pricing" className="transition hover:text-(--cf-text-1)">
+            Pricing
           </a>
           <Link href={SIGN_IN_HREF} className="transition hover:text-(--cf-text-1)">
             Sign in
           </Link>
-        </div>
+        </nav>
       </div>
     </footer>
   );
@@ -749,89 +828,31 @@ function Footer() {
 
 export default function Home() {
   const featuredBooks = getFeaturedBooks();
-  const totalBooks = BOOKS_CATALOG.length;
-  const totalTopics = new Set(
-    BOOKS_CATALOG.flatMap((book) => book.categories.map((category) => category.toLowerCase()))
-  ).size;
+  const libraryBooks = getLibraryPreviewBooks();
 
   return (
-    <div className="min-h-screen bg-[linear-gradient(180deg,var(--cf-page-bg),var(--cf-page-bg-alt)_48%,var(--cf-page-bg))] text-(--cf-text-1)">
-      <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,var(--cf-accent-soft),transparent_28%),radial-gradient(circle_at_85%_18%,var(--cf-warning-soft),transparent_22%),linear-gradient(180deg,var(--cf-page-bg),var(--cf-page-bg-alt)_48%,var(--cf-page-bg))]" />
+    <div className="min-h-screen text-(--cf-text-1)">
+      {/* Fixed ambient background */}
+      <div
+        className="pointer-events-none fixed inset-0 -z-10"
+        aria-hidden
+        style={{
+          background: [
+            "radial-gradient(circle at 15% 0%, var(--cf-accent-soft) 0%, transparent 30%)",
+            "radial-gradient(circle at 85% 15%, var(--cf-warning-soft) 0%, transparent 25%)",
+            "linear-gradient(180deg, var(--cf-page-bg) 0%, var(--cf-page-bg-alt) 50%, var(--cf-page-bg) 100%)",
+          ].join(", "),
+        }}
+      />
 
       <LandingNav />
 
       <main>
-        <section className="relative overflow-hidden pb-18 pt-14 sm:pb-24 sm:pt-18">
-          <div className="mx-auto grid max-w-7xl items-center gap-14 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
-            <div>
-              <p className="inline-flex items-center gap-2 rounded-full border border-(--cf-accent-border) bg-(--cf-accent-soft) px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-(--cf-accent)">
-                <Sparkles className="h-3.5 w-3.5" />
-                Practical guided reading
-              </p>
-
-              <h1 className="mt-6 max-w-3xl text-5xl font-semibold tracking-tight text-(--cf-text-1) sm:text-6xl lg:text-7xl">
-                Understand books well enough to use them.
-              </h1>
-
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-(--cf-text-2) sm:text-xl">
-                ChapterFlow turns each chapter into a calmer learning loop: read the main point, see it in practical situations, take a quiz, and keep your progress moving.
-              </p>
-
-              <div className="mt-8 flex flex-wrap items-center gap-3">
-                <SiteLinkButton href={START_FREE_HREF}>
-                  Start free
-                  <ArrowRight className="h-4 w-4" />
-                </SiteLinkButton>
-                <SiteLinkButton href="#method" variant="secondary">
-                  See how it works
-                </SiteLinkButton>
-              </div>
-
-              <div className="mt-8 grid gap-3 sm:grid-cols-3">
-                <div className="rounded-[22px] border border-(--cf-border) bg-(--cf-surface) px-4 py-4 shadow-[var(--cf-shadow-sm)]">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-(--cf-text-3)">
-                    Library
-                  </p>
-                  <p className="mt-2 text-2xl font-semibold text-(--cf-text-1)">
-                    {totalBooks}
-                  </p>
-                  <p className="mt-1 text-sm leading-6 text-(--cf-text-2)">
-                    live books across {totalTopics}+ topic clusters
-                  </p>
-                </div>
-                <div className="rounded-[22px] border border-(--cf-border) bg-(--cf-surface) px-4 py-4 shadow-[var(--cf-shadow-sm)]">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-(--cf-text-3)">
-                    Chapter flow
-                  </p>
-                  <p className="mt-2 text-2xl font-semibold text-(--cf-text-1)">
-                    Summary → Quiz
-                  </p>
-                  <p className="mt-1 text-sm leading-6 text-(--cf-text-2)">
-                    scenarios sit in the middle so the lesson feels usable
-                  </p>
-                </div>
-                <div className="rounded-[22px] border border-(--cf-border) bg-(--cf-surface) px-4 py-4 shadow-[var(--cf-shadow-sm)]">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-(--cf-text-3)">
-                    Momentum
-                  </p>
-                  <p className="mt-2 text-2xl font-semibold text-(--cf-text-1)">
-                    Progress that stays visible
-                  </p>
-                  <p className="mt-1 text-sm leading-6 text-(--cf-text-2)">
-                    badges and Flow Points support the habit without taking over
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <HeroPreview books={featuredBooks} />
-          </div>
-        </section>
-
-        <LearningMethodSection />
-        <ProductGallery books={featuredBooks} />
-        <PrinciplesSection />
-        <FinalCallToAction />
+        <HeroSection books={featuredBooks} />
+        <HowItWorksSection />
+        <BookShowcaseSection books={libraryBooks} />
+        <PricingSection />
+        <FinalCTA />
       </main>
 
       <Footer />
