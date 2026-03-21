@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState, type ComponentType } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
   ArrowRight,
@@ -43,6 +43,7 @@ import {
 const TOTAL_STEPS = 5;
 const MAX_BOOKS = 3;
 const DEFAULT_DAILY_GOAL_MINUTES = 20;
+const LOCK_ON_ONBOARDING_FOR_INSPECTION = true;
 const STEP_LABELS = ["Welcome", "How it works", "Tailor", "Starter shelf", "Ready"];
 const READING_GOAL_VALUES: readonly ReadingGoalOption[] = [
   "career",
@@ -508,7 +509,6 @@ function LoadingShell() {
 }
 
 export function BookOnboardingClient() {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const shouldReduceMotion = useReducedMotion();
   const [bootstrapping, setBootstrapping] = useState(true);
@@ -535,6 +535,7 @@ export function BookOnboardingClient() {
   } = useOnboardingState();
 
   const previewMode =
+    LOCK_ON_ONBOARDING_FOR_INSPECTION ||
     searchParams.get("preview") === "1" ||
     searchParams.get("preview") === "true" ||
     searchParams.get("inspect") === "1" ||
@@ -553,7 +554,6 @@ export function BookOnboardingClient() {
 
         if (!previewMode && data?.profile?.onboardingCompleted === true) {
           completeSetup();
-          router.replace("/book/workspace");
           return;
         }
 
@@ -611,7 +611,6 @@ export function BookOnboardingClient() {
     hydrated,
     patchState,
     previewMode,
-    router,
     state.currentStep,
     state.readingGoal,
     state.selectedBookIds.length,
@@ -738,7 +737,6 @@ export function BookOnboardingClient() {
 
       patchState(finalProfile);
       completeSetup();
-      router.push("/book/workspace");
     } catch (error) {
       if (error instanceof BookClientError) {
         setSaveError(error.message);
@@ -772,7 +770,9 @@ export function BookOnboardingClient() {
           ? "Build my starter shelf"
           : step === 3
             ? "Review my setup"
-            : "Open my workspace";
+            : LOCK_ON_ONBOARDING_FOR_INSPECTION
+              ? "Save setup"
+              : "Open my workspace";
 
   const motionTransition = shouldReduceMotion
     ? { duration: 0 }
