@@ -14,7 +14,9 @@ function getBookCoverCandidates(bookId: string, coverImage?: string): string[] {
   ];
 
   if (!coverImage) return localCandidates;
-  if (localCandidates.includes(coverImage)) return localCandidates;
+  if (localCandidates.includes(coverImage)) {
+    return [coverImage, ...localCandidates.filter((c) => c !== coverImage)];
+  }
   return [coverImage, ...localCandidates];
 }
 
