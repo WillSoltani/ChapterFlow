@@ -7,11 +7,13 @@ import { createContext, useContext, useCallback, useSyncExternalStore } from "re
 export type Motivation = "career" | "academic" | "personal" | "curiosity";
 export type ChapterOrder = "summary_first" | "scenarios_first";
 export type DailyGoal = 10 | 20 | 30;
+export type Tone = "gentle" | "direct" | "competitive";
 
 export interface OnboardingState {
   currentStep: number;
   motivation: Motivation | null;
   interests: string[];
+  tone: Tone;
   dailyGoal: DailyGoal;
   chapterOrder: ChapterOrder;
   starterShelf: any[];
@@ -24,6 +26,7 @@ const DEFAULT_STATE: OnboardingState = {
   currentStep: 1,
   motivation: null,
   interests: [],
+  tone: "direct",
   dailyGoal: 20,
   chapterOrder: "summary_first",
   starterShelf: [],
@@ -112,6 +115,10 @@ export function useOnboarding() {
     setState({ interests: next });
   }, []);
 
+  const setTone = useCallback((tone: Tone) => {
+    setState({ tone });
+  }, []);
+
   const setDailyGoal = useCallback((goal: DailyGoal) => {
     setState({ dailyGoal: goal });
   }, []);
@@ -147,6 +154,36 @@ export function useOnboarding() {
     }
   }, []);
 
+  const skipStep = useCallback(() => {
+    const step = state.currentStep;
+    const defaults: Partial<OnboardingState> = {};
+    switch (step) {
+      case 1:
+        defaults.motivation = "personal";
+        break;
+      case 2:
+        defaults.interests = ["psychology", "productivity", "habits", "communication", "leadership"];
+        break;
+      case 3:
+        defaults.tone = "direct";
+        break;
+      case 4:
+        defaults.dailyGoal = 20;
+        defaults.chapterOrder = "summary_first";
+        break;
+      case 5:
+        // Shelf skip is handled by the shelf component itself
+        break;
+    }
+    setState({ ...defaults, currentStep: step + 1, direction: 1 as 1 | -1 });
+  }, []);
+
+  const clearOnboarding = useCallback(() => {
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+    } catch {}
+  }, []);
+
   const resetOnboarding = useCallback(() => {
     state = DEFAULT_STATE;
     persist(state);
@@ -158,6 +195,7 @@ export function useOnboarding() {
     setMotivation,
     setInterests,
     toggleInterest,
+    setTone,
     setDailyGoal,
     setChapterOrder,
     setStarterShelf,
@@ -166,6 +204,8 @@ export function useOnboarding() {
     goToStep,
     nextStep,
     prevStep,
+    skipStep,
+    clearOnboarding,
     resetOnboarding,
   };
 }

@@ -1,15 +1,19 @@
 "use client";
 
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Search, Settings, Sun } from "lucide-react";
 
 const navLinks = [
-  { label: "Home", active: true },
-  { label: "Library", active: false },
-  { label: "Progress", active: false },
-  { label: "Badges", active: false },
+  { label: "Home", href: "/dashboard" },
+  { label: "Library", href: "/book/library" },
+  { label: "Progress", href: "/book/progress" },
+  { label: "Badges", href: "/book/badges" },
 ];
 
 export function DashboardNavbar() {
+  const pathname = usePathname();
+
   return (
     <header
       className="sticky top-0 z-40 flex h-14 items-center justify-between px-5 md:px-7"
@@ -23,7 +27,7 @@ export function DashboardNavbar() {
       {/* Left cluster */}
       <div className="flex items-center gap-8">
         {/* Logo + brand */}
-        <div className="flex items-center gap-2.5">
+        <Link href="/dashboard" className="flex items-center gap-2.5">
           <svg width={28} height={28} viewBox="0 0 28 28" fill="none">
             <path
               d="M4 7C4 5.9 4.9 5 6 5H12C13.1 5 14 5.9 14 7V21C14 22.1 13.1 23 12 23H6C4.9 23 4 22.1 4 21V7Z"
@@ -59,41 +63,44 @@ export function DashboardNavbar() {
               ChapterFlow
             </span>
           </div>
-        </div>
+        </Link>
 
         {/* Nav links — desktop only */}
         <nav className="hidden items-center gap-6 md:flex">
-          {navLinks.map((link) => (
-            <button
-              key={link.label}
-              className={`relative cursor-pointer text-[13px] transition-colors ${
-                link.active
-                  ? "font-semibold"
-                  : "nav-link font-normal"
-              }`}
-              style={{
-                color: link.active
-                  ? "var(--text-heading)"
-                  : "var(--text-secondary)",
-              }}
-            >
-              {link.label}
-              {link.active && (
-                <span
-                  className="absolute -bottom-1 left-0 h-[2px] w-full rounded-full"
-                  style={{ background: "var(--accent-blue)" }}
-                />
-              )}
-            </button>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <Link
+                key={link.label}
+                href={link.href}
+                className={`relative text-[13px] transition-colors ${
+                  isActive ? "font-semibold" : "nav-link font-normal"
+                }`}
+                style={{
+                  color: isActive
+                    ? "var(--text-heading)"
+                    : "var(--text-secondary)",
+                }}
+              >
+                {link.label}
+                {isActive && (
+                  <span
+                    className="absolute -bottom-1 left-0 h-[2px] w-full rounded-full"
+                    style={{ background: "var(--accent-blue)" }}
+                  />
+                )}
+              </Link>
+            );
+          })}
         </nav>
       </div>
 
       {/* Right cluster */}
       <div className="flex items-center gap-3">
-        {/* Search pill — desktop */}
-        <button
-          className="hidden cursor-pointer items-center gap-2 rounded-full px-4 py-1.5 text-xs transition-colors md:flex"
+        {/* Search pill — desktop — links to library */}
+        <Link
+          href="/book/library"
+          className="hidden items-center gap-2 rounded-full px-4 py-1.5 text-xs transition-colors md:flex"
           style={{
             background: "var(--bg-elevated)",
             border: "1px solid var(--border-subtle)",
@@ -103,34 +110,39 @@ export function DashboardNavbar() {
           <Search size={12} />
           <span>Search books...</span>
           <kbd className="ml-1 text-[10px] opacity-50">⌘K</kbd>
-        </button>
+        </Link>
 
         {/* Search icon — mobile */}
-        <button
-          className="flex cursor-pointer items-center justify-center md:hidden"
+        <Link
+          href="/book/library"
+          className="flex items-center justify-center md:hidden"
           style={{ color: "var(--text-muted)" }}
         >
           <Search size={18} />
-        </button>
+        </Link>
 
-        {/* Theme toggle */}
+        {/* Theme toggle — no-op for now */}
         <button
           className="hidden cursor-pointer md:flex"
           style={{ color: "var(--text-muted)" }}
+          aria-label="Toggle theme"
         >
           <Sun size={18} />
         </button>
 
         {/* Settings */}
-        <button
-          className="hidden cursor-pointer md:flex"
+        <Link
+          href="/book/settings"
+          className="hidden items-center justify-center md:flex"
           style={{ color: "var(--text-muted)" }}
+          aria-label="Settings"
         >
           <Settings size={18} />
-        </button>
+        </Link>
 
-        {/* Avatar */}
-        <div
+        {/* Avatar — links to profile */}
+        <Link
+          href="/book/profile"
           className="flex items-center justify-center rounded-full font-(family-name:--font-display) text-[13px] font-semibold text-white"
           style={{
             width: 30,
@@ -138,9 +150,10 @@ export function DashboardNavbar() {
             background:
               "linear-gradient(135deg, var(--accent-blue), var(--accent-teal))",
           }}
+          aria-label="Profile"
         >
           W
-        </div>
+        </Link>
       </div>
     </header>
   );

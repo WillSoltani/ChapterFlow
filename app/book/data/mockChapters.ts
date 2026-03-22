@@ -2,6 +2,8 @@ import {
   BOOK_PACKAGES,
   getBookPackageById,
   getBookPackagePresentation,
+  NSTD_RAW_CHAPTERS,
+  resolveNstdTone,
   type BookPackage,
   type PackageChapter,
   type PackageExample,
@@ -3164,6 +3166,78 @@ export function personalizeChapterForMotivation(
       },
       quizRetryPool: personalizeQuestions(chapter, chapter.quizRetryPool, style),
     };
+  }
+
+  /* ── Never Split the Difference: native tone-variant content ──── */
+  if (chapter.bookId === "never-split-the-difference") {
+    const rawCh = NSTD_RAW_CHAPTERS.find(
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (c: any) => c.chapterId === chapter.id || c.number === chapter.order
+    );
+    if (rawCh) {
+      const tone = style as "gentle" | "direct" | "competitive";
+      const rebuildSummary = (depth: ReadingDepth): ChapterSummaryBlock[] => {
+        const variantKey = depth === "simple" ? "easy" : depth === "standard" ? "medium" : "hard";
+        const v = rawCh.contentVariants?.[variantKey];
+        if (!v) return chapter.summaryByDepth[depth];
+        const blocks: ChapterSummaryBlock[] = [];
+        const breakdown = resolveNstdTone(v.chapterBreakdown, tone);
+        if (breakdown) {
+          breakdown.split(/\n\n+/).filter((s: string) => s.trim()).forEach((p: string, i: number) => {
+            blocks.push({ id: `${depth}-p-${i + 1}`, type: "paragraph", text: cleanText(p.trim()) });
+          });
+        }
+        const kts = Array.isArray(v.keyTakeaways) ? v.keyTakeaways : [];
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        kts.forEach((kt: any, i: number) => {
+          const point = resolveNstdTone(kt?.point, tone);
+          if (!point) return;
+          const detail = kt?.moreDetails ? resolveNstdTone(kt.moreDetails, tone) : "";
+          blocks.push({ id: `${depth}-b-${i + 1}`, type: "bullet", text: cleanText(point), detail: cleanText(detail) || "Apply this concept in your next conversation." });
+        });
+        return blocks;
+      };
+      return {
+        ...chapter,
+        summaryByDepth: {
+          simple: rebuildSummary("simple"),
+          standard: rebuildSummary("standard"),
+          deeper: rebuildSummary("deeper"),
+        },
+        examplesDetailed: chapter.examplesDetailed.map((example, i) => {
+          const rawEx = rawCh.examples?.[i];
+          if (!rawEx) return example;
+          return {
+            ...example,
+            scenario: normalizeScenarioPerspective(
+              resolveNstdTone(rawEx.scenario, tone),
+              `${chapter.id}:${example.id}`
+            ),
+            whatToDo: resolveNstdTone(rawEx.whatToDo, tone),
+            whyItMatters: cleanText(resolveNstdTone(rawEx.whyItMatters, tone)),
+          };
+        }),
+        quiz: chapter.quiz.map((q, i) => {
+          const rawQ = rawCh.quiz?.questions?.[i];
+          return rawQ ? { ...q, explanation: resolveNstdTone(rawQ.explanation, tone) } : q;
+        }),
+        quizByDepth: {
+          simple: chapter.quizByDepth.simple.map((q, i) => {
+            const rawQ = rawCh.quiz?.questions?.[i];
+            return rawQ ? { ...q, explanation: resolveNstdTone(rawQ.explanation, tone) } : q;
+          }),
+          standard: chapter.quizByDepth.standard.map((q, i) => {
+            const rawQ = rawCh.quiz?.questions?.[i];
+            return rawQ ? { ...q, explanation: resolveNstdTone(rawQ.explanation, tone) } : q;
+          }),
+          deeper: chapter.quizByDepth.deeper.map((q, i) => {
+            const rawQ = rawCh.quiz?.questions?.[i];
+            return rawQ ? { ...q, explanation: resolveNstdTone(rawQ.explanation, tone) } : q;
+          }),
+        },
+        quizRetryPool: personalizeQuestions(chapter, chapter.quizRetryPool, style),
+      };
+    }
   }
 
   return {

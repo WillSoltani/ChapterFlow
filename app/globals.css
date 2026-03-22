@@ -351,6 +351,14 @@ body {
 }
 
 /* ─────────────────────────────────────────
+   CTA ARROW HOVER
+   ───────────────────────────────────────── */
+.cta-shine:hover .cta-arrow {
+  transform: translateX(5px);
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ─────────────────────────────────────────
    HIDE SCROLLBAR UTILITY
    ───────────────────────────────────────── */
 .hide-scrollbar {
@@ -757,6 +765,34 @@ html[data-motion="reduced"] *::after {
   animation-iteration-count: 1 !important;
   transition-duration: 0.01ms !important;
   scroll-behavior: auto !important;
+}
+
+/* ─────────────────────────────────────────
+   SKELETON SHIMMER (Library)
+   ───────────────────────────────────────── */
+@keyframes shimmer-sweep {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--bg-elevated) 25%,
+    rgba(255,255,255,0.04) 50%,
+    var(--bg-elevated) 75%
+  ) !important;
+  background-size: 200% 100% !important;
+  animation: shimmer-sweep 1.5s ease-in-out infinite;
+}
+
+/* ── Library scrollbar hide ── */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
 
 /* ─────────────────────────────────────────

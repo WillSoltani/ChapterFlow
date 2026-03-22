@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { Check } from "lucide-react";
-import { FIRST_LOOP_CONTENT } from "@/app/onboarding/data/chapters";
-import { ConfettiEffect } from "@/components/ui/ConfettiEffect";
+import { CheckCircle, XCircle } from "lucide-react";
+import { getFirstLoopContent, getQuizFeedback } from "@/app/onboarding/data/chapters";
+import { useOnboarding } from "@/app/onboarding/hooks/useOnboarding";
+import CanvasConfetti from "./CanvasConfetti";
 
 interface MiniQuizProps {
   onComplete: (score: number) => void;
@@ -12,18 +13,23 @@ interface MiniQuizProps {
 
 export default function MiniQuiz({ onComplete }: MiniQuizProps) {
   const prefersReducedMotion = useReducedMotion();
-  const questions = FIRST_LOOP_CONTENT.quiz;
+  const noMotion = !!prefersReducedMotion;
+  const { tone } = useOnboarding();
+  const content = getFirstLoopContent(tone);
+  const questions = content.quiz;
+  const feedback = getQuizFeedback(tone);
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedLetter, setSelectedLetter] = useState<string | null>(null);
   const [showFeedback, setShowFeedback] = useState(false);
-  const [showConfetti, setShowConfetti] = useState(false);
+  const [showMiniConfetti, setShowMiniConfetti] = useState(false);
   const [quizFinished, setQuizFinished] = useState(false);
   const [score, setScore] = useState(0);
 
   const question = questions[currentQuestion];
-  const correctIndex = question.options.findIndex((o) => o.isCorrect);
-  const isCorrect = selectedLetter !== null && question.options.find((o) => o.letter === selectedLetter)?.isCorrect;
+  const isCorrect =
+    selectedLetter !== null &&
+    question.options.find((o) => o.letter === selectedLetter)?.isCorrect;
 
   const handleSelect = useCallback(
     (letter: string) => {
@@ -32,15 +38,16 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
       setSelectedLetter(letter);
       setShowFeedback(true);
 
-      const correct = question.options.find((o) => o.letter === letter)?.isCorrect ?? false;
+      const correct =
+        question.options.find((o) => o.letter === letter)?.isCorrect ?? false;
 
       if (correct) {
         setScore((s) => s + 1);
-        setShowConfetti(true);
-        setTimeout(() => setShowConfetti(false), 1500);
+        setShowMiniConfetti(true);
+        setTimeout(() => setShowMiniConfetti(false), 2000);
       }
 
-      const advanceDelay = correct ? 800 : 1200;
+      const advanceDelay = correct ? 1000 : 1500;
 
       setTimeout(() => {
         if (currentQuestion < questions.length - 1) {
@@ -50,7 +57,6 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
         } else {
           const finalScore = correct ? score + 1 : score;
           setQuizFinished(true);
-          // Use a ref-stable score since setState is async
           setTimeout(() => onComplete(finalScore), 1500);
         }
       }, advanceDelay);
@@ -64,28 +70,30 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
       finalScore === questions.length
         ? `${finalScore}/${questions.length} — Perfect score!`
         : `${finalScore}/${questions.length} — Good start!`;
+    const scoreColor = finalScore === questions.length ? "#3ECFB2" : "#5B8DEF";
 
     return (
       <motion.div
-        initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.95 }}
+        initial={noMotion ? false : { opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.4 }}
         style={{
           display: "flex",
-          flexDirection: "column" as const,
+          flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
           gap: 12,
           padding: "40px 20px",
-          textAlign: "center" as const,
+          textAlign: "center",
         }}
       >
         <p
           style={{
-            fontFamily: "var(--font-jetbrains, var(--font-dm-sans, monospace))",
+            fontFamily:
+              "var(--font-jetbrains, 'JetBrains Mono', monospace)",
             fontSize: 28,
             fontWeight: 700,
-            color: "var(--text-heading, #FAFAFA)",
+            color: scoreColor,
             margin: 0,
           }}
         >
@@ -97,10 +105,10 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
 
   return (
     <div style={{ position: "relative" }}>
-      {/* Confetti */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <ConfettiEffect trigger={showConfetti} />
-      </div>
+      {/* Mini confetti on correct answer */}
+      {showMiniConfetti && (
+        <CanvasConfetti particleCount={30} duration={1500} />
+      )}
 
       {/* Subtitle */}
       <p
@@ -117,7 +125,7 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
       <AnimatePresence mode="wait">
         <motion.div
           key={currentQuestion}
-          initial={prefersReducedMotion ? false : { opacity: 0, x: 30 }}
+          initial={noMotion ? false : { opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -30 }}
           transition={{ duration: 0.25 }}
@@ -129,7 +137,7 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
               fontSize: 12,
               fontWeight: 500,
               color: "var(--text-muted, #5A5A6E)",
-              textTransform: "uppercase" as const,
+              textTransform: "uppercase",
               letterSpacing: "0.06em",
               marginBottom: 12,
             }}
@@ -151,106 +159,115 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
             {question.question}
           </p>
 
-          {/* Options */}
+          {/* Answer options — full glass cards, no radio circles */}
           <div
             style={{
               display: "flex",
-              flexDirection: "column" as const,
+              flexDirection: "column",
               gap: 10,
             }}
           >
-            {question.options.map((option, i) => {
+            {question.options.map((option) => {
               const isThisCorrect = option.isCorrect;
               const isThisSelected = selectedLetter === option.letter;
-              const dimmed = showFeedback && !isThisSelected && !isThisCorrect;
+              const dimmed =
+                showFeedback && !isThisSelected && !isThisCorrect;
 
-              let borderColor = "var(--border-subtle, rgba(255,255,255,0.06))";
-              let bg = "var(--bg-glass, rgba(255,255,255,0.03))";
+              let borderStyle = "1px solid rgba(255,255,255,0.08)";
+              let bg = "rgba(255,255,255,0.04)";
 
               if (showFeedback) {
                 if (isThisCorrect) {
-                  borderColor = "rgba(45,212,191,0.4)";
-                  bg = "rgba(45,212,191,0.08)";
+                  borderStyle = "2px solid #3ECFB2";
+                  bg = "rgba(62,207,178,0.12)";
                 } else if (isThisSelected && !isCorrect) {
-                  borderColor = "rgba(239,90,90,0.3)";
-                  bg = "rgba(239,90,90,0.08)";
+                  borderStyle = "2px solid rgba(239,68,68,0.5)";
+                  bg = "rgba(239,68,68,0.10)";
                 }
               }
 
               return (
-                <button
+                <motion.button
                   key={option.letter}
                   onClick={() => handleSelect(option.letter)}
                   disabled={showFeedback}
+                  whileHover={
+                    !showFeedback && !noMotion ? { scale: 1.01 } : {}
+                  }
+                  whileTap={
+                    !showFeedback && !noMotion ? { scale: 0.98 } : {}
+                  }
                   style={{
                     display: "flex",
                     alignItems: "center",
+                    justifyContent: "space-between",
                     gap: 12,
                     width: "100%",
                     minHeight: 48,
-                    padding: "12px 16px",
-                    borderRadius: "var(--radius-md-val, 12px)",
+                    padding: showFeedback && (isThisCorrect || (isThisSelected && !isCorrect))
+                      ? "11px 15px"
+                      : "12px 16px",
+                    borderRadius: 12,
                     cursor: showFeedback ? "default" : "pointer",
-                    textAlign: "left" as const,
-                    transition: "background 0.2s, border-color 0.2s",
+                    textAlign: "left",
+                    transition: "background 0.2s, border-color 0.2s, opacity 0.2s",
                     background: bg,
-                    border: `1px solid ${borderColor}`,
-                    opacity: dimmed ? 0.5 : 1,
+                    border: borderStyle,
+                    opacity: dimmed ? 0.4 : 1,
+                    backdropFilter: "blur(16px)",
+                    WebkitBackdropFilter: "blur(16px)",
+                    outline: "none",
                   }}
                 >
-                  {/* Radio circle */}
-                  <div
-                    style={{
-                      width: 22,
-                      height: 22,
-                      borderRadius: "50%",
-                      border: `2px solid ${
-                        showFeedback && isThisCorrect
-                          ? "var(--accent-teal, #2DD4BF)"
-                          : showFeedback && isThisSelected && !isCorrect
-                            ? "rgba(239,90,90,0.6)"
-                            : "var(--border-medium, rgba(255,255,255,0.10))"
-                      }`,
-                      background:
-                        showFeedback && isThisCorrect
-                          ? "rgba(45,212,191,0.15)"
-                          : "transparent",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      flexShrink: 0,
-                      transition: "all 0.2s",
-                    }}
-                  >
-                    {showFeedback && isThisCorrect && (
-                      <motion.div
-                        initial={prefersReducedMotion ? false : { scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{
-                          type: "spring",
-                          stiffness: 400,
-                          damping: 15,
-                        }}
-                      >
-                        <Check
-                          size={14}
-                          style={{ color: "var(--accent-teal, #2DD4BF)" }}
-                        />
-                      </motion.div>
-                    )}
-                  </div>
-
                   <span
                     style={{
                       fontFamily: "var(--font-dm-sans, sans-serif)",
                       fontSize: 15,
-                      color: "var(--text-primary, #E2E2E6)",
+                      color: "rgba(255,255,255,0.90)",
                       lineHeight: 1.4,
                     }}
                   >
-                    {option.text}
+                    {option.letter}) {option.text}
                   </span>
-                </button>
+
+                  {/* Checkmark for correct answer */}
+                  {showFeedback && isThisCorrect && (
+                    <motion.div
+                      initial={noMotion ? false : { scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 500,
+                        damping: 25,
+                      }}
+                      style={{ flexShrink: 0 }}
+                    >
+                      <CheckCircle
+                        size={20}
+                        style={{ color: "#3ECFB2" }}
+                      />
+                    </motion.div>
+                  )}
+
+                  {/* X for wrong selection */}
+                  {showFeedback && isThisSelected && !isCorrect && (
+                    <motion.div
+                      initial={noMotion ? false : { scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 500,
+                        damping: 25,
+                      }}
+                      style={{ flexShrink: 0 }}
+                    >
+                      <XCircle
+                        size={20}
+                        style={{ color: "rgba(239,68,68,0.7)" }}
+                      />
+                    </motion.div>
+                  )}
+                </motion.button>
               );
             })}
           </div>
@@ -259,7 +276,7 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
           <AnimatePresence>
             {showFeedback && (
               <motion.p
-                initial={prefersReducedMotion ? false : { opacity: 0, y: 8 }}
+                initial={noMotion ? false : { opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
@@ -267,15 +284,14 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
                   fontFamily: "var(--font-dm-sans, sans-serif)",
                   fontSize: 14,
                   marginTop: 14,
-                  color: isCorrect
-                    ? "var(--accent-teal, #2DD4BF)"
-                    : "var(--text-secondary, #8B8B9E)",
+                  fontWeight: isCorrect ? 500 : 400,
+                  color: isCorrect ? "#3ECFB2" : "rgba(255,255,255,0.50)",
                   lineHeight: 1.5,
                 }}
               >
                 {isCorrect
-                  ? "That's it!"
-                  : `Not quite — ${question.explanation}`}
+                  ? feedback.correct
+                  : question.explanation}
               </motion.p>
             )}
           </AnimatePresence>

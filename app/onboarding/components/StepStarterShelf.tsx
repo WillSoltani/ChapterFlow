@@ -1,88 +1,561 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { Clock } from "lucide-react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+import {
+  motion,
+  AnimatePresence,
+  useMotionValue,
+  useTransform,
+  useAnimation,
+  useReducedMotion,
+  type PanInfo,
+} from "framer-motion";
+import { X, Heart, Clock, Check } from "lucide-react";
 import { useOnboarding } from "@/app/onboarding/hooks/useOnboarding";
 import type { OnboardingBook } from "@/app/onboarding/data/books";
-import {
-  getRecommendedBooks,
-  getSwapAlternatives,
-} from "@/app/onboarding/data/recommendations";
-import {
-  staggerContainer,
-  staggerItem,
-} from "@/app/onboarding/utils/animations";
-import BookSwapSheet from "./BookSwapSheet";
+import { getBookCoverPath } from "@/app/onboarding/data/books";
+import { generateSwipeDeck } from "@/app/onboarding/data/recommendations";
 
 interface StepStarterShelfProps {
   onNext: () => void;
 }
 
-function getDifficultyStyle(difficulty: string) {
-  switch (difficulty) {
-    case "Hard":
-      return { background: "rgba(232,185,49,0.12)", color: "#E8B931", border: "1px solid rgba(232,185,49,0.2)" };
+const MAX_PICKS = 3;
+
+function getDifficultyStyle(d: string) {
+  switch (d) {
     case "Easy":
-      return { background: "rgba(45,212,191,0.12)", color: "#2DD4BF", border: "1px solid rgba(45,212,191,0.2)" };
+      return "bg-[#3ECFB2]/10 text-[#3ECFB2] border border-[#3ECFB2]/20";
+    case "Hard":
+      return "bg-[#FF8C42]/10 text-[#FF8C42] border border-[#FF8C42]/20";
     default:
-      return { background: "rgba(79,139,255,0.12)", color: "#4F8BFF", border: "1px solid rgba(79,139,255,0.2)" };
+      return "bg-[#5B8DEF]/10 text-[#5B8DEF] border border-[#5B8DEF]/20";
   }
 }
 
-export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
-  const { motivation, interests, starterShelf, setStarterShelf } = useOnboarding();
-  const prefersReducedMotion = useReducedMotion();
+/* ── BookCoverImage — shows real cover or gradient fallback ── */
 
-  const [swapIndex, setSwapIndex] = useState<number | null>(null);
-  const [swapSheetOpen, setSwapSheetOpen] = useState(false);
-  const [alternatives, setAlternatives] = useState<OnboardingBook[]>([]);
-
-  // Initialize shelf on mount
-  useEffect(() => {
-    if (!starterShelf || starterShelf.length === 0) {
-      const recommended = getRecommendedBooks(interests, motivation);
-      setStarterShelf(recommended);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const books: OnboardingBook[] = starterShelf ?? [];
-
-  function handleSwapClick(index: number) {
-    const currentIds = books.map((b) => b.id);
-    const alts = getSwapAlternatives(currentIds, interests, motivation);
-    setAlternatives(alts);
-    setSwapIndex(index);
-    setSwapSheetOpen(true);
-  }
-
-  function handleSwapSelect(book: OnboardingBook) {
-    if (swapIndex !== null) {
-      const updated = [...books];
-      updated[swapIndex] = book;
-      setStarterShelf(updated);
-    }
-    setSwapSheetOpen(false);
-    setSwapIndex(null);
-  }
+function BookCoverImage({
+  book,
+  width,
+  height,
+  radius = 14,
+  showTitle = true,
+  titleSize = 15,
+}: {
+  book: OnboardingBook;
+  width: number;
+  height: number;
+  radius?: number;
+  showTitle?: boolean;
+  titleSize?: number;
+}) {
+  const coverPath = getBookCoverPath(book.id);
 
   return (
     <div
       style={{
-        width: "100%",
-        maxWidth: 720,
-        margin: "0 auto",
-        padding: "0 20px",
+        width,
+        height,
+        borderRadius: radius,
+        background: book.gradient,
+        boxShadow: "0 6px 20px rgba(0,0,0,0.5)",
+        overflow: "hidden",
+        position: "relative",
+        flexShrink: 0,
       }}
     >
-      {/* Heading */}
+      {coverPath ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={coverPath}
+          alt={book.title}
+          draggable={false}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            display: "block",
+            pointerEvents: "none",
+            userSelect: "none",
+          }}
+        />
+      ) : showTitle ? (
+        <div
+          style={{
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: 12,
+          }}
+        >
+          <span
+            style={{
+              color: "white",
+              fontSize: titleSize,
+              fontWeight: 700,
+              textAlign: "center",
+              lineHeight: 1.25,
+              maxWidth: width - 24,
+              textShadow: "0 1px 4px rgba(0,0,0,0.5)",
+            }}
+          >
+            {book.title}
+          </span>
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════
+   SwipeCard — the front draggable card
+   ═══════════════════════════════════════ */
+
+interface SwipeCardProps {
+  book: OnboardingBook;
+  onSwipe: (dir: "left" | "right") => void;
+  onButtonSwipe: React.MutableRefObject<((dir: "left" | "right") => void) | null>;
+}
+
+function SwipeCard({ book, onSwipe, onButtonSwipe }: SwipeCardProps) {
+  const reducedMotion = useReducedMotion();
+  const controls = useAnimation();
+  const x = useMotionValue(0);
+  const busy = useRef(false);
+
+  const rotate = useTransform(x, [-200, 200], reducedMotion ? [0, 0] : [-25, 25]);
+  const keepOpacity = useTransform(x, [0, 100], [0, 1]);
+  const skipOpacity = useTransform(x, [-100, 0], [1, 0]);
+  const borderColor = useTransform(
+    x,
+    [-150, -50, 0, 50, 150],
+    [
+      "rgba(239,68,68,0.6)",
+      "rgba(239,68,68,0.2)",
+      "rgba(255,255,255,0.12)",
+      "rgba(62,207,178,0.2)",
+      "rgba(62,207,178,0.6)",
+    ]
+  );
+  const cardShadow = useTransform(
+    x,
+    [-150, 0, 150],
+    [
+      "0 0 30px rgba(239,68,68,0.15)",
+      "0 8px 32px rgba(0,0,0,0.3)",
+      "0 0 30px rgba(62,207,178,0.15)",
+    ]
+  );
+
+  const doSwipe = useCallback(
+    async (dir: "left" | "right") => {
+      if (busy.current) return;
+      busy.current = true;
+      const targetX = dir === "right" ? 500 : -500;
+      if (reducedMotion) {
+        await controls.start({ opacity: 0, transition: { duration: 0.1 } });
+      } else {
+        await controls.start({
+          x: targetX,
+          opacity: 0,
+          transition: { duration: 0.25, ease: "easeOut" },
+        });
+      }
+      onSwipe(dir);
+    },
+    [controls, onSwipe, reducedMotion]
+  );
+
+  // Register button trigger — set synchronously every render so it's always current
+  onButtonSwipe.current = doSwipe;
+
+  const handleDragEnd = useCallback(
+    async (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+      const offset = info.offset.x;
+      const velocity = info.velocity.x;
+      if (offset > 150 || velocity > 500) {
+        await doSwipe("right");
+      } else if (offset < -150 || velocity < -500) {
+        await doSwipe("left");
+      } else {
+        controls.start({
+          x: 0,
+          transition: reducedMotion
+            ? { duration: 0.1 }
+            : { type: "spring", stiffness: 300, damping: 25 },
+        });
+      }
+    },
+    [controls, doSwipe, reducedMotion]
+  );
+
+  return (
+    <motion.div
+      drag="x"
+      dragConstraints={{ left: 0, right: 0 }}
+      dragElastic={0.9}
+      dragMomentum={false}
+      onDragEnd={handleDragEnd}
+      animate={controls}
+      style={{
+        x,
+        rotate,
+        borderColor,
+        boxShadow: cardShadow,
+        touchAction: "none",
+        position: "absolute",
+        inset: 0,
+        borderRadius: 24,
+        background: "#0F1225",
+        borderWidth: 1,
+        borderStyle: "solid",
+        padding: "24px 24px 20px",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        cursor: "grab",
+        userSelect: "none",
+        overflow: "hidden",
+        zIndex: 10,
+      }}
+      whileTap={{ cursor: "grabbing" }}
+    >
+      {/* KEEP stamp */}
+      <motion.div
+        className="absolute top-6 left-6 z-20 px-4 py-2 rounded-lg pointer-events-none select-none"
+        style={{
+          opacity: keepOpacity,
+          rotate: -12,
+          borderWidth: 3,
+          borderStyle: "solid",
+          borderColor: "#3ECFB2",
+          color: "#3ECFB2",
+          fontFamily: "var(--font-sora, sans-serif)",
+          fontWeight: 700,
+          fontSize: 22,
+          textTransform: "uppercase",
+          letterSpacing: "0.1em",
+        }}
+        aria-hidden="true"
+      >
+        Keep
+      </motion.div>
+
+      {/* SKIP stamp */}
+      <motion.div
+        className="absolute top-6 right-6 z-20 px-4 py-2 rounded-lg pointer-events-none select-none"
+        style={{
+          opacity: skipOpacity,
+          rotate: 12,
+          borderWidth: 3,
+          borderStyle: "solid",
+          borderColor: "rgb(248,113,113)",
+          color: "rgb(248,113,113)",
+          fontFamily: "var(--font-sora, sans-serif)",
+          fontWeight: 700,
+          fontSize: 22,
+          textTransform: "uppercase",
+          letterSpacing: "0.1em",
+        }}
+        aria-hidden="true"
+      >
+        Skip
+      </motion.div>
+
+      {/* Book cover */}
+      <BookCoverImage book={book} width={130} height={185} />
+
+      {/* Title */}
+      <p
+        style={{
+          fontFamily: "var(--font-sora, sans-serif)",
+          fontSize: 18,
+          fontWeight: 600,
+          color: "rgba(255,255,255,0.93)",
+          textAlign: "center",
+          marginTop: 16,
+          lineHeight: 1.3,
+        }}
+      >
+        {book.title}
+      </p>
+
+      {/* Author */}
+      <p
+        style={{
+          fontFamily: "var(--font-dm-sans, sans-serif)",
+          fontSize: 14,
+          color: "rgba(255,255,255,0.55)",
+          textAlign: "center",
+          marginTop: 4,
+        }}
+      >
+        {book.author}
+      </p>
+
+      {/* Badges */}
+      <div className="flex items-center justify-center gap-2 flex-wrap" style={{ marginTop: 12 }}>
+        <span
+          className="rounded-full px-3 py-1 text-xs"
+          style={{
+            background: "rgba(255,255,255,0.06)",
+            border: "1px solid rgba(255,255,255,0.10)",
+            color: "rgba(255,255,255,0.55)",
+            fontFamily: "var(--font-dm-sans, sans-serif)",
+          }}
+        >
+          {book.category}
+        </span>
+        <span
+          className={`rounded-full px-3 py-1 text-xs ${getDifficultyStyle(book.difficulty)}`}
+          style={{ fontFamily: "var(--font-dm-sans, sans-serif)" }}
+        >
+          {book.difficulty}
+        </span>
+        <span
+          className="flex items-center gap-1 text-xs"
+          style={{ color: "rgba(255,255,255,0.35)", fontFamily: "var(--font-dm-sans, sans-serif)" }}
+        >
+          <Clock size={12} />~{book.estimatedHours}h
+        </span>
+      </div>
+
+      {/* Tagline */}
+      <p
+        style={{
+          fontFamily: "var(--font-dm-sans, sans-serif)",
+          fontSize: 13,
+          color: "rgba(255,255,255,0.35)",
+          fontStyle: "italic",
+          textAlign: "center",
+          marginTop: 12,
+          lineHeight: 1.5,
+          maxWidth: 240,
+        }}
+      >
+        &ldquo;{book.tagline}&rdquo;
+      </p>
+    </motion.div>
+  );
+}
+
+/* ═══════════════════════════════════════
+   BackCard — solid opaque card behind the front
+   ═══════════════════════════════════════ */
+
+function BackCard({ book }: { book: OnboardingBook }) {
+  const coverPath = getBookCoverPath(book.id);
+  return (
+    <div
+      style={{
+        position: "absolute",
+        inset: 0,
+        borderRadius: 24,
+        background: "#0F1225",
+        border: "1px solid rgba(255,255,255,0.08)",
+        boxShadow: "0 4px 16px rgba(0,0,0,0.25)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        overflow: "hidden",
+      }}
+    >
+      {coverPath ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={coverPath}
+          alt=""
+          draggable={false}
+          style={{ width: 60, height: 85, objectFit: "cover", borderRadius: 8, opacity: 0.35, pointerEvents: "none", userSelect: "none" }}
+        />
+      ) : (
+        <div
+          style={{
+            width: 60,
+            height: 85,
+            borderRadius: 8,
+            background: book.gradient,
+            opacity: 0.25,
+          }}
+        />
+      )}
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════
+   ShelfComplete — brief celebration
+   ═══════════════════════════════════════ */
+
+function ShelfComplete({ books, onDone }: { books: OnboardingBook[]; onDone: () => void }) {
+  const reducedMotion = useReducedMotion();
+
+  useEffect(() => {
+    const timer = setTimeout(onDone, 2000);
+    return () => clearTimeout(timer);
+  }, [onDone]);
+
+  return (
+    <motion.div
+      initial={reducedMotion ? false : { opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.3 }}
+      className="flex flex-col items-center text-center"
+      style={{ padding: "40px 20px" }}
+    >
+      <motion.h2
+        initial={reducedMotion ? false : { opacity: 0, y: 15 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3, duration: 0.4, ease: "easeOut" }}
+        style={{
+          fontFamily: "var(--font-sora, sans-serif)",
+          fontSize: 28,
+          fontWeight: 600,
+          color: "rgba(255,255,255,0.93)",
+          marginBottom: 32,
+        }}
+      >
+        Your shelf is set!
+      </motion.h2>
+
+      <div className="flex items-start justify-center gap-6">
+        {books.map((book, i) => (
+          <motion.div
+            key={book.id}
+            initial={reducedMotion ? false : { opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 + i * 0.15, duration: 0.4, ease: "easeOut" }}
+            className="flex flex-col items-center"
+            style={{ maxWidth: 120 }}
+          >
+            <BookCoverImage book={book} width={100} height={140} radius={12} titleSize={11} />
+            <p
+              style={{
+                fontFamily: "var(--font-dm-sans, sans-serif)",
+                fontSize: 13,
+                fontWeight: 500,
+                color: "rgba(255,255,255,0.93)",
+                marginTop: 8,
+                textAlign: "center",
+                lineHeight: 1.3,
+              }}
+            >
+              {book.title}
+            </p>
+            <p
+              style={{
+                fontFamily: "var(--font-dm-sans, sans-serif)",
+                fontSize: 11,
+                color: "rgba(255,255,255,0.45)",
+                textAlign: "center",
+              }}
+            >
+              {book.author}
+            </p>
+          </motion.div>
+        ))}
+      </div>
+
+      <motion.div
+        initial={reducedMotion ? false : { opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.0, duration: 0.3 }}
+        style={{ marginTop: 24 }}
+      >
+        <Check size={24} style={{ color: "#3ECFB2" }} />
+      </motion.div>
+    </motion.div>
+  );
+}
+
+/* ═══════════════════════════════════════
+   StepStarterShelf — main orchestrator
+   ═══════════════════════════════════════ */
+
+export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
+  const router = useRouter();
+  const { motivation, interests, setStarterShelf } = useOnboarding();
+  const reducedMotion = useReducedMotion();
+
+  const deck = useMemo(
+    () => generateSwipeDeck(interests, motivation),
+    [interests, motivation]
+  );
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [selectedBooks, setSelectedBooks] = useState<OnboardingBook[]>([]);
+  const [isComplete, setIsComplete] = useState(false);
+
+  // Ref for the button-triggered swipe — set synchronously by SwipeCard each render
+  const buttonSwipeRef = useRef<((dir: "left" | "right") => void) | null>(null);
+
+  const frontBook = currentIndex < deck.length ? deck[currentIndex] : null;
+
+  const handleSwipe = useCallback(
+    (dir: "left" | "right") => {
+      if (!frontBook) return;
+
+      if (dir === "right") {
+        const newSelected = [...selectedBooks, frontBook];
+        setSelectedBooks(newSelected);
+
+        if (newSelected.length >= MAX_PICKS) {
+          setIsComplete(true);
+          setStarterShelf(newSelected);
+          return;
+        }
+      }
+      setCurrentIndex((prev) => prev + 1);
+    },
+    [frontBook, selectedBooks, setStarterShelf]
+  );
+
+  const handleComplete = useCallback(() => {
+    onNext();
+  }, [onNext]);
+
+  // Keyboard support
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (isComplete || !frontBook) return;
+      if (e.key === "ArrowRight") {
+        e.preventDefault();
+        buttonSwipeRef.current?.("right");
+      } else if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        buttonSwipeRef.current?.("left");
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isComplete, frontBook]);
+
+  const backBooks = deck.slice(currentIndex + 1, currentIndex + 3);
+  const selectedCount = selectedBooks.length;
+
+  if (isComplete) {
+    return <ShelfComplete books={selectedBooks} onDone={handleComplete} />;
+  }
+
+  return (
+    <div
+      style={{ width: "100%", maxWidth: 480, margin: "0 auto", padding: "0 20px" }}
+      role="region"
+      aria-label="Book selection - swipe or use buttons to choose books"
+    >
+      {/* Header */}
       <h2
         style={{
           fontFamily: "var(--font-sora, sans-serif)",
-          fontSize: "clamp(24px, 4vw, 32px)",
+          fontSize: "clamp(24px, 5vw, 32px)",
           fontWeight: 600,
-          color: "var(--text-heading, #FAFAFA)",
+          color: "rgba(255,255,255,0.93)",
+          textAlign: "center",
           marginBottom: 8,
         }}
       >
@@ -91,255 +564,288 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
       <p
         style={{
           fontFamily: "var(--font-dm-sans, sans-serif)",
-          fontSize: 15,
-          color: "var(--text-secondary, #8B8B9E)",
-          marginBottom: 28,
+          fontSize: 16,
+          color: "rgba(255,255,255,0.55)",
+          textAlign: "center",
+          marginBottom: 16,
           lineHeight: 1.5,
         }}
       >
-        We picked 3 books based on your interests. Swap any that don&apos;t fit.
+        Swipe right on books you want. Pick 3.
       </p>
 
-      {/* Book cards */}
-      <motion.div
-        variants={staggerContainer}
-        initial="hidden"
-        animate="show"
+      {/* Counter */}
+      <p
         style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-          gap: 16,
-          marginBottom: 24,
+          fontFamily: "var(--font-dm-sans, sans-serif)",
+          fontSize: 14,
+          color:
+            selectedCount === 0
+              ? "rgba(255,255,255,0.40)"
+              : selectedCount >= MAX_PICKS
+                ? "#3ECFB2"
+                : "#5B8DEF",
+          textAlign: "center",
+          marginBottom: 8,
+          transition: "color 200ms ease",
         }}
       >
-        {books.map((book, i) => (
+        {selectedCount} of {MAX_PICKS} selected
+      </p>
+
+      {/* Indicator dots */}
+      <div className="flex items-center justify-center gap-3" style={{ marginBottom: 24 }}>
+        {Array.from({ length: MAX_PICKS }, (_, i) => {
+          const filled = i < selectedCount;
+          return (
+            <motion.div
+              key={i}
+              initial={false}
+              animate={{
+                scale: filled ? 1.2 : 1,
+                backgroundColor: filled ? "#3ECFB2" : "transparent",
+              }}
+              transition={
+                reducedMotion
+                  ? { duration: 0 }
+                  : { duration: 0.3, ease: "easeOut" }
+              }
+              style={{
+                width: 12,
+                height: 12,
+                borderRadius: "50%",
+                border: filled ? "none" : "2px solid rgba(255,255,255,0.20)",
+              }}
+            />
+          );
+        })}
+      </div>
+
+      {/* Card stack */}
+      <div
+        className="relative mx-auto"
+        style={{
+          width: "min(320px, calc(100vw - 80px))",
+          height: 440,
+          marginBottom: 8,
+        }}
+      >
+        {/* Back cards — rendered first, behind */}
+        {backBooks.map((book, i) => (
           <motion.div
             key={book.id}
-            variants={staggerItem}
-            layout
+            className="absolute inset-0"
+            initial={false}
+            animate={{
+              scale: 1 - (i + 1) * 0.05,
+              y: (i + 1) * 12,
+            }}
+            transition={
+              reducedMotion
+                ? { duration: 0.1 }
+                : { duration: 0.3, ease: "easeOut" }
+            }
+            style={{ opacity: 1 - (i + 1) * 0.2, zIndex: 2 - i }}
+          >
+            <BackCard book={book} />
+          </motion.div>
+        ))}
+
+        {/* Front card */}
+        <AnimatePresence mode="popLayout">
+          {frontBook && (
+            <motion.div
+              key={frontBook.id}
+              className="absolute inset-0"
+              initial={reducedMotion ? false : { scale: 0.95, y: 12, opacity: 0.85 }}
+              animate={{ scale: 1, y: 0, opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={
+                reducedMotion
+                  ? { duration: 0.1 }
+                  : { duration: 0.3, ease: "easeOut" }
+              }
+              style={{ zIndex: 10 }}
+            >
+              <SwipeCard
+                book={frontBook}
+                onSwipe={handleSwipe}
+                onButtonSwipe={buttonSwipeRef}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Empty state */}
+        {!frontBook && selectedCount < MAX_PICKS && (
+          <div
+            className="flex items-center justify-center"
             style={{
-              background: "var(--bg-glass, rgba(255,255,255,0.03))",
-              border: "1px solid var(--border-subtle, rgba(255,255,255,0.06))",
-              borderRadius: "var(--radius-lg-val, 16px)",
-              padding: 16,
-              display: "flex",
-              flexDirection: "column" as const,
-              gap: 12,
+              width: "100%",
+              height: "100%",
+              borderRadius: 24,
+              border: "1px dashed rgba(255,255,255,0.12)",
+              background: "rgba(255,255,255,0.02)",
             }}
           >
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={book.id}
-                initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.3 }}
-                style={{
-                  display: "flex",
-                  flexDirection: "column" as const,
-                  gap: 12,
-                }}
-              >
-                {/* Book cover */}
+            <p
+              style={{
+                fontFamily: "var(--font-dm-sans, sans-serif)",
+                fontSize: 15,
+                color: "rgba(255,255,255,0.40)",
+                textAlign: "center",
+                padding: 24,
+              }}
+            >
+              No more books in this set.
+              <br />
+              We&apos;ll fill your remaining slots with our best picks.
+            </p>
+          </div>
+        )}
+      </div>
+
+      {/* Action buttons — X (skip) and Heart (keep) */}
+      {frontBook && (
+        <div className="flex items-center justify-center gap-8" style={{ marginTop: 8 }}>
+          <motion.button
+            onClick={() => buttonSwipeRef.current?.("left")}
+            whileHover={reducedMotion ? {} : { scale: 1.1 }}
+            whileTap={reducedMotion ? {} : { scale: 0.9 }}
+            aria-label="Skip this book"
+            style={{
+              width: 56,
+              height: 56,
+              borderRadius: "50%",
+              background: "rgba(255,255,255,0.04)",
+              border: "1px solid rgba(255,255,255,0.08)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+              transition: "border-color 200ms, background 200ms",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = "rgba(248,113,113,0.5)";
+              e.currentTarget.style.background = "rgba(248,113,113,0.10)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)";
+              e.currentTarget.style.background = "rgba(255,255,255,0.04)";
+            }}
+          >
+            <X size={24} style={{ color: "rgb(248,113,113)" }} />
+          </motion.button>
+
+          <motion.button
+            onClick={() => buttonSwipeRef.current?.("right")}
+            whileHover={reducedMotion ? {} : { scale: 1.1 }}
+            whileTap={reducedMotion ? {} : { scale: 0.9 }}
+            aria-label="Keep this book"
+            style={{
+              width: 56,
+              height: 56,
+              borderRadius: "50%",
+              background: "rgba(255,255,255,0.04)",
+              border: "1px solid rgba(255,255,255,0.08)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+              transition: "border-color 200ms, background 200ms",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = "rgba(62,207,178,0.5)";
+              e.currentTarget.style.background = "rgba(62,207,178,0.10)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)";
+              e.currentTarget.style.background = "rgba(255,255,255,0.04)";
+            }}
+          >
+            <Heart size={24} style={{ color: "#3ECFB2" }} />
+          </motion.button>
+        </div>
+      )}
+
+      {/* Selected books thumbnails */}
+      <div className="flex items-center justify-center gap-3" style={{ marginTop: 24 }}>
+        {Array.from({ length: MAX_PICKS }, (_, i) => {
+          const book = selectedBooks[i];
+          return (
+            <div key={i} style={{ width: 48, height: 68 }}>
+              {book ? (
+                <motion.div
+                  initial={reducedMotion ? false : { scale: 0.5, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                >
+                  <BookCoverImage book={book} width={48} height={68} radius={8} titleSize={7} />
+                </motion.div>
+              ) : (
                 <div
                   style={{
-                    width: 80,
-                    height: 120,
-                    borderRadius: "var(--radius-md-val, 12px)",
-                    background: book.gradient,
-                    boxShadow: "0 4px 16px rgba(0,0,0,0.3)",
-                    flexShrink: 0,
+                    width: 48,
+                    height: 68,
+                    borderRadius: 8,
+                    border: "1px dashed rgba(255,255,255,0.10)",
+                    background: "rgba(255,255,255,0.02)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    padding: 8,
                   }}
                 >
-                  <span
-                    style={{
-                      color: "white",
-                      fontSize: 9,
-                      fontWeight: 700,
-                      textTransform: "uppercase" as const,
-                      textAlign: "center" as const,
-                      lineHeight: 1.2,
-                    }}
-                  >
-                    {book.title}
-                  </span>
-                </div>
-
-                {/* Title */}
-                <p
-                  style={{
-                    fontFamily: "var(--font-dm-sans, sans-serif)",
-                    fontSize: 14,
-                    fontWeight: 600,
-                    color: "var(--text-heading, #FAFAFA)",
-                    margin: 0,
-                    lineHeight: 1.3,
-                  }}
-                >
-                  {book.title}
-                </p>
-
-                {/* Author */}
-                <p
-                  style={{
-                    fontFamily: "var(--font-dm-sans, sans-serif)",
-                    fontSize: 12,
-                    color: "var(--text-muted, #5A5A6E)",
-                    margin: 0,
-                  }}
-                >
-                  {book.author}
-                </p>
-
-                {/* Badges */}
-                <div style={{ display: "flex", gap: 6, flexWrap: "wrap" as const }}>
                   <span
                     style={{
                       fontFamily: "var(--font-dm-sans, sans-serif)",
-                      fontSize: 11,
-                      padding: "2px 8px",
-                      borderRadius: 100,
-                      background: "var(--bg-glass, rgba(255,255,255,0.03))",
-                      border: "1px solid var(--border-subtle, rgba(255,255,255,0.06))",
-                      color: "var(--text-secondary, #8B8B9E)",
+                      fontSize: 14,
+                      color: "rgba(255,255,255,0.20)",
                     }}
                   >
-                    {book.category}
-                  </span>
-                  <span
-                    style={{
-                      fontFamily: "var(--font-dm-sans, sans-serif)",
-                      fontSize: 11,
-                      padding: "2px 8px",
-                      borderRadius: 100,
-                      ...getDifficultyStyle(book.difficulty),
-                    }}
-                  >
-                    {book.difficulty}
+                    {i + 1}
                   </span>
                 </div>
-
-                {/* Time estimate */}
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 4,
-                  }}
-                >
-                  <Clock size={13} style={{ color: "var(--text-muted, #5A5A6E)" }} />
-                  <span
-                    style={{
-                      fontFamily: "var(--font-dm-sans, sans-serif)",
-                      fontSize: 12,
-                      color: "var(--text-muted, #5A5A6E)",
-                    }}
-                  >
-                    ~{book.estimatedHours} hrs
-                  </span>
-                </div>
-
-                {/* Swap button */}
-                <button
-                  onClick={() => handleSwapClick(i)}
-                  style={{
-                    background: "none",
-                    border: "none",
-                    padding: 0,
-                    fontFamily: "var(--font-dm-sans, sans-serif)",
-                    fontSize: 13,
-                    color: "var(--text-secondary, #8B8B9E)",
-                    cursor: "pointer",
-                    textAlign: "left" as const,
-                    minHeight: 48,
-                    display: "flex",
-                    alignItems: "center",
-                    textDecoration: "none",
-                    transition: "text-decoration 0.15s",
-                  }}
-                  onMouseEnter={(e) => { e.currentTarget.style.textDecoration = "underline"; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.textDecoration = "none"; }}
-                >
-                  Swap this book
-                </button>
-              </motion.div>
-            </AnimatePresence>
-          </motion.div>
-        ))}
-      </motion.div>
+              )}
+            </div>
+          );
+        })}
+      </div>
 
       {/* Bottom text */}
       <p
         style={{
           fontFamily: "var(--font-dm-sans, sans-serif)",
           fontSize: 13,
-          color: "var(--text-muted, #5A5A6E)",
-          textAlign: "center" as const,
-          marginBottom: 24,
+          color: "rgba(255,255,255,0.30)",
+          textAlign: "center",
+          marginTop: 20,
           lineHeight: 1.5,
         }}
       >
-        Your 2 free books are included. Add more anytime with Pro.
+        Your 2 free books are included.{" "}
+        <span
+          onClick={() => router.push("/pricing")}
+          role="link"
+          tabIndex={0}
+          onKeyDown={(e) => { if (e.key === "Enter") router.push("/pricing"); }}
+          style={{
+            textDecoration: "underline",
+            textUnderlineOffset: 2,
+            cursor: "pointer",
+            transition: "color 200ms",
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.55)")}
+          onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.30)")}
+        >
+          Add more with Pro.
+        </span>
       </p>
 
-      {/* CTA */}
-      <button
-        onClick={onNext}
-        className="starter-shelf-cta"
-        style={{
-          width: "100%",
-          minHeight: 56,
-          padding: "16px 32px",
-          fontFamily: "var(--font-dm-sans, sans-serif)",
-          fontSize: 17,
-          fontWeight: 600,
-          color: "#0A0E1A",
-          background: "var(--accent-green, #34D399)",
-          border: "none",
-          borderRadius: "var(--radius-md-val, 12px)",
-          cursor: "pointer",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: 8,
-          boxShadow: "0 0 24px rgba(52,211,153,0.2)",
-          transition: "box-shadow 0.3s, transform 0.15s",
-        }}
-      >
-        Start reading
-        <span style={{ fontSize: 18 }}>&rarr;</span>
-
-        <style>{`
-          @keyframes breatheGlow {
-            0%, 100% { box-shadow: 0 0 24px rgba(52,211,153,0.2); }
-            50% { box-shadow: 0 0 40px rgba(52,211,153,0.4); }
-          }
-          .starter-shelf-cta {
-            animation: breatheGlow 2.5s ease-in-out infinite;
-          }
-          .starter-shelf-cta:hover {
-            transform: translateY(-1px);
-          }
-          .starter-shelf-cta:active {
-            transform: translateY(0);
-          }
-        `}</style>
-      </button>
-
-      {/* Swap sheet */}
-      <BookSwapSheet
-        open={swapSheetOpen}
-        alternatives={alternatives}
-        onSelect={handleSwapSelect}
-        onClose={() => {
-          setSwapSheetOpen(false);
-          setSwapIndex(null);
-        }}
-      />
+      {/* Screen reader live region */}
+      <div className="sr-only" aria-live="polite" role="status">
+        {frontBook &&
+          `Book ${currentIndex + 1} of ${deck.length}: ${frontBook.title} by ${frontBook.author}. ${frontBook.category}, ${frontBook.difficulty} difficulty, approximately ${frontBook.estimatedHours} hours.`}
+      </div>
     </div>
   );
 }

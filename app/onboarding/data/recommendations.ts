@@ -86,6 +86,46 @@ export function getRecommendedBooks(
   return selected;
 }
 
+/* Generate a swipe deck of 10 books sorted by relevance */
+export function generateSwipeDeck(
+  userInterests: string[],
+  motivation: Motivation | null,
+): OnboardingBook[] {
+  // Always put Atomic Habits first (it's the first loop content)
+  const atomicHabits = ONBOARDING_BOOKS.find((b) => b.id === "atomic-habits")!;
+
+  const candidates = ONBOARDING_BOOKS
+    .filter((b) => b.id !== "atomic-habits")
+    .map((book) => ({
+      book,
+      score: scoreBook(book, userInterests, motivation),
+    }))
+    .sort((a, b) => b.score - a.score);
+
+  // Take top 9 to fill deck of 10 (Atomic Habits + 9 best matches)
+  const deck: OnboardingBook[] = [atomicHabits];
+  const usedCategories = new Set([atomicHabits.category]);
+
+  // First pass: prefer category diversity
+  for (const { book } of candidates) {
+    if (deck.length >= 10) break;
+    if (!usedCategories.has(book.category)) {
+      deck.push(book);
+      usedCategories.add(book.category);
+    }
+  }
+
+  // Second pass: fill remaining slots with highest-scored books
+  for (const { book } of candidates) {
+    if (deck.length >= 10) break;
+    if (!deck.some((d) => d.id === book.id)) {
+      deck.push(book);
+    }
+  }
+
+  return deck;
+}
+
 /* Get swap alternatives (books not on shelf, matching interests) */
 export function getSwapAlternatives(
   currentShelfIds: string[],

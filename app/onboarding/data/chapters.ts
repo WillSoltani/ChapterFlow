@@ -1,6 +1,6 @@
-/* ── Sample chapter content for Step 5 (First Learning Loop) ── */
+/* ── Sample chapter content for Step 6 (First Learning Loop) ── */
 
-import type { Motivation } from "../hooks/useOnboarding";
+import type { Motivation, Tone } from "../hooks/useOnboarding";
 
 export interface ChapterSummary {
   bookId: string;
@@ -120,5 +120,73 @@ export function getScenarioForMotivation(motivation: Motivation | null): "work" 
   }
 }
 
-/* Export the default first loop content */
+/* ── Tone-aware summary variants ── */
+
+const toneSummaries: Record<Tone, { paragraphs: string[]; keyInsight: string }> = {
+  gentle: {
+    paragraphs: [
+      "The idea at the heart of this chapter is that small, consistent changes add up to something much bigger than you'd expect. A tiny improvement — even just 1% — repeated day after day, compounds into a version of yourself that you might not recognize a year from now. And the encouraging part is that you don't need a dramatic overhaul.",
+      "The author shares the story of a cycling coach who improved dozens of tiny details — from pillow quality to hand-washing technique — and the cumulative result was extraordinary. It's a reminder that the path forward doesn't have to feel heroic. It just has to be steady.",
+      "If you've ever felt like your efforts aren't paying off, this chapter suggests being patient with yourself — results often arrive all at once after a long stretch of invisible progress. The people who stick with their habits aren't more disciplined; they're just more willing to trust the process.",
+    ],
+    keyInsight:
+      "Habits are the compound interest of self-improvement. You don't need to be perfect — just a little better than yesterday, and trust that it adds up.",
+  },
+  direct: {
+    paragraphs: atomicHabitsLoop.summary.paragraphs,
+    keyInsight: atomicHabitsLoop.summary.keyInsight,
+  },
+  competitive: {
+    paragraphs: [
+      "Here's the math most people ignore: 1% better every day for a year makes you 37 times better. 1% worse and you're at nearly zero. That gap is your edge — or your downfall. This chapter lays out why the people who win long-term aren't the ones making dramatic moves. They're the ones stacking micro-advantages while everyone else chases shortcuts.",
+      "Dave Brailsford proved it in professional cycling by optimizing hundreds of tiny details that his competitors dismissed as irrelevant — pillow quality, hand-washing technique, tire grip. The result: Team Sky dominated the Tour de France. The lesson isn't about cycling. It's about compounding advantages your competition doesn't even see.",
+      "The chapter also explains why most people quit — they expect linear results and hit what Clear calls the 'valley of disappointment.' The ones who push through that valley are the ones who end up untouchable. Your results will feel invisible for weeks. That's the test. Pass it.",
+    ],
+    keyInsight:
+      "Habits are the compound interest of self-improvement. While your competition resets every Monday, your daily 1% compounds into an insurmountable lead.",
+  },
+};
+
+/* ── Tone-aware quiz feedback ── */
+
+const toneQuizFeedback: Record<Tone, { correct: string; wrongPrefix: string }> = {
+  gentle: {
+    correct: "Exactly right — you're getting this.",
+    wrongPrefix: "Not quite — here's another way to think about it.",
+  },
+  direct: {
+    correct: "Correct.",
+    wrongPrefix: "Wrong —",
+  },
+  competitive: {
+    correct: "That's the move. You're ahead of 90% of people.",
+    wrongPrefix: "Miss. That's the average answer —",
+  },
+};
+
+/* ── Public API ── */
+
+/** Get the first loop content adapted to the user's selected tone */
+export function getFirstLoopContent(tone: Tone): FirstLoopContent {
+  const variant = toneSummaries[tone];
+  return {
+    ...atomicHabitsLoop,
+    summary: {
+      ...atomicHabitsLoop.summary,
+      paragraphs: variant.paragraphs,
+      keyInsight: variant.keyInsight,
+    },
+    quiz: atomicHabitsLoop.quiz.map((q) => ({
+      ...q,
+      explanation: `${toneQuizFeedback[tone].wrongPrefix} ${q.explanation.charAt(0).toLowerCase()}${q.explanation.slice(1)}`,
+    })),
+  };
+}
+
+/** Get quiz feedback text for correct/wrong answers based on tone */
+export function getQuizFeedback(tone: Tone) {
+  return toneQuizFeedback[tone];
+}
+
+/* Export the default first loop content (direct tone) */
 export const FIRST_LOOP_CONTENT = atomicHabitsLoop;

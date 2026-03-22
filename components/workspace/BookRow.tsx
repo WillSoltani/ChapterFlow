@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { BookCardWorkspace } from "./BookCardWorkspace";
 
@@ -59,12 +60,13 @@ export function BookRow({
         >
           {isNewUser ? "Build Your Bookshelf" : "Your Books"}
         </h2>
-        <button
-          className="cursor-pointer text-sm font-medium transition-colors hover:underline"
+        <Link
+          href="/book/library"
+          className="text-sm font-medium transition-colors hover:underline"
           style={{ color: "#7C3AED" }}
         >
           Browse Library →
-        </button>
+        </Link>
       </div>
 
       {/* Horizontal scroll row */}

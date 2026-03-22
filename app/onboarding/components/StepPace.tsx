@@ -153,27 +153,6 @@ export default function StepPace({ onNext }: StepPaceProps) {
                       position: "relative",
                     }}
                   >
-                    {/* Badge */}
-                    {badge && (
-                      <span
-                        style={{
-                          position: "absolute",
-                          top: -4,
-                          right: -4,
-                          fontFamily: "var(--font-dm-sans)",
-                          fontSize: 11,
-                          fontWeight: 600,
-                          color: "var(--accent-gold)",
-                          backgroundColor: "rgba(232,185,49,0.12)",
-                          padding: "2px 8px",
-                          borderRadius: 999,
-                          whiteSpace: "nowrap",
-                        }}
-                      >
-                        {badge}
-                      </span>
-                    )}
-
                     <Icon
                       size={28}
                       strokeWidth={1.5}
@@ -208,6 +187,29 @@ export default function StepPace({ onNext }: StepPaceProps) {
                       >
                         {sublabel}
                       </p>
+
+                      {/* Most Popular badge — inline below label */}
+                      {badge && (
+                        <span
+                          style={{
+                            display: "inline-flex",
+                            alignItems: "center",
+                            gap: 4,
+                            marginTop: 8,
+                            fontFamily: "var(--font-dm-sans)",
+                            fontSize: 11,
+                            fontWeight: 600,
+                            color: "#E8B931",
+                            backgroundColor: "rgba(232,185,49,0.10)",
+                            border: "1px solid rgba(232,185,49,0.25)",
+                            padding: "3px 10px",
+                            borderRadius: 999,
+                            whiteSpace: "nowrap",
+                          }}
+                        >
+                          ★ {badge}
+                        </span>
+                      )}
                     </div>
                   </div>
                 </TappableCard>

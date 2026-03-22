@@ -9,14 +9,14 @@ export function PhoneMockup({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="relative flex justify-center">
-      {/* Warm amber glow behind phone */}
+      {/* Teal glow behind phone */}
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
         style={{
           width: 300,
           height: 400,
           background:
-            "radial-gradient(ellipse, rgba(217,119,6,0.05) 0%, transparent 70%)",
+            "radial-gradient(ellipse, rgba(45,212,191,0.06) 0%, transparent 70%)",
           filter: "blur(40px)",
         }}
       />

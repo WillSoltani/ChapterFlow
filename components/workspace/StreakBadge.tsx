@@ -1,7 +1,6 @@
 "use client";
 
-import { useReducedMotion } from "framer-motion";
-import { FlameIcon } from "@/components/ui/FlameIcon";
+import { motion, useReducedMotion } from "framer-motion";
 
 interface StreakBadgeProps {
   count: number;
@@ -14,10 +13,7 @@ export function StreakBadge({ count, isNewUser = false }: StreakBadgeProps) {
   if (isNewUser || count === 0) {
     return (
       <div className="flex items-center gap-1.5">
-        <span
-          className="text-sm"
-          style={{ color: "#A0A0B8" }}
-        >
+        <span className="text-sm" style={{ color: "#A0A0B8" }}>
           Start your streak today
         </span>
       </div>
@@ -25,13 +21,33 @@ export function StreakBadge({ count, isNewUser = false }: StreakBadgeProps) {
   }
 
   return (
-    <div className="flex items-center gap-1" aria-label={`${count} day streak`}>
-      <span aria-hidden="true">
-        <FlameIcon size={18} className={prefersReducedMotion ? "" : "flame-pulse"} />
+    <div className="flex items-center gap-1.5" aria-label={`${count} day streak`}>
+      <span className="relative inline-flex" aria-hidden="true">
+        <motion.span
+          className="text-lg leading-none"
+          animate={
+            prefersReducedMotion
+              ? undefined
+              : { scale: [1, 1.1, 1], opacity: [1, 0.85, 1] }
+          }
+          transition={
+            prefersReducedMotion
+              ? undefined
+              : { duration: 2, repeat: Infinity, ease: "easeInOut" }
+          }
+          style={{ color: "#F59E0B" }}
+        >
+          🔥
+        </motion.span>
+        {/* Glow behind flame */}
+        <span
+          className="absolute inset-0 rounded-full blur-[6px]"
+          style={{ background: "rgba(245,158,11,0.2)" }}
+        />
       </span>
       <span
         className="text-sm font-semibold tabular-nums"
-        style={{ color: "#F59E0B" }}
+        style={{ color: "#F0F0F0" }}
       >
         {count}
       </span>

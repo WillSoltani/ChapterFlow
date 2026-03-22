@@ -1,7 +1,8 @@
 "use client";
 
+import Link from "next/link";
+import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
-import { DashboardBookCover } from "@/components/ui/DashboardBookCover";
 import { ProBadge } from "./ProBadge";
 
 interface UserBookData {
@@ -44,47 +45,55 @@ export function BookCardWorkspace(props: BookCardWorkspaceProps) {
   const prefersReducedMotion = useReducedMotion();
   const { variant, book } = props;
 
-  const gradient =
-    book.gradient || "linear-gradient(135deg, #2563EB, #1E40AF)";
+  const coverSrc = book.coverUrl || `/book-covers/${book.id}.jpg`;
 
   return (
+    <Link href={`/book/library/${book.id}`} className="block flex-shrink-0">
     <motion.div
-      className="flex-shrink-0 cursor-pointer rounded-xl p-3"
+      className="overflow-hidden rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a12]"
       style={{
-        width: 160,
+        width: 170,
         background: "rgba(255,255,255,0.04)",
-        backdropFilter: "blur(16px)",
-        WebkitBackdropFilter: "blur(16px)",
+        backdropFilter: "blur(16px) saturate(125%)",
+        WebkitBackdropFilter: "blur(16px) saturate(125%)",
         border: "1px solid rgba(255,255,255,0.08)",
       }}
       whileHover={
         prefersReducedMotion
           ? undefined
-          : {
-              scale: 1.015,
-              backgroundColor: "rgba(255,255,255,0.06)",
-            }
+          : { scale: 1.03, y: -4, backgroundColor: "rgba(255,255,255,0.06)" }
       }
       transition={{ type: "spring", stiffness: 400, damping: 25 }}
       role="listitem"
     >
       {/* Cover */}
       <div className="relative">
-        <DashboardBookCover
-          title={book.title}
-          gradient={gradient}
-          width={136}
-          height={180}
-          className="w-full"
-        />
+        <div className="relative overflow-hidden" style={{ height: 200 }}>
+          <Image
+            src={coverSrc}
+            alt={`${book.title} by ${book.author}`}
+            width={170}
+            height={200}
+            className="h-full w-full object-cover ring-1 ring-white/[0.06] shadow-lg shadow-black/30"
+            loading="lazy"
+            sizes="170px"
+          />
+          {/* Subtle bottom fade for text readability */}
+          <div
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-12"
+            style={{
+              background: "linear-gradient(to top, rgba(0,0,0,0.3), transparent)",
+            }}
+          />
+        </div>
         {variant === "pro" && (
-          <div className="absolute right-1.5 top-1.5">
+          <div className="absolute right-2 top-2">
             <ProBadge />
           </div>
         )}
         {variant === "user" && (book as UserBookData).status === "completed" && (
           <div
-            className="absolute right-1.5 top-1.5 flex h-5 w-5 items-center justify-center rounded-full"
+            className="absolute right-2 top-2 flex h-5 w-5 items-center justify-center rounded-full"
             style={{ background: "#10B981" }}
           >
             <svg width={10} height={10} viewBox="0 0 24 24" fill="none">
@@ -101,7 +110,7 @@ export function BookCardWorkspace(props: BookCardWorkspaceProps) {
       </div>
 
       {/* Info */}
-      <div className="mt-2.5">
+      <div className="p-3 pt-2.5">
         <p
           className="truncate text-sm font-medium"
           style={{ color: "#F0F0F0" }}
@@ -110,7 +119,7 @@ export function BookCardWorkspace(props: BookCardWorkspaceProps) {
         </p>
         <p
           className="mt-0.5 truncate text-xs"
-          style={{ color: "#A0A0B8" }}
+          style={{ color: "#6B6B80" }}
         >
           {book.author}
         </p>
@@ -130,19 +139,20 @@ export function BookCardWorkspace(props: BookCardWorkspaceProps) {
                 className="h-full rounded-full"
                 style={{ background: "#7C3AED" }}
                 initial={prefersReducedMotion ? undefined : { width: 0 }}
-                animate={{ width: `${(book as UserBookData).progressPercent}%` }}
+                animate={{
+                  width: `${(book as UserBookData).progressPercent}%`,
+                }}
                 transition={
                   prefersReducedMotion
                     ? { duration: 0 }
-                    : { duration: 0.8, ease: "easeOut", delay: 0.3 }
+                    : { duration: 0.8, ease: "easeOut", delay: 0.4 }
                 }
               />
             </div>
             <p
               className="mt-1.5 text-[10px] font-medium"
               style={{
-                color:
-                  statusConfig[(book as UserBookData).status].color,
+                color: statusConfig[(book as UserBookData).status].color,
               }}
             >
               {statusConfig[(book as UserBookData).status].label}
@@ -167,5 +177,6 @@ export function BookCardWorkspace(props: BookCardWorkspaceProps) {
         )}
       </div>
     </motion.div>
+    </Link>
   );
 }

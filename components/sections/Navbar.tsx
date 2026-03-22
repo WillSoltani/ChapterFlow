@@ -4,76 +4,29 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
-/* ── Logo Icon ─────────────────────────────────────── */
+/* ── Logo Icon (matches /dashboard DashboardNavbar) ── */
 
 function LogoIcon({ size = 28 }: { size?: number }) {
-  const gradientId = `cfGrad_${size}`;
   return (
-    <svg width={size} height={size} viewBox="0 0 32 32" fill="none">
-      <defs>
-        <linearGradient
-          id={gradientId}
-          x1="0"
-          y1="0"
-          x2="32"
-          y2="32"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stopColor="#2dd4bf" />
-          <stop offset="1" stopColor="#14b8a6" />
-        </linearGradient>
-      </defs>
-      <rect width="32" height="32" rx="8" fill={`url(#${gradientId})`} />
-      <rect
-        x="6"
-        y="8"
-        width="11"
-        height="15"
-        rx="2"
-        fill="white"
-        opacity="0.15"
-        transform="rotate(-8 11.5 15.5)"
+    <svg width={size} height={size} viewBox="0 0 28 28" fill="none" aria-hidden="true">
+      <path
+        d="M4 7C4 5.9 4.9 5 6 5H12C13.1 5 14 5.9 14 7V21C14 22.1 13.1 23 12 23H6C4.9 23 4 22.1 4 21V7Z"
+        stroke="#2dd4bf"
+        strokeWidth={1.5}
+        fill="none"
       />
-      <rect
-        x="10"
-        y="7.5"
-        width="11"
-        height="15"
-        rx="2"
-        fill="white"
-        opacity="0.4"
-        transform="rotate(-2 15.5 15)"
+      <path
+        d="M14 7C14 5.9 14.9 5 16 5H22C23.1 5 24 5.9 24 7V21C24 22.1 23.1 23 22 23H16C14.9 23 14 22.1 14 21V7Z"
+        stroke="#2dd4bf"
+        strokeWidth={1.5}
+        fill="none"
       />
-      <rect x="14" y="7" width="11" height="15" rx="2" fill="white" opacity="0.9" />
-      <line
-        x1="16.5"
-        y1="11"
-        x2="22.5"
-        y2="11"
-        stroke={`url(#${gradientId})`}
-        strokeWidth="1"
+      <path
+        d="M17 12L20 14L17 16"
+        stroke="#2dd4bf"
+        strokeWidth={1.5}
         strokeLinecap="round"
-        opacity="0.5"
-      />
-      <line
-        x1="16.5"
-        y1="13.5"
-        x2="21"
-        y2="13.5"
-        stroke={`url(#${gradientId})`}
-        strokeWidth="1"
-        strokeLinecap="round"
-        opacity="0.35"
-      />
-      <line
-        x1="16.5"
-        y1="16"
-        x2="19.5"
-        y2="16"
-        stroke={`url(#${gradientId})`}
-        strokeWidth="1"
-        strokeLinecap="round"
-        opacity="0.2"
+        strokeLinejoin="round"
       />
     </svg>
   );

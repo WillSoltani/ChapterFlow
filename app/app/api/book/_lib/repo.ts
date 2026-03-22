@@ -687,15 +687,18 @@ export async function reserveBookEntitlement(
           SK: entitlementSk(),
         },
         UpdateExpression:
-          "SET plan = if_not_exists(plan, :freePlan), freeBookSlots = if_not_exists(freeBookSlots, :freeSlots), updatedAt = :updatedAt ADD unlockedBookIds :bookSet",
+          "SET #plan = if_not_exists(#plan, :freePlan), freeBookSlots = if_not_exists(freeBookSlots, :freeSlots), updatedAt = :updatedAt ADD unlockedBookIds :bookSet",
         // A user may bypass the slot limit only when they are PRO with a non-expired entitlement.
         ConditionExpression: [
-          "(plan = :proPlan AND (attribute_not_exists(proSource) OR proSource = :stripeSource OR (proSource = :licenseSource AND licenseExpiresAt >= :now) OR (proSource = :flowPointsSource AND currentPeriodEnd >= :now)))",
+          "(#plan = :proPlan AND (attribute_not_exists(proSource) OR proSource = :stripeSource OR (proSource = :licenseSource AND licenseExpiresAt >= :now) OR (proSource = :flowPointsSource AND currentPeriodEnd >= :now)))",
           "OR contains(unlockedBookIds, :bookId)",
           "OR attribute_not_exists(unlockedBookIds)",
           "OR attribute_not_exists(freeBookSlots)",
           "OR size(unlockedBookIds) < freeBookSlots",
         ].join(" "),
+        ExpressionAttributeNames: {
+          "#plan": "plan",
+        },
         ExpressionAttributeValues: {
           ":freePlan": "FREE",
           ":proPlan": "PRO",

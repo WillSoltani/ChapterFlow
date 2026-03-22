@@ -141,7 +141,7 @@ export function HowItWorks() {
   );
 
   return (
-    <section id="how-it-works" className="py-20 lg:py-28">
+    <section id="how-it-works" className="py-14 lg:py-20">
       <div className="max-w-7xl mx-auto px-4">
         {/* Intro */}
         <SectionReveal>

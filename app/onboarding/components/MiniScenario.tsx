@@ -22,9 +22,9 @@ export default function MiniScenario({ onContinue }: MiniScenarioProps) {
   const scenario = FIRST_LOOP_CONTENT.scenarios[scenarioType];
 
   const sections = [
-    { label: "THE SITUATION", text: scenario.situation },
-    { label: "WHAT TO DO", text: scenario.whatToDo },
-    { label: "WHY IT MATTERS", text: scenario.whyItMatters },
+    { label: "THE SITUATION", text: scenario.situation, color: "#5B8DEF" },
+    { label: "WHAT TO DO", text: scenario.whatToDo, color: "#3ECFB2" },
+    { label: "WHY IT MATTERS", text: scenario.whyItMatters, color: "#FF8C42" },
   ];
 
   return (
@@ -53,10 +53,10 @@ export default function MiniScenario({ onContinue }: MiniScenarioProps) {
             style={{
               fontFamily: "var(--font-dm-sans, sans-serif)",
               fontSize: 11,
-              fontWeight: 600,
+              fontWeight: 700,
               letterSpacing: "0.08em",
               textTransform: "uppercase" as const,
-              color: "var(--text-muted, #5A5A6E)",
+              color: section.color,
               margin: "0 0 10px",
             }}
           >
@@ -88,26 +88,25 @@ export default function MiniScenario({ onContinue }: MiniScenarioProps) {
             fontFamily: "var(--font-dm-sans, sans-serif)",
             fontSize: 16,
             fontWeight: 600,
-            color: "var(--text-heading, #FAFAFA)",
-            background: "var(--bg-glass-hover, rgba(255,255,255,0.06))",
-            border: "1px solid var(--border-medium, rgba(255,255,255,0.10))",
+            color: "#0A0E1A",
+            background: "#3BD4A0",
+            border: "none",
             borderRadius: "var(--radius-md-val, 12px)",
             cursor: "pointer",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             gap: 8,
-            transition: "background 0.15s, border-color 0.15s",
+            boxShadow: "0 0 20px rgba(59,212,160,0.25)",
+            transition: "filter 0.15s, transform 0.15s",
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.background = "rgba(255,255,255,0.09)";
-            e.currentTarget.style.borderColor = "rgba(255,255,255,0.15)";
+            e.currentTarget.style.filter = "brightness(1.1)";
+            e.currentTarget.style.transform = "scale(1.02)";
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.background =
-              "var(--bg-glass-hover, rgba(255,255,255,0.06))";
-            e.currentTarget.style.borderColor =
-              "var(--border-medium, rgba(255,255,255,0.10))";
+            e.currentTarget.style.filter = "brightness(1)";
+            e.currentTarget.style.transform = "scale(1)";
           }}
         >
           Continue to quiz

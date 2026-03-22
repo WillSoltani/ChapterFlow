@@ -196,8 +196,145 @@ export const INFLUENCE_PACKAGE = influencePackageJson as BookPackage;
 export const LAWS_OF_HUMAN_NATURE_PACKAGE =
   lawsOfHumanNaturePackageJson as BookPackage;
 export const PRE_SUASION_PACKAGE = preSuasionPackageJson as BookPackage;
+/* ── NSTD tone-aware JSON normalization ────────────────────────────── */
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type ToneObject = { gentle?: string; direct?: string; competitive?: string };
+type ToneKey = "gentle" | "direct" | "competitive";
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function resolveTone(value: any, tone: ToneKey = "direct"): string {
+  if (typeof value === "string") return value;
+  if (value && typeof value === "object") {
+    if (typeof value[tone] === "string") return value[tone];
+    for (const k of ["direct", "gentle", "competitive"] as const) {
+      if (typeof value[k] === "string") return value[k];
+    }
+  }
+  return "";
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function normalizeNstdVariant(v: any, tone: ToneKey = "direct"): PackageVariantContent {
+  const summaryBlocks: PackageSummaryBlock[] = [];
+
+  // chapterBreakdown → paragraphs
+  const breakdown = resolveTone(v?.chapterBreakdown, tone);
+  if (breakdown) {
+    for (const p of breakdown.split(/\n\n+/).filter((s: string) => s.trim())) {
+      summaryBlocks.push({ type: "paragraph", text: p.trim() });
+    }
+  }
+
+  // keyTakeaways → bullets + string list
+  const keyTakeaways: string[] = [];
+  if (Array.isArray(v?.keyTakeaways)) {
+    for (const kt of v.keyTakeaways) {
+      const point = typeof kt === "string" ? kt : resolveTone(kt?.point, tone);
+      if (!point) continue;
+      keyTakeaways.push(point);
+      const detail = kt?.moreDetails ? resolveTone(kt.moreDetails, tone) : undefined;
+      summaryBlocks.push({ type: "bullet", text: point, detail });
+    }
+  }
+
+  // oneMinuteRecap → practice
+  const practice: string[] = [];
+  if (v?.oneMinuteRecap) {
+    if (typeof v.oneMinuteRecap === "object" && v.oneMinuteRecap.retrieve) {
+      const retrieve = resolveTone(v.oneMinuteRecap.retrieve, tone);
+      const connect = resolveTone(v.oneMinuteRecap.connect, tone);
+      const preview = resolveTone(v.oneMinuteRecap.preview, tone);
+      if (retrieve) practice.push(retrieve);
+      if (connect) practice.push(connect);
+      if (preview) practice.push(preview);
+    } else {
+      const recap = resolveTone(v.oneMinuteRecap, tone);
+      if (recap) practice.push(recap);
+    }
+  }
+  if (v?.selfCheckPrompt) practice.push(resolveTone(v.selfCheckPrompt, tone));
+  if (Array.isArray(v?.selfCheckPrompts)) {
+    for (const p of v.selfCheckPrompts) practice.push(resolveTone(p, tone));
+  }
+  if (v?.predictionPrompt) practice.push(resolveTone(v.predictionPrompt, tone));
+
+  return {
+    importantSummary: breakdown ? breakdown.split(/\n\n+/)[0]?.trim() : undefined,
+    summaryBullets: keyTakeaways.length > 0 ? keyTakeaways : undefined,
+    summaryBlocks,
+    keyTakeaways: keyTakeaways.length > 0 ? keyTakeaways : undefined,
+    practice: practice.length > 0 ? practice : undefined,
+  };
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function normalizeNstdPackage(raw: any, tone: ToneKey = "direct"): BookPackage {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const chapters: PackageChapter[] = (raw.chapters ?? []).map((ch: any) => {
+    const contentVariants: Partial<Record<VariantKey, PackageVariantContent>> = {};
+    for (const key of ["easy", "medium", "hard"] as const) {
+      const v = ch.contentVariants?.[key];
+      if (v) contentVariants[key] = normalizeNstdVariant(v, tone);
+    }
+    return {
+      chapterId: ch.chapterId,
+      number: ch.number,
+      title: ch.title,
+      readingTimeMinutes: ch.readingTimeMinutes,
+      contentVariants,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      examples: (ch.examples ?? []).map((ex: any) => ({
+        exampleId: ex.exampleId,
+        title: ex.title,
+        scenario: resolveTone(ex.scenario, tone),
+        whatToDo: Array.isArray(ex.whatToDo)
+          ? ex.whatToDo
+          : [resolveTone(ex.whatToDo, tone)],
+        whyItMatters: resolveTone(ex.whyItMatters, tone),
+        contexts: ex.contexts ?? (ex.category ? [ex.category] : []),
+      })),
+      quiz: {
+        passingScorePercent: ch.quiz?.passingScorePercent ?? 80,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        questions: (ch.quiz?.questions ?? []).map((q: any) => ({
+          questionId: q.questionId,
+          prompt: q.prompt,
+          choices: q.choices,
+          correctIndex: q.correctIndex,
+          explanation: resolveTone(q.explanation, tone),
+        })),
+      },
+    } satisfies PackageChapter;
+  });
+  return {
+    schemaVersion: raw.schemaVersion,
+    packageId: raw.packageId,
+    createdAt: raw.createdAt,
+    contentOwner: raw.contentOwner,
+    book: raw.book,
+    chapters,
+  };
+}
+
+/** Raw NSTD JSON for tone-aware personalization */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const NSTD_RAW_CHAPTERS: any[] = (neverSplitTheDifferencePackageJson as any).chapters ?? [];
+
+export function resolveNstdTone(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  value: any,
+  tone: "gentle" | "direct" | "competitive"
+): string {
+  return resolveTone(value, tone);
+}
+
+export function getNstdPackageForTone(tone: ToneKey): BookPackage {
+  return normalizeNstdPackage(neverSplitTheDifferencePackageJson, tone);
+}
+
 export const NEVER_SPLIT_THE_DIFFERENCE_PACKAGE =
-  neverSplitTheDifferencePackageJson as BookPackage;
+  normalizeNstdPackage(neverSplitTheDifferencePackageJson, "direct");
 export const GAMES_PEOPLE_PLAY_PACKAGE =
   gamesPeoplePlayPackageJson as BookPackage;
 export const CRUCIAL_CONVERSATIONS_PACKAGE =

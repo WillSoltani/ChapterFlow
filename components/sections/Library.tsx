@@ -53,7 +53,7 @@ export function Library() {
       : allBooks.filter((book) => book.category === activeCategory);
 
   return (
-    <section id="library" className="py-20 lg:py-28">
+    <section id="library" className="py-14 lg:py-20">
       <div className="max-w-7xl mx-auto px-4">
         {/* Header row */}
         <SectionReveal>
@@ -131,8 +131,9 @@ export function Library() {
                     exit={{ opacity: 0, scale: 0.9 }}
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                     className="group cursor-pointer"
+                    whileHover={{ scale: 1.03, y: -4, transition: { duration: 0.2 } }}
                   >
-                    <div className="transition-transform duration-300 group-hover:scale-[1.03]">
+                    <div className="overflow-hidden rounded-lg shadow-lg group-hover:shadow-xl group-hover:shadow-[rgba(45,212,191,0.05)] transition-shadow duration-300">
                       <BookCover
                         bookId={book.id}
                         title={book.title}
@@ -171,7 +172,7 @@ export function Library() {
         {/* Stats bar */}
         <SectionReveal delay={0.2}>
           <div
-            className="mt-10 rounded-xl border border-(--border-subtle) bg-(--bg-glass) p-7"
+            className="mt-8 rounded-xl border border-(--border-subtle) bg-(--bg-glass) p-7"
           >
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {STATS.map((stat) => (

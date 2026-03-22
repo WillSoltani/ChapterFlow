@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { StreakBadge } from "./StreakBadge";
 import { DailyGoalRing } from "./DailyGoalRing";
@@ -77,17 +78,24 @@ export function CompactHeader({
             : { duration: 0.5, delay: 0.2, ease }
         }
       >
-        <StreakBadge count={streakCount} isNewUser={isNewUser} />
+        <Link href="/book/progress" className="inline-flex">
+          <StreakBadge count={streakCount} isNewUser={isNewUser} />
+        </Link>
 
         {!isNewUser && (
           <>
-            <DailyGoalRing
-              size={22}
-              progress={dailyProgress}
-              todayPulse={dailyProgress < 100}
-            />
+            <Link href="/book/progress" className="inline-flex">
+              <DailyGoalRing
+                size={22}
+                progress={dailyProgress}
+                todayPulse={dailyProgress < 100}
+              />
+            </Link>
 
-            <div className="flex items-center gap-1">
+            <Link
+              href="/rewards"
+              className="inline-flex items-center gap-1"
+            >
               <span aria-hidden="true" style={{ color: "#7C3AED", fontSize: 14 }}>
                 ◆
               </span>
@@ -97,7 +105,7 @@ export function CompactHeader({
               >
                 {flowPoints.toLocaleString()}
               </span>
-            </div>
+            </Link>
           </>
         )}
       </motion.div>

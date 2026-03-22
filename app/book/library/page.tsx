@@ -1,7 +1,7 @@
 import { requireDashboardAccess } from "@/app/_lib/require-dashboard-access";
-import { BookLibraryClient } from "@/app/book/library/BookLibraryClient";
+import { LibraryPage } from "@/components/library/LibraryPage";
 
 export default async function BookLibraryPage() {
   await requireDashboardAccess();
-  return <BookLibraryClient />;
+  return <LibraryPage />;
 }

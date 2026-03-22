@@ -2,8 +2,9 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { Clock } from "lucide-react";
-import { FIRST_LOOP_CONTENT } from "@/app/onboarding/data/chapters";
-import { getBookById } from "@/app/onboarding/data/books";
+import { getFirstLoopContent } from "@/app/onboarding/data/chapters";
+import { getBookById, getBookCoverPath } from "@/app/onboarding/data/books";
+import { useOnboarding } from "@/app/onboarding/hooks/useOnboarding";
 import {
   staggerContainer,
   staggerItem,
@@ -15,7 +16,8 @@ interface MiniSummaryProps {
 
 export default function MiniSummary({ onContinue }: MiniSummaryProps) {
   const prefersReducedMotion = useReducedMotion();
-  const { summary } = FIRST_LOOP_CONTENT;
+  const { tone } = useOnboarding();
+  const { summary } = getFirstLoopContent(tone);
   const book = getBookById(summary.bookId);
   const coverGradient = book?.gradient ?? "linear-gradient(135deg, #D4A574, #C4956A)";
 
@@ -48,8 +50,26 @@ export default function MiniSummary({ onContinue }: MiniSummaryProps) {
             background: coverGradient,
             boxShadow: "0 2px 10px rgba(0,0,0,0.3)",
             flexShrink: 0,
+            overflow: "hidden",
           }}
-        />
+        >
+          {getBookCoverPath(summary.bookId) && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={getBookCoverPath(summary.bookId)!}
+              alt={summary.bookTitle}
+              draggable={false}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                display: "block",
+                pointerEvents: "none",
+                userSelect: "none",
+              }}
+            />
+          )}
+        </div>
         <div>
           <p
             style={{
@@ -124,14 +144,33 @@ export default function MiniSummary({ onContinue }: MiniSummaryProps) {
             borderLeft: "3px solid var(--accent-teal, #2DD4BF)",
             background: "var(--bg-glass, rgba(255,255,255,0.03))",
             borderRadius: "0 var(--radius-md-val, 12px) var(--radius-md-val, 12px) 0",
-            fontFamily: "var(--font-dm-sans, sans-serif)",
-            fontSize: 16,
-            fontStyle: "italic",
-            lineHeight: 1.7,
-            color: "var(--text-primary, #E2E2E6)",
           }}
         >
-          {summary.keyInsight}
+          <p
+            style={{
+              fontFamily: "var(--font-dm-sans, sans-serif)",
+              fontSize: 11,
+              fontWeight: 600,
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+              color: "var(--text-muted, #5A5A6E)",
+              margin: "0 0 8px",
+            }}
+          >
+            Key Insight
+          </p>
+          <p
+            style={{
+              fontFamily: "var(--font-dm-sans, sans-serif)",
+              fontSize: 16,
+              fontStyle: "italic",
+              lineHeight: 1.7,
+              color: "var(--text-primary, #E2E2E6)",
+              margin: 0,
+            }}
+          >
+            {summary.keyInsight}
+          </p>
         </motion.blockquote>
       )}
 
@@ -146,26 +185,25 @@ export default function MiniSummary({ onContinue }: MiniSummaryProps) {
             fontFamily: "var(--font-dm-sans, sans-serif)",
             fontSize: 16,
             fontWeight: 600,
-            color: "var(--text-heading, #FAFAFA)",
-            background: "var(--bg-glass-hover, rgba(255,255,255,0.06))",
-            border: "1px solid var(--border-medium, rgba(255,255,255,0.10))",
+            color: "#0A0E1A",
+            background: "#3BD4A0",
+            border: "none",
             borderRadius: "var(--radius-md-val, 12px)",
             cursor: "pointer",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             gap: 8,
-            transition: "background 0.15s, border-color 0.15s",
+            boxShadow: "0 0 20px rgba(59,212,160,0.25)",
+            transition: "filter 0.15s, transform 0.15s",
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.background = "rgba(255,255,255,0.09)";
-            e.currentTarget.style.borderColor = "rgba(255,255,255,0.15)";
+            e.currentTarget.style.filter = "brightness(1.1)";
+            e.currentTarget.style.transform = "scale(1.02)";
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.background =
-              "var(--bg-glass-hover, rgba(255,255,255,0.06))";
-            e.currentTarget.style.borderColor =
-              "var(--border-medium, rgba(255,255,255,0.10))";
+            e.currentTarget.style.filter = "brightness(1)";
+            e.currentTarget.style.transform = "scale(1)";
           }}
         >
           Continue to scenarios

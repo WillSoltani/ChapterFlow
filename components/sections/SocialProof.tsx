@@ -32,7 +32,8 @@ const testimonials = [
 function StarIcon() {
   return (
     <svg
-      className="w-4 h-4 fill-[--accent-teal]"
+      className="w-4 h-4"
+      style={{ fill: "#2dd4bf" }}
       viewBox="0 0 20 20"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -114,7 +115,7 @@ function TestimonialCard({
 
 export function SocialProof() {
   return (
-    <section id="social-proof" className="py-20 lg:py-28 max-w-5xl mx-auto px-4">
+    <section id="social-proof" className="pt-8 pb-14 lg:pt-10 lg:pb-20 max-w-5xl mx-auto px-4">
       {/* Header */}
       <div className="text-center">
         <SectionReveal>

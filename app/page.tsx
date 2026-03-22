@@ -13,6 +13,7 @@ import { SocialProof } from "@/components/sections/SocialProof";
 import { Pricing } from "@/components/sections/Pricing";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Footer } from "@/components/sections/Footer";
+import { MobileStickyBar } from "@/components/landing/MobileStickyBar";
 
 export const metadata: Metadata = {
   title: `${CHAPTERFLOW_NAME} | Stop forgetting what you read`,
@@ -62,6 +63,7 @@ export default function Home() {
       </main>
 
       <Footer />
+      <MobileStickyBar />
     </div>
   );
 }

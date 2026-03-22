@@ -14,15 +14,83 @@ import UnlockCelebration from "./UnlockCelebration";
 
 interface StepFirstLoopProps {
   onFinish: () => void;
+  onBack: () => void;
+  backRef: React.MutableRefObject<(() => void) | null>;
 }
 
 type SubStep = "summary" | "scenario" | "quiz" | "celebration";
 
-export default function StepFirstLoop({ onFinish }: StepFirstLoopProps) {
+const SUB_STEP_LABELS: { key: SubStep; label: string }[] = [
+  { key: "summary", label: "Summary" },
+  { key: "scenario", label: "Scenarios" },
+  { key: "quiz", label: "Quiz" },
+  { key: "celebration", label: "Unlock" },
+];
+
+function SubStepIndicator({ current }: { current: SubStep }) {
+  const currentIdx = SUB_STEP_LABELS.findIndex((s) => s.key === current);
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 6,
+        marginBottom: 24,
+      }}
+    >
+      {SUB_STEP_LABELS.map((step, i) => {
+        const isActive = step.key === current;
+        const isCompleted = i < currentIdx;
+
+        return (
+          <span
+            key={step.key}
+            style={{
+              fontFamily: "var(--font-dm-sans, sans-serif)",
+              fontSize: 13,
+              fontWeight: isActive ? 600 : 400,
+              padding: "5px 12px",
+              borderRadius: 999,
+              background: isActive
+                ? "rgba(79,139,255,0.15)"
+                : "var(--bg-glass, rgba(255,255,255,0.03))",
+              border: isActive
+                ? "1px solid rgba(79,139,255,0.3)"
+                : "1px solid var(--border-subtle, rgba(255,255,255,0.06))",
+              color: isActive
+                ? "#5B8DEF"
+                : isCompleted
+                  ? "var(--accent-teal, #2DD4BF)"
+                  : "var(--text-muted, #5A5A6E)",
+              transition: "all 200ms ease",
+            }}
+          >
+            {step.label}
+          </span>
+        );
+      })}
+    </div>
+  );
+}
+
+export default function StepFirstLoop({ onFinish, onBack, backRef }: StepFirstLoopProps) {
   const prefersReducedMotion = useReducedMotion();
   const { setFirstQuizScore, completeFirstChapter } = useOnboarding();
 
   const [subStep, setSubStep] = useState<SubStep>("summary");
+
+  /** Called by parent's back button — navigates within sub-steps or exits to Step 5 */
+  const handleBack = useCallback(() => {
+    if (subStep === "scenario") setSubStep("summary");
+    else if (subStep === "quiz") setSubStep("scenario");
+    else if (subStep === "summary") onBack();
+    // celebration: don't allow back
+  }, [subStep, onBack]);
+
+  // Register back handler with parent so the header back button can call it
+  backRef.current = handleBack;
   const [quizScore, setQuizScore] = useState(0);
 
   const handleSummaryContinue = useCallback(() => {
@@ -47,7 +115,7 @@ export default function StepFirstLoop({ onFinish }: StepFirstLoopProps) {
     onFinish();
   }, [completeFirstChapter, onFinish]);
 
-  const showHeading = subStep === "summary" || subStep === "scenario";
+  const isCelebration = subStep === "celebration";
 
   return (
     <div
@@ -58,36 +126,37 @@ export default function StepFirstLoop({ onFinish }: StepFirstLoopProps) {
         padding: "0 20px",
       }}
     >
+      {/* Chapter header */}
+      {!isCelebration && (
+        <div style={{ textAlign: "center", marginBottom: 8 }}>
+          <p
+            style={{
+              fontFamily: "var(--font-dm-sans, sans-serif)",
+              fontSize: 14,
+              color: "var(--text-muted, #5A5A6E)",
+              textTransform: "uppercase",
+              letterSpacing: "0.06em",
+              margin: "0 0 8px",
+            }}
+          >
+            Chapter 1 · Atomic Habits
+          </p>
+        </div>
+      )}
+
+      {/* Sub-step indicator */}
+      {!isCelebration && <SubStepIndicator current={subStep} />}
+
       {/* Glass-elevated container */}
       <div
         style={{
-          background: "rgba(255,255,255,0.05)",
-          border: "1px solid var(--border-subtle, rgba(255,255,255,0.06))",
+          background: isCelebration ? "transparent" : "rgba(255,255,255,0.05)",
+          border: isCelebration ? "none" : "1px solid var(--border-subtle, rgba(255,255,255,0.06))",
           borderRadius: "var(--radius-xl-val, 24px)",
-          padding: "28px 24px",
-          boxShadow: "var(--shadow-card, 0 4px 24px rgba(0,0,0,0.3))",
+          padding: isCelebration ? "0" : "28px 24px",
+          boxShadow: isCelebration ? "none" : "var(--shadow-card, 0 4px 24px rgba(0,0,0,0.3))",
         }}
       >
-        {/* Heading — fades as sub-steps progress */}
-        <AnimatePresence>
-          {showHeading && (
-            <motion.h2
-              initial={prefersReducedMotion ? false : { opacity: 0, y: -8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.3 }}
-              style={{
-                fontFamily: "var(--font-sora, sans-serif)",
-                fontSize: 24,
-                fontWeight: 600,
-                color: "var(--text-heading, #FAFAFA)",
-                marginBottom: 24,
-              }}
-            >
-              Your first chapter
-            </motion.h2>
-          )}
-        </AnimatePresence>
 
         {/* Sub-step content */}
         <AnimatePresence mode="wait">

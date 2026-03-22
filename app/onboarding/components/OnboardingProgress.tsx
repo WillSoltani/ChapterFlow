@@ -9,7 +9,7 @@ interface OnboardingProgressProps {
 
 export default function OnboardingProgress({
   currentStep,
-  totalSteps = 5,
+  totalSteps = 6,
 }: OnboardingProgressProps) {
   const prefersReducedMotion = useReducedMotion();
 
@@ -40,7 +40,7 @@ export default function OnboardingProgress({
             userSelect: "none",
           }}
         >
-          Step {currentStep} of {totalSteps}
+          {currentStep >= totalSteps ? "Almost there" : `Step ${currentStep} of ${totalSteps}`}
         </span>
       </div>
 

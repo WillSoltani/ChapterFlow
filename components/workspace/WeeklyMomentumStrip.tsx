@@ -67,8 +67,8 @@ export function WeeklyMomentumStrip({
                 }
               >
                 <span
-                  className="text-[10px]"
-                  style={{ color: "#6B6B80" }}
+                  className="text-[10px] font-medium"
+                  style={{ color: "rgba(255,255,255,0.3)" }}
                 >
                   {label}
                 </span>
@@ -82,7 +82,7 @@ export function WeeklyMomentumStrip({
                         ? "#7C3AED"
                         : "rgba(255,255,255,0.08)",
                       boxShadow: isActive
-                        ? "0 0 6px rgba(124,58,237,0.3)"
+                        ? "0 0 8px 2px rgba(124, 58, 237, 0.55)"
                         : "none",
                     }}
                   />

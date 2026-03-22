@@ -1,7 +1,8 @@
 "use client";
 
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { PhoneMockup } from "@/components/landing/PhoneMockup";
 import { PhoneScreenContent } from "@/components/landing/PhoneScreenContent";
 
@@ -17,11 +18,52 @@ const fadeUp = {
   },
 };
 
+function PulseCTA({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: false });
+  const [shouldPulse, setShouldPulse] = useState(false);
+
+  useEffect(() => {
+    if (isInView) {
+      const timer = setTimeout(() => setShouldPulse(true), 3000);
+      return () => clearTimeout(timer);
+    } else {
+      setShouldPulse(false);
+    }
+  }, [isInView]);
+
+  return (
+    <motion.div
+      ref={ref}
+      className={className}
+      animate={
+        shouldPulse
+          ? {
+              boxShadow: [
+                "0 0 0 0 rgba(45, 212, 191, 0)",
+                "0 0 0 8px rgba(45, 212, 191, 0.15)",
+                "0 0 0 0 rgba(45, 212, 191, 0)",
+              ],
+            }
+          : {}
+      }
+      transition={
+        shouldPulse
+          ? { duration: 2.5, repeat: Infinity, repeatDelay: 1 }
+          : {}
+      }
+      style={{ borderRadius: 9999 }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
 export function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen pt-24 lg:pt-32 pb-16 lg:pb-24 overflow-hidden"
+      className="relative min-h-[85vh] pt-24 lg:pt-28 pb-12 lg:pb-16 overflow-hidden"
     >
       {/* Background radial gradient for atmospheric depth */}
       <div
@@ -48,7 +90,7 @@ export function Hero() {
             {/* Eyebrow badge */}
             <motion.div variants={fadeUp}>
               <span
-                className="inline-flex items-center gap-2 text-[11px] uppercase font-semibold px-3.5 py-1.5 rounded-full border"
+                className="inline-flex items-center gap-2 text-[11px] tracking-wider font-medium px-3.5 py-1.5 rounded-full border"
                 style={{
                   letterSpacing: "0.18em",
                   color: "var(--accent-teal)",
@@ -63,7 +105,7 @@ export function Hero() {
 
             {/* Headline */}
             <motion.h1
-              className="mt-6 flex flex-col text-[40px] md:text-[52px] lg:text-[64px] font-bold leading-[1.05]"
+              className="mt-4 flex flex-col text-[40px] md:text-[52px] lg:text-[64px] font-bold leading-[1.05]"
               style={{
                 fontFamily: "var(--font-display)",
                 letterSpacing: "-0.025em",
@@ -87,7 +129,7 @@ export function Hero() {
 
             {/* Subheadline */}
             <motion.p
-              className="mt-5 text-[17px] md:text-[18px] font-normal leading-[1.7] max-w-[500px]"
+              className="mt-4 text-[17px] md:text-[18px] font-normal leading-[1.7] max-w-[500px]"
               style={{
                 fontFamily: "var(--font-body)",
                 color: "var(--text-secondary)",
@@ -100,17 +142,19 @@ export function Hero() {
             </motion.p>
 
             {/* Primary CTA */}
-            <motion.div className="mt-7" variants={fadeUp}>
-              <Link
-                href="/auth/login?returnTo=%2Fbook"
-                className="cta-shine inline-flex items-center rounded-full px-8 py-4 font-semibold text-[16px] transition-transform hover:scale-[1.03] active:scale-[0.98]"
-                style={{
-                  backgroundColor: "var(--accent-teal)",
-                  color: "#0a0f1a",
-                }}
-              >
-                Start reading free &rarr;
-              </Link>
+            <motion.div className="mt-6" variants={fadeUp}>
+              <PulseCTA className="inline-block">
+                <Link
+                  href="/auth/login?returnTo=%2Fbook"
+                  className="cta-shine inline-flex items-center rounded-full px-8 py-4 font-semibold text-[16px] transition-transform hover:scale-[1.03] active:scale-[0.98]"
+                  style={{
+                    backgroundColor: "var(--accent-teal)",
+                    color: "#0a0f1a",
+                  }}
+                >
+                  Start reading free &rarr;
+                </Link>
+              </PulseCTA>
             </motion.div>
 
             {/* Trust line */}

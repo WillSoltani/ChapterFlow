@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 
 interface RewardsCardProps {
@@ -28,8 +29,8 @@ export function RewardsCard({
       className="flex-1 rounded-xl p-5"
       style={{
         background: "rgba(255,255,255,0.04)",
-        backdropFilter: "blur(16px)",
-        WebkitBackdropFilter: "blur(16px)",
+        backdropFilter: "blur(16px) saturate(125%)",
+        WebkitBackdropFilter: "blur(16px) saturate(125%)",
         border: "1px solid rgba(255,255,255,0.08)",
       }}
       initial={prefersReducedMotion ? undefined : { opacity: 0, y: 16 }}
@@ -41,16 +42,37 @@ export function RewardsCard({
           : { duration: 0.5, ease: [0.22, 1, 0.36, 1] }
       }
     >
-      {/* Points balance */}
+      {/* Points balance with shine sweep */}
       <div className="flex items-center gap-2">
         <span aria-hidden="true" style={{ color: "#7C3AED", fontSize: 18 }}>
           ◆
         </span>
-        <span
-          className="font-(family-name:--font-jetbrains) text-2xl font-bold tabular-nums"
-          style={{ color: "#F0F0F0" }}
-        >
-          {flowPoints.toLocaleString()}
+        <span className="relative inline-block overflow-hidden">
+          <span
+            className="font-(family-name:--font-jetbrains) text-2xl font-bold tabular-nums"
+            style={{ color: "#F0F0F0" }}
+          >
+            {flowPoints.toLocaleString()}
+          </span>
+          {/* Shine sweep effect */}
+          {!prefersReducedMotion && (
+            <motion.span
+              className="pointer-events-none absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.18) 48%, rgba(255,255,255,0.18) 52%, transparent 60%)",
+                mixBlendMode: "overlay",
+              }}
+              initial={{ x: "-120%" }}
+              animate={{ x: "220%" }}
+              transition={{
+                duration: 1.8,
+                repeat: Infinity,
+                repeatDelay: 5,
+                ease: "easeInOut",
+              }}
+            />
+          )}
         </span>
         <span className="text-xs" style={{ color: "#A0A0B8" }}>
           Flow Points
@@ -71,8 +93,7 @@ export function RewardsCard({
           <motion.div
             className="h-full rounded-full"
             style={{
-              background:
-                "linear-gradient(90deg, #7C3AED, #A78BFA)",
+              background: "linear-gradient(90deg, #7C3AED, #A78BFA)",
             }}
             initial={prefersReducedMotion ? undefined : { width: 0 }}
             whileInView={{ width: `${progress}%` }}
@@ -80,7 +101,7 @@ export function RewardsCard({
             transition={
               prefersReducedMotion
                 ? { duration: 0 }
-                : { duration: 0.8, ease: "easeOut", delay: 0.2 }
+                : { duration: 0.8, ease: "easeOut", delay: 0.4 }
             }
           />
         </div>
@@ -113,9 +134,13 @@ export function RewardsCard({
 
       {/* Pro note */}
       {!isPro && (
-        <p className="mt-3 text-[11px]" style={{ color: "#6B6B80" }}>
+        <Link
+          href="/pricing"
+          className="mt-3 block text-[11px] transition-colors hover:text-violet-300"
+          style={{ color: "#6B6B80" }}
+        >
           2x points with Pro ✨
-        </p>
+        </Link>
       )}
     </motion.div>
   );

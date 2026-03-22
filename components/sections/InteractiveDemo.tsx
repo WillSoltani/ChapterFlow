@@ -452,7 +452,7 @@ export function InteractiveDemo() {
   };
 
   return (
-    <section id="demo" className="py-20 lg:py-28">
+    <section id="demo" className="py-14 lg:py-20">
       <div className="max-w-5xl mx-auto px-4">
         {/* ---- Header ---- */}
         <SectionReveal>
@@ -488,11 +488,18 @@ export function InteractiveDemo() {
             </div>
 
             {/* Tab bar */}
-            <div className="relative flex border-b border-[--border-subtle]">
+            <div className="relative flex border-b border-[--border-subtle]" role="tablist">
               {TABS.map((tab, i) => (
                 <button
                   key={tab}
+                  role="tab"
+                  aria-selected={activeTab === i}
+                  tabIndex={activeTab === i ? 0 : -1}
                   onClick={() => handleTabClick(i as TabIndex)}
+                  onKeyDown={(e) => {
+                    if (e.key === "ArrowRight") handleTabClick(((i + 1) % TABS.length) as TabIndex);
+                    if (e.key === "ArrowLeft") handleTabClick(((i - 1 + TABS.length) % TABS.length) as TabIndex);
+                  }}
                   className={`relative px-6 py-3 text-sm font-medium transition-colors font-[family-name:var(--font-display)] ${
                     activeTab === i ? "text-[--accent-teal]" : "text-[--text-secondary] hover:text-[--text-heading]"
                   }`}

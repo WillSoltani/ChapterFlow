@@ -1,6 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { JetBrains_Mono } from "next/font/google";
+import { motion, useReducedMotion } from "framer-motion";
 import { AnimatedBackground } from "./AnimatedBackground";
 import { CompactHeader } from "./CompactHeader";
 import { HeroSessionCard } from "./HeroSessionCard";
@@ -50,6 +52,7 @@ interface WorkspaceData {
     currentLoopStep: "summary" | "scenarios" | "quiz" | "unlock" | null;
     estimatedMinutes: number;
     gradient?: string;
+    glowColor?: string;
   } | null;
   weeklyActivity: boolean[];
   weeklyStats: {
@@ -75,6 +78,16 @@ interface WorkspaceData {
     category: string;
     gradient?: string;
   }>;
+  discoveryBooks: Array<{
+    id: string;
+    title: string;
+    author: string;
+    coverUrl: string;
+    rating: number;
+    readerCount: number;
+    category: string;
+    gradient?: string;
+  }>;
   nextReward: {
     name: string;
     pointsRequired: number;
@@ -90,7 +103,7 @@ interface WorkspaceData {
 }
 
 /* ────────────────────────────────────────────
-   Mock Data (replace with real API later)
+   Mock Data
    ──────────────────────────────────────────── */
 
 const mockData: WorkspaceData = {
@@ -113,7 +126,7 @@ const mockData: WorkspaceData = {
     progressPercent: 25,
     currentLoopStep: "scenarios",
     estimatedMinutes: 13,
-    gradient: "linear-gradient(135deg, #D97706, #B45309)",
+    glowColor: "rgba(217,119,6,0.35)",
   },
   weeklyActivity: [true, true, true, false, false, false, false],
   weeklyStats: {
@@ -128,16 +141,14 @@ const mockData: WorkspaceData = {
       coverUrl: "",
       progressPercent: 25,
       status: "in_progress",
-      gradient: "linear-gradient(135deg, #D97706, #B45309)",
     },
     {
-      id: "never-split",
+      id: "never-split-the-difference",
       title: "Never Split the Difference",
       author: "Chris Voss",
       coverUrl: "",
       progressPercent: 10,
       status: "in_progress",
-      gradient: "linear-gradient(135deg, #2563EB, #1E40AF)",
     },
     {
       id: "the-prince",
@@ -146,7 +157,6 @@ const mockData: WorkspaceData = {
       coverUrl: "",
       progressPercent: 0,
       status: "not_started",
-      gradient: "linear-gradient(135deg, #0D9488, #0F766E)",
     },
   ],
   recommendedProBooks: [
@@ -158,17 +168,53 @@ const mockData: WorkspaceData = {
       rating: 4.8,
       readerCount: 2340,
       category: "Productivity",
-      gradient: "linear-gradient(135deg, #7C3AED, #5B21B6)",
     },
     {
-      id: "range",
-      title: "Range",
-      author: "David Epstein",
+      id: "the-psychology-of-money",
+      title: "The Psychology of Money",
+      author: "Morgan Housel",
       coverUrl: "",
       rating: 4.9,
-      readerCount: 980,
-      category: "Science",
-      gradient: "linear-gradient(135deg, #EC4899, #BE185D)",
+      readerCount: 3100,
+      category: "Finance",
+    },
+  ],
+  discoveryBooks: [
+    {
+      id: "thinking-fast-and-slow",
+      title: "Thinking, Fast and Slow",
+      author: "Daniel Kahneman",
+      coverUrl: "",
+      rating: 4.7,
+      readerCount: 4200,
+      category: "Psychology",
+    },
+    {
+      id: "the-48-laws-of-power",
+      title: "The 48 Laws of Power",
+      author: "Robert Greene",
+      coverUrl: "",
+      rating: 4.6,
+      readerCount: 5100,
+      category: "Strategy",
+    },
+    {
+      id: "start-with-why",
+      title: "Start with Why",
+      author: "Simon Sinek",
+      coverUrl: "",
+      rating: 4.5,
+      readerCount: 2800,
+      category: "Leadership",
+    },
+    {
+      id: "mans-search-for-meaning",
+      title: "Man's Search for Meaning",
+      author: "Viktor Frankl",
+      coverUrl: "",
+      rating: 4.9,
+      readerCount: 6400,
+      category: "Philosophy",
     },
   ],
   nextReward: {
@@ -192,15 +238,15 @@ const mockData: WorkspaceData = {
 function deriveUserState(data: WorkspaceData): UserState {
   const { currentBook, userBooks, user } = data;
 
-  // New user: no books or all at 0%
   if (
     userBooks.length === 0 ||
-    userBooks.every((b) => b.progressPercent === 0 && b.status === "not_started")
+    userBooks.every(
+      (b) => b.progressPercent === 0 && b.status === "not_started"
+    )
   ) {
     return "new_user";
   }
 
-  // Returning: streak broken, had previous activity
   if (
     user.streakCount === 0 &&
     userBooks.some((b) => b.progressPercent > 0)
@@ -208,7 +254,6 @@ function deriveUserState(data: WorkspaceData): UserState {
     return "returning";
   }
 
-  // Free limit reached
   if (
     !user.isPro &&
     userBooks.filter((b) => b.status !== "not_started").length >= 2 &&
@@ -217,17 +262,14 @@ function deriveUserState(data: WorkspaceData): UserState {
     return "free_limit_reached";
   }
 
-  // Between books
   if (!currentBook) {
     return "between_books";
   }
 
-  // Quiz pending
   if (currentBook.currentLoopStep === "quiz") {
     return "quiz_pending";
   }
 
-  // Active reader
   return "active_reader";
 }
 
@@ -255,42 +297,71 @@ function getSubtitle(state: UserState, data: WorkspaceData): string {
 }
 
 /* ────────────────────────────────────────────
+   Staggered Page Load Wrapper
+   ──────────────────────────────────────────── */
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 16 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring" as const,
+      stiffness: 300,
+      damping: 24,
+    },
+  },
+};
+
+/* ────────────────────────────────────────────
    Mobile Bottom Nav
    ──────────────────────────────────────────── */
 
 function MobileBottomNav() {
   const tabs = [
-    { label: "Home", icon: HomeIcon, active: true },
-    { label: "Library", icon: LibraryIcon, active: false },
-    { label: "Progress", icon: ProgressIcon, active: false },
-    { label: "Profile", icon: ProfileIcon, active: false },
+    { label: "Home", icon: HomeIcon, active: true, href: "/dashboard" },
+    { label: "Library", icon: LibraryIcon, active: false, href: "/book/library" },
+    { label: "Progress", icon: ProgressIcon, active: false, href: "/book/progress" },
+    { label: "Profile", icon: ProfileIcon, active: false, href: "/book/profile" },
   ];
 
   return (
     <nav
       className="fixed bottom-0 left-0 right-0 z-40 flex h-14 items-center justify-around md:hidden"
       style={{
-        background: "rgba(8,8,12,0.92)",
+        background: "rgba(10,10,18,0.92)",
         backdropFilter: "blur(14px)",
         WebkitBackdropFilter: "blur(14px)",
-        borderTop: "1px solid var(--border-subtle)",
+        borderTop: "1px solid rgba(255,255,255,0.08)",
       }}
     >
       {tabs.map((tab) => (
-        <button
+        <Link
           key={tab.label}
-          className="flex cursor-pointer flex-col items-center gap-1"
+          href={tab.href}
+          className="flex min-h-11 min-w-11 flex-col items-center gap-1"
         >
           <tab.icon active={tab.active} />
           <span
             className="text-[10px]"
             style={{
-              color: tab.active ? "var(--text-heading)" : "var(--text-muted)",
+              color: tab.active ? "#F0F0F0" : "#6B6B80",
             }}
           >
             {tab.label}
           </span>
-        </button>
+        </Link>
       ))}
     </nav>
   );
@@ -298,16 +369,9 @@ function MobileBottomNav() {
 
 function HomeIcon({ active }: { active: boolean }) {
   return (
-    <svg
-      width={20}
-      height={20}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke={active ? "#7C3AED" : "var(--text-muted)"}
-      strokeWidth={2}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
+    <svg width={20} height={20} viewBox="0 0 24 24" fill="none"
+      stroke={active ? "#7C3AED" : "#6B6B80"} strokeWidth={2}
+      strokeLinecap="round" strokeLinejoin="round">
       <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
     </svg>
   );
@@ -315,16 +379,9 @@ function HomeIcon({ active }: { active: boolean }) {
 
 function LibraryIcon({ active }: { active: boolean }) {
   return (
-    <svg
-      width={20}
-      height={20}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke={active ? "#7C3AED" : "var(--text-muted)"}
-      strokeWidth={2}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
+    <svg width={20} height={20} viewBox="0 0 24 24" fill="none"
+      stroke={active ? "#7C3AED" : "#6B6B80"} strokeWidth={2}
+      strokeLinecap="round" strokeLinejoin="round">
       <path d="M4 19.5A2.5 2.5 0 016.5 17H20" />
       <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" />
     </svg>
@@ -333,16 +390,9 @@ function LibraryIcon({ active }: { active: boolean }) {
 
 function ProgressIcon({ active }: { active: boolean }) {
   return (
-    <svg
-      width={20}
-      height={20}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke={active ? "#7C3AED" : "var(--text-muted)"}
-      strokeWidth={2}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
+    <svg width={20} height={20} viewBox="0 0 24 24" fill="none"
+      stroke={active ? "#7C3AED" : "#6B6B80"} strokeWidth={2}
+      strokeLinecap="round" strokeLinejoin="round">
       <path d="M18 20V10M12 20V4M6 20v-6" />
     </svg>
   );
@@ -350,16 +400,9 @@ function ProgressIcon({ active }: { active: boolean }) {
 
 function ProfileIcon({ active }: { active: boolean }) {
   return (
-    <svg
-      width={20}
-      height={20}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke={active ? "#7C3AED" : "var(--text-muted)"}
-      strokeWidth={2}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
+    <svg width={20} height={20} viewBox="0 0 24 24" fill="none"
+      stroke={active ? "#7C3AED" : "#6B6B80"} strokeWidth={2}
+      strokeLinecap="round" strokeLinejoin="round">
       <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
       <circle cx={12} cy={7} r={4} />
     </svg>
@@ -371,6 +414,7 @@ function ProfileIcon({ active }: { active: boolean }) {
    ──────────────────────────────────────────── */
 
 export function WorkspacePage() {
+  const prefersReducedMotion = useReducedMotion();
   const data = mockData;
   const userState = deriveUserState(data);
   const subtitle = getSubtitle(userState, data);
@@ -380,11 +424,10 @@ export function WorkspacePage() {
   );
   const isNewUser = userState === "new_user";
   const hasActivity = data.weeklyActivity.some(Boolean);
-
-  // Discovery books — for free users show Pro books, for Pro show different recommendations
-  const discoveryBooks = data.recommendedProBooks;
-  // Only show discovery if user has completed at least one chapter
   const showDiscovery = data.weeklyStats.chaptersCompleted > 0;
+
+  const ContentWrapper = prefersReducedMotion ? "div" : motion.div;
+  const SectionWrapper = prefersReducedMotion ? "div" : motion.div;
 
   return (
     <div
@@ -405,65 +448,99 @@ export function WorkspacePage() {
           className="mx-auto w-full px-4 py-5 md:px-8 md:py-7"
           style={{ maxWidth: 1200 }}
         >
-          {/* Section 1: Compact Header */}
-          <CompactHeader
-            firstName={data.user.firstName}
-            streakCount={data.user.streakCount}
-            dailyProgress={dailyProgress}
-            flowPoints={data.user.flowPoints}
-            subtitle={subtitle}
-            isNewUser={isNewUser}
-          />
-
-          {/* Section 2: Hero Session Card */}
-          <HeroSessionCard
-            userState={userState}
-            currentBook={data.currentBook}
-            firstName={data.user.firstName}
-          />
-
-          {/* Section 3: Weekly Momentum Strip (hidden for new users) */}
-          {!isNewUser && hasActivity && (
-            <WeeklyMomentumStrip
-              weeklyActivity={data.weeklyActivity}
-              chaptersCompleted={data.weeklyStats.chaptersCompleted}
-              quizAverage={data.weeklyStats.quizAverage}
-              streakCount={data.user.streakCount}
-            />
-          )}
-
-          {/* Section 4: Your Books */}
-          <BookRow
-            userBooks={data.userBooks}
-            recommendedProBooks={data.recommendedProBooks}
-            isNewUser={isNewUser}
-          />
-
-          {/* Section 5: Rewards & Progress */}
-          <div className="mt-9 flex flex-col gap-4 md:flex-row">
-            <RewardsCard
-              flowPoints={data.user.flowPoints}
-              nextRewardName={data.nextReward.name}
-              pointsRequired={data.nextReward.pointsRequired}
-              isPro={data.user.isPro}
-            />
-            {data.nextAchievement && (
-              <NextAchievementCard
-                name={data.nextAchievement.name}
-                description={data.nextAchievement.description}
-                progressCurrent={data.nextAchievement.progressCurrent}
-                progressTotal={data.nextAchievement.progressTotal}
+          <ContentWrapper
+            {...(prefersReducedMotion
+              ? {}
+              : {
+                  variants: containerVariants,
+                  initial: "hidden",
+                  animate: "show",
+                })}
+          >
+            {/* Section 1: Compact Header */}
+            <SectionWrapper
+              {...(prefersReducedMotion ? {} : { variants: itemVariants })}
+            >
+              <CompactHeader
+                firstName={data.user.firstName}
+                streakCount={data.user.streakCount}
+                dailyProgress={dailyProgress}
+                flowPoints={data.user.flowPoints}
+                subtitle={subtitle}
+                isNewUser={isNewUser}
               />
-            )}
-          </div>
+            </SectionWrapper>
 
-          {/* Section 6: Personalized Discovery (below fold) */}
-          {showDiscovery && (
-            <DiscoveryRow
-              books={discoveryBooks}
-              isPro={data.user.isPro}
-            />
-          )}
+            {/* Section 2: Hero Session Card */}
+            <SectionWrapper
+              {...(prefersReducedMotion ? {} : { variants: itemVariants })}
+            >
+              <HeroSessionCard
+                userState={userState}
+                currentBook={data.currentBook}
+                firstName={data.user.firstName}
+              />
+            </SectionWrapper>
+
+            {/* Section 3: Weekly Momentum Strip */}
+            {!isNewUser && hasActivity && (
+              <SectionWrapper
+                {...(prefersReducedMotion ? {} : { variants: itemVariants })}
+              >
+                <WeeklyMomentumStrip
+                  weeklyActivity={data.weeklyActivity}
+                  chaptersCompleted={data.weeklyStats.chaptersCompleted}
+                  quizAverage={data.weeklyStats.quizAverage}
+                  streakCount={data.user.streakCount}
+                />
+              </SectionWrapper>
+            )}
+
+            {/* Section 4: Your Books */}
+            <SectionWrapper
+              {...(prefersReducedMotion ? {} : { variants: itemVariants })}
+            >
+              <BookRow
+                userBooks={data.userBooks}
+                recommendedProBooks={data.recommendedProBooks}
+                isNewUser={isNewUser}
+              />
+            </SectionWrapper>
+
+            {/* Section 5: Rewards & Progress */}
+            <SectionWrapper
+              {...(prefersReducedMotion ? {} : { variants: itemVariants })}
+            >
+              <div className="mt-9 flex flex-col gap-4 md:flex-row">
+                <RewardsCard
+                  flowPoints={data.user.flowPoints}
+                  nextRewardName={data.nextReward.name}
+                  pointsRequired={data.nextReward.pointsRequired}
+                  isPro={data.user.isPro}
+                />
+                {data.nextAchievement && (
+                  <NextAchievementCard
+                    name={data.nextAchievement.name}
+                    description={data.nextAchievement.description}
+                    progressCurrent={data.nextAchievement.progressCurrent}
+                    progressTotal={data.nextAchievement.progressTotal}
+                  />
+                )}
+              </div>
+            </SectionWrapper>
+
+            {/* Section 6: Personalized Discovery */}
+            {showDiscovery && (
+              <SectionWrapper
+                {...(prefersReducedMotion ? {} : { variants: itemVariants })}
+              >
+                <DiscoveryRow
+                  books={data.discoveryBooks}
+                  isPro={data.user.isPro}
+                />
+              </SectionWrapper>
+            )}
+          </ContentWrapper>
 
           {/* Bottom spacer for mobile nav */}
           <div className="h-20 md:hidden" />

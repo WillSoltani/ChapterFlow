@@ -106,8 +106,13 @@ const faqs = [
 /*  Pricing component                                                 */
 /* ------------------------------------------------------------------ */
 
+const MONTHLY_PRICE = 7.99;
+const ANNUAL_MONTHLY_PRICE = 5.99;
+const ANNUAL_SAVINGS_PCT = Math.round((1 - ANNUAL_MONTHLY_PRICE / MONTHLY_PRICE) * 100);
+
 export function Pricing() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [isAnnual, setIsAnnual] = useState(true);
 
   const toggleFaq = (index: number) => {
     setOpenIndex((prev) => (prev === index ? null : index));
@@ -135,7 +140,7 @@ export function Pricing() {
   ];
 
   return (
-    <section id="pricing" className="py-20 lg:py-28">
+    <section id="pricing" className="pt-14 pb-6 lg:pt-20 lg:pb-8">
       <div className="max-w-7xl mx-auto px-4">
         {/* ---- Intro ---- */}
         <SectionReveal>
@@ -166,8 +171,43 @@ export function Pricing() {
           </div>
         </SectionReveal>
 
+        {/* ---- Billing toggle ---- */}
+        <SectionReveal delay={0.05}>
+          <div className="mt-8 flex items-center justify-center gap-3">
+            <span
+              className="text-[14px] transition-colors"
+              style={{ color: isAnnual ? "var(--text-muted)" : "var(--text-heading)" }}
+            >
+              Monthly
+            </span>
+            <button
+              onClick={() => setIsAnnual((v) => !v)}
+              className="relative w-12 h-6 rounded-full transition-colors cursor-pointer"
+              style={{ background: isAnnual ? "var(--accent-teal)" : "var(--bg-elevated)" }}
+              aria-label="Toggle annual pricing"
+            >
+              <div
+                className="absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform"
+                style={{ transform: isAnnual ? "translateX(26px)" : "translateX(2px)" }}
+              />
+            </button>
+            <span
+              className="text-[14px] transition-colors"
+              style={{ color: isAnnual ? "var(--text-heading)" : "var(--text-muted)" }}
+            >
+              Annual
+              <span
+                className="ml-1.5 text-[10px] font-bold px-1.5 py-0.5 rounded-full"
+                style={{ color: "var(--accent-teal)", background: "rgba(45,212,191,0.1)" }}
+              >
+                Save {ANNUAL_SAVINGS_PCT}%
+              </span>
+            </span>
+          </div>
+        </SectionReveal>
+
         {/* ---- Pricing cards ---- */}
-        <div className="mt-10 flex flex-col md:flex-row gap-6 justify-center items-center md:items-stretch">
+        <div className="mt-8 flex flex-col md:flex-row gap-6 justify-center items-center md:items-stretch">
           {/* FREE card */}
           <SectionReveal delay={0.1}>
             <div
@@ -232,14 +272,23 @@ export function Pricing() {
           {/* PRO card */}
           <SectionReveal delay={0.2}>
             <div
-              className="relative flex flex-col bg-[--bg-glass] border border-[--accent-teal]/25 rounded-xl p-8 w-full max-w-[380px]"
+              className="relative flex flex-col rounded-xl p-8 w-full max-w-[380px] scale-[1.02]"
               style={{
                 backdropFilter: "blur(12px)",
-                boxShadow: "0 0 30px rgba(45,212,191,0.1)",
+                background: "var(--bg-glass)",
+                border: "1px solid rgba(45,212,191,0.35)",
+                boxShadow: "0 0 40px rgba(45,212,191,0.12), 0 0 80px rgba(45,212,191,0.04)",
               }}
             >
               {/* Badge */}
-              <span className="absolute -top-3.5 right-5 bg-[--accent-teal] text-[#0a0f1a] text-[12px] font-semibold px-3.5 py-1 rounded-full">
+              <span
+                className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-10 text-[11px] font-bold uppercase tracking-wider px-4 py-1.5 rounded-full whitespace-nowrap"
+                style={{
+                  background: "#2dd4bf",
+                  color: "#0a0f1a",
+                  boxShadow: "0 4px 14px rgba(45,212,191,0.35), 0 0 0 1px rgba(45,212,191,0.5)",
+                }}
+              >
                 Most popular
               </span>
 
@@ -252,15 +301,15 @@ export function Pricing() {
                   className="text-[48px] font-bold leading-none text-[--text-heading]"
                   style={{ fontFamily: "var(--font-jetbrains)" }}
                 >
-                  $7.99
+                  ${isAnnual ? ANNUAL_MONTHLY_PRICE.toFixed(2) : MONTHLY_PRICE.toFixed(2)}
                 </span>
                 <span className="ml-1 text-[16px] text-[--text-muted]">
-                  CAD / month
+                  CAD / month{isAnnual ? " · billed annually" : ""}
                 </span>
               </div>
 
               <p className="mt-1 text-[13px] text-[--accent-teal]">
-                That&apos;s $0.26/day
+                That&apos;s ${isAnnual ? (ANNUAL_MONTHLY_PRICE / 30).toFixed(2) : (MONTHLY_PRICE / 30).toFixed(2)}/day
               </p>
 
               <p
@@ -308,11 +357,19 @@ export function Pricing() {
 
         {/* ---- FAQ Accordion ---- */}
         <SectionReveal delay={0.3}>
-          <div className="max-w-2xl mx-auto mt-16">
+          <div className="max-w-2xl mx-auto mt-10">
             {faqs.map((faq, index) => (
               <div key={index} className="border-b border-[--border-subtle]">
                 <button
                   onClick={() => toggleFaq(index)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      toggleFaq(index);
+                    }
+                  }}
+                  aria-expanded={openIndex === index}
+                  aria-controls={`faq-answer-${index}`}
                   className="flex w-full items-center justify-between py-4 text-left"
                 >
                   <span
@@ -328,6 +385,8 @@ export function Pricing() {
                   {openIndex === index && (
                     <motion.div
                       key="answer"
+                      id={`faq-answer-${index}`}
+                      role="region"
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}

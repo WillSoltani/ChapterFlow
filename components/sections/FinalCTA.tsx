@@ -1,12 +1,55 @@
 "use client";
 
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import { motion, useInView } from "framer-motion";
 import { SectionReveal } from "@/components/ui/SectionReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 
+function PulseCTA({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: false });
+  const [shouldPulse, setShouldPulse] = useState(false);
+
+  useEffect(() => {
+    if (isInView) {
+      const timer = setTimeout(() => setShouldPulse(true), 3000);
+      return () => clearTimeout(timer);
+    } else {
+      setShouldPulse(false);
+    }
+  }, [isInView]);
+
+  return (
+    <motion.div
+      ref={ref}
+      className={className}
+      animate={
+        shouldPulse
+          ? {
+              boxShadow: [
+                "0 0 0 0 rgba(45, 212, 191, 0)",
+                "0 0 0 8px rgba(45, 212, 191, 0.15)",
+                "0 0 0 0 rgba(45, 212, 191, 0)",
+              ],
+            }
+          : {}
+      }
+      transition={
+        shouldPulse
+          ? { duration: 2.5, repeat: Infinity, repeatDelay: 1 }
+          : {}
+      }
+      style={{ borderRadius: 9999 }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
 export function FinalCTA() {
   return (
-    <section className="py-24 lg:py-32 px-4">
+    <section className="pt-6 pb-14 lg:pt-8 lg:pb-20 px-4">
       <SectionReveal>
         <div className="max-w-[640px] mx-auto text-center">
           <SectionLabel>START WITH ONE CHAPTER</SectionLabel>
@@ -44,27 +87,23 @@ export function FinalCTA() {
 
           {/* CTA button */}
           <div className="mt-8 flex flex-col items-center gap-3">
-            <Link
-              href="/auth/login?returnTo=%2Fbook"
-              className="cta-shine inline-flex items-center rounded-full px-8 py-4 font-semibold text-[16px] transition-transform hover:scale-[1.03] active:scale-[0.98]"
-              style={{
-                backgroundColor: "var(--accent-teal)",
-                color: "#0a0f1a",
-              }}
-            >
-              Start reading free &rarr;
-            </Link>
+            <PulseCTA className="inline-block">
+              <Link
+                href="/auth/login?returnTo=%2Fbook"
+                className="cta-shine inline-flex items-center rounded-full px-8 py-4 font-semibold text-[16px] transition-transform hover:scale-[1.03] active:scale-[0.98]"
+                style={{
+                  backgroundColor: "var(--accent-teal)",
+                  color: "#0a0f1a",
+                }}
+              >
+                Start reading free &rarr;
+              </Link>
+            </PulseCTA>
 
             <Link
               href="/auth/login?returnTo=%2Fbook"
-              className="text-[14px] font-medium transition-colors duration-200"
+              className="text-[14px] font-medium transition-colors duration-200 hover:text-[--text-heading]"
               style={{ color: "var(--text-secondary)" }}
-              onMouseEnter={(e) => {
-                (e.target as HTMLElement).style.color = "var(--text-heading)";
-              }}
-              onMouseLeave={(e) => {
-                (e.target as HTMLElement).style.color = "var(--text-secondary)";
-              }}
             >
               Sign in
             </Link>
@@ -74,7 +113,7 @@ export function FinalCTA() {
           <div className="flex flex-row gap-3 justify-center mt-8">
             {/* Apple App Store */}
             <a
-              href="/auth/login?returnTo=%2Fbook"
+              href="/coming-soon"
               className="group flex items-center gap-2.5 rounded-xl px-4 py-2.5 transition-all duration-300 hover:-translate-y-0.5"
               style={{
                 background:
@@ -112,7 +151,7 @@ export function FinalCTA() {
 
             {/* Google Play */}
             <a
-              href="/auth/login?returnTo=%2Fbook"
+              href="/coming-soon"
               className="group flex items-center gap-2.5 rounded-xl px-4 py-2.5 transition-all duration-300 hover:-translate-y-0.5"
               style={{
                 background:

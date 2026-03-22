@@ -111,7 +111,7 @@ export function Problem() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <section id="problem" className="py-20 lg:py-28">
+    <section id="problem" className="py-14 lg:py-20">
       <div className="mx-auto max-w-[720px] px-5">
         {/* Label */}
         <SectionReveal>

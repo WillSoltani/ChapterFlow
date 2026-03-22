@@ -7,6 +7,7 @@ import {
   CHAPTERFLOW_TAGLINE,
   getChapterFlowSiteUrl,
 } from "@/app/_lib/chapterflow-brand";
+import { MotionProvider } from "@/components/MotionProvider";
 
 const satoshi = localFont({
   src: [
@@ -56,7 +57,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-screen w-full overflow-x-hidden antialiased font-(--font-body)">
-        {children}
+        <MotionProvider>{children}</MotionProvider>
       </body>
     </html>
   );
