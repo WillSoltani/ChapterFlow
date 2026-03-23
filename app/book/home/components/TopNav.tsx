@@ -30,6 +30,8 @@ type TopNavProps = {
   showSearch?: boolean;
   searchPlaceholder?: string;
   showGlobalSearchPanel?: boolean;
+  /** Use "dashboard" to render the open-book SVG logo from the dashboard page */
+  logoVariant?: "default" | "dashboard";
 };
 
 const navItems: Array<{
@@ -53,6 +55,7 @@ export function TopNav({
   showSearch = true,
   searchPlaceholder,
   showGlobalSearchPanel = true,
+  logoVariant = "default",
 }: TopNavProps) {
   const pathname = usePathname();
   const [showProfileMenu, setShowProfileMenu] = useState(false);
@@ -121,10 +124,50 @@ export function TopNav({
             {/* Logo */}
             <Link
               href="/book/workspace"
-              className="inline-flex shrink-0 rounded-[18px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)"
+              className="inline-flex shrink-0 items-center gap-2.5 rounded-[18px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)"
               aria-label="Go to ChapterFlow workspace"
             >
-              <ChapterFlowMark compact />
+              {logoVariant === "dashboard" ? (
+                <>
+                  <svg width={28} height={28} viewBox="0 0 28 28" fill="none">
+                    <path
+                      d="M4 7C4 5.9 4.9 5 6 5H12C13.1 5 14 5.9 14 7V21C14 22.1 13.1 23 12 23H6C4.9 23 4 22.1 4 21V7Z"
+                      stroke="var(--accent-blue)"
+                      strokeWidth={1.5}
+                      fill="none"
+                    />
+                    <path
+                      d="M14 7C14 5.9 14.9 5 16 5H22C23.1 5 24 5.9 24 7V21C24 22.1 23.1 23 22 23H16C14.9 23 14 22.1 14 21V7Z"
+                      stroke="var(--accent-blue)"
+                      strokeWidth={1.5}
+                      fill="none"
+                    />
+                    <path
+                      d="M17 12L20 14L17 16"
+                      stroke="var(--accent-blue)"
+                      strokeWidth={1.5}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                  <div className="flex flex-col">
+                    <span
+                      className="text-[9px] font-semibold uppercase tracking-[0.12em]"
+                      style={{ color: "var(--text-muted)" }}
+                    >
+                      Guided reading
+                    </span>
+                    <span
+                      className="font-(family-name:--font-display) text-[15px] font-semibold"
+                      style={{ color: "var(--text-heading)" }}
+                    >
+                      ChapterFlow
+                    </span>
+                  </div>
+                </>
+              ) : (
+                <ChapterFlowMark compact />
+              )}
             </Link>
 
             {/* Desktop nav — hidden on mobile (use bottom tab bar instead) */}

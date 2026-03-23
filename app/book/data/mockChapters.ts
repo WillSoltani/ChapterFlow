@@ -509,13 +509,17 @@ function normalizeQuizQuestion(
   );
   const prompt = normalizeQuizPrompt(question.prompt);
   return {
-    id: cleanText(question.questionId) || fallbackId,
+    id: question.questionId ? cleanText(question.questionId) : fallbackId,
     prompt,
     options,
     correctIndex,
     explanation:
-      question.explanation?.trim() ||
-      buildQuizExplanation(chapter, prompt, options[correctIndex], family),
+      typeof question.explanation === "string"
+        ? question.explanation.trim() ||
+          buildQuizExplanation(chapter, prompt, options[correctIndex], family)
+        : question.explanation
+          ? (question.explanation as unknown as string)
+          : buildQuizExplanation(chapter, prompt, options[correctIndex], family),
   };
 }
 

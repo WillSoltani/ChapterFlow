@@ -1,49 +1,88 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Award, Lock, Search, Zap } from "lucide-react";
 import { TopNav } from "@/app/book/home/components/TopNav";
-import { InfoModal } from "@/app/book/home/components/InfoModal";
 import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
-import { useKeyboardShortcut } from "@/app/book/hooks/useKeyboardShortcut";
 import { useBadgeSystem } from "@/app/book/hooks/useBadgeSystem";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
-import { BADGE_FILTERS, filterBadges, type BadgeFilter, type BadgeState } from "@/app/book/data/mockBadges";
+import type { BadgeFilter, BadgeWithProgress, SeasonalChallenge as SeasonalChallengeType } from "./lib/badge-types";
 import {
-  BadgeCategorySection,
-  BadgeDetailPanel,
-  BadgeFilterBar,
-  BadgeTimelineItem,
-  ProgressToNextBadgeCard,
-} from "@/app/book/badges/components/BadgeSystemCards";
-import { Card } from "@/app/book/components/ui/Card";
+  evaluateBadges,
+  computeProfile,
+  groupByCategory,
+  filterBadges,
+  getRecommendations,
+  getDefaultOpenCategory,
+  getShowcaseBadgeIds,
+  toggleShowcaseBadge,
+  getEarnedHistory,
+  persistEarnedBadge,
+  getLastSeenTimestamp,
+  setLastSeenTimestamp,
+} from "./lib/badge-utils";
+import { BadgePageHeader } from "./components/BadgePageHeader";
+import { BadgeFilters } from "./components/BadgeFilters";
+import { BadgeShowcase } from "./components/BadgeShowcase";
+import { BadgeRecommendations } from "./components/BadgeRecommendations";
+import { SeasonalChallenge } from "./components/SeasonalChallenge";
+import { BadgeGrid } from "./components/BadgeGrid";
+import { BadgeDetailModal } from "./components/BadgeDetailModal";
+import { BadgeTimeline } from "./components/BadgeTimeline";
+import { BadgeCelebration } from "./components/BadgeCelebration";
+
+// Compute the active seasonal challenge (if any)
+function getActiveSeasonalChallenge(
+  completedChaptersThisMonth: number
+): SeasonalChallengeType | null {
+  const now = new Date();
+  const monthName = now.toLocaleString(undefined, { month: "long" });
+  const year = now.getFullYear();
+  const startDate = new Date(year, now.getMonth(), 1).toISOString();
+  const endDate = new Date(year, now.getMonth() + 1, 0, 23, 59, 59).toISOString();
+  const end = new Date(endDate);
+  if (now > end) return null;
+
+  return {
+    id: `${monthName.toLowerCase()}-${year}`,
+    title: `${monthName} ${year} Reading Challenge`,
+    description: "Complete 5 chapters this month",
+    badgeIcon: "📅",
+    startDate,
+    endDate,
+    criteria: { description: "chapters", target: 5 },
+    progress: Math.min(completedChaptersThisMonth, 5),
+  };
+}
 
 export function BookBadgesClient() {
   const router = useRouter();
   const searchRef = useRef<HTMLInputElement | null>(null);
 
-  const [query, setQuery] = useState("");
-  const [filter, setFilter] = useState<BadgeFilter>("All");
-  const [selectedBadge, setSelectedBadge] = useState<BadgeState | null>(null);
-
   const { state: onboarding, hydrated: onboardingHydrated } = useOnboardingState();
   const { identity: viewerIdentity } = useBookViewer();
+  const viewerName = viewerIdentity.displayName || "Reader";
+
   const badgeSystem = useBadgeSystem({
     selectedBookIds: onboarding.selectedBookIds,
     dailyGoalMinutes: onboarding.dailyGoalMinutes,
   });
-  const viewerName = viewerIdentity.displayName || "Reader";
 
-  useKeyboardShortcut(
-    "/",
-    (event) => {
-      event.preventDefault();
-      searchRef.current?.focus();
-    },
-    { ignoreWhenTyping: true }
-  );
+  // Local state
+  const [filter, setFilter] = useState<BadgeFilter>("all");
+  const [selectedBadge, setSelectedBadge] = useState<BadgeWithProgress | null>(null);
+  const [showcaseIds, setShowcaseIds] = useState<string[]>([]);
+  const [earnedHistory, setEarnedHistory] = useState<Record<string, string>>({});
+  const [newlyEarned, setNewlyEarned] = useState<BadgeWithProgress[]>([]);
+  const celebrationFiredRef = useRef(false);
 
+  // Hydrate localStorage values on mount
+  useEffect(() => {
+    setShowcaseIds(getShowcaseBadgeIds());
+    setEarnedHistory(getEarnedHistory());
+  }, []);
+
+  // Redirect if onboarding not complete
   useEffect(() => {
     if (!onboardingHydrated) return;
     if (!onboarding.setupComplete) {
@@ -51,69 +90,117 @@ export function BookBadgesClient() {
     }
   }, [onboarding.setupComplete, onboardingHydrated, router]);
 
-  const visibleBadges = useMemo(() => {
-    const filtered = filterBadges(badgeSystem.visibleBadges, filter);
-    const search = query.trim().toLowerCase();
-    if (!search) return filtered;
-    return filtered.filter((badge) => {
-      const searchable = [
-        badge.name,
-        badge.description,
-        badge.category,
-        badge.howToEarn,
-        badge.whyItMatters,
-      ]
-        .join(" ")
-        .toLowerCase();
-      return searchable.includes(search);
+  // Evaluate new badge system against existing stats
+  const badges = useMemo(() => {
+    if (!badgeSystem.badgeStats) return [] as BadgeWithProgress[];
+    return evaluateBadges(badgeSystem.badgeStats, earnedHistory);
+  }, [badgeSystem.badgeStats, earnedHistory]);
+
+  // Track newly earned badges & persist them — but only celebrate TRULY new ones
+  useEffect(() => {
+    if (!badges.length || celebrationFiredRef.current) return;
+
+    const newOnes = badges.filter((b) => b.isEarned && !earnedHistory[b.id]);
+    if (newOnes.length === 0) {
+      // No new badges to persist — still mark celebration as fired
+      // and update lastSeen on first load
+      if (!celebrationFiredRef.current) {
+        celebrationFiredRef.current = true;
+        const lastSeen = getLastSeenTimestamp();
+        if (!lastSeen) {
+          // First ever visit — don't celebrate, just set timestamp
+          setLastSeenTimestamp();
+        }
+      }
+      return;
+    }
+
+    celebrationFiredRef.current = true;
+    const now = Date.now();
+    const updatedHistory = { ...earnedHistory };
+    newOnes.forEach((b, i) => {
+      const earnedAt = new Date(now + i * 1000).toISOString();
+      updatedHistory[b.id] = earnedAt;
+      persistEarnedBadge(b.id, earnedAt);
     });
-  }, [badgeSystem.visibleBadges, filter, query]);
+    setEarnedHistory(updatedHistory);
 
-  const visibleById = useMemo(() => new Set(visibleBadges.map((badge) => badge.id)), [visibleBadges]);
+    // Only celebrate badges earned SINCE last page visit
+    const lastSeen = getLastSeenTimestamp();
+    if (!lastSeen) {
+      // First ever visit — don't celebrate any, just set timestamp
+      setLastSeenTimestamp();
+      return;
+    }
+    const lastSeenTime = new Date(lastSeen).getTime();
+    const truelyNew = newOnes.filter((b) => {
+      const earnedAt = updatedHistory[b.id];
+      return earnedAt && new Date(earnedAt).getTime() > lastSeenTime;
+    });
+    if (truelyNew.length > 0) {
+      setNewlyEarned(truelyNew);
+    }
+    setLastSeenTimestamp();
+  }, [badges, earnedHistory]);
 
-  const groupedBadges = useMemo(
-    () =>
-      badgeSystem.categoryGroups
-        .map((group) => ({
-          ...group,
-          badges: group.badges.filter((badge) => visibleById.has(badge.id)),
-        }))
-        .filter((group) => group.badges.length > 0),
-    [badgeSystem.categoryGroups, visibleById]
+  // Filtered badges
+  const filteredBadges = useMemo(() => {
+    return filterBadges(badges, filter);
+  }, [badges, filter]);
+
+  // Groups for the grid
+  const groups = useMemo(() => groupByCategory(filteredBadges), [filteredBadges]);
+  const defaultOpenCategory = useMemo(() => getDefaultOpenCategory(groups), [groups]);
+
+  // Profile stats
+  const profile = useMemo(
+    () => computeProfile(badges, showcaseIds),
+    [badges, showcaseIds]
   );
 
-  // First category that has earned badges opens by default; fallback to first visible category.
-  const defaultOpenCategory = useMemo(() => {
-    const firstEarned = groupedBadges.find((g) => g.badges.some((b) => b.earned));
-    return firstEarned?.category ?? groupedBadges[0]?.category ?? null;
-  }, [groupedBadges]);
+  // Recommendations
+  const recommendations = useMemo(() => getRecommendations(badges), [badges]);
+  const allEarned = badges.length > 0 && badges.filter((b) => !b.isSecret).every((b) => b.isEarned);
 
-  const nextMilestone = useMemo(
-    () => badgeSystem.nextMilestones.find((m) => visibleById.has(m.badge.id)) ?? badgeSystem.nextMilestones[0] ?? null,
-    [badgeSystem.nextMilestones, visibleById]
-  );
+  // Earned badges for timeline
+  const earnedBadges = useMemo(() => badges.filter((b) => b.isEarned), [badges]);
 
-  const timelineEntries = useMemo(
-    () => badgeSystem.badgeTimeline.filter((entry) => visibleById.has(entry.badgeId)).slice(0, 8),
-    [badgeSystem.badgeTimeline, visibleById]
-  );
+  // Seasonal challenge
+  const seasonalChallenge = useMemo<SeasonalChallengeType | null>(() => {
+    const chaptersThisMonth = badgeSystem.badgeStats?.totalCompletedChapters ?? 0;
+    return getActiveSeasonalChallenge(chaptersThisMonth);
+  }, [badgeSystem.badgeStats?.totalCompletedChapters]);
 
-  const selectedNextTier = useMemo(
-    () => badgeSystem.badges.find((badge) => badge.id === selectedBadge?.nextTierId) ?? null,
-    [badgeSystem.badges, selectedBadge?.nextTierId]
-  );
+  // Handlers
+  const handleToggleShowcase = useCallback((badgeId: string) => {
+    const next = toggleShowcaseBadge(badgeId);
+    setShowcaseIds(next);
+  }, []);
 
-  const totalFlowPointsEarned = useMemo(
-    () => badgeSystem.earnedBadges.reduce((sum, b) => sum + b.flowPoints, 0),
-    [badgeSystem.earnedBadges]
-  );
+  const handleBadgeClick = useCallback((badge: BadgeWithProgress) => {
+    setSelectedBadge(badge);
+  }, []);
 
+  const handleDismissCelebration = useCallback(() => {
+    setNewlyEarned([]);
+  }, []);
+
+  // Loading state with skeleton
   if (!onboardingHydrated || !badgeSystem.hydrated || !onboarding.setupComplete) {
     return (
       <main className="cf-app-shell">
-        <div className="mx-auto flex min-h-screen items-center justify-center px-4 text-(--cf-text-2)">
-          Loading achievements...
-        </div>
+        <TopNav
+          name={viewerName}
+          activeTab="badges"
+          searchQuery=""
+          onSearchChange={() => {}}
+          searchInputRef={searchRef}
+          showSearch={false}
+          logoVariant="dashboard"
+        />
+        <section className="mx-auto w-full max-w-6xl px-4 pb-28 pt-7 sm:px-6 sm:pt-8 md:pb-24">
+          <LoadingSkeleton />
+        </section>
       </main>
     );
   }
@@ -123,184 +210,117 @@ export function BookBadgesClient() {
       <TopNav
         name={viewerName}
         activeTab="badges"
-        searchQuery={query}
-        onSearchChange={setQuery}
+        searchQuery=""
+        onSearchChange={() => {}}
         searchInputRef={searchRef}
-        searchPlaceholder="Search badges"
+        showSearch={false}
+        logoVariant="dashboard"
       />
 
-      <section className="mx-auto w-full max-w-7xl px-4 pb-28 pt-7 sm:px-6 sm:pt-8 md:pb-24">
-        {/* Page header */}
-        <Card className="overflow-hidden">
-          <div className="flex flex-wrap items-start justify-between gap-5">
-            <div>
-              <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-2)">
-                <Award className="h-5 w-5" />
-              </div>
-              <h1 className="mt-3 text-2xl font-semibold tracking-tight text-(--cf-text-1) sm:text-3xl">
-                Badges and Milestones
-              </h1>
-              <p className="mt-2 max-w-xl text-sm leading-6 text-(--cf-text-2)">
-                Achievements reward depth, consistency, and completion — each one worth Flow Points.
-              </p>
-              <div className="mt-3 inline-flex items-center gap-1.5 text-xs text-(--cf-text-soft)">
-                <Zap className="h-3.5 w-3.5" />
-                Badge points feed into your overall Flow Points balance and show up on the home rewards panel
-              </div>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              <StatPill label="Earned" value={badgeSystem.earnedCount} tone="amber" />
-              <StatPill label="Badge FP" value={totalFlowPointsEarned} tone="zap" />
-              <StatPill label="Categories" value={groupedBadges.length} tone="neutral" />
-            </div>
-          </div>
-        </Card>
+      <section className="mx-auto w-full max-w-6xl px-4 pb-28 pt-7 sm:px-6 sm:pt-8 md:pb-24">
+        <BadgePageHeader profile={profile} />
 
-        {/* Filter bar */}
-        <div className="mt-5">
-          <BadgeFilterBar filters={BADGE_FILTERS} activeFilter={filter} onChange={setFilter} />
+        <div className="mt-6">
+          <BadgeFilters activeFilter={filter} onChange={setFilter} badges={badges} />
         </div>
 
-        {/* Search hint when there's a query */}
-        {query.trim() ? (
-          <p className="mt-3 text-sm text-(--cf-text-3)">
-            <span className="font-medium text-(--cf-text-2)">{visibleBadges.length}</span>{" "}
-            {visibleBadges.length === 1 ? "badge" : "badges"} match &ldquo;{query}&rdquo;
-          </p>
-        ) : null}
+        <div className="mt-6">
+          <BadgeShowcase
+            badges={badges}
+            showcaseBadgeIds={showcaseIds}
+            onBadgeClick={handleBadgeClick}
+            onUnpin={handleToggleShowcase}
+          />
+        </div>
 
-        {/* Main content */}
-        <div className="mt-5 grid gap-5 xl:grid-cols-[1.2fr_0.8fr]">
-          {/* Category accordion list */}
-          <div className="space-y-3">
-            {groupedBadges.length ? (
-              groupedBadges.map((group) => (
-                <BadgeCategorySection
-                  key={group.category}
-                  title={group.title}
-                  description={group.description}
-                  badges={group.badges}
-                  onOpen={setSelectedBadge}
-                  defaultOpen={group.category === defaultOpenCategory}
-                />
-              ))
-            ) : (
-              <Card>
-                <div className="py-8 text-center">
-                  <p className="text-lg font-semibold text-(--cf-text-1)">No badges match this view</p>
-                  <p className="mt-2 text-sm text-(--cf-text-3)">
-                    Try a broader filter or search term to see more achievements.
-                  </p>
-                </div>
-              </Card>
-            )}
+        <div className="mt-6">
+          <BadgeRecommendations
+            recommendations={recommendations}
+            onBadgeClick={handleBadgeClick}
+            allEarned={allEarned}
+          />
+        </div>
+
+        {seasonalChallenge && (
+          <div className="mt-6">
+            <SeasonalChallenge challenge={seasonalChallenge} />
           </div>
+        )}
 
-          {/* Sidebar */}
-          <div className="space-y-5">
-            <ProgressToNextBadgeCard
-              milestone={nextMilestone}
-              onOpen={nextMilestone ? () => setSelectedBadge(nextMilestone.badge) : undefined}
-            />
+        <div className="mt-6">
+          <BadgeGrid
+            groups={groups}
+            defaultOpenCategory={defaultOpenCategory}
+            onBadgeClick={handleBadgeClick}
+          />
+        </div>
 
-            <Card>
-              <div className="flex items-center justify-between gap-3">
-                <div>
-                  <p className="text-[11px] uppercase tracking-[0.22em] text-(--cf-text-soft)">Recent unlocks</p>
-                  <h2 className="mt-2 text-xl font-semibold tracking-tight text-(--cf-text-1)">Badge timeline</h2>
-                </div>
-              </div>
-              <div className="mt-5 space-y-3">
-                {timelineEntries.length ? (
-                  timelineEntries.map((entry) => (
-                    <BadgeTimelineItem
-                      key={entry.id}
-                      entry={entry}
-                      onOpen={() => {
-                        const badge = badgeSystem.badges.find((item) => item.id === entry.badgeId);
-                        if (badge) setSelectedBadge(badge);
-                      }}
-                    />
-                  ))
-                ) : (
-                  <div className="rounded-[22px] border border-(--cf-border) bg-(--cf-surface-muted) px-4 py-4 text-sm leading-6 text-(--cf-text-3)">
-                    Earned badges will appear here as your reading history grows.
-                  </div>
-                )}
-              </div>
-            </Card>
-
-            {/* Locked preview */}
-            {badgeSystem.lockedBadges.length > 0 ? (
-              <Card>
-                <p className="text-[11px] uppercase tracking-[0.22em] text-(--cf-text-soft)">Still locked</p>
-                <h2 className="mt-2 text-xl font-semibold tracking-tight text-(--cf-text-1)">Next to unlock</h2>
-                <div className="mt-4 space-y-2">
-                  {badgeSystem.lockedBadges.slice(0, 3).map((badge) => (
-                    <button
-                      key={badge.id}
-                      type="button"
-                      onClick={() => setSelectedBadge(badge)}
-                      className="flex w-full items-center justify-between gap-3 rounded-[22px] border border-(--cf-border) bg-(--cf-surface-muted) px-4 py-3 text-left transition hover:border-(--cf-border-strong)"
-                    >
-                      <div className="flex min-w-0 items-center gap-3">
-                        <span className="text-2xl opacity-40 grayscale">{badge.icon}</span>
-                        <div className="min-w-0">
-                          <p className="truncate text-sm font-semibold text-(--cf-text-1)">{badge.name}</p>
-                          <p className="mt-0.5 truncate text-xs text-(--cf-text-soft)">{badge.progressLabel}</p>
-                        </div>
-                      </div>
-                      <div className="flex shrink-0 items-center gap-2">
-                        <span className="inline-flex items-center gap-0.5 text-xs text-(--cf-text-soft)">
-                          <Zap className="h-3 w-3" />
-                          {badge.flowPoints}
-                        </span>
-                        <Lock className="h-4 w-4 text-(--cf-text-soft)" />
-                      </div>
-                    </button>
-                  ))}
-                </div>
-              </Card>
-            ) : null}
-          </div>
+        <div className="mt-8">
+          <BadgeTimeline earnedBadges={earnedBadges} onBadgeClick={handleBadgeClick} />
         </div>
       </section>
 
-      <InfoModal
-        open={Boolean(selectedBadge)}
-        title={selectedBadge?.name || "Badge"}
+      <BadgeDetailModal
+        badge={selectedBadge}
         onClose={() => setSelectedBadge(null)}
-      >
-        {selectedBadge ? (
-          <BadgeDetailPanel badge={selectedBadge} nextTier={selectedNextTier} />
-        ) : null}
-      </InfoModal>
+        showcaseBadgeIds={showcaseIds}
+        onToggleShowcase={handleToggleShowcase}
+      />
+
+      <BadgeCelebration
+        newlyEarned={newlyEarned}
+        onDismiss={handleDismissCelebration}
+        onPinToShowcase={handleToggleShowcase}
+      />
     </main>
   );
 }
 
-function StatPill({
-  label,
-  value,
-  tone,
-}: {
-  label: string;
-  value: number;
-  tone: "amber" | "sky" | "zap" | "neutral";
-}) {
-  const valueClass =
-    tone === "amber"
-      ? "text-(--cf-warning-text)"
-      : tone === "sky"
-        ? "text-(--cf-info-text)"
-        : tone === "zap"
-          ? "text-(--cf-accent)"
-          : "text-(--cf-text-1)";
+// ── Loading skeleton ────────────────────────────────────────────────────────
 
+function SkeletonPulse({ className }: { className?: string }) {
+  return <div className={`animate-pulse rounded-xl bg-neutral-800/50 ${className ?? ""}`} />;
+}
+
+function LoadingSkeleton() {
   return (
-    <div className="rounded-[22px] border border-(--cf-border) bg-(--cf-surface-muted) px-4 py-3">
-      <p className="text-[11px] uppercase tracking-[0.22em] text-(--cf-text-soft)">{label}</p>
-      <p className={`mt-2 text-2xl font-semibold ${valueClass}`}>{value}</p>
+    <div className="space-y-6">
+      {/* Header skeleton */}
+      <div>
+        <SkeletonPulse className="h-10 w-48" />
+        <SkeletonPulse className="mt-2 h-5 w-80" />
+        <div className="mt-5 grid gap-3 sm:grid-cols-3">
+          <SkeletonPulse className="h-20 rounded-2xl" />
+          <SkeletonPulse className="h-20 rounded-2xl" />
+          <SkeletonPulse className="h-20 rounded-2xl" />
+        </div>
+      </div>
+
+      {/* Filter skeleton */}
+      <div className="flex gap-2">
+        {Array.from({ length: 6 }).map((_, i) => (
+          <SkeletonPulse key={i} className="h-8 w-20 rounded-full" />
+        ))}
+      </div>
+
+      {/* Showcase skeleton */}
+      <SkeletonPulse className="h-32 rounded-2xl" />
+
+      {/* Recommendations skeleton */}
+      <div>
+        <SkeletonPulse className="h-5 w-32" />
+        <div className="mt-4 flex gap-3">
+          <SkeletonPulse className="h-48 w-[260px] shrink-0 rounded-2xl" />
+          <SkeletonPulse className="h-48 w-[260px] shrink-0 rounded-2xl" />
+          <SkeletonPulse className="h-48 w-[260px] shrink-0 rounded-2xl" />
+        </div>
+      </div>
+
+      {/* Grid skeleton */}
+      <div className="space-y-3">
+        <SkeletonPulse className="h-16 rounded-2xl" />
+        <SkeletonPulse className="h-16 rounded-2xl" />
+      </div>
     </div>
   );
 }

@@ -70,7 +70,17 @@ export function DiscoveryRow({ books, isPro }: DiscoveryRowProps) {
                 : { duration: 0.4, delay: i * 0.06, ease }
             }
           >
-            <BookCardWorkspace variant="pro" book={book} />
+            {isPro ? (
+              <BookCardWorkspace
+                variant="user"
+                book={{ id: book.id, title: book.title, author: book.author, coverUrl: book.coverUrl, progressPercent: 0, status: "not_started" as const, gradient: book.gradient }}
+              />
+            ) : (
+              <BookCardWorkspace
+                variant="pro"
+                book={book}
+              />
+            )}
           </motion.div>
         ))}
       </div>

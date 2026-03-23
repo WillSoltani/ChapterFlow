@@ -188,8 +188,8 @@ export type BookPackagePresentation = {
 
 export const FRIENDS_AND_INFLUENCE_PACKAGE =
   friendsAndInfluencePackageJson as BookPackage;
-export const ART_OF_WAR_PACKAGE = artOfWarPackageJson as BookPackage;
-export const THE_PRINCE_PACKAGE = thePrincePackageJson as BookPackage;
+export const ART_OF_WAR_PACKAGE = normalizeNstdPackage(artOfWarPackageJson, "direct");
+export const THE_PRINCE_PACKAGE = normalizeNstdPackage(thePrincePackageJson, "direct");
 export const STRATEGIES_OF_WAR_PACKAGE =
   strategiesOfWarPackageJson as BookPackage;
 export const INFLUENCE_PACKAGE = influencePackageJson as BookPackage;

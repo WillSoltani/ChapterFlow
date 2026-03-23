@@ -29,6 +29,7 @@ interface BookRowProps {
   userBooks: UserBook[];
   recommendedProBooks: ProBook[];
   isNewUser?: boolean;
+  isPro?: boolean;
 }
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -37,6 +38,7 @@ export function BookRow({
   userBooks,
   recommendedProBooks,
   isNewUser = false,
+  isPro = false,
 }: BookRowProps) {
   const prefersReducedMotion = useReducedMotion();
 
@@ -121,7 +123,17 @@ export function BookRow({
                   }
             }
           >
-            <BookCardWorkspace variant="pro" book={book} />
+            {isPro ? (
+              <BookCardWorkspace
+                variant="user"
+                book={{ id: book.id, title: book.title, author: book.author, coverUrl: book.coverUrl || "", progressPercent: 0, status: "not_started" as const, gradient: book.gradient }}
+              />
+            ) : (
+              <BookCardWorkspace
+                variant="pro"
+                book={book}
+              />
+            )}
           </motion.div>
         ))}
       </div>

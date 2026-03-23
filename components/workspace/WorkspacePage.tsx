@@ -109,7 +109,7 @@ interface WorkspaceData {
 const mockData: WorkspaceData = {
   user: {
     firstName: "Will",
-    isPro: false,
+    isPro: true,
     streakCount: 12,
     streakActive: true,
     flowPoints: 340,
@@ -158,27 +158,24 @@ const mockData: WorkspaceData = {
       progressPercent: 0,
       status: "not_started",
     },
-  ],
-  recommendedProBooks: [
     {
       id: "deep-work",
       title: "Deep Work",
       author: "Cal Newport",
       coverUrl: "",
-      rating: 4.8,
-      readerCount: 2340,
-      category: "Productivity",
+      progressPercent: 0,
+      status: "not_started",
     },
     {
       id: "the-psychology-of-money",
       title: "The Psychology of Money",
       author: "Morgan Housel",
       coverUrl: "",
-      rating: 4.9,
-      readerCount: 3100,
-      category: "Finance",
+      progressPercent: 0,
+      status: "not_started",
     },
   ],
+  recommendedProBooks: [],
   discoveryBooks: [
     {
       id: "thinking-fast-and-slow",
@@ -504,6 +501,7 @@ export function WorkspacePage() {
                 userBooks={data.userBooks}
                 recommendedProBooks={data.recommendedProBooks}
                 isNewUser={isNewUser}
+                isPro={data.user.isPro}
               />
             </SectionWrapper>
 
