@@ -796,6 +796,34 @@ html[data-motion="reduced"] *::after {
   animation: badge-pulse 2s ease-in-out infinite;
 }
 
+/* ── Pro badge shimmer (Settings) ── */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ── Settings slider thumb (glassmorphic) ── */
+.slider-accent::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(79, 139, 255, 0.4), 0 1px 3px rgba(0,0,0,0.3);
+  border: none;
+}
+.slider-accent::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(79, 139, 255, 0.4), 0 1px 3px rgba(0,0,0,0.3);
+  border: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .badge-glow {
     animation: none;

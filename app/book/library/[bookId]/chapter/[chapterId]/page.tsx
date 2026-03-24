@@ -80,13 +80,20 @@ export default async function ChapterReaderPage({
   await requireDashboardAccess();
   const { bookId, chapterId } = await params;
 
-  const book = (await loadBook(bookId)) ?? buildLocalFallback(bookId);
+  const remoteBook = await loadBook(bookId);
+  const localBook = buildLocalFallback(bookId);
+  const book = remoteBook ?? localBook;
 
   if (!book) {
     notFound();
   }
 
-  const chapter = book.chapters.find((item) => item.id === chapterId);
+  // If the remote book doesn't contain this chapter (e.g. chapter IDs
+  // were updated in a newer local package), fall back to local data.
+  let chapter = book.chapters.find((item) => item.id === chapterId);
+  if (!chapter && localBook && book !== localBook) {
+    chapter = localBook.chapters.find((item) => item.id === chapterId);
+  }
   if (!chapter) notFound();
 
   return <ChapterReaderClient bookId={bookId} chapterId={chapterId} />;

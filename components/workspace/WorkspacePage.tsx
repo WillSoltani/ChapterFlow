@@ -213,6 +213,15 @@ const mockData: WorkspaceData = {
       readerCount: 6400,
       category: "Philosophy",
     },
+    {
+      id: "the-charisma-myth",
+      title: "The Charisma Myth",
+      author: "Olivia Fox Cabane",
+      coverUrl: "",
+      rating: 4.6,
+      readerCount: 2340,
+      category: "Communication",
+    },
   ],
   nextReward: {
     name: "Bonus Book Unlock",

@@ -1,301 +1,81 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback, type ReactNode } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import type { LucideIcon } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowLeft,
   BookOpen,
   Target,
   Palette,
+  Accessibility,
   Bell,
-  Shield,
-  ChevronDown,
-  Key,
+  User,
   Loader2,
-  Settings2,
-  LogOut,
-  Trash2,
-  RotateCcw,
-  CheckCircle2,
-  XCircle,
+  Check,
+  Keyboard,
 } from "lucide-react";
+
+// Existing hooks
 import { useBookPreferences } from "@/app/book/hooks/useBookPreferences";
-import {
-  type QuizIntensity,
-  type MotivationStyle,
-  useOnboardingState,
-} from "@/app/book/hooks/useOnboardingState";
+import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
 import { useBookEntitlements } from "@/app/book/hooks/useBookEntitlements";
 import { useToast } from "@/app/book/hooks/useToast";
-import { ConfirmModal } from "@/app/book/components/ui/ConfirmModal";
 import { Toast } from "@/app/book/components/ui/Toast";
-import { cn } from "@/app/book/components/ui/cn";
+
+// New settings hooks
+import { useSettingsPage } from "./hooks/useSettingsPage";
+import { useSettingsSearch } from "./hooks/useSettingsSearch";
+import { usePersonalizationScore } from "./hooks/usePersonalizationScore";
+import { useReducedMotion } from "./hooks/useReducedMotion";
+
+// Components
+import { SettingsSearch } from "./components/SettingsSearch";
+import { PersonalizationMeter } from "./components/PersonalizationMeter";
+import { SettingsSection } from "./components/SettingsSection";
+import { SettingRow, Divider, SubsectionLabel } from "./components/SettingRow";
+import { ToggleSwitch } from "./components/controls/ToggleSwitch";
+import { SegmentedControl } from "./components/controls/SegmentedControl";
+import { CardSelector } from "./components/controls/CardSelector";
+import { Stepper } from "./components/controls/Stepper";
+import { SliderControl } from "./components/controls/SliderControl";
+import { TimePicker } from "./components/controls/TimePicker";
+import { DropdownSelect } from "./components/controls/DropdownSelect";
+import { ProBadge } from "./components/ProBadge";
+import { ProFeatureCard } from "./components/ProFeatureCard";
+import { SubscriptionCard } from "./components/SubscriptionCard";
+import { DangerZone } from "./components/DangerZone";
+import { ExportModal } from "./components/ExportModal";
+import { MicroCelebration } from "./components/MicroCelebration";
+import { RefreshPreferencesModal } from "./components/RefreshPreferencesModal";
+import type { RefreshResult } from "./components/RefreshPreferencesModal";
+
+// Constants
+import { READING_PROFILES, DAILY_GOAL_OPTIONS, MOTIVATION_OPTIONS } from "./constants/profiles";
+import {
+  QUIZ_STYLE_TO_INTENSITY,
+  INTENSITY_TO_QUIZ_STYLE,
+  PERSONA_TO_MOTIVATION,
+  MOTIVATION_TO_PERSONA,
+} from "./constants/defaults";
+
+// Types
+import type {
+  ReadingProfile,
+  QuizStyle,
+  MotivationPersona,
+  DailyGoalPreset,
+  CelebrationEvent,
+  StreakMode,
+  FontFamily,
+  LineSpacing,
+  LetterSpacing,
+  ColorBlindMode,
+} from "./types/settings";
+import type { LearningStyle, QuizIntensity, MotivationStyle } from "@/app/book/hooks/useOnboardingState";
 
 // ---------------------------------------------------------------------------
-// Primitives
-// ---------------------------------------------------------------------------
-
-function Toggle({
-  checked,
-  onChange,
-  disabled,
-}: {
-  checked: boolean;
-  onChange: (v: boolean) => void;
-  disabled?: boolean;
-}) {
-  return (
-    <button
-      type="button"
-      role="switch"
-      aria-checked={checked}
-      disabled={disabled}
-      onClick={() => onChange(!checked)}
-      className={cn(
-        "relative h-6 w-11 shrink-0 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border) disabled:cursor-not-allowed disabled:opacity-40",
-        checked ? "bg-(--cf-accent)" : "bg-(--cf-border-strong)"
-      )}
-    >
-      <span
-        className={cn(
-          "absolute top-0.5 left-0.5 h-5 w-5 rounded-full bg-white shadow transition-transform",
-          checked ? "translate-x-5" : "translate-x-0"
-        )}
-      />
-    </button>
-  );
-}
-
-function SegPicker<T extends string>({
-  options,
-  value,
-  onChange,
-}: {
-  options: { value: T; label: string }[];
-  value: T;
-  onChange: (v: T) => void;
-}) {
-  return (
-    <div className="flex gap-0.5 rounded-xl bg-(--cf-surface-muted) p-0.5">
-      {options.map((opt) => (
-        <button
-          key={opt.value}
-          type="button"
-          onClick={() => onChange(opt.value)}
-          className={cn(
-            "rounded-[9px] px-3 py-1.5 text-sm font-medium transition-all",
-            value === opt.value
-              ? "bg-(--cf-surface-strong) text-(--cf-text-1) shadow-sm"
-              : "text-(--cf-text-3) hover:text-(--cf-text-2)"
-          )}
-        >
-          {opt.label}
-        </button>
-      ))}
-    </div>
-  );
-}
-
-function SectionCard({
-  icon: Icon,
-  title,
-  children,
-}: {
-  icon: LucideIcon;
-  title: string;
-  children: ReactNode;
-}) {
-  return (
-    <section className="overflow-hidden rounded-[22px] border border-(--cf-border) bg-(--cf-surface) shadow-sm">
-      <div className="flex items-center gap-2.5 px-5 pb-3 pt-5">
-        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-(--cf-surface-muted) text-(--cf-text-2)">
-          <Icon className="h-4 w-4" />
-        </div>
-        <h2 className="text-[15px] font-semibold text-(--cf-text-1)">{title}</h2>
-      </div>
-      <div className="px-2 pb-2">{children}</div>
-    </section>
-  );
-}
-
-function SettingRow({
-  label,
-  description,
-  children,
-}: {
-  label: string;
-  description?: string;
-  children: ReactNode;
-}) {
-  return (
-    <div className="flex items-center justify-between gap-4 rounded-[13px] px-3 py-3 transition-colors hover:bg-(--cf-surface-muted)">
-      <div className="min-w-0 flex-1">
-        <p className="text-sm font-medium text-(--cf-text-1)">{label}</p>
-        {description && (
-          <p className="mt-0.5 text-xs leading-relaxed text-(--cf-text-3)">
-            {description}
-          </p>
-        )}
-      </div>
-      <div className="shrink-0">{children}</div>
-    </div>
-  );
-}
-
-function Divider() {
-  return <div className="mx-3 h-px bg-(--cf-divider)" />;
-}
-
-// ---------------------------------------------------------------------------
-// License key section
-// ---------------------------------------------------------------------------
-
-function LicenseKeySection() {
-  const { billingState, redeemLicenseKey } = useBookEntitlements(true);
-  const [code, setCode] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [message, setMessage] = useState("");
-
-  const entitlement = billingState.payload?.entitlement;
-  const hasActiveLicense =
-    entitlement?.plan === "PRO" &&
-    entitlement.proSource === "license" &&
-    entitlement.licenseExpiresAt != null;
-  const hasActiveFlowPass =
-    entitlement?.plan === "PRO" &&
-    entitlement.proSource === "flow_points" &&
-    entitlement.currentPeriodEnd != null;
-
-  const formattedExpiry = hasActiveLicense && entitlement?.licenseExpiresAt
-    ? new Date(entitlement.licenseExpiresAt).toLocaleDateString(undefined, {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      })
-    : null;
-  const formattedFlowPassExpiry = hasActiveFlowPass && entitlement?.currentPeriodEnd
-    ? new Date(entitlement.currentPeriodEnd).toLocaleDateString(undefined, {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      })
-    : null;
-
-  async function handleRedeem(e: React.FormEvent) {
-    e.preventDefault();
-    const trimmed = code.trim().toUpperCase();
-    if (!trimmed) return;
-    setStatus("loading");
-    setMessage("");
-    const error = await redeemLicenseKey(trimmed);
-    if (error) {
-      setStatus("error");
-      setMessage(error);
-    } else {
-      setStatus("success");
-      setMessage("Pro access activated! Your plan has been upgraded.");
-      setCode("");
-    }
-  }
-
-  return (
-    <section className="overflow-hidden rounded-[22px] border border-(--cf-border) bg-(--cf-surface) shadow-sm">
-      <div className="flex items-center gap-2.5 px-5 pb-3 pt-5">
-        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-(--cf-surface-muted) text-(--cf-text-2)">
-          <Key className="h-4 w-4" />
-        </div>
-        <h2 className="text-[15px] font-semibold text-(--cf-text-1)">License Key</h2>
-      </div>
-      <div className="px-2 pb-4">
-        <div className="rounded-[13px] px-3 py-2">
-          {hasActiveLicense && formattedExpiry ? (
-            <div className="mb-4 flex items-start gap-3 rounded-xl border border-(--cf-success-border) bg-(--cf-success-soft) px-4 py-3">
-              <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-(--cf-success-text)" />
-              <div>
-                <p className="text-sm font-semibold text-(--cf-success-text)">Pro access active</p>
-                <p className="mt-0.5 text-xs text-(--cf-text-3)">
-                  Your free-pass license is active until{" "}
-                  <span className="font-medium text-(--cf-text-2)">{formattedExpiry}</span>.
-                  {entitlement?.licenseKey && (
-                    <span className="ml-1 font-mono text-(--cf-text-soft)">
-                      ({entitlement.licenseKey})
-                    </span>
-                  )}
-                </p>
-              </div>
-            </div>
-          ) : null}
-          {hasActiveFlowPass && formattedFlowPassExpiry ? (
-            <div className="mb-4 flex items-start gap-3 rounded-xl border border-(--cf-success-border) bg-(--cf-success-soft) px-4 py-3">
-              <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-(--cf-success-text)" />
-              <div>
-                <p className="text-sm font-semibold text-(--cf-success-text)">Pro pass active</p>
-                <p className="mt-0.5 text-xs text-(--cf-text-3)">
-                  Your Flow Points Pro pass is active until{" "}
-                  <span className="font-medium text-(--cf-text-2)">{formattedFlowPassExpiry}</span>.
-                </p>
-              </div>
-            </div>
-          ) : null}
-
-          <p className="mb-3 text-xs leading-relaxed text-(--cf-text-3)">
-            Have a free-pass license key? Enter it below to activate Pro access for one month at no
-            charge.
-          </p>
-          <form onSubmit={handleRedeem} className="flex gap-2">
-            <input
-              type="text"
-              value={code}
-              onChange={(e) => {
-                setCode(e.target.value.toUpperCase());
-                if (status !== "idle") { setStatus("idle"); setMessage(""); }
-              }}
-              placeholder="CF-XXXX-XXXX-XXXX"
-              maxLength={17}
-              spellCheck={false}
-              autoComplete="off"
-              className="cf-input min-w-0 flex-1 rounded-xl px-3 py-2 font-mono text-sm uppercase tracking-widest"
-            />
-            <button
-              type="submit"
-              disabled={status === "loading" || code.trim().length === 0}
-              className={cn(
-                "shrink-0 rounded-xl px-4 py-2 text-sm font-semibold transition",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)",
-                status === "loading"
-                  ? "cursor-wait opacity-60 bg-(--cf-surface-muted) text-(--cf-text-2) border border-(--cf-border)"
-                  : "bg-linear-to-r from-(--cf-accent) to-(--cf-accent-strong) text-white shadow-sm hover:brightness-105 active:translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-40"
-              )}
-            >
-              {status === "loading" ? (
-                <Loader2 className="h-4 w-4 animate-spin" />
-              ) : (
-                "Redeem"
-              )}
-            </button>
-          </form>
-
-          {status === "success" && (
-            <div className="mt-3 flex items-center gap-2 text-sm text-(--cf-success-text)">
-              <CheckCircle2 className="h-4 w-4 shrink-0" />
-              <span>{message}</span>
-            </div>
-          )}
-          {status === "error" && (
-            <div className="mt-3 flex items-center gap-2 text-sm text-(--cf-danger-text)">
-              <XCircle className="h-4 w-4 shrink-0" />
-              <span>{message}</span>
-            </div>
-          )}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ---------------------------------------------------------------------------
-// Main component
+// Main Component
 // ---------------------------------------------------------------------------
 
 type BookSettingsClientProps = {
@@ -306,6 +86,8 @@ type BookSettingsClientProps = {
 
 export function BookSettingsClient({}: BookSettingsClientProps) {
   const router = useRouter();
+
+  // Existing state hooks
   const { state: preferences, patchSection, hydrated: prefsHydrated } = useBookPreferences();
   const {
     state: onboarding,
@@ -314,24 +96,95 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
     setLearningStyle,
     setQuizIntensity,
     setReminderTime,
-    setStreakMode,
-    setMotivationStyle,
+    setStreakMode: setOnboardingStreakMode,
+    setMotivationStyle: setOnboardingMotivationStyle,
     resetSetup,
   } = useOnboardingState();
+  const { billingState, billingAction, launchBillingAction, redeemLicenseKey } =
+    useBookEntitlements(true);
   const { toast, showToast } = useToast();
 
-  const [advancedOpen, setAdvancedOpen] = useState(false);
-  const [confirmModal, setConfirmModal] = useState<{
-    open: boolean;
-    type: "reset" | "deactivate" | "delete" | null;
-  }>({ open: false, type: null });
+  // New settings hooks
+  const {
+    hydrated: extHydrated,
+    state: ext,
+    patch: patchExt,
+    toggleSection,
+    isSectionExpanded,
+  } = useSettingsPage();
+  const { query, setQuery, results, isSearching } = useSettingsSearch();
+  const reducedMotion = useReducedMotion(preferences.appearance.reducedMotion);
+
+  // Hydration state
+  const hydrated = prefsHydrated && onboardingHydrated && extHydrated;
+
+  // Personalization score
+  const personalizationScore = usePersonalizationScore(
+    preferences,
+    ext,
+    onboarding.dailyGoalMinutes,
+    onboarding.reminderTime
+  );
+
+  // Score milestone tracking
+  const prevScoreRef = useRef<number>(0);
+  useEffect(() => {
+    if (!hydrated) return;
+    const prev = prevScoreRef.current;
+    const curr = personalizationScore;
+    if (prev < 50 && curr >= 50 && curr < 100) {
+      triggerCelebration("score-50");
+    } else if (prev < 100 && curr >= 100) {
+      triggerCelebration("score-100");
+    }
+    prevScoreRef.current = curr;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [personalizationScore, hydrated]);
+
+  // Screen reader live announcements
+  const [liveAnnouncement, setLiveAnnouncement] = useState("");
+
+  function announce(message: string) {
+    // Clear then set to ensure screen readers re-read
+    setLiveAnnouncement("");
+    requestAnimationFrame(() => setLiveAnnouncement(message));
+  }
+
+  // Celebration event
+  const [celebration, setCelebration] = useState<CelebrationEvent | null>(null);
+  const celebrationTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  function triggerCelebration(event: CelebrationEvent) {
+    if (reducedMotion) return;
+    if (celebrationTimer.current) clearTimeout(celebrationTimer.current);
+    setCelebration(event);
+    celebrationTimer.current = setTimeout(() => setCelebration(null), 2000);
+  }
+
+  // Export modal
+  const [exportModalOpen, setExportModalOpen] = useState(false);
+
+  // Refresh preferences wizard
+  const [refreshModalOpen, setRefreshModalOpen] = useState(false);
+
+  function handleRefreshComplete(result: RefreshResult) {
+    handleProfileChange(result.profile);
+    handleDailyGoalChange(result.goal);
+    handleMotivationChange(result.motivation);
+    patchSection("accessibility", {
+      dyslexiaFriendlyFont: result.dyslexia,
+      highContrastMode: result.highContrast,
+    });
+    patchExt({ colorBlindMode: result.colorBlind, personalizationDismissed: false });
+    if (result.dyslexia) patchExt({ fontFamily: "opendyslexic" });
+    showToast("Preferences updated!", "success");
+  }
+
+  // Auto-save indicator
   const [saveState, setSaveState] = useState<"idle" | "saving">("idle");
   const saveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const lastSnapshotRef = useRef<string>("");
 
-  // ------------------------------------------------------------------
-  // Auto-save indicator
-  // ------------------------------------------------------------------
   const triggerSave = useCallback(() => {
     const snapshot = JSON.stringify(preferences);
     if (snapshot === lastSnapshotRef.current) return;
@@ -346,8 +199,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
     triggerSave();
   }, [preferences, prefsHydrated, triggerSave]);
 
-  // Persist onboarding-derived prefs (learningStyle, quizIntensity, streakMode,
-  // motivationStyle, dailyGoalMinutes, reminderTime) to the backend profile.
+  // Persist onboarding-derived prefs to backend
   const lastOnboardingPrefsRef = useRef<string>("");
   useEffect(() => {
     if (!onboardingHydrated) return;
@@ -379,31 +231,158 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
     onboarding.reminderTime,
   ]);
 
-  // ------------------------------------------------------------------
-  // Confirm actions
-  // ------------------------------------------------------------------
-  function handleConfirm() {
-    const type = confirmModal.type;
-    setConfirmModal({ open: false, type: null });
-    if (type === "reset") {
-      resetSetup();
-      showToast("Setup reset. You'll see onboarding next visit.", "success");
-    } else if (type === "deactivate") {
-      showToast("Deactivation not yet supported — contact support.", "error");
-    } else if (type === "delete") {
-      showToast("Deletion not yet supported — contact support.", "error");
-    }
+  // Derived state
+  const isPro = billingState.payload?.entitlement.plan === "PRO";
+  const plan = billingState.payload?.entitlement.plan ?? "FREE";
+  const price = billingState.payload?.paywall.price ?? "$7.99 CAD";
+
+  // --- Reading Profile logic ---
+  function handleProfileChange(profile: ReadingProfile) {
+    const preset = READING_PROFILES.find((p) => p.id === profile);
+    if (!preset) return;
+    patchExt({
+      readingProfile: profile,
+      profileCustomized: false,
+      quizStyle: preset.defaults.quizStyle,
+      dailyGoalPreset: preset.defaults.dailyGoalPreset,
+    });
+    setLearningStyle(preset.defaults.learningStyle);
+    setQuizIntensity(
+      QUIZ_STYLE_TO_INTENSITY[preset.defaults.quizStyle] as QuizIntensity
+    );
+    setDailyGoalMinutes(preset.defaults.dailyGoalPreset);
+    patchSection("reading", { fontSize: preset.defaults.fontSize });
+    triggerCelebration("profile-selected");
+    announce(`Reading profile changed to ${preset.label}`);
+    showToast("Profile applied", "success");
   }
 
-  // ------------------------------------------------------------------
+  // --- Quiz Style mapping ---
+  const currentQuizStyle: QuizStyle = hydrated
+    ? (INTENSITY_TO_QUIZ_STYLE[onboarding.quizIntensity] ?? "challenge")
+    : "challenge";
+
+  function handleQuizStyleChange(style: QuizStyle) {
+    patchExt({ quizStyle: style, profileCustomized: true });
+    setQuizIntensity(QUIZ_STYLE_TO_INTENSITY[style] as QuizIntensity);
+    const labels = { comfortable: "Comfortable", challenge: "Challenge me", surprise: "Surprise me" };
+    announce(`Quiz style changed to ${labels[style]}`);
+  }
+
+  // --- Motivation mapping ---
+  const currentMotivation: MotivationPersona = hydrated
+    ? (MOTIVATION_TO_PERSONA[onboarding.motivationStyle] ?? "coach")
+    : "coach";
+
+  function handleMotivationChange(persona: MotivationPersona) {
+    patchExt({ motivationPersona: persona, profileCustomized: true });
+    setOnboardingMotivationStyle(PERSONA_TO_MOTIVATION[persona] as MotivationStyle);
+    if (persona === "rival") triggerCelebration("rival-selected");
+    const labels = { coach: "Personal Coach", partner: "Accountability Partner", rival: "Rival" };
+    announce(`Motivation style changed to ${labels[persona]}`);
+  }
+
+  // --- Daily goal mapping ---
+  function handleDailyGoalChange(preset: DailyGoalPreset) {
+    const prev = ext.dailyGoalPreset;
+    patchExt({ dailyGoalPreset: preset, profileCustomized: true });
+    setDailyGoalMinutes(preset);
+    if (preset > prev) triggerCelebration("goal-increased");
+    announce(`Daily reading goal changed to ${preset} minutes`);
+  }
+
+  // --- Streak mode ---
+  function handleStreakModeChange(mode: StreakMode) {
+    patchExt({ streakMode: mode, profileCustomized: true });
+    setOnboardingStreakMode(mode !== "off");
+    if (mode !== "off") triggerCelebration("streak-enabled");
+    const labels = { off: "Off", standard: "Standard", flexible: "Flexible" };
+    announce(`Streak mode changed to ${labels[mode]}`);
+  }
+
+  // --- Dyslexia font sync ---
+  function handleDyslexiaToggle(enabled: boolean) {
+    patchSection("accessibility", { dyslexiaFriendlyFont: enabled });
+    if (enabled) {
+      patchExt({ fontFamily: "opendyslexic" });
+    }
+    announce(`Dyslexia-friendly font ${enabled ? "enabled" : "disabled"}`);
+  }
+
+  // --- Font family change (sync dyslexia toggle) ---
+  function handleFontFamilyChange(family: FontFamily) {
+    patchExt({ fontFamily: family });
+    if (family === "opendyslexic") {
+      patchSection("accessibility", { dyslexiaFriendlyFont: true });
+    } else if (preferences.accessibility.dyslexiaFriendlyFont) {
+      patchSection("accessibility", { dyslexiaFriendlyFont: false });
+    }
+    const labels = { serif: "Serif", "sans-serif": "Sans-Serif", opendyslexic: "OpenDyslexic" };
+    announce(`Font family changed to ${labels[family]}`);
+  }
+
+  // --- Section summaries ---
+  function getReadingSummary() {
+    const profile = READING_PROFILES.find((p) => p.id === ext.readingProfile);
+    const profileLabel = profile?.label ?? "Custom";
+    return `${profileLabel} · ${preferences.reading.fontSize}px`;
+  }
+
+  function getGoalsSummary() {
+    const daily = ext.dailyGoalPreset;
+    const weekly = preferences.goals.weeklyChapterGoal;
+    const streak = ext.streakMode === "off" ? "Off" : ext.streakMode === "standard" ? "Standard" : "Flexible";
+    return `${daily} min/day · ${weekly} ch/wk · ${streak} streak`;
+  }
+
+  function getAppearanceSummary() {
+    const theme = preferences.appearance.theme;
+    const label = theme.charAt(0).toUpperCase() + theme.slice(1);
+    return `${label}${preferences.appearance.reducedMotion ? " · Reduced motion" : ""}`;
+  }
+
+  function getAccessibilitySummary() {
+    const active: string[] = [];
+    if (preferences.accessibility.dyslexiaFriendlyFont) active.push("OpenDyslexic");
+    if (preferences.accessibility.highContrastMode) active.push("High contrast");
+    if (ext.colorBlindMode !== "off") active.push("Color adjusted");
+    return active.length > 0 ? active.join(" · ") : "No adjustments active";
+  }
+
+  function getNotificationsSummary() {
+    const parts: string[] = [];
+    if (preferences.notifications.readingReminderEnabled) {
+      parts.push(`Reminders at ${onboarding.reminderTime || "8:00 PM"}`);
+    }
+    if (preferences.notifications.streakReminder && ext.streakMode !== "off") {
+      parts.push("Streak alerts on");
+    }
+    return parts.length > 0 ? parts.join(" · ") : "All off";
+  }
+
+  function getAccountSummary() {
+    return plan === "PRO" ? "Pro plan" : "Free plan · 2 books";
+  }
+
+  // --- Search helpers ---
+  function isSectionVisible(sectionId: string) {
+    if (!isSearching || !results) return true;
+    return results.matchedSections.has(sectionId as any);
+  }
+
+  function isSectionDimmed(sectionId: string) {
+    if (!isSearching) return false;
+    return !isSectionVisible(sectionId);
+  }
+
+  // ---------------------------------------------------------------------------
   // Render
-  // ------------------------------------------------------------------
-  const hydrated = prefsHydrated && onboardingHydrated;
+  // ---------------------------------------------------------------------------
 
   return (
     <div className="cf-app-shell min-h-screen px-4 py-10 sm:px-6">
       {/* Header */}
-      <div className="mx-auto mb-8 flex max-w-2xl items-center justify-between">
+      <div className="mx-auto mb-6 flex max-w-170 items-center justify-between">
         <div className="flex items-center gap-3">
           <button
             type="button"
@@ -417,609 +396,1142 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
             <h1 className="text-2xl font-bold tracking-tight text-(--cf-text-1)">
               Settings
             </h1>
-            <p className="mt-1 text-sm text-(--cf-text-3)">
+            <p className="mt-0.5 text-sm text-(--cf-text-3)">
               Your preferences are saved automatically.
             </p>
           </div>
         </div>
-        {saveState === "saving" && (
-          <div className="flex items-center gap-2 text-xs text-(--cf-text-3)">
-            <Loader2 className="h-3.5 w-3.5 animate-spin" />
-            <span>Saving…</span>
-          </div>
-        )}
+        {/* Save indicator hidden — auto-save toast shown below */}
+        <div className="w-16" />
       </div>
 
-      <div className="mx-auto max-w-2xl space-y-4">
+      <div className="mx-auto max-w-170 space-y-4">
+        {/* Search */}
+        <SettingsSearch query={query} onChange={setQuery} />
 
-        {/* ── Reading ─────────────────────────────────────────── */}
-        <SectionCard icon={BookOpen} title="Reading">
-          <SettingRow
-            label="Default chapter view"
-            description="Which tab opens first when you enter a chapter."
-          >
-            <SegPicker
-              options={[
-                { value: "summary" as const, label: "Summary" },
-                { value: "examples" as const, label: "Examples" },
-                { value: "quiz" as const, label: "Quiz" },
-              ]}
-              value={hydrated ? preferences.reading.defaultChapterTab : "summary"}
-              onChange={(v) => patchSection("reading", { defaultChapterTab: v })}
-            />
-          </SettingRow>
-          <Divider />
-          <SettingRow label="Font size" description="Reading text size in chapters.">
-            <div className="flex items-center gap-3">
-              <span className="w-6 text-right text-xs tabular-nums text-(--cf-text-3)">
-                {hydrated ? preferences.reading.fontSize : 16}
-              </span>
-              <input
-                type="range"
-                min={13}
-                max={20}
-                step={1}
-                value={hydrated ? preferences.reading.fontSize : 16}
-                onChange={(e) =>
-                  patchSection("reading", { fontSize: Number(e.target.value) })
+        {/* Personalization Meter */}
+        {!ext.personalizationDismissed && !isSearching && (
+          <PersonalizationMeter
+            percentage={personalizationScore}
+            onDismiss={() => patchExt({ personalizationDismissed: true })}
+            onComplete={() => {
+              // Scroll to first section and expand it
+              const sectionIds = ["reading", "goals", "appearance", "accessibility", "notifications", "account"];
+              for (const id of sectionIds) {
+                const el = document.querySelector(`[aria-label="${
+                  id === "reading" ? "Reading Experience" :
+                  id === "goals" ? "Goals & Motivation" :
+                  id === "appearance" ? "Appearance" :
+                  id === "accessibility" ? "Accessibility" :
+                  id === "notifications" ? "Notifications" :
+                  "Account & Subscription"
+                }"]`);
+                if (el) {
+                  if (!isSectionExpanded(id)) toggleSection(id);
+                  el.scrollIntoView({ behavior: "smooth", block: "start" });
+                  // Brief highlight ring
+                  el.classList.add("ring-2", "ring-(--cf-accent-border)");
+                  setTimeout(() => el.classList.remove("ring-2", "ring-(--cf-accent-border)"), 1500);
+                  break;
                 }
-                className="w-28 accent-sky-500"
+              }
+            }}
+            reducedMotion={reducedMotion}
+          />
+        )}
+
+        {/* No search results */}
+        {isSearching && results && !results.hasResults && (
+          <div className="py-12 text-center">
+            <p className="text-sm text-(--cf-text-3)">
+              No settings found for &ldquo;{query}&rdquo;. Try a different search term.
+            </p>
+          </div>
+        )}
+
+        {/* ══════════════════════════════════════════════════════════════
+           Section 1: Reading Experience
+           ══════════════════════════════════════════════════════════════ */}
+        {isSectionVisible("reading") && (
+          <SettingsSection
+            icon={BookOpen}
+            title="Reading Experience"
+            summary={getReadingSummary()}
+            expanded={isSectionExpanded("reading")}
+            onToggle={() => toggleSection("reading")}
+            reducedMotion={reducedMotion}
+            dimmed={isSectionDimmed("reading")}
+          >
+            {/* 1A. Reading Profiles */}
+            <div className="px-3 py-3">
+              <p className="text-sm font-medium text-(--cf-text-1)">Reading profiles</p>
+              <p className="mt-0.5 text-xs text-(--cf-text-3)">
+                This sets your starting point. Customize anything below.
+              </p>
+              <div className="mt-3">
+                <CardSelector
+                  options={READING_PROFILES.map((p) => ({
+                    value: p.id,
+                    emoji: p.emoji,
+                    label: p.label,
+                    description: p.description,
+                    tint: p.tint,
+                    selectedTint: p.selectedTint,
+                  }))}
+                  value={hydrated ? ext.readingProfile : "balanced"}
+                  onChange={handleProfileChange}
+                  label="Reading profiles"
+                  columns={3}
+                />
+              </div>
+              {ext.profileCustomized && (
+                <p className="mt-2 text-[11px] italic text-amber-400/70">
+                  Your settings have been customized
+                </p>
+              )}
+            </div>
+
+            <Divider />
+
+            {/* 1B. Default Chapter View */}
+            <SettingRow
+              id="default-chapter-view"
+              label="Default chapter view"
+              description="Which tab greets you when you open a chapter."
+            >
+              <SegmentedControl
+                options={[
+                  { value: "summary", label: "Summary" },
+                  { value: "examples", label: "Scenarios" },
+                  { value: "quiz", label: "Quiz" },
+                ]}
+                value={hydrated ? preferences.reading.defaultChapterTab : "summary"}
+                onChange={(v) => patchSection("reading", { defaultChapterTab: v })}
+                label="Default chapter view"
+              />
+            </SettingRow>
+
+            <Divider />
+
+            {/* 1C. Font Family */}
+            <SettingRow
+              id="font-family"
+              label="Font family"
+              description="Choose the typeface that feels most comfortable for long reads."
+            >
+              <SegmentedControl
+                options={[
+                  { value: "serif", label: "Serif" },
+                  { value: "sans-serif", label: "Sans-Serif" },
+                  { value: "opendyslexic", label: "OpenDyslexic" },
+                ]}
+                value={hydrated ? ext.fontFamily : "sans-serif"}
+                onChange={handleFontFamilyChange}
+                label="Font family"
+              />
+            </SettingRow>
+            {ext.fontFamily === "opendyslexic" && (
+              <p className="mx-3 -mt-1 mb-2 text-[11px] text-(--cf-text-soft)">
+                Uses the open-source OpenDyslexic typeface, designed for readers with dyslexia.
+              </p>
+            )}
+
+            <Divider />
+
+            {/* 1D. Font Size */}
+            <SettingRow
+              id="font-size"
+              label="Font size"
+              description="Adjust the reading text size in chapters."
+            >
+              <SliderControl
+                value={hydrated ? preferences.reading.fontSize : 16}
+                onChange={(v) => patchSection("reading", { fontSize: v })}
+                min={12}
+                max={24}
+                step={1}
+                suffix="px"
+                label="Font size"
+                showEndLabels
+              />
+            </SettingRow>
+
+            <Divider />
+
+            {/* 1E. Line Spacing */}
+            <SettingRow
+              id="line-spacing"
+              label="Line spacing"
+              description="Breathing room between lines of text."
+            >
+              <SegmentedControl
+                options={[
+                  { value: "compact", label: "Compact" },
+                  { value: "comfortable", label: "Comfortable" },
+                  { value: "relaxed", label: "Relaxed" },
+                ]}
+                value={hydrated ? ext.lineSpacing : "comfortable"}
+                onChange={(v: LineSpacing) => patchExt({ lineSpacing: v })}
+                label="Line spacing"
+              />
+            </SettingRow>
+
+            <Divider />
+
+            {/* 1F. Letter Spacing */}
+            <SettingRow
+              id="letter-spacing"
+              label="Letter spacing"
+              description="Space between individual characters."
+            >
+              <SegmentedControl
+                options={[
+                  { value: "tight", label: "Tight" },
+                  { value: "normal", label: "Normal" },
+                  { value: "wide", label: "Wide" },
+                ]}
+                value={hydrated ? ext.letterSpacing : "normal"}
+                onChange={(v: LetterSpacing) => patchExt({ letterSpacing: v })}
+                label="Letter spacing"
+              />
+            </SettingRow>
+
+            <Divider />
+
+            {/* 1G. Focus Mode */}
+            <SettingRow
+              id="focus-mode"
+              label="Focus mode"
+              description="Just you and the words. Sidebar and header fade away while reading."
+            >
+              <ToggleSwitch
+                checked={hydrated ? preferences.reading.focusModeDefault : false}
+                onChange={(v) => patchSection("reading", { focusModeDefault: v })}
+                label="Focus mode"
+              />
+            </SettingRow>
+
+            <Divider />
+
+            {/* 1H. Progress Bar */}
+            <SettingRow
+              id="progress-bar"
+              label="Progress bar"
+              description="A thin bar at the top showing how far you've come in the chapter."
+            >
+              <ToggleSwitch
+                checked={hydrated ? preferences.reading.showProgressBar : true}
+                onChange={(v) => patchSection("reading", { showProgressBar: v })}
+                label="Progress bar"
+              />
+            </SettingRow>
+
+            <Divider />
+
+            {/* 1I. Resume Where You Left Off */}
+            <SettingRow
+              id="resume-position"
+              label="Pick up where you left off"
+              description="Automatically scroll to your last reading position."
+            >
+              <ToggleSwitch
+                checked={hydrated ? preferences.reading.resumeWhereLeftOff : true}
+                onChange={(v) => patchSection("reading", { resumeWhereLeftOff: v })}
+                label="Resume position"
+              />
+            </SettingRow>
+
+            <Divider />
+
+            {/* 1J. Reading Time Estimates */}
+            <SettingRow
+              id="reading-time"
+              label="Show reading time"
+              description="Display estimated time to finish each book and chapter."
+            >
+              <ToggleSwitch
+                checked={hydrated ? preferences.reading.showEstimatedReadingTime : true}
+                onChange={(v) =>
+                  patchSection("reading", { showEstimatedReadingTime: v })
+                }
+                label="Reading time estimates"
+              />
+            </SettingRow>
+
+            <Divider />
+
+            {/* 1K. Text-to-Speech (Pro) */}
+            <div className="px-3 py-3" id="text-to-speech">
+              {isPro ? (
+                <>
+                  <div className="flex items-center gap-2">
+                    <span className="text-base">&#128266;</span>
+                    <span className="text-sm font-medium text-(--cf-text-1)">
+                      Text-to-speech
+                    </span>
+                    <ProBadge />
+                  </div>
+                  <p className="mt-0.5 text-xs text-(--cf-text-3)">
+                    Listen to chapters read aloud. Perfect for commutes or multitasking.
+                  </p>
+                  <div className="mt-3 space-y-1 border-l-2 border-cyan-400/20 pl-4 ml-1">
+                    <SettingRow label="Voice">
+                      <DropdownSelect
+                        options={[
+                          { value: "clara", label: "Clara (Natural)" },
+                          { value: "james", label: "James (Warm)" },
+                          { value: "aria", label: "Aria (Clear)" },
+                        ]}
+                        value={ext.ttsVoice}
+                        onChange={(v) => patchExt({ ttsVoice: v as any })}
+                        label="TTS Voice"
+                      />
+                    </SettingRow>
+                    <SettingRow label="Speed">
+                      <SliderControl
+                        value={ext.ttsSpeed}
+                        onChange={(v) => patchExt({ ttsSpeed: v })}
+                        min={0.5}
+                        max={2.0}
+                        step={0.1}
+                        suffix="x"
+                        label="TTS Speed"
+                        tickMarks={["0.5\u00d7", "1\u00d7", "1.5\u00d7", "2\u00d7"]}
+                      />
+                    </SettingRow>
+                    <SettingRow
+                      label="Auto-advance"
+                      description="Continue to the next section automatically."
+                    >
+                      <ToggleSwitch
+                        checked={ext.ttsAutoAdvance}
+                        onChange={(v) => patchExt({ ttsAutoAdvance: v })}
+                        label="TTS Auto-advance"
+                      />
+                    </SettingRow>
+                  </div>
+                </>
+              ) : (
+                <ProFeatureCard
+                  icon="&#128266;"
+                  title="Text-to-speech"
+                  description="Listen to chapters read aloud while you walk, cook, or commute."
+                  detailDescription="Text-to-speech lets you listen to any chapter read aloud with natural-sounding voices. Adjust speed, choose your preferred voice, and let chapters auto-advance so you can learn hands-free."
+                  reducedMotion={reducedMotion}
+                />
+              )}
+            </div>
+          </SettingsSection>
+        )}
+
+        {/* ══════════════════════════════════════════════════════════════
+           Section 2: Goals & Motivation
+           ══════════════════════════════════════════════════════════════ */}
+        {isSectionVisible("goals") && (
+          <SettingsSection
+            icon={Target}
+            title="Goals & Motivation"
+            summary={getGoalsSummary()}
+            expanded={isSectionExpanded("goals")}
+            onToggle={() => toggleSection("goals")}
+            reducedMotion={reducedMotion}
+            dimmed={isSectionDimmed("goals")}
+          >
+            {/* 2A. Daily Reading Goal */}
+            <div className="px-3 py-3" id="daily-goal">
+              <p className="text-sm font-medium text-(--cf-text-1)">Daily reading goal</p>
+              <p className="mt-0.5 text-xs text-(--cf-text-3)">
+                How much time you want to invest in learning each day.
+              </p>
+              <div className="mt-3">
+                <CardSelector
+                  options={DAILY_GOAL_OPTIONS.map((opt) => ({
+                    value: String(opt.value) as any,
+                    emoji: opt.emoji,
+                    label: opt.label,
+                    description: opt.subtext,
+                    prominentValue: `${opt.value} min`,
+                    tint: opt.tint,
+                    selectedTint: opt.selectedTint,
+                    badge: opt.recommended ? "Recommended" : undefined,
+                  }))}
+                  value={hydrated ? String(ext.dailyGoalPreset) : "10"}
+                  onChange={(v) => handleDailyGoalChange(Number(v) as DailyGoalPreset)}
+                  label="Daily reading goal"
+                  columns={4}
+                />
+              </div>
+            </div>
+
+            <Divider />
+
+            {/* 2B. Weekly Chapter Goal */}
+            <SettingRow
+              id="weekly-chapter-goal"
+              label="Weekly chapter goal"
+              description="Chapters to complete each week. We'll celebrate when you hit it."
+            >
+              <Stepper
+                value={hydrated ? preferences.goals.weeklyChapterGoal : 3}
+                onChange={(v) => patchSection("goals", { weeklyChapterGoal: v })}
+                min={1}
+                max={10}
+                label="Weekly chapter goal"
+              />
+            </SettingRow>
+
+            <Divider />
+
+            {/* 2C. Learning Depth */}
+            <SettingRow
+              id="learning-depth"
+              label="Learning depth"
+              description="How much detail you want in summaries and explanations."
+            >
+              <SegmentedControl
+                options={[
+                  { value: "concise", label: "Concise" },
+                  { value: "balanced", label: "Balanced" },
+                  { value: "deep", label: "Deep" },
+                ]}
+                value={hydrated ? onboarding.learningStyle : "balanced"}
+                onChange={(v) => {
+                  setLearningStyle(v as LearningStyle);
+                  patchExt({ profileCustomized: true });
+                }}
+                label="Learning depth"
+              />
+            </SettingRow>
+
+            <Divider />
+
+            {/* 2D. Quiz Preferences Subsection */}
+            <SubsectionLabel>Quiz preferences</SubsectionLabel>
+
+            {/* 2D-i. Quiz Style */}
+            <SettingRow
+              id="quiz-style"
+              label="Quiz style"
+              description="Sets the baseline. ChapterFlow adapts based on how you perform."
+            >
+              <SegmentedControl
+                options={[
+                  { value: "comfortable", label: "Comfortable" },
+                  { value: "challenge", label: "Challenge me" },
+                  { value: "surprise", label: "Surprise me" },
+                ]}
+                value={currentQuizStyle}
+                onChange={handleQuizStyleChange}
+                label="Quiz style"
+              />
+            </SettingRow>
+
+            <Divider />
+
+            {/* 2D-ii. Question Flow */}
+            <SettingRow
+              id="question-flow"
+              label="Question flow"
+              description="See questions one at a time, or all together like a worksheet."
+            >
+              <SegmentedControl
+                options={[
+                  { value: "one-by-one", label: "One-by-one" },
+                  { value: "all-at-once", label: "All at once" },
+                ]}
+                value={hydrated ? preferences.learning.questionPresentationStyle : "one-by-one"}
+                onChange={(v) => patchSection("learning", { questionPresentationStyle: v })}
+                label="Question flow"
+              />
+            </SettingRow>
+
+            <Divider />
+
+            {/* 2D-iii. Shuffle Questions */}
+            <SettingRow
+              id="shuffle-questions"
+              label="Shuffle questions"
+              description="Randomize the order each time you retake a quiz."
+            >
+              <ToggleSwitch
+                checked={hydrated ? preferences.learning.shuffleQuestionOrder : false}
+                onChange={(v) => patchSection("learning", { shuffleQuestionOrder: v })}
+                label="Shuffle questions"
+              />
+            </SettingRow>
+
+            <Divider />
+
+            {/* 2D-iv. Retry Incorrect Only */}
+            <SettingRow
+              id="retry-incorrect"
+              label="Retry incorrect only"
+              description="When retaking a quiz, focus only on the ones you got wrong."
+            >
+              <ToggleSwitch
+                checked={hydrated ? preferences.learning.retryIncorrectOnly : true}
+                onChange={(v) => patchSection("learning", { retryIncorrectOnly: v })}
+                label="Retry incorrect only"
+              />
+            </SettingRow>
+
+            <Divider />
+
+            {/* 2E. Streak Mode */}
+            <div className="rounded-[13px] px-3 py-3 transition-colors hover:bg-(--cf-surface-muted)">
+              <div className="flex items-center justify-between gap-4">
+                <div className="min-w-0 flex-1">
+                  <p className="text-sm font-medium text-(--cf-text-1)">Streak mode</p>
+                  <AnimatePresence mode="wait">
+                    <motion.p
+                      key={ext.streakMode}
+                      initial={reducedMotion ? false : { opacity: 0, y: 4 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={reducedMotion ? undefined : { opacity: 0, y: -4 }}
+                      transition={{ duration: 0.15 }}
+                      className="mt-0.5 text-xs leading-relaxed text-(--cf-text-3)"
+                    >
+                      {ext.streakMode === "off"
+                        ? "No streak tracking. Read at your own pace with zero pressure."
+                        : ext.streakMode === "standard"
+                          ? "Build a daily reading streak. Miss a day and it resets."
+                          : "Streaks with breathing room. Choose your skip days below."}
+                    </motion.p>
+                  </AnimatePresence>
+                </div>
+                <div className="shrink-0">
+                  <SegmentedControl
+                    options={[
+                      { value: "off", label: "Off" },
+                      { value: "standard", label: "Standard" },
+                      { value: "flexible", label: "Flexible" },
+                    ]}
+                    value={hydrated ? ext.streakMode : "standard"}
+                    onChange={handleStreakModeChange}
+                    label="Streak mode"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Conditional: Skip days (only when Flexible) */}
+            <AnimatePresence initial={false}>
+              {ext.streakMode === "flexible" && (
+                <motion.div
+                  initial={reducedMotion ? false : { height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={reducedMotion ? undefined : { height: 0, opacity: 0 }}
+                  transition={reducedMotion ? { duration: 0 } : { duration: 0.2 }}
+                >
+                  <SettingRow
+                    label="Skip days per week"
+                    description="Days you can skip without breaking your streak."
+                  >
+                    <Stepper
+                      value={ext.streakSkipDays}
+                      onChange={(v) => patchExt({ streakSkipDays: v })}
+                      min={1}
+                      max={3}
+                      label="Skip days per week"
+                    />
+                  </SettingRow>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            <Divider />
+
+            {/* 2F. Motivation Style */}
+            <div className="px-3 py-3" id="motivation-style">
+              <p className="text-sm font-medium text-(--cf-text-1)">Motivation style</p>
+              <p className="mt-0.5 text-xs text-(--cf-text-3)">
+                How ChapterFlow encourages you in nudges, streaks, and progress messages.
+              </p>
+              <div className="mt-3">
+                <CardSelector
+                  options={MOTIVATION_OPTIONS.map((opt) => ({
+                    value: opt.id,
+                    emoji: opt.emoji,
+                    label: opt.persona,
+                    description: opt.description,
+                    tint: opt.tint,
+                    selectedTint: opt.selectedTint,
+                  }))}
+                  value={currentMotivation}
+                  onChange={handleMotivationChange}
+                  label="Motivation style"
+                  columns={3}
+                />
+              </div>
+              <AnimatePresence>
+                {currentMotivation === "rival" && (
+                  <motion.p
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="mx-3 mt-1 mb-2 text-[11px] italic text-(--cf-text-3)"
+                  >
+                    Enables leaderboard-style comparisons with other readers. You can switch
+                    back anytime.
+                  </motion.p>
+                )}
+              </AnimatePresence>
+            </div>
+
+            <Divider />
+
+            {/* 2G. Spaced Repetition (Pro) */}
+            <div className="px-3 py-3" id="spaced-repetition">
+              {isPro ? (
+                <SettingRow
+                  label={
+                    <>
+                      Review retention target <ProBadge />
+                    </>
+                  }
+                  description="How well you want to remember what you've read. Higher = more frequent reviews."
+                >
+                  <SliderControl
+                    value={ext.spacedRepetitionTarget}
+                    onChange={(v) => patchExt({ spacedRepetitionTarget: v })}
+                    min={70}
+                    max={95}
+                    step={5}
+                    suffix="%"
+                    label="Spaced repetition target"
+                  />
+                </SettingRow>
+              ) : (
+                <ProFeatureCard
+                  icon="&#128202;"
+                  title="Spaced Repetition"
+                  description="ChapterFlow can intelligently schedule quiz reviews so you never forget what you learned."
+                  detailDescription="Spaced repetition uses cognitive science to schedule review sessions at optimal intervals. Set your retention target and ChapterFlow will automatically remind you to review chapters before you forget them."
+                  reducedMotion={reducedMotion}
+                />
+              )}
+            </div>
+          </SettingsSection>
+        )}
+
+        {/* ══════════════════════════════════════════════════════════════
+           Section 3: Appearance
+           ══════════════════════════════════════════════════════════════ */}
+        {isSectionVisible("appearance") && (
+          <SettingsSection
+            icon={Palette}
+            title="Appearance"
+            summary={getAppearanceSummary()}
+            expanded={isSectionExpanded("appearance")}
+            onToggle={() => toggleSection("appearance")}
+            reducedMotion={reducedMotion}
+            dimmed={isSectionDimmed("appearance")}
+          >
+            {/* 3A. Theme */}
+            <SettingRow
+              id="theme"
+              label="Theme"
+              description="Choose your preferred color scheme."
+            >
+              <SegmentedControl
+                options={[
+                  { value: "light", label: "Light" },
+                  { value: "dark", label: "Dark" },
+                  { value: "system", label: "System" },
+                ]}
+                value={hydrated ? preferences.appearance.theme : "light"}
+                onChange={(v) => patchSection("appearance", { theme: v })}
+                label="Theme"
+              />
+            </SettingRow>
+
+            <Divider />
+
+            {/* 3B. Scheduled Dark Mode */}
+            <SettingRow
+              id="night-mode-schedule"
+              label="Night mode schedule"
+              description={
+                preferences.appearance.theme === "dark"
+                  ? "You're already in dark mode all the time."
+                  : "Automatically switch to dark mode during evening hours."
+              }
+            >
+              <ToggleSwitch
+                checked={ext.scheduledDarkMode}
+                onChange={(v) => patchExt({ scheduledDarkMode: v })}
+                disabled={preferences.appearance.theme === "dark"}
+                label="Night mode schedule"
+              />
+            </SettingRow>
+
+            <AnimatePresence initial={false}>
+              {ext.scheduledDarkMode && preferences.appearance.theme !== "dark" && (
+                <motion.div
+                  initial={reducedMotion ? false : { height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={reducedMotion ? undefined : { height: 0, opacity: 0 }}
+                  transition={reducedMotion ? { duration: 0 } : { duration: 0.2 }}
+                  className="flex items-center gap-3 px-6 pb-3"
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs text-(--cf-text-3)">From</span>
+                    <TimePicker
+                      value={ext.darkModeFrom}
+                      onChange={(v) => patchExt({ darkModeFrom: v })}
+                      label="Dark mode start time"
+                    />
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs text-(--cf-text-3)">To</span>
+                    <TimePicker
+                      value={ext.darkModeTo}
+                      onChange={(v) => patchExt({ darkModeTo: v })}
+                      label="Dark mode end time"
+                    />
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            <Divider />
+
+            {/* 3C. Reduced Motion */}
+            <SettingRow
+              id="reduced-motion"
+              label="Reduced motion"
+              description="Minimize animations and transitions throughout the app."
+            >
+              <ToggleSwitch
+                checked={hydrated ? preferences.appearance.reducedMotion : false}
+                onChange={(v) => patchSection("appearance", { reducedMotion: v })}
+                label="Reduced motion"
+              />
+            </SettingRow>
+          </SettingsSection>
+        )}
+
+        {/* ══════════════════════════════════════════════════════════════
+           Section 4: Accessibility
+           ══════════════════════════════════════════════════════════════ */}
+        {isSectionVisible("accessibility") && (
+          <SettingsSection
+            icon={Accessibility}
+            title="Accessibility"
+            summary={getAccessibilitySummary()}
+            expanded={isSectionExpanded("accessibility")}
+            onToggle={() => toggleSection("accessibility")}
+            reducedMotion={reducedMotion}
+            dimmed={isSectionDimmed("accessibility")}
+          >
+            {/* 4A. Dyslexia-Friendly Font */}
+            <SettingRow
+              id="dyslexia-font"
+              label="Dyslexia-friendly reading font"
+              description="Switch reading text to OpenDyslexic, a typeface designed for easier reading with dyslexia."
+            >
+              <ToggleSwitch
+                checked={hydrated ? preferences.accessibility.dyslexiaFriendlyFont : false}
+                onChange={handleDyslexiaToggle}
+                label="Dyslexia-friendly font"
+              />
+            </SettingRow>
+            {preferences.accessibility.dyslexiaFriendlyFont && (
+              <p className="mx-3 -mt-1 mb-2 text-[11px] text-(--cf-text-soft)">
+                This overrides your font family choice in Reading Experience.
+              </p>
+            )}
+
+            <Divider />
+
+            {/* 4B. High Contrast */}
+            <SettingRow
+              id="high-contrast"
+              label="High contrast"
+              description="Sharper colors and stronger borders for improved readability."
+            >
+              <ToggleSwitch
+                checked={hydrated ? preferences.accessibility.highContrastMode : false}
+                onChange={(v) => patchSection("accessibility", { highContrastMode: v })}
+                label="High contrast"
+              />
+            </SettingRow>
+
+            <Divider />
+
+            {/* 4C. Color Blind Mode */}
+            <SettingRow
+              id="color-blind"
+              label="Color vision adjustment"
+              description="Adjust colors throughout the app for different types of color vision."
+            >
+              <DropdownSelect
+                options={[
+                  { value: "off", label: "Off" },
+                  { value: "protanopia", label: "Protanopia" },
+                  { value: "deuteranopia", label: "Deuteranopia" },
+                  { value: "tritanopia", label: "Tritanopia" },
+                ]}
+                value={hydrated ? ext.colorBlindMode : "off"}
+                onChange={(v: ColorBlindMode) => patchExt({ colorBlindMode: v })}
+                label="Color vision adjustment"
+              />
+            </SettingRow>
+
+            <Divider />
+
+            {/* 4D. Keyboard Navigation Info */}
+            <div id="keyboard-nav" className="mx-3 my-2 flex gap-3 rounded-xl bg-white/3 px-4 py-3 border border-white/6" style={{ borderLeftWidth: "2px", borderLeftColor: "rgba(96,165,250,0.3)" }}>
+              <Keyboard className="mt-0.5 h-4 w-4 shrink-0 text-(--cf-text-soft)" />
+              <div>
+                <p className="text-sm font-medium text-(--cf-text-1)">
+                  Keyboard navigation
+                </p>
+                <p className="mt-1 text-xs leading-relaxed text-(--cf-text-3)">
+                  ChapterFlow fully supports keyboard navigation. Use Tab to move between
+                  elements, Enter to select, and Escape to close panels. Screen readers are
+                  fully supported.
+                </p>
+              </div>
+            </div>
+          </SettingsSection>
+        )}
+
+        {/* ══════════════════════════════════════════════════════════════
+           Section 5: Notifications
+           ══════════════════════════════════════════════════════════════ */}
+        {isSectionVisible("notifications") && (
+          <SettingsSection
+            icon={Bell}
+            title="Notifications"
+            summary={getNotificationsSummary()}
+            expanded={isSectionExpanded("notifications")}
+            onToggle={() => toggleSection("notifications")}
+            reducedMotion={reducedMotion}
+            dimmed={isSectionDimmed("notifications")}
+          >
+            {/* 5A. Reading Reminders */}
+            <SettingRow
+              id="reading-reminders"
+              label="Reading reminders"
+              description="A friendly nudge at your chosen time to keep your habit alive."
+            >
+              <ToggleSwitch
+                checked={hydrated ? preferences.notifications.readingReminderEnabled : true}
+                onChange={(v) => patchSection("notifications", { readingReminderEnabled: v })}
+                label="Reading reminders"
+              />
+            </SettingRow>
+
+            {/* 5B. Reminder Time (conditional) */}
+            <AnimatePresence initial={false}>
+              {preferences.notifications.readingReminderEnabled && (
+                <motion.div
+                  initial={reducedMotion ? false : { height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={reducedMotion ? undefined : { height: 0, opacity: 0 }}
+                  transition={reducedMotion ? { duration: 0 } : { duration: 0.15 }}
+                >
+                  <SettingRow
+                    id="reminder-time"
+                    label="Reminder time"
+                    description="When to receive your daily reading nudge."
+                  >
+                    <TimePicker
+                      value={hydrated ? onboarding.reminderTime || "20:00" : "20:00"}
+                      onChange={setReminderTime}
+                      label="Reminder time"
+                    />
+                  </SettingRow>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            <Divider />
+
+            {/* 5C. Streak Reminders (hidden when streak mode is off) */}
+            <AnimatePresence initial={false}>
+              {ext.streakMode !== "off" && (
+                <motion.div
+                  initial={reducedMotion ? false : { height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={reducedMotion ? undefined : { height: 0, opacity: 0 }}
+                  transition={reducedMotion ? { duration: 0 } : { duration: 0.15 }}
+                >
+                  <SettingRow
+                    id="streak-alerts"
+                    label="Streak alerts"
+                    description="Get a heads-up when your reading streak is about to expire."
+                  >
+                    <ToggleSwitch
+                      checked={hydrated ? preferences.notifications.streakReminder : true}
+                      onChange={(v) => patchSection("notifications", { streakReminder: v })}
+                      label="Streak alerts"
+                    />
+                  </SettingRow>
+                  <Divider />
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* 5D. Break Reminders */}
+            <SettingRow
+              id="break-reminders"
+              label="Break reminders"
+              description="A gentle reminder to rest your eyes during long reading sessions."
+            >
+              <ToggleSwitch
+                checked={ext.breakReminders}
+                onChange={(v) => patchExt({ breakReminders: v })}
+                label="Break reminders"
+              />
+            </SettingRow>
+
+            <AnimatePresence initial={false}>
+              {ext.breakReminders && (
+                <motion.div
+                  initial={reducedMotion ? false : { height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={reducedMotion ? undefined : { height: 0, opacity: 0 }}
+                  transition={reducedMotion ? { duration: 0 } : { duration: 0.15 }}
+                >
+                  <SettingRow
+                    label="Remind after"
+                    description="How long before you get a gentle break nudge."
+                  >
+                    <SegmentedControl
+                      options={[
+                        { value: "15", label: "15 min" },
+                        { value: "30", label: "30 min" },
+                        { value: "45", label: "45 min" },
+                        { value: "60", label: "60 min" },
+                      ]}
+                      value={String(ext.breakReminderMinutes)}
+                      onChange={(v) => patchExt({ breakReminderMinutes: Number(v) })}
+                      label="Break reminder interval"
+                    />
+                  </SettingRow>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            <Divider />
+
+            {/* 5E. Weekly Summary Email */}
+            <SettingRow
+              id="weekly-summary"
+              label="Weekly summary email"
+              description="A brief digest of your reading progress, delivered every Monday."
+            >
+              <ToggleSwitch
+                checked={hydrated ? preferences.notifications.weeklyLearningSummaryEmail : true}
+                onChange={(v) => patchSection("notifications", { weeklyLearningSummaryEmail: v })}
+                label="Weekly summary email"
+              />
+            </SettingRow>
+          </SettingsSection>
+        )}
+
+        {/* ══════════════════════════════════════════════════════════════
+           Section 6: Account & Subscription
+           ══════════════════════════════════════════════════════════════ */}
+        {isSectionVisible("account") && (
+          <SettingsSection
+            icon={User}
+            title="Account & Subscription"
+            summary={getAccountSummary()}
+            expanded={isSectionExpanded("account")}
+            onToggle={() => toggleSection("account")}
+            reducedMotion={reducedMotion}
+            dimmed={isSectionDimmed("account")}
+          >
+            {/* 6A. Subscription Status */}
+            <div className="px-3 py-3" id="subscription">
+              <SubscriptionCard
+                plan={plan}
+                currentPeriodEnd={billingState.payload?.entitlement.currentPeriodEnd}
+                price={price}
+                onUpgrade={() => launchBillingAction("upgrade")}
+                onManage={() => launchBillingAction("portal")}
+                onRedeemKey={redeemLicenseKey}
+                reducedMotion={reducedMotion}
               />
             </div>
-          </SettingRow>
-          <Divider />
-          <SettingRow
-            label="Focus mode by default"
-            description="Hide sidebar and header when reading."
-          >
-            <Toggle
-              checked={hydrated ? preferences.reading.focusModeDefault : false}
-              onChange={(v) => patchSection("reading", { focusModeDefault: v })}
-            />
-          </SettingRow>
-          <Divider />
-          <SettingRow label="Progress bar" description="Show chapter completion at the top.">
-            <Toggle
-              checked={hydrated ? preferences.reading.showProgressBar : true}
-              onChange={(v) => patchSection("reading", { showProgressBar: v })}
-            />
-          </SettingRow>
-          <Divider />
-          <SettingRow
-            label="Resume where you left off"
-            description="Scroll back to your last position automatically."
-          >
-            <Toggle
-              checked={hydrated ? preferences.reading.resumeWhereLeftOff : true}
-              onChange={(v) => patchSection("reading", { resumeWhereLeftOff: v })}
-            />
-          </SettingRow>
-        </SectionCard>
 
-        {/* ── Goals ───────────────────────────────────────────── */}
-        <SectionCard icon={Target} title="Goals">
-          <SettingRow label="Daily reading goal" description="Minutes to read each day.">
-            <div className="flex items-center gap-1.5">
+            <Divider />
+
+            {/* 6B. Privacy Controls */}
+            <SubsectionLabel>Privacy</SubsectionLabel>
+
+            <SettingRow
+              id="analytics"
+              label="Share usage analytics"
+              description="Help improve ChapterFlow by sharing anonymous usage data. No personal information is ever collected."
+            >
+              <ToggleSwitch
+                checked={hydrated ? preferences.privacy.analyticsParticipation : false}
+                onChange={(v) => patchSection("privacy", { analyticsParticipation: v })}
+                label="Share usage analytics"
+              />
+            </SettingRow>
+
+            <Divider />
+
+            <SettingRow
+              id="recommendations"
+              label="Personalized recommendations"
+              description="Use your reading history to suggest books you'll love."
+            >
+              <ToggleSwitch
+                checked={hydrated ? preferences.privacy.personalizedRecommendations : true}
+                onChange={(v) => patchSection("privacy", { personalizedRecommendations: v })}
+                label="Personalized recommendations"
+              />
+            </SettingRow>
+
+            <Divider />
+
+            <SettingRow
+              id="reading-history"
+              label="Save reading history"
+              description="Remember which chapters and books you've completed."
+            >
+              <ToggleSwitch
+                checked={hydrated ? preferences.privacy.saveReadingHistory : true}
+                onChange={(v) => patchSection("privacy", { saveReadingHistory: v })}
+                label="Save reading history"
+              />
+            </SettingRow>
+
+            <Divider />
+
+            {/* 6C. Data Export */}
+            <SettingRow
+              id="export-data"
+              label="Export my data"
+              description="Download your reading history, highlights, notes, and quiz results."
+            >
               <button
                 type="button"
-                onClick={() =>
-                  setDailyGoalMinutes(
-                    Math.max(10, (hydrated ? onboarding.dailyGoalMinutes : 20) - 5)
-                  )
-                }
-                className="flex h-7 w-7 items-center justify-center rounded-lg border border-(--cf-border) text-base leading-none select-none text-(--cf-text-2) transition-colors hover:bg-(--cf-surface-muted)"
+                onClick={() => setExportModalOpen(true)}
+                className="cf-btn-secondary rounded-xl px-4 py-2 text-sm font-medium"
               >
-                −
+                Export
               </button>
-              <span className="w-14 text-center text-sm font-semibold tabular-nums text-(--cf-text-1)">
-                {hydrated ? onboarding.dailyGoalMinutes : 20} min
-              </span>
+            </SettingRow>
+
+            <Divider />
+
+            {/* 6D. Refresh Preferences */}
+            <SettingRow
+              id="refresh-preferences"
+              label="Refresh my preferences"
+              description="Re-run the personalization wizard to update your reading profile."
+            >
               <button
                 type="button"
-                onClick={() =>
-                  setDailyGoalMinutes(
-                    Math.min(240, (hydrated ? onboarding.dailyGoalMinutes : 20) + 5)
-                  )
-                }
-                className="flex h-7 w-7 items-center justify-center rounded-lg border border-(--cf-border) text-base leading-none select-none text-(--cf-text-2) transition-colors hover:bg-(--cf-surface-muted)"
+                onClick={() => setRefreshModalOpen(true)}
+                className="cf-btn-secondary rounded-xl px-4 py-2 text-sm font-medium"
               >
-                +
+                Refresh
               </button>
-            </div>
-          </SettingRow>
-          <Divider />
-          <SettingRow
-            label="Learning depth"
-            description="How much detail you want in explanations and summaries."
-          >
-            <SegPicker
-              options={[
-                { value: "concise" as const, label: "Concise" },
-                { value: "balanced" as const, label: "Balanced" },
-                { value: "deep" as const, label: "Deep" },
-              ]}
-              value={hydrated ? onboarding.learningStyle : "balanced"}
-              onChange={setLearningStyle}
-            />
-          </SettingRow>
-          <Divider />
-          <SettingRow
-            label="Quiz difficulty"
-            description="How hard the quiz questions are when you take a chapter quiz."
-          >
-            <SegPicker
-              options={[
-                { value: "easy" as const satisfies QuizIntensity, label: "Easy" },
-                { value: "standard" as const satisfies QuizIntensity, label: "Standard" },
-                { value: "challenging" as const satisfies QuizIntensity, label: "Challenging" },
-              ]}
-              value={hydrated ? onboarding.quizIntensity : "standard"}
-              onChange={setQuizIntensity}
-            />
-          </SettingRow>
-          <Divider />
-          <SettingRow
-            label="Streak tracking"
-            description="Build a daily reading streak and get reminded when it's at risk."
-          >
-            <Toggle
-              checked={hydrated ? onboarding.streakMode : true}
-              onChange={setStreakMode}
-            />
-          </SettingRow>
-          <Divider />
-          <SettingRow
-            label="Motivation style"
-            description="Tone used in nudges, streaks, and progress messages."
-          >
-            <SegPicker
-              options={[
-                { value: "gentle" as const satisfies MotivationStyle, label: "Gentle" },
-                { value: "direct" as const satisfies MotivationStyle, label: "Direct" },
-                { value: "competitive" as const satisfies MotivationStyle, label: "Competitive" },
-              ]}
-              value={hydrated ? onboarding.motivationStyle : "gentle"}
-              onChange={setMotivationStyle}
-            />
-          </SettingRow>
-          <Divider />
-          <SettingRow label="Weekly chapter goal" description="Chapters to complete each week.">
-            <div className="flex items-center gap-1.5">
-              <button
-                type="button"
-                onClick={() =>
-                  patchSection("goals", {
-                    weeklyChapterGoal: Math.max(
-                      1,
-                      (hydrated ? preferences.goals.weeklyChapterGoal : 3) - 1
-                    ),
-                  })
-                }
-                className="flex h-7 w-7 items-center justify-center rounded-lg border border-(--cf-border) text-base leading-none select-none text-(--cf-text-2) transition-colors hover:bg-(--cf-surface-muted)"
-              >
-                −
-              </button>
-              <span className="w-8 text-center text-sm font-semibold tabular-nums text-(--cf-text-1)">
-                {hydrated ? preferences.goals.weeklyChapterGoal : 3}
-              </span>
-              <button
-                type="button"
-                onClick={() =>
-                  patchSection("goals", {
-                    weeklyChapterGoal: Math.min(
-                      30,
-                      (hydrated ? preferences.goals.weeklyChapterGoal : 3) + 1
-                    ),
-                  })
-                }
-                className="flex h-7 w-7 items-center justify-center rounded-lg border border-(--cf-border) text-base leading-none select-none text-(--cf-text-2) transition-colors hover:bg-(--cf-surface-muted)"
-              >
-                +
-              </button>
-            </div>
-          </SettingRow>
-        </SectionCard>
+            </SettingRow>
 
-        {/* ── Appearance ──────────────────────────────────────── */}
-        <SectionCard icon={Palette} title="Appearance">
-          <SettingRow label="Theme" description="Choose your preferred color scheme.">
-            <SegPicker
-              options={[
-                { value: "light" as const, label: "Light" },
-                { value: "dark" as const, label: "Dark" },
-                { value: "system" as const, label: "System" },
-              ]}
-              value={hydrated ? preferences.appearance.theme : "light"}
-              onChange={(v) => patchSection("appearance", { theme: v })}
-            />
-          </SettingRow>
-          <Divider />
-          <SettingRow
-            label="Interface density"
-            description="How compact or spacious the layout feels."
-          >
-            <SegPicker
-              options={[
-                { value: "compact" as const, label: "Compact" },
-                { value: "comfortable" as const, label: "Default" },
-                { value: "spacious" as const, label: "Spacious" },
-              ]}
-              value={hydrated ? preferences.appearance.interfaceDensity : "comfortable"}
-              onChange={(v) => patchSection("appearance", { interfaceDensity: v })}
-            />
-          </SettingRow>
-          <Divider />
-          <SettingRow
-            label="Reduced motion"
-            description="Minimize animations and transitions throughout the app."
-          >
-            <Toggle
-              checked={hydrated ? preferences.appearance.reducedMotion : false}
-              onChange={(v) => patchSection("appearance", { reducedMotion: v })}
-            />
-          </SettingRow>
-        </SectionCard>
+            <Divider />
 
-        {/* ── Notifications ───────────────────────────────────── */}
-        <SectionCard icon={Bell} title="Notifications">
-          <SettingRow
-            label="Reading reminders"
-            description="Get notified at your preferred time to read."
-          >
-            <Toggle
-              checked={hydrated ? preferences.notifications.readingReminderEnabled : true}
-              onChange={(v) =>
-                patchSection("notifications", { readingReminderEnabled: v })
-              }
-            />
-          </SettingRow>
-          <Divider />
-          <SettingRow label="Reminder time" description="When to receive your daily reading nudge.">
-            <input
-              type="time"
-              value={hydrated ? onboarding.reminderTime : "20:00"}
-              onChange={(e) => setReminderTime(e.target.value)}
-              disabled={hydrated ? !preferences.notifications.readingReminderEnabled : false}
-              className="cf-input rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-(--cf-accent-border) disabled:cursor-not-allowed disabled:opacity-40"
-            />
-          </SettingRow>
-          <Divider />
-          <SettingRow
-            label="Streak reminders"
-            description="Alert when your reading streak is about to break."
-          >
-            <Toggle
-              checked={hydrated ? preferences.notifications.streakReminder : true}
-              onChange={(v) => patchSection("notifications", { streakReminder: v })}
-            />
-          </SettingRow>
-          <Divider />
-          <SettingRow
-            label="Weekly summary email"
-            description="A brief digest of your reading progress each week."
-          >
-            <Toggle
-              checked={
-                hydrated ? preferences.notifications.weeklyLearningSummaryEmail : true
-              }
-              onChange={(v) =>
-                patchSection("notifications", { weeklyLearningSummaryEmail: v })
-              }
-            />
-          </SettingRow>
-        </SectionCard>
-
-        {/* ── Privacy & Data ──────────────────────────────────── */}
-        <SectionCard icon={Shield} title="Privacy & Data">
-          <SettingRow
-            label="Analytics"
-            description="Share anonymous usage data to help improve ChapterFlow."
-          >
-            <Toggle
-              checked={hydrated ? preferences.privacy.analyticsParticipation : true}
-              onChange={(v) => patchSection("privacy", { analyticsParticipation: v })}
-            />
-          </SettingRow>
-          <Divider />
-          <SettingRow
-            label="Personalized recommendations"
-            description="Use your reading history to suggest books you'll love."
-          >
-            <Toggle
-              checked={
-                hydrated ? preferences.privacy.personalizedRecommendations : true
-              }
-              onChange={(v) =>
-                patchSection("privacy", { personalizedRecommendations: v })
-              }
-            />
-          </SettingRow>
-          <Divider />
-          <SettingRow
-            label="Save reading history"
-            description="Remember which chapters and books you've completed."
-          >
-            <Toggle
-              checked={hydrated ? preferences.privacy.saveReadingHistory : true}
-              onChange={(v) => patchSection("privacy", { saveReadingHistory: v })}
-            />
-          </SettingRow>
-          <Divider />
-          <div className="flex items-center justify-between gap-4 rounded-[13px] px-3 py-3">
-            <div>
-              <p className="text-sm font-medium text-(--cf-text-1)">Legal</p>
-              <p className="mt-0.5 text-xs text-(--cf-text-3)">
-                Review our policies
-              </p>
-            </div>
-            <div className="flex gap-3 text-xs">
+            {/* 6E. Legal Links */}
+            <div className="flex items-center justify-center gap-3 px-3 py-3 text-xs">
               <a
                 href="/legal/privacy"
-                className="font-medium text-(--cf-accent) hover:underline"
+                className="font-medium text-(--cf-text-3) hover:text-(--cf-accent) hover:underline"
               >
-                Privacy
+                Privacy Policy
               </a>
+              <span className="text-(--cf-text-soft)">&middot;</span>
               <a
                 href="/legal/terms"
-                className="font-medium text-(--cf-accent) hover:underline"
+                className="font-medium text-(--cf-text-3) hover:text-(--cf-accent) hover:underline"
               >
-                Terms
+                Terms of Service
               </a>
+              <span className="text-(--cf-text-soft)">&middot;</span>
               <a
                 href="/legal/cookies"
-                className="font-medium text-(--cf-accent) hover:underline"
+                className="font-medium text-(--cf-text-3) hover:text-(--cf-accent) hover:underline"
               >
-                Cookies
+                Cookie Policy
               </a>
             </div>
-          </div>
-        </SectionCard>
 
-        {/* ── License Key ─────────────────────────────────────── */}
-        <LicenseKeySection />
-
-        {/* ── Advanced (collapsible) ───────────────────────────── */}
-        <section className="overflow-hidden rounded-[22px] border border-(--cf-border) bg-(--cf-surface) shadow-sm">
-          <button
-            type="button"
-            onClick={() => setAdvancedOpen((p) => !p)}
-            className="flex w-full items-center justify-between gap-4 px-5 py-4 transition-colors hover:bg-(--cf-surface-muted)"
-          >
-            <div className="flex items-center gap-2.5">
-              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-(--cf-surface-muted) text-(--cf-text-2)">
-                <Settings2 className="h-4 w-4" />
-              </div>
-              <span className="text-[15px] font-semibold text-(--cf-text-1)">
-                Advanced
-              </span>
+            {/* 6F. Danger Zone */}
+            <div className="px-3">
+              <DangerZone
+                onDeactivate={() =>
+                  showToast("Deactivation not yet supported — contact support.", "error")
+                }
+                onDelete={() =>
+                  showToast("Deletion not yet supported — contact support.", "error")
+                }
+                reducedMotion={reducedMotion}
+              />
             </div>
-            <ChevronDown
-              className={cn(
-                "h-4 w-4 text-(--cf-text-soft) transition-transform",
-                advancedOpen && "rotate-180"
-              )}
-            />
-          </button>
-
-          {advancedOpen && (
-            <div className="border-t border-(--cf-divider) px-2 pb-2 pt-2">
-              {/* Quiz */}
-              <div className="px-3 pb-1 pt-2">
-                <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-(--cf-text-soft)">
-                  Quiz
-                </p>
-              </div>
-              <SettingRow
-                label="Question style"
-                description="Show all questions at once or one at a time."
-              >
-                <SegPicker
-                  options={[
-                    { value: "one-by-one" as const, label: "One-by-one" },
-                    { value: "all-at-once" as const, label: "All at once" },
-                  ]}
-                  value={
-                    hydrated
-                      ? preferences.learning.questionPresentationStyle
-                      : "one-by-one"
-                  }
-                  onChange={(v) =>
-                    patchSection("learning", { questionPresentationStyle: v })
-                  }
-                />
-              </SettingRow>
-              <Divider />
-              <SettingRow
-                label="Shuffle questions"
-                description="Randomize question order each session."
-              >
-                <Toggle
-                  checked={
-                    hydrated ? preferences.learning.shuffleQuestionOrder : false
-                  }
-                  onChange={(v) =>
-                    patchSection("learning", { shuffleQuestionOrder: v })
-                  }
-                />
-              </SettingRow>
-              <Divider />
-              <SettingRow
-                label="Retry incorrect only"
-                description="Loop through only the questions you got wrong."
-              >
-                <Toggle
-                  checked={hydrated ? preferences.learning.retryIncorrectOnly : true}
-                  onChange={(v) =>
-                    patchSection("learning", { retryIncorrectOnly: v })
-                  }
-                />
-              </SettingRow>
-
-              {/* Library */}
-              <div className="px-3 pb-1 pt-4">
-                <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-(--cf-text-soft)">
-                  Library
-                </p>
-              </div>
-              <SettingRow
-                label="Default sort order"
-                description="How books are ordered in your library."
-              >
-                <select
-                  value={
-                    hydrated
-                      ? preferences.library.defaultLibrarySorting
-                      : "recommended"
-                  }
-                  onChange={(e) =>
-                    patchSection("library", {
-                      defaultLibrarySorting: e.target
-                        .value as typeof preferences.library.defaultLibrarySorting,
-                    })
-                  }
-                  className="cf-input rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-(--cf-accent-border)"
-                >
-                  <option value="recommended">Recommended</option>
-                  <option value="recently-opened">Recently opened</option>
-                  <option value="shortest-read">Shortest</option>
-                  <option value="longest-read">Longest</option>
-                  <option value="alphabetical">Alphabetical</option>
-                </select>
-              </SettingRow>
-              <Divider />
-              <SettingRow
-                label="Show reading time estimates"
-                description="Display estimated reading time per book."
-              >
-                <Toggle
-                  checked={
-                    hydrated ? preferences.library.showReadingTimeEstimates : true
-                  }
-                  onChange={(v) =>
-                    patchSection("library", { showReadingTimeEstimates: v })
-                  }
-                />
-              </SettingRow>
-
-              {/* Accessibility */}
-              <div className="px-3 pb-1 pt-4">
-                <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-(--cf-text-soft)">
-                  Accessibility
-                </p>
-              </div>
-              <SettingRow label="Larger text" description="Increase text size across the app.">
-                <Toggle
-                  checked={
-                    hydrated ? preferences.accessibility.largerTextMode : false
-                  }
-                  onChange={(v) =>
-                    patchSection("accessibility", { largerTextMode: v })
-                  }
-                />
-              </SettingRow>
-              <Divider />
-              <SettingRow
-                label="High contrast"
-                description="Sharper color contrast for readability."
-              >
-                <Toggle
-                  checked={
-                    hydrated ? preferences.accessibility.highContrastMode : false
-                  }
-                  onChange={(v) =>
-                    patchSection("accessibility", { highContrastMode: v })
-                  }
-                />
-              </SettingRow>
-              <Divider />
-              <SettingRow
-                label="Dyslexia-friendly font"
-                description="Switch to OpenDyslexic for reading text."
-              >
-                <Toggle
-                  checked={
-                    hydrated ? preferences.accessibility.dyslexiaFriendlyFont : false
-                  }
-                  onChange={(v) =>
-                    patchSection("accessibility", { dyslexiaFriendlyFont: v })
-                  }
-                />
-              </SettingRow>
-
-              {/* Account */}
-              <div className="px-3 pb-1 pt-4">
-                <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-(--cf-text-soft)">
-                  Account
-                </p>
-              </div>
-              <div className="space-y-1 px-3 py-2">
-                <button
-                  type="button"
-                  onClick={() => setConfirmModal({ open: true, type: "reset" })}
-                  className="flex w-full items-center gap-2.5 rounded-[13px] px-3 py-2.5 text-sm font-medium text-(--cf-text-2) transition-colors hover:bg-(--cf-surface-muted)"
-                >
-                  <RotateCcw className="h-4 w-4 text-(--cf-text-soft)" />
-                  Reset onboarding setup
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setConfirmModal({ open: true, type: "deactivate" })}
-                  className="flex w-full items-center gap-2.5 rounded-[13px] px-3 py-2.5 text-sm font-medium text-(--cf-warning-text) transition-colors hover:bg-(--cf-warning-soft)"
-                >
-                  <LogOut className="h-4 w-4" />
-                  Deactivate account
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setConfirmModal({ open: true, type: "delete" })}
-                  className="flex w-full items-center gap-2.5 rounded-[13px] px-3 py-2.5 text-sm font-medium text-(--cf-danger-text) transition-colors hover:bg-(--cf-danger-soft)"
-                >
-                  <Trash2 className="h-4 w-4" />
-                  Delete account &amp; all data
-                </button>
-              </div>
-            </div>
-          )}
-        </section>
+          </SettingsSection>
+        )}
 
         <div className="h-6" />
       </div>
 
-      {/* Confirm modals */}
-      <ConfirmModal
-        open={confirmModal.open && confirmModal.type === "reset"}
-        title="Reset onboarding?"
-        description="Your reading preferences won't be affected — only the onboarding flow will reset. You'll see it again on your next visit."
-        confirmLabel="Reset"
-        tone="primary"
-        onConfirm={handleConfirm}
-        onCancel={() => setConfirmModal({ open: false, type: null })}
-      />
-      <ConfirmModal
-        open={confirmModal.open && confirmModal.type === "deactivate"}
-        title="Deactivate account?"
-        description="Your account will be suspended. You can reactivate by signing back in. This does not delete your data."
-        confirmLabel="Deactivate"
-        tone="danger"
-        onConfirm={handleConfirm}
-        onCancel={() => setConfirmModal({ open: false, type: null })}
-      />
-      <ConfirmModal
-        open={confirmModal.open && confirmModal.type === "delete"}
-        title="Delete everything?"
-        description={
-          <span>
-            This permanently erases your account, reading history, quiz results, and notes.{" "}
-            <strong className="text-(--cf-danger-text)">This cannot be undone.</strong>
-          </span>
-        }
-        confirmLabel="Delete permanently"
-        tone="danger"
-        onConfirm={handleConfirm}
-        onCancel={() => setConfirmModal({ open: false, type: null })}
+      {/* Export Modal */}
+      <ExportModal
+        open={exportModalOpen}
+        onClose={() => setExportModalOpen(false)}
+        isPro={isPro}
+        reducedMotion={reducedMotion}
       />
 
+      {/* Refresh Preferences Wizard */}
+      <RefreshPreferencesModal
+        open={refreshModalOpen}
+        onClose={() => setRefreshModalOpen(false)}
+        onComplete={handleRefreshComplete}
+        reducedMotion={reducedMotion}
+        currentProfile={ext.readingProfile}
+        currentGoal={ext.dailyGoalPreset}
+        currentMotivation={ext.motivationPersona}
+        currentDyslexia={preferences.accessibility.dyslexiaFriendlyFont}
+        currentHighContrast={preferences.accessibility.highContrastMode}
+        currentColorBlind={ext.colorBlindMode}
+      />
+
+      {/* Auto-save floating toast */}
+      <AnimatePresence>
+        {saveState === "saving" && (
+          <motion.div
+            initial={reducedMotion ? { opacity: 1 } : { y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={reducedMotion ? { opacity: 0 } : { y: 20, opacity: 0 }}
+            transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2"
+          >
+            <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.08] px-4 py-2 text-sm shadow-lg backdrop-blur-md">
+              <Check className="h-3.5 w-3.5 text-emerald-400" />
+              <span className="text-(--cf-text-2)">Saved</span>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Action toast */}
       <Toast open={toast.open} message={toast.message} tone={toast.tone} />
+
+      {/* Micro Celebrations */}
+      <MicroCelebration event={celebration} reducedMotion={reducedMotion} />
+
+      {/* Screen reader live region */}
+      <div className="sr-only" aria-live="polite" aria-atomic="true">
+        {liveAnnouncement}
+      </div>
     </div>
   );
 }

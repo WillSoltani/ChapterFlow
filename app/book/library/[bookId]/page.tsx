@@ -81,8 +81,9 @@ export default async function BookDetailPage({
   await requireDashboardAccess();
   const { bookId } = await params;
 
-  // Try DB first, fall back to local book packages
-  const book = (await loadBook(bookId)) ?? buildLocalFallback(bookId);
+  // Prefer local book packages so chapter IDs stay in sync with local content.
+  // Fall back to DB if no local package exists.
+  const book = buildLocalFallback(bookId) ?? (await loadBook(bookId));
 
   if (!book) {
     notFound();

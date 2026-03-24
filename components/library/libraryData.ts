@@ -723,6 +723,33 @@ export const MOCK_BOOKS: LibraryBook[] = [
     similarBookId: "the-48-laws-of-power",
   },
 
+  {
+    id: "the-charisma-myth",
+    title: "The Charisma Myth",
+    author: "Olivia Fox Cabane",
+    authorCredentials: "Executive coach and charisma researcher",
+    coverImage: "/book-covers/the-charisma-myth.jpg",
+    coverGradient: "linear-gradient(135deg, #7c3aed 0%, #4338ca 100%)",
+    hook: "Charisma isn't a gift — it's a skill you can learn",
+    description:
+      "Charisma is not an innate quality but a set of learned behaviors rooted in three components: presence, power, and warmth. This book breaks down the mental states, body language, and practical exercises that anyone can use to become more charismatic.",
+    whatYoullLearn: [
+      "The three core components of charisma and how to develop each one",
+      "Mental state techniques that produce authentic charismatic behavior",
+      "How to handle difficult situations, presentations, and crises with composure",
+    ],
+    bestFor: ["communicators", "leaders", "introverts who want more influence"],
+    category: "Communication",
+    difficulty: "medium",
+    totalChapters: 13,
+    estimatedReadingTimeMinutes: 180,
+    readerCount: 2340,
+    completionRate: 82,
+    isPro: false,
+    badges: ["new"],
+    similarBookId: "never-split-the-difference",
+  },
+
   // ═══ NOT STARTED — Browse All only ═══
   {
     id: "mans-search-for-meaning",
@@ -805,7 +832,7 @@ export const CURATED_SECTIONS: CuratedSectionConfig[] = [
       "extreme-ownership",
       "the-48-laws-of-power",
       "the-hard-thing-about-hard-things",
-      "measure-what-matters",
+      "the-charisma-myth",
       "the-prince",
     ],
   },

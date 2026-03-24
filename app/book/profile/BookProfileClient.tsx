@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   Award,
@@ -10,22 +10,13 @@ import {
   Calendar,
   CheckCircle2,
   Clock3,
-  CreditCard,
   Flame,
-  Globe,
   GraduationCap,
-  KeyRound,
-  LayoutGrid,
-  LineChart,
   Medal,
   NotebookPen,
-  ShieldCheck,
   Sparkles,
-  Star,
   Target,
   Trophy,
-  UserCircle2,
-  Users,
 } from "lucide-react";
 import { TopNav } from "@/app/book/home/components/TopNav";
 import { InfoModal } from "@/app/book/home/components/InfoModal";
@@ -56,14 +47,29 @@ import {
 import { EditProfileModal } from "@/app/book/profile/components/EditProfileModal";
 import {
   ActiveBookCard,
+  ActiveDaysRing,
+  CompletionByModeChart,
+  FadeIn,
+  HeatmapCalendar,
+  IdentityHeroBanner,
+  MomentumCard,
+  MomentumEmptyState,
   NotePreviewCard,
-  PrivacyRow,
-  ProfileHeroCard,
+  PinnedTakeawayCard,
+  ProfileSkeleton,
+  ProStatusCard,
+  QuizBarChart,
   SectionCard,
+  SectionNav,
+  Sparkline,
   StatCard,
-  SubscriptionSummaryCard,
+  StickyMiniHeader,
   TimelineRow,
+  UpgradeCard,
+  UpNextPreview,
 } from "@/app/book/profile/components/ProfilePrimitives";
+
+// ─── Types ───
 
 type BookProfileClientProps = {
   userEmail: string | null;
@@ -86,6 +92,7 @@ type ActivityEntry = {
   detail: string;
   meta: string;
   sortAt: string;
+  dateKey: string;
 };
 
 type QuizEntry = {
@@ -95,25 +102,26 @@ type QuizEntry = {
   sortAt: string;
 };
 
+// ─── Helpers ───
+
 function formatMinutes(minutes: number) {
   if (minutes >= 60) {
-    const hours = Math.floor(minutes / 60);
-    const remainder = minutes % 60;
-    return remainder ? `${hours} hr ${remainder} min` : `${hours} hr`;
+    const h = Math.floor(minutes / 60);
+    const m = minutes % 60;
+    return m ? `${h}h ${m}m` : `${h}h`;
   }
   return `${minutes} min`;
 }
 
-function formatPercent(value: number) {
-  return `${Math.round(value)}%`;
+function formatHours(minutes: number) {
+  if (minutes < 60) return `${minutes}m`;
+  const h = Math.floor(minutes / 60);
+  const m = minutes % 60;
+  return m ? `${h}h ${m}m` : `${h}h`;
 }
 
-function formatJoinDate(value: string) {
-  return new Date(value).toLocaleDateString(undefined, {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  });
+function formatPercent(value: number) {
+  return `${Math.round(value)}%`;
 }
 
 function mapLearningStyle(value: string) {
@@ -126,12 +134,6 @@ function depthLabel(value: string) {
   if (value === "simple") return "Simple";
   if (value === "standard") return "Standard";
   return "Deeper";
-}
-
-function visibilityLabel(value: string) {
-  if (value === "public") return "Public";
-  if (value === "friends") return "Friends only";
-  return "Private";
 }
 
 function firstLine(text: string) {
@@ -147,14 +149,98 @@ function summarizeNote(text: string) {
 function initialsFromName(name: string) {
   const parts = name.trim().split(/\s+/).filter(Boolean).slice(0, 2);
   if (!parts.length) return "R";
-  return parts.map((part) => part.charAt(0).toUpperCase()).join("");
+  return parts.map((p) => p.charAt(0).toUpperCase()).join("");
 }
+
+function toDayKeyLocal(d: Date) {
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+}
+
+// ─── Identity label (unchanged) ───
+
+function getIdentityLabel(booksCompleted: number, categoriesCount: number): string {
+  if (booksCompleted === 0) return "Getting Started";
+  if (booksCompleted <= 2) return "Curious Reader";
+  if (booksCompleted <= 5) return "Knowledge Seeker";
+  if (booksCompleted <= 10) return "Dedicated Learner";
+  if (booksCompleted <= 20) return "Knowledge Builder";
+  if (booksCompleted > 20 && categoriesCount >= 5) return "Polymath";
+  return "Knowledge Builder";
+}
+
+// ─── Streak microcopy — full lookup table (A5) ───
+
+const STREAK_MILESTONES: [number, string][] = [
+  [365, "One full year. Legendary. 👑"],
+  [200, "200 days of reading. This is who you are now."],
+  [100, "Triple digits. You've built something extraordinary 🎖️"],
+  [50, "Fifty days. Half a hundred. Unstoppable."],
+  [30, "30-day streak! Top 5% of ChapterFlow readers 🏆"],
+  [21, "21 days — science says this is officially a habit 🧠"],
+  [14, "Two weeks straight. This isn't a phase anymore."],
+  [10, "Double digits — discipline is becoming instinct"],
+  [7, "One full week! Your reading habit is taking shape ✨"],
+  [5, "Five days strong — you're proving this is real"],
+  [3, "3 days running — momentum is building"],
+  [2, "Two in a row — a pattern is forming"],
+  [1, "Day 1 — it all starts here 🔥"],
+];
+
+function getStreakMicrocopy(days: number): string {
+  if (days === 0) return "Start a new streak today — one chapter lights the flame";
+  for (const [milestone, msg] of STREAK_MILESTONES) {
+    if (days >= milestone) return msg;
+  }
+  return `Keep going — day ${days} and counting`;
+}
+
+// ─── Quiz score subtitle (C3 improved) ───
+
+function getQuizScoreSubtitle(score: number, hasQuizzes: boolean): string {
+  if (!hasQuizzes) return "Complete your first quiz to start tracking retention";
+  if (score < 50) return "Room to grow — try Deeper mode for better retention";
+  if (score < 80) return "Solid understanding — you're retaining the key ideas";
+  return "Exceptional recall — you're mastering this material";
+}
+
+// ─── Relative date for timeline (D4) ───
+
+function relativeDateLabel(dateKey: string): string {
+  const today = toDayKeyLocal(new Date());
+  if (dateKey === today) return "Today";
+  const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+  if (dateKey === toDayKeyLocal(yesterday)) return "Yesterday";
+  const twoDaysAgo = new Date();
+  twoDaysAgo.setDate(twoDaysAgo.getDate() - 2);
+  if (dateKey === toDayKeyLocal(twoDaysAgo)) return "2 days ago";
+  return new Date(`${dateKey}T12:00:00`).toLocaleDateString(undefined, { month: "long", day: "numeric" });
+}
+
+// ─── Section IDs for nav (H3) ───
+
+const SECTION_IDS = [
+  { id: "hero", label: "Profile" },
+  { id: "momentum", label: "Momentum" },
+  { id: "performance", label: "Performance" },
+  { id: "activity", label: "Activity" },
+  { id: "achievements", label: "Achievements" },
+  { id: "plan", label: "Plan" },
+  { id: "reflection", label: "Reflection" },
+  { id: "history", label: "History" },
+];
+
+// ─── Main component ───
 
 export function BookProfileClient({ userEmail, appVersion }: BookProfileClientProps) {
   const router = useRouter();
+  const heroRef = useRef<HTMLDivElement>(null);
+  const [showMiniHeader, setShowMiniHeader] = useState(false);
   const [revision, setRevision] = useState(0);
   const [editOpen, setEditOpen] = useState(false);
   const [selectedBadge, setSelectedBadge] = useState<BadgeState | null>(null);
+  const [achievementView, setAchievementView] = useState<"showcase" | "timeline">("showcase");
+  const [activeSectionIdx, setActiveSectionIdx] = useState(0);
   const { toast, showToast } = useToast();
 
   const { state: onboarding, hydrated: onboardingHydrated } = useOnboardingState();
@@ -177,9 +263,11 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
     plan: billingState.payload?.entitlement.plan ?? "FREE",
   });
 
+  // ─── Storage sync ───
+
   useEffect(() => {
     function onStorageChange() {
-      setRevision((value) => value + 1);
+      setRevision((v) => v + 1);
     }
     window.addEventListener(BOOK_STORAGE_EVENT, onStorageChange as EventListener);
     window.addEventListener("storage", onStorageChange);
@@ -191,12 +279,53 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
     };
   }, []);
 
+  // ─── Redirect if not onboarded ───
+
   useEffect(() => {
     if (!onboardingHydrated) return;
     if (!onboarding.setupComplete) {
       router.replace("/book");
     }
   }, [onboarding.setupComplete, onboardingHydrated, router]);
+
+  // ─── Sticky mini-header observer ───
+
+  useEffect(() => {
+    const el = heroRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setShowMiniHeader(!entry.isIntersecting),
+      { threshold: 0 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  // ─── Section nav observer (H3) ───
+
+  useEffect(() => {
+    const els = SECTION_IDS.map((s) => document.getElementById(s.id)).filter(Boolean) as HTMLElement[];
+    if (!els.length) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            const idx = SECTION_IDS.findIndex((s) => s.id === entry.target.id);
+            if (idx >= 0) setActiveSectionIdx(idx);
+          }
+        }
+      },
+      { rootMargin: "-30% 0px -60% 0px" }
+    );
+    els.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  const handleSectionNav = useCallback((id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, []);
+
+  // ─── Derived data ───
 
   const localInsights = useMemo(() => {
     if (!analyticsHydrated) {
@@ -206,8 +335,8 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
         recentQuizEntries: [] as QuizEntry[],
         activityLog: [] as ActivityEntry[],
         depthCounts: { simple: 0, standard: 0, deeper: 0 },
-        exampleCounts: { personal: 0, school: 0, work: 0, all: 0 },
         recentOpenedChapters: [] as ActivityEntry[],
+        categoriesSet: new Set<string>(),
       };
     }
 
@@ -216,49 +345,53 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
     const activityLog: ActivityEntry[] = [];
     const recentOpenedChapters: ActivityEntry[] = [];
     const depthCounts = { simple: 0, standard: 0, deeper: 0 };
-    const exampleCounts = { personal: 0, school: 0, work: 0, all: 0 };
+    const categoriesSet = new Set<string>();
     let quizQuestionsAnswered = 0;
     void revision;
 
     for (const snapshot of analytics?.bookSnapshots ?? []) {
+      if (snapshot.book.category) categoriesSet.add(snapshot.book.category);
+
       const progress = parseStoredBookProgress(
         window.localStorage.getItem(getBookProgressStorageKey(snapshot.book.id))
       );
       const chapters = getBookChaptersBundle(snapshot.book.id).chapters;
-      const chapterMap = new Map(chapters.map((chapter) => [chapter.id, chapter]));
+      const chapterMap = new Map(chapters.map((ch) => [ch.id, ch]));
 
       if (progress?.lastReadChapterId) {
         const chapter = chapterMap.get(progress.lastReadChapterId);
+        const dateStr = progress.lastOpenedAt;
+        const dateKey = dateStr ? toDayKeyLocal(new Date(dateStr)) : "";
         recentOpenedChapters.push({
           id: `${snapshot.book.id}:${progress.lastReadChapterId}:opened`,
           title: chapter ? `${snapshot.book.title} • ${chapter.code}` : `${snapshot.book.title} • Recent chapter`,
           detail: chapter ? chapter.title : "Recent chapter activity",
-          meta: new Date(progress.lastOpenedAt).toLocaleDateString(undefined, { month: "short", day: "numeric" }),
-          sortAt: progress.lastOpenedAt,
+          meta: new Date(dateStr).toLocaleDateString(undefined, { month: "short", day: "numeric" }),
+          sortAt: dateStr,
+          dateKey,
         });
       }
 
       Object.entries(progress?.chapterCompletedAt ?? {}).forEach(([chapterId, completedAt]) => {
         const chapter = chapterMap.get(chapterId);
         if (!chapter) return;
+        const dateKey = toDayKeyLocal(new Date(completedAt));
         activityLog.push({
           id: `${snapshot.book.id}:${chapterId}:completed`,
           title: `${snapshot.book.title} • ${chapter.code}`,
           detail: `Completed ${chapter.title}`,
           meta: new Date(completedAt).toLocaleDateString(undefined, { month: "short", day: "numeric" }),
           sortAt: completedAt,
+          dateKey,
         });
       });
 
       for (const chapter of chapters) {
         const reader = parseStoredReaderState(
-          window.localStorage.getItem(
-            getChapterReaderStorageKey(snapshot.book.id, chapter.id)
-          )
+          window.localStorage.getItem(getChapterReaderStorageKey(snapshot.book.id, chapter.id))
         );
         if (!reader) continue;
         depthCounts[reader.readingDepth] += 1;
-        exampleCounts[reader.exampleFilter] += 1;
         quizQuestionsAnswered += Object.keys(reader.quizAnswers).length;
 
         if (reader.quizResult) {
@@ -286,25 +419,155 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
       }
     }
 
-    notes.sort((left, right) => right.sortAt.localeCompare(left.sortAt));
-    recentQuizEntries.sort((left, right) => right.sortAt.localeCompare(left.sortAt));
-    activityLog.sort((left, right) => right.sortAt.localeCompare(left.sortAt));
-    recentOpenedChapters.sort((left, right) => right.sortAt.localeCompare(left.sortAt));
+    notes.sort((a, b) => b.sortAt.localeCompare(a.sortAt));
+    recentQuizEntries.sort((a, b) => b.sortAt.localeCompare(a.sortAt));
+    activityLog.sort((a, b) => b.sortAt.localeCompare(a.sortAt));
+    recentOpenedChapters.sort((a, b) => b.sortAt.localeCompare(a.sortAt));
 
-    return {
-      quizQuestionsAnswered,
-      notes,
-      recentQuizEntries,
-      activityLog,
-      depthCounts,
-      exampleCounts,
-      recentOpenedChapters,
-    };
+    return { quizQuestionsAnswered, notes, recentQuizEntries, activityLog, depthCounts, recentOpenedChapters, categoriesSet };
   }, [analytics, analyticsHydrated, revision]);
 
+  const statsSummary = useMemo(() => {
+    const totalReadingMinutes = analytics?.heatmapCells.reduce((sum, cell) => sum + cell.minutes, 0) ?? 0;
+    return {
+      currentStreak: analytics?.streakDays ?? 0,
+      longestStreak: analytics?.longestStreak ?? 0,
+      booksCompleted: analytics?.booksCompleted ?? 0,
+      totalChaptersCompleted: analytics?.totalCompletedChapters ?? 0,
+      quizQuestionsAnswered: localInsights.quizQuestionsAnswered,
+      averageQuizScore: analytics?.avgQuizScore ?? 0,
+      maxQuizScore: analytics?.maxQuizScore ?? 0,
+      totalReadingMinutes,
+      categoriesCount: localInsights.categoriesSet.size,
+      minutesReadToday: analytics?.minutesReadToday ?? 0,
+    };
+  }, [analytics, localInsights.quizQuestionsAnswered, localInsights.categoriesSet.size]);
+
+  const currentSnapshot = useMemo(() => {
+    const sorted = [...(analytics?.bookSnapshots ?? [])].sort((a, b) => {
+      const aR = a.status === "in_progress" ? 0 : a.status === "not_started" ? 1 : 2;
+      const bR = b.status === "in_progress" ? 0 : b.status === "not_started" ? 1 : 2;
+      if (aR !== bR) return aR - bR;
+      return b.lastActivityAt.localeCompare(a.lastActivityAt);
+    });
+    return sorted[0] ?? null;
+  }, [analytics]);
+
+  const activeBooks = useMemo(
+    () => [...(analytics?.bookSnapshots ?? [])]
+      .filter((s) => s.status === "in_progress")
+      .sort((a, b) => b.lastActivityAt.localeCompare(a.lastActivityAt))
+      .slice(0, 4),
+    [analytics]
+  );
+
+  const recentFinishedBooks = useMemo(
+    () => [...(analytics?.bookSnapshots ?? [])]
+      .filter((s) => s.status === "completed")
+      .sort((a, b) => b.lastActivityAt.localeCompare(a.lastActivityAt))
+      .slice(0, 4),
+    [analytics]
+  );
+
+  // 2.1: "Up next" suggestion
+  const upNextSuggestion = useMemo(() => {
+    if (!currentSnapshot) return null;
+    // If other books are in progress, suggest the most recent one
+    const otherActive = activeBooks.find((s) => s.book.id !== currentSnapshot.book.id);
+    if (otherActive) {
+      return { label: "Also in progress", title: otherActive.book.title, category: otherActive.book.category, bookId: otherActive.book.id };
+    }
+    // Otherwise suggest from same category
+    const sameCategory = (analytics?.bookSnapshots ?? []).find(
+      (s) => s.book.category === currentSnapshot.book.category && s.book.id !== currentSnapshot.book.id && s.status === "not_started"
+    );
+    if (sameCategory) {
+      return { label: "When you finish, explore", title: sameCategory.book.title, category: sameCategory.book.category, bookId: sameCategory.book.id };
+    }
+    return null;
+  }, [currentSnapshot, activeBooks, analytics]);
+
+  // B1/B2: Current reading details with learning loop steps + chapter time
+  const currentReadingDetails = useMemo(() => {
+    if (!currentSnapshot) return null;
+    void revision;
+    const progress = parseStoredBookProgress(
+      window.localStorage.getItem(getBookProgressStorageKey(currentSnapshot.book.id))
+    );
+    const chapters = getBookChaptersBundle(currentSnapshot.book.id).chapters;
+    const currentChapterId = progress?.currentChapterId || currentSnapshot.resumeChapterId || chapters[0]?.id || "";
+    const chapter = chapters.find((c) => c.id === currentChapterId) ?? chapters[0];
+    const completedSet = new Set(progress?.completedChapterIds ?? []);
+    const remainingMinutes = chapters
+      .filter((c) => !completedSet.has(c.id))
+      .reduce((sum, c) => sum + c.minutes, 0);
+    const reader = chapter
+      ? parseStoredReaderState(
+          window.localStorage.getItem(getChapterReaderStorageKey(currentSnapshot.book.id, chapter.id))
+        )
+      : null;
+
+    // B1: Determine 4-step completion
+    const summaryDone = reader != null;
+    const scenariosDone = reader?.showRecap === true;
+    const quizDone = reader?.quizResult != null;
+    const unlockDone = chapter ? completedSet.has(chapter.id) : false;
+
+    const chapterIdx = chapter ? chapters.findIndex((c) => c.id === chapter.id) : 0;
+
+    return {
+      chapterLabel: chapter ? `${chapter.code} ${chapter.title}` : "Ready to start",
+      mode: reader ? depthLabel(reader.readingDepth) : mapLearningStyle(onboarding.learningStyle),
+      bookEta: formatMinutes(Math.max(remainingMinutes, 10)),
+      chapterMinutes: chapter?.minutes ?? 15,
+      chapterNumber: chapterIdx + 1,
+      totalChapters: chapters.length,
+      completedSteps: [summaryDone, scenariosDone, quizDone, unlockDone],
+      chapterId: chapter?.id ?? currentSnapshot.resumeChapterId,
+    };
+  }, [currentSnapshot, onboarding.learningStyle, revision]);
+
+  const completionByMode = useMemo(() => {
+    const total = localInsights.depthCounts.simple + localInsights.depthCounts.standard + localInsights.depthCounts.deeper;
+    if (!total) return [
+      { label: "Simple", value: 0 },
+      { label: "Standard", value: 0 },
+      { label: "Deeper", value: 0 },
+    ];
+    return [
+      { label: "Simple", value: Math.round((localInsights.depthCounts.simple / total) * 100) },
+      { label: "Standard", value: Math.round((localInsights.depthCounts.standard / total) * 100) },
+      { label: "Deeper", value: Math.round((localInsights.depthCounts.deeper / total) * 100) },
+    ];
+  }, [localInsights.depthCounts]);
+
+  const monthlySummary = useMemo(() => {
+    const lastThirty = analytics?.heatmapCells.slice(-30) ?? [];
+    return {
+      minutes: lastThirty.reduce((sum, cell) => sum + cell.minutes, 0),
+      chapters: lastThirty.reduce((sum, cell) => sum + cell.chapters, 0),
+      activeDays: lastThirty.filter((cell) => cell.minutes > 0).length,
+    };
+  }, [analytics]);
+
+  // D2: Sparkline data
+  const sparklineData = useMemo(
+    () => (analytics?.heatmapCells.slice(-30) ?? []).map((c) => c.minutes),
+    [analytics]
+  );
+
+  // E1: Featured earned + 2 closest locked badges
   const profileBadgeShowcase = useMemo(
-    () => badgeSystem.featuredBadges.slice(0, 6),
+    () => badgeSystem.featuredBadges.slice(0, 5),
     [badgeSystem.featuredBadges]
+  );
+
+  const closestLockedBadges = useMemo(
+    () => [...badgeSystem.lockedBadges]
+      .filter((b) => b.targetValue > 0 && b.progressValue > 0)
+      .sort((a, b) => (b.progressValue / b.targetValue) - (a.progressValue / a.targetValue))
+      .slice(0, 2),
+    [badgeSystem.lockedBadges]
   );
 
   const profileNextMilestone = useMemo(
@@ -317,121 +580,44 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
     [badgeSystem.badgeTimeline]
   );
 
-  const statsSummary = useMemo(() => {
-    const booksInProgress = analytics?.bookSnapshots.filter((item) => item.status === "in_progress").length ?? 0;
-    const totalReadingMinutes = analytics?.heatmapCells.reduce((sum, cell) => sum + cell.minutes, 0) ?? 0;
-    return {
-      currentStreak: analytics?.streakDays ?? 0,
-      longestStreak: analytics?.longestStreak ?? 0,
-      booksCompleted: analytics?.booksCompleted ?? 0,
-      booksInProgress,
-      totalChaptersCompleted: analytics?.totalCompletedChapters ?? 0,
-      quizQuestionsAnswered: localInsights.quizQuestionsAnswered,
-      averageQuizScore: analytics?.avgQuizScore ?? 0,
-      totalReadingMinutes,
-      currentDailyGoal: onboarding.dailyGoalMinutes,
-      preferredMode: mapLearningStyle(onboarding.learningStyle),
-    };
-  }, [analytics, localInsights.quizQuestionsAnswered, onboarding.dailyGoalMinutes, onboarding.learningStyle]);
-
-  const currentSnapshot = useMemo(() => {
-    const sorted = [...(analytics?.bookSnapshots ?? [])].sort((left, right) => {
-      const leftRank = left.status === "in_progress" ? 0 : left.status === "not_started" ? 1 : 2;
-      const rightRank = right.status === "in_progress" ? 0 : right.status === "not_started" ? 1 : 2;
-      if (leftRank !== rightRank) return leftRank - rightRank;
-      return right.lastActivityAt.localeCompare(left.lastActivityAt);
-    });
-    return sorted[0] ?? null;
-  }, [analytics]);
-
-  const activeBooks = useMemo(
-    () =>
-      [...(analytics?.bookSnapshots ?? [])]
-        .filter((snapshot) => snapshot.status === "in_progress")
-        .sort((left, right) => right.lastActivityAt.localeCompare(left.lastActivityAt))
-        .slice(0, 4),
-    [analytics]
-  );
-
-  const recentFinishedBooks = useMemo(
-    () =>
-      [...(analytics?.bookSnapshots ?? [])]
-        .filter((snapshot) => snapshot.status === "completed")
-        .sort((left, right) => right.lastActivityAt.localeCompare(left.lastActivityAt))
-        .slice(0, 4),
-    [analytics]
-  );
-
-  const currentReadingDetails = useMemo(() => {
-    if (!currentSnapshot) return null;
-    void revision;
-    const progress = parseStoredBookProgress(
-      window.localStorage.getItem(getBookProgressStorageKey(currentSnapshot.book.id))
-    );
-    const chapters = getBookChaptersBundle(currentSnapshot.book.id).chapters;
-    const currentChapterId = progress?.currentChapterId || currentSnapshot.resumeChapterId || chapters[0]?.id || "";
-    const chapter = chapters.find((item) => item.id === currentChapterId) ?? chapters[0];
-    const completedSet = new Set(progress?.completedChapterIds ?? []);
-    const remainingMinutes = chapters
-      .filter((item) => !completedSet.has(item.id))
-      .reduce((sum, item) => sum + item.minutes, 0);
-    const reader = chapter
-      ? parseStoredReaderState(
-          window.localStorage.getItem(
-            getChapterReaderStorageKey(currentSnapshot.book.id, chapter.id)
-          )
-        )
-      : null;
-    return {
-      chapterLabel: chapter ? `${chapter.code} ${chapter.title}` : "Ready to start",
-      mode: reader ? depthLabel(reader.readingDepth) : mapLearningStyle(onboarding.learningStyle),
-      eta: formatMinutes(Math.max(remainingMinutes, 10)),
-      chapterId: chapter?.id ?? currentSnapshot.resumeChapterId,
-    };
-  }, [currentSnapshot, onboarding.learningStyle, revision]);
-
-  const preferredExampleCategory = useMemo(() => {
-    const counts = [
-      { label: "Personal", value: localInsights.exampleCounts.personal },
-      { label: "School", value: localInsights.exampleCounts.school },
-      { label: "Work", value: localInsights.exampleCounts.work },
-    ].sort((left, right) => right.value - left.value);
-    return counts[0]?.value ? counts[0].label : "All contexts";
-  }, [localInsights.exampleCounts.personal, localInsights.exampleCounts.school, localInsights.exampleCounts.work]);
-
-  const completionByMode = useMemo(() => {
-    const total = localInsights.depthCounts.simple + localInsights.depthCounts.standard + localInsights.depthCounts.deeper;
-    if (!total) {
-      return [
-        { label: "Simple", value: 0 },
-        { label: "Standard", value: 0 },
-        { label: "Deeper", value: 0 },
-      ];
+  // D4: Grouped timeline entries
+  const groupedTimeline = useMemo(() => {
+    const allEntries = [...localInsights.activityLog, ...localInsights.recentOpenedChapters]
+      .sort((a, b) => b.sortAt.localeCompare(a.sortAt))
+      .slice(0, 8);
+    const groups: { dateKey: string; label: string; entries: ActivityEntry[] }[] = [];
+    for (const entry of allEntries) {
+      const key = entry.dateKey;
+      const last = groups[groups.length - 1];
+      if (last && last.dateKey === key) {
+        last.entries.push(entry);
+      } else {
+        groups.push({ dateKey: key, label: relativeDateLabel(key), entries: [entry] });
+      }
     }
-    return [
-      { label: "Simple", value: Math.round((localInsights.depthCounts.simple / total) * 100) },
-      { label: "Standard", value: Math.round((localInsights.depthCounts.standard / total) * 100) },
-      { label: "Deeper", value: Math.round((localInsights.depthCounts.deeper / total) * 100) },
-    ];
-  }, [localInsights.depthCounts]);
+    return groups;
+  }, [localInsights.activityLog, localInsights.recentOpenedChapters]);
 
-  const revisitSuggestions = useMemo(
-    () =>
-      [...(analytics?.bookSnapshots ?? [])]
-        .filter((snapshot) => snapshot.avgScore > 0 && snapshot.avgScore < 80)
-        .sort((left, right) => left.avgScore - right.avgScore)
-        .slice(0, 3),
-    [analytics]
-  );
+  // G4: Quiz trend
+  const quizTrend = useMemo(() => {
+    const entries = localInsights.recentQuizEntries.slice(0, 10);
+    if (entries.length < 2) return null;
+    const avg = entries.reduce((s, e) => s + e.score, 0) / entries.length;
+    const firstHalf = entries.slice(Math.floor(entries.length / 2));
+    const secondHalf = entries.slice(0, Math.floor(entries.length / 2));
+    const avgFirst = firstHalf.reduce((s, e) => s + e.score, 0) / (firstHalf.length || 1);
+    const avgSecond = secondHalf.reduce((s, e) => s + e.score, 0) / (secondHalf.length || 1);
+    const direction: "up" | "down" | "steady" = avgSecond > avgFirst + 3 ? "up" : avgSecond < avgFirst - 3 ? "down" : "steady";
+    return { avg: Math.round(avg), best: Math.max(...entries.map((e) => e.score)), direction };
+  }, [localInsights.recentQuizEntries]);
 
-  const monthlySummary = useMemo(() => {
-    const lastThirty = analytics?.heatmapCells.slice(-30) ?? [];
-    return {
-      minutes: lastThirty.reduce((sum, cell) => sum + cell.minutes, 0),
-      chapters: lastThirty.reduce((sum, cell) => sum + cell.chapters, 0),
-      activeDays: lastThirty.filter((cell) => cell.minutes > 0).length,
-    };
-  }, [analytics]);
+  // ─── Plan state ───
+
+  const plan = billingState.payload?.entitlement.plan ?? "FREE";
+  const isPro = plan === "PRO";
+  const isActivePro = isPro && (billingState.payload?.entitlement.proStatus === "active" || billingState.payload?.entitlement.proStatus === "past_due");
+
+  // ─── Handlers ───
 
   const saveProfile = async (values: Partial<typeof profile>) => {
     patchProfile(values);
@@ -444,17 +630,37 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
     if (message) showToast(message, "error");
   };
 
+  const navigateToSettings = () => router.push("/book/settings");
+
+  // ─── Loading state (H5) ───
+
   if (!onboardingHydrated || !analyticsHydrated || !badgeSystem.hydrated || !profileHydrated || !onboarding.setupComplete) {
     return (
       <main className="cf-app-shell">
-        <div className="mx-auto flex min-h-screen items-center justify-center px-4 text-(--cf-text-2)">
-          Loading profile...
-        </div>
+        <ProfileSkeleton />
       </main>
     );
   }
 
   const viewerName = profile.displayName || viewerIdentity.displayName || "Reader";
+  const identityLabel = getIdentityLabel(statsSummary.booksCompleted, statsSummary.categoriesCount);
+  const streakMicrocopy = getStreakMicrocopy(statsSummary.currentStreak);
+
+  // C4: Personal best streak indicator
+  const isPersonalBest = statsSummary.currentStreak > 0 && statsSummary.currentStreak >= statsSummary.longestStreak;
+  const streakHelper = isPersonalBest
+    ? "🏆 This IS your longest streak — keep pushing!"
+    : statsSummary.longestStreak > 0
+      ? `Your longest: ${statsSummary.longestStreak} days — ${statsSummary.longestStreak - statsSummary.currentStreak} days to beat it`
+      : "Start building your record";
+
+  // F2: Upgrade message
+  const upgradeMessage = statsSummary.booksCompleted > 0
+    ? `You've completed ${statsSummary.totalChaptersCompleted} chapters. Unlock 93+ more books, advanced quizzes, streak freezes, and full reading analytics with Pro.`
+    : "Unlock 93+ more books, advanced quizzes, streak freezes, and full reading analytics.";
+
+  // H4: Last updated
+  const lastUpdated = "Stats updated just now";
 
   return (
     <main className="cf-app-shell">
@@ -465,540 +671,598 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
         onSearchChange={() => undefined}
         searchInputRef={{ current: null }}
         showSearch={false}
+        logoVariant="dashboard"
       />
 
-      <section className="mx-auto w-full max-w-[1500px] space-y-6 px-4 pb-28 pt-7 sm:px-6 lg:px-8 lg:pt-8">
-        <ProfileHeroCard
-          avatar={profile.avatarDataUrl}
-          initials={initialsFromName(viewerName)}
-          accent={profile.avatarAccent}
-          name={viewerName}
-          username={profile.username}
-          tagline={profile.tagline}
-          plan={billingState.payload?.entitlement.plan === "PRO" ? "Pro" : "Free"}
-          streakLabel={`${statsSummary.currentStreak} day streak`}
-          joinDate={formatJoinDate(profile.createdAt)}
-          readingGoal={formatMinutes(onboarding.dailyGoalMinutes)}
-          onEdit={() => setEditOpen(true)}
-          onShare={() => showToast("Shareable profile preview copied", "success")}
-        />
+      <StickyMiniHeader
+        visible={showMiniHeader}
+        avatar={profile.avatarDataUrl}
+        initials={initialsFromName(viewerName)}
+        name={viewerName}
+        streakDays={statsSummary.currentStreak}
+        onSettings={navigateToSettings}
+      />
 
-        <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_360px]">
-          <div className="space-y-6">
-            <SectionCard
-              eyebrow="Overview"
-              title="Quick stats"
-              description="A compact view of how you read, how you retain, and how consistent the habit has become."
-              icon={<Sparkles className="h-5 w-5" />}
-            >
-              <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
-                <StatCard icon={<Flame className="h-5 w-5" />} label="Current streak" value={statsSummary.currentStreak} helper="Days in a row" />
-                <StatCard icon={<Trophy className="h-5 w-5" />} label="Longest streak" value={statsSummary.longestStreak} helper="Best run so far" />
-                <StatCard icon={<CheckCircle2 className="h-5 w-5" />} label="Books completed" value={statsSummary.booksCompleted} helper="Finished end to end" />
-                <StatCard icon={<LayoutGrid className="h-5 w-5" />} label="Books in progress" value={statsSummary.booksInProgress} helper="Active paths right now" />
-                <StatCard icon={<BookMarked className="h-5 w-5" />} label="Chapters completed" value={statsSummary.totalChaptersCompleted} helper="Across your library" />
-                <StatCard icon={<Brain className="h-5 w-5" />} label="Quiz questions answered" value={statsSummary.quizQuestionsAnswered} helper="Tracked from chapter attempts" />
-                <StatCard icon={<Target className="h-5 w-5" />} label="Average quiz score" value={formatPercent(statsSummary.averageQuizScore)} helper="Retention trend" />
-                <StatCard icon={<Clock3 className="h-5 w-5" />} label="Total reading time" value={formatMinutes(statsSummary.totalReadingMinutes)} helper="Logged chapter activity" />
-                <StatCard icon={<Calendar className="h-5 w-5" />} label="Daily goal" value={formatMinutes(statsSummary.currentDailyGoal)} helper="Current target" />
-                <StatCard icon={<Star className="h-5 w-5" />} label="Preferred mode" value={statsSummary.preferredMode} helper="Default reading style" />
-              </div>
-            </SectionCard>
+      {/* H3: Section dot navigator */}
+      <SectionNav sections={SECTION_IDS} activeIndex={activeSectionIdx} onNavigate={handleSectionNav} />
 
+      {/* H7: Consistent spacing — 48px mobile (space-y-12), 64px desktop (lg:space-y-16) */}
+      <section className="mx-auto w-full max-w-5xl space-y-12 px-4 pb-28 pt-7 sm:px-6 lg:space-y-16 lg:px-8 lg:pt-8">
+
+        {/* ═══ SECTION 1: Identity Hero Banner ═══ */}
+        <div ref={heroRef} id="hero">
+          <IdentityHeroBanner
+            avatar={profile.avatarDataUrl}
+            initials={initialsFromName(viewerName)}
+            name={viewerName}
+            username={profile.username}
+            bio={profile.bio || profile.tagline || "Building a sharper reading practice with ChapterFlow."}
+            plan={plan}
+            identityLabel={identityLabel}
+            streakDays={statsSummary.currentStreak}
+            streakMicrocopy={streakMicrocopy}
+            booksCompleted={statsSummary.booksCompleted}
+            totalHours={formatHours(statsSummary.totalReadingMinutes)}
+            dailyGoalMinutes={onboarding.dailyGoalMinutes}
+            minutesReadToday={statsSummary.minutesReadToday}
+            onEdit={() => setEditOpen(true)}
+            onSettings={navigateToSettings}
+          />
+          {/* H4 */}
+          <p className="mt-2 text-right text-xs text-(--cf-text-soft)">{lastUpdated}</p>
+        </div>
+
+        {/* ═══ SECTION 2: Momentum Zone ═══ */}
+        <FadeIn delay={0.05}>
+          <div id="momentum">
             <SectionCard
               eyebrow="Momentum"
-              title="Current reading status"
-              description="Jump back into the exact place that deserves your next session."
+              title="Pick up where you left off"
+              description="The fastest way back into focused reading."
               icon={<BookOpen className="h-5 w-5" />}
-              right={
-                currentSnapshot && currentReadingDetails ? (
-                  <Button
-                    variant="secondary"
-                    onClick={() =>
+            >
+              {currentSnapshot && currentReadingDetails ? (
+                <div className="space-y-5">
+                  {/* B3: Full-width momentum card */}
+                  <MomentumCard
+                    title={currentSnapshot.book.title}
+                    chapterLabel={currentReadingDetails.chapterLabel}
+                    mode={currentReadingDetails.mode}
+                    progress={currentSnapshot.progressPercent}
+                    bookEta={currentReadingDetails.bookEta}
+                    chapterMinutes={currentReadingDetails.chapterMinutes}
+                    chapterNumber={currentReadingDetails.chapterNumber}
+                    totalChapters={currentReadingDetails.totalChapters}
+                    completedSteps={currentReadingDetails.completedSteps}
+                    dailyGoalMinutes={onboarding.dailyGoalMinutes}
+                    onContinue={() =>
                       router.push(
                         `/book/library/${encodeURIComponent(currentSnapshot.book.id)}/chapter/${encodeURIComponent(currentReadingDetails.chapterId)}`
                       )
                     }
-                  >
-                    Continue reading
-                  </Button>
-                ) : null
-              }
-            >
-              <div className="grid gap-5 xl:grid-cols-[1.1fr_0.9fr]">
-                <div className="space-y-4 rounded-[30px] border border-(--cf-accent-border) bg-(--cf-accent-soft) p-5 shadow-sm">
-                  {currentSnapshot && currentReadingDetails ? (
-                    <>
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span className="inline-flex rounded-full border border-(--cf-accent-border) bg-(--cf-surface) px-3 py-1 text-[11px] uppercase tracking-[0.22em] text-(--cf-info-text)">Currently reading</span>
-                        <span className="inline-flex rounded-full border border-(--cf-border) bg-(--cf-surface-muted) px-3 py-1 text-[11px] uppercase tracking-[0.22em] text-(--cf-text-2)">{currentReadingDetails.mode}</span>
-                      </div>
-                      <h3 className="mt-4 text-3xl font-semibold tracking-tight text-(--cf-text-1)">{currentSnapshot.book.title}</h3>
-                      <p className="mt-2 text-sm text-(--cf-text-2)">{currentReadingDetails.chapterLabel}</p>
-                      <div className="mt-4 h-2.5 overflow-hidden rounded-full bg-(--cf-border)">
-                        <div className="h-full rounded-full bg-linear-to-r from-(--cf-accent) to-(--cf-accent-strong)" style={{ width: `${currentSnapshot.progressPercent}%` }} />
-                      </div>
-                      <div className="mt-4 grid gap-3 sm:grid-cols-3">
-                        <StatCard icon={<Clock3 className="h-4 w-4" />} label="Time remaining" value={currentReadingDetails.eta} helper="Approximate" />
-                        <StatCard icon={<LineChart className="h-4 w-4" />} label="Progress" value={formatPercent(currentSnapshot.progressPercent)} helper="Current book" />
-                        <StatCard icon={<Target className="h-4 w-4" />} label="Next session" value={formatMinutes(Math.max(10, Math.min(onboarding.dailyGoalMinutes, 35)))} helper="Suggested block" />
-                      </div>
-                    </>
-                  ) : (
-                    <div className="rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) p-5 text-sm text-(--cf-text-2)">
-                      Start a book to turn this section into your active reading hub.
-                    </div>
-                  )}
-                </div>
-                <div className="space-y-4">
-                  {activeBooks.length ? (
-                    activeBooks.map((snapshot) => {
-                      const progress = parseStoredBookProgress(
-                        window.localStorage.getItem(
-                          getBookProgressStorageKey(snapshot.book.id)
-                        )
-                      );
-                      const chapter = getBookChaptersBundle(snapshot.book.id).chapters.find((item) => item.id === (progress?.currentChapterId || snapshot.resumeChapterId));
-                      const remainingMinutes = getBookChaptersBundle(snapshot.book.id).chapters
-                        .filter((item) => !(progress?.completedChapterIds ?? []).includes(item.id))
-                        .reduce((sum, item) => sum + item.minutes, 0);
-                      return (
-                        <ActiveBookCard
-                          key={snapshot.book.id}
-                          title={snapshot.book.title}
-                          author={snapshot.book.author}
-                          bookId={snapshot.book.id}
-                          coverImage={snapshot.book.coverImage}
-                          icon={snapshot.book.icon}
-                          progress={snapshot.progressPercent}
-                          chapterLabel={chapter ? `${chapter.code} ${chapter.title}` : snapshot.lastOpenedLabel}
-                          eta={formatMinutes(Math.max(remainingMinutes, 10))}
-                          onContinue={() =>
-                            router.push(
-                              `/book/library/${encodeURIComponent(snapshot.book.id)}/chapter/${encodeURIComponent(progress?.currentChapterId || snapshot.resumeChapterId)}`
-                            )
-                          }
-                        />
-                      );
-                    })
-                  ) : (
-                    <div className="rounded-[26px] border border-(--cf-border) bg-(--cf-surface-muted) p-5 text-sm text-(--cf-text-2)">
-                      Active books will appear here once you start moving through chapters.
-                    </div>
-                  )}
-                </div>
-              </div>
-            </SectionCard>
-
-            <SectionCard
-              eyebrow="Milestones"
-              title="Badges, achievements, and milestones"
-              description="Progress should feel tangible and refined. Earned badges stay celebratory without becoming noisy."
-              icon={<Award className="h-5 w-5" />}
-              right={<Button variant="secondary" onClick={() => router.push("/book/badges")}>View all achievements</Button>}
-            >
-              <div className="grid gap-5 xl:grid-cols-[1.02fr_0.98fr]">
-                <div className="space-y-4">
-                  <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-                    {profileBadgeShowcase.map((badge, index) => (
-                      <FeaturedBadgeCard
-                        key={badge.id}
-                        badge={badge}
-                        subtitle={index < 2 ? "Recent highlight" : "Prestige highlight"}
-                        onOpen={() => setSelectedBadge(badge)}
-                      />
-                    ))}
-                  </div>
-                  <div className="rounded-[28px] border border-(--cf-border) bg-(--cf-surface-muted) p-5">
-                    <div className="flex items-center justify-between gap-3">
-                      <div>
-                        <p className="text-[11px] uppercase tracking-[0.22em] text-(--cf-text-3)">Recent achievement feed</p>
-                        <h3 className="mt-2 text-lg font-semibold text-(--cf-text-1)">Timeline</h3>
-                      </div>
-                      <span className="rounded-full border border-(--cf-border) bg-(--cf-surface-muted) px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-(--cf-text-3)">
-                        {badgeSystem.earnedCount} earned
-                      </span>
-                    </div>
-                    <div className="mt-4 space-y-3">
-                      {profileBadgeTimeline.length ? (
-                        profileBadgeTimeline.map((entry) => (
-                          <BadgeTimelineItem
-                            key={entry.id}
-                            entry={entry}
-                            onOpen={() => {
-                              const badge = badgeSystem.badges.find((item) => item.id === entry.badgeId);
-                              if (badge) setSelectedBadge(badge);
-                            }}
-                          />
-                        ))
-                      ) : (
-                        <div className="rounded-[22px] border border-(--cf-border) bg-(--cf-surface-muted) px-4 py-4 text-sm leading-6 text-(--cf-text-3)">
-                          Earned milestones will stack here as your reading history grows.
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-                <div className="space-y-4">
-                  <ProgressToNextBadgeCard
-                    milestone={profileNextMilestone}
-                    onOpen={profileNextMilestone ? () => setSelectedBadge(profileNextMilestone.badge) : undefined}
-                    secondary={
-                      <div className="grid gap-3">
-                        {[
-                          { label: "First book completed", done: statsSummary.booksCompleted >= 1 },
-                          { label: "Seven day streak", done: statsSummary.currentStreak >= 7 },
-                          { label: "Perfect quiz score", done: (analytics?.maxQuizScore ?? 0) >= 100 },
-                          { label: "First ten chapters completed", done: statsSummary.totalChaptersCompleted >= 10 },
-                        ].map((milestone) => (
-                          <div key={milestone.label} className="flex items-center justify-between rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) px-4 py-3 text-sm">
-                            <span className="text-(--cf-text-2)">{milestone.label}</span>
-                            <span className={`rounded-full px-2 py-1 text-[11px] uppercase tracking-[0.18em] ${milestone.done ? "bg-(--cf-success-soft) text-(--cf-success-text)" : "bg-(--cf-surface-muted) text-(--cf-text-3)"}`}>
-                              {milestone.done ? "Done" : "In progress"}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    }
                   />
-                  <div className="rounded-[28px] border border-(--cf-border) bg-(--cf-surface-muted) p-5">
-                    <p className="text-[11px] uppercase tracking-[0.22em] text-(--cf-text-3)">System view</p>
-                    <h3 className="mt-2 text-lg font-semibold text-(--cf-text-1)">Why this layer matters</h3>
-                    <p className="mt-2 text-sm leading-6 text-(--cf-text-2)">
-                      Badges are tied to consistency, depth, and mastery. The profile view surfaces progress without turning your learning history into noise.
-                    </p>
-                    <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                      <StatCard icon={<Trophy className="h-4 w-4" />} label="Featured" value={profileBadgeShowcase.length} helper="Visible profile highlights" />
-                      <StatCard icon={<Medal className="h-4 w-4" />} label="Locked" value={badgeSystem.lockedBadges.length} helper="Progressive reveal still ahead" />
+
+                  {/* 2.1: Up-next suggestion */}
+                  {upNextSuggestion ? (
+                    <UpNextPreview
+                      label={upNextSuggestion.label}
+                      bookTitle={upNextSuggestion.title}
+                      category={upNextSuggestion.category}
+                      onClick={() => router.push(`/book/library/${encodeURIComponent(upNextSuggestion.bookId)}`)}
+                    />
+                  ) : null}
+
+                  {/* B4: "Also in progress" / up-next preview */}
+                  {activeBooks.length > 1 ? (
+                    <div className="space-y-3">
+                      <p className="text-[11px] uppercase tracking-[0.22em] text-(--cf-text-soft)">Also in progress</p>
+                      <div className="grid gap-4 lg:grid-cols-2">
+                        {activeBooks.filter((s) => s.book.id !== currentSnapshot.book.id).slice(0, 2).map((snapshot) => {
+                          const progress = parseStoredBookProgress(
+                            window.localStorage.getItem(getBookProgressStorageKey(snapshot.book.id))
+                          );
+                          const chapter = getBookChaptersBundle(snapshot.book.id).chapters.find(
+                            (c) => c.id === (progress?.currentChapterId || snapshot.resumeChapterId)
+                          );
+                          const remainingMinutes = getBookChaptersBundle(snapshot.book.id).chapters
+                            .filter((c) => !(progress?.completedChapterIds ?? []).includes(c.id))
+                            .reduce((sum, c) => sum + c.minutes, 0);
+                          return (
+                            <ActiveBookCard
+                              key={snapshot.book.id}
+                              title={snapshot.book.title}
+                              author={snapshot.book.author}
+                              bookId={snapshot.book.id}
+                              coverImage={snapshot.book.coverImage}
+                              icon={snapshot.book.icon}
+                              progress={snapshot.progressPercent}
+                              chapterLabel={chapter ? `${chapter.code} ${chapter.title}` : snapshot.lastOpenedLabel}
+                              eta={formatMinutes(Math.max(remainingMinutes, 10))}
+                              onContinue={() =>
+                                router.push(
+                                  `/book/library/${encodeURIComponent(snapshot.book.id)}/chapter/${encodeURIComponent(progress?.currentChapterId || snapshot.resumeChapterId)}`
+                                )
+                              }
+                            />
+                          );
+                        })}
+                      </div>
                     </div>
-                  </div>
+                  ) : null}
                 </div>
-              </div>
+              ) : (
+                <MomentumEmptyState onBrowse={() => router.push("/book/library")} />
+              )}
             </SectionCard>
+          </div>
+        </FadeIn>
 
-            <SectionCard
-              eyebrow="History"
-              title="Reading history"
-              description="Look back at what you finished, what you opened most recently, and how the recent month has moved."
-              icon={<Calendar className="h-5 w-5" />}
-            >
-              <div className="grid gap-5 xl:grid-cols-[0.95fr_1.05fr]">
-                <div className="space-y-4">
-                  <div className="rounded-[26px] border border-(--cf-border) bg-(--cf-surface-muted) p-5">
-                    <div className="flex items-center justify-between gap-3">
-                      <h3 className="text-lg font-semibold text-(--cf-text-1)">Monthly summary</h3>
-                      <span className="rounded-full border border-(--cf-border) bg-(--cf-surface-muted) px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-(--cf-text-3)">Last 30 days</span>
-                    </div>
-                    <div className="mt-4 grid gap-3 sm:grid-cols-3">
-                      <StatCard icon={<Clock3 className="h-4 w-4" />} label="Reading time" value={formatMinutes(monthlySummary.minutes)} />
-                      <StatCard icon={<BookMarked className="h-4 w-4" />} label="Chapters" value={monthlySummary.chapters} />
-                      <StatCard icon={<Flame className="h-4 w-4" />} label="Active days" value={monthlySummary.activeDays} />
-                    </div>
-                  </div>
-
-                  <div className="rounded-[26px] border border-(--cf-border) bg-(--cf-surface-muted) p-5">
-                    <h3 className="text-lg font-semibold text-(--cf-text-1)">Recently finished books</h3>
-                    <div className="mt-4 space-y-3">
-                      {recentFinishedBooks.length ? recentFinishedBooks.map((snapshot) => (
-                        <div key={snapshot.book.id} className="flex items-center justify-between gap-3 rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) px-4 py-3">
-                          <div>
-                            <p className="text-sm font-medium text-(--cf-text-1)">{snapshot.book.title}</p>
-                            <p className="mt-1 text-sm text-(--cf-text-soft)">Finished • {new Date(snapshot.lastActivityAt).toLocaleDateString(undefined, { month: "short", day: "numeric" })}</p>
-                          </div>
-                          <span className="rounded-full border border-(--cf-success-border) bg-(--cf-success-soft) px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-(--cf-success-text)">Completed</span>
-                        </div>
-                      )) : <p className="text-sm text-(--cf-text-soft)">Finished books will appear here as you complete them.</p>}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="space-y-4 rounded-[26px] border border-(--cf-border) bg-(--cf-surface-muted) p-5">
-                  <div className="flex items-center justify-between gap-3">
-                    <h3 className="text-lg font-semibold text-(--cf-text-1)">Activity timeline</h3>
-                    <span className="text-sm text-(--cf-text-soft)">Last active {analytics?.lastActiveLabel ?? "No activity yet"}</span>
-                  </div>
-                  <div className="space-y-3">
-                    {[...localInsights.activityLog, ...localInsights.recentOpenedChapters]
-                      .sort((left, right) => right.sortAt.localeCompare(left.sortAt))
-                      .slice(0, 8)
-                      .map((entry) => (
-                        <TimelineRow key={entry.id} title={entry.title} detail={entry.detail} meta={entry.meta} />
-                      ))}
-                  </div>
-                </div>
-              </div>
-            </SectionCard>
-
+        {/* ═══ SECTION 3: Performance Dashboard ═══ */}
+        <FadeIn delay={0.1}>
+          <div id="performance">
             <SectionCard
               eyebrow="Performance"
-              title="Learning performance"
-              description="This is a reading product built around retention and understanding, not only completion."
-              icon={<GraduationCap className="h-5 w-5" />}
+              title="Reading performance"
+              description="Measurable progress across your reading practice."
+              icon={<Sparkles className="h-5 w-5" />}
             >
-              <div className="grid gap-5 xl:grid-cols-[1.05fr_0.95fr]">
-                <div className="space-y-4">
-                  <div className="grid gap-4 md:grid-cols-2">
-                    <StatCard icon={<Target className="h-4 w-4" />} label="Average quiz score" value={formatPercent(analytics?.avgQuizScore ?? 0)} helper="Across completed chapter quizzes" />
-                    <StatCard icon={<Trophy className="h-4 w-4" />} label="Best score streak" value={analytics?.maxQuizScore === 100 ? "Perfect pass unlocked" : `${analytics?.maxQuizScore ?? 0}% best`} helper="Highest recorded score" />
-                    <StatCard icon={<LineChart className="h-4 w-4" />} label="Preferred examples" value={preferredExampleCategory} helper="Most used context" />
-                    <StatCard icon={<Star className="h-4 w-4" />} label="Current mode bias" value={completionByMode.sort((a,b)=>b.value-a.value)[0]?.label ?? "Standard"} helper="Most used depth" />
-                  </div>
-
-                  <div className="rounded-[26px] border border-(--cf-border) bg-(--cf-surface-muted) p-5">
-                    <h3 className="text-lg font-semibold text-(--cf-text-1)">Recent quiz performance</h3>
-                    <div className="mt-4 space-y-3">
-                      {localInsights.recentQuizEntries.slice(0, 6).map((entry) => (
-                        <div key={entry.id} className="grid grid-cols-[1fr_90px] items-center gap-3">
-                          <div>
-                            <p className="text-sm font-medium text-(--cf-text-1)">{entry.label}</p>
-                            <p className="mt-1 text-xs uppercase tracking-[0.18em] text-(--cf-text-3)">{new Date(entry.sortAt).toLocaleDateString(undefined, { month: "short", day: "numeric" })}</p>
-                          </div>
-                          <div className="flex items-center gap-3">
-                            <div className="h-2 flex-1 overflow-hidden rounded-full bg-(--cf-border)">
-                              <div className="h-full rounded-full bg-linear-to-r from-(--cf-accent) to-(--cf-accent-strong)" style={{ width: `${entry.score}%` }} />
-                            </div>
-                            <span className="w-10 text-right text-sm font-medium text-(--cf-text-1)">{entry.score}%</span>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="space-y-4">
-                  <div className="rounded-[26px] border border-(--cf-border) bg-(--cf-surface-muted) p-5">
-                    <h3 className="text-lg font-semibold text-(--cf-text-1)">Completion by mode</h3>
-                    <div className="mt-4 space-y-3">
-                      {completionByMode.map((entry) => (
-                        <div key={entry.label}>
-                          <div className="flex items-center justify-between gap-3 text-sm text-(--cf-text-2)">
-                            <span>{entry.label}</span>
-                            <span>{entry.value}%</span>
-                          </div>
-                          <div className="mt-2 h-2 overflow-hidden rounded-full bg-(--cf-border)">
-                            <div className="h-full rounded-full bg-linear-to-r from-(--cf-accent) to-(--cf-accent-strong)" style={{ width: `${entry.value}%` }} />
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="rounded-[26px] border border-(--cf-border) bg-(--cf-surface-muted) p-5">
-                    <h3 className="text-lg font-semibold text-(--cf-text-1)">Revisit suggestions</h3>
-                    <div className="mt-4 space-y-3">
-                      {revisitSuggestions.length ? revisitSuggestions.map((snapshot) => (
-                        <div key={snapshot.book.id} className="rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) px-4 py-3">
-                          <p className="text-sm font-medium text-(--cf-text-1)">{snapshot.book.title}</p>
-                          <p className="mt-1 text-sm text-(--cf-text-soft)">Average score {snapshot.avgScore}% • revisit examples and takeaways</p>
-                        </div>
-                      )) : <p className="text-sm text-(--cf-text-soft)">No weak areas stand out right now. Keep your current pace.</p>}
-                    </div>
-                  </div>
-                </div>
+              <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                <StatCard
+                  icon={<Flame className="h-5 w-5" />}
+                  label="Current streak"
+                  value={`${statsSummary.currentStreak} days`}
+                  helper={streakHelper}
+                  animate numericValue={statsSummary.currentStreak}
+                  formatFn={(v) => `${Math.round(v)} days`}
+                  performanceLevel={statsSummary.currentStreak >= 7 ? "strong" : statsSummary.currentStreak > 0 ? "active" : "zero"}
+                />
+                <StatCard
+                  icon={<CheckCircle2 className="h-5 w-5" />}
+                  label="Books completed"
+                  value={statsSummary.booksCompleted}
+                  helper={statsSummary.booksCompleted > 0 ? `Across ${statsSummary.categoriesCount} categories` : "Your first finish line is closer than you think"}
+                  animate numericValue={statsSummary.booksCompleted}
+                  performanceLevel={statsSummary.booksCompleted >= 5 ? "strong" : statsSummary.booksCompleted > 0 ? "active" : "zero"}
+                />
+                <StatCard
+                  icon={<BookMarked className="h-5 w-5" />}
+                  label="Chapters completed"
+                  value={statsSummary.totalChaptersCompleted}
+                  helper={statsSummary.totalChaptersCompleted > 0 ? `That's ${statsSummary.totalChaptersCompleted} learning loops finished` : "Complete a chapter to start tracking"}
+                  animate numericValue={statsSummary.totalChaptersCompleted}
+                  performanceLevel={statsSummary.totalChaptersCompleted >= 10 ? "strong" : statsSummary.totalChaptersCompleted > 0 ? "active" : "zero"}
+                />
+                <StatCard
+                  icon={<Target className="h-5 w-5" />}
+                  label="Average quiz score"
+                  value={formatPercent(statsSummary.averageQuizScore)}
+                  helper={getQuizScoreSubtitle(statsSummary.averageQuizScore, statsSummary.quizQuestionsAnswered > 0)}
+                  performanceLevel={statsSummary.averageQuizScore >= 80 ? "strong" : statsSummary.averageQuizScore > 0 ? "active" : "zero"}
+                />
+                <StatCard
+                  icon={<Clock3 className="h-5 w-5" />}
+                  label="Total reading time"
+                  value={formatHours(statsSummary.totalReadingMinutes)}
+                  helper={statsSummary.totalReadingMinutes >= 300 ? `That's ${Math.floor(statsSummary.totalReadingMinutes / 60)} hours of focused learning` : "Every minute compounds"}
+                  performanceLevel={statsSummary.totalReadingMinutes >= 300 ? "strong" : statsSummary.totalReadingMinutes > 0 ? "active" : "zero"}
+                />
+                <StatCard
+                  icon={<Brain className="h-5 w-5" />}
+                  label="Quiz questions answered"
+                  value={statsSummary.quizQuestionsAnswered}
+                  helper="Knowledge tested and strengthened"
+                  animate numericValue={statsSummary.quizQuestionsAnswered}
+                  performanceLevel={statsSummary.quizQuestionsAnswered >= 20 ? "strong" : statsSummary.quizQuestionsAnswered > 0 ? "active" : "zero"}
+                />
               </div>
-            </SectionCard>
 
-            <SectionCard
-              eyebrow="Reflection"
-              title="Notes and saved insights"
-              description="Your profile should also feel like a record of what you noticed and what mattered."
-              icon={<NotebookPen className="h-5 w-5" />}
-              right={<Button variant="secondary" onClick={() => currentSnapshot ? router.push(`/book/library/${encodeURIComponent(currentSnapshot.book.id)}/chapter/${encodeURIComponent(currentReadingDetails?.chapterId ?? currentSnapshot.resumeChapterId)}`) : showToast("Open a chapter with notes to continue.", "info")}>Go to notes</Button>}
-            >
-              <div className="grid gap-5 xl:grid-cols-[0.85fr_1.15fr]">
-                <div className="space-y-4 rounded-[26px] border border-(--cf-border) bg-(--cf-surface-muted) p-5">
-                  <div className="grid gap-3 sm:grid-cols-2">
-                    <StatCard icon={<NotebookPen className="h-4 w-4" />} label="Notes saved" value={localInsights.notes.length} helper="Chapters with written notes" />
-                    <StatCard icon={<Medal className="h-4 w-4" />} label="Pinned takeaways" value={Math.min(localInsights.notes.length, 3)} helper="Top recent note lines" />
-                  </div>
-                  <div className="rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) p-4">
-                    <p className="text-sm font-medium text-(--cf-text-1)">Pinned ideas</p>
-                    <div className="mt-3 space-y-2">
-                      {localInsights.notes.slice(0, 3).map((note) => (
-                        <div key={`${note.id}:pinned`} className="rounded-xl border border-(--cf-border) bg-(--cf-surface) px-3 py-2 text-sm text-(--cf-text-2)">
-                          {firstLine(note.body)}
-                        </div>
-                      ))}
-                    </div>
+              {/* C5: Completion by mode */}
+              {(localInsights.depthCounts.simple + localInsights.depthCounts.standard + localInsights.depthCounts.deeper) > 0 ? (
+                <div className="mt-6 rounded-[26px] border border-(--cf-border) bg-(--cf-surface-muted) p-5">
+                  <h3 className="text-sm font-semibold text-(--cf-text-1)">Completion by mode</h3>
+                  <p className="mt-1 text-sm text-(--cf-text-3)">How you distribute your reading depth</p>
+                  <div className="mt-4">
+                    <CompletionByModeChart data={completionByMode} counts={localInsights.depthCounts} />
                   </div>
                 </div>
-                <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-2">
-                  {localInsights.notes.slice(0, 4).map((note) => (
-                    <NotePreviewCard
-                      key={note.id}
-                      title={note.title}
-                      body={note.body}
-                      meta={note.meta}
-                      actionLabel="Open chapter"
-                      onAction={() => router.push(`/book/library/${encodeURIComponent(note.bookId)}/chapter/${encodeURIComponent(note.chapterId)}`)}
-                    />
-                  ))}
-                  {!localInsights.notes.length ? (
-                    <div className="rounded-[26px] border border-(--cf-border) bg-(--cf-surface-muted) p-5 text-sm text-(--cf-text-2) md:col-span-2">
-                      Notes saved from chapter summaries and drawers will show up here once you start capturing ideas.
+              ) : null}
+            </SectionCard>
+          </div>
+        </FadeIn>
+
+        {/* ═══ SECTION 4: Monthly Summary & Activity ═══ */}
+        <FadeIn delay={0.15}>
+          <div id="activity">
+            <SectionCard
+              eyebrow="Activity"
+              title="Monthly summary"
+              icon={<Calendar className="h-5 w-5" />}
+              right={<span className="rounded-full border border-(--cf-border) bg-(--cf-surface-muted) px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-(--cf-text-3)">Last 30 days</span>}
+            >
+              <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+                {/* Left: Stats + D3 ring + D2 sparkline + heatmap */}
+                <div className="space-y-5">
+                  <div className="flex items-start gap-5">
+                    {/* D3: Active days ring */}
+                    <ActiveDaysRing active={monthlySummary.activeDays} total={30} />
+                    <div className="flex-1 space-y-3">
+                      <div className="grid gap-3 sm:grid-cols-2">
+                        <StatCard icon={<Clock3 className="h-4 w-4" />} label="Reading time" value={formatMinutes(monthlySummary.minutes)} />
+                        <StatCard icon={<BookMarked className="h-4 w-4" />} label="Chapters" value={monthlySummary.chapters} />
+                      </div>
+                      {/* D2: Sparkline */}
+                      {sparklineData.some((v) => v > 0) ? (
+                        <div className="rounded-xl border border-(--cf-border) bg-(--cf-surface) p-3">
+                          <p className="mb-2 text-[10px] uppercase tracking-[0.18em] text-(--cf-text-soft)">Daily reading</p>
+                          <Sparkline data={sparklineData} />
+                        </div>
+                      ) : null}
                     </div>
+                  </div>
+
+                  {/* D1: Heatmap with today indicator */}
+                  <div className="rounded-[22px] border border-(--cf-border) bg-(--cf-surface-muted) p-4">
+                    <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-(--cf-text-soft)">Reading activity</p>
+                    <HeatmapCalendar cells={analytics?.heatmapCells ?? []} />
+                  </div>
+                </div>
+
+                {/* Right: D4 Grouped activity timeline */}
+                <div className="relative rounded-[26px] border border-(--cf-border) bg-(--cf-surface-muted) p-5">
+                  <div className="flex items-center justify-between gap-3">
+                    <h3 className="text-sm font-semibold text-(--cf-text-1)">Activity timeline</h3>
+                    <span className="text-xs text-(--cf-text-soft)">Last active {analytics?.lastActiveLabel ?? "No activity yet"}</span>
+                  </div>
+                  <div className="mt-4 max-h-[400px] space-y-4 overflow-y-auto">
+                    {groupedTimeline.length > 0 ? (
+                      groupedTimeline.map((group) => (
+                        <div key={group.dateKey}>
+                          <div className="mb-2 flex items-center gap-3">
+                            <div className="h-px flex-1 bg-(--cf-border)" />
+                            <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-(--cf-text-soft)">{group.label}</span>
+                            <div className="h-px flex-1 bg-(--cf-border)" />
+                          </div>
+                          <div className="space-y-2">
+                            {group.entries.map((entry) => (
+                              <TimelineRow key={entry.id} title={entry.title} detail={entry.detail} meta={entry.meta} />
+                            ))}
+                          </div>
+                        </div>
+                      ))
+                    ) : (
+                      <p className="py-4 text-center text-sm text-(--cf-text-3)">
+                        Your reading activity will build a timeline here as you progress through chapters.
+                      </p>
+                    )}
+                  </div>
+                  {/* Fade-out gradient at bottom */}
+                  {groupedTimeline.length > 2 ? (
+                    <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-12 rounded-b-[26px] bg-linear-to-t from-(--cf-surface-muted) to-transparent" />
                   ) : null}
                 </div>
               </div>
             </SectionCard>
           </div>
+        </FadeIn>
 
-          <aside className="space-y-6">
+        {/* ═══ SECTION 5: Achievements & Milestones ═══ */}
+        <FadeIn delay={0.2}>
+          <div id="achievements">
             <SectionCard
-              eyebrow="Identity"
-              title="Personal information"
-              description="Visible account details stay clear without taking over the whole page."
-              icon={<UserCircle2 className="h-5 w-5" />}
-              right={<Button variant="secondary" onClick={() => setEditOpen(true)}>Edit profile</Button>}
+              eyebrow="Milestones"
+              title="Achievements"
+              description="Celebrate what you've earned and see what's next."
+              icon={<Award className="h-5 w-5" />}
+              right={<Button variant="secondary" onClick={() => router.push("/book/badges")}>View all achievements</Button>}
             >
-              <div className="space-y-3">
-                {[
-                  { label: "Display name", value: profile.displayName },
-                  { label: "Username", value: `@${profile.username}` },
-                  { label: "Email", value: userEmail ?? "Signed in" },
-                  { label: "Timezone", value: profile.timezone },
-                  { label: "Country or region", value: profile.country || "Not set" },
-                  { label: "Preferred pronouns", value: profile.pronouns || "Not set" },
-                  { label: "Account created", value: formatJoinDate(profile.createdAt) },
-                  { label: "Login method", value: "Secure account session" },
-                ].map((item) => (
-                  <div key={item.label} className="rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) px-4 py-3">
-                    <p className="text-[11px] uppercase tracking-[0.18em] text-(--cf-text-3)">{item.label}</p>
-                    <p className="mt-2 text-sm text-(--cf-text-1)">{item.value}</p>
+              <div className="space-y-6">
+                {/* E2: Next milestone */}
+                {profileNextMilestone ? (
+                  <ProgressToNextBadgeCard
+                    milestone={profileNextMilestone}
+                    onOpen={() => setSelectedBadge(profileNextMilestone.badge)}
+                  />
+                ) : null}
+
+                {/* E3: Showcase / Timeline toggle */}
+                <div className="flex items-center gap-4 border-b border-(--cf-border) pb-3">
+                  <button
+                    type="button"
+                    onClick={() => setAchievementView("showcase")}
+                    className={`text-sm font-medium transition ${achievementView === "showcase" ? "text-(--cf-text-1) underline underline-offset-4" : "text-(--cf-text-soft) hover:text-(--cf-text-2)"}`}
+                  >
+                    Showcase
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setAchievementView("timeline")}
+                    className={`text-sm font-medium transition ${achievementView === "timeline" ? "text-(--cf-text-1) underline underline-offset-4" : "text-(--cf-text-soft) hover:text-(--cf-text-2)"}`}
+                  >
+                    Timeline
+                  </button>
+                </div>
+
+                {achievementView === "showcase" ? (
+                  <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                    {profileBadgeShowcase.length > 0 ? (
+                      profileBadgeShowcase.map((badge, index) => (
+                        <FeaturedBadgeCard
+                          key={badge.id}
+                          badge={badge}
+                          subtitle={index < 2 ? "Recent highlight" : "Prestige highlight"}
+                          onOpen={() => setSelectedBadge(badge)}
+                        />
+                      ))
+                    ) : null}
+                    {/* E1: Show 2 closest locked badges */}
+                    {closestLockedBadges.map((badge) => (
+                      <FeaturedBadgeCard
+                        key={badge.id}
+                        badge={badge}
+                        subtitle={`${badge.progressValue}/${badge.targetValue} — ${Math.round((badge.progressValue / badge.targetValue) * 100)}%`}
+                        onOpen={() => setSelectedBadge(badge)}
+                      />
+                    ))}
+                    {!profileBadgeShowcase.length && !closestLockedBadges.length ? (
+                      <div className="rounded-[22px] border border-(--cf-border) bg-(--cf-surface-muted) p-5 text-sm text-(--cf-text-3) sm:col-span-2 xl:col-span-3">
+                        Complete your first chapter to start earning badges. Every reading session brings you closer to your first milestone.
+                      </div>
+                    ) : null}
                   </div>
-                ))}
-                <div className="rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) px-4 py-3">
-                  <p className="text-[11px] uppercase tracking-[0.18em] text-(--cf-text-3)">Bio</p>
-                  <p className="mt-2 text-sm leading-6 text-(--cf-text-2)">{profile.bio}</p>
+                ) : (
+                  // Timeline view
+                  <div className="space-y-3">
+                    {profileBadgeTimeline.length > 0 ? (
+                      profileBadgeTimeline.map((entry) => (
+                        <BadgeTimelineItem
+                          key={entry.id}
+                          entry={entry}
+                          onOpen={() => {
+                            const badge = badgeSystem.badges.find((b) => b.id === entry.badgeId);
+                            if (badge) setSelectedBadge(badge);
+                          }}
+                        />
+                      ))
+                    ) : (
+                      <p className="py-4 text-center text-sm text-(--cf-text-3)">
+                        Earned milestones will appear here as your reading history grows.
+                      </p>
+                    )}
+                  </div>
+                )}
+
+                {/* Achievement stats row */}
+                <div className="flex flex-wrap gap-6 rounded-[22px] border border-(--cf-border) bg-(--cf-surface-muted) px-5 py-4">
+                  <div>
+                    <p className="text-[11px] uppercase tracking-[0.22em] text-(--cf-text-soft)">Earned</p>
+                    <p className="mt-1 text-lg font-semibold text-(--cf-text-1)">{badgeSystem.earnedCount}</p>
+                  </div>
+                  <div>
+                    <p className="text-[11px] uppercase tracking-[0.22em] text-(--cf-text-soft)">Locked</p>
+                    <p className="mt-1 text-lg font-semibold text-(--cf-text-1)">{badgeSystem.lockedBadges.length}</p>
+                  </div>
+                  <div>
+                    <p className="text-[11px] uppercase tracking-[0.22em] text-(--cf-text-soft)">Total</p>
+                    <p className="mt-1 text-lg font-semibold text-(--cf-text-1)">{badgeSystem.earnedCount} of {badgeSystem.visibleCount}</p>
+                  </div>
                 </div>
               </div>
             </SectionCard>
+          </div>
+        </FadeIn>
 
-            <SectionCard
-              eyebrow="Privacy"
-              title="Public profile and privacy preview"
-              description="Control what a future public profile could reveal before social features exist."
-              icon={<Globe className="h-5 w-5" />}
-              right={<Button variant="secondary" onClick={() => showToast("Public profile preview is reserved for a later social release.", "info")}>Preview public profile</Button>}
-            >
-              <div className="space-y-3">
-                <PrivacyRow
-                  label="Profile visibility"
-                  description="Choose whether your profile stays private, limited to friends, or available publicly later."
-                  control={
-                    <select
-                      value={profile.profileVisibility}
-                      onChange={(event) => patchProfile({ profileVisibility: event.target.value as typeof profile.profileVisibility })}
-                      className="cf-input rounded-xl px-3 py-2 text-sm"
-                    >
-                      <option value="private">Private</option>
-                      <option value="friends">Friends only</option>
-                      <option value="public">Public</option>
-                    </select>
-                  }
-                />
-                <PrivacyRow
-                  label="Show reading stats publicly"
-                  description="Allow streaks, reading totals, and progress metrics to appear on a public profile later."
-                  control={<Button variant="secondary" size="sm" onClick={() => patchProfile({ showReadingStatsPublic: !profile.showReadingStatsPublic })}>{profile.showReadingStatsPublic ? "On" : "Off"}</Button>}
-                />
-                <PrivacyRow
-                  label="Show badges publicly"
-                  description="Allow earned badges and milestones to appear in a future shareable profile."
-                  control={<Button variant="secondary" size="sm" onClick={() => patchProfile({ showBadgesPublic: !profile.showBadgesPublic })}>{profile.showBadgesPublic ? "On" : "Off"}</Button>}
-                />
-                <PrivacyRow
-                  label="Show reading history publicly"
-                  description="Allow completed books and recent activity to appear in a future public profile."
-                  control={<Button variant="secondary" size="sm" onClick={() => patchProfile({ showReadingHistoryPublic: !profile.showReadingHistoryPublic })}>{profile.showReadingHistoryPublic ? "On" : "Off"}</Button>}
-                />
-                <div className="rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) px-4 py-3">
-                  <p className="text-[11px] uppercase tracking-[0.18em] text-(--cf-text-3)">Profile URL preview</p>
-                  <p className="mt-2 text-sm text-(--cf-text-1)">book-accelerator.app/u/{profile.username}</p>
-                  <p className="mt-2 text-sm text-(--cf-text-soft)">Current visibility: {visibilityLabel(profile.profileVisibility)}</p>
-                </div>
-              </div>
-            </SectionCard>
-
-            <SectionCard
-              eyebrow="Plan"
-              title="Subscription and plan preview"
-              description="A premium subscription center that already feels real, even before full billing detail wiring is complete."
-              icon={<CreditCard className="h-5 w-5" />}
-            >
-              <SubscriptionSummaryCard
-                plan={billingState.payload?.entitlement.plan === "PRO" ? "Pro" : "Free"}
-                status={billingState.payload?.entitlement.proStatus ?? "inactive"}
-                priceLabel={billingState.payload?.paywall.price ?? "$12 / month"}
-                used={billingState.payload?.entitlement.unlockedBooksCount ?? 0}
-                remaining={billingState.payload?.entitlement.remainingFreeStarts ?? 0}
-                onUpgrade={() => handleBillingAction("upgrade")}
+        {/* ═══ SECTION 6: Upgrade / Pro Status ═══ */}
+        <FadeIn delay={0.25}>
+          <div id="plan">
+            {isActivePro ? (
+              <ProStatusCard
+                renewalDate={
+                  billingState.payload?.entitlement.currentPeriodEnd
+                    ? new Date(billingState.payload.entitlement.currentPeriodEnd).toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric" })
+                    : "Monthly plan · renews monthly"
+                }
+                booksAccessedCount={billingState.payload?.entitlement.unlockedBooksCount ?? 0}
+                proSinceLabel={profile.createdAt ? `Pro since ${new Date(profile.createdAt).toLocaleDateString(undefined, { month: "short", year: "numeric" })}` : "Pro member"}
                 onManage={() => handleBillingAction("portal")}
               />
-              <div className="mt-4 space-y-3 rounded-[26px] border border-(--cf-border) bg-(--cf-surface-muted) p-5">
-                <div className="grid gap-3 sm:grid-cols-2">
-                  <div className="rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) px-4 py-3">
-                    <p className="text-[11px] uppercase tracking-[0.18em] text-(--cf-text-3)">Renewal date</p>
-                    <p className="mt-2 text-sm text-(--cf-text-1)">Shown in billing portal</p>
-                  </div>
-                  <div className="rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) px-4 py-3">
-                    <p className="text-[11px] uppercase tracking-[0.18em] text-(--cf-text-3)">Billing cycle</p>
-                    <p className="mt-2 text-sm text-(--cf-text-1)">Monthly placeholder</p>
-                  </div>
-                  <div className="rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) px-4 py-3">
-                    <p className="text-[11px] uppercase tracking-[0.18em] text-(--cf-text-3)">Payment method</p>
-                    <p className="mt-2 text-sm text-(--cf-text-1)">Future payment method preview</p>
-                  </div>
-                  <div className="rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) px-4 py-3">
-                    <p className="text-[11px] uppercase tracking-[0.18em] text-(--cf-text-3)">Invoices</p>
-                    <p className="mt-2 text-sm text-(--cf-text-1)">Future invoice history</p>
-                  </div>
-                </div>
-                <div className="rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) p-4 text-sm leading-6 text-(--cf-text-2)">
-                  <p>Upgrade adds unlimited access starts and makes room for richer synced learning features as they ship.</p>
-                  <p className="mt-3">If you cancel, paid renewal stops and the account returns to the Free entitlement model after the current paid period ends.</p>
-                </div>
-                <div className="flex gap-3">
-                  <Button variant="secondary" onClick={() => showToast("Plan comparison will expand here.", "info")}>Compare plans</Button>
-                  <Button variant="secondary" onClick={() => showToast(billingState.error || "Billing details are available through the existing routes.", billingState.error ? "error" : "info")}>Billing details</Button>
-                </div>
-              </div>
-            </SectionCard>
+            ) : !isPro ? (
+              <UpgradeCard
+                booksUsed={billingState.payload?.entitlement.unlockedBooksCount ?? 0}
+                booksTotal={(billingState.payload?.entitlement.unlockedBooksCount ?? 0) + (billingState.payload?.entitlement.remainingFreeStarts ?? 2)}
+                personalizedMessage={upgradeMessage}
+                onUpgrade={() => handleBillingAction("upgrade")}
+              />
+            ) : null}
+          </div>
+        </FadeIn>
 
+        {/* ═══ SECTION 7: Notes & Reflection ═══ */}
+        <FadeIn delay={0.3}>
+          <div id="reflection">
             <SectionCard
-              eyebrow="Security"
-              title="Account summary and security preview"
-              description="Account ownership and session trust should feel stable and serious."
-              icon={<ShieldCheck className="h-5 w-5" />}
+              eyebrow="Reflection"
+              title="Notes and saved insights"
+              description="Your personal knowledge base grows with every chapter."
+              icon={<NotebookPen className="h-5 w-5" />}
+              right={
+                localInsights.notes.length > 0 ? (
+                  <Button
+                    variant="secondary"
+                    onClick={() =>
+                      currentSnapshot
+                        ? router.push(`/book/library/${encodeURIComponent(currentSnapshot.book.id)}/chapter/${encodeURIComponent(currentReadingDetails?.chapterId ?? currentSnapshot.resumeChapterId)}`)
+                        : showToast("Open a chapter with notes to continue.", "info")
+                    }
+                  >
+                    Go to notes
+                  </Button>
+                ) : null
+              }
             >
-              <div className="space-y-3">
-                {[
-                  { label: "Current plan", value: billingState.payload?.entitlement.plan ?? "Free" },
-                  { label: "Connected sign in", value: userEmail ?? "Secure session" },
-                  { label: "Authentication", value: "Managed account login" },
-                  { label: "Current device", value: "This browser session" },
-                  { label: "App version", value: `v${appVersion}` },
-                ].map((item) => (
-                  <div key={item.label} className="rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) px-4 py-3">
-                    <p className="text-[11px] uppercase tracking-[0.18em] text-(--cf-text-3)">{item.label}</p>
-                    <p className="mt-2 text-sm text-(--cf-text-1)">{item.value}</p>
+              {localInsights.notes.length > 0 ? (
+                <div className="space-y-6">
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    <StatCard icon={<NotebookPen className="h-4 w-4" />} label="Notes saved" value={localInsights.notes.length} helper="Chapters with written notes" />
+                    <StatCard icon={<Medal className="h-4 w-4" />} label="Pinned takeaways" value={Math.min(localInsights.notes.length, 3)} helper="Top recent insights" />
                   </div>
-                ))}
-                <div className="grid gap-3 sm:grid-cols-2">
-                  <Button variant="secondary" onClick={() => showToast("Security center placeholder opened.", "info")}>
-                    <KeyRound className="h-4 w-4" />
-                    Account security
-                  </Button>
-                  <Button variant="secondary" onClick={() => showToast("Sign out all devices placeholder opened.", "info")}>
-                    <Users className="h-4 w-4" />
-                    Sign out all devices
-                  </Button>
+
+                  {/* G2: Pinned takeaways as quote cards */}
+                  <div className="space-y-3">
+                    <p className="text-[11px] uppercase tracking-[0.22em] text-(--cf-text-soft)">Pinned ideas</p>
+                    {localInsights.notes.slice(0, 3).map((note) => (
+                      <PinnedTakeawayCard key={`${note.id}:pinned`} text={firstLine(note.body)} source={note.title} />
+                    ))}
+                  </div>
+
+                  <div className="grid gap-4 md:grid-cols-2">
+                    {localInsights.notes.slice(0, 4).map((note) => (
+                      <NotePreviewCard
+                        key={note.id}
+                        title={note.title}
+                        body={note.body}
+                        meta={note.meta}
+                        actionLabel="Open chapter"
+                        onAction={() => router.push(`/book/library/${encodeURIComponent(note.bookId)}/chapter/${encodeURIComponent(note.chapterId)}`)}
+                      />
+                    ))}
+                  </div>
+                </div>
+              ) : statsSummary.totalChaptersCompleted > 0 ? (
+                // G1: Inline takeaway prompt (has chapters but no notes)
+                <div className="rounded-[26px] border border-(--cf-border) bg-(--cf-surface-muted) p-6">
+                  <p className="text-sm text-(--cf-text-2)">
+                    You&apos;ve read {statsSummary.totalChaptersCompleted} chapter{statsSummary.totalChaptersCompleted !== 1 ? "s" : ""} but haven&apos;t saved any takeaways yet.
+                  </p>
+                  <p className="mt-2 text-base font-medium text-(--cf-text-1)">
+                    What&apos;s one thing from {currentSnapshot?.book.title ?? "your reading"} that stuck with you?
+                  </p>
+                  <div className="mt-4 flex gap-3">
+                    <input
+                      type="text"
+                      placeholder="Type a quick takeaway..."
+                      className="flex-1 rounded-xl border border-(--cf-border) bg-(--cf-surface) px-4 py-2.5 text-sm text-(--cf-text-1) placeholder:text-(--cf-text-soft) outline-none focus:border-(--cf-accent-border)"
+                      readOnly
+                      onClick={() =>
+                        currentSnapshot
+                          ? router.push(`/book/library/${encodeURIComponent(currentSnapshot.book.id)}/chapter/${encodeURIComponent(currentReadingDetails?.chapterId ?? currentSnapshot.resumeChapterId)}`)
+                          : router.push("/book/library")
+                      }
+                    />
+                    <Button
+                      variant="primary"
+                      onClick={() =>
+                        currentSnapshot
+                          ? router.push(`/book/library/${encodeURIComponent(currentSnapshot.book.id)}/chapter/${encodeURIComponent(currentReadingDetails?.chapterId ?? currentSnapshot.resumeChapterId)}`)
+                          : router.push("/book/library")
+                      }
+                    >
+                      Open chapter
+                    </Button>
+                  </div>
+                </div>
+              ) : (
+                <div className="rounded-[26px] border border-(--cf-border) bg-(--cf-surface-muted) p-8 text-center">
+                  <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl border border-(--cf-border) bg-(--cf-surface) text-2xl">📝</div>
+                  <h3 className="text-base font-semibold text-(--cf-text-1)">Your reading journal starts here</h3>
+                  <p className="mt-2 text-sm text-(--cf-text-3)">
+                    Save highlights and takeaways as you read — they&apos;ll build into a personal knowledge base that grows with you.
+                  </p>
+                  <Button variant="primary" onClick={() => router.push("/book/library")} className="mt-4">Start your first book &rarr;</Button>
+                </div>
+              )}
+            </SectionCard>
+          </div>
+        </FadeIn>
+
+        {/* ═══ SECTION 8: Reading History ═══ */}
+        <FadeIn delay={0.35}>
+          <div id="history">
+            <SectionCard
+              eyebrow="History"
+              title="Reading history"
+              description="Look back at what you've finished and how far you've come."
+              icon={<GraduationCap className="h-5 w-5" />}
+            >
+              <div className="grid gap-6 lg:grid-cols-2">
+                {/* G3: Recently finished books with improved empty state */}
+                <div className="rounded-[26px] border border-(--cf-border) bg-(--cf-surface-muted) p-5">
+                  <h3 className="text-sm font-semibold text-(--cf-text-1)">Recently finished books</h3>
+                  <div className="mt-4 space-y-3">
+                    {recentFinishedBooks.length > 0 ? (
+                      recentFinishedBooks.map((snapshot) => (
+                        <div key={snapshot.book.id} className="flex items-center justify-between gap-3 rounded-2xl border border-(--cf-border) bg-(--cf-surface) px-4 py-3">
+                          <div>
+                            <p className="text-sm font-medium text-(--cf-text-1)">{snapshot.book.title}</p>
+                            <p className="mt-1 text-sm text-(--cf-text-soft)">
+                              Finished &bull; {new Date(snapshot.lastActivityAt).toLocaleDateString(undefined, { month: "short", day: "numeric" })}
+                            </p>
+                          </div>
+                          <span className="rounded-full border border-(--cf-success-border) bg-(--cf-success-soft) px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-(--cf-success-text)">Completed</span>
+                        </div>
+                      ))
+                    ) : (
+                      <div className="py-4 text-center">
+                        {/* 3.7: Ghost card placeholder with book outline */}
+                        <div className="group mx-auto mb-3 rounded-2xl border border-dashed border-white/10 bg-(--cf-surface)/30 px-4 py-5 transition hover:bg-(--cf-surface)/50">
+                          <svg width="40" height="48" viewBox="0 0 40 48" fill="none" className="mx-auto mb-2 text-slate-600/30">
+                            <rect x="4" y="4" width="32" height="40" rx="4" stroke="currentColor" strokeWidth="1.5" fill="none" />
+                            <line x1="14" y1="4" x2="14" y2="44" stroke="currentColor" strokeWidth="1" />
+                          </svg>
+                          <p className="text-sm text-(--cf-text-soft)">Your first completed book</p>
+                        </div>
+                        <p className="text-sm text-(--cf-text-3)">
+                          {currentSnapshot && currentReadingDetails
+                            ? <>You&apos;re reading {currentSnapshot.book.title} right now. Finish all chapters to add it here.{" "}
+                                <button type="button" onClick={() => router.push(`/book/library/${encodeURIComponent(currentSnapshot.book.id)}/chapter/${encodeURIComponent(currentReadingDetails.chapterId)}`)} className="text-(--cf-accent) hover:underline">Continue reading &rarr;</button>
+                              </>
+                            : "Pick your first book and read it chapter by chapter."}
+                        </p>
+                        {!currentSnapshot ? (
+                          <Button variant="secondary" onClick={() => router.push("/book/library")} className="mt-3">Browse Library &rarr;</Button>
+                        ) : null}
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* G4 + 2.3: Recent quiz performance with bar chart */}
+                <div className="rounded-[26px] border border-(--cf-border) bg-(--cf-surface-muted) p-5">
+                  <h3 className="text-sm font-semibold text-(--cf-text-1)">Recent quiz performance</h3>
+
+                  {quizTrend && localInsights.recentQuizEntries.length >= 2 ? (
+                    <div className="mt-4">
+                      <QuizBarChart
+                        scores={localInsights.recentQuizEntries.slice(0, 10).reverse().map((e) => e.score)}
+                        avg={quizTrend.avg}
+                        best={quizTrend.best}
+                        last={localInsights.recentQuizEntries[0]?.score ?? 0}
+                        trend={quizTrend.direction}
+                      />
+                    </div>
+                  ) : localInsights.recentQuizEntries.length === 1 ? (
+                    <div className="mt-4">
+                      <QuizBarChart
+                        scores={[localInsights.recentQuizEntries[0].score]}
+                        avg={localInsights.recentQuizEntries[0].score}
+                        best={localInsights.recentQuizEntries[0].score}
+                        last={localInsights.recentQuizEntries[0].score}
+                        trend="steady"
+                      />
+                      <p className="mt-2 text-xs text-(--cf-text-soft)">Complete more quizzes to see your trend</p>
+                    </div>
+                  ) : (
+                    <p className="mt-4 py-4 text-center text-sm text-(--cf-text-3)">
+                      Complete your first quiz to start tracking your retention scores here.
+                    </p>
+                  )}
                 </div>
               </div>
             </SectionCard>
-          </aside>
-        </div>
+          </div>
+        </FadeIn>
       </section>
 
+      {/* ─── Modals ─── */}
       <EditProfileModal
         open={editOpen}
         profile={profile}
@@ -1007,11 +1271,15 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
         onSave={saveProfile}
       />
 
-      <InfoModal open={Boolean(selectedBadge)} title={selectedBadge?.name || "Achievement"} onClose={() => setSelectedBadge(null)}>
+      <InfoModal
+        open={Boolean(selectedBadge)}
+        title={selectedBadge?.name || "Achievement"}
+        onClose={() => setSelectedBadge(null)}
+      >
         {selectedBadge ? (
           <BadgeDetailPanel
             badge={selectedBadge}
-            nextTier={badgeSystem.badges.find((badge) => badge.id === selectedBadge.nextTierId) ?? null}
+            nextTier={badgeSystem.badges.find((b) => b.id === selectedBadge.nextTierId) ?? null}
           />
         ) : null}
       </InfoModal>
