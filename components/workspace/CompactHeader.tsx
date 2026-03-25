@@ -96,7 +96,7 @@ export function CompactHeader({
               href="/rewards"
               className="inline-flex items-center gap-1"
             >
-              <span aria-hidden="true" style={{ color: "var(--cf-accent)", fontSize: 14 }}>
+              <span aria-hidden="true" style={{ color: "var(--accent-gold)", fontSize: 14 }}>
                 ◆
               </span>
               <span

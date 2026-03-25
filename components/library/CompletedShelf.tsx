@@ -119,7 +119,7 @@ export function CompletedShelf({ books, onBookClick }: CompletedShelfProps) {
               <p className="mt-0.5 text-[12px]" style={{ color: "var(--text-muted)" }}>
                 Completed {completedDate}
               </p>
-              <p className="mt-0.5 text-[12px] font-(family-name:--font-mono)" style={{ color: "var(--accent-gold)" }}>
+              <p className="mt-0.5 text-[12px] font-(family-name:--font-mono)" style={{ color: "var(--cf-amber-text)" }}>
                 +{prog.xpEarned} XP earned
               </p>
             </motion.div>
@@ -177,7 +177,7 @@ export function CompletedShelf({ books, onBookClick }: CompletedShelfProps) {
                     {book.hook}
                   </p>
                   {/* "Because you loved" — explanatory recommendation */}
-                  <p className="mt-1 text-[11px] italic" style={{ color: "var(--accent-gold)" }}>
+                  <p className="mt-1 text-[11px] italic" style={{ color: "var(--cf-amber-text)" }}>
                     Because you loved {because.title}
                   </p>
                 </div>

@@ -36,7 +36,7 @@ export function DailyGoalRing({
           cy={size / 2}
           r={radius}
           fill="none"
-          stroke="var(--cf-border)"
+          stroke="var(--cf-ring-track)"
           strokeWidth={strokeWidth}
         />
         <motion.circle

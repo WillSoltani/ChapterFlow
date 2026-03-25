@@ -102,7 +102,7 @@ export function Library() {
                     onClick={() => setActiveCategory(category)}
                     className={`flex-shrink-0 rounded-full px-4 py-2 text-[13px] transition-colors ${
                       isActive
-                        ? "bg-(--accent-teal) text-[#0a0f1a] font-semibold"
+                        ? "bg-(--accent-teal) text-primary-foreground font-semibold"
                         : "bg-transparent border border-(--border-subtle) text-(--text-secondary) hover:text-(--text-heading)"
                     }`}
                   >

@@ -11,19 +11,19 @@ function LogoIcon({ size = 28 }: { size?: number }) {
     <svg width={size} height={size} viewBox="0 0 28 28" fill="none" aria-hidden="true">
       <path
         d="M4 7C4 5.9 4.9 5 6 5H12C13.1 5 14 5.9 14 7V21C14 22.1 13.1 23 12 23H6C4.9 23 4 22.1 4 21V7Z"
-        stroke="#2dd4bf"
+        stroke="var(--accent-teal)"
         strokeWidth={1.5}
         fill="none"
       />
       <path
         d="M14 7C14 5.9 14.9 5 16 5H22C23.1 5 24 5.9 24 7V21C24 22.1 23.1 23 22 23H16C14.9 23 14 22.1 14 21V7Z"
-        stroke="#2dd4bf"
+        stroke="var(--accent-teal)"
         strokeWidth={1.5}
         fill="none"
       />
       <path
         d="M17 12L20 14L17 16"
-        stroke="#2dd4bf"
+        stroke="var(--accent-teal)"
         strokeWidth={1.5}
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -196,7 +196,7 @@ export function Navbar() {
             </a>
             <a
               href={AUTH_URL}
-              className="rounded-full bg-(--accent-teal) px-5 py-2 font-(family-name:--font-body) text-[13px] font-semibold text-[#0a0f1a] transition-all duration-200 hover:brightness-110 hover:shadow-[0_0_16px_rgba(45,212,191,0.4)]"
+              className="rounded-full bg-(--accent-teal) px-5 py-2 font-(family-name:--font-body) text-[13px] font-semibold text-primary-foreground transition-all duration-200 hover:brightness-110 hover:shadow-[0_0_16px_rgba(45,212,191,0.4)]"
             >
               Start free &rarr;
             </a>
@@ -297,7 +297,7 @@ export function Navbar() {
               </a>
               <a
                 href={AUTH_URL}
-                className="rounded-full bg-(--accent-teal) px-7 py-3 font-(family-name:--font-body) text-[15px] font-semibold text-[#0a0f1a] transition-all duration-200 hover:brightness-110"
+                className="rounded-full bg-(--accent-teal) px-7 py-3 font-(family-name:--font-body) text-[15px] font-semibold text-primary-foreground transition-all duration-200 hover:brightness-110"
                 onClick={closeMobile}
               >
                 Start free &rarr;

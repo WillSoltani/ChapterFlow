@@ -150,7 +150,7 @@ export function NextAchievements({
                     className="flex-1 overflow-hidden rounded-full"
                     style={{
                       height: 4,
-                      background: "var(--cf-surface-strong)",
+                      background: "var(--cf-progress-track)",
                     }}
                   >
                     <div

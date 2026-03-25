@@ -284,8 +284,8 @@ export function Pricing() {
               <span
                 className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-10 text-[11px] font-bold uppercase tracking-wider px-4 py-1.5 rounded-full whitespace-nowrap"
                 style={{
-                  background: "#2dd4bf",
-                  color: "#0a0f1a",
+                  background: "var(--accent-teal)",
+                  color: "var(--primary-foreground)",
                   boxShadow: "0 4px 14px rgba(45,212,191,0.35), 0 0 0 1px rgba(45,212,191,0.5)",
                 }}
               >
@@ -338,7 +338,7 @@ export function Pricing() {
               {/* CTA */}
               <Link
                 href="/auth/login?returnTo=%2Fbook"
-                className="mt-8 block w-full text-center bg-[--accent-teal] text-[#0a0f1a] rounded-xl py-3.5 font-semibold transition-transform hover:scale-[1.02]"
+                className="mt-8 block w-full text-center bg-[--accent-teal] text-primary-foreground rounded-xl py-3.5 font-semibold transition-transform hover:scale-[1.02]"
                 style={{ fontFamily: "var(--font-display)" }}
               >
                 Try Pro free for 14 days

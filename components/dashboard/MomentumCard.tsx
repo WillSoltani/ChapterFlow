@@ -39,7 +39,7 @@ export function MomentumCard() {
             Next milestone:{" "}
             <span
               className="font-semibold"
-              style={{ color: "var(--accent-gold)" }}
+              style={{ color: "var(--cf-amber-text)" }}
             >
               Focus Master
             </span>
@@ -53,7 +53,7 @@ export function MomentumCard() {
           {/* Progress bar */}
           <div
             className="mt-2.5 h-[5px] overflow-hidden rounded-[3px]"
-            style={{ background: "var(--bg-elevated)" }}
+            style={{ background: "var(--cf-progress-track)" }}
           >
             <motion.div
               className="h-full rounded-[3px]"

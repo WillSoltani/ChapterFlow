@@ -133,7 +133,7 @@ export function HeroBookCard({ book, isNewUser = false }: HeroBookCardProps) {
                 <div className="flex-1" style={{ maxWidth: 180 }}>
                   <div
                     className="h-1 overflow-hidden rounded-sm"
-                    style={{ background: "var(--bg-elevated)" }}
+                    style={{ background: "var(--cf-progress-track)" }}
                   >
                     <motion.div
                       className="h-full rounded-sm"

@@ -115,7 +115,7 @@ export function BookCard({
               style={{
                 background: "rgba(232,185,49,0.15)",
                 border: "1px solid rgba(232,185,49,0.3)",
-                color: "var(--accent-gold)",
+                color: "var(--cf-amber-text)",
               }}
             >
               <svg width="10" height="10" viewBox="0 0 24 24" fill="var(--accent-gold)" stroke="none">
@@ -231,7 +231,7 @@ export function BookCard({
                 style={{
                   background: "rgba(232,185,49,0.12)",
                   border: "1px solid rgba(232,185,49,0.3)",
-                  color: "var(--accent-gold)",
+                  color: "var(--cf-amber-text)",
                 }}
                 onClick={(e) => e.stopPropagation()}
               >

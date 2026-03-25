@@ -49,7 +49,7 @@ export function StreakDisplay({ streak }: StreakDisplayProps) {
             </span>
             <span
               className="text-lg font-bold tabular-nums"
-              style={{ color: "var(--accent-gold)" }}
+              style={{ color: "var(--cf-amber-text)" }}
             >
               {streak.currentDays}-day streak
             </span>
@@ -98,7 +98,7 @@ export function StreakDisplay({ streak }: StreakDisplayProps) {
             Best: {streak.bestDays} days {"\u00B7"} Read{" "}
             {streak.daysActiveLast7} of last 7 days
           </span>
-          <span className="text-sm font-medium" style={{ color: "var(--accent-gold)" }}>
+          <span className="text-sm font-medium" style={{ color: "var(--cf-amber-text)" }}>
             Start a new streak today
           </span>
         </div>

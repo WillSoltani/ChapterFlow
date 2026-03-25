@@ -149,7 +149,7 @@ export function Hero() {
                   className="cta-shine inline-flex items-center rounded-full px-8 py-4 font-semibold text-[16px] transition-transform hover:scale-[1.03] active:scale-[0.98]"
                   style={{
                     backgroundColor: "var(--accent-teal)",
-                    color: "#0a0f1a",
+                    color: "var(--primary-foreground)",
                   }}
                 >
                   Start reading free &rarr;

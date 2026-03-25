@@ -31,7 +31,7 @@ export function MobileStickyBar() {
           className="block w-full text-center font-semibold py-3 rounded-full text-sm"
           style={{
             backgroundColor: "var(--accent-teal)",
-            color: "#0a0f1a",
+            color: "var(--primary-foreground)",
           }}
         >
           Start reading free &rarr;

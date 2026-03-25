@@ -147,7 +147,7 @@ export function KnowledgeReview({
                   className="rounded-full px-3 py-1 text-xs font-medium"
                   style={{
                     background: "rgba(245,158,11,0.1)",
-                    color: "var(--accent-gold)",
+                    color: "var(--cf-amber-text)",
                     border: "1px solid rgba(245,158,11,0.2)",
                   }}
                 >

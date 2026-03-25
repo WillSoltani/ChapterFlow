@@ -67,11 +67,11 @@ export function ReaderStatusBar({ stats }: ReaderStatusBarProps) {
         <span className="flex items-center gap-1.5">
           <FlameIcon active={stats.streakIsActiveToday} />
           {stats.streakIsActiveToday ? (
-            <span style={{ color: "var(--accent-flame)" }}>
+            <span style={{ color: "var(--cf-amber-text)" }}>
               {stats.currentStreak}-day streak
             </span>
           ) : (
-            <span style={{ color: "#e6a030" }}>
+            <span style={{ color: "var(--cf-amber-text)" }}>
               {stats.currentStreak}-day streak — read today to keep it!
             </span>
           )}
@@ -85,7 +85,7 @@ export function ReaderStatusBar({ stats }: ReaderStatusBarProps) {
         {/* Next badge — Goal Gradient */}
         <span className="hidden items-center gap-2 lg:flex" style={{ color: "var(--text-muted)" }}>
           Next:{" "}
-          <span style={{ color: "var(--accent-gold)" }}>{stats.nextBadge.name}</span>
+          <span style={{ color: "var(--cf-amber-text)" }}>{stats.nextBadge.name}</span>
           <span style={{ color: "var(--text-secondary)" }}>
             — {stats.nextBadge.booksAway} book{stats.nextBadge.booksAway !== 1 ? "s" : ""} away
           </span>

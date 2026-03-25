@@ -67,7 +67,7 @@ export function WeeklyChallenge({
               <div>
                 <p className="text-[14px] font-semibold" style={{ color: "var(--text-heading)" }}>
                   This week&apos;s challenge:{" "}
-                  <span style={{ color: "var(--accent-gold)" }}>
+                  <span style={{ color: "var(--cf-amber-text)" }}>
                     {challenge.description}
                   </span>
                 </p>
@@ -88,7 +88,7 @@ export function WeeklyChallenge({
                           background:
                             j < challenge.progress.current
                               ? "var(--accent-teal)"
-                              : "rgba(255,255,255,0.1)",
+                              : "var(--cf-progress-track)",
                           boxShadow:
                             j < challenge.progress.current
                               ? "0 0 4px var(--accent-teal)"
@@ -96,13 +96,13 @@ export function WeeklyChallenge({
                         }}
                       />
                     ))}
-                    <span className="ml-0.5 font-(family-name:--font-mono)" style={{ color: "var(--accent-gold)" }}>
+                    <span className="ml-0.5 font-(family-name:--font-mono)" style={{ color: "var(--cf-amber-text)" }}>
                       {challenge.progress.current}/{challenge.progress.target}
                     </span>
                   </span>
 
                   {/* Urgency — Scarcity (Cialdini) */}
-                  <span style={{ color: "var(--accent-flame)" }}>
+                  <span style={{ color: "var(--cf-amber-text)" }}>
                     Ends in 4 days
                   </span>
                 </div>
@@ -118,7 +118,7 @@ export function WeeklyChallenge({
                   style={{
                     background: "rgba(232,185,49,0.1)",
                     border: "1px solid rgba(232,185,49,0.2)",
-                    color: "var(--accent-gold)",
+                    color: "var(--cf-amber-text)",
                   }}
                 >
                   Browse {challenge.category} →

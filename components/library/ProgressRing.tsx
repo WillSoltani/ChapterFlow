@@ -49,7 +49,7 @@ export function ProgressRing({
           cy={size / 2}
           r={radius}
           fill="none"
-          stroke="rgba(255,255,255,0.08)"
+          stroke="var(--cf-ring-track)"
           strokeWidth={strokeWidth}
         />
         {/* Progress ring */}
@@ -83,7 +83,7 @@ export function ProgressRing({
           className="absolute font-(family-name:--font-mono) font-semibold"
           style={{
             fontSize: size < 48 ? 10 : size < 72 ? 13 : 16,
-            color: isComplete ? "var(--accent-gold)" : "var(--text-heading)",
+            color: isComplete ? "var(--cf-amber-text)" : "var(--text-heading)",
           }}
         >
           {percent}%

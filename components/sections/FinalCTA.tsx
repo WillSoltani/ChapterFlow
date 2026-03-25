@@ -93,7 +93,7 @@ export function FinalCTA() {
                 className="cta-shine inline-flex items-center rounded-full px-8 py-4 font-semibold text-[16px] transition-transform hover:scale-[1.03] active:scale-[0.98]"
                 style={{
                   backgroundColor: "var(--accent-teal)",
-                  color: "#0a0f1a",
+                  color: "var(--primary-foreground)",
                 }}
               >
                 Start reading free &rarr;
@@ -117,8 +117,8 @@ export function FinalCTA() {
               className="group flex items-center gap-2.5 rounded-xl px-4 py-2.5 transition-all duration-300 hover:-translate-y-0.5"
               style={{
                 background:
-                  "linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)",
-                border: "1px solid rgba(255,255,255,0.1)",
+                  "var(--bg-glass)",
+                border: "1px solid var(--border-subtle)",
                 backdropFilter: "blur(8px)",
                 WebkitBackdropFilter: "blur(8px)",
               }}
@@ -132,18 +132,18 @@ export function FinalCTA() {
               >
                 <path
                   d="M16.52 12.76c-.03-2.86 2.34-4.24 2.44-4.3-1.33-1.94-3.4-2.21-4.13-2.24-1.76-.18-3.43 1.04-4.32 1.04-.9 0-2.28-1.01-3.74-.99-1.93.03-3.7 1.12-4.7 2.85-2 3.47-.51 8.62 1.44 11.44.96 1.38 2.1 2.93 3.6 2.88 1.44-.06 1.99-.93 3.73-.93 1.74 0 2.24.93 3.76.9 1.55-.02 2.53-1.41 3.47-2.8 1.1-1.6 1.55-3.15 1.57-3.23-.03-.01-3.02-1.16-3.05-4.6l-.07-.02z"
-                  fill="white"
+                  fill="var(--text-heading)"
                 />
                 <path
                   d="M13.65 4.26c.79-.96 1.33-2.3 1.18-3.63-1.14.05-2.52.76-3.34 1.71-.73.85-1.37 2.2-1.2 3.5 1.28.1 2.58-.65 3.36-1.58z"
-                  fill="white"
+                  fill="var(--text-heading)"
                 />
               </svg>
               <div className="flex flex-col leading-none">
-                <span className="text-[9px] text-white/50 font-medium">
+                <span className="text-[9px] text-[--text-muted] font-medium">
                   Download on the
                 </span>
-                <span className="text-[14px] text-white font-semibold tracking-tight mt-0.5">
+                <span className="text-[14px] text-[--text-heading] font-semibold tracking-tight mt-0.5">
                   App Store
                 </span>
               </div>
@@ -155,8 +155,8 @@ export function FinalCTA() {
               className="group flex items-center gap-2.5 rounded-xl px-4 py-2.5 transition-all duration-300 hover:-translate-y-0.5"
               style={{
                 background:
-                  "linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)",
-                border: "1px solid rgba(255,255,255,0.1)",
+                  "var(--bg-glass)",
+                border: "1px solid var(--border-subtle)",
                 backdropFilter: "blur(8px)",
                 WebkitBackdropFilter: "blur(8px)",
               }}
@@ -186,10 +186,10 @@ export function FinalCTA() {
                 />
               </svg>
               <div className="flex flex-col leading-none">
-                <span className="text-[9px] text-white/50 font-medium">
+                <span className="text-[9px] text-[--text-muted] font-medium">
                   Get it on
                 </span>
-                <span className="text-[14px] text-white font-semibold tracking-tight mt-0.5">
+                <span className="text-[14px] text-[--text-heading] font-semibold tracking-tight mt-0.5">
                   Google Play
                 </span>
               </div>

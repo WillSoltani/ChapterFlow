@@ -166,7 +166,7 @@ export function Problem() {
                   y1={line.y}
                   x2={590}
                   y2={line.y}
-                  stroke="rgba(255,255,255,0.05)"
+                  stroke="var(--border-subtle)"
                   strokeWidth={1}
                   strokeDasharray="6 4"
                 />

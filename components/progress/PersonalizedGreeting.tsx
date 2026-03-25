@@ -142,7 +142,7 @@ export function PersonalizedGreeting({
             style={{
               width: 48,
               height: 4,
-              background: "var(--cf-surface-strong)",
+              background: "var(--cf-progress-track)",
             }}
           >
             <div

@@ -33,7 +33,7 @@ function StarIcon() {
   return (
     <svg
       className="w-4 h-4"
-      style={{ fill: "#2dd4bf" }}
+      style={{ fill: "var(--accent-teal)" }}
       viewBox="0 0 20 20"
       xmlns="http://www.w3.org/2000/svg"
     >
