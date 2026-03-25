@@ -1214,3 +1214,340 @@ html.transitioning *::after {
     animation: none;
   }
 }
+
+/* ─────────────────────────────────────────
+   BOOK DETAIL — Chapter Card Shimmer
+   ───────────────────────────────────────── */
+@keyframes bd-shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.bd-chapter-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.bd-chapter-shimmer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(129, 140, 248, 0.08) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: bd-shimmer 4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Book Detail — Pulse highlight on current chapter ── */
+@keyframes bd-pulse-highlight {
+  0%, 100% { box-shadow: 0 0 24px rgba(129, 140, 248, 0.08); }
+  50% { box-shadow: 0 0 32px rgba(129, 140, 248, 0.16); }
+}
+
+.bd-pulse-active {
+  animation: bd-pulse-highlight 2s ease-in-out 1;
+}
+
+/* ── Book Detail — Locked card shake ── */
+@keyframes bd-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  75% { transform: translateX(2px); }
+}
+
+.bd-shake {
+  animation: bd-shake 0.3s ease-in-out;
+}
+
+/* ── Book Detail — Step dot pulse (in-progress) ── */
+@keyframes bd-dot-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.bd-dot-pulse {
+  animation: bd-dot-pulse 1.5s ease-in-out infinite;
+}
+
+/* ── Book Detail — Play icon pulse ring ── */
+@keyframes bd-pulse-ring {
+  0% { transform: scale(1); opacity: 0.4; }
+  70% { transform: scale(1.15); opacity: 0; }
+  100% { transform: scale(1.15); opacity: 0; }
+}
+
+/* ── Book Detail — Card entrance (used for initial page-load stagger) ── */
+@keyframes bd-card-enter {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bd-chapter-shimmer::before,
+  .bd-pulse-active,
+  .bd-shake,
+  .bd-dot-pulse,
+  [style*="bd-card-enter"],
+  [style*="bd-pulse-ring"] {
+    animation: none !important;
+  }
+}
+
+html[data-motion="reduced"] .bd-chapter-shimmer::before,
+html[data-motion="reduced"] .bd-pulse-active,
+html[data-motion="reduced"] .bd-shake,
+html[data-motion="reduced"] .bd-dot-pulse {
+  animation: none !important;
+}
+
+/* ── Light mode overrides for book detail ── */
+html:not(.dark) .bd-chapter-shimmer::before {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(99, 102, 241, 0.06) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+}
+
+/* ─────────────────────────────────────────
+   CHAPTER READER — Design Tokens
+   ───────────────────────────────────────── */
+:root {
+  /* ── Chapter Reader Glass ── */
+  --cr-glass-reading: rgba(20, 25, 35, 0.85);
+  --cr-glass-nav: rgba(255, 255, 255, 0.05);
+  --cr-glass-card: rgba(30, 30, 46, 0.70);
+  --cr-glass-border: rgba(255, 255, 255, 0.08);
+  --cr-glass-border-teal: rgba(77, 182, 172, 0.15);
+
+  /* ── Chapter Reader Surfaces ── */
+  --cr-bg-root: #0F0F1A;
+  --cr-bg-surface-1: #161625;
+  --cr-bg-surface-2: #1C1C30;
+  --cr-bg-surface-3: #22223A;
+
+  /* ── Chapter Reader Text ── */
+  --cr-text-primary: #E8E8E8;
+  --cr-text-heading: #F0F0F0;
+  --cr-text-secondary: #A0A0B0;
+  --cr-text-disabled: #606070;
+  --cr-text-inverse: #0F0F1A;
+
+  /* ── Chapter Reader Accent (Teal) ── */
+  --cr-accent: #4DB6AC;
+  --cr-accent-hover: #80CBC4;
+  --cr-accent-muted: rgba(77, 182, 172, 0.15);
+  --cr-accent-glow: rgba(77, 182, 172, 0.25);
+
+  /* ── Chapter Reader Semantic ── */
+  --cr-success: #81C784;
+  --cr-success-bg: rgba(129, 199, 132, 0.15);
+  --cr-error: #E57373;
+  --cr-error-bg: rgba(229, 115, 115, 0.15);
+  --cr-warning: #FFD54F;
+  --cr-info: #64B5F6;
+
+  /* ── Chapter Reader Transitions ── */
+  --cr-transition-fast: 150ms ease-out;
+  --cr-transition-base: 300ms ease-out;
+  --cr-transition-slow: 500ms ease-out;
+  --cr-transition-phase: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html:not(.dark) {
+  --cr-glass-reading: rgba(255, 255, 255, 0.92);
+  --cr-glass-nav: rgba(0, 0, 0, 0.03);
+  --cr-glass-card: rgba(255, 255, 255, 0.80);
+  --cr-glass-border: rgba(0, 0, 0, 0.08);
+  --cr-glass-border-teal: rgba(13, 148, 136, 0.15);
+  --cr-bg-root: #FAFAF9;
+  --cr-bg-surface-1: #FFFFFF;
+  --cr-bg-surface-2: #F5F5F4;
+  --cr-bg-surface-3: #EEEEEC;
+  --cr-text-primary: #1C1917;
+  --cr-text-heading: #0F0F0F;
+  --cr-text-secondary: #57534E;
+  --cr-text-disabled: #A8A29E;
+  --cr-text-inverse: #FFFFFF;
+  --cr-accent: #0D9488;
+  --cr-accent-hover: #0F766E;
+  --cr-accent-muted: rgba(13, 148, 136, 0.10);
+  --cr-accent-glow: rgba(13, 148, 136, 0.20);
+  --cr-success: #15803D;
+  --cr-success-bg: rgba(22, 163, 74, 0.10);
+  --cr-error: #DC2626;
+  --cr-error-bg: rgba(220, 38, 38, 0.10);
+  --cr-warning: #B45309;
+  --cr-info: #1D4ED8;
+}
+
+/* ─────────────────────────────────────────
+   CHAPTER READER — Component Classes
+   ───────────────────────────────────────── */
+@layer components {
+  /* Reading container glass */
+  .cr-glass-reading {
+    background: var(--cr-glass-reading);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--cr-glass-border);
+    border-radius: 16px;
+  }
+
+  @supports not (backdrop-filter: blur(10px)) {
+    .cr-glass-reading {
+      background: rgba(17, 25, 40, 0.92);
+    }
+  }
+
+  /* Interactive card glass */
+  .cr-glass-card {
+    background: var(--cr-glass-card);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--cr-glass-border);
+    border-radius: 16px;
+  }
+
+  /* Takeaway card */
+  .cr-takeaway-card {
+    background: var(--cr-glass-card);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--cr-glass-border);
+    border-left: 3px solid var(--cr-accent);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+
+  /* Answer option */
+  .cr-answer-option {
+    background: var(--cr-glass-card);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--cr-glass-border);
+    border-radius: 12px;
+    padding: 16px 24px;
+    min-height: 56px;
+    cursor: pointer;
+    transition: all var(--cr-transition-fast);
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .cr-answer-option:hover:not(:disabled):not(.cr-answer-correct):not(.cr-answer-incorrect) {
+    background: var(--cr-bg-surface-3);
+    border-color: var(--cr-accent);
+  }
+
+  .cr-answer-selected {
+    background: var(--cr-accent-muted);
+    border-color: var(--cr-accent);
+    border-width: 2px;
+  }
+
+  .cr-answer-correct {
+    background: var(--cr-success-bg);
+    border-color: var(--cr-success);
+    border-width: 2px;
+  }
+
+  .cr-answer-incorrect {
+    background: var(--cr-error-bg);
+    border-color: var(--cr-error);
+    border-width: 2px;
+  }
+}
+
+/* ─────────────────────────────────────────
+   CHAPTER READER — Animations
+   ───────────────────────────────────────── */
+
+/* Ambient floating orbs */
+@keyframes cr-float {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(30px, -30px); }
+  100% { transform: translate(0, 0); }
+}
+
+@keyframes cr-float-alt {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(-40px, 20px); }
+  100% { transform: translate(0, 0); }
+}
+
+/* Stepper pulse glow */
+@keyframes cr-stepper-pulse {
+  0%, 100% { box-shadow: 0 0 0 4px var(--cr-accent-glow); }
+  50% { box-shadow: 0 0 0 8px rgba(77, 182, 172, 0.10); }
+}
+
+/* Score ring fill */
+@keyframes cr-ring-fill {
+  from { stroke-dashoffset: var(--cr-ring-circumference); }
+  to { stroke-dashoffset: var(--cr-ring-offset); }
+}
+
+/* Card stagger entrance */
+@keyframes cr-card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Phase interstitial */
+@keyframes cr-interstitial-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes cr-interstitial-out {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(1.02); }
+}
+
+/* Confetti burst */
+@keyframes cr-confetti {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+  100% { transform: translate(var(--cr-confetti-x), var(--cr-confetti-y)) rotate(var(--cr-confetti-r)); opacity: 0; }
+}
+
+/* Progress dot fill */
+@keyframes cr-dot-fill {
+  from { transform: scale(0.8); opacity: 0.5; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [class*="cr-float"],
+  .cr-stepper-pulse,
+  [style*="cr-card-enter"],
+  [style*="cr-interstitial"],
+  [style*="cr-confetti"],
+  [style*="cr-ring-fill"],
+  [style*="cr-dot-fill"] {
+    animation: none !important;
+  }
+}
+
+html[data-motion="reduced"] [class*="cr-float"],
+html[data-motion="reduced"] .cr-stepper-pulse,
+html[data-motion="reduced"] [style*="cr-card-enter"] {
+  animation: none !important;
+}

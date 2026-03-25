@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowRight, ChevronRight, Search } from "lucide-react";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { ChevronRight, Search } from "lucide-react";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
 import { TopNav } from "@/app/book/home/components/TopNav";
 import { InfoModal } from "@/app/book/home/components/InfoModal";
@@ -17,18 +18,23 @@ import type {
   LibraryChapterSummary,
 } from "@/app/book/_lib/library-data";
 import { useBookProgress } from "@/app/book/library/hooks/useBookProgress";
-import { BookOverviewPanel } from "@/app/book/library/[bookId]/components/BookOverviewPanel";
-import { ChapterRow, type ChapterRowState } from "@/app/book/library/[bookId]/components/ChapterRow";
-import { ResetProgressModal } from "@/app/book/library/[bookId]/components/ResetProgressModal";
+import { BookHero } from "./components/BookHero";
+import { ChapterCard, type ChapterCardStatus } from "./components/ChapterCard";
+import { BackgroundOrbs } from "./components/BackgroundOrbs";
+import { BookDetails } from "./components/BookDetails";
+import { ResetProgressModal } from "./components/ResetProgressModal";
 
-type ChapterFilter = "all" | "completed" | "locked";
+/* ── Types ── */
+type ChapterFilter = "all" | "in-progress" | "completed" | "locked";
 
 const chapterFilterOptions: Array<{ id: ChapterFilter; label: string }> = [
   { id: "all", label: "All" },
+  { id: "in-progress", label: "In Progress" },
   { id: "completed", label: "Completed" },
   { id: "locked", label: "Locked" },
 ];
 
+/* ── Main Component ── */
 export function BookDetailClient({
   bookId,
   book,
@@ -37,7 +43,9 @@ export function BookDetailClient({
   book: LibraryBookDetail;
 }) {
   const router = useRouter();
+  const prefersReducedMotion = useReducedMotion();
   const chapterSearchRef = useRef<HTMLInputElement | null>(null);
+  const currentChapterRef = useRef<HTMLDivElement | null>(null);
 
   const [chapterQuery, setChapterQuery] = useState("");
   const [chapterFilter, setChapterFilter] = useState<ChapterFilter>("all");
@@ -45,10 +53,14 @@ export function BookDetailClient({
   const [showResetModal, setShowResetModal] = useState(false);
   const [showRemoveModal, setShowRemoveModal] = useState(false);
 
-  const { state: onboarding, hydrated: onboardingHydrated } = useOnboardingState();
+  // Track whether the initial page-load animation has completed
+  const [hasLoaded, setHasLoaded] = useState(false);
+
+  const { state: onboarding, hydrated: onboardingHydrated } =
+    useOnboardingState();
   const { identity: viewerIdentity } = useBookViewer();
   const { savedSet, toggleSaved, hydrated: savedHydrated } = useSavedBooks(
-    onboarding.setupComplete
+    onboarding.setupComplete,
   );
 
   const entry = useMemo<LibraryBookEntry>(
@@ -61,8 +73,9 @@ export function BookDetailClient({
       isNew: false,
       lastActivityAt: new Date(0).toISOString(),
     }),
-    [book]
+    [book],
   );
+
   const chapters = book.chapters;
   const {
     hydrated,
@@ -78,13 +91,36 @@ export function BookDetailClient({
     resetProgress,
   } = useBookProgress(bookId, chapters);
 
+  const pages =
+    book.pages ?? Math.max(120, Math.round(book.estimatedMinutes * 2.8));
+
+  /* ── Force dark mode on this page ──
+     The dark glassmorphic design uses hardcoded dark-palette colors.
+     In light mode these become invisible/broken. Force dark on mount,
+     restore on unmount so the user's preference is preserved elsewhere. */
+  useEffect(() => {
+    const root = document.documentElement;
+    const wasDark = root.classList.contains("dark");
+    const prevColorScheme = root.style.colorScheme;
+    if (!wasDark) {
+      root.classList.add("dark");
+      root.style.colorScheme = "dark";
+    }
+    return () => {
+      if (!wasDark) {
+        root.classList.remove("dark");
+        root.style.colorScheme = prevColorScheme || "light";
+      }
+    };
+  }, []);
+
   useKeyboardShortcut(
     "/",
     (event) => {
       event.preventDefault();
       chapterSearchRef.current?.focus();
     },
-    { ignoreWhenTyping: true }
+    { ignoreWhenTyping: true },
   );
 
   useEffect(() => {
@@ -96,46 +132,128 @@ export function BookDetailClient({
 
   useEffect(() => {
     if (!lockedToast) return;
-    const timeout = window.setTimeout(() => setLockedToast(null), 1600);
+    const timeout = window.setTimeout(() => setLockedToast(null), 3000);
     return () => window.clearTimeout(timeout);
   }, [lockedToast]);
 
   useEffect(() => {
     if (!onboardingHydrated || !onboarding.setupComplete) return;
-    void fetchBookJson(`/app/api/book/me/books/${encodeURIComponent(bookId)}/start`, {
-      method: "POST",
-    }).catch(() => null);
+    void fetchBookJson(
+      `/app/api/book/me/books/${encodeURIComponent(bookId)}/start`,
+      { method: "POST" },
+    ).catch(() => null);
   }, [bookId, onboarding.setupComplete, onboardingHydrated]);
 
-  const filteredChapters = useMemo(() => {
-    const query = chapterQuery.trim().toLowerCase();
-    return chapters.filter((chapter) => {
-      const state = getChapterState(chapter.id);
-      if (chapterFilter === "completed" && state !== "completed") return false;
-      if (chapterFilter === "locked" && state !== "locked") return false;
+  // Mark initial animation as complete after page load
+  useEffect(() => {
+    const timer = window.setTimeout(() => setHasLoaded(true), 1500);
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  // Auto-scroll to current chapter after mount
+  useEffect(() => {
+    if (!hydrated || !currentChapterRef.current) return;
+    const timer = window.setTimeout(() => {
+      currentChapterRef.current?.scrollIntoView({
+        behavior: prefersReducedMotion ? "auto" : "smooth",
+        block: "center",
+      });
+    }, 900);
+    return () => window.clearTimeout(timer);
+  }, [hydrated, prefersReducedMotion]);
+
+  /* ── Derive chapter card status (4-state) ── */
+  const getCardStatus = useCallback(
+    (chapter: LibraryChapterSummary): ChapterCardStatus => {
+      const base = getChapterState(chapter.id);
+      if (base === "completed") return "completed";
+      if (base === "current") return "in-progress";
+      if (currentChapter) {
+        const currentIdx = chapters.findIndex(
+          (c) => c.id === currentChapter.id,
+        );
+        const thisIdx = chapters.findIndex((c) => c.id === chapter.id);
+        if (thisIdx === currentIdx + 1) return "next-unlockable";
+      }
+      return "locked";
+    },
+    [getChapterState, currentChapter, chapters],
+  );
+
+  /** Steps completed for a chapter (0-4) */
+  const getStepsCompleted = useCallback(
+    (chapterId: string): number => {
+      const state = getChapterState(chapterId);
+      if (state === "completed") return 4;
+      if (state === "current") return 1;
+      return 0;
+    },
+    [getChapterState],
+  );
+
+  /** Check if a chapter matches the current filter + search query */
+  const matchesFilter = useCallback(
+    (chapter: LibraryChapterSummary): boolean => {
+      const status = getCardStatus(chapter);
+      if (chapterFilter === "in-progress" && status !== "in-progress")
+        return false;
+      if (chapterFilter === "completed" && status !== "completed") return false;
+      if (
+        chapterFilter === "locked" &&
+        status !== "locked" &&
+        status !== "next-unlockable"
+      )
+        return false;
+      const query = chapterQuery.trim().toLowerCase();
       if (!query) return true;
       const searchable = `${chapter.title} ${chapter.code}`.toLowerCase();
       return searchable.includes(query);
-    });
-  }, [chapterFilter, chapterQuery, chapters, getChapterState]);
+    },
+    [chapterFilter, chapterQuery, getCardStatus],
+  );
 
-  const openChapter = (chapter: LibraryChapterSummary, options?: { sessionMode?: boolean }) => {
-    const state = getChapterState(chapter.id);
-    if (state === "locked") {
-      setLockedToast("Locked. Pass the current chapter quiz to unlock.");
-      return;
-    }
+  /* ── Navigation ── */
+  const openChapter = useCallback(
+    (
+      chapter: LibraryChapterSummary,
+      options?: { sessionMode?: boolean },
+    ) => {
+      const state = getChapterState(chapter.id);
+      if (state === "locked") {
+        setLockedToast(
+          `Complete Chapter ${currentChapter?.number ?? ""} to unlock this chapter`,
+        );
+        return;
+      }
+      setLastReadChapter(chapter.id);
+      const route = `/book/library/${encodeURIComponent(bookId)}/chapter/${encodeURIComponent(chapter.id)}`;
+      router.push(options?.sessionMode ? `${route}?session=1` : route);
+    },
+    [bookId, currentChapter?.number, getChapterState, router, setLastReadChapter],
+  );
 
-    setLastReadChapter(chapter.id);
-    const route = `/book/library/${encodeURIComponent(bookId)}/chapter/${encodeURIComponent(chapter.id)}`;
-    router.push(options?.sessionMode ? `${route}?session=1` : route);
-  };
   const viewerName = viewerIdentity.displayName || "Reader";
 
-  if (!onboardingHydrated || !hydrated || !savedHydrated || !onboarding.setupComplete) {
+  // Estimate time invested (completed chapters * avg minutes)
+  const timeInvestedMinutes = useMemo(() => {
+    return progress.completedChapterIds.reduce((sum, id) => {
+      const ch = chapters.find((c) => c.id === id);
+      return sum + (ch?.minutes ?? 10);
+    }, 0);
+  }, [progress.completedChapterIds, chapters]);
+
+  const showSearch = chapters.length >= 20;
+
+  /* ── Loading state ── */
+  if (
+    !onboardingHydrated ||
+    !hydrated ||
+    !savedHydrated ||
+    !onboarding.setupComplete
+  ) {
     return (
       <main className="cf-app-shell">
-        <div className="mx-auto flex min-h-screen items-center justify-center px-4 text-(--cf-text-2)">
+        <div className="mx-auto flex min-h-screen items-center justify-center px-4 text-slate-400">
           Loading book details...
         </div>
       </main>
@@ -143,7 +261,9 @@ export function BookDetailClient({
   }
 
   return (
-    <main className="cf-app-shell">
+    <main className="cf-app-shell relative">
+      <BackgroundOrbs />
+
       <TopNav
         name={viewerName}
         activeTab="library"
@@ -154,141 +274,223 @@ export function BookDetailClient({
         logoVariant="dashboard"
       />
 
-      <section className="mx-auto w-full max-w-450 px-4 pb-28 pt-6 sm:px-6 md:pb-24 lg:px-10 xl:px-16">
-        <div className="mb-5 flex items-center gap-2 text-sm text-(--cf-text-2)">
-          <Link href="/book/library" className="hover:text-(--cf-text-1)">
+      {/* All content in relative z-10 to sit above gradient orbs */}
+      <section className="relative z-10 mx-auto w-full max-w-4xl px-4 pb-28 pt-6 sm:px-6 md:pb-24 lg:px-10">
+        {/* Breadcrumb */}
+        <nav className="mb-6 flex items-center gap-2 text-sm">
+          <Link
+            href="/book/library"
+            className="text-slate-400 transition-colors hover:text-slate-200"
+          >
             Library
           </Link>
-          <ChevronRight className="h-4 w-4 text-(--cf-text-3)" />
-          <span className="text-(--cf-text-1)">{book.title}</span>
-        </div>
+          <ChevronRight className="h-3.5 w-3.5 text-slate-600" />
+          <span className="truncate font-medium text-slate-200">
+            {book.title}
+          </span>
+        </nav>
 
-        <div className="grid grid-cols-1 gap-5 lg:grid-cols-[420px_1fr]">
-          <BookOverviewPanel
-            entry={entry}
-            pages={book.pages ?? Math.max(120, Math.round(book.estimatedMinutes * 2.8))}
-            synopsis={book.synopsis}
-            estimatedDaysToFinish={Math.max(
-              1,
-              Math.ceil(
-                Math.max(
-                  (book.pages ?? Math.max(120, Math.round(book.estimatedMinutes * 2.8))) / 2.8,
-                  120
-                ) / Math.max(onboarding.dailyGoalMinutes, 10)
-              )
-            )}
-            progressPercent={progressPercent}
-            avgScore={avgScore}
-            unlockedCount={unlockedCount}
-            completedCount={completedCount}
-            totalCount={totalCount}
-            currentChapterOrder={currentChapter?.number ?? 1}
-            currentChapterMinutes={currentChapter?.minutes ?? 10}
-            onContinue={() =>
-              currentChapter &&
-              openChapter(currentChapter, { sessionMode: progressPercent === 0 })
-            }
-            isSaved={savedSet.has(entry.id)}
-            onToggleSaved={() => void toggleSaved(entry.id, { source: "book-detail" })}
-            onResetProgress={() => setShowResetModal(true)}
-            onRemoveFromLibrary={() => setShowRemoveModal(true)}
-          />
+        {/* ═══════ ZONE 1 — Hero ═══════ */}
+        <BookHero
+          entry={entry}
+          pages={pages}
+          progressPercent={progressPercent}
+          avgScore={avgScore}
+          unlockedCount={unlockedCount}
+          totalCount={totalCount}
+          completedCount={completedCount}
+          currentChapterOrder={currentChapter?.number ?? 1}
+          onContinue={() =>
+            currentChapter &&
+            openChapter(currentChapter, {
+              sessionMode: progressPercent === 0,
+            })
+          }
+          isSaved={savedSet.has(entry.id)}
+          onToggleSaved={() =>
+            void toggleSaved(entry.id, { source: "book-detail" })
+          }
+          timeInvestedMinutes={timeInvestedMinutes}
+        />
 
-          <section className="cf-panel rounded-[30px] p-5 sm:p-6">
-            <div className="flex items-center justify-between gap-3">
-              <h2 className="text-3xl font-semibold tracking-[0.1em] text-(--cf-text-1)">
-                CHAPTERS
-              </h2>
-              <p className="text-sm text-(--cf-text-3)">
-                {completedCount}/{totalCount} completed
-              </p>
-            </div>
+        {/* ═══════ ZONE 2 — Chapter Journey ═══════ */}
+        <motion.section
+          className="mt-10"
+          initial={prefersReducedMotion ? undefined : { opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={
+            prefersReducedMotion
+              ? { duration: 0 }
+              : { duration: 0.4, ease: "easeOut" as const, delay: 0.6 }
+          }
+        >
+          {/* Section header */}
+          <div className="mb-4 flex items-center justify-between gap-3">
+            <h2
+              className="text-lg font-semibold uppercase tracking-widest text-slate-50"
+              style={{ fontFamily: "var(--font-satoshi)" }}
+            >
+              Your Journey
+            </h2>
+            <span className="text-sm text-slate-500">
+              {completedCount}/{totalCount} completed
+            </span>
+          </div>
 
-            <div className="cf-banner cf-banner-info mt-4 rounded-2xl p-3">
-              <p className="cf-kicker text-(--cf-accent)">Resume</p>
-              <p className="mt-1 text-lg font-semibold text-(--cf-text-1)">
-                {currentChapter?.code} {currentChapter?.title}
-              </p>
-              <button
-                type="button"
-                onClick={() =>
-                  currentChapter &&
-                  openChapter(currentChapter, { sessionMode: progressPercent === 0 })
-                }
-                className="cf-btn cf-btn-primary mt-2 rounded-xl px-3 py-1.5 text-sm"
-              >
-                {completedCount > 0 ? "Continue" : "Start"}
-                <ArrowRight className="h-4 w-4" />
-              </button>
-            </div>
-
-            <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <label className="relative block flex-1">
-                <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-(--cf-text-3)" />
+          {/* Filter tabs + search */}
+          <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            {showSearch && (
+              <label className="relative block flex-1 sm:max-w-sm">
+                <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-600" />
                 <input
                   ref={chapterSearchRef}
                   type="search"
                   value={chapterQuery}
-                  onChange={(event) => setChapterQuery(event.target.value)}
+                  onChange={(e) => setChapterQuery(e.target.value)}
                   placeholder="Search chapters..."
-                  className="cf-input w-full rounded-xl px-10 py-2.5 text-sm"
+                  aria-label="Search chapters by title or code"
+                  className="w-full rounded-xl border border-white/8 bg-white/[0.04] py-2.5 pl-10 pr-4 text-sm text-slate-200 placeholder:text-slate-600 transition-all focus-visible:border-indigo-500/30 focus-visible:ring-1 focus-visible:ring-indigo-500/15 focus-visible:outline-none"
                 />
               </label>
-              <div className="flex flex-wrap gap-2">
-                {chapterFilterOptions.map((option) => (
-                  <button
-                    key={option.id}
-                    type="button"
-                    onClick={() => setChapterFilter(option.id)}
-                    className={[
-                      "rounded-full px-3 py-1.5 text-sm transition",
-                      chapterFilter === option.id
-                        ? "cf-chip cf-chip-active"
-                        : "cf-chip hover:border-(--cf-border-strong) hover:text-(--cf-text-1)",
-                    ].join(" ")}
-                  >
-                    {option.label}
-                  </button>
-                ))}
-              </div>
+            )}
+            {/* Filter tab pill container */}
+            <div
+              className="flex items-center gap-0.5 rounded-xl bg-white/[0.04] p-1"
+              role="tablist"
+              aria-label="Filter chapters"
+            >
+              {chapterFilterOptions.map((option) => (
+                <button
+                  key={option.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={chapterFilter === option.id}
+                  onClick={() => setChapterFilter(option.id)}
+                  className={[
+                    "whitespace-nowrap rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200",
+                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400",
+                    chapterFilter === option.id
+                      ? "bg-emerald-500/15 text-emerald-400"
+                      : "text-slate-400 hover:bg-white/[0.04] hover:text-slate-200",
+                  ].join(" ")}
+                >
+                  {option.label}
+                </button>
+              ))}
             </div>
+          </div>
 
-            <div className="mt-4 space-y-2.5 lg:max-h-[calc(100vh-13.5rem)] lg:overflow-y-auto lg:pr-1">
-              {filteredChapters.map((chapter) => {
-                const state = getChapterState(chapter.id) as ChapterRowState;
-                return (
-                  <ChapterRow
-                    key={chapter.id}
+          {/* ── Chapter card list ──
+              Uses CSS transitions for filter show/hide instead of Framer Motion
+              to avoid the disappearing-cards bug. All cards stay in the DOM;
+              visibility is controlled purely by inline styles. */}
+          <div
+            className="flex flex-col gap-3"
+            role="tabpanel"
+            aria-label="Chapter list"
+          >
+            {chapters.map((chapter, index) => {
+              const status = getCardStatus(chapter);
+              const isCurrent = status === "in-progress";
+              const isVisible = matchesFilter(chapter);
+
+              return (
+                <div
+                  key={chapter.id}
+                  ref={isCurrent ? currentChapterRef : undefined}
+                  className="transition-all duration-300 ease-in-out"
+                  style={{
+                    maxHeight: isVisible ? "200px" : "0px",
+                    opacity: isVisible ? 1 : 0,
+                    marginBottom: isVisible ? "0px" : "-12px",
+                    overflow: "hidden",
+                    pointerEvents: isVisible ? "auto" : "none",
+                    transform: isVisible ? "scale(1)" : "scale(0.98)",
+                    // Stagger entrance animation on initial page load
+                    ...(hasLoaded
+                      ? {}
+                      : {
+                          animationDelay: `${0.6 + index * 0.06}s`,
+                          animationDuration: "0.4s",
+                          animationTimingFunction: "ease-out",
+                          animationFillMode: "both",
+                          animationName: "bd-card-enter",
+                        }),
+                  }}
+                >
+                  <ChapterCard
                     chapter={chapter}
-                    state={state}
+                    status={status}
                     score={progress.chapterScores[chapter.id]}
-                    hint="Complete the current chapter quiz to unlock"
+                    stepsCompleted={getStepsCompleted(chapter.id)}
+                    isCurrent={isCurrent}
                     onClick={() => openChapter(chapter)}
+                    onLockedClick={() =>
+                      setLockedToast(
+                        `Complete Chapter ${currentChapter?.number ?? ""} to unlock this chapter`,
+                      )
+                    }
                   />
-                );
-              })}
-            </div>
-          </section>
-        </div>
+                </div>
+              );
+            })}
+
+            {/* Empty state when no chapters match filter */}
+            {chapters.every((ch) => !matchesFilter(ch)) && (
+              <p className="py-8 text-center text-sm text-slate-500">
+                No chapters match this filter.
+              </p>
+            )}
+          </div>
+        </motion.section>
+
+        {/* ═══════ ZONE 3 — Book Details ═══════ */}
+        <motion.div
+          className="mt-8"
+          initial={prefersReducedMotion ? undefined : { opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={
+            prefersReducedMotion
+              ? { duration: 0 }
+              : { duration: 0.4, ease: "easeOut" as const, delay: 0.8 }
+          }
+        >
+          <BookDetails
+            entry={entry}
+            synopsis={book.synopsis}
+            estimatedDaysToFinish={Math.max(
+              1,
+              Math.ceil(
+                Math.max(pages / 2.8, 120) /
+                  Math.max(onboarding.dailyGoalMinutes, 10),
+              ),
+            )}
+            onResetProgress={() => setShowResetModal(true)}
+            onRemoveFromLibrary={() => setShowRemoveModal(true)}
+          />
+        </motion.div>
       </section>
 
-      {currentChapter ? (
+      {/* Mobile sticky CTA */}
+      {currentChapter && (
         <div className="fixed bottom-20 left-4 right-4 z-50 lg:hidden">
           <button
             type="button"
             onClick={() =>
-              openChapter(currentChapter, { sessionMode: progressPercent === 0 })
+              openChapter(currentChapter, {
+                sessionMode: progressPercent === 0,
+              })
             }
-            className="cf-btn cf-btn-primary w-full rounded-2xl px-4 py-3 text-base"
+            className="w-full rounded-2xl bg-emerald-500 px-4 py-3 text-base font-semibold text-[#0B0F1A] shadow-[0_0_20px_rgba(52,211,153,0.25)] transition-all hover:bg-emerald-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0F1A]"
           >
             {completedCount > 0
               ? `Continue Chapter ${currentChapter.number}`
               : `Start Chapter ${currentChapter.number}`}
-            <ArrowRight className="h-4.5 w-4.5" />
           </button>
         </div>
-      ) : null}
+      )}
 
+      {/* Modals */}
       <ResetProgressModal
         open={showResetModal}
         onClose={() => setShowResetModal(false)}
@@ -303,7 +505,10 @@ export function BookDetailClient({
         title="Remove from library?"
         onClose={() => setShowRemoveModal(false)}
       >
-        <p>Removing this book will clear your reading progress for this title. This cannot be undone.</p>
+        <p>
+          Removing this book will clear your reading progress for this title.
+          This cannot be undone.
+        </p>
         <button
           type="button"
           onClick={() => setShowRemoveModal(false)}
@@ -313,11 +518,20 @@ export function BookDetailClient({
         </button>
       </InfoModal>
 
-      {lockedToast ? (
-        <div className="cf-panel-strong fixed bottom-24 left-1/2 z-50 -translate-x-1/2 rounded-xl px-3 py-2 text-sm text-(--cf-text-1)">
-          {lockedToast}
-        </div>
-      ) : null}
+      {/* Locked toast */}
+      <AnimatePresence>
+        {lockedToast && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.2 }}
+            className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-xl border border-white/12 bg-[#1F2937] px-5 py-3 text-sm text-slate-200 shadow-2xl"
+          >
+            {lockedToast}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   );
 }
