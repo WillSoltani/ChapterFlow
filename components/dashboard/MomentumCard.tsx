@@ -22,8 +22,8 @@ export function MomentumCard() {
           style={{
             width: 48,
             height: 48,
-            background: "rgba(232,185,49,0.08)",
-            border: "1px solid rgba(232,185,49,0.15)",
+            background: "var(--cf-gold-soft)",
+            border: "1px solid var(--cf-gold-border)",
             boxShadow: "0 0 12px var(--accent-gold-glow)",
           }}
         >

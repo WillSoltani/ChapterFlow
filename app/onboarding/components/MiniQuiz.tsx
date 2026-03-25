@@ -115,7 +115,7 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
         style={{
           fontFamily: "var(--font-dm-sans, sans-serif)",
           fontSize: 15,
-          color: "var(--text-secondary, #8B8B9E)",
+          color: "var(--cf-text-3)",
           marginBottom: 24,
         }}
       >
@@ -136,7 +136,7 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
               fontFamily: "var(--font-dm-sans, sans-serif)",
               fontSize: 12,
               fontWeight: 500,
-              color: "var(--text-muted, #5A5A6E)",
+              color: "var(--cf-text-soft)",
               textTransform: "uppercase",
               letterSpacing: "0.06em",
               marginBottom: 12,
@@ -151,7 +151,7 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
               fontFamily: "var(--font-dm-sans, sans-serif)",
               fontSize: 18,
               fontWeight: 500,
-              color: "var(--text-primary, #E2E2E6)",
+              color: "var(--cf-text-1)",
               lineHeight: 1.5,
               marginBottom: 20,
             }}
@@ -173,8 +173,8 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
               const dimmed =
                 showFeedback && !isThisSelected && !isThisCorrect;
 
-              let borderStyle = "1px solid rgba(255,255,255,0.08)";
-              let bg = "rgba(255,255,255,0.04)";
+              let borderStyle = "1px solid var(--cf-border)";
+              let bg = "var(--cf-surface-muted)";
 
               if (showFeedback) {
                 if (isThisCorrect) {
@@ -223,7 +223,7 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
                     style={{
                       fontFamily: "var(--font-dm-sans, sans-serif)",
                       fontSize: 15,
-                      color: "rgba(255,255,255,0.90)",
+                      color: "var(--cf-text-1)",
                       lineHeight: 1.4,
                     }}
                   >
@@ -285,7 +285,7 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
                   fontSize: 14,
                   marginTop: 14,
                   fontWeight: isCorrect ? 500 : 400,
-                  color: isCorrect ? "#3ECFB2" : "rgba(255,255,255,0.50)",
+                  color: isCorrect ? "#3ECFB2" : "var(--cf-text-3)",
                   lineHeight: 1.5,
                 }}
               >

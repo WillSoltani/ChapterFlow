@@ -28,10 +28,10 @@ export function RewardsCard({
     <motion.div
       className="flex-1 rounded-xl p-5"
       style={{
-        background: "rgba(255,255,255,0.04)",
+        background: "var(--cf-surface-muted)",
         backdropFilter: "blur(16px) saturate(125%)",
         WebkitBackdropFilter: "blur(16px) saturate(125%)",
-        border: "1px solid rgba(255,255,255,0.08)",
+        border: "1px solid var(--cf-border)",
       }}
       initial={prefersReducedMotion ? undefined : { opacity: 0, y: 16 }}
       whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
@@ -44,13 +44,13 @@ export function RewardsCard({
     >
       {/* Points balance with shine sweep */}
       <div className="flex items-center gap-2">
-        <span aria-hidden="true" style={{ color: "#7C3AED", fontSize: 18 }}>
+        <span aria-hidden="true" style={{ color: "var(--cf-accent)", fontSize: 18 }}>
           ◆
         </span>
         <span className="relative inline-block overflow-hidden">
           <span
             className="font-(family-name:--font-jetbrains) text-2xl font-bold tabular-nums"
-            style={{ color: "#F0F0F0" }}
+            style={{ color: "var(--cf-text-1)" }}
           >
             {flowPoints.toLocaleString()}
           </span>
@@ -74,7 +74,7 @@ export function RewardsCard({
             />
           )}
         </span>
-        <span className="text-xs" style={{ color: "#A0A0B8" }}>
+        <span className="text-xs" style={{ color: "var(--cf-text-3)" }}>
           Flow Points
         </span>
       </div>
@@ -83,7 +83,7 @@ export function RewardsCard({
       <div className="mt-3">
         <div
           className="h-1.5 overflow-hidden rounded-full"
-          style={{ background: "rgba(255,255,255,0.06)" }}
+          style={{ background: "var(--cf-surface-muted)" }}
           role="progressbar"
           aria-valuenow={flowPoints}
           aria-valuemin={0}
@@ -105,12 +105,12 @@ export function RewardsCard({
             }
           />
         </div>
-        <p className="mt-1.5 text-xs" style={{ color: "#6B6B80" }}>
-          <span className="tabular-nums" style={{ color: "#A0A0B8" }}>
+        <p className="mt-1.5 text-xs" style={{ color: "var(--cf-text-soft)" }}>
+          <span className="tabular-nums" style={{ color: "var(--cf-text-3)" }}>
             {flowPoints}
           </span>{" "}
           / {pointsRequired} →{" "}
-          <span style={{ color: "#A0A0B8" }}>{nextRewardName}</span>
+          <span style={{ color: "var(--cf-text-3)" }}>{nextRewardName}</span>
         </p>
       </div>
 
@@ -121,10 +121,10 @@ export function RewardsCard({
             key={item.label}
             className="flex items-center justify-between text-xs"
           >
-            <span style={{ color: "#A0A0B8" }}>{item.label}</span>
+            <span style={{ color: "var(--cf-text-3)" }}>{item.label}</span>
             <span
               className="tabular-nums font-medium"
-              style={{ color: "#7C3AED" }}
+              style={{ color: "var(--cf-accent)" }}
             >
               +{item.points} pts
             </span>
@@ -137,7 +137,7 @@ export function RewardsCard({
         <Link
           href="/pricing"
           className="mt-3 block text-[11px] transition-colors hover:text-violet-300"
-          style={{ color: "#6B6B80" }}
+          style={{ color: "var(--cf-text-soft)" }}
         >
           2x points with Pro ✨
         </Link>

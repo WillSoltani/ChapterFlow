@@ -3,14 +3,26 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { Search, Settings, Sun, X } from "lucide-react";
+import {
+  Bookmark,
+  ChevronDown,
+  Home,
+  LayoutGrid,
+  Search,
+  Settings,
+  Shield,
+  TrendingUp,
+  User,
+  X,
+} from "lucide-react";
 import { MOCK_BOOKS, type LibraryBook } from "@/components/library/libraryData";
+import { ThemeModeToggle } from "@/components/ThemeModeToggle";
 
 const navLinks = [
-  { label: "Home", href: "/dashboard" },
-  { label: "Library", href: "/book/library" },
-  { label: "Progress", href: "/book/progress" },
-  { label: "Badges", href: "/book/badges" },
+  { label: "Home", href: "/dashboard", icon: Home },
+  { label: "Library", href: "/book/library", icon: LayoutGrid },
+  { label: "Progress", href: "/book/progress", icon: TrendingUp },
+  { label: "Badges", href: "/book/badges", icon: Shield },
 ];
 
 function searchBooks(query: string): LibraryBook[] {
@@ -29,6 +41,8 @@ export function DashboardNavbar() {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [query, setQuery] = useState("");
   const [focused, setFocused] = useState(false);
+  const [showProfileMenu, setShowProfileMenu] = useState(false);
+  const profileMenuRef = useRef<HTMLDivElement>(null);
 
   const results = searchBooks(query);
   const showDropdown = focused && query.trim().length > 0;
@@ -66,10 +80,21 @@ export function DashboardNavbar() {
       ) {
         setFocused(false);
       }
+      if (
+        profileMenuRef.current &&
+        !profileMenuRef.current.contains(e.target as Node)
+      ) {
+        setShowProfileMenu(false);
+      }
     }
     document.addEventListener("mousedown", handleClick);
     return () => document.removeEventListener("mousedown", handleClick);
   }, []);
+
+  // Close profile menu on route change
+  useEffect(() => {
+    setShowProfileMenu(false);
+  }, [pathname]);
 
   const handleSubmit = useCallback(
     (e: React.FormEvent) => {
@@ -94,14 +119,15 @@ export function DashboardNavbar() {
 
   return (
     <header
-      className="sticky top-0 z-40 flex h-14 items-center justify-between px-5 md:px-7"
+      className="sticky top-0 z-40"
       style={{
-        background: "rgba(8,8,12,0.88)",
-        backdropFilter: "blur(14px)",
-        WebkitBackdropFilter: "blur(14px)",
-        borderBottom: "1px solid var(--border-subtle)",
+        background: "var(--cf-topbar-bg)",
+        backdropFilter: "blur(20px) saturate(1.4)",
+        WebkitBackdropFilter: "blur(20px) saturate(1.4)",
+        borderBottom: "1px solid var(--cf-divider)",
       }}
     >
+      <div className="mx-auto flex h-14 w-full max-w-450 items-center justify-between px-4 sm:px-6 lg:px-10 xl:px-16">
       {/* Left cluster */}
       <div className="flex items-center gap-8">
         {/* Logo + brand */}
@@ -144,26 +170,27 @@ export function DashboardNavbar() {
         </Link>
 
         {/* Nav links — desktop only */}
-        <nav className="hidden items-center gap-6 md:flex">
+        <nav className="hidden items-center gap-0.5 md:flex">
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
+            const Icon = link.icon;
             return (
               <Link
                 key={link.label}
                 href={link.href}
-                className={`relative text-[13px] transition-colors ${
-                  isActive ? "font-semibold" : "nav-link font-normal"
-                }`}
-                style={{
-                  color: isActive
-                    ? "var(--text-heading)"
-                    : "var(--text-secondary)",
-                }}
+                className={[
+                  "relative inline-flex items-center gap-1.5 rounded-xl px-3.5 py-2 text-sm font-medium transition duration-150",
+                  isActive
+                    ? "bg-(--cf-accent-soft) text-(--cf-accent)"
+                    : "text-[var(--text-secondary)] hover:bg-(--cf-surface-muted) hover:text-[var(--text-heading)]",
+                ].join(" ")}
+                aria-current={isActive ? "page" : undefined}
               >
+                <Icon className={isActive ? "h-3.5 w-3.5 text-[var(--accent-blue)]" : "h-3.5 w-3.5"} />
                 {link.label}
                 {isActive && (
                   <span
-                    className="absolute -bottom-1 left-0 h-[2px] w-full rounded-full"
+                    className="absolute bottom-0 left-1/2 h-0.5 w-5 -translate-x-1/2 rounded-full"
                     style={{ background: "var(--accent-blue)" }}
                   />
                 )}
@@ -174,7 +201,7 @@ export function DashboardNavbar() {
       </div>
 
       {/* Right cluster */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-1.5">
         {/* Search — desktop */}
         <div className="relative hidden md:block">
           <form onSubmit={handleSubmit}>
@@ -244,7 +271,7 @@ export function DashboardNavbar() {
               style={{
                 background: "var(--bg-raised)",
                 border: "1px solid var(--border-medium)",
-                boxShadow: "0 16px 48px rgba(0,0,0,0.5)",
+                boxShadow: "var(--cf-shadow-lg)",
                 backdropFilter: "blur(20px)",
                 WebkitBackdropFilter: "blur(20px)",
               }}
@@ -265,7 +292,7 @@ export function DashboardNavbar() {
                       className="flex w-full cursor-pointer items-center gap-3 px-4 py-2.5 text-left transition-colors"
                       onMouseEnter={(e) => {
                         e.currentTarget.style.background =
-                          "rgba(255,255,255,0.04)";
+                          "var(--cf-surface-muted)";
                       }}
                       onMouseLeave={(e) => {
                         e.currentTarget.style.background = "transparent";
@@ -345,9 +372,7 @@ export function DashboardNavbar() {
         <button
           type="button"
           onClick={() => {
-            // On mobile, navigate to library with search focus
             if (pathname === "/book/library") {
-              // Already on library — scroll to browse and focus
               document
                 .getElementById("browse-all")
                 ?.scrollIntoView({ behavior: "smooth" });
@@ -362,39 +387,74 @@ export function DashboardNavbar() {
           <Search size={18} />
         </button>
 
-        {/* Theme toggle — no-op for now */}
-        <button
-          className="hidden cursor-pointer md:flex"
-          style={{ color: "var(--text-muted)" }}
-          aria-label="Toggle theme"
-        >
-          <Sun size={18} />
-        </button>
+        {/* Theme toggle — matches TopNav */}
+        <ThemeModeToggle className="h-9" />
 
         {/* Settings */}
         <Link
           href="/book/settings"
-          className="hidden items-center justify-center md:flex"
-          style={{ color: "var(--text-muted)" }}
+          className="hidden h-9 w-9 items-center justify-center rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-3) transition hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1) md:inline-flex"
           aria-label="Settings"
         >
-          <Settings size={18} />
+          <Settings className="h-4 w-4" />
         </Link>
 
-        {/* Avatar — links to profile */}
-        <Link
-          href="/book/profile"
-          className="flex items-center justify-center rounded-full font-(family-name:--font-display) text-[13px] font-semibold text-white"
-          style={{
-            width: 30,
-            height: 30,
-            background:
-              "linear-gradient(135deg, var(--accent-blue), var(--accent-teal))",
-          }}
-          aria-label="Profile"
-        >
-          W
-        </Link>
+        {/* Profile */}
+        <div ref={profileMenuRef} className="relative flex items-center gap-1.5">
+          <Link
+            href="/book/profile"
+            className="inline-flex h-9 items-center gap-2 rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) px-2.5 text-(--cf-text-1) transition hover:bg-(--cf-accent-muted)"
+            aria-label="Profile"
+          >
+            <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-linear-to-br from-(--cf-accent) to-(--cf-accent-strong) text-xs font-bold text-white shadow-[0_0_10px_var(--cf-accent-shadow)]">
+              W
+            </span>
+            <span className="hidden text-sm font-medium md:inline-flex">Reader</span>
+          </Link>
+
+          <button
+            type="button"
+            onClick={() => setShowProfileMenu((prev) => !prev)}
+            className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-3) transition hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)"
+            aria-label="Open profile menu"
+            aria-expanded={showProfileMenu}
+          >
+            <ChevronDown className="h-4 w-4" />
+          </button>
+
+          {showProfileMenu && (
+            <div className="cf-panel-strong absolute right-0 top-11 w-56 rounded-2xl p-2">
+              <div className="border-b border-(--cf-divider) px-3 py-2.5">
+                <p className="text-sm font-semibold text-(--cf-text-1)">Reader</p>
+                <p className="text-xs text-(--cf-text-3)">ChapterFlow</p>
+              </div>
+              <div className="mt-1 space-y-0.5">
+                <Link
+                  href="/book/profile"
+                  className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-(--cf-text-2) transition hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)"
+                >
+                  <User className="h-3.5 w-3.5 text-(--cf-text-3)" />
+                  Profile
+                </Link>
+                <Link
+                  href="/book/saved"
+                  className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-(--cf-text-2) transition hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)"
+                >
+                  <Bookmark className="h-3.5 w-3.5 text-(--cf-text-3)" />
+                  Read Next
+                </Link>
+                <Link
+                  href="/book/settings"
+                  className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-(--cf-text-2) transition hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)"
+                >
+                  <Settings className="h-3.5 w-3.5 text-(--cf-text-3)" />
+                  Settings
+                </Link>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
       </div>
     </header>
   );

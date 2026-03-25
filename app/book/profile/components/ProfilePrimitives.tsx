@@ -127,12 +127,12 @@ function StreakFlame({ active, size = 28, streakDays = 0 }: { active: boolean; s
         >
           <path
             d="M14 1C14 1 5 10.5 5 17C5 22.52 9.03 27 14 27C18.97 27 23 22.52 23 17C23 10.5 14 1 14 1Z"
-            fill={active ? "url(#flameGradV2)" : "#4b5563"}
+            fill={active ? "url(#flameGradV2)" : "var(--cf-text-soft)"}
             opacity={active ? 1 : 0.6}
           />
           <path
             d="M14 27C11.79 27 10 24.88 10 22.1C10 19.32 14 14 14 14C14 14 18 19.32 18 22.1C18 24.88 16.21 27 14 27Z"
-            fill={active ? "#fde68a" : "#6b7280"}
+            fill={active ? "#fde68a" : "var(--cf-text-soft)"}
             opacity={active ? 0.9 : 0.3}
           />
           <defs>
@@ -428,7 +428,7 @@ export function IdentityHeroBanner({
       className="relative overflow-hidden rounded-[34px] border border-(--cf-border) bg-(--cf-surface-strong) p-6 shadow-sm sm:p-7 lg:p-8"
     >
       <div className="pointer-events-none absolute inset-0 bg-radial-[circle_at_top_left] from-sky-500/22 via-cyan-400/10 to-transparent" />
-      <div className="pointer-events-none absolute -right-20 top-0 h-72 w-72 rounded-full bg-white/[0.04] blur-3xl" />
+      <div className="pointer-events-none absolute -right-20 top-0 h-72 w-72 rounded-full bg-(--cf-surface-muted) blur-3xl" />
 
       {/* A2: Pro animated ring CSS */}
       {isPro ? (
@@ -587,7 +587,7 @@ export function StickyMiniHeader({
       className="fixed left-0 right-0 top-[56px] z-20 border-b border-(--cf-border) bg-(--cf-surface-strong)/95"
       style={{ pointerEvents: visible ? "auto" : "none" }}
     >
-      <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-4 py-2 sm:px-6">
+      <div className="mx-auto flex max-w-450 items-center justify-between gap-3 px-4 py-2 sm:px-6 lg:px-10 xl:px-16">
         <div className="flex items-center gap-3">
           <div className="flex h-7 w-7 items-center justify-center overflow-hidden rounded-full border border-(--cf-border) bg-(--cf-surface-muted)">
             {avatar ? (
@@ -923,48 +923,78 @@ export function HeatmapCalendar({ cells }: { cells: HeatmapCell[] }) {
   const today = todayKey();
   const [tooltip, setTooltip] = useState<{ key: string; text: string } | null>(null);
 
+  // Build a 7-row grid (Mon-Sun rows × ~5 week columns)
+  const DOW_LABELS = ["Mon", "", "Wed", "", "Fri", "", "Sun"];
+  // Organize cells into rows by day of week
+  const rows: (HeatmapCell | null)[][] = Array.from({ length: 7 }, () => []);
+  for (const cell of last30) {
+    const d = new Date(`${cell.key}T12:00:00`);
+    const dow = (d.getDay() + 6) % 7; // 0=Mon, 6=Sun
+    rows[dow].push(cell);
+  }
+  // Pad rows to equal length
+  const maxCols = Math.max(...rows.map((r) => r.length), 1);
+  for (const row of rows) {
+    while (row.length < maxCols) row.unshift(null);
+  }
+
   return (
     <div>
-      <div className="flex flex-wrap gap-1.5">
-        {last30.map((cell) => {
-          const isToday = cell.key === today;
-          const tipText = cell.minutes > 0
-            ? `${cell.dateLabel} — ${cell.chapters} chapter${cell.chapters !== 1 ? "s" : ""} read`
-            : `${cell.dateLabel} — No activity`;
-          return (
-            <div
-              key={cell.key}
-              className={cn(
-                "group relative h-5 w-5 cursor-default rounded-[5px] border transition-colors sm:h-6 sm:w-6",
-                HEATMAP_COLORS[cell.level] ?? HEATMAP_COLORS[0],
-                isToday ? "border-white/30 ring-1 ring-white/20" : "border-white/5",
-                isToday && cell.level === 0 && "border-dashed border-white/25"
-              )}
-              role="img"
-              aria-label={`${cell.dateLabel}: ${cell.minutes} minutes, ${cell.chapters} chapters${isToday ? " — today" : ""}`}
-              onMouseEnter={() => setTooltip({ key: cell.key, text: tipText })}
-              onMouseLeave={() => setTooltip(null)}
-              onClick={() => setTooltip((prev) => prev?.key === cell.key ? null : { key: cell.key, text: tipText })}
-            >
-              {isToday ? (
-                <span className="absolute -right-0.5 -top-0.5 h-1.5 w-1.5 rounded-full bg-white/70" />
-              ) : null}
-              {/* Tooltip */}
-              {tooltip?.key === cell.key ? (
-                <span className="pointer-events-none absolute -top-8 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-md border border-white/10 bg-slate-800/95 px-2 py-1 text-[11px] text-slate-200 shadow-lg">
-                  {tooltip.text}
-                  <span className="absolute -bottom-1 left-1/2 h-2 w-2 -translate-x-1/2 rotate-45 border-b border-r border-white/10 bg-slate-800/95" />
-                </span>
-              ) : null}
+      <div className="flex gap-1">
+        {/* Day-of-week labels */}
+        <div className="flex flex-col gap-1.5 pr-1.5 pt-0">
+          {DOW_LABELS.map((label, i) => (
+            <div key={i} className="flex h-5 items-center sm:h-6">
+              <span className="w-6 text-right font-mono text-[10px] text-(--cf-text-soft)">{label}</span>
             </div>
-          );
-        })}
+          ))}
+        </div>
+        {/* Grid */}
+        <div className="flex flex-1 flex-col gap-1.5">
+          {rows.map((row, rowIdx) => (
+            <div key={rowIdx} className="flex gap-1.5">
+              {row.map((cell, colIdx) => {
+                if (!cell) return <div key={`empty-${rowIdx}-${colIdx}`} className="h-5 w-5 sm:h-6 sm:w-6" />;
+                const isToday = cell.key === today;
+                const tipText = cell.minutes > 0
+                  ? `${cell.dateLabel} — ${cell.chapters} chapter${cell.chapters !== 1 ? "s" : ""} read`
+                  : `${cell.dateLabel} — No activity`;
+                return (
+                  <div
+                    key={cell.key}
+                    className={cn(
+                      "group relative h-5 w-5 cursor-default rounded-[5px] border transition-colors sm:h-6 sm:w-6",
+                      HEATMAP_COLORS[cell.level] ?? HEATMAP_COLORS[0],
+                      isToday ? "border-(--cf-border-strong) ring-1 ring-(--cf-border)" : "border-(--cf-border)",
+                      isToday && cell.level === 0 && "border-dashed border-(--cf-border-strong)"
+                    )}
+                    role="img"
+                    aria-label={`${cell.dateLabel}: ${cell.minutes} minutes, ${cell.chapters} chapters${isToday ? " — today" : ""}`}
+                    onMouseEnter={() => setTooltip({ key: cell.key, text: tipText })}
+                    onMouseLeave={() => setTooltip(null)}
+                    onClick={() => setTooltip((prev) => prev?.key === cell.key ? null : { key: cell.key, text: tipText })}
+                  >
+                    {isToday ? (
+                      <span className="absolute -right-0.5 -top-0.5 h-1.5 w-1.5 rounded-full bg-(--cf-text-1)" />
+                    ) : null}
+                    {tooltip?.key === cell.key ? (
+                      <span className="pointer-events-none absolute -top-8 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-md border border-(--cf-border) bg-(--cf-surface-strong) px-2 py-1 text-[11px] text-(--cf-text-2) shadow-lg">
+                        {tooltip.text}
+                        <span className="absolute -bottom-1 left-1/2 h-2 w-2 -translate-x-1/2 rotate-45 border-b border-r border-(--cf-border) bg-(--cf-surface-strong)" />
+                      </span>
+                    ) : null}
+                  </div>
+                );
+              })}
+            </div>
+          ))}
+        </div>
       </div>
       <div className="mt-3 flex items-center justify-between">
         <div className="flex items-center gap-2 text-[11px] text-(--cf-text-soft)">
           <span>Less</span>
           {HEATMAP_COLORS.map((color, i) => (
-            <div key={i} className={cn("h-3.5 w-3.5 rounded-[3px] border border-white/5", color)} />
+            <div key={i} className={cn("h-3.5 w-3.5 rounded-[3px] border border-(--cf-border)", color)} />
           ))}
           <span>More</span>
         </div>
@@ -1017,7 +1047,7 @@ export function Sparkline({ data }: { data: number[] }) {
         ref={pathRef}
         d={line}
         fill="none"
-        stroke="#3b82f6"
+        stroke="var(--cf-accent)"
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -1029,7 +1059,7 @@ export function Sparkline({ data }: { data: number[] }) {
         cx={lastX}
         cy={lastY}
         r="3"
-        fill="#3b82f6"
+        fill="var(--cf-accent)"
         initial={{ scale: 0, opacity: 0 }}
         animate={isInView ? { scale: 1, opacity: 1 } : {}}
         transition={{ delay: 1.2, duration: 0.3, ease: "easeOut" }}
@@ -1047,12 +1077,12 @@ export function ActiveDaysRing({ active, total }: { active: number; total: numbe
   const r = 32;
   const circ = 2 * Math.PI * r;
   const offset = circ - (pct / 100) * circ;
-  const color = pct >= 100 ? "#f59e0b" : pct >= 50 ? "#10b981" : "#3b82f6";
+  const color = pct >= 100 ? "var(--accent-gold)" : pct >= 50 ? "var(--cf-success-text)" : "var(--cf-accent)";
 
   return (
     <div className="flex flex-col items-center gap-1">
       <svg width="80" height="80" viewBox="0 0 80 80" aria-label={`${active} of ${total} active days`}>
-        <circle cx="40" cy="40" r={r} fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="5" />
+        <circle cx="40" cy="40" r={r} fill="none" stroke="var(--cf-border)" strokeWidth="5" />
         <motion.circle
           cx="40" cy="40" r={r} fill="none"
           stroke={color} strokeWidth="5" strokeLinecap="round"
@@ -1293,7 +1323,7 @@ export function UpNextPreview({
   onClick: () => void;
 }) {
   return (
-    <div className="mt-4 border-t border-white/[0.06] pt-4">
+    <div className="mt-4 border-t border-(--cf-divider) pt-4">
       <button type="button" onClick={onClick} className="group flex items-center gap-2 text-left text-sm text-(--cf-text-3) transition hover:text-(--cf-text-2)">
         <BookOpen className="h-4 w-4 shrink-0" />
         <span>
@@ -1309,13 +1339,160 @@ export function UpNextPreview({
 }
 
 /* ═══════════════════════════════════════════════════════
+   This Week Calendar Strip (E1)
+   ═══════════════════════════════════════════════════════ */
+
+const SHORT_DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
+export function ThisWeekStrip({ cells }: { cells: HeatmapCell[] }) {
+  const todayStr = todayKey();
+  const todayDate = new Date(`${todayStr}T12:00:00`);
+  const todayDow = (todayDate.getDay() + 6) % 7; // 0=Mon
+
+  // Build Mon-Sun for current week
+  const weekCells: (HeatmapCell | null)[] = [];
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(todayDate);
+    d.setDate(d.getDate() - todayDow + i);
+    const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+    const cell = cells.find((c) => c.key === key) ?? null;
+    weekCells.push(cell);
+  }
+
+  return (
+    <div className="border-t border-(--cf-divider) pt-3">
+      <p className="mb-2 text-[11px] uppercase tracking-[0.22em] text-(--cf-text-soft)">This week</p>
+      <div className="flex items-center justify-between gap-1">
+        {weekCells.map((cell, i) => {
+          const isToday = i === todayDow;
+          const isFuture = i > todayDow;
+          const hasActivity = cell ? cell.minutes > 0 : false;
+          return (
+            <div key={i} className="flex flex-col items-center gap-1">
+              <span className="text-[10px] text-(--cf-text-soft)">{SHORT_DAYS[i]}</span>
+              <div
+                className={cn(
+                  "flex h-7 w-7 items-center justify-center rounded-full text-xs font-medium transition-all",
+                  isFuture && "text-(--cf-text-soft)",
+                  !isFuture && hasActivity && "bg-emerald-500/20 text-emerald-400",
+                  !isFuture && !hasActivity && !isToday && "text-(--cf-text-soft)",
+                  isToday && !hasActivity && "border border-dashed border-(--cf-accent)/40 text-(--cf-accent)",
+                  isToday && hasActivity && "bg-emerald-500/20 text-emerald-400 ring-1 ring-(--cf-accent)/30"
+                )}
+              >
+                {isFuture ? "○" : hasActivity ? "✓" : isToday ? "●" : "○"}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════
+   Knowledge / Category Map (E2)
+   ═══════════════════════════════════════════════════════ */
+
+export function CategoryMap({
+  explored,
+  totalCategories,
+  onCategoryClick,
+}: {
+  explored: { name: string; chapters: number }[];
+  totalCategories: number;
+  onCategoryClick?: (category: string) => void;
+}) {
+  const remaining = totalCategories - explored.length;
+  return (
+    <div>
+      <div className="flex items-center justify-between">
+        <p className="text-[11px] uppercase tracking-[0.22em] text-(--cf-text-soft)">
+          Categories explored
+        </p>
+        <span className="text-xs text-(--cf-text-3)">
+          {explored.length} of {totalCategories}
+        </span>
+      </div>
+      <div className="mt-2 flex flex-wrap gap-1.5">
+        {explored.map((cat) => (
+          <button
+            key={cat.name}
+            type="button"
+            onClick={() => onCategoryClick?.(cat.name)}
+            className="rounded-full border border-blue-500/10 bg-blue-500/10 px-2.5 py-1 text-[11px] text-blue-400 transition hover:bg-blue-500/15"
+          >
+            {cat.name} · {cat.chapters}
+          </button>
+        ))}
+        {remaining > 0 ? (
+          <span className="px-2 py-1 text-[11px] text-(--cf-text-soft)">
+            +{remaining} more to discover
+          </span>
+        ) : null}
+      </div>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════
+   Staggered Badge Grid (B6) — wrapper with staggerChildren
+   ═══════════════════════════════════════════════════════ */
+
+const badgeContainerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.06 } },
+};
+
+const badgeItemVariants = {
+  hidden: { opacity: 0, y: 16, scale: 0.95 },
+  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] as const } },
+};
+
+export function StaggeredBadgeGrid({ children, className }: { children: ReactNode; className?: string }) {
+  return (
+    <motion.div
+      className={className}
+      variants={badgeContainerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-40px" }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+export function StaggeredBadgeItem({ children }: { children: ReactNode }) {
+  return (
+    <motion.div variants={badgeItemVariants}>
+      {children}
+    </motion.div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════
+   New Badge Celebration Dot (B8)
+   ═══════════════════════════════════════════════════════ */
+
+export function NewBadgeDot() {
+  return (
+    <motion.span
+      className="absolute -right-1 -top-1 z-10 h-2.5 w-2.5 rounded-full bg-amber-400"
+      animate={{ scale: [1, 1.3, 1], opacity: [0.7, 1, 0.7] }}
+      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+    />
+  );
+}
+
+/* ═══════════════════════════════════════════════════════
    Skeleton loading (H5)
    ═══════════════════════════════════════════════════════ */
 
 function Shimmer({ className }: { className?: string }) {
   return (
     <div className={cn("animate-pulse rounded-2xl bg-(--cf-surface-muted)", className)}>
-      <div className="h-full w-full rounded-2xl bg-linear-to-r from-transparent via-white/5 to-transparent" style={{ animation: "shimmer 1.5s infinite", backgroundSize: "200% 100%" }} />
+      <div className="h-full w-full rounded-2xl bg-linear-to-r from-transparent via-(--cf-border) to-transparent" style={{ animation: "shimmer 1.5s infinite", backgroundSize: "200% 100%" }} />
       <style>{`@keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }`}</style>
     </div>
   );
@@ -1323,7 +1500,7 @@ function Shimmer({ className }: { className?: string }) {
 
 export function ProfileSkeleton() {
   return (
-    <div className="mx-auto w-full max-w-5xl space-y-8 px-4 pb-28 pt-7 sm:px-6 lg:px-8 lg:pt-8">
+    <div className="mx-auto w-full max-w-450 space-y-8 px-4 pb-28 pt-7 sm:px-6 lg:px-10 lg:pt-8 xl:px-16">
       {/* Hero skeleton */}
       <div className="rounded-[34px] border border-(--cf-border) bg-(--cf-surface-strong) p-6 sm:p-7 lg:p-8">
         <div className="flex flex-col gap-5 sm:flex-row sm:items-start">

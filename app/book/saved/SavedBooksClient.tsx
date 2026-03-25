@@ -77,9 +77,10 @@ export function SavedBooksClient() {
         onSearchChange={() => {}}
         searchInputRef={searchInputRef}
         showSearch={false}
+        logoVariant="dashboard"
       />
 
-      <section className="mx-auto w-full max-w-7xl px-4 pb-28 pt-7 sm:px-6 sm:pt-8">
+      <section className="mx-auto w-full max-w-450 px-4 pb-28 pt-7 sm:px-6 sm:pt-8 lg:px-10 xl:px-16">
         <div className="mb-5 flex items-end justify-between gap-3">
           <div>
             <h1 className="text-5xl font-semibold tracking-tight text-(--cf-text-1)">Read Next</h1>
@@ -111,7 +112,7 @@ export function SavedBooksClient() {
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
             {entries.map((entry) => (
               <BookCardLarge
                 key={entry.id}

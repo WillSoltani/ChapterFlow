@@ -8,6 +8,7 @@ import {
   getChapterFlowSiteUrl,
 } from "@/app/_lib/chapterflow-brand";
 import { MotionProvider } from "@/components/MotionProvider";
+import { buildDocumentThemeBootstrapScript } from "@/app/_lib/document-theme";
 
 const satoshi = localFont({
   src: [
@@ -56,6 +57,13 @@ export default function RootLayout({
       className={`${satoshi.variable} ${jakarta.variable} ${jetbrainsMono.variable}`}
       suppressHydrationWarning
     >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: buildDocumentThemeBootstrapScript(),
+          }}
+        />
+      </head>
       <body className="min-h-screen w-full overflow-x-hidden antialiased font-(--font-body)">
         <MotionProvider>{children}</MotionProvider>
       </body>

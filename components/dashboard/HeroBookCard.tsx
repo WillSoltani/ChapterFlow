@@ -27,10 +27,10 @@ export function HeroBookCard({ book, isNewUser = false }: HeroBookCardProps) {
       className="overflow-hidden"
       style={{
         border: "1px solid var(--border-accent)",
-        background: "rgba(255,255,255,0.02)",
+        background: "var(--cf-surface-muted)",
         backgroundImage:
-          "linear-gradient(135deg, rgba(79,139,255,0.03) 0%, transparent 50%)",
-        boxShadow: "var(--shadow-hero), 0 0 60px rgba(79,139,255,0.04)",
+          "linear-gradient(135deg, var(--cf-blue-soft) 0%, transparent 50%)",
+        boxShadow: "var(--shadow-hero), 0 0 60px var(--cf-blue-soft)",
         borderRadius: 28,
       }}
       initial={{ opacity: 0, y: 20 }}
@@ -45,12 +45,12 @@ export function HeroBookCard({ book, isNewUser = false }: HeroBookCardProps) {
             className="inline-flex items-center gap-[5px] rounded-full px-3 py-1"
             style={{
               background: isNewUser
-                ? "rgba(79,139,255,0.06)"
-                : "rgba(45,212,191,0.06)",
+                ? "var(--cf-blue-soft)"
+                : "var(--cf-teal-soft)",
               border: `1px solid ${
                 isNewUser
-                  ? "rgba(79,139,255,0.12)"
-                  : "rgba(45,212,191,0.12)"
+                  ? "var(--cf-blue-border)"
+                  : "var(--cf-teal-border)"
               }`,
             }}
           >
@@ -183,7 +183,7 @@ export function HeroBookCard({ book, isNewUser = false }: HeroBookCardProps) {
               onMouseOver={(e) => {
                 e.currentTarget.style.background = "var(--accent-green-hover)";
                 e.currentTarget.style.boxShadow =
-                  "0 0 32px rgba(52,211,153,0.3)";
+                  "0 0 32px var(--cf-teal-soft)";
               }}
               onMouseOut={(e) => {
                 e.currentTarget.style.background = "var(--accent-green)";
@@ -213,7 +213,7 @@ export function HeroBookCard({ book, isNewUser = false }: HeroBookCardProps) {
           className="border-t lg:border-t-0 lg:border-l"
           style={{
             borderColor: "var(--border-subtle)",
-            background: "rgba(255,255,255,0.01)",
+            background: "var(--cf-surface-muted)",
           }}
         >
           <div className="lg:w-[240px]">

@@ -85,7 +85,7 @@ export function OnboardingFlow() {
       root.style.transition = "opacity 0.4s ease";
       root.style.opacity = "0";
     }
-    setTimeout(() => router.push("/book/workspace"), 400);
+    setTimeout(() => router.push("/dashboard"), 400);
   }, [router, clearOnboarding, onboarding]);
 
   return (
@@ -182,7 +182,7 @@ export function OnboardingFlow() {
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.color = "var(--text-heading)";
-                e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.06)";
+                e.currentTarget.style.backgroundColor = "var(--cf-surface-muted)";
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.color = "var(--text-secondary)";

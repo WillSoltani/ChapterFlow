@@ -40,12 +40,11 @@ export function ContinueLearningCard({
     <motion.div
       className="rounded-2xl p-6"
       style={{
-        background: "rgba(255,255,255,0.07)",
+        background: "var(--cf-surface-muted)",
         backdropFilter: "blur(24px)",
         WebkitBackdropFilter: "blur(24px)",
-        border: "1px solid rgba(255,255,255,0.12)",
-        boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
-        backgroundColor: "rgba(15,15,26,0.95)",
+        border: "1px solid var(--cf-border-strong)",
+        boxShadow: "var(--cf-shadow-lg)",
       }}
       initial={{
         opacity: prefersReduced ? 1 : 0,
@@ -74,7 +73,7 @@ export function ContinueLearningCard({
             height: 120,
             background:
               "linear-gradient(135deg, rgba(56,189,248,0.3), rgba(167,139,250,0.3))",
-            boxShadow: "0 4px 20px rgba(0,0,0,0.3)",
+            boxShadow: "var(--cf-shadow-md)",
           }}
         >
           <div className="flex h-full w-full items-center justify-center p-2 text-center">
@@ -137,9 +136,9 @@ export function ContinueLearningCard({
       <Link href={bookHref} className="mt-5 block">
         <motion.button
           type="button"
-          className="w-full cursor-pointer rounded-xl px-6 py-3.5 text-base font-semibold text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A14]"
+          className="w-full cursor-pointer rounded-xl px-6 py-3.5 text-base font-semibold text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
           style={{
-            background: "linear-gradient(135deg, #06B6D4, #0891B2)",
+            background: "linear-gradient(135deg, var(--cf-accent), var(--cf-accent-strong))",
             border: "1px solid rgba(6,182,212,0.3)",
             boxShadow: "0 4px 16px rgba(6,182,212,0.2)",
           }}
@@ -159,7 +158,7 @@ export function ContinueLearningCard({
 
       {/* Other active books */}
       {otherBooks.length > 0 && (
-        <div className="mt-5 border-t pt-4" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
+        <div className="mt-5 border-t pt-4" style={{ borderColor: "var(--cf-border)" }}>
           <span
             className="text-xs"
             style={{ color: "var(--text-muted)" }}
@@ -174,8 +173,8 @@ export function ContinueLearningCard({
                 onClick={() => onSwitchBook?.(book.id)}
                 className="flex shrink-0 cursor-pointer items-center gap-2.5 rounded-xl px-3 py-2.5 transition-colors snap-start"
                 style={{
-                  background: "rgba(255,255,255,0.04)",
-                  border: "1px solid rgba(255,255,255,0.06)",
+                  background: "var(--cf-surface-muted)",
+                  border: "1px solid var(--cf-border)",
                   minWidth: 200,
                 }}
               >
@@ -231,11 +230,10 @@ export function NoActiveBooksCard() {
     <div
       className="flex flex-col items-center justify-center rounded-2xl p-8 text-center"
       style={{
-        background: "rgba(255,255,255,0.05)",
+        background: "var(--cf-surface-muted)",
         backdropFilter: "blur(16px)",
         WebkitBackdropFilter: "blur(16px)",
-        border: "1px solid rgba(255,255,255,0.08)",
-        backgroundColor: "rgba(20,20,30,0.95)",
+        border: "1px solid var(--cf-border)",
       }}
     >
       <span className="text-4xl">{"\u{1F4DA}"}</span>

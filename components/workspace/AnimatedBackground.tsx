@@ -1,9 +1,12 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import { useThemePreference } from "@/app/hooks/useThemePreference";
 
 export function AnimatedBackground() {
   const prefersReducedMotion = useReducedMotion();
+  const { resolvedTheme } = useThemePreference();
+  const isLight = resolvedTheme === "light";
 
   return (
     <div
@@ -28,8 +31,9 @@ export function AnimatedBackground() {
           width: 700,
           height: 700,
           borderRadius: "50%",
-          background:
-            "radial-gradient(circle, rgba(124, 58, 237, 0.12) 0%, rgba(124, 58, 237, 0) 65%)",
+          background: isLight
+            ? "radial-gradient(circle, rgba(13, 148, 136, 0.04) 0%, rgba(13, 148, 136, 0) 65%)"
+            : "radial-gradient(circle, rgba(124, 58, 237, 0.12) 0%, rgba(124, 58, 237, 0) 65%)",
           filter: "blur(60px)",
           willChange: "transform",
         }}
@@ -49,8 +53,9 @@ export function AnimatedBackground() {
           width: 600,
           height: 600,
           borderRadius: "50%",
-          background:
-            "radial-gradient(circle, rgba(59, 130, 246, 0.10) 0%, rgba(59, 130, 246, 0) 65%)",
+          background: isLight
+            ? "radial-gradient(circle, rgba(13, 148, 136, 0.03) 0%, rgba(13, 148, 136, 0) 65%)"
+            : "radial-gradient(circle, rgba(59, 130, 246, 0.10) 0%, rgba(59, 130, 246, 0) 65%)",
           filter: "blur(60px)",
           willChange: "transform",
         }}
@@ -70,8 +75,9 @@ export function AnimatedBackground() {
           width: 500,
           height: 500,
           borderRadius: "50%",
-          background:
-            "radial-gradient(circle, rgba(245, 158, 11, 0.07) 0%, rgba(245, 158, 11, 0) 65%)",
+          background: isLight
+            ? "radial-gradient(circle, rgba(245, 158, 11, 0.03) 0%, rgba(245, 158, 11, 0) 65%)"
+            : "radial-gradient(circle, rgba(245, 158, 11, 0.07) 0%, rgba(245, 158, 11, 0) 65%)",
           filter: "blur(60px)",
           willChange: "transform",
         }}

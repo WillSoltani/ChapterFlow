@@ -127,12 +127,12 @@ export function BadgeCelebration({
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: 100, opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="flex items-center gap-3 rounded-2xl border border-amber-500/20 bg-[#1A1A2E] px-4 py-3 shadow-lg"
+              className="flex items-center gap-3 rounded-2xl border border-amber-500/20 bg-(--cf-surface-muted) px-4 py-3 shadow-lg"
             >
               <span className="text-2xl">{badge.icon}</span>
               <div>
                 <p className="text-xs font-medium text-amber-500">Achievement Unlocked</p>
-                <p className="text-sm font-semibold text-white">
+                <p className="text-sm font-semibold text-(--cf-text-1)">
                   {summaryMode && i === 0
                     ? `\u{1F389} You earned ${newlyEarned.length} new badges!`
                     : badge.name}
@@ -155,7 +155,7 @@ export function BadgeCelebration({
             <div
               className={cn(
                 "absolute inset-0",
-                heroLevel === "epic" ? "bg-black/90" : "bg-black/80"
+                heroLevel === "epic" ? "bg-(--cf-overlay)" : "bg-(--cf-overlay)"
               )}
               onClick={heroLevel === "epic" ? undefined : handleDismissHero}
             />
@@ -180,7 +180,7 @@ export function BadgeCelebration({
               </motion.span>
 
               <motion.h2
-                className="mt-6 text-2xl font-semibold text-white"
+                className="mt-6 text-2xl font-semibold text-(--cf-text-1)"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
@@ -191,11 +191,11 @@ export function BadgeCelebration({
               {heroLevel === "epic" ? (
                 <TypewriterText
                   text={heroBadge.narrative}
-                  className="mt-4 max-w-md text-sm italic leading-relaxed text-neutral-300"
+                  className="mt-4 max-w-md text-sm italic leading-relaxed text-(--cf-text-2)"
                 />
               ) : (
                 <motion.p
-                  className="mt-4 max-w-md text-sm italic leading-relaxed text-neutral-300"
+                  className="mt-4 max-w-md text-sm italic leading-relaxed text-(--cf-text-2)"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.5 }}
@@ -205,7 +205,7 @@ export function BadgeCelebration({
               )}
 
               <motion.p
-                className="mt-3 text-sm text-neutral-500"
+                className="mt-3 text-sm text-(--cf-text-soft)"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.7 }}
@@ -233,7 +233,7 @@ export function BadgeCelebration({
                 <button
                   type="button"
                   onClick={handleDismissHero}
-                  className="rounded-2xl border border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.05)] px-5 py-2.5 text-sm font-medium text-neutral-300 transition hover:bg-[rgba(255,255,255,0.08)]"
+                  className="rounded-2xl border border-(--cf-border-strong) bg-(--cf-surface-muted) px-5 py-2.5 text-sm font-medium text-(--cf-text-2) transition hover:bg-(--cf-surface-strong)"
                 >
                   Continue
                 </button>
@@ -265,7 +265,7 @@ function ShareButton({ badge }: { badge: BadgeWithProgress }) {
     <button
       type="button"
       onClick={handleShare}
-      className="rounded-2xl border border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.05)] px-5 py-2.5 text-sm font-medium text-neutral-300 transition hover:bg-[rgba(255,255,255,0.08)]"
+      className="rounded-2xl border border-(--cf-border-strong) bg-(--cf-surface-muted) px-5 py-2.5 text-sm font-medium text-(--cf-text-2) transition hover:bg-(--cf-surface-strong)"
     >
       {copied ? "Copied!" : "Share Achievement"}
     </button>

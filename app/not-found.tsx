@@ -4,7 +4,7 @@ export default function NotFound() {
   return (
     <div
       className="min-h-screen flex items-center justify-center px-4"
-      style={{ background: "var(--bg-base, #0a0f1a)" }}
+      style={{ background: "var(--cf-page-bg)" }}
     >
       <div className="max-w-md w-full text-center">
         <div
@@ -20,7 +20,7 @@ export default function NotFound() {
         <h1
           className="text-[24px] font-bold mb-3"
           style={{
-            color: "var(--text-heading, #f1f5f9)",
+            color: "var(--cf-text-1)",
             fontFamily: "var(--font-display)",
           }}
         >
@@ -29,7 +29,7 @@ export default function NotFound() {
 
         <p
           className="text-[16px] mb-8 leading-relaxed"
-          style={{ color: "var(--text-secondary, #94a3b8)" }}
+          style={{ color: "var(--cf-text-3)" }}
         >
           The page you&apos;re looking for doesn&apos;t exist or has been moved.
         </p>
@@ -46,9 +46,9 @@ export default function NotFound() {
             href="/books"
             className="px-6 py-3 font-medium rounded-full text-[14px] transition-colors"
             style={{
-              background: "rgba(255,255,255,0.04)",
-              color: "var(--text-heading, #f1f5f9)",
-              border: "1px solid rgba(255,255,255,0.08)",
+              background: "var(--cf-surface-muted)",
+              color: "var(--cf-text-1)",
+              border: "1px solid var(--cf-border)",
             }}
           >
             Browse library

@@ -68,13 +68,11 @@ export function SubscriptionCard({
           <span className="text-sm">&#10024;</span>
           <span className="text-base font-bold text-(--cf-text-1)">Pro Plan</span>
         </div>
-        {formattedDate && (
-          <p className="mt-1 text-sm text-(--cf-text-3)">
-            Monthly &middot; Renews {formattedDate}
-          </p>
-        )}
         <p className="mt-0.5 text-xs text-(--cf-text-soft)">
           All 95+ books &middot; Full feature access
+        </p>
+        <p className="text-sm text-(--cf-text-soft) mt-1">
+          {formattedDate ? `Next renewal: ${formattedDate}` : "Monthly billing"}
         </p>
         <Button
           variant="secondary"

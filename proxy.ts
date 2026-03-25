@@ -71,17 +71,6 @@ export async function proxy(req: NextRequest) {
     return NextResponse.next();
   }
 
-  const isGuestProjectPage = pathname === "/app/projects/guest";
-  const isGuestProjectApi = pathname.startsWith("/app/api/projects/guest/");
-  if (isGuestProjectPage || isGuestProjectApi) {
-    if (isGuestProjectPage && !req.cookies.get("guest_sid")?.value) {
-      const url = req.nextUrl.clone();
-      url.pathname = "/test";
-      return NextResponse.redirect(url);
-    }
-    return NextResponse.next();
-  }
-
   if (isDevAuthBypassEnabled()) {
     return NextResponse.next();
   }

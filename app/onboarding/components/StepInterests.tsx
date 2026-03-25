@@ -293,7 +293,7 @@ export default function StepInterests({ onNext, onSkip }: StepInterestsProps) {
             minHeight: 48,
             borderRadius: "var(--radius-md-val)",
             backgroundColor: "var(--accent-green)",
-            color: "#0B0B0F",
+            color: "var(--cf-page-bg)",
             fontFamily: "var(--font-dm-sans)",
             fontSize: 16,
             fontWeight: 600,

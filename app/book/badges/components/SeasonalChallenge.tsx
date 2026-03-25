@@ -20,11 +20,11 @@ export function SeasonalChallenge({ challenge }: SeasonalChallengeProps) {
     : 0;
 
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-amber-500/20 bg-[rgba(255,255,255,0.03)] p-5 backdrop-blur-xl">
+    <div className="relative overflow-hidden rounded-2xl border border-amber-500/20 bg-(--cf-surface-muted) p-5 backdrop-blur-xl">
       <div
         className="pointer-events-none absolute inset-0 rounded-2xl"
         style={{
-          background: "linear-gradient(135deg, rgba(245,158,11,0.08) 0%, rgba(139,92,246,0.08) 100%)",
+          background: "linear-gradient(135deg, var(--cf-warning-soft) 0%, var(--cf-accent-soft) 100%)",
         }}
       />
 
@@ -38,13 +38,13 @@ export function SeasonalChallenge({ challenge }: SeasonalChallengeProps) {
         </div>
 
         <div className="flex-1 sm:max-w-xs">
-          <div className="h-2 overflow-hidden rounded-full bg-[rgba(255,255,255,0.08)]">
+          <div className="h-2 overflow-hidden rounded-full bg-(--cf-surface-strong)">
             <div
               className="h-full rounded-full bg-gradient-to-r from-amber-500 to-violet-500 transition-[width] duration-500"
               style={{ width: `${Math.max(4, progressPercent)}%` }}
             />
           </div>
-          <p className="mt-1.5 text-xs text-neutral-400">
+          <p className="mt-1.5 text-xs text-(--cf-text-3)">
             {challenge.progress} / {challenge.criteria.target} {challenge.criteria.description.toLowerCase()}
           </p>
         </div>

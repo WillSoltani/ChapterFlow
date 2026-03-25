@@ -45,8 +45,8 @@ export async function POST(req: Request) {
           quantity: 1,
         },
       ],
-      success_url: `${appBaseUrl}/book/workspace?billing=success`,
-      cancel_url: `${appBaseUrl}/book/workspace?billing=cancelled`,
+      success_url: `${appBaseUrl}/dashboard?billing=success`,
+      cancel_url: `${appBaseUrl}/dashboard?billing=cancelled`,
       metadata: {
         userId: user.sub,
       },

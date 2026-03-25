@@ -53,10 +53,10 @@ export function LearningLoopIndicator({
                     height: 12,
                     background:
                       state === "completed"
-                        ? "#7C3AED"
+                        ? "var(--cf-accent)"
                         : state === "current"
-                          ? "#A78BFA"
-                          : "rgba(255,255,255,0.12)",
+                          ? "var(--cf-accent)"
+                          : "var(--cf-border-strong)",
                     boxShadow:
                       state === "current"
                         ? "0 0 0 4px rgba(167,139,250,0.2)"
@@ -66,7 +66,7 @@ export function LearningLoopIndicator({
                 {state === "current" && !prefersReducedMotion && (
                   <motion.div
                     className="absolute inset-0 rounded-full"
-                    style={{ background: "#A78BFA" }}
+                    style={{ background: "var(--cf-accent)" }}
                     animate={{ scale: [1, 1.3, 1], opacity: [1, 0.6, 1] }}
                     transition={{
                       duration: 2,
@@ -82,10 +82,10 @@ export function LearningLoopIndicator({
                 style={{
                   color:
                     state === "current"
-                      ? "#C4B5FD"
+                      ? "var(--cf-text-2)"
                       : state === "completed"
-                        ? "#A0A0B8"
-                        : "rgba(255,255,255,0.3)",
+                        ? "var(--cf-text-3)"
+                        : "var(--cf-text-soft)",
                   fontWeight: state === "current" ? 500 : 400,
                 }}
               >
@@ -101,8 +101,8 @@ export function LearningLoopIndicator({
                   height: 2,
                   background:
                     state === "completed"
-                      ? "#7C3AED"
-                      : "rgba(255,255,255,0.08)",
+                      ? "var(--cf-accent)"
+                      : "var(--cf-surface-strong)",
                   borderRadius: 1,
                 }}
               />

@@ -55,15 +55,15 @@ function SubStepIndicator({ current }: { current: SubStep }) {
               borderRadius: 999,
               background: isActive
                 ? "rgba(79,139,255,0.15)"
-                : "var(--bg-glass, rgba(255,255,255,0.03))",
+                : "var(--cf-surface)",
               border: isActive
                 ? "1px solid rgba(79,139,255,0.3)"
-                : "1px solid var(--border-subtle, rgba(255,255,255,0.06))",
+                : "1px solid var(--cf-border)",
               color: isActive
                 ? "#5B8DEF"
                 : isCompleted
-                  ? "var(--accent-teal, #2DD4BF)"
-                  : "var(--text-muted, #5A5A6E)",
+                  ? "var(--accent-teal)"
+                  : "var(--cf-text-soft)",
               transition: "all 200ms ease",
             }}
           >
@@ -133,7 +133,7 @@ export default function StepFirstLoop({ onFinish, onBack, backRef }: StepFirstLo
             style={{
               fontFamily: "var(--font-dm-sans, sans-serif)",
               fontSize: 14,
-              color: "var(--text-muted, #5A5A6E)",
+              color: "var(--cf-text-soft)",
               textTransform: "uppercase",
               letterSpacing: "0.06em",
               margin: "0 0 8px",
@@ -150,11 +150,11 @@ export default function StepFirstLoop({ onFinish, onBack, backRef }: StepFirstLo
       {/* Glass-elevated container */}
       <div
         style={{
-          background: isCelebration ? "transparent" : "rgba(255,255,255,0.05)",
-          border: isCelebration ? "none" : "1px solid var(--border-subtle, rgba(255,255,255,0.06))",
+          background: isCelebration ? "transparent" : "var(--cf-surface-muted)",
+          border: isCelebration ? "none" : "1px solid var(--cf-border)",
           borderRadius: "var(--radius-xl-val, 24px)",
           padding: isCelebration ? "0" : "28px 24px",
-          boxShadow: isCelebration ? "none" : "var(--shadow-card, 0 4px 24px rgba(0,0,0,0.3))",
+          boxShadow: isCelebration ? "none" : "var(--cf-shadow-md)",
         }}
       >
 

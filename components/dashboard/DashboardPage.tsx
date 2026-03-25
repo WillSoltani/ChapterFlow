@@ -38,7 +38,7 @@ function MobileBottomNav() {
     <nav
       className="fixed bottom-0 left-0 right-0 z-40 flex h-14 items-center justify-around md:hidden"
       style={{
-        background: "rgba(8,8,12,0.92)",
+        background: "var(--cf-topbar-bg)",
         backdropFilter: "blur(14px)",
         WebkitBackdropFilter: "blur(14px)",
         borderTop: "1px solid var(--border-subtle)",
@@ -146,8 +146,8 @@ export function DashboardPage() {
         className="pointer-events-none fixed inset-0 z-0"
         style={{
           background: [
-            "radial-gradient(ellipse 600px 400px at 65% 15%, rgba(79,139,255,0.06) 0%, transparent 100%)",
-            "radial-gradient(ellipse 400px 300px at 20% 70%, rgba(255,140,66,0.03) 0%, transparent 100%)",
+            "radial-gradient(ellipse 600px 400px at 65% 15%, var(--cf-accent-muted) 0%, transparent 100%)",
+            "radial-gradient(ellipse 400px 300px at 20% 70%, var(--cf-warm-soft) 0%, transparent 100%)",
           ].join(", "),
         }}
       />

@@ -74,12 +74,12 @@ export default function SignupPage() {
         style={{
           maxWidth: 440,
           padding: 32,
-          background: "rgba(255, 255, 255, 0.06)",
+          background: "var(--cf-surface-muted)",
           backdropFilter: "blur(24px)",
           WebkitBackdropFilter: "blur(24px)",
-          border: "1px solid rgba(255, 255, 255, 0.12)",
+          border: "1px solid var(--cf-border-strong)",
           borderRadius: "var(--radius-xl-val)",
-          boxShadow: "0 8px 32px rgba(0, 0, 0, 0.3)",
+          boxShadow: "var(--cf-shadow-md)",
         }}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -177,7 +177,7 @@ export default function SignupPage() {
             style={{
               minHeight: 48,
               padding: "12px 16px",
-              background: "rgba(255,255,255,0.04)",
+              background: "var(--cf-surface-muted)",
               backdropFilter: "blur(16px)",
               WebkitBackdropFilter: "blur(16px)",
               color: "var(--text-primary)",
@@ -185,14 +185,14 @@ export default function SignupPage() {
               fontSize: 15,
               fontWeight: 500,
               borderRadius: "var(--radius-md-val)",
-              border: "1px solid rgba(255,255,255,0.08)",
+              border: "1px solid var(--cf-border)",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = "rgba(255,255,255,0.14)";
+              e.currentTarget.style.borderColor = "var(--cf-border-strong)";
               e.currentTarget.style.transform = "scale(1.01)";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)";
+              e.currentTarget.style.borderColor = "var(--cf-border)";
               e.currentTarget.style.transform = "scale(1)";
             }}
           >
@@ -203,7 +203,7 @@ export default function SignupPage() {
 
         {/* Divider */}
         <div className="flex items-center gap-4 my-6">
-          <div className="flex-1" style={{ height: 1, background: "rgba(255,255,255,0.06)" }} />
+          <div className="flex-1" style={{ height: 1, background: "var(--cf-border)" }} />
           <span
             style={{
               fontFamily: "var(--font-dm-sans)",
@@ -213,7 +213,7 @@ export default function SignupPage() {
           >
             or
           </span>
-          <div className="flex-1" style={{ height: 1, background: "rgba(255,255,255,0.06)" }} />
+          <div className="flex-1" style={{ height: 1, background: "var(--cf-border)" }} />
         </div>
 
         {/* Email input */}
@@ -228,8 +228,8 @@ export default function SignupPage() {
             style={{
               minHeight: 48,
               padding: "12px 16px",
-              background: "rgba(255,255,255,0.04)",
-              border: "1px solid rgba(255,255,255,0.08)",
+              background: "var(--cf-surface-muted)",
+              border: "1px solid var(--cf-border)",
               borderRadius: "var(--radius-md-val)",
               color: "var(--text-primary)",
               fontFamily: "var(--font-dm-sans)",
@@ -241,7 +241,7 @@ export default function SignupPage() {
               e.currentTarget.style.boxShadow = "0 0 0 3px rgba(79,139,255,0.15)";
             }}
             onBlur={(e) => {
-              e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)";
+              e.currentTarget.style.borderColor = "var(--cf-border)";
               e.currentTarget.style.boxShadow = "none";
             }}
           />

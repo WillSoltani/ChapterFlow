@@ -21,7 +21,7 @@ export function BadgeShowcase({ badges, showcaseBadgeIds, onBadgeClick, onUnpin 
   const mobileSlots = 3;
 
   return (
-    <div className="rounded-2xl border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.03)] p-5 backdrop-blur-xl">
+    <div className="rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) p-5 backdrop-blur-xl">
       <div>
         <h2 className="text-base font-semibold tracking-tight text-(--cf-text-1)">Your Showcase</h2>
         <p className="mt-0.5 text-xs text-(--cf-text-soft)">Pin your proudest badges</p>
@@ -45,7 +45,7 @@ export function BadgeShowcase({ badges, showcaseBadgeIds, onBadgeClick, onUnpin 
                 <button
                   type="button"
                   onClick={(e) => { e.stopPropagation(); onUnpin(badge.id); }}
-                  className="absolute -right-1 -top-1 z-10 flex h-5 w-5 items-center justify-center rounded-full border border-[rgba(255,255,255,0.1)] bg-neutral-800 text-neutral-400 opacity-0 transition-opacity hover:bg-neutral-700 hover:text-white group-hover:opacity-100"
+                  className="absolute -right-1 -top-1 z-10 flex h-5 w-5 items-center justify-center rounded-full border border-(--cf-border-strong) bg-(--cf-surface-strong) text-(--cf-text-3) opacity-0 transition-opacity hover:bg-(--cf-surface-muted) hover:text-(--cf-text-1) group-hover:opacity-100"
                   aria-label={`Unpin ${badge.name}`}
                 >
                   <X className="h-3 w-3" />
@@ -82,7 +82,7 @@ export function BadgeShowcase({ badges, showcaseBadgeIds, onBadgeClick, onUnpin 
                 i >= mobileSlots && "hidden md:flex"
               )}
             >
-              <div className="flex h-[72px] w-[72px] items-center justify-center rounded-2xl border border-dashed border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.02)]">
+              <div className="flex h-[72px] w-[72px] items-center justify-center rounded-2xl border border-dashed border-(--cf-border-strong) bg-(--cf-surface-muted)">
                 <span className="text-lg text-(--cf-text-soft)">+</span>
               </div>
               <p className="text-[10px] text-(--cf-text-soft)">Pin a badge</p>

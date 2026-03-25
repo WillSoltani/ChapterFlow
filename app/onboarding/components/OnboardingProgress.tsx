@@ -70,7 +70,7 @@ export default function OnboardingProgress({
                 borderRadius: 2,
                 position: "relative",
                 overflow: "hidden",
-                backgroundColor: "rgba(255,255,255,0.06)",
+                backgroundColor: "var(--cf-surface-muted)",
               }}
             >
               <motion.div

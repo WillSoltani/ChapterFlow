@@ -1,5 +1,5 @@
-export type DashboardToolAccent = "sky" | "amber";
-export type DashboardToolIcon = "converter" | "book";
+export type DashboardToolAccent = "amber";
+export type DashboardToolIcon = "book";
 
 export type DashboardTool = {
   id: string;
@@ -15,23 +15,6 @@ export type DashboardTool = {
 };
 
 export const dashboardTools: DashboardTool[] = [
-  {
-    id: "file-converter",
-    category: "IMAGES & DOCUMENTS",
-    title: "File Converter",
-    description:
-      "Convert images between formats instantly. PNG, JPG, WebP, SVG and more — with batch support.",
-    bullets: [
-      "Batch convert files",
-      "Quality control slider",
-      "Web-optimized presets",
-    ],
-    href: "/app/projects",
-    ctaLabel: "Launch File Converter",
-    openLabel: "Open app",
-    accent: "sky",
-    icon: "converter",
-  },
   {
     id: "book-accelerator",
     category: "READ & LEARN FASTER",

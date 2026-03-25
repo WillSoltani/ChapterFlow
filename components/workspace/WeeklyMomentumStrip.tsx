@@ -31,10 +31,10 @@ export function WeeklyMomentumStrip({
     <motion.div
       className="mt-5 rounded-xl px-5 py-4"
       style={{
-        background: "rgba(255,255,255,0.03)",
+        background: "var(--cf-surface-muted)",
         backdropFilter: "blur(12px)",
         WebkitBackdropFilter: "blur(12px)",
-        border: "1px solid rgba(255,255,255,0.06)",
+        border: "1px solid var(--cf-border)",
       }}
       initial={prefersReducedMotion ? undefined : { opacity: 0, y: 16 }}
       animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
@@ -68,7 +68,7 @@ export function WeeklyMomentumStrip({
               >
                 <span
                   className="text-[10px] font-medium"
-                  style={{ color: "rgba(255,255,255,0.3)" }}
+                  style={{ color: "var(--cf-text-soft)" }}
                 >
                   {label}
                 </span>
@@ -79,8 +79,8 @@ export function WeeklyMomentumStrip({
                       width: 10,
                       height: 10,
                       background: isActive
-                        ? "#7C3AED"
-                        : "rgba(255,255,255,0.08)",
+                        ? "var(--cf-accent)"
+                        : "var(--cf-surface-strong)",
                       boxShadow: isActive
                         ? "0 0 8px 2px rgba(124, 58, 237, 0.55)"
                         : "none",
@@ -97,7 +97,7 @@ export function WeeklyMomentumStrip({
                   {isToday && isActive && (
                     <div
                       className="absolute -bottom-1 left-1/2 h-[2px] w-[2px] -translate-x-1/2 rounded-full"
-                      style={{ background: "#7C3AED" }}
+                      style={{ background: "var(--cf-accent)" }}
                     />
                   )}
                 </div>
@@ -110,10 +110,10 @@ export function WeeklyMomentumStrip({
         {stats.length > 0 && (
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
             {stats.map((stat, i) => (
-              <span key={i} className="text-xs" style={{ color: "#A0A0B8" }}>
+              <span key={i} className="text-xs" style={{ color: "var(--cf-text-3)" }}>
                 {stat}
                 {i < stats.length - 1 && (
-                  <span className="ml-3" style={{ color: "#6B6B80" }}>
+                  <span className="ml-3" style={{ color: "var(--cf-text-soft)" }}>
                     ·
                   </span>
                 )}

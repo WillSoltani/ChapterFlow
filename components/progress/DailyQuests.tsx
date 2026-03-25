@@ -19,16 +19,15 @@ export function DailyQuests({ quests, bonusFP }: DailyQuestsProps) {
     <motion.section
       className="rounded-2xl p-5"
       style={{
-        background: "rgba(255,255,255,0.04)",
+        background: "var(--cf-surface-muted)",
         backdropFilter: "blur(16px)",
         WebkitBackdropFilter: "blur(16px)",
         border: allComplete
           ? "1px solid rgba(52,211,153,0.3)"
-          : "1px solid rgba(255,255,255,0.08)",
+          : "1px solid var(--cf-border)",
         boxShadow: allComplete
           ? "0 0 20px rgba(52,211,153,0.1)"
-          : "0 4px 16px rgba(0,0,0,0.2)",
-        backgroundColor: "rgba(15,15,26,0.95)",
+          : "var(--cf-shadow-md)",
       }}
       initial={{ opacity: prefersReduced ? 1 : 0, y: prefersReduced ? 0 : 15 }}
       animate={{ opacity: 1, y: 0 }}
@@ -46,7 +45,7 @@ export function DailyQuests({ quests, bonusFP }: DailyQuestsProps) {
           className="rounded-lg px-2 py-0.5 text-xs font-medium"
           style={{
             background: "rgba(167,139,250,0.15)",
-            color: "#A78BFA",
+            color: "var(--cf-accent)",
           }}
         >
           {"\u{1F381}"} +{bonusFP} FP for all
@@ -59,7 +58,7 @@ export function DailyQuests({ quests, bonusFP }: DailyQuestsProps) {
           className="mt-3 rounded-xl px-3 py-2 text-center text-xs font-medium"
           style={{
             background: "rgba(52,211,153,0.1)",
-            color: "#34D399",
+            color: "var(--cf-success-text)",
           }}
         >
           {"\u{1F389}"} All quests complete! +{bonusFP} FP earned
@@ -75,7 +74,7 @@ export function DailyQuests({ quests, bonusFP }: DailyQuestsProps) {
             style={{
               background: quest.completed
                 ? "rgba(52,211,153,0.06)"
-                : "rgba(255,255,255,0.03)",
+                : "var(--cf-surface-muted)",
             }}
           >
             {/* Icon */}
@@ -101,14 +100,14 @@ export function DailyQuests({ quests, bonusFP }: DailyQuestsProps) {
                 style={{
                   border: quest.completed
                     ? "none"
-                    : "1.5px solid rgba(255,255,255,0.2)",
+                    : "1.5px solid var(--cf-border-strong)",
                   background: quest.completed
-                    ? "#34D399"
+                    ? "var(--cf-success-text)"
                     : "transparent",
                 }}
               >
                 {quest.completed && (
-                  <Check className="h-3 w-3" style={{ color: "#0A0A14" }} />
+                  <Check className="h-3 w-3" style={{ color: "var(--cf-page-bg)" }} />
                 )}
               </div>
             ) : (
@@ -118,14 +117,14 @@ export function DailyQuests({ quests, bonusFP }: DailyQuestsProps) {
                   style={{
                     width: 48,
                     height: 4,
-                    background: "rgba(255,255,255,0.08)",
+                    background: "var(--cf-surface-strong)",
                   }}
                 >
                   <div
                     className="h-full rounded-full"
                     style={{
                       width: `${Math.min(100, (quest.current / quest.target) * 100)}%`,
-                      background: quest.completed ? "#34D399" : "#38BDF8",
+                      background: quest.completed ? "var(--cf-success-text)" : "var(--cf-accent)",
                     }}
                   />
                 </div>

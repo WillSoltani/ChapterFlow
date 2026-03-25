@@ -17,7 +17,7 @@ export function CircularProgress({
   strokeWidth = 3,
   progress,
   color = "var(--accent-teal)",
-  trackColor = "var(--border-subtle)",
+  trackColor = "var(--cf-ring-track)",
   children,
   className = "",
 }: CircularProgressProps) {

@@ -94,7 +94,7 @@ export default function UnlockCelebration({
           fontFamily: "var(--font-sora, sans-serif)",
           fontSize: 32,
           fontWeight: 700,
-          color: "rgba(255,255,255,0.93)",
+          color: "var(--cf-text-1)",
           margin: "0 0 8px",
         }}
       >
@@ -109,7 +109,7 @@ export default function UnlockCelebration({
         style={{
           fontFamily: "var(--font-dm-sans, sans-serif)",
           fontSize: 16,
-          color: "rgba(255,255,255,0.50)",
+          color: "var(--cf-text-3)",
           margin: "0 0 32px",
           lineHeight: 1.5,
         }}
@@ -146,17 +146,17 @@ export default function UnlockCelebration({
                     }
               }
               style={{
-                background: "rgba(255,255,255,0.06)",
+                background: "var(--cf-surface-muted)",
                 backdropFilter: "blur(24px)",
                 WebkitBackdropFilter: "blur(24px)",
-                border: "1px solid rgba(255,255,255,0.12)",
+                border: "1px solid var(--cf-border-strong)",
                 borderRadius: 16,
                 padding: "16px 12px",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
                 gap: 8,
-                boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
+                boxShadow: "var(--cf-shadow-lg)",
                 minWidth: 100,
               }}
             >
@@ -189,7 +189,7 @@ export default function UnlockCelebration({
                 style={{
                   fontFamily: "var(--font-dm-sans, sans-serif)",
                   fontSize: 12,
-                  color: "rgba(255,255,255,0.50)",
+                  color: "var(--cf-text-3)",
                 }}
               >
                 {stat.label}
@@ -218,7 +218,7 @@ export default function UnlockCelebration({
           style={{
             fontFamily: "var(--font-dm-sans, sans-serif)",
             fontSize: 14,
-            color: "rgba(255,255,255,0.40)",
+            color: "var(--cf-text-soft)",
             margin: 0,
           }}
         >

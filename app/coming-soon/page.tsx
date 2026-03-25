@@ -8,7 +8,7 @@ export default function ComingSoonPage() {
   const router = useRouter();
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-6 text-center relative overflow-hidden" style={{ background: "#0A0E1A" }}>
+    <div className="min-h-screen flex flex-col items-center justify-center px-6 text-center relative overflow-hidden" style={{ background: "var(--cf-page-bg)" }}>
       {/* Background orbs */}
       <div className="fixed inset-0 pointer-events-none" aria-hidden="true">
         <div
@@ -44,8 +44,8 @@ export default function ComingSoonPage() {
             width: 64,
             height: 64,
             borderRadius: 16,
-            background: "rgba(255,255,255,0.05)",
-            border: "1px solid rgba(255,255,255,0.08)",
+            background: "var(--cf-surface-muted)",
+            border: "1px solid var(--cf-border)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -60,7 +60,7 @@ export default function ComingSoonPage() {
             fontFamily: "var(--font-sora, sans-serif)",
             fontSize: 28,
             fontWeight: 600,
-            color: "rgba(255,255,255,0.93)",
+            color: "var(--cf-text-1)",
           }}
         >
           Coming soon
@@ -70,7 +70,7 @@ export default function ComingSoonPage() {
           style={{
             fontFamily: "var(--font-dm-sans, sans-serif)",
             fontSize: 16,
-            color: "rgba(255,255,255,0.50)",
+            color: "var(--cf-text-3)",
             marginTop: 8,
             maxWidth: 400,
             lineHeight: 1.5,
@@ -89,13 +89,13 @@ export default function ComingSoonPage() {
             gap: 8,
             fontFamily: "var(--font-dm-sans, sans-serif)",
             fontSize: 14,
-            color: "rgba(255,255,255,0.50)",
+            color: "var(--cf-text-3)",
             background: "none",
             border: "none",
             transition: "color 200ms",
           }}
-          onMouseEnter={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.80)")}
-          onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.50)")}
+          onMouseEnter={(e) => (e.currentTarget.style.color = "var(--cf-text-1)")}
+          onMouseLeave={(e) => (e.currentTarget.style.color = "var(--cf-text-3)")}
         >
           <ArrowLeft size={16} />
           Go back

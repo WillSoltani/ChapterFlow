@@ -7,8 +7,18 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/book/workspace",
+        destination: "/dashboard",
+        permanent: true,
+      },
+      {
+        source: "/book/workspace/:path*",
+        destination: "/dashboard",
+        permanent: true,
+      },
+      {
         source: "/book/home",
-        destination: "/book/workspace",
+        destination: "/dashboard",
         permanent: true,
       },
     ];

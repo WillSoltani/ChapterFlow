@@ -26,13 +26,13 @@ export function PersonalizationMeter({
       animate={{ opacity: 1, y: 0 }}
       exit={reducedMotion ? undefined : { opacity: 0, height: 0, marginBottom: 0 }}
       transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-      className="relative overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.04] p-5 backdrop-blur-lg"
+      className="relative overflow-hidden rounded-2xl border border-(--cf-border-strong) bg-(--cf-surface-muted) p-5 backdrop-blur-lg"
     >
       <button
         type="button"
         aria-label="Dismiss personalization meter"
         onClick={onDismiss}
-        className="absolute top-3 right-3 flex h-6 w-6 items-center justify-center rounded-full hover:bg-white/[0.06] text-(--cf-text-soft) transition-colors"
+        className="absolute top-3 right-3 flex h-6 w-6 items-center justify-center rounded-full hover:bg-(--cf-surface-strong) text-(--cf-text-soft) transition-colors"
       >
         <X className="h-3.5 w-3.5" />
       </button>
@@ -47,7 +47,7 @@ export function PersonalizationMeter({
       </div>
 
       {/* Gradient progress bar */}
-      <div className="mt-3 h-2 overflow-hidden rounded-full bg-white/[0.06]">
+      <div className="mt-3 h-2 overflow-hidden rounded-full bg-(--cf-surface-muted)">
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: `${clamped}%` }}
@@ -79,7 +79,7 @@ export function PersonalizationMeter({
         <button
           type="button"
           onClick={onComplete}
-          className="group mt-2.5 inline-flex items-center gap-1 text-xs font-medium text-cyan-400 hover:underline transition-colors"
+          className="group mt-2.5 inline-flex items-center gap-1 text-xs font-medium text-(--cf-accent) hover:underline transition-colors"
         >
           Complete your profile
           <span className="inline-block transition-transform group-hover:translate-x-1">

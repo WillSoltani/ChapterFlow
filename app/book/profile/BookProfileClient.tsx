@@ -30,7 +30,7 @@ import {
 } from "@/app/book/_lib/reader-storage";
 import type { BadgeState } from "@/app/book/data/mockBadges";
 import { getBookChaptersBundle } from "@/app/book/data/mockChapters";
-import { BOOK_STORAGE_EVENT } from "@/app/book/hooks/bookStorageEvents";
+import { BOOK_STORAGE_EVENT, emitBookStorageChanged } from "@/app/book/hooks/bookStorageEvents";
 import { useBadgeSystem } from "@/app/book/hooks/useBadgeSystem";
 import { useBookAnalytics } from "@/app/book/hooks/useBookAnalytics";
 import { useBookEntitlements } from "@/app/book/hooks/useBookEntitlements";
@@ -48,12 +48,14 @@ import { EditProfileModal } from "@/app/book/profile/components/EditProfileModal
 import {
   ActiveBookCard,
   ActiveDaysRing,
+  CategoryMap,
   CompletionByModeChart,
   FadeIn,
   HeatmapCalendar,
   IdentityHeroBanner,
   MomentumCard,
   MomentumEmptyState,
+  NewBadgeDot,
   NotePreviewCard,
   PinnedTakeawayCard,
   ProfileSkeleton,
@@ -62,8 +64,11 @@ import {
   SectionCard,
   SectionNav,
   Sparkline,
+  StaggeredBadgeGrid,
+  StaggeredBadgeItem,
   StatCard,
   StickyMiniHeader,
+  ThisWeekStrip,
   TimelineRow,
   UpgradeCard,
   UpNextPreview,
@@ -241,6 +246,7 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
   const [selectedBadge, setSelectedBadge] = useState<BadgeState | null>(null);
   const [achievementView, setAchievementView] = useState<"showcase" | "timeline">("showcase");
   const [activeSectionIdx, setActiveSectionIdx] = useState(0);
+  const [takeawayText, setTakeawayText] = useState("");
   const { toast, showToast } = useToast();
 
   const { state: onboarding, hydrated: onboardingHydrated } = useOnboardingState();
@@ -288,38 +294,34 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
     }
   }, [onboarding.setupComplete, onboardingHydrated, router]);
 
-  // ─── Sticky mini-header observer ───
+  // Gate: true once all data is loaded and sections are in the DOM
+  const contentReady = onboardingHydrated && analyticsHydrated && badgeSystem.hydrated && profileHydrated && onboarding.setupComplete;
 
-  useEffect(() => {
-    const el = heroRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => setShowMiniHeader(!entry.isIntersecting),
-      { threshold: 0 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
+  // ─── Sticky mini-header observer (disabled — mini-header not used) ───
+  void showMiniHeader;
 
   // ─── Section nav observer (H3) ───
 
   useEffect(() => {
+    if (!contentReady) return;
     const els = SECTION_IDS.map((s) => document.getElementById(s.id)).filter(Boolean) as HTMLElement[];
     if (!els.length) return;
     const observer = new IntersectionObserver(
       (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            const idx = SECTION_IDS.findIndex((s) => s.id === entry.target.id);
-            if (idx >= 0) setActiveSectionIdx(idx);
-          }
+        // Pick the most-visible intersecting entry
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible.length > 0) {
+          const idx = SECTION_IDS.findIndex((s) => s.id === visible[0].target.id);
+          if (idx >= 0) setActiveSectionIdx(idx);
         }
       },
-      { rootMargin: "-30% 0px -60% 0px" }
+      { rootMargin: "-30% 0px -30% 0px", threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5] }
     );
     els.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
-  }, []);
+  }, [contentReady]);
 
   const handleSectionNav = useCallback((id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -487,6 +489,20 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
     return null;
   }, [currentSnapshot, activeBooks, analytics]);
 
+  // E2: Category exploration map
+  const exploredCategories = useMemo(() => {
+    const catMap = new Map<string, number>();
+    for (const snapshot of analytics?.bookSnapshots ?? []) {
+      const cat = snapshot.book.category;
+      if (cat && snapshot.completedChapters > 0) {
+        catMap.set(cat, (catMap.get(cat) ?? 0) + snapshot.completedChapters);
+      }
+    }
+    return Array.from(catMap.entries())
+      .map(([name, chapters]) => ({ name, chapters }))
+      .sort((a, b) => b.chapters - a.chapters);
+  }, [analytics]);
+
   // B1/B2: Current reading details with learning loop steps + chapter time
   const currentReadingDetails = useMemo(() => {
     if (!currentSnapshot) return null;
@@ -632,6 +648,35 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
 
   const navigateToSettings = () => router.push("/book/settings");
 
+  const handleSaveTakeaway = useCallback(() => {
+    const text = takeawayText.trim();
+    if (!text || !currentSnapshot) return;
+    const chapterId = currentReadingDetails?.chapterId ?? currentSnapshot.resumeChapterId;
+    const storageKey = getChapterReaderStorageKey(currentSnapshot.book.id, chapterId);
+    const existing = parseStoredReaderState(window.localStorage.getItem(storageKey));
+    const updated = existing
+      ? { ...existing, notes: existing.notes ? `${existing.notes}\n\n${text}` : text }
+      : {
+          activeTab: "summary" as const,
+          readingDepth: "standard" as const,
+          exampleFilter: "all" as const,
+          quizAnswers: {},
+          quizResult: null,
+          quizRetakeCount: 0,
+          quizFailureStreak: 0,
+          quizCooldownUntil: null,
+          notes: text,
+          focusMode: false,
+          fontScale: "md" as const,
+          showRecap: false,
+          explanationOpen: {},
+        };
+    window.localStorage.setItem(storageKey, JSON.stringify(updated));
+    emitBookStorageChanged("profile:takeaway");
+    setTakeawayText("");
+    showToast("Takeaway saved", "success");
+  }, [takeawayText, currentSnapshot, currentReadingDetails, showToast]);
+
   // ─── Loading state (H5) ───
 
   if (!onboardingHydrated || !analyticsHydrated || !badgeSystem.hydrated || !profileHydrated || !onboarding.setupComplete) {
@@ -674,20 +719,11 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
         logoVariant="dashboard"
       />
 
-      <StickyMiniHeader
-        visible={showMiniHeader}
-        avatar={profile.avatarDataUrl}
-        initials={initialsFromName(viewerName)}
-        name={viewerName}
-        streakDays={statsSummary.currentStreak}
-        onSettings={navigateToSettings}
-      />
-
       {/* H3: Section dot navigator */}
       <SectionNav sections={SECTION_IDS} activeIndex={activeSectionIdx} onNavigate={handleSectionNav} />
 
       {/* H7: Consistent spacing — 48px mobile (space-y-12), 64px desktop (lg:space-y-16) */}
-      <section className="mx-auto w-full max-w-5xl space-y-12 px-4 pb-28 pt-7 sm:px-6 lg:space-y-16 lg:px-8 lg:pt-8">
+      <section className="mx-auto w-full max-w-450 space-y-12 px-4 pb-28 pt-7 sm:px-6 lg:space-y-16 lg:px-10 lg:pt-8 xl:px-16">
 
         {/* ═══ SECTION 1: Identity Hero Banner ═══ */}
         <div ref={heroRef} id="hero">
@@ -866,6 +902,17 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
                   </div>
                 </div>
               ) : null}
+
+              {/* E2: Knowledge / Category map */}
+              {exploredCategories.length > 0 ? (
+                <div className="mt-6 rounded-[26px] border border-(--cf-border) bg-(--cf-surface-muted) p-5">
+                  <CategoryMap
+                    explored={exploredCategories}
+                    totalCategories={21}
+                    onCategoryClick={(cat) => router.push(`/book/library?category=${encodeURIComponent(cat)}`)}
+                  />
+                </div>
+              ) : null}
             </SectionCard>
           </div>
         </FadeIn>
@@ -904,6 +951,12 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
                   <div className="rounded-[22px] border border-(--cf-border) bg-(--cf-surface-muted) p-4">
                     <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-(--cf-text-soft)">Reading activity</p>
                     <HeatmapCalendar cells={analytics?.heatmapCells ?? []} />
+                    {/* E1: This Week strip */}
+                    {statsSummary.currentStreak > 0 || monthlySummary.activeDays > 0 ? (
+                      <div className="mt-3">
+                        <ThisWeekStrip cells={analytics?.heatmapCells ?? []} />
+                      </div>
+                    ) : null}
                   </div>
                 </div>
 
@@ -983,32 +1036,36 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
                 </div>
 
                 {achievementView === "showcase" ? (
-                  <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                  <StaggeredBadgeGrid className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
                     {profileBadgeShowcase.length > 0 ? (
                       profileBadgeShowcase.map((badge, index) => (
-                        <FeaturedBadgeCard
-                          key={badge.id}
-                          badge={badge}
-                          subtitle={index < 2 ? "Recent highlight" : "Prestige highlight"}
-                          onOpen={() => setSelectedBadge(badge)}
-                        />
+                        <StaggeredBadgeItem key={badge.id}>
+                          <FeaturedBadgeCard
+                            badge={badge}
+                            subtitle={index < 2 ? "Recent highlight" : "Prestige highlight"}
+                            onOpen={() => setSelectedBadge(badge)}
+                          />
+                        </StaggeredBadgeItem>
                       ))
                     ) : null}
                     {/* E1: Show 2 closest locked badges */}
                     {closestLockedBadges.map((badge) => (
-                      <FeaturedBadgeCard
-                        key={badge.id}
-                        badge={badge}
-                        subtitle={`${badge.progressValue}/${badge.targetValue} — ${Math.round((badge.progressValue / badge.targetValue) * 100)}%`}
-                        onOpen={() => setSelectedBadge(badge)}
-                      />
+                      <StaggeredBadgeItem key={badge.id}>
+                        <div className="relative">
+                          <FeaturedBadgeCard
+                            badge={badge}
+                            subtitle={`${badge.progressValue}/${badge.targetValue} — ${Math.round((badge.progressValue / badge.targetValue) * 100)}%`}
+                            onOpen={() => setSelectedBadge(badge)}
+                          />
+                        </div>
+                      </StaggeredBadgeItem>
                     ))}
                     {!profileBadgeShowcase.length && !closestLockedBadges.length ? (
                       <div className="rounded-[22px] border border-(--cf-border) bg-(--cf-surface-muted) p-5 text-sm text-(--cf-text-3) sm:col-span-2 xl:col-span-3">
                         Complete your first chapter to start earning badges. Every reading session brings you closer to your first milestone.
                       </div>
                     ) : null}
-                  </div>
+                  </StaggeredBadgeGrid>
                 ) : (
                   // Timeline view
                   <div className="space-y-3">
@@ -1127,38 +1184,45 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
                     ))}
                   </div>
                 </div>
-              ) : statsSummary.totalChaptersCompleted > 0 ? (
+              ) : currentSnapshot || statsSummary.totalChaptersCompleted > 0 ? (
                 // G1: Inline takeaway prompt (has chapters but no notes)
                 <div className="rounded-[26px] border border-(--cf-border) bg-(--cf-surface-muted) p-6">
                   <p className="text-sm text-(--cf-text-2)">
-                    You&apos;ve read {statsSummary.totalChaptersCompleted} chapter{statsSummary.totalChaptersCompleted !== 1 ? "s" : ""} but haven&apos;t saved any takeaways yet.
+                    {statsSummary.totalChaptersCompleted > 0
+                      ? <>You&apos;ve explored {statsSummary.totalChaptersCompleted} chapter{statsSummary.totalChaptersCompleted !== 1 ? "s" : ""} but haven&apos;t saved any takeaways yet.</>
+                      : <>You&apos;re reading but haven&apos;t saved any takeaways yet.</>}
                   </p>
                   <p className="mt-2 text-base font-medium text-(--cf-text-1)">
                     What&apos;s one thing from {currentSnapshot?.book.title ?? "your reading"} that stuck with you?
                   </p>
-                  <div className="mt-4 flex gap-3">
+                  <div className="mt-4 flex gap-2">
                     <input
                       type="text"
                       placeholder="Type a quick takeaway..."
+                      value={takeawayText}
+                      onChange={(e) => setTakeawayText(e.target.value)}
+                      onKeyDown={(e) => e.key === "Enter" && takeawayText.trim() && handleSaveTakeaway()}
                       className="flex-1 rounded-xl border border-(--cf-border) bg-(--cf-surface) px-4 py-2.5 text-sm text-(--cf-text-1) placeholder:text-(--cf-text-soft) outline-none focus:border-(--cf-accent-border)"
-                      readOnly
-                      onClick={() =>
-                        currentSnapshot
-                          ? router.push(`/book/library/${encodeURIComponent(currentSnapshot.book.id)}/chapter/${encodeURIComponent(currentReadingDetails?.chapterId ?? currentSnapshot.resumeChapterId)}`)
-                          : router.push("/book/library")
-                      }
                     />
                     <Button
                       variant="primary"
-                      onClick={() =>
-                        currentSnapshot
-                          ? router.push(`/book/library/${encodeURIComponent(currentSnapshot.book.id)}/chapter/${encodeURIComponent(currentReadingDetails?.chapterId ?? currentSnapshot.resumeChapterId)}`)
-                          : router.push("/book/library")
-                      }
+                      onClick={handleSaveTakeaway}
+                      disabled={!takeawayText.trim()}
                     >
-                      Open chapter
+                      Save takeaway
                     </Button>
                   </div>
+                  {currentSnapshot ? (
+                    <button
+                      type="button"
+                      onClick={() =>
+                        router.push(`/book/library/${encodeURIComponent(currentSnapshot.book.id)}/chapter/${encodeURIComponent(currentReadingDetails?.chapterId ?? currentSnapshot.resumeChapterId)}`)
+                      }
+                      className="mt-3 text-sm text-(--cf-accent) hover:text-(--cf-accent-strong) transition-colors"
+                    >
+                      Open chapter &rarr;
+                    </button>
+                  ) : null}
                 </div>
               ) : (
                 <div className="rounded-[26px] border border-(--cf-border) bg-(--cf-surface-muted) p-8 text-center">
@@ -1203,8 +1267,8 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
                     ) : (
                       <div className="py-4 text-center">
                         {/* 3.7: Ghost card placeholder with book outline */}
-                        <div className="group mx-auto mb-3 rounded-2xl border border-dashed border-white/10 bg-(--cf-surface)/30 px-4 py-5 transition hover:bg-(--cf-surface)/50">
-                          <svg width="40" height="48" viewBox="0 0 40 48" fill="none" className="mx-auto mb-2 text-slate-600/30">
+                        <div className="group mx-auto mb-3 rounded-2xl border border-dashed border-(--cf-border) bg-(--cf-surface)/30 px-4 py-5 transition hover:bg-(--cf-surface)/50">
+                          <svg width="40" height="48" viewBox="0 0 40 48" fill="none" className="mx-auto mb-2 text-(--cf-text-soft)/30">
                             <rect x="4" y="4" width="32" height="40" rx="4" stroke="currentColor" strokeWidth="1.5" fill="none" />
                             <line x1="14" y1="4" x2="14" y2="44" stroke="currentColor" strokeWidth="1" />
                           </svg>
@@ -1249,6 +1313,15 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
                         trend="steady"
                       />
                       <p className="mt-2 text-xs text-(--cf-text-soft)">Complete more quizzes to see your trend</p>
+                    </div>
+                  ) : statsSummary.quizQuestionsAnswered > 0 ? (
+                    <div className="mt-4 space-y-2">
+                      <p className="text-sm font-medium text-(--cf-text-1)">Quiz activity</p>
+                      <p className="text-3xl font-bold text-(--cf-text-1)">{statsSummary.quizQuestionsAnswered}</p>
+                      <p className="text-xs text-(--cf-text-3)">questions answered so far</p>
+                      <p className="text-xs text-(--cf-text-soft)">
+                        Complete a full chapter quiz to see detailed score trends.
+                      </p>
                     </div>
                   ) : (
                     <p className="mt-4 py-4 text-center text-sm text-(--cf-text-3)">

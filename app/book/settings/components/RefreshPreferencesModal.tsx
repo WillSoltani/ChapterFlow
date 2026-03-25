@@ -114,7 +114,7 @@ export function RefreshPreferencesModal({
         initial={reducedMotion ? false : { opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={reducedMotion ? undefined : { opacity: 0 }}
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+        className="absolute inset-0 bg-(--cf-overlay) backdrop-blur-sm"
         onClick={handleClose}
       />
       <motion.div
@@ -137,7 +137,7 @@ export function RefreshPreferencesModal({
             <div
               key={i}
               className={`h-1.5 flex-1 rounded-full transition-colors ${
-                i < step ? "bg-(--cf-accent)" : "bg-white/10"
+                i < step ? "bg-(--cf-accent)" : "bg-(--cf-surface-strong)"
               }`}
             />
           ))}

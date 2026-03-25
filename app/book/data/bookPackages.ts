@@ -127,11 +127,13 @@ export type PackageVariantContent = {
 
 export type PackageQuizQuestion = {
   questionId: string;
-  prompt: string;
-  choices: string[];
+  prompt?: string;
+  stem?: string;
+  choices?: string[];
+  options?: string[];
   correctIndex?: number;
   correctAnswerIndex?: number;
-  explanation?: string;
+  explanation?: string | Record<string, string>;
 };
 
 export type PackageQuiz = {

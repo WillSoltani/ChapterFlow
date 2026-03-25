@@ -24,10 +24,10 @@ export function NextAchievementCard({
     <motion.div
       className="flex-1 rounded-xl p-5"
       style={{
-        background: "rgba(255,255,255,0.04)",
+        background: "var(--cf-surface-muted)",
         backdropFilter: "blur(16px) saturate(125%)",
         WebkitBackdropFilter: "blur(16px) saturate(125%)",
-        border: "1px solid rgba(255,255,255,0.08)",
+        border: "1px solid var(--cf-border)",
       }}
       initial={prefersReducedMotion ? undefined : { opacity: 0, y: 16 }}
       whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
@@ -47,28 +47,28 @@ export function NextAchievementCard({
             height: 48,
             background:
               "linear-gradient(135deg, rgba(124,58,237,0.15), rgba(245,158,11,0.12))",
-            border: "1px solid rgba(255,255,255,0.12)",
+            border: "1px solid var(--cf-border-strong)",
             boxShadow:
-              "inset 0 1px 0 rgba(255,255,255,0.1), 0 0 15px -4px rgba(245,158,11,0.25)",
+              "inset 0 1px 0 var(--cf-border-strong), 0 0 15px -4px rgba(245,158,11,0.25)",
           }}
         >
-          <Trophy size={24} style={{ color: "#F59E0B" }} aria-hidden="true" />
+          <Trophy size={24} style={{ color: "var(--accent-gold)" }} aria-hidden="true" />
         </div>
 
         <div className="min-w-0 flex-1">
           <p
             className="text-[10px] font-semibold uppercase tracking-wider"
-            style={{ color: "#6B6B80" }}
+            style={{ color: "var(--cf-text-soft)" }}
           >
             Next Achievement
           </p>
           <p
             className="mt-1 text-sm font-semibold"
-            style={{ color: "#F0F0F0" }}
+            style={{ color: "var(--cf-text-1)" }}
           >
             {name}
           </p>
-          <p className="mt-0.5 text-xs" style={{ color: "#A0A0B8" }}>
+          <p className="mt-0.5 text-xs" style={{ color: "var(--cf-text-3)" }}>
             {description}
           </p>
 
@@ -76,7 +76,7 @@ export function NextAchievementCard({
           <div className="mt-3">
             <div
               className="h-1 overflow-hidden rounded-full"
-              style={{ background: "rgba(255,255,255,0.06)" }}
+              style={{ background: "var(--cf-surface-muted)" }}
               role="progressbar"
               aria-valuenow={progressCurrent}
               aria-valuemin={0}
@@ -99,7 +99,7 @@ export function NextAchievementCard({
             </div>
             <p
               className="mt-1 text-[11px] tabular-nums"
-              style={{ color: "#6B6B80" }}
+              style={{ color: "var(--cf-text-soft)" }}
             >
               {progressCurrent} of {progressTotal}
             </p>
@@ -110,7 +110,7 @@ export function NextAchievementCard({
       <Link
         href="/book/badges"
         className="mt-4 block text-xs font-medium transition-colors hover:text-violet-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400"
-        style={{ color: "#7C3AED" }}
+        style={{ color: "var(--cf-accent)" }}
       >
         View All Achievements →
       </Link>

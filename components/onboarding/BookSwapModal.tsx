@@ -27,7 +27,7 @@ export function BookSwapModal({ open, alternatives, currentShelf, onSelect, onCl
           transition={{ duration: 0.2 }}
         >
           {/* Backdrop */}
-          <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.5)" }} onClick={onClose} />
+          <div className="absolute inset-0" style={{ background: "var(--cf-overlay)" }} onClick={onClose} />
 
           {/* Modal card */}
           <motion.div

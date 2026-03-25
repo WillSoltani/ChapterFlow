@@ -92,7 +92,7 @@ export function DangerZone({ onDeactivate, onDelete, reducedMotion }: DangerZone
               initial={reducedMotion ? false : { opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={reducedMotion ? undefined : { opacity: 0 }}
-              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+              className="absolute inset-0 bg-(--cf-overlay) backdrop-blur-sm"
               onClick={() => setDeactivateModal(false)}
             />
             <motion.div
@@ -140,7 +140,7 @@ export function DangerZone({ onDeactivate, onDelete, reducedMotion }: DangerZone
               initial={reducedMotion ? false : { opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={reducedMotion ? undefined : { opacity: 0 }}
-              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+              className="absolute inset-0 bg-(--cf-overlay) backdrop-blur-sm"
               onClick={() => setDeleteModal(false)}
             />
             <motion.div

@@ -72,8 +72,8 @@ export function AchievementsPreview() {
                 style={{
                   width: 44,
                   height: 44,
-                  background: "rgba(255,140,66,0.08)",
-                  border: "1px solid rgba(255,140,66,0.15)",
+                  background: "var(--cf-warning-soft)",
+                  border: "1px solid var(--cf-warning-border)",
                 }}
               >
                 <Flame size={22} style={{ color: "var(--accent-flame)" }} />
@@ -96,8 +96,8 @@ export function AchievementsPreview() {
                 className="flex-shrink-0 rounded-full px-2.5 py-0.5 text-[10px] font-semibold"
                 style={{
                   color: "var(--accent-teal)",
-                  background: "rgba(45,212,191,0.08)",
-                  border: "1px solid rgba(45,212,191,0.12)",
+                  background: "var(--cf-teal-soft)",
+                  border: "1px solid var(--cf-teal-border)",
                 }}
               >
                 Earned
@@ -121,8 +121,8 @@ export function AchievementsPreview() {
                 style={{
                   width: 44,
                   height: 44,
-                  background: "rgba(79,139,255,0.08)",
-                  border: "1px solid rgba(79,139,255,0.15)",
+                  background: "var(--cf-blue-soft)",
+                  border: "1px solid var(--cf-blue-border)",
                 }}
               >
                 <BookOpen size={22} style={{ color: "var(--accent-blue)" }} />

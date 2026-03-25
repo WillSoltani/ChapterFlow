@@ -78,13 +78,13 @@ export function BadgeDetailModal({
           transition={{ duration: 0.2 }}
         >
           <div
-            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+            className="absolute inset-0 bg-(--cf-overlay) backdrop-blur-sm"
             onClick={onClose}
           />
 
           <motion.div
             className={cn(
-              "relative z-10 w-full max-w-[480px] overflow-y-auto rounded-t-3xl border border-[rgba(255,255,255,0.08)] bg-[#12121A] p-6 shadow-2xl",
+              "relative z-10 w-full max-w-[480px] overflow-y-auto rounded-t-3xl border border-(--cf-border) bg-(--cf-surface) p-6 shadow-2xl",
               "md:max-h-[85vh] md:rounded-3xl"
             )}
             initial={reduced ? { opacity: 0 } : { y: 100, opacity: 0 }}
@@ -96,7 +96,7 @@ export function BadgeDetailModal({
             <button
               type="button"
               onClick={onClose}
-              className="absolute right-4 top-4 z-10 inline-flex h-8 w-8 items-center justify-center rounded-full border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.05)] text-neutral-400 transition hover:text-white"
+              className="absolute right-4 top-4 z-10 inline-flex h-8 w-8 items-center justify-center rounded-full border border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-3) transition hover:text-(--cf-text-1)"
               aria-label="Close"
               autoFocus
             >
@@ -127,12 +127,12 @@ export function BadgeDetailModal({
 function SecretModalContent() {
   return (
     <div className="flex flex-col items-center py-8 text-center">
-      <div className="secret-badge-icon flex h-24 w-24 items-center justify-center rounded-full border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.03)]">
-        <span className="badge-shimmer text-4xl text-neutral-500">?</span>
+      <div className="secret-badge-icon flex h-24 w-24 items-center justify-center rounded-full border border-(--cf-border) bg-(--cf-surface-muted)">
+        <span className="badge-shimmer text-4xl text-(--cf-text-soft)">?</span>
       </div>
       <TierPillDisplay tier="secret" earned={false} className="mt-4" />
-      <h3 className="mt-4 text-xl font-semibold text-white">Hidden Achievement</h3>
-      <p className="mt-3 max-w-xs text-sm leading-relaxed text-neutral-400">
+      <h3 className="mt-4 text-xl font-semibold text-(--cf-text-1)">Hidden Achievement</h3>
+      <p className="mt-3 max-w-xs text-sm leading-relaxed text-(--cf-text-3)">
         This badge reveals itself through your natural reading behavior. No hints — just keep reading.
       </p>
     </div>
@@ -181,25 +181,25 @@ function EarnedModalContent({
 
       <h3 className="mt-4 text-2xl font-semibold text-amber-500">{badge.name}</h3>
 
-      <p className="mt-3 max-w-sm text-sm italic leading-relaxed text-neutral-300">
+      <p className="mt-3 max-w-sm text-sm italic leading-relaxed text-(--cf-text-2)">
         {badge.narrative}
       </p>
 
-      <div className="mt-5 h-px w-full bg-[rgba(255,255,255,0.06)]" />
+      <div className="mt-5 h-px w-full bg-(--cf-divider)" />
 
       <div className="mt-5 w-full space-y-4 text-left">
         <DetailRow label="Criteria" value={badge.criteria.description} />
 
         <div>
-          <p className="text-[11px] uppercase tracking-[0.2em] text-neutral-500">Rarity</p>
+          <p className="text-[11px] uppercase tracking-[0.2em] text-(--cf-text-soft)">Rarity</p>
           <div className="mt-2 flex items-center gap-3">
-            <div className="h-2 flex-1 overflow-hidden rounded-full bg-[rgba(255,255,255,0.08)]">
+            <div className="h-2 flex-1 overflow-hidden rounded-full bg-(--cf-surface-strong)">
               <div
                 className="h-full rounded-full bg-amber-500/60"
                 style={{ width: `${rarity}%` }}
               />
             </div>
-            <span className="shrink-0 text-sm text-neutral-400">
+            <span className="shrink-0 text-sm text-(--cf-text-3)">
               Earned by {rarity}% of readers
             </span>
           </div>
@@ -228,10 +228,10 @@ function EarnedModalContent({
           className={cn(
             "flex-1 rounded-2xl border px-4 py-2.5 text-sm font-medium transition",
             showcaseFull
-              ? "cursor-not-allowed border-[rgba(255,255,255,0.04)] bg-[rgba(255,255,255,0.02)] text-neutral-600"
+              ? "cursor-not-allowed border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-soft)"
               : isPinned
                 ? "border-amber-500/30 bg-amber-500/10 text-amber-500"
-                : "border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.05)] text-neutral-300 hover:bg-[rgba(255,255,255,0.08)]"
+                : "border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-2) hover:bg-(--cf-surface-strong)"
           )}
         >
           {showcaseFull ? "Showcase Full" : isPinned ? "Unpin from Showcase" : "Pin to Showcase"}
@@ -239,7 +239,7 @@ function EarnedModalContent({
         <button
           type="button"
           onClick={onShare}
-          className="flex-1 rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.05)] px-4 py-2.5 text-sm font-medium text-neutral-300 transition hover:bg-[rgba(255,255,255,0.08)]"
+          className="flex-1 rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) px-4 py-2.5 text-sm font-medium text-(--cf-text-2) transition hover:bg-(--cf-surface-strong)"
         >
           {shareText ?? "Share Achievement"}
         </button>
@@ -267,7 +267,7 @@ function LockedModalContent({
 
   const ctaHref =
     badge.category === "consistency" || badge.category === "mastery" || badge.category === "notes"
-      ? "/book/workspace"
+      ? "/dashboard"
       : "/book/library";
 
   return (
@@ -284,33 +284,33 @@ function LockedModalContent({
 
       <TierPillDisplay tier={badge.tier} earned={false} className="mt-4" />
 
-      <h3 className="mt-4 text-2xl font-semibold text-white">{badge.name}</h3>
+      <h3 className="mt-4 text-2xl font-semibold text-(--cf-text-1)">{badge.name}</h3>
 
-      <p className="mt-3 max-w-sm text-sm leading-relaxed text-neutral-400">
+      <p className="mt-3 max-w-sm text-sm leading-relaxed text-(--cf-text-3)">
         {badge.description}
       </p>
 
-      <div className="mt-5 h-px w-full bg-[rgba(255,255,255,0.06)]" />
+      <div className="mt-5 h-px w-full bg-(--cf-divider)" />
 
       <div className="mt-5 w-full space-y-4 text-left">
         <DetailRow label="Criteria" value={badge.criteria.description} />
 
         <div>
-          <p className="text-[11px] uppercase tracking-[0.2em] text-neutral-500">Progress</p>
-          <div className="mt-2 h-2.5 overflow-hidden rounded-full bg-[rgba(255,255,255,0.08)]">
+          <p className="text-[11px] uppercase tracking-[0.2em] text-(--cf-text-soft)">Progress</p>
+          <div className="mt-2 h-2.5 overflow-hidden rounded-full bg-(--cf-surface-strong)">
             <div
               className="h-full rounded-full bg-amber-500 transition-[width] duration-500"
               style={{ width: `${Math.max(4, badge.percentage)}%` }}
             />
           </div>
           <div className="mt-1.5 flex items-center justify-between text-sm">
-            <span className="text-neutral-300">
+            <span className="text-(--cf-text-2)">
               {badge.current > 0
                 ? `${badge.current} of ${badge.target} (${badge.percentage}%)`
                 : "Not yet started"}
             </span>
             {remaining > 0 && badge.current > 0 && (
-              <span className="text-neutral-500">
+              <span className="text-(--cf-text-soft)">
                 {remaining} more to go
               </span>
             )}
@@ -335,8 +335,8 @@ function LockedModalContent({
 function DetailRow({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <p className="text-[11px] uppercase tracking-[0.2em] text-neutral-500">{label}</p>
-      <p className="mt-1 text-sm text-neutral-300">{value}</p>
+      <p className="text-[11px] uppercase tracking-[0.2em] text-(--cf-text-soft)">{label}</p>
+      <p className="mt-1 text-sm text-(--cf-text-2)">{value}</p>
     </div>
   );
 }
@@ -355,7 +355,7 @@ function TierPillDisplay({ tier, earned, className }: { tier: string; earned: bo
       style={
         earned
           ? { background: styles.background, color: styles.color, textShadow: styles.textShadow }
-          : { background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.4)" }
+          : { background: "var(--cf-surface-strong)", color: "var(--cf-text-soft)" }
       }
     >
       {label}

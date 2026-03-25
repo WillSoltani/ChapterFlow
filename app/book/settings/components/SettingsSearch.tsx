@@ -44,16 +44,16 @@ export function SettingsSearch({ query, onChange }: SettingsSearchProps) {
           value={query}
           onChange={(e) => onChange(e.target.value)}
           className={cn(
-            "w-full rounded-2xl border bg-white/[0.03] py-3 pl-11 pr-20 text-sm text-(--cf-text-1) placeholder:text-(--cf-text-soft)",
+            "w-full rounded-2xl border bg-(--cf-surface) py-3 pl-11 pr-20 text-sm text-(--cf-text-1) placeholder:text-(--cf-text-soft)",
             "backdrop-blur-md transition-all duration-200",
-            "border-white/[0.08] focus:border-white/[0.15] focus:shadow-[0_0_12px_rgba(34,211,238,0.08)]",
-            "focus:outline-none focus:ring-1 focus:ring-cyan-400/20"
+            "border-(--cf-border) focus:border-(--cf-border-strong) focus:shadow-[0_0_12px_var(--cf-accent-shadow)]",
+            "focus:outline-none focus:ring-1 focus:ring-(--cf-accent)/20"
           )}
         />
         {/* Keyboard shortcut hint */}
         {!query && (
           <span className="absolute right-4 top-1/2 -translate-y-1/2 hidden sm:flex items-center gap-1 text-[11px] text-(--cf-text-soft) pointer-events-none">
-            <kbd className="rounded border border-white/10 bg-white/[0.04] px-1.5 py-0.5 font-mono text-[10px]">
+            <kbd className="rounded border border-(--cf-border-strong) bg-(--cf-surface-muted) px-1.5 py-0.5 font-mono text-[10px]">
               &#8984;K
             </kbd>
           </span>
@@ -64,7 +64,7 @@ export function SettingsSearch({ query, onChange }: SettingsSearchProps) {
             type="button"
             aria-label="Clear search"
             onClick={() => onChange("")}
-            className="absolute right-3 top-1/2 flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full hover:bg-white/[0.06] text-(--cf-text-soft) transition-colors"
+            className="absolute right-3 top-1/2 flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full hover:bg-(--cf-surface-strong) text-(--cf-text-soft) transition-colors"
           >
             <X className="h-3.5 w-3.5" />
           </button>

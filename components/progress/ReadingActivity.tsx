@@ -35,11 +35,11 @@ function getHeatmapLevel(minutes: number): number {
 }
 
 const HEATMAP_COLORS = [
-  "rgba(255,255,255,0.05)",
+  "var(--cf-surface-muted)",
   "rgba(56,189,248,0.2)",
   "rgba(56,189,248,0.4)",
   "rgba(56,189,248,0.6)",
-  "#38BDF8",
+  "var(--cf-accent)",
 ];
 
 function isToday(dateStr: string): boolean {
@@ -148,12 +148,11 @@ export function ReadingActivity({
     <motion.section
       className="rounded-2xl p-5"
       style={{
-        background: "rgba(255,255,255,0.04)",
+        background: "var(--cf-surface-muted)",
         backdropFilter: "blur(16px)",
         WebkitBackdropFilter: "blur(16px)",
-        border: "1px solid rgba(255,255,255,0.08)",
-        boxShadow: "0 4px 16px rgba(0,0,0,0.2)",
-        backgroundColor: "rgba(15,15,26,0.95)",
+        border: "1px solid var(--cf-border)",
+        boxShadow: "var(--cf-shadow-md)",
       }}
       initial={{ opacity: prefersReduced ? 1 : 0 }}
       whileInView={{ opacity: 1 }}
@@ -181,7 +180,7 @@ export function ReadingActivity({
                     ? "rgba(56,189,248,0.15)"
                     : "transparent",
                 color:
-                  mode === m ? "#38BDF8" : "var(--text-muted)",
+                  mode === m ? "var(--cf-accent)" : "var(--text-muted)",
               }}
             >
               {m === "minutes" ? "Minutes" : "Chapters"}
@@ -218,7 +217,7 @@ export function ReadingActivity({
                   <span
                     className="pointer-events-none absolute -top-5 z-10 rounded px-1.5 py-0.5 text-[10px] tabular-nums opacity-0 transition-opacity group-hover:opacity-100"
                     style={{
-                      background: "rgba(0,0,0,0.8)",
+                      background: "var(--cf-overlay)",
                       color: "var(--text-heading)",
                     }}
                   >
@@ -229,7 +228,7 @@ export function ReadingActivity({
                     className="w-full rounded-t-md transition-[filter] group-hover:brightness-125"
                     style={{
                       background:
-                        value > 0 ? "#38BDF8" : "rgba(255,255,255,0.04)",
+                        value > 0 ? "var(--cf-accent)" : "var(--cf-surface-muted)",
                       boxShadow: day.isToday && value > 0
                         ? "0 0 12px rgba(56,189,248,0.4)"
                         : "none",
@@ -253,7 +252,7 @@ export function ReadingActivity({
                     className="text-[10px]"
                     style={{
                       color: day.isToday
-                        ? "#38BDF8"
+                        ? "var(--cf-accent)"
                         : "var(--text-muted)",
                       fontWeight: day.isToday ? 600 : 400,
                     }}

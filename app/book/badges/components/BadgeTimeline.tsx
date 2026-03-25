@@ -29,7 +29,7 @@ export function BadgeTimeline({ earnedBadges, onBadgeClick }: BadgeTimelineProps
         <h2 className="text-base font-semibold tracking-tight text-(--cf-text-1)">
           Your Reading Journey
         </h2>
-        <div className="mt-4 rounded-2xl border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.02)] px-5 py-8 text-center">
+        <div className="mt-4 rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) px-5 py-8 text-center">
           <p className="text-sm text-(--cf-text-3)">
             Your story is just beginning. Earn your first badge to see your journey unfold here.
           </p>
@@ -75,12 +75,12 @@ export function BadgeTimeline({ earnedBadges, onBadgeClick }: BadgeTimelineProps
                       style={{
                         backgroundColor: dotColor,
                         boxShadow: `0 0 6px ${glowColor}`,
-                        border: "2px solid #12121A",
+                        border: "2px solid var(--cf-surface)",
                       }}
                     />
 
                     {/* Badge icon */}
-                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.03)] text-lg">
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-(--cf-border) bg-(--cf-surface-muted) text-lg">
                       {badge.icon}
                     </div>
 

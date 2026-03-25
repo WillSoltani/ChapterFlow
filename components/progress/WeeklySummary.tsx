@@ -26,8 +26,8 @@ function getTrendPercent(current: number, previous: number): number | null {
 
 function getTrendColor(value: number | null): string {
   if (value === null) return "var(--text-muted)";
-  if (value > 0) return "#34D399";
-  if (value < 0) return "#F43F5E";
+  if (value > 0) return "var(--cf-success-text)";
+  if (value < 0) return "var(--cf-danger-text)";
   return "var(--text-muted)";
 }
 
@@ -40,9 +40,9 @@ function getTrendArrow(value: number | null): string {
 
 function getConsistencyColor(daysActive: number): string {
   const pct = (daysActive / 7) * 100;
-  if (pct > 70) return "#34D399";
-  if (pct >= 40) return "#F59E0B";
-  return "#F43F5E";
+  if (pct > 70) return "var(--cf-success-text)";
+  if (pct >= 40) return "var(--accent-gold)";
+  return "var(--cf-danger-text)";
 }
 
 function AnimatedNumber({ value }: { value: number }) {
@@ -122,12 +122,11 @@ export function WeeklySummary({
     <motion.section
       className="rounded-2xl p-5"
       style={{
-        background: "rgba(255,255,255,0.04)",
+        background: "var(--cf-surface-muted)",
         backdropFilter: "blur(16px)",
         WebkitBackdropFilter: "blur(16px)",
-        border: "1px solid rgba(255,255,255,0.08)",
-        boxShadow: "0 4px 16px rgba(0,0,0,0.2)",
-        backgroundColor: "rgba(15,15,26,0.95)",
+        border: "1px solid var(--cf-border)",
+        boxShadow: "var(--cf-shadow-md)",
       }}
       initial={{ opacity: prefersReduced ? 1 : 0, y: prefersReduced ? 0 : 15 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -175,7 +174,7 @@ export function WeeklySummary({
 
             {/* Trend or zero-state message */}
             {stat.value === null && stat.zeroMessage ? (
-              <span className="text-xs" style={{ color: "#34D399" }}>
+              <span className="text-xs" style={{ color: "var(--cf-success-text)" }}>
                 {stat.zeroMessage}
               </span>
             ) : stat.trend !== null && stat.trend !== undefined ? (
@@ -190,7 +189,7 @@ export function WeeklySummary({
                 className="rounded px-1.5 py-0.5 text-xs font-medium"
                 style={{
                   background: "rgba(56,189,248,0.1)",
-                  color: "#38BDF8",
+                  color: "var(--cf-accent)",
                   width: "fit-content",
                 }}
               >

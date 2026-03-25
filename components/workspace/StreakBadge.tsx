@@ -13,7 +13,7 @@ export function StreakBadge({ count, isNewUser = false }: StreakBadgeProps) {
   if (isNewUser || count === 0) {
     return (
       <div className="flex items-center gap-1.5">
-        <span className="text-sm" style={{ color: "#A0A0B8" }}>
+        <span className="text-sm" style={{ color: "var(--cf-text-soft)" }}>
           Start your streak today
         </span>
       </div>
@@ -35,7 +35,7 @@ export function StreakBadge({ count, isNewUser = false }: StreakBadgeProps) {
               ? undefined
               : { duration: 2, repeat: Infinity, ease: "easeInOut" }
           }
-          style={{ color: "#F59E0B" }}
+          style={{ color: "var(--accent-gold)" }}
         >
           🔥
         </motion.span>
@@ -47,7 +47,7 @@ export function StreakBadge({ count, isNewUser = false }: StreakBadgeProps) {
       </span>
       <span
         className="text-sm font-semibold tabular-nums"
-        style={{ color: "#F0F0F0" }}
+        style={{ color: "var(--cf-text-1)" }}
       >
         {count}
       </span>

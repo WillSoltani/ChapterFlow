@@ -40,7 +40,7 @@ const navItems: Array<{
   href: string;
   icon: React.ComponentType<{ className?: string }>;
 }> = [
-  { id: "home", label: "Home", href: "/book/workspace", icon: Home },
+  { id: "home", label: "Home", href: "/dashboard", icon: Home },
   { id: "library", label: "Library", href: "/book/library", icon: LayoutGrid },
   { id: "progress", label: "Progress", href: "/book/progress", icon: TrendingUp },
   { id: "badges", label: "Badges", href: "/book/badges", icon: Shield },
@@ -118,12 +118,12 @@ export function TopNav({
     <>
       {/* ── Top header ── */}
       <header className="cf-topbar sticky top-0 z-30">
-        <div ref={headerRef} className="mx-auto w-full max-w-7xl px-4 py-2.5 sm:px-6">
-          <div className="flex items-center justify-between gap-3">
+        <div ref={headerRef} className="mx-auto w-full max-w-450 px-4 py-2.5 sm:px-6 lg:px-10 xl:px-16">
+          <div className="flex items-center gap-3">
 
             {/* Logo */}
             <Link
-              href="/book/workspace"
+              href="/dashboard"
               className="inline-flex shrink-0 items-center gap-2.5 rounded-[18px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)"
               aria-label="Go to ChapterFlow workspace"
             >
@@ -171,7 +171,7 @@ export function TopNav({
             </Link>
 
             {/* Desktop nav — hidden on mobile (use bottom tab bar instead) */}
-            <nav className="hidden items-center gap-0.5 md:flex">
+            <nav className="ml-5 hidden items-center gap-0.5 md:flex">
               {navItems.map((item) => {
                 const active = item.id === activeTab;
                 const Icon = item.icon;

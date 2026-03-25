@@ -31,9 +31,9 @@ type BookCardWorkspaceProps =
   | { variant: "pro"; book: ProBookData };
 
 const statusConfig = {
-  in_progress: { label: "In Progress", color: "#7C3AED" },
-  not_started: { label: "Not Started", color: "#6B6B80" },
-  completed: { label: "Completed", color: "#10B981" },
+  in_progress: { label: "In Progress", color: "var(--cf-accent)" },
+  not_started: { label: "Not Started", color: "var(--cf-text-soft)" },
+  completed: { label: "Completed", color: "var(--cf-success-text)" },
 };
 
 function formatReaderCount(count: number): string {
@@ -50,18 +50,18 @@ export function BookCardWorkspace(props: BookCardWorkspaceProps) {
   return (
     <Link href={`/book/library/${book.id}`} className="block flex-shrink-0">
     <motion.div
-      className="overflow-hidden rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a12]"
+      className="overflow-hidden rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
       style={{
         width: 170,
-        background: "rgba(255,255,255,0.04)",
+        background: "var(--cf-surface-muted)",
         backdropFilter: "blur(16px) saturate(125%)",
         WebkitBackdropFilter: "blur(16px) saturate(125%)",
-        border: "1px solid rgba(255,255,255,0.08)",
+        border: "1px solid var(--cf-border)",
       }}
       whileHover={
         prefersReducedMotion
           ? undefined
-          : { scale: 1.03, y: -4, backgroundColor: "rgba(255,255,255,0.06)" }
+          : { scale: 1.03, y: -4, backgroundColor: "var(--cf-surface-muted)" }
       }
       transition={{ type: "spring", stiffness: 400, damping: 25 }}
       role="listitem"
@@ -94,7 +94,7 @@ export function BookCardWorkspace(props: BookCardWorkspaceProps) {
         {variant === "user" && (book as UserBookData).status === "completed" && (
           <div
             className="absolute right-2 top-2 flex h-5 w-5 items-center justify-center rounded-full"
-            style={{ background: "#10B981" }}
+            style={{ background: "var(--cf-success-text)" }}
           >
             <svg width={10} height={10} viewBox="0 0 24 24" fill="none">
               <path
@@ -113,13 +113,13 @@ export function BookCardWorkspace(props: BookCardWorkspaceProps) {
       <div className="p-3 pt-2.5">
         <p
           className="truncate text-sm font-medium"
-          style={{ color: "#F0F0F0" }}
+          style={{ color: "var(--cf-text-1)" }}
         >
           {book.title}
         </p>
         <p
           className="mt-0.5 truncate text-xs"
-          style={{ color: "#6B6B80" }}
+          style={{ color: "var(--cf-text-soft)" }}
         >
           {book.author}
         </p>
@@ -129,7 +129,7 @@ export function BookCardWorkspace(props: BookCardWorkspaceProps) {
             {/* Progress bar */}
             <div
               className="mt-2 h-[3px] overflow-hidden rounded-full"
-              style={{ background: "rgba(255,255,255,0.06)" }}
+              style={{ background: "var(--cf-surface-muted)" }}
               role="progressbar"
               aria-valuenow={(book as UserBookData).progressPercent}
               aria-valuemin={0}
@@ -137,7 +137,7 @@ export function BookCardWorkspace(props: BookCardWorkspaceProps) {
             >
               <motion.div
                 className="h-full rounded-full"
-                style={{ background: "#7C3AED" }}
+                style={{ background: "var(--cf-accent)" }}
                 initial={prefersReducedMotion ? undefined : { width: 0 }}
                 animate={{
                   width: `${(book as UserBookData).progressPercent}%`,
@@ -163,13 +163,13 @@ export function BookCardWorkspace(props: BookCardWorkspaceProps) {
         {variant === "pro" && (
           <div
             className="mt-2 flex items-center gap-1 text-[10px]"
-            style={{ color: "#A0A0B8" }}
+            style={{ color: "var(--cf-text-3)" }}
           >
-            <span style={{ color: "#F59E0B" }}>★</span>
+            <span style={{ color: "var(--accent-gold)" }}>★</span>
             <span className="tabular-nums">
               {(book as ProBookData).rating}
             </span>
-            <span style={{ color: "#6B6B80" }}>·</span>
+            <span style={{ color: "var(--cf-text-soft)" }}>·</span>
             <span>
               {formatReaderCount((book as ProBookData).readerCount)} readers
             </span>

@@ -43,8 +43,9 @@ export default function MiniScenario({ onContinue }: MiniScenarioProps) {
           key={section.label}
           variants={staggerItem}
           style={{
-            background: "var(--bg-glass, rgba(255,255,255,0.03))",
-            border: "1px solid var(--border-subtle, rgba(255,255,255,0.06))",
+            background: "var(--cf-surface)",
+            border: "1px solid var(--cf-border)",
+            boxShadow: "var(--cf-shadow-sm)",
             borderRadius: "var(--radius-lg-val, 16px)",
             padding: "18px 20px",
           }}
@@ -67,7 +68,7 @@ export default function MiniScenario({ onContinue }: MiniScenarioProps) {
               fontFamily: "var(--font-dm-sans, sans-serif)",
               fontSize: 15,
               lineHeight: 1.7,
-              color: "var(--text-primary, #E2E2E6)",
+              color: "var(--cf-text-1)",
               margin: 0,
             }}
           >

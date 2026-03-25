@@ -9,6 +9,10 @@ section[id] {
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 88px;
+  color-scheme: light;
+}
+
+html.dark {
   color-scheme: dark;
 }
 
@@ -231,11 +235,184 @@ body {
   --cf-danger-border: rgba(224, 107, 107, 0.24);
   --cf-danger-text: #E06B6B;
   --cf-focus-ring: 0 0 0 3px rgba(79, 139, 255, 0.2);
+  --cf-blue-soft: rgba(79, 139, 255, 0.1);
+  --cf-blue-border: rgba(79, 139, 255, 0.24);
+  --cf-teal-soft: rgba(45, 212, 191, 0.1);
+  --cf-teal-border: rgba(45, 212, 191, 0.24);
+  --cf-gold-soft: rgba(232, 185, 49, 0.1);
+  --cf-gold-border: rgba(232, 185, 49, 0.24);
   --cf-control-height-sm: 2rem;
   --cf-control-height-md: 2.375rem;
   --cf-control-height-lg: 2.75rem;
   --cf-panel-space: 1rem;
   --cf-panel-space-lg: 1.25rem;
+  --cf-input-inset-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  --cf-ring-track: rgba(255, 255, 255, 0.1);
+  --cf-progress-track: rgba(255, 255, 255, 0.1);
+  --cf-amber-text: #FBBF24;
+  --cf-success-label: #4ADE80;
+}
+
+/* ─────────────────────────────────────────
+   LIGHT THEME — Warm, WCAG AAA-optimized
+   Applied when .dark class is NOT on <html>
+   ───────────────────────────────────────── */
+html:not(.dark) {
+  /* Shadcn tokens (light mode) */
+  --background: #FAFAF9;
+  --foreground: #1C1917;
+  --card: #FFFFFF;
+  --card-foreground: #1C1917;
+  --popover: #FFFFFF;
+  --popover-foreground: #1C1917;
+  --primary: #0D9488;
+  --primary-foreground: #FFFFFF;
+  --secondary: #F5F5F4;
+  --secondary-foreground: #1C1917;
+  --muted: #F5F5F4;
+  --muted-foreground: #78716C;
+  --accent: #F0FDFA;
+  --accent-foreground: #0D9488;
+  --destructive: #EF4444;
+  --border: #E7E5E4;
+  --input: #D6D3D1;
+  --ring: rgba(13, 148, 136, 0.3);
+  --chart-1: #0D9488;
+  --chart-2: #16a34a;
+  --chart-3: #EA580C;
+  --chart-4: #D97706;
+  --chart-5: #DC2626;
+  --sidebar: #F5F5F4;
+  --sidebar-foreground: #1C1917;
+  --sidebar-primary: #0D9488;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #F0FDFA;
+  --sidebar-accent-foreground: #0D9488;
+  --sidebar-border: #E7E5E4;
+  --sidebar-ring: rgba(13, 148, 136, 0.3);
+
+  /* ── Backgrounds ── */
+  --bg-base: #FAFAF9;
+  --bg-raised: #FFFFFF;
+  --bg-elevated: #FFFFFF;
+  --bg-glass: rgba(255, 255, 255, 0.55);
+  --bg-glass-hover: rgba(255, 255, 255, 0.7);
+
+  /* ── Text hierarchy ── */
+  --text-primary: #1C1917;
+  --text-secondary: #57534E;
+  --text-heading: #1C1917;
+  --text-muted: #78716C;
+
+  /* ── Accent colors ── */
+  --accent-teal: #0D9488;
+  --accent-teal-hover: #0F766E;
+  --accent-teal-glow: rgba(13, 148, 136, 0.1);
+  --accent-orange: #EA580C;
+  --accent-green: #22c55e;
+  --accent-green-hover: #16a34a;
+  --accent-red: #DC2626;
+  --accent-blue: #0D9488;
+  --accent-blue-glow: rgba(13, 148, 136, 0.08);
+  --accent-flame: #f97316;
+  --accent-flame-glow: rgba(249, 115, 22, 0.1);
+  --accent-gold: #E8B931;
+  --accent-gold-glow: rgba(232, 185, 49, 0.08);
+  --accent-green-glow: rgba(34, 197, 94, 0.12);
+
+  /* ── Functional ── */
+  --border-subtle: #E7E5E4;
+  --border-medium: #D6D3D1;
+  --border-accent: rgba(13, 148, 136, 0.2);
+  --glow-blue: rgba(13, 148, 136, 0.08);
+  --glow-green: rgba(34, 197, 94, 0.08);
+  --glow-teal: rgba(13, 148, 136, 0.08);
+
+  /* ── Shadows (Stripe-style, blue-tinted) ── */
+  --shadow-card: 0 1px 3px rgba(50, 50, 93, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-elevated: 0 8px 24px rgba(50, 50, 93, 0.12), 0 2px 4px rgba(0, 0, 0, 0.06);
+  --shadow-hero: 0 20px 40px rgba(50, 50, 93, 0.15), 0 5px 15px rgba(0, 0, 0, 0.08);
+  --shadow-glow-teal: 0 0 20px rgba(13, 148, 136, 0.1);
+  --shadow-glow-green: 0 0 20px rgba(34, 197, 94, 0.1);
+
+  /* ── Glass ── */
+  --glass-blur: blur(12px);
+  --glass-border: 1px solid rgba(0, 0, 0, 0.06);
+  --glass-shadow: 0 8px 24px rgba(50, 50, 93, 0.12);
+
+  /* ── Gradients ── */
+  --gradient-hero: radial-gradient(ellipse at 30% 50%, rgba(13, 148, 136, 0.06) 0%, transparent 60%);
+  --gradient-section-divider: radial-gradient(ellipse at center, rgba(13, 148, 136, 0.04) 0%, transparent 70%);
+
+  /* ── CF surface tokens (light palette) ── */
+  --cf-page-bg: #FAFAF9;
+  --cf-page-bg-alt: #F5F5F4;
+  --cf-surface: #FFFFFF;
+  --cf-surface-muted: #F5F5F4;
+  --cf-surface-strong: #E7E5E4;
+  --cf-topbar-bg: rgba(250, 250, 249, 0.85);
+  --cf-dropdown-bg: #FFFFFF;
+  --cf-input-bg: #FFFFFF;
+  --cf-input-bg-hover: #FAFAF9;
+  --cf-border: #E7E5E4;
+  --cf-border-strong: #D6D3D1;
+  --cf-divider: #E7E5E4;
+  --cf-text-1: #1C1917;
+  --cf-text-2: #57534E;
+  --cf-text-3: #78716C;
+  --cf-text-soft: #A8A29E;
+  --cf-overlay: rgba(0, 0, 0, 0.3);
+  --cf-shadow-sm: 0 1px 2px rgba(50, 50, 93, 0.06), 0 1px 2px rgba(0, 0, 0, 0.03);
+  --cf-shadow-md: 0 2px 8px rgba(50, 50, 93, 0.09), 0 1px 3px rgba(0, 0, 0, 0.05);
+  --cf-shadow-lg: 0 4px 16px rgba(50, 50, 93, 0.12), 0 4px 12px rgba(0, 0, 0, 0.06);
+  --cf-panel-highlight: rgba(0, 0, 0, 0.01);
+  --cf-accent: #0D9488;
+  --cf-accent-strong: #0F766E;
+  --cf-accent-soft: rgba(13, 148, 136, 0.08);
+  --cf-accent-muted: rgba(13, 148, 136, 0.04);
+  --cf-accent-border: rgba(13, 148, 136, 0.3);
+  --cf-accent-shadow: rgba(13, 148, 136, 0.15);
+  --cf-accent-contrast: #FFFFFF;
+  --cf-warm-soft: rgba(245, 158, 11, 0.05);
+  --cf-info-soft: rgba(29, 78, 216, 0.06);
+  --cf-info-bg: #EFF6FF;
+  --cf-info-border: rgba(29, 78, 216, 0.2);
+  --cf-info-text: #1D4ED8;
+  --cf-success-soft: rgba(22, 163, 74, 0.06);
+  --cf-success-bg: #F0FDF4;
+  --cf-success-border: rgba(22, 163, 74, 0.2);
+  --cf-success-text: #15803D;
+  --cf-warning-soft: rgba(180, 83, 9, 0.06);
+  --cf-warning-bg: #FFFBEB;
+  --cf-warning-border: rgba(180, 83, 9, 0.2);
+  --cf-warning-text: #92400E;
+  --cf-danger-soft: rgba(185, 28, 28, 0.06);
+  --cf-danger-bg: #FEF2F2;
+  --cf-danger-border: rgba(185, 28, 28, 0.2);
+  --cf-danger-text: #B91C1C;
+  --cf-focus-ring: 0 0 0 3px rgba(13, 148, 136, 0.2);
+  --cf-blue-soft: rgba(13, 148, 136, 0.06);
+  --cf-blue-border: rgba(13, 148, 136, 0.2);
+  --cf-teal-soft: rgba(13, 148, 136, 0.06);
+  --cf-teal-border: rgba(13, 148, 136, 0.2);
+  --cf-gold-soft: rgba(180, 83, 9, 0.06);
+  --cf-gold-border: rgba(180, 83, 9, 0.2);
+  --cf-input-inset-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.03);
+  --cf-ring-track: #E7E5E4;
+  --cf-progress-track: #E7E5E4;
+  --cf-amber-text: #B45309;
+  --cf-success-label: #15803D;
+}
+
+/* ─────────────────────────────────────────
+   SMOOTH THEME TRANSITION
+   ───────────────────────────────────────── */
+html.transitioning,
+html.transitioning *,
+html.transitioning *::before,
+html.transitioning *::after {
+  transition: background-color 0.3s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.3s ease, fill 0.2s ease, stroke 0.2s ease !important;
+  transition-delay: 0s !important;
 }
 
 /* ─────────────────────────────────────────
@@ -488,7 +665,7 @@ body {
     border: 1px solid var(--cf-border);
     background: var(--cf-input-bg);
     color: var(--cf-text-1);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    box-shadow: var(--cf-input-inset-shadow);
     transition:
       border-color var(--cf-transition-fast),
       background-color var(--cf-transition-fast),
@@ -515,7 +692,7 @@ body {
     border: 1px solid var(--cf-border);
     background: var(--cf-surface-muted);
     color: var(--cf-text-2);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    box-shadow: var(--cf-input-inset-shadow);
   }
 
   .cf-kicker {
@@ -802,26 +979,58 @@ html[data-motion="reduced"] *::after {
   100% { transform: translateX(100%); }
 }
 
-/* ── Settings slider thumb (glassmorphic) ── */
-.slider-accent::-webkit-slider-thumb {
+@keyframes proShimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Disable shimmer animations when reduced motion is active */
+@media (prefers-reduced-motion: reduce) {
+  .animate-shimmer,
+  [class*="animate-[shimmer"],
+  [class*="animate-[proShimmer"] {
+    animation: none !important;
+  }
+}
+html[data-motion="reduced"] .animate-shimmer,
+html[data-motion="reduced"] [class*="animate-[shimmer"],
+html[data-motion="reduced"] [class*="animate-[proShimmer"] {
+  animation: none !important;
+}
+
+/* ── Settings slider (premium glassmorphic) ── */
+input[type="range"].premium-slider {
   -webkit-appearance: none;
   appearance: none;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: white;
+  width: 100%;
+  height: 4px;
+  border-radius: 9999px;
+  outline: none;
   cursor: pointer;
-  box-shadow: 0 0 8px rgba(79, 139, 255, 0.4), 0 1px 3px rgba(0,0,0,0.3);
-  border: none;
 }
-.slider-accent::-moz-range-thumb {
-  width: 16px;
-  height: 16px;
+input[type="range"].premium-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   background: white;
-  cursor: pointer;
-  box-shadow: 0 0 8px rgba(79, 139, 255, 0.4), 0 1px 3px rgba(0,0,0,0.3);
   border: none;
+  cursor: grab;
+  box-shadow: 0 0 8px rgba(34, 211, 238, 0.4), 0 1px 3px rgba(0, 0, 0, 0.3);
+  margin-top: -7px;
+}
+input[type="range"].premium-slider::-webkit-slider-thumb:active {
+  cursor: grabbing;
+  box-shadow: 0 0 12px rgba(34, 211, 238, 0.6), 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+input[type="range"].premium-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: white;
+  border: none;
+  cursor: grab;
+  box-shadow: 0 0 8px rgba(34, 211, 238, 0.4), 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -837,6 +1046,104 @@ html[data-motion="reduced"] *::after {
 }
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
+}
+
+/* ─────────────────────────────────────────
+   LIGHT MODE — Glass, Shimmer & Effects Overrides
+   ───────────────────────────────────────── */
+html:not(.dark) .glass-card {
+  background: var(--bg-glass);
+  border-color: var(--border-subtle);
+  box-shadow: var(--shadow-card);
+}
+
+html:not(.dark) .glass-card:hover {
+  background: var(--bg-glass-hover);
+  border-color: var(--border-medium);
+  box-shadow: var(--shadow-elevated);
+}
+
+html:not(.dark) .animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--bg-elevated) 25%,
+    rgba(0,0,0,0.03) 50%,
+    var(--bg-elevated) 75%
+  ) !important;
+}
+
+html:not(.dark) .badge-shimmer {
+  background: linear-gradient(
+    120deg,
+    rgba(0,0,0,0.06) 0%,
+    rgba(0,0,0,0.15) 50%,
+    rgba(0,0,0,0.06) 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+html:not(.dark) .secret-badge-icon::after {
+  background: linear-gradient(
+    120deg,
+    rgba(0,0,0,0) 30%,
+    rgba(0,0,0,0.03) 50%,
+    rgba(0,0,0,0) 70%
+  );
+  background-size: 200% 100%;
+}
+
+html:not(.dark) input[type="range"].premium-slider {
+  background: #D6D3D1;
+}
+
+html:not(.dark) input[type="range"].premium-slider::-webkit-slider-thumb {
+  background: #0D9488;
+  box-shadow: 0 0 6px rgba(13, 148, 136, 0.3), 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+html:not(.dark) input[type="range"].premium-slider::-webkit-slider-thumb:active {
+  box-shadow: 0 0 10px rgba(13, 148, 136, 0.4), 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+html:not(.dark) input[type="range"].premium-slider::-moz-range-thumb {
+  background: #0D9488;
+  box-shadow: 0 0 6px rgba(13, 148, 136, 0.3), 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+html:not(.dark) .noise-overlay::before {
+  opacity: 0.015;
+}
+
+html:not(.dark) ::selection {
+  background: rgba(13, 148, 136, 0.2);
+  color: #1C1917;
+}
+
+/* Light mode — adjust inner highlight on CF inputs & icon wraps */
+html:not(.dark) .cf-input {
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+html:not(.dark) .cf-icon-wrap {
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* ─────────────────────────────────────────
+   SMOOTH THEME TRANSITION
+   ───────────────────────────────────────── */
+html.transitioning,
+html.transitioning *,
+html.transitioning *::before,
+html.transitioning *::after {
+  transition: background-color 0.3s ease,
+              color 0.2s ease,
+              border-color 0.2s ease,
+              box-shadow 0.3s ease,
+              fill 0.2s ease,
+              stroke 0.2s ease !important;
+  transition-delay: 0s !important;
 }
 
 /* ─────────────────────────────────────────

@@ -143,7 +143,7 @@ export function BookProgressClient() {
   if (!analytics) {
     return (
       <main className="cf-app-shell">
-        <section className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6">
+        <section className="mx-auto w-full max-w-450 px-4 py-10 sm:px-6 lg:px-10 xl:px-16">
           <ErrorBanner message="We couldn't load your analytics right now. Please refresh." />
         </section>
       </main>
@@ -175,9 +175,10 @@ export function BookProgressClient() {
         onSearchChange={setQuery}
         searchInputRef={searchRef}
         searchPlaceholder="Search by title or author..."
+        logoVariant="dashboard"
       />
 
-      <section className="mx-auto w-full max-w-7xl px-4 pb-28 pt-7 sm:px-6 sm:pt-8 md:pb-24">
+      <section className="mx-auto w-full max-w-450 px-4 pb-28 pt-7 sm:px-6 sm:pt-8 md:pb-24 lg:px-10 xl:px-16">
         <div>
           <h1 className="text-4xl font-semibold tracking-tight text-(--cf-text-1) sm:text-5xl">Progress</h1>
           <p className="mt-2 text-lg text-(--cf-text-2)">Your learning journey at a glance.</p>

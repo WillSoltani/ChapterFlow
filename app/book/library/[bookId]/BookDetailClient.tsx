@@ -151,9 +151,10 @@ export function BookDetailClient({
         onSearchChange={() => {}}
         searchInputRef={chapterSearchRef}
         showSearch={false}
+        logoVariant="dashboard"
       />
 
-      <section className="mx-auto w-full max-w-7xl px-4 pb-28 pt-6 sm:px-6 md:pb-24">
+      <section className="mx-auto w-full max-w-450 px-4 pb-28 pt-6 sm:px-6 md:pb-24 lg:px-10 xl:px-16">
         <div className="mb-5 flex items-center gap-2 text-sm text-(--cf-text-2)">
           <Link href="/book/library" className="hover:text-(--cf-text-1)">
             Library

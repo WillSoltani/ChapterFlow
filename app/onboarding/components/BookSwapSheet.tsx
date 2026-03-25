@@ -106,7 +106,7 @@ export default function BookSwapSheet({
             position: "fixed",
             inset: 0,
             zIndex: 100,
-            background: "rgba(0,0,0,0.6)",
+            background: "var(--cf-overlay)",
             backdropFilter: "blur(8px)",
             WebkitBackdropFilter: "blur(8px)",
             display: "flex",
@@ -138,8 +138,8 @@ export default function BookSwapSheet({
               left: 0,
               right: 0,
               maxHeight: "80vh",
-              background: "var(--bg-raised, #12121A)",
-              borderTop: "1px solid var(--border-subtle, rgba(255,255,255,0.06))",
+              background: "var(--cf-surface)",
+              borderTop: "1px solid var(--cf-border)",
               borderRadius: "var(--radius-xl-val, 24px) var(--radius-xl-val, 24px) 0 0",
               padding: "12px 20px 32px",
               overflowY: "auto",
@@ -152,7 +152,7 @@ export default function BookSwapSheet({
                 width: 36,
                 height: 4,
                 borderRadius: 2,
-                background: "var(--text-muted, #5A5A6E)",
+                background: "var(--cf-text-soft)",
                 margin: "0 auto 16px",
               }}
             />
@@ -182,12 +182,12 @@ export default function BookSwapSheet({
               width: "100%",
               maxWidth: 480,
               maxHeight: "80vh",
-              background: "var(--bg-raised, #12121A)",
-              border: "1px solid var(--border-subtle, rgba(255,255,255,0.06))",
+              background: "var(--cf-surface)",
+              border: "1px solid var(--cf-border)",
               borderRadius: "var(--radius-xl-val, 24px)",
               padding: "24px",
               overflowY: "auto",
-              boxShadow: "var(--shadow-card, 0 4px 24px rgba(0,0,0,0.3))",
+              boxShadow: "var(--cf-shadow-md)",
               display: "none",
             }}
           >
@@ -233,7 +233,7 @@ function SheetContent({
           fontFamily: "var(--font-sora, sans-serif)",
           fontSize: 18,
           fontWeight: 600,
-          color: "var(--text-heading, #FAFAFA)",
+          color: "var(--cf-text-1)",
           marginBottom: 4,
         }}
       >
@@ -243,7 +243,7 @@ function SheetContent({
         style={{
           fontFamily: "var(--font-dm-sans, sans-serif)",
           fontSize: 14,
-          color: "var(--text-secondary, #8B8B9E)",
+          color: "var(--cf-text-3)",
           marginBottom: 16,
         }}
       >
@@ -262,8 +262,8 @@ function SheetContent({
               width: "100%",
               minHeight: 48,
               padding: "10px 12px",
-              background: "var(--bg-glass, rgba(255,255,255,0.03))",
-              border: "1px solid var(--border-subtle, rgba(255,255,255,0.06))",
+              background: "var(--cf-surface)",
+              border: "1px solid var(--cf-border)",
               borderRadius: "var(--radius-md-val, 12px)",
               cursor: "pointer",
               textAlign: "left",
@@ -271,15 +271,15 @@ function SheetContent({
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.background =
-                "var(--bg-glass-hover, rgba(255,255,255,0.06))";
+                "var(--cf-surface-muted)";
               e.currentTarget.style.borderColor =
-                "var(--border-medium, rgba(255,255,255,0.10))";
+                "var(--cf-border-strong)";
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.background =
-                "var(--bg-glass, rgba(255,255,255,0.03))";
+                "var(--cf-surface)";
               e.currentTarget.style.borderColor =
-                "var(--border-subtle, rgba(255,255,255,0.06))";
+                "var(--cf-border)";
             }}
           >
             {/* Gradient cover thumbnail */}
@@ -290,7 +290,7 @@ function SheetContent({
                 borderRadius: 6,
                 background: book.gradient,
                 flexShrink: 0,
-                boxShadow: "0 2px 8px rgba(0,0,0,0.25)",
+                boxShadow: "var(--cf-shadow-sm)",
               }}
             />
 
@@ -300,7 +300,7 @@ function SheetContent({
                   fontFamily: "var(--font-dm-sans, sans-serif)",
                   fontSize: 14,
                   fontWeight: 600,
-                  color: "var(--text-heading, #FAFAFA)",
+                  color: "var(--cf-text-1)",
                   margin: 0,
                   whiteSpace: "nowrap",
                   overflow: "hidden",
@@ -313,7 +313,7 @@ function SheetContent({
                 style={{
                   fontFamily: "var(--font-dm-sans, sans-serif)",
                   fontSize: 12,
-                  color: "var(--text-muted, #5A5A6E)",
+                  color: "var(--cf-text-soft)",
                   margin: "2px 0 6px",
                 }}
               >
@@ -327,9 +327,9 @@ function SheetContent({
                       fontSize: 11,
                       padding: "2px 8px",
                       borderRadius: 100,
-                      background: "var(--bg-glass, rgba(255,255,255,0.03))",
-                      border: "1px solid var(--border-subtle, rgba(255,255,255,0.06))",
-                      color: "var(--text-secondary, #8B8B9E)",
+                      background: "var(--cf-surface)",
+                      border: "1px solid var(--cf-border)",
+                      color: "var(--cf-text-3)",
                     }}
                   >
                     {book.category}
@@ -364,16 +364,16 @@ function SheetContent({
           fontFamily: "var(--font-dm-sans, sans-serif)",
           fontSize: 15,
           fontWeight: 500,
-          color: "var(--text-secondary, #8B8B9E)",
+          color: "var(--cf-text-3)",
           background: "transparent",
-          border: "1px solid var(--border-subtle, rgba(255,255,255,0.06))",
+          border: "1px solid var(--cf-border)",
           borderRadius: "var(--radius-md-val, 12px)",
           cursor: "pointer",
           transition: "background 0.15s",
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.background =
-            "var(--bg-glass, rgba(255,255,255,0.03))";
+            "var(--cf-surface)";
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.background = "transparent";

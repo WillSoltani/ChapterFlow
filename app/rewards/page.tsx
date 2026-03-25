@@ -9,7 +9,7 @@ export default function RewardsPage() {
     <div
       style={{
         minHeight: "100vh",
-        backgroundColor: "#0a0a12",
+        backgroundColor: "var(--cf-page-bg)",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -30,7 +30,7 @@ export default function RewardsPage() {
             borderRadius: 16,
             background:
               "linear-gradient(135deg, rgba(124,58,237,0.15), rgba(245,158,11,0.10))",
-            border: "1px solid rgba(255,255,255,0.08)",
+            border: "1px solid var(--cf-border)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -41,12 +41,12 @@ export default function RewardsPage() {
           💎
         </div>
         <h1
-          style={{ fontSize: 24, fontWeight: 600, color: "#F0F0F0", marginBottom: 12 }}
+          style={{ fontSize: 24, fontWeight: 600, color: "var(--cf-text-1)", marginBottom: 12 }}
         >
           Rewards
         </h1>
         <p
-          style={{ fontSize: 15, color: "#A0A0B8", lineHeight: 1.6, marginBottom: 32 }}
+          style={{ fontSize: 15, color: "var(--cf-text-3)", lineHeight: 1.6, marginBottom: 32 }}
         >
           Your Flow Points balance, reward catalog, and redemption history are
           being built. Your points are safe and waiting.
@@ -59,9 +59,9 @@ export default function RewardsPage() {
             gap: 8,
             padding: "12px 24px",
             borderRadius: 12,
-            backgroundColor: "rgba(255,255,255,0.06)",
-            border: "1px solid rgba(255,255,255,0.10)",
-            color: "#F0F0F0",
+            backgroundColor: "var(--cf-surface-muted)",
+            border: "1px solid var(--cf-border-strong)",
+            color: "var(--cf-text-1)",
             fontSize: 14,
             fontWeight: 500,
             textDecoration: "none",

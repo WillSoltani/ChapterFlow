@@ -13,10 +13,10 @@ interface DailyGoalRingProps {
 }
 
 // Color constants
-const CYAN = "#38BDF8";
-const CYAN_TRACK = "rgba(56,189,248,0.15)";
-const PURPLE = "#A78BFA";
-const PURPLE_TRACK = "rgba(167,139,250,0.15)";
+const CYAN = "var(--cf-accent)";
+const CYAN_TRACK = "var(--cf-ring-track)";
+const PURPLE = "var(--cf-accent)";
+const PURPLE_TRACK = "var(--cf-ring-track)";
 
 export function DailyGoalRing({
   completedMinutes,

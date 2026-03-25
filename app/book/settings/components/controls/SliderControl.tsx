@@ -28,7 +28,7 @@ export function SliderControl({
   return (
     <div className="flex flex-col gap-1">
       <div className="flex items-center gap-3">
-        <span className="min-w-12 rounded-lg bg-white/[0.06] border border-white/[0.06] px-2.5 py-1 text-center text-xs font-semibold tabular-nums text-(--cf-text-1)">
+        <span className="min-w-12 rounded-lg bg-(--cf-surface-muted) border border-(--cf-border) px-2.5 py-1 text-center text-xs font-semibold tabular-nums text-(--cf-text-1)">
           {value}
           {suffix}
         </span>
@@ -46,9 +46,9 @@ export function SliderControl({
             step={step}
             value={value}
             onChange={(e) => onChange(Number(e.target.value))}
-            className="slider-accent h-1.5 w-28 cursor-pointer appearance-none rounded-full sm:w-32"
+            className="premium-slider w-28 sm:w-32"
             style={{
-              background: `linear-gradient(to right, var(--cf-accent) 0%, var(--cf-accent-strong) ${percentage}%, rgba(255,255,255,0.06) ${percentage}%, rgba(255,255,255,0.06) 100%)`,
+              background: `linear-gradient(90deg, var(--cf-accent) 0%, var(--cf-accent-strong) ${percentage}%, var(--cf-surface-strong) ${percentage}%)`,
             }}
           />
         </div>

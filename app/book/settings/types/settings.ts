@@ -16,6 +16,8 @@ export type QuizStyle = "comfortable" | "challenge" | "surprise";
 
 export type MotivationPersona = "coach" | "partner" | "rival";
 
+export type ContentTone = "gentle" | "direct" | "competitive";
+
 export type ColorBlindMode = "off" | "protanopia" | "deuteranopia" | "tritanopia";
 
 export type TTSVoice = "clara" | "james" | "aria";
@@ -41,6 +43,7 @@ export type ExtendedSettings = {
   streakMode: StreakMode;
   streakSkipDays: number;
   motivationPersona: MotivationPersona;
+  contentTone: ContentTone;
   quizStyle: QuizStyle;
   dailyGoalPreset: DailyGoalPreset;
   spacedRepetitionTarget: number; // 70-95%

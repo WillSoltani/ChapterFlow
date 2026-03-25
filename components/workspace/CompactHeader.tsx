@@ -39,7 +39,7 @@ export function CompactHeader({
           className="font-(family-name:--font-display) text-2xl font-semibold md:text-3xl"
           style={{
             backgroundImage:
-              "linear-gradient(to right, #F0F0F0, rgba(240,240,240,0.8), rgba(240,240,240,0.6))",
+              "linear-gradient(to right, var(--cf-text-1), var(--cf-text-2), var(--cf-text-3))",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
@@ -54,7 +54,7 @@ export function CompactHeader({
         </motion.h1>
         <motion.p
           className="mt-1 text-sm"
-          style={{ color: "#A0A0B8" }}
+          style={{ color: "var(--cf-text-3)" }}
           initial={prefersReducedMotion ? undefined : { opacity: 0 }}
           animate={prefersReducedMotion ? undefined : { opacity: 1 }}
           transition={
@@ -96,12 +96,12 @@ export function CompactHeader({
               href="/rewards"
               className="inline-flex items-center gap-1"
             >
-              <span aria-hidden="true" style={{ color: "#7C3AED", fontSize: 14 }}>
+              <span aria-hidden="true" style={{ color: "var(--cf-accent)", fontSize: 14 }}>
                 ◆
               </span>
               <span
                 className="text-sm tabular-nums"
-                style={{ color: "#A0A0B8" }}
+                style={{ color: "var(--cf-text-3)" }}
               >
                 {flowPoints.toLocaleString()}
               </span>

@@ -70,32 +70,50 @@ export function FeaturedBadgeCard({
   subtitle: string;
   onOpen: () => void;
 }) {
+  const isLocked = !badge.earned;
+
   return (
     <button
       type="button"
       onClick={onOpen}
       className={cn(
-        "group relative overflow-hidden rounded-[28px] border bg-(--cf-surface) p-5 text-left transition",
+        "group relative overflow-hidden rounded-[28px] p-5 text-left transition",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)",
         "hover:-translate-y-0.5 hover:shadow-[0_24px_44px_rgba(0,0,0,0.12)]",
-        accentClass[badge.accent]
+        isLocked
+          ? "border border-dashed border-(--cf-border) bg-(--cf-surface-muted)"
+          : cn("border bg-(--cf-surface)", accentClass[badge.accent])
       )}
     >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.08),transparent_52%)]" />
-      <div className="pointer-events-none absolute -right-10 top-0 h-32 w-32 rounded-full bg-white/[0.04] blur-3xl" />
+      {!isLocked ? (
+        <>
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,var(--cf-border),transparent_52%)]" />
+          <div className="pointer-events-none absolute -right-10 top-0 h-32 w-32 rounded-full bg-(--cf-surface-muted) blur-3xl" />
+        </>
+      ) : null}
       <div className="relative flex items-start justify-between gap-4">
         <div>
           <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) text-3xl shadow-sm">
-            <span className={cn(!badge.earned && "opacity-45 grayscale")}>{badge.icon}</span>
+            <span className={cn(isLocked && "opacity-30 grayscale")}>{badge.icon}</span>
           </div>
           <p className="mt-4 text-[11px] uppercase tracking-[0.22em] text-(--cf-text-soft)">{subtitle}</p>
-          <h3 className="mt-2 text-xl font-semibold tracking-tight text-(--cf-text-1)">{badge.name}</h3>
+          <h3 className={cn("mt-2 text-xl font-semibold tracking-tight", isLocked ? "text-(--cf-text-2)" : "text-(--cf-text-1)")}>{badge.name}</h3>
           <p className="mt-2 text-sm leading-6 text-(--cf-text-2)">{badge.description}</p>
+          {/* Progress bar for locked badges */}
+          {isLocked && badge.progressValue != null && badge.targetValue ? (
+            <div className="mt-3 h-1 w-full overflow-hidden rounded-full bg-(--cf-border)">
+              <div className="h-full rounded-full bg-(--cf-accent)/40" style={{ width: `${Math.min(100, Math.round((badge.progressValue / badge.targetValue) * 100))}%` }} />
+            </div>
+          ) : null}
         </div>
         <div className="flex flex-col items-end gap-2">
-          <Chip tone={badge.earned ? "amber" : "neutral"} className="shrink-0">
-            {badge.earned ? "Earned" : badge.tier ?? badge.category}
-          </Chip>
+          {isLocked ? (
+            <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-(--cf-surface-strong) px-2 py-0.5 text-[10px] text-(--cf-text-soft)">
+              🔒 Locked
+            </span>
+          ) : (
+            <Chip tone="amber" className="shrink-0">Earned</Chip>
+          )}
           <span className="inline-flex items-center gap-1 text-xs text-(--cf-text-soft)">
             <Zap className="h-3 w-3" />
             {badge.flowPoints} FP
@@ -224,7 +242,7 @@ export function BadgeCategorySection({
       >
         <div className="overflow-hidden">
           <div className="border-t border-(--cf-border) px-5 pb-5 pt-4 sm:px-6 sm:pb-6">
-            <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+            <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
               {badges.map((badge) => (
                 <BadgeCard key={badge.id} badge={badge} onOpen={() => onOpen(badge)} />
               ))}
@@ -290,6 +308,35 @@ export function ProgressToNextBadgeCard({
           <span>{milestone.nextStepLabel}</span>
           {milestone.nextTier ? <span>Then {milestone.nextTier.name}</span> : null}
         </div>
+        {/* Sub-step breakdown */}
+        {milestone.badge.targetValue > 0 ? (
+          <div className="mt-3 space-y-1.5">
+            {Array.from({ length: Math.min(milestone.badge.targetValue, 10) }).map((_, i) => {
+              const done = i < milestone.badge.progressValue;
+              const isNext = i === milestone.badge.progressValue;
+              return (
+                <div key={i} className="flex items-center gap-2 text-xs">
+                  {done ? (
+                    <span className="text-emerald-400">✓</span>
+                  ) : (
+                    <span className={cn("text-(--cf-text-soft)", isNext && "animate-pulse")}>○</span>
+                  )}
+                  <span className={done ? "text-(--cf-text-2)" : isNext ? "text-(--cf-text-1)" : "text-(--cf-text-soft)"}>
+                    Step {i + 1}
+                  </span>
+                  {isNext ? (
+                    <span className="ml-auto text-(--cf-accent)">Next up!</span>
+                  ) : null}
+                </div>
+              );
+            })}
+            {milestone.badge.targetValue > 10 ? (
+              <p className="text-[11px] text-(--cf-text-soft)">
+                {milestone.badge.progressValue} done · {milestone.remaining} more to unlock
+              </p>
+            ) : null}
+          </div>
+        ) : null}
       </div>
       {secondary ? <div className="mt-4">{secondary}</div> : null}
       {onOpen ? (

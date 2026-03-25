@@ -499,7 +499,8 @@ function normalizeQuizQuestion(
   question: PackageQuizQuestion,
   fallbackId: string
 ): ChapterQuizQuestion {
-  const options = normalizeChoices(question.choices);
+  const rawChoices = question.choices ?? question.options ?? [];
+  const options = normalizeChoices(rawChoices);
   const correctIndex = Math.max(
     0,
     Math.min(
@@ -507,7 +508,8 @@ function normalizeQuizQuestion(
       question.correctIndex ?? question.correctAnswerIndex ?? 0
     )
   );
-  const prompt = normalizeQuizPrompt(question.prompt);
+  const rawPrompt = question.prompt ?? question.stem ?? "";
+  const prompt = normalizeQuizPrompt(rawPrompt);
   return {
     id: question.questionId ? cleanText(question.questionId) : fallbackId,
     prompt,
@@ -517,8 +519,9 @@ function normalizeQuizQuestion(
       typeof question.explanation === "string"
         ? question.explanation.trim() ||
           buildQuizExplanation(chapter, prompt, options[correctIndex], family)
-        : question.explanation
-          ? (question.explanation as unknown as string)
+        : question.explanation && typeof question.explanation === "object"
+          ? (Object.values(question.explanation)[0] ?? "").trim() ||
+            buildQuizExplanation(chapter, prompt, options[correctIndex], family)
           : buildQuizExplanation(chapter, prompt, options[correctIndex], family),
   };
 }

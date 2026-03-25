@@ -44,7 +44,7 @@ export function ActiveBookRow({ book }: ActiveBookRowProps) {
         background: "transparent",
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.background = "rgba(255,255,255,0.02)";
+        e.currentTarget.style.background = "var(--cf-surface-muted)";
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.background = "transparent";
@@ -124,7 +124,7 @@ export function ActiveBookRow({ book }: ActiveBookRowProps) {
           style={{
             background: "transparent",
             color: "var(--text-secondary)",
-            border: "1px solid rgba(255,255,255,0.15)",
+            border: "1px solid var(--cf-border-strong)",
           }}
         >
           {ctaText}
@@ -145,7 +145,7 @@ export function CompletedBookRow({ book }: CompletedBookRowProps) {
       className="group flex items-center gap-3 rounded-xl px-3 py-3 transition-colors"
       style={{ background: "transparent" }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.background = "rgba(255,255,255,0.02)";
+        e.currentTarget.style.background = "var(--cf-surface-muted)";
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.background = "transparent";
@@ -199,7 +199,7 @@ export function CompletedBookRow({ book }: CompletedBookRowProps) {
             className="rounded-md px-2 py-0.5 text-xs font-medium tabular-nums"
             style={{
               background: "rgba(52,211,153,0.1)",
-              color: "#34D399",
+              color: "var(--cf-success-text)",
             }}
           >
             Avg: {book.avgQuizScore}%
@@ -210,9 +210,9 @@ export function CompletedBookRow({ book }: CompletedBookRowProps) {
             href={`/book/library/${encodeURIComponent(book.id)}`}
             className="inline-flex cursor-pointer items-center gap-1 rounded-lg px-2.5 py-1.5 text-xs font-medium transition-colors"
             style={{
-              background: "rgba(255,255,255,0.06)",
+              background: "var(--cf-surface-muted)",
               color: "var(--text-heading)",
-              border: "1px solid rgba(255,255,255,0.08)",
+              border: "1px solid var(--cf-border)",
             }}
           >
             Review

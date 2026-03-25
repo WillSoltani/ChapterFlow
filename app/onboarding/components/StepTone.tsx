@@ -97,7 +97,7 @@ export default function StepTone({ onNext }: StepToneProps) {
           fontFamily: "var(--font-sora, sans-serif)",
           fontWeight: 600,
           fontSize: "clamp(28px, 5vw, 36px)",
-          color: "rgba(255,255,255,0.93)",
+          color: "var(--cf-text-1)",
           textAlign: "center",
           marginBottom: 8,
           lineHeight: 1.2,
@@ -109,7 +109,7 @@ export default function StepTone({ onNext }: StepToneProps) {
         style={{
           fontFamily: "var(--font-dm-sans, sans-serif)",
           fontSize: 16,
-          color: "rgba(255,255,255,0.55)",
+          color: "var(--cf-text-3)",
           textAlign: "center",
           marginBottom: 32,
           lineHeight: 1.5,
@@ -162,7 +162,7 @@ export default function StepTone({ onNext }: StepToneProps) {
                         size={28}
                         strokeWidth={1.5}
                         style={{
-                          color: isSelected ? accentColor : "rgba(255,255,255,0.50)",
+                          color: isSelected ? accentColor : "var(--cf-text-3)",
                           transition: "color 200ms ease",
                           marginTop: 2,
                           flexShrink: 0,
@@ -174,7 +174,7 @@ export default function StepTone({ onNext }: StepToneProps) {
                             fontFamily: "var(--font-sora, sans-serif)",
                             fontWeight: 600,
                             fontSize: 17,
-                            color: "rgba(255,255,255,0.93)",
+                            color: "var(--cf-text-1)",
                             marginBottom: 4,
                             lineHeight: 1.3,
                           }}
@@ -185,7 +185,7 @@ export default function StepTone({ onNext }: StepToneProps) {
                           style={{
                             fontFamily: "var(--font-dm-sans, sans-serif)",
                             fontSize: 14,
-                            color: "rgba(255,255,255,0.55)",
+                            color: "var(--cf-text-3)",
                             lineHeight: 1.5,
                           }}
                         >
@@ -240,13 +240,13 @@ export default function StepTone({ onNext }: StepToneProps) {
         >
           <div
             style={{
-              background: "rgba(255,255,255,0.06)",
+              background: "var(--cf-surface-muted)",
               backdropFilter: "blur(24px)",
               WebkitBackdropFilter: "blur(24px)",
-              border: "1px solid rgba(255,255,255,0.12)",
+              border: "1px solid var(--cf-border-strong)",
               borderRadius: 20,
               padding: 24,
-              boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
+              boxShadow: "var(--cf-shadow-lg)",
               minHeight: 320,
             }}
             aria-live="polite"
@@ -259,7 +259,7 @@ export default function StepTone({ onNext }: StepToneProps) {
                 fontWeight: 600,
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
-                color: "rgba(255,255,255,0.35)",
+                color: "var(--cf-text-soft)",
                 marginBottom: 4,
               }}
             >
@@ -269,7 +269,7 @@ export default function StepTone({ onNext }: StepToneProps) {
               style={{
                 fontFamily: "var(--font-dm-sans, sans-serif)",
                 fontSize: 13,
-                color: "rgba(255,255,255,0.25)",
+                color: "var(--cf-text-soft)",
                 marginBottom: 20,
               }}
             >
@@ -299,7 +299,7 @@ export default function StepTone({ onNext }: StepToneProps) {
                       fontFamily: "var(--font-dm-sans, sans-serif)",
                       fontSize: 15,
                       fontStyle: "italic",
-                      color: "rgba(255,255,255,0.80)",
+                      color: "var(--cf-text-2)",
                       lineHeight: 1.7,
                       margin: 0,
                     }}
@@ -317,7 +317,7 @@ export default function StepTone({ onNext }: StepToneProps) {
                       fontWeight: 600,
                       letterSpacing: "0.1em",
                       textTransform: "uppercase",
-                      color: "rgba(255,255,255,0.30)",
+                      color: "var(--cf-text-soft)",
                       marginBottom: 12,
                     }}
                   >

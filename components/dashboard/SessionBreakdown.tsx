@@ -44,8 +44,8 @@ export function SessionBreakdown() {
           className="flex-shrink-0 rounded-full px-2.5 py-0.5 text-[11px]"
           style={{
             color: "var(--accent-teal)",
-            background: "rgba(45,212,191,0.06)",
-            border: "1px solid rgba(45,212,191,0.12)",
+            background: "var(--cf-teal-soft)",
+            border: "1px solid var(--cf-teal-border)",
           }}
         >
           ⚡ ~12 min

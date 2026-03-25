@@ -25,7 +25,7 @@ function TierPill({ tier, earned }: { tier: string; earned: boolean }) {
       style={
         earned
           ? { background: styles.background, color: styles.color, textShadow: styles.textShadow }
-          : { background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.4)" }
+          : { background: "var(--cf-surface-strong)", color: "var(--cf-text-soft)" }
       }
     >
       {label}
@@ -72,10 +72,10 @@ function EarnedBadgeCard({
       whileHover={reduced ? undefined : { y: -3 }}
       className={cn(
         "group relative overflow-hidden rounded-2xl border p-4 text-left",
-        "bg-[rgba(255,255,255,0.06)] backdrop-blur-xl",
-        "border-[rgba(255,255,255,0.08)]",
+        "bg-(--cf-surface-muted) backdrop-blur-xl",
+        "border-(--cf-border)",
         "cursor-pointer",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0f]"
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
       )}
       style={{
         borderLeftWidth: 2,
@@ -98,10 +98,10 @@ function EarnedBadgeCard({
       </div>
 
       <h3 className="mt-3 text-sm font-semibold text-amber-500">{badge.name}</h3>
-      <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-neutral-400">{badge.description}</p>
+      <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-(--cf-text-3)">{badge.description}</p>
 
       <div className="mt-3 flex items-center justify-between gap-2 text-[10px]">
-        <span className="uppercase tracking-wider text-neutral-500">
+        <span className="uppercase tracking-wider text-(--cf-text-soft)">
           {badge.category}
         </span>
         <div className="flex items-center gap-2">
@@ -113,7 +113,7 @@ function EarnedBadgeCard({
         </div>
       </div>
 
-      <p className="mt-1.5 text-[10px] text-neutral-500 transition-opacity group-hover:opacity-80">
+      <p className="mt-1.5 text-[10px] text-(--cf-text-soft) transition-opacity group-hover:opacity-80">
         Earned by {rarity}% of readers
       </p>
     </motion.button>
@@ -143,10 +143,10 @@ function LockedBadgeCard({
       whileHover={reduced ? undefined : { y: -1, opacity: 1 }}
       className={cn(
         "group relative overflow-hidden rounded-2xl border p-4 text-left",
-        "bg-[rgba(255,255,255,0.02)] backdrop-blur-md",
-        "border-[rgba(255,255,255,0.04)]",
+        "bg-(--cf-surface-muted) backdrop-blur-md",
+        "border-(--cf-border)",
         "opacity-85 cursor-pointer",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0f]"
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
       )}
       style={{ transition: "opacity 150ms ease, transform 200ms ease" }}
       tabIndex={0}
@@ -157,31 +157,31 @@ function LockedBadgeCard({
           <span className="text-[48px] leading-none" style={{ filter: "grayscale(100%) opacity(0.4)" }}>
             {badge.icon}
           </span>
-          <span className="absolute -bottom-0.5 -right-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-neutral-900/80 text-[10px]">
-            <Lock className="h-3 w-3 text-neutral-500" />
+          <span className="absolute -bottom-0.5 -right-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-(--cf-surface)/80 text-[10px]">
+            <Lock className="h-3 w-3 text-(--cf-text-soft)" />
           </span>
         </div>
         <TierPill tier={badge.tier} earned={false} />
       </div>
 
-      <h3 className="mt-3 text-sm font-semibold text-white">{badge.name}</h3>
-      <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-neutral-500">{badge.description}</p>
+      <h3 className="mt-3 text-sm font-semibold text-(--cf-text-1)">{badge.name}</h3>
+      <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-(--cf-text-soft)">{badge.description}</p>
 
       <div className="mt-3 flex items-center justify-between gap-2 text-[10px]">
-        <span className="uppercase tracking-wider text-neutral-500">
+        <span className="uppercase tracking-wider text-(--cf-text-soft)">
           {badge.category}
         </span>
         <div className="flex items-center gap-2">
-          <span className="inline-flex items-center gap-0.5 text-neutral-500">
+          <span className="inline-flex items-center gap-0.5 text-(--cf-text-soft)">
             <svg className="h-2.5 w-2.5" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" /></svg>
             {badge.fpValue}
           </span>
-          <span className="text-neutral-500">{progressText}</span>
+          <span className="text-(--cf-text-soft)">{progressText}</span>
         </div>
       </div>
 
       {badge.current > 0 && (
-        <div className="mt-2 h-1 overflow-hidden rounded-full bg-[rgba(255,255,255,0.08)]">
+        <div className="mt-2 h-1 overflow-hidden rounded-full bg-(--cf-surface-strong)">
           <div
             className="h-full rounded-full bg-amber-500 transition-[width] duration-500"
             style={{ width: `${Math.max(4, badge.percentage)}%` }}
@@ -189,7 +189,7 @@ function LockedBadgeCard({
         </div>
       )}
 
-      <p className="mt-1.5 text-[10px] text-neutral-600 opacity-0 transition-opacity group-hover:opacity-100">
+      <p className="mt-1.5 text-[10px] text-(--cf-text-soft) opacity-0 transition-opacity group-hover:opacity-100">
         Click for details
       </p>
     </motion.button>
@@ -208,26 +208,26 @@ function SecretBadgeCard({ index, onClick }: { index: number; onClick: () => voi
       transition={{ duration: 0.3, delay: index * 0.05, ease: [0.25, 0.1, 0.25, 1] }}
       className={cn(
         "group relative overflow-hidden rounded-2xl p-4 text-left cursor-pointer",
-        "bg-[rgba(255,255,255,0.015)]",
-        "border border-dashed border-[rgba(255,255,255,0.06)]",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0f]"
+        "bg-(--cf-surface-muted)",
+        "border border-dashed border-(--cf-border)",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
       )}
       style={{ transition: "box-shadow 200ms ease" }}
       tabIndex={0}
       onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onClick(); } }}
     >
       <div className="flex items-start justify-between gap-2">
-        <div className="secret-badge-icon relative flex h-12 w-12 items-center justify-center rounded-full border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.03)]">
-          <span className="badge-shimmer text-xl text-neutral-500">?</span>
+        <div className="secret-badge-icon relative flex h-12 w-12 items-center justify-center rounded-full border border-(--cf-border) bg-(--cf-surface-muted)">
+          <span className="badge-shimmer text-xl text-(--cf-text-soft)">?</span>
         </div>
       </div>
 
-      <h3 className="mt-3 text-sm font-semibold text-white">Hidden Achievement</h3>
-      <p className="mt-1 text-xs leading-relaxed text-neutral-600">
+      <h3 className="mt-3 text-sm font-semibold text-(--cf-text-1)">Hidden Achievement</h3>
+      <p className="mt-1 text-xs leading-relaxed text-(--cf-text-soft)">
         Discover through your reading journey
       </p>
 
-      <div className="mt-3 text-[10px] uppercase tracking-wider text-neutral-600">
+      <div className="mt-3 text-[10px] uppercase tracking-wider text-(--cf-text-soft)">
         Secret
       </div>
     </motion.button>

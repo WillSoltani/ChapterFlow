@@ -42,10 +42,10 @@ export function ChapterProgressBar({
               height,
               borderRadius: height >= 6 ? 4 : 2,
               background: isCompleted
-                ? "#34D399"
+                ? "var(--cf-success-text)"
                 : isCurrent
                   ? "rgba(56,189,248,0.15)"
-                  : "rgba(255,255,255,0.06)",
+                  : "var(--cf-surface-muted)",
             }}
           >
             {/* Inner step progress for current chapter */}
@@ -55,7 +55,7 @@ export function ChapterProgressBar({
                 style={{
                   width: `${(currentStepNumber / 4) * 100}%`,
                   borderRadius: height >= 6 ? 4 : 2,
-                  background: "#38BDF8",
+                  background: "var(--cf-accent)",
                 }}
               />
             )}

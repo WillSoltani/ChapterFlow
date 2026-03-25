@@ -48,7 +48,7 @@ export default function MiniSummary({ onContinue }: MiniSummaryProps) {
             height: 64,
             borderRadius: 8,
             background: coverGradient,
-            boxShadow: "0 2px 10px rgba(0,0,0,0.3)",
+            boxShadow: "var(--cf-shadow-sm)",
             flexShrink: 0,
             overflow: "hidden",
           }}
@@ -76,7 +76,7 @@ export default function MiniSummary({ onContinue }: MiniSummaryProps) {
               fontFamily: "var(--font-sora, sans-serif)",
               fontSize: 16,
               fontWeight: 600,
-              color: "var(--text-heading, #FAFAFA)",
+              color: "var(--cf-text-1)",
               margin: 0,
               lineHeight: 1.3,
             }}
@@ -87,7 +87,7 @@ export default function MiniSummary({ onContinue }: MiniSummaryProps) {
             style={{
               fontFamily: "var(--font-dm-sans, sans-serif)",
               fontSize: 13,
-              color: "var(--text-muted, #5A5A6E)",
+              color: "var(--cf-text-soft)",
               margin: "4px 0 0",
             }}
           >
@@ -105,12 +105,12 @@ export default function MiniSummary({ onContinue }: MiniSummaryProps) {
           gap: 6,
         }}
       >
-        <Clock size={14} style={{ color: "var(--text-muted, #5A5A6E)" }} />
+        <Clock size={14} style={{ color: "var(--cf-text-soft)" }} />
         <span
           style={{
             fontFamily: "var(--font-dm-sans, sans-serif)",
             fontSize: 13,
-            color: "var(--text-muted, #5A5A6E)",
+            color: "var(--cf-text-soft)",
           }}
         >
           ~2 min read
@@ -126,7 +126,7 @@ export default function MiniSummary({ onContinue }: MiniSummaryProps) {
             fontFamily: "var(--font-dm-sans, sans-serif)",
             fontSize: 17,
             lineHeight: 1.75,
-            color: "var(--text-primary, #E2E2E6)",
+            color: "var(--cf-text-1)",
             margin: 0,
           }}
         >
@@ -141,8 +141,8 @@ export default function MiniSummary({ onContinue }: MiniSummaryProps) {
           style={{
             margin: 0,
             padding: "16px 20px",
-            borderLeft: "3px solid var(--accent-teal, #2DD4BF)",
-            background: "var(--bg-glass, rgba(255,255,255,0.03))",
+            borderLeft: "3px solid var(--accent-teal)",
+            background: "var(--cf-surface)",
             borderRadius: "0 var(--radius-md-val, 12px) var(--radius-md-val, 12px) 0",
           }}
         >
@@ -153,7 +153,7 @@ export default function MiniSummary({ onContinue }: MiniSummaryProps) {
               fontWeight: 600,
               letterSpacing: "0.1em",
               textTransform: "uppercase",
-              color: "var(--text-muted, #5A5A6E)",
+              color: "var(--cf-text-soft)",
               margin: "0 0 8px",
             }}
           >
@@ -165,7 +165,7 @@ export default function MiniSummary({ onContinue }: MiniSummaryProps) {
               fontSize: 16,
               fontStyle: "italic",
               lineHeight: 1.7,
-              color: "var(--text-primary, #E2E2E6)",
+              color: "var(--cf-text-1)",
               margin: 0,
             }}
           >

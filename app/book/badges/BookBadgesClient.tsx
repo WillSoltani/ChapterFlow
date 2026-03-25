@@ -198,7 +198,7 @@ export function BookBadgesClient() {
           showSearch={false}
           logoVariant="dashboard"
         />
-        <section className="mx-auto w-full max-w-6xl px-4 pb-28 pt-7 sm:px-6 sm:pt-8 md:pb-24">
+        <section className="mx-auto w-full max-w-450 px-4 pb-28 pt-7 sm:px-6 sm:pt-8 md:pb-24 lg:px-10 xl:px-16">
           <LoadingSkeleton />
         </section>
       </main>
@@ -217,7 +217,7 @@ export function BookBadgesClient() {
         logoVariant="dashboard"
       />
 
-      <section className="mx-auto w-full max-w-6xl px-4 pb-28 pt-7 sm:px-6 sm:pt-8 md:pb-24">
+      <section className="mx-auto w-full max-w-450 px-4 pb-28 pt-7 sm:px-6 sm:pt-8 md:pb-24 lg:px-10 xl:px-16">
         <BadgePageHeader profile={profile} />
 
         <div className="mt-6">
@@ -279,7 +279,7 @@ export function BookBadgesClient() {
 // ── Loading skeleton ────────────────────────────────────────────────────────
 
 function SkeletonPulse({ className }: { className?: string }) {
-  return <div className={`animate-pulse rounded-xl bg-neutral-800/50 ${className ?? ""}`} />;
+  return <div className={`animate-pulse rounded-xl bg-(--cf-surface-strong) ${className ?? ""}`} />;
 }
 
 function LoadingSkeleton() {

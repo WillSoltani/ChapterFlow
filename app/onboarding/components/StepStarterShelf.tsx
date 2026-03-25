@@ -60,7 +60,7 @@ function BookCoverImage({
         height,
         borderRadius: radius,
         background: book.gradient,
-        boxShadow: "0 6px 20px rgba(0,0,0,0.5)",
+        boxShadow: "var(--cf-shadow-lg)",
         overflow: "hidden",
         position: "relative",
         flexShrink: 0,
@@ -136,7 +136,7 @@ function SwipeCard({ book, onSwipe, onButtonSwipe }: SwipeCardProps) {
     [
       "rgba(239,68,68,0.6)",
       "rgba(239,68,68,0.2)",
-      "rgba(255,255,255,0.12)",
+      "var(--cf-border-strong)",
       "rgba(62,207,178,0.2)",
       "rgba(62,207,178,0.6)",
     ]
@@ -146,7 +146,7 @@ function SwipeCard({ book, onSwipe, onButtonSwipe }: SwipeCardProps) {
     [-150, 0, 150],
     [
       "0 0 30px rgba(239,68,68,0.15)",
-      "0 8px 32px rgba(0,0,0,0.3)",
+      "var(--cf-shadow-lg)",
       "0 0 30px rgba(62,207,178,0.15)",
     ]
   );
@@ -210,7 +210,7 @@ function SwipeCard({ book, onSwipe, onButtonSwipe }: SwipeCardProps) {
         position: "absolute",
         inset: 0,
         borderRadius: 24,
-        background: "#0F1225",
+        background: "var(--cf-surface)",
         borderWidth: 1,
         borderStyle: "solid",
         padding: "24px 24px 20px",
@@ -276,7 +276,7 @@ function SwipeCard({ book, onSwipe, onButtonSwipe }: SwipeCardProps) {
           fontFamily: "var(--font-sora, sans-serif)",
           fontSize: 18,
           fontWeight: 600,
-          color: "rgba(255,255,255,0.93)",
+          color: "var(--cf-text-1)",
           textAlign: "center",
           marginTop: 16,
           lineHeight: 1.3,
@@ -290,7 +290,7 @@ function SwipeCard({ book, onSwipe, onButtonSwipe }: SwipeCardProps) {
         style={{
           fontFamily: "var(--font-dm-sans, sans-serif)",
           fontSize: 14,
-          color: "rgba(255,255,255,0.55)",
+          color: "var(--cf-text-3)",
           textAlign: "center",
           marginTop: 4,
         }}
@@ -303,9 +303,9 @@ function SwipeCard({ book, onSwipe, onButtonSwipe }: SwipeCardProps) {
         <span
           className="rounded-full px-3 py-1 text-xs"
           style={{
-            background: "rgba(255,255,255,0.06)",
-            border: "1px solid rgba(255,255,255,0.10)",
-            color: "rgba(255,255,255,0.55)",
+            background: "var(--cf-surface-muted)",
+            border: "1px solid var(--cf-border-strong)",
+            color: "var(--cf-text-3)",
             fontFamily: "var(--font-dm-sans, sans-serif)",
           }}
         >
@@ -319,7 +319,7 @@ function SwipeCard({ book, onSwipe, onButtonSwipe }: SwipeCardProps) {
         </span>
         <span
           className="flex items-center gap-1 text-xs"
-          style={{ color: "rgba(255,255,255,0.35)", fontFamily: "var(--font-dm-sans, sans-serif)" }}
+          style={{ color: "var(--cf-text-soft)", fontFamily: "var(--font-dm-sans, sans-serif)" }}
         >
           <Clock size={12} />~{book.estimatedHours}h
         </span>
@@ -330,7 +330,7 @@ function SwipeCard({ book, onSwipe, onButtonSwipe }: SwipeCardProps) {
         style={{
           fontFamily: "var(--font-dm-sans, sans-serif)",
           fontSize: 13,
-          color: "rgba(255,255,255,0.35)",
+          color: "var(--cf-text-soft)",
           fontStyle: "italic",
           textAlign: "center",
           marginTop: 12,
@@ -356,9 +356,9 @@ function BackCard({ book }: { book: OnboardingBook }) {
         position: "absolute",
         inset: 0,
         borderRadius: 24,
-        background: "#0F1225",
-        border: "1px solid rgba(255,255,255,0.08)",
-        boxShadow: "0 4px 16px rgba(0,0,0,0.25)",
+        background: "var(--cf-surface)",
+        border: "1px solid var(--cf-border)",
+        boxShadow: "var(--cf-shadow-md)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -416,7 +416,7 @@ function ShelfComplete({ books, onDone }: { books: OnboardingBook[]; onDone: () 
           fontFamily: "var(--font-sora, sans-serif)",
           fontSize: 28,
           fontWeight: 600,
-          color: "rgba(255,255,255,0.93)",
+          color: "var(--cf-text-1)",
           marginBottom: 32,
         }}
       >
@@ -439,7 +439,7 @@ function ShelfComplete({ books, onDone }: { books: OnboardingBook[]; onDone: () 
                 fontFamily: "var(--font-dm-sans, sans-serif)",
                 fontSize: 13,
                 fontWeight: 500,
-                color: "rgba(255,255,255,0.93)",
+                color: "var(--cf-text-1)",
                 marginTop: 8,
                 textAlign: "center",
                 lineHeight: 1.3,
@@ -451,7 +451,7 @@ function ShelfComplete({ books, onDone }: { books: OnboardingBook[]; onDone: () 
               style={{
                 fontFamily: "var(--font-dm-sans, sans-serif)",
                 fontSize: 11,
-                color: "rgba(255,255,255,0.45)",
+                color: "var(--cf-text-soft)",
                 textAlign: "center",
               }}
             >
@@ -554,7 +554,7 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
           fontFamily: "var(--font-sora, sans-serif)",
           fontSize: "clamp(24px, 5vw, 32px)",
           fontWeight: 600,
-          color: "rgba(255,255,255,0.93)",
+          color: "var(--cf-text-1)",
           textAlign: "center",
           marginBottom: 8,
         }}
@@ -565,7 +565,7 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
         style={{
           fontFamily: "var(--font-dm-sans, sans-serif)",
           fontSize: 16,
-          color: "rgba(255,255,255,0.55)",
+          color: "var(--cf-text-3)",
           textAlign: "center",
           marginBottom: 16,
           lineHeight: 1.5,
@@ -581,7 +581,7 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
           fontSize: 14,
           color:
             selectedCount === 0
-              ? "rgba(255,255,255,0.40)"
+              ? "var(--cf-text-soft)"
               : selectedCount >= MAX_PICKS
                 ? "#3ECFB2"
                 : "#5B8DEF",
@@ -614,7 +614,7 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
                 width: 12,
                 height: 12,
                 borderRadius: "50%",
-                border: filled ? "none" : "2px solid rgba(255,255,255,0.20)",
+                border: filled ? "none" : "2px solid var(--cf-border-strong)",
               }}
             />
           );
@@ -684,15 +684,15 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
               width: "100%",
               height: "100%",
               borderRadius: 24,
-              border: "1px dashed rgba(255,255,255,0.12)",
-              background: "rgba(255,255,255,0.02)",
+              border: "1px dashed var(--cf-border-strong)",
+              background: "var(--cf-surface-muted)",
             }}
           >
             <p
               style={{
                 fontFamily: "var(--font-dm-sans, sans-serif)",
                 fontSize: 15,
-                color: "rgba(255,255,255,0.40)",
+                color: "var(--cf-text-soft)",
                 textAlign: "center",
                 padding: 24,
               }}
@@ -717,8 +717,8 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
               width: 56,
               height: 56,
               borderRadius: "50%",
-              background: "rgba(255,255,255,0.04)",
-              border: "1px solid rgba(255,255,255,0.08)",
+              background: "var(--cf-surface-muted)",
+              border: "1px solid var(--cf-border)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -730,8 +730,8 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
               e.currentTarget.style.background = "rgba(248,113,113,0.10)";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)";
-              e.currentTarget.style.background = "rgba(255,255,255,0.04)";
+              e.currentTarget.style.borderColor = "var(--cf-border)";
+              e.currentTarget.style.background = "var(--cf-surface-muted)";
             }}
           >
             <X size={24} style={{ color: "rgb(248,113,113)" }} />
@@ -746,8 +746,8 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
               width: 56,
               height: 56,
               borderRadius: "50%",
-              background: "rgba(255,255,255,0.04)",
-              border: "1px solid rgba(255,255,255,0.08)",
+              background: "var(--cf-surface-muted)",
+              border: "1px solid var(--cf-border)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -759,8 +759,8 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
               e.currentTarget.style.background = "rgba(62,207,178,0.10)";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)";
-              e.currentTarget.style.background = "rgba(255,255,255,0.04)";
+              e.currentTarget.style.borderColor = "var(--cf-border)";
+              e.currentTarget.style.background = "var(--cf-surface-muted)";
             }}
           >
             <Heart size={24} style={{ color: "#3ECFB2" }} />
@@ -788,8 +788,8 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
                     width: 48,
                     height: 68,
                     borderRadius: 8,
-                    border: "1px dashed rgba(255,255,255,0.10)",
-                    background: "rgba(255,255,255,0.02)",
+                    border: "1px dashed var(--cf-border-strong)",
+                    background: "var(--cf-surface-muted)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -799,7 +799,7 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
                     style={{
                       fontFamily: "var(--font-dm-sans, sans-serif)",
                       fontSize: 14,
-                      color: "rgba(255,255,255,0.20)",
+                      color: "var(--cf-border-strong)",
                     }}
                   >
                     {i + 1}
@@ -816,7 +816,7 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
         style={{
           fontFamily: "var(--font-dm-sans, sans-serif)",
           fontSize: 13,
-          color: "rgba(255,255,255,0.30)",
+          color: "var(--cf-text-soft)",
           textAlign: "center",
           marginTop: 20,
           lineHeight: 1.5,
@@ -834,8 +834,8 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
             cursor: "pointer",
             transition: "color 200ms",
           }}
-          onMouseEnter={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.55)")}
-          onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.30)")}
+          onMouseEnter={(e) => (e.currentTarget.style.color = "var(--cf-text-3)")}
+          onMouseLeave={(e) => (e.currentTarget.style.color = "var(--cf-text-soft)")}
         >
           Add more with Pro.
         </span>

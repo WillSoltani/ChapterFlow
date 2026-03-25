@@ -46,12 +46,12 @@ export function BadgeCategorySection({
   const pill = getCategoryPillContent(group);
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.02)]">
+    <div className="overflow-hidden rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted)">
       <button
         type="button"
         onClick={() => setOpen((prev) => !prev)}
         aria-expanded={open}
-        className="flex w-full items-center gap-4 px-5 py-4 text-left transition hover:bg-[rgba(255,255,255,0.02)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-(--cf-accent-border)"
+        className="flex w-full items-center gap-4 px-5 py-4 text-left transition hover:bg-(--cf-surface-muted) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-(--cf-accent-border)"
       >
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-2.5">
@@ -65,7 +65,7 @@ export function BadgeCategorySection({
                   ? "border-amber-500/20 bg-amber-500/10 text-amber-500"
                   : pill.tone === "progress"
                     ? "border-amber-500/15 bg-amber-500/5 text-amber-500/80"
-                    : "border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.04)] text-(--cf-text-soft)"
+                    : "border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-soft)"
               )}
             >
               {pill.text}
@@ -99,8 +99,8 @@ export function BadgeCategorySection({
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
             className="overflow-hidden"
           >
-            <div className="border-t border-[rgba(255,255,255,0.04)] px-5 pb-5 pt-4">
-              <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+            <div className="border-t border-(--cf-border) px-5 pb-5 pt-4">
+              <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
                 {group.badges.map((badge, i) => (
                   <BadgeCard
                     key={badge.id}

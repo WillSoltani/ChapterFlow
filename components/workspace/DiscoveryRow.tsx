@@ -42,7 +42,7 @@ export function DiscoveryRow({ books, isPro }: DiscoveryRowProps) {
       {/* Header */}
       <h2
         className="mb-4 font-(family-name:--font-display) text-xl font-semibold"
-        style={{ color: "#F0F0F0" }}
+        style={{ color: "var(--cf-text-1)" }}
       >
         Recommended for You
       </h2>
@@ -90,10 +90,10 @@ export function DiscoveryRow({ books, isPro }: DiscoveryRowProps) {
         <motion.div
           className="mt-4 rounded-xl px-6 py-6 text-center"
           style={{
-            background: "rgba(255,255,255,0.025)",
+            background: "var(--cf-surface-muted)",
             backdropFilter: "blur(12px)",
             WebkitBackdropFilter: "blur(12px)",
-            border: "1px solid rgba(255,255,255,0.06)",
+            border: "1px solid var(--cf-border)",
           }}
           initial={prefersReducedMotion ? undefined : { opacity: 0 }}
           whileInView={prefersReducedMotion ? undefined : { opacity: 1 }}
@@ -104,12 +104,12 @@ export function DiscoveryRow({ books, isPro }: DiscoveryRowProps) {
               : { duration: 0.5, delay: 0.3, ease }
           }
         >
-          <p className="text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>
+          <p className="text-sm" style={{ color: "var(--cf-text-3)" }}>
             Unlock your full library — 95+ books across 21 categories
           </p>
           <Link href="/pricing">
           <motion.span
-            className="mt-3 inline-flex cursor-pointer items-center rounded-xl px-6 py-2.5 text-sm font-semibold text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a12]"
+            className="mt-3 inline-flex cursor-pointer items-center rounded-xl px-6 py-2.5 text-sm font-semibold text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
             style={{
               background: "linear-gradient(to right, #f59e0b, #fbbf24)",
               boxShadow:
@@ -132,7 +132,7 @@ export function DiscoveryRow({ books, isPro }: DiscoveryRowProps) {
           </Link>
           <p
             className="mt-2 text-xs"
-            style={{ color: "rgba(255,255,255,0.3)" }}
+            style={{ color: "var(--cf-text-soft)" }}
           >
             Join 2,400+ Pro readers
           </p>

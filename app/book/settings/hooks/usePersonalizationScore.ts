@@ -43,6 +43,7 @@ export function usePersonalizationScore(
       [extended.letterSpacing, defaultExtendedSettings.letterSpacing],
       [extended.streakMode, defaultExtendedSettings.streakMode],
       [extended.motivationPersona, defaultExtendedSettings.motivationPersona],
+      [extended.contentTone, defaultExtendedSettings.contentTone],
       [extended.quizStyle, defaultExtendedSettings.quizStyle],
       [extended.dailyGoalPreset, defaultExtendedSettings.dailyGoalPreset],
       [extended.colorBlindMode, defaultExtendedSettings.colorBlindMode],

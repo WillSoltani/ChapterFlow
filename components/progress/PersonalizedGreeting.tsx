@@ -22,10 +22,10 @@ const LEVEL_THRESHOLDS: Record<ReaderLevel, number> = {
 };
 
 const LEVEL_COLORS: Record<ReaderLevel, string> = {
-  "Curious Reader": "#38BDF8",
-  "Active Learner": "#34D399",
-  "Knowledge Builder": "#A78BFA",
-  "Thought Leader": "#F59E0B",
+  "Curious Reader": "var(--cf-accent)",
+  "Active Learner": "var(--cf-success-text)",
+  "Knowledge Builder": "var(--cf-accent)",
+  "Thought Leader": "var(--accent-gold)",
 };
 
 function getGreeting(): string {
@@ -129,7 +129,7 @@ export function PersonalizedGreeting({
         <div
           className="flex items-center gap-2 rounded-lg px-2.5 py-1"
           style={{
-            background: "rgba(255,255,255,0.04)",
+            background: "var(--cf-surface-muted)",
             borderLeft: `3px solid ${levelColor}`,
           }}
         >
@@ -142,7 +142,7 @@ export function PersonalizedGreeting({
             style={{
               width: 48,
               height: 4,
-              background: "rgba(255,255,255,0.08)",
+              background: "var(--cf-surface-strong)",
             }}
           >
             <div

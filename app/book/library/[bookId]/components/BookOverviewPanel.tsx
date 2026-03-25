@@ -64,7 +64,7 @@ export function BookOverviewPanel({
       <div className="relative overflow-hidden rounded-3xl border border-(--cf-accent-border) bg-[linear-gradient(160deg,var(--cf-accent-soft),var(--cf-surface-strong))] p-4">
         <span
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_95%_at_100%_0%,rgba(255,255,255,0.14),transparent_60%)]"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_95%_at_100%_0%,var(--cf-surface-strong),transparent_60%)]"
         />
         <BookCover
           bookId={entry.id}
@@ -75,7 +75,7 @@ export function BookOverviewPanel({
           fallbackClassName="text-7xl"
           sizes="320px"
         />
-        <span className="cf-pill absolute bottom-4 left-1/2 -translate-x-1/2 border-white/20 bg-black/30 px-3 py-1 text-xs text-white">
+        <span className="cf-pill absolute bottom-4 left-1/2 -translate-x-1/2 border-(--cf-border) bg-black/30 px-3 py-1 text-xs text-white">
           App Preview
         </span>
       </div>

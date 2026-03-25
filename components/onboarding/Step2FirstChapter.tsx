@@ -55,8 +55,8 @@ function ContinueButton({ text, onClick, delay = 0.3 }: { text: string; onClick:
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay }}
       whileHover={{
-        backgroundColor: "rgba(255,255,255,0.06)",
-        borderColor: "rgba(255,255,255,0.14)",
+        backgroundColor: "var(--cf-surface-muted)",
+        borderColor: "var(--cf-border-strong)",
       }}
     >
       {text.replace(" →", "")} <span>&rarr;</span>
@@ -557,7 +557,7 @@ export function Step2FirstChapter({
       <motion.div
         className="mt-6 w-full overflow-hidden"
         style={{
-          background: "linear-gradient(180deg, rgba(255,255,255,0.01), var(--bg-glass))",
+          background: "linear-gradient(180deg, var(--cf-surface-muted), var(--cf-surface))",
           border: "1px solid var(--border-medium)",
           borderRadius: "var(--radius-xl-val)",
           boxShadow: "0 0 40px rgba(79,139,255,0.04), var(--shadow-card)",

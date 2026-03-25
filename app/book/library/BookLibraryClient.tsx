@@ -138,9 +138,10 @@ export function BookLibraryClient() {
         onSearchChange={setSearchQuery}
         searchInputRef={searchInputRef}
         showSearch={false}
+        logoVariant="dashboard"
       />
 
-      <section className="mx-auto w-full max-w-7xl px-4 pb-28 pt-7 sm:px-6 sm:pt-8">
+      <section className="mx-auto w-full max-w-450 px-4 pb-28 pt-7 sm:px-6 sm:pt-8 lg:px-10 xl:px-16">
         <div className="mb-5 flex items-end justify-between gap-3">
           <h1 className="text-5xl font-semibold tracking-tight text-(--cf-text-1)">Library</h1>
           <p className="text-sm text-(--cf-text-3)">
@@ -205,7 +206,7 @@ export function BookLibraryClient() {
               </button>
             </div>
           ) : loading || catalogLoading ? (
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
               {Array.from({ length: 6 }).map((_, index) => (
                 <SkeletonCard key={index} />
               ))}
@@ -245,7 +246,7 @@ export function BookLibraryClient() {
                 onNext={pagination.goToNextPage}
               />
 
-              <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
                 {pagination.pageEntries.map((entry) => (
                   <BookCardLarge
                     key={entry.id}

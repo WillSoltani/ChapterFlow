@@ -38,19 +38,19 @@ interface HeroSessionCardProps {
 function getStatusBadge(userState: UserState): { label: string; color: string } {
   switch (userState) {
     case "active_reader":
-      return { label: "CONTINUE READING", color: "#7C3AED" };
+      return { label: "CONTINUE READING", color: "var(--cf-accent)" };
     case "new_user":
-      return { label: "READY TO START", color: "#10B981" };
+      return { label: "READY TO START", color: "var(--cf-success-text)" };
     case "quiz_pending":
-      return { label: "QUIZ TIME", color: "#F59E0B" };
+      return { label: "QUIZ TIME", color: "var(--accent-gold)" };
     case "between_books":
-      return { label: "BOOK COMPLETE", color: "#F59E0B" };
+      return { label: "BOOK COMPLETE", color: "var(--accent-gold)" };
     case "returning":
-      return { label: "WELCOME BACK", color: "#7C3AED" };
+      return { label: "WELCOME BACK", color: "var(--cf-accent)" };
     case "free_limit_reached":
-      return { label: "UNLOCK MORE", color: "#F59E0B" };
+      return { label: "UNLOCK MORE", color: "var(--accent-gold)" };
     default:
-      return { label: "CONTINUE READING", color: "#7C3AED" };
+      return { label: "CONTINUE READING", color: "var(--cf-accent)" };
   }
 }
 
@@ -158,10 +158,10 @@ export function HeroSessionCard({
     <motion.div
       className="group rounded-2xl"
       style={{
-        background: "rgba(255,255,255,0.05)",
+        background: "var(--cf-surface-muted)",
         backdropFilter: "blur(24px) saturate(140%)",
         WebkitBackdropFilter: "blur(24px) saturate(140%)",
-        border: "1px solid rgba(255,255,255,0.10)",
+        border: "1px solid var(--cf-border-strong)",
         boxShadow:
           "0 0 100px -20px rgba(124, 58, 237, 0.30), 0 0 40px -10px rgba(124, 58, 237, 0.15)",
         transition: "box-shadow 500ms ease-out",
@@ -213,7 +213,7 @@ export function HeroSessionCard({
             <Link href={`/book/library/${currentBook.id}`}>
               <h2
                 className="mt-4 font-(family-name:--font-display) text-3xl font-bold lg:text-4xl transition-colors hover:text-violet-300"
-                style={{ color: "#F0F0F0" }}
+                style={{ color: "var(--cf-text-1)" }}
               >
                 {title}
               </h2>
@@ -221,7 +221,7 @@ export function HeroSessionCard({
           ) : (
             <h2
               className="mt-4 font-(family-name:--font-display) text-3xl font-bold lg:text-4xl"
-              style={{ color: "#F0F0F0" }}
+              style={{ color: "var(--cf-text-1)" }}
             >
               {title}
             </h2>
@@ -229,7 +229,7 @@ export function HeroSessionCard({
 
           {/* Subtitle */}
           {subtitle && (
-            <p className="mt-1.5 text-lg" style={{ color: "#A0A0B8" }}>
+            <p className="mt-1.5 text-lg" style={{ color: "var(--cf-text-3)" }}>
               {subtitle}
             </p>
           )}
@@ -237,14 +237,14 @@ export function HeroSessionCard({
           {/* Chapter progress */}
           {showProgress && currentBook && (
             <div className="mt-4">
-              <span className="text-sm font-medium" style={{ color: "#A0A0B8" }}>
+              <span className="text-sm font-medium" style={{ color: "var(--cf-text-3)" }}>
                 Chapter {currentBook.currentChapter} of{" "}
                 {currentBook.totalChapters}
               </span>
               <div
                 className="mt-2 h-1 overflow-hidden rounded-full"
                 style={{
-                  background: "rgba(255,255,255,0.06)",
+                  background: "var(--cf-surface-muted)",
                   maxWidth: 280,
                 }}
                 role="progressbar"
@@ -270,11 +270,11 @@ export function HeroSessionCard({
               <div className="mt-2 flex items-center gap-3">
                 <span
                   className="font-(family-name:--font-jetbrains) text-xs tabular-nums"
-                  style={{ color: "#6B6B80" }}
+                  style={{ color: "var(--cf-text-soft)" }}
                 >
                   {currentBook.progressPercent}%
                 </span>
-                <span className="text-xs" style={{ color: "#6B6B80" }}>
+                <span className="text-xs" style={{ color: "var(--cf-text-soft)" }}>
                   ⏱ ~{currentBook.estimatedMinutes} min
                 </span>
               </div>
@@ -294,7 +294,7 @@ export function HeroSessionCard({
           <div className="mt-6">
             <Link href={ctaHref}>
               <motion.span
-                className="cta-shine inline-flex cursor-pointer items-center rounded-xl px-8 py-3.5 text-base font-semibold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a12]"
+                className="cta-shine inline-flex cursor-pointer items-center rounded-xl px-8 py-3.5 text-base font-semibold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
                 style={{
                   background: "linear-gradient(135deg, #7C3AED, #6D28D9)",
                   boxShadow:

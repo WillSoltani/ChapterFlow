@@ -41,7 +41,7 @@ export function StepIndicator({
                     style={{
                       width: effectiveDot,
                       height: effectiveDot,
-                      background: "#38BDF8",
+                      background: "var(--cf-accent)",
                       boxShadow: "0 0 10px rgba(56,189,248,0.5)",
                     }}
                     animate={{ scale: [1, 1.2, 1] }}
@@ -55,11 +55,11 @@ export function StepIndicator({
                       width: effectiveDot,
                       height: effectiveDot,
                       background: isCompleted
-                        ? "#34D399"
+                        ? "var(--cf-success-text)"
                         : "transparent",
                       border: isCompleted
                         ? "none"
-                        : "2px solid rgba(255,255,255,0.2)",
+                        : "2px solid var(--cf-border-strong)",
                     }}
                     aria-label={`Step ${stepNum} of ${totalSteps}: ${STEP_LABELS[i]} (${isCompleted ? "completed" : "upcoming"})`}
                   />
@@ -74,8 +74,8 @@ export function StepIndicator({
                     height: lineHeight,
                     minWidth: size === "sm" ? 8 : 12,
                     background: isCompleted
-                      ? "#34D399"
-                      : "rgba(255,255,255,0.08)",
+                      ? "var(--cf-success-text)"
+                      : "var(--cf-surface-strong)",
                   }}
                 />
               )}
@@ -99,9 +99,9 @@ export function StepIndicator({
                 style={{
                   fontSize: 11,
                   color: isCompleted
-                    ? "#34D399"
+                    ? "var(--cf-success-text)"
                     : isCurrent
-                      ? "#38BDF8"
+                      ? "var(--cf-accent)"
                       : "var(--text-muted)",
                   fontWeight: isCurrent ? 600 : 400,
                 }}

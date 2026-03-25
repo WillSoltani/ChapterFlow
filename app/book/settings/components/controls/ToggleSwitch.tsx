@@ -20,24 +20,23 @@ export function ToggleSwitch({ checked, onChange, disabled, label }: ToggleSwitc
       disabled={disabled}
       onClick={() => onChange(!checked)}
       className={cn(
-        "relative inline-flex h-7 w-12 shrink-0 cursor-pointer items-center rounded-full p-1 transition-colors duration-200",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)",
+        "relative w-11 h-6 shrink-0 cursor-pointer rounded-full transition-colors duration-200",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent)/40 focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)",
         "disabled:cursor-not-allowed disabled:opacity-40",
-        "min-h-11 min-w-11",
         checked
-          ? "bg-(--cf-accent) shadow-[inset_0_1px_2px_rgba(0,0,0,0.15),0_0_8px_rgba(79,139,255,0.25)]"
-          : "bg-white/10"
+          ? "bg-(--cf-accent) shadow-[inset_0_0_6px_var(--cf-accent-shadow)]"
+          : "bg-(--cf-surface-strong)"
       )}
     >
-      <motion.span
-        animate={{ x: checked ? 20 : 0 }}
-        transition={{ type: "spring", stiffness: 500, damping: 30 }}
+      <motion.div
         className={cn(
-          "pointer-events-none block h-5 w-5 rounded-full",
+          "absolute top-1 w-4 h-4 rounded-full pointer-events-none",
           checked
-            ? "bg-white shadow-[0_0_6px_rgba(79,139,255,0.4)]"
+            ? "bg-white shadow-[0_0_4px_rgba(34,211,238,0.3)]"
             : "bg-(--cf-text-soft) shadow-sm"
         )}
+        animate={{ left: checked ? 22 : 4 }}
+        transition={{ type: "spring", stiffness: 500, damping: 30 }}
       />
     </button>
   );

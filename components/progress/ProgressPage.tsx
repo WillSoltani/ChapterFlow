@@ -261,7 +261,7 @@ function SkeletonBlock({
         width: width ?? "100%",
         height: height ?? 20,
         background:
-          "linear-gradient(90deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 100%)",
+          "linear-gradient(90deg, var(--cf-surface-muted) 0%, var(--cf-surface-strong) 50%, var(--cf-surface-muted) 100%)",
         backgroundSize: "200% 100%",
       }}
     />
@@ -445,8 +445,8 @@ export function ProgressPage() {
             onClick={() => window.location.reload()}
             className="cursor-pointer rounded-xl px-6 py-2.5 text-sm font-medium transition-colors"
             style={{
-              background: "rgba(255,255,255,0.1)",
-              border: "1px solid rgba(255,255,255,0.15)",
+              background: "var(--cf-border-strong)",
+              border: "1px solid var(--cf-border-strong)",
               color: "var(--text-heading)",
             }}
           >

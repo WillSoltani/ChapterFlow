@@ -58,7 +58,7 @@ export function BookCover({
   const [activeIndex, setActiveIndex] = useState(0);
   const src = candidates[activeIndex];
   const imageClasses = [
-    "object-contain bg-white transition-transform duration-500 ease-out",
+    "object-contain bg-(--cf-surface) transition-transform duration-500 ease-out",
     interactive ? "motion-safe:hover:scale-[1.045]" : "",
     imageClassName,
   ]
@@ -100,11 +100,11 @@ export function BookCover({
       {interactive ? (
         <>
           <span
-            className="pointer-events-none absolute inset-0 rounded-[inherit] bg-[linear-gradient(125deg,rgba(255,255,255,0)_15%,rgba(255,255,255,0.24)_50%,rgba(255,255,255,0)_80%)] opacity-0 transition duration-500 ease-out motion-safe:hover:opacity-100"
+            className="pointer-events-none absolute inset-0 rounded-[inherit] bg-[linear-gradient(125deg,transparent_15%,var(--cf-surface-strong)_50%,transparent_80%)] opacity-0 transition duration-500 ease-out motion-safe:hover:opacity-100"
             aria-hidden="true"
           />
           <span
-            className="pointer-events-none absolute inset-0 rounded-[inherit] ring-1 ring-white/0 transition duration-300 ease-out motion-safe:hover:ring-white/45"
+            className="pointer-events-none absolute inset-0 rounded-[inherit] ring-1 ring-transparent transition duration-300 ease-out motion-safe:hover:ring-(--cf-border-strong)"
             aria-hidden="true"
           />
         </>

@@ -35,10 +35,10 @@ export function KnowledgeReview({
   // Determine counter color
   const counterColor =
     reviews.overdueCount > 0
-      ? "#F43F5E"
+      ? "var(--cf-danger-text)"
       : reviews.dueTodayCount > 0
-        ? "#F59E0B"
-        : "#34D399";
+        ? "var(--accent-gold)"
+        : "var(--cf-success-text)";
 
   const bookHref = firstActiveBook
     ? `/book/library/${encodeURIComponent(firstActiveBook.id)}`
@@ -48,12 +48,11 @@ export function KnowledgeReview({
     <motion.section
       className="rounded-2xl p-5"
       style={{
-        background: "rgba(255,255,255,0.04)",
+        background: "var(--cf-surface-muted)",
         backdropFilter: "blur(16px)",
         WebkitBackdropFilter: "blur(16px)",
-        border: "1px solid rgba(255,255,255,0.08)",
-        boxShadow: "0 4px 16px rgba(0,0,0,0.2)",
-        backgroundColor: "rgba(15,15,26,0.95)",
+        border: "1px solid var(--cf-border)",
+        boxShadow: "var(--cf-shadow-md)",
       }}
       initial={{ opacity: prefersReduced ? 1 : 0 }}
       whileInView={{ opacity: 1 }}
@@ -97,7 +96,7 @@ export function KnowledgeReview({
               className="mt-4 inline-flex cursor-pointer items-center gap-1.5 rounded-xl px-5 py-2.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50"
               style={{
                 color: "var(--text-secondary)",
-                border: "1px solid rgba(255,255,255,0.15)",
+                border: "1px solid var(--cf-border-strong)",
               }}
             >
               Go to your first chapter {"\u2192"}
@@ -136,7 +135,7 @@ export function KnowledgeReview({
                   className="rounded-full px-3 py-1 text-xs font-medium"
                   style={{
                     background: "rgba(244,63,94,0.1)",
-                    color: "#F43F5E",
+                    color: "var(--cf-danger-text)",
                     border: "1px solid rgba(244,63,94,0.2)",
                   }}
                 >
@@ -148,7 +147,7 @@ export function KnowledgeReview({
                   className="rounded-full px-3 py-1 text-xs font-medium"
                   style={{
                     background: "rgba(245,158,11,0.1)",
-                    color: "#F59E0B",
+                    color: "var(--accent-gold)",
                     border: "1px solid rgba(245,158,11,0.2)",
                   }}
                 >
@@ -160,7 +159,7 @@ export function KnowledgeReview({
                   className="rounded-full px-3 py-1 text-xs font-medium"
                   style={{
                     background: "rgba(52,211,153,0.1)",
-                    color: "#34D399",
+                    color: "var(--cf-success-text)",
                     border: "1px solid rgba(52,211,153,0.2)",
                   }}
                 >
@@ -175,8 +174,8 @@ export function KnowledgeReview({
                 type="button"
                 className="cursor-pointer rounded-xl px-5 py-2.5 text-sm font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/50"
                 style={{
-                  background: "linear-gradient(135deg, #F59E0B, #D97706)",
-                  color: "#0A0A14",
+                  background: "linear-gradient(135deg, var(--accent-gold), var(--accent-gold))",
+                  color: "var(--cf-page-bg)",
                   width: "fit-content",
                   border: "1px solid rgba(245,158,11,0.3)",
                   boxShadow: "0 4px 12px rgba(245,158,11,0.2)",
@@ -200,7 +199,7 @@ export function KnowledgeReview({
                         background: isTodayCell
                           ? "rgba(56,189,248,0.1)"
                           : day.count > 0
-                            ? "rgba(255,255,255,0.04)"
+                            ? "var(--cf-surface-muted)"
                             : "transparent",
                         border: isTodayCell
                           ? "2px solid rgba(56,189,248,0.4)"
@@ -211,7 +210,7 @@ export function KnowledgeReview({
                         className="text-[10px]"
                         style={{
                           color: isTodayCell
-                            ? "#38BDF8"
+                            ? "var(--cf-accent)"
                             : "var(--text-muted)",
                         }}
                       >
@@ -222,7 +221,7 @@ export function KnowledgeReview({
                           className="flex h-5 w-5 items-center justify-center rounded-full text-[10px] font-semibold"
                           style={{
                             background: "rgba(56,189,248,0.2)",
-                            color: "#38BDF8",
+                            color: "var(--cf-accent)",
                           }}
                         >
                           {day.count}
@@ -230,7 +229,7 @@ export function KnowledgeReview({
                       ) : (
                         <span
                           className="h-1.5 w-1.5 rounded-full"
-                          style={{ background: "rgba(255,255,255,0.1)" }}
+                          style={{ background: "var(--cf-border-strong)" }}
                         />
                       )}
                     </div>

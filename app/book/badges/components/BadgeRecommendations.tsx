@@ -12,15 +12,15 @@ type BadgeRecommendationsProps = {
 function getCtaHref(badge: BadgeWithProgress): string {
   switch (badge.category) {
     case "consistency":
-      return "/book/workspace";
+      return "/dashboard";
     case "mastery":
-      return "/book/workspace";
+      return "/dashboard";
     case "books":
       return "/book/library";
     case "exploration":
       return "/book/library";
     case "notes":
-      return "/book/workspace";
+      return "/dashboard";
     default:
       return "/book/library";
   }
@@ -66,7 +66,7 @@ export function BadgeRecommendations({
       <div>
         <h2 className="text-base font-semibold tracking-tight text-(--cf-text-1)">Almost There</h2>
         <p className="mt-0.5 text-xs text-(--cf-text-soft)">Your nearest achievements</p>
-        <div className="mt-4 rounded-2xl border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.03)] px-5 py-8 text-center backdrop-blur-xl">
+        <div className="mt-4 rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) px-5 py-8 text-center backdrop-blur-xl">
           <p className="text-lg font-semibold text-amber-500">
             You have earned every achievement. Legendary.
           </p>
@@ -90,8 +90,8 @@ export function BadgeRecommendations({
           return (
             <div
               key={badge.id}
-              className="group flex w-65 shrink-0 snap-start flex-col rounded-2xl border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.03)] p-4 text-left backdrop-blur-xl transition hover:border-[rgba(255,255,255,0.1)]"
-              style={{ borderTopWidth: 2, borderTopColor: "#f59e0b" }}
+              className="group flex w-65 shrink-0 snap-start flex-col rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) p-4 text-left backdrop-blur-xl transition hover:border-(--cf-border-strong)"
+              style={{ borderTopWidth: 2, borderTopColor: "var(--accent-flame)" }}
             >
               <button
                 type="button"
@@ -113,20 +113,20 @@ export function BadgeRecommendations({
                 <h3 className="mt-2 text-sm font-semibold text-amber-500">{badge.name}</h3>
 
                 <div className="mt-3 w-full">
-                  <div className="h-1.5 overflow-hidden rounded-full bg-[rgba(255,255,255,0.08)]">
+                  <div className="h-1.5 overflow-hidden rounded-full bg-(--cf-surface-strong)">
                     <div
                       className="h-full rounded-full bg-amber-500 transition-[width] duration-500"
                       style={{ width: `${Math.max(4, badge.percentage)}%` }}
                     />
                   </div>
                   {badge.percentage >= 30 && (
-                    <p className="mt-1.5 text-xs text-neutral-400">
+                    <p className="mt-1.5 text-xs text-(--cf-text-3)">
                       {badge.current} of {badge.target}
                     </p>
                   )}
                 </div>
 
-                <p className="mt-2 text-xs text-neutral-500">{message}</p>
+                <p className="mt-2 text-xs text-(--cf-text-soft)">{message}</p>
               </button>
 
               <Link

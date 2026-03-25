@@ -142,7 +142,14 @@ export const SETTINGS_SEARCH_INDEX: SettingSearchItem[] = [
     section: "goals",
     label: "Motivation style",
     description: "How ChapterFlow encourages you",
-    keywords: ["motivation", "encouragement", "coach", "rival", "tone", "nudge"],
+    keywords: ["motivation", "encouragement", "coach", "rival", "nudge"],
+  },
+  {
+    id: "content-tone",
+    section: "goals",
+    label: "Content tone",
+    description: "How chapter summaries, scenarios, and quiz feedback are written",
+    keywords: ["tone", "gentle", "direct", "competitive", "voice", "writing", "style", "content"],
   },
   {
     id: "spaced-repetition",

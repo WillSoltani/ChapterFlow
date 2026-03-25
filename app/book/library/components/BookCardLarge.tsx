@@ -75,7 +75,7 @@ export function BookCardLarge({
     <div className="group relative w-full cursor-pointer rounded-3xl border border-(--cf-border) bg-(--cf-surface) p-4 shadow-[0_18px_45px_rgba(15,23,42,0.04)] transition duration-200 motion-safe:hover:-translate-y-1 motion-safe:hover:border-(--cf-border-strong) motion-safe:hover:shadow-[0_28px_65px_rgba(15,23,42,0.14)] focus-within:-translate-y-1 focus-within:border-(--cf-accent-border) focus-within:shadow-[0_28px_65px_rgba(15,23,42,0.14)] sm:p-5">
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 rounded-[inherit] bg-[radial-gradient(120%_110%_at_100%_0%,rgba(255,255,255,0.08),transparent_40%)] opacity-0 transition duration-300 group-hover:opacity-100 group-focus-within:opacity-100"
+        className="pointer-events-none absolute inset-0 rounded-[inherit] bg-[radial-gradient(120%_110%_at_100%_0%,var(--cf-surface-muted),transparent_40%)] opacity-0 transition duration-300 group-hover:opacity-100 group-focus-within:opacity-100"
       />
       {onToggleSaved ? (
         <div className="absolute left-6 top-6 z-10">
@@ -115,7 +115,7 @@ export function BookCardLarge({
               icon={entry.icon}
               coverImage={entry.coverImage}
               className="h-full w-auto max-w-full aspect-[2/3] rounded-2xl border border-(--cf-border) bg-(--cf-surface) shadow-[0_16px_34px_rgba(15,23,42,0.18)] transition duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_22px_42px_rgba(15,23,42,0.24)] group-focus-within:-translate-y-1"
-              imageClassName="object-cover bg-white"
+              imageClassName="object-cover bg-(--cf-surface)"
               fallbackClassName="text-6xl drop-shadow-[0_10px_22px_rgba(2,6,23,0.55)]"
               sizes="(max-width: 768px) 70vw, 28vw"
             />

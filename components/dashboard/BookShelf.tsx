@@ -92,7 +92,7 @@ export function BookShelf() {
                   book.active
                     ? {
                         borderColor: "var(--border-accent)",
-                        boxShadow: "0 0 20px rgba(79,139,255,0.06)",
+                        boxShadow: "0 0 20px var(--cf-blue-soft)",
                       }
                     : undefined
                 }

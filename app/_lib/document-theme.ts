@@ -115,7 +115,7 @@ export function resolveDocumentThemeLabel(theme: ThemePreference): ResolvedTheme
   return resolveDocumentThemeMode(theme) ? "dark" : "light";
 }
 
-export function applyDocumentTheme(settings: DocumentThemeSettings) {
+export function applyDocumentTheme(settings: DocumentThemeSettings, animate = false) {
   if (typeof document === "undefined") return;
 
   const root = document.documentElement;
@@ -125,6 +125,10 @@ export function applyDocumentTheme(settings: DocumentThemeSettings) {
   };
   const dark = resolveDocumentThemeMode(next.theme);
 
+  if (animate) {
+    root.classList.add("transitioning");
+  }
+
   root.classList.toggle("dark", dark);
   root.style.colorScheme = dark ? "dark" : "light";
   root.dataset.accent = next.accentColor;
@@ -132,6 +136,10 @@ export function applyDocumentTheme(settings: DocumentThemeSettings) {
   root.dataset.motion = next.reducedMotion ? "reduced" : "normal";
   root.dataset.contrast = next.highContrastMode ? "high" : "standard";
   root.dataset.focusRing = next.focusRingStrength;
+
+  if (animate) {
+    setTimeout(() => root.classList.remove("transitioning"), 350);
+  }
 }
 
 export function applyStoredDocumentTheme() {
@@ -186,7 +194,7 @@ export function applyAndPersistDocumentTheme(settings: DocumentThemeSettings) {
       ? null
       : window.localStorage.getItem(BOOK_THEME_STORAGE_KEY)
   );
-  applyDocumentTheme(next);
+  applyDocumentTheme(next, true);
   if (typeof window !== "undefined") {
     window.dispatchEvent(new Event("book-theme-change"));
   }

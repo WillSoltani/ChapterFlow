@@ -47,12 +47,11 @@ export function NextAchievements({
     <motion.section
       className="rounded-2xl p-5"
       style={{
-        background: "rgba(255,255,255,0.03)",
+        background: "var(--cf-surface-muted)",
         backdropFilter: "blur(12px)",
         WebkitBackdropFilter: "blur(12px)",
-        border: "1px solid rgba(255,255,255,0.06)",
-        boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
-        backgroundColor: "rgba(15,15,26,0.95)",
+        border: "1px solid var(--cf-border)",
+        boxShadow: "var(--cf-shadow-sm)",
       }}
       initial={{ opacity: prefersReduced ? 1 : 0 }}
       whileInView={{ opacity: 1 }}
@@ -82,7 +81,7 @@ export function NextAchievements({
           >
             <span
               className="text-xs font-medium"
-              style={{ color: "#34D399" }}
+              style={{ color: "var(--cf-success-text)" }}
             >
               {"\u{1F389}"} Just earned: {recentlyEarnedBadge}!
             </span>
@@ -115,8 +114,8 @@ export function NextAchievements({
               href="/book/badges"
               className="flex flex-1 items-start gap-3 rounded-xl px-3 py-3 transition-colors hover:bg-white/[0.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50"
               style={{
-                background: "rgba(255,255,255,0.03)",
-                border: "1px solid rgba(255,255,255,0.06)",
+                background: "var(--cf-surface-muted)",
+                border: "1px solid var(--cf-border)",
               }}
             >
               {/* Badge icon */}
@@ -151,14 +150,14 @@ export function NextAchievements({
                     className="flex-1 overflow-hidden rounded-full"
                     style={{
                       height: 4,
-                      background: "rgba(255,255,255,0.08)",
+                      background: "var(--cf-surface-strong)",
                     }}
                   >
                     <div
                       className="h-full rounded-full"
                       style={{
                         width: `${progressPct}%`,
-                        background: "#A78BFA",
+                        background: "var(--cf-accent)",
                         transition: "width 0.5s ease-out",
                       }}
                     />

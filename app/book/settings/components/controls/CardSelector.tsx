@@ -49,18 +49,17 @@ export function CardSelector<T extends string>({
             aria-checked={isSelected}
             onClick={() => onChange(opt.value)}
             whileTap={{ scale: 0.97 }}
-            whileHover={!isSelected ? { scale: 1.01, borderColor: "rgba(255,255,255,0.12)" } : undefined}
+            whileHover={!isSelected ? { scale: 1.01, borderColor: "var(--cf-border-strong)" } : undefined}
             animate={isSelected ? { scale: 1.02 } : { scale: 1 }}
             transition={{ type: "spring", stiffness: 400, damping: 25 }}
             className={cn(
-              "relative flex flex-col items-start gap-1 rounded-2xl border p-4 text-left transition-shadow duration-200",
+              "relative flex flex-col items-start gap-1 rounded-2xl border p-4 text-left transition-all duration-200",
               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)",
               "min-h-[44px]",
               opt.tint && `bg-gradient-to-br ${opt.tint}`,
               isSelected
                 ? cn(
-                    "border-white/20",
-                    opt.selectedTint ?? "shadow-[0_0_20px_rgba(79,139,255,0.15)]"
+                    opt.selectedTint ?? "border-(--cf-accent-border) shadow-[0_0_20px_var(--cf-accent-shadow)]"
                   )
                 : "border-(--cf-border) hover:border-(--cf-border-strong)"
             )}
@@ -73,7 +72,7 @@ export function CardSelector<T extends string>({
                   animate={{ scale: 1, opacity: 1 }}
                   exit={{ scale: 0, opacity: 0 }}
                   transition={{ type: "spring", stiffness: 500, damping: 25 }}
-                  className="absolute top-2.5 right-2.5 flex h-5 w-5 items-center justify-center rounded-full bg-(--cf-accent) text-white shadow-[0_0_8px_rgba(79,139,255,0.4)]"
+                  className="absolute top-2.5 right-2.5 flex h-5 w-5 items-center justify-center rounded-full bg-(--cf-accent) text-(--cf-accent-contrast) shadow-[0_0_8px_var(--cf-accent-shadow)]"
                 >
                   <Check className="h-3 w-3" strokeWidth={3} />
                 </motion.div>
@@ -83,9 +82,9 @@ export function CardSelector<T extends string>({
             {/* Recommended / badge */}
             {opt.badge && (
               <span className={cn(
-                "absolute top-2.5 right-2.5 rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide",
+                "absolute top-2 right-2 rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider",
                 isSelected
-                  ? "bg-(--cf-accent) text-white"
+                  ? "bg-(--cf-accent) text-(--cf-accent-contrast)"
                   : "bg-(--cf-accent-soft) text-(--cf-accent) animate-pulse"
               )}>
                 {isSelected ? "✓" : opt.badge}

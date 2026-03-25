@@ -53,8 +53,8 @@ export function OptionCard({
           ? undefined
           : {
               y: -2,
-              borderColor: "rgba(255,255,255,0.10)",
-              backgroundColor: "rgba(255,255,255,0.06)",
+              borderColor: "var(--cf-border-strong)",
+              backgroundColor: "var(--cf-surface-muted)",
             }
       }
     >

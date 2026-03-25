@@ -58,14 +58,14 @@ export function BookRow({
       <div className="mb-4 flex items-end justify-between">
         <h2
           className="font-(family-name:--font-display) text-xl font-semibold"
-          style={{ color: "#F0F0F0" }}
+          style={{ color: "var(--cf-text-1)" }}
         >
           {isNewUser ? "Build Your Bookshelf" : "Your Books"}
         </h2>
         <Link
           href="/book/library"
           className="text-sm font-medium transition-colors hover:underline"
-          style={{ color: "#7C3AED" }}
+          style={{ color: "var(--cf-accent)" }}
         >
           Browse Library →
         </Link>

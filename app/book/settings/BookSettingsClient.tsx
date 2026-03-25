@@ -11,8 +11,6 @@ import {
   Accessibility,
   Bell,
   User,
-  Loader2,
-  Check,
   Keyboard,
 } from "lucide-react";
 
@@ -48,6 +46,7 @@ import { DangerZone } from "./components/DangerZone";
 import { ExportModal } from "./components/ExportModal";
 import { MicroCelebration } from "./components/MicroCelebration";
 import { RefreshPreferencesModal } from "./components/RefreshPreferencesModal";
+import { useSaveToast, SaveToast } from "./components/SaveToast";
 import type { RefreshResult } from "./components/RefreshPreferencesModal";
 
 // Constants
@@ -64,6 +63,7 @@ import type {
   ReadingProfile,
   QuizStyle,
   MotivationPersona,
+  ContentTone,
   DailyGoalPreset,
   CelebrationEvent,
   StreakMode,
@@ -180,24 +180,8 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
     showToast("Preferences updated!", "success");
   }
 
-  // Auto-save indicator
-  const [saveState, setSaveState] = useState<"idle" | "saving">("idle");
-  const saveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const lastSnapshotRef = useRef<string>("");
-
-  const triggerSave = useCallback(() => {
-    const snapshot = JSON.stringify(preferences);
-    if (snapshot === lastSnapshotRef.current) return;
-    lastSnapshotRef.current = snapshot;
-    setSaveState("saving");
-    if (saveTimerRef.current) clearTimeout(saveTimerRef.current);
-    saveTimerRef.current = setTimeout(() => setSaveState("idle"), 1400);
-  }, [preferences]);
-
-  useEffect(() => {
-    if (!prefsHydrated) return;
-    triggerSave();
-  }, [preferences, prefsHydrated, triggerSave]);
+  // Auto-save toast
+  const { visible: saveToastVisible, triggerToast } = useSaveToast();
 
   // Persist onboarding-derived prefs to backend
   const lastOnboardingPrefsRef = useRef<string>("");
@@ -255,6 +239,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
     triggerCelebration("profile-selected");
     announce(`Reading profile changed to ${preset.label}`);
     showToast("Profile applied", "success");
+    triggerToast();
   }
 
   // --- Quiz Style mapping ---
@@ -267,6 +252,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
     setQuizIntensity(QUIZ_STYLE_TO_INTENSITY[style] as QuizIntensity);
     const labels = { comfortable: "Comfortable", challenge: "Challenge me", surprise: "Surprise me" };
     announce(`Quiz style changed to ${labels[style]}`);
+    triggerToast();
   }
 
   // --- Motivation mapping ---
@@ -280,6 +266,21 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
     if (persona === "rival") triggerCelebration("rival-selected");
     const labels = { coach: "Personal Coach", partner: "Accountability Partner", rival: "Rival" };
     announce(`Motivation style changed to ${labels[persona]}`);
+    triggerToast();
+  }
+
+  // --- Content tone ---
+  function handleContentToneChange(tone: ContentTone) {
+    patchExt({ contentTone: tone });
+    // Sync to the API so the rest of the app picks up the change
+    fetch("/api/book/me/settings", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ tone }),
+    }).catch(() => {});
+    const labels = { gentle: "Gentle", direct: "Direct", competitive: "Competitive" };
+    announce(`Content tone changed to ${labels[tone]}`);
+    triggerToast();
   }
 
   // --- Daily goal mapping ---
@@ -289,6 +290,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
     setDailyGoalMinutes(preset);
     if (preset > prev) triggerCelebration("goal-increased");
     announce(`Daily reading goal changed to ${preset} minutes`);
+    triggerToast();
   }
 
   // --- Streak mode ---
@@ -298,6 +300,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
     if (mode !== "off") triggerCelebration("streak-enabled");
     const labels = { off: "Off", standard: "Standard", flexible: "Flexible" };
     announce(`Streak mode changed to ${labels[mode]}`);
+    triggerToast();
   }
 
   // --- Dyslexia font sync ---
@@ -307,6 +310,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
       patchExt({ fontFamily: "opendyslexic" });
     }
     announce(`Dyslexia-friendly font ${enabled ? "enabled" : "disabled"}`);
+    triggerToast();
   }
 
   // --- Font family change (sync dyslexia toggle) ---
@@ -319,6 +323,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
     }
     const labels = { serif: "Serif", "sans-serif": "Sans-Serif", opendyslexic: "OpenDyslexic" };
     announce(`Font family changed to ${labels[family]}`);
+    triggerToast();
   }
 
   // --- Section summaries ---
@@ -330,9 +335,9 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
 
   function getGoalsSummary() {
     const daily = ext.dailyGoalPreset;
-    const weekly = preferences.goals.weeklyChapterGoal;
     const streak = ext.streakMode === "off" ? "Off" : ext.streakMode === "standard" ? "Standard" : "Flexible";
-    return `${daily} min/day · ${weekly} ch/wk · ${streak} streak`;
+    const tone = ext.contentTone.charAt(0).toUpperCase() + ext.contentTone.slice(1);
+    return `${daily} min/day · ${streak} · ${tone}`;
   }
 
   function getAppearanceSummary() {
@@ -382,7 +387,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
   return (
     <div className="cf-app-shell min-h-screen px-4 py-10 sm:px-6">
       {/* Header */}
-      <div className="mx-auto mb-6 flex max-w-170 items-center justify-between">
+      <div className="mx-auto mb-6 flex max-w-5xl items-center justify-between">
         <div className="flex items-center gap-3">
           <button
             type="button"
@@ -405,7 +410,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
         <div className="w-16" />
       </div>
 
-      <div className="mx-auto max-w-170 space-y-4">
+      <div className="mx-auto max-w-5xl space-y-4">
         {/* Search */}
         <SettingsSearch query={query} onChange={setQuery} />
 
@@ -500,14 +505,16 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
               description="Which tab greets you when you open a chapter."
             >
               <SegmentedControl
+                groupId="seg-chapter-view"
                 options={[
                   { value: "summary", label: "Summary" },
                   { value: "examples", label: "Scenarios" },
                   { value: "quiz", label: "Quiz" },
                 ]}
                 value={hydrated ? preferences.reading.defaultChapterTab : "summary"}
-                onChange={(v) => patchSection("reading", { defaultChapterTab: v })}
+                onChange={(v) => { patchSection("reading", { defaultChapterTab: v }); announce(`Default chapter view changed to ${v}`); triggerToast(); }}
                 label="Default chapter view"
+                reducedMotion={reducedMotion}
               />
             </SettingRow>
 
@@ -520,6 +527,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
               description="Choose the typeface that feels most comfortable for long reads."
             >
               <SegmentedControl
+                groupId="seg-font-family"
                 options={[
                   { value: "serif", label: "Serif" },
                   { value: "sans-serif", label: "Sans-Serif" },
@@ -528,6 +536,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
                 value={hydrated ? ext.fontFamily : "sans-serif"}
                 onChange={handleFontFamilyChange}
                 label="Font family"
+                reducedMotion={reducedMotion}
               />
             </SettingRow>
             {ext.fontFamily === "opendyslexic" && (
@@ -546,7 +555,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
             >
               <SliderControl
                 value={hydrated ? preferences.reading.fontSize : 16}
-                onChange={(v) => patchSection("reading", { fontSize: v })}
+                onChange={(v) => { patchSection("reading", { fontSize: v }); announce(`Font size changed to ${v} pixels`); triggerToast(); }}
                 min={12}
                 max={24}
                 step={1}
@@ -565,14 +574,16 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
               description="Breathing room between lines of text."
             >
               <SegmentedControl
+                groupId="seg-line-spacing"
                 options={[
                   { value: "compact", label: "Compact" },
                   { value: "comfortable", label: "Comfortable" },
                   { value: "relaxed", label: "Relaxed" },
                 ]}
                 value={hydrated ? ext.lineSpacing : "comfortable"}
-                onChange={(v: LineSpacing) => patchExt({ lineSpacing: v })}
+                onChange={(v: LineSpacing) => { patchExt({ lineSpacing: v }); announce(`Line spacing changed to ${v}`); triggerToast(); }}
                 label="Line spacing"
+                reducedMotion={reducedMotion}
               />
             </SettingRow>
 
@@ -585,14 +596,16 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
               description="Space between individual characters."
             >
               <SegmentedControl
+                groupId="seg-letter-spacing"
                 options={[
                   { value: "tight", label: "Tight" },
                   { value: "normal", label: "Normal" },
                   { value: "wide", label: "Wide" },
                 ]}
                 value={hydrated ? ext.letterSpacing : "normal"}
-                onChange={(v: LetterSpacing) => patchExt({ letterSpacing: v })}
+                onChange={(v: LetterSpacing) => { patchExt({ letterSpacing: v }); announce(`Letter spacing changed to ${v}`); triggerToast(); }}
                 label="Letter spacing"
+                reducedMotion={reducedMotion}
               />
             </SettingRow>
 
@@ -606,7 +619,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
             >
               <ToggleSwitch
                 checked={hydrated ? preferences.reading.focusModeDefault : false}
-                onChange={(v) => patchSection("reading", { focusModeDefault: v })}
+                onChange={(v) => { patchSection("reading", { focusModeDefault: v }); announce(`Focus mode ${v ? "enabled" : "disabled"}`); triggerToast(); }}
                 label="Focus mode"
               />
             </SettingRow>
@@ -621,7 +634,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
             >
               <ToggleSwitch
                 checked={hydrated ? preferences.reading.showProgressBar : true}
-                onChange={(v) => patchSection("reading", { showProgressBar: v })}
+                onChange={(v) => { patchSection("reading", { showProgressBar: v }); announce(`Progress bar ${v ? "enabled" : "disabled"}`); triggerToast(); }}
                 label="Progress bar"
               />
             </SettingRow>
@@ -636,7 +649,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
             >
               <ToggleSwitch
                 checked={hydrated ? preferences.reading.resumeWhereLeftOff : true}
-                onChange={(v) => patchSection("reading", { resumeWhereLeftOff: v })}
+                onChange={(v) => { patchSection("reading", { resumeWhereLeftOff: v }); announce(`Resume position ${v ? "enabled" : "disabled"}`); triggerToast(); }}
                 label="Resume position"
               />
             </SettingRow>
@@ -651,9 +664,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
             >
               <ToggleSwitch
                 checked={hydrated ? preferences.reading.showEstimatedReadingTime : true}
-                onChange={(v) =>
-                  patchSection("reading", { showEstimatedReadingTime: v })
-                }
+                onChange={(v) => { patchSection("reading", { showEstimatedReadingTime: v }); announce(`Reading time estimates ${v ? "enabled" : "disabled"}`); triggerToast(); }}
                 label="Reading time estimates"
               />
             </SettingRow>
@@ -674,7 +685,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
                   <p className="mt-0.5 text-xs text-(--cf-text-3)">
                     Listen to chapters read aloud. Perfect for commutes or multitasking.
                   </p>
-                  <div className="mt-3 space-y-1 border-l-2 border-cyan-400/20 pl-4 ml-1">
+                  <div className="mt-3 space-y-1 border-l-2 border-(--cf-accent)/20 pl-4 ml-1">
                     <SettingRow label="Voice">
                       <DropdownSelect
                         options={[
@@ -683,14 +694,14 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
                           { value: "aria", label: "Aria (Clear)" },
                         ]}
                         value={ext.ttsVoice}
-                        onChange={(v) => patchExt({ ttsVoice: v as any })}
+                        onChange={(v) => { patchExt({ ttsVoice: v as any }); announce(`TTS voice changed to ${v}`); triggerToast(); }}
                         label="TTS Voice"
                       />
                     </SettingRow>
                     <SettingRow label="Speed">
                       <SliderControl
                         value={ext.ttsSpeed}
-                        onChange={(v) => patchExt({ ttsSpeed: v })}
+                        onChange={(v) => { patchExt({ ttsSpeed: v }); announce(`TTS speed changed to ${v}x`); triggerToast(); }}
                         min={0.5}
                         max={2.0}
                         step={0.1}
@@ -705,7 +716,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
                     >
                       <ToggleSwitch
                         checked={ext.ttsAutoAdvance}
-                        onChange={(v) => patchExt({ ttsAutoAdvance: v })}
+                        onChange={(v) => { patchExt({ ttsAutoAdvance: v }); announce(`TTS auto-advance ${v ? "enabled" : "disabled"}`); triggerToast(); }}
                         label="TTS Auto-advance"
                       />
                     </SettingRow>
@@ -773,7 +784,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
             >
               <Stepper
                 value={hydrated ? preferences.goals.weeklyChapterGoal : 3}
-                onChange={(v) => patchSection("goals", { weeklyChapterGoal: v })}
+                onChange={(v) => { patchSection("goals", { weeklyChapterGoal: v }); announce(`Weekly chapter goal changed to ${v}`); triggerToast(); }}
                 min={1}
                 max={10}
                 label="Weekly chapter goal"
@@ -789,6 +800,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
               description="How much detail you want in summaries and explanations."
             >
               <SegmentedControl
+                groupId="seg-learning-depth"
                 options={[
                   { value: "concise", label: "Concise" },
                   { value: "balanced", label: "Balanced" },
@@ -798,8 +810,11 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
                 onChange={(v) => {
                   setLearningStyle(v as LearningStyle);
                   patchExt({ profileCustomized: true });
+                  announce(`Learning depth changed to ${v}`);
+                  triggerToast();
                 }}
                 label="Learning depth"
+                reducedMotion={reducedMotion}
               />
             </SettingRow>
 
@@ -815,6 +830,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
               description="Sets the baseline. ChapterFlow adapts based on how you perform."
             >
               <SegmentedControl
+                groupId="seg-quiz-style"
                 options={[
                   { value: "comfortable", label: "Comfortable" },
                   { value: "challenge", label: "Challenge me" },
@@ -823,6 +839,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
                 value={currentQuizStyle}
                 onChange={handleQuizStyleChange}
                 label="Quiz style"
+                reducedMotion={reducedMotion}
               />
             </SettingRow>
 
@@ -835,13 +852,15 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
               description="See questions one at a time, or all together like a worksheet."
             >
               <SegmentedControl
+                groupId="seg-question-flow"
                 options={[
                   { value: "one-by-one", label: "One-by-one" },
                   { value: "all-at-once", label: "All at once" },
                 ]}
                 value={hydrated ? preferences.learning.questionPresentationStyle : "one-by-one"}
-                onChange={(v) => patchSection("learning", { questionPresentationStyle: v })}
+                onChange={(v) => { patchSection("learning", { questionPresentationStyle: v }); announce(`Question flow changed to ${v}`); triggerToast(); }}
                 label="Question flow"
+                reducedMotion={reducedMotion}
               />
             </SettingRow>
 
@@ -855,7 +874,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
             >
               <ToggleSwitch
                 checked={hydrated ? preferences.learning.shuffleQuestionOrder : false}
-                onChange={(v) => patchSection("learning", { shuffleQuestionOrder: v })}
+                onChange={(v) => { patchSection("learning", { shuffleQuestionOrder: v }); announce(`Shuffle questions ${v ? "enabled" : "disabled"}`); triggerToast(); }}
                 label="Shuffle questions"
               />
             </SettingRow>
@@ -870,7 +889,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
             >
               <ToggleSwitch
                 checked={hydrated ? preferences.learning.retryIncorrectOnly : true}
-                onChange={(v) => patchSection("learning", { retryIncorrectOnly: v })}
+                onChange={(v) => { patchSection("learning", { retryIncorrectOnly: v }); announce(`Retry incorrect only ${v ? "enabled" : "disabled"}`); triggerToast(); }}
                 label="Retry incorrect only"
               />
             </SettingRow>
@@ -901,6 +920,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
                 </div>
                 <div className="shrink-0">
                   <SegmentedControl
+                    groupId="seg-streak-mode"
                     options={[
                       { value: "off", label: "Off" },
                       { value: "standard", label: "Standard" },
@@ -909,6 +929,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
                     value={hydrated ? ext.streakMode : "standard"}
                     onChange={handleStreakModeChange}
                     label="Streak mode"
+                    reducedMotion={reducedMotion}
                   />
                 </div>
               </div>
@@ -929,7 +950,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
                   >
                     <Stepper
                       value={ext.streakSkipDays}
-                      onChange={(v) => patchExt({ streakSkipDays: v })}
+                      onChange={(v) => { patchExt({ streakSkipDays: v }); announce(`Skip days per week changed to ${v}`); triggerToast(); }}
                       min={1}
                       max={3}
                       label="Skip days per week"
@@ -981,6 +1002,50 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
 
             <Divider />
 
+            {/* 2F-b. Content Tone */}
+            <div className="px-3 py-3" id="content-tone">
+              <p className="text-sm font-medium text-(--cf-text-1)">Content tone</p>
+              <p className="mt-0.5 text-xs text-(--cf-text-3)">
+                How chapter summaries, scenarios, and quiz feedback are written for you.
+              </p>
+              <div className="mt-3">
+                <CardSelector
+                  options={[
+                    {
+                      value: "gentle",
+                      emoji: "\uD83C\uDF3F",
+                      label: "Gentle",
+                      description: "Warm and encouraging. Concepts explained with patience and care.",
+                      tint: "from-emerald-500/[0.07] to-teal-500/[0.03]",
+                      selectedTint: "border-emerald-400/30 shadow-[0_0_20px_rgba(52,211,153,0.12)]",
+                    },
+                    {
+                      value: "direct",
+                      emoji: "\uD83C\uDFAF",
+                      label: "Direct",
+                      description: "Clear and efficient. Straight to the point, no fluff.",
+                      tint: "from-blue-500/[0.07] to-cyan-500/[0.03]",
+                      selectedTint: "border-(--cf-accent)/30 shadow-[0_0_20px_var(--cf-accent-shadow)]",
+                    },
+                    {
+                      value: "competitive",
+                      emoji: "\u26A1",
+                      label: "Competitive",
+                      description: "Bold and challenging. Pushes you to think harder.",
+                      tint: "from-amber-500/[0.07] to-orange-500/[0.03]",
+                      selectedTint: "border-amber-400/30 shadow-[0_0_20px_rgba(251,191,36,0.12)]",
+                    },
+                  ]}
+                  value={ext.contentTone}
+                  onChange={(v) => handleContentToneChange(v as ContentTone)}
+                  label="Content tone"
+                  columns={3}
+                />
+              </div>
+            </div>
+
+            <Divider />
+
             {/* 2G. Spaced Repetition (Pro) */}
             <div className="px-3 py-3" id="spaced-repetition">
               {isPro ? (
@@ -994,7 +1059,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
                 >
                   <SliderControl
                     value={ext.spacedRepetitionTarget}
-                    onChange={(v) => patchExt({ spacedRepetitionTarget: v })}
+                    onChange={(v) => { patchExt({ spacedRepetitionTarget: v }); announce(`Retention target changed to ${v}%`); triggerToast(); }}
                     min={70}
                     max={95}
                     step={5}
@@ -1035,14 +1100,16 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
               description="Choose your preferred color scheme."
             >
               <SegmentedControl
+                groupId="seg-theme"
                 options={[
                   { value: "light", label: "Light" },
                   { value: "dark", label: "Dark" },
                   { value: "system", label: "System" },
                 ]}
                 value={hydrated ? preferences.appearance.theme : "light"}
-                onChange={(v) => patchSection("appearance", { theme: v })}
+                onChange={(v) => { patchSection("appearance", { theme: v }); announce(`Theme changed to ${v}`); triggerToast(); }}
                 label="Theme"
+                reducedMotion={reducedMotion}
               />
             </SettingRow>
 
@@ -1060,7 +1127,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
             >
               <ToggleSwitch
                 checked={ext.scheduledDarkMode}
-                onChange={(v) => patchExt({ scheduledDarkMode: v })}
+                onChange={(v) => { patchExt({ scheduledDarkMode: v }); announce(`Night mode schedule ${v ? "enabled" : "disabled"}`); triggerToast(); }}
                 disabled={preferences.appearance.theme === "dark"}
                 label="Night mode schedule"
               />
@@ -1073,13 +1140,13 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
                   animate={{ height: "auto", opacity: 1 }}
                   exit={reducedMotion ? undefined : { height: 0, opacity: 0 }}
                   transition={reducedMotion ? { duration: 0 } : { duration: 0.2 }}
-                  className="flex items-center gap-3 px-6 pb-3"
+                  className="ml-6 flex items-center gap-3 border-l-2 border-(--cf-divider) pl-4 pb-3"
                 >
                   <div className="flex items-center gap-2">
                     <span className="text-xs text-(--cf-text-3)">From</span>
                     <TimePicker
                       value={ext.darkModeFrom}
-                      onChange={(v) => patchExt({ darkModeFrom: v })}
+                      onChange={(v) => { patchExt({ darkModeFrom: v }); announce(`Dark mode start time changed`); triggerToast(); }}
                       label="Dark mode start time"
                     />
                   </div>
@@ -1087,7 +1154,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
                     <span className="text-xs text-(--cf-text-3)">To</span>
                     <TimePicker
                       value={ext.darkModeTo}
-                      onChange={(v) => patchExt({ darkModeTo: v })}
+                      onChange={(v) => { patchExt({ darkModeTo: v }); announce(`Dark mode end time changed`); triggerToast(); }}
                       label="Dark mode end time"
                     />
                   </div>
@@ -1105,7 +1172,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
             >
               <ToggleSwitch
                 checked={hydrated ? preferences.appearance.reducedMotion : false}
-                onChange={(v) => patchSection("appearance", { reducedMotion: v })}
+                onChange={(v) => { patchSection("appearance", { reducedMotion: v }); announce(`Reduced motion ${v ? "enabled" : "disabled"}`); triggerToast(); }}
                 label="Reduced motion"
               />
             </SettingRow>
@@ -1153,7 +1220,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
             >
               <ToggleSwitch
                 checked={hydrated ? preferences.accessibility.highContrastMode : false}
-                onChange={(v) => patchSection("accessibility", { highContrastMode: v })}
+                onChange={(v) => { patchSection("accessibility", { highContrastMode: v }); announce(`High contrast ${v ? "enabled" : "disabled"}`); triggerToast(); }}
                 label="High contrast"
               />
             </SettingRow>
@@ -1174,7 +1241,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
                   { value: "tritanopia", label: "Tritanopia" },
                 ]}
                 value={hydrated ? ext.colorBlindMode : "off"}
-                onChange={(v: ColorBlindMode) => patchExt({ colorBlindMode: v })}
+                onChange={(v: ColorBlindMode) => { patchExt({ colorBlindMode: v }); announce(`Color vision adjustment changed to ${v === "off" ? "off" : v}`); triggerToast(); }}
                 label="Color vision adjustment"
               />
             </SettingRow>
@@ -1182,7 +1249,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
             <Divider />
 
             {/* 4D. Keyboard Navigation Info */}
-            <div id="keyboard-nav" className="mx-3 my-2 flex gap-3 rounded-xl bg-white/3 px-4 py-3 border border-white/6" style={{ borderLeftWidth: "2px", borderLeftColor: "rgba(96,165,250,0.3)" }}>
+            <div id="keyboard-nav" className="mx-3 my-2 flex gap-3 rounded-xl bg-(--cf-surface-muted) px-4 py-3 border border-(--cf-border)" style={{ borderLeftWidth: "2px", borderLeftColor: "var(--cf-accent-border)" }}>
               <Keyboard className="mt-0.5 h-4 w-4 shrink-0 text-(--cf-text-soft)" />
               <div>
                 <p className="text-sm font-medium text-(--cf-text-1)">
@@ -1219,7 +1286,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
             >
               <ToggleSwitch
                 checked={hydrated ? preferences.notifications.readingReminderEnabled : true}
-                onChange={(v) => patchSection("notifications", { readingReminderEnabled: v })}
+                onChange={(v) => { patchSection("notifications", { readingReminderEnabled: v }); announce(`Reading reminders ${v ? "enabled" : "disabled"}`); triggerToast(); }}
                 label="Reading reminders"
               />
             </SettingRow>
@@ -1240,7 +1307,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
                   >
                     <TimePicker
                       value={hydrated ? onboarding.reminderTime || "20:00" : "20:00"}
-                      onChange={setReminderTime}
+                      onChange={(v) => { setReminderTime(v); triggerToast(); }}
                       label="Reminder time"
                     />
                   </SettingRow>
@@ -1266,7 +1333,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
                   >
                     <ToggleSwitch
                       checked={hydrated ? preferences.notifications.streakReminder : true}
-                      onChange={(v) => patchSection("notifications", { streakReminder: v })}
+                      onChange={(v) => { patchSection("notifications", { streakReminder: v }); announce(`Streak alerts ${v ? "enabled" : "disabled"}`); triggerToast(); }}
                       label="Streak alerts"
                     />
                   </SettingRow>
@@ -1283,7 +1350,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
             >
               <ToggleSwitch
                 checked={ext.breakReminders}
-                onChange={(v) => patchExt({ breakReminders: v })}
+                onChange={(v) => { patchExt({ breakReminders: v }); announce(`Break reminders ${v ? "enabled" : "disabled"}`); triggerToast(); }}
                 label="Break reminders"
               />
             </SettingRow>
@@ -1301,6 +1368,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
                     description="How long before you get a gentle break nudge."
                   >
                     <SegmentedControl
+                      groupId="seg-break-duration"
                       options={[
                         { value: "15", label: "15 min" },
                         { value: "30", label: "30 min" },
@@ -1308,8 +1376,9 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
                         { value: "60", label: "60 min" },
                       ]}
                       value={String(ext.breakReminderMinutes)}
-                      onChange={(v) => patchExt({ breakReminderMinutes: Number(v) })}
+                      onChange={(v) => { patchExt({ breakReminderMinutes: Number(v) }); announce(`Break reminder interval changed to ${v} minutes`); triggerToast(); }}
                       label="Break reminder interval"
+                      reducedMotion={reducedMotion}
                     />
                   </SettingRow>
                 </motion.div>
@@ -1326,7 +1395,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
             >
               <ToggleSwitch
                 checked={hydrated ? preferences.notifications.weeklyLearningSummaryEmail : true}
-                onChange={(v) => patchSection("notifications", { weeklyLearningSummaryEmail: v })}
+                onChange={(v) => { patchSection("notifications", { weeklyLearningSummaryEmail: v }); announce(`Weekly summary email ${v ? "enabled" : "disabled"}`); triggerToast(); }}
                 label="Weekly summary email"
               />
             </SettingRow>
@@ -1371,7 +1440,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
             >
               <ToggleSwitch
                 checked={hydrated ? preferences.privacy.analyticsParticipation : false}
-                onChange={(v) => patchSection("privacy", { analyticsParticipation: v })}
+                onChange={(v) => { patchSection("privacy", { analyticsParticipation: v }); announce(`Usage analytics ${v ? "enabled" : "disabled"}`); triggerToast(); }}
                 label="Share usage analytics"
               />
             </SettingRow>
@@ -1385,7 +1454,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
             >
               <ToggleSwitch
                 checked={hydrated ? preferences.privacy.personalizedRecommendations : true}
-                onChange={(v) => patchSection("privacy", { personalizedRecommendations: v })}
+                onChange={(v) => { patchSection("privacy", { personalizedRecommendations: v }); announce(`Personalized recommendations ${v ? "enabled" : "disabled"}`); triggerToast(); }}
                 label="Personalized recommendations"
               />
             </SettingRow>
@@ -1399,7 +1468,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
             >
               <ToggleSwitch
                 checked={hydrated ? preferences.privacy.saveReadingHistory : true}
-                onChange={(v) => patchSection("privacy", { saveReadingHistory: v })}
+                onChange={(v) => { patchSection("privacy", { saveReadingHistory: v }); announce(`Save reading history ${v ? "enabled" : "disabled"}`); triggerToast(); }}
                 label="Save reading history"
               />
             </SettingRow>
@@ -1505,22 +1574,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
       />
 
       {/* Auto-save floating toast */}
-      <AnimatePresence>
-        {saveState === "saving" && (
-          <motion.div
-            initial={reducedMotion ? { opacity: 1 } : { y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={reducedMotion ? { opacity: 0 } : { y: 20, opacity: 0 }}
-            transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2"
-          >
-            <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.08] px-4 py-2 text-sm shadow-lg backdrop-blur-md">
-              <Check className="h-3.5 w-3.5 text-emerald-400" />
-              <span className="text-(--cf-text-2)">Saved</span>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <SaveToast visible={saveToastVisible} />
 
       {/* Action toast */}
       <Toast open={toast.open} message={toast.message} tone={toast.tone} />

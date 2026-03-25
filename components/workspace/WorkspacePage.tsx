@@ -346,10 +346,10 @@ function MobileBottomNav() {
     <nav
       className="fixed bottom-0 left-0 right-0 z-40 flex h-14 items-center justify-around md:hidden"
       style={{
-        background: "rgba(10,10,18,0.92)",
-        backdropFilter: "blur(14px)",
-        WebkitBackdropFilter: "blur(14px)",
-        borderTop: "1px solid rgba(255,255,255,0.08)",
+        background: "var(--cf-topbar-bg)",
+        backdropFilter: "blur(20px) saturate(1.4)",
+        WebkitBackdropFilter: "blur(20px) saturate(1.4)",
+        borderTop: "1px solid var(--cf-border)",
       }}
     >
       {tabs.map((tab) => (
@@ -362,7 +362,7 @@ function MobileBottomNav() {
           <span
             className="text-[10px]"
             style={{
-              color: tab.active ? "#F0F0F0" : "#6B6B80",
+              color: tab.active ? "var(--cf-text-1)" : "var(--cf-text-soft)",
             }}
           >
             {tab.label}
@@ -376,7 +376,7 @@ function MobileBottomNav() {
 function HomeIcon({ active }: { active: boolean }) {
   return (
     <svg width={20} height={20} viewBox="0 0 24 24" fill="none"
-      stroke={active ? "#7C3AED" : "#6B6B80"} strokeWidth={2}
+      stroke={active ? "var(--cf-accent)" : "var(--cf-text-soft)"} strokeWidth={2}
       strokeLinecap="round" strokeLinejoin="round">
       <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
     </svg>
@@ -386,7 +386,7 @@ function HomeIcon({ active }: { active: boolean }) {
 function LibraryIcon({ active }: { active: boolean }) {
   return (
     <svg width={20} height={20} viewBox="0 0 24 24" fill="none"
-      stroke={active ? "#7C3AED" : "#6B6B80"} strokeWidth={2}
+      stroke={active ? "var(--cf-accent)" : "var(--cf-text-soft)"} strokeWidth={2}
       strokeLinecap="round" strokeLinejoin="round">
       <path d="M4 19.5A2.5 2.5 0 016.5 17H20" />
       <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" />
@@ -397,7 +397,7 @@ function LibraryIcon({ active }: { active: boolean }) {
 function ProgressIcon({ active }: { active: boolean }) {
   return (
     <svg width={20} height={20} viewBox="0 0 24 24" fill="none"
-      stroke={active ? "#7C3AED" : "#6B6B80"} strokeWidth={2}
+      stroke={active ? "var(--cf-accent)" : "var(--cf-text-soft)"} strokeWidth={2}
       strokeLinecap="round" strokeLinejoin="round">
       <path d="M18 20V10M12 20V4M6 20v-6" />
     </svg>
@@ -407,7 +407,7 @@ function ProgressIcon({ active }: { active: boolean }) {
 function ProfileIcon({ active }: { active: boolean }) {
   return (
     <svg width={20} height={20} viewBox="0 0 24 24" fill="none"
-      stroke={active ? "#7C3AED" : "#6B6B80"} strokeWidth={2}
+      stroke={active ? "var(--cf-accent)" : "var(--cf-text-soft)"} strokeWidth={2}
       strokeLinecap="round" strokeLinejoin="round">
       <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
       <circle cx={12} cy={7} r={4} />
@@ -438,7 +438,7 @@ export function WorkspacePage() {
   return (
     <div
       className={`relative min-h-screen ${jetBrainsMono.variable}`}
-      style={{ background: "#0a0a12" }}
+      style={{ background: "var(--cf-page-bg)" }}
     >
       {/* Animated background orbs */}
       <AnimatedBackground />
@@ -451,8 +451,8 @@ export function WorkspacePage() {
         <DashboardNavbar />
 
         <main
-          className="mx-auto w-full px-4 py-5 md:px-8 md:py-7"
-          style={{ maxWidth: 1200 }}
+          className="mx-auto w-full px-4 py-5 md:px-8 md:py-7 lg:px-10 xl:px-16"
+          style={{ maxWidth: 1800 }}
         >
           <ContentWrapper
             {...(prefersReducedMotion

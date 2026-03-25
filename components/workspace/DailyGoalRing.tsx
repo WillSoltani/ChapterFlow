@@ -36,7 +36,7 @@ export function DailyGoalRing({
           cy={size / 2}
           r={radius}
           fill="none"
-          stroke="rgba(255,255,255,0.08)"
+          stroke="var(--cf-border)"
           strokeWidth={strokeWidth}
         />
         <motion.circle
@@ -44,7 +44,7 @@ export function DailyGoalRing({
           cy={size / 2}
           r={radius}
           fill="none"
-          stroke="#7C3AED"
+          stroke="var(--cf-accent)"
           strokeWidth={strokeWidth}
           strokeLinecap="round"
           strokeDasharray={circumference}

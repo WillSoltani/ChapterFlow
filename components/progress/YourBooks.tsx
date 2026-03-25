@@ -30,12 +30,11 @@ export function YourBooks({ activeBooks, completedBooks }: YourBooksProps) {
     <motion.section
       className="rounded-2xl p-5"
       style={{
-        background: "rgba(255,255,255,0.04)",
+        background: "var(--cf-surface-muted)",
         backdropFilter: "blur(16px)",
         WebkitBackdropFilter: "blur(16px)",
-        border: "1px solid rgba(255,255,255,0.08)",
-        boxShadow: "0 4px 16px rgba(0,0,0,0.2)",
-        backgroundColor: "rgba(15,15,26,0.95)",
+        border: "1px solid var(--cf-border)",
+        boxShadow: "var(--cf-shadow-md)",
       }}
       initial={{ opacity: prefersReduced ? 1 : 0 }}
       whileInView={{ opacity: 1 }}
@@ -63,13 +62,13 @@ export function YourBooks({ activeBooks, completedBooks }: YourBooksProps) {
                   role="tab"
                   aria-selected={isActive}
                   onClick={() => setFilter(tab.id)}
-                  className="cursor-pointer rounded-full px-4 py-1.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A14]"
+                  className="cursor-pointer rounded-full px-4 py-1.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
                   style={{
                     background: isActive
                       ? "rgba(56,189,248,0.2)"
                       : "transparent",
                     color: isActive
-                      ? "#38BDF8"
+                      ? "var(--cf-accent)"
                       : "var(--text-muted)",
                     border: isActive
                       ? "1px solid rgba(56,189,248,0.3)"
@@ -105,7 +104,7 @@ export function YourBooks({ activeBooks, completedBooks }: YourBooksProps) {
           </Link>
         </div>
       ) : (
-        <div className="mt-3 flex flex-col divide-y" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
+        <div className="mt-3 flex flex-col divide-y" style={{ borderColor: "var(--cf-border)" }}>
           {/* Active books */}
           {(filter === "active" || filter === "all") &&
             activeBooks.map((book) => (

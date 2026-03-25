@@ -41,12 +41,12 @@ export function SettingsSection({
       transition={reducedMotion ? { duration: 0 } : { duration: 0.2 }}
       className={cn(
         "overflow-hidden rounded-[22px] border backdrop-blur-sm transition-shadow duration-300",
-        "bg-white/[0.02]",
+        "bg-(--cf-surface)",
         highlighted
           ? "border-(--cf-accent-border) shadow-[0_0_24px_rgba(79,139,255,0.1)]"
           : expanded
-            ? "border-white/[0.08] shadow-[0_4px_24px_rgba(0,0,0,0.2)]"
-            : "border-white/[0.06]",
+            ? "border-(--cf-border-strong) shadow-(--cf-shadow-lg)"
+            : "border-(--cf-border)",
         dimmed && "pointer-events-none"
       )}
     >
@@ -57,12 +57,12 @@ export function SettingsSection({
         onClick={onToggle}
         className={cn(
           "flex w-full items-center justify-between gap-4 px-5 py-4 transition-colors",
-          "hover:bg-white/[0.03]",
+          "hover:bg-(--cf-surface-muted)",
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-(--cf-accent-border)"
         )}
       >
         <div className="flex items-center gap-2.5">
-          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-white/[0.05] text-(--cf-text-2)">
+          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-(--cf-surface-muted) text-(--cf-text-2)">
             <Icon className="h-4 w-4" />
           </div>
           <h2 className="text-[15px] font-semibold text-(--cf-text-1)">{title}</h2>
@@ -107,7 +107,7 @@ export function SettingsSection({
             }
             className="overflow-hidden"
           >
-            <div className="border-t border-white/[0.06] px-2 pb-3 pt-1">
+            <div className="border-t border-(--cf-border) px-2 pb-3 pt-1">
               {children}
             </div>
           </motion.div>

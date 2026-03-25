@@ -400,7 +400,7 @@ function ChoiceCard({
               className={[
                 "mt-0.5 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border",
                 selected
-                  ? "border-(--cf-accent-border) bg-white/70 text-(--cf-info-text)"
+                  ? "border-(--cf-accent-border) bg-(--cf-surface-strong) text-(--cf-info-text)"
                   : "border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-2)",
               ].join(" ")}
             >
@@ -470,7 +470,7 @@ function CompactOption({
         className={[
           "inline-flex h-10 w-10 items-center justify-center rounded-2xl border",
           selected
-            ? "border-(--cf-accent-border) bg-white/70 text-(--cf-info-text)"
+            ? "border-(--cf-accent-border) bg-(--cf-surface-strong) text-(--cf-info-text)"
             : "border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-2)",
         ].join(" ")}
       >
@@ -1201,7 +1201,7 @@ export function BookOnboardingClient() {
                   return (
                     <div key={book.id} className="relative">
                       {isRecommended ? (
-                        <span className="pointer-events-none absolute left-5 top-5 z-10 rounded-full border border-(--cf-accent-border) bg-white/90 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-(--cf-info-text)">
+                        <span className="pointer-events-none absolute left-5 top-5 z-10 rounded-full border border-(--cf-accent-border) bg-(--cf-surface) px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-(--cf-info-text)">
                           Recommended
                         </span>
                       ) : null}

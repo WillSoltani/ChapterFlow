@@ -19,7 +19,7 @@ export default async function BookOnboardingPage() {
       | undefined;
 
     if (onboarding?.onboardingCompleted === true) {
-      redirect("/book/workspace");
+      redirect("/dashboard");
     }
   } catch (e) {
     // If it's a redirect (from Next.js), re-throw so it takes effect

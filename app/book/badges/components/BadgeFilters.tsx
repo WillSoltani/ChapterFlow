@@ -32,7 +32,7 @@ export function BadgeFilters({ activeFilter, onChange, badges }: BadgeFiltersPro
               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)",
               isActive
                 ? "border-amber-500/30 bg-amber-500 text-black"
-                : "border-[rgba(255,255,255,0.1)] bg-transparent text-(--cf-text-2) hover:border-[rgba(255,255,255,0.2)] hover:bg-[rgba(255,255,255,0.04)]"
+                : "border-(--cf-border-strong) bg-transparent text-(--cf-text-2) hover:border-(--cf-border-strong) hover:bg-(--cf-surface-muted)"
             )}
           >
             {opt.label}

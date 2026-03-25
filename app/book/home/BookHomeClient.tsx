@@ -78,7 +78,7 @@ export function BookHomeClient() {
   useEffect(() => {
     if (searchParams.get("billing") === "success") {
       setShowProBanner(true);
-      router.replace("/book/workspace");
+      router.replace("/dashboard");
     }
   }, [searchParams, router]);
 
@@ -250,7 +250,7 @@ export function BookHomeClient() {
   if (!onboardingHydrated || !dashboard.hydrated || !badgeSystem.hydrated || !savedHydrated || !onboarding.setupComplete) {
     return (
       <main className="cf-app-shell">
-        <div className="mx-auto w-full max-w-7xl animate-pulse px-4 pb-16 pt-10 sm:px-6">
+        <div className="mx-auto w-full max-w-450 animate-pulse px-4 pb-16 pt-10 sm:px-6 lg:px-10 xl:px-16">
           <div className="h-9 w-64 rounded-xl bg-(--cf-surface-muted)" />
           <div className="mt-2 h-5 w-48 rounded-xl bg-(--cf-surface)" />
           <div className="mt-6 grid grid-cols-1 gap-4 lg:grid-cols-[1.55fr_1fr]">
@@ -277,7 +277,7 @@ export function BookHomeClient() {
             type="button"
             onClick={() => setShowProBanner(false)}
             aria-label="Dismiss"
-            className="shrink-0 rounded-lg p-1 transition hover:bg-white/20"
+            className="shrink-0 rounded-lg p-1 transition hover:bg-(--cf-surface-strong)"
           >
             <X className="h-4 w-4" />
           </button>
@@ -292,7 +292,7 @@ export function BookHomeClient() {
         searchInputRef={searchInputRef}
       />
 
-      <section className="mx-auto w-full max-w-7xl px-4 pb-28 pt-7 sm:px-6 sm:pt-8 md:pb-24">
+      <section className="mx-auto w-full max-w-450 px-4 pb-28 pt-7 sm:px-6 sm:pt-8 md:pb-24 lg:px-10 xl:px-16">
 
         {/* ── Greeting ── */}
         <div>
@@ -402,7 +402,7 @@ export function BookHomeClient() {
           </div>
 
           {yourBooks.length > 0 ? (
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
               {yourBooks.map(({ book, progress }) => (
                 <BookMiniCard
                   key={book.id}

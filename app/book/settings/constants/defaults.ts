@@ -18,6 +18,7 @@ export const defaultExtendedSettings: ExtendedSettings = {
   streakMode: "standard",
   streakSkipDays: 1,
   motivationPersona: "coach",
+  contentTone: "gentle",
   quizStyle: "challenge",
   dailyGoalPreset: 10,
   spacedRepetitionTarget: 85,

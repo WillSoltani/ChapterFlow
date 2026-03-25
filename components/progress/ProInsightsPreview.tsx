@@ -19,8 +19,8 @@ function BlurredChart({
     <motion.div
       className="relative flex flex-col items-center justify-center rounded-xl p-6"
       style={{
-        background: "rgba(255,255,255,0.03)",
-        border: "1px solid rgba(255,255,255,0.06)",
+        background: "var(--cf-surface-muted)",
+        border: "1px solid var(--cf-border)",
         minHeight: 140,
       }}
       whileHover={{
@@ -64,12 +64,11 @@ export function ProInsightsPreview({ isPro }: ProInsightsPreviewProps) {
     <motion.section
       className="rounded-2xl p-5"
       style={{
-        background: "rgba(255,255,255,0.03)",
+        background: "var(--cf-surface-muted)",
         backdropFilter: "blur(12px)",
         WebkitBackdropFilter: "blur(12px)",
         border: "1px solid rgba(167,139,250,0.12)",
-        boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
-        backgroundColor: "rgba(15,15,26,0.95)",
+        boxShadow: "var(--cf-shadow-sm)",
       }}
       initial={{ opacity: prefersReduced ? 1 : 0 }}
       whileInView={{ opacity: 1 }}
@@ -90,7 +89,7 @@ export function ProInsightsPreview({ isPro }: ProInsightsPreviewProps) {
           <svg width="100" height="50" viewBox="0 0 100 50">
             <polyline
               fill="none"
-              stroke="#A78BFA"
+              stroke="var(--cf-accent)"
               strokeWidth="2"
               points="0,40 20,35 40,25 60,30 80,15 100,10"
             />
@@ -108,7 +107,7 @@ export function ProInsightsPreview({ isPro }: ProInsightsPreviewProps) {
             />
             <polygon
               fill="rgba(52,211,153,0.2)"
-              stroke="#34D399"
+              stroke="var(--cf-success-text)"
               strokeWidth="1.5"
               points="40,18 58,30 52,50 28,50 22,30"
             />
@@ -118,11 +117,11 @@ export function ProInsightsPreview({ isPro }: ProInsightsPreviewProps) {
         {/* Peer Benchmarking */}
         <BlurredChart label="Peer Benchmarking">
           <svg width="100" height="50" viewBox="0 0 100 50">
-            <rect x="5" y="30" width="15" height="20" fill="#38BDF8" opacity="0.4" rx="2" />
-            <rect x="25" y="20" width="15" height="30" fill="#38BDF8" opacity="0.5" rx="2" />
-            <rect x="45" y="10" width="15" height="40" fill="#38BDF8" opacity="0.7" rx="2" />
-            <rect x="65" y="15" width="15" height="35" fill="#38BDF8" opacity="0.6" rx="2" />
-            <rect x="85" y="25" width="15" height="25" fill="#38BDF8" opacity="0.4" rx="2" />
+            <rect x="5" y="30" width="15" height="20" fill="var(--cf-accent)" opacity="0.4" rx="2" />
+            <rect x="25" y="20" width="15" height="30" fill="var(--cf-accent)" opacity="0.5" rx="2" />
+            <rect x="45" y="10" width="15" height="40" fill="var(--cf-accent)" opacity="0.7" rx="2" />
+            <rect x="65" y="15" width="15" height="35" fill="var(--cf-accent)" opacity="0.6" rx="2" />
+            <rect x="85" y="25" width="15" height="25" fill="var(--cf-accent)" opacity="0.4" rx="2" />
           </svg>
         </BlurredChart>
       </div>
@@ -136,7 +135,7 @@ export function ProInsightsPreview({ isPro }: ProInsightsPreviewProps) {
           href="/pricing"
           className="inline-flex cursor-pointer items-center gap-1.5 rounded-xl px-5 py-2.5 text-sm font-medium transition-colors"
           style={{
-            color: "#A78BFA",
+            color: "var(--cf-accent)",
             border: "1px solid rgba(167,139,250,0.3)",
           }}
         >
