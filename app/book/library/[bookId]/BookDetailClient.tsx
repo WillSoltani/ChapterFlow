@@ -94,26 +94,6 @@ export function BookDetailClient({
   const pages =
     book.pages ?? Math.max(120, Math.round(book.estimatedMinutes * 2.8));
 
-  /* ── Force dark mode on this page ──
-     The dark glassmorphic design uses hardcoded dark-palette colors.
-     In light mode these become invisible/broken. Force dark on mount,
-     restore on unmount so the user's preference is preserved elsewhere. */
-  useEffect(() => {
-    const root = document.documentElement;
-    const wasDark = root.classList.contains("dark");
-    const prevColorScheme = root.style.colorScheme;
-    if (!wasDark) {
-      root.classList.add("dark");
-      root.style.colorScheme = "dark";
-    }
-    return () => {
-      if (!wasDark) {
-        root.classList.remove("dark");
-        root.style.colorScheme = prevColorScheme || "light";
-      }
-    };
-  }, []);
-
   useKeyboardShortcut(
     "/",
     (event) => {
@@ -253,7 +233,7 @@ export function BookDetailClient({
   ) {
     return (
       <main className="cf-app-shell">
-        <div className="mx-auto flex min-h-screen items-center justify-center px-4 text-slate-400">
+        <div className="mx-auto flex min-h-screen items-center justify-center px-4 text-(--cf-text-2)">
           Loading book details...
         </div>
       </main>
@@ -275,17 +255,17 @@ export function BookDetailClient({
       />
 
       {/* All content in relative z-10 to sit above gradient orbs */}
-      <section className="relative z-10 mx-auto w-full max-w-4xl px-4 pb-28 pt-6 sm:px-6 md:pb-24 lg:px-10">
+      <section className="relative z-10 mx-auto w-full max-w-450 px-4 pb-28 pt-6 sm:px-6 md:pb-24 lg:px-10 xl:px-16">
         {/* Breadcrumb */}
         <nav className="mb-6 flex items-center gap-2 text-sm">
           <Link
             href="/book/library"
-            className="text-slate-400 transition-colors hover:text-slate-200"
+            className="text-(--cf-text-3) transition-colors hover:text-(--cf-text-1)"
           >
             Library
           </Link>
-          <ChevronRight className="h-3.5 w-3.5 text-slate-600" />
-          <span className="truncate font-medium text-slate-200">
+          <ChevronRight className="h-3.5 w-3.5 text-(--cf-text-soft)" />
+          <span className="truncate font-medium text-(--cf-text-1)">
             {book.title}
           </span>
         </nav>
@@ -327,12 +307,12 @@ export function BookDetailClient({
           {/* Section header */}
           <div className="mb-4 flex items-center justify-between gap-3">
             <h2
-              className="text-lg font-semibold uppercase tracking-widest text-slate-50"
+              className="text-lg font-semibold uppercase tracking-widest text-(--cf-text-1)"
               style={{ fontFamily: "var(--font-satoshi)" }}
             >
               Your Journey
             </h2>
-            <span className="text-sm text-slate-500">
+            <span className="text-sm text-(--cf-text-3)">
               {completedCount}/{totalCount} completed
             </span>
           </div>
@@ -341,7 +321,7 @@ export function BookDetailClient({
           <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             {showSearch && (
               <label className="relative block flex-1 sm:max-w-sm">
-                <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-600" />
+                <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-(--cf-text-3)" />
                 <input
                   ref={chapterSearchRef}
                   type="search"
@@ -349,13 +329,13 @@ export function BookDetailClient({
                   onChange={(e) => setChapterQuery(e.target.value)}
                   placeholder="Search chapters..."
                   aria-label="Search chapters by title or code"
-                  className="w-full rounded-xl border border-white/8 bg-white/[0.04] py-2.5 pl-10 pr-4 text-sm text-slate-200 placeholder:text-slate-600 transition-all focus-visible:border-indigo-500/30 focus-visible:ring-1 focus-visible:ring-indigo-500/15 focus-visible:outline-none"
+                  className="cf-input w-full rounded-xl py-2.5 pl-10 pr-4 text-sm"
                 />
               </label>
             )}
             {/* Filter tab pill container */}
             <div
-              className="flex items-center gap-0.5 rounded-xl bg-white/[0.04] p-1"
+              className="flex items-center gap-0.5 rounded-xl bg-(--cf-surface-muted) p-1"
               role="tablist"
               aria-label="Filter chapters"
             >
@@ -368,10 +348,10 @@ export function BookDetailClient({
                   onClick={() => setChapterFilter(option.id)}
                   className={[
                     "whitespace-nowrap rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200",
-                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400",
+                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent)",
                     chapterFilter === option.id
-                      ? "bg-emerald-500/15 text-emerald-400"
-                      : "text-slate-400 hover:bg-white/[0.04] hover:text-slate-200",
+                      ? "cf-chip cf-chip-active"
+                      : "text-(--cf-text-2) hover:bg-(--cf-surface-strong) hover:text-(--cf-text-1)",
                   ].join(" ")}
                 >
                   {option.label}
@@ -437,7 +417,7 @@ export function BookDetailClient({
 
             {/* Empty state when no chapters match filter */}
             {chapters.every((ch) => !matchesFilter(ch)) && (
-              <p className="py-8 text-center text-sm text-slate-500">
+              <p className="py-8 text-center text-sm text-(--cf-text-3)">
                 No chapters match this filter.
               </p>
             )}
@@ -481,7 +461,7 @@ export function BookDetailClient({
                 sessionMode: progressPercent === 0,
               })
             }
-            className="w-full rounded-2xl bg-emerald-500 px-4 py-3 text-base font-semibold text-[#0B0F1A] shadow-[0_0_20px_rgba(52,211,153,0.25)] transition-all hover:bg-emerald-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0F1A]"
+            className="cf-btn cf-btn-primary w-full rounded-2xl px-4 py-3 text-base"
           >
             {completedCount > 0
               ? `Continue Chapter ${currentChapter.number}`
@@ -526,7 +506,7 @@ export function BookDetailClient({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-xl border border-white/12 bg-[#1F2937] px-5 py-3 text-sm text-slate-200 shadow-2xl"
+            className="cf-panel-strong fixed bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-xl px-5 py-3 text-sm text-(--cf-text-1) shadow-2xl"
           >
             {lockedToast}
           </motion.div>

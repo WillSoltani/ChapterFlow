@@ -1,6 +1,7 @@
 "use client";
 
-import { Check, FileText, HelpCircle, Lightbulb } from "lucide-react";
+import { useCallback, useState } from "react";
+import { Check, FileText, HelpCircle, Lightbulb, Lock } from "lucide-react";
 import type { ComponentType } from "react";
 import type { ChapterTab } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterState";
 
@@ -17,7 +18,7 @@ const PHASES: PhaseStep[] = [
   { id: "quiz", label: "Quiz", shortLabel: "Quiz", icon: HelpCircle },
 ];
 
-type StepState = "completed" | "current" | "upcoming-unlocked" | "upcoming-locked";
+type StepState = "completed" | "current" | "upcoming-unlocked" | "locked";
 
 type PhaseStepperProps = {
   currentPhase: ChapterTab;
@@ -25,21 +26,22 @@ type PhaseStepperProps = {
   onChange: (phase: ChapterTab) => void;
   /** Overall chapter progress 0-100 */
   progressPercent: number;
+  /** Check if a phase is accessible (from gating logic) */
+  isPhaseAccessible: (phase: ChapterTab) => boolean;
+  /** Get lock tooltip message */
+  getLockMessage: (phase: ChapterTab) => string | null;
 };
 
 function getStepState(
   step: ChapterTab,
   currentPhase: ChapterTab,
-  completedPhases: Set<ChapterTab>
+  completedPhases: Set<ChapterTab>,
+  isAccessible: boolean
 ): StepState {
   if (step === currentPhase) return "current";
   if (completedPhases.has(step)) return "completed";
-  // Upcoming phases are unlocked if they were completed before (allow back-navigation)
-  const phaseOrder: ChapterTab[] = ["summary", "examples", "quiz"];
-  const stepIndex = phaseOrder.indexOf(step);
-  const currentIndex = phaseOrder.indexOf(currentPhase);
-  if (stepIndex < currentIndex) return "completed";
-  return "upcoming-locked";
+  if (!isAccessible) return "locked";
+  return "upcoming-unlocked";
 }
 
 export function PhaseStepper({
@@ -47,15 +49,46 @@ export function PhaseStepper({
   completedPhases,
   onChange,
   progressPercent,
+  isPhaseAccessible,
+  getLockMessage,
 }: PhaseStepperProps) {
+  const [tooltip, setTooltip] = useState<{ text: string; x: number; y: number } | null>(null);
+  const [mobileToast, setMobileToast] = useState<string | null>(null);
+
+  const handleLockedClick = useCallback(
+    (phase: ChapterTab, event: React.MouseEvent) => {
+      const message = getLockMessage(phase);
+      if (!message) return;
+
+      // Desktop: show tooltip near the click
+      const rect = (event.currentTarget as HTMLElement).getBoundingClientRect();
+      setTooltip({
+        text: message,
+        x: rect.left + rect.width / 2,
+        y: rect.top - 8,
+      });
+      setTimeout(() => setTooltip(null), 2500);
+
+      // Mobile: show toast
+      setMobileToast(message);
+      setTimeout(() => setMobileToast(null), 2000);
+    },
+    [getLockMessage]
+  );
+
   return (
     <div className="w-full space-y-3">
       {/* Stepper steps */}
-      <div className="flex items-center justify-center gap-0">
+      <nav
+        className="flex items-center justify-center gap-0"
+        role="navigation"
+        aria-label="Learning phases"
+      >
         {PHASES.map((phase, index) => {
-          const state = getStepState(phase.id, currentPhase, completedPhases);
+          const accessible = isPhaseAccessible(phase.id);
+          const state = getStepState(phase.id, currentPhase, completedPhases, accessible);
           const Icon = phase.icon;
-          const isClickable = state === "completed" || state === "current";
+          const isClickable = state === "completed" || state === "upcoming-unlocked";
           const isLast = index === PHASES.length - 1;
 
           return (
@@ -63,34 +96,42 @@ export function PhaseStepper({
               {/* Step circle + label */}
               <button
                 type="button"
-                disabled={!isClickable}
-                onClick={() => {
-                  if (isClickable && state !== "current") onChange(phase.id);
+                disabled={state === "locked"}
+                onClick={(e) => {
+                  if (state === "locked") {
+                    handleLockedClick(phase.id, e);
+                    return;
+                  }
+                  if (isClickable) onChange(phase.id);
                 }}
                 className="group flex flex-col items-center gap-1.5"
                 aria-current={state === "current" ? "step" : undefined}
+                aria-disabled={state === "locked"}
+                tabIndex={state === "locked" ? -1 : 0}
               >
                 {/* Circle */}
                 <div
                   className={[
                     "flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300",
                     state === "completed"
-                      ? "bg-[var(--cr-accent)] text-[var(--cr-text-inverse)]"
+                      ? "bg-(--cr-accent) text-(--cr-text-inverse)"
                       : state === "current"
-                        ? "bg-[var(--cr-accent)] text-[var(--cr-text-inverse)] shadow-[0_0_0_4px_var(--cr-accent-glow)]"
+                        ? "bg-(--cr-accent) text-(--cr-text-inverse) shadow-[0_0_0_4px_var(--cr-accent-glow)]"
                         : state === "upcoming-unlocked"
-                          ? "border-2 border-[var(--cr-text-secondary)] bg-transparent text-[var(--cr-text-secondary)]"
-                          : "border-2 border-[var(--cr-text-disabled)] bg-transparent text-[var(--cr-text-disabled)]",
-                    isClickable && state !== "current"
+                          ? "border-2 border-(--cr-text-secondary) bg-transparent text-(--cr-text-secondary)"
+                          : "border-2 border-(--cr-text-disabled) bg-transparent text-(--cr-text-disabled) opacity-50 cursor-not-allowed",
+                    isClickable
                       ? "cursor-pointer hover:opacity-80"
                       : state === "current"
                         ? "cursor-default"
-                        : "cursor-not-allowed",
+                        : "",
                   ].join(" ")}
                   style={state === "current" ? { animation: "cr-stepper-pulse 2s ease-in-out infinite" } : undefined}
                 >
                   {state === "completed" ? (
                     <Check className="h-5 w-5" strokeWidth={2.5} />
+                  ) : state === "locked" ? (
+                    <Lock className="h-4 w-4" />
                   ) : (
                     <Icon className="h-5 w-5" />
                   )}
@@ -101,15 +142,14 @@ export function PhaseStepper({
                   className={[
                     "text-xs font-semibold transition-colors duration-200",
                     state === "completed"
-                      ? "text-[var(--cr-accent)]"
+                      ? "text-(--cr-accent)"
                       : state === "current"
-                        ? "text-[var(--cr-accent)] font-bold"
+                        ? "text-(--cr-accent) font-bold"
                         : state === "upcoming-unlocked"
-                          ? "text-[var(--cr-text-secondary)]"
-                          : "text-[var(--cr-text-disabled)]",
+                          ? "text-(--cr-text-secondary)"
+                          : "text-(--cr-text-disabled)",
                   ].join(" ")}
                 >
-                  {/* Full label on md+, short on mobile */}
                   <span className="hidden sm:inline">{phase.label}</span>
                   <span className="sm:hidden">{phase.shortLabel}</span>
                 </span>
@@ -120,13 +160,20 @@ export function PhaseStepper({
                 <div className="mx-2 h-0.5 w-12 sm:mx-3 sm:w-20 md:w-28">
                   <div className="relative h-full w-full overflow-hidden rounded-full bg-[rgba(255,255,255,0.1)]">
                     <div
-                      className="absolute inset-y-0 left-0 rounded-full bg-[var(--cr-accent)] transition-all duration-500"
+                      className="absolute inset-y-0 left-0 rounded-full bg-(--cr-accent) transition-all duration-500"
                       style={{
                         width:
-                          getStepState(PHASES[index + 1].id, currentPhase, completedPhases) === "completed" ||
-                          getStepState(PHASES[index + 1].id, currentPhase, completedPhases) === "current"
-                            ? "100%"
-                            : "0%",
+                          (() => {
+                            const leftState = getStepState(
+                              phase.id,
+                              currentPhase,
+                              completedPhases,
+                              isPhaseAccessible(phase.id)
+                            );
+                            return leftState === "completed"
+                              ? "100%"
+                              : "0%";
+                          })(),
                       }}
                     />
                   </div>
@@ -135,15 +182,37 @@ export function PhaseStepper({
             </div>
           );
         })}
-      </div>
+      </nav>
+
+      {/* Mobile: current phase name (icons only on mobile) */}
+      <p className="text-center text-sm font-semibold text-(--cr-accent) sm:hidden">
+        {PHASES.find((p) => p.id === currentPhase)?.label}
+      </p>
 
       {/* Continuous progress bar */}
       <div className="h-[3px] w-full overflow-hidden rounded-full bg-[rgba(255,255,255,0.1)]">
         <div
-          className="h-full rounded-full bg-[var(--cr-accent)] transition-[width] duration-300 ease-out"
+          className="h-full rounded-full bg-(--cr-accent) transition-[width] duration-300 ease-out"
           style={{ width: `${Math.min(100, Math.max(0, progressPercent))}%` }}
         />
       </div>
+
+      {/* Desktop tooltip */}
+      {tooltip && (
+        <div
+          className="pointer-events-none fixed z-50 hidden -translate-x-1/2 -translate-y-full rounded-lg border border-(--cr-glass-border) bg-(--cr-bg-surface-2) px-3 py-2 text-xs text-(--cr-text-secondary) shadow-lg sm:block"
+          style={{ left: tooltip.x, top: tooltip.y }}
+        >
+          {tooltip.text}
+        </div>
+      )}
+
+      {/* Mobile toast */}
+      {mobileToast && (
+        <div className="fixed bottom-24 left-4 right-4 z-50 rounded-xl border border-(--cr-glass-border) bg-(--cr-bg-surface-2) px-4 py-3 text-center text-sm text-(--cr-text-secondary) shadow-lg sm:hidden">
+          {mobileToast}
+        </div>
+      )}
     </div>
   );
 }

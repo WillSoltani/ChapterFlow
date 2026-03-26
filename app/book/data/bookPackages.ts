@@ -1,4 +1,4 @@
-import friendsAndInfluencePackageJson from "@/book-packages/friends-and-influence-student-edition.student.json";
+import friendsAndInfluencePackageJson from "@/book-packages/friends-and-influence-student-edition.modern.json";
 import artOfWarPackageJson from "@/book-packages/art-of-war.modern.json";
 import thePrincePackageJson from "@/book-packages/the-prince.modern.json";
 import strategiesOfWarPackageJson from "@/book-packages/33-strategies-of-war.modern.json";
@@ -189,7 +189,7 @@ export type BookPackagePresentation = {
 };
 
 export const FRIENDS_AND_INFLUENCE_PACKAGE =
-  friendsAndInfluencePackageJson as BookPackage;
+  normalizeNstdPackage(friendsAndInfluencePackageJson, "direct");
 export const ART_OF_WAR_PACKAGE = normalizeNstdPackage(artOfWarPackageJson, "direct");
 export const THE_PRINCE_PACKAGE = normalizeNstdPackage(thePrincePackageJson, "direct");
 export const STRATEGIES_OF_WAR_PACKAGE =

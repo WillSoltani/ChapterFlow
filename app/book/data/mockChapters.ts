@@ -39,6 +39,12 @@ export type ChapterSummaryBlock =
       detail: string;
     };
 
+export type ScenarioDecisionOption = {
+  id: string;
+  text: string;
+  isRecommended: boolean;
+};
+
 export type ChapterExample = {
   id: string;
   title: string;
@@ -46,6 +52,8 @@ export type ChapterExample = {
   scenario: string;
   whatToDo: string;
   whyItMatters: string;
+  /** Per-scenario decision options. If absent, auto-generated from content. */
+  decisionOptions?: ScenarioDecisionOption[];
 };
 
 export type BookChapter = {

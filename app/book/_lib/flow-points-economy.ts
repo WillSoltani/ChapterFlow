@@ -52,6 +52,43 @@ export const FLOW_POINTS_AMOUNTS = {
   referralProInviter: 600,
 } as const;
 
+/** Mode-dependent Flow Points for the chapter reading experience */
+export const CHAPTER_FP = {
+  quizPassFirstAttempt: { guided: 80, standard: 100, challenge: 150 },
+  quizPassRetry: { guided: 50, standard: 60, challenge: 100 },
+  quizPerfectScore: { guided: 30, standard: 50, challenge: 80 },
+  quizSpeedBonus: { guided: 0, standard: 0, challenge: 30 },
+  quizScoreImproved: 20,
+  scenarioSubmitted: 60,
+  streakBonus: 25,
+  reviewSessionComplete: 15,
+  reviewAllCorrect: 10,
+} as const;
+
+/** Pass thresholds per learning mode (percentage) */
+export const QUIZ_PASS_THRESHOLDS = {
+  guided: 70,
+  standard: 80,
+  challenge: 90,
+} as const;
+
+/** Retry allowances per learning mode (retries per question, NOT total attempts) */
+export const QUIZ_RETRIES_PER_QUESTION = {
+  guided: 2,
+  standard: 1,
+  challenge: 0,
+} as const;
+
+/** Auto-advance delay per mode (ms) */
+export const QUIZ_AUTO_ADVANCE_DELAY = {
+  guided: 3000,
+  standard: 2000,
+  challenge: 1500,
+} as const;
+
+/** Challenge mode total time limit (seconds) */
+export const CHALLENGE_QUIZ_TIME_LIMIT = 600; // 10 minutes
+
 export const FLOW_POINTS_REWARDS: FlowPointsRewardDefinition[] = [
   {
     rewardId: "bonus_book_unlock",

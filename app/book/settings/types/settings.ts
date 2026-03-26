@@ -4,6 +4,8 @@
 
 export type ReadingProfile = "quick" | "balanced" | "deep";
 
+export type LearningMode = "guided" | "standard" | "challenge";
+
 export type FontFamily = "serif" | "sans-serif" | "opendyslexic";
 
 export type LineSpacing = "compact" | "comfortable" | "relaxed";
@@ -38,6 +40,9 @@ export type ExtendedSettings = {
   ttsVoice: TTSVoice;
   ttsSpeed: number;
   ttsAutoAdvance: boolean;
+
+  // Learning Mode
+  learningMode: LearningMode;
 
   // Goals & Motivation
   streakMode: StreakMode;

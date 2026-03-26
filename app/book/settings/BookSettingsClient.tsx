@@ -56,6 +56,7 @@ import {
   INTENSITY_TO_QUIZ_STYLE,
   PERSONA_TO_MOTIVATION,
   MOTIVATION_TO_PERSONA,
+  defaultExtendedSettings,
 } from "./constants/defaults";
 
 // Types
@@ -125,6 +126,17 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
     onboarding.dailyGoalMinutes,
     onboarding.reminderTime
   );
+
+  // Seed contentTone from onboarding motivationStyle for existing users
+  const contentToneSeeded = useRef(false);
+  useEffect(() => {
+    if (!hydrated || contentToneSeeded.current) return;
+    contentToneSeeded.current = true;
+    // If contentTone was never explicitly set (still default), inherit from onboarding
+    if (ext.contentTone === defaultExtendedSettings.contentTone && onboarding.motivationStyle !== ext.contentTone) {
+      patchExt({ contentTone: onboarding.motivationStyle as ContentTone });
+    }
+  }, [hydrated, ext.contentTone, onboarding.motivationStyle, patchExt]);
 
   // Score milestone tracking
   const prevScoreRef = useRef<number>(0);
@@ -272,6 +284,9 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
   // --- Content tone ---
   function handleContentToneChange(tone: ContentTone) {
     patchExt({ contentTone: tone });
+    // Sync tone to onboarding motivationStyle so ChapterReaderClient picks it up
+    // (personalizeChapterForMotivation reads onboarding.motivationStyle)
+    setOnboardingMotivationStyle(tone as MotivationStyle);
     // Sync to the API so the rest of the app picks up the change
     fetch("/api/book/me/settings", {
       method: "PATCH",

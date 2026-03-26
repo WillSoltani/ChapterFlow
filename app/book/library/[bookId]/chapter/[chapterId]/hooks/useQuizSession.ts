@@ -189,9 +189,8 @@ export function useQuizSession(params: {
   }, [answers, bookId, chapterNumber, load, session, syncFromSession]);
 
   const retry = useCallback(async () => {
-    if (cooldownSeconds > 0) return null;
     return load();
-  }, [cooldownSeconds, load]);
+  }, [load]);
 
   const toggleExplanation = useCallback(
     (questionId: string) => {

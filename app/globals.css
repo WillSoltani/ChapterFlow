@@ -1528,6 +1528,12 @@ html:not(.dark) {
   100% { transform: translate(var(--cr-confetti-x), var(--cr-confetti-y)) rotate(var(--cr-confetti-r)); opacity: 0; }
 }
 
+/* Continue button pulse glow */
+@keyframes cr-pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(77, 182, 172, 0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(77, 182, 172, 0); }
+}
+
 /* Progress dot fill */
 @keyframes cr-dot-fill {
   from { transform: scale(0.8); opacity: 0.5; }

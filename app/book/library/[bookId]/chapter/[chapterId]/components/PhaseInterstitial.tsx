@@ -41,9 +41,14 @@ export function PhaseInterstitial({ from, to, onComplete }: PhaseInterstitialPro
     }
   }, [phase, onComplete]);
 
+  // No interstitial for this transition — complete on next tick via effect
+  useEffect(() => {
+    if (!config) {
+      onComplete();
+    }
+  }, [config, onComplete]);
+
   if (!config) {
-    // No interstitial for this transition, complete immediately
-    onComplete();
     return null;
   }
 
@@ -57,11 +62,11 @@ export function PhaseInterstitial({ from, to, onComplete }: PhaseInterstitialPro
       aria-live="polite"
     >
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-[var(--cr-bg-root)]/80 backdrop-blur-sm" />
+      <div className="absolute inset-0 bg-(--cr-bg-root)/80 backdrop-blur-sm" />
 
       {/* Card */}
       <div
-        className="relative z-10 flex max-w-md flex-col items-center gap-4 rounded-2xl border border-[var(--cr-glass-border)] bg-[var(--cr-glass-card)] px-10 py-8 text-center shadow-[0_8px_32px_rgba(0,0,0,0.3)]"
+        className="relative z-10 flex max-w-md flex-col items-center gap-4 rounded-2xl border border-(--cr-glass-border) bg-(--cr-glass-card) px-10 py-8 text-center shadow-[0_8px_32px_rgba(0,0,0,0.3)]"
         style={{
           animation:
             phase === "in"
@@ -69,13 +74,13 @@ export function PhaseInterstitial({ from, to, onComplete }: PhaseInterstitialPro
               : "cr-interstitial-out 400ms ease-in forwards",
         }}
       >
-        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[var(--cr-accent-muted)]">
-          <Icon className="h-7 w-7 text-[var(--cr-accent)]" />
+        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-(--cr-accent-muted)">
+          <Icon className="h-7 w-7 text-(--cr-accent)" />
         </div>
-        <p className="text-xl font-semibold text-[var(--cr-text-heading)]">
+        <p className="text-xl font-semibold text-(--cr-text-heading)">
           {config.text}
         </p>
-        <p className="text-sm text-[var(--cr-text-secondary)]">
+        <p className="text-sm text-(--cr-text-secondary)">
           Tap anywhere to continue
         </p>
       </div>

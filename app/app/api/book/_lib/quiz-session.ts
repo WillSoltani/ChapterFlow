@@ -434,13 +434,10 @@ export function buildQuizClientSession(params: {
           choiceId: choice.choiceId,
           text: choice.text,
         })),
-        explanation:
-          status === "ready"
-            ? undefined
-            : question.explanation || "This option best reflects the chapter's main point.",
+        explanation: question.explanation || undefined,
         selectedChoiceId: status === "ready" ? null : result?.selectedChoiceId ?? null,
-        correctChoiceId: status === "ready" ? undefined : question.correctChoiceId,
-        correctIndex: status === "ready" ? undefined : question.correctIndex,
+        correctChoiceId: question.correctChoiceId,
+        correctIndex: question.correctIndex,
         isCorrect: status === "ready" ? undefined : result?.isCorrect === true,
       };
     }),

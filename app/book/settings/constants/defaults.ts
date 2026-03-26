@@ -14,6 +14,9 @@ export const defaultExtendedSettings: ExtendedSettings = {
   ttsSpeed: 1.0,
   ttsAutoAdvance: true,
 
+  // Learning Mode
+  learningMode: "standard",
+
   // Goals & Motivation
   streakMode: "standard",
   streakSkipDays: 1,

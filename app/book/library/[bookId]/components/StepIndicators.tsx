@@ -6,7 +6,6 @@ type StepIndicatorsProps = {
   stepsCompleted: number;
   isInProgress?: boolean;
   accentColor?: "green" | "indigo";
-  /** Use extra-dim dots for locked/next-unlockable cards */
   lockedDots?: boolean;
 };
 
@@ -25,14 +24,18 @@ export function StepIndicators({
         let dotClass: string;
         if (isComplete) {
           dotClass =
-            accentColor === "green" ? "bg-emerald-400" : "bg-indigo-400";
+            accentColor === "green"
+              ? "bg-(--cf-success-text)"
+              : "bg-(--cf-accent)";
         } else if (isCurrent) {
           dotClass =
             accentColor === "green"
-              ? "bg-emerald-400 bd-dot-pulse"
-              : "bg-indigo-400 bd-dot-pulse";
+              ? "bg-(--cf-success-text) bd-dot-pulse"
+              : "bg-(--cf-accent) bd-dot-pulse";
         } else {
-          dotClass = lockedDots ? "bg-white/[0.06]" : "bg-white/[0.10]";
+          dotClass = lockedDots
+            ? "bg-(--cf-border)"
+            : "bg-(--cf-border-strong)";
         }
 
         return (
