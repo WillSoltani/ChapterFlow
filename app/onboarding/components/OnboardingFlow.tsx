@@ -49,7 +49,7 @@ export function OnboardingFlow() {
       firstQuizScore: onboarding.firstQuizScore,
     };
 
-    fetch("/api/book/me/onboarding/complete", {
+    fetch("/app/api/book/me/onboarding/complete", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(saveData),
