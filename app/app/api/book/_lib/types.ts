@@ -13,11 +13,24 @@ export type ChapterSummaryBlock =
       detail?: string;
     };
 
+/** Tone-keyed content: { gentle: string, direct: string, competitive: string } */
+export type ToneKeyed = {
+  gentle: string;
+  direct: string;
+  competitive: string;
+};
+
 export type ChapterVariantContent = {
-  summaryBullets: string[];
+  summaryBullets?: string[];
   summaryBlocks?: ChapterSummaryBlock[];
-  takeaways: string[];
+  takeaways?: string[];
   practice?: string[];
+  /** Modern format: tone-keyed chapter breakdown narrative */
+  chapterBreakdown?: ToneKeyed;
+  /** Modern format: tone-keyed takeaway objects */
+  keyTakeaways?: Array<{ point: ToneKeyed }>;
+  /** Modern format: tone-keyed one-minute recap */
+  oneMinuteRecap?: ToneKeyed;
 };
 
 export type BookPackageQuizQuestion = {
@@ -37,10 +50,26 @@ export type BookPackageQuiz = {
 export type BookPackageExample = {
   exampleId: string;
   title: string;
-  scenario: string;
-  whatToDo: string[];
-  whyItMatters: string;
+  scenario: string | ToneKeyed;
+  whatToDo: string[] | ToneKeyed;
+  whyItMatters: string | ToneKeyed;
   contexts?: string[];
+  category?: string;
+  format?: string;
+  endingType?: string;
+};
+
+/** Tone-keyed review card for spaced repetition */
+export type ReviewCard = {
+  cardId: string;
+  front: ToneKeyed;
+  back: ToneKeyed;
+};
+
+/** Tone-keyed implementation plan */
+export type ImplementationPlan = {
+  coreSkill: ToneKeyed;
+  [key: string]: ToneKeyed | unknown;
 };
 
 export type BookPackageChapter = {
@@ -51,6 +80,9 @@ export type BookPackageChapter = {
   contentVariants: Partial<Record<VariantKey, ChapterVariantContent>>;
   examples: BookPackageExample[];
   quiz: BookPackageQuiz;
+  implementationPlan?: ImplementationPlan;
+  reviewCards?: ReviewCard[];
+  keyTakeawayCard?: ToneKeyed;
 };
 
 export type BookPackageBook = {
@@ -84,6 +116,9 @@ export type ChapterSummaryPayload = {
   readingTimeMinutes: number;
   contentVariants: Partial<Record<VariantKey, ChapterVariantContent>>;
   examples: BookPackageExample[];
+  implementationPlan?: ImplementationPlan;
+  reviewCards?: ReviewCard[];
+  keyTakeawayCard?: ToneKeyed;
 };
 
 export type ChapterQuizPayload = {

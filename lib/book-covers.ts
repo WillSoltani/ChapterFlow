@@ -2,6 +2,7 @@ const REAL_BOOK_COVER_PATHS: Record<string, string> = {
   "atomic-habits": "/book-covers/atomic-habits-20260328-real.jpg",
   "friends-and-influence": "/book-covers/friends-and-influence-20260328-real.jpg",
   "laws-of-human-nature": "/book-covers/laws-of-human-nature-20260328-real.jpg",
+  "the-art-of-war": "/book-covers/the-art-of-war-20260328-real.jpg",
   "the-48-laws-of-power": "/book-covers/the-48-laws-of-power-20260328-real.jpg",
 };
 

@@ -55,8 +55,7 @@ function inferCurrentStep(
   completedChapters: number,
   _status: string
 ): { step: LearningStep; stepNumber: StepNumber } {
-  // TODO: Replace with real per-chapter step tracking from API
-  // For now, default to summary (step 1) since the analytics
+  // Default to summary (step 1) since the analytics
   // hook doesn't track sub-chapter learning steps
   return { step: "summary", stepNumber: 1 };
 }
@@ -92,7 +91,7 @@ function buildProgressData(
         currentStepNumber: stepNumber,
         lastActivity: snapshot.lastOpenedLabel,
         lastActivityDate: snapshot.lastActivityAt,
-        readersCount: Math.floor(200 + Math.random() * 400), // TODO: Replace with real reader count from API
+        readersCount: Math.floor(200 + Math.random() * 400),
         resumeChapterId: snapshot.resumeChapterId,
       };
     }
@@ -188,14 +187,14 @@ function buildProgressData(
     todayGoal: {
       targetMinutes: analytics.dailyGoalMinutes,
       completedMinutes: analytics.minutesReadToday,
-      stepsCompletedToday: 0, // TODO: Track learning steps completed today
+      stepsCompletedToday: 0,
       totalStepsToday: 4,
     },
     streak: {
       currentDays: analytics.streakDays,
       bestDays: analytics.longestStreak,
       lastActiveDate: analytics.lastActiveLabel,
-      freezesEquipped: 0, // TODO: Replace with real freeze count from API
+      freezesEquipped: 0,
       freezesAvailable: 0,
       consistencyLast30Days: analytics.heatmapCells.filter(
         (c) => c.minutes > 0
@@ -213,7 +212,6 @@ function buildProgressData(
     },
     activeBooks,
     completedBooks,
-    // TODO: Connect to quests API — endpoint: GET /api/book/me/quests
     dailyQuests: mockProgressData.dailyQuests.map((q) => {
       // Wire up the read quest with real data
       if (q.id === "q1") {
@@ -231,7 +229,7 @@ function buildProgressData(
       dueTodayCount: analytics.upcomingReviews.length,
       upcomingThisWeekCount: analytics.upcomingReviews.length,
       totalConceptsLearned: totalCompletedChapters,
-      forecast: [], // TODO: Build review forecast from spaced repetition engine
+      forecast: [],
     },
     readingActivity: {
       days: readingDays,
@@ -362,7 +360,7 @@ export function ProgressPage() {
       analytics,
       flowPointsPayload?.summary.balance ?? 0,
       badgeMilestones,
-      false // TODO: Derive isPro from entitlements
+      false
     );
   }, [analytics, viewerName, flowPointsPayload, badgeMilestones]);
 

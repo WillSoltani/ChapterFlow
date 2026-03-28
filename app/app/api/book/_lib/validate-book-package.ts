@@ -5,6 +5,7 @@ import type {
   BookPackageChapter,
   BookPackageExample,
   BookPackageQuizQuestion,
+  ToneKeyed,
   VariantFamily,
   VariantKey,
 } from "./types";
@@ -46,8 +47,12 @@ const CHAPTER_KEYS = new Set([
   "contentVariants",
   "examples",
   "quiz",
+  "implementationPlan",
+  "reviewCards",
+  "keyTakeawayCard",
+  "takeaways",
 ]);
-const EXAMPLE_KEYS = new Set(["exampleId", "title", "scenario", "whatToDo", "whyItMatters", "contexts"]);
+const EXAMPLE_KEYS = new Set(["exampleId", "title", "scenario", "whatToDo", "whyItMatters", "contexts", "category", "format", "endingType"]);
 const QUIZ_KEYS = new Set(["passingScorePercent", "questions", "retryQuestions"]);
 const QUESTION_KEYS = new Set([
   "questionId",
@@ -56,6 +61,8 @@ const QUESTION_KEYS = new Set([
   "correctAnswerIndex",
   "correctIndex",
   "explanation",
+  "bloomsLevel",
+  "depthLevel",
 ]);
 const VARIANT_CONTENT_KEYS = new Set([
   "summaryBlocks",
@@ -64,6 +71,12 @@ const VARIANT_CONTENT_KEYS = new Set([
   "takeaways",
   "keyTakeaways",
   "practice",
+  "chapterBreakdown",
+  "oneMinuteRecap",
+  "activationPrompt",
+  "selfCheckPrompt",
+  "selfCheckPrompts",
+  "predictionPrompt",
 ]);
 const EMH_VARIANTS: VariantKey[] = ["easy", "medium", "hard"];
 const PBC_VARIANTS: VariantKey[] = ["precise", "balanced", "challenging"];
@@ -369,29 +382,86 @@ function parseChapter(chapterRaw: unknown, path: string, issues: ValidationIssue
           ].filter(Boolean)
         : [];
 
-    if (!summaryBullets.length) {
+    // Modern format uses chapterBreakdown instead of summaryBullets
+    const hasChapterBreakdown = isRecord(variantValue.chapterBreakdown);
+    if (!summaryBullets.length && !hasChapterBreakdown) {
       issues.push({
         path: `${path}.contentVariants.${variantKey}.summaryBullets`,
-        message: "Provide summaryBlocks, summaryBullets, or importantSummary.",
+        message: "Provide summaryBlocks, summaryBullets, importantSummary, or chapterBreakdown.",
       });
     }
 
+    // keyTakeaways can be string[] (legacy) or {point: ToneKeyed}[] (modern)
     const takeawaysSource =
       variantValue.takeaways != null
         ? variantValue.takeaways
         : variantValue.keyTakeaways;
 
-    contentVariants[variantKey as VariantKey] = {
-      summaryBullets,
-      summaryBlocks: summaryBlocks.length > 0 ? summaryBlocks : undefined,
-      takeaways: readStringArray(
+    let takeaways: string[] = [];
+    let keyTakeawaysModern: Array<{ point: { gentle: string; direct: string; competitive: string } }> | undefined;
+
+    if (Array.isArray(takeawaysSource) && takeawaysSource.length > 0 && isRecord(takeawaysSource[0])) {
+      // Modern format: array of { point: { gentle, direct, competitive } }
+      keyTakeawaysModern = [];
+      for (let ti = 0; ti < takeawaysSource.length; ti++) {
+        const item = takeawaysSource[ti];
+        if (!isRecord(item) || !isRecord(item.point)) {
+          issues.push({
+            path: `${path}.contentVariants.${variantKey}.keyTakeaways[${ti}]`,
+            message: "Must be an object with a point field.",
+          });
+          continue;
+        }
+        const point = item.point as Record<string, unknown>;
+        keyTakeawaysModern.push({
+          point: {
+            gentle: typeof point.gentle === "string" ? point.gentle : "",
+            direct: typeof point.direct === "string" ? point.direct : "",
+            competitive: typeof point.competitive === "string" ? point.competitive : "",
+          },
+        });
+      }
+      // Generate flat takeaways from the direct tone for backward compatibility
+      takeaways = keyTakeawaysModern.map((kt) => kt.point.direct || kt.point.gentle);
+    } else {
+      takeaways = readStringArray(
         takeawaysSource,
         `${path}.contentVariants.${variantKey}.${
           variantValue.takeaways != null ? "takeaways" : "keyTakeaways"
         }`,
         issues,
         { minItems: 1, maxItems: 15, itemMax: 500 }
-      ),
+      );
+    }
+
+    // Parse chapterBreakdown and oneMinuteRecap as tone-keyed objects
+    let chapterBreakdown: { gentle: string; direct: string; competitive: string } | undefined;
+    if (isRecord(variantValue.chapterBreakdown)) {
+      const cb = variantValue.chapterBreakdown as Record<string, unknown>;
+      chapterBreakdown = {
+        gentle: typeof cb.gentle === "string" ? cb.gentle : "",
+        direct: typeof cb.direct === "string" ? cb.direct : "",
+        competitive: typeof cb.competitive === "string" ? cb.competitive : "",
+      };
+    }
+
+    let oneMinuteRecap: { gentle: string; direct: string; competitive: string } | undefined;
+    if (isRecord(variantValue.oneMinuteRecap)) {
+      const omr = variantValue.oneMinuteRecap as Record<string, unknown>;
+      oneMinuteRecap = {
+        gentle: typeof omr.gentle === "string" ? omr.gentle : "",
+        direct: typeof omr.direct === "string" ? omr.direct : "",
+        competitive: typeof omr.competitive === "string" ? omr.competitive : "",
+      };
+    }
+
+    contentVariants[variantKey as VariantKey] = {
+      summaryBullets: summaryBullets.length > 0 ? summaryBullets : undefined,
+      summaryBlocks: summaryBlocks.length > 0 ? summaryBlocks : undefined,
+      takeaways: takeaways.length > 0 ? takeaways : undefined,
+      keyTakeaways: keyTakeawaysModern,
+      chapterBreakdown,
+      oneMinuteRecap,
       practice: readStringArray(
         variantValue.practice,
         `${path}.contentVariants.${variantKey}.practice`,
@@ -400,6 +470,17 @@ function parseChapter(chapterRaw: unknown, path: string, issues: ValidationIssue
       ),
     };
   }
+
+  // Parse modern chapter-level fields
+  const implementationPlan = isRecord(chapterRaw.implementationPlan)
+    ? (chapterRaw.implementationPlan as BookPackageChapter["implementationPlan"])
+    : undefined;
+
+  const reviewCards = Array.isArray(chapterRaw.reviewCards)
+    ? (chapterRaw.reviewCards as BookPackageChapter["reviewCards"])
+    : undefined;
+
+  const keyTakeawayCard = parseToneKeyed(chapterRaw.keyTakeawayCard, `${path}.keyTakeawayCard`, issues) ?? undefined;
 
   return {
     chapterId: readString(chapterRaw.chapterId, `${path}.chapterId`, issues, { max: 120 }),
@@ -412,7 +493,29 @@ function parseChapter(chapterRaw: unknown, path: string, issues: ValidationIssue
     contentVariants,
     examples,
     quiz,
+    implementationPlan,
+    reviewCards,
+    keyTakeawayCard,
   };
+}
+
+function parseToneKeyed(value: unknown, path: string, issues: ValidationIssue[]): { gentle: string; direct: string; competitive: string } | null {
+  if (!isRecord(value)) return null;
+  const hasGDC = typeof value.gentle === "string" || typeof value.direct === "string" || typeof value.competitive === "string";
+  if (!hasGDC) return null;
+  return {
+    gentle: typeof value.gentle === "string" ? value.gentle : "",
+    direct: typeof value.direct === "string" ? value.direct : "",
+    competitive: typeof value.competitive === "string" ? value.competitive : "",
+  };
+}
+
+function parseStringOrToneKeyed(value: unknown, path: string, issues: ValidationIssue[]): string | { gentle: string; direct: string; competitive: string } {
+  if (typeof value === "string") return readString(value, path, issues, { max: 10000 });
+  const toned = parseToneKeyed(value, path, issues);
+  if (toned) return toned;
+  issues.push({ path, message: "Must be a string or a tone-keyed object." });
+  return "";
 }
 
 function parseExample(exampleRaw: unknown, path: string, issues: ValidationIssue[]): BookPackageExample {
@@ -428,22 +531,35 @@ function parseExample(exampleRaw: unknown, path: string, issues: ValidationIssue
   }
 
   hasOnlyKeys(exampleRaw, EXAMPLE_KEYS, path, issues);
-  return {
-    exampleId: readString(exampleRaw.exampleId, `${path}.exampleId`, issues, { max: 120 }),
-    title: readString(exampleRaw.title, `${path}.title`, issues, { max: 240 }),
-    scenario: readString(exampleRaw.scenario, `${path}.scenario`, issues, { max: 5000 }),
-    whatToDo: readStringArray(exampleRaw.whatToDo, `${path}.whatToDo`, issues, {
+
+  // whatToDo can be string[] (legacy) or ToneKeyed (modern)
+  let whatToDo: string[] | { gentle: string; direct: string; competitive: string };
+  const whatToDoToned = parseToneKeyed(exampleRaw.whatToDo, `${path}.whatToDo`, issues);
+  if (whatToDoToned) {
+    whatToDo = whatToDoToned;
+  } else {
+    whatToDo = readStringArray(exampleRaw.whatToDo, `${path}.whatToDo`, issues, {
       minItems: 1,
       maxItems: 20,
       itemMax: 3000,
-    }),
-    whyItMatters: readString(exampleRaw.whyItMatters, `${path}.whyItMatters`, issues, { max: 4000 }),
+    });
+  }
+
+  return {
+    exampleId: readString(exampleRaw.exampleId, `${path}.exampleId`, issues, { max: 120 }),
+    title: readString(exampleRaw.title, `${path}.title`, issues, { max: 240 }),
+    scenario: parseStringOrToneKeyed(exampleRaw.scenario, `${path}.scenario`, issues),
+    whatToDo,
+    whyItMatters: parseStringOrToneKeyed(exampleRaw.whyItMatters, `${path}.whyItMatters`, issues),
     contexts: readStringArray(exampleRaw.contexts, `${path}.contexts`, issues, {
       optional: true,
       minItems: 0,
       maxItems: 15,
       itemMax: 80,
     }),
+    category: typeof exampleRaw.category === "string" ? exampleRaw.category : undefined,
+    format: typeof exampleRaw.format === "string" ? exampleRaw.format : undefined,
+    endingType: typeof exampleRaw.endingType === "string" ? exampleRaw.endingType : undefined,
   };
 }
 
@@ -521,16 +637,26 @@ function parseQuestion(
       message: "Correct answer index is out of range for choices.",
     });
   }
+  // explanation can be a string (legacy) or tone-keyed object (modern)
+  let explanation: string | undefined;
+  if (typeof questionRaw.explanation === "string") {
+    explanation = readString(questionRaw.explanation, `${path}.explanation`, issues, {
+      optional: true,
+      min: 1,
+      max: 4000,
+    });
+  } else if (isRecord(questionRaw.explanation)) {
+    // Modern tone-keyed explanation — store the direct tone as the flat explanation
+    const toned = parseToneKeyed(questionRaw.explanation, `${path}.explanation`, issues);
+    explanation = toned?.direct || toned?.gentle || undefined;
+  }
+
   return {
     questionId: readString(questionRaw.questionId, `${path}.questionId`, issues, { max: 120 }),
     prompt: readString(questionRaw.prompt, `${path}.prompt`, issues, { max: 4000 }),
     choices,
     correctAnswerIndex,
-    explanation: readString(questionRaw.explanation, `${path}.explanation`, issues, {
-      optional: true,
-      min: 1,
-      max: 4000,
-    }),
+    explanation,
   };
 }
 

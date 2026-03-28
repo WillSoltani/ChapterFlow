@@ -10,6 +10,8 @@ import {
   ATOMIC_HABITS_RAW_CHAPTERS,
   getLawsOfHumanNaturePackageForTone,
   LAWS_OF_HUMAN_NATURE_RAW_CHAPTERS,
+  getArtOfWarPackageForTone,
+  ART_OF_WAR_RAW_CHAPTERS,
   resolveTone,
   type BookPackage,
   type PackageChapter,
@@ -783,6 +785,7 @@ const TONE_AWARE_BOOK_IDS = new Set([
   "friends-and-influence",
   "atomic-habits",
   "laws-of-human-nature",
+  "the-art-of-war",
 ]);
 
 type ToneBundleGetter = (tone: ToneKey) => BookPackage;
@@ -805,6 +808,10 @@ const TONE_BUNDLE_GETTERS: Record<string, { getPackage: ToneBundleGetter; getRaw
   "laws-of-human-nature": {
     getPackage: getLawsOfHumanNaturePackageForTone,
     getRaw: () => LAWS_OF_HUMAN_NATURE_RAW_CHAPTERS,
+  },
+  "the-art-of-war": {
+    getPackage: getArtOfWarPackageForTone,
+    getRaw: () => ART_OF_WAR_RAW_CHAPTERS,
   },
 };
 

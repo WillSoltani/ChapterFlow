@@ -1,17 +1,12 @@
-"use client";
+import type { Metadata } from "next";
+import { PricingPageClient } from "./PricingPageClient";
 
-import { Navbar } from "@/components/sections/Navbar";
-import { Pricing } from "@/components/sections/Pricing";
-import { Footer } from "@/components/sections/Footer";
+export const metadata: Metadata = {
+  title: "Pricing | ChapterFlow",
+  description:
+    "Start free with 2 books or upgrade to Pro for unlimited access to 95+ guided non-fiction books, Challenge mode, and 2x Flow Points.",
+};
 
 export default function PricingPage() {
-  return (
-    <div style={{ minHeight: "100vh", backgroundColor: "var(--bg-base)" }}>
-      <Navbar />
-      <div className="pt-8">
-        <Pricing />
-      </div>
-      <Footer />
-    </div>
-  );
+  return <PricingPageClient />;
 }

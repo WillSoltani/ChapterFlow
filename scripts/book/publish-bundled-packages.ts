@@ -132,27 +132,33 @@ async function main() {
     }
 
     const ingestKey = `${INGEST_PREFIX}/${bookId}/${Date.now()}-${filename}`;
-    await s3.send(
-      new PutObjectCommand({
-        Bucket: args.ingestBucket,
-        Key: ingestKey,
-        Body: raw,
-        ContentType: "application/json; charset=utf-8",
-        CacheControl: "no-store",
-      })
-    );
+    try {
+      await s3.send(
+        new PutObjectCommand({
+          Bucket: args.ingestBucket,
+          Key: ingestKey,
+          Body: raw,
+          ContentType: "application/json; charset=utf-8",
+          CacheControl: "no-store",
+        })
+      );
 
-    const result = await ingestBookPackageFromS3({
-      tableName: args.tableName,
-      ingestBucket: args.ingestBucket,
-      contentBucket: args.contentBucket,
-      ingestKey,
-      createdBy: args.createdBy,
-      publishNow: true,
-    });
+      const result = await ingestBookPackageFromS3({
+        tableName: args.tableName,
+        ingestBucket: args.ingestBucket,
+        contentBucket: args.contentBucket,
+        ingestKey,
+        createdBy: args.createdBy,
+        publishNow: true,
+      });
 
-    publishedCount += 1;
-    console.log(`Published ${bookId} v${result.version}`);
+      publishedCount += 1;
+      console.log(`Published ${bookId} v${result.version}`);
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : String(error);
+      console.warn(`Skipping ${bookId}: ${message}`);
+      skippedCount += 1;
+    }
   }
 
   console.log(

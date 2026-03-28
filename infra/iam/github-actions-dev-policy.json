@@ -19,12 +19,14 @@
       "Resource": "arn:aws:ssm:us-east-1:928413605677:parameter/cdk-bootstrap/hnb659fds/version"
     },
     {
-      "Sid": "DynamoDBSeedLicenseKeys",
+      "Sid": "DynamoDBSeedAndPublish",
       "Effect": "Allow",
       "Action": [
         "dynamodb:PutItem",
         "dynamodb:GetItem",
-        "dynamodb:UpdateItem"
+        "dynamodb:UpdateItem",
+        "dynamodb:Query",
+        "dynamodb:BatchWriteItem"
       ],
       "Resource": [
         "arn:aws:dynamodb:us-east-1:928413605677:table/ChapterFlowApp"
@@ -48,12 +50,7 @@
       "Action": "iam:PassRole",
       "Resource": [
         "arn:aws:iam::928413605677:role/ChapterFlowAppRuntimeRole"
-      ],
-      "Condition": {
-        "StringEquals": {
-          "iam:PassedToService": "tasks.apprunner.amazonaws.com"
-        }
-      }
+      ]
     }
   ]
 }

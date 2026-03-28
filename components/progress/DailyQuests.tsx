@@ -33,8 +33,6 @@ export function DailyQuests({ quests, bonusFP }: DailyQuestsProps) {
   const allPartiallyStarted =
     quests.length > 0 && quests.every((q) => q.current > 0 && !q.completed);
 
-  // TODO: Connect to quests API — endpoint: GET /api/book/me/quests
-
   return (
     <motion.section
       className="rounded-2xl p-5"

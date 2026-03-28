@@ -2,6 +2,7 @@ import lawsOfPowerPackageJson from "@/book-packages/the-48-laws-of-power.modern.
 import friendsAndInfluencePackageJson from "@/book-packages/friends-and-influence.modern.json";
 import atomicHabitsPackageJson from "@/book-packages/atomic-habits.modern.json";
 import lawsOfHumanNaturePackageJson from "@/book-packages/laws-of-human-nature.modern.json";
+import artOfWarPackageJson from "@/book-packages/the-art-of-war.modern.json";
 import { getBookCoverPath } from "@/lib/book-covers";
 
 export type VariantFamily = "EMH" | "PBC";
@@ -257,11 +258,21 @@ export function getLawsOfHumanNaturePackageForTone(tone: ToneKey): BookPackage {
   return normalizeNstdPackage(lawsOfHumanNaturePackageJson, tone);
 }
 
+export const ART_OF_WAR_PACKAGE = normalizeNstdPackage(artOfWarPackageJson, "direct");
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const ART_OF_WAR_RAW_CHAPTERS: any[] = (artOfWarPackageJson as any).chapters ?? [];
+
+export function getArtOfWarPackageForTone(tone: ToneKey): BookPackage {
+  return normalizeNstdPackage(artOfWarPackageJson, tone);
+}
+
 export const BOOK_PACKAGES: BookPackage[] = [
   LAWS_OF_POWER_PACKAGE,
   FRIENDS_AND_INFLUENCE_PACKAGE,
   ATOMIC_HABITS_PACKAGE,
   LAWS_OF_HUMAN_NATURE_PACKAGE,
+  ART_OF_WAR_PACKAGE,
 ];
 
 export const BOOK_PACKAGE_PRESENTATION: Record<string, BookPackagePresentation> = {
@@ -296,6 +307,14 @@ export const BOOK_PACKAGE_PRESENTATION: Record<string, BookPackagePresentation> 
     synopsis:
       "A deep exploration of emotional mastery, empathy, character assessment, group dynamics, and the hidden forces that drive human behavior.",
     pages: 624,
+  },
+  "the-art-of-war": {
+    icon: "⚔️",
+    coverImage: getBookCoverPath("the-art-of-war"),
+    difficulty: "Hard",
+    synopsis:
+      "A focused reading of timing, deception, terrain, morale, and intelligence through the 13 chapters of the Lionel Giles 1910 translation.",
+    pages: 208,
   },
 };
 

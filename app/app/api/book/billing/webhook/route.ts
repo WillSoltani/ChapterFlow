@@ -118,8 +118,13 @@ export async function POST(req: Request) {
     let event;
     try {
       event = stripe.webhooks.constructEvent(payload, signature, webhookSecret);
-    } catch {
-      throw new BookApiError(400, "invalid_signature", "Invalid Stripe webhook signature.");
+    } catch (err) {
+      // Only return 400 for signature verification failures.
+      // Let genuine server errors bubble as 500 so Stripe retries.
+      if (err instanceof Error && err.message.includes("signature")) {
+        throw new BookApiError(400, "invalid_signature", "Invalid Stripe webhook signature.");
+      }
+      throw err;
     }
 
     const [firstProcess, analyticsTable] = await Promise.all([

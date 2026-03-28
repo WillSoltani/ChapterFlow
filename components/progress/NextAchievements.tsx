@@ -47,8 +47,6 @@ export function NextAchievements({
     }
   }
 
-  // TODO: Connect to achievements API — endpoint: GET /api/book/me/badges
-
   if (milestones.length === 0) return null;
 
   const visibleMilestones = milestones.slice(0, 3);

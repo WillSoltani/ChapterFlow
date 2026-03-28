@@ -144,6 +144,9 @@ function buildArtifacts(pkg: BookPackage): {
     readingTimeMinutes: chapter.readingTimeMinutes,
     contentVariants: chapter.contentVariants,
     examples: chapter.examples,
+    implementationPlan: chapter.implementationPlan,
+    reviewCards: chapter.reviewCards,
+    keyTakeawayCard: chapter.keyTakeawayCard,
   }));
 
   const quizPayloads: ChapterQuizPayload[] = sortedChapters.map((chapter) => ({

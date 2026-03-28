@@ -6,6 +6,7 @@ import {
   requireBodyObject,
   withBookApiErrors,
 } from "@/app/app/api/book/_lib/http";
+import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import {
   getUserSettingsItem,
@@ -13,6 +14,18 @@ import {
 } from "@/app/app/api/book/_lib/repo";
 
 export const runtime = "nodejs";
+
+const ALLOWED_SETTINGS_KEYS = new Set([
+  "reading",
+  "learning",
+  "goals",
+  "notifications",
+  "library",
+  "appearance",
+  "accessibility",
+  "privacy",
+  "extended",
+]);
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return Boolean(value) && typeof value === "object" && !Array.isArray(value);
@@ -65,6 +78,18 @@ export async function PATCH(req: Request) {
       body.settings && typeof body.settings === "object" && !Array.isArray(body.settings)
         ? (body.settings as Record<string, unknown>)
         : body;
+
+    // Reject unknown top-level keys to prevent arbitrary data injection
+    for (const key of Object.keys(settings)) {
+      if (!ALLOWED_SETTINGS_KEYS.has(key)) {
+        throw new BookApiError(
+          400,
+          "invalid_settings_key",
+          `Unknown settings key: ${key}`,
+        );
+      }
+    }
+
     const mergedSettings = mergeSettings(existing?.settings ?? {}, settings);
 
     const saved = await putUserSettingsItem(tableName, {

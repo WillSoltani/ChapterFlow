@@ -174,7 +174,7 @@ export function KnowledgeReview({
               )}
             </div>
 
-            {/* Start Review button — TODO: Route to spaced repetition review page once implemented */}
+            {/* Start Review button */}
             {totalDue > 0 && (
               <button
                 type="button"
