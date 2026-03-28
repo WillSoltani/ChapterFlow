@@ -205,31 +205,6 @@ export const MOCK_BOOKS: LibraryBook[] = [
     badges: ["trending"],
     similarBookId: "friends-and-influence",
   },
-  {
-    id: "the-art-of-war",
-    title: "The Art of War",
-    author: "Sun Tzu",
-    authorCredentials: "Ancient military strategist, translated by Lionel Giles in 1910",
-    coverGradient: "linear-gradient(135deg, #4a2f1a 0%, #111827 100%)",
-    hook: "Read conflict before it becomes collision",
-    description:
-      "A 13-chapter strategy classic on preparation, timing, terrain, morale, and intelligence, anchored to the Lionel Giles 1910 translation and framed for modern decisions at work, in school, and in daily life.",
-    whatYoullLearn: [
-      "How to win by shaping conditions before a contest starts",
-      "When speed matters, and when rushed action becomes self-sabotage",
-      "Why terrain, morale, and reliable information change every plan",
-    ],
-    bestFor: ["strategists", "leaders", "operators", "history-minded readers"],
-    category: "Strategy",
-    difficulty: "hard",
-    totalChapters: 13,
-    estimatedReadingTimeMinutes: 156,
-    readerCount: 960,
-    completionRate: 71,
-    isPro: true,
-    badges: ["new"],
-    similarBookId: "the-48-laws-of-power",
-  },
 ];
 
 // ── Curated section config (NO duplication across sections) ──
