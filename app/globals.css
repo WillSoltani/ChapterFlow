@@ -1,6 +1,21 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* OpenDyslexic — accessibility font for dyslexia support */
+@font-face {
+  font-family: "OpenDyslexic";
+  src: url("https://cdn.jsdelivr.net/npm/open-dyslexic@1.0.3/woff/OpenDyslexic-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "OpenDyslexic";
+  src: url("https://cdn.jsdelivr.net/npm/open-dyslexic@1.0.3/woff/OpenDyslexic-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 
 section[id] {
   scroll-margin-top: 96px;
@@ -782,6 +797,7 @@ html.transitioning *::after {
     overflow-x: hidden;
     color: var(--cf-text-1);
     font-family: var(--reading-font-family, inherit);
+    font-size: var(--reading-font-size, 1rem);
     line-height: var(--reading-line-height, 1.6);
     letter-spacing: var(--reading-letter-spacing, 0);
   }

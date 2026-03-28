@@ -31,6 +31,8 @@ type PhaseStepperProps = {
   isPhaseAccessible: (phase: ChapterTab) => boolean;
   /** Get lock tooltip message */
   getLockMessage: (phase: ChapterTab) => string | null;
+  /** Whether to show the continuous progress bar */
+  showProgressBar?: boolean;
 };
 
 function getStepState(
@@ -52,6 +54,7 @@ export function PhaseStepper({
   progressPercent,
   isPhaseAccessible,
   getLockMessage,
+  showProgressBar = true,
 }: PhaseStepperProps) {
   const [tooltip, setTooltip] = useState<{ text: string; x: number; y: number } | null>(null);
   const [mobileToast, setMobileToast] = useState<string | null>(null);
@@ -191,12 +194,14 @@ export function PhaseStepper({
       </p>
 
       {/* Continuous progress bar */}
-      <div className="h-[3px] w-full overflow-hidden rounded-full bg-(--cr-track)">
-        <div
-          className="h-full rounded-full bg-(--cr-accent) transition-[width] duration-300 ease-out"
-          style={{ width: `${Math.min(100, Math.max(0, progressPercent))}%` }}
-        />
-      </div>
+      {showProgressBar && (
+        <div className="h-[3px] w-full overflow-hidden rounded-full bg-(--cr-track)">
+          <div
+            className="h-full rounded-full bg-(--cr-accent) transition-[width] duration-300 ease-out"
+            style={{ width: `${Math.min(100, Math.max(0, progressPercent))}%` }}
+          />
+        </div>
+      )}
 
       {/* Desktop tooltip */}
       {tooltip && (

@@ -644,6 +644,7 @@ export function ChapterReaderClient({
               progressPercent={progressPercent}
               isPhaseAccessible={phaseCompletion.isPhaseAccessible}
               getLockMessage={phaseCompletion.getLockMessage}
+              showProgressBar={bookPrefs.reading.showProgressBar}
             />
           </div>
         )}

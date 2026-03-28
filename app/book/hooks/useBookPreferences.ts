@@ -781,8 +781,9 @@ export function useBookPreferences() {
       window.localStorage.removeItem(LEGACY_EXT_STORAGE_KEY);
     }
 
-    // Seed extended settings from onboarding if not yet customized
-    if (!nextState.extended.profileCustomized) {
+    // Seed extended settings from onboarding ONLY on first-ever mount
+    // (no stored preferences). Once preferences have been saved, never re-seed.
+    if (!nextState.extended.profileCustomized && !hadSaved) {
       try {
         const onboardingRaw = window.localStorage.getItem(LEGACY_ONBOARDING_KEY);
         if (onboardingRaw) {

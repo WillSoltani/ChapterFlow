@@ -201,7 +201,7 @@ export function useChapterState(
           exampleFilter: preferredExampleFilter,
         }
       ),
-      focusMode: prefs?.focusMode ?? parsed?.focusMode ?? preferredFocusMode,
+      focusMode: preferredFocusMode,
       fontScale: prefs?.fontScale ?? parsed?.fontScale ?? preferredFontScale,
     });
     setHasPersistedState(Boolean(parsed));
@@ -294,12 +294,13 @@ export function useChapterState(
 
   useEffect(() => {
     if (!hydrated) return;
+    // Only persist fontScale locally; focusMode is controlled by settings preference
     const prefs: ReaderPrefs = {
-      focusMode: state.focusMode,
+      focusMode: false,
       fontScale: state.fontScale,
     };
     window.localStorage.setItem(PREFS_KEY, JSON.stringify(prefs));
-  }, [hydrated, state.focusMode, state.fontScale]);
+  }, [hydrated, state.fontScale]);
 
   const setActiveTab = useCallback((activeTab: ChapterTab) => {
     setState((prev) => ({ ...prev, activeTab }));

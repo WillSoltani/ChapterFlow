@@ -277,7 +277,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
 
   // --- Content tone (independent of motivation persona) ---
   function handleContentToneChange(tone: ContentTone) {
-    patchExt({ contentTone: tone });
+    patchExt({ contentTone: tone, profileCustomized: true });
     const labels = { gentle: "Gentle", direct: "Direct", competitive: "Competitive" };
     announce(`Content tone changed to ${labels[tone]}`);
     triggerToast();
@@ -810,33 +810,6 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
                 min={1}
                 max={10}
                 label="Weekly chapter goal"
-              />
-            </SettingRow>
-
-            <Divider />
-
-            {/* 2C. Learning Depth */}
-            <SettingRow
-              id="learning-depth"
-              label="Learning depth"
-              description="How much detail you want in summaries and explanations."
-            >
-              <SegmentedControl
-                groupId="seg-learning-depth"
-                options={[
-                  { value: "concise", label: "Concise" },
-                  { value: "balanced", label: "Balanced" },
-                  { value: "deep", label: "Deep" },
-                ]}
-                value={hydrated ? onboarding.learningStyle : "balanced"}
-                onChange={(v) => {
-                  setLearningStyle(v as LearningStyle);
-                  patchExt({ profileCustomized: true });
-                  announce(`Learning depth changed to ${v}`);
-                  triggerToast();
-                }}
-                label="Learning depth"
-                reducedMotion={reducedMotion}
               />
             </SettingRow>
 

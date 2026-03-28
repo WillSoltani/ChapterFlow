@@ -260,6 +260,24 @@ export function useOnboardingState() {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   }, [hydrated, state]);
 
+  // If localStorage says setupComplete is false, check the server.
+  // This handles existing users on new browsers or after cache clear.
+  useEffect(() => {
+    if (!hydrated || state.setupComplete) return;
+    fetch("/app/api/book/me/onboarding/progress")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data: { onboardingCompleted?: boolean } | null) => {
+        if (data?.onboardingCompleted) {
+          setState((prev) => ({
+            ...prev,
+            setupComplete: true,
+            completedAt: prev.completedAt || new Date().toISOString(),
+          }));
+        }
+      })
+      .catch(() => {});
+  }, [hydrated, state.setupComplete]);
+
   const setCurrentStep = useCallback((step: number) => {
     setState((prev) => ({ ...prev, currentStep: clampStep(step) }));
   }, []);
