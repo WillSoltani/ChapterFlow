@@ -581,8 +581,8 @@ export function ChapterReaderClient({
 
       <section
         className={[
-          "mx-auto w-full px-4 pb-28 pt-4 sm:px-6 sm:pt-5 md:pb-24 transition-[max-width] duration-300",
-          state.focusMode ? "max-w-170" : "max-w-450",
+          "mx-auto w-full px-4 pb-28 pt-4 sm:px-6 sm:pt-5 md:pb-24",
+          "max-w-450",
         ].join(" ")}
       >
         <ChapterHeader

@@ -501,28 +501,6 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
 
             <Divider />
 
-            {/* 1B. Default Chapter View */}
-            <SettingRow
-              id="default-chapter-view"
-              label="Default chapter view"
-              description="Which tab greets you when you open a chapter."
-            >
-              <SegmentedControl
-                groupId="seg-chapter-view"
-                options={[
-                  { value: "summary", label: "Summary" },
-                  { value: "examples", label: "Scenarios" },
-                  { value: "quiz", label: "Quiz" },
-                ]}
-                value={hydrated ? preferences.reading.defaultChapterTab : "summary"}
-                onChange={(v) => { patchSection("reading", { defaultChapterTab: v }); announce(`Default chapter view changed to ${v}`); triggerToast(); }}
-                label="Default chapter view"
-                reducedMotion={reducedMotion}
-              />
-            </SettingRow>
-
-            <Divider />
-
             {/* 1C. Font Family */}
             <SettingRow
               id="font-family"

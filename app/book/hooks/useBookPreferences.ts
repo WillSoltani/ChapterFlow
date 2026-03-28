@@ -751,14 +751,21 @@ function parseStored(raw: string | null): BookPreferencesState | null {
 export function useBookPreferences() {
   const [hydrated, setHydrated] = useState(false);
   const [state, setState] = useState<BookPreferencesState>(defaultBookPreferencesState);
-  const [serverReady, setServerReady] = useState(false);
   // Prevents write-back on the state change caused by loading server settings.
   const skipNextServerSave = useRef(false);
+  // Tracks whether localStorage had saved preferences on mount.
+  // If true, server data should NOT overwrite local state.
+  const localStorageHadData = useRef(false);
 
   useEffect(() => {
+    const storedRaw = window.localStorage.getItem(STORAGE_KEY);
+    const legacyRaw = window.localStorage.getItem(LEGACY_STORAGE_KEY);
+    const hadSaved = storedRaw !== null || legacyRaw !== null;
+    localStorageHadData.current = hadSaved;
+
     let nextState =
-      parseStored(window.localStorage.getItem(STORAGE_KEY)) ??
-      parseLegacyState(window.localStorage.getItem(LEGACY_STORAGE_KEY)) ??
+      parseStored(storedRaw) ??
+      parseLegacyState(legacyRaw) ??
       defaultBookPreferencesState;
 
     // Migrate orphaned extended settings from old localStorage key
@@ -812,15 +819,16 @@ export function useBookPreferences() {
     fetchBookJson<{ settings: Partial<BookPreferencesState> | null }>("/app/api/book/me/settings")
       .then((payload) => {
         if (!mounted) return;
-        if (payload.settings) {
+        // Only apply server data if this device has no saved preferences
+        // (fresh device / first login). Otherwise localStorage is the source
+        // of truth and changes will sync to the server on next state change.
+        if (payload.settings && !localStorageHadData.current) {
           skipNextServerSave.current = true;
           setState(parseStored(JSON.stringify(payload.settings)) ?? defaultBookPreferencesState);
         }
-        setServerReady(true);
       })
       .catch(() => {
         if (!mounted) return;
-        setServerReady(true);
       });
     return () => {
       mounted = false;
@@ -909,7 +917,7 @@ export function useBookPreferences() {
   ]);
 
   useEffect(() => {
-    if (!hydrated || !serverReady) return;
+    if (!hydrated) return;
     if (skipNextServerSave.current) {
       skipNextServerSave.current = false;
       return;
@@ -919,9 +927,9 @@ export function useBookPreferences() {
         method: "PATCH",
         body: JSON.stringify({ settings: state }),
       }).catch(() => {});
-    }, 250);
+    }, 500);
     return () => window.clearTimeout(timeout);
-  }, [hydrated, serverReady, state]);
+  }, [hydrated, state]);
 
   const patchSection = useCallback(
     <K extends keyof BookPreferencesState>(section: K, values: Partial<BookPreferencesState[K]>) => {
