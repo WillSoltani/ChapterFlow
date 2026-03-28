@@ -35,7 +35,15 @@ export async function GET(req: NextRequest) {
     const rawReturnTo = req.cookies.get("post_auth_redirect")?.value;
     const returnTo = sanitizeReturnTo(rawReturnTo, "/book");
 
-    if (!verifier || state !== expectedState) {
+    // If cookies are missing entirely (browser didn't commit them from the
+    // redirect response), silently restart the login flow instead of showing
+    // an error. The second attempt succeeds because cookies are set fresh.
+    if (!verifier || !expectedState) {
+      const loginUrl = new URL("/auth/login", origin);
+      loginUrl.searchParams.set("returnTo", returnTo);
+      return NextResponse.redirect(loginUrl);
+    }
+    if (state !== expectedState) {
       return NextResponse.redirect(new URL("/?auth=state_error", origin));
     }
 

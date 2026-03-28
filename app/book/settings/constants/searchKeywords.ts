@@ -10,13 +10,6 @@ export const SETTINGS_SEARCH_INDEX: SettingSearchItem[] = [
     keywords: ["profile", "preset", "bundle", "mode"],
   },
   {
-    id: "default-chapter-view",
-    section: "reading",
-    label: "Default chapter view",
-    description: "Which tab greets you when you open a chapter",
-    keywords: ["tab", "chapter", "view", "summary", "scenarios", "quiz", "default"],
-  },
-  {
     id: "font-family",
     section: "reading",
     label: "Font family",
@@ -96,20 +89,6 @@ export const SETTINGS_SEARCH_INDEX: SettingSearchItem[] = [
     keywords: ["weekly", "chapter", "goal", "target"],
   },
   {
-    id: "learning-depth",
-    section: "goals",
-    label: "Learning depth",
-    description: "How much detail in summaries and explanations",
-    keywords: ["learning", "depth", "detail", "concise", "deep", "summary"],
-  },
-  {
-    id: "quiz-style",
-    section: "goals",
-    label: "Quiz style",
-    description: "Difficulty baseline for quizzes",
-    keywords: ["quiz", "difficulty", "easy", "hard", "challenge", "test"],
-  },
-  {
     id: "question-flow",
     section: "goals",
     label: "Question flow",
@@ -146,7 +125,7 @@ export const SETTINGS_SEARCH_INDEX: SettingSearchItem[] = [
   },
   {
     id: "content-tone",
-    section: "goals",
+    section: "reading",
     label: "Content tone",
     description: "How chapter summaries, scenarios, and quiz feedback are written",
     keywords: ["tone", "gentle", "direct", "competitive", "voice", "writing", "style", "content"],
@@ -183,13 +162,6 @@ export const SETTINGS_SEARCH_INDEX: SettingSearchItem[] = [
   },
 
   // Section 4: Accessibility
-  {
-    id: "dyslexia-font",
-    section: "accessibility",
-    label: "Dyslexia-friendly reading font",
-    description: "Switch reading text to OpenDyslexic",
-    keywords: ["dyslexia", "font", "opendyslexic", "reading", "accessibility"],
-  },
   {
     id: "high-contrast",
     section: "accessibility",

@@ -24,7 +24,9 @@ export function useSettingsSearch() {
         .join(" ")
         .toLowerCase();
 
-      if (searchable.includes(trimmed)) {
+      const words = trimmed.split(/\s+/).filter(Boolean);
+      const matches = words.every((word) => searchable.includes(word));
+      if (matches) {
         matchedIds.add(item.id);
         matchedSections.add(item.section as SectionId);
       }

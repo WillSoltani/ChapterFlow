@@ -414,37 +414,6 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
         {/* Search */}
         <SettingsSearch query={query} onChange={setQuery} />
 
-        {/* Personalization Meter */}
-        {!ext.personalizationDismissed && !isSearching && (
-          <PersonalizationMeter
-            percentage={personalizationScore}
-            onDismiss={() => patchExt({ personalizationDismissed: true })}
-            onComplete={() => {
-              // Scroll to first section and expand it
-              const sectionIds = ["reading", "goals", "appearance", "accessibility", "notifications", "account"];
-              for (const id of sectionIds) {
-                const el = document.querySelector(`[aria-label="${
-                  id === "reading" ? "Reading Experience" :
-                  id === "goals" ? "Goals & Motivation" :
-                  id === "appearance" ? "Appearance" :
-                  id === "accessibility" ? "Accessibility" :
-                  id === "notifications" ? "Notifications" :
-                  "Account & Subscription"
-                }"]`);
-                if (el) {
-                  if (!isSectionExpanded(id)) toggleSection(id);
-                  el.scrollIntoView({ behavior: "smooth", block: "start" });
-                  // Brief highlight ring
-                  el.classList.add("ring-2", "ring-(--cf-accent-border)");
-                  setTimeout(() => el.classList.remove("ring-2", "ring-(--cf-accent-border)"), 1500);
-                  break;
-                }
-              }
-            }}
-            reducedMotion={reducedMotion}
-          />
-        )}
-
         {/* No search results */}
         {isSearching && results && !results.hasResults && (
           <div className="py-12 text-center">
@@ -1121,27 +1090,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
             reducedMotion={reducedMotion}
             dimmed={isSectionDimmed("accessibility")}
           >
-            {/* 4A. Dyslexia-Friendly Font */}
-            <SettingRow
-              id="dyslexia-font"
-              label="Dyslexia-friendly reading font"
-              description="Switch reading text to OpenDyslexic, a typeface designed for easier reading with dyslexia."
-            >
-              <ToggleSwitch
-                checked={hydrated ? preferences.accessibility.dyslexiaFriendlyFont : false}
-                onChange={handleDyslexiaToggle}
-                label="Dyslexia-friendly font"
-              />
-            </SettingRow>
-            {preferences.accessibility.dyslexiaFriendlyFont && (
-              <p className="mx-3 -mt-1 mb-2 text-[11px] text-(--cf-text-soft)">
-                This overrides your font family choice in Reading Experience.
-              </p>
-            )}
-
-            <Divider />
-
-            {/* 4B. High Contrast */}
+            {/* 4A. High Contrast */}
             <SettingRow
               id="high-contrast"
               label="High contrast"

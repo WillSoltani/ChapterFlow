@@ -1708,6 +1708,47 @@ html[data-color-blind-mode="tritanopia"] {
 }
 
 /* ─────────────────────────────────────────
+   HIGH CONTRAST MODE
+   ───────────────────────────────────────── */
+html[data-contrast="high"] {
+  --cf-text-1: #000;
+  --cf-text-2: #1a1a1a;
+  --cf-text-3: #333;
+  --cf-text-soft: #555;
+  --cf-border: rgba(0, 0, 0, 0.35);
+  --cf-border-strong: rgba(0, 0, 0, 0.5);
+}
+html.dark[data-contrast="high"] {
+  --cf-text-1: #fff;
+  --cf-text-2: #f0f0f0;
+  --cf-text-3: #d0d0d0;
+  --cf-text-soft: #b0b0b0;
+  --cf-border: rgba(255, 255, 255, 0.35);
+  --cf-border-strong: rgba(255, 255, 255, 0.5);
+}
+html[data-contrast="high"] * {
+  border-color: var(--cf-border) !important;
+}
+html[data-contrast="high"] button,
+html[data-contrast="high"] a,
+html[data-contrast="high"] [role="button"] {
+  font-weight: 600;
+}
+html[data-contrast="high"] .cr-glass-reading,
+html[data-contrast="high"] .cr-glass-card {
+  backdrop-filter: none;
+  background: var(--cf-surface-muted, rgba(0, 0, 0, 0.05));
+}
+html.dark[data-contrast="high"] .cr-glass-reading,
+html.dark[data-contrast="high"] .cr-glass-card {
+  background: rgba(30, 30, 46, 0.95);
+}
+html[data-contrast="high"] :focus-visible {
+  outline: 3px solid var(--cf-accent, #0d9488) !important;
+  outline-offset: 2px;
+}
+
+/* ─────────────────────────────────────────
    CHAPTER READER — Animations
    ───────────────────────────────────────── */
 

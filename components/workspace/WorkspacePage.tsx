@@ -11,8 +11,13 @@ import { BookRow } from "./BookRow";
 import { RewardsCard } from "./RewardsCard";
 import { NextAchievementCard } from "./NextAchievementCard";
 import { DiscoveryRow } from "./DiscoveryRow";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { TopNav } from "@/app/book/home/components/TopNav";
+import { useBookAnalytics, type AnalyticsState } from "@/app/book/hooks/useBookAnalytics";
+import { useBookViewer } from "@/app/book/hooks/useBookViewer";
+import { BOOK_PACKAGES, getBookPackagePresentation } from "@/app/book/data/bookPackages";
+import { fetchBookJson } from "@/app/book/_lib/book-api";
+import { getBookCoverPath } from "@/lib/book-covers";
 
 const jetBrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -104,7 +109,144 @@ interface WorkspaceData {
 }
 
 /* ────────────────────────────────────────────
-   Mock Data
+   Dashboard Extras (entitlement + flow points)
+   ──────────────────────────────────────────── */
+
+type DashboardExtras = {
+  isPro: boolean;
+  flowPoints: number;
+};
+
+function useDashboardExtras(): DashboardExtras | null {
+  const [extras, setExtras] = useState<DashboardExtras | null>(null);
+
+  useEffect(() => {
+    let mounted = true;
+
+    Promise.all([
+      fetchBookJson<{ plan?: string }>("/app/api/book/me/entitlements").catch(
+        () => ({ plan: "FREE" }),
+      ),
+      fetchBookJson<{ balance?: number }>("/app/api/book/me/flow-points").catch(
+        () => ({ balance: 0 }),
+      ),
+    ]).then(([entitlement, flowPoints]) => {
+      if (!mounted) return;
+      setExtras({
+        isPro: entitlement.plan === "PRO",
+        flowPoints: flowPoints.balance ?? 0,
+      });
+    });
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  return extras;
+}
+
+/* ────────────────────────────────────────────
+   Analytics → WorkspaceData Mapper
+   ──────────────────────────────────────────── */
+
+const ALL_BOOK_IDS = BOOK_PACKAGES.map((pkg) => pkg.book.bookId);
+
+function mapAnalyticsToWorkspaceData(
+  analytics: AnalyticsState,
+  firstName: string,
+  extras: DashboardExtras | null,
+): WorkspaceData {
+  const lead = analytics.inProgressBookSnapshots[0] ?? null;
+
+  let currentBook: WorkspaceData["currentBook"] = null;
+  if (lead) {
+    const nextChapter = lead.completedChapters + 1;
+    const chapterMinutes =
+      BOOK_PACKAGES.find((p) => p.book.bookId === lead.book.id)
+        ?.chapters.find((ch) => ch.number === nextChapter)?.readingTimeMinutes ??
+      13;
+
+    currentBook = {
+      id: lead.book.id,
+      title: lead.book.title,
+      author: lead.book.author ?? "",
+      coverUrl: getBookCoverPath(lead.book.id),
+      currentChapter: Math.min(nextChapter, lead.totalChapters),
+      totalChapters: lead.totalChapters,
+      progressPercent: lead.progressPercent,
+      currentLoopStep: "summary",
+      estimatedMinutes: chapterMinutes,
+      glowColor:
+        getBookPackagePresentation(lead.book.id).coverImage
+          ? undefined
+          : "rgba(139,92,246,0.35)",
+    };
+  }
+
+  const last7 = analytics.heatmapCells.slice(-7);
+  const weeklyActivity =
+    last7.length >= 7
+      ? last7.map((cell) => cell.minutes > 0)
+      : [
+          ...last7.map((cell) => cell.minutes > 0),
+          ...Array(7 - last7.length).fill(false) as boolean[],
+        ];
+
+  const weeklyChapters = last7.reduce((sum, cell) => sum + cell.chapters, 0);
+
+  return {
+    user: {
+      firstName,
+      isPro: extras?.isPro ?? false,
+      streakCount: analytics.streakDays,
+      streakActive: analytics.streakDays > 0,
+      flowPoints: extras?.flowPoints ?? 0,
+      dailyGoalMinutes: analytics.dailyGoalMinutes,
+      dailyProgressMinutes: analytics.minutesReadToday,
+    },
+    currentBook,
+    weeklyActivity,
+    weeklyStats: {
+      chaptersCompleted: weeklyChapters,
+      quizAverage: analytics.avgQuizScore || null,
+    },
+    userBooks: analytics.engagedBookSnapshots.map((snap) => ({
+      id: snap.book.id,
+      title: snap.book.title,
+      author: snap.book.author ?? "",
+      coverUrl: getBookCoverPath(snap.book.id),
+      progressPercent: snap.progressPercent,
+      status: snap.status === "completed"
+        ? ("completed" as const)
+        : snap.status === "in_progress"
+          ? ("in_progress" as const)
+          : ("not_started" as const),
+    })),
+    recommendedProBooks: [],
+    discoveryBooks: analytics.bookSnapshots
+      .filter((s) => s.status === "not_started")
+      .slice(0, 4)
+      .map((snap) => ({
+        id: snap.book.id,
+        title: snap.book.title,
+        author: snap.book.author ?? "",
+        coverUrl: getBookCoverPath(snap.book.id),
+        rating: 4.5,
+        readerCount: 0,
+        category: snap.book.category ?? "General",
+      })),
+    nextReward: {
+      name: "Bonus Book Unlock",
+      pointsRequired: 900,
+      currentPoints: extras?.flowPoints ?? 0,
+    },
+    nextAchievement: null,
+  };
+}
+
+/* ────────────────────────────────────────────
+   Mock Data (loading fallback)
    ──────────────────────────────────────────── */
 
 const mockData: WorkspaceData = {
@@ -371,7 +513,13 @@ function ProfileIcon({ active }: { active: boolean }) {
 
 export function WorkspacePage() {
   const prefersReducedMotion = useReducedMotion();
-  const data = mockData;
+  const { analytics } = useBookAnalytics(ALL_BOOK_IDS, 20);
+  const { identity } = useBookViewer();
+  const extras = useDashboardExtras();
+  const firstName = (identity.displayName || "").split(" ")[0] || "Reader";
+  const data = analytics
+    ? mapAnalyticsToWorkspaceData(analytics, firstName, extras)
+    : mockData;
   const userState = deriveUserState(data);
   const subtitle = getSubtitle(userState, data);
   const dailyProgress = Math.min(

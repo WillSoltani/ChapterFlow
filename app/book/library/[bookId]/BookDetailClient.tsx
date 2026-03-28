@@ -329,7 +329,7 @@ export function BookDetailClient({
 
         {/* ═══════ ZONE 2 — Chapter Journey ═══════ */}
         <motion.section
-          className="mt-10"
+          className="mt-10 isolate"
           initial={prefersReducedMotion ? undefined : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={
@@ -472,7 +472,7 @@ export function BookDetailClient({
 
         {/* ═══════ ZONE 3 — Book Details ═══════ */}
         <motion.div
-          className="mt-8"
+          className="mt-12"
           initial={prefersReducedMotion ? undefined : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={

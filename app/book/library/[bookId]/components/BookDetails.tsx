@@ -39,7 +39,7 @@ export function BookDetails({
   const topicPills = entry.tags ?? [];
 
   return (
-    <section className="space-y-3">
+    <section className="relative z-1 space-y-3">
       {/* About This Book — glass card with directional top border */}
       <div
         className="cf-panel relative overflow-hidden rounded-2xl"

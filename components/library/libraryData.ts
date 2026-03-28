@@ -1,6 +1,10 @@
 // ── Extended library data for the psychology-driven redesign ──
 
 import { getBookCoverPath } from "@/lib/book-covers";
+import {
+  BOOK_PACKAGES,
+  getBookPackagePresentation,
+} from "@/app/book/data/bookPackages";
 
 export type Category =
   | "Psychology"
@@ -206,6 +210,20 @@ export const MOCK_BOOKS: LibraryBook[] = [
     similarBookId: "friends-and-influence",
   },
 ];
+
+// Sync hardcoded values with authoritative book package data
+for (const book of MOCK_BOOKS) {
+  const pkg = BOOK_PACKAGES.find((p) => p.book.bookId === book.id);
+  if (pkg) {
+    const pres = getBookPackagePresentation(book.id);
+    book.totalChapters = pkg.chapters.length;
+    book.estimatedReadingTimeMinutes = pkg.chapters.reduce(
+      (sum, ch) => sum + Math.max(ch.readingTimeMinutes, 1),
+      0,
+    );
+    book.difficulty = pres.difficulty.toLowerCase() as Difficulty;
+  }
+}
 
 // ── Curated section config (NO duplication across sections) ──
 export interface CuratedSectionConfig {

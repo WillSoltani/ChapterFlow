@@ -241,6 +241,15 @@ export function useChapterState(
     preferredReadingDepth,
   ]);
 
+  // Sync focus mode from settings preference — runs after bookPrefs hydrates
+  useEffect(() => {
+    if (!hydrated) return;
+    setState((prev) => {
+      if (prev.focusMode === preferredFocusMode) return prev;
+      return { ...prev, focusMode: preferredFocusMode };
+    });
+  }, [hydrated, preferredFocusMode]);
+
   useEffect(() => {
     let mounted = true;
     fetchBookJson<{ state: { state?: Partial<PersistedChapterState>; chapterId?: string } | null }>(
