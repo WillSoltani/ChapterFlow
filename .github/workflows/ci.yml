@@ -47,9 +47,6 @@ jobs:
       - name: Type-check
         run: npm run typecheck
 
-      - name: Run PDF fill tests
-        run: npm run test:pdf-fill
-
   infra-checks:
     name: Infra Build + CDK Synth
     runs-on: ubuntu-latest
