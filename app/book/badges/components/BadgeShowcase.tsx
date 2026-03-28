@@ -21,7 +21,10 @@ export function BadgeShowcase({ badges, showcaseBadgeIds, onBadgeClick, onUnpin 
   const mobileSlots = 3;
 
   return (
-    <div className="rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) p-5 backdrop-blur-xl">
+    <div
+      className="rounded-2xl border border-(--cf-border) p-5 backdrop-blur-xl"
+      style={{ background: "linear-gradient(135deg, rgba(245,158,11,0.05), var(--cf-surface-muted))" }}
+    >
       <div>
         <h2 className="text-base font-semibold tracking-tight text-(--cf-text-1)">Your Showcase</h2>
         <p className="mt-0.5 text-xs text-(--cf-text-soft)">Pin your proudest badges</p>
@@ -54,19 +57,19 @@ export function BadgeShowcase({ badges, showcaseBadgeIds, onBadgeClick, onUnpin 
                 <button
                   type="button"
                   onClick={() => onBadgeClick(badge)}
-                  className="flex h-[72px] w-[72px] items-center justify-center rounded-2xl border border-amber-500/20 bg-amber-500/5 transition hover:border-amber-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500/50"
+                  className="flex h-18 w-18 items-center justify-center rounded-2xl border border-accent-amber/20 bg-accent-amber/5 transition hover:border-accent-amber/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-amber/50"
                   tabIndex={0}
                 >
-                  <span className="text-4xl">{badge.icon}</span>
+                  <span className="text-[48px] leading-none">{badge.icon}</span>
                 </button>
-                <div className="max-w-[80px]">
-                  <p className="truncate text-xs font-medium text-amber-500">{badge.name}</p>
+                <div className="max-w-20">
+                  <p className="truncate text-xs font-medium text-(--accent-amber)">{badge.name}</p>
                   {badge.earnedDate && (
-                    <p className="mt-0.5 text-[10px] text-(--cf-text-soft)">
+                    <p className="mt-0.5 text-[10px]" style={{ color: "var(--text-tertiary, var(--cf-text-soft))" }}>
                       {new Date(badge.earnedDate).toLocaleDateString(undefined, { month: "short", day: "numeric" })}
                     </p>
                   )}
-                  <p className="text-[10px] text-(--cf-text-soft)">
+                  <p className="text-[10px]" style={{ color: "var(--text-tertiary, var(--cf-text-soft))" }}>
                     Earned by {rarity}%
                   </p>
                 </div>
@@ -82,8 +85,11 @@ export function BadgeShowcase({ badges, showcaseBadgeIds, onBadgeClick, onUnpin 
                 i >= mobileSlots && "hidden md:flex"
               )}
             >
-              <div className="flex h-[72px] w-[72px] items-center justify-center rounded-2xl border border-dashed border-(--cf-border-strong) bg-(--cf-surface-muted)">
-                <span className="text-lg text-(--cf-text-soft)">+</span>
+              <div
+                className="flex h-18 w-18 items-center justify-center rounded-2xl"
+                style={{ border: "2px dashed rgba(255,255,255,0.15)", background: "transparent" }}
+              >
+                <span className="text-lg" style={{ color: "var(--text-tertiary, var(--cf-text-soft))" }}>+</span>
               </div>
               <p className="text-[10px] text-(--cf-text-soft)">Pin a badge</p>
             </div>

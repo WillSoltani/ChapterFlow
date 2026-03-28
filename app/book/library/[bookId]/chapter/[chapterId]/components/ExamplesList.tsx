@@ -10,7 +10,7 @@ import {
   useState,
 } from "react";
 import { ChevronDown, MessageCircle, Plus, Sparkles, X } from "lucide-react";
-import type { ChapterExample, ScenarioDecisionOption } from "@/app/book/data/mockChapters";
+import type { ChapterExample } from "@/app/book/data/mockChapters";
 import type { ExampleFilter } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterState";
 import {
   FLOW_POINTS_AMOUNTS,
@@ -63,49 +63,7 @@ const FILTER_OPTIONS: Array<{ id: ExampleFilter; label: string }> = [
 
 const SCENARIO_REWARD = FLOW_POINTS_AMOUNTS.scenarioApproved;
 
-/**
- * Generate context-specific decision options from scenario content.
- * Used as a fallback when the data doesn't include pre-authored options.
- * Extracts the core action from `whatToDo` as the recommended option and
- * creates 3 plausible-but-misaligned alternatives based on common response patterns.
- */
-function generateDecisionOptions(example: ChapterExample): ScenarioDecisionOption[] {
-  // If the data already provides per-scenario options, use them directly
-  if (example.decisionOptions && example.decisionOptions.length >= 4) {
-    return example.decisionOptions;
-  }
-
-  // Extract a shortened version of whatToDo as the recommended action
-  const whatToDoShort = example.whatToDo.length > 80
-    ? example.whatToDo.slice(0, example.whatToDo.indexOf(" ", 70)) + "..."
-    : example.whatToDo;
-
-  // Generate alternatives based on common misaligned patterns
-  return [
-    {
-      id: `${example.id}-opt-a`,
-      text: `Smooth things over quickly to avoid disrupting the dynamic`,
-      isRecommended: false,
-    },
-    {
-      id: `${example.id}-opt-b`,
-      text: whatToDoShort,
-      isRecommended: true,
-    },
-    {
-      id: `${example.id}-opt-c`,
-      text: `Step back and wait for the situation to resolve on its own`,
-      isRecommended: false,
-    },
-    {
-      id: `${example.id}-opt-d`,
-      text: `Lay out your reasoning so everyone can see the logic`,
-      isRecommended: false,
-    },
-  ];
-}
-
-// ─── Scenario Card with Interactive Decision ─────────────────────────────────
+// ─── Scenario Card with Reflection Prompt ────────────────────────────────────
 
 function ScenarioCard({
   example,
@@ -120,35 +78,31 @@ function ScenarioCard({
   learningMode?: "guided" | "standard" | "challenge";
   onInteraction?: () => void;
 }) {
-  const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [revealed, setRevealed] = useState(learningMode === "guided");
-  const [skipped, setSkipped] = useState(false);
   // Track whether analysis was auto-revealed by Guided mode (vs user interaction)
   const [wasAutoRevealed, setWasAutoRevealed] = useState(learningMode === "guided");
   const interactionTracked = useRef(false);
   const prevMode = useRef(learningMode);
 
-  // Generate context-specific decision options for this scenario
-  const decisionOptions = useMemo(() => generateDecisionOptions(example), [example]);
-  const recommendedIndex = decisionOptions.findIndex((opt) => opt.isRecommended);
+  // Reflection prompt: use authored prompt or a generic fallback
+  const reflectionText = example.reflectionPrompt
+    || "How would you handle this situation? Consider the risks and benefits before seeing the analysis.";
 
   // React to learning mode changes
   useEffect(() => {
     if (learningMode === prevMode.current) return;
-    const hasInteracted = interactionTracked.current || selectedOption !== null;
+    const hasInteracted = interactionTracked.current;
 
     if (learningMode === "guided" && !hasInteracted) {
-      // Auto-reveal analysis in Guided mode
       setRevealed(true);
       setWasAutoRevealed(true);
     } else if (prevMode.current === "guided" && wasAutoRevealed && !hasInteracted) {
-      // Leaving Guided: re-hide if it was only auto-revealed
       setRevealed(false);
       setWasAutoRevealed(false);
     }
 
     prevMode.current = learningMode;
-  }, [learningMode, selectedOption, wasAutoRevealed]);
+  }, [learningMode, wasAutoRevealed]);
 
   const handleReveal = useCallback(() => {
     setRevealed(true);
@@ -158,12 +112,6 @@ function ScenarioCard({
       interactionTracked.current = true;
     }
   }, [onInteraction]);
-
-  const handleSkip = useCallback(() => {
-    setSkipped(true);
-    setRevealed(true);
-    setWasAutoRevealed(false);
-  }, []);
 
   // Visual treatment variations
   const treatmentClass = index % 3;
@@ -199,67 +147,33 @@ function ScenarioCard({
           </p>
         </div>
 
-        {/* Interactive Decision Prompt */}
+        {/* Reflection Prompt */}
         {!revealed && (
-          <div className="rounded-xl border border-dashed border-(--cr-accent)/40 bg-(--cr-bg-surface-3) p-5">
-            <div className="flex items-center gap-2 mb-4">
+          <div className="cr-reflection-prompt rounded-xl border border-dashed border-(--cr-accent)/30 bg-(--cr-accent-muted) p-5">
+            <div className="flex items-center gap-2.5 mb-3">
               <MessageCircle className="h-5 w-5 text-(--cr-accent)" />
               <p className="text-lg font-semibold text-(--cr-accent)">
-                What would you do?
+                Pause and think
               </p>
             </div>
 
-            <div className="space-y-2">
-              {decisionOptions.map((option, optIdx) => (
-                <button
-                  key={option.id}
-                  type="button"
-                  onClick={() => setSelectedOption(optIdx)}
-                  className={[
-                    "flex w-full items-start gap-3 rounded-xl border px-4 py-3 text-left transition-all duration-150",
-                    "min-h-[44px]",
-                    selectedOption === optIdx
-                      ? "border-(--cr-accent) bg-(--cr-accent-muted) text-(--cr-text-heading)"
-                      : "border-(--cr-glass-border) bg-transparent text-(--cr-text-secondary) hover:border-(--cr-accent)/40 hover:text-(--cr-text-primary)",
-                  ].join(" ")}
-                >
-                  <span
-                    className={[
-                      "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-xs",
-                      selectedOption === optIdx
-                        ? "border-(--cr-accent) bg-(--cr-accent) text-(--cr-text-inverse)"
-                        : "border-(--cr-glass-border)",
-                    ].join(" ")}
-                  >
-                    {selectedOption === optIdx && (
-                      <span className="h-1.5 w-1.5 rounded-full bg-(--cr-text-inverse)" />
-                    )}
-                  </span>
-                  <span className="text-sm leading-relaxed">{option.text}</span>
-                </button>
-              ))}
-            </div>
+            <p
+              className={[
+                "text-(--cr-text-primary) leading-[1.75] mb-5",
+                fontScaleClass,
+              ].join(" ")}
+            >
+              {reflectionText}
+            </p>
 
-            <div className="mt-4 flex items-center justify-between">
-              {learningMode !== "challenge" && (
-                <button
-                  type="button"
-                  onClick={handleSkip}
-                  className="text-sm text-(--cr-text-disabled) transition hover:text-(--cr-text-secondary)"
-                >
-                  Skip — show analysis
-                </button>
-              )}
-              {learningMode === "challenge" && <span />}
-              {selectedOption !== null && (
-                <button
-                  type="button"
-                  onClick={handleReveal}
-                  className="text-sm font-semibold text-(--cr-accent) transition hover:text-(--cr-accent-hover)"
-                >
-                  See Analysis &rarr;
-                </button>
-              )}
+            <div className="text-center">
+              <button
+                type="button"
+                onClick={handleReveal}
+                className="inline-flex items-center gap-2 rounded-xl bg-(--cr-accent) px-6 py-3 text-base font-semibold text-(--cr-text-inverse) transition hover:opacity-90 hover:shadow-[0_4px_16px_rgba(77,182,172,0.3)]"
+              >
+                See Analysis &rarr;
+              </button>
             </div>
           </div>
         )}
@@ -272,23 +186,6 @@ function ScenarioCard({
             opacity: revealed ? 1 : 0,
           }}
         >
-          {/* Post-decision feedback (only if user selected an option, not if skipped) */}
-          {revealed && selectedOption !== null && !skipped && learningMode !== "guided" && (
-            <div
-              className={[
-                "mb-4 rounded-lg px-4 py-2.5 text-sm font-medium",
-                selectedOption === recommendedIndex
-                  ? "border-l-3 border-(--cr-success) bg-(--cr-success-bg) text-(--cr-success)"
-                  : "border-l-3 border-(--cr-text-secondary) bg-[rgba(255,255,255,0.03)] text-(--cr-text-secondary)",
-              ].join(" ")}
-              style={{ animation: "cr-card-enter 300ms ease-out" }}
-            >
-              {selectedOption === recommendedIndex
-                ? "\u2713 That aligns with the chapter\u2019s approach. Here\u2019s the full reasoning:"
-                : "\u21A9 The chapter suggests a different angle. See how it applies below:"}
-            </div>
-          )}
-
           <div className={treatmentClass === 2 ? "border-l-2 border-(--cr-accent) pl-4" : ""}>
             <p className="text-xs font-bold uppercase tracking-[0.15em] text-(--cr-accent) mb-2">
               What To Do
@@ -320,7 +217,7 @@ function ScenarioCard({
           </div>
 
           {/* Connected to Quiz footer */}
-          <div className="mt-4 rounded-lg bg-[rgba(255,255,255,0.03)] px-4 py-2.5 text-sm text-(--cr-text-secondary)">
+          <div className="mt-4 rounded-lg bg-(--cr-fill-subtle) px-4 py-2.5 text-sm text-(--cr-text-secondary)">
             <span className="mr-1">{"\uD83D\uDCD6"}</span>
             Connected to: Quiz Q{((index * 2) % 10) + 1}
             {index % 2 === 0 ? `, Q${((index * 2 + 3) % 10) + 1}` : ""}

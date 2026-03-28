@@ -82,12 +82,18 @@ export function CompletedShelf({ books, onBookClick }: CompletedShelfProps) {
             >
               {/* Cover with gold border + gold checkmark + gold glow (Von Restorff) */}
               <div
-                className="relative w-full overflow-hidden"
+                className="relative w-full overflow-hidden transition-shadow duration-200"
                 style={{
                   aspectRatio: "2/3",
                   borderRadius: "var(--radius-md-val)",
-                  border: "2px solid rgba(255,215,0,0.3)",
-                  boxShadow: "0 4px 20px rgba(255,215,0,0.08)",
+                  border: "2px solid rgba(245,158,11,0.3)",
+                  boxShadow: "0 4px 20px rgba(245,158,11,0.08)",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLDivElement).style.boxShadow = "0 0 30px rgba(245,158,11,0.15)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLDivElement).style.boxShadow = "0 4px 20px rgba(245,158,11,0.08)";
                 }}
               >
                 <BookCover
@@ -96,15 +102,17 @@ export function CompletedShelf({ books, onBookClick }: CompletedShelfProps) {
                   coverImage={book.coverImage}
                   fill
                 />
-                {/* Gold checkmark */}
+                {/* Gold check badge — 24px circle, amber background, white checkmark */}
                 <div
-                  className="absolute bottom-2 right-2 flex h-7 w-7 items-center justify-center rounded-full"
+                  className="absolute bottom-2 right-2 flex items-center justify-center rounded-full"
                   style={{
-                    background: "var(--accent-gold)",
-                    boxShadow: "0 2px 8px rgba(255,215,0,0.4)",
+                    width: 24,
+                    height: 24,
+                    background: "var(--accent-amber)",
+                    boxShadow: "0 2px 8px rgba(245,158,11,0.4)",
                   }}
                 >
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--bg-base)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
                 </div>
@@ -116,10 +124,10 @@ export function CompletedShelf({ books, onBookClick }: CompletedShelfProps) {
               >
                 {book.title}
               </h3>
-              <p className="mt-0.5 text-[12px]" style={{ color: "var(--text-muted)" }}>
+              <p className="mt-0.5 text-[12px]" style={{ color: "var(--text-tertiary)" }}>
                 Completed {completedDate}
               </p>
-              <p className="mt-0.5 text-[12px] font-(family-name:--font-mono)" style={{ color: "var(--cf-amber-text)" }}>
+              <p className="mt-0.5 text-[12px] font-(family-name:--font-mono)" style={{ color: "var(--accent-violet)" }}>
                 +{prog.xpEarned} XP earned
               </p>
             </motion.div>

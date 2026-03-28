@@ -21,7 +21,7 @@ type ChapterTabsProps = {
 
 export function ChapterTabs({ value, onChange }: ChapterTabsProps) {
   return (
-    <div className="inline-flex rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) p-1 shadow-sm">
+    <div className="inline-flex rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) p-1 shadow-shadow-card">
       {tabs.map((tab) => {
         const active = tab.id === value;
         const Icon = tab.icon;
@@ -34,7 +34,7 @@ export function ChapterTabs({ value, onChange }: ChapterTabsProps) {
               "inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-sm font-semibold transition duration-150",
               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)",
               active
-                ? "bg-(--cf-surface-strong) text-(--cf-accent) shadow-sm"
+                ? "bg-(--cf-surface-strong) text-(--cf-accent) shadow-shadow-card"
                 : "text-(--cf-text-3) hover:bg-(--cf-surface) hover:text-(--cf-text-2)",
             ].join(" ")}
             aria-pressed={active}

@@ -132,19 +132,19 @@ export function TopNav({
                   <svg width={28} height={28} viewBox="0 0 28 28" fill="none">
                     <path
                       d="M4 7C4 5.9 4.9 5 6 5H12C13.1 5 14 5.9 14 7V21C14 22.1 13.1 23 12 23H6C4.9 23 4 22.1 4 21V7Z"
-                      stroke="var(--accent-blue)"
+                      stroke="var(--accent-cyan)"
                       strokeWidth={1.5}
                       fill="none"
                     />
                     <path
                       d="M14 7C14 5.9 14.9 5 16 5H22C23.1 5 24 5.9 24 7V21C24 22.1 23.1 23 22 23H16C14.9 23 14 22.1 14 21V7Z"
-                      stroke="var(--accent-blue)"
+                      stroke="var(--accent-cyan)"
                       strokeWidth={1.5}
                       fill="none"
                     />
                     <path
                       d="M17 12L20 14L17 16"
-                      stroke="var(--accent-blue)"
+                      stroke="var(--accent-cyan)"
                       strokeWidth={1.5}
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -179,19 +179,28 @@ export function TopNav({
                   <Link
                     key={item.id}
                     href={item.href}
-                    className={[
-                      "relative inline-flex items-center gap-1.5 rounded-xl px-3.5 py-2 text-sm font-medium transition duration-150",
+                    className="relative inline-flex items-center gap-1.5 rounded-xl px-3.5 py-2 text-sm font-medium transition duration-150"
+                    style={
                       active
-                        ? "bg-(--cf-accent-soft) text-(--cf-accent)"
-                        : "text-(--cf-text-3) hover:bg-(--cf-accent-muted) hover:text-(--cf-text-1)",
-                    ].join(" ")}
+                        ? { background: "var(--cf-accent-soft)", color: "var(--accent-cyan)" }
+                        : { color: "var(--text-secondary)" }
+                    }
+                    onMouseEnter={(e) => {
+                      if (!active) {
+                        e.currentTarget.style.background = "var(--bg-glass)";
+                        e.currentTarget.style.color = "var(--text-heading)";
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!active) {
+                        e.currentTarget.style.background = "transparent";
+                        e.currentTarget.style.color = "var(--text-secondary)";
+                      }
+                    }}
                     aria-current={active ? "page" : undefined}
                   >
-                    <Icon className={active ? "h-3.5 w-3.5 text-(--cf-accent)" : "h-3.5 w-3.5"} />
+                    <Icon className="h-3.5 w-3.5" />
                     {item.label}
-                    {active && (
-                      <span className="absolute bottom-0 left-1/2 h-0.5 w-5 -translate-x-1/2 rounded-full bg-(--cf-accent)" />
-                    )}
                   </Link>
                 );
               })}

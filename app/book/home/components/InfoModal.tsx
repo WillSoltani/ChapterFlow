@@ -20,7 +20,7 @@ export function InfoModal({ open, title, onClose, children }: InfoModalProps) {
       aria-modal="true"
       aria-label={title}
     >
-      <div className="w-full max-w-lg rounded-3xl border border-(--cf-border) bg-(--cf-surface-strong) p-5 shadow-xl">
+      <div className="w-full max-w-lg rounded-3xl border border-(--cf-border) bg-(--cf-surface-strong) p-5 shadow-shadow-elevated">
         <div className="mb-3 flex items-center justify-between gap-3">
           <h3 className="text-xl font-semibold text-(--cf-text-1)">{title}</h3>
           <button

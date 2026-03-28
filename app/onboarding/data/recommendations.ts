@@ -43,87 +43,34 @@ function scoreBook(
   return score;
 }
 
-/* Get recommended starter shelf (3 books) */
+/* Get recommended starter shelf */
 export function getRecommendedBooks(
   userInterests: string[],
   motivation: Motivation | null,
 ): OnboardingBook[] {
-  // Always include Atomic Habits as the first book (it's the first loop content)
-  const atomicHabits = ONBOARDING_BOOKS.find((b) => b.id === "atomic-habits")!;
-
-  // Score remaining books
-  const candidates = ONBOARDING_BOOKS
-    .filter((b) => b.id !== "atomic-habits")
+  // Score all books and return sorted by relevance
+  const scored = ONBOARDING_BOOKS
     .map((book) => ({
       book,
       score: scoreBook(book, userInterests, motivation),
     }))
     .sort((a, b) => b.score - a.score);
 
-  // Pick top 2, but ensure category diversity
-  const selected: OnboardingBook[] = [atomicHabits];
-  const usedCategories = new Set([atomicHabits.category]);
-
-  for (const { book } of candidates) {
-    if (selected.length >= 3) break;
-
-    // Prefer different categories for variety
-    if (!usedCategories.has(book.category) || selected.length >= 2) {
-      selected.push(book);
-      usedCategories.add(book.category);
-    }
-  }
-
-  // Fill if needed
-  while (selected.length < 3) {
-    const next = candidates.find(
-      ({ book }) => !selected.some((s) => s.id === book.id),
-    );
-    if (next) selected.push(next.book);
-    else break;
-  }
-
-  return selected;
+  return scored.map(({ book }) => book);
 }
 
-/* Generate a swipe deck of 10 books sorted by relevance */
+/* Generate a swipe deck sorted by relevance */
 export function generateSwipeDeck(
   userInterests: string[],
   motivation: Motivation | null,
 ): OnboardingBook[] {
-  // Always put Atomic Habits first (it's the first loop content)
-  const atomicHabits = ONBOARDING_BOOKS.find((b) => b.id === "atomic-habits")!;
-
-  const candidates = ONBOARDING_BOOKS
-    .filter((b) => b.id !== "atomic-habits")
+  return ONBOARDING_BOOKS
     .map((book) => ({
       book,
       score: scoreBook(book, userInterests, motivation),
     }))
-    .sort((a, b) => b.score - a.score);
-
-  // Take top 9 to fill deck of 10 (Atomic Habits + 9 best matches)
-  const deck: OnboardingBook[] = [atomicHabits];
-  const usedCategories = new Set([atomicHabits.category]);
-
-  // First pass: prefer category diversity
-  for (const { book } of candidates) {
-    if (deck.length >= 10) break;
-    if (!usedCategories.has(book.category)) {
-      deck.push(book);
-      usedCategories.add(book.category);
-    }
-  }
-
-  // Second pass: fill remaining slots with highest-scored books
-  for (const { book } of candidates) {
-    if (deck.length >= 10) break;
-    if (!deck.some((d) => d.id === book.id)) {
-      deck.push(book);
-    }
-  }
-
-  return deck;
+    .sort((a, b) => b.score - a.score)
+    .map(({ book }) => book);
 }
 
 /* Get swap alternatives (books not on shelf, matching interests) */

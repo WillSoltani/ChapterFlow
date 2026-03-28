@@ -205,7 +205,7 @@ export function Problem() {
               {/* Animated curve paths */}
               <AnimatedPath
                 d={redPath}
-                color="#ef4444"
+                color="var(--accent-rose)"
                 isInView={chartInView}
                 skipAnimation={!!prefersReducedMotion}
                 delay={0.3}
@@ -213,7 +213,7 @@ export function Problem() {
 
               <AnimatedPath
                 d={tealPath}
-                color="#2dd4bf"
+                color="var(--accent-cyan)"
                 isInView={chartInView}
                 skipAnimation={!!prefersReducedMotion}
                 delay={0.6}
@@ -225,7 +225,7 @@ export function Problem() {
               <div className="flex items-center gap-2">
                 <span
                   className="inline-block h-2.5 w-2.5 rounded-full"
-                  style={{ backgroundColor: "#ef4444" }}
+                  style={{ backgroundColor: "var(--accent-rose)" }}
                 />
                 <span
                   className="text-[13px] font-(family-name:--font-body)"
@@ -237,7 +237,7 @@ export function Problem() {
               <div className="flex items-center gap-2">
                 <span
                   className="inline-block h-2.5 w-2.5 rounded-full"
-                  style={{ backgroundColor: "#2dd4bf" }}
+                  style={{ backgroundColor: "var(--accent-cyan)" }}
                 />
                 <span
                   className="text-[13px] font-(family-name:--font-body)"

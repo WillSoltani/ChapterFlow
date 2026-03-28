@@ -25,9 +25,9 @@ export function ProFeatureCard({
 
   return (
     <>
-      <div className="relative overflow-hidden rounded-2xl border border-(--cf-border) bg-gradient-to-br from-amber-500/[0.03] to-pink-500/[0.03] p-4">
+      <div className="relative overflow-hidden rounded-2xl border border-(--cf-border) bg-gradient-to-br from-(--accent-amber)/3 to-(--accent-rose)/3 p-4">
         {/* Shimmer border */}
-        <div className="absolute inset-0 rounded-2xl border border-transparent bg-gradient-to-r from-amber-500/10 via-rose-500/10 to-pink-500/10 opacity-40" />
+        <div className="absolute inset-0 rounded-2xl border border-transparent bg-gradient-to-r from-(--accent-amber)/10 via-(--accent-rose)/10 to-(--accent-rose)/10 opacity-40" />
 
         <div className="relative flex items-start justify-between">
           <div className="flex-1">
@@ -65,7 +65,7 @@ export function ProFeatureCard({
               initial={reducedMotion ? false : { y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={reducedMotion ? undefined : { y: 20, opacity: 0 }}
-              className="relative w-full max-w-md rounded-t-3xl sm:rounded-3xl bg-(--cf-surface-strong) border border-(--cf-border) p-6 shadow-xl"
+              className="relative w-full max-w-md rounded-t-3xl sm:rounded-3xl bg-(--cf-surface-strong) border border-(--cf-border) p-6 shadow-shadow-elevated"
             >
               <button
                 type="button"

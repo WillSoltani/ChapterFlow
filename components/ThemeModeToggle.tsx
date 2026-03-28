@@ -24,16 +24,16 @@ export function ThemeModeToggle({
 
   const shellClassName =
     variant === "site"
-      ? "border-white/12 bg-white/[0.06] text-slate-300 hover:bg-white/[0.1] focus-visible:ring-cyan-300/45"
+      ? "border-white/12 bg-white/[0.06] text-text-primary hover:bg-white/[0.1] focus-visible:ring-cyan-300/45"
       : "border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-3) hover:bg-(--cf-surface-strong) focus-visible:ring-(--cf-accent-border)";
   const thumbClassName =
     variant === "site"
-      ? "bg-white text-slate-900 shadow-lg shadow-black/10"
+      ? "bg-white text-slate-900 shadow-shadow-elevated"
       : "bg-(--cf-surface) text-(--cf-text-1) shadow-sm";
   const activeIconClassName =
-    variant === "site" ? "text-slate-900" : "text-(--cf-text-1)";
+    variant === "site" ? "text-slate-900" : "text-(--cf-text-1)"; // slate-900 intentional: light thumb on site variant
   const inactiveIconClassName =
-    variant === "site" ? "text-slate-500" : "text-(--cf-text-3)";
+    variant === "site" ? "text-text-secondary" : "text-(--cf-text-3)";
 
   return (
     <button

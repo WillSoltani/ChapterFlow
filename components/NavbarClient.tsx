@@ -105,13 +105,13 @@ export function NavbarClient({ initialLoggedIn }: Props) {
     >
       <div className="flex items-center justify-between px-4 py-4 sm:px-6">
         <Link href="/#about" className="shrink-0 text-lg font-semibold">
-          <span className="bg-linear-to-b from-white to-slate-300 bg-clip-text text-transparent">
+          <span className="bg-linear-to-b from-white to-text-primary bg-clip-text text-transparent">
             Will Soltani
           </span>
         </Link>
 
         <div className="flex items-center gap-3">
-          <nav className="relative hidden gap-2 rounded-full border border-white/10 bg-white/5 p-1 text-sm text-slate-300 md:flex">
+          <nav className="relative hidden gap-2 rounded-full border border-white/10 bg-white/5 p-1 text-sm text-text-primary md:flex">
             {links.map((l) => {
               const isActive = active === l.id;
               return (
@@ -119,7 +119,7 @@ export function NavbarClient({ initialLoggedIn }: Props) {
                   key={l.id}
                   href={`#${l.id}`}
                   onClick={() => handleNavClick(l.id)}
-                  className="relative rounded-full px-3 py-1.5 hover:text-slate-100"
+                  className="relative rounded-full px-3 py-1.5 hover:text-text-primary"
                 >
                   {isActive ? (
                     <motion.span
@@ -141,7 +141,7 @@ export function NavbarClient({ initialLoggedIn }: Props) {
           {showLoggedIn ? (
             <Link
               href="/dashboard"
-              className="hidden md:inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3.5 py-2 text-sm text-slate-100 shadow-[0_0_0_0_rgba(56,189,248,0.0)] transition hover:bg-white/15 hover:shadow-[0_0_28px_rgba(56,189,248,0.22)]"
+              className="hidden md:inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3.5 py-2 text-sm text-text-primary shadow-[0_0_0_0_rgba(56,189,248,0.0)] transition hover:bg-white/15 hover:shadow-[0_0_28px_rgba(56,189,248,0.22)]"
             >
               <LayoutDashboard className="h-4 w-4 text-sky-200" />
               Dashboard
@@ -161,7 +161,7 @@ export function NavbarClient({ initialLoggedIn }: Props) {
 
           <button
             type="button"
-            className="inline-flex items-center justify-center rounded-md border border-white/10 bg-white/5 p-2 text-slate-200 hover:bg-white/10 md:hidden"
+            className="inline-flex items-center justify-center rounded-md border border-white/10 bg-white/5 p-2 text-text-primary hover:bg-white/10 md:hidden"
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle menu"
             aria-expanded={open}
@@ -193,7 +193,7 @@ export function NavbarClient({ initialLoggedIn }: Props) {
                     <Link
                       href="/dashboard"
                       onClick={() => setOpen(false)}
-                      className="flex items-center justify-between rounded-xl border border-white/10 bg-white/8 px-4 py-3 text-sm text-slate-100 transition hover:bg-white/10"
+                      className="flex items-center justify-between rounded-xl border border-white/10 bg-white/8 px-4 py-3 text-sm text-text-primary transition hover:bg-white/10"
                     >
                       <span className="flex items-center gap-2">
                         <LayoutDashboard className="h-4 w-4 text-sky-200" />
@@ -217,8 +217,8 @@ export function NavbarClient({ initialLoggedIn }: Props) {
                       className={[
                         "flex items-center justify-between rounded-xl px-4 py-3 text-sm transition",
                         isActive
-                          ? "bg-white/10 text-slate-100"
-                          : "text-slate-300 hover:bg-white/10 hover:text-slate-100",
+                          ? "bg-white/10 text-text-primary"
+                          : "text-text-primary hover:bg-white/10 hover:text-text-primary",
                       ].join(" ")}
                       onClick={() => handleNavClick(l.id)}
                     >

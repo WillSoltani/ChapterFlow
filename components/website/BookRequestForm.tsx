@@ -75,7 +75,7 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
 
   const inputStyle = (hasError: boolean) => ({
     background: "var(--bg-elevated)",
-    border: `1px solid ${hasError ? "#ef4444" : "var(--border-subtle)"}`,
+    border: `1px solid ${hasError ? "var(--accent-rose)" : "var(--border-subtle)"}`,
     color: "var(--text-primary)",
     fontFamily: "var(--font-body)",
   });
@@ -104,19 +104,19 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
               : {}),
           }}
           onFocus={(e) => {
-            e.currentTarget.style.borderColor = errors.title && touched.title ? "#ef4444" : "var(--accent-blue)";
+            e.currentTarget.style.borderColor = errors.title && touched.title ? "var(--accent-rose)" : "var(--accent-blue)";
             e.currentTarget.style.boxShadow = errors.title && touched.title
-              ? "0 0 0 3px rgba(239,68,68,0.15)"
-              : "0 0 0 3px rgba(79,139,255,0.15)";
+              ? "0 0 0 3px rgba(244,63,94,0.15)"
+              : "0 0 0 3px rgba(34,211,238,0.15)";
           }}
           onMouseLeave={() => {}}
           onBlurCapture={(e) => {
-            e.currentTarget.style.borderColor = errors.title && touched.title ? "#ef4444" : "var(--border-subtle)";
+            e.currentTarget.style.borderColor = errors.title && touched.title ? "var(--accent-rose)" : "var(--border-subtle)";
             e.currentTarget.style.boxShadow = "none";
           }}
         />
         {errors.title && touched.title && (
-          <p className="text-[11px] mt-1 ml-1" style={{ color: "#ef4444" }}>
+          <p className="text-[11px] mt-1 ml-1" style={{ color: "var(--accent-rose)" }}>
             {errors.title}
           </p>
         )}
@@ -133,7 +133,7 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
           style={inputStyle(false)}
           onFocus={(e) => {
             e.currentTarget.style.borderColor = "var(--accent-blue)";
-            e.currentTarget.style.boxShadow = "0 0 0 3px rgba(79,139,255,0.15)";
+            e.currentTarget.style.boxShadow = "0 0 0 3px rgba(34,211,238,0.15)";
           }}
           onBlurCapture={(e) => {
             e.currentTarget.style.borderColor = "var(--border-subtle)";
@@ -156,18 +156,18 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
           className={`w-full h-12 rounded-lg px-4 text-[14px] placeholder:text-[var(--text-muted)] ${inputFocusClass}`}
           style={inputStyle(!!errors.email && !!touched.email)}
           onFocus={(e) => {
-            e.currentTarget.style.borderColor = errors.email && touched.email ? "#ef4444" : "var(--accent-blue)";
+            e.currentTarget.style.borderColor = errors.email && touched.email ? "var(--accent-rose)" : "var(--accent-blue)";
             e.currentTarget.style.boxShadow = errors.email && touched.email
-              ? "0 0 0 3px rgba(239,68,68,0.15)"
-              : "0 0 0 3px rgba(79,139,255,0.15)";
+              ? "0 0 0 3px rgba(244,63,94,0.15)"
+              : "0 0 0 3px rgba(34,211,238,0.15)";
           }}
           onBlurCapture={(e) => {
-            e.currentTarget.style.borderColor = errors.email && touched.email ? "#ef4444" : "var(--border-subtle)";
+            e.currentTarget.style.borderColor = errors.email && touched.email ? "var(--accent-rose)" : "var(--border-subtle)";
             e.currentTarget.style.boxShadow = "none";
           }}
         />
         {errors.email && touched.email && (
-          <p className="text-[11px] mt-1 ml-1" style={{ color: "#ef4444" }}>
+          <p className="text-[11px] mt-1 ml-1" style={{ color: "var(--accent-rose)" }}>
             {errors.email}
           </p>
         )}

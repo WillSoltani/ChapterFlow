@@ -78,7 +78,7 @@ export function ChapterCard({
         tabIndex={-1}
         onClick={handleClick}
         className={[
-          "w-full rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) p-4 text-left opacity-50",
+          "w-full rounded-2xl bg-(--cf-surface-muted) p-4 text-left opacity-50",
           "cursor-default select-none",
           shaking ? "bd-shake" : "",
         ].join(" ")}
@@ -88,7 +88,7 @@ export function ChapterCard({
         <div className="flex items-start justify-between gap-3">
           <div className="flex min-w-0 flex-1 items-start gap-3">
             <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-(--cf-surface-strong)">
-              <Lock className="h-3.5 w-3.5 text-(--cf-text-soft)" />
+              <Lock className="h-4 w-4" style={{ color: "var(--text-tertiary)" }} />
             </div>
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2">
@@ -98,7 +98,7 @@ export function ChapterCard({
               <StepIndicators stepsCompleted={0} accentColor="green" lockedDots />
             </div>
           </div>
-          <span className={`shrink-0 whitespace-nowrap text-xs ${minutesClass}`}>
+          <span className="shrink-0 whitespace-nowrap text-xs" style={{ color: "var(--text-tertiary)" }}>
             {chapter.minutes} min
           </span>
         </div>
@@ -106,7 +106,7 @@ export function ChapterCard({
     );
   }
 
-  /* ── NEXT-UNLOCKABLE CARD ── dashed border, slight accent tint, 0.65 opacity */
+  /* ── NEXT-UNLOCKABLE CARD ── dashed border, slight accent tint */
   if (isNextUnlockable) {
     return (
       <div
@@ -114,7 +114,7 @@ export function ChapterCard({
         tabIndex={-1}
         onClick={handleClick}
         className={[
-          "w-full rounded-2xl border border-dashed border-(--cf-success-border) bg-(--cf-surface) p-4 text-left opacity-[0.65]",
+          "w-full rounded-2xl border border-dashed border-(--cf-success-border) bg-(--cf-surface) p-4 text-left",
           "cursor-default",
           shaking ? "bd-shake" : "",
         ].join(" ")}
@@ -124,7 +124,7 @@ export function ChapterCard({
         <div className="flex items-start justify-between gap-3">
           <div className="flex min-w-0 flex-1 items-start gap-3">
             <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-(--cf-success-bg)">
-              <Lock className="h-3.5 w-3.5 text-(--cf-success-text)" />
+              <Lock className="h-4 w-4" style={{ color: "var(--text-tertiary)" }} />
             </div>
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2">
@@ -132,7 +132,7 @@ export function ChapterCard({
                 <span className={`truncate ${titleClass}`}>{chapter.title}</span>
               </div>
               <StepIndicators stepsCompleted={0} accentColor="green" lockedDots />
-              <span className="mt-1 block text-xs font-medium text-(--cf-success-text) opacity-60">
+              <span className="mt-1 block text-xs font-medium" style={{ color: "var(--accent-emerald)" }}>
                 Up next
               </span>
               {teaser && (
@@ -142,7 +142,7 @@ export function ChapterCard({
               )}
             </div>
           </div>
-          <span className={`shrink-0 whitespace-nowrap text-xs ${minutesClass}`}>
+          <span className="shrink-0 whitespace-nowrap text-xs" style={{ color: "var(--text-tertiary)" }}>
             {chapter.minutes} min
           </span>
         </div>
@@ -165,20 +165,25 @@ export function ChapterCard({
       }
       whileTap={{ scale: 0.985, transition: { duration: 0.1 } }}
       className={[
-        "group relative w-full rounded-2xl border text-left [transform:translateZ(0)]",
+        "group relative w-full rounded-2xl text-left [transform:translateZ(0)]",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)",
         isInProgress
           ? [
-              "cf-panel border-(--cf-accent-border) p-5 cursor-pointer overflow-hidden",
-              "shadow-[0_0_24px_var(--cf-accent-shadow)]",
+              "bg-(--cf-surface-muted) p-5 cursor-pointer overflow-hidden",
               isCurrent ? "bd-chapter-shimmer" : "",
             ].join(" ")
           : [
-              "cf-panel border-(--cf-success-border) p-4 cursor-pointer",
-              "shadow-[0_0_16px_var(--cf-success-soft)]",
+              "cf-panel border border-(--cf-border) p-4 cursor-pointer",
               "hover:border-(--cf-success-text)/30",
             ].join(" "),
       ].join(" ")}
+      style={
+        isInProgress
+          ? { borderLeft: "3px solid var(--accent-cyan)" }
+          : isCompleted
+            ? { borderLeft: "3px solid var(--accent-emerald)" }
+            : undefined
+      }
       aria-label={
         isCompleted && typeof score === "number"
           ? `Chapter ${chapter.number} - ${chapter.title} - Completed with ${Math.round(score)}% score`
@@ -190,19 +195,22 @@ export function ChapterCard({
           {/* Icon */}
           {isInProgress ? (
             <div className="relative mt-0.5 shrink-0">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-(--cf-accent-soft)">
-                <Play className="ml-0.5 h-4 w-4 text-(--cf-accent)" />
+              <div className="flex h-10 w-10 items-center justify-center rounded-full" style={{ background: "color-mix(in srgb, var(--accent-cyan) 12%, transparent)" }}>
+                <Play className="ml-0.5 h-4 w-4" style={{ color: "var(--accent-cyan)" }} />
               </div>
               {!prefersReducedMotion && (
                 <div
-                  className="absolute inset-0 rounded-full border-2 border-(--cf-accent-border)"
-                  style={{ animation: "bd-pulse-ring 2.5s ease-out infinite" }}
+                  className="absolute inset-0 rounded-full"
+                  style={{ border: "2px solid var(--accent-cyan)", opacity: 0.3, animation: "bd-pulse-ring 2.5s ease-out infinite" }}
                 />
               )}
             </div>
           ) : (
-            <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-(--cf-success-bg)">
-              <Check className="h-4 w-4 text-(--cf-success-text)" />
+            <div
+              className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full"
+              style={{ background: "color-mix(in srgb, var(--accent-emerald) 15%, transparent)" }}
+            >
+              <Check className="h-4 w-4" style={{ color: "var(--accent-emerald)" }} />
             </div>
           )}
 
@@ -240,7 +248,7 @@ export function ChapterCard({
               {Math.round(score)}%
             </span>
           ) : isInProgress ? (
-            <span className="whitespace-nowrap text-sm font-semibold text-(--cf-accent) transition-colors hover:opacity-80">
+            <span className="whitespace-nowrap text-sm font-semibold transition-colors hover:opacity-80" style={{ color: "var(--accent-cyan)" }}>
               Continue →
             </span>
           ) : null}

@@ -1,10 +1,9 @@
 "use client";
 
-import { useState, useCallback, useMemo, useEffect } from "react";
+import { useState, useCallback, useMemo, useEffect, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { DashboardNavbar } from "@/components/dashboard/DashboardNavbar";
-import { ReaderStatusBar } from "./ReaderStatusBar";
+import { TopNav } from "@/app/book/home/components/TopNav";
 import { HeroRecommendation } from "./HeroRecommendation";
 import { ActiveReads } from "./ActiveReads";
 import { WeeklyChallenge } from "./WeeklyChallenge";
@@ -49,9 +48,11 @@ function CelebrationToast({
           transition={{ duration: 0.3, ease: "easeOut" }}
           className="fixed right-5 top-20 z-50 max-w-sm overflow-hidden rounded-xl"
           style={{
-            background: "var(--bg-raised)",
-            border: "1px solid rgba(255,215,0,0.2)",
-            borderLeft: "4px solid var(--accent-gold)",
+            background: "var(--bg-glass)",
+            backdropFilter: "blur(12px)",
+            border: "1px solid rgba(245,158,11,0.2)",
+            borderTop: "1px solid var(--border-emphasis)",
+            borderLeft: "4px solid var(--accent-amber)",
             boxShadow: "0 12px 40px rgba(0,0,0,0.5)",
           }}
         >
@@ -59,7 +60,7 @@ function CelebrationToast({
             <p className="text-[15px] font-semibold" style={{ color: "var(--text-heading)" }}>
               You&apos;ve mastered {bookTitle}!
             </p>
-            <p className="mt-1 text-[13px]" style={{ color: "var(--cf-amber-text)" }}>
+            <p className="mt-1 text-[13px]" style={{ color: "var(--accent-amber)" }}>
               +{xp} XP earned · Level {MOCK_USER_STATS.level} Reader
             </p>
           </div>
@@ -73,6 +74,8 @@ export function LibraryPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const prefersReduced = useReducedMotion();
+  const searchInputRef = useRef<HTMLInputElement | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const inProgressBooks = useMemo(() => getInProgressBooks(), []);
   const completedBooks = useMemo(() => getCompletedBooks(), []);
@@ -192,10 +195,14 @@ export function LibraryPage() {
       style={{ background: "var(--bg-base)", color: "var(--text-primary)" }}
     >
       {/* Navbar */}
-      <DashboardNavbar />
-
-      {/* Section 0: Reader Status Bar */}
-      <ReaderStatusBar stats={MOCK_USER_STATS} />
+      <TopNav
+        name={MOCK_USER_STATS.firstName}
+        activeTab="library"
+        searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
+        searchInputRef={searchInputRef}
+        logoVariant="dashboard"
+      />
 
       {/* Section 1: Hero Recommendation */}
       <HeroRecommendation
@@ -222,8 +229,8 @@ export function LibraryPage() {
               style={{
                 maxWidth: 1080,
                 margin: "40px auto 0",
-                background: "linear-gradient(135deg, rgba(45,212,191,0.05) 0%, rgba(232,185,49,0.04) 100%)",
-                border: "1px solid rgba(45,212,191,0.15)",
+                background: "linear-gradient(135deg, rgba(34,211,238,0.05) 0%, rgba(245,158,11,0.04) 100%)",
+                border: "1px solid rgba(34,211,238,0.15)",
               }}
             >
               <div className="flex items-start justify-between gap-4">
@@ -252,7 +259,7 @@ export function LibraryPage() {
                       href="/pricing"
                       className="ml-2 rounded-lg px-4 py-2 text-[13px] font-semibold transition-colors"
                       style={{
-                        background: "var(--accent-teal)",
+                        background: "var(--accent-cyan)",
                         color: "var(--bg-base)",
                       }}
                     >

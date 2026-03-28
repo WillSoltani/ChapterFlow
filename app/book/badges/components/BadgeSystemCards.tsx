@@ -93,7 +93,7 @@ export function FeaturedBadgeCard({
       ) : null}
       <div className="relative flex items-start justify-between gap-4">
         <div>
-          <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) text-3xl shadow-sm">
+          <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) text-3xl shadow-shadow-card">
             <span className={cn(isLocked && "opacity-30 grayscale")}>{badge.icon}</span>
           </div>
           <p className="mt-4 text-[11px] uppercase tracking-[0.22em] text-(--cf-text-soft)">{subtitle}</p>

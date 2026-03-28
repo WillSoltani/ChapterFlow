@@ -47,7 +47,7 @@ function PageButton({
         "inline-flex min-h-10 min-w-10 items-center justify-center rounded-2xl border px-3 text-sm font-medium transition",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)",
         active
-          ? "border-(--cf-accent-border) bg-(--cf-accent-soft) text-(--cf-info-text) shadow-sm"
+          ? "border-(--cf-accent-border) bg-(--cf-accent-soft) text-(--cf-info-text) shadow-shadow-card"
           : "border-(--cf-border) bg-(--cf-surface) text-(--cf-text-2) hover:border-(--cf-border-strong) hover:bg-(--cf-surface-muted)",
         disabled && "cursor-not-allowed opacity-45 hover:border-(--cf-border) hover:bg-(--cf-surface)"
       )}

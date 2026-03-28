@@ -60,13 +60,20 @@ export function BadgeCategorySection({
             </h2>
             <span
               className={cn(
-                "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium",
+                "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium",
                 pill.tone === "earned"
-                  ? "border-amber-500/20 bg-amber-500/10 text-amber-500"
+                  ? "text-white"
                   : pill.tone === "progress"
-                    ? "border-amber-500/15 bg-amber-500/5 text-amber-500/80"
-                    : "border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-soft)"
+                    ? "text-white"
+                    : "border border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-soft)"
               )}
+              style={
+                pill.tone === "earned"
+                  ? { background: "var(--accent-amber)" }
+                  : pill.tone === "progress"
+                    ? { background: "var(--accent-emerald)" }
+                    : undefined
+              }
             >
               {pill.text}
             </span>
@@ -76,17 +83,17 @@ export function BadgeCategorySection({
 
         <div className="flex shrink-0 items-center gap-3">
           {!isSecret && (
-            <span className="hidden items-center gap-1 text-xs text-(--cf-text-soft) sm:inline-flex">
-              <Zap className="h-3 w-3" />
+            <span className="hidden items-center gap-1 text-xs sm:inline-flex" style={{ color: "var(--accent-violet)" }}>
+              <svg className="h-3 w-3" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L8.5 8.5 2 9.27l4.5 5.05L5.82 22 12 18.77 18.18 22l-.68-7.68L22 9.27 15.5 8.5z"/></svg>
               {totalFP} FP
             </span>
           )}
-          <ChevronDown
-            className={cn(
-              "h-4 w-4 text-(--cf-text-soft) transition-transform duration-200 motion-reduce:transition-none",
-              open && "rotate-180"
-            )}
-          />
+          <motion.div
+            animate={{ rotate: open ? 180 : 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <ChevronDown className="h-4 w-4 text-(--cf-text-soft)" />
+          </motion.div>
         </div>
       </button>
 

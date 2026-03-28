@@ -22,10 +22,10 @@ const LEVEL_THRESHOLDS: Record<ReaderLevel, number> = {
 };
 
 const LEVEL_COLORS: Record<ReaderLevel, string> = {
-  "Curious Reader": "var(--cf-accent)",
-  "Active Learner": "var(--cf-success-text)",
-  "Knowledge Builder": "var(--cf-accent)",
-  "Thought Leader": "var(--accent-gold)",
+  "Curious Reader": "var(--accent-cyan)",
+  "Active Learner": "var(--accent-emerald)",
+  "Knowledge Builder": "var(--accent-violet)",
+  "Thought Leader": "var(--accent-amber)",
 };
 
 function getGreeting(): string {

@@ -163,7 +163,7 @@ export function HeroSessionCard({
         WebkitBackdropFilter: "blur(24px) saturate(140%)",
         border: "1px solid var(--cf-border-strong)",
         boxShadow:
-          "0 0 100px -20px rgba(124, 58, 237, 0.30), 0 0 40px -10px rgba(124, 58, 237, 0.15)",
+          "0 0 100px -20px rgba(139, 92, 246, 0.30), 0 0 40px -10px rgba(139, 92, 246, 0.15)",
         transition: "box-shadow 500ms ease-out",
       }}
       initial={prefersReducedMotion ? undefined : { opacity: 0, y: 20 }}
@@ -175,11 +175,11 @@ export function HeroSessionCard({
       }
       onMouseEnter={(e) => {
         (e.currentTarget as HTMLElement).style.boxShadow =
-          "0 0 120px -20px rgba(124, 58, 237, 0.45), 0 0 50px -10px rgba(124, 58, 237, 0.25)";
+          "0 0 120px -20px rgba(139, 92, 246, 0.45), 0 0 50px -10px rgba(139, 92, 246, 0.25)";
       }}
       onMouseLeave={(e) => {
         (e.currentTarget as HTMLElement).style.boxShadow =
-          "0 0 100px -20px rgba(124, 58, 237, 0.30), 0 0 40px -10px rgba(124, 58, 237, 0.15)";
+          "0 0 100px -20px rgba(139, 92, 246, 0.30), 0 0 40px -10px rgba(139, 92, 246, 0.15)";
       }}
     >
       <div className="flex flex-col lg:flex-row">
@@ -212,7 +212,7 @@ export function HeroSessionCard({
           {currentBook && userState !== "new_user" && userState !== "between_books" ? (
             <Link href={`/book/library/${currentBook.id}`}>
               <h2
-                className="mt-4 font-(family-name:--font-display) text-3xl font-bold lg:text-4xl transition-colors hover:text-violet-300"
+                className="mt-4 font-(family-name:--font-display) text-3xl font-bold lg:text-4xl transition-colors hover:text-accent-violet"
                 style={{ color: "var(--cf-text-1)" }}
               >
                 {title}
@@ -256,7 +256,7 @@ export function HeroSessionCard({
                 <motion.div
                   className="h-full rounded-full"
                   style={{
-                    background: "linear-gradient(90deg, #7C3AED, #A78BFA)",
+                    background: "linear-gradient(90deg, var(--accent-violet), var(--accent-cyan))",
                   }}
                   initial={prefersReducedMotion ? undefined : { width: 0 }}
                   animate={{ width: `${currentBook.progressPercent}%` }}
@@ -294,11 +294,11 @@ export function HeroSessionCard({
           <div className="mt-6">
             <Link href={ctaHref}>
               <motion.span
-                className="cta-shine inline-flex cursor-pointer items-center rounded-xl px-8 py-3.5 text-base font-semibold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
+                className="cta-shine cta-shimmer inline-flex cursor-pointer items-center rounded-xl px-8 py-3.5 text-base font-semibold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
                 style={{
-                  background: "linear-gradient(135deg, #7C3AED, #6D28D9)",
+                  background: "linear-gradient(135deg, var(--accent-violet), #6D28D9)",
                   boxShadow:
-                    "0 0 30px -5px rgba(124, 58, 237, 0.60), 0 4px 15px -3px rgba(124, 58, 237, 0.30)",
+                    "0 0 30px -5px rgba(139, 92, 246, 0.60), 0 4px 15px -3px rgba(139, 92, 246, 0.30)",
                   transition: "box-shadow 300ms ease",
                 }}
                 whileHover={
@@ -316,11 +316,11 @@ export function HeroSessionCard({
                 }
                 onMouseOver={(e) => {
                   (e.currentTarget as HTMLElement).style.boxShadow =
-                    "0 0 45px -5px rgba(124, 58, 237, 0.80), 0 4px 20px -3px rgba(124, 58, 237, 0.40)";
+                    "0 0 45px -5px rgba(139, 92, 246, 0.80), 0 4px 20px -3px rgba(139, 92, 246, 0.40)";
                 }}
                 onMouseOut={(e) => {
                   (e.currentTarget as HTMLElement).style.boxShadow =
-                    "0 0 30px -5px rgba(124, 58, 237, 0.60), 0 4px 15px -3px rgba(124, 58, 237, 0.30)";
+                    "0 0 30px -5px rgba(139, 92, 246, 0.60), 0 4px 15px -3px rgba(139, 92, 246, 0.30)";
                 }}
               >
                 <span className="flex items-center gap-2.5">
@@ -352,6 +352,21 @@ export function HeroSessionCard({
                     background: `radial-gradient(ellipse at center, rgba(255, 160, 0, 0.35) 0%, transparent 70%)`,
                     filter: "blur(30px)",
                     zIndex: 0,
+                  }}
+                />
+                {/* Subtle cyan gradient glow */}
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    width: "100%",
+                    height: "100%",
+                    borderRadius: 16,
+                    boxShadow: "0 0 60px 20px rgba(34,211,238,0.08)",
+                    zIndex: 0,
+                    pointerEvents: "none",
                   }}
                 />
                 {/* Book with perspective tilt + hover interaction */}
@@ -413,13 +428,12 @@ export function HeroSessionCard({
           <div className="hidden items-center justify-center p-8 lg:flex">
             <div className="flex gap-3">
               {[
-                { src: "/book-covers/atomic-habits.jpg", rot: -8 },
-                { src: "/book-covers/deep-work.jpg", rot: 0 },
-                { src: "/book-covers/the-psychology-of-money.jpg", rot: 8 },
+                { src: "/book-covers/the-48-laws-of-power.jpg", rot: -8 },
+                { src: "/book-covers/friends-and-influence.jpg", rot: 8 },
               ].map((item, i) => (
                 <motion.div
                   key={i}
-                  className="overflow-hidden rounded-lg shadow-xl ring-1 ring-white/[0.08]"
+                  className="overflow-hidden rounded-lg shadow-shadow-elevated ring-1 ring-white/[0.08]"
                   style={{
                     width: 70,
                     height: 100,

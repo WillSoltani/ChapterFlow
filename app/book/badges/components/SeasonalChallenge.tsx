@@ -19,8 +19,21 @@ export function SeasonalChallenge({ challenge }: SeasonalChallengeProps) {
     ? Math.min(100, Math.round((challenge.progress / challenge.criteria.target) * 100))
     : 0;
 
+  // Determine if on track: expected progress based on days elapsed vs total days
+  const start = new Date(challenge.startDate);
+  const totalDays = Math.max(1, Math.ceil((end.getTime() - start.getTime()) / 86400000));
+  const elapsedDays = Math.max(1, totalDays - daysRemaining);
+  const expectedPercent = Math.round((elapsedDays / totalDays) * 100);
+  const onTrack = progressPercent >= expectedPercent;
+
+  const barGradient = onTrack
+    ? "linear-gradient(90deg, var(--accent-emerald), var(--accent-cyan))"
+    : "linear-gradient(90deg, var(--accent-amber), var(--accent-rose))";
+
+  const daysColor = onTrack ? "var(--accent-emerald)" : "var(--accent-amber)";
+
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-amber-500/20 bg-(--cf-surface-muted) p-5 backdrop-blur-xl">
+    <div className="relative overflow-hidden rounded-2xl border border-accent-amber/20 bg-(--cf-surface-muted) p-5 backdrop-blur-xl">
       <div
         className="pointer-events-none absolute inset-0 rounded-2xl"
         style={{
@@ -40,8 +53,8 @@ export function SeasonalChallenge({ challenge }: SeasonalChallengeProps) {
         <div className="flex-1 sm:max-w-xs">
           <div className="h-2 overflow-hidden rounded-full bg-(--cf-surface-strong)">
             <div
-              className="h-full rounded-full bg-gradient-to-r from-amber-500 to-violet-500 transition-[width] duration-500"
-              style={{ width: `${Math.max(4, progressPercent)}%` }}
+              className="h-full rounded-full transition-[width] duration-500"
+              style={{ width: `${Math.max(4, progressPercent)}%`, background: barGradient }}
             />
           </div>
           <p className="mt-1.5 text-xs text-(--cf-text-3)">
@@ -50,7 +63,7 @@ export function SeasonalChallenge({ challenge }: SeasonalChallengeProps) {
         </div>
 
         <div className="shrink-0 text-right">
-          <p className="text-sm font-semibold text-(--cf-text-1)">
+          <p className="text-sm font-semibold" style={{ color: daysColor }}>
             {daysRemaining} {daysRemaining === 1 ? "day" : "days"}
           </p>
           <p className="text-xs text-(--cf-text-soft)">remaining</p>

@@ -25,10 +25,10 @@ function getTrendPercent(current: number, previous: number): number | null {
 }
 
 function getTrendColor(value: number | null): string {
-  if (value === null) return "var(--text-muted)";
-  if (value > 0) return "var(--cf-success-text)";
-  if (value < 0) return "var(--cf-danger-text)";
-  return "var(--text-muted)";
+  if (value === null) return "var(--text-tertiary)";
+  if (value > 0) return "var(--accent-emerald)";
+  if (value < 0) return "var(--accent-rose)";
+  return "var(--text-tertiary)";
 }
 
 function getTrendArrow(value: number | null): string {
@@ -40,9 +40,9 @@ function getTrendArrow(value: number | null): string {
 
 function getConsistencyColor(daysActive: number): string {
   const pct = (daysActive / 7) * 100;
-  if (pct > 70) return "var(--cf-success-text)";
-  if (pct >= 40) return "var(--accent-gold)";
-  return "var(--cf-danger-text)";
+  if (pct > 70) return "var(--accent-emerald)";
+  if (pct >= 40) return "var(--accent-amber)";
+  return "var(--accent-rose)";
 }
 
 function AnimatedNumber({ value }: { value: number }) {
@@ -174,7 +174,7 @@ export function WeeklySummary({
 
             {/* Trend or zero-state message */}
             {stat.value === null && stat.zeroMessage ? (
-              <span className="text-xs" style={{ color: "var(--cf-success-text)" }}>
+              <span className="text-xs" style={{ color: "var(--accent-emerald)" }}>
                 {stat.zeroMessage}
               </span>
             ) : stat.trend !== null && stat.trend !== undefined ? (
@@ -188,8 +188,8 @@ export function WeeklySummary({
               <span
                 className="rounded px-1.5 py-0.5 text-xs font-medium"
                 style={{
-                  background: "rgba(56,189,248,0.1)",
-                  color: "var(--cf-accent)",
+                  background: "rgba(34,211,238,0.1)",
+                  color: "var(--accent-cyan)",
                   width: "fit-content",
                 }}
               >

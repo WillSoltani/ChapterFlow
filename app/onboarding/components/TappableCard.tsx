@@ -58,7 +58,7 @@ export default function TappableCard({
         opacity: disabled ? 0.4 : 1,
         pointerEvents: disabled ? "none" : "auto",
         backgroundColor: selected
-          ? "rgba(255,255,255,0.06)"
+          ? "color-mix(in srgb, white 6%, transparent)"
           : "var(--bg-glass)",
         border: selected
           ? "2px solid var(--accent-blue)"
@@ -70,7 +70,7 @@ export default function TappableCard({
         transition:
           "border-color 200ms ease, background-color 150ms ease, box-shadow 200ms ease",
         boxShadow: selected
-          ? "0 0 20px var(--glow-blue), inset 0 0 12px rgba(79,139,255,0.04)"
+          ? "0 0 20px var(--glow-blue), inset 0 0 12px color-mix(in srgb, var(--accent-cyan) 4%, transparent)"
           : "none",
       }}
     >

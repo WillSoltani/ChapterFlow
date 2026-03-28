@@ -115,7 +115,7 @@ function StreakFlame({ active, size = 28, streakDays = 0 }: { active: boolean; s
       {/* Ambient glow wrapper */}
       <span
         className={cn("inline-flex shrink-0", active && "cf-flame-flicker")}
-        style={active ? { filter: "drop-shadow(0 0 12px rgba(249,115,22,0.25)) drop-shadow(0 0 24px rgba(249,115,22,0.1))" } : undefined}
+        style={active ? { filter: "drop-shadow(0 0 12px var(--accent-amber)) drop-shadow(0 0 24px rgba(245,158,11,0.15))" } : undefined}
       >
         <svg
           width={size}
@@ -137,8 +137,8 @@ function StreakFlame({ active, size = 28, streakDays = 0 }: { active: boolean; s
           />
           <defs>
             <linearGradient id="flameGradV2" x1="14" y1="1" x2="14" y2="27" gradientUnits="userSpaceOnUse">
-              <stop stopColor="#fbbf24" />
-              <stop offset="1" stopColor="#f97316" />
+              <stop stopColor="var(--accent-amber)" />
+              <stop offset="1" stopColor="#d97706" />
             </linearGradient>
           </defs>
         </svg>
@@ -261,6 +261,8 @@ export function StatCard({
   numericValue,
   formatFn,
   performanceLevel,
+  accentColor,
+  valueColorClass,
 }: {
   icon: ReactNode;
   label: string;
@@ -271,15 +273,21 @@ export function StatCard({
   numericValue?: number;
   formatFn?: (v: number) => string;
   performanceLevel?: "strong" | "active" | "zero";
+  accentColor?: string;
+  valueColorClass?: string;
 }) {
-  const bgTint = performanceLevel === "strong"
-    ? "bg-linear-to-br from-amber-500/[0.03] to-transparent"
+  const isHighlight = performanceLevel === "strong";
+  const bgTint = isHighlight
+    ? "bg-(--bg-surface-2)"
     : performanceLevel === "zero"
       ? "bg-linear-to-br from-blue-500/[0.02] to-transparent"
       : "";
 
   return (
-    <div className={cn("rounded-[26px] border border-(--cf-border) bg-(--cf-surface) p-4 shadow-sm", bgTint)}>
+    <div
+      className={cn("rounded-[26px] border border-(--cf-border) bg-(--cf-surface) p-4 shadow-shadow-card", bgTint)}
+      style={isHighlight && accentColor ? { borderLeft: `3px solid ${accentColor}` } : undefined}
+    >
       <div className="flex items-center justify-between gap-3">
         <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-2)">
           {icon}
@@ -287,7 +295,7 @@ export function StatCard({
         {trend ? <span className="text-xs text-(--cf-text-3)">{trend}</span> : null}
       </div>
       <p className="mt-4 text-[11px] uppercase tracking-[0.22em] text-(--cf-text-3)">{label}</p>
-      <p className="mt-2 text-3xl font-semibold tracking-tight text-(--cf-text-1)">
+      <p className={cn("mt-2 text-3xl font-semibold tracking-tight", valueColorClass || "text-(--cf-text-1)")}>
         {shouldAnimate && numericValue != null ? (
           <AnimatedNumber value={numericValue} formatFn={formatFn} />
         ) : (
@@ -336,14 +344,14 @@ function IdentityTooltip({
         <ChevronDown className={cn("h-3 w-3 transition-transform", open && "rotate-180")} />
       </button>
       {open ? (
-        <div className="absolute left-0 top-full z-30 mt-2 w-72 rounded-2xl border border-(--cf-border) bg-(--cf-surface-strong) p-4 shadow-xl">
+        <div className="absolute left-0 top-full z-30 mt-2 w-72 rounded-2xl border border-(--cf-border) bg-(--cf-surface-strong) p-4 shadow-shadow-elevated">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-(--cf-text-soft)">Reading level progression</p>
           {nextLevel ? (
             <p className="mt-2 text-sm text-(--cf-text-2)">
               Next: <span className="font-semibold text-(--cf-text-1)">{nextLevel.label}</span> — Complete {nextLevel.books} books
             </p>
           ) : (
-            <p className="mt-2 text-sm text-amber-300">You've reached the highest level!</p>
+            <p className="mt-2 text-sm text-accent-amber">You've reached the highest level!</p>
           )}
           {nextLevel ? (
             <div className="mt-2 text-xs text-(--cf-text-3)">
@@ -425,36 +433,43 @@ export function IdentityHeroBanner({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="relative overflow-hidden rounded-[34px] border border-(--cf-border) bg-(--cf-surface-strong) p-6 shadow-sm sm:p-7 lg:p-8"
+      className="relative overflow-hidden rounded-[34px] border border-(--cf-border) bg-(--cf-surface-strong) p-6 shadow-shadow-card sm:p-7 lg:p-8"
     >
-      <div className="pointer-events-none absolute inset-0 bg-radial-[circle_at_top_left] from-sky-500/22 via-cyan-400/10 to-transparent" />
+      <div className="pointer-events-none absolute inset-0 bg-radial-[circle_at_top_left] from-accent-cyan/22 via-accent-cyan/10 to-transparent" />
       <div className="pointer-events-none absolute -right-20 top-0 h-72 w-72 rounded-full bg-(--cf-surface-muted) blur-3xl" />
 
-      {/* A2: Pro animated ring CSS */}
-      {isPro ? (
-        <style>{`
-          @property --ring-angle { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
-          @keyframes cf-ring-spin { to { --ring-angle: 360deg; } }
-          .cf-pro-ring {
-            background: conic-gradient(from var(--ring-angle), #f59e0b, #fbbf24, #f59e0b);
-            animation: cf-ring-spin 8s linear infinite;
-          }
-          @media (prefers-reduced-motion: reduce) {
-            .cf-pro-ring { animation: none; background: #f59e0b; }
-          }
-        `}</style>
-      ) : null}
+      {/* A2: Avatar ring CSS — Pro gets rotating conic-gradient, Free gets cyan ring */}
+      <style>{`
+        @property --ring-angle { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+        @keyframes cf-ring-spin { to { --ring-angle: 360deg; } }
+        .cf-avatar-ring {
+          background: conic-gradient(from var(--ring-angle), var(--accent-amber), var(--accent-violet), var(--accent-cyan), var(--accent-amber));
+          animation: cf-ring-spin 20s linear infinite;
+        }
+        @keyframes cf-pro-shimmer {
+          0% { background-position: -200% center; }
+          100% { background-position: 200% center; }
+        }
+        .cf-pro-badge-shimmer {
+          background: linear-gradient(90deg, #F59E0B 0%, #FBBF24 40%, #FDE68A 50%, #FBBF24 60%, #F59E0B 100%);
+          background-size: 200% 100%;
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          animation: cf-pro-shimmer 3s linear infinite;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .cf-avatar-ring { animation: none; background: conic-gradient(from 0deg, var(--accent-amber), var(--accent-violet), var(--accent-cyan), var(--accent-amber)); }
+          .cf-pro-badge-shimmer { animation: none; }
+        }
+      `}</style>
 
       <div className="relative flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
         <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
-          {/* Avatar with A2 tier ring */}
+          {/* Avatar with A2 tier ring — rotating conic-gradient */}
           <div className="relative shrink-0">
             <div
-              className={cn(
-                "flex items-center justify-center overflow-hidden rounded-full p-[3px] shadow-[0_16px_38px_rgba(2,6,23,0.18)]",
-                isPro ? "cf-pro-ring" : "bg-blue-400/50"
-              )}
-              style={isPro ? undefined : { padding: "2px" }}
+              className="cf-avatar-ring flex items-center justify-center overflow-hidden rounded-full p-[3px] shadow-[0_16px_38px_rgba(2,6,23,0.18)]"
             >
               <div className="flex h-[76px] w-[76px] items-center justify-center overflow-hidden rounded-full bg-(--cf-surface-muted) sm:h-[96px] sm:w-[96px]">
                 {avatar ? (
@@ -471,9 +486,9 @@ export function IdentityHeroBanner({
             <div className="flex flex-wrap items-center gap-2">
               <span className={cn(
                 "inline-flex rounded-full px-3 py-1 text-[11px] font-medium uppercase tracking-[0.22em]",
-                isPro ? "border border-amber-400/30 bg-amber-400/10 text-amber-300" : "border border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-2)"
+                isPro ? "border border-accent-amber/30 bg-accent-amber/10" : "border border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-2)"
               )}>
-                {isPro ? "PRO" : "FREE"}
+                {isPro ? <span className="cf-pro-badge-shimmer">PRO</span> : "FREE"}
               </span>
               <IdentityTooltip currentLabel={identityLabel} booksCompleted={booksCompleted} />
             </div>
@@ -483,10 +498,10 @@ export function IdentityHeroBanner({
               <h1 className="text-3xl font-bold tracking-tight text-(--cf-text-1) sm:text-4xl">{name}</h1>
               <div className={cn(
                 "flex items-center gap-1.5 rounded-2xl px-3 py-1.5",
-                hasStreak ? "bg-amber-500/10" : "bg-(--cf-surface-muted)"
+                hasStreak ? "bg-accent-amber/10" : "bg-(--cf-surface-muted)"
               )}>
                 <StreakFlame active={hasStreak} size={24} streakDays={streakDays} />
-                <span className={cn("text-lg font-bold", hasStreak ? "text-amber-400" : "text-(--cf-text-soft)")}>
+                <span className={cn("text-lg font-bold", hasStreak ? "text-accent-amber" : "text-(--cf-text-soft)")}>
                   {streakDays}
                 </span>
               </div>
@@ -494,7 +509,7 @@ export function IdentityHeroBanner({
             <p className="mt-1 text-sm text-(--cf-text-3)">@{username}</p>
 
             {/* A5 streak microcopy */}
-            <p className={cn("mt-2 text-sm", hasStreak ? "text-amber-300/80" : "text-(--cf-text-3)")}>
+            <p className={cn("mt-2 text-sm", hasStreak ? "text-(--accent-emerald)" : "text-(--cf-text-3)")}>
               {streakMicrocopy}
             </p>
 
@@ -508,7 +523,7 @@ export function IdentityHeroBanner({
               </div>
               <div>
                 <p className="text-[11px] uppercase tracking-[0.22em] text-(--cf-text-soft)">Current streak</p>
-                <p className="mt-1 text-2xl font-bold text-(--cf-text-1)">
+                <p className="mt-1 text-2xl font-bold" style={{ color: hasStreak ? "var(--accent-amber)" : "var(--cf-text-1)" }}>
                   {streakDays} <span className="text-base font-medium text-(--cf-text-3)">days</span>
                 </p>
               </div>
@@ -533,7 +548,7 @@ export function IdentityHeroBanner({
               </div>
               <div className="mt-1.5 h-[3px] w-48 overflow-hidden rounded-full bg-(--cf-border)">
                 <motion.div
-                  className={cn("h-full rounded-full", goalMet ? "bg-emerald-500" : "bg-(--cf-accent)")}
+                  className={cn("h-full rounded-full", goalMet ? "bg-accent-emerald" : "bg-(--cf-accent)")}
                   initial={{ width: 0 }}
                   animate={{ width: `${goalPercent}%` }}
                   transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
@@ -599,7 +614,7 @@ export function StickyMiniHeader({
           <span className="text-sm font-semibold text-(--cf-text-1)">{name}</span>
           <span className="inline-flex items-center gap-1 text-sm">
             <StreakFlame active={streakDays > 0} size={16} />
-            <span className={cn("font-semibold", streakDays > 0 ? "text-amber-400" : "text-(--cf-text-soft)")}>{streakDays}</span>
+            <span className={cn("font-semibold", streakDays > 0 ? "text-accent-amber" : "text-(--cf-text-soft)")}>{streakDays}</span>
           </span>
         </div>
         <button
@@ -631,17 +646,17 @@ function LearningLoopSteps({ completedSteps }: { completedSteps: boolean[] }) {
         return (
           <div key={label} className="flex items-center">
             {i > 0 ? (
-              <div className={cn("h-[2px] w-5 sm:w-7", done ? "bg-(--cf-accent)" : "bg-(--cf-border)")} />
+              <div className={cn("h-[2px] w-5 sm:w-7", done ? "bg-(--accent-cyan)" : "bg-(--cf-border)")} />
             ) : null}
             <div className="flex flex-col items-center gap-1">
               <div
                 className={cn(
-                  "flex h-7 w-7 items-center justify-center rounded-full border-2 text-xs font-semibold transition-colors",
+                  "flex items-center justify-center rounded-full border-2 text-xs font-semibold transition-colors",
                   done
-                    ? "border-(--cf-accent) bg-(--cf-accent) text-white"
+                    ? "h-7 w-7 border-(--accent-cyan) bg-(--accent-cyan) text-white"
                     : isCurrent
-                      ? "border-(--cf-accent) bg-transparent text-(--cf-accent) animate-pulse"
-                      : "border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-soft)"
+                      ? "h-8 w-8 border-(--accent-cyan) bg-transparent text-(--accent-cyan) cf-step-pulse"
+                      : "h-7 w-7 border-(--cf-border) bg-transparent text-(--cf-text-soft)"
                 )}
               >
                 {done ? <Check className="h-3.5 w-3.5" /> : i + 1}
@@ -656,6 +671,14 @@ function LearningLoopSteps({ completedSteps }: { completedSteps: boolean[] }) {
           </div>
         );
       })}
+      <style>{`
+        @keyframes cf-step-pulse {
+          0%, 100% { box-shadow: 0 0 0 0 rgba(34,211,238,0.4); }
+          50% { box-shadow: 0 0 0 6px rgba(34,211,238,0); }
+        }
+        .cf-step-pulse { animation: cf-step-pulse 2s ease-in-out infinite; }
+        @media (prefers-reduced-motion: reduce) { .cf-step-pulse { animation: none; } }
+      `}</style>
     </div>
   );
 }
@@ -712,13 +735,13 @@ export function MomentumCard({
         {/* B2: Chapter-level time + book-level secondary */}
         <div className="mt-4 space-y-1">
           {chapterEta ? (
-            <p className="text-sm font-medium text-(--cf-text-1)">
+            <p className="text-sm font-bold text-(--cf-text-1)">
               {chapterEta}
-              {fitsGoal ? <span className="ml-1 text-(--cf-text-3)">— fits in your {dailyGoalMinutes} min goal</span> : null}
+              {fitsGoal ? <span className="ml-1 font-medium text-(--accent-cyan)">— fits in your {dailyGoalMinutes} min goal</span> : null}
             </p>
           ) : null}
           <p className="text-xs text-(--cf-text-3)">
-            Chapter {chapterNumber} of {totalChapters} &middot; {bookEta} total remaining
+            Chapter {chapterNumber} of {totalChapters} &middot; <span className="font-semibold">{bookEta}</span> total remaining
           </p>
         </div>
 
@@ -784,7 +807,7 @@ export function ActiveBookCard({
   progress: number; chapterLabel: string; eta: string; onContinue: () => void;
 }) {
   return (
-    <div className="rounded-[28px] border border-(--cf-border) bg-(--cf-surface) p-4 shadow-sm">
+    <div className="rounded-[28px] border border-(--cf-border) bg-(--cf-surface) p-4 shadow-shadow-card">
       <div className="flex gap-4">
         <BookCover bookId={bookId} title={title} icon={icon} coverImage={coverImage} className="h-24 w-18 rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted)" fallbackClassName="text-3xl" sizes="72px" />
         <div className="min-w-0 flex-1">
@@ -865,7 +888,7 @@ export function NotePreviewCard({
   title: string; body: string; meta: string; actionLabel?: string; onAction?: () => void;
 }) {
   return (
-    <div className="rounded-[24px] border border-(--cf-border) bg-(--cf-surface) p-4 shadow-sm">
+    <div className="rounded-[24px] border border-(--cf-border) bg-(--cf-surface) p-4 shadow-shadow-card">
       <p className="text-sm font-semibold text-(--cf-text-1)">{title}</p>
       <p className="mt-3 line-clamp-4 text-sm leading-7 text-(--cf-text-2)">{body}</p>
       <div className="mt-4 flex items-center justify-between gap-3">
@@ -886,7 +909,7 @@ export function NotePreviewCard({
 
 export function PinnedTakeawayCard({ text, source }: { text: string; source: string }) {
   return (
-    <div className="rounded-xl border-l-[3px] border-l-amber-400/60 bg-(--cf-surface)/60 px-4 py-3">
+    <div className="rounded-xl border-l-[3px] border-l-accent-amber/60 bg-(--cf-surface)/60 px-4 py-3">
       <p className="text-sm italic leading-6 text-(--cf-text-1)">&ldquo;{text}&rdquo;</p>
       <p className="mt-2 text-xs text-(--cf-text-soft)">📌 {source}</p>
     </div>
@@ -978,7 +1001,7 @@ export function HeatmapCalendar({ cells }: { cells: HeatmapCell[] }) {
                       <span className="absolute -right-0.5 -top-0.5 h-1.5 w-1.5 rounded-full bg-(--cf-text-1)" />
                     ) : null}
                     {tooltip?.key === cell.key ? (
-                      <span className="pointer-events-none absolute -top-8 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-md border border-(--cf-border) bg-(--cf-surface-strong) px-2 py-1 text-[11px] text-(--cf-text-2) shadow-lg">
+                      <span className="pointer-events-none absolute -top-8 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-md border border-(--cf-border) bg-(--cf-surface-strong) px-2 py-1 text-[11px] text-(--cf-text-2) shadow-shadow-elevated">
                         {tooltip.text}
                         <span className="absolute -bottom-1 left-1/2 h-2 w-2 -translate-x-1/2 rotate-45 border-b border-r border-(--cf-border) bg-(--cf-surface-strong)" />
                       </span>
@@ -1113,15 +1136,15 @@ export function UpgradeCard({
 }) {
   const percent = Math.min(100, Math.round((booksUsed / Math.max(booksTotal, 1)) * 100));
   return (
-    <div className="relative overflow-hidden rounded-[30px] border border-amber-400/20 bg-(--cf-surface-strong) p-6 shadow-[0_8px_32px_rgba(0,0,0,0.2)]">
-      <div className="pointer-events-none absolute inset-0 bg-radial-[circle_at_top_right] from-amber-500/8 via-transparent to-transparent" />
+    <div className="relative overflow-hidden rounded-[30px] border border-accent-amber/20 bg-(--cf-surface-strong) p-6 shadow-[0_8px_32px_rgba(0,0,0,0.2)]">
+      <div className="pointer-events-none absolute inset-0 bg-radial-[circle_at_top_right] from-accent-amber/8 via-transparent to-transparent" />
       <div className="relative">
         <div className="flex items-center gap-2">
           <span className="inline-flex rounded-full border border-(--cf-border) bg-(--cf-surface-muted) px-3 py-1 text-[11px] font-medium uppercase tracking-[0.22em] text-(--cf-text-2)">FREE PLAN</span>
           <span className="text-sm text-(--cf-text-3)">{booksUsed} of {booksTotal} books used</span>
         </div>
         <div className="mt-4 h-2.5 overflow-hidden rounded-full bg-(--cf-border)">
-          <div className="h-full rounded-full bg-linear-to-r from-amber-500 to-amber-400" style={{ width: `${percent}%` }} />
+          <div className="h-full rounded-full bg-linear-to-r from-accent-amber to-accent-amber" style={{ width: `${percent}%` }} />
         </div>
         <p className="mt-4 text-base leading-7 text-(--cf-text-2)">{personalizedMessage}</p>
         <p className="mt-3 text-lg font-semibold text-(--cf-text-1)">
@@ -1154,11 +1177,11 @@ export function ProStatusCard({
   onManage: () => void;
 }) {
   return (
-    <div className="relative overflow-hidden rounded-[30px] border border-amber-400/20 bg-(--cf-surface-strong) p-6 shadow-sm">
-      <div className="pointer-events-none absolute inset-0 bg-radial-[circle_at_top_right] from-amber-500/8 via-transparent to-transparent" />
+    <div className="relative overflow-hidden rounded-[30px] border border-accent-amber/20 bg-(--cf-surface-strong) p-6 shadow-shadow-card">
+      <div className="pointer-events-none absolute inset-0 bg-radial-[circle_at_top_right] from-accent-amber/8 via-transparent to-transparent" />
       <div className="relative">
         <div className="flex items-center gap-2">
-          <span className="inline-flex rounded-full border border-amber-400/30 bg-amber-400/10 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.22em] text-amber-300">PRO</span>
+          <span className="inline-flex rounded-full border border-accent-amber/30 bg-accent-amber/10 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.22em] text-accent-amber">PRO</span>
           <span className="text-xs text-(--cf-text-soft)">{proSinceLabel}</span>
         </div>
         <div className="mt-4 grid gap-3 sm:grid-cols-3">
@@ -1186,6 +1209,12 @@ export function ProStatusCard({
    CompletionByModeChart (C5 — interactive with counts + nudge)
    ═══════════════════════════════════════════════════════ */
 
+const MODE_BAR_COLORS: Record<string, string> = {
+  Simple: "var(--accent-cyan)",
+  Standard: "var(--accent-violet)",
+  Deeper: "var(--accent-amber)",
+};
+
 export function CompletionByModeChart({
   data,
   counts,
@@ -1196,10 +1225,12 @@ export function CompletionByModeChart({
   const hasDeeper = (counts?.deeper ?? 0) > 0;
   return (
     <div className="space-y-3">
-      {data.map((entry) => {
+      {data.map((entry, idx) => {
         const count = counts
           ? counts[entry.label.toLowerCase() as keyof typeof counts] ?? 0
           : 0;
+        const barColor = MODE_BAR_COLORS[entry.label] ?? "var(--cf-accent)";
+        const staggerDelay = idx * 0.15;
         return (
           <div key={entry.label} className="group">
             <div className="flex items-center justify-between gap-3 text-sm text-(--cf-text-2)">
@@ -1211,11 +1242,12 @@ export function CompletionByModeChart({
             </div>
             <div className="mt-2 h-2 overflow-hidden rounded-full bg-(--cf-border)">
               <motion.div
-                className="h-full rounded-full bg-linear-to-r from-(--cf-accent) to-(--cf-accent-strong)"
+                className="h-full rounded-full"
+                style={{ background: barColor }}
                 initial={{ width: 0 }}
                 whileInView={{ width: `${entry.value}%` }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+                transition={{ duration: 0.8, ease: "easeOut", delay: staggerDelay }}
               />
             </div>
           </div>
@@ -1288,7 +1320,7 @@ export function QuizBarChart({
       </div>
 
       {/* Trend */}
-      <p className={cn("mt-1 text-xs", trend === "up" ? "text-emerald-400" : trend === "down" ? "text-amber-400" : "text-(--cf-accent)")}>
+      <p className={cn("mt-1 text-xs", trend === "up" ? "text-accent-emerald" : trend === "down" ? "text-accent-amber" : "text-(--cf-accent)")}>
         {trend === "up" ? "↑ Improving across recent quizzes" : trend === "down" ? "↓ Review recommended" : "→ Steady performance"}
       </p>
     </div>
@@ -1301,7 +1333,7 @@ export function QuizBarChart({
 
 export function ProBadge() {
   return (
-    <span className="ml-1 inline-flex rounded px-1 py-px text-[9px] font-semibold uppercase leading-none tracking-wide text-amber-500/60 bg-amber-500/[0.08]">
+    <span className="ml-1 inline-flex rounded px-1 py-px text-[9px] font-semibold uppercase leading-none tracking-wide text-accent-amber/60 bg-accent-amber/[0.08]">
       PRO
     </span>
   );
@@ -1374,10 +1406,10 @@ export function ThisWeekStrip({ cells }: { cells: HeatmapCell[] }) {
                 className={cn(
                   "flex h-7 w-7 items-center justify-center rounded-full text-xs font-medium transition-all",
                   isFuture && "text-(--cf-text-soft)",
-                  !isFuture && hasActivity && "bg-emerald-500/20 text-emerald-400",
+                  !isFuture && hasActivity && "bg-accent-emerald/20 text-accent-emerald",
                   !isFuture && !hasActivity && !isToday && "text-(--cf-text-soft)",
                   isToday && !hasActivity && "border border-dashed border-(--cf-accent)/40 text-(--cf-accent)",
-                  isToday && hasActivity && "bg-emerald-500/20 text-emerald-400 ring-1 ring-(--cf-accent)/30"
+                  isToday && hasActivity && "bg-accent-emerald/20 text-accent-emerald ring-1 ring-(--cf-accent)/30"
                 )}
               >
                 {isFuture ? "○" : hasActivity ? "✓" : isToday ? "●" : "○"}
@@ -1420,7 +1452,7 @@ export function CategoryMap({
             key={cat.name}
             type="button"
             onClick={() => onCategoryClick?.(cat.name)}
-            className="rounded-full border border-blue-500/10 bg-blue-500/10 px-2.5 py-1 text-[11px] text-blue-400 transition hover:bg-blue-500/15"
+            className="rounded-full border border-accent-cyan/10 bg-accent-cyan/10 px-2.5 py-1 text-[11px] text-accent-cyan transition hover:bg-accent-cyan/15"
           >
             {cat.name} · {cat.chapters}
           </button>
@@ -1478,7 +1510,7 @@ export function StaggeredBadgeItem({ children }: { children: ReactNode }) {
 export function NewBadgeDot() {
   return (
     <motion.span
-      className="absolute -right-1 -top-1 z-10 h-2.5 w-2.5 rounded-full bg-amber-400"
+      className="absolute -right-1 -top-1 z-10 h-2.5 w-2.5 rounded-full bg-accent-amber"
       animate={{ scale: [1, 1.3, 1], opacity: [0.7, 1, 0.7] }}
       transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
     />
@@ -1559,7 +1591,7 @@ export function SectionNav({
           className="group relative flex items-center justify-end"
           aria-label={`Go to ${section.label}`}
         >
-          <span className="pointer-events-none absolute right-5 whitespace-nowrap rounded-lg bg-(--cf-surface-strong) px-2.5 py-1 text-xs text-(--cf-text-2) opacity-0 shadow-lg transition-opacity group-hover:opacity-100">
+          <span className="pointer-events-none absolute right-5 whitespace-nowrap rounded-lg bg-(--cf-surface-strong) px-2.5 py-1 text-xs text-(--cf-text-2) opacity-0 shadow-shadow-elevated transition-opacity group-hover:opacity-100">
             {section.label}
           </span>
           <span className={cn(

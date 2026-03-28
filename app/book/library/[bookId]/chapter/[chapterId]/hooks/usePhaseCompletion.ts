@@ -7,7 +7,7 @@ import type { LearningMode } from "@/app/book/settings/types/settings";
 export type PhaseCompletionState = {
   /** Which phases the user has completed at least once */
   completedPhases: Set<ChapterTab>;
-  /** Whether the user has completed all 3 phases at least once (free nav unlocked) */
+  /** Whether the user has completed all 4 phases at least once (free nav unlocked) */
   allPhasesCompletedOnce: boolean;
   /** Whether the current phase's completion criteria have been met */
   currentPhaseReady: boolean;
@@ -27,16 +27,19 @@ const MODE_CONFIG: Record<LearningMode, Record<ChapterTab, PhaseCompletionConfig
     summary: { scrollThreshold: 0.80, timeThreshold: 45 },
     examples: { scrollThreshold: 0.80, timeThreshold: 30 },
     quiz: { scrollThreshold: 0, timeThreshold: 0 },
+    practice: { scrollThreshold: 0.80, timeThreshold: 30 },
   },
   standard: {
     summary: { scrollThreshold: 0.90, timeThreshold: 60 },
     examples: { scrollThreshold: 0.90, timeThreshold: 30 },
     quiz: { scrollThreshold: 0, timeThreshold: 0 },
+    practice: { scrollThreshold: 0.80, timeThreshold: 30 },
   },
   challenge: {
     summary: { scrollThreshold: 0.90, timeThreshold: 60 },
     examples: { scrollThreshold: 0.90, timeThreshold: 30 },
     quiz: { scrollThreshold: 0, timeThreshold: 0 },
+    practice: { scrollThreshold: 0.80, timeThreshold: 30 },
   },
 };
 
@@ -61,7 +64,7 @@ function loadPersisted(bookId: string, chapterId: string): PersistedPhaseComplet
       completedPhases: Array.isArray(parsed.completedPhases)
         ? parsed.completedPhases.filter(
             (v): v is ChapterTab =>
-              v === "summary" || v === "examples" || v === "quiz"
+              v === "summary" || v === "examples" || v === "quiz" || v === "practice"
           )
         : [],
       allPhasesCompletedOnce: Boolean(parsed.allPhasesCompletedOnce),
@@ -85,6 +88,8 @@ export function usePhaseCompletion(params: {
   /** Total number of scenarios in the examples phase */
   totalScenarios: number;
   enabled: boolean;
+  /** Whether the quiz has been passed (required to unlock Practice) */
+  quizPassed: boolean;
 }) {
   const {
     bookId,
@@ -95,6 +100,7 @@ export function usePhaseCompletion(params: {
     scenarioInteractions,
     totalScenarios,
     enabled,
+    quizPassed,
   } = params;
 
   const [completedPhases, setCompletedPhases] = useState<Set<ChapterTab>>(new Set());
@@ -234,7 +240,7 @@ export function usePhaseCompletion(params: {
         const next = new Set(prev);
         next.add(phase);
         // Check if all phases are now completed
-        if (next.has("summary") && next.has("examples") && next.has("quiz")) {
+        if (next.has("summary") && next.has("examples") && next.has("quiz") && next.has("practice")) {
           setAllPhasesCompletedOnce(true);
         }
         return next;
@@ -249,16 +255,21 @@ export function usePhaseCompletion(params: {
       if (allPhasesCompletedOnce) return true;
       if (completedPhases.has(phase)) return true;
 
-      const phaseOrder: ChapterTab[] = ["summary", "examples", "quiz"];
+      const phaseOrder: ChapterTab[] = ["summary", "examples", "quiz", "practice"];
       const phaseIndex = phaseOrder.indexOf(phase);
 
       if (phaseIndex === 0) return true; // Summary is always accessible
+
+      // Practice requires quiz to be PASSED, not just completed
+      if (phase === "practice") {
+        return completedPhases.has("quiz") && quizPassed;
+      }
 
       // Each phase requires the previous one to be completed
       const previousPhase = phaseOrder[phaseIndex - 1];
       return completedPhases.has(previousPhase);
     },
-    [completedPhases, allPhasesCompletedOnce]
+    [completedPhases, allPhasesCompletedOnce, quizPassed]
   );
 
   /** Get the tooltip message for a locked phase */
@@ -267,6 +278,7 @@ export function usePhaseCompletion(params: {
       if (isPhaseAccessible(phase)) return null;
       if (phase === "examples") return "Complete the Summary first to unlock Examples";
       if (phase === "quiz") return "Engage with Examples to unlock the Quiz";
+      if (phase === "practice") return "Pass the Quiz to unlock Practice";
       return null;
     },
     [isPhaseAccessible]

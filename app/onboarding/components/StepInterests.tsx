@@ -39,7 +39,7 @@ interface StepInterestsProps {
 const accentGradients = [
   "linear-gradient(180deg, var(--accent-blue), transparent)",
   "linear-gradient(180deg, var(--accent-teal), transparent)",
-  "linear-gradient(180deg, #A78BFA, transparent)", // purple
+  "linear-gradient(180deg, var(--accent-violet), transparent)", // purple
   "linear-gradient(180deg, var(--accent-gold), transparent)",
 ];
 
@@ -152,7 +152,7 @@ export default function StepInterests({ onNext, onSkip }: StepInterestsProps) {
                 minHeight: 48,
                 borderRadius: "var(--radius-lg-val)",
                 backgroundColor: isSelected
-                  ? "rgba(79,139,255,0.1)"
+                  ? "color-mix(in srgb, var(--accent-cyan) 10%, transparent)"
                   : "var(--bg-glass)",
                 border: isSelected
                   ? "1px solid var(--accent-blue)"

@@ -14,16 +14,16 @@ interface BookCardProps {
 }
 
 const DIFFICULTY_COLORS: Record<string, string> = {
-  easy: "var(--accent-teal)",
-  medium: "var(--accent-blue)",
-  hard: "var(--accent-flame)",
+  easy: "var(--accent-emerald)",
+  medium: "var(--accent-amber)",
+  hard: "var(--accent-rose)",
 };
 
 const BADGE_CONFIG: Record<string, { label: string; color: string; glow?: boolean }> = {
-  trending: { label: "Trending", color: "var(--accent-teal)", glow: true },
+  trending: { label: "Trending", color: "var(--accent-cyan)", glow: true },
   "staff-pick": { label: "Staff Pick \u2605", color: "var(--accent-gold)" },
   new: { label: "New", color: "var(--accent-red)" },
-  "most-completed": { label: "Most completed", color: "var(--accent-green)" },
+  "most-completed": { label: "Most completed", color: "var(--accent-emerald)" },
 };
 
 export function BookCard({
@@ -62,6 +62,7 @@ export function BookCard({
         style={{
           aspectRatio: "2/3",
           borderRadius: "var(--radius-md-val)",
+          boxShadow: "0 8px 24px rgba(0,0,0,0.4), 0 2px 8px rgba(0,0,0,0.3)",
         }}
         whileHover={
           prefersReduced
@@ -242,7 +243,7 @@ export function BookCard({
                 type="button"
                 className="cursor-pointer rounded-lg px-4 py-2 text-[13px] font-semibold transition-colors"
                 style={{
-                  background: "var(--accent-teal)",
+                  background: "var(--accent-cyan)",
                   color: "var(--bg-base)",
                 }}
                 onClick={(e) => {
@@ -272,7 +273,7 @@ export function BookCard({
               Similar to:{" "}
               <span
                 className="cursor-pointer transition-colors"
-                style={{ color: "var(--accent-teal)" }}
+                style={{ color: "var(--accent-cyan)" }}
                 onClick={(e) => {
                   e.stopPropagation();
                   onBookClick(similarBook.id);

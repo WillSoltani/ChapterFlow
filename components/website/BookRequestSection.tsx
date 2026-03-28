@@ -28,7 +28,7 @@ export function BookRequestSection() {
           className="h-px w-[200px]"
           style={{
             background:
-              "linear-gradient(to right, transparent, rgba(79,139,255,0.3), transparent)",
+              "linear-gradient(to right, transparent, rgba(34,211,238,0.3), transparent)",
           }}
         />
       </div>
@@ -39,17 +39,17 @@ export function BookRequestSection() {
         style={{
           background: "var(--bg-glass)",
           backgroundImage:
-            "linear-gradient(135deg, rgba(79,139,255,0.03), transparent 50%, rgba(45,212,191,0.03))",
+            "linear-gradient(135deg, rgba(34,211,238,0.03), transparent 50%, rgba(34,211,238,0.03))",
           border: "1px solid var(--border-medium)",
-          boxShadow: "0 0 40px rgba(79,139,255,0.04)",
+          boxShadow: "0 0 40px rgba(34,211,238,0.04)",
         }}
       >
         {/* Icon */}
         <div
           className="w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-4"
           style={{
-            background: "rgba(79,139,255,0.08)",
-            border: "1px solid rgba(79,139,255,0.12)",
+            background: "rgba(34,211,238,0.08)",
+            border: "1px solid rgba(34,211,238,0.12)",
           }}
         >
           <svg

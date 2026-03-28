@@ -36,10 +36,10 @@ function getHeatmapLevel(minutes: number): number {
 
 const HEATMAP_COLORS = [
   "var(--cf-surface-muted)",
-  "rgba(56,189,248,0.2)",
-  "rgba(56,189,248,0.4)",
-  "rgba(56,189,248,0.6)",
-  "var(--cf-accent)",
+  "rgba(34,211,238,0.2)",
+  "rgba(34,211,238,0.4)",
+  "rgba(34,211,238,0.6)",
+  "var(--accent-cyan)",
 ];
 
 function isToday(dateStr: string): boolean {
@@ -167,20 +167,23 @@ export function ReadingActivity({
         >
           Reading Activity
         </h2>
-        <div className="flex gap-1">
+        <div
+          className="flex gap-0.5 rounded-full p-0.5"
+          style={{ background: "var(--cf-surface-strong)" }}
+        >
           {(["minutes", "chapters"] as const).map((m) => (
             <button
               key={m}
               type="button"
               onClick={() => setMode(m)}
-              className="cursor-pointer rounded-lg px-2.5 py-1 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50"
+              className="cursor-pointer rounded-full px-3 py-1 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan/50"
               style={{
                 background:
                   mode === m
-                    ? "rgba(56,189,248,0.15)"
+                    ? "rgba(34,211,238,0.15)"
                     : "transparent",
                 color:
-                  mode === m ? "var(--cf-accent)" : "var(--text-muted)",
+                  mode === m ? "var(--accent-cyan)" : "var(--text-secondary)",
               }}
             >
               {m === "minutes" ? "Minutes" : "Chapters"}
@@ -228,10 +231,11 @@ export function ReadingActivity({
                     className="w-full rounded-t-md transition-[filter] group-hover:brightness-125"
                     style={{
                       background:
-                        value > 0 ? "var(--cf-accent)" : "var(--cf-surface-muted)",
+                        value > 0 ? "var(--accent-cyan)" : "var(--cf-surface-muted)",
                       boxShadow: day.isToday && value > 0
-                        ? "0 0 12px rgba(56,189,248,0.4)"
+                        ? "0 0 16px rgba(34,211,238,0.5)"
                         : "none",
+                      filter: day.isToday && value > 0 ? "brightness(1.15)" : undefined,
                       minHeight: value > 0 ? undefined : 4,
                       originY: 1,
                     }}
@@ -252,8 +256,8 @@ export function ReadingActivity({
                     className="text-[10px]"
                     style={{
                       color: day.isToday
-                        ? "var(--cf-accent)"
-                        : "var(--text-muted)",
+                        ? "var(--accent-cyan)"
+                        : "var(--text-secondary)",
                       fontWeight: day.isToday ? 600 : 400,
                     }}
                   >
@@ -299,7 +303,7 @@ export function ReadingActivity({
                       borderRadius: 3,
                       background: HEATMAP_COLORS[cell.level],
                       boxShadow: cell.isToday
-                        ? "0 0 0 1.5px rgba(56,189,248,0.5)"
+                        ? "0 0 0 1.5px rgba(34,211,238,0.5)"
                         : "none",
                     }}
                     aria-label={`${cell.dateLabel}: ${cell.minutes} min, ${cell.chapters} chapters`}

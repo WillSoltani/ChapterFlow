@@ -10,14 +10,8 @@ import { BookCover } from "@/app/book/components/BookCover";
 import { getBookById } from "@/app/book/data/booksCatalog";
 
 const BOOK_IDS = [
-  "atomic-habits",
-  "deep-work",
-  "thinking-fast-and-slow",
-  "the-power-of-habit",
-  "mindset",
-  "essentialism",
-  "how-to-win-friends-and-influence-people",
-  "the-7-habits-of-highly-effective-people",
+  "the-48-laws-of-power",
+  "friends-and-influence",
 ];
 
 const CATEGORIES = [
@@ -133,7 +127,7 @@ export function Library() {
                     className="group cursor-pointer"
                     whileHover={{ scale: 1.03, y: -4, transition: { duration: 0.2 } }}
                   >
-                    <div className="overflow-hidden rounded-lg shadow-lg group-hover:shadow-xl group-hover:shadow-[rgba(45,212,191,0.05)] transition-shadow duration-300">
+                    <div className="overflow-hidden rounded-lg shadow-shadow-elevated group-hover:shadow-[rgba(34,211,238,0.05)] transition-shadow duration-300">
                       <BookCover
                         bookId={book.id}
                         title={book.title}

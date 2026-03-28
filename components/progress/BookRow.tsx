@@ -4,7 +4,6 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { ActiveBook, CompletedBook, LearningStep } from "./progressTypes";
 import { ChapterProgressBar } from "./ChapterProgressBar";
-import { StepIndicator } from "./StepIndicator";
 
 const STEP_CTA: Record<LearningStep, string> = {
   summary: "Read Summary",
@@ -95,11 +94,38 @@ export function ActiveBookRow({ book }: ActiveBookRowProps) {
           />
         </div>
 
-        {/* Step indicator dots + label */}
+        {/* Mini step progress bar */}
         <div className="mt-1 flex items-center gap-2">
-          <StepIndicator currentStep={book.currentStepNumber} size="sm" />
-          <span className="text-[10px]" style={{ color: "var(--text-muted)" }}>
-            Step {book.currentStepNumber} of 4
+          <div
+            className="flex overflow-hidden rounded-full"
+            style={{
+              width: 80,
+              height: 4,
+              background: "var(--cf-progress-track)",
+            }}
+          >
+            {Array.from({ length: 4 }, (_, i) => {
+              const stepNum = i + 1;
+              const isCompleted = stepNum < book.currentStepNumber;
+              const isCurrent = stepNum === book.currentStepNumber;
+              return (
+                <div
+                  key={stepNum}
+                  style={{
+                    flex: 1,
+                    height: "100%",
+                    background: isCompleted
+                      ? "var(--accent-cyan)"
+                      : isCurrent
+                        ? "rgba(34,211,238,0.5)"
+                        : "transparent",
+                  }}
+                />
+              );
+            })}
+          </div>
+          <span className="text-[10px]" style={{ color: "var(--text-secondary)" }}>
+            Step {book.currentStepNumber}/4
           </span>
         </div>
 
@@ -112,19 +138,19 @@ export function ActiveBookRow({ book }: ActiveBookRowProps) {
 
       {/* Right side: count + action */}
       <div className="flex shrink-0 flex-col items-end gap-2">
-        <span
-          className="text-xs tabular-nums"
-          style={{ color: "var(--text-muted)" }}
-        >
-          {book.completedChapters}/{book.totalChapters}
+        <span className="tabular-nums" style={{ color: "var(--text-secondary)" }}>
+          <span className="text-sm font-bold" style={{ color: "var(--text-heading)" }}>
+            {book.completedChapters}
+          </span>
+          <span className="text-xs">/{book.totalChapters}</span>
         </span>
         <Link
           href={href}
-          className="inline-flex cursor-pointer items-center gap-1 rounded-lg px-2.5 py-1.5 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50"
+          className="inline-flex cursor-pointer items-center gap-1 rounded-lg px-2.5 py-1.5 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan/50"
           style={{
             background: "transparent",
-            color: "var(--text-secondary)",
-            border: "1px solid var(--cf-border-strong)",
+            color: "var(--accent-cyan)",
+            border: "1px solid var(--accent-cyan)",
           }}
         >
           {ctaText}

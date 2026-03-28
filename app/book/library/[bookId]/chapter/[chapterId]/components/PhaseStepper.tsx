@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import { Check, FileText, HelpCircle, Lightbulb, Lock } from "lucide-react";
+import { Check, FileText, HelpCircle, Lightbulb, Lock, Target } from "lucide-react";
 import type { ComponentType } from "react";
 import type { ChapterTab } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterState";
 
@@ -16,6 +16,7 @@ const PHASES: PhaseStep[] = [
   { id: "summary", label: "Summary", shortLabel: "Sum", icon: FileText },
   { id: "examples", label: "Examples", shortLabel: "Ex", icon: Lightbulb },
   { id: "quiz", label: "Quiz", shortLabel: "Quiz", icon: HelpCircle },
+  { id: "practice", label: "Practice", shortLabel: "Prac", icon: Target },
 ];
 
 type StepState = "completed" | "current" | "upcoming-unlocked" | "locked";
@@ -157,8 +158,8 @@ export function PhaseStepper({
 
               {/* Connector line */}
               {!isLast && (
-                <div className="mx-2 h-0.5 w-12 sm:mx-3 sm:w-20 md:w-28">
-                  <div className="relative h-full w-full overflow-hidden rounded-full bg-[rgba(255,255,255,0.1)]">
+                <div className="mx-1.5 h-0.5 w-8 sm:mx-2 sm:w-14 md:w-20">
+                  <div className="relative h-full w-full overflow-hidden rounded-full bg-(--cr-track)">
                     <div
                       className="absolute inset-y-0 left-0 rounded-full bg-(--cr-accent) transition-all duration-500"
                       style={{
@@ -190,7 +191,7 @@ export function PhaseStepper({
       </p>
 
       {/* Continuous progress bar */}
-      <div className="h-[3px] w-full overflow-hidden rounded-full bg-[rgba(255,255,255,0.1)]">
+      <div className="h-[3px] w-full overflow-hidden rounded-full bg-(--cr-track)">
         <div
           className="h-full rounded-full bg-(--cr-accent) transition-[width] duration-300 ease-out"
           style={{ width: `${Math.min(100, Math.max(0, progressPercent))}%` }}
@@ -200,7 +201,7 @@ export function PhaseStepper({
       {/* Desktop tooltip */}
       {tooltip && (
         <div
-          className="pointer-events-none fixed z-50 hidden -translate-x-1/2 -translate-y-full rounded-lg border border-(--cr-glass-border) bg-(--cr-bg-surface-2) px-3 py-2 text-xs text-(--cr-text-secondary) shadow-lg sm:block"
+          className="pointer-events-none fixed z-50 hidden -translate-x-1/2 -translate-y-full rounded-lg border border-(--cr-glass-border) bg-(--cr-bg-surface-2) px-3 py-2 text-xs text-(--cr-text-secondary) shadow-shadow-elevated sm:block"
           style={{ left: tooltip.x, top: tooltip.y }}
         >
           {tooltip.text}
@@ -209,7 +210,7 @@ export function PhaseStepper({
 
       {/* Mobile toast */}
       {mobileToast && (
-        <div className="fixed bottom-24 left-4 right-4 z-50 rounded-xl border border-(--cr-glass-border) bg-(--cr-bg-surface-2) px-4 py-3 text-center text-sm text-(--cr-text-secondary) shadow-lg sm:hidden">
+        <div className="fixed bottom-24 left-4 right-4 z-50 rounded-xl border border-(--cr-glass-border) bg-(--cr-bg-surface-2) px-4 py-3 text-center text-sm text-(--cr-text-secondary) shadow-shadow-elevated sm:hidden">
           {mobileToast}
         </div>
       )}

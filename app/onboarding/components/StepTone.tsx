@@ -22,21 +22,21 @@ const toneOptions: {
     label: "Gentle",
     description: "Warm and encouraging. Celebrates effort and frames growth as a journey.",
     Icon: Leaf,
-    accentColor: "#3ECFB2",
+    accentColor: "var(--accent-cyan)",
   },
   {
     id: "direct",
     label: "Direct",
     description: "Clear and efficient. Gets to the point and respects your time.",
     Icon: Zap,
-    accentColor: "#5B8DEF",
+    accentColor: "var(--accent-cyan)",
   },
   {
     id: "competitive",
     label: "Competitive",
     description: "High-energy and challenging. Frames ideas as advantages to seize.",
     Icon: Flame,
-    accentColor: "#FF8C42",
+    accentColor: "var(--accent-amber)",
   },
 ];
 
@@ -55,7 +55,7 @@ const tonePreviewContent: Record<
     quizCorrect: "Exactly right. You're getting this.",
     quizWrong:
       "Not quite. Here's another way to think about it. The chapter emphasizes listening over persuasion.",
-    borderColor: "#3ECFB2",
+    borderColor: "var(--accent-cyan)",
   },
   direct: {
     paragraph:
@@ -63,7 +63,7 @@ const tonePreviewContent: Record<
     quizCorrect: "Correct.",
     quizWrong:
       "Wrong. The principle says listening comes first, not persuasion.",
-    borderColor: "#5B8DEF",
+    borderColor: "var(--accent-cyan)",
   },
   competitive: {
     paragraph:
@@ -72,7 +72,7 @@ const tonePreviewContent: Record<
       "That's the move. You're ahead of 90% of people.",
     quizWrong:
       "Miss. That's the average answer. The real edge here is listening, not persuading.",
-    borderColor: "#FF8C42",
+    borderColor: "var(--accent-amber)",
   },
 };
 
@@ -212,8 +212,8 @@ export default function StepTone({ onNext }: StepToneProps) {
               padding: "14px 40px",
               minHeight: 48,
               borderRadius: 12,
-              backgroundColor: "#3BD4A0",
-              color: "#0A0E1A",
+              backgroundColor: "var(--accent-emerald)",
+              color: "var(--bg-base)",
               fontFamily: "var(--font-dm-sans, sans-serif)",
               fontSize: 16,
               fontWeight: 600,
@@ -222,7 +222,7 @@ export default function StepTone({ onNext }: StepToneProps) {
               outline: "none",
               marginTop: 24,
               width: "100%",
-              boxShadow: "0 0 20px rgba(59,212,160,0.25)",
+              boxShadow: "0 0 20px color-mix(in srgb, var(--accent-emerald) 25%, transparent)",
               transition: "filter 0.15s",
             }}
             onMouseEnter={(e) => { e.currentTarget.style.filter = "brightness(1.1)"; }}
@@ -328,13 +328,13 @@ export default function StepTone({ onNext }: StepToneProps) {
                     <div style={{ display: "flex", alignItems: "flex-start", gap: 8 }}>
                       <CheckCircle
                         size={16}
-                        style={{ color: "#3ECFB2", marginTop: 2, flexShrink: 0 }}
+                        style={{ color: "var(--accent-cyan)", marginTop: 2, flexShrink: 0 }}
                       />
                       <p
                         style={{
                           fontFamily: "var(--font-dm-sans, sans-serif)",
                           fontSize: 14,
-                          color: "#3ECFB2",
+                          color: "var(--accent-cyan)",
                           lineHeight: 1.5,
                           margin: 0,
                         }}
@@ -345,13 +345,13 @@ export default function StepTone({ onNext }: StepToneProps) {
                     <div style={{ display: "flex", alignItems: "flex-start", gap: 8 }}>
                       <XCircle
                         size={16}
-                        style={{ color: "rgb(248,113,113)", marginTop: 2, flexShrink: 0 }}
+                        style={{ color: "var(--accent-rose)", marginTop: 2, flexShrink: 0 }}
                       />
                       <p
                         style={{
                           fontFamily: "var(--font-dm-sans, sans-serif)",
                           fontSize: 14,
-                          color: "rgb(248,113,113)",
+                          color: "var(--accent-rose)",
                           lineHeight: 1.5,
                           margin: 0,
                         }}

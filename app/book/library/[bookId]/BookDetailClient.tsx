@@ -8,6 +8,7 @@ import { ChevronRight, Search } from "lucide-react";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
 import { TopNav } from "@/app/book/home/components/TopNav";
 import { InfoModal } from "@/app/book/home/components/InfoModal";
+import { PageTransition } from "@/components/ui/PageTransition";
 import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
 import { useKeyboardShortcut } from "@/app/book/hooks/useKeyboardShortcut";
 import { useSavedBooks } from "@/app/book/hooks/useSavedBooks";
@@ -255,6 +256,7 @@ export function BookDetailClient({
       />
 
       {/* All content in relative z-10 to sit above gradient orbs */}
+      <PageTransition>
       <section className="relative z-10 mx-auto w-full max-w-450 px-4 pb-28 pt-6 sm:px-6 md:pb-24 lg:px-10 xl:px-16">
         {/* Breadcrumb */}
         <nav className="mb-6 flex items-center gap-2 text-sm">
@@ -365,7 +367,7 @@ export function BookDetailClient({
               to avoid the disappearing-cards bug. All cards stay in the DOM;
               visibility is controlled purely by inline styles. */}
           <div
-            className="flex flex-col gap-3"
+            className="flex flex-col"
             role="tabpanel"
             aria-label="Chapter list"
           >
@@ -373,6 +375,15 @@ export function BookDetailClient({
               const status = getCardStatus(chapter);
               const isCurrent = status === "in-progress";
               const isVisible = matchesFilter(chapter);
+              const isLocked = status === "locked" || status === "next-unlockable";
+
+              // Progressive opacity for locked chapters: closest to active = 0.7, then 0.6, then 0.5
+              let lockedOpacity = 1;
+              if (isLocked) {
+                const activeIdx = chapters.findIndex((c) => getCardStatus(c) === "in-progress");
+                const distance = activeIdx >= 0 ? index - activeIdx : index;
+                lockedOpacity = Math.max(0.5, 0.8 - distance * 0.1);
+              }
 
               return (
                 <div
@@ -381,11 +392,14 @@ export function BookDetailClient({
                   className="transition-all duration-300 ease-in-out"
                   style={{
                     maxHeight: isVisible ? "200px" : "0px",
-                    opacity: isVisible ? 1 : 0,
+                    opacity: isVisible ? (isLocked ? lockedOpacity : 1) : 0,
                     marginBottom: isVisible ? "0px" : "-12px",
                     overflow: "hidden",
                     pointerEvents: isVisible ? "auto" : "none",
                     transform: isVisible ? "scale(1)" : "scale(0.98)",
+                    borderTop: index > 0 && isVisible ? "1px solid var(--cf-border)" : "none",
+                    paddingTop: index > 0 && isVisible ? "12px" : "0px",
+                    paddingBottom: isVisible ? "12px" : "0px",
                     // Stagger entrance animation on initial page load
                     ...(hasLoaded
                       ? {}
@@ -450,6 +464,7 @@ export function BookDetailClient({
           />
         </motion.div>
       </section>
+      </PageTransition>
 
       {/* Mobile sticky CTA */}
       {currentChapter && (
@@ -506,7 +521,7 @@ export function BookDetailClient({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.2 }}
-            className="cf-panel-strong fixed bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-xl px-5 py-3 text-sm text-(--cf-text-1) shadow-2xl"
+            className="cf-panel-strong fixed bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-xl px-5 py-3 text-sm text-(--cf-text-1) shadow-shadow-book"
           >
             {lockedToast}
           </motion.div>

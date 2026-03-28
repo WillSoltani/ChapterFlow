@@ -58,24 +58,26 @@ export function CuratedSection({
           >
             {narrativeTitle}
           </h2>
-          {/* "See all" link — Autonomy (SDT) */}
+          {/* "See all" ghost button — Autonomy (SDT) */}
           <button
             type="button"
-            className="cursor-pointer text-[13px] font-medium transition-colors"
-            style={{ color: "var(--text-muted)" }}
+            className="cursor-pointer rounded-lg px-3 py-1.5 text-[13px] font-medium transition-colors"
+            style={{
+              color: "var(--accent-cyan)",
+              border: "1px solid var(--accent-cyan)",
+              background: "transparent",
+            }}
             onClick={() => {
               document.getElementById("browse-all")?.scrollIntoView({ behavior: "smooth" });
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent-teal)")}
-            onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-muted)")}
           >
-            See all →
+            Show all
           </button>
         </div>
         <p className="mt-1 text-[14px]" style={{ color: "var(--text-secondary)" }}>
           {narrativeSubtitle}
         </p>
-        <p className="mt-1 text-[12px]" style={{ color: "var(--text-muted)" }}>
+        <p className="mt-1 text-[12px]" style={{ color: "var(--text-tertiary)" }}>
           {books.length} books · Avg. ~{formatReadingTime(avgTime)} · Mostly {mostCommon}
         </p>
       </motion.div>

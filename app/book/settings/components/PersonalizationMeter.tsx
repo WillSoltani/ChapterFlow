@@ -55,8 +55,8 @@ export function PersonalizationMeter({
           className={cn(
             "relative h-full rounded-full",
             isComplete
-              ? "bg-gradient-to-r from-emerald-400 to-emerald-500"
-              : "bg-gradient-to-r from-cyan-400 to-emerald-400"
+              ? "bg-gradient-to-r from-accent-emerald to-accent-emerald"
+              : "bg-gradient-to-r from-[var(--accent-emerald)] to-[var(--accent-cyan)]"
           )}
         >
           {/* Shimmer overlay on the filled bar */}

@@ -46,7 +46,7 @@ export function SessionModeOverlay({ onDone }: Props) {
   return (
     <div className="fixed inset-0 z-40 flex items-center justify-center bg-(--cf-overlay) px-4 sm:px-6">
       <div className="w-full max-w-sm">
-        <div className="rounded-[28px] border border-(--cf-accent-border) bg-(--cf-surface-strong) p-6 shadow-2xl">
+        <div className="rounded-[28px] border border-(--cf-accent-border) bg-(--cf-surface-strong) p-6 shadow-shadow-book">
           <div className="text-center">
             <p className="text-xs font-medium uppercase tracking-[0.18em] text-(--cf-accent)">
               Session Mode

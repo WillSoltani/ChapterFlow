@@ -120,7 +120,7 @@ export function RefreshPreferencesModal({
       <motion.div
         initial={reducedMotion ? false : { y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        className="relative w-full max-w-lg rounded-t-3xl sm:rounded-3xl bg-(--cf-surface-strong) border border-(--cf-border) p-6 shadow-xl overflow-hidden"
+        className="relative w-full max-w-lg rounded-t-3xl sm:rounded-3xl bg-(--cf-surface-strong) border border-(--cf-border) p-6 shadow-shadow-elevated overflow-hidden"
       >
         <button
           type="button"

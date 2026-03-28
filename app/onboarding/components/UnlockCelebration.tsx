@@ -22,27 +22,27 @@ export default function UnlockCelebration({
       icon: Flame,
       value: "1",
       label: "Day streak",
-      iconColor: "#FF8C42",
-      valueColor: "#FF8C42",
-      glowBg: "rgba(255,140,66,0.12)",
+      iconColor: "var(--accent-amber)",
+      valueColor: "var(--accent-amber)",
+      glowBg: "color-mix(in srgb, var(--accent-amber) 12%, transparent)",
       delay: 1.0,
     },
     {
       icon: Star,
       value: "25",
       label: "Flow Points",
-      iconColor: "#E8B931",
-      valueColor: "#E8B931",
-      glowBg: "rgba(232,185,49,0.12)",
+      iconColor: "var(--accent-amber)",
+      valueColor: "var(--accent-amber)",
+      glowBg: "color-mix(in srgb, var(--accent-amber) 12%, transparent)",
       delay: 1.15,
     },
     {
       icon: BarChart3,
       value: `${quizScore}/2`,
       label: "Quiz score",
-      iconColor: "#3ECFB2",
-      valueColor: "#3ECFB2",
-      glowBg: "rgba(45,212,191,0.12)",
+      iconColor: "var(--accent-cyan)",
+      valueColor: "var(--accent-cyan)",
+      glowBg: "color-mix(in srgb, var(--accent-cyan) 12%, transparent)",
       delay: 1.3,
     },
   ];
@@ -73,7 +73,7 @@ export default function UnlockCelebration({
           width: 200,
           height: 200,
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(62,207,178,0.15) 0%, transparent 70%)",
+          background: "radial-gradient(circle, color-mix(in srgb, var(--accent-cyan) 15%, transparent) 0%, transparent 70%)",
         }}
         initial={{ opacity: 1, scale: 0.8 }}
         animate={{ opacity: 0, scale: 1.5 }}
@@ -235,8 +235,8 @@ export default function UnlockCelebration({
             fontFamily: "var(--font-dm-sans, sans-serif)",
             fontSize: 17,
             fontWeight: 600,
-            color: "#0A0E1A",
-            background: "#3BD4A0",
+            color: "var(--bg-base)",
+            background: "var(--accent-emerald)",
             border: "none",
             borderRadius: 12,
             cursor: "pointer",
@@ -252,8 +252,8 @@ export default function UnlockCelebration({
 
           <style>{`
             @keyframes celebrationBreathe {
-              0%, 100% { box-shadow: 0 0 15px rgba(59,212,160,0.2); }
-              50% { box-shadow: 0 0 28px rgba(59,212,160,0.4); }
+              0%, 100% { box-shadow: 0 0 15px color-mix(in srgb, var(--accent-emerald) 20%, transparent); }
+              50% { box-shadow: 0 0 28px color-mix(in srgb, var(--accent-emerald) 40%, transparent); }
             }
             .celebration-cta {
               animation: celebrationBreathe 2.5s ease-in-out infinite;

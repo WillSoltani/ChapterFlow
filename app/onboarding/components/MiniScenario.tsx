@@ -22,9 +22,9 @@ export default function MiniScenario({ onContinue }: MiniScenarioProps) {
   const scenario = FIRST_LOOP_CONTENT.scenarios[scenarioType];
 
   const sections = [
-    { label: "THE SITUATION", text: scenario.situation, color: "#5B8DEF" },
-    { label: "WHAT TO DO", text: scenario.whatToDo, color: "#3ECFB2" },
-    { label: "WHY IT MATTERS", text: scenario.whyItMatters, color: "#FF8C42" },
+    { label: "THE SITUATION", text: scenario.situation, color: "var(--accent-cyan)" },
+    { label: "WHAT TO DO", text: scenario.whatToDo, color: "var(--accent-cyan)" },
+    { label: "WHY IT MATTERS", text: scenario.whyItMatters, color: "var(--accent-amber)" },
   ];
 
   return (
@@ -89,8 +89,8 @@ export default function MiniScenario({ onContinue }: MiniScenarioProps) {
             fontFamily: "var(--font-dm-sans, sans-serif)",
             fontSize: 16,
             fontWeight: 600,
-            color: "#0A0E1A",
-            background: "#3BD4A0",
+            color: "var(--bg-base)",
+            background: "var(--accent-emerald)",
             border: "none",
             borderRadius: "var(--radius-md-val, 12px)",
             cursor: "pointer",
@@ -98,7 +98,7 @@ export default function MiniScenario({ onContinue }: MiniScenarioProps) {
             alignItems: "center",
             justifyContent: "center",
             gap: 8,
-            boxShadow: "0 0 20px rgba(59,212,160,0.25)",
+            boxShadow: "0 0 20px color-mix(in srgb, var(--accent-emerald) 25%, transparent)",
             transition: "filter 0.15s, transform 0.15s",
           }}
           onMouseEnter={(e) => {

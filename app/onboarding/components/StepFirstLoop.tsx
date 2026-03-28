@@ -54,13 +54,13 @@ function SubStepIndicator({ current }: { current: SubStep }) {
               padding: "5px 12px",
               borderRadius: 999,
               background: isActive
-                ? "rgba(79,139,255,0.15)"
+                ? "color-mix(in srgb, var(--accent-cyan) 15%, transparent)"
                 : "var(--cf-surface)",
               border: isActive
-                ? "1px solid rgba(79,139,255,0.3)"
+                ? "1px solid color-mix(in srgb, var(--accent-cyan) 30%, transparent)"
                 : "1px solid var(--cf-border)",
               color: isActive
-                ? "#5B8DEF"
+                ? "var(--accent-cyan)"
                 : isCompleted
                   ? "var(--accent-teal)"
                   : "var(--cf-text-soft)",

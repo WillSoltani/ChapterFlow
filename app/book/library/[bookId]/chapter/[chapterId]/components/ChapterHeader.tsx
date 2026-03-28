@@ -5,12 +5,18 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ChevronDown, Focus, NotebookPen } from "lucide-react";
 import { FontSizeControls } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/FontSizeControls";
 import type { FontScale } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterState";
-import type { LearningMode } from "@/app/book/settings/types/settings";
+import type { LearningMode, ContentTone } from "@/app/book/settings/types/settings";
 
 const MODE_LABELS: Record<LearningMode, { icon: string; label: string }> = {
   guided: { icon: "\uD83C\uDF31", label: "Guided" },
   standard: { icon: "\uD83D\uDCDA", label: "Standard" },
   challenge: { icon: "\uD83C\uDFC6", label: "Challenge" },
+};
+
+const TONE_LABELS: Record<ContentTone, { icon: string; label: string }> = {
+  gentle: { icon: "\u2615", label: "Gentle" },
+  direct: { icon: "\u26A1", label: "Direct" },
+  competitive: { icon: "\uD83D\uDD25", label: "Competitive" },
 };
 
 type ChapterHeaderProps = {
@@ -30,6 +36,8 @@ type ChapterHeaderProps = {
   trackedMinutesToday?: number;
   learningMode?: LearningMode;
   onChangeLearningMode?: (mode: LearningMode) => void;
+  contentTone?: ContentTone;
+  onChangeContentTone?: (tone: ContentTone) => void;
 };
 
 export function ChapterHeader({
@@ -49,10 +57,15 @@ export function ChapterHeader({
   trackedMinutesToday = 0,
   learningMode = "standard",
   onChangeLearningMode,
+  contentTone = "gentle",
+  onChangeContentTone,
 }: ChapterHeaderProps) {
   const modeInfo = MODE_LABELS[learningMode];
+  const toneInfo = TONE_LABELS[contentTone];
   const [modeDropdownOpen, setModeDropdownOpen] = useState(false);
+  const [toneDropdownOpen, setToneDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const toneDropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!modeDropdownOpen) return;
@@ -64,6 +77,17 @@ export function ChapterHeader({
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
   }, [modeDropdownOpen]);
+
+  useEffect(() => {
+    if (!toneDropdownOpen) return;
+    const handler = (e: MouseEvent) => {
+      if (toneDropdownRef.current && !toneDropdownRef.current.contains(e.target as Node)) {
+        setToneDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [toneDropdownOpen]);
   return (
     <header className="space-y-4">
       {/* Breadcrumb row */}
@@ -96,7 +120,7 @@ export function ChapterHeader({
                     ? "bg-(--cr-accent)"
                     : i + 1 < chapterOrder
                       ? "bg-(--cr-accent)/40"
-                      : "bg-[rgba(255,255,255,0.15)]",
+                      : "bg-(--cr-fill-muted)",
                 ].join(" ")}
               />
             ))}
@@ -173,6 +197,65 @@ export function ChapterHeader({
               )}
             </div>
           )}
+
+          {/* Content tone dropdown */}
+          {!focusMode && (
+            <div ref={toneDropdownRef} className="relative">
+              <button
+                type="button"
+                onClick={() => setToneDropdownOpen((prev) => !prev)}
+                className="inline-flex items-center gap-1.5 rounded-full border border-(--cr-glass-border) bg-(--cr-glass-nav) px-3 py-1 text-xs text-(--cr-text-secondary) transition hover:border-(--cr-accent)/30 hover:text-(--cr-text-primary)"
+                aria-expanded={toneDropdownOpen}
+                aria-haspopup="true"
+              >
+                <span>{toneInfo.icon}</span>
+                <span className="hidden sm:inline">{toneInfo.label}</span>
+                <ChevronDown className={["h-3 w-3 opacity-50 transition-transform", toneDropdownOpen ? "rotate-180" : ""].join(" ")} />
+              </button>
+
+              {toneDropdownOpen && (
+                <div className="absolute right-0 top-full z-40 mt-2 w-64 rounded-xl border border-(--cr-glass-border) bg-(--cr-bg-surface-2) p-3 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+                  <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.14em] text-(--cr-text-disabled)">
+                    Content Tone
+                  </p>
+                  {(["gentle", "direct", "competitive"] as const).map((tone) => {
+                    const info = TONE_LABELS[tone];
+                    const active = tone === contentTone;
+                    const descriptions: Record<string, string> = {
+                      gentle: "Warm, curious, invitational",
+                      direct: "Clean, efficient, with a slight edge",
+                      competitive: "Energizing, challenge-driven",
+                    };
+                    return (
+                      <button
+                        key={tone}
+                        type="button"
+                        onClick={() => {
+                          onChangeContentTone?.(tone);
+                          setToneDropdownOpen(false);
+                        }}
+                        className={[
+                          "flex w-full items-start gap-2.5 rounded-lg px-3 py-2 text-left transition",
+                          active
+                            ? "bg-(--cr-accent-muted) text-(--cr-accent)"
+                            : "text-(--cr-text-secondary) hover:bg-(--cr-bg-surface-3)",
+                        ].join(" ")}
+                      >
+                        <span className="mt-0.5 text-sm">{info.icon}</span>
+                        <div>
+                          <p className={["text-xs font-semibold", active ? "text-(--cr-accent)" : "text-(--cr-text-primary)"].join(" ")}>
+                            {info.label}
+                          </p>
+                          <p className="mt-0.5 text-[11px] text-(--cr-text-disabled)">{descriptions[tone]}</p>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          )}
+
           <button
             type="button"
             onClick={onToggleFocus}

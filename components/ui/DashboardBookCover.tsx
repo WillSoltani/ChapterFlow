@@ -15,14 +15,13 @@ export function DashboardBookCover({
 }: DashboardBookCoverProps) {
   return (
     <div
-      className={`flex flex-shrink-0 items-center justify-center ${className}`}
+      className={`flex shrink-0 items-center justify-center shadow-shadow-book ${className}`}
       style={{
         width,
         height,
+        aspectRatio: "2/3",
         background: gradient,
-        borderRadius: "var(--radius-md-val)",
-        boxShadow:
-          "0 6px 20px rgba(0,0,0,0.5), 0 0 1px rgba(255,255,255,0.1) inset",
+        borderRadius: "4px",
       }}
     >
       <span

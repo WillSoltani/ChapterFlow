@@ -50,7 +50,7 @@ export function MicroCelebration({ event, reducedMotion }: MicroCelebrationProps
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="pointer-events-none fixed bottom-20 left-1/2 z-50 -translate-x-1/2"
         >
-          <div className="flex items-center gap-2 rounded-full bg-(--cf-surface-strong) border border-(--cf-border) px-4 py-2 shadow-lg backdrop-blur-xl">
+          <div className="flex items-center gap-2 rounded-full bg-(--cf-surface-strong) border border-(--cf-border) px-4 py-2 shadow-shadow-elevated backdrop-blur-xl">
             <span className={currentEvent === "score-100" ? "text-xl" : "text-lg"}>
               {config.emoji}
             </span>

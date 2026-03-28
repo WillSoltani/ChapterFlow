@@ -105,7 +105,7 @@ export function ActiveReads({ books, onBookClick }: ActiveReadsProps) {
                 >
                   <ProgressRing
                     percent={prog.percentComplete}
-                    size={44}
+                    size={48}
                     strokeWidth={4}
                     showLabel
                     delay={900 + i * 150}
@@ -135,26 +135,30 @@ export function ActiveReads({ books, onBookClick }: ActiveReadsProps) {
                 </div>
 
                 <div className="mt-2">
-                  {/* Microcopy — color matches ring (Change 2) */}
-                  <p className="text-[12px]" style={{ color: getProgressColor(prog.percentComplete) }}>
+                  {/* Microcopy — emerald for "more than halfway", cyan for "just getting started" */}
+                  <p className="text-[12px]" style={{ color: prog.percentComplete >= 50 ? "var(--accent-emerald)" : "var(--accent-cyan)" }}>
                     {getProgressMicrocopy(prog.percentComplete, chaptersLeft)}
                   </p>
 
                   {/* Last read with urgency color + Resume + "reading now" */}
                   <div className="mt-2 flex items-center justify-between">
                     <div className="flex flex-col">
-                      <span className="text-[11px]" style={{ color: urgencyColor }}>
+                      <span className="text-[11px]" style={{ color: "var(--text-tertiary)" }}>
                         {lastReadText}
                       </span>
                       {/* Social proof: reading now indicator on most recent */}
                       {isMostRecent && (
-                        <span className="mt-0.5 flex items-center gap-1 text-[10px]" style={{ color: "var(--text-muted)" }}>
-                          <span
-                            className="inline-block h-1.5 w-1.5 rounded-full"
+                        <span className="mt-0.5 flex items-center gap-1 text-[10px]" style={{ color: "var(--text-tertiary)" }}>
+                          <motion.span
+                            className="inline-block rounded-full"
                             style={{
-                              background: "var(--accent-teal)",
-                              boxShadow: "0 0 4px var(--accent-teal)",
+                              width: 6,
+                              height: 6,
+                              background: "var(--accent-emerald)",
+                              boxShadow: "0 0 4px var(--accent-emerald)",
                             }}
+                            animate={{ scale: [1, 1.3, 1] }}
+                            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                           />
                           12 people reading now
                         </span>
@@ -162,7 +166,7 @@ export function ActiveReads({ books, onBookClick }: ActiveReadsProps) {
                     </div>
                     <span
                       className="text-[13px] font-semibold transition-colors"
-                      style={{ color: "var(--accent-teal)" }}
+                      style={{ color: "var(--accent-cyan)" }}
                     >
                       Resume
                       <span className="ml-0.5 inline-block transition-transform duration-200 group-hover:translate-x-0.5">

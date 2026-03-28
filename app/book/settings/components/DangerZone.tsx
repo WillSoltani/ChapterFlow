@@ -99,7 +99,7 @@ export function DangerZone({ onDeactivate, onDelete, reducedMotion }: DangerZone
               initial={reducedMotion ? false : { scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={reducedMotion ? undefined : { scale: 0.95, opacity: 0 }}
-              className="relative w-full max-w-md rounded-3xl bg-(--cf-surface-strong) border border-(--cf-border) p-6 shadow-xl"
+              className="relative w-full max-w-md rounded-3xl bg-(--cf-surface-strong) border border-(--cf-border) p-6 shadow-shadow-elevated"
             >
               <h3 className="text-lg font-bold text-(--cf-text-1)">
                 Deactivate your account?
@@ -147,7 +147,7 @@ export function DangerZone({ onDeactivate, onDelete, reducedMotion }: DangerZone
               initial={reducedMotion ? false : { scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={reducedMotion ? undefined : { scale: 0.95, opacity: 0 }}
-              className="relative w-full max-w-md rounded-3xl bg-(--cf-surface-strong) border border-(--cf-border) p-6 shadow-xl"
+              className="relative w-full max-w-md rounded-3xl bg-(--cf-surface-strong) border border-(--cf-border) p-6 shadow-shadow-elevated"
             >
               <button
                 type="button"

@@ -21,11 +21,11 @@ export function WeeklyMomentumStrip({
   const today = (new Date().getDay() + 6) % 7; // Mon=0, Sun=6
 
   // Build dynamic stats — only show non-zero
-  const stats: string[] = [];
+  const stats: { text: string; highlight?: string }[] = [];
   if (chaptersCompleted > 0)
-    stats.push(`${chaptersCompleted} chapter${chaptersCompleted !== 1 ? "s" : ""} this week`);
-  if (quizAverage !== null) stats.push(`${quizAverage}% quiz avg`);
-  if (streakCount > 0) stats.push(`${streakCount} day streak`);
+    stats.push({ text: `${chaptersCompleted} chapter${chaptersCompleted !== 1 ? "s" : ""} this week` });
+  if (quizAverage !== null) stats.push({ text: `${quizAverage}% quiz avg`, highlight: "var(--accent-emerald)" });
+  if (streakCount > 0) stats.push({ text: `${streakCount} day streak`, highlight: "var(--accent-amber)" });
 
   return (
     <motion.div
@@ -79,17 +79,22 @@ export function WeeklyMomentumStrip({
                       width: 10,
                       height: 10,
                       background: isActive
-                        ? "var(--cf-accent)"
-                        : "var(--cf-surface-strong)",
+                        ? "var(--accent-emerald)"
+                        : isToday
+                          ? "transparent"
+                          : "var(--text-tertiary)",
+                      border: isToday && !isActive
+                        ? "2px solid var(--accent-cyan)"
+                        : "none",
                       boxShadow: isActive
-                        ? "0 0 8px 2px rgba(124, 58, 237, 0.55)"
+                        ? "0 0 8px 2px rgba(16, 185, 129, 0.55)"
                         : "none",
                     }}
                   />
                   {isToday && !isActive && !prefersReducedMotion && (
                     <motion.div
                       className="absolute inset-0 rounded-full"
-                      style={{ border: "1px solid rgba(124,58,237,0.4)" }}
+                      style={{ border: "1px solid rgba(34,211,238,0.4)" }}
                       animate={{ scale: [1, 1.6, 1], opacity: [0.5, 0, 0.5] }}
                       transition={{ duration: 2, repeat: Infinity }}
                     />
@@ -97,7 +102,7 @@ export function WeeklyMomentumStrip({
                   {isToday && isActive && (
                     <div
                       className="absolute -bottom-1 left-1/2 h-[2px] w-[2px] -translate-x-1/2 rounded-full"
-                      style={{ background: "var(--cf-accent)" }}
+                      style={{ background: "var(--accent-cyan)" }}
                     />
                   )}
                 </div>
@@ -110,8 +115,8 @@ export function WeeklyMomentumStrip({
         {stats.length > 0 && (
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
             {stats.map((stat, i) => (
-              <span key={i} className="text-xs" style={{ color: "var(--cf-text-3)" }}>
-                {stat}
+              <span key={i} className="text-xs" style={{ color: stat.highlight || "var(--cf-text-3)", fontVariantNumeric: "tabular-nums" }}>
+                {stat.text}
                 {i < stats.length - 1 && (
                   <span className="ml-3" style={{ color: "var(--cf-text-soft)" }}>
                     ·

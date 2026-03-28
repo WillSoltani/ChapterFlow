@@ -619,7 +619,7 @@ export function BookOnboardingClient() {
   const step = Math.min(state.currentStep, TOTAL_STEPS - 1);
   const firstName = getFirstName(identity);
   const previewBook =
-    getBookById("atomic-habits") ??
+    getBookById("the-48-laws-of-power") ??
     getBookById(state.selectedBookIds[0] || "") ??
     BOOKS_CATALOG[0]!;
 

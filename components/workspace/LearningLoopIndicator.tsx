@@ -67,7 +67,7 @@ export function LearningLoopIndicator({
                   <motion.div
                     className="absolute inset-0 rounded-full"
                     style={{ background: "var(--cf-accent)" }}
-                    animate={{ scale: [1, 1.3, 1], opacity: [1, 0.6, 1] }}
+                    animate={{ scale: [1, 1.15, 1], opacity: [1, 0.7, 1] }}
                     transition={{
                       duration: 2,
                       repeat: Infinity,

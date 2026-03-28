@@ -1,9 +1,9 @@
 const scenarios = [
   {
     tag: "WORK",
-    tagColor: "#FF8C42",
-    tagBg: "rgba(255,140,66,0.08)",
-    tagBorder: "rgba(255,140,66,0.15)",
+    tagColor: "var(--accent-amber)",
+    tagBg: "rgba(245,158,11,0.08)",
+    tagBorder: "rgba(245,158,11,0.15)",
     situation:
       "You are in a team meeting and a colleague is explaining a project delay. Your instinct is to jump in with solutions before they finish talking.",
     whatToDo:
@@ -13,9 +13,9 @@ const scenarios = [
   },
   {
     tag: "WORK",
-    tagColor: "#FF8C42",
-    tagBg: "rgba(255,140,66,0.08)",
-    tagBorder: "rgba(255,140,66,0.15)",
+    tagColor: "var(--accent-amber)",
+    tagBg: "rgba(245,158,11,0.08)",
+    tagBorder: "rgba(245,158,11,0.15)",
     situation:
       "You are meeting a new client for the first time. You prepared a 20 slide pitch about your company's capabilities.",
     whatToDo:
@@ -26,8 +26,8 @@ const scenarios = [
   {
     tag: "SCHOOL",
     tagColor: "var(--accent-blue)",
-    tagBg: "rgba(79,139,255,0.08)",
-    tagBorder: "rgba(79,139,255,0.15)",
+    tagBg: "rgba(34,211,238,0.08)",
+    tagBorder: "rgba(34,211,238,0.15)",
     situation:
       "Your study partner is struggling with a concept and keeps explaining their confusion in circles. You understood it hours ago and want to just give them the answer.",
     whatToDo:
@@ -38,8 +38,8 @@ const scenarios = [
   {
     tag: "SCHOOL",
     tagColor: "var(--accent-blue)",
-    tagBg: "rgba(79,139,255,0.08)",
-    tagBorder: "rgba(79,139,255,0.15)",
+    tagBg: "rgba(34,211,238,0.08)",
+    tagBorder: "rgba(34,211,238,0.15)",
     situation:
       "A professor gives you critical feedback on your paper. Your first reaction is to defend your argument and explain what they missed.",
     whatToDo:
@@ -50,8 +50,8 @@ const scenarios = [
   {
     tag: "PERSONAL",
     tagColor: "var(--accent-teal)",
-    tagBg: "rgba(45,212,191,0.08)",
-    tagBorder: "rgba(45,212,191,0.15)",
+    tagBg: "rgba(34,211,238,0.08)",
+    tagBorder: "rgba(34,211,238,0.15)",
     situation:
       "Your partner comes home frustrated about their day. You immediately start offering solutions and ways to fix the problem.",
     whatToDo:
@@ -62,8 +62,8 @@ const scenarios = [
   {
     tag: "PERSONAL",
     tagColor: "var(--accent-teal)",
-    tagBg: "rgba(45,212,191,0.08)",
-    tagBorder: "rgba(45,212,191,0.15)",
+    tagBg: "rgba(34,211,238,0.08)",
+    tagBorder: "rgba(34,211,238,0.15)",
     situation:
       "You are at a family dinner and your uncle starts talking about a topic you strongly disagree with. You feel the urge to debate.",
     whatToDo:

@@ -35,10 +35,10 @@ export function KnowledgeReview({
   // Determine counter color
   const counterColor =
     reviews.overdueCount > 0
-      ? "var(--cf-danger-text)"
+      ? "var(--accent-rose)"
       : reviews.dueTodayCount > 0
-        ? "var(--accent-gold)"
-        : "var(--cf-success-text)";
+        ? "var(--accent-amber)"
+        : "var(--accent-emerald)";
 
   const bookHref = firstActiveBook
     ? `/book/library/${encodeURIComponent(firstActiveBook.id)}`
@@ -93,7 +93,7 @@ export function KnowledgeReview({
             </p>
             <Link
               href={bookHref}
-              className="mt-4 inline-flex cursor-pointer items-center gap-1.5 rounded-xl px-5 py-2.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50"
+              className="mt-4 inline-flex cursor-pointer items-center gap-1.5 rounded-xl px-5 py-2.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan/50"
               style={{
                 color: "var(--text-secondary)",
                 border: "1px solid var(--cf-border-strong)",
@@ -124,7 +124,11 @@ export function KnowledgeReview({
                 className="text-sm"
                 style={{ color: "var(--text-secondary)" }}
               >
-                {totalDue === 0 ? "all caught up!" : "concepts to review today"}
+                {totalDue === 0
+                  ? "all caught up!"
+                  : totalDue === 1
+                    ? "concept to review today"
+                    : "concepts to review today"}
               </span>
             </div>
 
@@ -147,20 +151,22 @@ export function KnowledgeReview({
                   className="rounded-full px-3 py-1 text-xs font-medium"
                   style={{
                     background: "rgba(245,158,11,0.1)",
-                    color: "var(--cf-amber-text)",
+                    color: "var(--accent-amber)",
                     border: "1px solid rgba(245,158,11,0.2)",
                   }}
                 >
-                  {reviews.dueTodayCount} due today
+                  {reviews.dueTodayCount === 1
+                    ? "1 due today"
+                    : `${reviews.dueTodayCount} due today`}
                 </span>
               )}
               {reviews.upcomingThisWeekCount > 0 && (
                 <span
                   className="rounded-full px-3 py-1 text-xs font-medium"
                   style={{
-                    background: "rgba(52,211,153,0.1)",
-                    color: "var(--cf-success-text)",
-                    border: "1px solid rgba(52,211,153,0.2)",
+                    background: "rgba(34,211,238,0.1)",
+                    color: "var(--accent-cyan)",
+                    border: "1px solid rgba(34,211,238,0.2)",
                   }}
                 >
                   {reviews.upcomingThisWeekCount} upcoming
@@ -172,13 +178,13 @@ export function KnowledgeReview({
             {totalDue > 0 && (
               <button
                 type="button"
-                className="cursor-pointer rounded-xl px-5 py-2.5 text-sm font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/50"
+                className="cursor-pointer rounded-xl px-5 py-2.5 text-sm font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan/50"
                 style={{
-                  background: "linear-gradient(135deg, var(--accent-gold), var(--accent-gold))",
-                  color: "var(--cf-page-bg)",
+                  background: "var(--accent-cyan)",
+                  color: "#fff",
                   width: "fit-content",
-                  border: "1px solid rgba(245,158,11,0.3)",
-                  boxShadow: "0 4px 12px rgba(245,158,11,0.2)",
+                  border: "1px solid rgba(34,211,238,0.3)",
+                  boxShadow: "0 4px 12px rgba(34,211,238,0.25)",
                 }}
               >
                 Start Review {"\u2192"}

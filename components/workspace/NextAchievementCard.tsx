@@ -46,7 +46,7 @@ export function NextAchievementCard({
             width: 48,
             height: 48,
             background:
-              "linear-gradient(135deg, rgba(124,58,237,0.15), rgba(245,158,11,0.12))",
+              "linear-gradient(135deg, rgba(139,92,246,0.15), rgba(245,158,11,0.12))",
             border: "1px solid var(--cf-border-strong)",
             boxShadow:
               "inset 0 1px 0 var(--cf-border-strong), 0 0 15px -4px rgba(245,158,11,0.25)",
@@ -85,7 +85,8 @@ export function NextAchievementCard({
               <motion.div
                 className="h-full rounded-full"
                 style={{
-                  background: "linear-gradient(90deg, #F59E0B, #D97706)",
+                  background: "linear-gradient(90deg, var(--accent-amber), #D97706)",
+                  ...(progress > 80 ? { animation: "achievement-pulse-edge 2s ease-in-out infinite" } : {}),
                 }}
                 initial={prefersReducedMotion ? undefined : { width: 0 }}
                 whileInView={{ width: `${progress}%` }}
@@ -109,7 +110,7 @@ export function NextAchievementCard({
 
       <Link
         href="/book/badges"
-        className="mt-4 block text-xs font-medium transition-colors hover:text-violet-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400"
+        className="mt-4 block text-xs font-medium transition-colors hover:text-accent-violet focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400"
         style={{ color: "var(--cf-accent)" }}
       >
         View All Achievements →

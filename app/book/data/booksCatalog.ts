@@ -41,11 +41,7 @@ export function getBookById(bookId: string): BookCatalogItem | undefined {
   return BOOKS_CATALOG.find((book) => book.id === bookId);
 }
 
-const PREFER_GENERATED_COVER_IDS = new Set([
-  "pitch-anything",
-  "the-gift-of-fear",
-  "the-denial-of-death",
-]);
+const PREFER_GENERATED_COVER_IDS = new Set<string>([]);
 
 export function getBookCoverCandidates(book: Pick<BookCatalogItem, "id" | "coverImage">): string[] {
   const realFirstCandidates = [

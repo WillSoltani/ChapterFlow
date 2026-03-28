@@ -77,9 +77,9 @@ function SectionHeader(props: {
         {props.icon}
       </div>
       <div className="min-w-0">
-        <h2 className="text-xl font-semibold text-slate-50">{props.title}</h2>
+        <h2 className="text-xl font-semibold text-text-heading">{props.title}</h2>
         {props.subtitle ? (
-          <p className="mt-1 text-sm text-slate-400">{props.subtitle}</p>
+          <p className="mt-1 text-sm text-text-secondary">{props.subtitle}</p>
         ) : null}
       </div>
     </div>
@@ -112,8 +112,8 @@ function Pill(props: {
         props.className
       )}
     >
-      <span className="text-slate-400">{props.label}</span>
-      <span className="text-slate-200">{props.value}</span>
+      <span className="text-text-secondary">{props.label}</span>
+      <span className="text-text-primary">{props.value}</span>
     </div>
   );
 }
@@ -125,7 +125,7 @@ function ServiceTile(props: { name: string }) {
         <span className="inline-flex items-center rounded-lg border border-amber-400/20 bg-amber-400/10 px-3 py-1 text-sm text-amber-200">
           {props.name}
         </span>
-        <span className="text-xs text-slate-500 opacity-0 transition group-hover:opacity-100">
+        <span className="text-xs text-text-secondary opacity-0 transition group-hover:opacity-100">
           Included
         </span>
       </div>
@@ -148,7 +148,6 @@ export default async function ProjectPage({
 
   const tags = project.tags ?? [];
   const cs = project.caseStudy;
-  const canRunGuestTest = project.slug === "serverless-file-pipeline";
 
   const servicesUsed =
     typeof project.stack === "string" && project.stack.trim().length > 0
@@ -165,7 +164,7 @@ export default async function ProjectPage({
         <div className="mx-auto max-w-6xl px-4 py-3 sm:px-6">
           <Link
             href="/#projects"
-            className="inline-flex items-center gap-2 text-sm text-slate-300 hover:text-slate-100"
+            className="inline-flex items-center gap-2 text-sm text-text-primary hover:text-text-primary"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Portfolio
@@ -182,11 +181,11 @@ export default async function ProjectPage({
         -------------------------------------------------- */}
         <header className="space-y-6">
           <div className="space-y-3">
-            <h1 className="max-w-4xl text-4xl font-semibold tracking-tight text-slate-50 sm:text-5xl">
+            <h1 className="max-w-4xl text-4xl font-semibold tracking-tight text-text-heading sm:text-5xl">
               {project.title}
             </h1>
 
-            <p className="max-w-3xl text-base leading-relaxed text-slate-300">
+            <p className="max-w-3xl text-base leading-relaxed text-text-primary">
               {project.description}
             </p>
           </div>
@@ -201,7 +200,7 @@ export default async function ProjectPage({
             {project.status ? (
               <Badge
                 variant="outline"
-                className="border-white/15 bg-white/5 text-slate-200 hover:bg-white/10"
+                className="border-white/15 bg-white/5 text-text-primary hover:bg-white/10"
               >
                 {project.status}
               </Badge>
@@ -210,7 +209,7 @@ export default async function ProjectPage({
             {project.type ? (
               <Badge
                 variant="outline"
-                className="border-white/15 bg-white/5 text-slate-200 hover:bg-white/10"
+                className="border-white/15 bg-white/5 text-text-primary hover:bg-white/10"
               >
                 {project.type}
               </Badge>
@@ -238,7 +237,7 @@ export default async function ProjectPage({
               <Button
                 asChild
                 variant="outline"
-                className="border-white/15 bg-white/5 text-slate-100 hover:bg-white/10"
+                className="border-white/15 bg-white/5 text-text-primary hover:bg-white/10"
               >
                 <a href={project.githubUrl} target="_blank" rel="noreferrer">
                   <span className="inline-flex items-center gap-2">
@@ -253,7 +252,7 @@ export default async function ProjectPage({
               <Button
                 asChild
                 variant="outline"
-                className="border-white/15 bg-white/5 text-slate-100 hover:bg-white/10"
+                className="border-white/15 bg-white/5 text-text-primary hover:bg-white/10"
               >
                 <a href={project.demoUrl} target="_blank" rel="noreferrer">
                   <span className="inline-flex items-center gap-2">
@@ -264,14 +263,6 @@ export default async function ProjectPage({
               </Button>
             ) : null}
 
-            {canRunGuestTest ? (
-              <Button
-                asChild
-                className="bg-sky-600/90 text-white shadow-[0_10px_30px_rgba(2,132,199,0.3)] hover:bg-sky-500"
-              >
-                <Link href="/test">Test</Link>
-              </Button>
-            ) : null}
           </div>
         </header>
 
@@ -293,15 +284,15 @@ export default async function ProjectPage({
                     priority
                     />
                     {cs.diagram.caption ? (
-                    <p className="border-t border-white/10 px-4 py-3 text-xs text-slate-400">
+                    <p className="border-t border-white/10 px-4 py-3 text-xs text-text-secondary">
                         {cs.diagram.caption}
                     </p>
                     ) : null}
                 </div>
                 ) : (
                 <div className="flex h-60 items-center justify-center">
-                    <p className="text-sm text-slate-400">
-                    Diagram will render here (add <span className="text-slate-300">caseStudy.diagram</span>)
+                    <p className="text-sm text-text-secondary">
+                    Diagram will render here (add <span className="text-text-primary">caseStudy.diagram</span>)
                     </p>
                 </div>
                 )}
@@ -318,7 +309,7 @@ export default async function ProjectPage({
               subtitle="Constraints, scale, and what success looks like."
             />
             <SoftCard className="p-5 sm:p-6">
-              <p className="text-sm leading-relaxed text-slate-300">
+              <p className="text-sm leading-relaxed text-text-primary">
                 {cs?.overview ??
                   "Describe the real-world problem this project solves. Keep it concrete: inputs, constraints, scale, and what success looks like."}
               </p>
@@ -333,7 +324,7 @@ export default async function ProjectPage({
               subtitle="How the system works end-to-end."
             />
             <SoftCard className="p-5 sm:p-6">
-              <p className="text-sm leading-relaxed text-slate-300">
+              <p className="text-sm leading-relaxed text-text-primary">
                 {cs?.overview ??
                   "Explain the approach at a high level: event flow, storage, processing, and how you ensure reliability and security."}
               </p>
@@ -356,8 +347,8 @@ export default async function ProjectPage({
               </div>
             ) : (
               <SoftCard className="p-5 sm:p-6">
-                <p className="text-sm text-slate-400">
-                  Add a <span className="text-slate-300">stack</span> string on
+                <p className="text-sm text-text-secondary">
+                  Add a <span className="text-text-primary">stack</span> string on
                   the project to list services here.
                 </p>
               </SoftCard>
@@ -375,19 +366,19 @@ export default async function ProjectPage({
               {cs?.decisions?.length ? (
                 cs.decisions.map((d) => (
                   <SoftCard key={d.title} className="p-5 sm:p-6">
-                    <p className="text-base font-semibold text-slate-100">
+                    <p className="text-base font-semibold text-text-primary">
                       {d.title}
                     </p>
-                    <p className="mt-2 text-sm leading-relaxed text-slate-300">
+                    <p className="mt-2 text-sm leading-relaxed text-text-primary">
                       {d.detail}
                     </p>
                   </SoftCard>
                 ))
               ) : (
                 <SoftCard className="p-5 sm:p-6">
-                  <p className="text-sm text-slate-400">
+                  <p className="text-sm text-text-secondary">
                     Add{" "}
-                    <span className="text-slate-300">caseStudy.decisions</span>{" "}
+                    <span className="text-text-primary">caseStudy.decisions</span>{" "}
                     to show your tradeoffs here.
                   </p>
                 </SoftCard>
@@ -406,16 +397,16 @@ export default async function ProjectPage({
               {cs?.security?.length ? (
                 cs.security.map((line) => (
                   <SoftCard key={line} className="p-5 sm:p-6">
-                    <p className="text-sm leading-relaxed text-slate-300">
+                    <p className="text-sm leading-relaxed text-text-primary">
                       {line}
                     </p>
                   </SoftCard>
                 ))
               ) : (
                 <SoftCard className="p-5 sm:p-6">
-                  <p className="text-sm text-slate-400">
+                  <p className="text-sm text-text-secondary">
                     Add{" "}
-                    <span className="text-slate-300">caseStudy.security</span>{" "}
+                    <span className="text-text-primary">caseStudy.security</span>{" "}
                     to list IAM, encryption, network, and exposure choices.
                   </p>
                 </SoftCard>
@@ -435,7 +426,7 @@ export default async function ProjectPage({
                 .slice(0, 4)
                 .map((p) => (
                   <SoftCard key={p} className="p-5 sm:p-6">
-                    <p className="text-sm leading-relaxed text-slate-300">
+                    <p className="text-sm leading-relaxed text-text-primary">
                       {p}
                     </p>
                   </SoftCard>
@@ -443,9 +434,9 @@ export default async function ProjectPage({
 
               {!cs?.failureModes?.length ? (
                 <SoftCard className="p-5 sm:p-6 md:col-span-2">
-                  <p className="text-sm text-slate-400">
+                  <p className="text-sm text-text-secondary">
                     Add{" "}
-                    <span className="text-slate-300">
+                    <span className="text-text-primary">
                       caseStudy.failureModes
                     </span>{" "}
                     for retries, DLQs, idempotency, timeouts, etc.
@@ -467,15 +458,15 @@ export default async function ProjectPage({
                 .slice(0, 4)
                 .map((o) => (
                   <SoftCard key={o} className="p-5 sm:p-6">
-                    <p className="text-sm leading-relaxed text-slate-300">{o}</p>
+                    <p className="text-sm leading-relaxed text-text-primary">{o}</p>
                   </SoftCard>
                 ))}
 
               {!cs?.observability?.length ? (
                 <SoftCard className="p-5 sm:p-6 md:col-span-2">
-                  <p className="text-sm text-slate-400">
+                  <p className="text-sm text-text-secondary">
                     Add{" "}
-                    <span className="text-slate-300">
+                    <span className="text-text-primary">
                       caseStudy.observability
                     </span>{" "}
                     for logs, metrics, alarms, tracing.
@@ -494,14 +485,14 @@ export default async function ProjectPage({
             />
             <SoftCard className="p-5 sm:p-6">
               {cs?.cost?.length ? (
-                <ul className="list-disc space-y-2 pl-5 text-sm text-slate-300">
+                <ul className="list-disc space-y-2 pl-5 text-sm text-text-primary">
                   {cs.cost.map((c) => (
                     <li key={c}>{c}</li>
                   ))}
                 </ul>
               ) : (
-                <p className="text-sm text-slate-400">
-                  Add <span className="text-slate-300">caseStudy.cost</span> for
+                <p className="text-sm text-text-secondary">
+                  Add <span className="text-text-primary">caseStudy.cost</span> for
                   cost drivers and mitigations.
                 </p>
               )}
@@ -517,7 +508,7 @@ export default async function ProjectPage({
             />
             <SoftCard className="p-5 sm:p-6">
               {cs?.next?.length ? (
-                <ul className="space-y-3 text-sm text-slate-300">
+                <ul className="space-y-3 text-sm text-text-primary">
                   {cs.next.map((n) => (
                     <li key={n} className="flex gap-3">
                       <span className="mt-2 h-1.5 w-1.5 rounded-full bg-amber-300/80" />
@@ -526,8 +517,8 @@ export default async function ProjectPage({
                   ))}
                 </ul>
               ) : (
-                <p className="text-sm text-slate-400">
-                  Add <span className="text-slate-300">caseStudy.next</span> or a
+                <p className="text-sm text-text-secondary">
+                  Add <span className="text-text-primary">caseStudy.next</span> or a
                   dedicated “takeaways” list later.
                 </p>
               )}
@@ -546,8 +537,8 @@ export default async function ProjectPage({
                 {servicesUsed.length ? (
                   servicesUsed.map((s) => <Chip key={s}>{s}</Chip>)
                 ) : (
-                  <p className="text-sm text-slate-400">
-                    Add a <span className="text-slate-300">stack</span> string to
+                  <p className="text-sm text-text-secondary">
+                    Add a <span className="text-text-primary">stack</span> string to
                     show chips here.
                   </p>
                 )}

@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 import {
   Award,
   BookMarked,
@@ -723,7 +724,12 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
       <SectionNav sections={SECTION_IDS} activeIndex={activeSectionIdx} onNavigate={handleSectionNav} />
 
       {/* H7: Consistent spacing — 48px mobile (space-y-12), 64px desktop (lg:space-y-16) */}
-      <section className="mx-auto w-full max-w-450 space-y-12 px-4 pb-28 pt-7 sm:px-6 lg:space-y-16 lg:px-10 lg:pt-8 xl:px-16">
+      <motion.section
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="mx-auto w-full max-w-450 space-y-12 px-4 pb-28 pt-7 sm:px-6 lg:space-y-16 lg:px-10 lg:pt-8 xl:px-16"
+      >
 
         {/* ═══ SECTION 1: Identity Hero Banner ═══ */}
         <div ref={heroRef} id="hero">
@@ -851,6 +857,8 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
                   animate numericValue={statsSummary.currentStreak}
                   formatFn={(v) => `${Math.round(v)} days`}
                   performanceLevel={statsSummary.currentStreak >= 7 ? "strong" : statsSummary.currentStreak > 0 ? "active" : "zero"}
+                  accentColor="var(--accent-amber)"
+                  valueColorClass={statsSummary.currentStreak > 0 ? "text-[var(--accent-amber)]" : undefined}
                 />
                 <StatCard
                   icon={<CheckCircle2 className="h-5 w-5" />}
@@ -859,6 +867,7 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
                   helper={statsSummary.booksCompleted > 0 ? `Across ${statsSummary.categoriesCount} categories` : "Your first finish line is closer than you think"}
                   animate numericValue={statsSummary.booksCompleted}
                   performanceLevel={statsSummary.booksCompleted >= 5 ? "strong" : statsSummary.booksCompleted > 0 ? "active" : "zero"}
+                  accentColor="var(--accent-cyan)"
                 />
                 <StatCard
                   icon={<BookMarked className="h-5 w-5" />}
@@ -867,6 +876,7 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
                   helper={statsSummary.totalChaptersCompleted > 0 ? `That's ${statsSummary.totalChaptersCompleted} learning loops finished` : "Complete a chapter to start tracking"}
                   animate numericValue={statsSummary.totalChaptersCompleted}
                   performanceLevel={statsSummary.totalChaptersCompleted >= 10 ? "strong" : statsSummary.totalChaptersCompleted > 0 ? "active" : "zero"}
+                  accentColor="var(--accent-violet)"
                 />
                 <StatCard
                   icon={<Target className="h-5 w-5" />}
@@ -874,6 +884,16 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
                   value={formatPercent(statsSummary.averageQuizScore)}
                   helper={getQuizScoreSubtitle(statsSummary.averageQuizScore, statsSummary.quizQuestionsAnswered > 0)}
                   performanceLevel={statsSummary.averageQuizScore >= 80 ? "strong" : statsSummary.averageQuizScore > 0 ? "active" : "zero"}
+                  accentColor="var(--accent-emerald)"
+                  valueColorClass={
+                    statsSummary.averageQuizScore > 70
+                      ? "text-[var(--accent-emerald)]"
+                      : statsSummary.averageQuizScore >= 50
+                        ? "text-[var(--accent-amber)]"
+                        : statsSummary.averageQuizScore > 0
+                          ? "text-[var(--accent-rose)]"
+                          : undefined
+                  }
                 />
                 <StatCard
                   icon={<Clock3 className="h-5 w-5" />}
@@ -881,6 +901,7 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
                   value={formatHours(statsSummary.totalReadingMinutes)}
                   helper={statsSummary.totalReadingMinutes >= 300 ? `That's ${Math.floor(statsSummary.totalReadingMinutes / 60)} hours of focused learning` : "Every minute compounds"}
                   performanceLevel={statsSummary.totalReadingMinutes >= 300 ? "strong" : statsSummary.totalReadingMinutes > 0 ? "active" : "zero"}
+                  accentColor="var(--accent-cyan)"
                 />
                 <StatCard
                   icon={<Brain className="h-5 w-5" />}
@@ -889,6 +910,7 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
                   helper="Knowledge tested and strengthened"
                   animate numericValue={statsSummary.quizQuestionsAnswered}
                   performanceLevel={statsSummary.quizQuestionsAnswered >= 20 ? "strong" : statsSummary.quizQuestionsAnswered > 0 ? "active" : "zero"}
+                  accentColor="var(--accent-violet)"
                 />
               </div>
 
@@ -1333,7 +1355,7 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
             </SectionCard>
           </div>
         </FadeIn>
-      </section>
+      </motion.section>
 
       {/* ─── Modals ─── */}
       <EditProfileModal

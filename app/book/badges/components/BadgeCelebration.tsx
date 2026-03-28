@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/app/book/components/ui/cn";
 import type { BadgeWithProgress, BadgeTier } from "../lib/badge-types";
@@ -35,6 +36,7 @@ export function BadgeCelebration({
   onPinToShowcase,
 }: BadgeCelebrationProps) {
   const reduced = useReducedMotion();
+  const router = useRouter();
 
   // Sort by tier priority descending
   const sorted = useMemo(
@@ -127,16 +129,36 @@ export function BadgeCelebration({
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: 100, opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="flex items-center gap-3 rounded-2xl border border-amber-500/20 bg-(--cf-surface-muted) px-4 py-3 shadow-lg"
+              className="cursor-pointer overflow-hidden rounded-2xl border border-accent-amber/20 bg-(--cf-surface-muted) shadow-shadow-elevated"
+              onClick={() => router.push("/book/badges")}
             >
-              <span className="text-2xl">{badge.icon}</span>
-              <div>
-                <p className="text-xs font-medium text-amber-500">Achievement Unlocked</p>
-                <p className="text-sm font-semibold text-(--cf-text-1)">
-                  {summaryMode && i === 0
-                    ? `\u{1F389} You earned ${newlyEarned.length} new badges!`
-                    : badge.name}
-                </p>
+              <div className="flex items-center gap-3 px-4 py-3">
+                <motion.span
+                  className="text-2xl"
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                >
+                  {badge.icon}
+                </motion.span>
+                <div>
+                  <p className="text-xs font-medium" style={{ color: "var(--accent-amber)" }}>Achievement Unlocked</p>
+                  <p className="text-sm font-semibold text-(--cf-text-1)">
+                    {summaryMode && i === 0
+                      ? `\u{1F389} You earned ${newlyEarned.length} new badges!`
+                      : badge.name}
+                  </p>
+                </div>
+              </div>
+              {/* Auto-dismiss countdown bar */}
+              <div className="h-0.5 w-full" style={{ background: "var(--cf-surface-strong)" }}>
+                <motion.div
+                  className="h-full"
+                  style={{ background: "var(--accent-amber)" }}
+                  initial={{ width: "100%" }}
+                  animate={{ width: "0%" }}
+                  transition={{ duration: 5, ease: "linear" }}
+                />
               </div>
             </motion.div>
           ))}
@@ -174,7 +196,7 @@ export function BadgeCelebration({
                 )}
                 initial={{ scale: 0, rotate: -10 }}
                 animate={{ scale: 1, rotate: 0 }}
-                transition={{ type: "spring", stiffness: 200, damping: 20 }}
+                transition={{ type: "spring", stiffness: 300, damping: 12, bounce: 0.5 }}
               >
                 {heroBadge.icon}
               </motion.span>
@@ -226,7 +248,7 @@ export function BadgeCelebration({
                 <button
                   type="button"
                   onClick={() => onPinToShowcase(heroBadge.id)}
-                  className="rounded-2xl border border-amber-500/30 bg-amber-500/10 px-5 py-2.5 text-sm font-medium text-amber-500 transition hover:bg-amber-500/20"
+                  className="rounded-2xl border border-accent-amber/30 bg-accent-amber/10 px-5 py-2.5 text-sm font-medium text-accent-amber transition hover:bg-accent-amber/20"
                 >
                   Pin to Showcase
                 </button>

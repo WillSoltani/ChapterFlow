@@ -35,9 +35,9 @@ const CATEGORIES: Category[] = [
 const DIFFICULTIES: Difficulty[] = ["easy", "medium", "hard"];
 
 const DIFFICULTY_COLORS: Record<string, string> = {
-  easy: "var(--accent-teal)",
-  medium: "var(--accent-blue)",
-  hard: "var(--accent-flame)",
+  easy: "var(--accent-emerald)",
+  medium: "var(--accent-amber)",
+  hard: "var(--accent-rose)",
 };
 
 const INITIAL_COUNT = 10;
@@ -59,9 +59,9 @@ function Chip({
       style={
         active
           ? {
-              background: "var(--accent-teal)",
+              background: "var(--accent-cyan)",
               color: "var(--bg-base)",
-              border: "1px solid var(--accent-teal)",
+              border: "1px solid var(--accent-cyan)",
             }
           : {
               background: "transparent",
@@ -266,9 +266,9 @@ export function BrowseAll({
               style={
                 moodFilter === opt.key
                   ? {
-                      background: "var(--accent-teal)",
+                      background: "var(--accent-cyan)",
                       color: "var(--bg-base)",
-                      border: "1px solid var(--accent-teal)",
+                      border: "1px solid var(--accent-cyan)",
                     }
                   : {
                       background: "var(--bg-elevated)",
@@ -449,15 +449,9 @@ export function BrowseAll({
                 onClick={() => setShowAll(true)}
                 className="cursor-pointer rounded-xl px-6 py-3 text-[14px] font-semibold transition-colors"
                 style={{
-                  background: "var(--bg-raised)",
-                  border: "1px solid var(--border-subtle)",
-                  color: "var(--text-primary)",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = "var(--border-medium)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = "var(--border-subtle)";
+                  background: "transparent",
+                  border: "1px solid var(--accent-cyan)",
+                  color: "var(--accent-cyan)",
                 }}
               >
                 Show all {filtered.length}{hasFilters ? ` ${category ?? ""} ` : " "}books

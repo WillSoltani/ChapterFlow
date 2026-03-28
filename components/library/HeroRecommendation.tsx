@@ -56,8 +56,9 @@ export function HeroRecommendation({
         className="relative mx-auto overflow-hidden rounded-2xl"
         style={{
           maxWidth: 1080,
-          background: "rgba(255,255,255,0.03)",
-          border: "1px solid rgba(255,255,255,0.06)",
+          background: "var(--bg-glass)",
+          border: "1px solid var(--border-subtle)",
+          borderTop: "1px solid var(--border-emphasis)",
           backdropFilter: "blur(8px)",
           WebkitBackdropFilter: "blur(8px)",
         }}
@@ -69,7 +70,7 @@ export function HeroRecommendation({
           <div
             className="absolute -left-20 top-1/2 h-[400px] w-[400px] -translate-y-1/2 rounded-full"
             style={{
-              background: "rgba(45,212,191,0.04)",
+              background: "rgba(34,211,238,0.04)",
               filter: "blur(100px)",
             }}
           />
@@ -122,7 +123,7 @@ export function HeroRecommendation({
             {getGreeting()}, {userName}
           </p>
 
-          <p className="mt-1 text-[13px] font-medium" style={{ color: "var(--accent-teal)" }}>
+          <p className="mt-1 text-[13px] font-medium" style={{ color: "var(--accent-cyan)" }}>
             {isInProgress ? "Continue your journey" : "Recommended for you"}
           </p>
 
@@ -163,10 +164,10 @@ export function HeroRecommendation({
                 style={{
                   background:
                     heroBook.difficulty === "easy"
-                      ? "var(--accent-teal)"
+                      ? "var(--accent-emerald)"
                       : heroBook.difficulty === "medium"
-                      ? "var(--accent-blue)"
-                      : "var(--accent-flame)",
+                      ? "var(--accent-amber)"
+                      : "var(--accent-rose)",
                 }}
               />
               {heroBook.difficulty.charAt(0).toUpperCase() + heroBook.difficulty.slice(1)}
@@ -194,12 +195,12 @@ export function HeroRecommendation({
             <button
               type="button"
               onClick={() => onBookClick(heroBook.id)}
-              className="w-full cursor-pointer rounded-xl px-8 text-[16px] font-semibold transition-all sm:w-auto"
+              className="cta-shine w-full cursor-pointer rounded-xl px-8 text-[16px] font-semibold transition-all sm:w-auto"
               style={{
                 height: 52,
-                background: "var(--accent-teal)",
+                background: "var(--accent-cyan)",
                 color: "var(--bg-base)",
-                boxShadow: "0 4px 20px rgba(45,212,191,0.3), 0 0 40px rgba(45,212,191,0.1)",
+                boxShadow: "0 4px 20px rgba(34,211,238,0.3), 0 0 40px rgba(34,211,238,0.1)",
               }}
             >
               {isInProgress ? "Continue Reading →" : "Start Reading →"}
@@ -224,7 +225,7 @@ export function HeroRecommendation({
       {alternatives.length > 0 && (
         <div
           className="relative flex flex-col gap-3 border-t px-8 py-5 sm:flex-row sm:items-center sm:gap-5"
-          style={{ borderColor: "rgba(255,255,255,0.06)" }}
+          style={{ borderColor: "var(--border-subtle)" }}
         >
           <span className="shrink-0 text-[13px]" style={{ color: "var(--text-muted)" }}>
             Not feeling this? Try one of these →
@@ -241,7 +242,7 @@ export function HeroRecommendation({
                   x: prefersReduced ? 0 : -10,
                 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.5 + i * 0.1 }}
+                transition={{ delay: 0.6 + i * 0.1 }}
                 style={{ border: "1px solid transparent" }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.borderColor = "var(--border-medium)";

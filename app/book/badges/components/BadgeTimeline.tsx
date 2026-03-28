@@ -47,15 +47,16 @@ export function BadgeTimeline({ earnedBadges, onBadgeClick }: BadgeTimelineProps
       <div className="relative mt-4 pl-8">
         {/* Continuous vertical line */}
         <div
-          className="absolute left-[15px] top-3 w-0.5 bg-amber-500/20"
-          style={{ bottom: expanded ? 12 : needsExpand ? 12 : 12 }}
+          className="absolute left-[15px] top-3"
+          style={{ bottom: 12, width: 2, background: "var(--cf-border)" }}
         />
 
         <AnimatePresence initial={false}>
           <div className="space-y-5">
             {visible.map((badge, i) => {
-              const dotColor = TIER_BORDER_COLORS[badge.tier] ?? TIER_BORDER_COLORS.unique;
-              const glowColor = dotColor.replace(")", ",0.3)").replace("rgb", "rgba");
+              const isRecent = badge.earnedDate
+                ? (Date.now() - new Date(badge.earnedDate).getTime()) < 7 * 24 * 60 * 60 * 1000
+                : false;
 
               return (
                 <motion.div
@@ -69,12 +70,13 @@ export function BadgeTimeline({ earnedBadges, onBadgeClick }: BadgeTimelineProps
                     onClick={() => onBadgeClick(badge)}
                     className="group relative flex items-start gap-3 text-left transition hover:opacity-90"
                   >
-                    {/* Timeline dot on the line */}
+                    {/* Timeline dot on the line -- 8px amber */}
                     <div
-                      className="absolute -left-8 top-1.5 h-2.5 w-2.5 rounded-full"
+                      className="absolute -left-8 top-1.5 rounded-full"
                       style={{
-                        backgroundColor: dotColor,
-                        boxShadow: `0 0 6px ${glowColor}`,
+                        width: 8,
+                        height: 8,
+                        backgroundColor: "var(--accent-amber)",
                         border: "2px solid var(--cf-surface)",
                       }}
                     />
@@ -86,10 +88,20 @@ export function BadgeTimeline({ earnedBadges, onBadgeClick }: BadgeTimelineProps
 
                     <div className="min-w-0 flex-1">
                       <div className="flex items-start justify-between gap-2">
-                        <p className="text-sm font-medium text-amber-500 group-hover:underline group-hover:underline-offset-2">
-                          {badge.name}
-                        </p>
-                        <p className="shrink-0 text-[10px] text-(--cf-text-soft)">
+                        <div className="flex items-center gap-2">
+                          <p className="text-sm font-medium group-hover:underline group-hover:underline-offset-2" style={{ color: "var(--accent-cyan)" }}>
+                            {badge.name}
+                          </p>
+                          {isRecent && (
+                            <span
+                              className="inline-flex items-center rounded-full px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-white"
+                              style={{ background: "var(--accent-emerald)" }}
+                            >
+                              NEW
+                            </span>
+                          )}
+                        </div>
+                        <p className="shrink-0 text-[10px]" style={{ color: "var(--text-tertiary, var(--cf-text-soft))" }}>
                           {badge.earnedDate
                             ? new Date(badge.earnedDate).toLocaleDateString(undefined, {
                                 month: "short",
@@ -98,7 +110,7 @@ export function BadgeTimeline({ earnedBadges, onBadgeClick }: BadgeTimelineProps
                             : ""}
                         </p>
                       </div>
-                      <p className="mt-0.5 text-xs text-(--cf-text-soft)">
+                      <p className="mt-0.5 text-xs" style={{ color: "var(--text-secondary, var(--cf-text-3))" }}>
                         {badge.description}
                       </p>
                     </div>
@@ -111,13 +123,15 @@ export function BadgeTimeline({ earnedBadges, onBadgeClick }: BadgeTimelineProps
       </div>
 
       {needsExpand && (
-        <button
+        <motion.button
           type="button"
           onClick={() => setExpanded((prev) => !prev)}
-          className="mt-4 text-sm font-medium text-amber-500 transition hover:text-amber-400"
+          className="mt-4 text-sm font-medium transition"
+          style={{ color: "var(--accent-cyan)" }}
+          whileHover={{ x: 2 }}
         >
           {expanded ? "Show less \u2191" : "View full journey \u2193"}
-        </button>
+        </motion.button>
       )}
     </div>
   );

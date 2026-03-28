@@ -33,7 +33,7 @@ export function NotesDrawer({
 
       <aside
         className={[
-          "fixed z-[60] border-(--cf-border) bg-(--cf-surface-strong) shadow-xl transition-transform duration-200",
+          "fixed z-[60] border-(--cf-border) bg-(--cf-surface-strong) shadow-shadow-elevated transition-transform duration-200",
           "inset-x-0 bottom-0 max-h-[75vh] rounded-t-3xl border p-4 md:inset-y-0 md:right-0 md:left-auto md:h-full md:max-h-none md:w-[420px] md:rounded-none md:border-l md:border-t-0",
           open ? "translate-y-0 md:translate-x-0" : "translate-y-full md:translate-y-0 md:translate-x-full",
         ].join(" ")}

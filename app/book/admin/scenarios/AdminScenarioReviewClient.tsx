@@ -135,7 +135,7 @@ export function AdminScenarioReviewClient() {
               return (
                 <article
                   key={submission.submissionId}
-                  className="rounded-2xl border border-(--cf-border) bg-(--cf-surface) p-4 shadow-sm"
+                  className="rounded-2xl border border-(--cf-border) bg-(--cf-surface) p-4 shadow-shadow-card"
                 >
                   <div className="flex flex-wrap items-start justify-between gap-3">
                     <div>

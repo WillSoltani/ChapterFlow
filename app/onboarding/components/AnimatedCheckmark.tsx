@@ -13,7 +13,7 @@ export default function AnimatedCheckmark() {
       >
         <div
           className="absolute inset-0 rounded-full"
-          style={{ background: "rgba(62,207,178,0.15)" }}
+          style={{ background: "color-mix(in srgb, var(--accent-cyan) 15%, transparent)" }}
         />
         <svg viewBox="0 0 80 80" className="w-full h-full">
           <circle
@@ -21,13 +21,13 @@ export default function AnimatedCheckmark() {
             cy="40"
             r="36"
             fill="none"
-            stroke="#3ECFB2"
+            stroke="var(--accent-cyan)"
             strokeWidth="3"
           />
           <path
             d="M24 42 L34 52 L56 30"
             fill="none"
-            stroke="#3ECFB2"
+            stroke="var(--accent-cyan)"
             strokeWidth="4"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -53,11 +53,11 @@ export default function AnimatedCheckmark() {
       {/* Background glow */}
       <div
         className="absolute inset-0 rounded-full"
-        style={{ background: "rgba(62,207,178,0.15)" }}
+        style={{ background: "color-mix(in srgb, var(--accent-cyan) 15%, transparent)" }}
       />
       <div
         className="absolute inset-0 rounded-full"
-        style={{ boxShadow: "0 0 30px rgba(62,207,178,0.3)" }}
+        style={{ boxShadow: "0 0 30px color-mix(in srgb, var(--accent-cyan) 30%, transparent)" }}
       />
 
       {/* SVG with animated strokes */}
@@ -67,7 +67,7 @@ export default function AnimatedCheckmark() {
           cy="40"
           r="36"
           fill="none"
-          stroke="#3ECFB2"
+          stroke="var(--accent-cyan)"
           strokeWidth="3"
           strokeLinecap="round"
           initial={{ pathLength: 0 }}
@@ -77,7 +77,7 @@ export default function AnimatedCheckmark() {
         <motion.path
           d="M24 42 L34 52 L56 30"
           fill="none"
-          stroke="#3ECFB2"
+          stroke="var(--accent-cyan)"
           strokeWidth="4"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -90,7 +90,7 @@ export default function AnimatedCheckmark() {
       {/* Post-draw pulse ring */}
       <motion.div
         className="absolute inset-0 rounded-full"
-        style={{ border: "2px solid rgba(62,207,178,0.3)" }}
+        style={{ border: "2px solid color-mix(in srgb, var(--accent-cyan) 30%, transparent)" }}
         initial={{ scale: 1, opacity: 0 }}
         animate={{ scale: 1.3, opacity: [0, 0.5, 0] }}
         transition={{ delay: 0.85, duration: 0.6, ease: "easeOut" }}

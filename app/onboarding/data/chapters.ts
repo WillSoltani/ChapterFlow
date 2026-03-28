@@ -35,73 +35,73 @@ export interface FirstLoopContent {
   quiz: QuizQuestion[];
 }
 
-/* Atomic Habits — Chapter 1 */
-const atomicHabitsLoop: FirstLoopContent = {
+/* The 48 Laws of Power — Law 1 */
+const firstLoopData: FirstLoopContent = {
   summary: {
-    bookId: "atomic-habits",
-    bookTitle: "Atomic Habits",
-    author: "James Clear",
-    chapterTitle: "The Surprising Power of Atomic Habits",
+    bookId: "the-48-laws-of-power",
+    bookTitle: "The 48 Laws of Power",
+    author: "Robert Greene",
+    chapterTitle: "Never Outshine the Master",
     readingTime: "~2 min read",
     paragraphs: [
-      "The core argument is that small, consistent changes compound over time into remarkable results. A 1% improvement every day leads to being 37 times better after a year, while a 1% decline leads to nearly zero. Most people overestimate the importance of single defining moments and underestimate the value of making slightly better decisions on a daily basis.",
-      "The chapter introduces the concept of aggregation of marginal gains — the idea that searching for tiny improvements in everything you do accumulates into a significant overall advantage. This was demonstrated by British cycling coach Dave Brailsford, who improved hundreds of small details (pillow quality, hand-washing technique, tire grip) and led Team Sky to multiple Tour de France victories.",
-      "The trap most people fall into is expecting linear progress. In reality, habits follow a valley of disappointment — results seem invisible for weeks or months, then compound suddenly. Understanding this curve is what separates people who stick with new habits from those who quit.",
+      "The first law of power is deceptively simple: always make those above you feel comfortably superior. When you try to impress them by displaying your talents too eagerly, you risk triggering their insecurities. The result is the opposite of what you intended — instead of admiration, you inspire fear and resentment.",
+      "Greene illustrates this through the story of Nicolas Fouquet, finance minister to Louis XIV, who threw a lavish party at his estate that outshone the king's own palace. Within weeks, Fouquet was arrested and spent the rest of his life in prison. The lesson: your superiors want to feel secure in their position, not threatened by your brilliance.",
+      "The key distinction is between making your master look good versus making yourself look good. The most successful courtiers throughout history understood that their power came from being indispensable to those above them — not from showcasing their own superiority. Discretion, not display, is the foundation of lasting influence.",
     ],
     keyInsight:
-      "Habits are the compound interest of self-improvement. The same way that money multiplies through compound interest, the effects of your habits multiply as you repeat them.",
+      "Make your superiors feel comfortably superior. Your restraint in displaying talent is itself a form of strategic intelligence that builds lasting influence.",
   },
   scenarios: {
     work: {
       type: "work",
       situation:
-        "You want to become a stronger public speaker at work, but the idea of giving a keynote feels impossible. You've avoided every presentation opportunity this quarter because the gap between where you are and where you want to be feels too large.",
+        "You just joined a new team and your manager presents a strategy you think has obvious flaws. In the next meeting, you feel the urge to propose your own superior plan in front of everyone to make a strong first impression.",
       whatToDo:
-        "Start with a 1% improvement: volunteer to give a 30-second status update at your next team standup. Then do it again next week. After a month, volunteer for a 2-minute segment. The goal isn't to become a keynote speaker tomorrow — it's to build the smallest possible speaking habit.",
+        "Instead of publicly correcting your manager, request a one-on-one conversation. Frame your ideas as building on their strategy: 'I was thinking about your plan and had some ideas that might support it.' Let them take ownership of the improvements. Your goal is to become their trusted advisor, not their rival.",
       whyItMatters:
-        "The chapter's core principle is that massive results come from tiny, repeated actions — not from motivation or willpower. By making the habit impossibly small, you remove the friction that causes avoidance. Once the habit of speaking exists, the duration and stakes naturally increase on their own.",
+        "Greene's first law warns that outshining your superiors triggers defensiveness, not gratitude. By channeling your ideas through your manager, you make them look good while positioning yourself as indispensable. The credit comes later — once trust is established, your influence grows naturally.",
     },
     school: {
       type: "school",
       situation:
-        "You have a final exam in six weeks and hundreds of pages to review. You keep planning marathon study sessions but end up procrastinating because the task feels overwhelming. You've barely started and the anxiety is building.",
+        "Your professor makes a factual error during a lecture. You know the correct answer and several classmates are looking at you expectantly, knowing you're well-read on the topic. You're tempted to raise your hand and correct the mistake publicly.",
       whatToDo:
-        "Instead of planning to study for 4 hours, commit to reviewing just one page of notes before bed tonight. Put the notes on your desk so they're the first thing you see. The goal isn't to finish reviewing — it's to show up and start. One page is so small it feels almost silly, but that's the point.",
+        "Let the moment pass in class. After the lecture, approach the professor privately and frame it as a question: 'I was curious about that point — I'd read something slightly different. Could you help me understand?' This lets them save face while still correcting the record. They'll remember you as thoughtful, not threatening.",
       whyItMatters:
-        "Clear explains that habits compound like interest. Reviewing one page tonight leads to two tomorrow, then a full section by next week. The students who succeed aren't the ones with the best cramming sessions — they're the ones who showed up every single day, even when it felt insignificant.",
+        "The law teaches that people in authority positions are especially sensitive to being shown up publicly. A professor who feels embarrassed by a student is unlikely to become a mentor or advocate. By protecting their dignity, you gain an ally instead of creating a subtle adversary.",
     },
     personal: {
       type: "personal",
       situation:
-        "You've been trying to read more books this year, but after an initial burst of enthusiasm in January, you've barely finished one. Every evening you tell yourself you'll read, but you end up scrolling your phone instead. You're starting to think you're just \"not a reader.\"",
+        "You're at a family dinner and your older sibling — who everyone looks up to — shares advice about finances that you know is outdated. You've been studying personal finance extensively and could easily correct them with better information.",
       whatToDo:
-        "Instead of setting a goal like \"read 30 books this year,\" commit to reading just two pages before bed tonight. Put the book on your pillow so it's the first thing you touch. The goal isn't to finish — it's to not break the chain. Two pages is so small it feels almost silly, but that's the point.",
+        "Rather than contradicting them at the table, acknowledge their point first: 'That's a great foundation.' Later, in a private moment, share what you've learned as something you recently discovered — not as a correction. Let them feel like they inspired your interest in the topic rather than feeling shown up.",
       whyItMatters:
-        "The chapter's core principle is that massive results come from tiny, repeated actions — not from motivation or willpower. By making the habit impossibly small, you remove the friction that causes you to default to your phone. Once the habit of picking up the book exists, the duration naturally increases on its own.",
+        "Greene's principle applies beyond professional settings. Family dynamics have their own power structures, and publicly outshining a respected family member can create lasting resentment. Preserving the relationship while subtly sharing knowledge is the more powerful move.",
     },
   },
   quiz: [
     {
       question:
-        "A friend says they want to get fit and plans to go to the gym for 90 minutes every day starting Monday. Based on this chapter, what's the most likely problem with this approach?",
+        "Your new boss asks for your honest opinion on their proposed marketing strategy. You think it's mediocre. Based on Law 1, what's the best approach?",
       options: [
-        { letter: "A", text: "They should go for 2 hours instead to see faster results", isCorrect: false },
-        { letter: "B", text: "The habit is too large to sustain — starting smaller would build a more durable routine", isCorrect: true },
-        { letter: "C", text: "They should focus on diet instead of exercise", isCorrect: false },
-        { letter: "D", text: "Monday is a bad day to start new habits", isCorrect: false },
+        { letter: "A", text: "Give a detailed critique showing all the weaknesses to demonstrate your expertise", isCorrect: false },
+        { letter: "B", text: "Praise the strategy's strengths, then suggest enhancements that build on their vision", isCorrect: true },
+        { letter: "C", text: "Say it's perfect to avoid any conflict", isCorrect: false },
+        { letter: "D", text: "Email your own strategy to their boss instead", isCorrect: false },
       ],
-      explanation: "The chapter emphasizes starting with tiny habits that are easy to sustain. A 90-minute daily gym commitment is too ambitious and will likely lead to burnout.",
+      explanation: "Law 1 teaches that you should make superiors feel comfortably superior. Building on their ideas lets you improve the outcome while preserving the relationship.",
     },
     {
       question:
-        "You've been practicing guitar for 3 weeks but feel like you're not improving at all. According to the chapter's concept of the \"valley of disappointment,\" what should you understand about this feeling?",
+        "Nicolas Fouquet threw a magnificent party that impressed everyone — yet it destroyed his career. What was his critical mistake according to Greene?",
       options: [
-        { letter: "A", text: "You should try a different instrument", isCorrect: false },
-        { letter: "B", text: "Three weeks isn't enough time — real skill requires years of daily practice", isCorrect: false },
-        { letter: "C", text: "This plateau is normal — habits compound, and results often appear suddenly after a period of seeming stagnation", isCorrect: true },
-        { letter: "D", text: "You need a better teacher", isCorrect: false },
+        { letter: "A", text: "He spent too much money on the event", isCorrect: false },
+        { letter: "B", text: "He invited the wrong guests", isCorrect: false },
+        { letter: "C", text: "He made the king feel inferior by outshining him in splendor", isCorrect: true },
+        { letter: "D", text: "He forgot to invite the king", isCorrect: false },
       ],
-      explanation: "Clear describes the 'valley of disappointment' where results lag behind effort. Breakthroughs come suddenly after sustained, invisible progress.",
+      explanation: "Fouquet's party was so magnificent it made Louis XIV feel overshadowed. The king's insecurity turned into swift punishment — a powerful reminder that those above you must always feel secure.",
     },
   ],
 };
@@ -125,25 +125,25 @@ export function getScenarioForMotivation(motivation: Motivation | null): "work" 
 const toneSummaries: Record<Tone, { paragraphs: string[]; keyInsight: string }> = {
   gentle: {
     paragraphs: [
-      "The idea at the heart of this chapter is that small, consistent changes add up to something much bigger than you'd expect. A tiny improvement — even just 1% — repeated day after day, compounds into a version of yourself that you might not recognize a year from now. And the encouraging part is that you don't need a dramatic overhaul.",
-      "The author shares the story of a cycling coach who improved dozens of tiny details — from pillow quality to hand-washing technique — and the cumulative result was extraordinary. It's a reminder that the path forward doesn't have to feel heroic. It just has to be steady.",
-      "If you've ever felt like your efforts aren't paying off, this chapter suggests being patient with yourself — results often arrive all at once after a long stretch of invisible progress. The people who stick with their habits aren't more disciplined; they're just more willing to trust the process.",
+      "This opening law is a thoughtful reminder that relationships with people in positions above you require care and awareness. When you display your talents too openly, it can unintentionally make others feel insecure — even if that's not your intention at all.",
+      "Greene tells the story of Nicolas Fouquet, who threw an incredible party that accidentally overshadowed the king. It's a poignant example of how good intentions can backfire when we don't consider how others might feel. The takeaway isn't to hide who you are — it's to be mindful of the dynamics around you.",
+      "The most reassuring part of this law is that restraint isn't weakness — it's wisdom. By making the people around you feel valued and secure, you build the kind of trust that opens doors naturally over time.",
     ],
     keyInsight:
-      "Habits are the compound interest of self-improvement. You don't need to be perfect — just a little better than yesterday, and trust that it adds up.",
+      "Making others feel secure in your presence isn't about dimming your light — it's about building the trust that lets your influence grow naturally.",
   },
   direct: {
-    paragraphs: atomicHabitsLoop.summary.paragraphs,
-    keyInsight: atomicHabitsLoop.summary.keyInsight,
+    paragraphs: firstLoopData.summary.paragraphs,
+    keyInsight: firstLoopData.summary.keyInsight,
   },
   competitive: {
     paragraphs: [
-      "Here's the math most people ignore: 1% better every day for a year makes you 37 times better. 1% worse and you're at nearly zero. That gap is your edge — or your downfall. This chapter lays out why the people who win long-term aren't the ones making dramatic moves. They're the ones stacking micro-advantages while everyone else chases shortcuts.",
-      "Dave Brailsford proved it in professional cycling by optimizing hundreds of tiny details that his competitors dismissed as irrelevant — pillow quality, hand-washing technique, tire grip. The result: Team Sky dominated the Tour de France. The lesson isn't about cycling. It's about compounding advantages your competition doesn't even see.",
-      "The chapter also explains why most people quit — they expect linear results and hit what Clear calls the 'valley of disappointment.' The ones who push through that valley are the ones who end up untouchable. Your results will feel invisible for weeks. That's the test. Pass it.",
+      "Most people sabotage themselves before they even start by making the dumbest possible move: showing up their boss. Law 1 is Greene's warning shot — the people who climb fastest aren't the ones who broadcast their superiority. They're the ones who make the people above them feel brilliant while quietly becoming indispensable.",
+      "Nicolas Fouquet had it all — wealth, taste, connections. He threw a party so stunning it made Louis XIV feel like a guest in someone else's kingdom. Weeks later, Fouquet was in chains. The lesson: your talent means nothing if it threatens the wrong person. The smartest players in history understood that discretion is the ultimate power move.",
+      "Here's the edge: while your competition is busy trying to impress everyone in the room, you're making the decision-maker feel like a genius. That's not weakness — that's the kind of strategic restraint that separates people who have influence from people who just want attention.",
     ],
     keyInsight:
-      "Habits are the compound interest of self-improvement. While your competition resets every Monday, your daily 1% compounds into an insurmountable lead.",
+      "While others compete for attention, the real players make the people above them feel brilliant — and get rewarded with trust, access, and lasting power.",
   },
 };
 
@@ -170,13 +170,13 @@ const toneQuizFeedback: Record<Tone, { correct: string; wrongPrefix: string }> =
 export function getFirstLoopContent(tone: Tone): FirstLoopContent {
   const variant = toneSummaries[tone];
   return {
-    ...atomicHabitsLoop,
+    ...firstLoopData,
     summary: {
-      ...atomicHabitsLoop.summary,
+      ...firstLoopData.summary,
       paragraphs: variant.paragraphs,
       keyInsight: variant.keyInsight,
     },
-    quiz: atomicHabitsLoop.quiz.map((q) => ({
+    quiz: firstLoopData.quiz.map((q) => ({
       ...q,
       explanation: `${toneQuizFeedback[tone].wrongPrefix} ${q.explanation.charAt(0).toLowerCase()}${q.explanation.slice(1)}`,
     })),
@@ -189,4 +189,4 @@ export function getQuizFeedback(tone: Tone) {
 }
 
 /* Export the default first loop content (direct tone) */
-export const FIRST_LOOP_CONTENT = atomicHabitsLoop;
+export const FIRST_LOOP_CONTENT = firstLoopData;

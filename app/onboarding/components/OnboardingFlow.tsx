@@ -105,7 +105,7 @@ export function OnboardingFlow() {
             top: -200,
             left: -150,
             borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(124,107,240,0.12) 0%, transparent 70%)",
+            background: "radial-gradient(circle, color-mix(in srgb, var(--accent-violet) 12%, transparent) 0%, transparent 70%)",
           }}
         />
 
@@ -118,7 +118,7 @@ export function OnboardingFlow() {
             bottom: -150,
             right: -100,
             borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(62,207,178,0.08) 0%, transparent 70%)",
+            background: "radial-gradient(circle, color-mix(in srgb, var(--accent-cyan) 8%, transparent) 0%, transparent 70%)",
           }}
         />
 
@@ -148,7 +148,7 @@ export function OnboardingFlow() {
             top: "30%",
             right: -50,
             borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(91,141,239,0.10) 0%, transparent 70%)",
+            background: "radial-gradient(circle, color-mix(in srgb, var(--accent-cyan) 10%, transparent) 0%, transparent 70%)",
           }}
         />
       </div>

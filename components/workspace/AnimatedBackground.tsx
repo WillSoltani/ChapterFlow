@@ -33,7 +33,7 @@ export function AnimatedBackground() {
           borderRadius: "50%",
           background: isLight
             ? "radial-gradient(circle, rgba(13, 148, 136, 0.04) 0%, rgba(13, 148, 136, 0) 65%)"
-            : "radial-gradient(circle, rgba(124, 58, 237, 0.12) 0%, rgba(124, 58, 237, 0) 65%)",
+            : "radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, rgba(139, 92, 246, 0) 65%)",
           filter: "blur(60px)",
           willChange: "transform",
         }}
@@ -44,7 +44,7 @@ export function AnimatedBackground() {
         }
         transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
       />
-      {/* Blue orb — center right */}
+      {/* Cyan orb — center right */}
       <motion.div
         style={{
           position: "absolute",
@@ -55,7 +55,7 @@ export function AnimatedBackground() {
           borderRadius: "50%",
           background: isLight
             ? "radial-gradient(circle, rgba(13, 148, 136, 0.03) 0%, rgba(13, 148, 136, 0) 65%)"
-            : "radial-gradient(circle, rgba(59, 130, 246, 0.10) 0%, rgba(59, 130, 246, 0) 65%)",
+            : "radial-gradient(circle, rgba(34, 211, 238, 0.08) 0%, rgba(34, 211, 238, 0) 65%)",
           filter: "blur(60px)",
           willChange: "transform",
         }}
@@ -66,7 +66,7 @@ export function AnimatedBackground() {
         }
         transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
       />
-      {/* Amber orb — bottom left */}
+      {/* Emerald orb — bottom left */}
       <motion.div
         style={{
           position: "absolute",
@@ -76,8 +76,8 @@ export function AnimatedBackground() {
           height: 500,
           borderRadius: "50%",
           background: isLight
-            ? "radial-gradient(circle, rgba(245, 158, 11, 0.03) 0%, rgba(245, 158, 11, 0) 65%)"
-            : "radial-gradient(circle, rgba(245, 158, 11, 0.07) 0%, rgba(245, 158, 11, 0) 65%)",
+            ? "radial-gradient(circle, rgba(16, 185, 129, 0.03) 0%, rgba(16, 185, 129, 0) 65%)"
+            : "radial-gradient(circle, rgba(16, 185, 129, 0.07) 0%, rgba(16, 185, 129, 0) 65%)",
           filter: "blur(60px)",
           willChange: "transform",
         }}

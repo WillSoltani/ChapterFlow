@@ -6,7 +6,7 @@ import { getChapterReaderStorageKey } from "@/app/book/_lib/reader-storage";
 import type { ReadingDepth } from "@/app/book/data/mockChapters";
 import { emitBookStorageChanged } from "@/app/book/hooks/bookStorageEvents";
 
-export type ChapterTab = "summary" | "examples" | "quiz";
+export type ChapterTab = "summary" | "examples" | "quiz" | "practice";
 export type ExampleFilter = "all" | "work" | "school" | "personal";
 export type FontScale = "sm" | "md" | "lg";
 
@@ -55,7 +55,7 @@ const defaultState: PersistedChapterState = {
 };
 
 function isTab(value: unknown): value is ChapterTab {
-  return value === "summary" || value === "examples" || value === "quiz";
+  return value === "summary" || value === "examples" || value === "quiz" || value === "practice";
 }
 
 function isReadingDepth(value: unknown): value is ReadingDepth {

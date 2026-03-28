@@ -56,7 +56,7 @@ export function Hero() {
           variants={item}
           className="mt-6 text-3xl font-semibold tracking-tight sm:text-5xl md:text-6xl"
         >
-          <span className="bg-gradient-to-b from-white to-slate-300 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-b from-white to-text-primary bg-clip-text text-transparent">
             Will Soltani
           </span>
         </motion.h1>
@@ -72,7 +72,7 @@ export function Hero() {
         {/* Summary */}
         <motion.p
           variants={item}
-          className="mt-6 max-w-xl text-sm leading-relaxed text-slate-300 sm:mt-8 sm:max-w-2xl sm:text-base"
+          className="mt-6 max-w-xl text-sm leading-relaxed text-text-primary sm:mt-8 sm:max-w-2xl sm:text-base"
         >
           I build reliable, scalable, cost-aware cloud systems on AWS and ship
           portfolio-grade projects with real security, observability, and CI/CD.
@@ -81,7 +81,7 @@ export function Hero() {
         {/* Location */}
         <motion.p
           variants={item}
-          className="mt-3 text-xs text-slate-400 sm:text-sm"
+          className="mt-3 text-xs text-text-secondary sm:text-sm"
         >
           Halifax, NS · Remote-friendly
         </motion.p>
@@ -95,7 +95,7 @@ export function Hero() {
             <Button
               asChild
               variant="outline"
-              className="border-white/15 bg-white/5 text-slate-200 hover:bg-white/15 hover:text-white hover:shadow-lg"
+              className="border-white/15 bg-white/5 text-text-primary hover:bg-white/15 hover:text-text-heading hover:shadow-shadow-elevated"
             >
               <a href="https://github.com/WillSoltani" target="_blank" rel="noreferrer">
                 <span className="inline-flex items-center gap-2">
@@ -110,7 +110,7 @@ export function Hero() {
             <Button
               asChild
               variant="outline"
-              className="border-white/15 bg-white/5 text-slate-200 hover:bg-white/15 hover:text-white hover:shadow-lg"
+              className="border-white/15 bg-white/5 text-text-primary hover:bg-white/15 hover:text-text-heading hover:shadow-shadow-elevated"
             >
               <a href="https://www.linkedin.com/in/will-soltani" target="_blank" rel="noreferrer">
                 <span className="inline-flex items-center gap-2">
@@ -131,7 +131,7 @@ export function Hero() {
           <motion.div whileHover={{ y: -1 }} whileTap={{ scale: 0.99 }}>
             <Button
               asChild
-              className="w-full border border-white/10 bg-white/10 text-slate-100 hover:bg-white/15 focus-visible:ring-2 focus-visible:ring-sky-300/40 sm:w-auto"
+              className="w-full border border-white/10 bg-white/10 text-text-primary hover:bg-white/15 focus-visible:ring-2 focus-visible:ring-sky-300/40 sm:w-auto"
             >
               <a href="#projects">View Projects &amp; Case Studies</a>
             </Button>
@@ -150,7 +150,7 @@ export function Hero() {
         {/* Scroll indicator: hide on very small screens */}
         <motion.a
           href="#certifications"
-          className="mt-10 hidden items-center gap-2 text-xs text-slate-400 hover:text-slate-200 sm:inline-flex"
+          className="mt-10 hidden items-center gap-2 text-xs text-text-secondary hover:text-text-primary sm:inline-flex"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, transition: { delay: 0.9 } }}
         >

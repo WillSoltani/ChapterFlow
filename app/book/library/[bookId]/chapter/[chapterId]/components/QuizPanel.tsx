@@ -40,9 +40,8 @@ type QuizPanelProps = {
   onSubmit: () => void;
   onReviewSummary: () => void;
   onRetry: () => void;
-  onUnlockNext: () => void;
+  onContinueToPractice: () => void;
   onToggleExplanation: (questionId: string) => void;
-  nextChapterLabel: string;
   learningMode?: LearningMode;
 };
 
@@ -93,7 +92,7 @@ function ProgressRing({
     <div className="relative mx-auto inline-flex items-center justify-center">
       <svg width={size} height={size} className="-rotate-90">
         <circle cx={size / 2} cy={size / 2} r={radius} fill="none"
-          stroke="rgba(255,255,255,0.06)" strokeWidth={strokeWidth} />
+          stroke="var(--cr-fill-subtle)" strokeWidth={strokeWidth} />
         <circle cx={size / 2} cy={size / 2} r={radius} fill="none"
           stroke={passed ? "var(--cr-success)" : "var(--cr-error)"}
           strokeWidth={strokeWidth} strokeLinecap="round"
@@ -161,7 +160,7 @@ function ProgressDots({
                 : fb === "incorrect-final" ? "bg-(--cr-error)"
                 : answered ? "bg-(--cr-accent)"
                 : isCurrent ? "bg-(--cr-accent) shadow-[0_0_0_4px_var(--cr-accent-glow)]"
-                : "bg-[rgba(255,255,255,0.2)]",
+                : "bg-(--cr-fill-muted)",
             ].join(" ")}
             style={fb ? { animation: "cr-dot-fill 200ms ease-out" } : undefined} />
         );
@@ -269,7 +268,7 @@ function ImmediateQuestionCard({
                 showAsCorrect ? "bg-(--cr-success) text-(--cr-text-inverse)"
                   : showAsWrong ? "bg-(--cr-error) text-(--cr-text-inverse)"
                   : selected && !resolved ? "bg-(--cr-accent) text-(--cr-text-inverse)"
-                  : "bg-[rgba(255,255,255,0.08)] text-(--cr-text-secondary)",
+                  : "bg-(--cr-fill-muted) text-(--cr-text-secondary)",
               ].join(" ")}>
                 {showAsCorrect ? <Check className="h-3.5 w-3.5" />
                   : showAsWrong ? <X className="h-3.5 w-3.5" />
@@ -303,7 +302,7 @@ function ImmediateQuestionCard({
       {/* FIX 4+10: incorrect-final — neutral banner + smart explanation */}
       {feedbackState === "incorrect-final" && (
         <div className="mt-3 space-y-3" style={{ animation: "cr-card-enter 200ms ease-out" }}>
-          <div className="rounded-lg border-l-3 border-(--cr-text-secondary) bg-[rgba(255,255,255,0.04)] px-4 py-2.5 text-sm text-(--cr-text-secondary)">
+          <div className="rounded-lg border-l-3 border-(--cr-text-secondary) bg-(--cr-fill-subtle) px-4 py-2.5 text-sm text-(--cr-text-secondary)">
             The correct answer is {correctLetter}.
           </div>
           {!isGenericExplanation(question.explanation) && (
@@ -447,14 +446,13 @@ function ReviewMistakesView({
 // ─── Results Screen ──────────────────────────────────────────────────────────
 
 function ResultsScreen({
-  session, learningMode, onReviewSummary, onRetry, onUnlockNext, nextChapterLabel, onReviewMistakes,
+  session, learningMode, onReviewSummary, onRetry, onContinueToPractice, onReviewMistakes,
 }: {
   session: QuizSessionView;
   learningMode: LearningMode;
   onReviewSummary: () => void;
   onRetry: () => void;
-  onUnlockNext: () => void;
-  nextChapterLabel: string;
+  onContinueToPractice: () => void;
   onReviewMistakes: () => void;
 }) {
   const result = session.result;
@@ -514,9 +512,9 @@ function ResultsScreen({
       {/* FIX 1: Buttons — no cooldown, correct order */}
       <div className="mx-auto mt-8 flex max-w-sm flex-col gap-3">
         {result.passed && (
-          <button type="button" onClick={onUnlockNext}
+          <button type="button" onClick={onContinueToPractice}
             className="flex w-full items-center justify-center gap-2 rounded-2xl bg-(--cr-accent) px-6 py-4 text-lg font-bold text-(--cr-text-inverse) transition hover:opacity-90 hover:shadow-[0_4px_20px_rgba(77,182,172,0.3)]">
-            <Trophy className="h-5 w-5" /> {nextChapterLabel}
+            <Target className="h-5 w-5" /> Continue to Practice <ArrowRight className="h-5 w-5" />
           </button>
         )}
 
@@ -550,8 +548,8 @@ function ResultsScreen({
 
 export function QuizPanel({
   session, answers, explanationOpen, loading, submitting, error, cooldownSeconds,
-  onAnswer, onSubmit, onReviewSummary, onRetry, onUnlockNext, onToggleExplanation,
-  nextChapterLabel, learningMode = "standard",
+  onAnswer, onSubmit, onReviewSummary, onRetry, onContinueToPractice, onToggleExplanation,
+  learningMode = "standard",
 }: QuizPanelProps) {
   const [questionFeedback, setQuestionFeedback] = useState<
     Record<string, "correct" | "incorrect-retry" | "incorrect-final">
@@ -561,6 +559,21 @@ export function QuizPanel({
   const [resultView, setResultView] = useState<"results" | "review-mistakes">("results");
 
   const maxRetries = QUIZ_RETRIES_PER_QUESTION[learningMode];
+
+  // Reset local quiz state when session refreshes (e.g. retry)
+  const prevSessionRef = useRef(session);
+  useEffect(() => {
+    const prev = prevSessionRef.current;
+    prevSessionRef.current = session;
+    if (!session || session === prev) return;
+    // Fresh session (no result) after a submitted session means retry
+    if (!session.result && prev?.result) {
+      setQuestionFeedback({});
+      setDisabledChoices({});
+      setRetriesUsed({});
+      setResultView("results");
+    }
+  }, [session]);
 
   const handleAnswer = useCallback(
     (questionId: string, choiceId: string) => {
@@ -659,8 +672,8 @@ export function QuizPanel({
       {/* Results */}
       {submitted && (
         <ResultsScreen session={session} learningMode={learningMode}
-          onReviewSummary={onReviewSummary} onRetry={onRetry} onUnlockNext={onUnlockNext}
-          nextChapterLabel={nextChapterLabel} onReviewMistakes={() => setResultView("review-mistakes")} />
+          onReviewSummary={onReviewSummary} onRetry={onRetry} onContinueToPractice={onContinueToPractice}
+          onReviewMistakes={() => setResultView("review-mistakes")} />
       )}
 
       {/* Questions */}

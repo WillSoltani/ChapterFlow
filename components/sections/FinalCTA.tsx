@@ -28,9 +28,9 @@ function PulseCTA({ children, className = "" }: { children: React.ReactNode; cla
         shouldPulse
           ? {
               boxShadow: [
-                "0 0 0 0 rgba(45, 212, 191, 0)",
-                "0 0 0 8px rgba(45, 212, 191, 0.15)",
-                "0 0 0 0 rgba(45, 212, 191, 0)",
+                "0 0 0 0 rgba(34, 211, 238, 0)",
+                "0 0 0 8px rgba(34, 211, 238, 0.15)",
+                "0 0 0 0 rgba(34, 211, 238, 0)",
               ],
             }
           : {}

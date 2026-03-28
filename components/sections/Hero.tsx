@@ -40,9 +40,9 @@ function PulseCTA({ children, className = "" }: { children: React.ReactNode; cla
         shouldPulse
           ? {
               boxShadow: [
-                "0 0 0 0 rgba(45, 212, 191, 0)",
-                "0 0 0 8px rgba(45, 212, 191, 0.15)",
-                "0 0 0 0 rgba(45, 212, 191, 0)",
+                "0 0 0 0 rgba(34, 211, 238, 0)",
+                "0 0 0 8px rgba(34, 211, 238, 0.15)",
+                "0 0 0 0 rgba(34, 211, 238, 0)",
               ],
             }
           : {}
@@ -70,7 +70,7 @@ export function Hero() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse at 30% 50%, rgba(45,212,191,0.08), transparent 70%)",
+            "radial-gradient(ellipse at 30% 50%, rgba(34,211,238,0.08), transparent 70%)",
         }}
       />
 
@@ -94,8 +94,8 @@ export function Hero() {
                 style={{
                   letterSpacing: "0.18em",
                   color: "var(--accent-teal)",
-                  backgroundColor: "rgba(45,212,191,0.08)",
-                  borderColor: "rgba(45,212,191,0.2)",
+                  backgroundColor: "rgba(34,211,238,0.08)",
+                  borderColor: "rgba(34,211,238,0.2)",
                 }}
               >
                 <span className="text-[14px]">&#10022;</span>
@@ -204,7 +204,7 @@ export function Hero() {
                 width: 420,
                 height: 420,
                 background:
-                  "radial-gradient(circle, rgba(45,212,191,0.10) 0%, transparent 70%)",
+                  "radial-gradient(circle, rgba(34,211,238,0.10) 0%, transparent 70%)",
                 filter: "blur(60px)",
               }}
             />

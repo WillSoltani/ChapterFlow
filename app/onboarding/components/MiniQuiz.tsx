@@ -70,7 +70,7 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
       finalScore === questions.length
         ? `${finalScore}/${questions.length} — Perfect score!`
         : `${finalScore}/${questions.length} — Good start!`;
-    const scoreColor = finalScore === questions.length ? "#3ECFB2" : "#5B8DEF";
+    const scoreColor = finalScore === questions.length ? "var(--accent-cyan)" : "var(--accent-cyan)";
 
     return (
       <motion.div
@@ -178,11 +178,11 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
 
               if (showFeedback) {
                 if (isThisCorrect) {
-                  borderStyle = "2px solid #3ECFB2";
-                  bg = "rgba(62,207,178,0.12)";
+                  borderStyle = "2px solid var(--accent-cyan)";
+                  bg = "color-mix(in srgb, var(--accent-cyan) 12%, transparent)";
                 } else if (isThisSelected && !isCorrect) {
-                  borderStyle = "2px solid rgba(239,68,68,0.5)";
-                  bg = "rgba(239,68,68,0.10)";
+                  borderStyle = "2px solid color-mix(in srgb, var(--accent-rose) 50%, transparent)";
+                  bg = "color-mix(in srgb, var(--accent-rose) 10%, transparent)";
                 }
               }
 
@@ -244,7 +244,7 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
                     >
                       <CheckCircle
                         size={20}
-                        style={{ color: "#3ECFB2" }}
+                        style={{ color: "var(--accent-cyan)" }}
                       />
                     </motion.div>
                   )}
@@ -263,7 +263,7 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
                     >
                       <XCircle
                         size={20}
-                        style={{ color: "rgba(239,68,68,0.7)" }}
+                        style={{ color: "color-mix(in srgb, var(--accent-rose) 70%, transparent)" }}
                       />
                     </motion.div>
                   )}
@@ -285,7 +285,7 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
                   fontSize: 14,
                   marginTop: 14,
                   fontWeight: isCorrect ? 500 : 400,
-                  color: isCorrect ? "#3ECFB2" : "var(--cf-text-3)",
+                  color: isCorrect ? "var(--accent-cyan)" : "var(--cf-text-3)",
                   lineHeight: 1.5,
                 }}
               >

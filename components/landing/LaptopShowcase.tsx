@@ -126,7 +126,7 @@ function LaptopShowcaseDesktop() {
             className="absolute inset-0 pointer-events-none"
             style={{
               background:
-                "radial-gradient(ellipse at 50% 50%, rgba(79,139,255,0.08) 0%, transparent 70%)",
+                "radial-gradient(ellipse at 50% 50%, rgba(34,211,238,0.08) 0%, transparent 70%)",
               filter: "blur(40px)",
               opacity: glowOpacity,
             }}

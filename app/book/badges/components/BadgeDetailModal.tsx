@@ -84,7 +84,7 @@ export function BadgeDetailModal({
 
           <motion.div
             className={cn(
-              "relative z-10 w-full max-w-[480px] overflow-y-auto rounded-t-3xl border border-(--cf-border) bg-(--cf-surface) p-6 shadow-2xl",
+              "relative z-10 w-full max-w-[480px] overflow-y-auto rounded-t-3xl border border-(--cf-border) bg-(--cf-surface) p-6 shadow-shadow-modal",
               "md:max-h-[85vh] md:rounded-3xl"
             )}
             initial={reduced ? { opacity: 0 } : { y: 100, opacity: 0 }}
@@ -179,7 +179,7 @@ function EarnedModalContent({
 
       <TierPillDisplay tier={badge.tier} earned className="mt-4" />
 
-      <h3 className="mt-4 text-2xl font-semibold text-amber-500">{badge.name}</h3>
+      <h3 className="mt-4 text-2xl font-semibold" style={{ color: "var(--accent-amber)" }}>{badge.name}</h3>
 
       <p className="mt-3 max-w-sm text-sm italic leading-relaxed text-(--cf-text-2)">
         {badge.narrative}
@@ -195,8 +195,8 @@ function EarnedModalContent({
           <div className="mt-2 flex items-center gap-3">
             <div className="h-2 flex-1 overflow-hidden rounded-full bg-(--cf-surface-strong)">
               <div
-                className="h-full rounded-full bg-amber-500/60"
-                style={{ width: `${rarity}%` }}
+                className="h-full rounded-full"
+                style={{ width: `${rarity}%`, background: "var(--accent-amber)" }}
               />
             </div>
             <span className="shrink-0 text-sm text-(--cf-text-3)">
@@ -230,9 +230,14 @@ function EarnedModalContent({
             showcaseFull
               ? "cursor-not-allowed border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-soft)"
               : isPinned
-                ? "border-amber-500/30 bg-amber-500/10 text-amber-500"
-                : "border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-2) hover:bg-(--cf-surface-strong)"
+                ? "border-(--cf-border) text-(--cf-text-2) hover:bg-(--cf-surface-strong)"
+                : "border-(--cf-border) text-(--cf-text-2) hover:bg-(--cf-surface-strong)"
           )}
+          style={
+            !showcaseFull && isPinned
+              ? { borderColor: "rgba(34,211,238,0.3)", background: "rgba(34,211,238,0.12)", color: "var(--accent-cyan)" }
+              : undefined
+          }
         >
           {showcaseFull ? "Showcase Full" : isPinned ? "Unpin from Showcase" : "Pin to Showcase"}
         </button>
@@ -299,8 +304,8 @@ function LockedModalContent({
           <p className="text-[11px] uppercase tracking-[0.2em] text-(--cf-text-soft)">Progress</p>
           <div className="mt-2 h-2.5 overflow-hidden rounded-full bg-(--cf-surface-strong)">
             <div
-              className="h-full rounded-full bg-amber-500 transition-[width] duration-500"
-              style={{ width: `${Math.max(4, badge.percentage)}%` }}
+              className="h-full rounded-full transition-[width] duration-500"
+              style={{ width: `${Math.max(4, badge.percentage)}%`, background: "var(--accent-amber)" }}
             />
           </div>
           <div className="mt-1.5 flex items-center justify-between text-sm">
@@ -323,7 +328,12 @@ function LockedModalContent({
       <div className="mt-6 w-full">
         <Link
           href={ctaHref}
-          className="block w-full rounded-2xl border border-amber-500/20 bg-amber-500/10 px-4 py-2.5 text-center text-sm font-medium text-amber-500 transition hover:bg-amber-500/15"
+          className="block w-full rounded-2xl border px-4 py-2.5 text-center text-sm font-medium transition"
+          style={{
+            borderColor: "rgba(34,211,238,0.2)",
+            background: "rgba(34,211,238,0.1)",
+            color: "var(--accent-cyan)",
+          }}
         >
           Continue Reading &rarr;
         </Link>
@@ -341,9 +351,18 @@ function DetailRow({ label, value }: { label: string; value: string }) {
   );
 }
 
+const METALLIC_GRADIENTS: Record<string, string> = {
+  bronze: "linear-gradient(135deg, #CD7F32, #E8A862)",
+  silver: "linear-gradient(135deg, #C0C0C0, #E8E8E8)",
+  gold: "linear-gradient(135deg, #FFD700, #FFF0A0)",
+  platinum: "linear-gradient(135deg, #E5E4E2, #FFFFFF)",
+  unique: "linear-gradient(135deg, #8B5CF6, #EC4899)",
+  secret: "linear-gradient(135deg, #8B5CF6, #EC4899)",
+};
+
 function TierPillDisplay({ tier, earned, className }: { tier: string; earned: boolean; className?: string }) {
-  const styles = TIER_PILL_STYLES[tier as keyof typeof TIER_PILL_STYLES] ?? TIER_PILL_STYLES.unique;
   const label = tier === "unique" ? "Unique" : tier === "secret" ? "Secret" : tier.charAt(0).toUpperCase() + tier.slice(1);
+  const gradient = METALLIC_GRADIENTS[tier] ?? METALLIC_GRADIENTS.unique;
 
   return (
     <span
@@ -354,7 +373,11 @@ function TierPillDisplay({ tier, earned, className }: { tier: string; earned: bo
       )}
       style={
         earned
-          ? { background: styles.background, color: styles.color, textShadow: styles.textShadow }
+          ? {
+              background: gradient,
+              color: tier === "platinum" || tier === "silver" ? "#1a1a2e" : tier === "unique" || tier === "secret" ? "#ffffff" : "#1a0f00",
+              textShadow: tier === "platinum" ? "0 1px 0 rgba(255,255,255,0.4)" : "none",
+            }
           : { background: "var(--cf-surface-strong)", color: "var(--cf-text-soft)" }
       }
     >

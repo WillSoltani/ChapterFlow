@@ -46,10 +46,10 @@ function seededSocial(bookId: string) {
   return { activeReaders: 120 + (abs % 400), completedReaders: 30 + (abs % 150) };
 }
 
-function difficultyPillClass(value: LibraryBookEntry["difficulty"]): string {
-  if (value === "Easy") return "cf-pill cf-pill-success";
-  if (value === "Medium") return "cf-pill cf-pill-warning";
-  return "cf-pill cf-pill-danger";
+function difficultyPillStyle(value: LibraryBookEntry["difficulty"]): { background: string; color: string } {
+  if (value === "Easy") return { background: "color-mix(in srgb, var(--accent-emerald) 20%, transparent)", color: "var(--accent-emerald)" };
+  if (value === "Medium") return { background: "color-mix(in srgb, var(--accent-amber) 20%, transparent)", color: "var(--accent-amber)" };
+  return { background: "color-mix(in srgb, var(--accent-rose) 20%, transparent)", color: "var(--accent-rose)" };
 }
 
 export function BookHero({
@@ -111,15 +111,17 @@ export function BookHero({
             transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.4, delay: 0.2 }}
             className="shrink-0"
           >
-            <BookCover
-              bookId={entry.id}
-              title={entry.title}
-              icon={entry.icon}
-              coverImage={entry.coverImage}
-              className="h-52 w-36 rounded-xl border border-(--cf-border) shadow-2xl md:h-72 md:w-48"
-              fallbackClassName="text-6xl"
-              sizes="220px"
-            />
+            <div style={{ boxShadow: "0 12px 40px rgba(0,0,0,0.5), 0 4px 12px rgba(0,0,0,0.3)", borderRadius: "0.75rem" }}>
+              <BookCover
+                bookId={entry.id}
+                title={entry.title}
+                icon={entry.icon}
+                coverImage={entry.coverImage}
+                className="h-52 w-36 rounded-xl border border-(--cf-border) md:h-72 md:w-48"
+                fallbackClassName="text-6xl"
+                sizes="220px"
+              />
+            </div>
           </motion.div>
 
           {/* Info column */}
@@ -150,7 +152,10 @@ export function BookHero({
               className="mt-3 flex flex-wrap justify-center gap-2 md:justify-start"
             >
               <span className="cf-pill rounded-lg px-2.5 py-1 text-xs">{entry.category}</span>
-              <span className={`rounded-lg px-2.5 py-1 text-xs ${difficultyPillClass(entry.difficulty)}`}>
+              <span
+                className="rounded-lg px-2.5 py-1 text-xs font-medium"
+                style={difficultyPillStyle(entry.difficulty)}
+              >
                 {entry.difficulty}
               </span>
               <span className="cf-pill rounded-lg px-2.5 py-1 text-xs">{pages} pages</span>
@@ -204,11 +209,11 @@ export function BookHero({
                 </span>
               )}
               <span className="inline-flex items-center gap-1.5">
-                <Users className="h-3.5 w-3.5" />
+                <Users className="h-3.5 w-3.5" style={{ color: "var(--text-secondary)" }} />
                 {social.activeReaders} readers
               </span>
               <span className="inline-flex items-center gap-1.5">
-                <Trophy className="h-3.5 w-3.5" />
+                <Trophy className="h-3.5 w-3.5" style={{ color: "var(--text-secondary)" }} />
                 {social.completedReaders} completed
               </span>
             </div>

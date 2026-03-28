@@ -34,7 +34,7 @@ export function ProgressRing({
       <svg
         width={size}
         height={size}
-        style={{ transform: "rotate(-90deg)" }}
+        style={{ transform: "rotate(-90deg)", filter: "drop-shadow(0 0 6px color-mix(in srgb, var(--accent-cyan) 30%, transparent))" }}
         className="overflow-visible"
       >
         <circle
@@ -50,7 +50,7 @@ export function ProgressRing({
           cy={size / 2}
           r={radius}
           fill="none"
-          stroke="var(--cf-success-text)"
+          stroke="var(--accent-cyan)"
           strokeWidth={strokeWidth}
           strokeLinecap="round"
           strokeDasharray={circumference}
@@ -63,7 +63,7 @@ export function ProgressRing({
           }
         />
       </svg>
-      <span className="absolute inset-0 flex items-center justify-center text-sm font-semibold text-(--cf-success-text)">
+      <span className="absolute inset-0 flex items-center justify-center text-sm font-semibold" style={{ color: "var(--accent-cyan)" }}>
         {Math.round(clamped)}%
       </span>
     </div>

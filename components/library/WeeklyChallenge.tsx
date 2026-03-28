@@ -31,11 +31,11 @@ export function WeeklyChallenge({
           style={{
             maxWidth: 1080,
             margin: "40px auto 0",
-            background: "rgba(232,185,49,0.04)",
-            borderLeft: "4px solid var(--accent-gold)",
-            border: "1px solid rgba(232,185,49,0.15)",
+            background: "rgba(245,158,11,0.04)",
+            borderLeft: "4px solid var(--accent-amber)",
+            border: "1px solid rgba(245,158,11,0.15)",
             borderLeftWidth: 4,
-            borderLeftColor: "var(--accent-gold)",
+            borderLeftColor: "var(--accent-amber)",
           }}
         >
           <div className="flex items-center justify-between gap-4">
@@ -43,14 +43,14 @@ export function WeeklyChallenge({
               {/* Trophy icon — gold */}
               <div
                 className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg"
-                style={{ background: "rgba(232,185,49,0.12)" }}
+                style={{ background: "rgba(245,158,11,0.12)" }}
               >
                 <svg
                   width="20"
                   height="20"
                   viewBox="0 0 24 24"
                   fill="none"
-                  stroke="var(--accent-gold)"
+                  stroke="var(--accent-amber)"
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -87,11 +87,11 @@ export function WeeklyChallenge({
                         style={{
                           background:
                             j < challenge.progress.current
-                              ? "var(--accent-teal)"
+                              ? "var(--accent-cyan)"
                               : "var(--cf-progress-track)",
                           boxShadow:
                             j < challenge.progress.current
-                              ? "0 0 4px var(--accent-teal)"
+                              ? "0 0 4px var(--accent-cyan)"
                               : "none",
                         }}
                       />
@@ -116,8 +116,8 @@ export function WeeklyChallenge({
                   onClick={() => onBrowseCategory(challenge.category!)}
                   className="hidden cursor-pointer rounded-lg px-4 py-2 text-[13px] font-semibold transition-colors md:block"
                   style={{
-                    background: "rgba(232,185,49,0.1)",
-                    border: "1px solid rgba(232,185,49,0.2)",
+                    background: "rgba(245,158,11,0.1)",
+                    border: "1px solid rgba(245,158,11,0.2)",
                     color: "var(--cf-amber-text)",
                   }}
                 >

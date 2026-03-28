@@ -45,22 +45,22 @@ export default function BookSwapSheet({
     switch (difficulty?.toLowerCase()) {
       case "hard":
         return {
-          background: "rgba(232,185,49,0.12)",
-          color: "#E8B931",
-          border: "1px solid rgba(232,185,49,0.2)",
+          background: "color-mix(in srgb, var(--accent-amber) 12%, transparent)",
+          color: "var(--accent-amber)",
+          border: "1px solid color-mix(in srgb, var(--accent-amber) 20%, transparent)",
         };
       case "easy":
         return {
-          background: "rgba(45,212,191,0.12)",
-          color: "#2DD4BF",
-          border: "1px solid rgba(45,212,191,0.2)",
+          background: "color-mix(in srgb, var(--accent-cyan) 12%, transparent)",
+          color: "var(--accent-cyan)",
+          border: "1px solid color-mix(in srgb, var(--accent-cyan) 20%, transparent)",
         };
       case "medium":
       default:
         return {
-          background: "rgba(79,139,255,0.12)",
-          color: "#4F8BFF",
-          border: "1px solid rgba(79,139,255,0.2)",
+          background: "color-mix(in srgb, var(--accent-cyan) 12%, transparent)",
+          color: "var(--accent-cyan)",
+          border: "1px solid color-mix(in srgb, var(--accent-cyan) 20%, transparent)",
         };
     }
   }

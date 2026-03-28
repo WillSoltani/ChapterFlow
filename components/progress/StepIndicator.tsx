@@ -18,7 +18,7 @@ export function StepIndicator({
   size = "md",
 }: StepIndicatorProps) {
   const dotSize = size === "sm" ? 10 : 12;
-  const currentDotSize = size === "sm" ? 12 : 14;
+  const currentDotSize = size === "sm" ? 14 : 16;
   const lineHeight = 2;
 
   return (
@@ -41,10 +41,10 @@ export function StepIndicator({
                     style={{
                       width: effectiveDot,
                       height: effectiveDot,
-                      background: "var(--cf-accent)",
-                      boxShadow: "0 0 10px rgba(56,189,248,0.5)",
+                      background: "var(--accent-cyan)",
+                      boxShadow: "0 0 12px rgba(34,211,238,0.5)",
                     }}
-                    animate={{ scale: [1, 1.2, 1] }}
+                    animate={{ scale: [1, 1.25, 1] }}
                     transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
                     aria-label={`Step ${stepNum} of ${totalSteps}: ${STEP_LABELS[i]} (current)`}
                   />
@@ -55,11 +55,11 @@ export function StepIndicator({
                       width: effectiveDot,
                       height: effectiveDot,
                       background: isCompleted
-                        ? "var(--cf-success-text)"
+                        ? "var(--accent-cyan)"
                         : "transparent",
                       border: isCompleted
                         ? "none"
-                        : "2px solid var(--cf-border-strong)",
+                        : "2px solid var(--text-tertiary)",
                     }}
                     aria-label={`Step ${stepNum} of ${totalSteps}: ${STEP_LABELS[i]} (${isCompleted ? "completed" : "upcoming"})`}
                   />
@@ -74,8 +74,11 @@ export function StepIndicator({
                     height: lineHeight,
                     minWidth: size === "sm" ? 8 : 12,
                     background: isCompleted
-                      ? "var(--cf-success-text)"
-                      : "var(--cf-surface-strong)",
+                      ? "var(--accent-cyan)"
+                      : "transparent",
+                    borderTop: isCompleted
+                      ? "none"
+                      : `${lineHeight}px dashed var(--text-tertiary)`,
                   }}
                 />
               )}
@@ -99,10 +102,10 @@ export function StepIndicator({
                 style={{
                   fontSize: 11,
                   color: isCompleted
-                    ? "var(--cf-success-text)"
+                    ? "var(--accent-cyan)"
                     : isCurrent
-                      ? "var(--cf-accent)"
-                      : "var(--text-muted)",
+                      ? "var(--accent-cyan)"
+                      : "var(--text-tertiary)",
                   fontWeight: isCurrent ? 600 : 400,
                 }}
               >

@@ -27,7 +27,7 @@ export function BookMiniCard({ book, progress, onOpen }: BookMiniCardProps) {
     <button
       type="button"
       onClick={onOpen}
-      className="group w-full rounded-3xl border border-(--cf-border) bg-(--cf-surface) p-4 text-left shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-(--cf-border-strong) hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)"
+      className="group w-full rounded-3xl border border-(--cf-border) bg-(--cf-surface) p-4 text-left shadow-shadow-card transition duration-200 hover:-translate-y-0.5 hover:border-(--cf-border-strong) hover:shadow-shadow-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)"
     >
       <div className="flex items-start justify-between gap-3">
         <BookCover

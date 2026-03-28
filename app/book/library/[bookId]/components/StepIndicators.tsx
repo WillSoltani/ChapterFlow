@@ -16,32 +16,38 @@ export function StepIndicators({
   lockedDots = false,
 }: StepIndicatorsProps) {
   return (
-    <div className="mt-1.5 flex items-center gap-1.5">
+    <div className="mt-1.5 flex items-center gap-2">
       {STEP_LABELS.map((label, index) => {
         const isComplete = index < stepsCompleted;
         const isCurrent = isInProgress && index === stepsCompleted;
 
-        let dotClass: string;
+        // Completed: filled emerald
+        // Current: cyan with pulse
+        // Future: hollow circle in tertiary
+        let dotStyle: React.CSSProperties = {};
+        let dotClass = "block rounded-full transition-colors duration-200";
+
         if (isComplete) {
-          dotClass =
-            accentColor === "green"
-              ? "bg-(--cf-success-text)"
-              : "bg-(--cf-accent)";
+          dotStyle = { background: "var(--accent-emerald)", width: 10, height: 10 };
         } else if (isCurrent) {
-          dotClass =
-            accentColor === "green"
-              ? "bg-(--cf-success-text) bd-dot-pulse"
-              : "bg-(--cf-accent) bd-dot-pulse";
+          dotStyle = { background: "var(--accent-cyan)", width: 10, height: 10 };
+          dotClass += " bd-dot-pulse";
+        } else if (lockedDots) {
+          dotStyle = { background: "var(--cf-border)", width: 6, height: 6 };
         } else {
-          dotClass = lockedDots
-            ? "bg-(--cf-border)"
-            : "bg-(--cf-border-strong)";
+          dotStyle = {
+            width: 10,
+            height: 10,
+            background: "transparent",
+            border: "1.5px solid var(--text-tertiary)",
+          };
         }
 
         return (
           <span key={label} className="tooltip-trigger" data-tooltip={label}>
             <span
-              className={`block rounded-full transition-colors duration-200 ${isInProgress || isComplete ? "h-2 w-2" : "h-1.5 w-1.5"} ${dotClass}`}
+              className={dotClass}
+              style={dotStyle}
               aria-label={
                 isComplete
                   ? `${label}: complete`

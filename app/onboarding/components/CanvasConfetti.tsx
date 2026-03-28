@@ -19,10 +19,10 @@ interface Particle {
 }
 
 const COLORS = [
-  "#3ECFB2", // teal
-  "#5B8DEF", // blue
+  "#22D3EE", // cyan
+  "#22D3EE", // cyan
   "#E8B931", // gold
-  "#FF8C42", // amber
+  "#F59E0B", // amber
   "#7C6BF0", // purple
   "#3BD4A0", // green
   "#FFFFFF", // white

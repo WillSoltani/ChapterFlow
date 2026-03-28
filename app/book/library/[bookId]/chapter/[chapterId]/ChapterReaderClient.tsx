@@ -11,6 +11,7 @@ import {
   type ChapterMotivationStyle,
   type ChapterExample,
   type ReadingDepth,
+  type ToneKey,
 } from "@/app/book/data/mockChapters";
 import { getLibraryBookById } from "@/app/book/data/mockUserLibraryState";
 import { BookClientError, fetchBookJson } from "@/app/book/_lib/book-api";
@@ -33,13 +34,13 @@ import {
 import { NotesDrawer } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/NotesDrawer";
 import { QuizPanel } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/QuizPanel";
 import { SummaryCard } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/SummaryCard";
+import { PracticePhase } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/PracticePhase";
 import { SessionModeOverlay } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/SessionModeOverlay";
 import { useChapterState, type ChapterTab } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterState";
 import { useQuizSession } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useQuizSession";
 import { usePhaseCompletion } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/usePhaseCompletion";
 import { useBookProgress } from "@/app/book/library/hooks/useBookProgress";
 import { useReadingSessionTracker } from "@/app/book/library/hooks/useReadingSessionTracker";
-import { InfoModal } from "@/app/book/home/components/InfoModal";
 import type { LearningMode } from "@/app/book/settings/types/settings";
 
 const SCENARIO_SUBMISSION_POINTS = FLOW_POINTS_AMOUNTS.scenarioApproved;
@@ -76,14 +77,15 @@ function computeProgressPercent(
   completedPhases: Set<ChapterTab>
 ): number {
   const phaseWeights: Record<ChapterTab, number> = {
-    summary: 33,
-    examples: 66,
-    quiz: 100,
+    summary: 25,
+    examples: 50,
+    quiz: 75,
+    practice: 100,
   };
   // If the current tab's phase is also completed, use its full weight
   if (completedPhases.has(activeTab)) return phaseWeights[activeTab];
   // Otherwise show partial progress within the current phase
-  const phaseOrder: ChapterTab[] = ["summary", "examples", "quiz"];
+  const phaseOrder: ChapterTab[] = ["summary", "examples", "quiz", "practice"];
   const currentIndex = phaseOrder.indexOf(activeTab);
   const prevWeight = currentIndex > 0 ? phaseWeights[phaseOrder[currentIndex - 1]] : 0;
   const currentWeight = phaseWeights[activeTab];
@@ -104,7 +106,7 @@ export function ChapterReaderClient({
   const [notesOpen, setNotesOpen] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
   const [sessionMode, setSessionMode] = useState(false);
-  const [showQuizSuccessModal, setShowQuizSuccessModal] = useState(false);
+  // Quiz success modal removed: chapter completion now happens after Practice phase
   const [approvedUserExamples, setApprovedUserExamples] = useState<ChapterExample[]>([]);
   const [userSubmissions, setUserSubmissions] = useState<UserScenarioSubmission[]>([]);
   const [engagementPoints, setEngagementPoints] = useState(0);
@@ -125,8 +127,9 @@ export function ChapterReaderClient({
   // Content area ref for scroll tracking
   const contentRef = useRef<HTMLDivElement>(null);
 
-  // Resolve learning mode from settings (localStorage)
+  // Resolve learning mode and content tone from settings (localStorage)
   const [learningMode, setLearningMode] = useState<LearningMode>("standard");
+  const [contentTone, setContentTone] = useState<ToneKey>("gentle");
   useEffect(() => {
     try {
       const raw = window.localStorage.getItem("book-accelerator:settings-ext:v1");
@@ -134,6 +137,9 @@ export function ChapterReaderClient({
         const parsed = JSON.parse(raw);
         if (parsed.learningMode === "guided" || parsed.learningMode === "standard" || parsed.learningMode === "challenge") {
           setLearningMode(parsed.learningMode);
+        }
+        if (parsed.contentTone === "gentle" || parsed.contentTone === "direct" || parsed.contentTone === "competitive") {
+          setContentTone(parsed.contentTone);
         }
       }
     } catch {}
@@ -156,9 +162,9 @@ export function ChapterReaderClient({
   const preferredExampleFilter = onboarding.preferredExampleContext;
 
   const entry = useMemo(() => getLibraryBookById(bookId), [bookId]);
-  const bundle = useMemo(() => getBookChaptersBundle(bookId), [bookId]);
+  const bundle = useMemo(() => getBookChaptersBundle(bookId, contentTone), [bookId, contentTone]);
   const chapters = bundle.chapters;
-  const baseChapter = useMemo(() => getChapterById(bookId, chapterId), [bookId, chapterId]);
+  const baseChapter = useMemo(() => getChapterById(bookId, chapterId, contentTone), [bookId, chapterId, contentTone]);
   const chapter = useMemo(
     () =>
       baseChapter
@@ -198,6 +204,9 @@ export function ChapterReaderClient({
     preferredExampleFilter
   );
 
+  // Derive quiz passed state for practice phase gating
+  const quizPassed = state.quizResult?.passed === true;
+
   // Total scenarios count for phase completion gating
   const totalScenarios = chapter?.examplesDetailed?.length ?? 0;
 
@@ -217,12 +226,13 @@ export function ChapterReaderClient({
       chapterHydrated &&
       onboarding.setupComplete &&
       bookAccessStatus === "ready",
+    quizPassed,
   });
 
   // Wrapped setActiveTab that enforces gating and shows interstitial
   const setActiveTab = useCallback(
     (newTab: ChapterTab) => {
-      const phaseOrder: ChapterTab[] = ["summary", "examples", "quiz"];
+      const phaseOrder: ChapterTab[] = ["summary", "examples", "quiz", "practice"];
       const currentIndex = phaseOrder.indexOf(state.activeTab);
       const newIndex = phaseOrder.indexOf(newTab);
 
@@ -377,6 +387,13 @@ export function ChapterReaderClient({
       bookAccessStatus === "ready" &&
       !isLocked &&
       showQuiz,
+    localQuiz: chapter
+      ? {
+          chapterId: chapter.id,
+          questions: chapter.quiz,
+          passingScorePercent: chapter.quizPassingScorePercent,
+        }
+      : undefined,
   });
 
   if (
@@ -464,10 +481,8 @@ export function ChapterReaderClient({
     try {
       const nextSession = await quiz.submit();
       if (nextSession?.result?.passed) {
-        markChapterComplete(chapter.id, nextSession.result.scorePercent);
         phaseCompletion.markPhaseCompleted("quiz");
-        setToast("Chapter unlocked.");
-        setShowQuizSuccessModal(true);
+        setToast("Quiz passed! Continue to Practice.");
       } else {
         const minutes = Math.max(1, Math.ceil((nextSession?.cooldownSeconds ?? quiz.cooldownSeconds) / 60));
         setToast(
@@ -481,7 +496,14 @@ export function ChapterReaderClient({
     }
   };
 
-  const handleUnlockNext = () => {
+  const handleContinueToPractice = () => {
+    phaseCompletion.markPhaseCompleted("quiz");
+    setActiveTab("practice");
+  };
+
+  const handlePracticeComplete = () => {
+    phaseCompletion.markPhaseCompleted("practice");
+    markChapterComplete(chapter.id, quiz.session?.result?.scorePercent ?? 0);
     quiz.trackNextChapterClick();
     if (nextChapter) {
       const nextRoute = `/book/library/${encodeURIComponent(bookId)}/chapter/${encodeURIComponent(nextChapter.id)}`;
@@ -522,6 +544,7 @@ export function ChapterReaderClient({
 
   const showSummary = state.activeTab === "summary";
   const showExamples = state.activeTab === "examples";
+  const showPractice = state.activeTab === "practice";
   const progressPercent = computeProgressPercent(state.activeTab, phaseCompletion.completedPhases);
 
   return (
@@ -567,6 +590,23 @@ export function ChapterReaderClient({
             };
             setToast(messages[mode] ?? `Switched to ${mode}.`);
           }}
+          contentTone={contentTone}
+          onChangeContentTone={(tone) => {
+            if (tone === contentTone) return;
+            setContentTone(tone);
+            try {
+              const raw = window.localStorage.getItem("book-accelerator:settings-ext:v1");
+              const settings = raw ? JSON.parse(raw) : {};
+              settings.contentTone = tone;
+              window.localStorage.setItem("book-accelerator:settings-ext:v1", JSON.stringify(settings));
+            } catch {}
+            const labels: Record<string, string> = {
+              gentle: "Gentle tone. Warm, invitational framing.",
+              direct: "Direct tone. Clean, efficient language.",
+              competitive: "Competitive tone. Edge-focused, challenge-driven.",
+            };
+            setToast(labels[tone] ?? `Switched to ${tone} tone.`);
+          }}
         />
 
         {/* 3-Phase Stepper */}
@@ -598,6 +638,7 @@ export function ChapterReaderClient({
                 }}
                 fontScaleClass={textScaleClass}
                 learningMode={learningMode}
+                activationPrompt={chapter.activationPrompt}
               />
               <ContinueButton
                 ready={phaseCompletion.currentPhaseReady}
@@ -641,10 +682,21 @@ export function ChapterReaderClient({
               onSubmit={handleSubmitQuiz}
               onReviewSummary={() => setActiveTab("summary")}
               onRetry={handleRetryQuiz}
-              onUnlockNext={handleUnlockNext}
+              onContinueToPractice={handleContinueToPractice}
               onToggleExplanation={quiz.toggleExplanation}
-              nextChapterLabel={nextChapter ? `Continue to Chapter ${nextChapter.order} \u2192` : "Finish Book \u2192"}
               learningMode={learningMode}
+            />
+          )}
+
+          {showPractice && (
+            <PracticePhase
+              keyTakeawayCard={chapter.keyTakeawayCard}
+              implementationPlan={chapter.implementationPlan}
+              reviewCards={chapter.reviewCards}
+              predictionPrompt={chapter.predictionPrompt}
+              fontScaleClass={textScaleClass}
+              onContinueToNextChapter={handlePracticeComplete}
+              nextChapterLabel={nextChapter ? `Continue to Chapter ${nextChapter.order} \u2192` : "Finish Book \u2192"}
             />
           )}
         </div>
@@ -678,34 +730,7 @@ export function ChapterReaderClient({
         />
       )}
 
-      <InfoModal
-        open={showQuizSuccessModal}
-        title="Chapter unlocked"
-        onClose={() => setShowQuizSuccessModal(false)}
-      >
-        <p className="text-sm leading-relaxed text-(--cr-text-secondary)">
-          You passed the quiz, unlocked the next chapter, and your result has been saved to your progress.
-        </p>
-        <div className="mt-4 grid gap-3 sm:grid-cols-2">
-          <button
-            type="button"
-            onClick={() => {
-              setShowQuizSuccessModal(false);
-              handleUnlockNext();
-            }}
-            className="rounded-2xl bg-(--cr-accent) px-4 py-3 text-sm font-bold text-(--cr-text-inverse)"
-          >
-            {nextChapter ? `Continue to Chapter ${nextChapter.order}` : "Finish Book"}
-          </button>
-          <button
-            type="button"
-            onClick={() => setShowQuizSuccessModal(false)}
-            className="rounded-2xl border border-(--cr-glass-border) bg-(--cr-bg-surface-3) px-4 py-3 text-sm font-semibold text-(--cr-text-primary)"
-          >
-            Stay here
-          </button>
-        </div>
-      </InfoModal>
+      {/* Quiz success modal removed: chapter completion now happens after Practice phase */}
 
       {currentChapter && (
         <div className="fixed bottom-20 left-4 right-4 z-50 lg:hidden">

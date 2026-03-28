@@ -57,11 +57,12 @@ export function BookCardWorkspace(props: BookCardWorkspaceProps) {
         backdropFilter: "blur(16px) saturate(125%)",
         WebkitBackdropFilter: "blur(16px) saturate(125%)",
         border: "1px solid var(--cf-border)",
+        boxShadow: "0 8px 24px rgba(0,0,0,0.4), 0 2px 8px rgba(0,0,0,0.3)",
       }}
       whileHover={
         prefersReducedMotion
           ? undefined
-          : { scale: 1.03, y: -4, backgroundColor: "var(--cf-surface-muted)" }
+          : { scale: 1.03, y: -8, boxShadow: "0 16px 40px rgba(0,0,0,0.5)" }
       }
       transition={{ type: "spring", stiffness: 400, damping: 25 }}
       role="listitem"
@@ -74,7 +75,7 @@ export function BookCardWorkspace(props: BookCardWorkspaceProps) {
             alt={`${book.title} by ${book.author}`}
             width={170}
             height={200}
-            className="h-full w-full object-cover ring-1 ring-white/[0.06] shadow-lg shadow-black/30"
+            className="h-full w-full object-cover ring-1 ring-white/[0.06] shadow-shadow-elevated"
             loading="lazy"
             sizes="170px"
           />
@@ -85,6 +86,22 @@ export function BookCardWorkspace(props: BookCardWorkspaceProps) {
               background: "linear-gradient(to top, rgba(0,0,0,0.3), transparent)",
             }}
           />
+          {/* In-progress cover bar */}
+          {variant === "user" && (book as UserBookData).status === "in_progress" && (
+            <div
+              className="absolute inset-x-0 bottom-0"
+              style={{ height: 3, background: "rgba(0,0,0,0.3)" }}
+            >
+              <div
+                style={{
+                  height: "100%",
+                  width: `${(book as UserBookData).progressPercent}%`,
+                  background: "var(--accent-cyan)",
+                  borderRadius: "0 1px 0 0",
+                }}
+              />
+            </div>
+          )}
         </div>
         {variant === "pro" && (
           <div className="absolute right-2 top-2">

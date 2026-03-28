@@ -58,8 +58,22 @@ export function useQuizSession(params: {
   bookId: string;
   chapterNumber: number;
   enabled: boolean;
+  /** Local quiz data from mockChapters for offline/dev fallback */
+  localQuiz?: {
+    chapterId: string;
+    questions: Array<{
+      id: string;
+      prompt: string;
+      options: string[];
+      correctIndex: number;
+      explanation: string;
+    }>;
+    passingScorePercent: number;
+  };
 }) {
-  const { bookId, chapterNumber, enabled } = params;
+  const { bookId, chapterNumber, enabled, localQuiz } = params;
+  const localQuizRef = useRef(localQuiz);
+  localQuizRef.current = localQuiz;
   const [session, setSession] = useState<QuizSessionView | null>(null);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [explanationOpen, setExplanationOpen] = useState<Record<string, boolean>>({});
@@ -92,6 +106,39 @@ export function useQuizSession(params: {
     startedAtRef.current = nextSession.result ? null : Date.now();
   }, []);
 
+  const buildLocalSession = useCallback((): QuizSessionView | null => {
+    const quiz = localQuizRef.current;
+    if (!quiz) return null;
+    return {
+      chapterId: quiz.chapterId,
+      chapterNumber,
+      title: "",
+      passingScorePercent: quiz.passingScorePercent,
+      status: "ready",
+      attemptNumber: 1,
+      nextAttemptNumber: null,
+      attemptsCount: 0,
+      failureStreak: 0,
+      cooldownSeconds: 0,
+      nextAttemptAvailableAt: null,
+      highestScorePercent: 0,
+      unlockedNextChapter: false,
+      questions: quiz.questions.map((q) => ({
+        questionId: q.id,
+        prompt: q.prompt,
+        choices: q.options.map((opt, idx) => ({
+          choiceId: `${q.id}-choice-${idx}`,
+          text: opt.replace(/^[A-Z]\)\s*/, ""),
+        })),
+        explanation: q.explanation,
+        correctChoiceId: `${q.id}-choice-${q.correctIndex}`,
+        correctIndex: q.correctIndex,
+      })),
+      result: null,
+      history: [],
+    };
+  }, [chapterNumber]);
+
   const load = useCallback(async () => {
     if (!enabled) return null;
     setLoading(true);
@@ -106,6 +153,14 @@ export function useQuizSession(params: {
       setError(null);
       return payload.quiz;
     } catch (loadError: unknown) {
+      // Fall back to local quiz data if API fails
+      const local = buildLocalSession();
+      if (local) {
+        setSession(local);
+        syncFromSession(local);
+        setError(null);
+        return local;
+      }
       const message =
         loadError instanceof Error ? loadError.message : "Unable to load quiz right now.";
       setError(message);
@@ -113,7 +168,7 @@ export function useQuizSession(params: {
     } finally {
       setLoading(false);
     }
-  }, [bookId, chapterNumber, enabled, syncFromSession]);
+  }, [bookId, chapterNumber, enabled, syncFromSession, buildLocalSession]);
 
   useEffect(() => {
     if (!enabled) return;
@@ -149,6 +204,32 @@ export function useQuizSession(params: {
     [session]
   );
 
+  const scoreLocally = useCallback((): QuizSessionView | null => {
+    if (!session) return null;
+    let correct = 0;
+    const scoredQuestions = session.questions.map((q) => {
+      const selectedId = answers[q.questionId] ?? null;
+      const isCorrect = selectedId === q.correctChoiceId;
+      if (isCorrect) correct += 1;
+      return { ...q, selectedChoiceId: selectedId, isCorrect };
+    });
+    const scorePercent = Math.round((correct / scoredQuestions.length) * 100);
+    const passed = scorePercent >= session.passingScorePercent;
+    return {
+      ...session,
+      status: passed ? "passed" : "ready",
+      questions: scoredQuestions,
+      result: {
+        attemptNumber: session.attemptNumber,
+        scorePercent,
+        correctAnswers: correct,
+        totalQuestions: scoredQuestions.length,
+        passed,
+        submittedAt: new Date().toISOString(),
+      },
+    };
+  }, [answers, session]);
+
   const submit = useCallback(async () => {
     if (!session) return null;
     setSubmitting(true);
@@ -176,6 +257,14 @@ export function useQuizSession(params: {
       setError(null);
       return payload.quiz;
     } catch (submitError: unknown) {
+      // Fall back to local scoring
+      const local = scoreLocally();
+      if (local) {
+        setSession(local);
+        syncFromSession(local);
+        setError(null);
+        return local;
+      }
       if (
         submitError instanceof BookClientError &&
         submitError.code === "attempt_cooldown"
@@ -186,7 +275,7 @@ export function useQuizSession(params: {
     } finally {
       setSubmitting(false);
     }
-  }, [answers, bookId, chapterNumber, load, session, syncFromSession]);
+  }, [answers, bookId, chapterNumber, load, session, syncFromSession, scoreLocally]);
 
   const retry = useCallback(async () => {
     return load();

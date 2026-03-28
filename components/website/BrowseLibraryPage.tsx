@@ -46,25 +46,15 @@ type SortOption = "popular" | "newest" | "shortest" | "alphabetical";
 /* ================================================================== */
 
 const POPULAR_IDS = new Set([
-  "atomic-habits", "deep-work", "thinking-fast-and-slow", "the-48-laws-of-power",
-  "never-split-the-difference", "friends-and-influence-student-edition",
-  "the-power-of-habit", "mindset", "influence", "the-psychology-of-money",
-  "cant-hurt-me", "the-7-habits-of-highly-effective-people", "essentialism",
-  "rich-dad-poor-dad", "extreme-ownership",
+  "the-48-laws-of-power", "friends-and-influence",
 ]);
 
-const NEW_IDS = new Set([
-  "clear-thinking", "the-elephant-in-the-brain", "discipline-is-destiny",
-  "the-great-mental-models-vol-1", "the-great-mental-models-vol-2",
-  "superforecasting", "competing-against-luck", "the-checklist-manifesto",
-  "make-it-stick", "skin-in-the-game",
-]);
+const NEW_IDS = new Set<string>([]);
 
-const FREE_IDS = new Set(["atomic-habits", "thinking-fast-and-slow"]);
+const FREE_IDS = new Set(["friends-and-influence"]);
 
 const STAFF_PICK_IDS = new Set([
-  "mans-search-for-meaning", "start-with-why", "the-7-habits-of-highly-effective-people",
-  "meditations", "antifragile", "good-to-great",
+  "the-48-laws-of-power",
 ]);
 
 function makeRating(id: string): number {
@@ -101,7 +91,7 @@ const ALL_BOOKS: LibraryBook[] = BOOKS_CATALOG.map((cat) => {
   };
 });
 
-const FEATURED_BOOK = ALL_BOOKS.find((b) => b.id === "atomic-habits") || ALL_BOOKS[0];
+const FEATURED_BOOK = ALL_BOOKS.find((b) => b.id === "the-48-laws-of-power") || ALL_BOOKS[0];
 
 /* ================================================================== */
 /*  HELPERS                                                            */
@@ -143,10 +133,10 @@ const DIFFICULTY_LABEL: Record<string, string> = {
 };
 
 function getBookBadge(book: LibraryBook): { label: string; color: string } | null {
-  if (book.isFree) return { label: "Free", color: "#22c55e" };
-  if (book.isNew) return { label: "New", color: "#2dd4bf" };
-  if (book.popular) return { label: "Trending", color: "#f97316" };
-  if (book.staffPick) return { label: "Editor's Pick", color: "#eab308" };
+  if (book.isFree) return { label: "Free", color: "var(--accent-emerald)" };
+  if (book.isNew) return { label: "New", color: "var(--accent-cyan)" };
+  if (book.popular) return { label: "Trending", color: "var(--accent-amber)" };
+  if (book.staffPick) return { label: "Editor's Pick", color: "var(--accent-amber)" };
   return null;
 }
 
@@ -231,7 +221,7 @@ function SearchBar({
         className="flex items-center gap-3 rounded-xl px-4 py-3 transition-all duration-200"
         style={{
           background: "rgba(255,255,255,0.04)",
-          border: `1px solid ${focused ? "rgba(45,212,191,0.3)" : "rgba(255,255,255,0.08)"}`,
+          border: `1px solid ${focused ? "rgba(34,211,238,0.3)" : "rgba(255,255,255,0.08)"}`,
         }}
       >
         <SearchIcon />
@@ -327,14 +317,14 @@ function FeaturedBookSpotlight({ book }: { book: LibraryBook }) {
           title={book.title}
           icon="📚"
           coverImage={coverPath(book)}
-          className="w-full h-full rounded-xl shadow-2xl shadow-black/50"
+          className="w-full h-full rounded-xl shadow-shadow-elevated"
           interactive={false}
         />
       </div>
       <div className="flex flex-col min-w-0 flex-1">
         <span
           className="text-[10px] px-2.5 py-1 rounded-full font-semibold uppercase tracking-wider w-fit"
-          style={{ background: "rgba(45,212,191,0.1)", color: "var(--accent-teal)" }}
+          style={{ background: "rgba(34,211,238,0.1)", color: "var(--accent-teal)" }}
         >
           Editor&apos;s Pick
         </span>
@@ -572,7 +562,7 @@ function BookCard({ book, showCategoryTag = false }: { book: LibraryBook; showCa
   return (
     <Link href={`/book/library/${book.id}`} className="group block">
       {/* Cover */}
-      <div className="relative overflow-hidden rounded-lg aspect-[2/3] transition-all duration-200 group-hover:scale-[1.04] group-hover:shadow-xl group-hover:shadow-black/30">
+      <div className="relative overflow-hidden rounded-lg aspect-[2/3] transition-all duration-200 group-hover:scale-[1.04] group-hover:shadow-shadow-elevated">
         <BookCover
           bookId={book.coverId || book.id}
           title={book.title}
@@ -875,7 +865,7 @@ function ZeroResults({
     <div className="max-w-md mx-auto px-4 py-20 text-center">
       <div
         className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-5"
-        style={{ background: "rgba(45,212,191,0.06)", border: "1px solid rgba(45,212,191,0.1)" }}
+        style={{ background: "rgba(34,211,238,0.06)", border: "1px solid rgba(34,211,238,0.1)" }}
       >
         <SearchIcon />
       </div>
@@ -1011,7 +1001,7 @@ export function BrowseLibraryPage() {
         aria-hidden
         style={{
           background: [
-            "radial-gradient(ellipse 60vw 50vw at 30% 0%, rgba(45, 212, 191, 0.04), transparent)",
+            "radial-gradient(ellipse 60vw 50vw at 30% 0%, rgba(34, 211, 238, 0.04), transparent)",
             "var(--bg-base)",
           ].join(", "),
         }}

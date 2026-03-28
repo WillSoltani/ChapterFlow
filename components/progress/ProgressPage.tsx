@@ -472,6 +472,11 @@ export function ProgressPage() {
 
       <motion.section
         className="mx-auto w-full max-w-7xl space-y-6 px-4 pb-28 pt-7 sm:px-6 sm:pt-8 md:pb-24"
+        initial={{ opacity: prefersReduced ? 1 : 0, y: prefersReduced ? 0 : 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+      >
+      <motion.div
         initial="hidden"
         animate="visible"
         variants={{
@@ -481,6 +486,7 @@ export function ProgressPage() {
             transition: { staggerChildren: 0.15, delayChildren: 0.05 },
           },
         }}
+        className="space-y-6"
       >
         {/* SECTION 1: Hero */}
         <motion.div variants={sectionVariants}>
@@ -584,6 +590,7 @@ export function ProgressPage() {
         >
           <ProInsightsPreview isPro={displayData.user.isPro} />
         </motion.div>
+      </motion.div>
       </motion.section>
     </main>
   );

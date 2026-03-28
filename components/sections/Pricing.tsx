@@ -198,7 +198,7 @@ export function Pricing() {
               Annual
               <span
                 className="ml-1.5 text-[10px] font-bold px-1.5 py-0.5 rounded-full"
-                style={{ color: "var(--accent-teal)", background: "rgba(45,212,191,0.1)" }}
+                style={{ color: "var(--accent-teal)", background: "rgba(34,211,238,0.1)" }}
               >
                 Save {ANNUAL_SAVINGS_PCT}%
               </span>
@@ -276,8 +276,8 @@ export function Pricing() {
               style={{
                 backdropFilter: "blur(12px)",
                 background: "var(--bg-glass)",
-                border: "1px solid rgba(45,212,191,0.35)",
-                boxShadow: "0 0 40px rgba(45,212,191,0.12), 0 0 80px rgba(45,212,191,0.04)",
+                border: "1px solid rgba(34,211,238,0.35)",
+                boxShadow: "0 0 40px rgba(34,211,238,0.12), 0 0 80px rgba(34,211,238,0.04)",
               }}
             >
               {/* Badge */}
@@ -286,7 +286,7 @@ export function Pricing() {
                 style={{
                   background: "var(--accent-teal)",
                   color: "var(--primary-foreground)",
-                  boxShadow: "0 4px 14px rgba(45,212,191,0.35), 0 0 0 1px rgba(45,212,191,0.5)",
+                  boxShadow: "0 4px 14px rgba(34,211,238,0.35), 0 0 0 1px rgba(34,211,238,0.5)",
                 }}
               >
                 Most popular

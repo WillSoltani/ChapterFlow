@@ -13,8 +13,8 @@ const MODES: {
     key: "simple",
     label: "Simple",
     activeStyle: {
-      background: "rgba(45,212,191,0.12)",
-      border: "1px solid rgba(45,212,191,0.2)",
+      background: "rgba(34,211,238,0.12)",
+      border: "1px solid rgba(34,211,238,0.2)",
       color: "var(--accent-teal)",
     },
   },
@@ -33,7 +33,7 @@ const MODES: {
     activeStyle: {
       background: "rgba(232,185,49,0.12)",
       border: "1px solid rgba(232,185,49,0.2)",
-      color: "#E8B931",
+      color: "var(--accent-amber)",
     },
   },
 ];
@@ -91,7 +91,7 @@ function HighlightBox({ children }: { children: React.ReactNode }) {
       className="rounded-r-md mt-2"
       style={{
         background: "rgba(5,150,105,0.06)",
-        borderLeft: "2px solid #059669",
+        borderLeft: "2px solid var(--accent-emerald)",
         padding: "8px 10px",
       }}
     >
@@ -258,7 +258,7 @@ function DeeperContent() {
 
       <Divider />
 
-      <Label color="#E8B931">PRACTICAL FRAMEWORK</Label>
+      <Label color="var(--accent-amber)">PRACTICAL FRAMEWORK</Label>
       <Paragraph>
         Carnegie&apos;s four part listening formula:
       </Paragraph>

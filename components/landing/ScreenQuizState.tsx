@@ -60,12 +60,12 @@ const letters = ["A", "B", "C", "D"];
 
 const confettiDots = [
   { top: 4, left: 8, size: 4, color: "var(--accent-teal)", opacity: 0.7 },
-  { top: 2, right: 12, size: 5, color: "#E8B931", opacity: 0.6 },
+  { top: 2, right: 12, size: 5, color: "var(--accent-amber)", opacity: 0.6 },
   { bottom: 6, left: 20, size: 3, color: "var(--accent-blue)", opacity: 0.8 },
   { bottom: 4, right: 16, size: 4, color: "var(--accent-teal)", opacity: 0.5 },
   { top: 10, left: 40, size: 3, color: "var(--text-heading)", opacity: 0.4 },
   { top: 6, right: 32, size: 5, color: "var(--accent-blue)", opacity: 0.6 },
-  { bottom: 10, left: 50, size: 4, color: "#E8B931", opacity: 0.7 },
+  { bottom: 10, left: 50, size: 4, color: "var(--accent-amber)", opacity: 0.7 },
   { bottom: 2, right: 40, size: 3, color: "var(--accent-teal)", opacity: 0.5 },
 ];
 
@@ -78,7 +78,7 @@ export function ScreenQuizState() {
       {/* Header */}
       <span
         className="text-[8px] font-semibold uppercase"
-        style={{ color: "#E8B931", letterSpacing: "0.12em" }}
+        style={{ color: "var(--accent-amber)", letterSpacing: "0.12em" }}
       >
         Quiz
       </span>
@@ -108,7 +108,7 @@ export function ScreenQuizState() {
                 style={{
                   width: 20,
                   height: 20,
-                  color: "#E8B931",
+                  color: "var(--accent-amber)",
                   background: "rgba(232,185,49,0.08)",
                 }}
               >
@@ -133,7 +133,7 @@ export function ScreenQuizState() {
                     style={{
                       padding: "4px 6px",
                       background: isCorrect
-                        ? "rgba(45,212,191,0.08)"
+                        ? "rgba(34,211,238,0.08)"
                         : "transparent",
                       borderLeft: isCorrect
                         ? "2px solid var(--accent-teal)"
@@ -187,7 +187,7 @@ export function ScreenQuizState() {
           width: "80%",
           height: 1,
           background:
-            "linear-gradient(90deg, transparent, #E8B931, transparent)",
+            "linear-gradient(90deg, transparent, var(--accent-amber), transparent)",
         }}
       />
 
@@ -195,8 +195,8 @@ export function ScreenQuizState() {
       <div
         className="relative text-center"
         style={{
-          background: "rgba(45,212,191,0.06)",
-          border: "1px solid rgba(45,212,191,0.15)",
+          background: "rgba(34,211,238,0.06)",
+          border: "1px solid rgba(34,211,238,0.15)",
           borderRadius: 8,
           padding: 16,
         }}
@@ -210,7 +210,7 @@ export function ScreenQuizState() {
         >
           Chapter 4 Unlocked!
         </p>
-        <p className="text-[9px] mt-0.5" style={{ color: "#E8B931" }}>
+        <p className="text-[9px] mt-0.5" style={{ color: "var(--accent-amber)" }}>
           Quiz score: 5/5 · Perfect
         </p>
         <p
@@ -241,7 +241,7 @@ export function ScreenQuizState() {
 
       <p
         className="text-[8px] text-center mt-2"
-        style={{ color: "#E8B931" }}
+        style={{ color: "var(--accent-amber)" }}
       >
         +15 Flow Points
       </p>

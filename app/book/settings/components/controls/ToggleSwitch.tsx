@@ -32,8 +32,8 @@ export function ToggleSwitch({ checked, onChange, disabled, label }: ToggleSwitc
         className={cn(
           "absolute top-1 w-4 h-4 rounded-full pointer-events-none",
           checked
-            ? "bg-white shadow-[0_0_4px_rgba(34,211,238,0.3)]"
-            : "bg-(--cf-text-soft) shadow-sm"
+            ? "bg-white shadow-[0_0_4px_var(--cf-accent-shadow)]"
+            : "bg-(--cf-text-soft) shadow-shadow-card"
         )}
         animate={{ left: checked ? 22 : 4 }}
         transition={{ type: "spring", stiffness: 500, damping: 30 }}

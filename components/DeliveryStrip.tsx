@@ -11,8 +11,8 @@ export function DeliveryStrip({ items }: { items: Item[] }) {
             key={x.title}
             className="border-white/10 bg-white/5 p-4 backdrop-blur"
           >
-            <p className="text-xs font-semibold text-slate-200">{x.title}</p>
-            <p className="mt-2 text-xs leading-relaxed text-slate-300">
+            <p className="text-xs font-semibold text-text-primary">{x.title}</p>
+            <p className="mt-2 text-xs leading-relaxed text-text-primary">
               {x.body}
             </p>
           </Card>

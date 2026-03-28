@@ -35,13 +35,13 @@ export function SessionDots({
                 width: 30,
                 height: 30,
                 background: isCompleted
-                  ? "rgba(45,212,191,0.1)"
+                  ? "rgba(34,211,238,0.1)"
                   : "var(--bg-elevated)",
                 border: `1px solid ${
                   isCurrent
                     ? "var(--accent-blue)"
                     : isCompleted
-                      ? "rgba(45,212,191,0.2)"
+                      ? "rgba(34,211,238,0.2)"
                       : "var(--border-subtle)"
                 }`,
                 boxShadow: isCurrent

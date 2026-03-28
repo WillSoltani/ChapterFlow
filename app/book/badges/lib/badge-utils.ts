@@ -186,16 +186,16 @@ export const TIER_COLORS: Record<BadgeTier, { bg: string; text: string; glow: st
     gradient: "from-[#e5e4e2] via-[#8b7dff] to-[#e5e4e2]",
   },
   unique: {
-    bg: "bg-amber-500/20",
-    text: "text-amber-500",
+    bg: "bg-accent-amber/20",
+    text: "text-accent-amber",
     glow: "shadow-[0_0_12px_rgba(245,158,11,0.1)]",
-    gradient: "from-amber-500 to-amber-600",
+    gradient: "from-accent-amber to-accent-amber",
   },
   secret: {
-    bg: "bg-violet-500/20",
-    text: "text-violet-400",
+    bg: "bg-accent-violet/20",
+    text: "text-accent-violet",
     glow: "shadow-[0_0_12px_rgba(139,92,246,0.1)]",
-    gradient: "from-violet-500 to-violet-600",
+    gradient: "from-accent-violet to-accent-violet",
   },
 };
 
@@ -306,32 +306,32 @@ export const TIER_GLOW_STYLES: Record<BadgeTier, string> = {
 
 export const TIER_PILL_STYLES: Record<BadgeTier, { background: string; color: string; textShadow: string }> = {
   bronze: {
-    background: "linear-gradient(135deg, #cd7f32 0%, #a0522d 50%, #cd7f32 100%)",
+    background: "linear-gradient(135deg, #CD7F32, #E8A862)",
     color: "#1a0f00",
     textShadow: "0 1px 0 rgba(255,200,120,0.3)",
   },
   silver: {
-    background: "linear-gradient(135deg, #e8e8e8 0%, #a8a8a8 50%, #d4d4d4 100%)",
+    background: "linear-gradient(135deg, #C0C0C0, #E8E8E8)",
     color: "#1a1a1a",
     textShadow: "0 1px 0 rgba(255,255,255,0.4)",
   },
   gold: {
-    background: "linear-gradient(135deg, #ffd700 0%, #daa520 50%, #ffd700 100%)",
+    background: "linear-gradient(135deg, #FFD700, #FFF0A0)",
     color: "#1a1200",
     textShadow: "0 1px 0 rgba(255,240,150,0.4)",
   },
   platinum: {
-    background: "linear-gradient(135deg, #e5e4e2 0%, #8b7dff 40%, #c4b5fd 70%, #e5e4e2 100%)",
+    background: "linear-gradient(135deg, #E5E4E2, #FFFFFF)",
     color: "#1a1a2e",
     textShadow: "0 1px 0 rgba(200,180,255,0.4)",
   },
   unique: {
-    background: "linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #f59e0b 100%)",
-    color: "#1a1000",
-    textShadow: "0 1px 0 rgba(255,200,50,0.3)",
+    background: "linear-gradient(135deg, #8B5CF6, #EC4899)",
+    color: "#ffffff",
+    textShadow: "0 1px 0 rgba(139,92,246,0.3)",
   },
   secret: {
-    background: "linear-gradient(135deg, #8b5cf6 0%, #6d28d9 50%, #8b5cf6 100%)",
+    background: "linear-gradient(135deg, #8B5CF6, #EC4899)",
     color: "#ffffff",
     textShadow: "0 1px 0 rgba(139,92,246,0.5)",
   },

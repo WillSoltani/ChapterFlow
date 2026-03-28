@@ -44,7 +44,7 @@ export function RewardsCard({
     >
       {/* Points balance with shine sweep */}
       <div className="flex items-center gap-2">
-        <span aria-hidden="true" style={{ color: "var(--cf-accent)", fontSize: 18 }}>
+        <span aria-hidden="true" style={{ color: "var(--accent-violet)", fontSize: 18, filter: "drop-shadow(0 0 8px rgba(139,92,246,0.4))" }}>
           ◆
         </span>
         <span className="relative inline-block overflow-hidden">
@@ -93,7 +93,7 @@ export function RewardsCard({
           <motion.div
             className="h-full rounded-full"
             style={{
-              background: "linear-gradient(90deg, #7C3AED, #A78BFA)",
+              background: "linear-gradient(90deg, var(--accent-violet), var(--accent-cyan))",
             }}
             initial={prefersReducedMotion ? undefined : { width: 0 }}
             whileInView={{ width: `${progress}%` }}
@@ -136,7 +136,7 @@ export function RewardsCard({
       {!isPro && (
         <Link
           href="/pricing"
-          className="mt-3 block text-[11px] transition-colors hover:text-violet-300"
+          className="mt-3 block text-[11px] transition-colors hover:text-accent-violet"
           style={{ color: "var(--cf-text-soft)" }}
         >
           2x points with Pro ✨

@@ -21,7 +21,7 @@ export interface PublicBookCardProps {
 const difficultyColor: Record<PublicBookCardProps["difficulty"], string> = {
   easy: "var(--accent-teal)",
   medium: "var(--accent-blue)",
-  hard: "var(--accent-flame, #FF8C42)",
+  hard: "var(--accent-amber)",
 };
 
 export function PublicBookCard({

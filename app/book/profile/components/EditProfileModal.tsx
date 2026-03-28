@@ -33,7 +33,7 @@ function FieldInput({
         onChange={(e) => onChange(e.target.value)}
         className="w-full bg-(--cf-surface-muted) border border-(--cf-border) rounded-lg px-3 py-2
           text-sm text-(--cf-text-2)
-          focus:outline-none focus:border-blue-500/40 focus:ring-1 focus:ring-blue-500/20
+          focus:outline-none focus:border-accent-cyan/40 focus:ring-1 focus:ring-accent-cyan/20
           transition-colors"
       />
     </div>
@@ -143,7 +143,7 @@ export function EditProfileModal({ open, profile, email, onClose, onSave }: Edit
           aria-label="Edit profile"
         >
           <motion.div
-            className="relative w-full max-w-[520px] rounded-2xl border border-(--cf-border) bg-(--cf-surface-strong) backdrop-blur-xl shadow-2xl shadow-black/40 max-h-[90vh] overflow-y-auto"
+            className="relative w-full max-w-[520px] rounded-2xl border border-(--cf-border) bg-(--cf-surface-strong) backdrop-blur-xl shadow-shadow-modal max-h-[90vh] overflow-y-auto"
             initial={{ scale: 0.96, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.96, opacity: 0 }}
@@ -192,7 +192,7 @@ export function EditProfileModal({ open, profile, email, onClose, onSave }: Edit
                 Click avatar to upload a photo
               </p>
               {avatarError ? (
-                <p className="text-xs text-red-400 mb-1">{avatarError}</p>
+                <p className="text-xs text-accent-rose mb-1">{avatarError}</p>
               ) : null}
 
               {/* Display Name */}
@@ -211,7 +211,7 @@ export function EditProfileModal({ open, profile, email, onClose, onSave }: Edit
                   }
                   className="w-full bg-(--cf-surface-muted) border border-(--cf-border) rounded-lg px-3 py-2.5
                     text-base text-(--cf-text-1) font-medium
-                    focus:outline-none focus:border-blue-500/40 focus:ring-1 focus:ring-blue-500/20
+                    focus:outline-none focus:border-accent-cyan/40 focus:ring-1 focus:ring-accent-cyan/20
                     transition-colors"
                 />
               </div>
@@ -238,7 +238,7 @@ export function EditProfileModal({ open, profile, email, onClose, onSave }: Edit
                     }
                     className="w-full bg-(--cf-surface-muted) border border-(--cf-border) rounded-lg pl-7 pr-3 py-2.5
                       text-sm text-(--cf-text-1)
-                      focus:outline-none focus:border-blue-500/40 focus:ring-1 focus:ring-blue-500/20
+                      focus:outline-none focus:border-accent-cyan/40 focus:ring-1 focus:ring-accent-cyan/20
                       transition-colors"
                   />
                 </div>
@@ -258,7 +258,7 @@ export function EditProfileModal({ open, profile, email, onClose, onSave }: Edit
                   placeholder="A short line about your reading practice"
                   className="w-full bg-(--cf-surface-muted) border border-(--cf-border) rounded-lg px-3 py-2.5
                     text-sm text-(--cf-text-2) placeholder:text-(--cf-text-soft)
-                    focus:outline-none focus:border-blue-500/40 focus:ring-1 focus:ring-blue-500/20
+                    focus:outline-none focus:border-accent-cyan/40 focus:ring-1 focus:ring-accent-cyan/20
                     transition-colors"
                   maxLength={80}
                 />
@@ -281,7 +281,7 @@ export function EditProfileModal({ open, profile, email, onClose, onSave }: Edit
                 rows={3}
                 className="w-full bg-(--cf-surface-muted) border border-(--cf-border) rounded-lg px-3 py-2.5
                   text-sm text-(--cf-text-2) placeholder:text-(--cf-text-soft) resize-none
-                  focus:outline-none focus:border-blue-500/40 focus:ring-1 focus:ring-blue-500/20
+                  focus:outline-none focus:border-accent-cyan/40 focus:ring-1 focus:ring-accent-cyan/20
                   transition-colors"
                 placeholder="Tell us about your reading journey..."
                 maxLength={200}
@@ -358,8 +358,8 @@ export function EditProfileModal({ open, profile, email, onClose, onSave }: Edit
               {/* Change indicator */}
               <div className="flex items-center gap-2">
                 {dirty ? (
-                  <span className="flex items-center gap-1.5 text-xs text-amber-400">
-                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                  <span className="flex items-center gap-1.5 text-xs text-accent-amber">
+                    <span className="w-1.5 h-1.5 rounded-full bg-accent-amber" />
                     Unsaved changes
                   </span>
                 ) : (
@@ -382,7 +382,7 @@ export function EditProfileModal({ open, profile, email, onClose, onSave }: Edit
                   onClick={submit}
                   disabled={!dirty || saving}
                   className="px-5 py-2 rounded-lg text-sm font-medium
-                    bg-blue-600 hover:bg-blue-500 text-white
+                    bg-accent-cyan hover:bg-accent-cyan/90 text-bg-base
                     disabled:bg-(--cf-surface-muted) disabled:text-(--cf-text-soft) disabled:cursor-not-allowed
                     transition-colors"
                 >
@@ -402,7 +402,7 @@ export function EditProfileModal({ open, profile, email, onClose, onSave }: Edit
                 exit={{ opacity: 0 }}
               >
                 <motion.div
-                  className="w-full max-w-xs rounded-xl border border-(--cf-border) bg-(--cf-surface-strong) p-5 shadow-xl text-center"
+                  className="w-full max-w-xs rounded-xl border border-(--cf-border) bg-(--cf-surface-strong) p-5 shadow-shadow-elevated text-center"
                   initial={{ scale: 0.95 }}
                   animate={{ scale: 1 }}
                   exit={{ scale: 0.95 }}

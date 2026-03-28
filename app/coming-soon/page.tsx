@@ -8,7 +8,7 @@ export default function ComingSoonPage() {
   const router = useRouter();
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-6 text-center relative overflow-hidden" style={{ background: "var(--cf-page-bg)" }}>
+    <div className="min-h-screen flex flex-col items-center justify-center px-6 text-center relative overflow-hidden" style={{ background: "var(--bg-base)" }}>
       {/* Background orbs */}
       <div className="fixed inset-0 pointer-events-none" aria-hidden="true">
         <div
@@ -28,7 +28,7 @@ export default function ComingSoonPage() {
             right: -100,
             width: 400,
             height: 400,
-            background: "radial-gradient(circle, rgba(62,207,178,0.06) 0%, transparent 70%)",
+            background: "radial-gradient(circle, rgba(34,211,238,0.06) 0%, transparent 70%)",
           }}
         />
       </div>
@@ -44,8 +44,8 @@ export default function ComingSoonPage() {
             width: 64,
             height: 64,
             borderRadius: 16,
-            background: "var(--cf-surface-muted)",
-            border: "1px solid var(--cf-border)",
+            background: "var(--bg-surface-1)",
+            border: "1px solid var(--border-subtle)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -60,7 +60,7 @@ export default function ComingSoonPage() {
             fontFamily: "var(--font-sora, sans-serif)",
             fontSize: 28,
             fontWeight: 600,
-            color: "var(--cf-text-1)",
+            color: "var(--text-heading)",
           }}
         >
           Coming soon
@@ -70,7 +70,7 @@ export default function ComingSoonPage() {
           style={{
             fontFamily: "var(--font-dm-sans, sans-serif)",
             fontSize: 16,
-            color: "var(--cf-text-3)",
+            color: "var(--text-secondary)",
             marginTop: 8,
             maxWidth: 400,
             lineHeight: 1.5,
@@ -89,13 +89,13 @@ export default function ComingSoonPage() {
             gap: 8,
             fontFamily: "var(--font-dm-sans, sans-serif)",
             fontSize: 14,
-            color: "var(--cf-text-3)",
+            color: "var(--text-secondary)",
             background: "none",
             border: "none",
             transition: "color 200ms",
           }}
-          onMouseEnter={(e) => (e.currentTarget.style.color = "var(--cf-text-1)")}
-          onMouseLeave={(e) => (e.currentTarget.style.color = "var(--cf-text-3)")}
+          onMouseEnter={(e) => (e.currentTarget.style.color = "var(--text-heading)")}
+          onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-secondary)")}
         >
           <ArrowLeft size={16} />
           Go back

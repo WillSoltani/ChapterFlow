@@ -47,6 +47,7 @@ import { ExportModal } from "./components/ExportModal";
 import { MicroCelebration } from "./components/MicroCelebration";
 import { RefreshPreferencesModal } from "./components/RefreshPreferencesModal";
 import { useSaveToast, SaveToast } from "./components/SaveToast";
+import { PageTransition } from "@/components/ui/PageTransition";
 import type { RefreshResult } from "./components/RefreshPreferencesModal";
 
 // Constants
@@ -400,7 +401,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
   // ---------------------------------------------------------------------------
 
   return (
-    <div className="cf-app-shell min-h-screen px-4 py-10 sm:px-6">
+    <PageTransition className="cf-app-shell min-h-screen px-4 py-10 sm:px-6">
       {/* Header */}
       <div className="mx-auto mb-6 flex max-w-5xl items-center justify-between">
         <div className="flex items-center gap-3">
@@ -505,7 +506,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
                 />
               </div>
               {ext.profileCustomized && (
-                <p className="mt-2 text-[11px] italic text-amber-400/70">
+                <p className="mt-2 text-[11px] italic text-accent-amber/70">
                   Your settings have been customized
                 </p>
               )}
@@ -1031,15 +1032,15 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
                       emoji: "\uD83C\uDF3F",
                       label: "Gentle",
                       description: "Warm and encouraging. Concepts explained with patience and care.",
-                      tint: "from-emerald-500/[0.07] to-teal-500/[0.03]",
-                      selectedTint: "border-emerald-400/30 shadow-[0_0_20px_rgba(52,211,153,0.12)]",
+                      tint: "from-accent-emerald/[0.07] to-accent-emerald/[0.03]",
+                      selectedTint: "border-accent-emerald/30 shadow-[0_0_20px_rgba(52,211,153,0.12)]",
                     },
                     {
                       value: "direct",
                       emoji: "\uD83C\uDFAF",
                       label: "Direct",
                       description: "Clear and efficient. Straight to the point, no fluff.",
-                      tint: "from-blue-500/[0.07] to-cyan-500/[0.03]",
+                      tint: "from-accent-cyan/[0.07] to-accent-cyan/[0.03]",
                       selectedTint: "border-(--cf-accent)/30 shadow-[0_0_20px_var(--cf-accent-shadow)]",
                     },
                     {
@@ -1047,8 +1048,8 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
                       emoji: "\u26A1",
                       label: "Competitive",
                       description: "Bold and challenging. Pushes you to think harder.",
-                      tint: "from-amber-500/[0.07] to-orange-500/[0.03]",
-                      selectedTint: "border-amber-400/30 shadow-[0_0_20px_rgba(251,191,36,0.12)]",
+                      tint: "from-accent-amber/[0.07] to-accent-amber/[0.03]",
+                      selectedTint: "border-accent-amber/30 shadow-[0_0_20px_rgba(251,191,36,0.12)]",
                     },
                   ]}
                   value={ext.contentTone}
@@ -1601,6 +1602,6 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
       <div className="sr-only" aria-live="polite" aria-atomic="true">
         {liveAnnouncement}
       </div>
-    </div>
+    </PageTransition>
   );
 }

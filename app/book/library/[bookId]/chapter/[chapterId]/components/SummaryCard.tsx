@@ -20,6 +20,7 @@ type SummaryCardProps = {
   onBookmarkTakeaway?: (takeaway: string, saved: boolean) => void;
   fontScaleClass: string;
   learningMode?: LearningMode;
+  activationPrompt?: string;
 };
 
 export function SummaryCard({
@@ -33,6 +34,7 @@ export function SummaryCard({
   onBookmarkTakeaway,
   fontScaleClass,
   learningMode = "standard",
+  activationPrompt,
 }: SummaryCardProps) {
   // Track manually-expanded vs auto-expanded takeaways separately
   const [manuallyExpanded, setManuallyExpanded] = useState<Set<string>>(new Set());
@@ -114,6 +116,21 @@ export function SummaryCard({
           <span className="mr-1.5">{"\uD83C\uDFC6"}</span>
           Challenge mode active — no retries on the quiz
         </div>
+      )}
+
+      {/* ── Activation Prompt (Before You Read) ── */}
+      {activationPrompt && (
+        <section
+          className="rounded-xl border border-(--cr-accent)/20 bg-(--cr-accent-muted) px-5 py-4"
+          style={{ animation: "cr-card-enter 200ms ease-out" }}
+        >
+          <p className="mb-1.5 text-xs font-bold uppercase tracking-[0.08em] text-(--cr-accent)">
+            Before You Read
+          </p>
+          <p className={`text-(--cr-text-primary) leading-[1.75] ${fontScaleClass}`}>
+            {activationPrompt}
+          </p>
+        </section>
       )}
 
       {/* ── Main Summary Section ── */}

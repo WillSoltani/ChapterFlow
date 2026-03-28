@@ -42,8 +42,8 @@ export default function Home() {
         aria-hidden
         style={{
           background: [
-            "radial-gradient(ellipse 60vw 50vw at 30% 0%, rgba(45, 212, 191, 0.06), transparent)",
-            "radial-gradient(ellipse 40vw 40vw at 80% 60%, rgba(45, 212, 191, 0.03), transparent)",
+            "radial-gradient(ellipse 60vw 50vw at 30% 0%, rgba(34, 211, 238, 0.06), transparent)",
+            "radial-gradient(ellipse 40vw 40vw at 80% 60%, rgba(34, 211, 238, 0.03), transparent)",
             "var(--bg-base)",
           ].join(", "),
         }}

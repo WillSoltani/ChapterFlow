@@ -43,7 +43,7 @@ export function SettingsSection({
         "overflow-hidden rounded-[22px] border backdrop-blur-sm transition-shadow duration-300",
         "bg-(--cf-surface)",
         highlighted
-          ? "border-(--cf-accent-border) shadow-[0_0_24px_rgba(79,139,255,0.1)]"
+          ? "border-(--cf-accent-border) shadow-[0_0_24px_var(--cf-accent-shadow)]"
           : expanded
             ? "border-(--cf-border-strong) shadow-(--cf-shadow-lg)"
             : "border-(--cf-border)",

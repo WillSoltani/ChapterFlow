@@ -290,6 +290,7 @@ export function BookHomeClient() {
         searchQuery={dashboard.state.searchQuery}
         onSearchChange={dashboard.setSearchQuery}
         searchInputRef={searchInputRef}
+        logoVariant="dashboard"
       />
 
       <section className="mx-auto w-full max-w-450 px-4 pb-28 pt-7 sm:px-6 sm:pt-8 md:pb-24 lg:px-10 xl:px-16">

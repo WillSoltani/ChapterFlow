@@ -60,7 +60,7 @@ export function DailyGoalRing({
       {todayPulse && !prefersReducedMotion && progress < 100 && (
         <motion.div
           className="absolute inset-0 rounded-full"
-          style={{ border: "1px solid rgba(124, 58, 237, 0.3)" }}
+          style={{ border: "1px solid rgba(34, 211, 238, 0.3)" }}
           animate={{ scale: [1, 1.3, 1], opacity: [0.6, 0, 0.6] }}
           transition={{ duration: 2, repeat: Infinity }}
         />

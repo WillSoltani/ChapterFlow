@@ -31,7 +31,7 @@ export function ProjectCard({ project }: Props) {
           {/* Left: content */}
           <div className="min-w-0">
             <div className="flex flex-wrap items-center gap-2">
-              <h3 className="text-base font-semibold text-slate-100 sm:text-lg">
+              <h3 className="text-base font-semibold text-text-primary sm:text-lg">
                 {project.title}
               </h3>
 
@@ -45,7 +45,7 @@ export function ProjectCard({ project }: Props) {
               ) : null}
             </div>
 
-            <p className="mt-3 text-sm leading-relaxed text-slate-300">
+            <p className="mt-3 text-sm leading-relaxed text-text-primary">
               {project.description}
             </p>
 
@@ -64,7 +64,7 @@ export function ProjectCard({ project }: Props) {
           <div className="flex w-full flex-col gap-3 lg:w-auto lg:shrink-0 lg:items-end lg:gap-2">
             <Button
               asChild
-              className="w-full border border-white/10 bg-white/10 text-slate-100 hover:bg-white/15 focus-visible:ring-2 focus-visible:ring-sky-300/40 lg:w-auto"
+              className="w-full border border-white/10 bg-white/10 text-text-primary hover:bg-white/15 focus-visible:ring-2 focus-visible:ring-sky-300/40 lg:w-auto"
             >
               <Link href={`/projects/${project.slug}`}>
               <span className="inline-flex w-full items-center justify-center gap-2">
@@ -83,7 +83,7 @@ export function ProjectCard({ project }: Props) {
                     rel="noreferrer"
                     whileHover={{ scale: 1.06 }}
                     whileTap={{ scale: 0.96 }}
-                    className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-white/10 bg-white/5 text-slate-200 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300/40"
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-white/10 bg-white/5 text-text-primary hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300/40"
                     aria-label="Open GitHub repository"
                     title="GitHub"
                   >
@@ -98,7 +98,7 @@ export function ProjectCard({ project }: Props) {
                     rel="noreferrer"
                     whileHover={{ scale: 1.06 }}
                     whileTap={{ scale: 0.96 }}
-                    className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-white/10 bg-white/5 text-slate-200 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300/40"
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-white/10 bg-white/5 text-text-primary hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300/40"
                     aria-label="Open live demo"
                     title="Live demo"
                   >

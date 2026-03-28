@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { motion, useReducedMotion } from "framer-motion";
 import { TopNav } from "@/app/book/home/components/TopNav";
 import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
 import { useBadgeSystem } from "@/app/book/hooks/useBadgeSystem";
@@ -58,6 +59,7 @@ function getActiveSeasonalChallenge(
 export function BookBadgesClient() {
   const router = useRouter();
   const searchRef = useRef<HTMLInputElement | null>(null);
+  const reduced = useReducedMotion();
 
   const { state: onboarding, hydrated: onboardingHydrated } = useOnboardingState();
   const { identity: viewerIdentity } = useBookViewer();
@@ -217,7 +219,12 @@ export function BookBadgesClient() {
         logoVariant="dashboard"
       />
 
-      <section className="mx-auto w-full max-w-450 px-4 pb-28 pt-7 sm:px-6 sm:pt-8 md:pb-24 lg:px-10 xl:px-16">
+      <motion.section
+        className="mx-auto w-full max-w-450 px-4 pb-28 pt-7 sm:px-6 sm:pt-8 md:pb-24 lg:px-10 xl:px-16"
+        initial={reduced ? false : { opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      >
         <BadgePageHeader profile={profile} />
 
         <div className="mt-6">
@@ -258,7 +265,7 @@ export function BookBadgesClient() {
         <div className="mt-8">
           <BadgeTimeline earnedBadges={earnedBadges} onBadgeClick={handleBadgeClick} />
         </div>
-      </section>
+      </motion.section>
 
       <BadgeDetailModal
         badge={selectedBadge}

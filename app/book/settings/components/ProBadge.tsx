@@ -4,7 +4,7 @@ export function ProBadge() {
   return (
     <span
       className="relative inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider text-white overflow-hidden ml-2"
-      style={{ background: "linear-gradient(135deg, #F59E0B, #EF4444, #EC4899)" }}
+      style={{ background: "linear-gradient(135deg, var(--accent-amber), var(--accent-rose), #EC4899)" }}
     >
       <span className="relative z-10">Pro</span>
       <span

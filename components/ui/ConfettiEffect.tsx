@@ -18,7 +18,7 @@ interface ConfettiEffectProps {
   colors?: string[];
 }
 
-const DEFAULT_COLORS = ["#34D399", "#4F8BFF", "#2DD4BF", "#FAFAFA"];
+const DEFAULT_COLORS = ["var(--accent-emerald)", "var(--accent-cyan)", "var(--accent-emerald)", "var(--text-heading)"];
 const PARTICLE_COUNT = 40;
 const ANIMATION_DURATION = 2;
 

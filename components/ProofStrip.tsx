@@ -23,8 +23,8 @@ export function ProofStrip() {
               transition={{ type: "spring", stiffness: 500, damping: 35 }}
               className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3"
             >
-              <Icon className="h-5 w-5 text-slate-200" />
-              <p className="text-sm text-slate-200">{it.label}</p>
+              <Icon className="h-5 w-5 text-text-primary" />
+              <p className="text-sm text-text-primary">{it.label}</p>
             </motion.div>
           );
         })}

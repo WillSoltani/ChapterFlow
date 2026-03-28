@@ -26,11 +26,11 @@ const MAX_PICKS = 3;
 function getDifficultyStyle(d: string) {
   switch (d) {
     case "Easy":
-      return "bg-[#3ECFB2]/10 text-[#3ECFB2] border border-[#3ECFB2]/20";
+      return "bg-[var(--accent-cyan)]/10 text-[var(--accent-cyan)] border border-[var(--accent-cyan)]/20";
     case "Hard":
-      return "bg-[#FF8C42]/10 text-[#FF8C42] border border-[#FF8C42]/20";
+      return "bg-[var(--accent-amber)]/10 text-[var(--accent-amber)] border border-[var(--accent-amber)]/20";
     default:
-      return "bg-[#5B8DEF]/10 text-[#5B8DEF] border border-[#5B8DEF]/20";
+      return "bg-[var(--accent-cyan)]/10 text-[var(--accent-cyan)] border border-[var(--accent-cyan)]/20";
   }
 }
 
@@ -134,20 +134,20 @@ function SwipeCard({ book, onSwipe, onButtonSwipe }: SwipeCardProps) {
     x,
     [-150, -50, 0, 50, 150],
     [
-      "rgba(239,68,68,0.6)",
-      "rgba(239,68,68,0.2)",
+      "rgba(244,63,94,0.6)",
+      "rgba(244,63,94,0.2)",
       "var(--cf-border-strong)",
-      "rgba(62,207,178,0.2)",
-      "rgba(62,207,178,0.6)",
+      "rgba(34,211,238,0.2)",
+      "rgba(34,211,238,0.6)",
     ]
   );
   const cardShadow = useTransform(
     x,
     [-150, 0, 150],
     [
-      "0 0 30px rgba(239,68,68,0.15)",
+      "0 0 30px rgba(244,63,94,0.15)",
       "var(--cf-shadow-lg)",
-      "0 0 30px rgba(62,207,178,0.15)",
+      "0 0 30px rgba(34,211,238,0.15)",
     ]
   );
 
@@ -233,8 +233,8 @@ function SwipeCard({ book, onSwipe, onButtonSwipe }: SwipeCardProps) {
           rotate: -12,
           borderWidth: 3,
           borderStyle: "solid",
-          borderColor: "#3ECFB2",
-          color: "#3ECFB2",
+          borderColor: "var(--accent-cyan)",
+          color: "var(--accent-cyan)",
           fontFamily: "var(--font-sora, sans-serif)",
           fontWeight: 700,
           fontSize: 22,
@@ -254,8 +254,8 @@ function SwipeCard({ book, onSwipe, onButtonSwipe }: SwipeCardProps) {
           rotate: 12,
           borderWidth: 3,
           borderStyle: "solid",
-          borderColor: "rgb(248,113,113)",
-          color: "rgb(248,113,113)",
+          borderColor: "var(--accent-rose)",
+          color: "var(--accent-rose)",
           fontFamily: "var(--font-sora, sans-serif)",
           fontWeight: 700,
           fontSize: 22,
@@ -467,7 +467,7 @@ function ShelfComplete({ books, onDone }: { books: OnboardingBook[]; onDone: () 
         transition={{ delay: 1.0, duration: 0.3 }}
         style={{ marginTop: 24 }}
       >
-        <Check size={24} style={{ color: "#3ECFB2" }} />
+        <Check size={24} style={{ color: "var(--accent-cyan)" }} />
       </motion.div>
     </motion.div>
   );
@@ -583,8 +583,8 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
             selectedCount === 0
               ? "var(--cf-text-soft)"
               : selectedCount >= MAX_PICKS
-                ? "#3ECFB2"
-                : "#5B8DEF",
+                ? "var(--accent-cyan)"
+                : "var(--accent-cyan)",
           textAlign: "center",
           marginBottom: 8,
           transition: "color 200ms ease",
@@ -603,7 +603,7 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
               initial={false}
               animate={{
                 scale: filled ? 1.2 : 1,
-                backgroundColor: filled ? "#3ECFB2" : "transparent",
+                backgroundColor: filled ? "var(--accent-cyan)" : "transparent",
               }}
               transition={
                 reducedMotion
@@ -726,15 +726,15 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
               transition: "border-color 200ms, background 200ms",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = "rgba(248,113,113,0.5)";
-              e.currentTarget.style.background = "rgba(248,113,113,0.10)";
+              e.currentTarget.style.borderColor = "color-mix(in srgb, var(--accent-rose) 50%, transparent)";
+              e.currentTarget.style.background = "color-mix(in srgb, var(--accent-rose) 10%, transparent)";
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.borderColor = "var(--cf-border)";
               e.currentTarget.style.background = "var(--cf-surface-muted)";
             }}
           >
-            <X size={24} style={{ color: "rgb(248,113,113)" }} />
+            <X size={24} style={{ color: "var(--accent-rose)" }} />
           </motion.button>
 
           <motion.button
@@ -755,15 +755,15 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
               transition: "border-color 200ms, background 200ms",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = "rgba(62,207,178,0.5)";
-              e.currentTarget.style.background = "rgba(62,207,178,0.10)";
+              e.currentTarget.style.borderColor = "color-mix(in srgb, var(--accent-cyan) 50%, transparent)";
+              e.currentTarget.style.background = "color-mix(in srgb, var(--accent-cyan) 10%, transparent)";
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.borderColor = "var(--cf-border)";
               e.currentTarget.style.background = "var(--cf-surface-muted)";
             }}
           >
-            <Heart size={24} style={{ color: "#3ECFB2" }} />
+            <Heart size={24} style={{ color: "var(--accent-cyan)" }} />
           </motion.button>
         </div>
       )}

@@ -14,7 +14,7 @@ export function FlameIcon({ size = 22, className = "" }: FlameIconProps) {
       height={size}
       viewBox="0 0 24 24"
       fill="none"
-      className={className}
+      className={`flame-icon ${className}`.trim()}
       style={{ filter: "drop-shadow(0 0 8px var(--accent-flame-glow))" }}
       animate={{ opacity: [0.8, 1, 0.85, 1] }}
       transition={{ duration: 2, repeat: Infinity, ease: "linear" }}

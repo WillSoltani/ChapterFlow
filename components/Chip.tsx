@@ -12,7 +12,7 @@ export function Chip({ children }: Props) {
         bg-white/5
         px-2.5 py-0.5
         text-xs font-medium
-        text-slate-200
+        text-text-primary
         transition
         sm:px-3 sm:py-1
         hover:bg-white/10

@@ -196,7 +196,7 @@ export function Navbar() {
             </a>
             <a
               href={AUTH_URL}
-              className="rounded-full bg-(--accent-teal) px-5 py-2 font-(family-name:--font-body) text-[13px] font-semibold text-primary-foreground transition-all duration-200 hover:brightness-110 hover:shadow-[0_0_16px_rgba(45,212,191,0.4)]"
+              className="rounded-full bg-(--accent-teal) px-5 py-2 font-(family-name:--font-body) text-[13px] font-semibold text-primary-foreground transition-all duration-200 hover:brightness-110 hover:shadow-[0_0_16px_rgba(34,211,238,0.4)]"
             >
               Start free &rarr;
             </a>

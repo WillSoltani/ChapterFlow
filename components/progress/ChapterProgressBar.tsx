@@ -42,9 +42,9 @@ export function ChapterProgressBar({
               height,
               borderRadius: height >= 6 ? 4 : 2,
               background: isCompleted
-                ? "var(--cf-success-text)"
+                ? "var(--accent-cyan)"
                 : isCurrent
-                  ? "rgba(56,189,248,0.15)"
+                  ? "rgba(34,211,238,0.15)"
                   : "var(--cf-surface-muted)",
             }}
           >
@@ -55,7 +55,7 @@ export function ChapterProgressBar({
                 style={{
                   width: `${(currentStepNumber / 4) * 100}%`,
                   borderRadius: height >= 6 ? 4 : 2,
-                  background: "var(--cf-accent)",
+                  background: "var(--accent-cyan)",
                 }}
               />
             )}

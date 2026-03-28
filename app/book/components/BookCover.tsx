@@ -58,7 +58,7 @@ export function BookCover({
   const [activeIndex, setActiveIndex] = useState(0);
   const src = candidates[activeIndex];
   const imageClasses = [
-    "object-contain bg-(--cf-surface) transition-transform duration-500 ease-out",
+    "object-cover bg-(--cf-surface) transition-transform duration-500 ease-out",
     interactive ? "motion-safe:hover:scale-[1.045]" : "",
     imageClassName,
   ]
@@ -68,8 +68,8 @@ export function BookCover({
   return (
     <div
       className={[
-        "relative overflow-hidden transition duration-300 ease-out",
-        interactive ? "motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-lg" : "",
+        "relative aspect-2/3 overflow-hidden rounded-sm shadow-shadow-book transition duration-300 ease-out",
+        interactive ? "motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-shadow-elevated" : "",
         className,
       ]
         .filter(Boolean)
@@ -83,6 +83,7 @@ export function BookCover({
           alt={`${title} cover`}
           fill
           sizes={sizes}
+          loading="lazy"
           className={imageClasses}
           onError={() => {
             setActiveIndex((prev) => {
@@ -113,13 +114,16 @@ export function BookCover({
       {(!src || activeIndex >= candidates.length) ? (
         <span
           className={[
-            "absolute inset-0 flex items-center justify-center",
+            "absolute inset-0 flex flex-col items-center justify-center gap-2 bg-linear-to-br from-(--cf-surface-strong) to-(--cf-surface-muted) px-2 text-center",
             fallbackClassName,
           ]
             .filter(Boolean)
             .join(" ")}
         >
-          {icon}
+          <span className="text-3xl leading-none">{icon}</span>
+          <span className="line-clamp-3 text-xs font-semibold leading-tight text-(--cf-text-2)">
+            {title}
+          </span>
         </span>
       ) : null}
     </div>

@@ -31,16 +31,23 @@ export function BadgeFilters({ activeFilter, onChange, badges }: BadgeFiltersPro
               "inline-flex shrink-0 items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-sm font-medium transition snap-start",
               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)",
               isActive
-                ? "border-amber-500/30 bg-amber-500 text-black"
-                : "border-(--cf-border-strong) bg-transparent text-(--cf-text-2) hover:border-(--cf-border-strong) hover:bg-(--cf-surface-muted)"
+                ? "border-transparent"
+                : count === 0
+                  ? "border-(--cf-border-strong) bg-transparent text-(--cf-text-2) opacity-50 hover:border-(--cf-border-strong) hover:bg-(--cf-surface-muted)"
+                  : "border-(--cf-border-strong) bg-transparent text-(--cf-text-2) hover:border-(--cf-border-strong) hover:bg-(--cf-surface-muted)"
             )}
+            style={
+              isActive
+                ? { background: "rgba(34,211,238,0.12)", color: "var(--accent-cyan)" }
+                : undefined
+            }
           >
             {opt.label}
             {count !== null && (
               <span
                 className={cn(
                   "text-xs",
-                  isActive ? "text-black/60" : "text-(--cf-text-soft)"
+                  isActive ? "opacity-70" : "text-(--cf-text-soft)"
                 )}
               >
                 ({count})

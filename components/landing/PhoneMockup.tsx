@@ -16,7 +16,7 @@ export function PhoneMockup({ children }: { children: React.ReactNode }) {
           width: 300,
           height: 400,
           background:
-            "radial-gradient(ellipse, rgba(45,212,191,0.06) 0%, transparent 70%)",
+            "radial-gradient(ellipse, rgba(34,211,238,0.06) 0%, transparent 70%)",
           filter: "blur(40px)",
         }}
       />

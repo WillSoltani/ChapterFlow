@@ -26,7 +26,7 @@ export function FontSizeControls({ value, onChange }: FontSizeControlsProps) {
             className={[
               "rounded-lg px-2.5 py-1 text-sm transition",
               active
-                ? "bg-(--cf-surface-strong) text-(--cf-text-1) shadow-sm"
+                ? "bg-(--cf-surface-strong) text-(--cf-text-1) shadow-shadow-card"
                 : "text-(--cf-text-3) hover:bg-(--cf-surface) hover:text-(--cf-text-2)",
             ].join(" ")}
             aria-label={control.label}

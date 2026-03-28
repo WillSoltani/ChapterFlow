@@ -83,12 +83,19 @@ export function BookRow({
         {userBooks.map((book, i) => (
           <motion.div
             key={book.id}
-            style={{ scrollSnapAlign: "start" }}
+            style={{
+              scrollSnapAlign: "start",
+              boxShadow: "0 8px 24px rgba(0,0,0,0.4), 0 2px 8px rgba(0,0,0,0.3)",
+              borderRadius: 12,
+            }}
             initial={
               prefersReducedMotion ? undefined : { opacity: 0, y: 12 }
             }
             whileInView={
               prefersReducedMotion ? undefined : { opacity: 1, y: 0 }
+            }
+            whileHover={
+              prefersReducedMotion ? undefined : { y: -8, boxShadow: "0 16px 40px rgba(0,0,0,0.5)" }
             }
             viewport={{ once: true }}
             transition={
@@ -105,12 +112,19 @@ export function BookRow({
         {recommendedProBooks.map((book, i) => (
           <motion.div
             key={book.id}
-            style={{ scrollSnapAlign: "start" }}
+            style={{
+              scrollSnapAlign: "start",
+              boxShadow: "0 8px 24px rgba(0,0,0,0.4), 0 2px 8px rgba(0,0,0,0.3)",
+              borderRadius: 12,
+            }}
             initial={
               prefersReducedMotion ? undefined : { opacity: 0, y: 12 }
             }
             whileInView={
               prefersReducedMotion ? undefined : { opacity: 1, y: 0 }
+            }
+            whileHover={
+              prefersReducedMotion ? undefined : { y: -8, boxShadow: "0 16px 40px rgba(0,0,0,0.5)" }
             }
             viewport={{ once: true }}
             transition={

@@ -4,6 +4,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Check } from "lucide-react";
 import { cn } from "@/app/book/components/ui/cn";
 
+/** Personality gradient lookup by card label keyword */
+const PERSONALITY_GRADIENTS: Record<string, string> = {
+  "Quick Learner": "linear-gradient(90deg, var(--accent-cyan), #38BDF8)",
+  "Balanced Reader": "linear-gradient(90deg, var(--accent-emerald), #14B8A6)",
+  "Deep Diver": "linear-gradient(90deg, var(--accent-amber), #F97316)",
+};
+
 type CardOption<T extends string> = {
   value: T;
   emoji: string;
@@ -41,6 +48,7 @@ export function CardSelector<T extends string>({
     <div role="radiogroup" aria-label={label} className={cn("grid gap-3", gridClass)}>
       {options.map((opt) => {
         const isSelected = value === opt.value;
+        const personalityGradient = PERSONALITY_GRADIENTS[opt.label];
         return (
           <motion.button
             key={opt.value}
@@ -49,21 +57,35 @@ export function CardSelector<T extends string>({
             aria-checked={isSelected}
             onClick={() => onChange(opt.value)}
             whileTap={{ scale: 0.97 }}
-            whileHover={!isSelected ? { scale: 1.01, borderColor: "var(--cf-border-strong)" } : undefined}
+            whileHover={!isSelected ? { scale: 1.01, borderColor: "var(--cf-border-strong)", backgroundColor: "var(--bg-glass-hover)" } : undefined}
             animate={isSelected ? { scale: 1.02 } : { scale: 1 }}
             transition={{ type: "spring", stiffness: 400, damping: 25 }}
             className={cn(
-              "relative flex flex-col items-start gap-1 rounded-2xl border p-4 text-left transition-all duration-200",
+              "relative flex flex-col items-start gap-1 rounded-2xl border p-4 text-left transition-all duration-200 overflow-hidden",
               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)",
               "min-h-[44px]",
-              opt.tint && `bg-gradient-to-br ${opt.tint}`,
               isSelected
                 ? cn(
+                    "bg-surface-2",
                     opt.selectedTint ?? "border-(--cf-accent-border) shadow-[0_0_20px_var(--cf-accent-shadow)]"
                   )
-                : "border-(--cf-border) hover:border-(--cf-border-strong)"
+                : cn(
+                    "bg-surface-1",
+                    "border-(--cf-border) hover:border-(--cf-border-strong)"
+                  )
             )}
           >
+            {/* Personality gradient strip at the top */}
+            {personalityGradient && (
+              <span
+                className={cn(
+                  "absolute inset-x-0 top-0 rounded-t-2xl",
+                  isSelected ? "h-1.5" : "h-1"
+                )}
+                style={{ background: personalityGradient }}
+              />
+            )}
+
             {/* Checkmark badge */}
             <AnimatePresence>
               {isSelected && !opt.badge && (
@@ -87,7 +109,7 @@ export function CardSelector<T extends string>({
                   ? "bg-(--cf-accent) text-(--cf-accent-contrast)"
                   : "bg-(--cf-accent-soft) text-(--cf-accent) animate-pulse"
               )}>
-                {isSelected ? "✓" : opt.badge}
+                {isSelected ? "\u2713" : opt.badge}
               </span>
             )}
 

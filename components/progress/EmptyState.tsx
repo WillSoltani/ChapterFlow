@@ -14,7 +14,7 @@ interface EmptyStateProps {
 
 export function EmptyState({
   icon,
-  iconSize = 48,
+  iconSize = 64,
   title,
   description,
   ctaLabel,
@@ -31,7 +31,10 @@ export function EmptyState({
       className={`flex flex-col items-center justify-center py-8 text-center ${className}`}
     >
       {icon && (
-        <span style={{ fontSize: iconSize }} className="mb-3">
+        <span
+          style={{ fontSize: iconSize, color: "var(--text-tertiary)" }}
+          className="mb-3"
+        >
           {icon}
         </span>
       )}
@@ -51,10 +54,10 @@ export function EmptyState({
         <button
           type="button"
           onClick={onCtaClick}
-          className="mt-4 cursor-pointer rounded-xl px-5 py-2.5 text-sm font-medium transition-colors"
+          className="mt-4 cursor-pointer rounded-xl px-5 py-2.5 text-sm font-medium transition-colors hover:brightness-110"
           style={{
-            color: "var(--text-secondary)",
-            border: "1px solid var(--border-subtle)",
+            background: "var(--accent-cyan)",
+            color: "var(--bg-base)",
           }}
         >
           {ctaLabel}

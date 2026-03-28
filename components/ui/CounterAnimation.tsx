@@ -9,14 +9,18 @@ import {
 
 interface CounterAnimationProps {
   target: number;
+  prefix?: string;
   suffix?: string;
   duration?: number;
+  className?: string;
 }
 
 export function CounterAnimation({
   target,
+  prefix = "",
   suffix = "",
-  duration = 1.5,
+  duration = 0.6,
+  className = "",
 }: CounterAnimationProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.5 });
@@ -48,9 +52,14 @@ export function CounterAnimation({
   }, [isInView, target, duration, prefersReducedMotion]);
 
   return (
-    <span ref={ref} style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-      {displayValue}
-      {suffix}
+    <span
+      ref={ref}
+      className={className}
+      style={{ fontFamily: "var(--font-mono)", fontVariantNumeric: "tabular-nums" }}
+    >
+      {prefix}{displayValue}{suffix}
     </span>
   );
 }
+
+export { CounterAnimation as CountUp };

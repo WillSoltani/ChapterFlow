@@ -63,7 +63,7 @@ export default function SignupPage() {
             height: 500,
             bottom: "-15%",
             right: "-10%",
-            background: "radial-gradient(circle, rgba(62,207,178,0.08), transparent 70%)",
+            background: "radial-gradient(circle, rgba(34,211,238,0.08), transparent 70%)",
           }}
         />
       </div>
@@ -74,12 +74,12 @@ export default function SignupPage() {
         style={{
           maxWidth: 440,
           padding: 32,
-          background: "var(--cf-surface-muted)",
+          background: "var(--bg-surface-1)",
           backdropFilter: "blur(24px)",
           WebkitBackdropFilter: "blur(24px)",
-          border: "1px solid var(--cf-border-strong)",
+          border: "1px solid var(--border-default)",
           borderRadius: "var(--radius-xl-val)",
-          boxShadow: "var(--cf-shadow-md)",
+          boxShadow: "var(--shadow-card)",
         }}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -177,7 +177,7 @@ export default function SignupPage() {
             style={{
               minHeight: 48,
               padding: "12px 16px",
-              background: "var(--cf-surface-muted)",
+              background: "var(--bg-surface-1)",
               backdropFilter: "blur(16px)",
               WebkitBackdropFilter: "blur(16px)",
               color: "var(--text-primary)",
@@ -185,14 +185,14 @@ export default function SignupPage() {
               fontSize: 15,
               fontWeight: 500,
               borderRadius: "var(--radius-md-val)",
-              border: "1px solid var(--cf-border)",
+              border: "1px solid var(--border-subtle)",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = "var(--cf-border-strong)";
+              e.currentTarget.style.borderColor = "var(--border-default)";
               e.currentTarget.style.transform = "scale(1.01)";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = "var(--cf-border)";
+              e.currentTarget.style.borderColor = "var(--border-subtle)";
               e.currentTarget.style.transform = "scale(1)";
             }}
           >
@@ -203,7 +203,7 @@ export default function SignupPage() {
 
         {/* Divider */}
         <div className="flex items-center gap-4 my-6">
-          <div className="flex-1" style={{ height: 1, background: "var(--cf-border)" }} />
+          <div className="flex-1" style={{ height: 1, background: "var(--border-subtle)" }} />
           <span
             style={{
               fontFamily: "var(--font-dm-sans)",
@@ -213,7 +213,7 @@ export default function SignupPage() {
           >
             or
           </span>
-          <div className="flex-1" style={{ height: 1, background: "var(--cf-border)" }} />
+          <div className="flex-1" style={{ height: 1, background: "var(--border-subtle)" }} />
         </div>
 
         {/* Email input */}
@@ -228,8 +228,8 @@ export default function SignupPage() {
             style={{
               minHeight: 48,
               padding: "12px 16px",
-              background: "var(--cf-surface-muted)",
-              border: "1px solid var(--cf-border)",
+              background: "var(--bg-surface-1)",
+              border: "1px solid var(--border-subtle)",
               borderRadius: "var(--radius-md-val)",
               color: "var(--text-primary)",
               fontFamily: "var(--font-dm-sans)",
@@ -238,10 +238,10 @@ export default function SignupPage() {
             }}
             onFocus={(e) => {
               e.currentTarget.style.borderColor = "var(--accent-blue)";
-              e.currentTarget.style.boxShadow = "0 0 0 3px rgba(79,139,255,0.15)";
+              e.currentTarget.style.boxShadow = "0 0 0 3px rgba(34,211,238,0.15)";
             }}
             onBlur={(e) => {
-              e.currentTarget.style.borderColor = "var(--cf-border)";
+              e.currentTarget.style.borderColor = "var(--border-subtle)";
               e.currentTarget.style.boxShadow = "none";
             }}
           />

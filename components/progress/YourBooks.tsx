@@ -65,13 +65,13 @@ export function YourBooks({ activeBooks, completedBooks }: YourBooksProps) {
                   className="cursor-pointer rounded-full px-4 py-1.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
                   style={{
                     background: isActive
-                      ? "rgba(56,189,248,0.2)"
+                      ? "rgba(34,211,238,0.15)"
                       : "transparent",
                     color: isActive
-                      ? "var(--cf-accent)"
-                      : "var(--text-muted)",
+                      ? "var(--accent-cyan)"
+                      : "var(--text-secondary)",
                     border: isActive
-                      ? "1px solid rgba(56,189,248,0.3)"
+                      ? "1px solid rgba(34,211,238,0.3)"
                       : "1px solid transparent",
                   }}
                 >

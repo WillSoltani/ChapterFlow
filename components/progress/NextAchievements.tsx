@@ -30,6 +30,16 @@ export function NextAchievements({
     }
   }, [recentlyEarnedBadgeId]);
 
+  // Auto-dismiss after 5 seconds
+  useEffect(() => {
+    if (recentlyEarnedBadge && !dismissed) {
+      const timer = setTimeout(() => {
+        handleDismiss();
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [recentlyEarnedBadge, dismissed]);
+
   function handleDismiss() {
     setDismissed(true);
     if (recentlyEarnedBadgeId) {
@@ -71,24 +81,25 @@ export function NextAchievements({
           <motion.div
             className="mt-3 flex items-center justify-between rounded-xl px-3 py-2"
             style={{
-              background: "rgba(52,211,153,0.1)",
-              border: "1px solid rgba(52,211,153,0.2)",
+              background: "linear-gradient(135deg, rgba(245,158,11,0.12), rgba(232,185,49,0.08), rgba(245,158,11,0.12))",
+              backgroundSize: "200% 100%",
+              border: "1px solid rgba(245,158,11,0.25)",
             }}
             initial={{ opacity: 0, height: 0, marginTop: 0 }}
-            animate={{ opacity: 1, height: "auto", marginTop: 12 }}
+            animate={{ opacity: 1, height: "auto", marginTop: 12, backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
             exit={{ opacity: 0, height: 0, marginTop: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.3, backgroundPosition: { repeat: Infinity, duration: 3, ease: "easeInOut" } }}
           >
             <span
               className="text-xs font-medium"
-              style={{ color: "var(--cf-success-text)" }}
+              style={{ color: "var(--accent-amber)" }}
             >
               {"\u{1F389}"} Just earned: {recentlyEarnedBadge}!
             </span>
             <button
               type="button"
               onClick={handleDismiss}
-              className="cursor-pointer p-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50 rounded"
+              className="cursor-pointer p-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan/50 rounded"
               aria-label="Dismiss achievement notification"
             >
               <X
@@ -102,17 +113,26 @@ export function NextAchievements({
 
       {/* Milestone cards */}
       <div className="mt-4 flex flex-col gap-3 sm:flex-row">
-        {visibleMilestones.map((milestone) => {
+        {visibleMilestones.map((milestone, idx) => {
           const progressPct =
             milestone.target > 0
               ? Math.round((milestone.current / milestone.target) * 100)
               : 0;
+          const almostThere = progressPct > 85 && progressPct < 100;
+
+          // Tier-based accent colors: amber for consistency, violet for mastery, emerald for completion
+          const tierColors = [
+            "var(--accent-amber)",
+            "var(--accent-violet)",
+            "var(--accent-emerald)",
+          ];
+          const barColor = tierColors[idx % tierColors.length];
 
           return (
             <Link
               key={milestone.id}
               href="/book/badges"
-              className="flex flex-1 items-start gap-3 rounded-xl px-3 py-3 transition-colors hover:bg-white/[0.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50"
+              className="flex flex-1 items-start gap-3 rounded-xl px-3 py-3 transition-colors hover:bg-bg-glass-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan/50"
               style={{
                 background: "var(--cf-surface-muted)",
                 border: "1px solid var(--cf-border)",
@@ -139,7 +159,7 @@ export function NextAchievements({
                 </p>
                 <p
                   className="mt-0.5 text-xs"
-                  style={{ color: "var(--text-muted)" }}
+                  style={{ color: "var(--text-secondary)" }}
                 >
                   {milestone.description}
                 </p>
@@ -157,18 +177,26 @@ export function NextAchievements({
                       className="h-full rounded-full"
                       style={{
                         width: `${progressPct}%`,
-                        background: "var(--cf-accent)",
+                        background: barColor,
                         transition: "width 0.5s ease-out",
                       }}
                     />
                   </div>
                   <span
                     className="shrink-0 text-[10px] tabular-nums"
-                    style={{ color: "var(--text-muted)" }}
+                    style={{ color: "var(--text-secondary)" }}
                   >
                     {milestone.current}/{milestone.target}
                   </span>
                 </div>
+                {almostThere && (
+                  <span
+                    className="mt-1 inline-block text-[10px] font-medium"
+                    style={{ color: "var(--accent-amber)" }}
+                  >
+                    Almost there!
+                  </span>
+                )}
               </div>
           </Link>
           );

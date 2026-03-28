@@ -17,7 +17,7 @@ function BlurredChart({
 }) {
   return (
     <motion.div
-      className="relative flex flex-col items-center justify-center rounded-xl p-6"
+      className="relative flex flex-col items-center justify-center rounded-xl p-6 overflow-hidden"
       style={{
         background: "var(--cf-surface-muted)",
         border: "1px solid var(--cf-border)",
@@ -25,7 +25,7 @@ function BlurredChart({
       }}
       whileHover={{
         y: -2,
-        borderColor: "rgba(167,139,250,0.2)",
+        borderColor: "rgba(139,92,246,0.25)",
       }}
       transition={{ duration: 0.2 }}
     >
@@ -33,16 +33,23 @@ function BlurredChart({
       <div
         className="pointer-events-none"
         style={{
-          filter: "blur(5px)",
-          opacity: 0.3,
+          filter: "blur(6px)",
+          opacity: 0.25,
         }}
       >
         {children}
       </div>
 
-      {/* Lock overlay */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
-        <Lock className="h-6 w-6" style={{ color: "var(--text-muted)" }} />
+      {/* Frosted glass overlay */}
+      <div
+        className="absolute inset-0 flex flex-col items-center justify-center gap-2"
+        style={{
+          backdropFilter: "blur(20px)",
+          WebkitBackdropFilter: "blur(20px)",
+          background: "rgba(11,14,20,0.4)",
+        }}
+      >
+        <Lock className="h-6 w-6" style={{ color: "var(--text-secondary)", width: 24, height: 24 }} />
         <span
           className="text-xs font-medium"
           style={{ color: "var(--text-heading)" }}
@@ -129,14 +136,16 @@ export function ProInsightsPreview({ isPro }: ProInsightsPreviewProps) {
       {/* CTA */}
       <div className="mt-5 flex flex-col items-center gap-2 text-center sm:flex-row sm:justify-between sm:text-left">
         <p className="text-sm" style={{ color: "var(--text-secondary)" }}>
-          See how you&apos;re really progressing {"\u2014"} $7.99 CAD/mo
+          See how you&apos;re really progressing {"\u2014"}{" "}
+          <span style={{ color: "var(--accent-amber)", fontWeight: 700 }}>$7.99 CAD/mo</span>
         </p>
         <Link
           href="/pricing"
-          className="inline-flex cursor-pointer items-center gap-1.5 rounded-xl px-5 py-2.5 text-sm font-medium transition-colors"
+          className="inline-flex cursor-pointer items-center gap-1.5 rounded-xl px-5 py-2.5 text-sm font-semibold text-white transition-all"
           style={{
-            color: "var(--cf-accent)",
-            border: "1px solid rgba(167,139,250,0.3)",
+            background: "linear-gradient(135deg, var(--accent-violet), var(--accent-cyan))",
+            border: "1px solid rgba(139,92,246,0.3)",
+            boxShadow: "0 4px 12px rgba(139,92,246,0.2)",
           }}
         >
           Upgrade to Pro {"\u2192"}

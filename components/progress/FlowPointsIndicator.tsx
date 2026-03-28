@@ -24,8 +24,8 @@ export function FlowPointsIndicator({
       <div className="flex items-center gap-1.5">
         <Zap
           className="h-4 w-4"
-          style={{ color: "var(--cf-accent)" }}
-          fill="var(--cf-accent)"
+          style={{ color: "var(--accent-violet)" }}
+          fill="var(--accent-violet)"
         />
         <span
           className="text-sm font-semibold tabular-nums"
@@ -35,7 +35,7 @@ export function FlowPointsIndicator({
         </span>
       </div>
       {availableFPToday > 0 && (
-        <span className="text-xs" style={{ color: "var(--cf-accent)" }}>
+        <span className="text-xs" style={{ color: "var(--accent-violet)" }}>
           +{availableFPToday} FP available
         </span>
       )}

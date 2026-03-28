@@ -13,6 +13,7 @@ interface ProBook {
   readerCount: number;
   category: string;
   gradient?: string;
+  reason?: string;
 }
 
 interface DiscoveryRowProps {
@@ -56,6 +57,7 @@ export function DiscoveryRow({ books, isPro }: DiscoveryRowProps) {
         {books.map((book, i) => (
           <motion.div
             key={book.id}
+            className="flex flex-col"
             style={{ scrollSnapAlign: "start" }}
             initial={
               prefersReducedMotion ? undefined : { opacity: 0, y: 12 }
@@ -70,6 +72,14 @@ export function DiscoveryRow({ books, isPro }: DiscoveryRowProps) {
                 : { duration: 0.4, delay: i * 0.06, ease }
             }
           >
+            {book.reason && (
+              <p
+                className="mb-1.5 max-w-[170px] truncate text-[10px] font-medium"
+                style={{ color: "var(--accent-emerald)" }}
+              >
+                Based on {book.reason}
+              </p>
+            )}
             {isPro ? (
               <BookCardWorkspace
                 variant="user"

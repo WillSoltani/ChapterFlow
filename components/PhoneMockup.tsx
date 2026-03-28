@@ -256,7 +256,7 @@ export function PhoneMockup() {
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] blur-[60px] pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle, rgba(79,139,255,0.1) 0%, transparent 70%)",
+            "radial-gradient(circle, rgba(34,211,238,0.1) 0%, transparent 70%)",
         }}
       />
 
@@ -446,7 +446,7 @@ function SummaryStep({
       {/* Header with book cover */}
       <div className="flex items-start gap-2">
         <img
-          src="/book-covers/atomic-habits.jpg"
+          src="/book-covers/the-48-laws-of-power.jpg"
           alt=""
           className="w-5 h-7 rounded-sm object-cover shrink-0"
           style={{

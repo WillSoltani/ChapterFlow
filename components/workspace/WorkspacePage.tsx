@@ -11,7 +11,8 @@ import { BookRow } from "./BookRow";
 import { RewardsCard } from "./RewardsCard";
 import { NextAchievementCard } from "./NextAchievementCard";
 import { DiscoveryRow } from "./DiscoveryRow";
-import { DashboardNavbar } from "@/components/dashboard/DashboardNavbar";
+import { useRef, useState } from "react";
+import { TopNav } from "@/app/book/home/components/TopNav";
 
 const jetBrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -117,16 +118,16 @@ const mockData: WorkspaceData = {
     dailyProgressMinutes: 8,
   },
   currentBook: {
-    id: "atomic-habits",
-    title: "Atomic Habits",
-    author: "James Clear",
+    id: "the-48-laws-of-power",
+    title: "The 48 Laws of Power",
+    author: "Robert Greene",
     coverUrl: "",
     currentChapter: 5,
-    totalChapters: 20,
+    totalChapters: 16,
     progressPercent: 25,
     currentLoopStep: "scenarios",
     estimatedMinutes: 13,
-    glowColor: "rgba(217,119,6,0.35)",
+    glowColor: "rgba(185,28,28,0.35)",
   },
   weeklyActivity: [true, true, true, false, false, false, false],
   weeklyStats: {
@@ -135,57 +136,24 @@ const mockData: WorkspaceData = {
   },
   userBooks: [
     {
-      id: "atomic-habits",
-      title: "Atomic Habits",
-      author: "James Clear",
+      id: "the-48-laws-of-power",
+      title: "The 48 Laws of Power",
+      author: "Robert Greene",
       coverUrl: "",
       progressPercent: 25,
       status: "in_progress",
     },
     {
-      id: "never-split-the-difference",
-      title: "Never Split the Difference",
-      author: "Chris Voss",
+      id: "friends-and-influence",
+      title: "How to Win Friends and Influence People",
+      author: "Dale Carnegie",
       coverUrl: "",
       progressPercent: 10,
       status: "in_progress",
     },
-    {
-      id: "the-prince",
-      title: "The Prince",
-      author: "Niccolò Machiavelli",
-      coverUrl: "",
-      progressPercent: 0,
-      status: "not_started",
-    },
-    {
-      id: "deep-work",
-      title: "Deep Work",
-      author: "Cal Newport",
-      coverUrl: "",
-      progressPercent: 0,
-      status: "not_started",
-    },
-    {
-      id: "the-psychology-of-money",
-      title: "The Psychology of Money",
-      author: "Morgan Housel",
-      coverUrl: "",
-      progressPercent: 0,
-      status: "not_started",
-    },
   ],
   recommendedProBooks: [],
   discoveryBooks: [
-    {
-      id: "thinking-fast-and-slow",
-      title: "Thinking, Fast and Slow",
-      author: "Daniel Kahneman",
-      coverUrl: "",
-      rating: 4.7,
-      readerCount: 4200,
-      category: "Psychology",
-    },
     {
       id: "the-48-laws-of-power",
       title: "The 48 Laws of Power",
@@ -196,30 +164,12 @@ const mockData: WorkspaceData = {
       category: "Strategy",
     },
     {
-      id: "start-with-why",
-      title: "Start with Why",
-      author: "Simon Sinek",
+      id: "friends-and-influence",
+      title: "How to Win Friends and Influence People",
+      author: "Dale Carnegie",
       coverUrl: "",
-      rating: 4.5,
-      readerCount: 2800,
-      category: "Leadership",
-    },
-    {
-      id: "mans-search-for-meaning",
-      title: "Man's Search for Meaning",
-      author: "Viktor Frankl",
-      coverUrl: "",
-      rating: 4.9,
-      readerCount: 6400,
-      category: "Philosophy",
-    },
-    {
-      id: "the-charisma-myth",
-      title: "The Charisma Myth",
-      author: "Olivia Fox Cabane",
-      coverUrl: "",
-      rating: 4.6,
-      readerCount: 2340,
+      rating: 4.8,
+      readerCount: 4210,
       category: "Communication",
     },
   ],
@@ -432,6 +382,9 @@ export function WorkspacePage() {
   const hasActivity = data.weeklyActivity.some(Boolean);
   const showDiscovery = data.weeklyStats.chaptersCompleted > 0;
 
+  const searchRef = useRef<HTMLInputElement | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+
   const ContentWrapper = prefersReducedMotion ? "div" : motion.div;
   const SectionWrapper = prefersReducedMotion ? "div" : motion.div;
 
@@ -448,7 +401,14 @@ export function WorkspacePage() {
 
       {/* Content */}
       <div className="relative z-10">
-        <DashboardNavbar />
+        <TopNav
+          name={data.user.firstName}
+          activeTab="home"
+          searchQuery={searchQuery}
+          onSearchChange={setSearchQuery}
+          searchInputRef={searchRef}
+          logoVariant="dashboard"
+        />
 
         <main
           className="mx-auto w-full px-4 py-5 md:px-8 md:py-7 lg:px-10 xl:px-16"

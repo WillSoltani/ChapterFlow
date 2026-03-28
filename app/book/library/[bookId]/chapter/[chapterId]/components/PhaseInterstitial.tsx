@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Brain, Lightbulb } from "lucide-react";
+import { Brain, Lightbulb, Target } from "lucide-react";
 import type { ChapterTab } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterState";
 
 type PhaseInterstitialProps = {
@@ -10,7 +10,7 @@ type PhaseInterstitialProps = {
   onComplete: () => void;
 };
 
-const MESSAGES: Record<string, { text: string; icon: "lightbulb" | "brain" }> = {
+const MESSAGES: Record<string, { text: string; icon: "lightbulb" | "brain" | "target" }> = {
   "summary-examples": {
     text: "Now let's see this in action",
     icon: "lightbulb",
@@ -18,6 +18,10 @@ const MESSAGES: Record<string, { text: string; icon: "lightbulb" | "brain" }> = 
   "examples-quiz": {
     text: "Ready to test your understanding?",
     icon: "brain",
+  },
+  "quiz-practice": {
+    text: "Time to put it into practice",
+    icon: "target",
   },
 };
 
@@ -52,7 +56,7 @@ export function PhaseInterstitial({ from, to, onComplete }: PhaseInterstitialPro
     return null;
   }
 
-  const Icon = config.icon === "lightbulb" ? Lightbulb : Brain;
+  const Icon = config.icon === "lightbulb" ? Lightbulb : config.icon === "brain" ? Brain : Target;
 
   return (
     <div
