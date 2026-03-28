@@ -94,6 +94,43 @@ export function ChapterHeader({
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
   }, [toneDropdownOpen]);
+  if (focusMode) {
+    return (
+      <header className="flex items-center justify-between border-b border-(--cr-glass-border) pb-3">
+        <div className="flex items-center gap-3 min-w-0">
+          <Link
+            href={`/book/library/${encodeURIComponent(bookId)}`}
+            className="inline-flex items-center gap-1 rounded-lg border border-(--cr-glass-border) bg-(--cr-glass-nav) px-2.5 py-1 text-sm text-(--cr-text-secondary) transition hover:bg-(--cr-accent-muted) hover:text-(--cr-text-primary)"
+          >
+            <ArrowLeft className="h-3.5 w-3.5" />
+            Back
+          </Link>
+          <h1 className="truncate text-sm font-semibold text-(--cr-text-heading)">
+            {chapterLabel}: {chapterTitle}
+          </h1>
+        </div>
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={onToggleFocus}
+            className="inline-flex items-center gap-1.5 rounded-xl border border-(--cr-accent) bg-(--cr-accent-muted) px-3 py-1.5 text-xs font-medium text-(--cr-accent) transition"
+          >
+            <Focus className="h-3.5 w-3.5" />
+            Focus
+          </button>
+          <button
+            type="button"
+            onClick={onOpenNotes}
+            className="inline-flex items-center gap-1.5 rounded-xl border border-(--cr-warning)/30 bg-(--cr-warning)/10 px-3 py-1.5 text-xs font-medium text-(--cr-warning) transition hover:bg-(--cr-warning)/15"
+          >
+            <NotebookPen className="h-3.5 w-3.5" />
+            Notes
+          </button>
+        </div>
+      </header>
+    );
+  }
+
   return (
     <header className="space-y-4">
       {/* Breadcrumb row */}

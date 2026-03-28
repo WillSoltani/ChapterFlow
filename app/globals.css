@@ -781,6 +781,9 @@ html.transitioning *::after {
     min-height: 100vh;
     overflow-x: hidden;
     color: var(--cf-text-1);
+    font-family: var(--reading-font-family, inherit);
+    line-height: var(--reading-line-height, 1.6);
+    letter-spacing: var(--reading-letter-spacing, 0);
   }
 
   .cf-app-shell {
@@ -1670,6 +1673,7 @@ html:not(.dark) {
    ───────────────────────────────────────── */
 .cr-reading-content {
   font-family: var(--reading-font-family, inherit);
+  font-size: var(--reading-font-size, 1rem);
   line-height: var(--reading-line-height, 1.6);
   letter-spacing: var(--reading-letter-spacing, 0);
 }

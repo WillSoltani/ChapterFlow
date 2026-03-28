@@ -866,6 +866,7 @@ export function useBookPreferences() {
       "opendyslexic": '"OpenDyslexic", sans-serif',
     };
     root.style.setProperty("--reading-font-family", fontMap[ext.fontFamily] || fontMap["sans-serif"]);
+    root.style.setProperty("--reading-font-size", `${state.reading.fontSize}px`);
 
     const lineMap: Record<string, string> = { compact: "1.4", comfortable: "1.6", relaxed: "1.8" };
     root.style.setProperty("--reading-line-height", lineMap[ext.lineSpacing] || "1.6");
@@ -876,6 +877,7 @@ export function useBookPreferences() {
     root.dataset.colorBlindMode = ext.colorBlindMode;
   }, [
     hydrated,
+    state.reading.fontSize,
     state.extended.fontFamily,
     state.extended.lineSpacing,
     state.extended.letterSpacing,

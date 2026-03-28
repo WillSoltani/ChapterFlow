@@ -225,11 +225,17 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
   function handleProfileChange(profile: ReadingProfile) {
     const preset = READING_PROFILES.find((p) => p.id === profile);
     if (!preset) return;
+    const learningModeMap: Record<string, "guided" | "standard" | "challenge"> = {
+      concise: "guided",
+      balanced: "standard",
+      deep: "challenge",
+    };
     patchExt({
       readingProfile: profile,
       profileCustomized: false,
       quizStyle: preset.defaults.quizStyle,
       dailyGoalPreset: preset.defaults.dailyGoalPreset,
+      learningMode: learningModeMap[preset.defaults.learningStyle] ?? "standard",
     });
     setLearningStyle(preset.defaults.learningStyle);
     setQuizIntensity(

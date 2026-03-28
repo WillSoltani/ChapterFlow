@@ -577,12 +577,12 @@ export function ChapterReaderClient({
 
   return (
     <main className="relative min-h-screen overflow-x-hidden text-(--cr-text-primary)">
-      <ChapterBackgroundOrbs />
+      {!state.focusMode && <ChapterBackgroundOrbs />}
 
       <section
         className={[
-          "mx-auto w-full px-4 pb-28 pt-4 sm:px-6 sm:pt-5 md:pb-24",
-          state.focusMode ? "max-w-180" : "max-w-450",
+          "mx-auto w-full px-4 pb-28 pt-4 sm:px-6 sm:pt-5 md:pb-24 transition-[max-width] duration-300",
+          state.focusMode ? "max-w-170" : "max-w-450",
         ].join(" ")}
       >
         <ChapterHeader
@@ -627,17 +627,19 @@ export function ChapterReaderClient({
           showReadingSessionTimer={bookPrefs.reading.showReadingSessionTimer}
         />
 
-        {/* 3-Phase Stepper */}
-        <div className="mt-6">
-          <PhaseStepper
-            currentPhase={state.activeTab}
-            completedPhases={phaseCompletion.completedPhases}
-            onChange={setActiveTab}
-            progressPercent={progressPercent}
-            isPhaseAccessible={phaseCompletion.isPhaseAccessible}
-            getLockMessage={phaseCompletion.getLockMessage}
-          />
-        </div>
+        {/* 3-Phase Stepper — hidden in focus mode */}
+        {!state.focusMode && (
+          <div className="mt-6">
+            <PhaseStepper
+              currentPhase={state.activeTab}
+              completedPhases={phaseCompletion.completedPhases}
+              onChange={setActiveTab}
+              progressPercent={progressPercent}
+              isPhaseAccessible={phaseCompletion.isPhaseAccessible}
+              getLockMessage={phaseCompletion.getLockMessage}
+            />
+          </div>
+        )}
 
         {/* Content area */}
         <div ref={contentRef} className="mt-6 space-y-5">

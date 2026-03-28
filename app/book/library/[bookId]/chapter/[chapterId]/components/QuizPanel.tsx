@@ -683,7 +683,7 @@ export function QuizPanel({
   }
 
   return (
-    <section className="space-y-5">
+    <section className="cr-reading-content space-y-5">
       {/* Quiz Header — FIX 9: simplified when results shown */}
       {!submitted && (
         <div className="cr-glass-reading p-5">
