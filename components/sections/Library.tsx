@@ -8,6 +8,7 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
 import { CounterAnimation } from "@/components/ui/CounterAnimation";
 import { BookCover } from "@/app/book/components/BookCover";
 import { getBookById } from "@/app/book/data/booksCatalog";
+import { getBookCoverPath } from "@/lib/book-covers";
 
 const BOOK_IDS = [
   "the-48-laws-of-power",
@@ -132,7 +133,7 @@ export function Library() {
                         bookId={book.id}
                         title={book.title}
                         icon={book.icon}
-                        coverImage={`/book-covers/${book.id}.jpg`}
+                        coverImage={getBookCoverPath(book.id)}
                         className="w-full aspect-[3/4] rounded-lg border border-(--border-subtle)"
                         sizes="(max-width: 768px) 45vw, (max-width: 1024px) 30vw, 22vw"
                         interactive={false}

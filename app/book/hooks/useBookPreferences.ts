@@ -3,6 +3,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
 import { applyDocumentTheme } from "@/app/_lib/document-theme";
+import type { ExtendedSettings } from "@/app/book/settings/types/settings";
+import { defaultExtendedSettings, INTENSITY_TO_QUIZ_STYLE } from "@/app/book/settings/constants/defaults";
 
 export type ReaderFontDefault = "sm" | "md" | "lg";
 
@@ -132,11 +134,14 @@ export type BookPreferencesState = {
     saveQuizHistory: boolean;
     saveNotes: boolean;
   };
+  extended: ExtendedSettings;
   whatsNewSeenAt: string | null;
 };
 
 const STORAGE_KEY = "book-accelerator:preferences:v2";
 const LEGACY_STORAGE_KEY = "book-accelerator:preferences:v1";
+const LEGACY_EXT_STORAGE_KEY = "book-accelerator:settings-ext:v1";
+const LEGACY_ONBOARDING_KEY = "book-accelerator:onboarding:v5";
 const WEEKDAY_OPTIONS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"] as const;
 
 export const defaultBookPreferencesState: BookPreferencesState = {
@@ -236,6 +241,7 @@ export const defaultBookPreferencesState: BookPreferencesState = {
     saveQuizHistory: true,
     saveNotes: true,
   },
+  extended: defaultExtendedSettings,
   whatsNewSeenAt: null,
 };
 
@@ -313,6 +319,48 @@ function parseLegacyState(raw: string | null): BookPreferencesState | null {
   }
 }
 
+function parseSectionStates(
+  value: unknown,
+  fallback: Record<string, boolean>
+): Record<string, boolean> {
+  if (typeof value !== "object" || value === null || Array.isArray(value)) return fallback;
+  const result: Record<string, boolean> = { ...fallback };
+  for (const [k, v] of Object.entries(value)) {
+    if (typeof v === "boolean") result[k] = v;
+  }
+  return result;
+}
+
+function parseExtendedSettings(ext: Partial<ExtendedSettings>): ExtendedSettings {
+  const d = defaultExtendedSettings;
+  return {
+    readingProfile: parseString(ext.readingProfile, ["quick", "balanced", "deep"] as const, d.readingProfile),
+    fontFamily: parseString(ext.fontFamily, ["serif", "sans-serif", "opendyslexic"] as const, d.fontFamily),
+    lineSpacing: parseString(ext.lineSpacing, ["compact", "comfortable", "relaxed"] as const, d.lineSpacing),
+    letterSpacing: parseString(ext.letterSpacing, ["tight", "normal", "wide"] as const, d.letterSpacing),
+    ttsVoice: parseString(ext.ttsVoice, ["clara", "james", "aria"] as const, d.ttsVoice),
+    ttsSpeed: parseNumber(ext.ttsSpeed, d.ttsSpeed, 0.5, 2.0),
+    ttsAutoAdvance: parseBoolean(ext.ttsAutoAdvance, d.ttsAutoAdvance),
+    learningMode: parseString(ext.learningMode, ["guided", "standard", "challenge"] as const, d.learningMode),
+    streakMode: parseString(ext.streakMode, ["off", "standard", "flexible"] as const, d.streakMode),
+    streakSkipDays: parseNumber(ext.streakSkipDays, d.streakSkipDays, 0, 3),
+    motivationPersona: parseString(ext.motivationPersona, ["coach", "partner", "rival"] as const, d.motivationPersona),
+    contentTone: parseString(ext.contentTone, ["gentle", "direct", "competitive"] as const, d.contentTone),
+    quizStyle: parseString(ext.quizStyle, ["comfortable", "challenge", "surprise"] as const, d.quizStyle),
+    dailyGoalPreset: parseNumber(ext.dailyGoalPreset, d.dailyGoalPreset, 5, 30) as ExtendedSettings["dailyGoalPreset"],
+    spacedRepetitionTarget: parseNumber(ext.spacedRepetitionTarget, d.spacedRepetitionTarget, 70, 95),
+    scheduledDarkMode: parseBoolean(ext.scheduledDarkMode, d.scheduledDarkMode),
+    darkModeFrom: typeof ext.darkModeFrom === "string" ? ext.darkModeFrom : d.darkModeFrom,
+    darkModeTo: typeof ext.darkModeTo === "string" ? ext.darkModeTo : d.darkModeTo,
+    colorBlindMode: parseString(ext.colorBlindMode, ["off", "protanopia", "deuteranopia", "tritanopia"] as const, d.colorBlindMode),
+    breakReminders: parseBoolean(ext.breakReminders, d.breakReminders),
+    breakReminderMinutes: parseNumber(ext.breakReminderMinutes, d.breakReminderMinutes, 5, 120),
+    personalizationDismissed: parseBoolean(ext.personalizationDismissed, d.personalizationDismissed),
+    sectionStates: parseSectionStates(ext.sectionStates, d.sectionStates),
+    profileCustomized: parseBoolean(ext.profileCustomized, d.profileCustomized),
+  };
+}
+
 function parseStored(raw: string | null): BookPreferencesState | null {
   if (!raw) return null;
   try {
@@ -325,6 +373,7 @@ function parseStored(raw: string | null): BookPreferencesState | null {
     const appearance: Partial<BookPreferencesState["appearance"]> = parsed.appearance ?? {};
     const accessibility: Partial<BookPreferencesState["accessibility"]> = parsed.accessibility ?? {};
     const privacy: Partial<BookPreferencesState["privacy"]> = parsed.privacy ?? {};
+    const ext: Partial<ExtendedSettings> = parsed.extended ?? {};
 
     return {
       reading: {
@@ -688,6 +737,7 @@ function parseStored(raw: string | null): BookPreferencesState | null {
           defaultBookPreferencesState.privacy.saveNotes
         ),
       },
+      extended: parseExtendedSettings(ext),
       whatsNewSeenAt:
         typeof parsed.whatsNewSeenAt === "string" || parsed.whatsNewSeenAt === null
           ? parsed.whatsNewSeenAt
@@ -706,10 +756,53 @@ export function useBookPreferences() {
   const skipNextServerSave = useRef(false);
 
   useEffect(() => {
-    const nextState =
+    let nextState =
       parseStored(window.localStorage.getItem(STORAGE_KEY)) ??
       parseLegacyState(window.localStorage.getItem(LEGACY_STORAGE_KEY)) ??
       defaultBookPreferencesState;
+
+    // Migrate orphaned extended settings from old localStorage key
+    const legacyExt = window.localStorage.getItem(LEGACY_EXT_STORAGE_KEY);
+    if (legacyExt) {
+      try {
+        const parsed = JSON.parse(legacyExt) as Partial<ExtendedSettings>;
+        nextState = {
+          ...nextState,
+          extended: parseExtendedSettings({ ...nextState.extended, ...parsed }),
+        };
+      } catch {}
+      window.localStorage.removeItem(LEGACY_EXT_STORAGE_KEY);
+    }
+
+    // Seed extended settings from onboarding if not yet customized
+    if (!nextState.extended.profileCustomized) {
+      try {
+        const onboardingRaw = window.localStorage.getItem(LEGACY_ONBOARDING_KEY);
+        if (onboardingRaw) {
+          const ob = JSON.parse(onboardingRaw) as Record<string, unknown>;
+          const seeds: Partial<ExtendedSettings> = {};
+          if (ob.motivationStyle === "gentle" || ob.motivationStyle === "direct" || ob.motivationStyle === "competitive") {
+            seeds.contentTone = ob.motivationStyle;
+          }
+          if (typeof ob.quizIntensity === "string" && ob.quizIntensity in INTENSITY_TO_QUIZ_STYLE) {
+            seeds.quizStyle = INTENSITY_TO_QUIZ_STYLE[ob.quizIntensity as keyof typeof INTENSITY_TO_QUIZ_STYLE];
+          }
+          const learningMap: Record<string, ExtendedSettings["learningMode"]> = {
+            concise: "guided", balanced: "standard", deep: "challenge",
+          };
+          if (typeof ob.learningStyle === "string" && ob.learningStyle in learningMap) {
+            seeds.learningMode = learningMap[ob.learningStyle];
+          }
+          if (Object.keys(seeds).length > 0) {
+            nextState = {
+              ...nextState,
+              extended: parseExtendedSettings({ ...nextState.extended, ...seeds }),
+            };
+          }
+        }
+      } catch {}
+    }
+
     setState(nextState);
     setHydrated(true);
   }, []);
@@ -759,6 +852,58 @@ export function useBookPreferences() {
     state.appearance.reducedMotion,
     state.accessibility.highContrastMode,
     state.accessibility.focusRingStrength,
+  ]);
+
+  // Apply CSS variables for extended reading settings
+  useEffect(() => {
+    if (!hydrated) return;
+    const ext = state.extended;
+    const root = document.documentElement;
+
+    const fontMap: Record<string, string> = {
+      "serif": '"Georgia", "Times New Roman", serif',
+      "sans-serif": '"Inter", "system-ui", sans-serif',
+      "opendyslexic": '"OpenDyslexic", sans-serif',
+    };
+    root.style.setProperty("--reading-font-family", fontMap[ext.fontFamily] || fontMap["sans-serif"]);
+
+    const lineMap: Record<string, string> = { compact: "1.4", comfortable: "1.6", relaxed: "1.8" };
+    root.style.setProperty("--reading-line-height", lineMap[ext.lineSpacing] || "1.6");
+
+    const letterMap: Record<string, string> = { tight: "-0.01em", normal: "0", wide: "0.03em" };
+    root.style.setProperty("--reading-letter-spacing", letterMap[ext.letterSpacing] || "0");
+
+    root.dataset.colorBlindMode = ext.colorBlindMode;
+  }, [
+    hydrated,
+    state.extended.fontFamily,
+    state.extended.lineSpacing,
+    state.extended.letterSpacing,
+    state.extended.colorBlindMode,
+  ]);
+
+  // Scheduled dark mode
+  useEffect(() => {
+    if (!hydrated || !state.extended.scheduledDarkMode) return;
+    const checkTime = () => {
+      const now = new Date();
+      const mins = now.getHours() * 60 + now.getMinutes();
+      const [startH, startM] = state.extended.darkModeFrom.split(":").map(Number);
+      const [endH, endM] = state.extended.darkModeTo.split(":").map(Number);
+      const start = startH * 60 + startM;
+      const end = endH * 60 + endM;
+      const isDark = start > end ? mins >= start || mins < end : mins >= start && mins < end;
+      document.documentElement.classList.toggle("dark", isDark);
+      document.documentElement.style.colorScheme = isDark ? "dark" : "light";
+    };
+    checkTime();
+    const interval = setInterval(checkTime, 60000);
+    return () => clearInterval(interval);
+  }, [
+    hydrated,
+    state.extended.scheduledDarkMode,
+    state.extended.darkModeFrom,
+    state.extended.darkModeTo,
   ]);
 
   useEffect(() => {

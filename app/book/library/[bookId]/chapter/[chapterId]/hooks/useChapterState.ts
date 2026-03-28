@@ -174,7 +174,9 @@ export function useChapterState(
   chapterNumber?: number,
   preferredReadingDepth: ReadingDepth = "standard",
   preferredActiveTab: ChapterTab = "summary",
-  preferredExampleFilter: ExampleFilter = "all"
+  preferredExampleFilter: ExampleFilter = "all",
+  preferredFocusMode: boolean = false,
+  preferredFontScale: FontScale = "md"
 ) {
   const storageKey = useMemo(
     () => getChapterReaderStorageKey(bookId, chapterId),
@@ -199,8 +201,8 @@ export function useChapterState(
           exampleFilter: preferredExampleFilter,
         }
       ),
-      focusMode: prefs?.focusMode ?? parsed?.focusMode ?? defaultState.focusMode,
-      fontScale: prefs?.fontScale ?? parsed?.fontScale ?? defaultState.fontScale,
+      focusMode: prefs?.focusMode ?? parsed?.focusMode ?? preferredFocusMode,
+      fontScale: prefs?.fontScale ?? parsed?.fontScale ?? preferredFontScale,
     });
     setHasPersistedState(Boolean(parsed));
     setHydrated(true);

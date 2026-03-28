@@ -20,6 +20,7 @@ import {
 } from "@/app/book/_lib/onboarding-personalization";
 import { FLOW_POINTS_AMOUNTS } from "@/app/book/_lib/flow-points-economy";
 import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
+import { useBookPreferences } from "@/app/book/hooks/useBookPreferences";
 import { useKeyboardShortcut } from "@/app/book/hooks/useKeyboardShortcut";
 import { ChapterHeader } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/ChapterHeader";
 import { PhaseStepper } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/PhaseStepper";
@@ -36,7 +37,7 @@ import { QuizPanel } from "@/app/book/library/[bookId]/chapter/[chapterId]/compo
 import { SummaryCard } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/SummaryCard";
 import { PracticePhase } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/PracticePhase";
 import { SessionModeOverlay } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/SessionModeOverlay";
-import { useChapterState, type ChapterTab } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterState";
+import { useChapterState, type ChapterTab, type FontScale } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterState";
 import { useQuizSession } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useQuizSession";
 import { usePhaseCompletion } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/usePhaseCompletion";
 import { useBookProgress } from "@/app/book/library/hooks/useBookProgress";
@@ -114,6 +115,7 @@ export function ChapterReaderClient({
     "loading"
   );
   const [bookAccessMessage, setBookAccessMessage] = useState<string | null>(null);
+  const [paywallHit, setPaywallHit] = useState(false);
 
   // Phase transition interstitial state
   const [interstitial, setInterstitial] = useState<{
@@ -127,23 +129,10 @@ export function ChapterReaderClient({
   // Content area ref for scroll tracking
   const contentRef = useRef<HTMLDivElement>(null);
 
-  // Resolve learning mode and content tone from settings (localStorage)
-  const [learningMode, setLearningMode] = useState<LearningMode>("standard");
-  const [contentTone, setContentTone] = useState<ToneKey>("gentle");
-  useEffect(() => {
-    try {
-      const raw = window.localStorage.getItem("book-accelerator:settings-ext:v1");
-      if (raw) {
-        const parsed = JSON.parse(raw);
-        if (parsed.learningMode === "guided" || parsed.learningMode === "standard" || parsed.learningMode === "challenge") {
-          setLearningMode(parsed.learningMode);
-        }
-        if (parsed.contentTone === "gentle" || parsed.contentTone === "direct" || parsed.contentTone === "competitive") {
-          setContentTone(parsed.contentTone);
-        }
-      }
-    } catch {}
-  }, []);
+  // Resolve learning mode and content tone from unified settings
+  const { state: bookPrefs, patchSection: patchBookPrefs } = useBookPreferences();
+  const learningMode = bookPrefs.extended.learningMode;
+  const contentTone = bookPrefs.extended.contentTone;
 
   const pauseSessionMode = () => {
     setSessionMode(false);
@@ -158,8 +147,10 @@ export function ChapterReaderClient({
 
   const { state: onboarding, hydrated: onboardingHydrated } = useOnboardingState();
   const preferredReadingDepth = mapLearningStyleToDepth(onboarding.learningStyle);
-  const preferredActiveTab = chapterStartModeToInitialTab(onboarding.chapterStartMode);
+  const preferredActiveTab: ChapterTab = bookPrefs.reading.defaultChapterTab || chapterStartModeToInitialTab(onboarding.chapterStartMode);
   const preferredExampleFilter = onboarding.preferredExampleContext;
+  const preferredFocusMode = bookPrefs.reading.focusModeDefault;
+  const preferredFontScale: FontScale = bookPrefs.reading.fontSize <= 14 ? "sm" : bookPrefs.reading.fontSize >= 18 ? "lg" : "md";
 
   const entry = useMemo(() => getLibraryBookById(bookId), [bookId]);
   const bundle = useMemo(() => getBookChaptersBundle(bookId, contentTone), [bookId, contentTone]);
@@ -201,7 +192,9 @@ export function ChapterReaderClient({
     baseChapter?.order,
     preferredReadingDepth,
     preferredActiveTab,
-    preferredExampleFilter
+    preferredExampleFilter,
+    preferredFocusMode,
+    preferredFontScale
   );
 
   // Derive quiz passed state for practice phase gating
@@ -314,8 +307,32 @@ export function ChapterReaderClient({
         if (cancelled) return;
         setBookAccessStatus("ready");
       })
-      .catch(() => {
+      .catch((err) => {
         if (cancelled) return;
+        if (
+          err instanceof BookClientError &&
+          (err.status === 402 || err.code === "paywall_book_limit")
+        ) {
+          setBookAccessStatus("blocked");
+          setBookAccessMessage(
+            "You\u2019ve reached your free book limit. Upgrade to Pro to unlock unlimited books."
+          );
+          setPaywallHit(true);
+          return;
+        }
+        if (
+          err instanceof BookClientError &&
+          (err.code === "email_verification_required" ||
+            err.code === "free_access_review_required")
+        ) {
+          setBookAccessStatus("blocked");
+          setBookAccessMessage(
+            err.code === "email_verification_required"
+              ? "Please verify your email address to continue."
+              : "Your access is under review. Please contact support if this persists."
+          );
+          return;
+        }
         setBookAccessStatus("ready");
       });
     return () => {
@@ -429,12 +446,23 @@ export function ChapterReaderClient({
               {bookAccessMessage ||
                 "We couldn't unlock this book right now. Please head back and try again."}
             </p>
-            <Link
-              href={`/book/library/${encodeURIComponent(bookId)}`}
-              className="mt-5 inline-flex rounded-xl border border-(--cr-glass-border-teal) bg-(--cr-accent-muted) px-4 py-2 text-sm font-medium text-(--cr-accent)"
-            >
-              Back to book
-            </Link>
+            <div className="mt-5 flex flex-col items-center gap-3">
+              {paywallHit && (
+                <Link
+                  href="/book/settings"
+                  className="inline-flex rounded-xl px-5 py-2.5 text-sm font-semibold text-white"
+                  style={{ backgroundColor: "var(--accent-teal, #22d3ee)" }}
+                >
+                  Upgrade to Pro
+                </Link>
+              )}
+              <Link
+                href={`/book/library/${encodeURIComponent(bookId)}`}
+                className="inline-flex rounded-xl border border-(--cr-glass-border-teal) bg-(--cr-accent-muted) px-4 py-2 text-sm font-medium text-(--cr-accent)"
+              >
+                Back to book
+              </Link>
+            </div>
           </div>
         </section>
       </main>
@@ -575,14 +603,7 @@ export function ChapterReaderClient({
           learningMode={learningMode}
           onChangeLearningMode={(mode) => {
             if (mode === learningMode) return;
-            setLearningMode(mode);
-            try {
-              const raw = window.localStorage.getItem("book-accelerator:settings-ext:v1");
-              const settings = raw ? JSON.parse(raw) : {};
-              settings.learningMode = mode;
-              window.localStorage.setItem("book-accelerator:settings-ext:v1", JSON.stringify(settings));
-            } catch {}
-            // Mode-switch toast
+            patchBookPrefs("extended", { learningMode: mode });
             const messages: Record<string, string> = {
               guided: "Switched to Guided. Hints enabled, 2 retries on quiz.",
               standard: "Switched to Standard. Balanced mode, 1 retry.",
@@ -593,13 +614,7 @@ export function ChapterReaderClient({
           contentTone={contentTone}
           onChangeContentTone={(tone) => {
             if (tone === contentTone) return;
-            setContentTone(tone);
-            try {
-              const raw = window.localStorage.getItem("book-accelerator:settings-ext:v1");
-              const settings = raw ? JSON.parse(raw) : {};
-              settings.contentTone = tone;
-              window.localStorage.setItem("book-accelerator:settings-ext:v1", JSON.stringify(settings));
-            } catch {}
+            patchBookPrefs("extended", { contentTone: tone });
             const labels: Record<string, string> = {
               gentle: "Gentle tone. Warm, invitational framing.",
               direct: "Direct tone. Clean, efficient language.",
@@ -607,6 +622,9 @@ export function ChapterReaderClient({
             };
             setToast(labels[tone] ?? `Switched to ${tone} tone.`);
           }}
+          showProgressBar={bookPrefs.reading.showProgressBar}
+          showEstimatedReadingTime={bookPrefs.reading.showEstimatedReadingTime}
+          showReadingSessionTimer={bookPrefs.reading.showReadingSessionTimer}
         />
 
         {/* 3-Phase Stepper */}
@@ -685,6 +703,9 @@ export function ChapterReaderClient({
               onContinueToPractice={handleContinueToPractice}
               onToggleExplanation={quiz.toggleExplanation}
               learningMode={learningMode}
+              questionFlow={bookPrefs.learning.questionPresentationStyle}
+              shuffleQuestions={bookPrefs.learning.shuffleQuestionOrder}
+              retryIncorrectOnly={bookPrefs.learning.retryIncorrectOnly}
             />
           )}
 

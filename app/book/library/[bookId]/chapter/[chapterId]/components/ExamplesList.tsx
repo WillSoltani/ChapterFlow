@@ -322,7 +322,7 @@ export function ExamplesList({
   };
 
   return (
-    <section>
+    <section className="cr-reading-content">
       {/* ── Header: title + filters + CTA ── */}
       <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
         <div className="flex flex-wrap items-center gap-3">

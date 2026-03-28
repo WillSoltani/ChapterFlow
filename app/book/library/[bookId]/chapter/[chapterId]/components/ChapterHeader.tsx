@@ -38,6 +38,9 @@ type ChapterHeaderProps = {
   onChangeLearningMode?: (mode: LearningMode) => void;
   contentTone?: ContentTone;
   onChangeContentTone?: (tone: ContentTone) => void;
+  showProgressBar?: boolean;
+  showEstimatedReadingTime?: boolean;
+  showReadingSessionTimer?: boolean;
 };
 
 export function ChapterHeader({
@@ -59,6 +62,9 @@ export function ChapterHeader({
   onChangeLearningMode,
   contentTone = "gentle",
   onChangeContentTone,
+  showProgressBar = true,
+  showEstimatedReadingTime = true,
+  showReadingSessionTimer = true,
 }: ChapterHeaderProps) {
   const modeInfo = MODE_LABELS[learningMode];
   const toneInfo = TONE_LABELS[contentTone];
@@ -110,24 +116,26 @@ export function ChapterHeader({
           </span>
 
           {/* Chapter position dots */}
-          <div className="ml-2 hidden items-center gap-1 sm:flex">
-            {Array.from({ length: Math.min(totalChapters, 20) }, (_, i) => (
-              <div
-                key={i}
-                className={[
-                  "h-1.5 w-1.5 rounded-full transition-colors",
-                  i + 1 === chapterOrder
-                    ? "bg-(--cr-accent)"
-                    : i + 1 < chapterOrder
-                      ? "bg-(--cr-accent)/40"
-                      : "bg-(--cr-fill-muted)",
-                ].join(" ")}
-              />
-            ))}
-            <span className="ml-1 text-xs text-(--cr-text-disabled)">
-              {chapterOrder}/{totalChapters}
-            </span>
-          </div>
+          {showProgressBar && (
+            <div className="ml-2 hidden items-center gap-1 sm:flex">
+              {Array.from({ length: Math.min(totalChapters, 20) }, (_, i) => (
+                <div
+                  key={i}
+                  className={[
+                    "h-1.5 w-1.5 rounded-full transition-colors",
+                    i + 1 === chapterOrder
+                      ? "bg-(--cr-accent)"
+                      : i + 1 < chapterOrder
+                        ? "bg-(--cr-accent)/40"
+                        : "bg-(--cr-fill-muted)",
+                  ].join(" ")}
+                />
+              ))}
+              <span className="ml-1 text-xs text-(--cr-text-disabled)">
+                {chapterOrder}/{totalChapters}
+              </span>
+            </div>
+          )}
         </div>
 
         {/* Right controls */}
@@ -289,10 +297,14 @@ export function ChapterHeader({
         <h1 className="mt-2 text-3xl font-bold tracking-tight text-(--cr-text-heading) sm:text-4xl">
           {chapterLabel}: {chapterTitle}
         </h1>
-        <p className="mt-1.5 text-sm text-(--cr-text-secondary)">
-          Est. {minutes} min read
-          {trackedMinutesToday > 0 ? ` \u00b7 ${trackedMinutesToday} min tracked today` : ""}
-        </p>
+        {(showEstimatedReadingTime || showReadingSessionTimer) && (
+          <p className="mt-1.5 text-sm text-(--cr-text-secondary)">
+            {showEstimatedReadingTime && <>Est. {minutes} min read</>}
+            {showReadingSessionTimer && trackedMinutesToday > 0 && (
+              <>{showEstimatedReadingTime ? " \u00b7 " : ""}{trackedMinutesToday} min tracked today</>
+            )}
+          </p>
+        )}
       </div>
     </header>
   );

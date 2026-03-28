@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { getBookCoverPath } from "@/lib/book-covers";
 
 export interface PublicBookCardProps {
   id: string;
@@ -37,7 +38,7 @@ export function PublicBookCard({
   coverId,
 }: PublicBookCardProps) {
   const [imgFailed, setImgFailed] = useState(false);
-  const coverPath = `/book-covers/${coverId || id}.jpg`;
+  const coverPath = getBookCoverPath(id, coverId);
 
   return (
     <motion.div

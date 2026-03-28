@@ -5,7 +5,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { ChevronRight, Search } from "lucide-react";
-import { fetchBookJson } from "@/app/book/_lib/book-api";
+import { BookClientError, fetchBookJson } from "@/app/book/_lib/book-api";
 import { TopNav } from "@/app/book/home/components/TopNav";
 import { InfoModal } from "@/app/book/home/components/InfoModal";
 import { PageTransition } from "@/components/ui/PageTransition";
@@ -53,6 +53,7 @@ export function BookDetailClient({
   const [lockedToast, setLockedToast] = useState<string | null>(null);
   const [showResetModal, setShowResetModal] = useState(false);
   const [showRemoveModal, setShowRemoveModal] = useState(false);
+  const [paywallMessage, setPaywallMessage] = useState<string | null>(null);
 
   // Track whether the initial page-load animation has completed
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -122,7 +123,16 @@ export function BookDetailClient({
     void fetchBookJson(
       `/app/api/book/me/books/${encodeURIComponent(bookId)}/start`,
       { method: "POST" },
-    ).catch(() => null);
+    ).catch((err) => {
+      if (
+        err instanceof BookClientError &&
+        (err.status === 402 || err.code === "paywall_book_limit")
+      ) {
+        setPaywallMessage(
+          "You\u2019ve reached your free book limit. Upgrade to Pro to unlock unlimited books."
+        );
+      }
+    });
   }, [bookId, onboarding.setupComplete, onboardingHydrated]);
 
   // Mark initial animation as complete after page load
@@ -294,6 +304,28 @@ export function BookDetailClient({
           }
           timeInvestedMinutes={timeInvestedMinutes}
         />
+
+        {/* ═══════ Paywall Banner ═══════ */}
+        {paywallMessage && (
+          <motion.div
+            className="mt-6 rounded-xl border p-5 text-center"
+            style={{
+              borderColor: "var(--cf-border-strong, var(--border-default))",
+              background: "var(--cf-surface-muted, var(--bg-surface-1))",
+            }}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
+            <p className="text-sm font-medium text-(--cf-text-1)">{paywallMessage}</p>
+            <Link
+              href="/book/settings"
+              className="mt-3 inline-flex rounded-xl px-5 py-2.5 text-sm font-semibold text-white"
+              style={{ backgroundColor: "var(--accent-teal, #22d3ee)" }}
+            >
+              Upgrade to Pro
+            </Link>
+          </motion.div>
+        )}
 
         {/* ═══════ ZONE 2 — Chapter Journey ═══════ */}
         <motion.section

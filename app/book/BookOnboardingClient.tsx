@@ -43,7 +43,7 @@ import {
 const TOTAL_STEPS = 5;
 const MAX_BOOKS = 3;
 const DEFAULT_DAILY_GOAL_MINUTES = 20;
-const LOCK_ON_ONBOARDING_FOR_INSPECTION = true;
+const LOCK_ON_ONBOARDING_FOR_INSPECTION = false;
 const STEP_LABELS = ["Welcome", "How it works", "Tailor", "Starter shelf", "Ready"];
 const READING_GOAL_VALUES: readonly ReadingGoalOption[] = [
   "career",

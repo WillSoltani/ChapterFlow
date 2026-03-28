@@ -25,7 +25,7 @@ export function PracticePhase({
   nextChapterLabel,
 }: PracticePhaseProps) {
   return (
-    <div className="space-y-5">
+    <div className="cr-reading-content space-y-5">
       {/* The One Takeaway */}
       {keyTakeawayCard && (
         <section className="cr-glass-card relative overflow-hidden border-(--cr-accent)/30 px-6 py-5">

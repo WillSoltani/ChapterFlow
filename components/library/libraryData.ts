@@ -1,5 +1,7 @@
 // ── Extended library data for the psychology-driven redesign ──
 
+import { getBookCoverPath } from "@/lib/book-covers";
+
 export type Category =
   | "Psychology"
   | "Productivity"
@@ -95,7 +97,7 @@ export const MOCK_BOOKS: LibraryBook[] = [
     title: "How to Win Friends and Influence People",
     author: "Dale Carnegie",
     authorCredentials: "Pioneer of self-improvement, legendary speaker & trainer",
-    coverImage: "/book-covers/friends-and-influence.jpg",
+    coverImage: getBookCoverPath("friends-and-influence"),
     coverGradient: "linear-gradient(135deg, #d97706 0%, #92400e 100%)",
     hook: "The timeless art of genuine connection",
     description:
@@ -129,7 +131,7 @@ export const MOCK_BOOKS: LibraryBook[] = [
     title: "Atomic Habits",
     author: "James Clear",
     authorCredentials: "Author, habits researcher, speaker on behavior change",
-    coverImage: "/book-covers/atomic-habits.jpg",
+    coverImage: getBookCoverPath("atomic-habits"),
     coverGradient: "linear-gradient(135deg, #0f766e 0%, #042f2e 100%)",
     hook: "Small habits, compounded daily, change everything",
     description:
@@ -156,7 +158,7 @@ export const MOCK_BOOKS: LibraryBook[] = [
     title: "The Laws of Human Nature",
     author: "Robert Greene",
     authorCredentials: "Bestselling author on strategy, power, and human nature",
-    coverImage: "/book-covers/laws-of-human-nature.jpg",
+    coverImage: getBookCoverPath("laws-of-human-nature"),
     coverGradient: "linear-gradient(135deg, #1e3a5f 0%, #0d1b2a 100%)",
     hook: "Decode the hidden forces that drive every human interaction",
     description:
@@ -182,7 +184,7 @@ export const MOCK_BOOKS: LibraryBook[] = [
     title: "The 48 Laws of Power",
     author: "Robert Greene",
     authorCredentials: "Bestselling author on strategy, power, and human nature",
-    coverImage: "/book-covers/the-48-laws-of-power.jpg",
+    coverImage: getBookCoverPath("the-48-laws-of-power"),
     coverGradient: "linear-gradient(135deg, #b91c1c 0%, #450a0a 100%)",
     hook: "Navigate power dynamics with strategic awareness",
     description:
@@ -221,6 +223,14 @@ export const CURATED_SECTIONS: CuratedSectionConfig[] = [
       "friends-and-influence",
       "the-48-laws-of-power",
       "laws-of-human-nature",
+    ],
+  },
+  {
+    narrativeTitle: "Build better systems.",
+    narrativeSubtitle:
+      "Practical frameworks for habits, productivity, and personal growth.",
+    bookIds: [
+      "atomic-habits",
     ],
   },
 ];

@@ -15,6 +15,12 @@ const ERROR_MESSAGES: Record<string, string> = {
   attempt_cooldown: "Quiz retake is temporarily locked. Try again in a moment.",
   attempt_rate_limited:
     "Too many quiz attempts. Take a break and try again later.",
+  paywall_book_limit:
+    "You\u2019ve reached your free book limit. Upgrade to Pro to unlock unlimited books.",
+  email_verification_required:
+    "Please verify your email address to continue.",
+  free_access_review_required:
+    "Your access is under review. Please contact support if this persists.",
   server_error: "Something went wrong. Please try again.",
 };
 

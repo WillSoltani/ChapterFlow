@@ -28,6 +28,8 @@ const OPTION_LABELS = ["A", "B", "C", "D", "E"];
 
 type LearningMode = "guided" | "standard" | "challenge";
 
+type QuestionPresentationStyle = "all-at-once" | "one-by-one";
+
 type QuizPanelProps = {
   session: QuizSessionView | null;
   answers: Record<string, string>;
@@ -43,6 +45,9 @@ type QuizPanelProps = {
   onContinueToPractice: () => void;
   onToggleExplanation: (questionId: string) => void;
   learningMode?: LearningMode;
+  questionFlow?: QuestionPresentationStyle;
+  shuffleQuestions?: boolean;
+  retryIncorrectOnly?: boolean;
 };
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
@@ -550,6 +555,9 @@ export function QuizPanel({
   session, answers, explanationOpen, loading, submitting, error, cooldownSeconds,
   onAnswer, onSubmit, onReviewSummary, onRetry, onContinueToPractice, onToggleExplanation,
   learningMode = "standard",
+  questionFlow = "all-at-once",
+  shuffleQuestions = false,
+  retryIncorrectOnly = false,
 }: QuizPanelProps) {
   const [questionFeedback, setQuestionFeedback] = useState<
     Record<string, "correct" | "incorrect-retry" | "incorrect-final">
@@ -559,6 +567,32 @@ export function QuizPanel({
   const [resultView, setResultView] = useState<"results" | "review-mistakes">("results");
 
   const maxRetries = QUIZ_RETRIES_PER_QUESTION[learningMode];
+  const [oneByOneIndex, setOneByOneIndex] = useState(0);
+
+  // Shuffle questions with a stable seed derived from session attempt
+  const displayQuestions = useMemo(() => {
+    if (!session) return [];
+    let questions = [...session.questions];
+
+    // Filter to incorrect-only on retake
+    if (retryIncorrectOnly && session.attemptNumber > 1 && !session.result) {
+      // Keep only questions not previously answered correctly
+      // (if they had been correct, they wouldn't need retry)
+      const answeredIds = new Set(Object.keys(answers));
+      const unanswered = questions.filter((q) => !answeredIds.has(q.questionId));
+      if (unanswered.length > 0) questions = unanswered;
+    }
+
+    if (shuffleQuestions) {
+      // Seeded shuffle using session attempt number for stability
+      const seed = session.attemptNumber;
+      for (let i = questions.length - 1; i > 0; i--) {
+        const j = ((seed * 2654435761 + i * 40503) >>> 0) % (i + 1);
+        [questions[i], questions[j]] = [questions[j], questions[i]];
+      }
+    }
+    return questions;
+  }, [session, shuffleQuestions, retryIncorrectOnly, session?.attemptNumber, answers]);
 
   // Reset local quiz state when session refreshes (e.g. retry)
   const prevSessionRef = useRef(session);
@@ -572,6 +606,7 @@ export function QuizPanel({
       setDisabledChoices({});
       setRetriesUsed({});
       setResultView("results");
+      setOneByOneIndex(0);
     }
   }, [session]);
 
@@ -629,12 +664,12 @@ export function QuizPanel({
     );
   }
 
-  const answeredCount = session.questions.filter((q) => Boolean(answers[q.questionId])).length;
+  const answeredCount = displayQuestions.filter((q) => Boolean(answers[q.questionId])).length;
   const submitted = Boolean(session.result);
-  const allResolved = session.questions.every(
+  const allResolved = displayQuestions.every(
     (q) => questionFeedback[q.questionId] === "correct" || questionFeedback[q.questionId] === "incorrect-final"
   );
-  const currentQuestionIndex = session.questions.findIndex(
+  const currentQuestionIndex = displayQuestions.findIndex(
     (q) => !questionFeedback[q.questionId] || questionFeedback[q.questionId] === "incorrect-retry"
   );
 
@@ -663,8 +698,8 @@ export function QuizPanel({
               </p>
             </div>
           </div>
-          <ProgressDots questions={session.questions} answers={answers}
-            currentIndex={currentQuestionIndex === -1 ? session.questions.length - 1 : currentQuestionIndex}
+          <ProgressDots questions={displayQuestions} answers={answers}
+            currentIndex={currentQuestionIndex === -1 ? displayQuestions.length - 1 : currentQuestionIndex}
             questionFeedback={questionFeedback} />
         </div>
       )}
@@ -679,17 +714,48 @@ export function QuizPanel({
       {/* Questions */}
       {!submitted && (
         <div className="space-y-4">
-          {session.questions.map((question, index) => (
-            <ImmediateQuestionCard key={question.questionId}
-              index={index} question={question} answerChoiceId={answers[question.questionId]}
-              learningMode={learningMode} onAnswer={(choiceId) => handleAnswer(question.questionId, choiceId)}
-              onToggleExplanation={() => onToggleExplanation(question.questionId)}
-              explanationOpen={Boolean(explanationOpen[question.questionId])}
-              feedbackState={questionFeedback[question.questionId] ?? null}
-              disabledChoices={disabledChoices[question.questionId] ?? new Set()}
-              retriesLeft={maxRetries - (retriesUsed[question.questionId] ?? 0)}
-              isLast={index === session.questions.length - 1} onSeeResults={handleSeeResults} />
-          ))}
+          {questionFlow === "one-by-one" ? (
+            <>
+              {displayQuestions[oneByOneIndex] && (
+                <ImmediateQuestionCard key={displayQuestions[oneByOneIndex].questionId}
+                  index={oneByOneIndex} question={displayQuestions[oneByOneIndex]}
+                  answerChoiceId={answers[displayQuestions[oneByOneIndex].questionId]}
+                  learningMode={learningMode}
+                  onAnswer={(choiceId) => handleAnswer(displayQuestions[oneByOneIndex].questionId, choiceId)}
+                  onToggleExplanation={() => onToggleExplanation(displayQuestions[oneByOneIndex].questionId)}
+                  explanationOpen={Boolean(explanationOpen[displayQuestions[oneByOneIndex].questionId])}
+                  feedbackState={questionFeedback[displayQuestions[oneByOneIndex].questionId] ?? null}
+                  disabledChoices={disabledChoices[displayQuestions[oneByOneIndex].questionId] ?? new Set()}
+                  retriesLeft={maxRetries - (retriesUsed[displayQuestions[oneByOneIndex].questionId] ?? 0)}
+                  isLast={oneByOneIndex === displayQuestions.length - 1} onSeeResults={handleSeeResults} />
+              )}
+              <div className="flex items-center justify-between">
+                <button type="button" disabled={oneByOneIndex === 0}
+                  onClick={() => setOneByOneIndex((i) => Math.max(0, i - 1))}
+                  className="flex items-center gap-1 rounded-xl px-4 py-2 text-sm font-medium text-(--cr-text-secondary) hover:bg-(--cr-bg-surface-2) disabled:opacity-30 transition">
+                  <ArrowLeft className="h-3.5 w-3.5" /> Previous
+                </button>
+                <span className="text-xs text-(--cr-text-disabled)">{oneByOneIndex + 1} / {displayQuestions.length}</span>
+                <button type="button" disabled={oneByOneIndex >= displayQuestions.length - 1}
+                  onClick={() => setOneByOneIndex((i) => Math.min(displayQuestions.length - 1, i + 1))}
+                  className="flex items-center gap-1 rounded-xl px-4 py-2 text-sm font-medium text-(--cr-text-secondary) hover:bg-(--cr-bg-surface-2) disabled:opacity-30 transition">
+                  Next <ArrowRight className="h-3.5 w-3.5" />
+                </button>
+              </div>
+            </>
+          ) : (
+            displayQuestions.map((question, index) => (
+              <ImmediateQuestionCard key={question.questionId}
+                index={index} question={question} answerChoiceId={answers[question.questionId]}
+                learningMode={learningMode} onAnswer={(choiceId) => handleAnswer(question.questionId, choiceId)}
+                onToggleExplanation={() => onToggleExplanation(question.questionId)}
+                explanationOpen={Boolean(explanationOpen[question.questionId])}
+                feedbackState={questionFeedback[question.questionId] ?? null}
+                disabledChoices={disabledChoices[question.questionId] ?? new Set()}
+                retriesLeft={maxRetries - (retriesUsed[question.questionId] ?? 0)}
+                isLast={index === displayQuestions.length - 1} onSeeResults={handleSeeResults} />
+            ))
+          )}
         </div>
       )}
 
@@ -710,7 +776,7 @@ export function QuizPanel({
           ].join(" ")}>
           {submitting
             ? <span className="flex items-center justify-center gap-2"><LoaderCircle className="h-4 w-4 animate-spin" /> Submitting...</span>
-            : `Submit Answers \u00b7 ${answeredCount}/${session.questions.length} answered`}
+            : `Submit Answers \u00b7 ${answeredCount}/${displayQuestions.length} answered`}
         </button>
       )}
     </section>

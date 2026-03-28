@@ -1,5 +1,7 @@
 /* ── Book catalog for onboarding ── */
 
+import { getBookCoverPath as getCanonicalBookCoverPath } from "@/lib/book-covers";
+
 export interface OnboardingBook {
   id: string;
   title: string;
@@ -23,7 +25,7 @@ const COVER_MAP: Record<string, string> = {
 export function getBookCoverPath(bookId: string): string | null {
   const coverId = COVER_MAP[bookId];
   if (!coverId) return null;
-  return `/book-covers/${coverId}.jpg`;
+  return getCanonicalBookCoverPath(coverId);
 }
 
 export const ONBOARDING_BOOKS: OnboardingBook[] = [

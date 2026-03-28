@@ -2,6 +2,7 @@ import {
   BOOK_PACKAGES,
   getBookPackagePresentation,
 } from "@/app/book/data/bookPackages";
+import { getBookCoverCandidates as getCanonicalBookCoverCandidates } from "@/lib/book-covers";
 
 export type BookDifficulty = "Easy" | "Medium" | "Hard";
 
@@ -44,21 +45,10 @@ export function getBookById(bookId: string): BookCatalogItem | undefined {
 const PREFER_GENERATED_COVER_IDS = new Set<string>([]);
 
 export function getBookCoverCandidates(book: Pick<BookCatalogItem, "id" | "coverImage">): string[] {
-  const realFirstCandidates = [
-    `/book-covers/${book.id}.jpg`,
-    `/book-covers/${book.id}.jpeg`,
-    `/book-covers/${book.id}.png`,
-    `/book-covers/${book.id}.webp`,
-    `/book-covers/${book.id}.avif`,
-    `/book-covers/${book.id}.svg`,
-  ];
+  const realFirstCandidates = getCanonicalBookCoverCandidates(book.id);
   const generatedFirstCandidates = [
     `/book-covers/${book.id}.svg`,
-    `/book-covers/${book.id}.jpg`,
-    `/book-covers/${book.id}.jpeg`,
-    `/book-covers/${book.id}.png`,
-    `/book-covers/${book.id}.webp`,
-    `/book-covers/${book.id}.avif`,
+    ...realFirstCandidates.filter((candidate) => candidate !== `/book-covers/${book.id}.svg`),
   ];
   const localCandidates = PREFER_GENERATED_COVER_IDS.has(book.id)
     ? generatedFirstCandidates

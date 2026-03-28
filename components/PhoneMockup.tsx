@@ -446,7 +446,7 @@ function SummaryStep({
       {/* Header with book cover */}
       <div className="flex items-start gap-2">
         <img
-          src="/book-covers/the-48-laws-of-power.jpg"
+          src="/book-covers/the-48-laws-of-power-20260328-real.jpg"
           alt=""
           className="w-5 h-7 rounded-sm object-cover shrink-0"
           style={{

@@ -2,6 +2,7 @@ import lawsOfPowerPackageJson from "@/book-packages/the-48-laws-of-power.modern.
 import friendsAndInfluencePackageJson from "@/book-packages/friends-and-influence.modern.json";
 import atomicHabitsPackageJson from "@/book-packages/atomic-habits.modern.json";
 import lawsOfHumanNaturePackageJson from "@/book-packages/laws-of-human-nature.modern.json";
+import { getBookCoverPath } from "@/lib/book-covers";
 
 export type VariantFamily = "EMH" | "PBC";
 export type VariantKey =
@@ -266,7 +267,7 @@ export const BOOK_PACKAGES: BookPackage[] = [
 export const BOOK_PACKAGE_PRESENTATION: Record<string, BookPackagePresentation> = {
   "friends-and-influence": {
     icon: "🤝",
-    coverImage: "/book-covers/friends-and-influence.svg",
+    coverImage: getBookCoverPath("friends-and-influence"),
     difficulty: "Medium",
     synopsis:
       "A classic communication guide focused on first impressions, attentive listening, better questions, respectful disagreement, and the habits that make relationships stronger over time.",
@@ -274,7 +275,7 @@ export const BOOK_PACKAGE_PRESENTATION: Record<string, BookPackagePresentation> 
   },
   "the-48-laws-of-power": {
     icon: "♜",
-    coverImage: "/book-covers/the-48-laws-of-power.svg",
+    coverImage: getBookCoverPath("the-48-laws-of-power"),
     difficulty: "Hard",
     synopsis:
       "A modern reading of power, timing, reputation, influence, and strategic awareness for students and early career builders.",
@@ -282,7 +283,7 @@ export const BOOK_PACKAGE_PRESENTATION: Record<string, BookPackagePresentation> 
   },
   "atomic-habits": {
     icon: "🔁",
-    coverImage: "/book-covers/atomic-habits.svg",
+    coverImage: getBookCoverPath("atomic-habits"),
     difficulty: "Medium",
     synopsis:
       "A modern reading of habits, identity, and behavior design: how tiny changes compound into remarkable results.",
@@ -290,7 +291,7 @@ export const BOOK_PACKAGE_PRESENTATION: Record<string, BookPackagePresentation> 
   },
   "laws-of-human-nature": {
     icon: "🧠",
-    coverImage: "/book-covers/laws-of-human-nature.svg",
+    coverImage: getBookCoverPath("laws-of-human-nature"),
     difficulty: "Hard",
     synopsis:
       "A deep exploration of emotional mastery, empathy, character assessment, group dynamics, and the hidden forces that drive human behavior.",
@@ -396,7 +397,7 @@ function inferFallbackPresentation(bookId: string): BookPackagePresentation {
   if (!bookPackage) {
     return {
       icon: "📘",
-      coverImage: `/book-covers/${bookId}.svg`,
+      coverImage: getBookCoverPath(bookId),
       difficulty: "Medium",
       synopsis:
         "A focused, chapter-based learning experience with examples, quizzes, and measurable progress.",
@@ -417,7 +418,7 @@ function inferFallbackPresentation(bookId: string): BookPackagePresentation {
 
   return {
     icon: inferPresentationIcon(bookPackage),
-    coverImage: `/book-covers/${bookId}.svg`,
+    coverImage: getBookCoverPath(bookId),
     difficulty: inferPresentationDifficulty(categories),
     synopsis: `A modern reading of ${formatSynopsisTopics(topics)} with concise summaries, scenarios, quizzes, and gated chapter progression.`,
     pages: Math.max(160, Math.round(totalMinutes * 3.2)),

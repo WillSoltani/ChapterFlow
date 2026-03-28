@@ -1,72 +1,41 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback } from "react";
 import type { ExtendedSettings } from "../types/settings";
-import {
-  EXTENDED_SETTINGS_STORAGE_KEY,
-  defaultExtendedSettings,
-} from "../constants/defaults";
-
-function parseStored(raw: string | null): ExtendedSettings | null {
-  if (!raw) return null;
-  try {
-    const parsed = JSON.parse(raw);
-    // Merge with defaults so new fields get their default values
-    return { ...defaultExtendedSettings, ...parsed };
-  } catch {
-    return null;
-  }
-}
+import { useBookPreferences } from "@/app/book/hooks/useBookPreferences";
 
 export function useSettingsPage() {
-  const [hydrated, setHydrated] = useState(false);
-  const [state, setState] = useState<ExtendedSettings>(defaultExtendedSettings);
-
-  // Hydrate from localStorage
-  useEffect(() => {
-    const stored = parseStored(
-      window.localStorage.getItem(EXTENDED_SETTINGS_STORAGE_KEY)
-    );
-    if (stored) setState(stored);
-    setHydrated(true);
-  }, []);
-
-  // Persist to localStorage on every change
-  useEffect(() => {
-    if (!hydrated) return;
-    window.localStorage.setItem(
-      EXTENDED_SETTINGS_STORAGE_KEY,
-      JSON.stringify(state)
-    );
-  }, [hydrated, state]);
+  const { hydrated, state: prefs, patchSection } = useBookPreferences();
 
   const patch = useCallback(
     (updates: Partial<ExtendedSettings>) => {
-      setState((prev) => ({ ...prev, ...updates }));
+      patchSection("extended", updates);
     },
-    []
+    [patchSection]
   );
 
-  const toggleSection = useCallback((sectionId: string) => {
-    setState((prev) => ({
-      ...prev,
-      sectionStates: {
-        ...prev.sectionStates,
-        [sectionId]: !prev.sectionStates[sectionId],
-      },
-    }));
-  }, []);
+  const toggleSection = useCallback(
+    (sectionId: string) => {
+      patchSection("extended", {
+        sectionStates: {
+          ...prefs.extended.sectionStates,
+          [sectionId]: !prefs.extended.sectionStates[sectionId],
+        },
+      } as Partial<ExtendedSettings>);
+    },
+    [patchSection, prefs.extended.sectionStates]
+  );
 
   const isSectionExpanded = useCallback(
     (sectionId: string) => {
-      return state.sectionStates[sectionId] ?? true;
+      return prefs.extended.sectionStates[sectionId] ?? true;
     },
-    [state.sectionStates]
+    [prefs.extended.sectionStates]
   );
 
   return {
     hydrated,
-    state,
+    state: prefs.extended,
     patch,
     toggleSection,
     isSectionExpanded,

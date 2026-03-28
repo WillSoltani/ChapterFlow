@@ -1666,6 +1666,28 @@ html:not(.dark) {
 }
 
 /* ─────────────────────────────────────────
+   CHAPTER READER — Reading Typography
+   ───────────────────────────────────────── */
+.cr-reading-content {
+  font-family: var(--reading-font-family, inherit);
+  line-height: var(--reading-line-height, 1.6);
+  letter-spacing: var(--reading-letter-spacing, 0);
+}
+
+/* ─────────────────────────────────────────
+   COLOR BLIND MODE FILTERS
+   ───────────────────────────────────────── */
+html[data-color-blind-mode="protanopia"] {
+  filter: url(#cf-protanopia);
+}
+html[data-color-blind-mode="deuteranopia"] {
+  filter: url(#cf-deuteranopia);
+}
+html[data-color-blind-mode="tritanopia"] {
+  filter: url(#cf-tritanopia);
+}
+
+/* ─────────────────────────────────────────
    CHAPTER READER — Animations
    ───────────────────────────────────────── */
 

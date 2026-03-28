@@ -17,6 +17,7 @@ import { SectionReveal } from "@/components/ui/SectionReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { BOOKS_CATALOG, getBookSynopsis } from "@/app/book/data/booksCatalog";
 import { BOOK_PACKAGES } from "@/app/book/data/bookPackages";
+import { getBookCoverPath } from "@/lib/book-covers";
 
 /* ================================================================== */
 /*  TYPES                                                              */
@@ -141,7 +142,7 @@ function getBookBadge(book: LibraryBook): { label: string; color: string } | nul
 }
 
 function coverPath(book: LibraryBook) {
-  return `/book-covers/${book.coverId || book.id}.jpg`;
+  return getBookCoverPath(book.id, book.coverId);
 }
 
 function avgMinPerChapter(book: LibraryBook) {

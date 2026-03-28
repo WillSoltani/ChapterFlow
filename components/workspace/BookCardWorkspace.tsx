@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { ProBadge } from "./ProBadge";
+import { getBookCoverPath } from "@/lib/book-covers";
 
 interface UserBookData {
   id: string;
@@ -45,7 +46,7 @@ export function BookCardWorkspace(props: BookCardWorkspaceProps) {
   const prefersReducedMotion = useReducedMotion();
   const { variant, book } = props;
 
-  const coverSrc = book.coverUrl || `/book-covers/${book.id}.jpg`;
+  const coverSrc = book.coverUrl || getBookCoverPath(book.id);
 
   return (
     <Link href={`/book/library/${book.id}`} className="block flex-shrink-0">

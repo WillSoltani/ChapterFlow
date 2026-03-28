@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { LearningLoopIndicator } from "./LearningLoopIndicator";
+import { getBookCoverPath } from "@/lib/book-covers";
 
 type LoopStep = "summary" | "scenarios" | "quiz" | "unlock";
 
@@ -152,7 +153,7 @@ export function HeroSessionCard({
     (userState === "active_reader" || userState === "quiz_pending");
 
   const coverSrc = currentBook
-    ? currentBook.coverUrl || `/book-covers/${currentBook.id}.jpg`
+    ? currentBook.coverUrl || getBookCoverPath(currentBook.id)
     : "";
   return (
     <motion.div
@@ -428,8 +429,8 @@ export function HeroSessionCard({
           <div className="hidden items-center justify-center p-8 lg:flex">
             <div className="flex gap-3">
               {[
-                { src: "/book-covers/the-48-laws-of-power.jpg", rot: -8 },
-                { src: "/book-covers/friends-and-influence.jpg", rot: 8 },
+                { src: getBookCoverPath("the-48-laws-of-power"), rot: -8 },
+                { src: getBookCoverPath("friends-and-influence"), rot: 8 },
               ].map((item, i) => (
                 <motion.div
                   key={i}

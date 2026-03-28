@@ -2,20 +2,14 @@
 
 import Image from "next/image";
 import { useMemo, useState } from "react";
+import { getBookCoverCandidates as getCanonicalBookCoverCandidates } from "@/lib/book-covers";
 
 function getBookCoverCandidates(bookId: string, coverImage?: string): string[] {
-  const localCandidates = [
-    `/book-covers/${bookId}.svg`,
-    `/book-covers/${bookId}.jpg`,
-    `/book-covers/${bookId}.jpeg`,
-    `/book-covers/${bookId}.png`,
-    `/book-covers/${bookId}.webp`,
-    `/book-covers/${bookId}.avif`,
-  ];
+  const localCandidates = getCanonicalBookCoverCandidates(bookId);
 
   if (!coverImage) return localCandidates;
   if (localCandidates.includes(coverImage)) {
-    return [coverImage, ...localCandidates.filter((c) => c !== coverImage)];
+    return localCandidates;
   }
   return [coverImage, ...localCandidates];
 }

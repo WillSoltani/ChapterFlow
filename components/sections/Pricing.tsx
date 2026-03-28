@@ -98,7 +98,7 @@ const faqs = [
   {
     question: "Is there a mobile app?",
     answer:
-      "Yes. ChapterFlow is available on iOS and Android. Your progress syncs across all devices.",
+      "ChapterFlow works beautifully on any device through your browser. A dedicated mobile app is on the roadmap.",
   },
 ];
 

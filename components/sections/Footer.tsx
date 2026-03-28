@@ -78,10 +78,10 @@ export function Footer() {
           style={{ color: "var(--text-muted)" }}
         >
           <div className="flex gap-4">
-            <Link href="/coming-soon" className="hover:underline">
+            <Link href="/legal/terms" className="hover:underline">
               Terms
             </Link>
-            <Link href="/coming-soon" className="hover:underline">
+            <Link href="/legal/privacy" className="hover:underline">
               Privacy
             </Link>
           </div>

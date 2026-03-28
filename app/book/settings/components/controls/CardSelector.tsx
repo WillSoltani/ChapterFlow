@@ -57,22 +57,19 @@ export function CardSelector<T extends string>({
             aria-checked={isSelected}
             onClick={() => onChange(opt.value)}
             whileTap={{ scale: 0.97 }}
-            whileHover={!isSelected ? { scale: 1.01, borderColor: "var(--cf-border-strong)", backgroundColor: "var(--bg-glass-hover)" } : undefined}
+            whileHover={!isSelected ? { scale: 1.01, borderColor: "var(--cf-border-strong)" } : undefined}
             animate={isSelected ? { scale: 1.02 } : { scale: 1 }}
             transition={{ type: "spring", stiffness: 400, damping: 25 }}
             className={cn(
               "relative flex flex-col items-start gap-1 rounded-2xl border p-4 text-left transition-all duration-200 overflow-hidden",
               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)",
-              "min-h-[44px]",
+              "min-h-[44px] bg-(--cf-surface)",
               isSelected
                 ? cn(
-                    "bg-surface-2",
+                    "border-2",
                     opt.selectedTint ?? "border-(--cf-accent-border) shadow-[0_0_20px_var(--cf-accent-shadow)]"
                   )
-                : cn(
-                    "bg-surface-1",
-                    "border-(--cf-border) hover:border-(--cf-border-strong)"
-                  )
+                : "border-(--cf-border) hover:border-(--cf-border-strong) hover:bg-(--cf-surface-muted)"
             )}
           >
             {/* Personality gradient strip at the top */}

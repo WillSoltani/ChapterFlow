@@ -106,7 +106,7 @@ export function SummaryCard({
   );
 
   return (
-    <div className="space-y-6">
+    <div className="cr-reading-content space-y-6">
       {/* ── Challenge mode banner ── */}
       {learningMode === "challenge" && (
         <div
