@@ -7,6 +7,9 @@ export const metadata: Metadata = {
     "Browse 95+ non-fiction books structured for real retention. Each title includes chapter summaries, real-world scenarios, and quizzes. Psychology, productivity, leadership, and more.",
 };
 
+// Revalidate every hour — catalog changes only on book publish events
+export const revalidate = 3600;
+
 export default function BooksPage() {
   return <BrowseLibraryPage />;
 }

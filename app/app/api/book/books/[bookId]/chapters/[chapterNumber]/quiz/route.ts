@@ -84,6 +84,10 @@ export async function GET(
       },
     });
 
+    // Quiz session state is user-specific and changes on each attempt.
+    // Short private cache to avoid redundant refetches during the same session.
+    response.headers.set("Cache-Control", "private, max-age=10, stale-while-revalidate=30");
+
     return applyStartDeviceCookie(response, started);
   });
 }

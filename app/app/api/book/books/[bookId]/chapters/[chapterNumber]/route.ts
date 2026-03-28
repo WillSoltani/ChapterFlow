@@ -74,6 +74,13 @@ export async function GET(
       },
     });
 
+    // Chapter content is version-pinned and immutable per version.
+    // Private cache (user-specific due to progress data) with 5-min max-age.
+    response.headers.set(
+      "Cache-Control",
+      "private, max-age=300, stale-while-revalidate=600"
+    );
+
     return applyStartDeviceCookie(response, started);
   });
 }

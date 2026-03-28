@@ -36,12 +36,18 @@ import {
 import {
   countRecentQuizAttempts,
   getUserQuizState,
+  getUserSettingsItem,
   listRecentQuizAttempts,
   recordQuizAttemptOutcome,
 } from "@/app/app/api/book/_lib/repo";
 import { awardFlowPoints } from "@/app/app/api/book/_lib/flow-points-repo";
 import { scoreQuizResponsesByQuestionId } from "@/app/app/api/book/_lib/quiz-service";
-import { FLOW_POINTS_AMOUNTS } from "@/app/book/_lib/flow-points-economy";
+import {
+  CHAPTER_FP,
+  FLOW_POINTS_AMOUNTS,
+  QUIZ_PASS_THRESHOLDS,
+} from "@/app/book/_lib/flow-points-economy";
+import type { LearningMode } from "@/app/book/settings/types/settings";
 
 export const runtime = "nodejs";
 
@@ -145,7 +151,7 @@ export async function POST(
       bookId,
       interactionChapterNumber: chapterNumberInt,
     });
-    const [{ progress, quiz }, { manifest }, persistedQuizState, recentAttempts] = await Promise.all([
+    const [{ progress, quiz }, { manifest }, persistedQuizState, recentAttempts, userSettings] = await Promise.all([
       getUserAccessibleQuiz({
         tableName,
         contentBucket,
@@ -160,7 +166,16 @@ export async function POST(
       }),
       getUserQuizState(tableName, user.sub, bookId, chapterNumberInt),
       listRecentQuizAttempts(tableName, user.sub, bookId, chapterNumberInt, 20),
+      getUserSettingsItem(tableName, user.sub),
     ]);
+
+    // Resolve learning mode from server-stored settings (not client request body)
+    // to prevent gaming (e.g., submitting with "guided" mode for lower threshold)
+    const rawMode = userSettings?.settings?.learningMode;
+    const learningMode: LearningMode =
+      rawMode === "guided" || rawMode === "standard" || rawMode === "challenge"
+        ? rawMode
+        : "standard";
 
     const quizState =
       persistedQuizState ??
@@ -223,7 +238,8 @@ export async function POST(
       );
     }
 
-    const passingScorePercent = Math.max(80, quiz.passingScorePercent || 80);
+    const modeThreshold = QUIZ_PASS_THRESHOLDS[learningMode];
+    const passingScorePercent = Math.max(modeThreshold, quiz.passingScorePercent || modeThreshold);
     const previousAttemptsCount = Math.max(0, quizState?.attemptsCount ?? 0);
     const expectedAttemptNumber = previousAttemptsCount + 1;
     if (requestedAttemptNumber !== expectedAttemptNumber) {
@@ -359,17 +375,30 @@ export async function POST(
       nextProgress,
     });
 
+    // Mode-dependent Flow Points: first attempt earns more than retries,
+    // and harder modes earn more to incentivize challenge play
+    const isFirstAttempt = expectedAttemptNumber === 1;
+    const quizPassPoints = isFirstAttempt
+      ? CHAPTER_FP.quizPassFirstAttempt[learningMode]
+      : CHAPTER_FP.quizPassRetry[learningMode];
+    const perfectBonus =
+      graded.scorePercent === 100 ? CHAPTER_FP.quizPerfectScore[learningMode] : 0;
+    const totalQuizPoints = quizPassPoints + perfectBonus;
+
     const quizPassAward =
       graded.passed
         ? await awardFlowPoints(tableName, {
             userId: user.sub,
-            amount: FLOW_POINTS_AMOUNTS.quizPass,
+            amount: totalQuizPoints,
             sourceType: "quiz_pass",
             sourceId: `${bookId}:${chapterNumberInt}`,
             metadata: {
               bookId,
               chapterLabel: `Chapter ${chapterNumberInt}`,
               chapterNumber: chapterNumberInt,
+              learningMode,
+              isFirstAttempt,
+              perfectBonus: perfectBonus > 0,
             },
             createdAt: ts,
           })
@@ -433,7 +462,7 @@ export async function POST(
           quizPassAward.awarded
             ? analyticsTrackFlowPointsTransaction(analyticsTable, {
                 userId: user.sub,
-                deltaPoints: FLOW_POINTS_AMOUNTS.quizPass,
+                deltaPoints: totalQuizPoints,
                 direction: "earn",
                 sourceType: "quiz_pass",
                 sourceId: `${bookId}:${chapterNumberInt}`,
@@ -441,6 +470,7 @@ export async function POST(
                   bookId,
                   chapterLabel: `Chapter ${chapterNumberInt}`,
                   chapterNumber: chapterNumberInt,
+                  learningMode,
                 },
               })
             : Promise.resolve(),

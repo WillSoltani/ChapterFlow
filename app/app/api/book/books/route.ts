@@ -12,6 +12,13 @@ export async function GET(req: Request) {
       getBookContentBucket(),
     ]);
     const books = await listPublishedLibraryCatalog({ tableName, contentBucket });
-    return bookOk({ books });
+    const response = bookOk({ books });
+    // Catalog changes only on book publish events.
+    // Public cache with 1-hour max-age and 24-hour stale-while-revalidate.
+    response.headers.set(
+      "Cache-Control",
+      "public, max-age=3600, stale-while-revalidate=86400"
+    );
+    return response;
   });
 }

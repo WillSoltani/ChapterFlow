@@ -4,6 +4,7 @@ import {
   CHAPTERFLOW_TAGLINE,
   getChapterFlowAppUrl,
 } from "@/app/_lib/chapterflow-brand";
+import { BookQueryProvider } from "./providers";
 
 export const metadata: Metadata = {
   title: {
@@ -26,5 +27,5 @@ export default function BookLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return <BookQueryProvider>{children}</BookQueryProvider>;
 }
