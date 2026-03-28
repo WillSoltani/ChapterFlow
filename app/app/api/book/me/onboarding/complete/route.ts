@@ -46,37 +46,37 @@ export async function POST(req: Request) {
 
     const body = requireBodyObject(await req.json());
 
-    /* ── Extract & validate ── */
+    /* ── Extract & coerce (lenient — never reject onboarding completion) ── */
 
-    const motivation = body.motivation as string;
-    if (!VALID_MOTIVATIONS.includes(motivation as typeof VALID_MOTIVATIONS[number])) {
-      return bookErr(req, 400, "invalid_input", "Invalid motivation value.");
-    }
+    const rawMotivation = body.motivation as string;
+    const motivation = VALID_MOTIVATIONS.includes(rawMotivation as typeof VALID_MOTIVATIONS[number])
+      ? rawMotivation
+      : "curiosity";
 
-    const interests = body.interests;
-    if (!Array.isArray(interests) || interests.length < 1) {
-      return bookErr(req, 400, "invalid_input", "interests must be a non-empty array.");
-    }
+    const rawInterests = body.interests;
+    const interests = Array.isArray(rawInterests) && rawInterests.length > 0
+      ? rawInterests
+      : ["general"];
 
-    const tone = body.tone as string;
-    if (!VALID_TONES.includes(tone as typeof VALID_TONES[number])) {
-      return bookErr(req, 400, "invalid_input", "Invalid tone value.");
-    }
+    const rawTone = body.tone as string;
+    const tone = VALID_TONES.includes(rawTone as typeof VALID_TONES[number])
+      ? rawTone
+      : "direct";
 
-    const dailyGoal = Number(body.dailyGoal);
-    if (!VALID_DAILY_GOALS.includes(dailyGoal as typeof VALID_DAILY_GOALS[number])) {
-      return bookErr(req, 400, "invalid_input", "dailyGoal must be 10, 20, or 30.");
-    }
+    const rawDailyGoal = Number(body.dailyGoal);
+    const dailyGoal = VALID_DAILY_GOALS.includes(rawDailyGoal as typeof VALID_DAILY_GOALS[number])
+      ? rawDailyGoal
+      : 20;
 
-    const chapterOrder = body.chapterOrder as string;
-    if (!VALID_CHAPTER_ORDERS.includes(chapterOrder as typeof VALID_CHAPTER_ORDERS[number])) {
-      return bookErr(req, 400, "invalid_input", "Invalid chapterOrder value.");
-    }
+    const rawChapterOrder = body.chapterOrder as string;
+    const chapterOrder = VALID_CHAPTER_ORDERS.includes(rawChapterOrder as typeof VALID_CHAPTER_ORDERS[number])
+      ? rawChapterOrder
+      : "summary_first";
 
-    const starterShelf = body.starterShelf;
-    if (!Array.isArray(starterShelf) || starterShelf.length < 1) {
-      return bookErr(req, 400, "invalid_input", "starterShelf must be a non-empty array.");
-    }
+    const rawStarterShelf = body.starterShelf;
+    const starterShelf = Array.isArray(rawStarterShelf) && rawStarterShelf.length > 0
+      ? rawStarterShelf
+      : [];
 
     const firstQuizScore = typeof body.firstQuizScore === "number" ? body.firstQuizScore : 0;
 

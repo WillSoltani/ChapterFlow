@@ -382,7 +382,7 @@ function parseStored(raw: string | null): BookPreferencesState | null {
           ["summary", "examples", "quiz"] as const,
           defaultBookPreferencesState.reading.defaultChapterTab
         ),
-        fontSize: parseNumber(reading.fontSize, defaultBookPreferencesState.reading.fontSize, 14, 20),
+        fontSize: parseNumber(reading.fontSize, defaultBookPreferencesState.reading.fontSize, 12, 24),
         lineSpacing: parseNumber(
           reading.lineSpacing,
           defaultBookPreferencesState.reading.lineSpacing,

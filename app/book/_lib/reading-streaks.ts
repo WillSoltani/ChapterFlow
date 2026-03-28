@@ -69,7 +69,10 @@ function saveStreak(state: StreakState): void {
   window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
 }
 
+export type StreakMode = "off" | "standard" | "flexible";
+
 export type StreakCheckResult =
+  | { type: "disabled" }
   | { type: "active_today" }
   | { type: "continues_if_active" }
   | { type: "no_streak" }
@@ -77,7 +80,14 @@ export type StreakCheckResult =
   | { type: "streak_broken"; message: string };
 
 /** Check streak status on app open. Also handles weekly freeze reset. */
-export function checkStreak(): StreakCheckResult {
+export function checkStreak(
+  mode: StreakMode = "standard",
+  skipDays: number = 1
+): StreakCheckResult {
+  if (mode === "off") {
+    return { type: "disabled" };
+  }
+
   const streak = loadStreak();
   const today = toDateString(new Date());
   const yesterday = toDateString(
@@ -107,6 +117,34 @@ export function checkStreak(): StreakCheckResult {
   // Missed at least one day
   const missed = daysBetween(streak.lastQuizPassDate, today);
 
+  if (mode === "flexible") {
+    // In flexible mode, the streak only breaks after exceeding skipDays
+    // consecutive missed days. Use freezes for days within the tolerance.
+    const missedDays = missed - 1; // days without activity (exclude today)
+    if (missedDays <= skipDays) {
+      // Within tolerance — auto-freeze for each missed day if freezes remain
+      const freezesNeeded = Math.min(missedDays, streak.freezesRemaining);
+      if (freezesNeeded > 0) {
+        streak.freezesRemaining -= freezesNeeded;
+        saveStreak(streak);
+      }
+      return {
+        type: "auto_freeze",
+        message: `Flexible streak! Your ${streak.currentStreak}-day streak is safe (${missedDays} day${missedDays !== 1 ? "s" : ""} skipped).`,
+      };
+    }
+
+    // Exceeded skip tolerance — streak broken
+    const brokenStreak = streak.currentStreak;
+    streak.currentStreak = 0;
+    saveStreak(streak);
+    return {
+      type: "streak_broken",
+      message: `Your ${brokenStreak}-day streak ended after ${missedDays} missed days. Start a new one today!`,
+    };
+  }
+
+  // Standard mode
   if (missed === 2 && streak.freezesRemaining > 0) {
     // Missed exactly yesterday
     streak.freezesRemaining--;
@@ -128,7 +166,11 @@ export function checkStreak(): StreakCheckResult {
 }
 
 /** Extend the streak when user passes a quiz */
-export function onQuizPass(): StreakState {
+export function onQuizPass(mode: StreakMode = "standard"): StreakState {
+  if (mode === "off") {
+    return loadStreak();
+  }
+
   const streak = loadStreak();
   const today = toDateString(new Date());
 

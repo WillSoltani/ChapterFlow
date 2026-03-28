@@ -19,6 +19,7 @@ import {
   chapterStartModeToInitialTab,
 } from "@/app/book/_lib/onboarding-personalization";
 import { FLOW_POINTS_AMOUNTS } from "@/app/book/_lib/flow-points-economy";
+import { getMotivationMessage } from "@/app/book/_lib/motivation-messages";
 import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
 import { useBookPreferences } from "@/app/book/hooks/useBookPreferences";
 import { useKeyboardShortcut } from "@/app/book/hooks/useKeyboardShortcut";
@@ -64,12 +65,6 @@ function formatNoteWithTakeaways(takeaways: string[]): string {
     `Takeaways (${new Date().toLocaleDateString()}):`,
     ...takeaways.map((takeaway) => `- ${takeaway}`),
   ].join("\n");
-}
-
-function fontScaleClass(scale: "sm" | "md" | "lg"): string {
-  if (scale === "sm") return "text-[0.96rem] leading-7";
-  if (scale === "lg") return "text-[1.1rem] leading-8";
-  return "text-[1rem] leading-7";
 }
 
 /** Compute overall chapter progress percentage based on current phase */
@@ -184,7 +179,6 @@ export function ChapterReaderClient({
     setNotes,
     appendNote,
     toggleFocusMode,
-    setFontScale,
     toggleRecap,
   } = useChapterState(
     bookId,
@@ -380,6 +374,7 @@ export function ChapterReaderClient({
 
   const chapterState = chapter ? getChapterState(chapter.id) : "locked";
   const isLocked = chapterState === "locked";
+  const dailyGoalMinutes = bookPrefs.extended.dailyGoalPreset || 10;
   const readingSession = useReadingSessionTracker({
     bookId,
     chapterId,
@@ -390,7 +385,20 @@ export function ChapterReaderClient({
       onboarding.setupComplete &&
       bookAccessStatus === "ready" &&
       !isLocked,
+    dailyGoalMinutes,
   });
+
+  // Daily goal celebration — show toast once when goal is first reached
+  const dailyGoalCelebrated = useRef(false);
+  useEffect(() => {
+    if (readingSession.dailyGoalReached && !dailyGoalCelebrated.current) {
+      dailyGoalCelebrated.current = true;
+      const persona = bookPrefs.extended.motivationPersona || "coach";
+      const msg = getMotivationMessage(persona, "daily_goal", { goal: dailyGoalMinutes });
+      setToast(msg);
+    }
+  }, [readingSession.dailyGoalReached, dailyGoalMinutes, bookPrefs.extended.motivationPersona]);
+
   const showQuiz = state.activeTab === "quiz";
   const quiz = useQuizSession({
     bookId,
@@ -503,19 +511,20 @@ export function ChapterReaderClient({
     if (state.exampleFilter === "all") return true;
     return example.scope === state.exampleFilter;
   });
-  const textScaleClass = fontScaleClass(state.fontScale);
+
+  // Font size, line height, and letter spacing are now controlled via CSS variables
+  // on .cr-reading-content — no Tailwind class overrides needed.
+  const textScaleClass = "";
 
   const handleSubmitQuiz = async () => {
     try {
       const nextSession = await quiz.submit();
+      const persona = bookPrefs.extended.motivationPersona || "coach";
       if (nextSession?.result?.passed) {
         phaseCompletion.markPhaseCompleted("quiz");
-        setToast("Quiz passed! Continue to Practice.");
+        setToast(getMotivationMessage(persona, "quiz_pass", { score: nextSession.result.scorePercent }));
       } else {
-        const minutes = Math.max(1, Math.ceil((nextSession?.cooldownSeconds ?? quiz.cooldownSeconds) / 60));
-        setToast(
-          `Review the explanations and retry in ${minutes} minute${minutes === 1 ? "" : "s"}.`
-        );
+        setToast(getMotivationMessage(persona, "quiz_fail", { score: nextSession?.result?.scorePercent }));
       }
     } catch (error: unknown) {
       const message =
@@ -597,8 +606,6 @@ export function ChapterReaderClient({
           focusMode={state.focusMode}
           onToggleFocus={toggleFocusMode}
           onOpenNotes={() => setNotesOpen(true)}
-          fontScale={state.fontScale}
-          onChangeFontScale={setFontScale}
           trackedMinutesToday={readingSession.todayTrackedMinutes}
           learningMode={learningMode}
           onChangeLearningMode={(mode) => {

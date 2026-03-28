@@ -19,6 +19,7 @@ type UseReadingSessionTrackerArgs = {
   bookId: string;
   chapterId: string;
   enabled?: boolean;
+  dailyGoalMinutes?: number;
 };
 
 type UseReadingSessionTrackerResult = {
@@ -26,6 +27,7 @@ type UseReadingSessionTrackerResult = {
   todayTrackedMinutes: number;
   todayTrackedSeconds: number;
   totalTrackedMinutes: number;
+  dailyGoalReached: boolean;
 };
 
 function isEngagedNow(lastActivityAt: number, allowBackgroundTransition = false) {
@@ -43,6 +45,7 @@ export function useReadingSessionTracker({
   bookId,
   chapterId,
   enabled = true,
+  dailyGoalMinutes = 0,
 }: UseReadingSessionTrackerArgs): UseReadingSessionTrackerResult {
   const storageKey = useMemo(
     () => getReadingActivityStorageKey(bookId, chapterId),
@@ -158,11 +161,14 @@ export function useReadingSessionTracker({
   const todayTrackedSeconds = Math.floor(
     Number(activity.dailyActiveMs[toDayKey(new Date())] ?? 0) / 1000
   );
+  const todayTrackedMinutes = Math.floor(todayTrackedSeconds / 60);
+  const dailyGoalReached = dailyGoalMinutes > 0 && todayTrackedMinutes >= dailyGoalMinutes;
 
   return {
     hydrated,
     todayTrackedSeconds,
-    todayTrackedMinutes: Math.floor(todayTrackedSeconds / 60),
+    todayTrackedMinutes,
     totalTrackedMinutes: Math.floor(Number(activity.totalActiveMs ?? 0) / 60000),
+    dailyGoalReached,
   };
 }

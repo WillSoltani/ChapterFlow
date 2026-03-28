@@ -565,6 +565,7 @@ export function QuizPanel({
   const [disabledChoices, setDisabledChoices] = useState<Record<string, Set<string>>>({});
   const [retriesUsed, setRetriesUsed] = useState<Record<string, number>>({});
   const [resultView, setResultView] = useState<"results" | "review-mistakes">("results");
+  const [previousIncorrectIds, setPreviousIncorrectIds] = useState<Set<string>>(new Set());
 
   const maxRetries = QUIZ_RETRIES_PER_QUESTION[learningMode];
   const [oneByOneIndex, setOneByOneIndex] = useState(0);
@@ -574,13 +575,10 @@ export function QuizPanel({
     if (!session) return [];
     let questions = [...session.questions];
 
-    // Filter to incorrect-only on retake
-    if (retryIncorrectOnly && session.attemptNumber > 1 && !session.result) {
-      // Keep only questions not previously answered correctly
-      // (if they had been correct, they wouldn't need retry)
-      const answeredIds = new Set(Object.keys(answers));
-      const unanswered = questions.filter((q) => !answeredIds.has(q.questionId));
-      if (unanswered.length > 0) questions = unanswered;
+    // Filter to incorrect-only on retake using previous attempt results
+    if (retryIncorrectOnly && session.attemptNumber > 1 && !session.result && previousIncorrectIds.size > 0) {
+      const filtered = questions.filter((q) => previousIncorrectIds.has(q.questionId));
+      if (filtered.length > 0) questions = filtered;
     }
 
     if (shuffleQuestions) {
@@ -592,7 +590,7 @@ export function QuizPanel({
       }
     }
     return questions;
-  }, [session, shuffleQuestions, retryIncorrectOnly, session?.attemptNumber, answers]);
+  }, [session, shuffleQuestions, retryIncorrectOnly, session?.attemptNumber, previousIncorrectIds]);
 
   // Reset local quiz state when session refreshes (e.g. retry)
   const prevSessionRef = useRef(session);
@@ -602,6 +600,11 @@ export function QuizPanel({
     if (!session || session === prev) return;
     // Fresh session (no result) after a submitted session means retry
     if (!session.result && prev?.result) {
+      // Capture incorrect question IDs from previous attempt for retry-incorrect-only mode
+      const incorrectIds = new Set(
+        prev.questions.filter((q) => q.isCorrect === false).map((q) => q.questionId)
+      );
+      setPreviousIncorrectIds(incorrectIds);
       setQuestionFeedback({});
       setDisabledChoices({});
       setRetriesUsed({});

@@ -50,6 +50,8 @@ export const FLOW_POINTS_AMOUNTS = {
   referralActivationInviter: 180,
   referralActivationInvitee: 80,
   referralProInviter: 600,
+  dailyGoalComplete: 25,
+  weeklyGoalComplete: 50,
 } as const;
 
 /** Mode-dependent Flow Points for the chapter reading experience */

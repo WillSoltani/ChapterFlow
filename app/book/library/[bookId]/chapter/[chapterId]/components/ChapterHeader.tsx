@@ -3,8 +3,6 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ChevronDown, Focus, NotebookPen } from "lucide-react";
-import { FontSizeControls } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/FontSizeControls";
-import type { FontScale } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterState";
 import type { LearningMode, ContentTone } from "@/app/book/settings/types/settings";
 
 const MODE_LABELS: Record<LearningMode, { icon: string; label: string }> = {
@@ -31,8 +29,6 @@ type ChapterHeaderProps = {
   focusMode: boolean;
   onToggleFocus: () => void;
   onOpenNotes: () => void;
-  fontScale: FontScale;
-  onChangeFontScale: (value: FontScale) => void;
   trackedMinutesToday?: number;
   learningMode?: LearningMode;
   onChangeLearningMode?: (mode: LearningMode) => void;
@@ -55,8 +51,6 @@ export function ChapterHeader({
   focusMode,
   onToggleFocus,
   onOpenNotes,
-  fontScale,
-  onChangeFontScale,
   trackedMinutesToday = 0,
   learningMode = "standard",
   onChangeLearningMode,
@@ -322,7 +316,6 @@ export function ChapterHeader({
             <NotebookPen className="h-3.5 w-3.5" />
             Notes
           </button>
-          <FontSizeControls value={fontScale} onChange={onChangeFontScale} />
         </div>
       </div>
 

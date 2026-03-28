@@ -53,13 +53,30 @@ export function OnboardingFlow() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(saveData),
-    }).catch((err) => {
-      console.error("Onboarding save failed:", err);
-      // Store as fallback for retry on next page load
-      try {
-        localStorage.setItem("chapterflow_onboarding_pending", JSON.stringify(saveData));
-      } catch {}
-    });
+    })
+      .then((resp) => {
+        if (!resp.ok) {
+          // Retry with safe defaults for any missing/invalid fields
+          return fetch("/app/api/book/me/onboarding/complete", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              motivation: saveData.motivation || "curiosity",
+              interests: saveData.interests?.length ? saveData.interests : ["general"],
+              tone: saveData.tone || "direct",
+              dailyGoal: [10, 20, 30].includes(saveData.dailyGoal) ? saveData.dailyGoal : 20,
+              chapterOrder: saveData.chapterOrder || "summary_first",
+              starterShelf: saveData.starterShelf?.length ? saveData.starterShelf : ["atomic-habits"],
+              firstQuizScore: saveData.firstQuizScore ?? 0,
+            }),
+          });
+        }
+      })
+      .catch(() => {
+        try {
+          localStorage.setItem("chapterflow_onboarding_pending", JSON.stringify(saveData));
+        } catch {}
+      });
 
     // Clear the new onboarding localStorage state
     clearOnboarding();
