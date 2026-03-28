@@ -41,6 +41,19 @@
       "Resource": [
         "arn:aws:apprunner:us-east-1:928413605677:service/*"
       ]
+    },
+    {
+      "Sid": "PassRoleToAppRunner",
+      "Effect": "Allow",
+      "Action": "iam:PassRole",
+      "Resource": [
+        "arn:aws:iam::928413605677:role/ChapterFlowAppRuntimeRole"
+      ],
+      "Condition": {
+        "StringEquals": {
+          "iam:PassedToService": "tasks.apprunner.amazonaws.com"
+        }
+      }
     }
   ]
 }
