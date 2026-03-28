@@ -95,6 +95,33 @@ jobs:
           role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME_DEV }}
           aws-region: ${{ env.AWS_REGION }}
 
+      # Wait for any in-progress operation to finish before updating
+      - name: Wait for service to be ready
+        run: |
+          SERVICE_ARN="${{ secrets.APP_RUNNER_SERVICE_ARN }}"
+          echo "Checking if service is ready for update..."
+
+          for i in $(seq 1 30); do
+            STATUS=$(aws apprunner describe-service \
+              --service-arn "${SERVICE_ARN}" \
+              --query 'Service.Status' \
+              --output text)
+
+            echo "  Attempt ${i}/30 — status: ${STATUS}"
+
+            if [ "${STATUS}" = "RUNNING" ] || [ "${STATUS}" = "CREATE_FAILED" ] || [ "${STATUS}" = "UPDATE_FAILED" ]; then
+              echo "Service is ready (status: ${STATUS})"
+              break
+            fi
+
+            if [ "${i}" -eq 30 ]; then
+              echo "Timed out waiting for service to become ready"
+              exit 1
+            fi
+
+            sleep 30
+          done
+
       # Describe the existing App Runner service to get current config
       - name: Describe App Runner service
         id: describe
