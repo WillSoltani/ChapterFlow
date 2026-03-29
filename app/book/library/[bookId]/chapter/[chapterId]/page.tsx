@@ -94,7 +94,21 @@ export default async function ChapterReaderPage({
   if (!chapter && localBook && book !== localBook) {
     chapter = localBook.chapters.find((item) => item.id === chapterId);
   }
+
+  // Support numeric chapter URLs (e.g. /chapter/2 → chapter with number 2)
+  if (!chapter) {
+    const chapterNumber = Number(chapterId);
+    if (!Number.isNaN(chapterNumber)) {
+      chapter = book.chapters.find((item) => item.number === chapterNumber);
+      if (!chapter && localBook && book !== localBook) {
+        chapter = localBook.chapters.find((item) => item.number === chapterNumber);
+      }
+    }
+  }
+
   if (!chapter) notFound();
 
-  return <ChapterReaderClient bookId={bookId} chapterId={chapterId} />;
+  const resolvedChapterId = chapter.id;
+
+  return <ChapterReaderClient bookId={bookId} chapterId={resolvedChapterId} />;
 }

@@ -58,12 +58,12 @@ export function BookCardWorkspace(props: BookCardWorkspaceProps) {
         backdropFilter: "blur(16px) saturate(125%)",
         WebkitBackdropFilter: "blur(16px) saturate(125%)",
         border: "1px solid var(--cf-border)",
-        boxShadow: "0 8px 24px rgba(0,0,0,0.4), 0 2px 8px rgba(0,0,0,0.3)",
+        boxShadow: "var(--cf-shadow-md)",
       }}
       whileHover={
         prefersReducedMotion
           ? undefined
-          : { scale: 1.03, y: -8, boxShadow: "0 16px 40px rgba(0,0,0,0.5)" }
+          : { scale: 1.03, y: -8 }
       }
       transition={{ type: "spring", stiffness: 400, damping: 25 }}
       role="listitem"

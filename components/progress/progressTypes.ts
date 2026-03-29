@@ -94,9 +94,15 @@ export interface ReadingDay {
   chapters: number;
 }
 
+export interface HourlyReading {
+  hour: number;
+  minutes: number;
+}
+
 export interface ReadingActivityData {
   days: ReadingDay[];
   totalDaysWithData: number;
+  todayHourly: HourlyReading[];
 }
 
 export interface Milestone {

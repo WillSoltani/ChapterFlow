@@ -85,7 +85,7 @@ export function BookRow({
             key={book.id}
             style={{
               scrollSnapAlign: "start",
-              boxShadow: "0 8px 24px rgba(0,0,0,0.4), 0 2px 8px rgba(0,0,0,0.3)",
+              boxShadow: "var(--cf-shadow-md)",
               borderRadius: 12,
             }}
             initial={
@@ -95,7 +95,7 @@ export function BookRow({
               prefersReducedMotion ? undefined : { opacity: 1, y: 0 }
             }
             whileHover={
-              prefersReducedMotion ? undefined : { y: -8, boxShadow: "0 16px 40px rgba(0,0,0,0.5)" }
+              prefersReducedMotion ? undefined : { y: -8 }
             }
             viewport={{ once: true }}
             transition={
@@ -114,7 +114,7 @@ export function BookRow({
             key={book.id}
             style={{
               scrollSnapAlign: "start",
-              boxShadow: "0 8px 24px rgba(0,0,0,0.4), 0 2px 8px rgba(0,0,0,0.3)",
+              boxShadow: "var(--cf-shadow-md)",
               borderRadius: 12,
             }}
             initial={
@@ -124,7 +124,7 @@ export function BookRow({
               prefersReducedMotion ? undefined : { opacity: 1, y: 0 }
             }
             whileHover={
-              prefersReducedMotion ? undefined : { y: -8, boxShadow: "0 16px 40px rgba(0,0,0,0.5)" }
+              prefersReducedMotion ? undefined : { y: -8 }
             }
             viewport={{ once: true }}
             transition={

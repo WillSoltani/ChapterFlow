@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import type { ActiveBook, CompletedBook, LearningStep } from "./progressTypes";
 import { ChapterProgressBar } from "./ChapterProgressBar";
@@ -57,18 +58,30 @@ export function ActiveBookRow({ book }: ActiveBookRowProps) {
         style={{
           width: 40,
           height: 56,
-          background:
-            "linear-gradient(135deg, rgba(56,189,248,0.2), rgba(167,139,250,0.2))",
+          background: book.coverUrl
+            ? undefined
+            : "linear-gradient(135deg, rgba(56,189,248,0.2), rgba(167,139,250,0.2))",
         }}
       >
-        <div className="flex h-full w-full items-center justify-center p-1">
-          <span
-            className="text-[7px] font-medium leading-tight text-center"
-            style={{ color: "var(--text-heading)" }}
-          >
-            {book.title.split(" ").slice(0, 3).join(" ")}
-          </span>
-        </div>
+        {book.coverUrl ? (
+          <Image
+            src={book.coverUrl}
+            alt={`${book.title} cover`}
+            width={40}
+            height={56}
+            className="h-full w-full object-cover"
+            sizes="40px"
+          />
+        ) : (
+          <div className="flex h-full w-full items-center justify-center p-1">
+            <span
+              className="text-[7px] font-medium leading-tight text-center"
+              style={{ color: "var(--text-heading)" }}
+            >
+              {book.title.split(" ").slice(0, 3).join(" ")}
+            </span>
+          </div>
+        )}
       </div>
 
       {/* Info */}
@@ -94,40 +107,6 @@ export function ActiveBookRow({ book }: ActiveBookRowProps) {
           />
         </div>
 
-        {/* Mini step progress bar */}
-        <div className="mt-1 flex items-center gap-2">
-          <div
-            className="flex overflow-hidden rounded-full"
-            style={{
-              width: 80,
-              height: 4,
-              background: "var(--cf-progress-track)",
-            }}
-          >
-            {Array.from({ length: 4 }, (_, i) => {
-              const stepNum = i + 1;
-              const isCompleted = stepNum < book.currentStepNumber;
-              const isCurrent = stepNum === book.currentStepNumber;
-              return (
-                <div
-                  key={stepNum}
-                  style={{
-                    flex: 1,
-                    height: "100%",
-                    background: isCompleted
-                      ? "var(--accent-cyan)"
-                      : isCurrent
-                        ? "rgba(34,211,238,0.5)"
-                        : "transparent",
-                  }}
-                />
-              );
-            })}
-          </div>
-          <span className="text-[10px]" style={{ color: "var(--text-secondary)" }}>
-            Step {book.currentStepNumber}/4
-          </span>
-        </div>
 
         {/* Last activity */}
         <p className="mt-1 text-xs" style={{ color: "var(--text-muted)" }}>

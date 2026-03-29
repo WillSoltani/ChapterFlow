@@ -425,7 +425,7 @@ export function BookDetailClient({
                   style={{
                     maxHeight: isVisible ? "200px" : "0px",
                     opacity: isVisible ? (isLocked ? lockedOpacity : 1) : 0,
-                    marginBottom: isVisible ? "0px" : "-12px",
+                    marginBottom: "0px",
                     overflow: "hidden",
                     pointerEvents: isVisible ? "auto" : "none",
                     transform: isVisible ? "scale(1)" : "scale(0.98)",

@@ -5,8 +5,6 @@ import { motion, useReducedMotion } from "framer-motion";
 import type { ReadingActivityData } from "./progressTypes";
 import { EmptyState } from "./EmptyState";
 
-type ViewMode = "minutes" | "chapters";
-
 interface ReadingActivityProps {
   activity: ReadingActivityData;
   onStartReading?: () => void;
@@ -42,6 +40,13 @@ const HEATMAP_COLORS = [
   "var(--accent-cyan)",
 ];
 
+function toLocalDateStr(date: Date): string {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, "0");
+  const d = String(date.getDate()).padStart(2, "0");
+  return `${y}-${m}-${d}`;
+}
+
 function isToday(dateStr: string): boolean {
   const today = new Date();
   const date = new Date(`${dateStr}T12:00:00`);
@@ -57,45 +62,13 @@ export function ReadingActivity({
   onStartReading,
 }: ReadingActivityProps) {
   const prefersReduced = useReducedMotion();
-  const [mode, setMode] = useState<ViewMode>("minutes");
   const [hoveredDay, setHoveredDay] = useState<string | null>(null);
 
   const showBarChart = activity.totalDaysWithData < 14;
   const hasData = activity.totalDaysWithData > 0;
 
-  // Build current week data for bar chart
-  const weekData = useMemo(() => {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    const dayOfWeek = today.getDay();
-    const monday = new Date(today);
-    monday.setDate(today.getDate() - ((dayOfWeek + 6) % 7));
-
-    const dayMap = new Map(activity.days.map((d) => [d.date, d]));
-    const week: Array<{
-      date: string;
-      dayAbbr: string;
-      minutes: number;
-      chapters: number;
-      isToday: boolean;
-    }> = [];
-
-    for (let i = 0; i < 7; i++) {
-      const date = new Date(monday);
-      date.setDate(monday.getDate() + i);
-      const dateStr = date.toISOString().split("T")[0];
-      const data = dayMap.get(dateStr);
-      week.push({
-        date: dateStr,
-        dayAbbr: date.toLocaleDateString(undefined, { weekday: "short" }).slice(0, 3),
-        minutes: data?.minutes ?? 0,
-        chapters: data?.chapters ?? 0,
-        isToday: isToday(dateStr),
-      });
-    }
-
-    return week;
-  }, [activity.days]);
+  // Current hour for highlighting
+  const currentHour = new Date().getHours();
 
   // Build heatmap data (84 days = 12 weeks)
   const heatmapData = useMemo(() => {
@@ -114,7 +87,7 @@ export function ReadingActivity({
     for (let offset = 83; offset >= 0; offset--) {
       const date = new Date(today);
       date.setDate(today.getDate() - offset);
-      const dateStr = date.toISOString().split("T")[0];
+      const dateStr = toLocalDateStr(date);
       const data = dayMap.get(dateStr);
       const minutes = data?.minutes ?? 0;
       const chapters = data?.chapters ?? 0;
@@ -123,26 +96,23 @@ export function ReadingActivity({
         date: dateStr,
         minutes,
         chapters,
-        level: mode === "minutes" ? getHeatmapLevel(minutes) : Math.min(chapters, 4),
+        level: getHeatmapLevel(minutes),
         dateLabel: getWeekdayName(dateStr),
         isToday: isToday(dateStr),
       });
     }
 
     return cells;
-  }, [activity.days, mode]);
+  }, [activity.days]);
 
   const hoveredData = useMemo(() => {
     if (!hoveredDay) return null;
     return heatmapData.find((c) => c.date === hoveredDay) ?? null;
   }, [hoveredDay, heatmapData]);
 
-  const maxBarValue = useMemo(() => {
-    const values = weekData.map((d) =>
-      mode === "minutes" ? d.minutes : d.chapters
-    );
-    return Math.max(...values, 1);
-  }, [weekData, mode]);
+  const maxHourlyMinutes = useMemo(() => {
+    return Math.max(...activity.todayHourly.map((h) => h.minutes), 1);
+  }, [activity.todayHourly]);
 
   return (
     <motion.section
@@ -167,105 +137,108 @@ export function ReadingActivity({
         >
           Reading Activity
         </h2>
-        <div
-          className="flex gap-0.5 rounded-full p-0.5"
-          style={{ background: "var(--cf-surface-strong)" }}
-        >
-          {(["minutes", "chapters"] as const).map((m) => (
-            <button
-              key={m}
-              type="button"
-              onClick={() => setMode(m)}
-              className="cursor-pointer rounded-full px-3 py-1 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan/50"
-              style={{
-                background:
-                  mode === m
-                    ? "rgba(34,211,238,0.15)"
-                    : "transparent",
-                color:
-                  mode === m ? "var(--accent-cyan)" : "var(--text-secondary)",
-              }}
-            >
-              {m === "minutes" ? "Minutes" : "Chapters"}
-            </button>
-          ))}
-        </div>
+        <span className="text-xs" style={{ color: "var(--text-muted)" }}>
+          Today &middot; Hourly
+        </span>
       </div>
 
       {/* Content */}
       {!hasData ? (
         <EmptyState
-          title="Your reading pattern will appear here after your first week"
+          title="Your reading pattern will appear here after your first session"
           description=""
           ctaLabel="Start Reading \u2192"
           onCtaClick={onStartReading}
           className="py-6"
         />
       ) : showBarChart ? (
-        /* 7-day bar chart */
+        /* 24-hour bar chart for today */
         <div className="mt-4">
-          <div className="flex items-end justify-between gap-2" style={{ height: 120 }}>
-            {weekData.map((day, idx) => {
-              const value =
-                mode === "minutes" ? day.minutes : day.chapters;
-              const heightPct =
-                maxBarValue > 0 ? (value / maxBarValue) * 100 : 0;
+          <div className="flex items-end gap-px" style={{ height: 100 }}>
+            {activity.todayHourly.map((slot, idx) => {
+              const barHeight =
+                maxHourlyMinutes > 0
+                  ? Math.max(Math.round((slot.minutes / maxHourlyMinutes) * 90), slot.minutes > 0 ? 6 : 2)
+                  : 2;
+              const isCurrent = slot.hour === currentHour;
+              const isFuture = slot.hour > currentHour;
 
               return (
                 <div
-                  key={day.date}
-                  className="group relative flex flex-1 flex-col items-center gap-1"
+                  key={slot.hour}
+                  className="group relative flex flex-1 flex-col items-center"
+                  style={{ minWidth: 0 }}
                 >
                   {/* Hover tooltip */}
-                  <span
-                    className="pointer-events-none absolute -top-5 z-10 rounded px-1.5 py-0.5 text-[10px] tabular-nums opacity-0 transition-opacity group-hover:opacity-100"
-                    style={{
-                      background: "var(--cf-overlay)",
-                      color: "var(--text-heading)",
-                    }}
-                  >
-                    {value}{mode === "minutes" ? "m" : ""}
-                  </span>
+                  {slot.minutes > 0 && (
+                    <span
+                      className="pointer-events-none absolute -top-5 z-10 rounded px-1 py-0.5 text-[9px] tabular-nums opacity-0 transition-opacity group-hover:opacity-100"
+                      style={{
+                        background: "var(--cf-overlay)",
+                        color: "var(--text-heading)",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      {slot.minutes}m
+                    </span>
+                  )}
                   {/* Bar */}
                   <motion.div
-                    className="w-full rounded-t-md transition-[filter] group-hover:brightness-125"
+                    className="w-full rounded-t-sm transition-[filter] group-hover:brightness-125"
                     style={{
-                      background:
-                        value > 0 ? "var(--accent-cyan)" : "var(--cf-surface-muted)",
-                      boxShadow: day.isToday && value > 0
-                        ? "0 0 16px rgba(34,211,238,0.5)"
+                      background: isFuture
+                        ? "transparent"
+                        : slot.minutes > 0
+                          ? "var(--accent-cyan)"
+                          : "var(--cf-surface-strong)",
+                      boxShadow: isCurrent && slot.minutes > 0
+                        ? "0 0 8px rgba(34,211,238,0.4)"
                         : "none",
-                      filter: day.isToday && value > 0 ? "brightness(1.15)" : undefined,
-                      minHeight: value > 0 ? undefined : 4,
+                      opacity: isFuture ? 0.3 : 1,
+                      borderBottom: isFuture ? "1px dashed var(--cf-border)" : "none",
                       originY: 1,
+                      height: isFuture ? 2 : barHeight,
                     }}
-                    initial={{
-                      scaleY: prefersReduced ? 1 : 0,
-                      height: `${Math.max(heightPct, 3)}%`,
-                    }}
-                    whileInView={{ scaleY: 1 }}
-                    viewport={{ once: true }}
+                    initial={prefersReduced ? false : { scaleY: 0 }}
+                    animate={{ scaleY: 1 }}
                     transition={{
-                      duration: 0.5,
+                      duration: 0.4,
                       ease: "easeOut",
-                      delay: prefersReduced ? 0 : idx * 0.05,
+                      delay: prefersReduced ? 0 : idx * 0.015,
                     }}
                   />
-                  {/* Day label */}
-                  <span
-                    className="text-[10px]"
-                    style={{
-                      color: day.isToday
-                        ? "var(--accent-cyan)"
-                        : "var(--text-secondary)",
-                      fontWeight: day.isToday ? 600 : 400,
-                    }}
-                  >
-                    {day.dayAbbr}
-                  </span>
                 </div>
               );
             })}
+          </div>
+          {/* Hour labels — show every 3 hours */}
+          <div className="mt-1 flex">
+            {activity.todayHourly.map((slot) => (
+              <div key={slot.hour} className="flex-1 text-center" style={{ minWidth: 0 }}>
+                {slot.hour % 3 === 0 ? (
+                  <span
+                    className="text-[9px] tabular-nums"
+                    style={{
+                      color: slot.hour === currentHour
+                        ? "var(--accent-cyan)"
+                        : "var(--text-muted)",
+                      fontWeight: slot.hour === currentHour ? 600 : 400,
+                    }}
+                  >
+                    {slot.hour === 0 ? "12a" : slot.hour < 12 ? `${slot.hour}a` : slot.hour === 12 ? "12p" : `${slot.hour - 12}p`}
+                  </span>
+                ) : null}
+              </div>
+            ))}
+          </div>
+          {/* Summary line */}
+          <div className="mt-2 flex items-center gap-3">
+            <span className="text-xs tabular-nums" style={{ color: "var(--text-secondary)" }}>
+              {activity.todayHourly.reduce((sum, h) => sum + h.minutes, 0)}m total today
+            </span>
+            <span className="text-[10px]" style={{ color: "var(--text-muted)" }}>
+              {activity.todayHourly.filter((h) => h.minutes > 0).length} active {activity.todayHourly.filter((h) => h.minutes > 0).length === 1 ? "hour" : "hours"}
+            </span>
           </div>
         </div>
       ) : (

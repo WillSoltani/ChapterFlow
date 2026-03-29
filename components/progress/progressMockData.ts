@@ -110,6 +110,7 @@ export const mockProgressData: ProgressPageData = {
       { date: "2026-03-22", minutes: 3, chapters: 0 },
     ],
     totalDaysWithData: 2,
+    todayHourly: Array.from({ length: 24 }, (_, h) => ({ hour: h, minutes: 0 })),
   },
   nextMilestones: [
     {

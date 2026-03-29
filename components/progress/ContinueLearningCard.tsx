@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import type { ActiveBook, LearningStep } from "./progressTypes";
@@ -63,7 +64,7 @@ export function ContinueLearningCard({
 
       {/* Book info */}
       <div className="mt-4 flex gap-4">
-        {/* Cover placeholder */}
+        {/* Cover */}
         <div
           className="shrink-0 overflow-hidden rounded-lg"
           role="img"
@@ -71,19 +72,31 @@ export function ContinueLearningCard({
           style={{
             width: 80,
             height: 120,
-            background:
-              "linear-gradient(135deg, rgba(56,189,248,0.3), rgba(167,139,250,0.3))",
+            background: primaryBook.coverUrl
+              ? undefined
+              : "linear-gradient(135deg, rgba(56,189,248,0.3), rgba(167,139,250,0.3))",
             boxShadow: "var(--cf-shadow-md)",
           }}
         >
-          <div className="flex h-full w-full items-center justify-center p-2 text-center">
-            <span
-              className="text-[10px] font-semibold leading-tight"
-              style={{ color: "var(--text-heading)" }}
-            >
-              {primaryBook.title}
-            </span>
-          </div>
+          {primaryBook.coverUrl ? (
+            <Image
+              src={primaryBook.coverUrl}
+              alt={`${primaryBook.title} cover`}
+              width={80}
+              height={120}
+              className="h-full w-full object-cover"
+              sizes="80px"
+            />
+          ) : (
+            <div className="flex h-full w-full items-center justify-center p-2 text-center">
+              <span
+                className="text-[10px] font-semibold leading-tight"
+                style={{ color: "var(--text-heading)" }}
+              >
+                {primaryBook.title}
+              </span>
+            </div>
+          )}
         </div>
 
         {/* Title block */}
@@ -100,9 +113,11 @@ export function ContinueLearningCard({
           >
             {primaryBook.author}
           </p>
-          <p className="mt-1 text-xs" style={{ color: "var(--text-muted)" }}>
-            {primaryBook.readersCount.toLocaleString()} readers learning this
-          </p>
+          {primaryBook.readersCount > 0 && (
+            <p className="mt-1 text-xs" style={{ color: "var(--text-muted)" }}>
+              {primaryBook.readersCount.toLocaleString()} readers learning this
+            </p>
+          )}
         </div>
       </div>
 
@@ -184,18 +199,30 @@ export function ContinueLearningCard({
                   style={{
                     width: 36,
                     height: 52,
-                    background:
-                      "linear-gradient(135deg, rgba(56,189,248,0.2), rgba(167,139,250,0.2))",
+                    background: book.coverUrl
+                      ? undefined
+                      : "linear-gradient(135deg, rgba(56,189,248,0.2), rgba(167,139,250,0.2))",
                   }}
                 >
-                  <div className="flex h-full w-full items-center justify-center">
-                    <span
-                      className="text-[7px] font-medium leading-tight"
-                      style={{ color: "var(--text-heading)" }}
-                    >
-                      {book.title.split(" ").slice(0, 2).join(" ")}
-                    </span>
-                  </div>
+                  {book.coverUrl ? (
+                    <Image
+                      src={book.coverUrl}
+                      alt={`${book.title} cover`}
+                      width={36}
+                      height={52}
+                      className="h-full w-full object-cover"
+                      sizes="36px"
+                    />
+                  ) : (
+                    <div className="flex h-full w-full items-center justify-center">
+                      <span
+                        className="text-[7px] font-medium leading-tight"
+                        style={{ color: "var(--text-heading)" }}
+                      >
+                        {book.title.split(" ").slice(0, 2).join(" ")}
+                      </span>
+                    </div>
+                  )}
                 </div>
                 <div className="min-w-0 flex-1 text-left">
                   <p

@@ -19,6 +19,9 @@ import type {
   LearningStep,
 } from "./progressTypes";
 import { mockProgressData } from "./progressMockData";
+import { getBookCoverPath } from "@/lib/book-covers";
+import { fetchBookJson } from "@/app/book/_lib/book-api";
+import { aggregateHourlyForDay } from "@/app/book/library/hooks/readingActivityStorage";
 import { HeroSection } from "./HeroSection";
 import { DailyQuests } from "./DailyQuests";
 import { WeeklySummary } from "./WeeklySummary";
@@ -82,7 +85,7 @@ function buildProgressData(
         id: snapshot.book.id,
         title: snapshot.book.title,
         author: snapshot.book.author ?? "",
-        coverUrl: "",
+        coverUrl: getBookCoverPath(snapshot.book.id),
         totalChapters: snapshot.totalChapters,
         completedChapters: snapshot.completedChapters,
         currentChapterNumber: Math.max(snapshot.completedChapters + 1, 1),
@@ -91,7 +94,7 @@ function buildProgressData(
         currentStepNumber: stepNumber,
         lastActivity: snapshot.lastOpenedLabel,
         lastActivityDate: snapshot.lastActivityAt,
-        readersCount: Math.floor(200 + Math.random() * 400),
+        readersCount: 0,
         resumeChapterId: snapshot.resumeChapterId,
       };
     }
@@ -103,7 +106,7 @@ function buildProgressData(
       id: snapshot.book.id,
       title: snapshot.book.title,
       author: snapshot.book.author ?? "",
-      coverUrl: "",
+      coverUrl: getBookCoverPath(snapshot.book.id),
       totalChapters: snapshot.totalChapters,
       completedDate: snapshot.lastActivityAt,
       avgQuizScore: snapshot.avgScore,
@@ -116,12 +119,12 @@ function buildProgressData(
   const dayOfWeek = today.getDay();
   const monday = new Date(today);
   monday.setDate(today.getDate() - ((dayOfWeek + 6) % 7));
-  const weekStartDate = monday.toISOString().split("T")[0];
+  const weekStartDate = `${monday.getFullYear()}-${String(monday.getMonth() + 1).padStart(2, "0")}-${String(monday.getDate()).padStart(2, "0")}`;
 
   // This week's minutes from heatmap cells
+  const todayKey = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
   const thisWeekCells = analytics.heatmapCells.filter((cell) => {
-    const cellDate = new Date(`${cell.key}T12:00:00`);
-    return cellDate >= monday && cellDate <= today;
+    return cell.key >= weekStartDate && cell.key <= todayKey;
   });
   const thisWeekMinutes = thisWeekCells.reduce((sum, c) => sum + c.minutes, 0);
   const thisWeekChapters = thisWeekCells.reduce(
@@ -134,9 +137,10 @@ function buildProgressData(
   lastMonday.setDate(lastMonday.getDate() - 7);
   const lastSunday = new Date(monday);
   lastSunday.setDate(lastSunday.getDate() - 1);
+  const lastMondayKey = `${lastMonday.getFullYear()}-${String(lastMonday.getMonth() + 1).padStart(2, "0")}-${String(lastMonday.getDate()).padStart(2, "0")}`;
+  const lastSundayKey = `${lastSunday.getFullYear()}-${String(lastSunday.getMonth() + 1).padStart(2, "0")}-${String(lastSunday.getDate()).padStart(2, "0")}`;
   const lastWeekCells = analytics.heatmapCells.filter((cell) => {
-    const cellDate = new Date(`${cell.key}T12:00:00`);
-    return cellDate >= lastMonday && cellDate <= lastSunday;
+    return cell.key >= lastMondayKey && cell.key <= lastSundayKey;
   });
   const lastWeekMinutes = lastWeekCells.reduce((sum, c) => sum + c.minutes, 0);
   const lastWeekChapters = lastWeekCells.reduce(
@@ -147,9 +151,9 @@ function buildProgressData(
   // Days active last 7
   const sevenDaysAgo = new Date(today);
   sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 6);
+  const sevenDaysAgoKey = `${sevenDaysAgo.getFullYear()}-${String(sevenDaysAgo.getMonth() + 1).padStart(2, "0")}-${String(sevenDaysAgo.getDate()).padStart(2, "0")}`;
   const last7Cells = analytics.heatmapCells.filter((cell) => {
-    const cellDate = new Date(`${cell.key}T12:00:00`);
-    return cellDate >= sevenDaysAgo && cellDate <= today;
+    return cell.key >= sevenDaysAgoKey && cell.key <= todayKey;
   });
   const daysActiveLast7 = last7Cells.filter((c) => c.minutes > 0).length;
 
@@ -161,6 +165,9 @@ function buildProgressData(
       minutes: cell.minutes,
       chapters: cell.chapters,
     }));
+
+  // Hourly breakdown for today from localStorage
+  const todayHourly = aggregateHourlyForDay(todayKey);
 
   // Map badge milestones
   const nextMilestones = nextMilestonesFromBadges.slice(0, 3).map((m) => ({
@@ -212,18 +219,45 @@ function buildProgressData(
     },
     activeBooks,
     completedBooks,
-    dailyQuests: mockProgressData.dailyQuests.map((q) => {
-      // Wire up the read quest with real data
-      if (q.id === "q1") {
-        return {
-          ...q,
-          current: Math.min(analytics.minutesReadToday, q.target),
-          completed: analytics.minutesReadToday >= q.target,
-        };
-      }
-      return q;
-    }),
-    questBonusFP: mockProgressData.questBonusFP,
+    dailyQuests: mockProgressData.dailyQuests
+      .filter((q) => {
+        // Hide review quest if no completed chapters (nothing to review)
+        if (q.id === "q3" && totalCompletedChapters === 0) return false;
+        return true;
+      })
+      .map((q) => {
+        // Wire up the read quest with real data
+        if (q.id === "q1") {
+          return {
+            ...q,
+            current: Math.min(analytics.minutesReadToday, q.target),
+            completed: analytics.minutesReadToday >= q.target,
+          };
+        }
+        // Wire up the quiz quest with today's chapter completions
+        if (q.id === "q2") {
+          const todayCell = thisWeekCells.find((c) => {
+            const cellDate = new Date(`${c.key}T12:00:00`);
+            return (
+              cellDate.getFullYear() === today.getFullYear() &&
+              cellDate.getMonth() === today.getMonth() &&
+              cellDate.getDate() === today.getDate()
+            );
+          });
+          const todayChapters = todayCell?.chapters ?? 0;
+          return {
+            ...q,
+            current: Math.min(todayChapters, q.target),
+            completed: todayChapters >= q.target,
+          };
+        }
+        return q;
+      }),
+    questBonusFP: mockProgressData.dailyQuests.filter((q) => {
+      if (q.id === "q1") return analytics.minutesReadToday < q.target;
+      if (q.id === "q3" && totalCompletedChapters === 0) return false;
+      return !q.completed;
+    }).length * 25,
     reviews: {
       overdueCount: 0,
       dueTodayCount: analytics.upcomingReviews.length,
@@ -234,6 +268,7 @@ function buildProgressData(
     readingActivity: {
       days: readingDays,
       totalDaysWithData: readingDays.length,
+      todayHourly,
     },
     nextMilestones: effectiveMilestones,
   };
@@ -335,6 +370,14 @@ export function ProgressPage() {
 
   const viewerName = viewerIdentity.displayName || "Reader";
 
+  // Fetch real entitlement status
+  const [isPro, setIsPro] = useState(false);
+  useEffect(() => {
+    fetchBookJson<{ plan?: string }>("/app/api/book/me/entitlements")
+      .then((e) => setIsPro(e.plan === "PRO"))
+      .catch(() => {});
+  }, []);
+
   useKeyboardShortcut(
     "/",
     (event) => {
@@ -360,9 +403,9 @@ export function ProgressPage() {
       analytics,
       flowPointsPayload?.summary.balance ?? 0,
       badgeMilestones,
-      false
+      isPro
     );
-  }, [analytics, viewerName, flowPointsPayload, badgeMilestones]);
+  }, [analytics, viewerName, flowPointsPayload, badgeMilestones, isPro]);
 
   // Allow switching primary book via ContinueLearningCard
   const displayData = useMemo<ProgressPageData | null>(() => {
