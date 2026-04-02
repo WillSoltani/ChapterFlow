@@ -11,13 +11,18 @@ import { BookRow } from "./BookRow";
 import { RewardsCard } from "./RewardsCard";
 import { NextAchievementCard } from "./NextAchievementCard";
 import { DiscoveryRow } from "./DiscoveryRow";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { TopNav } from "@/app/book/home/components/TopNav";
 import { useBookAnalytics, type AnalyticsState } from "@/app/book/hooks/useBookAnalytics";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { BOOK_PACKAGES, getBookPackagePresentation } from "@/app/book/data/bookPackages";
-import { fetchBookJson } from "@/app/book/_lib/book-api";
 import { getBookCoverPath } from "@/lib/book-covers";
+import {
+  BADGE_DEFINITIONS,
+  evaluateBadges,
+  type BadgeProgressStats,
+} from "@/app/book/data/mockBadges";
+import { FLOW_POINTS_REWARDS } from "@/app/book/_lib/flow-points-economy";
 
 const jetBrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -43,7 +48,7 @@ interface WorkspaceData {
     isPro: boolean;
     streakCount: number;
     streakActive: boolean;
-    flowPoints: number;
+    insightPoints: number;
     dailyGoalMinutes: number;
     dailyProgressMinutes: number;
   };
@@ -60,6 +65,12 @@ interface WorkspaceData {
     gradient?: string;
     glowColor?: string;
   } | null;
+  starterShelfBooks: Array<{
+    id: string;
+    title: string;
+    author: string;
+    coverUrl: string;
+  }>;
   weeklyActivity: boolean[];
   weeklyStats: {
     chaptersCompleted: number;
@@ -109,44 +120,6 @@ interface WorkspaceData {
 }
 
 /* ────────────────────────────────────────────
-   Dashboard Extras (entitlement + flow points)
-   ──────────────────────────────────────────── */
-
-type DashboardExtras = {
-  isPro: boolean;
-  flowPoints: number;
-};
-
-function useDashboardExtras(): DashboardExtras | null {
-  const [extras, setExtras] = useState<DashboardExtras | null>(null);
-
-  useEffect(() => {
-    let mounted = true;
-
-    Promise.all([
-      fetchBookJson<{ plan?: string }>("/app/api/book/me/entitlements").catch(
-        () => ({ plan: "FREE" }),
-      ),
-      fetchBookJson<{ balance?: number }>("/app/api/book/me/flow-points").catch(
-        () => ({ balance: 0 }),
-      ),
-    ]).then(([entitlement, flowPoints]) => {
-      if (!mounted) return;
-      setExtras({
-        isPro: entitlement.plan === "PRO",
-        flowPoints: flowPoints.balance ?? 0,
-      });
-    });
-
-    return () => {
-      mounted = false;
-    };
-  }, []);
-
-  return extras;
-}
-
-/* ────────────────────────────────────────────
    Analytics → WorkspaceData Mapper
    ──────────────────────────────────────────── */
 
@@ -155,7 +128,6 @@ const ALL_BOOK_IDS = BOOK_PACKAGES.map((pkg) => pkg.book.bookId);
 function mapAnalyticsToWorkspaceData(
   analytics: AnalyticsState,
   firstName: string,
-  extras: DashboardExtras | null,
 ): WorkspaceData {
   const lead = analytics.inProgressBookSnapshots[0] ?? null;
 
@@ -175,7 +147,7 @@ function mapAnalyticsToWorkspaceData(
       currentChapter: Math.min(nextChapter, lead.totalChapters),
       totalChapters: lead.totalChapters,
       progressPercent: lead.progressPercent,
-      currentLoopStep: "summary",
+      currentLoopStep: lead.currentLoopStep ?? "summary",
       estimatedMinutes: chapterMinutes,
       glowColor:
         getBookPackagePresentation(lead.book.id).coverImage
@@ -183,6 +155,19 @@ function mapAnalyticsToWorkspaceData(
           : "rgba(139,92,246,0.35)",
     };
   }
+
+  const starterShelfBooks = analytics.starterShelf
+    .map((bookId) => {
+      const snap = analytics.bookSnapshots.find((s) => s.book.id === bookId);
+      if (!snap) return null;
+      return {
+        id: snap.book.id,
+        title: snap.book.title,
+        author: snap.book.author ?? "",
+        coverUrl: getBookCoverPath(snap.book.id),
+      };
+    })
+    .filter((b): b is NonNullable<typeof b> => b !== null);
 
   const last7 = analytics.heatmapCells.slice(-7);
   const weeklyActivity =
@@ -198,14 +183,15 @@ function mapAnalyticsToWorkspaceData(
   return {
     user: {
       firstName,
-      isPro: extras?.isPro ?? false,
+      isPro: analytics.isPro,
       streakCount: analytics.streakDays,
       streakActive: analytics.streakDays > 0,
-      flowPoints: extras?.flowPoints ?? 0,
+      insightPoints: analytics.insightPoints,
       dailyGoalMinutes: analytics.dailyGoalMinutes,
       dailyProgressMinutes: analytics.minutesReadToday,
     },
     currentBook,
+    starterShelfBooks,
     weeklyActivity,
     weeklyStats: {
       chaptersCompleted: weeklyChapters,
@@ -223,7 +209,20 @@ function mapAnalyticsToWorkspaceData(
           ? ("in_progress" as const)
           : ("not_started" as const),
     })),
-    recommendedProBooks: [],
+    recommendedProBooks: analytics.isPro
+      ? []
+      : analytics.bookSnapshots
+          .filter((s) => s.status === "not_started")
+          .slice(0, 3)
+          .map((snap) => ({
+            id: snap.book.id,
+            title: snap.book.title,
+            author: snap.book.author ?? "",
+            coverUrl: getBookCoverPath(snap.book.id),
+            rating: 0,
+            readerCount: 0,
+            category: snap.book.category ?? "General",
+          })),
     discoveryBooks: analytics.bookSnapshots
       .filter((s) => s.status === "not_started")
       .slice(0, 4)
@@ -232,102 +231,174 @@ function mapAnalyticsToWorkspaceData(
         title: snap.book.title,
         author: snap.book.author ?? "",
         coverUrl: getBookCoverPath(snap.book.id),
-        rating: 4.5,
+        rating: 0,
         readerCount: 0,
         category: snap.book.category ?? "General",
       })),
     nextReward: {
-      name: "Bonus Book Unlock",
-      pointsRequired: 900,
-      currentPoints: extras?.flowPoints ?? 0,
+      name: FLOW_POINTS_REWARDS[0]?.name ?? "Bonus Book Unlock",
+      pointsRequired: FLOW_POINTS_REWARDS[0]?.costPoints ?? 900,
+      currentPoints: analytics.insightPoints,
     },
-    nextAchievement: null,
+    nextAchievement: deriveNextAchievement(analytics),
+  };
+}
+
+function deriveNextAchievement(
+  analytics: AnalyticsState
+): WorkspaceData["nextAchievement"] {
+  const partialStats: BadgeProgressStats = {
+    totalCompletedChapters: analytics.totalCompletedChapters,
+    completedBooks: analytics.booksCompleted,
+    startedBooks: analytics.inProgressBookSnapshots.length + analytics.booksCompleted,
+    streakDays: analytics.streakDays,
+    longestStreak: analytics.longestStreak,
+    avgQuizScore: analytics.avgQuizScore,
+    maxQuizScore: analytics.maxQuizScore,
+    quizzesPassed: 0,
+    perfectQuizCount: 0,
+    distinctQuizBooks: 0,
+    quizzesPassedInDeeperMode: 0,
+    quizCount: 0,
+    totalQuizQuestionsAnswered: 0,
+    completedGoalDays: 0,
+    activeWeeks: 0,
+    totalActiveDays: analytics.heatmapCells.filter((c) => c.minutes > 0).length,
+    weekendActiveDays: 0,
+    weekdayActiveDays: 0,
+    recoveredAfterMiss: 0,
+    chaptersSimpleCompleted: 0,
+    chaptersStandardCompleted: 0,
+    chaptersDeeperCompleted: 0,
+    usedAllReadingModes: false,
+    chaptersCompletedWithFocusMode: 0,
+    completedChaptersWithNotes: 0,
+    completedBooksInDeeperMode: 0,
+    examplesViewedChapters: 0,
+    viewedExampleContexts: [],
+    personalExamplesChapters: 0,
+    schoolExamplesChapters: 0,
+    workExamplesChapters: 0,
+    notesCount: 0,
+    noteBooksCount: 0,
+    completedChaptersWithReflection: 0,
+    exploredCategories: 0,
+    challengingBooksStarted: 0,
+    returnedAfterLongGap: 0,
+    readingListCount: 0,
+    challengingBooksCompleted: 0,
+    strategyBooksCompleted: 0,
+    psychologyBooksCompleted: 0,
+    completedCategoriesCount: 0,
+    booksCompletedWithAllQuizzesPassed: 0,
+    proActivated: false,
+    proMultiTrack: false,
+    recapCompletions: 0,
+  };
+
+  const earnedHistory = Object.fromEntries(
+    Array.from(analytics.earnedBadgeIds).map((id) => [id, new Date().toISOString()])
+  );
+  const badges = evaluateBadges(partialStats, earnedHistory);
+
+  const next = badges
+    .filter((b) => !b.earned && b.isVisible && b.targetValue > 0)
+    .sort((a, b) => {
+      const ratioA = a.progressValue / a.targetValue;
+      const ratioB = b.progressValue / b.targetValue;
+      return ratioB - ratioA;
+    })[0];
+
+  if (!next) return null;
+
+  return {
+    name: next.name,
+    description: next.description,
+    iconUrl: next.icon,
+    progressCurrent: next.progressValue,
+    progressTotal: next.targetValue,
   };
 }
 
 /* ────────────────────────────────────────────
-   Mock Data (loading fallback)
+   Loading Skeleton
    ──────────────────────────────────────────── */
 
-const mockData: WorkspaceData = {
-  user: {
-    firstName: "Will",
-    isPro: true,
-    streakCount: 12,
-    streakActive: true,
-    flowPoints: 340,
-    dailyGoalMinutes: 20,
-    dailyProgressMinutes: 8,
-  },
-  currentBook: {
-    id: "the-48-laws-of-power",
-    title: "The 48 Laws of Power",
-    author: "Robert Greene",
-    coverUrl: "",
-    currentChapter: 5,
-    totalChapters: 16,
-    progressPercent: 25,
-    currentLoopStep: "scenarios",
-    estimatedMinutes: 13,
-    glowColor: "rgba(185,28,28,0.35)",
-  },
-  weeklyActivity: [true, true, true, false, false, false, false],
-  weeklyStats: {
-    chaptersCompleted: 3,
-    quizAverage: 87,
-  },
-  userBooks: [
-    {
-      id: "the-48-laws-of-power",
-      title: "The 48 Laws of Power",
-      author: "Robert Greene",
-      coverUrl: "",
-      progressPercent: 25,
-      status: "in_progress",
-    },
-    {
-      id: "friends-and-influence",
-      title: "How to Win Friends and Influence People",
-      author: "Dale Carnegie",
-      coverUrl: "",
-      progressPercent: 10,
-      status: "in_progress",
-    },
-  ],
-  recommendedProBooks: [],
-  discoveryBooks: [
-    {
-      id: "the-48-laws-of-power",
-      title: "The 48 Laws of Power",
-      author: "Robert Greene",
-      coverUrl: "",
-      rating: 4.6,
-      readerCount: 5100,
-      category: "Strategy",
-    },
-    {
-      id: "friends-and-influence",
-      title: "How to Win Friends and Influence People",
-      author: "Dale Carnegie",
-      coverUrl: "",
-      rating: 4.8,
-      readerCount: 4210,
-      category: "Communication",
-    },
-  ],
-  nextReward: {
-    name: "Bonus Book Unlock",
-    pointsRequired: 900,
-    currentPoints: 340,
-  },
-  nextAchievement: {
-    name: "Path Builder",
-    description: "Build a five book reading list",
-    iconUrl: "",
-    progressCurrent: 3,
-    progressTotal: 5,
-  },
-};
+function SkeletonBlock({
+  width,
+  height,
+  className = "",
+}: {
+  width?: string | number;
+  height?: string | number;
+  className?: string;
+}) {
+  return (
+    <div
+      className={`animate-shimmer rounded-xl ${className}`}
+      style={{
+        width: width ?? "100%",
+        height: height ?? 20,
+        background: "var(--cf-surface-muted)",
+      }}
+    />
+  );
+}
+
+function DashboardSkeleton() {
+  return (
+    <div className="flex flex-col gap-6">
+      {/* Header skeleton */}
+      <div className="flex flex-col gap-2">
+        <SkeletonBlock height={28} width="40%" />
+        <SkeletonBlock height={16} width="55%" />
+      </div>
+
+      {/* Hero card skeleton */}
+      <div
+        className="rounded-2xl p-6 md:p-8"
+        style={{
+          background: "var(--cf-surface-muted)",
+          border: "1px solid var(--cf-border-strong)",
+        }}
+      >
+        <SkeletonBlock height={14} width={120} />
+        <div className="mt-4">
+          <SkeletonBlock height={36} width="50%" />
+        </div>
+        <div className="mt-2">
+          <SkeletonBlock height={16} width="30%" />
+        </div>
+        <div className="mt-6">
+          <SkeletonBlock height={48} width={220} className="rounded-xl" />
+        </div>
+      </div>
+
+      {/* Weekly strip skeleton */}
+      <div className="flex gap-3">
+        {Array.from({ length: 7 }).map((_, i) => (
+          <SkeletonBlock key={i} height={32} width={32} className="rounded-lg" />
+        ))}
+      </div>
+
+      {/* Book row skeleton */}
+      <div>
+        <SkeletonBlock height={24} width="20%" className="mb-4" />
+        <div className="flex gap-3">
+          {Array.from({ length: 3 }).map((_, i) => (
+            <SkeletonBlock key={i} height={200} width={160} className="shrink-0 rounded-xl" />
+          ))}
+        </div>
+      </div>
+
+      {/* Rewards skeleton */}
+      <div className="flex flex-col gap-4 md:flex-row">
+        <SkeletonBlock height={140} className="flex-1 rounded-2xl" />
+        <SkeletonBlock height={140} className="flex-1 rounded-2xl" />
+      </div>
+    </div>
+  );
+}
 
 /* ────────────────────────────────────────────
    State Derivation
@@ -508,6 +579,128 @@ function ProfileIcon({ active }: { active: boolean }) {
 }
 
 /* ────────────────────────────────────────────
+   Dashboard Content (rendered after data loads)
+   ──────────────────────────────────────────── */
+
+function DashboardContent({
+  data,
+  prefersReducedMotion,
+}: {
+  data: WorkspaceData;
+  prefersReducedMotion: boolean | null;
+}) {
+  const userState = deriveUserState(data);
+  const subtitle = getSubtitle(userState, data);
+  const dailyProgress = Math.min(
+    (data.user.dailyProgressMinutes / (data.user.dailyGoalMinutes || 20)) * 100,
+    100
+  );
+  const isNewUser = userState === "new_user";
+  const hasActivity = data.weeklyActivity.some(Boolean);
+  const showDiscovery = !isNewUser;
+
+  const ContentWrapper = prefersReducedMotion ? "div" : motion.div;
+  const SectionWrapper = prefersReducedMotion ? "div" : motion.div;
+
+  return (
+    <ContentWrapper
+      {...(prefersReducedMotion
+        ? {}
+        : {
+            variants: containerVariants,
+            initial: "hidden",
+            animate: "show",
+          })}
+    >
+      {/* Section 1: Compact Header */}
+      <SectionWrapper
+        {...(prefersReducedMotion ? {} : { variants: itemVariants })}
+      >
+        <CompactHeader
+          firstName={data.user.firstName}
+          streakCount={data.user.streakCount}
+          dailyProgress={dailyProgress}
+          insightPoints={data.user.insightPoints}
+          subtitle={subtitle}
+          isNewUser={isNewUser}
+        />
+      </SectionWrapper>
+
+      {/* Section 2: Hero Session Card */}
+      <SectionWrapper
+        {...(prefersReducedMotion ? {} : { variants: itemVariants })}
+      >
+        <HeroSessionCard
+          userState={userState}
+          currentBook={data.currentBook}
+          firstName={data.user.firstName}
+          starterShelfBooks={data.starterShelfBooks}
+        />
+      </SectionWrapper>
+
+      {/* Section 3: Weekly Momentum Strip */}
+      {!isNewUser && hasActivity && (
+        <SectionWrapper
+          {...(prefersReducedMotion ? {} : { variants: itemVariants })}
+        >
+          <WeeklyMomentumStrip
+            weeklyActivity={data.weeklyActivity}
+            chaptersCompleted={data.weeklyStats.chaptersCompleted}
+            quizAverage={data.weeklyStats.quizAverage}
+            streakCount={data.user.streakCount}
+          />
+        </SectionWrapper>
+      )}
+
+      {/* Section 4: Your Books */}
+      <SectionWrapper
+        {...(prefersReducedMotion ? {} : { variants: itemVariants })}
+      >
+        <BookRow
+          userBooks={data.userBooks}
+          recommendedProBooks={data.recommendedProBooks}
+          isNewUser={isNewUser}
+          isPro={data.user.isPro}
+        />
+      </SectionWrapper>
+
+      {/* Section 5: Rewards & Progress */}
+      <SectionWrapper
+        {...(prefersReducedMotion ? {} : { variants: itemVariants })}
+      >
+        <div className="mt-9 flex flex-col gap-4 md:flex-row">
+          <RewardsCard
+            insightPoints={data.user.insightPoints}
+            nextRewardName={data.nextReward.name}
+            pointsRequired={data.nextReward.pointsRequired}
+          />
+          {data.nextAchievement && (
+            <NextAchievementCard
+              name={data.nextAchievement.name}
+              description={data.nextAchievement.description}
+              progressCurrent={data.nextAchievement.progressCurrent}
+              progressTotal={data.nextAchievement.progressTotal}
+            />
+          )}
+        </div>
+      </SectionWrapper>
+
+      {/* Section 6: Personalized Discovery */}
+      {showDiscovery && (
+        <SectionWrapper
+          {...(prefersReducedMotion ? {} : { variants: itemVariants })}
+        >
+          <DiscoveryRow
+            books={data.discoveryBooks}
+            isPro={data.user.isPro}
+          />
+        </SectionWrapper>
+      )}
+    </ContentWrapper>
+  );
+}
+
+/* ────────────────────────────────────────────
    WorkspacePage
    ──────────────────────────────────────────── */
 
@@ -515,26 +708,14 @@ export function WorkspacePage() {
   const prefersReducedMotion = useReducedMotion();
   const { analytics } = useBookAnalytics(ALL_BOOK_IDS, 20);
   const { identity } = useBookViewer();
-  const extras = useDashboardExtras();
   const firstName = (identity.displayName || "").split(" ")[0] || "Reader";
+  const isLoading = !analytics;
   const data = analytics
-    ? mapAnalyticsToWorkspaceData(analytics, firstName, extras)
-    : mockData;
-  const userState = deriveUserState(data);
-  const subtitle = getSubtitle(userState, data);
-  const dailyProgress = Math.min(
-    (data.user.dailyProgressMinutes / data.user.dailyGoalMinutes) * 100,
-    100
-  );
-  const isNewUser = userState === "new_user";
-  const hasActivity = data.weeklyActivity.some(Boolean);
-  const showDiscovery = data.weeklyStats.chaptersCompleted > 0;
+    ? mapAnalyticsToWorkspaceData(analytics, firstName)
+    : null;
 
   const searchRef = useRef<HTMLInputElement | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
-
-  const ContentWrapper = prefersReducedMotion ? "div" : motion.div;
-  const SectionWrapper = prefersReducedMotion ? "div" : motion.div;
 
   return (
     <div
@@ -550,7 +731,8 @@ export function WorkspacePage() {
       {/* Content */}
       <div className="relative z-10">
         <TopNav
-          name={data.user.firstName}
+          name={firstName}
+          avatarUrl={identity.avatarDataUrl}
           activeTab="home"
           searchQuery={searchQuery}
           onSearchChange={setSearchQuery}
@@ -562,100 +744,11 @@ export function WorkspacePage() {
           className="mx-auto w-full px-4 py-5 md:px-8 md:py-7 lg:px-10 xl:px-16"
           style={{ maxWidth: 1800 }}
         >
-          <ContentWrapper
-            {...(prefersReducedMotion
-              ? {}
-              : {
-                  variants: containerVariants,
-                  initial: "hidden",
-                  animate: "show",
-                })}
-          >
-            {/* Section 1: Compact Header */}
-            <SectionWrapper
-              {...(prefersReducedMotion ? {} : { variants: itemVariants })}
-            >
-              <CompactHeader
-                firstName={data.user.firstName}
-                streakCount={data.user.streakCount}
-                dailyProgress={dailyProgress}
-                flowPoints={data.user.flowPoints}
-                subtitle={subtitle}
-                isNewUser={isNewUser}
-              />
-            </SectionWrapper>
-
-            {/* Section 2: Hero Session Card */}
-            <SectionWrapper
-              {...(prefersReducedMotion ? {} : { variants: itemVariants })}
-            >
-              <HeroSessionCard
-                userState={userState}
-                currentBook={data.currentBook}
-                firstName={data.user.firstName}
-              />
-            </SectionWrapper>
-
-            {/* Section 3: Weekly Momentum Strip */}
-            {!isNewUser && hasActivity && (
-              <SectionWrapper
-                {...(prefersReducedMotion ? {} : { variants: itemVariants })}
-              >
-                <WeeklyMomentumStrip
-                  weeklyActivity={data.weeklyActivity}
-                  chaptersCompleted={data.weeklyStats.chaptersCompleted}
-                  quizAverage={data.weeklyStats.quizAverage}
-                  streakCount={data.user.streakCount}
-                />
-              </SectionWrapper>
-            )}
-
-            {/* Section 4: Your Books */}
-            <SectionWrapper
-              {...(prefersReducedMotion ? {} : { variants: itemVariants })}
-            >
-              <BookRow
-                userBooks={data.userBooks}
-                recommendedProBooks={data.recommendedProBooks}
-                isNewUser={isNewUser}
-                isPro={data.user.isPro}
-              />
-            </SectionWrapper>
-
-            {/* Section 5: Rewards & Progress */}
-            <SectionWrapper
-              {...(prefersReducedMotion ? {} : { variants: itemVariants })}
-            >
-              <div className="mt-9 flex flex-col gap-4 md:flex-row">
-                <RewardsCard
-                  flowPoints={data.user.flowPoints}
-                  nextRewardName={data.nextReward.name}
-                  pointsRequired={data.nextReward.pointsRequired}
-                  isPro={data.user.isPro}
-                />
-                {data.nextAchievement && (
-                  <NextAchievementCard
-                    name={data.nextAchievement.name}
-                    description={data.nextAchievement.description}
-                    progressCurrent={data.nextAchievement.progressCurrent}
-                    progressTotal={data.nextAchievement.progressTotal}
-                  />
-                )}
-              </div>
-            </SectionWrapper>
-
-            {/* Section 6: Personalized Discovery */}
-            {showDiscovery && (
-              <SectionWrapper
-                {...(prefersReducedMotion ? {} : { variants: itemVariants })}
-              >
-                <DiscoveryRow
-                  books={data.discoveryBooks}
-                  isPro={data.user.isPro}
-                />
-              </SectionWrapper>
-            )}
-          </ContentWrapper>
+          {isLoading || !data ? (
+            <DashboardSkeleton />
+          ) : (
+            <DashboardContent data={data} prefersReducedMotion={prefersReducedMotion} />
+          )}
 
           {/* Bottom spacer for mobile nav */}
           <div className="h-20 md:hidden" />

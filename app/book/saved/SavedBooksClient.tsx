@@ -72,6 +72,7 @@ export function SavedBooksClient() {
     <main className="cf-app-shell">
       <TopNav
         name={viewerName}
+        avatarUrl={viewerIdentity.avatarDataUrl}
         activeTab="saved"
         searchQuery=""
         onSearchChange={() => {}}

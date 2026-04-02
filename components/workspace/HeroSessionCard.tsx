@@ -30,10 +30,18 @@ interface CurrentBook {
   glowColor?: string;
 }
 
+interface StarterShelfBook {
+  id: string;
+  title: string;
+  author: string;
+  coverUrl: string;
+}
+
 interface HeroSessionCardProps {
   userState: UserState;
   currentBook: CurrentBook | null;
   firstName: string;
+  starterShelfBooks?: StarterShelfBook[];
 }
 
 function getStatusBadge(userState: UserState): { label: string; color: string } {
@@ -137,13 +145,19 @@ export function HeroSessionCard({
   userState,
   currentBook,
   firstName,
+  starterShelfBooks = [],
 }: HeroSessionCardProps) {
   const prefersReducedMotion = useReducedMotion();
+  const hasPersonalizedShelf = userState === "new_user" && starterShelfBooks.length > 0;
   const badge = getStatusBadge(userState);
   const ctaText = getCTAText(userState, currentBook);
   const ctaHref = getCTAHref(userState, currentBook);
-  const title = getHeroTitle(userState, currentBook, firstName);
-  const subtitle = getHeroSubtitle(userState, currentBook);
+  const title = hasPersonalizedShelf
+    ? "Your Shelf Is Ready"
+    : getHeroTitle(userState, currentBook, firstName);
+  const subtitle = hasPersonalizedShelf
+    ? `We picked ${starterShelfBooks.length} books based on your interests`
+    : getHeroSubtitle(userState, currentBook);
   const showBookCover =
     currentBook && userState !== "new_user" && userState !== "between_books";
   const showProgress =
@@ -424,46 +438,60 @@ export function HeroSessionCard({
           </div>
         )}
 
-        {/* New user: abstract book visuals */}
+        {/* New user: starter shelf or decorative books */}
         {userState === "new_user" && (
           <div className="hidden items-center justify-center p-8 lg:flex">
             <div className="flex gap-3">
-              {[
-                { src: getBookCoverPath("the-48-laws-of-power"), rot: -8 },
-                { src: getBookCoverPath("friends-and-influence"), rot: 8 },
-              ].map((item, i) => (
-                <motion.div
-                  key={i}
-                  className="overflow-hidden rounded-lg shadow-shadow-elevated ring-1 ring-white/[0.08]"
-                  style={{
-                    width: 70,
-                    height: 100,
-                    transform: `rotate(${item.rot}deg)`,
-                  }}
-                  initial={
-                    prefersReducedMotion
-                      ? undefined
-                      : { y: 20, opacity: 0 }
-                  }
-                  animate={
-                    prefersReducedMotion
-                      ? undefined
-                      : { y: 0, opacity: 1 }
-                  }
-                  transition={
-                    prefersReducedMotion
-                      ? undefined
-                      : { duration: 0.4, delay: 0.3 + i * 0.1, ease }
-                  }
-                >
-                  <Image
-                    src={item.src}
-                    alt=""
-                    width={70}
-                    height={100}
-                    className="h-full w-full object-cover"
-                  />
-                </motion.div>
+              {(hasPersonalizedShelf
+                ? starterShelfBooks.slice(0, 3).map((book, i) => ({
+                    src: book.coverUrl || getBookCoverPath(book.id),
+                    rot: i === 0 ? -8 : i === 1 ? 0 : 8,
+                    href: `/book/library/${book.id}`,
+                    alt: `${book.title} by ${book.author}`,
+                  }))
+                : [
+                    { src: getBookCoverPath("the-48-laws-of-power"), rot: -8, href: "/book/library", alt: "" },
+                    { src: getBookCoverPath("friends-and-influence"), rot: 8, href: "/book/library", alt: "" },
+                  ]
+              ).map((item, i) => (
+                <Link key={i} href={item.href}>
+                  <motion.div
+                    className="overflow-hidden rounded-lg shadow-shadow-elevated ring-1 ring-white/[0.08]"
+                    style={{
+                      width: hasPersonalizedShelf ? 90 : 70,
+                      height: hasPersonalizedShelf ? 130 : 100,
+                      transform: `rotate(${item.rot}deg)`,
+                    }}
+                    initial={
+                      prefersReducedMotion
+                        ? undefined
+                        : { y: 20, opacity: 0 }
+                    }
+                    animate={
+                      prefersReducedMotion
+                        ? undefined
+                        : { y: 0, opacity: 1 }
+                    }
+                    whileHover={
+                      prefersReducedMotion
+                        ? undefined
+                        : { scale: 1.08, rotate: 0 }
+                    }
+                    transition={
+                      prefersReducedMotion
+                        ? undefined
+                        : { duration: 0.4, delay: 0.3 + i * 0.1, ease }
+                    }
+                  >
+                    <Image
+                      src={item.src}
+                      alt={item.alt}
+                      width={hasPersonalizedShelf ? 90 : 70}
+                      height={hasPersonalizedShelf ? 130 : 100}
+                      className="h-full w-full object-cover"
+                    />
+                  </motion.div>
+                </Link>
               ))}
             </div>
           </div>

@@ -360,14 +360,97 @@ export type FlowPointsSourceType =
   | "onboarding_complete"
   | "first_book_started"
   | "quiz_pass"
+  | "loop_complete"
   | "book_complete"
   | "badge_earned"
+  | "achievement_earned"
   | "scenario_approved"
   | "referral_activation_inviter"
   | "referral_activation_invitee"
   | "referral_pro_inviter"
   | "reward_redemption"
-  | "admin_adjustment";
+  | "admin_adjustment"
+  | "streak_day"
+  | "streak_milestone"
+  | "tier_advance"
+  | "insight_spark"
+  | "welcome_back";
+
+// ── Streak System (§10.1) ──────────────────────────────────────────────────
+
+export type BookUserStreakItem = {
+  userId: string;
+  currentStreak: number;
+  longestStreak: number;
+  lastActiveDate: string | null;
+  lastActiveTimezone: string | null;
+  streakShieldsHeld: number;
+  shieldUsedDates: string[];
+  consistencyLast30: number;
+  consistencyAbove80Since: string | null;
+  milestonesReached: number[];
+  createdAt: string;
+  updatedAt: string;
+};
+
+// ── Tier System (§10.1) ────────────────────────────────────────────────────
+
+export type TierName = "reader" | "analyst" | "synthesizer" | "polymath" | "luminary";
+
+export type BookUserTierItem = {
+  userId: string;
+  currentTier: TierName;
+  totalLoopsCompleted: number;
+  avgQuizScoreSum: number;
+  avgQuizScoreCount: number;
+  categoriesExplored: string[];
+  tiersAdvanced: TierName[];
+  tierAdvancedAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+// ── Achievement System (§10.1) ─────────────────────────────────────────────
+
+export type AchievementTrack = "mastery" | "consistency" | "exploration" | "hidden";
+
+export type BookUserAchievementItem = {
+  userId: string;
+  achievementId: string;
+  track: AchievementTrack;
+  earnedAt: string;
+  ipAwarded: number;
+  metadata?: Record<string, unknown>;
+  createdAt: string;
+};
+
+// ── Loop Completion Record (§10.1) ─────────────────────────────────────────
+
+export type BookUserLoopItem = {
+  userId: string;
+  bookId: string;
+  chapterNumber: number;
+  completedAt: string;
+  quizScore: number;
+  learningMode: string;
+  isFirstAttempt: boolean;
+  category: string;
+  createdAt: string;
+};
+
+// ── Inventory Record (§10.1) ───────────────────────────────────────────────
+
+export type InventoryItemType = "theme" | "frame" | "seasonal";
+
+export type BookUserInventoryItem = {
+  userId: string;
+  itemId: string;
+  itemType: InventoryItemType;
+  acquiredAt: string;
+  equipped: boolean;
+  ipCost: number;
+  createdAt: string;
+};
 
 export type FlowPointsRewardId =
   | "bonus_book_unlock"

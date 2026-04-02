@@ -97,7 +97,7 @@ export function FlowPointsSection({
             <Coins className="h-4 w-4" />
           </div>
           <div>
-            <p className="text-sm font-semibold text-(--cf-text-1)">Flow Points unavailable</p>
+            <p className="text-sm font-semibold text-(--cf-text-1)">Insight Points unavailable</p>
             <p className="mt-1 text-sm leading-relaxed text-(--cf-text-3)">
               {error ?? "The rewards system could not be loaded right now."}
             </p>
@@ -113,7 +113,7 @@ export function FlowPointsSection({
     <section>
       <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
         <div>
-          <h2 className="text-2xl font-semibold text-(--cf-text-1)">Flow Points</h2>
+          <h2 className="text-2xl font-semibold text-(--cf-text-1)">Insight Points</h2>
           <p className="mt-1 text-sm text-(--cf-text-3)">
             Meaningful progress, visible rewards, and a cleaner path into premium value.
           </p>
@@ -129,10 +129,10 @@ export function FlowPointsSection({
                 <span className="text-4xl font-semibold tracking-tight text-(--cf-text-1)">
                   {formatPoints(payload.summary.balance)}
                 </span>
-                <span className="pb-1 text-sm font-medium text-(--cf-text-3)">Flow Points</span>
+                <span className="pb-1 text-sm font-medium text-(--cf-text-3)">Insight Points</span>
               </div>
               <p className="mt-2 max-w-xl text-sm leading-6 text-(--cf-text-2)">
-                Flow Points reward learning milestones that are hard to fake and useful to the business: setup, quiz mastery, completed books, approved scenarios, and real referrals.
+                Insight Points reward learning milestones that are hard to fake and useful to the business: setup, quiz mastery, completed books, approved scenarios, and real referrals.
               </p>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -205,7 +205,7 @@ export function FlowPointsSection({
                 </h3>
                 <p className="mt-2 text-sm leading-6 text-(--cf-text-2)">
                   {featuredReward?.description ??
-                    "Redeem Flow Points for extra access without flattening the value of Pro."}
+                    "Redeem Insight Points for extra access without flattening the value of Pro."}
                 </p>
               </div>
               {featuredReward ? (
@@ -348,7 +348,7 @@ export function FlowPointsSection({
                 ))
               ) : (
                 <p className="text-sm leading-6 text-(--cf-text-3)">
-                  Your Flow Points history will appear here as you complete milestones.
+                  Your Insight Points history will appear here as you complete milestones.
                 </p>
               )}
             </div>

@@ -29,6 +29,7 @@ type PersistedChapterState = {
   fontScale: FontScale;
   showRecap: boolean;
   explanationOpen: Record<string, boolean>;
+  bookmarkedTakeaways: number[];
 };
 
 const PREFS_KEY = "book-accelerator:reader-prefs:v1";
@@ -52,6 +53,7 @@ const defaultState: PersistedChapterState = {
   fontScale: "md",
   showRecap: false,
   explanationOpen: {},
+  bookmarkedTakeaways: [],
 };
 
 function isTab(value: unknown): value is ChapterTab {
@@ -142,6 +144,12 @@ function parseStored(value: string | null): PersistedChapterState | null {
               )
             )
           : {},
+      bookmarkedTakeaways: Array.isArray(parsed.bookmarkedTakeaways)
+        ? parsed.bookmarkedTakeaways.filter(
+            (v): v is number =>
+              typeof v === "number" && Number.isFinite(v) && v >= 0 && Number.isInteger(v)
+          )
+        : [],
     };
   } catch {
     return null;
@@ -187,6 +195,7 @@ export function useChapterState(
   const [state, setState] = useState<PersistedChapterState>(defaultState);
   const [serverReady, setServerReady] = useState(false);
   const [hasPersistedState, setHasPersistedState] = useState(false);
+  const [syncFailed, setSyncFailed] = useState(false);
   const skipNextServerSave = useRef(false);
 
   useEffect(() => {
@@ -296,7 +305,9 @@ export function useChapterState(
             state,
           }),
         }
-      ).catch(() => {});
+      )
+        .then(() => setSyncFailed(false))
+        .catch(() => setSyncFailed(true));
     }, 200);
     return () => window.clearTimeout(timeout);
   }, [bookId, chapterId, hydrated, resolvedChapterNumber, serverReady, state]);
@@ -414,9 +425,22 @@ export function useChapterState(
     }));
   }, []);
 
+  const toggleBookmarkedTakeaway = useCallback((index: number) => {
+    setState((prev) => {
+      const exists = prev.bookmarkedTakeaways.includes(index);
+      return {
+        ...prev,
+        bookmarkedTakeaways: exists
+          ? prev.bookmarkedTakeaways.filter((i) => i !== index)
+          : [...prev.bookmarkedTakeaways, index],
+      };
+    });
+  }, []);
+
   return {
     hydrated,
     state,
+    syncFailed,
     setActiveTab,
     setReadingDepth,
     setExampleFilter,
@@ -431,5 +455,6 @@ export function useChapterState(
     setFontScale,
     toggleRecap,
     toggleExplanation,
+    toggleBookmarkedTakeaway,
   };
 }

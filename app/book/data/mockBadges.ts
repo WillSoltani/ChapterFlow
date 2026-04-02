@@ -1,3 +1,7 @@
+// @deprecated — This file is superseded by app/book/badges/lib/achievement-definitions.ts.
+// Kept temporarily for backward compatibility. Migrate all imports to the new file.
+// See §4.1–4.4 of the Insight Points specification.
+
 export type BadgeCategory =
   | "Getting Started"
   | "Consistency"

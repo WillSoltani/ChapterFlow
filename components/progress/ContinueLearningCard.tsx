@@ -167,7 +167,7 @@ export function ContinueLearningCard({
 
       {/* Next reward teaser */}
       <p className="mt-3 text-xs" style={{ color: "var(--text-muted)" }}>
-        Complete this step to earn +50 FP and progress toward{" "}
+        Complete this step to earn +50 IP and progress toward{" "}
         {"\u{1F3C5}"} First Steps
       </p>
 

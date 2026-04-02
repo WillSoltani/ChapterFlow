@@ -3,6 +3,7 @@ import { mustServerEnv } from "@/app/app/api/_lib/server-env";
 import { resolveCognitoDomain } from "../_lib/cognito-domain";
 import { getAuthCookieBase } from "../_lib/auth-cookie";
 import { sanitizeReturnTo } from "../_lib/return-to";
+import { encryptState } from "../_lib/state-crypto";
 
 function base64UrlEncode(bytes: Uint8Array) {
   let str = "";
@@ -31,11 +32,16 @@ export async function GET(req: NextRequest) {
     return new NextResponse("Missing server env vars", { status: 500 });
   }
 
-  const state = crypto.randomUUID();
   const returnTo = sanitizeReturnTo(req.nextUrl.searchParams.get("returnTo"), "/book");
 
   const codeVerifier = randomBase64Url(32);
   const codeChallenge = await sha256Base64Url(codeVerifier);
+
+  // Encrypt the PKCE verifier, return URL, and a nonce into the state
+  // parameter. Cognito echoes this back via URL, so the callback can
+  // recover these values without depending on cookies.
+  const nonce = crypto.randomUUID();
+  const state = await encryptState({ v: codeVerifier, r: returnTo, n: nonce });
 
   const url =
     `${domain}/oauth2/authorize` +
@@ -50,7 +56,10 @@ export async function GET(req: NextRequest) {
   const res = NextResponse.redirect(url);
   const cookieBase = getAuthCookieBase();
 
-  res.cookies.set("oauth_state", state, {
+  // Keep cookies as a backward-compatible fallback. The callback will
+  // prefer the encrypted state parameter but falls back to cookies if
+  // decryption fails (e.g. during rolling deployment).
+  res.cookies.set("oauth_state", nonce, {
     ...cookieBase,
     maxAge: 10 * 60,
   });

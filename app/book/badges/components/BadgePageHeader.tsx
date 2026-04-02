@@ -57,7 +57,7 @@ export function BadgePageHeader({ profile }: BadgePageHeaderProps) {
           </div>
           {profile.fpToNextLevel > 0 && (
             <p className="mt-1 text-[10px] text-(--cf-text-soft)">
-              {profile.fpToNextLevel} FP to next level
+              {profile.fpToNextLevel} IP to next level
             </p>
           )}
         </div>

@@ -195,6 +195,30 @@ export function licenseKeySk(): string {
   return "META";
 }
 
+// ── Insight Points System keys (§10.1) ──────────────────────────────────────
+
+export function streakSk(): string {
+  return "STREAK";
+}
+
+export function tierSk(): string {
+  return "TIER";
+}
+
+export function achievementSk(achievementId: string): string {
+  return `ACHIEVEMENT#${achievementId}`;
+}
+
+export function loopSk(bookId: string, chapterNumber: number): string {
+  return `LOOP#${bookId}#${padChapterNumber(chapterNumber)}`;
+}
+
+export function inventorySk(itemType: string, itemId: string): string {
+  return `INVENTORY#${itemType}#${itemId}`;
+}
+
+// ── Content keys ────────────────────────────────────────────────────────────
+
 export function buildContentPrefix(bookId: string, version: number): string {
   return `book-content/books/${bookId}/v${padVersion(version)}`;
 }

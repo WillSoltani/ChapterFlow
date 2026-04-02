@@ -213,7 +213,7 @@ const PRODUCT_LOOP: LoopStage[] = [
   },
   {
     label: "Keep momentum visible",
-    description: "Progress, badges, and Flow Points make consistency easier to notice.",
+    description: "Progress, badges, and Insight Points make consistency easier to notice.",
     stat: "Progress that stays visible",
     Icon: Trophy,
   },

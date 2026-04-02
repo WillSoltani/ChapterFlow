@@ -38,7 +38,7 @@ function BalanceHeader({ summary }: { summary: FlowPointsPayload["summary"] }) {
         className="text-[13px] font-medium uppercase tracking-widest mb-1"
         style={{ color: "var(--text-muted)" }}
       >
-        Flow Points
+        Insight Points
       </p>
       <p
         className="text-[48px] font-bold tracking-tight leading-none"
@@ -194,11 +194,11 @@ function ReferralSection({ referral }: { referral: FlowPointsPayload["referral"]
       <div className="flex items-center gap-2 mb-3">
         <Users size={16} style={{ color: "var(--accent-teal)" }} />
         <h3 className="text-[15px] font-semibold" style={{ color: "var(--text-heading)" }}>
-          Invite Friends
+          Give a Friend a Free Week of Pro
         </h3>
       </div>
       <p className="text-[13px] mb-4" style={{ color: "var(--text-secondary)" }}>
-        Share your link and earn Flow Points when friends join and subscribe.
+        Share your link to give a friend a free week of Pro access — you&apos;ll both be rewarded when they complete their first learning loop.
       </p>
 
       <div className="flex items-center gap-2">

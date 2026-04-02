@@ -5,7 +5,7 @@ export const mockProgressData: ProgressPageData = {
     name: "Will",
     readerLevel: "Curious Reader",
     readerLevelProgress: 0,
-    flowPoints: 150,
+    insightPoints: 150,
     isPro: false,
   },
   todayGoal: {

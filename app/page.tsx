@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import {
   CHAPTERFLOW_NAME,
   getChapterFlowSiteUrl,
 } from "@/app/_lib/chapterflow-brand";
 import { Navbar } from "@/components/sections/Navbar";
 import { Hero } from "@/components/sections/Hero";
+import { AuthErrorBanner } from "@/components/auth/AuthErrorBanner";
 import { Problem } from "@/components/sections/Problem";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { InteractiveDemo } from "@/components/sections/InteractiveDemo";
@@ -50,6 +52,9 @@ export default function Home() {
       />
 
       <Navbar />
+      <Suspense>
+        <AuthErrorBanner />
+      </Suspense>
 
       <main>
         <Hero />

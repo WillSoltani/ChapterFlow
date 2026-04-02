@@ -243,7 +243,7 @@ export function ScreenQuizState() {
         className="text-[8px] text-center mt-2"
         style={{ color: "var(--accent-amber)" }}
       >
-        +15 Flow Points
+        +15 Insight Points
       </p>
     </div>
   );

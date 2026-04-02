@@ -41,7 +41,7 @@ export function BadgeCategorySection({
   const [open, setOpen] = useState(defaultOpen);
   const reduced = useReducedMotion();
 
-  const totalFP = group.badges.reduce((sum, b) => sum + b.fpValue, 0);
+  const totalIP = group.badges.reduce((sum, b) => sum + b.fpValue, 0);
   const isSecret = group.id === "secret";
   const pill = getCategoryPillContent(group);
 
@@ -85,7 +85,7 @@ export function BadgeCategorySection({
           {!isSecret && (
             <span className="hidden items-center gap-1 text-xs sm:inline-flex" style={{ color: "var(--accent-violet)" }}>
               <svg className="h-3 w-3" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L8.5 8.5 2 9.27l4.5 5.05L5.82 22 12 18.77 18.18 22l-.68-7.68L22 9.27 15.5 8.5z"/></svg>
-              {totalFP} FP
+              {totalIP} IP
             </span>
           )}
           <motion.div

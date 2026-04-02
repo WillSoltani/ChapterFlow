@@ -170,6 +170,7 @@ export function BookProgressClient() {
     <main className="cf-app-shell">
       <TopNav
         name={viewerName}
+        avatarUrl={viewerIdentity.avatarDataUrl}
         activeTab="progress"
         searchQuery={query}
         onSearchChange={setQuery}

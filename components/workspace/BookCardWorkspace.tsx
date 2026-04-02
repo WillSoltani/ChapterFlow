@@ -183,14 +183,24 @@ export function BookCardWorkspace(props: BookCardWorkspaceProps) {
             className="mt-2 flex items-center gap-1 text-[10px]"
             style={{ color: "var(--cf-text-3)" }}
           >
-            <span style={{ color: "var(--accent-gold)" }}>★</span>
-            <span className="tabular-nums">
-              {(book as ProBookData).rating}
-            </span>
-            <span style={{ color: "var(--cf-text-soft)" }}>·</span>
-            <span>
-              {formatReaderCount((book as ProBookData).readerCount)} readers
-            </span>
+            {(book as ProBookData).rating > 0 ? (
+              <>
+                <span style={{ color: "var(--accent-gold)" }}>★</span>
+                <span className="tabular-nums">
+                  {(book as ProBookData).rating}
+                </span>
+                {(book as ProBookData).readerCount > 0 && (
+                  <>
+                    <span style={{ color: "var(--cf-text-soft)" }}>·</span>
+                    <span>
+                      {formatReaderCount((book as ProBookData).readerCount)} readers
+                    </span>
+                  </>
+                )}
+              </>
+            ) : (
+              <span>{(book as ProBookData).category}</span>
+            )}
           </div>
         )}
       </div>

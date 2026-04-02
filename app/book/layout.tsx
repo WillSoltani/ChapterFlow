@@ -5,6 +5,7 @@ import {
   getChapterFlowAppUrl,
 } from "@/app/_lib/chapterflow-brand";
 import { BookQueryProvider } from "./providers";
+import { TokenExpiryGuard } from "@/components/auth/TokenExpiryGuard";
 
 export const metadata: Metadata = {
   title: {
@@ -27,5 +28,10 @@ export default function BookLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <BookQueryProvider>{children}</BookQueryProvider>;
+  return (
+    <BookQueryProvider>
+      {children}
+      <TokenExpiryGuard />
+    </BookQueryProvider>
+  );
 }

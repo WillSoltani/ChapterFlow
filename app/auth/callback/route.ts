@@ -4,10 +4,46 @@ import { resolvePublicOrigin } from "@/app/app/_lib/server-origin";
 import { resolveCognitoDomain } from "../_lib/cognito-domain";
 import { getAuthCookieBase } from "../_lib/auth-cookie";
 import { sanitizeReturnTo } from "../_lib/return-to";
+import { decryptState } from "../_lib/state-crypto";
 import { applyDeviceIdCookie, getOrCreateDeviceId } from "@/app/app/api/book/_lib/abuse";
 
 function readString(value: unknown): string | null {
   return typeof value === "string" && value.trim().length > 0 ? value : null;
+}
+
+/**
+ * Recover the PKCE verifier and return URL from the encrypted state parameter.
+ * Falls back to cookies if decryption fails (backward compatibility during
+ * rolling deployments or if AUTH_STATE_SECRET is not yet configured).
+ */
+async function resolveAuthState(
+  stateParam: string,
+  req: NextRequest,
+): Promise<{
+  verifier: string | null;
+  returnTo: string;
+  nonce: string | null;
+}> {
+  // Primary path: decrypt from URL state parameter
+  const decrypted = await decryptState(stateParam);
+  if (decrypted) {
+    return {
+      verifier: decrypted.v,
+      returnTo: sanitizeReturnTo(decrypted.r, "/book"),
+      nonce: decrypted.n,
+    };
+  }
+
+  // Fallback: read from cookies (pre-upgrade compatibility)
+  const verifier = req.cookies.get("pkce_verifier")?.value ?? null;
+  const rawReturnTo = req.cookies.get("post_auth_redirect")?.value;
+  const nonce = req.cookies.get("oauth_state")?.value ?? null;
+
+  return {
+    verifier,
+    returnTo: sanitizeReturnTo(rawReturnTo, "/book"),
+    nonce,
+  };
 }
 
 export async function GET(req: NextRequest) {
@@ -24,29 +60,28 @@ export async function GET(req: NextRequest) {
 
     const url = new URL(req.url);
     const code = url.searchParams.get("code");
-    const state = url.searchParams.get("state");
+    const stateParam = url.searchParams.get("state");
 
-    if (!code || !state) {
+    if (!code || !stateParam) {
       return NextResponse.redirect(new URL("/?auth=error", origin));
     }
 
-    const verifier = req.cookies.get("pkce_verifier")?.value;
-    const expectedState = req.cookies.get("oauth_state")?.value;
-    const rawReturnTo = req.cookies.get("post_auth_redirect")?.value;
-    const returnTo = sanitizeReturnTo(rawReturnTo, "/book");
+    // Recover PKCE verifier + returnTo from encrypted state (primary)
+    // or cookies (fallback).
+    const { verifier, returnTo, nonce } = await resolveAuthState(
+      stateParam,
+      req,
+    );
 
-    // If cookies are missing entirely (browser didn't commit them from the
-    // redirect response), silently restart the login flow instead of showing
-    // an error. The second attempt succeeds because cookies are set fresh.
-    if (!verifier || !expectedState) {
+    if (!verifier) {
+      // Neither encrypted state nor cookies had the verifier.
+      // Redirect to login to start a fresh flow.
       const loginUrl = new URL("/auth/login", origin);
       loginUrl.searchParams.set("returnTo", returnTo);
       return NextResponse.redirect(loginUrl);
     }
-    if (state !== expectedState) {
-      return NextResponse.redirect(new URL("/?auth=state_error", origin));
-    }
 
+    // Exchange authorization code + PKCE verifier for tokens
     const body = new URLSearchParams({
       grant_type: "authorization_code",
       client_id: clientId,
@@ -80,16 +115,27 @@ export async function GET(req: NextRequest) {
     );
     const cookieBase = getAuthCookieBase();
 
+    const expiresIn = Number(tokens.expires_in) || 3600;
     const commonCookie = {
       ...cookieBase,
-      maxAge: Number(tokens.expires_in) || 3600,
+      maxAge: expiresIn,
     };
 
     res.cookies.set("id_token", idToken, commonCookie);
     res.cookies.set("access_token", accessToken, commonCookie);
+
+    // Client-readable expiry timestamp for proactive session management
+    res.cookies.set("auth_expires_at", String(Math.floor(Date.now() / 1000) + expiresIn), {
+      ...cookieBase,
+      httpOnly: false, // Must be readable by client JS
+      maxAge: expiresIn,
+    });
+
+    // Clear ephemeral OAuth cookies
     res.cookies.set("pkce_verifier", "", { ...cookieBase, maxAge: 0 });
     res.cookies.set("oauth_state", "", { ...cookieBase, maxAge: 0 });
     res.cookies.set("post_auth_redirect", "", { ...cookieBase, maxAge: 0 });
+
     const { deviceId, issued } = getOrCreateDeviceId(req);
     if (issued) {
       applyDeviceIdCookie(res, deviceId, true);

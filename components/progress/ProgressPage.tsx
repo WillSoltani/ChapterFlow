@@ -7,7 +7,7 @@ import { TopNav } from "@/app/book/home/components/TopNav";
 import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
 import { useBookAnalytics } from "@/app/book/hooks/useBookAnalytics";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
-import { useFlowPoints } from "@/app/book/hooks/useFlowPoints";
+import { useInsightPoints } from "@/app/book/hooks/useInsightPoints";
 import { useBadgeSystem } from "@/app/book/hooks/useBadgeSystem";
 import { useKeyboardShortcut } from "@/app/book/hooks/useKeyboardShortcut";
 import type {
@@ -66,7 +66,7 @@ function inferCurrentStep(
 function buildProgressData(
   viewerName: string,
   analytics: NonNullable<ReturnType<typeof useBookAnalytics>["analytics"]>,
-  flowPointsBalance: number,
+  insightPointsBalance: number,
   nextMilestonesFromBadges: ReturnType<typeof useBadgeSystem>["nextMilestones"],
   isPro: boolean
 ): ProgressPageData {
@@ -188,7 +188,7 @@ function buildProgressData(
       name: viewerName,
       readerLevel,
       readerLevelProgress,
-      flowPoints: flowPointsBalance,
+      insightPoints: insightPointsBalance,
       isPro,
     },
     todayGoal: {
@@ -360,7 +360,7 @@ export function ProgressPage() {
     onboarding.selectedBookIds,
     onboarding.dailyGoalMinutes
   );
-  const { payload: flowPointsPayload } = useFlowPoints(
+  const { payload: insightPointsPayload } = useInsightPoints(
     onboarding.setupComplete
   );
   const { nextMilestones: badgeMilestones, recentlyEarned } = useBadgeSystem({
@@ -401,11 +401,11 @@ export function ProgressPage() {
     return buildProgressData(
       viewerName,
       analytics,
-      flowPointsPayload?.summary.balance ?? 0,
+      insightPointsPayload?.summary.balance ?? 0,
       badgeMilestones,
       isPro
     );
-  }, [analytics, viewerName, flowPointsPayload, badgeMilestones, isPro]);
+  }, [analytics, viewerName, insightPointsPayload, badgeMilestones, isPro]);
 
   // Allow switching primary book via ContinueLearningCard
   const displayData = useMemo<ProgressPageData | null>(() => {
@@ -441,6 +441,7 @@ export function ProgressPage() {
       <main className="cf-app-shell">
         <TopNav
           name={viewerName}
+          avatarUrl={viewerIdentity.avatarDataUrl}
           activeTab="progress"
           searchQuery={query}
           onSearchChange={setQuery}
@@ -462,6 +463,7 @@ export function ProgressPage() {
       <main className="cf-app-shell">
         <TopNav
           name={viewerName}
+          avatarUrl={viewerIdentity.avatarDataUrl}
           activeTab="progress"
           searchQuery={query}
           onSearchChange={setQuery}
@@ -502,6 +504,7 @@ export function ProgressPage() {
     <main className="cf-app-shell">
       <TopNav
         name={viewerName}
+        avatarUrl={viewerIdentity.avatarDataUrl}
         activeTab="progress"
         searchQuery={query}
         onSearchChange={setQuery}
@@ -541,7 +544,7 @@ export function ProgressPage() {
         <motion.div variants={sectionVariants}>
           <DailyQuests
             quests={displayData.dailyQuests}
-            bonusFP={displayData.questBonusFP}
+            bonusIP={displayData.questBonusFP}
           />
         </motion.div>
 

@@ -278,8 +278,20 @@ export function useQuizSession(params: {
   }, [answers, bookId, chapterNumber, load, session, syncFromSession, scoreLocally]);
 
   const retry = useCallback(async () => {
+    // If the quiz was already passed, the API returns status "passed" with
+    // the old result — it won't reset. Build a fresh local session instead
+    // so the user can retake the quiz for practice.
+    if (session?.status === "passed") {
+      const fresh = buildLocalSession();
+      if (fresh) {
+        fresh.attemptNumber = (session.attemptsCount ?? 0) + 1;
+        setSession(fresh);
+        syncFromSession(fresh);
+        return fresh;
+      }
+    }
     return load();
-  }, [load]);
+  }, [load, session, buildLocalSession, syncFromSession]);
 
   const toggleExplanation = useCallback(
     (questionId: string) => {

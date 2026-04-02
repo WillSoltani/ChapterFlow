@@ -24,8 +24,8 @@ export function HeroSection({ data, onSwitchBook }: HeroSectionProps) {
   const primaryBook = data.activeBooks[0] ?? null;
   const otherBooks = data.activeBooks.slice(1);
 
-  // Estimate available FP today from incomplete quests
-  const availableFP = data.dailyQuests
+  // Estimate available IP today from incomplete quests
+  const availableIP = data.dailyQuests
     .filter((q) => !q.completed)
     .reduce((sum) => sum + 25, 0);
 
@@ -33,7 +33,7 @@ export function HeroSection({ data, onSwitchBook }: HeroSectionProps) {
     <section className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1.2fr]">
       {/* Left Column — Motivation Cluster */}
       <div className="flex flex-col gap-6">
-        {/* Flow Points — top right on mobile, absolute on desktop */}
+        {/* Insight Points — top right on mobile, absolute on desktop */}
         <div className="flex items-start justify-between">
           <PersonalizedGreeting
             name={data.user.name}
@@ -46,8 +46,8 @@ export function HeroSection({ data, onSwitchBook }: HeroSectionProps) {
             targetMinutes={data.todayGoal.targetMinutes}
           />
           <FlowPointsIndicator
-            points={data.user.flowPoints}
-            availableFPToday={availableFP}
+            points={data.user.insightPoints}
+            availableIPToday={availableIP}
           />
         </div>
 

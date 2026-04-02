@@ -375,8 +375,8 @@ export async function POST(
       nextProgress,
     });
 
-    // Mode-dependent Flow Points: first attempt earns more than retries,
-    // and harder modes earn more to incentivize challenge play
+    // Mode-dependent Insight Points (quiz-pass portion only — §1.1).
+    // Loop completion IP awarded separately via /me/loop-complete endpoint.
     const isFirstAttempt = expectedAttemptNumber === 1;
     const quizPassPoints = isFirstAttempt
       ? CHAPTER_FP.quizPassFirstAttempt[learningMode]

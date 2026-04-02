@@ -1,6 +1,12 @@
+// Insight Points Economy — formerly Flow Points.
+// DynamoDB fields unchanged for backward compatibility (points, lifetimeEarned, etc.).
+// Source type strings unchanged (quiz_pass, book_complete, etc.).
+
 import { BADGE_DEFINITIONS } from "@/app/book/data/mockBadges";
 
-export const FLOW_POINTS_COOKIE_NAME = "cf_ref";
+export const INSIGHT_POINTS_COOKIE_NAME = "cf_ref";
+/** @deprecated Use INSIGHT_POINTS_COOKIE_NAME */
+export const FLOW_POINTS_COOKIE_NAME = INSIGHT_POINTS_COOKIE_NAME;
 
 export type FlowPointsSourceType =
   | "onboarding_complete"
@@ -33,38 +39,54 @@ export type FlowPointsRewardDefinition = {
   highlight: string;
 };
 
-export type FlowPointsEarningRule = {
-  sourceType: FlowPointsSourceType;
+export type InsightPointsEarningRule = {
+  sourceType: FlowPointsSourceType | "loop_complete" | "streak_day" | "welcome_back";
   label: string;
+  /** Exact amount, or 0 if variable. For display, use displayValue. */
   amount: number;
-  cadence: "one_time" | "per_chapter" | "per_book" | "per_badge" | "per_approved_submission" | "per_referral_stage";
+  /** Human-readable IP range or value for "Ways to Earn" display — implements §8.4 */
+  displayValue: string;
+  /** Explanatory detail shown under the earning rule */
+  detail: string;
+  cadence: "one_time" | "per_chapter" | "per_book" | "per_badge" | "per_approved_submission" | "per_referral_stage" | "daily" | "per_return";
   note: string;
 };
+/** @deprecated Use InsightPointsEarningRule */
+export type FlowPointsEarningRule = InsightPointsEarningRule;
 
-export const FLOW_POINTS_AMOUNTS = {
+export const INSIGHT_POINTS_AMOUNTS = {
   onboardingComplete: 120,
   firstBookStarted: 40,
-  quizPass: 15,
   bookComplete: 120,
   scenarioApproved: 60,
   referralActivationInviter: 180,
   referralActivationInvitee: 80,
   referralProInviter: 600,
-  dailyGoalComplete: 25,
-  weeklyGoalComplete: 50,
+  streakDayBonus: 15,          // §1.1 — awarded on first loop of each active streak day
+  welcomeBack: 30,             // §1.1 — awarded on first loop after 7+ inactive days
+  // Removed in IP migration: quizPass (15), dailyGoalComplete (25), weeklyGoalComplete (50)
+  // — see achievement-definitions.ts and streak system for replacements
+} as const;
+/** @deprecated Use INSIGHT_POINTS_AMOUNTS */
+export const FLOW_POINTS_AMOUNTS = INSIGHT_POINTS_AMOUNTS;
+
+/** Mode-dependent Insight Points for the chapter reading experience.
+ *  Quiz pass values are the quiz-pass-only portion (§1.1).
+ *  Loop complete values are in LOOP_COMPLETE_IP below. */
+export const CHAPTER_FP = {
+  quizPassFirstAttempt: { guided: 50, standard: 60, challenge: 90 },
+  quizPassRetry: { guided: 30, standard: 35, challenge: 60 },
+  quizPerfectScore: { guided: 30, standard: 50, challenge: 80 },
+  // Removed in IP migration — see achievement-definitions.ts and streak system for replacements:
+  // quizSpeedBonus, quizScoreImproved, scenarioSubmitted, streakBonus,
+  // reviewSessionComplete, reviewAllCorrect
 } as const;
 
-/** Mode-dependent Flow Points for the chapter reading experience */
-export const CHAPTER_FP = {
-  quizPassFirstAttempt: { guided: 80, standard: 100, challenge: 150 },
-  quizPassRetry: { guided: 50, standard: 60, challenge: 100 },
-  quizPerfectScore: { guided: 30, standard: 50, challenge: 80 },
-  quizSpeedBonus: { guided: 0, standard: 0, challenge: 30 },
-  quizScoreImproved: 20,
-  scenarioSubmitted: 60,
-  streakBonus: 25,
-  reviewSessionComplete: 15,
-  reviewAllCorrect: 10,
+/** Loop completion IP — awarded when Unlock step finishes after quiz pass (§1.1) */
+export const LOOP_COMPLETE_IP = {
+  guided: { firstAttempt: 30, retry: 20 },
+  standard: { firstAttempt: 40, retry: 25 },
+  challenge: { firstAttempt: 60, retry: 40 },
 } as const;
 
 /** Pass thresholds per learning mode (percentage) */
@@ -127,78 +149,85 @@ export const FLOW_POINTS_REWARDS: FlowPointsRewardDefinition[] = [
   },
 ];
 
-export const FLOW_POINTS_EARNING_RULES: FlowPointsEarningRule[] = [
-  {
-    sourceType: "onboarding_complete",
-    label: "Finish onboarding",
-    amount: FLOW_POINTS_AMOUNTS.onboardingComplete,
-    cadence: "one_time",
-    note: "A meaningful early win for setting up the app properly.",
-  },
-  {
-    sourceType: "first_book_started",
-    label: "Start your first book",
-    amount: FLOW_POINTS_AMOUNTS.firstBookStarted,
-    cadence: "one_time",
-    note: "Rewards real activation, not account creation alone.",
-  },
+// Implements §8.4 — Accurate "Ways to Earn" specification
+export const INSIGHT_POINTS_EARNING_RULES: InsightPointsEarningRule[] = [
   {
     sourceType: "quiz_pass",
-    label: "Pass a chapter quiz",
-    amount: FLOW_POINTS_AMOUNTS.quizPass,
+    label: "Complete a learning loop",
+    amount: 0,
+    displayValue: "80–230 IP",
+    detail: "Varies by mode and quiz performance. Challenge mode and perfect scores earn the most.",
     cadence: "per_chapter",
-    note: "Only on the first pass for each chapter.",
+    note: "Includes quiz pass + loop completion. Only on the first pass for each chapter.",
+  },
+  {
+    sourceType: "streak_day",
+    label: "Maintain your streak",
+    amount: INSIGHT_POINTS_AMOUNTS.streakDayBonus,
+    displayValue: "+15 IP/day",
+    detail: "Awarded on your first loop each day while your streak is active.",
+    cadence: "daily",
+    note: "Requires completing at least one full learning loop per day.",
   },
   {
     sourceType: "book_complete",
     label: "Finish a book",
-    amount: FLOW_POINTS_AMOUNTS.bookComplete,
+    amount: INSIGHT_POINTS_AMOUNTS.bookComplete,
+    displayValue: "120 IP",
+    detail: "Awarded when you complete every chapter.",
     cadence: "per_book",
     note: "Reserved for true milestone progress.",
   },
   {
     sourceType: "badge_earned",
-    label: "Earn a badge",
+    label: "Earn an achievement",
     amount: 0,
+    displayValue: "15–500 IP",
+    detail: "Different achievements award different amounts. Check the Achievements tab for details.",
     cadence: "per_badge",
-    note: "Badge awards use each badge's published Flow Points value.",
+    note: "Achievement awards use each achievement's published Insight Points value.",
   },
   {
-    sourceType: "scenario_approved",
-    label: "Get a scenario approved",
-    amount: FLOW_POINTS_AMOUNTS.scenarioApproved,
-    cadence: "per_approved_submission",
-    note: "Paid only after moderation approval, never on raw submission.",
+    sourceType: "onboarding_complete",
+    label: "Complete onboarding",
+    amount: INSIGHT_POINTS_AMOUNTS.onboardingComplete,
+    displayValue: "120 IP",
+    detail: "One-time award for setting up your reading preferences.",
+    cadence: "one_time",
+    note: "A meaningful early win for setting up the app properly.",
   },
   {
     sourceType: "referral_activation_inviter",
-    label: "Refer an active reader",
-    amount: FLOW_POINTS_AMOUNTS.referralActivationInviter,
+    label: "Refer a friend",
+    amount: 0,
+    displayValue: "1 week Pro or 200 IP",
+    detail: "Give a friend a free week of Pro — you'll both be rewarded.",
     cadence: "per_referral_stage",
-    note: "Paid when the referred user completes onboarding and starts their first book.",
-  },
-  {
-    sourceType: "referral_pro_inviter",
-    label: "Refer a Pro subscriber",
-    amount: FLOW_POINTS_AMOUNTS.referralProInviter,
-    cadence: "per_referral_stage",
-    note: "Reserved for real paid conversion, not invite sends.",
+    note: "Paid when the referred user completes their first full learning loop.",
   },
 ];
+/** @deprecated Use INSIGHT_POINTS_EARNING_RULES */
+export const FLOW_POINTS_EARNING_RULES = INSIGHT_POINTS_EARNING_RULES;
 
-export function getFlowPointsReward(rewardId: FlowPointsRewardId): FlowPointsRewardDefinition | null {
+export const INSIGHT_POINTS_REWARDS = FLOW_POINTS_REWARDS;
+
+export function getInsightPointsReward(rewardId: FlowPointsRewardId): FlowPointsRewardDefinition | null {
   return FLOW_POINTS_REWARDS.find((reward) => reward.rewardId === rewardId) ?? null;
 }
+/** @deprecated Use getInsightPointsReward */
+export const getFlowPointsReward = getInsightPointsReward;
 
-export function getBadgeFlowPoints(badgeId: string): number {
+export function getAchievementIP(badgeId: string): number {
   return BADGE_DEFINITIONS.find((badge) => badge.id === badgeId)?.flowPoints ?? 0;
 }
+/** @deprecated Use getAchievementIP */
+export const getBadgeFlowPoints = getAchievementIP;
 
 export function getBadgeName(badgeId: string): string | null {
   return BADGE_DEFINITIONS.find((badge) => badge.id === badgeId)?.name ?? null;
 }
 
-export function getFlowPointsSourceTitle(sourceType: FlowPointsSourceType): string {
+export function getInsightPointsSourceTitle(sourceType: string): string {
   switch (sourceType) {
     case "onboarding_complete":
       return "Onboarding complete";
@@ -206,10 +235,14 @@ export function getFlowPointsSourceTitle(sourceType: FlowPointsSourceType): stri
       return "First book started";
     case "quiz_pass":
       return "Quiz passed";
+    case "loop_complete":
+      return "Learning loop completed";
     case "book_complete":
       return "Book completed";
     case "badge_earned":
-      return "Badge earned";
+      return "Achievement earned";
+    case "achievement_earned":
+      return "Achievement earned";
     case "scenario_approved":
       return "Scenario approved";
     case "referral_activation_inviter":
@@ -222,13 +255,25 @@ export function getFlowPointsSourceTitle(sourceType: FlowPointsSourceType): stri
       return "Reward redeemed";
     case "admin_adjustment":
       return "Points adjustment";
+    case "streak_day":
+      return "Streak day bonus";
+    case "streak_milestone":
+      return "Streak milestone";
+    case "tier_advance":
+      return "Tier advancement";
+    case "insight_spark":
+      return "Insight Spark";
+    case "welcome_back":
+      return "Welcome back";
     default:
-      return "Flow Points";
+      return "Insight Points";
   }
 }
+/** @deprecated Use getInsightPointsSourceTitle */
+export const getFlowPointsSourceTitle = getInsightPointsSourceTitle;
 
-export function getFlowPointsSourceSubtitle(
-  sourceType: FlowPointsSourceType,
+export function getInsightPointsSourceSubtitle(
+  sourceType: string,
   metadata?: Record<string, unknown> | null
 ): string | null {
   switch (sourceType) {
@@ -253,7 +298,26 @@ export function getFlowPointsSourceSubtitle(
     case "referral_activation_invitee":
     case "referral_pro_inviter":
       return typeof metadata?.inviteCode === "string" ? `Invite ${metadata.inviteCode}` : null;
+    case "loop_complete": {
+      const bookTitle = typeof metadata?.bookTitle === "string" ? metadata.bookTitle : null;
+      const chapterLabel =
+        typeof metadata?.chapterLabel === "string" ? metadata.chapterLabel : null;
+      if (bookTitle && chapterLabel) return `${bookTitle} · ${chapterLabel}`;
+      return chapterLabel ?? bookTitle;
+    }
+    case "streak_day":
+      return typeof metadata?.date === "string" ? `Day ${metadata.currentStreak ?? ""}` : null;
+    case "streak_milestone":
+      return typeof metadata?.days === "number" ? `${metadata.days}-day streak` : null;
+    case "achievement_earned":
+      return typeof metadata?.achievementName === "string" ? metadata.achievementName : null;
+    case "tier_advance":
+      return typeof metadata?.tierName === "string" ? metadata.tierName : null;
+    case "welcome_back":
+      return null;
     default:
       return null;
   }
 }
+/** @deprecated Use getInsightPointsSourceSubtitle */
+export const getFlowPointsSourceSubtitle = getInsightPointsSourceSubtitle;

@@ -133,6 +133,7 @@ export function BookLibraryClient() {
     <main className="cf-app-shell">
       <TopNav
         name={viewerName}
+        avatarUrl={viewerIdentity.avatarDataUrl}
         activeTab="library"
         searchQuery={filters.searchQuery}
         onSearchChange={setSearchQuery}

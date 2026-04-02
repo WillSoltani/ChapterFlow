@@ -1,3 +1,7 @@
+// @deprecated — Badge data is being superseded by app/book/badges/lib/achievement-definitions.ts.
+// Kept temporarily for backward compatibility with the existing badge UI.
+// See §4.1–4.4 of the Insight Points specification.
+
 import type { Badge, BadgeCategory } from "./badge-types";
 
 export const CATEGORY_META: Record<

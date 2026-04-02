@@ -51,7 +51,7 @@ export async function PUT(req: Request) {
         : undefined;
     const badgeName = getBadgeName(badgeId);
     if (!badgeName) {
-      throw new BookApiError(400, "invalid_badge", "This badge cannot award Flow Points.");
+      throw new BookApiError(400, "invalid_badge", "This badge cannot award Insight Points.");
     }
 
     const created = await putBadgeAward(tableName, {

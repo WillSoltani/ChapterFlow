@@ -573,9 +573,9 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
     [analytics]
   );
 
-  // E1: Featured earned + 2 closest locked badges
+  // E1: Featured earned + 2 closest locked badges (capped at 6 for clean grid)
   const profileBadgeShowcase = useMemo(
-    () => badgeSystem.featuredBadges.slice(0, 5),
+    () => badgeSystem.featuredBadges.slice(0, 4),
     [badgeSystem.featuredBadges]
   );
 
@@ -712,6 +712,7 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
     <main className="cf-app-shell">
       <TopNav
         name={viewerName}
+        avatarUrl={profile.avatarDataUrl}
         activeTab="profile"
         searchQuery=""
         onSearchChange={() => undefined}
@@ -1028,7 +1029,12 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
               title="Achievements"
               description="Celebrate what you've earned and see what's next."
               icon={<Award className="h-5 w-5" />}
-              right={<Button variant="secondary" onClick={() => router.push("/book/badges")}>View all achievements</Button>}
+              right={
+                <div className="flex items-center gap-3">
+                  <span className="text-xs text-(--cf-text-soft)">{badgeSystem.earnedCount} of {badgeSystem.visibleCount} earned</span>
+                  <Button variant="secondary" onClick={() => router.push("/book/badges")}>View all</Button>
+                </div>
+              }
             >
               <div className="space-y-6">
                 {/* E2: Next milestone */}
@@ -1058,7 +1064,7 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
                 </div>
 
                 {achievementView === "showcase" ? (
-                  <StaggeredBadgeGrid className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                  <StaggeredBadgeGrid className="grid gap-3 sm:gap-4 sm:grid-cols-2 xl:grid-cols-3">
                     {profileBadgeShowcase.length > 0 ? (
                       profileBadgeShowcase.map((badge, index) => (
                         <StaggeredBadgeItem key={badge.id}>
@@ -1073,13 +1079,11 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
                     {/* E1: Show 2 closest locked badges */}
                     {closestLockedBadges.map((badge) => (
                       <StaggeredBadgeItem key={badge.id}>
-                        <div className="relative">
-                          <FeaturedBadgeCard
-                            badge={badge}
-                            subtitle={`${badge.progressValue}/${badge.targetValue} — ${Math.round((badge.progressValue / badge.targetValue) * 100)}%`}
-                            onOpen={() => setSelectedBadge(badge)}
-                          />
-                        </div>
+                        <FeaturedBadgeCard
+                          badge={badge}
+                          subtitle={`${badge.progressValue}/${badge.targetValue} — ${Math.round((badge.progressValue / badge.targetValue) * 100)}%`}
+                          onOpen={() => setSelectedBadge(badge)}
+                        />
                       </StaggeredBadgeItem>
                     ))}
                     {!profileBadgeShowcase.length && !closestLockedBadges.length ? (
@@ -1110,21 +1114,6 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
                   </div>
                 )}
 
-                {/* Achievement stats row */}
-                <div className="flex flex-wrap gap-6 rounded-[22px] border border-(--cf-border) bg-(--cf-surface-muted) px-5 py-4">
-                  <div>
-                    <p className="text-[11px] uppercase tracking-[0.22em] text-(--cf-text-soft)">Earned</p>
-                    <p className="mt-1 text-lg font-semibold text-(--cf-text-1)">{badgeSystem.earnedCount}</p>
-                  </div>
-                  <div>
-                    <p className="text-[11px] uppercase tracking-[0.22em] text-(--cf-text-soft)">Locked</p>
-                    <p className="mt-1 text-lg font-semibold text-(--cf-text-1)">{badgeSystem.lockedBadges.length}</p>
-                  </div>
-                  <div>
-                    <p className="text-[11px] uppercase tracking-[0.22em] text-(--cf-text-soft)">Total</p>
-                    <p className="mt-1 text-lg font-semibold text-(--cf-text-1)">{badgeSystem.earnedCount} of {badgeSystem.visibleCount}</p>
-                  </div>
-                </div>
               </div>
             </SectionCard>
           </div>

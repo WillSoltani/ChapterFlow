@@ -9,7 +9,7 @@ interface CompactHeaderProps {
   firstName: string;
   streakCount: number;
   dailyProgress: number;
-  flowPoints: number;
+  insightPoints: number;
   subtitle: string;
   isNewUser?: boolean;
 }
@@ -25,7 +25,7 @@ export function CompactHeader({
   firstName,
   streakCount,
   dailyProgress,
-  flowPoints,
+  insightPoints,
   subtitle,
   isNewUser = false,
 }: CompactHeaderProps) {
@@ -103,7 +103,7 @@ export function CompactHeader({
                 className="text-sm tabular-nums"
                 style={{ color: "var(--cf-text-3)" }}
               >
-                {flowPoints.toLocaleString()}
+                {insightPoints.toLocaleString()}
               </span>
             </Link>
           </>

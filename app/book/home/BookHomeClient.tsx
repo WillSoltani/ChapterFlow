@@ -22,7 +22,7 @@ import { type BookProgressSnapshot } from "@/app/book/hooks/useBookAnalytics";
 import { useKeyboardShortcut } from "@/app/book/hooks/useKeyboardShortcut";
 import { useSavedBooks } from "@/app/book/hooks/useSavedBooks";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
-import { useFlowPoints } from "@/app/book/hooks/useFlowPoints";
+import { useInsightPoints } from "@/app/book/hooks/useInsightPoints";
 import {
   BadgeDetailPanel,
   DashboardAchievementWidget,
@@ -91,7 +91,7 @@ export function BookHomeClient() {
     preferredExampleContext: onboarding.preferredExampleContext,
   });
   const { saved, hydrated: savedHydrated } = useSavedBooks(onboarding.setupComplete);
-  const flowPoints = useFlowPoints(onboarding.setupComplete);
+  const insightPoints = useInsightPoints(onboarding.setupComplete);
   const badgeSystem = useBadgeSystem({
     selectedBookIds: onboarding.selectedBookIds,
     dailyGoalMinutes: onboarding.dailyGoalMinutes,
@@ -286,6 +286,7 @@ export function BookHomeClient() {
 
       <TopNav
         name={viewerName}
+        avatarUrl={viewerIdentity.avatarDataUrl}
         activeTab="home"
         searchQuery={dashboard.state.searchQuery}
         onSearchChange={dashboard.setSearchQuery}
@@ -377,12 +378,12 @@ export function BookHomeClient() {
 
         <div className="mt-7">
           <FlowPointsSection
-            loading={flowPoints.loading}
-            payload={flowPoints.payload}
-            error={flowPoints.error}
-            redeemingRewardId={flowPoints.redeemingRewardId}
-            message={flowPoints.redeemMessage}
-            onRedeem={flowPoints.redeemReward}
+            loading={insightPoints.loading}
+            payload={insightPoints.payload}
+            error={insightPoints.error}
+            redeemingRewardId={insightPoints.redeemingRewardId}
+            message={insightPoints.redeemMessage}
+            onRedeem={insightPoints.redeemReward}
           />
         </div>
 

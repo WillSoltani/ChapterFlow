@@ -61,7 +61,7 @@ function CelebrationToast({
               You&apos;ve mastered {bookTitle}!
             </p>
             <p className="mt-1 text-[13px]" style={{ color: "var(--accent-amber)" }}>
-              +{xp} XP earned · Level {MOCK_USER_STATS.level} Reader
+              +{xp} IP earned · Level {MOCK_USER_STATS.level} Reader
             </p>
           </div>
         </motion.div>

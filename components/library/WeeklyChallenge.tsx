@@ -74,7 +74,7 @@ export function WeeklyChallenge({
                 <div className="mt-1 flex flex-wrap items-center gap-3 text-[12px]" style={{ color: "var(--text-secondary)" }}>
                   {/* Reward */}
                   <span>
-                    Reward: {challenge.reward.xp} XP
+                    Reward: {challenge.reward.xp} IP
                     {challenge.reward.badge && <> + &ldquo;{challenge.reward.badge}&rdquo; badge</>}
                   </span>
 

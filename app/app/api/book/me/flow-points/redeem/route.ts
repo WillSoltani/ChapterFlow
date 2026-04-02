@@ -78,7 +78,7 @@ export async function POST(req: Request) {
     }
 
     if (state.points < reward.costPoints) {
-      throw new BookApiError(409, "insufficient_points", "You do not have enough Flow Points yet.");
+      throw new BookApiError(409, "insufficient_points", "You do not have enough Insight Points yet.");
     }
 
     const passExpiresAt =

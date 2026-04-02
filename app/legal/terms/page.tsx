@@ -49,7 +49,7 @@ export default function TermsOfServicePage() {
           <ul className="list-disc pl-6 space-y-2">
             <li>
               <strong style={{ color: "var(--text-heading)" }}>Free Plan:</strong> Access to up to 2 complete books,
-              Standard and Guided learning modes, and core features including quizzes, progress tracking, and Flow Points.
+              Standard and Guided learning modes, and core features including quizzes, progress tracking, and Insight Points.
             </li>
             <li>
               <strong style={{ color: "var(--text-heading)" }}>Pro Plan:</strong> $7.99 CAD per month (or $5.99 CAD/month
@@ -84,13 +84,13 @@ export default function TermsOfServicePage() {
 
         <section>
           <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
-            6. Flow Points
+            6. Insight Points
           </h2>
           <ul className="list-disc pl-6 space-y-2">
-            <li>Flow Points are earned through reading activities, quiz completion, referrals, and other in-app actions.</li>
-            <li>Flow Points have no monetary value and cannot be exchanged for cash, transferred between accounts, or sold.</li>
-            <li>Flow Points can be redeemed for in-app rewards such as bonus book slots and temporary Pro access passes.</li>
-            <li>We reserve the right to adjust Flow Points balances or earning rates to maintain the integrity of the rewards system.</li>
+            <li>Insight Points are earned through reading activities, quiz completion, referrals, and other in-app actions.</li>
+            <li>Insight Points have no monetary value and cannot be exchanged for cash, transferred between accounts, or sold.</li>
+            <li>Insight Points can be redeemed for in-app rewards such as bonus book slots and temporary Pro access passes.</li>
+            <li>We reserve the right to adjust Insight Points balances or earning rates to maintain the integrity of the rewards system.</li>
           </ul>
         </section>
 

@@ -2,26 +2,27 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
+import { INSIGHT_POINTS_EARNING_RULES } from "@/app/book/_lib/flow-points-economy";
 
 interface RewardsCardProps {
-  flowPoints: number;
+  insightPoints: number;
   nextRewardName: string;
   pointsRequired: number;
-  isPro: boolean;
 }
 
 export function RewardsCard({
-  flowPoints,
+  insightPoints,
   nextRewardName,
   pointsRequired,
-  isPro,
 }: RewardsCardProps) {
   const prefersReducedMotion = useReducedMotion();
-  const progress = Math.min((flowPoints / pointsRequired) * 100, 100);
+  const progress = Math.min((insightPoints / pointsRequired) * 100, 100);
 
+  const quizRule = INSIGHT_POINTS_EARNING_RULES.find((r) => r.sourceType === "quiz_pass");
+  const bookRule = INSIGHT_POINTS_EARNING_RULES.find((r) => r.sourceType === "book_complete");
   const quickEarns = [
-    { label: "Complete a chapter quiz", points: 15 },
-    { label: "Finish a book", points: 40 },
+    { label: quizRule?.label ?? "Complete a learning loop", display: quizRule?.displayValue ?? "80–230 IP" },
+    { label: bookRule?.label ?? "Finish a book", display: bookRule?.displayValue ?? "120 IP" },
   ];
 
   return (
@@ -52,7 +53,7 @@ export function RewardsCard({
             className="font-(family-name:--font-jetbrains) text-2xl font-bold tabular-nums"
             style={{ color: "var(--cf-text-1)" }}
           >
-            {flowPoints.toLocaleString()}
+            {insightPoints.toLocaleString()}
           </span>
           {/* Shine sweep effect */}
           {!prefersReducedMotion && (
@@ -75,7 +76,7 @@ export function RewardsCard({
           )}
         </span>
         <span className="text-xs" style={{ color: "var(--cf-text-3)" }}>
-          Flow Points
+          Insight Points
         </span>
       </div>
 
@@ -85,10 +86,10 @@ export function RewardsCard({
           className="h-1.5 overflow-hidden rounded-full"
           style={{ background: "var(--cf-surface-muted)" }}
           role="progressbar"
-          aria-valuenow={flowPoints}
+          aria-valuenow={insightPoints}
           aria-valuemin={0}
           aria-valuemax={pointsRequired}
-          aria-label={`${flowPoints} of ${pointsRequired} points toward ${nextRewardName}`}
+          aria-label={`${insightPoints} of ${pointsRequired} points toward ${nextRewardName}`}
         >
           <motion.div
             className="h-full rounded-full"
@@ -107,7 +108,7 @@ export function RewardsCard({
         </div>
         <p className="mt-1.5 text-xs" style={{ color: "var(--cf-text-soft)" }}>
           <span className="tabular-nums" style={{ color: "var(--cf-text-3)" }}>
-            {flowPoints}
+            {insightPoints}
           </span>{" "}
           / {pointsRequired} →{" "}
           <span style={{ color: "var(--cf-text-3)" }}>{nextRewardName}</span>
@@ -126,22 +127,20 @@ export function RewardsCard({
               className="tabular-nums font-medium"
               style={{ color: "var(--cf-accent)" }}
             >
-              +{item.points} pts
+              {item.display}
             </span>
           </div>
         ))}
       </div>
 
-      {/* Pro note */}
-      {!isPro && (
-        <Link
-          href="/pricing"
-          className="mt-3 block text-[11px] transition-colors hover:text-accent-violet"
-          style={{ color: "var(--cf-text-soft)" }}
-        >
-          2x points with Pro ✨
-        </Link>
-      )}
+      {/* Link to rewards page */}
+      <Link
+        href="/rewards"
+        className="mt-3 block text-[11px] transition-colors hover:text-accent-violet"
+        style={{ color: "var(--cf-text-soft)" }}
+      >
+        View all rewards →
+      </Link>
     </motion.div>
   );
 }

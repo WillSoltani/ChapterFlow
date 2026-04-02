@@ -13,6 +13,7 @@ export type BookViewerIdentity = {
   givenName: string | null;
   familyName: string | null;
   preferredUsername: string | null;
+  avatarDataUrl: string | null;
   source: "profile" | "cognito" | "email" | "fallback";
 };
 
@@ -28,6 +29,7 @@ export type BookViewerLocation = {
 
 type ViewerPayload = {
   identity?: Partial<BookViewerIdentity> | null;
+  profile?: { avatarDataUrl?: string | null } | null;
   inferredLocation?: BookViewerLocation | null;
 };
 
@@ -48,6 +50,7 @@ const defaultIdentity: BookViewerIdentity = {
   givenName: null,
   familyName: null,
   preferredUsername: null,
+  avatarDataUrl: null,
   source: "fallback",
 };
 
@@ -109,15 +112,22 @@ export function useBookViewer() {
     fetchBookJson<ViewerPayload>("/app/api/book/me/profile")
       .then((payload) => {
         if (!mounted) return;
+        const avatarFromProfile =
+          typeof payload.profile?.avatarDataUrl === "string"
+            ? payload.profile.avatarDataUrl
+            : null;
         if (payload.identity) {
           setIdentity({
             ...defaultIdentity,
             ...payload.identity,
+            avatarDataUrl: avatarFromProfile,
             displayName:
               typeof payload.identity.displayName === "string" && payload.identity.displayName.trim()
                 ? payload.identity.displayName
                 : defaultIdentity.displayName,
           });
+        } else {
+          setIdentity((prev) => ({ ...prev, avatarDataUrl: avatarFromProfile }));
         }
         setInferredLocation(payload.inferredLocation ?? null);
       })

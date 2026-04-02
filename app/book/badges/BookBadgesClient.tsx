@@ -211,6 +211,7 @@ export function BookBadgesClient() {
     <main className="cf-app-shell">
       <TopNav
         name={viewerName}
+        avatarUrl={viewerIdentity.avatarDataUrl}
         activeTab="badges"
         searchQuery=""
         onSearchChange={() => {}}

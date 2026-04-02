@@ -6,7 +6,7 @@ import type { DailyQuest } from "./progressTypes";
 
 interface DailyQuestsProps {
   quests: DailyQuest[];
-  bonusFP: number;
+  bonusIP: number;
 }
 
 /** Map quest id to accent color and icon component */
@@ -27,7 +27,7 @@ function getQuestAccent(questId: string): {
   }
 }
 
-export function DailyQuests({ quests, bonusFP }: DailyQuestsProps) {
+export function DailyQuests({ quests, bonusIP }: DailyQuestsProps) {
   const prefersReduced = useReducedMotion();
   const allComplete = quests.every((q) => q.completed);
   const allPartiallyStarted =
@@ -76,7 +76,7 @@ export function DailyQuests({ quests, bonusFP }: DailyQuestsProps) {
               : undefined
           }
         >
-          {"\u{1F381}"} +{bonusFP} FP for all
+          {"\u{1F381}"} +{bonusIP} IPfor all
         </motion.span>
       </div>
 
@@ -89,7 +89,7 @@ export function DailyQuests({ quests, bonusFP }: DailyQuestsProps) {
             color: "var(--accent-emerald)",
           }}
         >
-          {"\u{1F389}"} All quests complete! +{bonusFP} FP earned
+          {"\u{1F389}"} All quests complete! +{bonusIP} IPearned
         </div>
       )}
 

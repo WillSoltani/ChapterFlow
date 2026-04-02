@@ -53,54 +53,18 @@ async function resolveUserIdForEvent(
   return getUserIdByStripeCustomer(tableName, customerId);
 }
 
-async function maybeAwardReferralProConversion(params: {
+// §6.1 amended — The referral_pro_inviter 600 IP payout has been REMOVED entirely.
+// Rationale: uncapped per-occurrence faucet, sender-benefit framing.
+// Motivational value redistributed into escalation tier bonuses (§6.3, P3).
+// The function is retained as a no-op to avoid breaking callers during migration.
+async function maybeAwardReferralProConversion(_params: {
   tableName: string;
   analyticsTable: string | null;
   userId: string;
 }) {
-  const claim = await getUserReferralClaim(params.tableName, params.userId);
-  if (!claim || claim.proRewardedAt) return;
-
-  const award = await awardFlowPoints(params.tableName, {
-    userId: claim.inviterUserId,
-    amount: FLOW_POINTS_AMOUNTS.referralProInviter,
-    sourceType: "referral_pro_inviter",
-    sourceId: claim.claimId,
-    metadata: {
-      inviteCode: claim.inviteCode,
-      referredUserId: params.userId,
-    },
-  });
-
-  if (!award.awarded) return;
-
-  await markReferralProRewarded(
-    params.tableName,
-    claim,
-    FLOW_POINTS_AMOUNTS.referralProInviter
-  ).catch(() => false);
-
-  if (!params.analyticsTable) return;
-  await Promise.allSettled([
-    analyticsTrackFlowPointsTransaction(params.analyticsTable, {
-      userId: claim.inviterUserId,
-      deltaPoints: FLOW_POINTS_AMOUNTS.referralProInviter,
-      direction: "earn",
-      sourceType: "referral_pro_inviter",
-      sourceId: claim.claimId,
-      metadata: {
-        inviteCode: claim.inviteCode,
-        referredUserId: params.userId,
-      },
-    }),
-    analyticsTrackReferral(params.analyticsTable, {
-      userId: claim.inviterUserId,
-      eventType: "referral_pro_rewarded",
-      inviteCode: claim.inviteCode,
-      referredUserId: params.userId,
-      pointsAwarded: FLOW_POINTS_AMOUNTS.referralProInviter,
-    }),
-  ]);
+  // No-op — Pro conversion reward removed per spec §6.1 amendment.
+  // Referral rewards are now milestone-gated via escalation tiers (§6.3).
+  return;
 }
 
 export async function POST(req: Request) {

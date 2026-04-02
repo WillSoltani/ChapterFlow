@@ -15,6 +15,7 @@ import {
   listSavedBooks,
   listUserChapterStates,
 } from "@/app/app/api/book/_lib/repo";
+import { getUserFlowPointsState } from "@/app/app/api/book/_lib/flow-points-repo";
 
 export const runtime = "nodejs";
 
@@ -37,17 +38,19 @@ export async function GET(req: Request) {
       saved,
       readingDays,
       badgeAwards,
+      flowPointsState,
     ] = await Promise.all([
-      listPublishedLibraryCatalog({ tableName, contentBucket }),
-      getUserEntitlement(tableName, user.sub),
-      getUserProfileItem(tableName, user.sub),
-      getUserSettingsItem(tableName, user.sub),
-      listAllUserProgress(tableName, user.sub),
-      listAllUserBookStates(tableName, user.sub),
-      listUserChapterStates(tableName, user.sub),
-      listSavedBooks(tableName, user.sub),
-      listReadingDays(tableName, user.sub),
-      listBadgeAwards(tableName, user.sub),
+      listPublishedLibraryCatalog({ tableName, contentBucket }).catch(() => []),
+      getUserEntitlement(tableName, user.sub).catch(() => null),
+      getUserProfileItem(tableName, user.sub).catch(() => null),
+      getUserSettingsItem(tableName, user.sub).catch(() => null),
+      listAllUserProgress(tableName, user.sub).catch(() => []),
+      listAllUserBookStates(tableName, user.sub).catch(() => []),
+      listUserChapterStates(tableName, user.sub).catch(() => []),
+      listSavedBooks(tableName, user.sub).catch(() => []),
+      listReadingDays(tableName, user.sub).catch(() => []),
+      listBadgeAwards(tableName, user.sub).catch(() => []),
+      getUserFlowPointsState(tableName, user.sub).catch(() => ({ points: 0 })),
     ]);
 
     return bookOk({
@@ -61,6 +64,7 @@ export async function GET(req: Request) {
       saved,
       readingDays,
       badgeAwards,
+      insightPointsBalance: flowPointsState.points,
     });
   });
 }

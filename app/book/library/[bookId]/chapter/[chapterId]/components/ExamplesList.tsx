@@ -216,12 +216,6 @@ function ScenarioCard({
             </p>
           </div>
 
-          {/* Connected to Quiz footer */}
-          <div className="mt-4 rounded-lg bg-(--cr-fill-subtle) px-4 py-2.5 text-sm text-(--cr-text-secondary)">
-            <span className="mr-1">{"\uD83D\uDCD6"}</span>
-            Connected to: Quiz Q{((index * 2) % 10) + 1}
-            {index % 2 === 0 ? `, Q${((index * 2 + 3) % 10) + 1}` : ""}
-          </div>
         </div>
       </div>
     </article>
@@ -330,7 +324,7 @@ export function ExamplesList({
             Real-world examples
           </h2>
 
-          {/* Flow Points badge */}
+          {/* Insight Points badge */}
           <div ref={pointsContainerRef} className="relative">
             <button
               type="button"
@@ -340,7 +334,7 @@ export function ExamplesList({
               aria-haspopup="true"
             >
               <Sparkles className="h-3 w-3" />
-              {submissionPoints} FP
+              {submissionPoints} IP
               <ChevronDown
                 className={[
                   "h-3 w-3 transition-transform duration-200",
@@ -352,7 +346,7 @@ export function ExamplesList({
             {showPointsPopover && (
               <div className="absolute left-0 top-full z-30 mt-2 w-64 rounded-xl border border-(--cr-glass-border) bg-(--cr-bg-surface-2) p-4 shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
                 <p className="text-xs font-bold uppercase tracking-[0.14em] text-(--cr-text-disabled)">
-                  Flow Points
+                  Insight Points
                 </p>
                 <p className="mt-1 text-2xl font-bold text-(--cr-text-heading)">
                   {submissionPoints}
@@ -542,7 +536,7 @@ function AddScenarioModal({
             <div className="flex items-center gap-2">
               <Sparkles className="h-4 w-4 text-(--cr-accent)" />
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-(--cr-accent)">
-                Flow Points reward
+                Insight Points reward
               </p>
             </div>
             <h2 className="mt-1.5 text-lg font-bold text-(--cr-text-heading)">
@@ -551,7 +545,7 @@ function AddScenarioModal({
             <p className="mt-1 text-sm leading-relaxed text-(--cr-text-secondary)">
               Write a relatable real-world scenario. Earn{" "}
               <span className="font-semibold text-(--cr-accent)">
-                +{SCENARIO_REWARD} Flow Points
+                +{SCENARIO_REWARD} Insight Points
               </span>{" "}
               once approved.
             </p>

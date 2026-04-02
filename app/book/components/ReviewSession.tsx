@@ -116,7 +116,7 @@ export function ReviewSession({ onClose }: ReviewSessionProps) {
             ))}
           </div>
 
-          <p className="mt-3 text-sm font-semibold text-(--cr-accent)">+15 FP</p>
+          <p className="mt-3 text-sm font-semibold text-(--cr-accent)">+15 IP</p>
 
           <button
             type="button"

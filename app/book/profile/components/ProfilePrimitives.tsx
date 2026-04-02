@@ -1497,7 +1497,7 @@ export function StaggeredBadgeGrid({ children, className }: { children: ReactNod
 
 export function StaggeredBadgeItem({ children }: { children: ReactNode }) {
   return (
-    <motion.div variants={badgeItemVariants}>
+    <motion.div variants={badgeItemVariants} className="h-full">
       {children}
     </motion.div>
   );

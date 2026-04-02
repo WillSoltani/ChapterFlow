@@ -490,14 +490,14 @@ function ResultsScreen({
           : `You scored ${result.scorePercent}%. Need ${QUIZ_PASS_THRESHOLDS[learningMode]}% to pass.`}
       </p>
 
-      {/* FIX 12: Flow Points */}
+      {/* Insight Points display */}
       {result.passed ? (
         <p className="mt-2 text-lg font-semibold text-(--cr-accent)" style={{ animation: "cr-card-enter 300ms ease-out 1.5s both" }}>
-          +{fpAmount} FP {"\u2726"}
+          +{fpAmount} IP {"\u2726"}
         </p>
       ) : (
         <p className="mt-2 text-xs text-(--cr-text-disabled)">
-          Earn {fpPotential} FP when you pass
+          Earn {fpPotential} IP when you pass
         </p>
       )}
 

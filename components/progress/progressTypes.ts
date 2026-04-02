@@ -12,7 +12,7 @@ export interface ProgressUser {
   name: string;
   readerLevel: ReaderLevel;
   readerLevelProgress: number; // 0-100 toward next level
-  flowPoints: number;
+  insightPoints: number;
   isPro: boolean;
 }
 

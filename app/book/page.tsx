@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import { requireDashboardAccess } from "@/app/_lib/require-dashboard-access";
-import { requireUser } from "@/app/app/api/_lib/auth";
+import { requireUser, AuthError } from "@/app/app/api/_lib/auth";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import { getUserSettingsItem } from "@/app/app/api/book/_lib/repo";
 import { OnboardingFlow } from "@/app/onboarding/components/OnboardingFlow";
@@ -22,9 +22,12 @@ export default async function BookOnboardingPage() {
       redirect("/dashboard");
     }
   } catch (e) {
-    // If it's a redirect (from Next.js), re-throw so it takes effect
+    // Re-throw Next.js redirects so they take effect
     if (e instanceof Error && "digest" in e) throw e;
-    // Dev bypass or token issues — fall through to render onboarding
+    // Only swallow AuthError (dev bypass or token issues).
+    // Re-throw everything else (DynamoDB, network, etc.) so the error
+    // boundary catches it instead of silently showing onboarding.
+    if (!(e instanceof AuthError)) throw e;
   }
 
   return <OnboardingFlow />;

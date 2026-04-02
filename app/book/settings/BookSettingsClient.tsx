@@ -12,6 +12,7 @@ import {
   Bell,
   User,
   Keyboard,
+  LogOut,
 } from "lucide-react";
 
 // Existing hooks
@@ -48,6 +49,7 @@ import { MicroCelebration } from "./components/MicroCelebration";
 import { RefreshPreferencesModal } from "./components/RefreshPreferencesModal";
 import { useSaveToast, SaveToast } from "./components/SaveToast";
 import { PageTransition } from "@/components/ui/PageTransition";
+import { performLogout } from "@/lib/logout";
 import type { RefreshResult } from "./components/RefreshPreferencesModal";
 
 // Constants
@@ -1411,7 +1413,29 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
               </a>
             </div>
 
-            {/* 6F. Danger Zone */}
+            {/* 6F. Sign out */}
+            <div className="px-3">
+              <div className="mt-4 rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) p-4">
+                <p className="text-xs font-bold uppercase tracking-wider text-(--cf-text-3)">
+                  Account
+                </p>
+                <button
+                  type="button"
+                  onClick={performLogout}
+                  className="mt-3 flex w-full items-center gap-2.5 rounded-xl border border-(--cf-border) px-4 py-3 text-left text-sm font-medium text-(--cf-text-2) transition-colors hover:bg-(--cf-accent-muted) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)"
+                >
+                  <LogOut className="h-4 w-4 text-(--cf-text-3)" />
+                  <div>
+                    <span className="text-(--cf-text-1)">Sign out</span>
+                    <p className="text-xs text-(--cf-text-3)">
+                      Sign out of ChapterFlow on this device.
+                    </p>
+                  </div>
+                </button>
+              </div>
+            </div>
+
+            {/* 6G. Danger Zone */}
             <div className="px-3">
               <DangerZone
                 onDeactivate={() =>

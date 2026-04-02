@@ -33,6 +33,12 @@ async function getAuthConfig(): Promise<AuthConfig> {
     return { issuer, jwks, clientId };
   })();
 
+  // Clear cache on failure so the next request retries instead of
+  // permanently returning the rejected promise.
+  cachedAuthConfigPromise.catch(() => {
+    cachedAuthConfigPromise = null;
+  });
+
   return cachedAuthConfigPromise;
 }
 

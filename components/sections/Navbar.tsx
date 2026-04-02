@@ -3,6 +3,8 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { useAuthStatus } from "@/components/auth/useAuthStatus";
+import { performLogout } from "@/lib/logout";
 
 /* ── Logo Icon (matches /dashboard DashboardNavbar) ── */
 
@@ -45,9 +47,14 @@ const AUTH_URL = "/auth/login?returnTo=%2Fbook";
 /* ── Component ─────────────────────────────────────── */
 
 export function Navbar() {
+  const { loggedIn, loading, user } = useAuthStatus();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("");
+
+  const authResolved = !loading;
+  const isLoggedIn = loggedIn === true;
+  const displayName = user?.displayName ?? "Reader";
 
   const linkIds = useMemo(() => NAV_LINKS.map((l) => l.id), []);
 
@@ -187,19 +194,45 @@ export function Navbar() {
           </div>
 
           {/* ── Desktop right actions ───────────── */}
-          <div className="hidden items-center gap-4 md:flex">
-            <a
-              href={AUTH_URL}
-              className="font-(family-name:--font-body) text-[14px] font-medium text-(--text-secondary) transition-colors duration-200 hover:text-(--text-heading)"
-            >
-              Sign in
-            </a>
-            <a
-              href={AUTH_URL}
-              className="rounded-full bg-(--accent-teal) px-5 py-2 font-(family-name:--font-body) text-[13px] font-semibold text-primary-foreground transition-all duration-200 hover:brightness-110 hover:shadow-[0_0_16px_rgba(34,211,238,0.4)]"
-            >
-              Start free &rarr;
-            </a>
+          <div
+            className="hidden items-center gap-4 md:flex transition-opacity duration-200"
+            style={{
+              opacity: authResolved ? 1 : 0,
+              pointerEvents: authResolved ? "auto" : "none",
+            }}
+          >
+            {isLoggedIn ? (
+              <>
+                <button
+                  type="button"
+                  onClick={performLogout}
+                  className="font-(family-name:--font-body) text-[14px] font-medium text-(--text-secondary) transition-colors duration-200 hover:text-(--text-heading)"
+                >
+                  Sign out
+                </button>
+                <Link
+                  href="/dashboard"
+                  className="rounded-full bg-(--accent-teal) px-5 py-2 font-(family-name:--font-body) text-[13px] font-semibold text-primary-foreground transition-all duration-200 hover:brightness-110 hover:shadow-[0_0_16px_rgba(34,211,238,0.4)]"
+                >
+                  {displayName}&rsquo;s Dashboard
+                </Link>
+              </>
+            ) : (
+              <>
+                <a
+                  href={AUTH_URL}
+                  className="font-(family-name:--font-body) text-[14px] font-medium text-(--text-secondary) transition-colors duration-200 hover:text-(--text-heading)"
+                >
+                  Sign in
+                </a>
+                <a
+                  href={AUTH_URL}
+                  className="rounded-full bg-(--accent-teal) px-5 py-2 font-(family-name:--font-body) text-[13px] font-semibold text-primary-foreground transition-all duration-200 hover:brightness-110 hover:shadow-[0_0_16px_rgba(34,211,238,0.4)]"
+                >
+                  Start free &rarr;
+                </a>
+              </>
+            )}
           </div>
 
           {/* ── Mobile hamburger ────────────────── */}
@@ -287,21 +320,49 @@ export function Navbar() {
                 duration: 0.3,
               }}
               className="mt-12 flex flex-col items-center gap-4"
+              style={{
+                opacity: authResolved ? 1 : 0,
+                pointerEvents: authResolved ? "auto" : "none",
+              }}
             >
-              <a
-                href={AUTH_URL}
-                className="font-(family-name:--font-body) text-[16px] font-medium text-(--text-secondary) transition-colors duration-200 hover:text-(--text-heading)"
-                onClick={closeMobile}
-              >
-                Sign in
-              </a>
-              <a
-                href={AUTH_URL}
-                className="rounded-full bg-(--accent-teal) px-7 py-3 font-(family-name:--font-body) text-[15px] font-semibold text-primary-foreground transition-all duration-200 hover:brightness-110"
-                onClick={closeMobile}
-              >
-                Start free &rarr;
-              </a>
+              {isLoggedIn ? (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      closeMobile();
+                      performLogout();
+                    }}
+                    className="font-(family-name:--font-body) text-[16px] font-medium text-(--text-secondary) transition-colors duration-200 hover:text-(--text-heading)"
+                  >
+                    Sign out
+                  </button>
+                  <Link
+                    href="/dashboard"
+                    onClick={closeMobile}
+                    className="rounded-full bg-(--accent-teal) px-7 py-3 font-(family-name:--font-body) text-[15px] font-semibold text-primary-foreground transition-all duration-200 hover:brightness-110"
+                  >
+                    {displayName}&rsquo;s Dashboard
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <a
+                    href={AUTH_URL}
+                    className="font-(family-name:--font-body) text-[16px] font-medium text-(--text-secondary) transition-colors duration-200 hover:text-(--text-heading)"
+                    onClick={closeMobile}
+                  >
+                    Sign in
+                  </a>
+                  <a
+                    href={AUTH_URL}
+                    className="rounded-full bg-(--accent-teal) px-7 py-3 font-(family-name:--font-body) text-[15px] font-semibold text-primary-foreground transition-all duration-200 hover:brightness-110"
+                    onClick={closeMobile}
+                  >
+                    Start free &rarr;
+                  </a>
+                </>
+              )}
             </motion.div>
           </motion.div>
         )}

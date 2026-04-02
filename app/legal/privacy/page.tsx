@@ -39,7 +39,7 @@ export default function PrivacyPolicyPage() {
           </h2>
           <ul className="list-disc pl-6 space-y-2">
             <li>To provide, maintain, and improve ChapterFlow&apos;s reading and learning features.</li>
-            <li>To track your progress, badges, streaks, and Flow Points balance.</li>
+            <li>To track your progress, badges, streaks, and Insight Points balance.</li>
             <li>To personalize your experience based on your chosen preferences and learning style.</li>
             <li>To process payments and manage your subscription through Stripe.</li>
             <li>To detect and prevent abuse, including multi-account exploitation of free book slots.</li>

@@ -8,6 +8,7 @@ import {
   ChevronDown,
   Home,
   LayoutGrid,
+  LogOut,
   Settings,
   Shield,
   TrendingUp,
@@ -18,11 +19,13 @@ import { GlobalSearchPanel } from "@/app/book/home/components/GlobalSearchPanel"
 import { useKeyboardShortcut } from "@/app/book/hooks/useKeyboardShortcut";
 import { ChapterFlowMark } from "@/app/book/components/ChapterFlowMark";
 import { ThemeModeToggle } from "@/components/ThemeModeToggle";
+import { performLogout } from "@/lib/logout";
 
 export type BookNavTab = "home" | "library" | "saved" | "progress" | "badges" | "settings" | "profile";
 
 type TopNavProps = {
   name: string;
+  avatarUrl?: string | null;
   activeTab: BookNavTab;
   searchQuery: string;
   onSearchChange: (value: string) => void;
@@ -48,6 +51,7 @@ const navItems: Array<{
 
 export function TopNav({
   name,
+  avatarUrl,
   activeTab,
   searchQuery,
   onSearchChange,
@@ -60,12 +64,19 @@ export function TopNav({
   const pathname = usePathname();
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showSearchPanel, setShowSearchPanel] = useState(false);
+  const [avatarError, setAvatarError] = useState(false);
 
   const headerRef = useRef<HTMLDivElement | null>(null);
   const desktopSearchRef = useRef<HTMLInputElement | null>(null);
   const mobileSearchRef = useRef<HTMLInputElement | null>(null);
 
   const initial = name.trim().charAt(0).toUpperCase() || "R";
+  const showAvatar = !!avatarUrl && !avatarError;
+
+  // Reset error state when avatar URL changes
+  useEffect(() => {
+    setAvatarError(false);
+  }, [avatarUrl]);
 
   const focusSearchInput = () => {
     const preferMobile = window.matchMedia("(max-width: 767px)").matches;
@@ -258,8 +269,18 @@ export function TopNav({
                 ].join(" ")}
                 aria-label="Profile"
               >
-                <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-linear-to-br from-(--cf-accent) to-(--cf-accent-strong) text-xs font-bold text-white shadow-[0_0_10px_var(--cf-accent-shadow)]">
-                  {initial}
+                <span className="inline-flex h-6 w-6 items-center justify-center overflow-hidden rounded-full bg-linear-to-br from-(--cf-accent) to-(--cf-accent-strong) text-xs font-bold text-white shadow-[0_0_10px_var(--cf-accent-shadow)]">
+                  {showAvatar ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={avatarUrl}
+                      alt={name}
+                      className="h-full w-full object-cover"
+                      onError={() => setAvatarError(true)}
+                    />
+                  ) : (
+                    initial
+                  )}
                 </span>
                 <span className="hidden text-sm font-medium md:inline-flex">{name || "Reader"}</span>
               </Link>
@@ -307,6 +328,16 @@ export function TopNav({
                       <Settings className="h-3.5 w-3.5 text-(--cf-text-3)" />
                       Settings
                     </Link>
+                  </div>
+                  <div className="border-t border-(--cf-divider) mt-1 pt-1">
+                    <button
+                      type="button"
+                      onClick={performLogout}
+                      className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-(--cf-text-2) transition hover:bg-(--cf-danger-bg) hover:text-(--cf-danger-text)"
+                    >
+                      <LogOut className="h-3.5 w-3.5 text-(--cf-text-3)" />
+                      Sign out
+                    </button>
                   </div>
                 </div>
               ) : null}

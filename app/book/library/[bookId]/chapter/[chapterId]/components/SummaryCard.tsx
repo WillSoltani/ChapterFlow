@@ -17,7 +17,8 @@ type SummaryCardProps = {
   showRecap: boolean;
   onToggleRecap: () => void;
   onSaveTakeaways: () => void;
-  onBookmarkTakeaway?: (takeaway: string, saved: boolean) => void;
+  bookmarkedTakeaways: Set<number>;
+  onToggleBookmarkTakeaway: (index: number) => void;
   fontScaleClass: string;
   learningMode?: LearningMode;
   activationPrompt?: string;
@@ -31,7 +32,8 @@ export function SummaryCard({
   showRecap,
   onToggleRecap,
   onSaveTakeaways,
-  onBookmarkTakeaway,
+  bookmarkedTakeaways,
+  onToggleBookmarkTakeaway,
   fontScaleClass,
   learningMode = "standard",
   activationPrompt,
@@ -39,7 +41,6 @@ export function SummaryCard({
   // Track manually-expanded vs auto-expanded takeaways separately
   const [manuallyExpanded, setManuallyExpanded] = useState<Set<string>>(new Set());
   const [autoExpanded, setAutoExpanded] = useState<Set<string>>(new Set());
-  const [bookmarkedTakeaways, setBookmarkedTakeaways] = useState<Set<number>>(new Set());
   const prevMode = useRef<string | null>(null);
 
   const paragraphs = blocks.filter((b) => b.type === "paragraph");
@@ -87,23 +88,6 @@ export function SummaryCard({
       return next;
     });
   }, []);
-
-  const toggleBookmark = useCallback(
-    (index: number, text: string) => {
-      setBookmarkedTakeaways((prev) => {
-        const next = new Set(prev);
-        const wasSaved = next.has(index);
-        if (wasSaved) {
-          next.delete(index);
-        } else {
-          next.add(index);
-        }
-        onBookmarkTakeaway?.(text, !wasSaved);
-        return next;
-      });
-    },
-    [onBookmarkTakeaway]
-  );
 
   return (
     <div className="cr-reading-content space-y-6">
@@ -200,7 +184,7 @@ export function SummaryCard({
                 >
                   <button
                     type="button"
-                    onClick={() => toggleBookmark(index, block.text)}
+                    onClick={() => onToggleBookmarkTakeaway(index)}
                     className={[
                       "absolute right-4 top-4 transition-all duration-200 hover:scale-110",
                       bookmarkedTakeaways.has(index)
@@ -348,14 +332,17 @@ export function SummaryCard({
         </section>
       )}
 
-      {/* ── Takeaway Pills ── */}
+      {/* ── Quick References ── */}
       {takeaways.length > 0 && (
         <section>
           <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-(--cr-text-secondary)">
-            Quick Reference
+            {bookmarkedTakeaways.size > 0 ? "Your Quick References" : "Quick Reference"}
           </p>
           <div className="flex flex-wrap gap-2">
-            {takeaways.map((takeaway) => (
+            {(bookmarkedTakeaways.size > 0
+              ? takeaways.filter((_, i) => bookmarkedTakeaways.has(i))
+              : takeaways
+            ).map((takeaway) => (
               <span
                 key={takeaway}
                 className="rounded-full border border-(--cr-glass-border-teal) bg-(--cr-accent-muted) px-3.5 py-1.5 text-xs font-medium text-(--cr-accent)"
@@ -364,6 +351,11 @@ export function SummaryCard({
               </span>
             ))}
           </div>
+          {bookmarkedTakeaways.size === 0 && (
+            <p className="mt-2 text-xs text-(--cr-text-disabled)">
+              Bookmark takeaways above to personalize this section
+            </p>
+          )}
         </section>
       )}
     </div>

@@ -47,6 +47,23 @@ type DashboardPayload = {
     dayKey: string;
     totalActiveMs: number;
   }>;
+  badgeAwards: Array<{
+    badgeId: string;
+    earnedAt?: string;
+    tier?: string;
+  }>;
+  entitlement?: {
+    plan?: string;
+  } | null;
+  insightPointsBalance?: number;
+  settings?: {
+    onboarding?: {
+      starterShelf?: string[];
+      dailyGoal?: number;
+      onboardingCompleted?: boolean;
+    };
+    dailyGoal?: number;
+  } | null;
 };
 
 type CompletionActivity = {
@@ -55,6 +72,8 @@ type CompletionActivity = {
   completedAt: string;
   dayKey: string;
 };
+
+export type LoopStep = "summary" | "scenarios" | "quiz" | "unlock";
 
 export type BookProgressSnapshot = {
   book: LibraryBookEntry;
@@ -67,6 +86,7 @@ export type BookProgressSnapshot = {
   lastOpenedLabel: string;
   lastActivityAt: string;
   resumeChapterId: string;
+  currentLoopStep: LoopStep | null;
 };
 
 export type HeatmapCell = {
@@ -104,6 +124,10 @@ export type AnalyticsState = {
   upcomingReviews: UpcomingReviewItem[];
   hasAnyProgress: boolean;
   hasAnyEngagement: boolean;
+  earnedBadgeIds: Set<string>;
+  isPro: boolean;
+  insightPoints: number;
+  starterShelf: string[];
 };
 
 const EMPTY_ACTIVITY_LABEL = "No activity yet";
@@ -169,6 +193,31 @@ function chapterLabelById(bookId: string, chapterId: string): string {
   return `${chapter.code} ${chapter.title}`;
 }
 
+function deriveLoopStep(
+  readerState: Record<string, unknown> | null,
+  isChapterCompleted: boolean
+): LoopStep | null {
+  if (!readerState) return "summary";
+  if (isChapterCompleted) return null;
+
+  const quizResult = readerState.quizResult as
+    | { score?: unknown; passed?: unknown }
+    | null
+    | undefined;
+  if (
+    quizResult &&
+    typeof quizResult === "object" &&
+    quizResult.passed === true
+  ) {
+    return "unlock";
+  }
+
+  const activeTab = readerState.activeTab;
+  if (activeTab === "quiz") return "quiz";
+  if (activeTab === "examples") return "scenarios";
+  return "summary";
+}
+
 function statusFromCounts(
   completed: number,
   total: number
@@ -197,6 +246,7 @@ function buildFallbackAnalytics(
       lastOpenedLabel: "Not started",
       lastActivityAt: entry.lastActivityAt,
       resumeChapterId: chapters[0]?.id ?? "",
+      currentLoopStep: null,
     };
   });
 
@@ -220,6 +270,10 @@ function buildFallbackAnalytics(
     upcomingReviews: [],
     hasAnyProgress: false,
     hasAnyEngagement: false,
+    earnedBadgeIds: new Set<string>(),
+    isPro: false,
+    insightPoints: 0,
+    starterShelf: [],
   };
 }
 
@@ -357,6 +411,18 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
         const bookStateRows = Array.isArray(payload.bookStates) ? payload.bookStates : [];
         const chapterStateRows = Array.isArray(payload.chapterStates) ? payload.chapterStates : [];
         const readingDayRows = Array.isArray(payload.readingDays) ? payload.readingDays : [];
+        const badgeAwardRows = Array.isArray(payload.badgeAwards) ? payload.badgeAwards : [];
+        const earnedBadgeIds = new Set(badgeAwardRows.map((item) => item.badgeId));
+        const onboardingSettings = payload.settings?.onboarding ?? {};
+        const starterShelf: string[] = Array.isArray(onboardingSettings.starterShelf)
+          ? onboardingSettings.starterShelf
+          : [];
+        const settingsDailyGoal: number =
+          typeof payload.settings?.dailyGoal === "number"
+            ? payload.settings.dailyGoal
+            : typeof onboardingSettings.dailyGoal === "number"
+              ? onboardingSettings.dailyGoal
+              : dailyGoalMinutes;
         const localEntries = buildLibraryCatalog();
         const entries = localEntries;
         const progressByBook = new Map(progressRows.map((item) => [item.bookId, item]));
@@ -396,6 +462,7 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
               lastOpenedLabel: "Not started",
               lastActivityAt: entry.lastActivityAt,
               resumeChapterId: chapters[0]?.id ?? "",
+              currentLoopStep: null,
             };
           }
 
@@ -449,6 +516,16 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
             progress?.lastOpenedAt ||
             entry.lastActivityAt;
 
+          const completedChapterIdSet = new Set(state?.completedChapterIds ?? []);
+          const resumeChapterStates = chapterStatesByBook.get(entry.id) ?? [];
+          const resumeChapterState =
+            resumeChapterStates.find((cs) => cs.chapterId === resumeChapterId)
+            ?? resumeChapterStates.find((cs) => {
+              const ch = chapters.find((c) => c.id === resumeChapterId);
+              return ch && cs.chapterNumber === ch.order;
+            })
+            ?? null;
+
           return {
             book: entry,
             status,
@@ -465,6 +542,13 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
                   : "Not started",
             lastActivityAt,
             resumeChapterId,
+            currentLoopStep:
+              status === "completed"
+                ? null
+                : deriveLoopStep(
+                    resumeChapterState?.state as Record<string, unknown> | null ?? null,
+                    completedChapterIdSet.has(resumeChapterId)
+                  ),
           };
         });
 
@@ -547,7 +631,7 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
 
         setAnalytics({
           streakDays: currentStreak,
-          dailyGoalMinutes,
+          dailyGoalMinutes: settingsDailyGoal,
           minutesReadToday: Math.floor(todayStats.activeMs / 60000),
           totalMinutesRead,
           booksCompleted,
@@ -565,9 +649,14 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
           upcomingReviews,
           hasAnyProgress: totalCompletedChapters > 0,
           hasAnyEngagement: engagedBookSnapshots.length > 0,
+          earnedBadgeIds,
+          isPro: payload.entitlement?.plan === "PRO",
+          insightPoints: typeof payload.insightPointsBalance === "number" ? payload.insightPointsBalance : 0,
+          starterShelf,
         });
         setHydrated(true);
-      } catch {
+      } catch (err) {
+        console.error("Dashboard API failed, using fallback analytics:", err);
         if (!mounted) return;
         const localEntries = buildLibraryCatalog();
         setAnalytics(buildFallbackAnalytics(localEntries, dailyGoalMinutes));

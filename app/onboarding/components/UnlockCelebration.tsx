@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Flame, Star, BarChart3 } from "lucide-react";
 import CanvasConfetti from "./CanvasConfetti";
 import AnimatedCheckmark from "./AnimatedCheckmark";
+import { INSIGHT_POINTS_AMOUNTS } from "@/app/book/_lib/flow-points-economy";
 
 interface UnlockCelebrationProps {
   quizScore: number;
@@ -29,8 +30,8 @@ export default function UnlockCelebration({
     },
     {
       icon: Star,
-      value: "25",
-      label: "Flow Points",
+      value: String(INSIGHT_POINTS_AMOUNTS.onboardingComplete),
+      label: "Insight Points",
       iconColor: "var(--accent-amber)",
       valueColor: "var(--accent-amber)",
       glowBg: "color-mix(in srgb, var(--accent-amber) 12%, transparent)",

@@ -38,7 +38,7 @@ export const queryKeys = {
   // ── Tier 3: Computed / Aggregated ─────────────────────────────────────
   dashboard: () => ["user", "dashboard"] as const,
   badges: () => ["user", "badges"] as const,
-  flowPoints: () => ["user", "flow-points"] as const,
+  insightPoints: () => ["user", "flow-points"] as const,
   analytics: () => ["user", "analytics"] as const,
 
   // ── Tier 4: Ephemeral ─────────────────────────────────────────────────

@@ -128,7 +128,7 @@ export function CompletedShelf({ books, onBookClick }: CompletedShelfProps) {
                 Completed {completedDate}
               </p>
               <p className="mt-0.5 text-[12px] font-(family-name:--font-mono)" style={{ color: "var(--accent-violet)" }}>
-                +{prog.xpEarned} XP earned
+                +{prog.xpEarned} IP earned
               </p>
             </motion.div>
           );

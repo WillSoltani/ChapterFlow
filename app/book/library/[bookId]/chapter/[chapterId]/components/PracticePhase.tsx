@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Trophy } from "lucide-react";
+import { ArrowRight, Bookmark, Trophy } from "lucide-react";
 import { ImplementationPlanCard } from "./ImplementationPlanCard";
 import { ReviewCardsPanel } from "./ReviewCardsPanel";
 import type { ImplementationPlanItem, ReviewCardItem } from "@/app/book/data/mockChapters";
@@ -13,6 +13,7 @@ type PracticePhaseProps = {
   fontScaleClass: string;
   onContinueToNextChapter: () => void;
   nextChapterLabel: string;
+  bookmarkedTakeaways?: string[];
 };
 
 export function PracticePhase({
@@ -23,6 +24,7 @@ export function PracticePhase({
   fontScaleClass,
   onContinueToNextChapter,
   nextChapterLabel,
+  bookmarkedTakeaways,
 }: PracticePhaseProps) {
   return (
     <div className="cr-reading-content space-y-5">
@@ -41,6 +43,32 @@ export function PracticePhase({
         </section>
       )}
 
+      {/* Your Bookmarked Takeaways */}
+      {bookmarkedTakeaways && bookmarkedTakeaways.length > 0 && (
+        <section className="cr-glass-card border-(--cr-accent)/20 px-6 py-5">
+          <div className="mb-3 flex items-center gap-2">
+            <Bookmark className="h-4 w-4 text-(--cr-accent)" fill="currentColor" />
+            <p className="text-xs font-bold uppercase tracking-[0.1em] text-(--cr-accent)">
+              Your Bookmarked Takeaways
+            </p>
+          </div>
+          <ul className="space-y-2">
+            {bookmarkedTakeaways.map((takeaway, i) => (
+              <li
+                key={i}
+                className={`flex gap-3 rounded-xl border border-(--cr-glass-border) bg-(--cr-bg-surface-2) px-4 py-3 text-(--cr-text-primary) leading-[1.75] ${fontScaleClass}`}
+                style={{ fontWeight: 450 }}
+              >
+                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-(--cr-accent)/15 text-[0.65rem] font-bold text-(--cr-accent)">
+                  {i + 1}
+                </span>
+                <span>{takeaway}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
       {/* Implementation Plan */}
       {implementationPlan && (
         <ImplementationPlanCard
@@ -51,8 +79,8 @@ export function PracticePhase({
 
       {/* Predict the Next Chapter */}
       {predictionPrompt && (
-        <section className="rounded-xl border border-purple-500/20 bg-purple-500/5 px-5 py-4">
-          <p className="mb-1.5 text-xs font-bold uppercase tracking-[0.08em] text-purple-400">
+        <section className="rounded-xl border border-(--cr-info)/20 bg-(--cr-info)/5 px-5 py-4">
+          <p className="mb-1.5 text-xs font-bold uppercase tracking-[0.08em] text-(--cr-info)">
             Predict the Next Chapter
           </p>
           <p className={`text-(--cr-text-primary) leading-[1.75] ${fontScaleClass}`}>

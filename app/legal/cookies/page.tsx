@@ -82,7 +82,7 @@ export default function CookiePolicyPage() {
               <tbody>
                 <tr style={{ borderBottom: "1px solid var(--border-subtle)" }}>
                   <td className="py-2 pr-4 font-mono text-[13px]">cf_ref</td>
-                  <td className="py-2 pr-4">Tracks referral attribution when you sign up through an invite link. Used to credit Flow Points to the referrer.</td>
+                  <td className="py-2 pr-4">Tracks referral attribution when you sign up through an invite link. Used to credit Insight Points to the referrer.</td>
                   <td className="py-2">30 days</td>
                 </tr>
               </tbody>

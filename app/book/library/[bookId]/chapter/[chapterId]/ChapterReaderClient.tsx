@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { BookLock, CheckCircle2, Sparkles } from "lucide-react";
+import { BookLock, CheckCircle2, CloudOff, Sparkles } from "lucide-react";
 import {
   getBookChaptersBundle,
   getChapterById,
@@ -180,6 +180,8 @@ export function ChapterReaderClient({
     appendNote,
     toggleFocusMode,
     toggleRecap,
+    toggleBookmarkedTakeaway,
+    syncFailed,
   } = useChapterState(
     bookId,
     chapterId,
@@ -569,7 +571,7 @@ export function ChapterReaderClient({
       setUserSubmissions((prev) => [payload.submission, ...prev]);
       setEngagementPoints((prev) => Math.max(prev, payload.points));
       setToast(
-        `Scenario submitted for review. Approved submissions earn +${SCENARIO_SUBMISSION_POINTS} Flow Points.`
+        `Scenario submitted for review. Approved submissions earn +${SCENARIO_SUBMISSION_POINTS} Insight Points.`
       );
     } catch (error: unknown) {
       const message =
@@ -590,7 +592,7 @@ export function ChapterReaderClient({
 
       <section
         className={[
-          "mx-auto w-full px-4 pb-28 pt-4 sm:px-6 sm:pt-5 md:pb-24",
+          "mx-auto w-full px-4 pb-8 pt-4 sm:px-6 sm:pt-5 md:pb-10",
           "max-w-450",
         ].join(" ")}
       >
@@ -661,8 +663,18 @@ export function ChapterReaderClient({
                 showRecap={state.showRecap}
                 onToggleRecap={toggleRecap}
                 onSaveTakeaways={() => {
-                  appendNote(formatNoteWithTakeaways(chapter.takeaways));
-                  setToast("Takeaways saved to notes.");
+                  const hasBookmarks = state.bookmarkedTakeaways.length > 0;
+                  const selected = hasBookmarks
+                    ? chapter.takeaways.filter((_, i) => state.bookmarkedTakeaways.includes(i))
+                    : chapter.takeaways;
+                  appendNote(formatNoteWithTakeaways(selected));
+                  setToast(hasBookmarks ? "Bookmarked takeaways saved to notes." : "Takeaways saved to notes.");
+                }}
+                bookmarkedTakeaways={new Set(state.bookmarkedTakeaways)}
+                onToggleBookmarkTakeaway={(index) => {
+                  const removing = state.bookmarkedTakeaways.includes(index);
+                  toggleBookmarkedTakeaway(index);
+                  setToast(removing ? "Bookmark removed." : "Takeaway bookmarked.");
                 }}
                 fontScaleClass={textScaleClass}
                 learningMode={learningMode}
@@ -728,6 +740,11 @@ export function ChapterReaderClient({
               fontScaleClass={textScaleClass}
               onContinueToNextChapter={handlePracticeComplete}
               nextChapterLabel={nextChapter ? `Continue to Chapter ${nextChapter.order} \u2192` : "Finish Book \u2192"}
+              bookmarkedTakeaways={
+                state.bookmarkedTakeaways
+                  .filter((i) => i < chapter.takeaways.length)
+                  .map((i) => chapter.takeaways[i])
+              }
             />
           )}
         </div>
@@ -741,7 +758,21 @@ export function ChapterReaderClient({
         onAddNote={() => {
           appendNote(`\u2022 ${new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })} \u2014 `);
         }}
-        onExport={() => setToast("Notes export coming in a future update.")}
+        onExport={() => {
+          if (!state.notes.trim()) {
+            setToast("No notes to export.");
+            return;
+          }
+          const content = `# Notes: ${chapter.title}\n\n${state.notes}`;
+          const blob = new Blob([content], { type: "text/markdown" });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = `notes-${chapterId}.md`;
+          a.click();
+          URL.revokeObjectURL(url);
+          setToast("Notes exported.");
+        }}
         onPinTakeaway={() => {
           appendNote(`Pinned takeaway: ${chapter.takeaways[0] ?? ""}`);
           setToast("Takeaway pinned.");
@@ -761,17 +792,12 @@ export function ChapterReaderClient({
         />
       )}
 
-      {/* Quiz success modal removed: chapter completion now happens after Practice phase */}
 
-      {currentChapter && (
-        <div className="fixed bottom-20 left-4 right-4 z-50 lg:hidden">
-          <button
-            type="button"
-            onClick={() => router.push(`/book/library/${encodeURIComponent(bookId)}/chapter/${encodeURIComponent(currentChapter.id)}`)}
-            className="w-full rounded-2xl bg-(--cr-accent) px-4 py-3 text-base font-bold text-(--cr-text-inverse) shadow-[0_8px_24px_rgba(77,182,172,0.3)]"
-          >
-            Continue Chapter {currentChapter.order} &rarr;
-          </button>
+
+      {syncFailed && !toast && (
+        <div className="pointer-events-none fixed bottom-24 left-1/2 z-40 -translate-x-1/2 inline-flex items-center gap-1.5 rounded-xl border border-(--cr-warning)/30 bg-(--cr-warning)/10 px-3 py-2 text-xs text-(--cr-warning)">
+          <CloudOff className="h-3.5 w-3.5" />
+          Changes saved locally only
         </div>
       )}
 

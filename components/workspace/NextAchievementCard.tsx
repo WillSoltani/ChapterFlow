@@ -18,7 +18,9 @@ export function NextAchievementCard({
   progressTotal,
 }: NextAchievementCardProps) {
   const prefersReducedMotion = useReducedMotion();
-  const progress = Math.min((progressCurrent / progressTotal) * 100, 100);
+  const progress = progressTotal > 0
+    ? Math.min((progressCurrent / progressTotal) * 100, 100)
+    : 0;
 
   return (
     <motion.div

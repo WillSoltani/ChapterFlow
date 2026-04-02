@@ -257,6 +257,7 @@ export function BookDetailClient({
 
       <TopNav
         name={viewerName}
+        avatarUrl={viewerIdentity.avatarDataUrl}
         activeTab="library"
         searchQuery=""
         onSearchChange={() => {}}
