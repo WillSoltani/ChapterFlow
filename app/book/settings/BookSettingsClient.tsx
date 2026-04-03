@@ -171,16 +171,37 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
   const [refreshModalOpen, setRefreshModalOpen] = useState(false);
 
   function handleRefreshComplete(result: RefreshResult) {
-    handleProfileChange(result.profile);
-    handleDailyGoalChange(result.goal);
-    handleMotivationChange(result.motivation);
+    // Inline the logic from individual handlers to avoid duplicate toasts,
+    // redundant state updates, and unwanted celebrations during a bulk refresh.
+    const preset = READING_PROFILES.find((p) => p.id === result.profile);
+    if (preset) {
+      const learningModeMap: Record<string, "guided" | "standard" | "challenge"> = {
+        concise: "guided", balanced: "standard", deep: "challenge",
+      };
+      patchExt({
+        readingProfile: result.profile,
+        profileCustomized: false,
+        quizStyle: preset.defaults.quizStyle,
+        learningMode: learningModeMap[preset.defaults.learningStyle] ?? "standard",
+        dailyGoalPreset: result.goal,
+        motivationPersona: result.motivation,
+        colorBlindMode: result.colorBlind,
+        personalizationDismissed: false,
+      });
+      setLearningStyle(preset.defaults.learningStyle);
+      setQuizIntensity(
+        QUIZ_STYLE_TO_INTENSITY[preset.defaults.quizStyle] as QuizIntensity
+      );
+      patchSection("reading", { fontSize: preset.defaults.fontSize });
+    }
+    setDailyGoalMinutes(result.goal);
     patchSection("accessibility", {
       dyslexiaFriendlyFont: result.dyslexia,
       highContrastMode: result.highContrast,
     });
-    patchExt({ colorBlindMode: result.colorBlind, personalizationDismissed: false });
     if (result.dyslexia) patchExt({ fontFamily: "opendyslexic" });
     showToast("Preferences updated!", "success");
+    triggerToast();
   }
 
   // Auto-save toast
@@ -722,6 +743,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
                   description="Listen to chapters read aloud while you walk, cook, or commute."
                   detailDescription="Text-to-speech lets you listen to any chapter read aloud with natural-sounding voices. Adjust speed, choose your preferred voice, and let chapters auto-advance so you can learn hands-free."
                   reducedMotion={reducedMotion}
+                  onUpgrade={() => launchBillingAction("upgrade")}
                 />
               )}
             </div>
@@ -974,6 +996,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
                   description="ChapterFlow can intelligently schedule quiz reviews so you never forget what you learned."
                   detailDescription="Spaced repetition uses cognitive science to schedule review sessions at optimal intervals. Set your retention target and ChapterFlow will automatically remind you to review chapters before you forget them."
                   reducedMotion={reducedMotion}
+                  onUpgrade={() => launchBillingAction("upgrade")}
                 />
               )}
             </div>
@@ -1152,6 +1175,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
           <SettingsSection
             icon={Bell}
             title="Notifications"
+            badge="Coming soon"
             summary={getNotificationsSummary()}
             expanded={isSectionExpanded("notifications")}
             onToggle={() => toggleSection("notifications")}
@@ -1301,7 +1325,8 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
                 plan={plan}
                 currentPeriodEnd={billingState.payload?.entitlement.currentPeriodEnd}
                 price={price}
-                onUpgrade={() => launchBillingAction("upgrade")}
+                pricingTiers={billingState.payload?.paywall.pricingTiers}
+                onUpgrade={(interval) => launchBillingAction("upgrade", interval)}
                 onManage={() => launchBillingAction("portal")}
                 onRedeemKey={redeemLicenseKey}
                 reducedMotion={reducedMotion}
@@ -1359,7 +1384,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
             <SettingRow
               id="export-data"
               label="Export my data"
-              description="Download your reading history, highlights, notes, and quiz results."
+              description="Download your reading history, notes, bookmarks, and quiz results."
             >
               <button
                 type="button"
@@ -1438,12 +1463,34 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
             {/* 6G. Danger Zone */}
             <div className="px-3">
               <DangerZone
-                onDeactivate={() =>
-                  showToast("Deactivation not yet supported — contact support.", "error")
-                }
-                onDelete={() =>
-                  showToast("Deletion not yet supported — contact support.", "error")
-                }
+                onDeactivate={async () => {
+                  try {
+                    const res = await fetch("/app/api/book/me/account/deactivate", { method: "POST" });
+                    if (res.ok) {
+                      window.location.href = "/auth/logout";
+                    } else {
+                      showToast("Failed to deactivate account. Please try again.", "error");
+                    }
+                  } catch {
+                    showToast("Failed to deactivate account. Please try again.", "error");
+                  }
+                }}
+                onDelete={async () => {
+                  try {
+                    const res = await fetch("/app/api/book/me/account/delete", {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({ confirm: "DELETE" }),
+                    });
+                    if (res.ok) {
+                      window.location.href = "/auth/logout";
+                    } else {
+                      showToast("Failed to delete account. Please try again.", "error");
+                    }
+                  } catch {
+                    showToast("Failed to delete account. Please try again.", "error");
+                  }
+                }}
                 reducedMotion={reducedMotion}
               />
             </div>

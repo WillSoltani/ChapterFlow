@@ -69,31 +69,61 @@ const ddb = DynamoDBDocumentClient.from(
   { marshallOptions: { removeUndefinedValues: true } }
 );
 
+function licenseIndexPk() {
+  return "BOOKLICENSE#KEYS";
+}
+function licenseIndexSk(code) {
+  return `CODE#${code.toUpperCase()}`;
+}
+
 async function seedKey({ code, note }) {
   const normalized = code.toUpperCase().trim();
   const now = new Date().toISOString();
+  const condExpr = "attribute_not_exists(PK) OR #status = :available";
+  const condNames = { "#status": "status" };
+  const condValues = { ":available": "available" };
   try {
-    await ddb.send(
-      new PutCommand({
-        TableName: TABLE_NAME,
-        Item: {
-          PK: licenseKeyPk(normalized),
-          SK: "META",
-          entity: "BOOK_LICENSE_KEY",
-          code: normalized,
-          plan: "PRO",
-          validMonths: VALID_MONTHS,
-          status: "available",
-          createdAt: now,
-          updatedAt: now,
-          note: note ?? null,
-        },
-        // Safe: only create if the item does not exist, OR if it is still available (not redeemed).
-        ConditionExpression: "attribute_not_exists(PK) OR #status = :available",
-        ExpressionAttributeNames: { "#status": "status" },
-        ExpressionAttributeValues: { ":available": "available" },
-      })
-    );
+    await Promise.all([
+      ddb.send(
+        new PutCommand({
+          TableName: TABLE_NAME,
+          Item: {
+            PK: licenseKeyPk(normalized),
+            SK: "META",
+            entity: "BOOK_LICENSE_KEY",
+            code: normalized,
+            plan: "PRO",
+            validMonths: VALID_MONTHS,
+            status: "available",
+            createdAt: now,
+            updatedAt: now,
+            note: note ?? null,
+          },
+          ConditionExpression: condExpr,
+          ExpressionAttributeNames: condNames,
+          ExpressionAttributeValues: condValues,
+        })
+      ),
+      // Write index item for admin listing
+      ddb.send(
+        new PutCommand({
+          TableName: TABLE_NAME,
+          Item: {
+            PK: licenseIndexPk(),
+            SK: licenseIndexSk(normalized),
+            entity: "BOOK_LICENSE_KEY_INDEX",
+            code: normalized,
+            status: "available",
+            validMonths: VALID_MONTHS,
+            createdAt: now,
+            note: note ?? null,
+          },
+          ConditionExpression: condExpr,
+          ExpressionAttributeNames: condNames,
+          ExpressionAttributeValues: condValues,
+        })
+      ),
+    ]);
     console.log(`  ✓ ${normalized}${note ? `  (${note})` : ""}`);
   } catch (err) {
     if (err.name === "ConditionalCheckFailedException") {

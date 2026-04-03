@@ -4,22 +4,30 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Loader2, CheckCircle2, XCircle } from "lucide-react";
 import { Button } from "@/app/book/components/ui/Button";
-import { cn } from "@/app/book/components/ui/cn";
+import type { BillingInterval, PricingTier } from "@/app/book/hooks/useBookEntitlements";
 
 type SubscriptionCardProps = {
   plan: "FREE" | "PRO";
   currentPeriodEnd?: string;
   price: string;
-  onUpgrade: () => Promise<string | null>;
+  pricingTiers?: PricingTier[];
+  onUpgrade: (interval?: BillingInterval) => Promise<string | null>;
   onManage: () => Promise<string | null>;
   onRedeemKey: (code: string) => Promise<string | null>;
   reducedMotion?: boolean;
+};
+
+const TIER_DISPLAY: Record<BillingInterval, { name: string; badge?: string }> = {
+  monthly: { name: "Monthly" },
+  annual: { name: "Annual", badge: "Save 25%" },
+  annual_upfront: { name: "Annual upfront", badge: "Best value" },
 };
 
 export function SubscriptionCard({
   plan,
   currentPeriodEnd,
   price,
+  pricingTiers,
   onUpgrade,
   onManage,
   onRedeemKey,
@@ -30,6 +38,9 @@ export function SubscriptionCard({
   const [keyStatus, setKeyStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [keyMessage, setKeyMessage] = useState("");
   const [actionLoading, setActionLoading] = useState(false);
+  const [selectedInterval, setSelectedInterval] = useState<BillingInterval>(
+    pricingTiers && pricingTiers.length > 1 ? "annual" : "monthly"
+  );
 
   const formattedDate = currentPeriodEnd
     ? new Date(currentPeriodEnd).toLocaleDateString(undefined, {
@@ -55,15 +66,21 @@ export function SubscriptionCard({
     }
   }
 
-  async function handleAction(action: () => Promise<string | null>) {
+  async function handleUpgrade() {
     setActionLoading(true);
-    await action();
+    await onUpgrade(selectedInterval);
+    setActionLoading(false);
+  }
+
+  async function handleManage() {
+    setActionLoading(true);
+    await onManage();
     setActionLoading(false);
   }
 
   if (plan === "PRO") {
     return (
-      <div className="rounded-2xl border border-(--cf-accent-border) bg-gradient-to-br from-(--cf-accent-muted) to-transparent p-5">
+      <div className="rounded-2xl border border-(--cf-accent-border) bg-linear-to-br from-(--cf-accent-muted) to-transparent p-5">
         <div className="flex items-center gap-2">
           <span className="text-sm">&#10024;</span>
           <span className="text-base font-bold text-(--cf-text-1)">Pro Plan</span>
@@ -79,7 +96,7 @@ export function SubscriptionCard({
           size="sm"
           className="mt-4"
           disabled={actionLoading}
-          onClick={() => handleAction(onManage)}
+          onClick={handleManage}
         >
           {actionLoading ? (
             <Loader2 className="h-4 w-4 animate-spin" />
@@ -91,33 +108,97 @@ export function SubscriptionCard({
     );
   }
 
+  const hasTiers = pricingTiers && pricingTiers.length > 1;
+
   return (
     <div className="rounded-2xl border border-(--cf-border) bg-(--cf-surface) p-5">
       <div className="flex items-center gap-2">
-        <span className="text-sm">\uD83D\uDCDA</span>
         <span className="text-base font-bold text-(--cf-text-1)">Free Plan</span>
       </div>
       <p className="mt-1 text-sm text-(--cf-text-3)">You have access to 2 books.</p>
 
       <div className="mt-4 rounded-xl border border-(--cf-accent-border) bg-(--cf-accent-muted) p-4">
         <p className="text-sm font-semibold text-(--cf-text-1)">
-          &#10024; Upgrade to Pro &mdash; {price}/month
+          &#10024; Upgrade to Pro
         </p>
         <p className="mt-1 text-xs leading-relaxed text-(--cf-text-3)">
           Unlock all 95+ books, text-to-speech, spaced repetition, reading analytics, and
           export tools.
         </p>
+
+        {hasTiers ? (
+          <div className="mt-3 flex flex-col gap-2" role="radiogroup" aria-label="Billing interval">
+            {pricingTiers.map((tier) => {
+              const display = TIER_DISPLAY[tier.interval];
+              const isSelected = tier.interval === selectedInterval;
+              return (
+                <button
+                  key={tier.interval}
+                  type="button"
+                  role="radio"
+                  aria-checked={isSelected}
+                  onClick={() => setSelectedInterval(tier.interval)}
+                  className={`flex items-center justify-between rounded-lg border px-3 py-2.5 text-left transition-colors ${
+                    isSelected
+                      ? "border-(--cf-accent) bg-(--cf-accent-muted)"
+                      : "border-(--cf-border) bg-(--cf-surface) hover:border-(--cf-text-soft)"
+                  }`}
+                >
+                  <div className="flex items-center gap-2">
+                    <div
+                      className={`flex h-4 w-4 shrink-0 items-center justify-center rounded-full border-2 ${
+                        isSelected
+                          ? "border-(--cf-accent) bg-(--cf-accent)"
+                          : "border-(--cf-text-soft)"
+                      }`}
+                    >
+                      {isSelected && (
+                        <div className="h-1.5 w-1.5 rounded-full bg-white" />
+                      )}
+                    </div>
+                    <span className="text-sm font-medium text-(--cf-text-1)">
+                      {display.name}
+                    </span>
+                    {display.badge && (
+                      <span className="rounded-full bg-(--cf-accent)/15 px-2 py-0.5 text-[10px] font-bold text-(--cf-accent)">
+                        {display.badge}
+                      </span>
+                    )}
+                  </div>
+                  <div className="text-right">
+                    <span className="text-sm font-semibold text-(--cf-text-1)">
+                      {tier.price}
+                    </span>
+                    <span className="text-xs text-(--cf-text-3)">
+                      /{tier.period === "year" && tier.interval === "annual" ? "mo" : tier.period}
+                    </span>
+                    {tier.annualTotal && (
+                      <p className="text-[10px] text-(--cf-text-soft)">
+                        {tier.annualTotal}/year
+                      </p>
+                    )}
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        ) : (
+          <p className="mt-2 text-sm font-semibold text-(--cf-text-1)">
+            {price}/month
+          </p>
+        )}
+
         <Button
           variant="primary"
           size="sm"
-          className="mt-3"
+          className="mt-3 w-full"
           disabled={actionLoading}
-          onClick={() => handleAction(onUpgrade)}
+          onClick={handleUpgrade}
         >
           {actionLoading ? (
             <Loader2 className="h-4 w-4 animate-spin" />
           ) : (
-            "Start 7-day free trial"
+            "Start 14-day free trial"
           )}
         </Button>
       </div>

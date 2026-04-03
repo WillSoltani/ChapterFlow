@@ -216,9 +216,34 @@ export async function analyticsTrackReadingSession(
     bookId: string;
     deltaMs: number;
     dayKey: string; // YYYY-MM-DD
+    /** Optional device context from User-Agent parsing. */
+    deviceType?: string;
+    browserName?: string;
+    osName?: string;
   }
 ): Promise<void> {
   const now = nowIso();
+
+  // Build UA fields dynamically so we only SET them when provided
+  const uaSets: string[] = [];
+  const uaNames: Record<string, string> = {};
+  const uaValues: Record<string, unknown> = {};
+  if (args.deviceType) {
+    uaSets.push("#deviceType = :deviceType");
+    uaNames["#deviceType"] = "deviceType";
+    uaValues[":deviceType"] = args.deviceType;
+  }
+  if (args.browserName) {
+    uaSets.push("#browserName = :browserName");
+    uaNames["#browserName"] = "browserName";
+    uaValues[":browserName"] = args.browserName;
+  }
+  if (args.osName) {
+    uaSets.push("#osName = :osName");
+    uaNames["#osName"] = "osName";
+    uaValues[":osName"] = args.osName;
+  }
+  const uaExpr = uaSets.length > 0 ? ", " + uaSets.join(", ") : "";
 
   await Promise.all([
     ddbDoc.send(
@@ -230,8 +255,9 @@ export async function analyticsTrackReadingSession(
           "#sv = :sv, #userId = :uid, " +
           "#plan = if_not_exists(#plan, :defPlan), " +
           "#firstSeenAt = if_not_exists(#firstSeenAt, :now), " +
-          "#createdAt = if_not_exists(#createdAt, :now) " +
-          "ADD #totalReadingMs :dms, #activeBookIds :bkSet, " +
+          "#createdAt = if_not_exists(#createdAt, :now)" +
+          uaExpr +
+          " ADD #totalReadingMs :dms, #activeBookIds :bkSet, " +
           "#readingDays :daySet, #totalSessionCount :one",
         ExpressionAttributeNames: {
           "#updatedAt": "updatedAt",
@@ -246,6 +272,7 @@ export async function analyticsTrackReadingSession(
           "#activeBookIds": "activeBookIds",
           "#readingDays": "readingDays",
           "#totalSessionCount": "totalSessionCount",
+          ...uaNames,
         },
         ExpressionAttributeValues: {
           ":now": now,
@@ -257,6 +284,7 @@ export async function analyticsTrackReadingSession(
           ":bkSet": new Set([args.bookId]),
           ":daySet": new Set([args.dayKey]),
           ":one": 1,
+          ...uaValues,
         },
       })
     ),
@@ -264,6 +292,9 @@ export async function analyticsTrackReadingSession(
       bookId: args.bookId,
       deltaMs: args.deltaMs,
       dayKey: args.dayKey,
+      deviceType: args.deviceType,
+      browserName: args.browserName,
+      osName: args.osName,
     }),
   ]);
 }
@@ -769,5 +800,63 @@ export async function analyticsTrackReferral(
     inviteCode: args.inviteCode,
     referredUserId: args.referredUserId,
     pointsAwarded: args.pointsAwarded,
+  });
+}
+
+/**
+ * Track a client-side telemetry beacon event (session context, performance, navigation).
+ * Only called when the user has opted in to analytics sharing.
+ */
+export async function analyticsTrackBeacon(
+  table: string,
+  args: {
+    userId: string;
+    beaconType: "session_context" | "performance" | "navigation";
+    payload: Record<string, unknown>;
+    deviceType?: string;
+    browserName?: string;
+    osName?: string;
+  }
+): Promise<void> {
+  const now = nowIso();
+
+  const eventPayload: Record<string, unknown> = {
+    beaconType: args.beaconType,
+    ...args.payload,
+  };
+  if (args.deviceType) eventPayload.deviceType = args.deviceType;
+  if (args.browserName) eventPayload.browserName = args.browserName;
+  if (args.osName) eventPayload.osName = args.osName;
+
+  await putEvent(
+    table,
+    args.userId,
+    `beacon_${args.beaconType}`,
+    now,
+    "FREE",
+    eventPayload
+  );
+}
+
+/**
+ * Track a license key redemption attempt (success or failure).
+ * Fires for every attempt, regardless of outcome.
+ */
+export async function analyticsTrackLicenseAttempt(
+  table: string,
+  args: {
+    userId: string;
+    code: string;
+    outcome: "success" | "invalid_format" | "not_found" | "revoked" | "already_redeemed" | "already_subscribed" | "error";
+    errorCode?: string;
+    validMonths?: number;
+  }
+): Promise<void> {
+  const now = nowIso();
+  await putEvent(table, args.userId, "license_redemption_attempt", now, "FREE", {
+    code: args.code,
+    outcome: args.outcome,
+    errorCode: args.errorCode,
+    validMonths: args.validMonths,
   });
 }

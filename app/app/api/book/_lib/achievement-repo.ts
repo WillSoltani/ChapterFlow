@@ -43,6 +43,8 @@ export type AchievementCheckContext = {
   completedBooksInDistinctCategories?: number;
   /** Date the current book was started (ISO) — for Full Circle detection */
   bookStartedAt?: string;
+  /** Days of inactivity before this loop (for Second Wind detection) */
+  inactiveDaysBeforeReturn?: number;
 };
 
 export type AchievementAwardResult = {
@@ -360,21 +362,13 @@ async function checkHiddenAchievements(
   }
 
   // Second Wind — Complete a loop after 14+ inactive days
-  if (ctx.streak) {
-    const lastActive = ctx.streak.lastActiveDate;
-    if (lastActive && ctx.loopCompletedAt) {
-      // lastActiveDate was set in the same request, but we can check the gap
-      // from the streak update result — if welcomeBack triggered with 14+ days gap
-      // We check via the metadata approach: the streak repo already detected the gap.
-      // For simplicity, check if streak was just reset from a 14+ day gap
-    }
-    // The Second Wind detection is best handled by checking the gap that was computed
-    // during streak update. We'll check if the welcome_back was awarded AND gap >= 14.
-    // This is passed via context from the loop-complete endpoint.
+  if (ctx.inactiveDaysBeforeReturn !== undefined && ctx.inactiveDaysBeforeReturn >= 14) {
+    const r = await awardAchievement(ctx.tableName, ctx.userId, "second-wind");
+    if (r) results.push(r);
   }
 
   // Century Loop — 100th learning loop
-  if (ctx.tier && ctx.tier.totalLoopsCompleted === 100) {
+  if (ctx.tier && ctx.tier.totalLoopsCompleted >= 100) {
     const r = await awardAchievement(ctx.tableName, ctx.userId, "century-loop");
     if (r) results.push(r);
   }

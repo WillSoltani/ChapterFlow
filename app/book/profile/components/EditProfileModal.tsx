@@ -260,10 +260,10 @@ export function EditProfileModal({ open, profile, email, onClose, onSave }: Edit
                     text-sm text-(--cf-text-2) placeholder:text-(--cf-text-soft)
                     focus:outline-none focus:border-accent-cyan/40 focus:ring-1 focus:ring-accent-cyan/20
                     transition-colors"
-                  maxLength={80}
+                  maxLength={160}
                 />
                 <p className="text-right text-[10px] text-(--cf-text-soft) mt-1">
-                  {draft.tagline.length}/80
+                  {draft.tagline.length}/160
                 </p>
               </div>
             </div>
@@ -284,10 +284,10 @@ export function EditProfileModal({ open, profile, email, onClose, onSave }: Edit
                   focus:outline-none focus:border-accent-cyan/40 focus:ring-1 focus:ring-accent-cyan/20
                   transition-colors"
                 placeholder="Tell us about your reading journey..."
-                maxLength={200}
+                maxLength={1200}
               />
               <p className="text-right text-[10px] text-(--cf-text-soft) mt-1">
-                {draft.bio.length}/200
+                {draft.bio.length}/1200
               </p>
             </div>
 

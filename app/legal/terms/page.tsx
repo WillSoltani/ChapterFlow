@@ -15,7 +15,7 @@ export default function TermsOfServicePage() {
         Terms of Service
       </h1>
       <p className="text-[14px] mb-10" style={{ color: "var(--text-muted)" }}>
-        Effective date: March 28, 2026
+        Effective date: April 2, 2026
       </p>
 
       <div className="space-y-8 text-[15px] leading-[1.75]" style={{ color: "var(--text-secondary)" }}>
@@ -52,9 +52,10 @@ export default function TermsOfServicePage() {
               Standard and Guided learning modes, and core features including quizzes, progress tracking, and Insight Points.
             </li>
             <li>
-              <strong style={{ color: "var(--text-heading)" }}>Pro Plan:</strong> $7.99 CAD per month (or $5.99 CAD/month
-              billed annually). Includes unlimited book access, all learning modes including Challenge mode,
-              and enhanced features. Pro includes a 14-day free trial for new subscribers.
+              <strong style={{ color: "var(--text-heading)" }}>Pro Plan:</strong> $7.99 CAD per month, $5.99 CAD/month
+              billed annually ($71.88/year), or $59.99 CAD/year paid upfront. Includes unlimited book access,
+              all learning modes including Challenge mode, and enhanced features. Pro includes a 14-day free
+              trial for new subscribers.
             </li>
           </ul>
         </section>
@@ -116,8 +117,9 @@ export default function TermsOfServicePage() {
             ChapterFlow provides educational summaries, scenarios, and quizzes derived from published non-fiction
             books. All ChapterFlow-original content (summaries, examples, quiz questions, interface design) is
             owned by SiliconX. Original book content remains the property of its respective authors and publishers.
-            Your reading progress, quiz responses, and scenario submissions are your data, subject to our{" "}
+            Your reading progress, notes, quiz responses, and scenario submissions are your data, subject to our{" "}
             <a href="/legal/privacy" className="underline" style={{ color: "var(--accent-teal)" }}>Privacy Policy</a>.
+            You can export all your data at any time from Settings in JSON, CSV, or Markdown format.
           </p>
         </section>
 
@@ -140,9 +142,14 @@ export default function TermsOfServicePage() {
           </h2>
           <p>
             We may suspend or terminate your account if you violate these Terms, engage in abusive behavior, or
-            exploit the Service in ways that harm other users or the platform. You may delete your account at any
-            time by contacting{" "}
-            <a href="mailto:support@siliconx.ca" className="underline" style={{ color: "var(--accent-teal)" }}>support@siliconx.ca</a>.
+            exploit the Service in ways that harm other users or the platform.
+          </p>
+          <p className="mt-3">
+            You may deactivate your account at any time from Settings. Deactivation preserves your data and you
+            can reactivate by signing back in. You may also permanently delete your account from Settings. Deleted
+            accounts become non-functional. Alternatively, you can contact{" "}
+            <a href="mailto:support@chapterflow.ca" className="underline" style={{ color: "var(--accent-teal)" }}>support@chapterflow.ca</a>{" "}
+            for account-related requests.
           </p>
         </section>
 
@@ -173,7 +180,7 @@ export default function TermsOfServicePage() {
           </h2>
           <p>
             For questions about these Terms, contact us at{" "}
-            <a href="mailto:support@siliconx.ca" className="underline" style={{ color: "var(--accent-teal)" }}>support@siliconx.ca</a>.
+            <a href="mailto:support@chapterflow.ca" className="underline" style={{ color: "var(--accent-teal)" }}>support@chapterflow.ca</a>.
           </p>
         </section>
       </div>

@@ -1,7 +1,7 @@
 "use client";
 
+import { useEffect, useRef, type ReactNode } from "react";
 import { X } from "lucide-react";
-import type { ReactNode } from "react";
 
 type InfoModalProps = {
   open: boolean;
@@ -11,14 +11,32 @@ type InfoModalProps = {
 };
 
 export function InfoModal({ open, title, onClose, children }: InfoModalProps) {
+  const backdropRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        onClose();
+      }
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [open, onClose]);
+
   if (!open) return null;
 
   return (
     <div
+      ref={backdropRef}
       className="fixed inset-0 z-50 flex items-center justify-center bg-(--cf-overlay) px-4 backdrop-blur-sm"
       role="dialog"
       aria-modal="true"
       aria-label={title}
+      onClick={(e) => {
+        if (e.target === backdropRef.current) onClose();
+      }}
     >
       <div className="w-full max-w-lg rounded-3xl border border-(--cf-border) bg-(--cf-surface-strong) p-5 shadow-shadow-elevated">
         <div className="mb-3 flex items-center justify-between gap-3">

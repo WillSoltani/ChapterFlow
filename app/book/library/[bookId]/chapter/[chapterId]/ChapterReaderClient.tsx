@@ -386,7 +386,8 @@ export function ChapterReaderClient({
       chapterHydrated &&
       onboarding.setupComplete &&
       bookAccessStatus === "ready" &&
-      !isLocked,
+      !isLocked &&
+      bookPrefs.privacy.saveReadingHistory,
     dailyGoalMinutes,
   });
 

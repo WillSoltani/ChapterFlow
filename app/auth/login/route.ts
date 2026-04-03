@@ -40,8 +40,11 @@ export async function GET(req: NextRequest) {
   // Encrypt the PKCE verifier, return URL, and a nonce into the state
   // parameter. Cognito echoes this back via URL, so the callback can
   // recover these values without depending on cookies.
+  // If AUTH_STATE_SECRET isn't configured, fall back to a plain UUID as
+  // state — the callback will use cookies instead (original behavior).
   const nonce = crypto.randomUUID();
-  const state = await encryptState({ v: codeVerifier, r: returnTo, n: nonce });
+  const encrypted = await encryptState({ v: codeVerifier, r: returnTo, n: nonce });
+  const state = encrypted ?? nonce;
 
   const url =
     `${domain}/oauth2/authorize` +

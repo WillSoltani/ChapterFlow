@@ -29,6 +29,18 @@ import { Card } from "@/app/book/components/ui/Card";
 import { BookCover } from "@/app/book/components/BookCover";
 import { cn } from "@/app/book/components/ui/cn";
 
+/* ─── Inline markdown helper ─── */
+
+function renderInlineMarkdown(text: string): ReactNode {
+  const cleaned = text.replace(/^Pinned takeaway:\s*/i, "");
+  const parts = cleaned.split(/(\*\*.*?\*\*)/g);
+  return parts.map((part, i) =>
+    part.startsWith("**") && part.endsWith("**")
+      ? <strong key={i} className="font-semibold not-italic">{part.slice(2, -2)}</strong>
+      : part
+  );
+}
+
 /* ═══════════════════════════════════════════════════════
    FadeIn — scroll-triggered stagger wrapper (H2)
    ═══════════════════════════════════════════════════════ */
@@ -524,7 +536,7 @@ export function IdentityHeroBanner({
               <div>
                 <p className="text-[11px] uppercase tracking-[0.22em] text-(--cf-text-soft)">Current streak</p>
                 <p className="mt-1 text-2xl font-bold" style={{ color: hasStreak ? "var(--accent-amber)" : "var(--cf-text-1)" }}>
-                  {streakDays} <span className="text-base font-medium text-(--cf-text-3)">days</span>
+                  {streakDays} <span className="text-base font-medium text-(--cf-text-3)">{streakDays === 1 ? "day" : "days"}</span>
                 </p>
               </div>
               <div>
@@ -890,7 +902,7 @@ export function NotePreviewCard({
   return (
     <div className="rounded-[24px] border border-(--cf-border) bg-(--cf-surface) p-4 shadow-shadow-card">
       <p className="text-sm font-semibold text-(--cf-text-1)">{title}</p>
-      <p className="mt-3 line-clamp-4 text-sm leading-7 text-(--cf-text-2)">{body}</p>
+      <p className="mt-3 line-clamp-4 text-sm leading-7 text-(--cf-text-2)">{renderInlineMarkdown(body)}</p>
       <div className="mt-4 flex items-center justify-between gap-3">
         <p className="text-xs uppercase tracking-[0.18em] text-(--cf-text-soft)">{meta}</p>
         {actionLabel && onAction ? (
@@ -910,7 +922,7 @@ export function NotePreviewCard({
 export function PinnedTakeawayCard({ text, source }: { text: string; source: string }) {
   return (
     <div className="rounded-xl border-l-[3px] border-l-accent-amber/60 bg-(--cf-surface)/60 px-4 py-3">
-      <p className="text-sm italic leading-6 text-(--cf-text-1)">&ldquo;{text}&rdquo;</p>
+      <p className="text-sm italic leading-6 text-(--cf-text-1)">&ldquo;{renderInlineMarkdown(text)}&rdquo;</p>
       <p className="mt-2 text-xs text-(--cf-text-soft)">📌 {source}</p>
     </div>
   );
@@ -992,7 +1004,7 @@ export function HeatmapCalendar({ cells }: { cells: HeatmapCell[] }) {
                       isToday && cell.level === 0 && "border-dashed border-(--cf-border-strong)"
                     )}
                     role="img"
-                    aria-label={`${cell.dateLabel}: ${cell.minutes} minutes, ${cell.chapters} chapters${isToday ? " — today" : ""}`}
+                    aria-label={`${cell.dateLabel}: ${cell.minutes} ${cell.minutes === 1 ? "minute" : "minutes"}, ${cell.chapters} ${cell.chapters === 1 ? "chapter" : "chapters"}${isToday ? " — today" : ""}`}
                     onMouseEnter={() => setTooltip({ key: cell.key, text: tipText })}
                     onMouseLeave={() => setTooltip(null)}
                     onClick={() => setTooltip((prev) => prev?.key === cell.key ? null : { key: cell.key, text: tipText })}
@@ -1151,7 +1163,7 @@ export function UpgradeCard({
           $7.99 CAD/month <span className="text-sm font-normal text-(--cf-text-3)">— less than a single book purchase</span>
         </p>
         <p className="mt-2 text-sm text-(--cf-text-3)">Join readers who chose to go deeper</p>
-        <Button variant="primary" size="lg" fullWidth onClick={onUpgrade} className="mt-5">Start 7-day free trial &rarr;</Button>
+        <Button variant="primary" size="lg" fullWidth onClick={onUpgrade} className="mt-5">Start 14-day free trial &rarr;</Button>
         <p className="mt-3 text-center text-sm text-(--cf-text-soft)">Not now</p>
         <div className="mt-3 flex flex-wrap justify-center gap-4 text-xs text-(--cf-text-3)">
           <span>Cancel anytime</span><span>&bull;</span><span>No hidden fees</span>
@@ -1237,7 +1249,7 @@ export function CompletionByModeChart({
               <span>{entry.label}</span>
               <span>
                 {entry.value}%
-                {counts ? <span className="ml-1 text-xs text-(--cf-text-soft)">({count} chapters)</span> : null}
+                {counts ? <span className="ml-1 text-xs text-(--cf-text-soft)">({count} {count === 1 ? "chapter" : "chapters"})</span> : null}
               </span>
             </div>
             <div className="mt-2 h-2 overflow-hidden rounded-full bg-(--cf-border)">

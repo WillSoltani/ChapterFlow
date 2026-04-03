@@ -48,6 +48,9 @@ import {
   webhookSk,
   licenseKeyPk,
   licenseKeySk,
+  licenseIndexPk,
+  licenseIndexSk,
+  accountStatusSk,
 } from "./keys";
 import type {
   BookCatalogItem,
@@ -71,6 +74,7 @@ import type {
   BookVersionItem,
   LicenseKeyItem,
   QuizAttemptItem,
+  AccountStatusItem,
 } from "./types";
 
 function readNum(value: unknown): number | undefined {
@@ -1954,6 +1958,59 @@ export async function listRecentRiskEvents(
   return items.filter((item): item is BookRiskEventItem => item !== null);
 }
 
+// ── Account Status (soft deactivation / soft deletion) ──────────────────────
+
+export async function getAccountStatus(
+  tableName: string,
+  userId: string
+): Promise<AccountStatusItem | null> {
+  const res = await ddbDoc.send(
+    new GetCommand({
+      TableName: tableName,
+      Key: { PK: bookUserPk(userId), SK: accountStatusSk() },
+    })
+  );
+  const item = res.Item;
+  if (!item) return null;
+  const status = item.status as string;
+  if (status !== "active" && status !== "deactivated" && status !== "deleted") return null;
+  return {
+    userId,
+    status: status as AccountStatusItem["status"],
+    statusChangedAt: (item.statusChangedAt as string) ?? "",
+    statusReason: item.statusReason as string | undefined,
+    previousPlan: item.previousPlan as "FREE" | "PRO" | undefined,
+    previousProSource: item.previousProSource as string | undefined,
+  };
+}
+
+export async function setAccountStatus(
+  tableName: string,
+  userId: string,
+  status: AccountStatusItem["status"],
+  extras?: {
+    statusReason?: string;
+    previousPlan?: "FREE" | "PRO";
+    previousProSource?: string;
+  }
+): Promise<void> {
+  const now = nowIso();
+  const item: Record<string, unknown> = {
+    PK: bookUserPk(userId),
+    SK: accountStatusSk(),
+    entity: "BOOK_ACCOUNT_STATUS",
+    userId,
+    status,
+    statusChangedAt: now,
+    updatedAt: now,
+  };
+  if (extras?.statusReason) item.statusReason = extras.statusReason;
+  if (extras?.previousPlan) item.previousPlan = extras.previousPlan;
+  if (extras?.previousProSource) item.previousProSource = extras.previousProSource;
+
+  await ddbDoc.send(new PutCommand({ TableName: tableName, Item: item }));
+}
+
 export async function getUserSettingsItem(
   tableName: string,
   userId: string
@@ -2549,6 +2606,24 @@ export async function redeemLicenseKey(
               },
             },
           },
+          {
+            // Update the index item so admin listing reflects redeemed status
+            Update: {
+              TableName: tableName,
+              Key: {
+                PK: licenseIndexPk(),
+                SK: licenseIndexSk(normalized),
+              },
+              UpdateExpression:
+                "SET #status = :redeemed, redeemedBy = :userId, redeemedAt = :now",
+              ExpressionAttributeNames: { "#status": "status" },
+              ExpressionAttributeValues: {
+                ":redeemed": "redeemed",
+                ":userId": params.userId,
+                ":now": now,
+              },
+            },
+          },
         ],
       })
     );
@@ -2573,25 +2648,115 @@ export async function seedLicenseKey(
   key: Omit<LicenseKeyItem, "status"> & { status?: LicenseKeyItem["status"] }
 ): Promise<void> {
   const normalized = key.code.toUpperCase().trim();
+  const status = key.status ?? "available";
+  const now = key.createdAt;
+  await Promise.all([
+    ddbDoc.send(
+      new PutCommand({
+        TableName: tableName,
+        Item: {
+          PK: licenseKeyPk(normalized),
+          SK: licenseKeySk(),
+          entity: "BOOK_LICENSE_KEY",
+          code: normalized,
+          plan: "PRO",
+          validMonths: key.validMonths,
+          status,
+          createdAt: now,
+          note: key.note ?? null,
+          updatedAt: now,
+        },
+        // Do not overwrite an already-redeemed key if re-seeding
+        ConditionExpression: "attribute_not_exists(PK) OR #status = :available",
+        ExpressionAttributeNames: { "#status": "status" },
+        ExpressionAttributeValues: { ":available": "available" },
+      })
+    ),
+    // Write an index item so admin can list all keys via Query
+    ddbDoc.send(
+      new PutCommand({
+        TableName: tableName,
+        Item: {
+          PK: licenseIndexPk(),
+          SK: licenseIndexSk(normalized),
+          entity: "BOOK_LICENSE_KEY_INDEX",
+          code: normalized,
+          status,
+          validMonths: key.validMonths,
+          createdAt: now,
+          note: key.note ?? null,
+        },
+        ConditionExpression: "attribute_not_exists(PK) OR #status = :available",
+        ExpressionAttributeNames: { "#status": "status" },
+        ExpressionAttributeValues: { ":available": "available" },
+      })
+    ),
+  ]);
+}
+
+/** List all license keys by querying the shared index partition. */
+export async function listLicenseKeys(
+  tableName: string,
+  statusFilter?: "available" | "redeemed" | "revoked"
+): Promise<LicenseKeyItem[]> {
+  const params: Record<string, unknown> = {
+    TableName: tableName,
+    KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
+    ExpressionAttributeValues: {
+      ":pk": licenseIndexPk(),
+      ":prefix": "CODE#",
+    } as Record<string, unknown>,
+  };
+
+  if (statusFilter) {
+    params.FilterExpression = "#status = :statusFilter";
+    params.ExpressionAttributeNames = { "#status": "status" };
+    (params.ExpressionAttributeValues as Record<string, unknown>)[":statusFilter"] = statusFilter;
+  }
+
+  const res = await ddbDoc.send(new QueryCommand(params as never));
+  return (res.Items ?? []).map((item) => ({
+    code: item.code as string,
+    plan: "PRO" as const,
+    validMonths: (item.validMonths as number) ?? 1,
+    status: item.status as "available" | "redeemed" | "revoked",
+    redeemedBy: item.redeemedBy as string | undefined,
+    redeemedAt: item.redeemedAt as string | undefined,
+    createdAt: item.createdAt as string,
+    note: item.note as string | undefined,
+  }));
+}
+
+/** Revoke a license key. Updates both the main record and the index item. */
+export async function revokeLicenseKey(
+  tableName: string,
+  code: string
+): Promise<void> {
+  const normalized = code.toUpperCase().trim();
+  const now = nowIso();
   await ddbDoc.send(
-    new PutCommand({
-      TableName: tableName,
-      Item: {
-        PK: licenseKeyPk(normalized),
-        SK: licenseKeySk(),
-        entity: "BOOK_LICENSE_KEY",
-        code: normalized,
-        plan: "PRO",
-        validMonths: key.validMonths,
-        status: key.status ?? "available",
-        createdAt: key.createdAt,
-        note: key.note ?? null,
-        updatedAt: key.createdAt,
-      },
-      // Do not overwrite an already-redeemed key if re-seeding
-      ConditionExpression: "attribute_not_exists(PK) OR #status = :available",
-      ExpressionAttributeNames: { "#status": "status" },
-      ExpressionAttributeValues: { ":available": "available" },
+    new TransactWriteCommand({
+      TransactItems: [
+        {
+          Update: {
+            TableName: tableName,
+            Key: { PK: licenseKeyPk(normalized), SK: licenseKeySk() },
+            UpdateExpression: "SET #status = :revoked, updatedAt = :now",
+            ConditionExpression: "#status = :available",
+            ExpressionAttributeNames: { "#status": "status" },
+            ExpressionAttributeValues: { ":revoked": "revoked", ":available": "available", ":now": now },
+          },
+        },
+        {
+          Update: {
+            TableName: tableName,
+            Key: { PK: licenseIndexPk(), SK: licenseIndexSk(normalized) },
+            UpdateExpression: "SET #status = :revoked",
+            ExpressionAttributeNames: { "#status": "status" },
+            ExpressionAttributeValues: { ":revoked": "revoked" },
+          },
+        },
+      ],
     })
   );
 }

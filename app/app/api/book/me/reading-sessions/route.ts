@@ -12,9 +12,11 @@ import { getBookTableName, getBookAnalyticsTableName } from "@/app/app/api/book/
 import {
   addReadingDayActivity,
   getUserProgress,
+  getUserSettingsItem,
   upsertUserProgress,
 } from "@/app/app/api/book/_lib/repo";
 import { analyticsTrackReadingSession } from "@/app/app/api/book/_lib/analytics-repo";
+import { getUserAgentFromRequest } from "@/app/app/api/book/_lib/user-agent";
 import { nowIso } from "@/app/app/api/book/_lib/keys";
 
 export const runtime = "nodejs";
@@ -52,13 +54,28 @@ export async function POST(req: Request) {
         : nowIso();
     const dayKey = toDayKey(occurredAt) || toDayKey(nowIso());
 
-    const readingDay = await addReadingDayActivity(tableName, {
-      userId: user.sub,
-      dayKey,
-      deltaMs,
-      occurredAt,
-    });
+    // Check the user's "Save Reading History" preference (server-side enforcement).
+    // Reading progress (current chapter, lastActiveAt) is always updated since it's
+    // essential for "continue reading". Only readingDay records are gated.
+    const settingsItem = await getUserSettingsItem(tableName, user.sub);
+    const privacy = settingsItem?.settings?.privacy as
+      | { saveReadingHistory?: boolean }
+      | undefined;
+    const saveReadingHistory = privacy?.saveReadingHistory ?? true;
 
+    let readingDay = { totalActiveMs: 0 };
+
+    if (saveReadingHistory) {
+      const day = await addReadingDayActivity(tableName, {
+        userId: user.sub,
+        dayKey,
+        deltaMs,
+        occurredAt,
+      });
+      readingDay = day;
+    }
+
+    // Always update progress timestamps — this is app state, not history
     const progress = await getUserProgress(tableName, user.sub, bookId);
     if (progress) {
       await upsertUserProgress(tableName, {
@@ -68,7 +85,8 @@ export async function POST(req: Request) {
       });
     }
 
-    // Analytics — fire-and-forget
+    // Analytics — fire-and-forget, includes device context from User-Agent
+    const ua = getUserAgentFromRequest(req);
     getBookAnalyticsTableName().then((analyticsTable) => {
       if (!analyticsTable) return;
       analyticsTrackReadingSession(analyticsTable, {
@@ -76,6 +94,9 @@ export async function POST(req: Request) {
         bookId,
         deltaMs,
         dayKey,
+        deviceType: ua.deviceType,
+        browserName: ua.browserName,
+        osName: ua.osName,
       }).catch(() => {});
     }).catch(() => {});
 

@@ -12,6 +12,7 @@ type ProFeatureCardProps = {
   description: string;
   detailDescription?: string;
   reducedMotion?: boolean;
+  onUpgrade?: () => void;
 };
 
 export function ProFeatureCard({
@@ -20,6 +21,7 @@ export function ProFeatureCard({
   description,
   detailDescription,
   reducedMotion,
+  onUpgrade,
 }: ProFeatureCardProps) {
   const [showModal, setShowModal] = useState(false);
 
@@ -87,8 +89,8 @@ export function ProFeatureCard({
               </p>
 
               <div className="mt-6 space-y-3">
-                <Button variant="primary" fullWidth>
-                  Start 7-day free trial
+                <Button variant="primary" fullWidth onClick={onUpgrade}>
+                  Start 14-day free trial
                 </Button>
                 <button
                   type="button"

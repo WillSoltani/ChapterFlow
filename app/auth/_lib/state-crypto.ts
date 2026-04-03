@@ -86,21 +86,29 @@ function base64UrlDecode(str: string): Uint8Array {
  * Format: base64url(iv ‖ ciphertext ‖ tag)
  * AES-GCM uses a 12-byte IV; the tag is appended by SubtleCrypto.
  */
-export async function encryptState(payload: StatePayload): Promise<string> {
-  const key = await getKey();
-  const iv = crypto.getRandomValues(new Uint8Array(12));
-  const plaintext = new TextEncoder().encode(JSON.stringify(payload));
+export async function encryptState(
+  payload: StatePayload,
+): Promise<string | null> {
+  try {
+    const key = await getKey();
+    const iv = crypto.getRandomValues(new Uint8Array(12));
+    const plaintext = new TextEncoder().encode(JSON.stringify(payload));
 
-  const ciphertext = new Uint8Array(
-    await crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, plaintext),
-  );
+    const ciphertext = new Uint8Array(
+      await crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, plaintext),
+    );
 
-  // Concatenate iv + ciphertext (which includes the GCM tag)
-  const combined = new Uint8Array(iv.length + ciphertext.length);
-  combined.set(iv, 0);
-  combined.set(ciphertext, iv.length);
+    // Concatenate iv + ciphertext (which includes the GCM tag)
+    const combined = new Uint8Array(iv.length + ciphertext.length);
+    combined.set(iv, 0);
+    combined.set(ciphertext, iv.length);
 
-  return base64UrlEncode(combined);
+    return base64UrlEncode(combined);
+  } catch {
+    // AUTH_STATE_SECRET not configured — caller should fall back to
+    // cookie-only mode.
+    return null;
+  }
 }
 
 /**

@@ -2,13 +2,13 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { LogOut, Trash2, X } from "lucide-react";
+import { LogOut, Trash2, X, Loader2 } from "lucide-react";
 import { Button } from "@/app/book/components/ui/Button";
 import { cn } from "@/app/book/components/ui/cn";
 
 type DangerZoneProps = {
-  onDeactivate: () => void;
-  onDelete: () => void;
+  onDeactivate: () => Promise<void>;
+  onDelete: () => Promise<void>;
   reducedMotion?: boolean;
 };
 
@@ -17,19 +17,20 @@ export function DangerZone({ onDeactivate, onDelete, reducedMotion }: DangerZone
   const [deactivateModal, setDeactivateModal] = useState(false);
   const [confirmText, setConfirmText] = useState("");
   const [deleteStep, setDeleteStep] = useState<1 | 2>(1);
+  const [loading, setLoading] = useState(false);
 
-  // Close modals on Escape
+  // Close modals on Escape (only if not loading)
   useEffect(() => {
     if (!deleteModal && !deactivateModal) return;
     const handler = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
+      if (e.key === "Escape" && !loading) {
         setDeleteModal(false);
         setDeactivateModal(false);
       }
     };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
-  }, [deleteModal, deactivateModal]);
+  }, [deleteModal, deactivateModal, loading]);
 
   function handleStartDelete() {
     setDeleteModal(true);
@@ -37,14 +38,25 @@ export function DangerZone({ onDeactivate, onDelete, reducedMotion }: DangerZone
     setConfirmText("");
   }
 
-  function handleConfirmDelete() {
+  async function handleConfirmDelete() {
     if (deleteStep === 1) {
       setDeleteStep(2);
     } else if (confirmText === "DELETE") {
+      setLoading(true);
+      await onDelete();
+      // If onDelete doesn't redirect, reset state
+      setLoading(false);
       setDeleteModal(false);
       setConfirmText("");
-      onDelete();
     }
+  }
+
+  async function handleConfirmDeactivate() {
+    setLoading(true);
+    await onDeactivate();
+    // If onDeactivate doesn't redirect, reset state
+    setLoading(false);
+    setDeactivateModal(false);
   }
 
   return (
@@ -93,7 +105,7 @@ export function DangerZone({ onDeactivate, onDelete, reducedMotion }: DangerZone
               animate={{ opacity: 1 }}
               exit={reducedMotion ? undefined : { opacity: 0 }}
               className="absolute inset-0 bg-(--cf-overlay) backdrop-blur-sm"
-              onClick={() => setDeactivateModal(false)}
+              onClick={() => !loading && setDeactivateModal(false)}
             />
             <motion.div
               initial={reducedMotion ? false : { scale: 0.95, opacity: 0 }}
@@ -112,6 +124,7 @@ export function DangerZone({ onDeactivate, onDelete, reducedMotion }: DangerZone
                 <Button
                   variant="secondary"
                   className="flex-1"
+                  disabled={loading}
                   onClick={() => setDeactivateModal(false)}
                 >
                   Cancel
@@ -119,12 +132,14 @@ export function DangerZone({ onDeactivate, onDelete, reducedMotion }: DangerZone
                 <Button
                   variant="danger"
                   className="flex-1"
-                  onClick={() => {
-                    setDeactivateModal(false);
-                    onDeactivate();
-                  }}
+                  disabled={loading}
+                  onClick={handleConfirmDeactivate}
                 >
-                  Deactivate
+                  {loading ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : (
+                    "Deactivate"
+                  )}
                 </Button>
               </div>
             </motion.div>
@@ -141,7 +156,7 @@ export function DangerZone({ onDeactivate, onDelete, reducedMotion }: DangerZone
               animate={{ opacity: 1 }}
               exit={reducedMotion ? undefined : { opacity: 0 }}
               className="absolute inset-0 bg-(--cf-overlay) backdrop-blur-sm"
-              onClick={() => setDeleteModal(false)}
+              onClick={() => !loading && setDeleteModal(false)}
             />
             <motion.div
               initial={reducedMotion ? false : { scale: 0.95, opacity: 0 }}
@@ -151,7 +166,7 @@ export function DangerZone({ onDeactivate, onDelete, reducedMotion }: DangerZone
             >
               <button
                 type="button"
-                onClick={() => setDeleteModal(false)}
+                onClick={() => !loading && setDeleteModal(false)}
                 aria-label="Close"
                 className="absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full hover:bg-(--cf-surface-muted) text-(--cf-text-soft)"
               >
@@ -201,6 +216,7 @@ export function DangerZone({ onDeactivate, onDelete, reducedMotion }: DangerZone
                     value={confirmText}
                     onChange={(e) => setConfirmText(e.target.value.toUpperCase())}
                     placeholder="Type DELETE"
+                    disabled={loading}
                     className="cf-input mt-3 w-full rounded-xl px-3 py-2 text-sm font-mono uppercase tracking-widest"
                     autoFocus
                   />
@@ -208,6 +224,7 @@ export function DangerZone({ onDeactivate, onDelete, reducedMotion }: DangerZone
                     <Button
                       variant="secondary"
                       className="flex-1"
+                      disabled={loading}
                       onClick={() => setDeleteModal(false)}
                     >
                       Cancel
@@ -215,10 +232,14 @@ export function DangerZone({ onDeactivate, onDelete, reducedMotion }: DangerZone
                     <Button
                       variant="danger"
                       className="flex-1"
-                      disabled={confirmText !== "DELETE"}
+                      disabled={confirmText !== "DELETE" || loading}
                       onClick={handleConfirmDelete}
                     >
-                      Permanently delete
+                      {loading ? (
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                      ) : (
+                        "Permanently delete"
+                      )}
                     </Button>
                   </div>
                 </>

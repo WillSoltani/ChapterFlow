@@ -2,6 +2,8 @@ import type Stripe from "stripe";
 import { BookApiError } from "./errors";
 import {
   getBookStripePriceId,
+  getBookStripePriceIdAnnual,
+  getBookStripePriceIdAnnualUpfront,
   getBookStripeSecretKey,
   getBookStripeWebhookSecret,
 } from "./env";
@@ -36,6 +38,20 @@ export async function getStripePriceIdOrThrow(): Promise<string> {
     );
   }
   return priceId;
+}
+
+export type BillingInterval = "monthly" | "annual" | "annual_upfront";
+
+export async function getStripePriceIdForInterval(interval: BillingInterval): Promise<string> {
+  if (interval === "annual") {
+    const id = await getBookStripePriceIdAnnual();
+    if (id) return id;
+  }
+  if (interval === "annual_upfront") {
+    const id = await getBookStripePriceIdAnnualUpfront();
+    if (id) return id;
+  }
+  return getStripePriceIdOrThrow();
 }
 
 export async function getStripeWebhookSecretOrThrow(): Promise<string> {

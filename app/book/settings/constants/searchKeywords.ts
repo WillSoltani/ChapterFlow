@@ -254,7 +254,7 @@ export const SETTINGS_SEARCH_INDEX: SettingSearchItem[] = [
     id: "export-data",
     section: "account",
     label: "Export my data",
-    description: "Download your reading history, highlights, notes",
+    description: "Download your reading history, notes, bookmarks",
     keywords: ["export", "download", "data", "csv", "json", "markdown", "backup"],
   },
   {

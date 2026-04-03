@@ -29,6 +29,14 @@ export async function getBookStripePriceId(): Promise<string | undefined> {
   return getServerEnv("BOOK_STRIPE_PRICE_ID");
 }
 
+export async function getBookStripePriceIdAnnual(): Promise<string | undefined> {
+  return getServerEnv("BOOK_STRIPE_PRICE_ID_ANNUAL");
+}
+
+export async function getBookStripePriceIdAnnualUpfront(): Promise<string | undefined> {
+  return getServerEnv("BOOK_STRIPE_PRICE_ID_ANNUAL_UPFRONT");
+}
+
 export async function getBookStripeSecretKey(): Promise<string | undefined> {
   return getServerEnv("BOOK_STRIPE_SECRET_KEY");
 }

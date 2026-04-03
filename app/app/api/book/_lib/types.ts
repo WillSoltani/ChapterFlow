@@ -560,6 +560,17 @@ export type BookUserSettingsItem = {
   updatedAt: string;
 };
 
+export type AccountStatus = "active" | "deactivated" | "deleted";
+
+export type AccountStatusItem = {
+  userId: string;
+  status: AccountStatus;
+  statusChangedAt: string;
+  statusReason?: string;
+  previousPlan?: "FREE" | "PRO";
+  previousProSource?: string;
+};
+
 export type BookUserSavedBookItem = {
   userId: string;
   bookId: string;

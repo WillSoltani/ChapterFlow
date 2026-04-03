@@ -110,6 +110,10 @@ type QuizEntry = {
 
 // ─── Helpers ───
 
+function pluralize(n: number, singular: string, plural?: string): string {
+  return `${n} ${n === 1 ? singular : (plural ?? singular + "s")}`;
+}
+
 function formatMinutes(minutes: number) {
   if (minutes >= 60) {
     const h = Math.floor(minutes / 60);
@@ -256,7 +260,7 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
     onboarding.selectedBookIds,
     onboarding.dailyGoalMinutes
   );
-  const { state: profile, hydrated: profileHydrated, patch: patchProfile } = useBookProfile({
+  const { state: profile, hydrated: profileHydrated, patch: patchProfile, lastSaveError, clearSaveError } = useBookProfile({
     displayName: viewerIdentity.displayName || "Reader",
     pronouns: onboarding.pronoun,
     createdAt: onboarding.completedAt,
@@ -285,6 +289,15 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
       window.removeEventListener("focus", onStorageChange);
     };
   }, []);
+
+  // ─── Surface profile save errors ───
+
+  useEffect(() => {
+    if (lastSaveError) {
+      showToast("Profile save failed — your changes may not have been saved.", "error");
+      clearSaveError();
+    }
+  }, [lastSaveError, showToast, clearSaveError]);
 
   // ─── Redirect if not onboarded ───
 
@@ -697,7 +710,7 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
   const streakHelper = isPersonalBest
     ? "🏆 This IS your longest streak — keep pushing!"
     : statsSummary.longestStreak > 0
-      ? `Your longest: ${statsSummary.longestStreak} days — ${statsSummary.longestStreak - statsSummary.currentStreak} days to beat it`
+      ? `Your longest: ${pluralize(statsSummary.longestStreak, "day")} — ${pluralize(statsSummary.longestStreak - statsSummary.currentStreak, "day")} to beat it`
       : "Start building your record";
 
   // F2: Upgrade message
@@ -853,10 +866,10 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
                 <StatCard
                   icon={<Flame className="h-5 w-5" />}
                   label="Current streak"
-                  value={`${statsSummary.currentStreak} days`}
+                  value={pluralize(statsSummary.currentStreak, "day")}
                   helper={streakHelper}
                   animate numericValue={statsSummary.currentStreak}
-                  formatFn={(v) => `${Math.round(v)} days`}
+                  formatFn={(v) => pluralize(Math.round(v), "day")}
                   performanceLevel={statsSummary.currentStreak >= 7 ? "strong" : statsSummary.currentStreak > 0 ? "active" : "zero"}
                   accentColor="var(--accent-amber)"
                   valueColorClass={statsSummary.currentStreak > 0 ? "text-[var(--accent-amber)]" : undefined}
@@ -888,7 +901,7 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
                   accentColor="var(--accent-emerald)"
                   valueColorClass={
                     statsSummary.averageQuizScore > 70
-                      ? "text-[var(--accent-emerald)]"
+                      ? "text-accent-emerald"
                       : statsSummary.averageQuizScore >= 50
                         ? "text-[var(--accent-amber)]"
                         : statsSummary.averageQuizScore > 0
@@ -1333,6 +1346,16 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
                       <p className="text-xs text-(--cf-text-soft)">
                         Complete a full chapter quiz to see detailed score trends.
                       </p>
+                    </div>
+                  ) : statsSummary.averageQuizScore > 0 ? (
+                    <div className="mt-4 space-y-2">
+                      <p className="text-3xl font-bold text-accent-emerald">{formatPercent(statsSummary.averageQuizScore)}</p>
+                      <p className="text-xs text-(--cf-text-3)">Average score across completed quizzes</p>
+                      {statsSummary.averageQuizScore >= 80 ? (
+                        <p className="text-xs text-accent-emerald">Strong retention — your learning loops are working</p>
+                      ) : (
+                        <p className="text-xs text-(--cf-text-soft)">Complete more quizzes to see detailed score trends</p>
+                      )}
                     </div>
                   ) : (
                     <p className="mt-4 py-4 text-center text-sm text-(--cf-text-3)">

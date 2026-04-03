@@ -9,6 +9,7 @@ import { cn } from "@/app/book/components/ui/cn";
 type SettingsSectionProps = {
   icon: LucideIcon;
   title: string;
+  badge?: string;
   summary?: string;
   expanded: boolean;
   onToggle: () => void;
@@ -21,6 +22,7 @@ type SettingsSectionProps = {
 export function SettingsSection({
   icon: Icon,
   title,
+  badge,
   summary,
   expanded,
   onToggle,
@@ -66,6 +68,11 @@ export function SettingsSection({
             <Icon className="h-4 w-4" />
           </div>
           <h2 className="text-[15px] font-semibold text-(--cf-text-1)">{title}</h2>
+          {badge && (
+            <span className="rounded-full bg-(--cf-surface-muted) px-2 py-0.5 text-[10px] font-medium text-(--cf-text-soft)">
+              {badge}
+            </span>
+          )}
         </div>
         <div className="flex items-center gap-3">
           {/* Collapsed summary — desktop only */}

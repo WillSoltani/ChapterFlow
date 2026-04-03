@@ -3,8 +3,9 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
 import { createSyncStoragePersister } from "@tanstack/query-sync-storage-persister";
-import { type ReactNode, useState }from "react";
+import { type ReactNode, useState } from "react";
 import type { PersistedClient } from "@tanstack/query-persist-client-core";
+import { useAnalyticsBeacon } from "@/app/book/hooks/useAnalyticsBeacon";
 
 /**
  * Query keys that should be persisted to localStorage for offline support.
@@ -60,6 +61,12 @@ const persister = createSyncStoragePersister({
   },
 });
 
+/** Invisible component that mounts the analytics beacon hook. */
+function AnalyticsBeaconMount() {
+  useAnalyticsBeacon();
+  return null;
+}
+
 export function BookQueryProvider({ children }: { children: ReactNode }) {
   const [queryClient] = useState(makeQueryClient);
 
@@ -73,6 +80,7 @@ export function BookQueryProvider({ children }: { children: ReactNode }) {
       }}
     >
       {children}
+      <AnalyticsBeaconMount />
     </PersistQueryClientProvider>
   );
 }

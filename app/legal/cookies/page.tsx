@@ -15,7 +15,7 @@ export default function CookiePolicyPage() {
         Cookie Policy
       </h1>
       <p className="text-[14px] mb-10" style={{ color: "var(--text-muted)" }}>
-        Effective date: March 28, 2026
+        Effective date: April 2, 2026
       </p>
 
       <div className="space-y-8 text-[15px] leading-[1.75]" style={{ color: "var(--text-secondary)" }}>
@@ -48,12 +48,17 @@ export default function CookiePolicyPage() {
                 <tr style={{ borderBottom: "1px solid var(--border-subtle)" }}>
                   <td className="py-2 pr-4 font-mono text-[13px]">id_token</td>
                   <td className="py-2 pr-4">Authentication session (JWT from AWS Cognito). Secure, httpOnly.</td>
-                  <td className="py-2">Session</td>
+                  <td className="py-2">1 hour</td>
                 </tr>
                 <tr style={{ borderBottom: "1px solid var(--border-subtle)" }}>
                   <td className="py-2 pr-4 font-mono text-[13px]">access_token</td>
                   <td className="py-2 pr-4">API authorization token. Secure, httpOnly.</td>
-                  <td className="py-2">Session</td>
+                  <td className="py-2">1 hour</td>
+                </tr>
+                <tr style={{ borderBottom: "1px solid var(--border-subtle)" }}>
+                  <td className="py-2 pr-4 font-mono text-[13px]">auth_expires_at</td>
+                  <td className="py-2 pr-4">Session expiry timestamp for proactive session management. Client-readable (not httpOnly).</td>
+                  <td className="py-2">1 hour</td>
                 </tr>
                 <tr style={{ borderBottom: "1px solid var(--border-subtle)" }}>
                   <td className="py-2 pr-4 font-mono text-[13px]">cf_device</td>
@@ -63,6 +68,15 @@ export default function CookiePolicyPage() {
               </tbody>
             </table>
           </div>
+        </section>
+
+        <section>
+          <p className="mb-3">
+            During sign-in, transient cookies (<code className="font-mono text-[13px]">pkce_verifier</code>,{" "}
+            <code className="font-mono text-[13px]">oauth_state</code>,{" "}
+            <code className="font-mono text-[13px]">post_auth_redirect</code>) are briefly set and immediately
+            cleared after the authentication callback completes. These never persist beyond the login flow.
+          </p>
         </section>
 
         <section>
@@ -92,17 +106,25 @@ export default function CookiePolicyPage() {
 
         <section>
           <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
-            4. Local Storage
+            4. Local Storage and Session Storage
           </h2>
           <p className="mb-3">
-            ChapterFlow uses browser local storage to persist your preferences and reader state locally for performance.
-            This data never leaves your device unless you explicitly sync it.
+            ChapterFlow uses browser local storage to persist your preferences and app state locally for performance.
+            This data stays on your device. Some preferences are also synced to the server so they persist across devices.
           </p>
           <ul className="list-disc pl-6 space-y-2">
-            <li>Reading preferences (font size, theme, learning mode)</li>
-            <li>Reader state (current position, scroll progress)</li>
-            <li>Theme selection (light/dark mode)</li>
+            <li>Reading preferences (font size, theme, learning mode, accessibility settings)</li>
+            <li>Onboarding progress and selected interests</li>
+            <li>Chapter reader state (current tab, quiz answers, scroll position)</li>
+            <li>Daily reading activity tracking</li>
+            <li>Dashboard and viewer state cache</li>
+            <li>Badge and achievement data</li>
+            <li>Analytics consent preference</li>
+            <li>Query cache for offline resilience</li>
           </ul>
+          <p className="mt-3">
+            Session storage is used minimally for transient state such as post-checkout status flags. It is cleared when you close your browser tab.
+          </p>
         </section>
 
         <section>
@@ -133,7 +155,7 @@ export default function CookiePolicyPage() {
           </h2>
           <p>
             For questions about our use of cookies, contact us at{" "}
-            <a href="mailto:support@siliconx.ca" className="underline" style={{ color: "var(--accent-teal)" }}>support@siliconx.ca</a>.
+            <a href="mailto:support@chapterflow.ca" className="underline" style={{ color: "var(--accent-teal)" }}>support@chapterflow.ca</a>.
           </p>
         </section>
       </div>

@@ -53,6 +53,13 @@ export async function GET(req: Request) {
       getUserFlowPointsState(tableName, user.sub).catch(() => ({ points: 0 })),
     ]);
 
+    // Respect the user's "Save Reading History" preference — if opted out,
+    // return an empty readingDays array so the heatmap shows nothing.
+    const privacy = settings?.settings?.privacy as
+      | { saveReadingHistory?: boolean }
+      | undefined;
+    const saveReadingHistory = privacy?.saveReadingHistory ?? true;
+
     return bookOk({
       catalog,
       entitlement,
@@ -62,7 +69,7 @@ export async function GET(req: Request) {
       bookStates,
       chapterStates,
       saved,
-      readingDays,
+      readingDays: saveReadingHistory ? readingDays : [],
       badgeAwards,
       insightPointsBalance: flowPointsState.points,
     });

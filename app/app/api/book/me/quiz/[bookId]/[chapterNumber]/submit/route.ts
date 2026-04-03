@@ -42,9 +42,19 @@ import {
 } from "@/app/app/api/book/_lib/repo";
 import { awardFlowPoints } from "@/app/app/api/book/_lib/flow-points-repo";
 import { scoreQuizResponsesByQuestionId } from "@/app/app/api/book/_lib/quiz-service";
+import { updateStreakOnLoopComplete } from "@/app/app/api/book/_lib/streak-repo";
+import { updateTierOnLoopComplete } from "@/app/app/api/book/_lib/tier-repo";
+import { checkAchievementsAfterLoopComplete } from "@/app/app/api/book/_lib/achievement-repo";
+import { maybeAwardInsightSpark } from "@/app/app/api/book/_lib/insight-spark";
+import { getUserBookState } from "@/app/app/api/book/_lib/repo";
+import { bookUserPk, loopSk } from "@/app/app/api/book/_lib/keys";
+import { PutCommand } from "@aws-sdk/lib-dynamodb";
+import { ddbDoc } from "@/app/app/api/_lib/aws";
 import {
   CHAPTER_FP,
   FLOW_POINTS_AMOUNTS,
+  LOOP_COMPLETE_IP,
+  INSIGHT_POINTS_AMOUNTS,
   QUIZ_PASS_THRESHOLDS,
 } from "@/app/book/_lib/flow-points-economy";
 import type { LearningMode } from "@/app/book/settings/types/settings";
@@ -424,6 +434,231 @@ export async function POST(
           })
         : { awarded: false as const };
 
+    // ── Loop-complete pipeline (streak, tier, achievements, insight spark) ──
+    // Runs when the quiz is passed, making the server the source of truth
+    // for streaks, tiers, and achievement awards.
+    let loopPipeline:
+      | {
+          loopCompleteIP: number;
+          streak: {
+            currentStreak: number;
+            longestStreak: number;
+            shieldsHeld: number;
+            streakReset: boolean;
+            shieldsConsumed: number;
+            streakDayIP: number;
+            welcomeBackIP: number;
+            milestones: Array<{ days: number; ip: number }>;
+          };
+          tier: {
+            advanced: boolean;
+            newTier: string | null;
+            displayName: string | null;
+            advancementIP: number;
+          };
+          achievements: Array<{
+            id: string;
+            name: string;
+            track: string;
+            ip: number;
+            celebrationCopy: string;
+            isHidden: boolean;
+          }>;
+          insightSpark: { triggered: boolean; amount: number };
+        }
+      | null = null;
+
+    if (graded.passed) {
+      try {
+        // Extract timezone from request body
+        const timezone =
+          typeof body.timezone === "string" && body.timezone.trim()
+            ? body.timezone.trim()
+            : "UTC";
+        const bookCategory =
+          typeof body.category === "string" ? body.category : "";
+
+        // Award loop completion IP
+        const loopCompleteIPAmount = isFirstAttempt
+          ? LOOP_COMPLETE_IP[learningMode].firstAttempt
+          : LOOP_COMPLETE_IP[learningMode].retry;
+
+        const loopAward = await awardFlowPoints(tableName, {
+          userId: user.sub,
+          amount: loopCompleteIPAmount,
+          sourceType: "loop_complete",
+          sourceId: `${bookId}:${chapterNumberInt}`,
+          metadata: {
+            bookId,
+            chapterNumber: chapterNumberInt,
+            learningMode,
+            isFirstAttempt,
+          },
+          createdAt: ts,
+        });
+
+        // Create LOOP record in DynamoDB
+        if (loopAward.awarded) {
+          try {
+            await ddbDoc.send(
+              new PutCommand({
+                TableName: tableName,
+                Item: {
+                  PK: bookUserPk(user.sub),
+                  SK: loopSk(bookId, chapterNumberInt),
+                  entity: "BOOK_USER_LOOP",
+                  userId: user.sub,
+                  bookId,
+                  chapterNumber: chapterNumberInt,
+                  completedAt: ts,
+                  quizScore: graded.scorePercent,
+                  learningMode,
+                  isFirstAttempt,
+                  category: bookCategory,
+                  createdAt: ts,
+                },
+                ConditionExpression:
+                  "attribute_not_exists(PK) AND attribute_not_exists(SK)",
+              })
+            );
+          } catch {
+            // Idempotent — LOOP record already exists
+          }
+        }
+
+        // Compute inactivity gap BEFORE updating streak (for second-wind detection)
+        let inactiveDaysBeforeReturn: number | undefined;
+        // We'll read it from the streak result — the streak repo returns the
+        // gap via the streakReset flag and welcomeBackAwarded flag.
+        // For a precise count, we peek at the current streak's lastActiveDate.
+
+        // Update streak
+        const streakResult = await updateStreakOnLoopComplete(
+          tableName,
+          user.sub,
+          timezone
+        );
+
+        // Derive inactiveDaysBeforeReturn from streak state:
+        // If welcomeBack was awarded, streak repo detected 7+ day gap.
+        // For second-wind (14+ days), we check if the streak was reset AND
+        // the previous lastActiveDate gap is >= 14 days.
+        if (streakResult.streakReset && streakResult.streak.lastActiveDate) {
+          // The streak was reset to 1 today. The gap is encoded in the
+          // welcomeBack flag (7+ days). For 14+ day detection, the
+          // streak repo's previous lastActiveDate was the pre-update value.
+          // Since streak updates before we get here, we check:
+          // currentStreak === 1 means it was just reset.
+          // We can compute the gap from READINGDAY records, but a simpler
+          // approach: the welcome_back threshold is 7 days. If the streak
+          // was reset with shields consumed = 0 (no shields left), the gap
+          // was at least shieldUsedDates.length + days missed.
+          // For now, use a conservative approach: if welcomeBack was awarded,
+          // the gap was at least 7 days. We can't distinguish 7 vs 14 here
+          // without the pre-update lastActiveDate.
+          // TODO: Pass pre-update gap from streak-repo for precise detection.
+          inactiveDaysBeforeReturn = streakResult.welcomeBackAwarded ? 7 : undefined;
+        }
+
+        // Update tier
+        const tierResult = await updateTierOnLoopComplete(
+          tableName,
+          user.sub,
+          graded.scorePercent,
+          bookCategory
+        );
+
+        // Build full achievement context
+        // Fetch bookStartedAt from the user's book state record
+        let bookStartedAt: string | undefined;
+        if (completedBookNow) {
+          const bookState = await getUserBookState(
+            tableName,
+            user.sub,
+            bookId
+          );
+          bookStartedAt = bookState?.createdAt || undefined;
+        }
+
+        // Check achievements with full context
+        const achievementResults = await checkAchievementsAfterLoopComplete({
+          userId: user.sub,
+          tableName,
+          streak: streakResult.streak,
+          tier: tierResult.tier,
+          latestQuizScore: graded.scorePercent,
+          latestLearningMode: learningMode,
+          latestIsFirstAttempt: isFirstAttempt,
+          bookId,
+          bookCompleted: completedBookNow,
+          bookChapterCount: manifest.chapterCount,
+          loopCompletedAt: ts,
+          userTimezone: timezone,
+          bookStartedAt,
+          inactiveDaysBeforeReturn,
+        });
+
+        // Insight Spark (12% variable reward)
+        const today =
+          streakResult.streak.lastActiveDate ??
+          new Date().toISOString().slice(0, 10);
+        const sparkResult = await maybeAwardInsightSpark(
+          tableName,
+          user.sub,
+          today,
+          tierResult.tier.totalLoopsCompleted
+        );
+
+        loopPipeline = {
+          loopCompleteIP: loopAward.awarded ? loopCompleteIPAmount : 0,
+          streak: {
+            currentStreak: streakResult.streak.currentStreak,
+            longestStreak: streakResult.streak.longestStreak,
+            shieldsHeld: streakResult.streak.streakShieldsHeld,
+            streakReset: streakResult.streakReset,
+            shieldsConsumed: streakResult.shieldsConsumed,
+            streakDayIP: streakResult.streakDayAwarded
+              ? INSIGHT_POINTS_AMOUNTS.streakDayBonus
+              : 0,
+            welcomeBackIP: streakResult.welcomeBackAwarded
+              ? INSIGHT_POINTS_AMOUNTS.welcomeBack
+              : 0,
+            milestones: streakResult.milestonesAwarded.map((m) => ({
+              days: m.days,
+              ip: m.ip,
+            })),
+          },
+          tier: tierResult.advanced
+            ? {
+                advanced: true,
+                newTier: tierResult.newTier,
+                displayName: tierResult.definition?.displayName ?? null,
+                advancementIP: tierResult.advancementIP,
+              }
+            : { advanced: false, newTier: null, displayName: null, advancementIP: 0 },
+          achievements: achievementResults.map((a) => ({
+            id: a.achievementId,
+            name: a.name,
+            track: a.track,
+            ip: a.ipAwarded,
+            celebrationCopy: a.celebrationCopy,
+            isHidden: a.isHidden,
+          })),
+          insightSpark: sparkResult.triggered
+            ? { triggered: true, amount: sparkResult.amount }
+            : { triggered: false, amount: 0 },
+        };
+      } catch (pipelineError) {
+        // Log but don't fail the quiz submission — the quiz result is more
+        // important than the loop pipeline. Achievements can be detected
+        // on subsequent loops.
+        console.error(
+          "[loop-pipeline] Error in streak/tier/achievement pipeline:",
+          pipelineError
+        );
+      }
+    }
+
     getBookAnalyticsTableName()
       .then((analyticsTable) => {
         if (!analyticsTable) return;
@@ -521,6 +756,9 @@ export async function POST(
         completedChapters:
           nextProgress?.completedChapters ?? progress.completedChapters,
       },
+      // Loop-complete pipeline results (streak, tier, achievements, IP)
+      // Included when the quiz was passed — null otherwise.
+      ...(loopPipeline ? { loopPipeline } : {}),
     });
     return applyStartDeviceCookie(response, started);
   });

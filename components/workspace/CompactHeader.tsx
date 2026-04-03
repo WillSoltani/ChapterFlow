@@ -103,7 +103,7 @@ export function CompactHeader({
                 className="text-sm tabular-nums"
                 style={{ color: "var(--cf-text-3)" }}
               >
-                {insightPoints.toLocaleString()}
+                {(insightPoints ?? 0).toLocaleString()}
               </span>
             </Link>
           </>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
 
 export type ProfileVisibility = "private" | "friends" | "public";
@@ -152,6 +152,8 @@ export function useBookProfile(seed: BookProfileSeed) {
   const [hydrated, setHydrated] = useState(false);
   const [state, setState] = useState<BookProfileState>(createDefaultState(stableSeed));
   const [serverReady, setServerReady] = useState(false);
+  const [lastSaveError, setLastSaveError] = useState<string | null>(null);
+  const dirtyRef = useRef(false);
 
   useEffect(() => {
     const stored = parseStored(window.localStorage.getItem(STORAGE_KEY), stableSeed);
@@ -185,28 +187,38 @@ export function useBookProfile(seed: BookProfileSeed) {
   }, [hydrated, state]);
 
   useEffect(() => {
-    if (!hydrated || !serverReady) return;
+    if (!hydrated || !serverReady || !dirtyRef.current) return;
     const timeout = window.setTimeout(() => {
+      dirtyRef.current = false;
+      setLastSaveError(null);
       fetchBookJson("/app/api/book/me/profile", {
         method: "PATCH",
         body: JSON.stringify({ profile: state }),
-      }).catch(() => {});
+      }).catch((err) => {
+        setLastSaveError(err instanceof Error ? err.message : "Profile save failed");
+      });
     }, 250);
     return () => window.clearTimeout(timeout);
   }, [hydrated, serverReady, state]);
 
   const patch = useCallback((values: Partial<BookProfileState>) => {
+    dirtyRef.current = true;
     setState((prev) => ({ ...prev, ...values }));
   }, []);
 
   const resetAvatar = useCallback(() => {
+    dirtyRef.current = true;
     setState((prev) => ({ ...prev, avatarDataUrl: null }));
   }, []);
+
+  const clearSaveError = useCallback(() => setLastSaveError(null), []);
 
   return {
     hydrated,
     state,
     patch,
     resetAvatar,
+    lastSaveError,
+    clearSaveError,
   };
 }

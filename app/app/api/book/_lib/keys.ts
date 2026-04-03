@@ -195,7 +195,21 @@ export function licenseKeySk(): string {
   return "META";
 }
 
+/** Shared PK for querying all license keys. Each key also writes an index item here. */
+export function licenseIndexPk(): string {
+  return "BOOKLICENSE#KEYS";
+}
+
+/** SK for a license key index entry under the shared BOOKLICENSE#KEYS partition. */
+export function licenseIndexSk(code: string): string {
+  return `CODE#${code.toUpperCase()}`;
+}
+
 // ── Insight Points System keys (§10.1) ──────────────────────────────────────
+
+export function accountStatusSk(): string {
+  return "ACCOUNT_STATUS";
+}
 
 export function streakSk(): string {
   return "STREAK";

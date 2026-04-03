@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Sparkles, X } from "lucide-react";
 import { JetBrains_Mono } from "next/font/google";
 import { motion, useReducedMotion } from "framer-motion";
 import { AnimatedBackground } from "./AnimatedBackground";
@@ -11,7 +13,7 @@ import { BookRow } from "./BookRow";
 import { RewardsCard } from "./RewardsCard";
 import { NextAchievementCard } from "./NextAchievementCard";
 import { DiscoveryRow } from "./DiscoveryRow";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { TopNav } from "@/app/book/home/components/TopNav";
 import { useBookAnalytics, type AnalyticsState } from "@/app/book/hooks/useBookAnalytics";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
@@ -705,6 +707,8 @@ function DashboardContent({
    ──────────────────────────────────────────── */
 
 export function WorkspacePage() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const prefersReducedMotion = useReducedMotion();
   const { analytics } = useBookAnalytics(ALL_BOOK_IDS, 20);
   const { identity } = useBookViewer();
@@ -716,6 +720,17 @@ export function WorkspacePage() {
 
   const searchRef = useRef<HTMLInputElement | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [showProBanner, setShowProBanner] = useState(false);
+
+  // Show a success banner when Stripe redirects back after payment, then
+  // clean the URL so a refresh doesn't re-show it.
+  useEffect(() => {
+    if (searchParams.get("billing") === "success") {
+      setShowProBanner(true);
+      sessionStorage.setItem("cf:billing-upgraded", "1");
+      router.replace("/dashboard");
+    }
+  }, [searchParams, router]);
 
   return (
     <div
@@ -727,6 +742,26 @@ export function WorkspacePage() {
 
       {/* Noise texture overlay */}
       <div className="noise-overlay pointer-events-none fixed inset-0 z-0" />
+
+      {/* Pro upgrade banner */}
+      {showProBanner && (
+        <div className="relative z-20 flex items-center justify-between gap-3 bg-linear-to-r from-(--cf-accent) to-(--cf-accent-strong) px-4 py-3 text-white sm:px-6">
+          <div className="flex items-center gap-2.5">
+            <Sparkles className="h-4 w-4 shrink-0" />
+            <p className="text-sm font-medium">
+              You&apos;re now on Pro — enjoy unlimited access to the full library.
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={() => setShowProBanner(false)}
+            aria-label="Dismiss"
+            className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full hover:bg-white/20"
+          >
+            <X className="h-3.5 w-3.5" />
+          </button>
+        </div>
+      )}
 
       {/* Content */}
       <div className="relative z-10">

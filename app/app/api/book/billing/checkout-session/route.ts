@@ -2,7 +2,11 @@ import "server-only";
 import { requireUser } from "@/app/app/api/_lib/auth";
 import { withBookApiErrors, bookOk } from "@/app/app/api/book/_lib/http";
 import { getAppBaseUrl, getBookTableName } from "@/app/app/api/book/_lib/env";
-import { getStripeClient, getStripePriceIdOrThrow } from "@/app/app/api/book/_lib/stripe-service";
+import {
+  getStripeClient,
+  getStripePriceIdForInterval,
+  type BillingInterval,
+} from "@/app/app/api/book/_lib/stripe-service";
 import {
   attachStripeCustomerToEntitlement,
   getUserEntitlement,
@@ -14,10 +18,21 @@ export const runtime = "nodejs";
 export async function POST(req: Request) {
   return withBookApiErrors(req, async () => {
     const user = await requireUser();
+
+    let interval: BillingInterval = "monthly";
+    try {
+      const body = await req.json();
+      if (body?.interval === "annual" || body?.interval === "annual_upfront") {
+        interval = body.interval;
+      }
+    } catch {
+      // No body or invalid JSON — default to monthly
+    }
+
     const [tableName, stripe, priceId, appBaseUrl] = await Promise.all([
       getBookTableName(),
       getStripeClient(),
-      getStripePriceIdOrThrow(),
+      getStripePriceIdForInterval(interval),
       getAppBaseUrl(req.url),
     ]);
 
