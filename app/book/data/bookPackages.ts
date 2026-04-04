@@ -2,6 +2,7 @@ import lawsOfPowerPackageJson from "@/book-packages/the-48-laws-of-power.modern.
 import friendsAndInfluencePackageJson from "@/book-packages/friends-and-influence.modern.json";
 import lawsOfHumanNaturePackageJson from "@/book-packages/laws-of-human-nature.modern.json";
 import theCharismaMythPackageJson from "@/book-packages/the-charisma-myth.modern.json";
+import atomicHabitsPackageJson from "@/book-packages/atomic-habits.modern.json";
 import neverSplitTheDifferencePackageJson from "@/book-packages/never-split-the-difference.modern.json";
 import { getBookCoverPath } from "@/lib/book-covers";
 
@@ -258,6 +259,16 @@ export function getTheCharismaMythPackageForTone(tone: ToneKey): BookPackage {
   return normalizeNstdPackage(theCharismaMythPackageJson, tone);
 }
 
+export const ATOMIC_HABITS_PACKAGE =
+  normalizeNstdPackage(atomicHabitsPackageJson, "direct");
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const ATOMIC_HABITS_RAW_CHAPTERS: any[] = (atomicHabitsPackageJson as any).chapters ?? [];
+
+export function getAtomicHabitsPackageForTone(tone: ToneKey): BookPackage {
+  return normalizeNstdPackage(atomicHabitsPackageJson, tone);
+}
+
 export const NEVER_SPLIT_THE_DIFFERENCE_PACKAGE =
   normalizeNstdPackage(neverSplitTheDifferencePackageJson, "direct");
 
@@ -272,6 +283,7 @@ export function getNeverSplitTheDifferencePackageForTone(tone: ToneKey): BookPac
 export const BOOK_PACKAGES: BookPackage[] = [
   LAWS_OF_POWER_PACKAGE,
   FRIENDS_AND_INFLUENCE_PACKAGE,
+  ATOMIC_HABITS_PACKAGE,
   LAWS_OF_HUMAN_NATURE_PACKAGE,
   THE_CHARISMA_MYTH_PACKAGE,
   NEVER_SPLIT_THE_DIFFERENCE_PACKAGE,
@@ -285,6 +297,14 @@ export const BOOK_PACKAGE_PRESENTATION: Record<string, BookPackagePresentation> 
     synopsis:
       "A classic communication guide focused on first impressions, attentive listening, better questions, respectful disagreement, and the habits that make relationships stronger over time.",
     pages: 304,
+  },
+  "atomic-habits": {
+    icon: "🔁",
+    coverImage: getBookCoverPath("atomic-habits"),
+    difficulty: "Medium",
+    synopsis:
+      "A modern reading of habits, identity, and behavior design: how tiny changes compound into remarkable results through the Four Laws of Behavior Change.",
+    pages: 320,
   },
   "the-48-laws-of-power": {
     icon: "♜",

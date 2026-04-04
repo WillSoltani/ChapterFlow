@@ -97,6 +97,33 @@ export const MOCK_WEEKLY_CHALLENGE: WeeklyChallenge = {
 // ── All books ──
 export const MOCK_BOOKS: LibraryBook[] = [
   {
+    id: "atomic-habits",
+    title: "Atomic Habits",
+    author: "James Clear",
+    authorCredentials: "Author, habits researcher, speaker on behavior change",
+    coverImage: getBookCoverPath("atomic-habits"),
+    coverGradient: "linear-gradient(135deg, #0f766e 0%, #042f2e 100%)",
+    hook: "Small habits, compounded daily, change everything",
+    description:
+      "The definitive guide to building good habits and breaking bad ones, grounded in the science of behavior change and the Four Laws framework.",
+    whatYoullLearn: [
+      "Why tiny 1% improvements compound into remarkable results over time",
+      "How to anchor habits to identity, not outcomes",
+      "The 4-step habit loop and Four Laws for redesigning your behavior",
+    ],
+    bestFor: ["self-improvers", "high performers", "students", "founders"],
+    category: "Productivity",
+    difficulty: "medium",
+    totalChapters: 20,
+    estimatedReadingTimeMinutes: 340,
+    readerCount: 5120,
+    completionRate: 82,
+    isPro: true,
+    badges: ["trending", "staff-pick"],
+    staffPickReason: "The clearest actionable system for behavior change ever written",
+    similarBookId: "friends-and-influence",
+  },
+  {
     id: "friends-and-influence",
     title: "How to Win Friends and Influence People",
     author: "Dale Carnegie",
@@ -275,7 +302,9 @@ export const CURATED_SECTIONS: CuratedSectionConfig[] = [
     narrativeTitle: "Build better systems.",
     narrativeSubtitle:
       "Practical frameworks for habits, productivity, and personal growth.",
-    bookIds: [],
+    bookIds: [
+      "atomic-habits",
+    ],
   },
 ];
 

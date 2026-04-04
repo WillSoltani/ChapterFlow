@@ -1,4 +1,5 @@
 const REAL_BOOK_COVER_PATHS: Record<string, string> = {
+  "atomic-habits": "/book-covers/atomic-habits-20260403-real.jpg",
   "friends-and-influence": "/book-covers/friends-and-influence-20260328-real.jpg",
   "laws-of-human-nature": "/book-covers/laws-of-human-nature-20260328-real.jpg",
   "never-split-the-difference": "/book-covers/never-split-the-difference-20260403-real.jpg",

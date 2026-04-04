@@ -6,6 +6,8 @@ import {
   LAWS_OF_POWER_RAW_CHAPTERS,
   getFriendsAndInfluencePackageForTone,
   FRIENDS_AND_INFLUENCE_RAW_CHAPTERS,
+  getAtomicHabitsPackageForTone,
+  ATOMIC_HABITS_RAW_CHAPTERS,
   getLawsOfHumanNaturePackageForTone,
   LAWS_OF_HUMAN_NATURE_RAW_CHAPTERS,
   getTheCharismaMythPackageForTone,
@@ -726,6 +728,7 @@ function buildBundle(bookPackage: BookPackage, rawChapters?: any[], tone: ToneKe
 const TONE_AWARE_BOOK_IDS = new Set([
   "the-48-laws-of-power",
   "friends-and-influence",
+  "atomic-habits",
   "laws-of-human-nature",
   "the-charisma-myth",
   "never-split-the-difference",
@@ -743,6 +746,10 @@ const TONE_BUNDLE_GETTERS: Record<string, { getPackage: ToneBundleGetter; getRaw
   "friends-and-influence": {
     getPackage: getFriendsAndInfluencePackageForTone,
     getRaw: () => FRIENDS_AND_INFLUENCE_RAW_CHAPTERS,
+  },
+  "atomic-habits": {
+    getPackage: getAtomicHabitsPackageForTone,
+    getRaw: () => ATOMIC_HABITS_RAW_CHAPTERS,
   },
   "laws-of-human-nature": {
     getPackage: getLawsOfHumanNaturePackageForTone,
