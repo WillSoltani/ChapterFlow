@@ -705,22 +705,25 @@ html.transitioning *::after {
    FLAME PULSE (Workspace Streak)
    ───────────────────────────────────────── */
 .flame-pulse {
-  animation: flame-pulse 2s ease-in-out infinite;
+  display: inline-block;
+  animation: flame-flicker 2s ease-in-out infinite;
 }
 
-@keyframes flame-pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.85; transform: scale(1.05); }
+.flame-pulse-intense {
+  display: inline-block;
+  animation: flame-flicker 1.2s ease-in-out infinite;
+  filter: drop-shadow(0 0 6px rgba(245, 158, 11, 0.4));
 }
 
-@keyframes flicker {
-  0%, 100% { transform: scaleY(1) scaleX(1); }
-  25% { transform: scaleY(1.04) scaleX(0.98); }
-  50% { transform: scaleY(0.98) scaleX(1.02); }
-  75% { transform: scaleY(1.02) scaleX(0.99); }
+@keyframes flame-flicker {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  20% { transform: scale(1.05) rotate(-2deg); }
+  40% { transform: scale(0.98) rotate(1deg); }
+  60% { transform: scale(1.04) rotate(-1deg); }
+  80% { transform: scale(0.97) rotate(2deg); }
 }
 
-.flame-icon { animation: flicker 1.5s ease-in-out infinite; }
+.flame-icon { animation: flame-flicker 1.5s ease-in-out infinite; }
 
 /* ─────────────────────────────────────────
    CTA ARROW HOVER

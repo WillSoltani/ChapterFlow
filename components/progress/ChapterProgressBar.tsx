@@ -17,51 +17,98 @@ export function ChapterProgressBar({
   currentStepNumber,
   height = 8,
 }: ChapterProgressBarProps) {
-  const gap = height >= 6 ? 2 : 1;
+  const useSegmented = totalChapters <= 20;
+
+  if (useSegmented) {
+    const gap = height >= 6 ? 2 : 1;
+    return (
+      <div
+        className="flex w-full items-center"
+        style={{ height, gap }}
+        role="progressbar"
+        aria-valuenow={completedChapters}
+        aria-valuemin={0}
+        aria-valuemax={totalChapters}
+        aria-label={`Book progress: ${completedChapters} of ${totalChapters} chapters completed`}
+      >
+        {Array.from({ length: totalChapters }, (_, i) => {
+          const chapterNum = i + 1;
+          const isCompleted = chapterNum <= completedChapters;
+          const isCurrent = chapterNum === currentChapterNumber;
+
+          return (
+            <div
+              key={chapterNum}
+              className="relative flex-1 overflow-hidden"
+              style={{
+                height,
+                borderRadius: height >= 6 ? 4 : 2,
+                background: isCompleted
+                  ? "#34D399"
+                  : isCurrent
+                    ? "rgba(34,211,238,0.15)"
+                    : "rgba(255,255,255,0.06)",
+              }}
+            >
+              {isCurrent && (
+                <div
+                  className="absolute inset-y-0 left-0"
+                  style={{
+                    width: `${(currentStepNumber / 4) * 100}%`,
+                    borderRadius: height >= 6 ? 4 : 2,
+                    background: "#22D3EE",
+                  }}
+                />
+              )}
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
+
+  // Continuous bar for >20 chapters
+  const completedPct = (completedChapters / totalChapters) * 100;
+  const chapterPct = (1 / totalChapters) * 100;
+  const stepWithinChapter = ((currentStepNumber - 1) / 4) * chapterPct;
 
   return (
     <div
-      className="flex w-full items-center"
-      style={{ height, gap }}
+      className="relative w-full overflow-hidden rounded-full"
+      style={{ height, background: "rgba(255,255,255,0.06)" }}
       role="progressbar"
       aria-valuenow={completedChapters}
       aria-valuemin={0}
       aria-valuemax={totalChapters}
       aria-label={`Book progress: ${completedChapters} of ${totalChapters} chapters completed`}
     >
-      {Array.from({ length: totalChapters }, (_, i) => {
-        const chapterNum = i + 1;
-        const isCompleted = chapterNum <= completedChapters;
-        const isCurrent = chapterNum === currentChapterNumber;
-
-        return (
-          <div
-            key={chapterNum}
-            className="relative flex-1 overflow-hidden"
-            style={{
-              height,
-              borderRadius: height >= 6 ? 4 : 2,
-              background: isCompleted
-                ? "var(--accent-cyan)"
-                : isCurrent
-                  ? "rgba(34,211,238,0.15)"
-                  : "var(--cf-surface-muted)",
-            }}
-          >
-            {/* Inner step progress for current chapter */}
-            {isCurrent && (
-              <div
-                className="absolute inset-y-0 left-0"
-                style={{
-                  width: `${(currentStepNumber / 4) * 100}%`,
-                  borderRadius: height >= 6 ? 4 : 2,
-                  background: "var(--accent-cyan)",
-                }}
-              />
-            )}
-          </div>
-        );
-      })}
+      {/* Completed chapters */}
+      {completedPct > 0 && (
+        <div
+          className="absolute inset-y-0 left-0 rounded-full"
+          style={{ width: `${completedPct}%`, background: "#34D399" }}
+        />
+      )}
+      {/* Current chapter progress (within the 4-step loop) */}
+      {stepWithinChapter > 0 && (
+        <div
+          className="absolute inset-y-0 rounded-full"
+          style={{
+            left: `${completedPct}%`,
+            width: `${stepWithinChapter}%`,
+            background: "rgba(34,211,238,0.6)",
+          }}
+        />
+      )}
+      {/* Current position marker */}
+      <div
+        className="absolute top-0 h-full rounded-full"
+        style={{
+          left: `${completedPct + stepWithinChapter}%`,
+          width: Math.max(2, height / 4),
+          background: "#22D3EE",
+        }}
+      />
     </div>
   );
 }

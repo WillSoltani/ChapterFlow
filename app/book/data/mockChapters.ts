@@ -6,10 +6,12 @@ import {
   LAWS_OF_POWER_RAW_CHAPTERS,
   getFriendsAndInfluencePackageForTone,
   FRIENDS_AND_INFLUENCE_RAW_CHAPTERS,
-  getAtomicHabitsPackageForTone,
-  ATOMIC_HABITS_RAW_CHAPTERS,
   getLawsOfHumanNaturePackageForTone,
   LAWS_OF_HUMAN_NATURE_RAW_CHAPTERS,
+  getTheCharismaMythPackageForTone,
+  THE_CHARISMA_MYTH_RAW_CHAPTERS,
+  getNeverSplitTheDifferencePackageForTone,
+  NEVER_SPLIT_THE_DIFFERENCE_RAW_CHAPTERS,
   resolveTone,
   type BookPackage,
   type PackageChapter,
@@ -44,7 +46,7 @@ export type ChapterSummaryBlock =
       id: string;
       type: "bullet";
       text: string;
-      detail: string;
+      detail?: string;
     };
 
 export type ScenarioDecisionOption = {
@@ -122,7 +124,6 @@ const QUIZ_TARGETS: Record<ReadingDepth, number> = {
   deeper: 10,
 };
 
-const RETRY_POOL_TARGET = 5;
 const SCENARIO_NAMES = ["Maya", "Jordan", "Alex", "Riley"] as const;
 
 function chapterCode(order: number): string {
@@ -298,23 +299,19 @@ function buildSummaryBullets(
   const base = dedupe([
     ...variantSummaryBullets(primary),
     ...variantTakeaways(primary),
-    ...variantPractice(primary).map((item) => `Practice: ${item}`),
   ]);
 
   const supplements =
     depth === "simple"
-      ? dedupe([...exampleInsights.slice(0, 2), ...variantTakeaways(simple)])
+      ? dedupe([...variantTakeaways(simple)])
       : depth === "standard"
         ? dedupe([
-            ...exampleInsights.slice(0, 3),
             ...variantSummaryBullets(simple),
             ...variantTakeaways(simple),
           ])
         : dedupe([
-            ...exampleInsights,
             ...variantSummaryBullets(standard),
             ...variantTakeaways(standard),
-            ...variantPractice(standard).map((item) => `Apply it: ${item}`),
           ]);
 
   return dedupe([...base, ...supplements]).slice(0, DEPTH_TARGETS[depth]);
@@ -331,19 +328,19 @@ function buildSummaryBlocks(
   const explicitParagraphCount = explicitBlocks.filter((block) => block.type === "paragraph").length;
   const explicitBulletCount = explicitBlocks.filter((block) => block.type === "bullet").length;
   const detailPool = dedupe([
-    ...chapter.examples.map((example) =>
-      `${cleanText(example.title)}: ${cleanText(example.whyItMatters)}`
-    ),
-    ...variantPractice(primary).map((practice) => `Try this next: ${ensureSentence(practice)}`),
     ...variantTakeaways(primary).map(
-      (takeaway) => `${takeaway} reinforces the chapter's core pattern through repetition.`
-    ),
+      (takeaway) => typeof takeaway === "string" ? takeaway : cleanText(takeaway)
+    ).filter(Boolean),
   ]);
   const fallbackDetail =
     splitSentences(primary?.importantSummary)[0] ??
-    "Use the example and takeaway to test this idea in your own context.";
+    "Explore this idea further in the Examples section.";
 
-  const bulletTarget = depth === "simple" ? 7 : depth === "standard" ? 10 : 15;
+  // Cap bullets to the actual number of real takeaways instead of padding with filler
+  const realTakeawayCount = (primary?.keyTakeaways ?? []).length;
+  const bulletTarget = realTakeawayCount > 0
+    ? Math.max(realTakeawayCount, depth === "simple" ? 3 : depth === "standard" ? 5 : 7)
+    : depth === "simple" ? 7 : depth === "standard" ? 10 : 15;
   const minBulletsRequired = Math.min(bulletTarget, 10);
   if (explicitParagraphCount >= 2 && explicitBulletCount >= minBulletsRequired) {
     let paragraphIndex = 0;
@@ -366,7 +363,7 @@ function buildSummaryBlocks(
         id: `${depth}-b-${bulletIndex}`,
         type: "bullet",
         text: cleanText(block.text),
-        detail: cleanText(block.detail || fallbackDetail),
+        detail: block.detail ? cleanText(block.detail) : undefined,
       });
     });
     return preserved;
@@ -394,7 +391,7 @@ function buildSummaryBlocks(
       id: `${depth}-b-${bulletCount}`,
       type: "bullet",
       text: normalized,
-      detail: cleanText(detail || fallbackDetail),
+      detail: detail != null ? cleanText(detail) : undefined,
     });
   };
 
@@ -422,8 +419,9 @@ function buildSummaryBlocks(
   );
   const bulletsToAdd = canonicalBullets.filter((bullet) => !usedBulletTexts.has(bullet));
   bulletsToAdd.forEach((bullet, index) => {
-    const detail =
-      detailPool[index % Math.max(detailPool.length, 1)] || fallbackDetail;
+    const detail = detailPool.length > 0
+      ? detailPool[index % detailPool.length]
+      : undefined;
     pushBullet(bullet, detail);
   });
 
@@ -488,32 +486,7 @@ function joinSteps(steps: string[]): string {
 }
 
 function normalizeChoices(choices: string[]): string[] {
-  const normalized = choices.slice(0, 5).map((choice) => cleanText(choice));
-  if (normalized.length < 2) {
-    while (normalized.length < 2) normalized.push("Option unavailable");
-  }
-  return normalized;
-}
-
-function rotateOptions(
-  options: string[],
-  by: number
-): string[] {
-  const len = options.length;
-  if (len === 0) return options;
-  const shift = ((by % len) + len) % len;
-  if (shift === 0) return options;
-  return options.map((_, i) => options[(i + shift) % len]);
-}
-
-function formatPromptStem(prompt: string): string {
-  return cleanText(prompt)
-    .replace(/^\[[^\]]+\]\s*/g, "")
-    .replace(/[?!.]+$/g, "")
-    .replace(/\b(in|from|of)\s+the reading\b/gi, "")
-    .replace(/\s{2,}/g, " ")
-    .trim()
-    .toLowerCase();
+  return choices.slice(0, 5).map((choice) => cleanText(choice));
 }
 
 function dedupeQuestionsById(
@@ -533,17 +506,21 @@ function normalizeQuizQuestion(
   chapter: PackageChapter,
   family: VariantFamily,
   question: PackageQuizQuestion,
-  fallbackId: string
-): ChapterQuizQuestion {
+  fallbackId: string,
+  tone: ToneKey = "direct"
+): ChapterQuizQuestion | null {
   const rawChoices = question.choices ?? question.options ?? [];
   const options = normalizeChoices(rawChoices);
-  const correctIndex = Math.max(
-    0,
-    Math.min(
-      options.length - 1,
-      question.correctIndex ?? question.correctAnswerIndex ?? 0
-    )
-  );
+  if (options.length < 2) {
+    console.warn(`Skipping quiz question "${fallbackId}": fewer than 2 valid choices`);
+    return null;
+  }
+  const rawIndex = question.correctIndex ?? question.correctAnswerIndex ?? 0;
+  if (rawIndex < 0 || rawIndex >= options.length) {
+    console.warn(`Skipping quiz question "${fallbackId}": correctIndex ${rawIndex} out of bounds (${options.length} options)`);
+    return null;
+  }
+  const correctIndex = rawIndex;
   const rawPrompt = question.prompt ?? question.stem ?? "";
   const prompt = normalizeQuizPrompt(rawPrompt);
   return {
@@ -552,65 +529,27 @@ function normalizeQuizQuestion(
     options,
     correctIndex,
     explanation:
-      typeof question.explanation === "string"
-        ? question.explanation.trim() ||
-          buildQuizExplanation(chapter, prompt, options[correctIndex], family)
-        : question.explanation && typeof question.explanation === "object"
-          ? (Object.values(question.explanation)[0] ?? "").trim() ||
-            buildQuizExplanation(chapter, prompt, options[correctIndex], family)
-          : buildQuizExplanation(chapter, prompt, options[correctIndex], family),
-  };
-}
-
-function buildGeneratedRetryQuestion(
-  source: ChapterQuizQuestion,
-  chapter: PackageChapter,
-  chapterIndex: number
-): ChapterQuizQuestion {
-  const stem = formatPromptStem(source.prompt) || chapter.title.toLowerCase();
-  const promptTemplates = [
-    `Which option best applies ${stem} to a realistic decision?`,
-    `Which answer captures the core logic behind ${stem}?`,
-    `Which choice reflects a high quality interpretation of ${stem}?`,
-    `Which option stays most consistent with the central lesson in ${stem}?`,
-    `Which answer would most likely produce better follow through based on ${stem}?`,
-  ] as const;
-  const prompt = promptTemplates[chapterIndex % promptTemplates.length];
-  const baseOptions: [string, string, string, string] = [
-    source.options[source.correctIndex],
-    ...source.options.filter((_, idx) => idx !== source.correctIndex).slice(0, 3),
-  ] as [string, string, string, string];
-  const rotatedOptions = rotateOptions(baseOptions, (chapter.number + chapterIndex) % 4);
-  const correctValue = source.options[source.correctIndex];
-  const rotatedCorrectIndex = rotatedOptions.findIndex((option) => option === correctValue);
-  const correctIndex = rotatedCorrectIndex >= 0 ? rotatedCorrectIndex : 0;
-  return {
-    id: `${source.id}-retry-${String(chapterIndex + 1).padStart(2, "0")}`,
-    prompt: normalizeQuizPrompt(prompt),
-    options: rotatedOptions,
-    correctIndex,
-    explanation: source.explanation,
+      resolveTone(question.explanation, tone) ||
+      buildQuizExplanation(chapter, prompt, options[correctIndex], family),
   };
 }
 
 function buildQuizRetryPool(
   chapter: PackageChapter,
   family: VariantFamily,
-  baseQuestions: ChapterQuizQuestion[]
+  tone: ToneKey = "direct"
 ): ChapterQuizQuestion[] {
-  const authored = (chapter.quiz.retryQuestions ?? []).map((question, index) =>
-    normalizeQuizQuestion(
-      chapter,
-      family,
-      question,
-      `${chapter.chapterId}-retry-authored-${String(index + 1).padStart(2, "0")}`
+  return (chapter.quiz.retryQuestions ?? [])
+    .map((question, index) =>
+      normalizeQuizQuestion(
+        chapter,
+        family,
+        question,
+        `${chapter.chapterId}-retry-authored-${String(index + 1).padStart(2, "0")}`,
+        tone
+      )
     )
-  );
-  const generated = baseQuestions.map((question, index) =>
-    buildGeneratedRetryQuestion(question, chapter, index)
-  );
-  const merged = dedupeQuestionsById([...authored, ...generated]);
-  return merged.slice(0, RETRY_POOL_TARGET);
+    .filter((q): q is ChapterQuizQuestion => q !== null);
 }
 
 function buildQuizByDepth(
@@ -721,16 +660,22 @@ function buildBundle(bookPackage: BookPackage, rawChapters?: any[], tone: ToneKe
     .sort((left, right) => left.number - right.number)
     .map((chapter) => {
       const quiz = dedupeQuestionsById(
-        chapter.quiz.questions.map((question, index) =>
-          normalizeQuizQuestion(
-            chapter,
-            family,
-            question,
-            `${chapter.chapterId}-q-${String(index + 1).padStart(2, "0")}`
+        chapter.quiz.questions
+          .map((question, index) =>
+            normalizeQuizQuestion(
+              chapter,
+              family,
+              question,
+              `${chapter.chapterId}-q-${String(index + 1).padStart(2, "0")}`,
+              tone
+            )
           )
-        )
+          .filter((q): q is ChapterQuizQuestion => q !== null)
       );
-      const quizRetryPool = buildQuizRetryPool(chapter, family, quiz);
+      if (quiz.length === 0) {
+        console.error(`Chapter "${chapter.chapterId}" has 0 valid quiz questions after filtering — quiz will be empty`);
+      }
+      const quizRetryPool = buildQuizRetryPool(chapter, family, tone);
 
       const newFields = extractNewFields(rawByNumber.get(chapter.number), tone);
 
@@ -781,8 +726,9 @@ function buildBundle(bookPackage: BookPackage, rawChapters?: any[], tone: ToneKe
 const TONE_AWARE_BOOK_IDS = new Set([
   "the-48-laws-of-power",
   "friends-and-influence",
-  "atomic-habits",
   "laws-of-human-nature",
+  "the-charisma-myth",
+  "never-split-the-difference",
 ]);
 
 type ToneBundleGetter = (tone: ToneKey) => BookPackage;
@@ -798,13 +744,17 @@ const TONE_BUNDLE_GETTERS: Record<string, { getPackage: ToneBundleGetter; getRaw
     getPackage: getFriendsAndInfluencePackageForTone,
     getRaw: () => FRIENDS_AND_INFLUENCE_RAW_CHAPTERS,
   },
-  "atomic-habits": {
-    getPackage: getAtomicHabitsPackageForTone,
-    getRaw: () => ATOMIC_HABITS_RAW_CHAPTERS,
-  },
   "laws-of-human-nature": {
     getPackage: getLawsOfHumanNaturePackageForTone,
     getRaw: () => LAWS_OF_HUMAN_NATURE_RAW_CHAPTERS,
+  },
+  "the-charisma-myth": {
+    getPackage: getTheCharismaMythPackageForTone,
+    getRaw: () => THE_CHARISMA_MYTH_RAW_CHAPTERS,
+  },
+  "never-split-the-difference": {
+    getPackage: getNeverSplitTheDifferencePackageForTone,
+    getRaw: () => NEVER_SPLIT_THE_DIFFERENCE_RAW_CHAPTERS,
   },
 };
 
@@ -981,7 +931,7 @@ function personalizeSummaryBlocks(
   return blocks.map((block) =>
     block.type === "paragraph"
       ? { ...block, text: appendTone(block.text, style, "summary") }
-      : { ...block, detail: appendTone(block.detail, style, "bullet") }
+      : { ...block, detail: block.detail ? appendTone(block.detail, style, "bullet") : undefined }
   );
 }
 
@@ -991,11 +941,7 @@ function personalizeQuestions(
   style: ChapterMotivationStyle
 ): ChapterQuizQuestion[] {
   if (chapter.bookId === "the-48-laws-of-power") {
-    const lead = LAWS_OF_POWER_STYLE_COPY[style].quizLead;
-    return questions.map((question) => ({
-      ...question,
-      explanation: appendSentence(lead, question.explanation),
-    }));
+    return questions;
   }
 
   return questions.map((question) => ({

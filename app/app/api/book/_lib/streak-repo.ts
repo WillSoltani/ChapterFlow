@@ -202,6 +202,8 @@ export type StreakUpdateResult = {
   milestonesAwarded: Array<{ days: number; ip: number }>;
   shieldsConsumed: number;
   streakReset: boolean;
+  /** Days since last active date (0 = same day, 1 = consecutive). Used for second-wind detection. */
+  gapDays: number;
 };
 
 export async function updateStreakOnLoopComplete(
@@ -220,6 +222,7 @@ export async function updateStreakOnLoopComplete(
     milestonesAwarded: [],
     shieldsConsumed: 0,
     streakReset: false,
+    gapDays: 0,
   };
 
   // Already counted today — no streak change needed
@@ -266,6 +269,8 @@ export async function updateStreakOnLoopComplete(
     // First ever active day
     newCurrentStreak = 1;
   }
+
+  result.gapDays = gapDays;
 
   const newLongestStreak = Math.max(streak.longestStreak, newCurrentStreak);
 

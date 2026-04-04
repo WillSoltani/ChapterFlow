@@ -8,15 +8,17 @@ import {
 } from "@/app/app/api/book/_lib/ensure-book-started";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import { bookOk, withBookApiErrors } from "@/app/app/api/book/_lib/http";
-import { getUserAccessibleQuiz } from "@/app/app/api/book/_lib/content-service";
+import { getLocalQuizQuestions, getUserAccessibleQuiz } from "@/app/app/api/book/_lib/content-service";
 import {
   buildQuizClientSession,
   buildQuizStateFromAttempts,
 } from "@/app/app/api/book/_lib/quiz-session";
 import {
   getUserQuizState,
+  getUserSettingsItem,
   listRecentQuizAttempts,
 } from "@/app/app/api/book/_lib/repo";
+import { QUIZ_QUESTION_COUNTS } from "@/app/book/_lib/flow-points-economy";
 
 export const runtime = "nodejs";
 
@@ -44,7 +46,7 @@ export async function GET(
       interactionChapterNumber: chapterNumberInt,
     });
 
-    const [{ progress, quiz }, persistedQuizState, history] = await Promise.all([
+    const [{ progress, quiz: s3Quiz }, persistedQuizState, history, userSettings] = await Promise.all([
       getUserAccessibleQuiz({
         tableName,
         contentBucket,
@@ -54,7 +56,22 @@ export async function GET(
       }),
       getUserQuizState(tableName, user.sub, bookId, chapterNumberInt),
       listRecentQuizAttempts(tableName, user.sub, bookId, chapterNumberInt, 20),
+      getUserSettingsItem(tableName, user.sub),
     ]);
+
+    // Prefer quiz questions from the local book-package JSON over stale S3 data.
+    const localQuestions = getLocalQuizQuestions(bookId, chapterNumberInt);
+    const quiz = localQuestions
+      ? { ...s3Quiz, questions: localQuestions }
+      : s3Quiz;
+
+    const rawMode = userSettings?.settings?.learningMode;
+    type LearningMode = "guided" | "standard" | "challenge";
+    const learningMode: LearningMode =
+      rawMode === "guided" || rawMode === "standard" || rawMode === "challenge"
+        ? rawMode
+        : "standard";
+    const maxQuestions = QUIZ_QUESTION_COUNTS[learningMode];
 
     const quizState =
       persistedQuizState ??
@@ -76,6 +93,7 @@ export async function GET(
         quizState,
         latestAttempt,
         history: history.slice(0, 5),
+        maxQuestions,
       }),
       progress: {
         currentChapterNumber: progress.currentChapterNumber,

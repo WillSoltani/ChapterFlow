@@ -490,6 +490,12 @@ function ResultsScreen({
           : `You scored ${result.scorePercent}%. Need ${QUIZ_PASS_THRESHOLDS[learningMode]}% to pass.`}
       </p>
 
+      {session.provisional && (
+        <p className="mt-2 rounded-lg bg-amber-500/10 px-3 py-1.5 text-xs font-medium text-amber-400">
+          Scored offline — result will be verified when you reconnect.
+        </p>
+      )}
+
       {/* Insight Points display */}
       {result.passed ? (
         <p className="mt-2 text-lg font-semibold text-(--cr-accent)" style={{ animation: "cr-card-enter 300ms ease-out 1.5s both" }}>
@@ -663,6 +669,14 @@ export function QuizPanel({
     return (
       <section className="cr-glass-reading border-(--cr-error)/30 p-6">
         <p className="text-sm text-(--cr-error)">{error || "We couldn't load this quiz right now."}</p>
+      </section>
+    );
+  }
+
+  if (session.questions.length === 0) {
+    return (
+      <section className="cr-glass-reading p-6 text-center">
+        <p className="text-sm text-(--cr-text-secondary)">No quiz questions available for this chapter.</p>
       </section>
     );
   }

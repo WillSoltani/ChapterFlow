@@ -40,7 +40,7 @@ export function StreakDisplay({ streak }: StreakDisplayProps) {
           {/* Streak counter */}
           <div className="flex items-center gap-2">
             <span
-              className="flame-pulse"
+              className={streak.currentDays >= 30 ? "flame-pulse-intense" : "flame-pulse"}
               style={{ fontSize: flame.fontSize }}
               role="img"
               aria-label="Fire"

@@ -103,7 +103,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
     setMotivationStyle: setOnboardingMotivationStyle,
     resetSetup,
   } = useOnboardingState();
-  const { billingState, billingAction, launchBillingAction, redeemLicenseKey } =
+  const { billingState, launchBillingAction, redeemLicenseKey } =
     useBookEntitlements(true);
   const { toast, showToast } = useToast();
 
@@ -1211,7 +1211,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
                   >
                     <TimePicker
                       value={hydrated ? onboarding.reminderTime || "20:00" : "20:00"}
-                      onChange={(v) => { setReminderTime(v); triggerToast(); }}
+                      onChange={(v) => { setReminderTime(v); announce(`Reminder time changed to ${v}`); triggerToast(); }}
                       label="Reminder time"
                     />
                   </SettingRow>

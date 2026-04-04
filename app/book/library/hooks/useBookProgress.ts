@@ -181,7 +181,51 @@ export function useBookProgress<TChapter extends ProgressChapter>(
     )
       .then((payload) => {
         if (!mounted || !payload.state) return;
-        setProgress(normalizeProgress(payload.state, initialProgress(chapters), chapters));
+        const serverState = normalizeProgress(payload.state, initialProgress(chapters), chapters);
+        // Merge server state with local state: take the union of completed/unlocked
+        // IDs so a locally-recorded unlock is never overwritten by stale server data.
+        setProgress((local) => {
+          const mergedCompleted = uniqueIds([
+            ...local.completedChapterIds,
+            ...serverState.completedChapterIds,
+          ]);
+          const mergedUnlocked = uniqueIds([
+            ...local.unlockedChapterIds,
+            ...serverState.unlockedChapterIds,
+            ...mergedCompleted,
+          ]);
+          const mergedScores = { ...serverState.chapterScores };
+          for (const [id, score] of Object.entries(local.chapterScores)) {
+            mergedScores[id] = Math.max(mergedScores[id] ?? 0, Number(score));
+          }
+          const mergedCompletedAt = { ...serverState.chapterCompletedAt, ...local.chapterCompletedAt };
+
+          const completedSet = new Set(mergedCompleted);
+          const unlockedSet = new Set(mergedUnlocked);
+
+          // Pick the most advanced currentChapterId
+          const localCurrent = local.currentChapterId;
+          const serverCurrent = serverState.currentChapterId;
+          const currentChapterId =
+            (localCurrent && unlockedSet.has(localCurrent) && !completedSet.has(localCurrent))
+              ? localCurrent
+              : (serverCurrent && unlockedSet.has(serverCurrent) && !completedSet.has(serverCurrent))
+                ? serverCurrent
+                : getFirstIncompleteUnlocked(chapters, completedSet, unlockedSet) || local.currentChapterId;
+
+          return {
+            currentChapterId,
+            completedChapterIds: mergedCompleted,
+            unlockedChapterIds: uniqueIds([...mergedUnlocked, currentChapterId]),
+            chapterScores: mergedScores,
+            chapterCompletedAt: mergedCompletedAt,
+            lastReadChapterId: local.lastReadChapterId || serverState.lastReadChapterId,
+            lastOpenedAt:
+              local.lastOpenedAt > serverState.lastOpenedAt
+                ? local.lastOpenedAt
+                : serverState.lastOpenedAt,
+          };
+        });
         setServerReady(true);
       })
       .catch(() => {
@@ -246,10 +290,10 @@ export function useBookProgress<TChapter extends ProgressChapter>(
   const getChapterState = useCallback(
     (chapterId: string): ChapterState => {
       if (completedSet.has(chapterId)) return "completed";
-      if (chapterId === progress.currentChapterId) return "current";
+      if (chapterId === progress.currentChapterId || unlockedSet.has(chapterId)) return "current";
       return "locked";
     },
-    [completedSet, progress.currentChapterId]
+    [completedSet, unlockedSet, progress.currentChapterId]
   );
 
   const isChapterUnlocked = useCallback(

@@ -148,15 +148,41 @@ export async function PATCH(
         : body;
 
     const now = nowIso();
+
+    // Merge incoming state with existing server state using union semantics
+    // so concurrent writes don't lose completed/unlocked chapters.
+    const incomingCompleted = parseStringArray(rawState.completedChapterIds);
+    const incomingUnlocked = parseStringArray(rawState.unlockedChapterIds);
+    const incomingScores = parseNumberRecord(rawState.chapterScores);
+    const incomingCompletedAt = parseStringRecord(rawState.chapterCompletedAt);
+
+    const mergedCompleted = [...new Set([
+      ...(existing?.completedChapterIds ?? []),
+      ...incomingCompleted,
+    ])];
+    const mergedUnlocked = [...new Set([
+      ...(existing?.unlockedChapterIds ?? []),
+      ...incomingUnlocked,
+      ...mergedCompleted,
+    ])];
+    const mergedScores: Record<string, number> = { ...(existing?.chapterScores ?? {}) };
+    for (const [id, score] of Object.entries(incomingScores)) {
+      mergedScores[id] = Math.max(mergedScores[id] ?? 0, score);
+    }
+    const mergedCompletedAt: Record<string, string> = {
+      ...(existing?.chapterCompletedAt ?? {}),
+      ...incomingCompletedAt,
+    };
+
     const nextState: BookUserBookStateItem = {
       userId: user.sub,
       bookId,
       currentChapterId:
         typeof rawState.currentChapterId === "string" ? rawState.currentChapterId : "",
-      completedChapterIds: parseStringArray(rawState.completedChapterIds),
-      unlockedChapterIds: parseStringArray(rawState.unlockedChapterIds),
-      chapterScores: parseNumberRecord(rawState.chapterScores),
-      chapterCompletedAt: parseStringRecord(rawState.chapterCompletedAt),
+      completedChapterIds: mergedCompleted,
+      unlockedChapterIds: mergedUnlocked,
+      chapterScores: mergedScores,
+      chapterCompletedAt: mergedCompletedAt,
       lastReadChapterId:
         typeof rawState.lastReadChapterId === "string" ? rawState.lastReadChapterId : "",
       lastOpenedAt:

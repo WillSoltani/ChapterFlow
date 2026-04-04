@@ -32,6 +32,13 @@ function getHeatmapLevel(minutes: number): number {
   return 4;
 }
 
+function getChapterHeatmapLevel(chapters: number): number {
+  if (chapters <= 0) return 0;
+  if (chapters === 1) return 2;
+  if (chapters === 2) return 3;
+  return 4;
+}
+
 const HEATMAP_COLORS = [
   "var(--cf-surface-muted)",
   "rgba(34,211,238,0.2)",
@@ -57,12 +64,15 @@ function isToday(dateStr: string): boolean {
   );
 }
 
+type DataView = "minutes" | "chapters";
+
 export function ReadingActivity({
   activity,
   onStartReading,
 }: ReadingActivityProps) {
   const prefersReduced = useReducedMotion();
   const [hoveredDay, setHoveredDay] = useState<string | null>(null);
+  const [dataView, setDataView] = useState<DataView>("minutes");
 
   const showBarChart = activity.totalDaysWithData < 14;
   const hasData = activity.totalDaysWithData > 0;
@@ -80,6 +90,7 @@ export function ReadingActivity({
       minutes: number;
       chapters: number;
       level: number;
+      chapterLevel: number;
       dateLabel: string;
       isToday: boolean;
     }> = [];
@@ -97,6 +108,7 @@ export function ReadingActivity({
         minutes,
         chapters,
         level: getHeatmapLevel(minutes),
+        chapterLevel: getChapterHeatmapLevel(chapters),
         dateLabel: getWeekdayName(dateStr),
         isToday: isToday(dateStr),
       });
@@ -137,9 +149,27 @@ export function ReadingActivity({
         >
           Reading Activity
         </h2>
-        <span className="text-xs" style={{ color: "var(--text-muted)" }}>
-          Today &middot; Hourly
-        </span>
+        {/* Toggle: Minutes / Chapters */}
+        <div
+          className="flex rounded-lg p-0.5"
+          style={{ background: "var(--cf-surface-strong)" }}
+        >
+          {(["minutes", "chapters"] as const).map((view) => (
+            <button
+              key={view}
+              type="button"
+              onClick={() => setDataView(view)}
+              className="cursor-pointer rounded-md px-2.5 py-1 text-xs font-medium capitalize transition-colors"
+              style={{
+                background: dataView === view ? "var(--cf-surface-muted)" : "transparent",
+                color: dataView === view ? "var(--text-heading)" : "var(--text-muted)",
+                boxShadow: dataView === view ? "var(--cf-shadow-sm)" : "none",
+              }}
+            >
+              {view}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Content */}
@@ -274,7 +304,7 @@ export function ReadingActivity({
                     className="h-4 w-4 transition"
                     style={{
                       borderRadius: 3,
-                      background: HEATMAP_COLORS[cell.level],
+                      background: HEATMAP_COLORS[dataView === "chapters" ? cell.chapterLevel : cell.level],
                       boxShadow: cell.isToday
                         ? "0 0 0 1.5px rgba(34,211,238,0.5)"
                         : "none",
@@ -290,7 +320,9 @@ export function ReadingActivity({
           <div className="mt-3 flex items-center justify-between gap-3">
             <p className="text-xs" style={{ color: "var(--text-muted)" }}>
               {hoveredData
-                ? `${hoveredData.dateLabel} \u00B7 ${hoveredData.minutes} min \u00B7 ${hoveredData.chapters} ${hoveredData.chapters === 1 ? "chapter" : "chapters"}`
+                ? dataView === "chapters"
+                  ? `${hoveredData.dateLabel} \u00B7 ${hoveredData.chapters} ${hoveredData.chapters === 1 ? "chapter" : "chapters"}`
+                  : `${hoveredData.dateLabel} \u00B7 ${hoveredData.minutes} min \u00B7 ${hoveredData.chapters} ${hoveredData.chapters === 1 ? "chapter" : "chapters"}`
                 : "Hover a day to inspect activity details."}
             </p>
             {/* Color scale legend */}

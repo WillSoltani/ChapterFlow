@@ -26,7 +26,8 @@ export function ReviewBanner({ onStartReview }: ReviewBannerProps) {
     // Check if dismissed recently
     const dismissedAt = window.localStorage.getItem(DISMISS_KEY);
     if (dismissedAt) {
-      const elapsed = Date.now() - Number(dismissedAt);
+      const ts = Number(dismissedAt);
+      const elapsed = Number.isFinite(ts) ? Date.now() - ts : Infinity;
       if (elapsed < DISMISS_DURATION_MS) {
         setDismissed(true);
         setHydrated(true);

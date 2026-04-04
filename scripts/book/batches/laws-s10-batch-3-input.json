@@ -1,0 +1,590 @@
+{
+  "batchId": "laws-s10-batch-3",
+  "items": [
+    {
+      "id": "s10-052",
+      "chapter": 13,
+      "fieldPath": "chapters.12.contentVariants.medium.keyTakeaways.1.point.competitive",
+      "tone": "competitive",
+      "keywords": [
+        "structural"
+      ],
+      "lastSentence": "The person running on purpose has a structural recovery advantage because failure only removes a goal, not the direction behind it.",
+      "contextPreview": "**Goals have a shelf life. Purpose compounds.** Every goal you achieve or miss is a discrete event. Purpose is a continuous function.",
+      "replacement": "The person running on purpose has a built-in recovery advantage because failure only removes a goal, not the direction behind it.",
+      "keep": false
+    },
+    {
+      "id": "s10-053",
+      "chapter": 13,
+      "fieldPath": "chapters.12.contentVariants.hard.keyTakeaways.6.point.direct",
+      "tone": "direct",
+      "keywords": [
+        "structural"
+      ],
+      "lastSentence": "Goal-driven systems stall at failure.** The structural difference is that purpose absorbs negative outcomes as data points along a continuous heading, while goals treat negative outcomes as terminal events.",
+      "contextPreview": "**Purpose-driven systems convert failure into fuel.",
+      "replacement": "Goal-driven systems stall at failure.** The fundamental difference is that purpose absorbs negative outcomes as data points along a continuous heading, while goals treat negative outcomes as terminal events.",
+      "keep": false
+    },
+    {
+      "id": "s10-054",
+      "chapter": 13,
+      "fieldPath": "chapters.12.contentVariants.hard.selfCheckPrompts.0.direct",
+      "tone": "direct",
+      "keywords": [
+        "structural"
+      ],
+      "lastSentence": "What is the structural difference between a goal-driven failure response and a purpose-driven failure response, and what does this difference reveal about the architecture of motivation?",
+      "contextPreview": "",
+      "replacement": "What is the foundational difference between a goal-driven failure response and a purpose-driven failure response, and what does this difference reveal about the architecture of motivation?",
+      "keep": false
+    },
+    {
+      "id": "s10-055",
+      "chapter": 13,
+      "fieldPath": "chapters.12.contentVariants.hard.selfCheckPrompts.0.competitive",
+      "tone": "competitive",
+      "keywords": [
+        "structural"
+      ],
+      "lastSentence": "Why does the certainty trap disproportionately affect talented people, and what structural advantage does early commitment provide over extended analysis?",
+      "contextPreview": "",
+      "replacement": "Why does the certainty trap disproportionately affect talented people, and what concrete advantage does early commitment provide over extended analysis?",
+      "keep": false
+    },
+    {
+      "id": "s10-056",
+      "chapter": 13,
+      "fieldPath": "chapters.12.contentVariants.hard.oneMinuteRecap.retrieve.direct",
+      "tone": "direct",
+      "keywords": [
+        "structural"
+      ],
+      "lastSentence": "Reconstruct the full framework: primal inclination, four discovery steps, goal-versus-purpose architecture, and the structural link between Chapter 12's identity expansion and Chapter 13's discovery process.",
+      "contextPreview": "",
+      "replacement": "Reconstruct the full framework: primal inclination, four discovery steps, goal-versus-purpose architecture, and the foundational link between Chapter 12's identity expansion and Chapter 13's discovery process.",
+      "keep": false
+    },
+    {
+      "id": "s10-057",
+      "chapter": 13,
+      "fieldPath": "chapters.12.implementationPlan.ifThenPlans.1.plan.gentle",
+      "tone": "gentle",
+      "keywords": [
+        "pattern"
+      ],
+      "lastSentence": "If I notice that my after-hours reading consistently pulls me away from my assigned topic, then I will bring that pattern to my advisor as information about where my real engagement lives.",
+      "contextPreview": "",
+      "replacement": "",
+      "keep": true
+    },
+    {
+      "id": "s10-058",
+      "chapter": 13,
+      "fieldPath": "chapters.12.reviewCards.1.back.competitive",
+      "tone": "competitive",
+      "keywords": [
+        "structural"
+      ],
+      "lastSentence": "The structural difference is that purpose never resets to zero because the unit of value is the heading, not the destination.",
+      "contextPreview": "Goal failure produces a full stop. Purpose failure produces a redirect.",
+      "replacement": "The critical difference is that purpose never resets to zero because the unit of value is the heading, not the destination.",
+      "keep": false
+    },
+    {
+      "id": "s10-059",
+      "chapter": 13,
+      "fieldPath": "chapters.12.reviewCards.3.front.competitive",
+      "tone": "competitive",
+      "keywords": [
+        "structural"
+      ],
+      "lastSentence": "What is the structural response?",
+      "contextPreview": "The privilege objection says Life's Task is for people who can afford it.",
+      "replacement": "What is the direct counter-move?",
+      "keep": false
+    },
+    {
+      "id": "s10-060",
+      "chapter": 13,
+      "fieldPath": "chapters.12.reviewCards.4.front.competitive",
+      "tone": "competitive",
+      "keywords": [
+        "structural"
+      ],
+      "lastSentence": "What structural problem does Chapter 12's identity expansion solve that would otherwise block the discovery framework in Chapter 13?",
+      "contextPreview": "",
+      "replacement": "What foundational problem does Chapter 12's identity expansion solve that would otherwise block the discovery framework in Chapter 13?",
+      "keep": false
+    },
+    {
+      "id": "s10-061",
+      "chapter": 14,
+      "fieldPath": "chapters.13.contentVariants.medium.selfCheckPrompt.competitive",
+      "tone": "competitive",
+      "keywords": [
+        "structural"
+      ],
+      "lastSentence": "After reading, the real question is:: if emotional contagion always arrives before rational evaluation, what structural habits would you need to build to create a delay long enough for your own thinking to engage?",
+      "contextPreview": "",
+      "replacement": "After reading, the real question is:: if emotional contagion always arrives before rational evaluation, what deliberate habits would you need to build to create a delay long enough for your own thinking to engage?",
+      "keep": false
+    },
+    {
+      "id": "s10-062",
+      "chapter": 14,
+      "fieldPath": "chapters.13.contentVariants.hard.keyTakeaways.1.moreDetails.competitive",
+      "tone": "competitive",
+      "keywords": [
+        "structural"
+      ],
+      "lastSentence": "The only defense is building a structural habit of pausing between feeling an emotion in a group context and acting on it, creating a gap long enough for your analytical mind to ask 'is this mine or is this the room?'",
+      "contextPreview": "difference between anger you generated through your own evaluation and anger your mirror neurons imported from the room. Both arrive as the same neurochemical signal with the same apparent authority.",
+      "replacement": "The only defense is building a deliberate habit of pausing between feeling an emotion in a group context and acting on it, creating a gap long enough for your analytical mind to ask 'is this mine or is this the room?'",
+      "keep": false
+    },
+    {
+      "id": "s10-063",
+      "chapter": 14,
+      "fieldPath": "chapters.13.contentVariants.hard.selfCheckPrompts.0.competitive",
+      "tone": "competitive",
+      "keywords": [
+        "structural"
+      ],
+      "lastSentence": "If emotional contagion always arrives before rational evaluation, what structural habit would create a delay long enough for independent analysis, and why do most people never build that habit?",
+      "contextPreview": "",
+      "replacement": "If emotional contagion always arrives before rational evaluation, what deliberate habit would create a delay long enough for independent analysis, and why do most people never build that habit?",
+      "keep": false
+    },
+    {
+      "id": "s10-064",
+      "chapter": 14,
+      "fieldPath": "chapters.13.contentVariants.hard.oneMinuteRecap.retrieve.competitive",
+      "tone": "competitive",
+      "keywords": [
+        "structural"
+      ],
+      "lastSentence": "Which component do most people fail at first, and what is the structural reason for that failure?",
+      "contextPreview": "Reconstruct the four-force model, the three response hierarchy, the connection to Chapter 13's purpose framework, and the specific implementation requirement for dual-channel navigation.",
+      "replacement": "Which component do most people fail at first, and what is the root cause of that failure?",
+      "keep": false
+    },
+    {
+      "id": "s10-065",
+      "chapter": 14,
+      "fieldPath": "chapters.13.quiz.questions.4.prompt",
+      "tone": "none",
+      "keywords": [
+        "mechanism"
+      ],
+      "lastSentence": "What mechanism pulled Javier along?",
+      "contextPreview": "e group's conversations shift toward increasingly harsh gossip about people outside the circle. Javier feels uncomfortable but participates because staying silent has started to feel like disloyalty.",
+      "replacement": "What force pulled Javier along?",
+      "keep": false
+    },
+    {
+      "id": "s10-066",
+      "chapter": 14,
+      "fieldPath": "chapters.13.reviewCards.3.front.competitive",
+      "tone": "competitive",
+      "keywords": [
+        "structural"
+      ],
+      "lastSentence": "Walk through the three responses and explain the structural advantage of navigation over the other two.",
+      "contextPreview": "The group is wrong and openly saying so will get you marginalized.",
+      "replacement": "Walk through the three responses and explain the strategic advantage of navigation over the other two.",
+      "keep": false
+    },
+    {
+      "id": "s10-067",
+      "chapter": 14,
+      "fieldPath": "chapters.13.reviewCards.3.back.direct",
+      "tone": "direct",
+      "keywords": [
+        "structural"
+      ],
+      "lastSentence": "The structural advantage is that the group receives the information without activating its immune response against the messenger.",
+      "contextPreview": "t. Navigation preserves both by routing your dissent through a channel the group will not reject: a private conversation, a process-based question, or documented evidence introduced as due diligence.",
+      "replacement": "The key advantage is that the group receives the information without activating its immune response against the messenger.",
+      "keep": false
+    },
+    {
+      "id": "s10-068",
+      "chapter": 14,
+      "fieldPath": "chapters.13.reviewCards.3.back.competitive",
+      "tone": "competitive",
+      "keywords": [
+        "structural"
+      ],
+      "lastSentence": "The structural advantage is that the information enters the decision process without the social cost that would neutralize both the information and the messenger.",
+      "contextPreview": "Conformity: you lose your analysis. Rebellion: you lose your access. Navigation: you deliver the analysis through a channel that bypasses the group's rejection reflex.",
+      "replacement": "The strategic advantage is that the information enters the decision process without the social cost that would neutralize both the information and the messenger.",
+      "keep": false
+    },
+    {
+      "id": "s10-069",
+      "chapter": 15,
+      "fieldPath": "chapters.14.quiz.questions.7.prompt",
+      "tone": "none",
+      "keywords": [
+        "pattern"
+      ],
+      "lastSentence": "What behavior pattern signals that a leader has stopped maintaining their authority?",
+      "contextPreview": "Greene argues that authority decays without continuous reinforcement.",
+      "replacement": "What behavior signals that a leader has stopped maintaining their authority?",
+      "keep": false
+    },
+    {
+      "id": "s10-070",
+      "chapter": 16,
+      "fieldPath": "chapters.15.contentVariants.medium.keyTakeaways.1.moreDetails.direct",
+      "tone": "direct",
+      "keywords": [
+        "pattern"
+      ],
+      "lastSentence": "If a pattern of negative outcomes follows a specific person, the warmth is irrelevant to the assessment.",
+      "contextPreview": "actors rather than the charming person. This is the mechanism that makes charm-based aggression so effective. The fix is to build a habit of tracking results independently from emotional impressions.",
+      "replacement": "If a trail of negative outcomes follows a specific person, the warmth is irrelevant to the assessment.",
+      "keep": false
+    },
+    {
+      "id": "s10-071",
+      "chapter": 16,
+      "fieldPath": "chapters.15.contentVariants.hard.keyTakeaways.0.point.direct",
+      "tone": "direct",
+      "keywords": [
+        "structural"
+      ],
+      "lastSentence": "**Aggression that the target cannot identify as aggression in real time is the most dangerous form.** By the time the target recognizes what happened, the structural damage is complete and the aggressor's pleasant reputation remains intact.",
+      "contextPreview": "",
+      "replacement": "**Aggression that the target cannot identify as aggression in real time is the most dangerous form.** By the time the target recognizes what happened, the damage is already done and the aggressor's pleasant reputation remains intact.",
+      "keep": false
+    },
+    {
+      "id": "s10-072",
+      "chapter": 16,
+      "fieldPath": "chapters.15.contentVariants.hard.keyTakeaways.0.moreDetails.competitive",
+      "tone": "competitive",
+      "keywords": [
+        "structural"
+      ],
+      "lastSentence": "Those questions catch structural aggression that interpersonal radar misses entirely.",
+      "contextPreview": "get is watching. The defense is not vigilance about the person. It is vigilance about the environment. What has changed around you recently that you did not initiate? Who benefits from those changes?",
+      "replacement": "Those questions catch hidden aggression that interpersonal radar misses entirely.",
+      "keep": false
+    },
+    {
+      "id": "s10-073",
+      "chapter": 16,
+      "fieldPath": "chapters.15.contentVariants.hard.selfCheckPrompts.0.direct",
+      "tone": "direct",
+      "keywords": [
+        "structural"
+      ],
+      "lastSentence": "What structural advantage does charm-based aggression have over open hostility, and why does confrontation typically backfire against a charming aggressor?",
+      "contextPreview": "",
+      "replacement": "What built-in advantage does charm-based aggression have over open hostility, and why does confrontation typically backfire against a charming aggressor?",
+      "keep": false
+    },
+    {
+      "id": "s10-074",
+      "chapter": 16,
+      "fieldPath": "chapters.15.contentVariants.hard.predictionPrompt.direct",
+      "tone": "direct",
+      "keywords": [
+        "mechanism"
+      ],
+      "lastSentence": "Using the concealment and redirection concepts from this chapter, predict the mechanism by which suppressed generational aggression erupts into historical change.",
+      "contextPreview": "Chapter 17 scales the aggression framework from individual to generational.",
+      "replacement": "Using the concealment and redirection concepts from this chapter, predict the process by which suppressed generational aggression erupts into historical change.",
+      "keep": false
+    },
+    {
+      "id": "s10-075",
+      "chapter": 16,
+      "fieldPath": "chapters.15.contentVariants.hard.predictionPrompt.competitive",
+      "tone": "competitive",
+      "keywords": [
+        "structural"
+      ],
+      "lastSentence": "Using this chapter's framework of suppression, indirect expression, and eventual eruption, predict the structural conditions that cause a generation's concealed hostility to surface as a force that reshapes institutions.",
+      "contextPreview": "Chapter 17 argues that generational aggression follows predictable cycles.",
+      "replacement": "Using this chapter's framework of suppression, indirect expression, and eventual eruption, predict the specific conditions that cause a generation's concealed hostility to surface as a force that reshapes institutions.",
+      "keep": false
+    },
+    {
+      "id": "s10-076",
+      "chapter": 16,
+      "fieldPath": "chapters.15.contentVariants.hard.oneMinuteRecap.retrieve.direct",
+      "tone": "direct",
+      "keywords": [
+        "structural"
+      ],
+      "lastSentence": "Explain the structural reason why charm-based aggression is harder to counter than open hostility.",
+      "contextPreview": "Recall the full taxonomy: three aggression types, three detection signals, and the correct response for each.",
+      "replacement": "Explain precisely why charm-based aggression is harder to counter than open hostility.",
+      "keep": false
+    },
+    {
+      "id": "s10-077",
+      "chapter": 16,
+      "fieldPath": "chapters.15.quiz.questions.1.explanation.gentle",
+      "tone": "gentle",
+      "keywords": [
+        "pattern"
+      ],
+      "lastSentence": "Each individual act looks like an accident, which makes the pattern difficult to confront directly.",
+      "contextPreview": "Passive aggressors agree to help but then forget, delay, or underperform.",
+      "replacement": "",
+      "keep": true
+    },
+    {
+      "id": "s10-078",
+      "chapter": 16,
+      "fieldPath": "chapters.15.quiz.questions.3.prompt",
+      "tone": "none",
+      "keywords": [
+        "pattern"
+      ],
+      "lastSentence": "What pattern should Lena recognize?",
+      "contextPreview": "Yet her presentations keep getting sent to clients with formatting errors that only appear in sections Darren reviewed. When she mentions the errors, Darren expresses surprise and apologizes warmly.",
+      "replacement": "What should Lena recognize about what is happening?",
+      "keep": false
+    },
+    {
+      "id": "s10-079",
+      "chapter": 16,
+      "fieldPath": "chapters.15.quiz.questions.3.explanation.gentle",
+      "tone": "gentle",
+      "keywords": [
+        "pattern"
+      ],
+      "lastSentence": "Darren's helpfulness looks genuine in isolation, but the pattern of errors following his involvement tells a different story.",
+      "contextPreview": "When charm and damage travel together repeatedly, the charm is camouflage.",
+      "replacement": "Darren's helpfulness looks genuine in isolation, but the recurring errors following his involvement tell a different story.",
+      "keep": false
+    },
+    {
+      "id": "s10-080",
+      "chapter": 16,
+      "fieldPath": "chapters.15.quiz.questions.3.explanation.direct",
+      "tone": "direct",
+      "keywords": [
+        "pattern"
+      ],
+      "lastSentence": "A pattern is information.",
+      "contextPreview": "Track outcomes, not tone. Darren's warmth is the delivery system. The formatting errors are the payload. One incident is an accident.",
+      "replacement": "",
+      "keep": true
+    },
+    {
+      "id": "s10-081",
+      "chapter": 16,
+      "fieldPath": "chapters.15.quiz.questions.5.choices.1",
+      "tone": "none",
+      "keywords": [
+        "pattern"
+      ],
+      "lastSentence": "B) Separate Grant's words from his track record, since a pattern of public praise combined with private obstruction reveals concealed hostility",
+      "contextPreview": "",
+      "replacement": "B) Separate Grant's words from his track record, since a history of public praise combined with private obstruction reveals concealed hostility",
+      "keep": false
+    },
+    {
+      "id": "s10-082",
+      "chapter": 16,
+      "fieldPath": "chapters.15.quiz.questions.7.choices.1",
+      "tone": "none",
+      "keywords": [
+        "structural"
+      ],
+      "lastSentence": "B) The negotiation table was theater; the real aggression had already occurred through structural pressure that removed the competitors' alternatives",
+      "contextPreview": "",
+      "replacement": "B) The negotiation table was theater; the real aggression had already occurred through behind-the-scenes pressure that removed the competitors' alternatives",
+      "keep": false
+    },
+    {
+      "id": "s10-083",
+      "chapter": 16,
+      "fieldPath": "chapters.15.quiz.questions.7.explanation.gentle",
+      "tone": "gentle",
+      "keywords": [
+        "structural"
+      ],
+      "lastSentence": "The structural pressure was the aggression.",
+      "contextPreview": "By the time Rockefeller sat across from his competitors, their choices had already been narrowed to almost nothing. The friendly meetings were the visible layer.",
+      "replacement": "The behind-the-scenes pressure was the aggression.",
+      "keep": false
+    },
+    {
+      "id": "s10-084",
+      "chapter": 16,
+      "fieldPath": "chapters.15.quiz.questions.8.explanation.gentle",
+      "tone": "gentle",
+      "keywords": [
+        "pattern"
+      ],
+      "lastSentence": "By the time you recognize the pattern, the damage is already done.",
+      "contextPreview": "When someone is openly hostile, your defenses activate right away. Charm bypasses those defenses because your brain reads friendliness as safety.",
+      "replacement": "By the time you recognize what is happening, the damage is already done.",
+      "keep": false
+    },
+    {
+      "id": "s10-085",
+      "chapter": 16,
+      "fieldPath": "chapters.15.reviewCards.4.front.direct",
+      "tone": "direct",
+      "keywords": [
+        "structural"
+      ],
+      "lastSentence": "What structural problem does public confrontation create, and what is the chapter's alternative?",
+      "contextPreview": "You detect charm-based aggression and want to confront it openly.",
+      "replacement": "What specific problem does public confrontation create, and what is the chapter's alternative?",
+      "keep": false
+    },
+    {
+      "id": "s10-086",
+      "chapter": 17,
+      "fieldPath": "chapters.16.contentVariants.hard.keyTakeaways.5.point.direct",
+      "tone": "direct",
+      "keywords": [
+        "structural"
+      ],
+      "lastSentence": "The structural lesson: when your entire cohort agrees on something that a different generation disputes, treat that agreement as a hypothesis worth testing, not a fact worth defending.",
+      "contextPreview": "**The Louis XVI lesson is systemic, not individual.** His failure was not a personal deficiency but a generational one shared by every aristocrat of his era.",
+      "replacement": "The hard lesson: when your entire cohort agrees on something that a different generation disputes, treat that agreement as a hypothesis worth testing, not a fact worth defending.",
+      "keep": false
+    },
+    {
+      "id": "s10-087",
+      "chapter": 17,
+      "fieldPath": "chapters.16.contentVariants.hard.keyTakeaways.5.point.competitive",
+      "tone": "competitive",
+      "keywords": [
+        "structural"
+      ],
+      "lastSentence": "The structural warning: the beliefs your entire cohort shares without questioning are precisely the ones most likely to be overturned by the next generational shift.",
+      "contextPreview": "s XVI proves that consensus within your generation is the most dangerous form of false confidence.** Every aristocrat agreed the monarchy was permanent. That unanimity made the belief feel like fact.",
+      "replacement": "The critical warning: the beliefs your entire cohort shares without questioning are precisely the ones most likely to be overturned by the next generational shift.",
+      "keep": false
+    },
+    {
+      "id": "s10-088",
+      "chapter": 18,
+      "fieldPath": "chapters.17.contentVariants.medium.keyTakeaways.0.point.direct",
+      "tone": "direct",
+      "keywords": [
+        "structural"
+      ],
+      "lastSentence": "It is a structural feature of modern life.** Hospitals, euphemisms, and cultural avoidance have separated most people from direct mortality contact, and the psychological costs compound silently.",
+      "contextPreview": "**Death denial is not a belief system.",
+      "replacement": "It is a built-in feature of modern life.** Hospitals, euphemisms, and cultural avoidance have separated most people from direct mortality contact, and the psychological costs compound silently.",
+      "keep": false
+    },
+    {
+      "id": "s10-089",
+      "chapter": 18,
+      "fieldPath": "chapters.17.contentVariants.hard.keyTakeaways.0.point.gentle",
+      "tone": "gentle",
+      "keywords": [
+        "structural"
+      ],
+      "lastSentence": "**Death denial is a structural feature of modern life, not a personal failing.** The systematic removal of death from daily experience has created a population-wide loss of urgency that affects decision-making, relationships, and goal pursuit.",
+      "contextPreview": "",
+      "replacement": "**Death denial is a built-in feature of modern life, not a personal failing.** The systematic removal of death from daily experience has created a population-wide loss of urgency that affects decision-making, relationships, and goal pursuit.",
+      "keep": false
+    },
+    {
+      "id": "s10-090",
+      "chapter": 18,
+      "fieldPath": "chapters.17.contentVariants.hard.selfCheckPrompts.0.direct",
+      "tone": "direct",
+      "keywords": [
+        "mechanism"
+      ],
+      "lastSentence": "What is the specific mechanism by which mortality salience increases life satisfaction rather than decreasing it, and how does this contradict the intuition that drives most death avoidance?",
+      "contextPreview": "",
+      "replacement": "What is the specific process by which mortality salience increases life satisfaction rather than decreasing it, and how does this contradict the intuition that drives most death avoidance?",
+      "keep": false
+    },
+    {
+      "id": "s10-091",
+      "chapter": 18,
+      "fieldPath": "chapters.17.quiz.questions.1.explanation.direct",
+      "tone": "direct",
+      "keywords": [
+        "mechanism"
+      ],
+      "lastSentence": "Undirected ambition is a different mechanism entirely.",
+      "contextPreview": "The sublime perspective produces clarity, not frantic accumulation. The four axes are pettiness dissolving, urgency arriving, gratitude developing, and purpose solidifying.",
+      "replacement": "Undirected ambition is a different response entirely.",
+      "keep": false
+    },
+    {
+      "id": "s10-092",
+      "chapter": 18,
+      "fieldPath": "chapters.17.quiz.questions.5.prompt",
+      "tone": "none",
+      "keywords": [
+        "mechanism"
+      ],
+      "lastSentence": "What mortality-related mechanism caused her priorities to shift so rapidly?",
+      "contextPreview": "or a joint project. The dispute has consumed weeks of emotional energy. She then learns that a close friend has been diagnosed with a terminal illness. Suddenly, the credit dispute feels meaningless.",
+      "replacement": "What mortality-related trigger caused her priorities to shift so rapidly?",
+      "keep": false
+    },
+    {
+      "id": "s10-093",
+      "chapter": 18,
+      "fieldPath": "chapters.17.quiz.questions.6.prompt",
+      "tone": "none",
+      "keywords": [
+        "pattern"
+      ],
+      "lastSentence": "How does this cultural pattern contribute to chronic procrastination?",
+      "contextPreview": "Greene argues that modern culture has engineered death out of daily experience.",
+      "replacement": "How does this cultural habit contribute to chronic procrastination?",
+      "keep": false
+    },
+    {
+      "id": "s10-094",
+      "chapter": 18,
+      "fieldPath": "chapters.17.quiz.questions.8.explanation.direct",
+      "tone": "direct",
+      "keywords": [
+        "mechanism"
+      ],
+      "lastSentence": "The mechanism does not require a diagnosis.",
+      "contextPreview": "ans voluntary practice and involuntary exposure. Aurelius chose the exercise. Near-death survivors had it forced on them. Both groups report the same pattern: clarity, urgency, and reduced pettiness.",
+      "replacement": "The process does not require a diagnosis.",
+      "keep": false
+    },
+    {
+      "id": "s10-095",
+      "chapter": 18,
+      "fieldPath": "chapters.17.implementationPlan.ifThenPlans.0.plan.competitive",
+      "tone": "competitive",
+      "keywords": [
+        "pattern"
+      ],
+      "lastSentence": "If I detect a pattern of avoidance on a work priority, then I will compress my assumed timeline to 18 months and reassess whether the delay is still rational.",
+      "contextPreview": "",
+      "replacement": "If I detect a habit of avoidance on a work priority, then I will compress my assumed timeline to 18 months and reassess whether the delay is still rational.",
+      "keep": false
+    },
+    {
+      "id": "s10-096",
+      "chapter": 18,
+      "fieldPath": "chapters.17.reviewCards.2.front.competitive",
+      "tone": "competitive",
+      "keywords": [
+        "mechanism"
+      ],
+      "lastSentence": "What is the mechanism that makes mortality confrontation produce vitality while mortality avoidance produces anxiety?",
+      "contextPreview": "",
+      "replacement": "What is the process that makes mortality confrontation produce vitality while mortality avoidance produces anxiety?",
+      "keep": false
+    }
+  ]
+}

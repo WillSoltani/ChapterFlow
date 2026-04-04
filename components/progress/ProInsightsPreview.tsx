@@ -93,12 +93,19 @@ export function ProInsightsPreview({ isPro }: ProInsightsPreviewProps) {
       <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
         {/* Comprehension Trend */}
         <BlurredChart label="Comprehension Trend">
-          <svg width="100" height="50" viewBox="0 0 100 50">
+          <svg width="120" height="60" viewBox="0 0 120 60">
+            <polygon
+              points="10,50 25,42 40,45 55,30 70,35 85,20 100,15 115,10 115,60 10,60"
+              fill="rgba(167,139,250,0.15)"
+              stroke="none"
+            />
             <polyline
               fill="none"
-              stroke="var(--cf-accent)"
-              strokeWidth="2"
-              points="0,40 20,35 40,25 60,30 80,15 100,10"
+              stroke="#A78BFA"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              points="10,50 25,42 40,45 55,30 70,35 85,20 100,15 115,10"
             />
           </svg>
         </BlurredChart>

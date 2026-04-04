@@ -263,7 +263,7 @@ export default function StepTone({ onNext }: StepToneProps) {
                 marginBottom: 4,
               }}
             >
-              Preview · Never Split the Difference
+              Preview · ChapterFlow Sample
             </p>
             <p
               style={{

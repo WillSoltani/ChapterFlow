@@ -7,6 +7,7 @@ import type { ReviewData, ActiveBook } from "./progressTypes";
 interface KnowledgeReviewProps {
   reviews: ReviewData;
   firstActiveBook: ActiveBook | null;
+  onStartReview?: () => void;
 }
 
 function getDayLabel(dateStr: string): string {
@@ -27,6 +28,7 @@ function isToday(dateStr: string): boolean {
 export function KnowledgeReview({
   reviews,
   firstActiveBook,
+  onStartReview,
 }: KnowledgeReviewProps) {
   const prefersReduced = useReducedMotion();
   const totalDue = reviews.overdueCount + reviews.dueTodayCount;
@@ -68,7 +70,7 @@ export function KnowledgeReview({
 
       <AnimatePresence mode="wait">
         {!hasReviews ? (
-          /* State 1 — No quizzes completed yet */
+          /* State 1 — No chapters completed yet */
           <motion.div
             key="empty"
             className="mt-4 flex flex-col items-center py-4 text-center"
@@ -82,14 +84,15 @@ export function KnowledgeReview({
               className="mt-3 text-lg font-semibold"
               style={{ color: "var(--text-heading)" }}
             >
-              Activate Spaced Repetition
+              Build Your Review Deck
             </p>
             <p
               className="mt-1.5 max-w-md text-sm"
               style={{ color: "var(--text-secondary)" }}
             >
-              Complete your first quiz and ChapterFlow will automatically
-              schedule reviews so you never forget what you learn.
+              Complete your first chapter and ChapterFlow will build a
+              personalized review deck from key concepts, scheduled at
+              optimal intervals so knowledge sticks.
             </p>
             <Link
               href={bookHref}
@@ -178,6 +181,7 @@ export function KnowledgeReview({
             {totalDue > 0 && (
               <button
                 type="button"
+                onClick={onStartReview}
                 className="cursor-pointer rounded-xl px-5 py-2.5 text-sm font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan/50"
                 style={{
                   background: "var(--accent-cyan)",

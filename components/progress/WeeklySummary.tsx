@@ -19,23 +19,20 @@ function formatWeekRange(startDate: string): string {
   return `${start.toLocaleDateString(undefined, opts)} \u2013 ${end.toLocaleDateString(undefined, opts)}`;
 }
 
-function getTrendPercent(current: number, previous: number): number | null {
-  if (previous === 0) return null;
-  return Math.round(((current - previous) / previous) * 100);
-}
-
-function getTrendColor(value: number | null): string {
-  if (value === null) return "var(--text-tertiary)";
-  if (value > 0) return "var(--accent-emerald)";
-  if (value < 0) return "var(--accent-rose)";
-  return "var(--text-tertiary)";
-}
-
-function getTrendArrow(value: number | null): string {
-  if (value === null) return "\u2014";
-  if (value > 0) return `\u2191 ${Math.abs(value)}%`;
-  if (value < 0) return `\u2193 ${Math.abs(value)}%`;
-  return "\u2014";
+function formatTrend(current: number, previous: number): { text: string; color: string } | null {
+  if (previous === 0 || (current === 0 && previous === 0)) return null;
+  const change = ((current - previous) / previous) * 100;
+  if (change > 0) {
+    return { text: `\u2191 ${Math.round(change)}%`, color: "var(--accent-emerald)" };
+  }
+  const absChange = Math.abs(change);
+  if (absChange <= 30) {
+    return { text: "\u2193 slightly", color: "var(--accent-amber)" };
+  }
+  if (absChange <= 60) {
+    return { text: "Room to grow", color: "var(--text-tertiary)" };
+  }
+  return { text: "Fresh start this week!", color: "var(--text-muted)" };
 }
 
 function getConsistencyColor(daysActive: number): string {
@@ -76,13 +73,21 @@ export function WeeklySummary({
   const prefersReduced = useReducedMotion();
   const timeTrend = isFirstWeek
     ? null
-    : getTrendPercent(week.timeReadMinutes, week.previousWeekMinutes);
+    : formatTrend(week.timeReadMinutes, week.previousWeekMinutes);
   const chapterTrend = isFirstWeek
     ? null
-    : getTrendPercent(week.chaptersCompleted, week.previousWeekChapters);
+    : formatTrend(week.chaptersCompleted, week.previousWeekChapters);
   const consistencyPct = Math.round((streak.daysActiveLast7 / 7) * 100);
 
-  const stats = [
+  const stats: Array<{
+    label: string;
+    value: number | null;
+    suffix: string;
+    trend: { text: string; color: string } | null;
+    trendLabel: string;
+    zeroMessage: string | null;
+    customColor?: string;
+  }> = [
     {
       label: "Time read",
       value: week.timeReadMinutes,
@@ -177,12 +182,12 @@ export function WeeklySummary({
               <span className="text-xs" style={{ color: "var(--accent-emerald)" }}>
                 {stat.zeroMessage}
               </span>
-            ) : stat.trend !== null && stat.trend !== undefined ? (
+            ) : stat.trend ? (
               <span
                 className="text-sm"
-                style={{ color: getTrendColor(stat.trend) }}
+                style={{ color: stat.trend.color }}
               >
-                {getTrendArrow(stat.trend)}
+                {stat.trend.text}
               </span>
             ) : isFirstWeek && stat.label !== "Quiz accuracy" && stat.label !== "Streak consistency" ? (
               <span

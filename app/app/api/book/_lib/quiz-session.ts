@@ -93,24 +93,6 @@ function shuffle<T>(values: T[], rand: () => number): T[] {
   return copy;
 }
 
-function rotateChoices(choices: string[], by: number): string[] {
-  if (choices.length === 0) return [];
-  const shift = ((by % choices.length) + choices.length) % choices.length;
-  if (shift === 0) return choices;
-  return choices.map((_, index) => choices[(index + shift) % choices.length]);
-}
-
-function dedupeQuestionsById(
-  questions: ChapterQuizPayload["questions"]
-): ChapterQuizPayload["questions"] {
-  const seen = new Set<string>();
-  return questions.filter((question) => {
-    if (seen.has(question.questionId)) return false;
-    seen.add(question.questionId);
-    return true;
-  });
-}
-
 export function cooldownSecondsForFailureStreak(streak: number): number {
   if (streak <= 0) return 0;
   if (streak === 1) return BASE_COOLDOWN_SECONDS;
@@ -127,31 +109,7 @@ export function remainingCooldownSeconds(nextAttemptAvailableAt?: string | null)
 export function buildRetryPool(
   quiz: ChapterQuizPayload
 ): ChapterQuizPayload["questions"] {
-  const authored = Array.isArray(quiz.retryQuestions) ? quiz.retryQuestions : [];
-  const generated = quiz.questions.map((question, index) => {
-    const correctChoice = question.choices[question.correctAnswerIndex];
-    const distractors = question.choices.filter(
-      (_, choiceIndex) => choiceIndex !== question.correctAnswerIndex
-    );
-    const paddedDistractors = [...distractors];
-    while (paddedDistractors.length < 3) {
-      paddedDistractors.push("An unrelated claim that misses the core concept.");
-    }
-    const baseChoices = [correctChoice, ...paddedDistractors.slice(0, 3)];
-    const rotated = rotateChoices(baseChoices, (quiz.number + index) % 4);
-    const rotatedCorrectIndex = rotated.findIndex((choice) => choice === correctChoice);
-    return {
-      questionId: `${question.questionId}-retry-${String(index + 1).padStart(2, "0")}`,
-      prompt: question.prompt,
-      choices: rotated,
-      correctAnswerIndex: rotatedCorrectIndex >= 0 ? rotatedCorrectIndex : 0,
-      explanation: question.explanation,
-    };
-  });
-  return dedupeQuestionsById([...authored, ...generated]).slice(
-    0,
-    Math.max(quiz.questions.length, 5)
-  );
+  return Array.isArray(quiz.retryQuestions) ? quiz.retryQuestions : [];
 }
 
 export function buildQuizAttemptQuestions(params: {
@@ -160,23 +118,19 @@ export function buildQuizAttemptQuestions(params: {
   bookId: string;
   chapterNumber: number;
   attemptNumber: number;
+  /** Maximum number of questions to include (filters by learning mode). Defaults to all. */
+  maxQuestions?: number;
 }): QuizSessionQuestion[] {
-  const { quiz, userId, bookId, chapterNumber, attemptNumber } = params;
-  const baseQuestions = quiz.questions;
-  const retryPool = buildRetryPool(quiz);
-  const targetCount = baseQuestions.length;
+  const { quiz, userId, bookId, chapterNumber, attemptNumber, maxQuestions } = params;
+  const allQuestions = quiz.questions;
+  const baseQuestions = maxQuestions && maxQuestions > 0
+    ? allQuestions.slice(0, maxQuestions)
+    : allQuestions;
   const seed = hashString(
     `${userId}:${bookId}:${chapterNumber}:${Math.max(1, attemptNumber)}`
   );
   const rand = seededRandom(seed);
-  const retrySwapCount =
-    attemptNumber <= 1
-      ? 0
-      : Math.min(retryPool.length, Math.min(targetCount - 1, attemptNumber));
-  const baseKeepCount = Math.max(0, targetCount - retrySwapCount);
-  const selectedBase = shuffle(baseQuestions, rand).slice(0, baseKeepCount);
-  const selectedRetry = shuffle(retryPool, rand).slice(0, retrySwapCount);
-  const chosen = shuffle([...selectedBase, ...selectedRetry], rand).slice(0, targetCount);
+  const chosen = shuffle(baseQuestions, rand);
 
   return chosen.map((question) => {
     const orderedChoices = shuffle(
@@ -374,6 +328,8 @@ export function buildQuizClientSession(params: {
   latestAttempt: QuizAttemptItem | null;
   history: QuizAttemptItem[];
   passingScorePercent?: number;
+  /** Maximum number of questions to include (based on learning mode) */
+  maxQuestions?: number;
 }): QuizClientSession {
   const passingScorePercent = Math.max(
     80,
@@ -405,6 +361,7 @@ export function buildQuizClientSession(params: {
     bookId: params.bookId,
     chapterNumber: params.chapterNumber,
     attemptNumber: viewAttemptNumber,
+    maxQuestions: params.maxQuestions,
   });
   const resultsByQuestionId = new Map(
     (latestAttempt?.questionResults ?? []).map((result) => [result.questionId, result])

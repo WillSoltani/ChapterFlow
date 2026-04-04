@@ -46,12 +46,45 @@ export type QuizSessionView = {
   questions: QuizQuestionView[];
   result: QuizAttemptSummaryView | null;
   history: QuizAttemptSummaryView[];
+  /** True when scored locally because the API was unreachable */
+  provisional?: boolean;
 };
 
 function remainingCooldown(nextAttemptAvailableAt: string | null): number {
   if (!nextAttemptAvailableAt) return 0;
   const deltaMs = new Date(nextAttemptAvailableAt).getTime() - Date.now();
   return Math.max(0, Math.ceil(deltaMs / 1000));
+}
+
+function draftAnswersKey(bookId: string, chapterNumber: number): string {
+  return `quiz-draft:${bookId}:${chapterNumber}`;
+}
+
+function saveDraftAnswers(bookId: string, chapterNumber: number, attemptNumber: number, answers: Record<string, string>): void {
+  try {
+    window.localStorage.setItem(
+      draftAnswersKey(bookId, chapterNumber),
+      JSON.stringify({ attemptNumber, answers })
+    );
+  } catch { /* ignore quota errors */ }
+}
+
+function loadDraftAnswers(bookId: string, chapterNumber: number, attemptNumber: number): Record<string, string> {
+  try {
+    const raw = window.localStorage.getItem(draftAnswersKey(bookId, chapterNumber));
+    if (!raw) return {};
+    const parsed = JSON.parse(raw);
+    if (parsed.attemptNumber !== attemptNumber) return {};
+    return parsed.answers && typeof parsed.answers === "object" ? parsed.answers : {};
+  } catch {
+    return {};
+  }
+}
+
+function clearDraftAnswers(bookId: string, chapterNumber: number): void {
+  try {
+    window.localStorage.removeItem(draftAnswersKey(bookId, chapterNumber));
+  } catch { /* ignore */ }
 }
 
 export function useQuizSession(params: {
@@ -94,17 +127,25 @@ export function useQuizSession(params: {
     }
 
     setCooldownSeconds(remainingCooldown(nextSession.nextAttemptAvailableAt));
-    setAnswers(
-      Object.fromEntries(
-        nextSession.questions
-          .map((question) => [question.questionId, question.selectedChoiceId ?? ""])
-          .filter((entry) => entry[1])
-      )
+
+    // Restore server-known answers first, then merge any locally saved drafts
+    const serverAnswers = Object.fromEntries(
+      nextSession.questions
+        .map((question) => [question.questionId, question.selectedChoiceId ?? ""])
+        .filter((entry) => entry[1])
     );
+    if (!nextSession.result) {
+      const draft = loadDraftAnswers(bookId, chapterNumber, nextSession.attemptNumber);
+      setAnswers({ ...draft, ...serverAnswers });
+    } else {
+      clearDraftAnswers(bookId, chapterNumber);
+      setAnswers(serverAnswers);
+    }
+
     setExplanationOpen({});
     trackedExplanationIds.current = new Set();
     startedAtRef.current = nextSession.result ? null : Date.now();
-  }, []);
+  }, [bookId, chapterNumber]);
 
   const buildLocalSession = useCallback((): QuizSessionView | null => {
     const quiz = localQuizRef.current;
@@ -196,12 +237,13 @@ export function useQuizSession(params: {
   const answerQuestion = useCallback(
     (questionId: string, choiceId: string) => {
       if (!session || session.result) return;
-      setAnswers((current) => ({
-        ...current,
-        [questionId]: choiceId,
-      }));
+      setAnswers((current) => {
+        const next = { ...current, [questionId]: choiceId };
+        saveDraftAnswers(bookId, chapterNumber, session.attemptNumber, next);
+        return next;
+      });
     },
-    [session]
+    [bookId, chapterNumber, session]
   );
 
   const scoreLocally = useCallback((): QuizSessionView | null => {
@@ -213,6 +255,7 @@ export function useQuizSession(params: {
       if (isCorrect) correct += 1;
       return { ...q, selectedChoiceId: selectedId, isCorrect };
     });
+    if (scoredQuestions.length === 0) return null;
     const scorePercent = Math.round((correct / scoredQuestions.length) * 100);
     const passed = scorePercent >= session.passingScorePercent;
     return {
@@ -249,17 +292,21 @@ export function useQuizSession(params: {
             timeSpentSeconds: startedAtRef.current
               ? Math.max(0, Math.round((Date.now() - startedAtRef.current) / 1000))
               : undefined,
+            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
           }),
         }
       );
+      clearDraftAnswers(bookId, chapterNumber);
       setSession(payload.quiz);
       syncFromSession(payload.quiz);
       setError(null);
       return payload.quiz;
     } catch (submitError: unknown) {
-      // Fall back to local scoring
+      // Fall back to local scoring — mark as provisional so UI can indicate
+      // this result is unverified and needs server re-validation
       const local = scoreLocally();
       if (local) {
+        local.provisional = true;
         setSession(local);
         syncFromSession(local);
         setError(null);

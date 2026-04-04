@@ -1,0 +1,200 @@
+{
+  "batchId": "laws-s10-batch-2",
+  "items": [
+    {
+      "id": "s10-037",
+      "chapter": 7,
+      "fieldPath": "chapters.6.contentVariants.hard.selfCheckPrompts.1.direct",
+      "tone": "direct",
+      "keywords": [
+        "structural"
+      ],
+      "lastSentence": "What should you do differently when the diagnostic confirms structural defense?",
+      "contextPreview": "Describe the two-round diagnostic for structural versus situational defensiveness.",
+      "replacement": "What should you do differently when the diagnostic confirms a built-in defensive response?",
+      "keep": false
+    },
+    {
+      "id": "s10-038",
+      "chapter": 8,
+      "fieldPath": "chapters.7.quiz.questions.3.prompt",
+      "tone": "none",
+      "keywords": [
+        "pattern"
+      ],
+      "lastSentence": "Which feedback loop is driving this pattern?",
+      "contextPreview": "designer, notices that every new client relationship starts well but sours within weeks. She interprets late replies as disrespect and responds with curt messages that make clients pull back further.",
+      "replacement": "Which feedback loop is driving this cycle?",
+      "keep": false
+    },
+    {
+      "id": "s10-039",
+      "chapter": 8,
+      "fieldPath": "chapters.7.quiz.questions.4.prompt",
+      "tone": "none",
+      "keywords": [
+        "pattern"
+      ],
+      "lastSentence": "What concept from this chapter explains Derek's pattern?",
+      "contextPreview": "Derek has changed jobs three times in four years, each time complaining that his manager was unsupportive and his colleagues were competitive. His friend suggests the problem might travel with him.",
+      "replacement": "What concept from this chapter explains Derek's recurring cycle?",
+      "keep": false
+    },
+    {
+      "id": "s10-040",
+      "chapter": 8,
+      "fieldPath": "chapters.7.quiz.questions.6.explanation.gentle",
+      "tone": "gentle",
+      "keywords": [
+        "pattern"
+      ],
+      "lastSentence": "Each filter generates a specific behavioral pattern: hostile filters trigger defensive or aggressive responses, anxious filters trigger over-caution, and avoidant filters trigger disengagement.",
+      "contextPreview": "",
+      "replacement": "Each filter generates a specific behavioral tendency: hostile filters trigger defensive or aggressive responses, anxious filters trigger over-caution, and avoidant filters trigger disengagement.",
+      "keep": false
+    },
+    {
+      "id": "s10-041",
+      "chapter": 9,
+      "fieldPath": "chapters.8.quiz.questions.1.choices.0",
+      "tone": "none",
+      "keywords": [
+        "mechanism"
+      ],
+      "lastSentence": "A) The brain allocates extra energy to suppressed traits as a survival mechanism",
+      "contextPreview": "",
+      "replacement": "A) The brain allocates extra energy to suppressed traits as a survival response",
+      "keep": false
+    },
+    {
+      "id": "s10-042",
+      "chapter": 11,
+      "fieldPath": "chapters.10.contentVariants.medium.keyTakeaways.4.point.competitive",
+      "tone": "competitive",
+      "keywords": [
+        "structural"
+      ],
+      "lastSentence": "The person who stabilizes their self-assessment against both pulls has a structural advantage over everyone running on emotional autopilot.",
+      "contextPreview": "ning in opposite directions.** One deflates you through comparison, the other inflates you through self-congratulation. Both originate from a self-image that cannot hold steady under new information.",
+      "replacement": "The person who stabilizes their self-assessment against both pulls has a foundational advantage over everyone running on emotional autopilot.",
+      "keep": false
+    },
+    {
+      "id": "s10-043",
+      "chapter": 11,
+      "fieldPath": "chapters.10.contentVariants.hard.keyTakeaways.4.point.competitive",
+      "tone": "competitive",
+      "keywords": [
+        "structural"
+      ],
+      "lastSentence": "The operator who calibrates the system itself, rather than treating each output independently, gains structural stability that reactively managed operators cannot achieve.",
+      "contextPreview": "**Same system, same vulnerability, two directions.** Envy is what unstable self-assessment does with negative comparison inputs. Grandiosity is what it does with positive self-referential inputs.",
+      "replacement": "The operator who calibrates the system itself, rather than treating each output independently, gains a built-in stability that reactively managed operators cannot achieve.",
+      "keep": false
+    },
+    {
+      "id": "s10-044",
+      "chapter": 11,
+      "fieldPath": "chapters.10.contentVariants.hard.predictionPrompt.competitive",
+      "tone": "competitive",
+      "keywords": [
+        "structural"
+      ],
+      "lastSentence": "Using the verification loop model and the four-stage cascade, predict what Greene will identify as the structural reason that rigid identities resist adaptation even when the evidence for change is overwhelming.",
+      "contextPreview": "Greene's next chapter argues that rigid identity is the final stage of the process described here.",
+      "replacement": "Using the verification loop model and the four-stage cascade, predict what Greene will identify as the foundational reason that rigid identities resist adaptation even when the evidence for change is overwhelming.",
+      "keep": false
+    },
+    {
+      "id": "s10-045",
+      "chapter": 11,
+      "fieldPath": "chapters.10.contentVariants.hard.oneMinuteRecap.connect.competitive",
+      "tone": "competitive",
+      "keywords": [
+        "pattern"
+      ],
+      "lastSentence": "What does the pattern tell you about the underlying stability of their self-model?",
+      "contextPreview": "nect the Chapter 10 envy framework and the grandiosity framework to a single person you have observed closely. When did their self-assessment system produce envy, and when did it produce grandiosity?",
+      "replacement": "What does that oscillation tell you about the underlying stability of their self-model?",
+      "keep": false
+    },
+    {
+      "id": "s10-046",
+      "chapter": 11,
+      "fieldPath": "chapters.10.quiz.questions.6.explanation.direct",
+      "tone": "direct",
+      "keywords": [
+        "structural"
+      ],
+      "lastSentence": "He functioned as a corrective signal, and his removal was the removal of a structural safeguard against unchecked conviction.",
+      "contextPreview": "Katzenberg's value to the organization exceeded his role.",
+      "replacement": "",
+      "keep": true
+    },
+    {
+      "id": "s10-047",
+      "chapter": 12,
+      "fieldPath": "chapters.11.contentVariants.hard.predictionPrompt.competitive",
+      "tone": "competitive",
+      "keywords": [
+        "mechanism"
+      ],
+      "lastSentence": "Using the response diversity model from this chapter, predict the specific mechanism by which a narrow behavioral range causes purpose to stall, and how an integrated range prevents that failure.",
+      "contextPreview": "Greene's next chapter argues that purpose requires a complete self.",
+      "replacement": "Using the response diversity model from this chapter, predict the specific process by which a narrow behavioral range causes purpose to stall, and how an integrated range prevents that failure.",
+      "keep": false
+    },
+    {
+      "id": "s10-048",
+      "chapter": 12,
+      "fieldPath": "chapters.11.contentVariants.hard.oneMinuteRecap.retrieve.direct",
+      "tone": "direct",
+      "keywords": [
+        "structural"
+      ],
+      "lastSentence": "Then place the chapter in the Ch11-Ch13 structural sequence.",
+      "contextPreview": "Reconstruct the full argument: the conditioning mechanism, the distortion model, the three-stage expansion framework, and the boundary condition where performance fails to become integration.",
+      "replacement": "Then place the chapter in the Ch11-Ch13 foundational sequence.",
+      "keep": false
+    },
+    {
+      "id": "s10-049",
+      "chapter": 12,
+      "fieldPath": "chapters.11.quiz.questions.0.explanation.direct",
+      "tone": "direct",
+      "keywords": [
+        "pattern"
+      ],
+      "lastSentence": "The siege response set the pattern for her entire career: opponents who prepared for one behavioral mode encountered a different one.",
+      "contextPreview": "",
+      "replacement": "",
+      "keep": true
+    },
+    {
+      "id": "s10-050",
+      "chapter": 12,
+      "fieldPath": "chapters.11.quiz.questions.4.choices.1",
+      "tone": "none",
+      "keywords": [
+        "mechanism"
+      ],
+      "lastSentence": "C) Mei has developed a healthy coping mechanism for dealing with workplace stress",
+      "contextPreview": "",
+      "replacement": "",
+      "keep": true
+    },
+    {
+      "id": "s10-051",
+      "chapter": 12,
+      "fieldPath": "chapters.11.reviewCards.2.front.direct",
+      "tone": "direct",
+      "keywords": [
+        "mechanism"
+      ],
+      "lastSentence": "What is the mechanism by which suppressed traits emerge in distorted forms, and why is the distorted version more damaging than the original?",
+      "contextPreview": "",
+      "replacement": "What is the process by which suppressed traits emerge in distorted forms, and why is the distorted version more damaging than the original?",
+      "keep": false
+    }
+  ]
+}

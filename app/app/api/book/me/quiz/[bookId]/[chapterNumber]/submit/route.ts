@@ -13,6 +13,7 @@ import {
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import { bookOk, requireBodyObject, withBookApiErrors } from "@/app/app/api/book/_lib/http";
 import {
+  getLocalQuizQuestions,
   getPublishedBookManifest,
   getUserAccessibleQuiz,
 } from "@/app/app/api/book/_lib/content-service";
@@ -22,19 +23,19 @@ import {
   analyticsTrackQuizAttempt,
   analyticsTrackQuizInteraction,
 } from "@/app/app/api/book/_lib/analytics-repo";
-import { nowIso } from "@/app/app/api/book/_lib/keys";
+import { bookUserPk, loopSk, nowIso } from "@/app/app/api/book/_lib/keys";
 import {
   buildProgressAfterQuizPass,
   buildQuizAttemptQuestions,
   buildQuizClientSession,
   buildQuizStateFromAttempts,
-  buildRetryPool,
   cooldownSecondsForFailureStreak,
   gradeQuizAttemptQuestions,
   remainingCooldownSeconds,
 } from "@/app/app/api/book/_lib/quiz-session";
 import {
   countRecentQuizAttempts,
+  getUserBookState,
   getUserQuizState,
   getUserSettingsItem,
   listRecentQuizAttempts,
@@ -46,8 +47,6 @@ import { updateStreakOnLoopComplete } from "@/app/app/api/book/_lib/streak-repo"
 import { updateTierOnLoopComplete } from "@/app/app/api/book/_lib/tier-repo";
 import { checkAchievementsAfterLoopComplete } from "@/app/app/api/book/_lib/achievement-repo";
 import { maybeAwardInsightSpark } from "@/app/app/api/book/_lib/insight-spark";
-import { getUserBookState } from "@/app/app/api/book/_lib/repo";
-import { bookUserPk, loopSk } from "@/app/app/api/book/_lib/keys";
 import { PutCommand } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import {
@@ -56,6 +55,7 @@ import {
   LOOP_COMPLETE_IP,
   INSIGHT_POINTS_AMOUNTS,
   QUIZ_PASS_THRESHOLDS,
+  QUIZ_QUESTION_COUNTS,
 } from "@/app/book/_lib/flow-points-economy";
 import type { LearningMode } from "@/app/book/settings/types/settings";
 
@@ -161,7 +161,7 @@ export async function POST(
       bookId,
       interactionChapterNumber: chapterNumberInt,
     });
-    const [{ progress, quiz }, { manifest }, persistedQuizState, recentAttempts, userSettings] = await Promise.all([
+    const [{ progress, quiz: s3Quiz }, { manifest }, persistedQuizState, recentAttempts, userSettings] = await Promise.all([
       getUserAccessibleQuiz({
         tableName,
         contentBucket,
@@ -178,6 +178,12 @@ export async function POST(
       listRecentQuizAttempts(tableName, user.sub, bookId, chapterNumberInt, 20),
       getUserSettingsItem(tableName, user.sub),
     ]);
+
+    // Prefer quiz questions from local book-package JSON over stale S3 data.
+    const localQuestions = getLocalQuizQuestions(bookId, chapterNumberInt);
+    const quiz = localQuestions
+      ? { ...s3Quiz, questions: localQuestions }
+      : s3Quiz;
 
     // Resolve learning mode from server-stored settings (not client request body)
     // to prevent gaming (e.g., submitting with "guided" mode for lower threshold)
@@ -197,6 +203,8 @@ export async function POST(
         attempts: recentAttempts,
       });
 
+    const maxQuestions = QUIZ_QUESTION_COUNTS[learningMode];
+
     if (quizState?.passed) {
       const response = bookOk({
         quiz: buildQuizClientSession({
@@ -207,6 +215,7 @@ export async function POST(
           quizState,
           latestAttempt: recentAttempts[0] ?? null,
           history: recentAttempts,
+          maxQuestions,
         }),
         progress: {
           currentChapterNumber: progress.currentChapterNumber,
@@ -269,6 +278,7 @@ export async function POST(
       bookId,
       chapterNumber: chapterNumberInt,
       attemptNumber: expectedAttemptNumber,
+      maxQuestions,
     });
 
     let graded;
@@ -287,7 +297,7 @@ export async function POST(
                 selectedIndex: response.selectedIndex ?? -1,
               })),
               {
-                questionPool: [...quiz.questions, ...buildRetryPool(quiz)],
+                questionPool: quiz.questions,
               }
             );
             return {
@@ -475,8 +485,7 @@ export async function POST(
           typeof body.timezone === "string" && body.timezone.trim()
             ? body.timezone.trim()
             : "UTC";
-        const bookCategory =
-          typeof body.category === "string" ? body.category : "";
+        const bookCategory = manifest.categories?.[0] ?? "";
 
         // Award loop completion IP
         const loopCompleteIPAmount = isFirstAttempt
@@ -526,39 +535,12 @@ export async function POST(
           }
         }
 
-        // Compute inactivity gap BEFORE updating streak (for second-wind detection)
-        let inactiveDaysBeforeReturn: number | undefined;
-        // We'll read it from the streak result — the streak repo returns the
-        // gap via the streakReset flag and welcomeBackAwarded flag.
-        // For a precise count, we peek at the current streak's lastActiveDate.
-
         // Update streak
         const streakResult = await updateStreakOnLoopComplete(
           tableName,
           user.sub,
           timezone
         );
-
-        // Derive inactiveDaysBeforeReturn from streak state:
-        // If welcomeBack was awarded, streak repo detected 7+ day gap.
-        // For second-wind (14+ days), we check if the streak was reset AND
-        // the previous lastActiveDate gap is >= 14 days.
-        if (streakResult.streakReset && streakResult.streak.lastActiveDate) {
-          // The streak was reset to 1 today. The gap is encoded in the
-          // welcomeBack flag (7+ days). For 14+ day detection, the
-          // streak repo's previous lastActiveDate was the pre-update value.
-          // Since streak updates before we get here, we check:
-          // currentStreak === 1 means it was just reset.
-          // We can compute the gap from READINGDAY records, but a simpler
-          // approach: the welcome_back threshold is 7 days. If the streak
-          // was reset with shields consumed = 0 (no shields left), the gap
-          // was at least shieldUsedDates.length + days missed.
-          // For now, use a conservative approach: if welcomeBack was awarded,
-          // the gap was at least 7 days. We can't distinguish 7 vs 14 here
-          // without the pre-update lastActiveDate.
-          // TODO: Pass pre-update gap from streak-repo for precise detection.
-          inactiveDaysBeforeReturn = streakResult.welcomeBackAwarded ? 7 : undefined;
-        }
 
         // Update tier
         const tierResult = await updateTierOnLoopComplete(
@@ -595,7 +577,13 @@ export async function POST(
           loopCompletedAt: ts,
           userTimezone: timezone,
           bookStartedAt,
-          inactiveDaysBeforeReturn,
+          inactiveDaysBeforeReturn: streakResult.gapDays,
+          // Interim proxy: categoriesExplored counts categories with any loop,
+          // not just fully-completed books. Good enough for Bridge Builder detection.
+          // TODO: Track precise completedBooksDistinctCategories on tier record.
+          completedBooksInDistinctCategories: completedBookNow
+            ? tierResult.tier.categoriesExplored.length
+            : undefined,
         });
 
         // Insight Spark (12% variable reward)
@@ -746,6 +734,7 @@ export async function POST(
         quizState: nextQuizState,
         latestAttempt: attempt,
         history,
+        maxQuestions,
       }),
       progress: {
         currentChapterNumber:

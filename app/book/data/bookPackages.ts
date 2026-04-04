@@ -1,7 +1,8 @@
 import lawsOfPowerPackageJson from "@/book-packages/the-48-laws-of-power.modern.json";
 import friendsAndInfluencePackageJson from "@/book-packages/friends-and-influence.modern.json";
-import atomicHabitsPackageJson from "@/book-packages/atomic-habits.modern.json";
 import lawsOfHumanNaturePackageJson from "@/book-packages/laws-of-human-nature.modern.json";
+import theCharismaMythPackageJson from "@/book-packages/the-charisma-myth.modern.json";
+import neverSplitTheDifferencePackageJson from "@/book-packages/never-split-the-difference.modern.json";
 import { getBookCoverPath } from "@/lib/book-covers";
 
 export type VariantFamily = "EMH" | "PBC";
@@ -237,16 +238,6 @@ export function getFriendsAndInfluencePackageForTone(tone: ToneKey): BookPackage
   return normalizeNstdPackage(friendsAndInfluencePackageJson, tone);
 }
 
-export const ATOMIC_HABITS_PACKAGE =
-  normalizeNstdPackage(atomicHabitsPackageJson, "direct");
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const ATOMIC_HABITS_RAW_CHAPTERS: any[] = (atomicHabitsPackageJson as any).chapters ?? [];
-
-export function getAtomicHabitsPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(atomicHabitsPackageJson, tone);
-}
-
 export const LAWS_OF_HUMAN_NATURE_PACKAGE =
   normalizeNstdPackage(lawsOfHumanNaturePackageJson, "direct");
 
@@ -257,11 +248,33 @@ export function getLawsOfHumanNaturePackageForTone(tone: ToneKey): BookPackage {
   return normalizeNstdPackage(lawsOfHumanNaturePackageJson, tone);
 }
 
+export const THE_CHARISMA_MYTH_PACKAGE =
+  normalizeNstdPackage(theCharismaMythPackageJson, "direct");
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const THE_CHARISMA_MYTH_RAW_CHAPTERS: any[] = (theCharismaMythPackageJson as any).chapters ?? [];
+
+export function getTheCharismaMythPackageForTone(tone: ToneKey): BookPackage {
+  return normalizeNstdPackage(theCharismaMythPackageJson, tone);
+}
+
+export const NEVER_SPLIT_THE_DIFFERENCE_PACKAGE =
+  normalizeNstdPackage(neverSplitTheDifferencePackageJson, "direct");
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const NEVER_SPLIT_THE_DIFFERENCE_RAW_CHAPTERS: any[] =
+  (neverSplitTheDifferencePackageJson as any).chapters ?? [];
+
+export function getNeverSplitTheDifferencePackageForTone(tone: ToneKey): BookPackage {
+  return normalizeNstdPackage(neverSplitTheDifferencePackageJson, tone);
+}
+
 export const BOOK_PACKAGES: BookPackage[] = [
   LAWS_OF_POWER_PACKAGE,
   FRIENDS_AND_INFLUENCE_PACKAGE,
-  ATOMIC_HABITS_PACKAGE,
   LAWS_OF_HUMAN_NATURE_PACKAGE,
+  THE_CHARISMA_MYTH_PACKAGE,
+  NEVER_SPLIT_THE_DIFFERENCE_PACKAGE,
 ];
 
 export const BOOK_PACKAGE_PRESENTATION: Record<string, BookPackagePresentation> = {
@@ -281,14 +294,6 @@ export const BOOK_PACKAGE_PRESENTATION: Record<string, BookPackagePresentation> 
       "A modern reading of power, timing, reputation, influence, and strategic awareness for students and early career builders.",
     pages: 480,
   },
-  "atomic-habits": {
-    icon: "🔁",
-    coverImage: getBookCoverPath("atomic-habits"),
-    difficulty: "Medium",
-    synopsis:
-      "A modern reading of habits, identity, and behavior design: how tiny changes compound into remarkable results.",
-    pages: 320,
-  },
   "laws-of-human-nature": {
     icon: "🧠",
     coverImage: getBookCoverPath("laws-of-human-nature"),
@@ -296,6 +301,22 @@ export const BOOK_PACKAGE_PRESENTATION: Record<string, BookPackagePresentation> 
     synopsis:
       "A deep exploration of emotional mastery, empathy, character assessment, group dynamics, and the hidden forces that drive human behavior.",
     pages: 624,
+  },
+  "the-charisma-myth": {
+    icon: "✨",
+    coverImage: getBookCoverPath("the-charisma-myth"),
+    difficulty: "Medium",
+    synopsis:
+      "A practical guide to developing presence, power, and warmth through learnable behaviors that make up charisma, from first impressions to crisis leadership.",
+    pages: 264,
+  },
+  "never-split-the-difference": {
+    icon: "🦢",
+    coverImage: getBookCoverPath("never-split-the-difference"),
+    difficulty: "Medium",
+    synopsis:
+      "A negotiation guide on tactical empathy, calibrated questions, price bargaining, execution, and the hidden variables that change a deal.",
+    pages: 288,
   },
 };
 

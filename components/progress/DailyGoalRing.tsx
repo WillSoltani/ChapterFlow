@@ -13,10 +13,10 @@ interface DailyGoalRingProps {
 }
 
 // Color constants
-const CYAN = "var(--cf-accent)";
-const CYAN_TRACK = "var(--cf-ring-track)";
-const PURPLE = "var(--cf-accent)";
-const PURPLE_TRACK = "var(--cf-ring-track)";
+const CYAN = "#38BDF8";
+const CYAN_TRACK = "rgba(56, 189, 248, 0.15)";
+const PURPLE = "#A78BFA";
+const PURPLE_TRACK = "rgba(167, 139, 250, 0.15)";
 
 export function DailyGoalRing({
   completedMinutes,
@@ -49,8 +49,8 @@ export function DailyGoalRing({
   // SVG dimensions — responsive
   const desktopSize = 220;
   const mobileSize = 180;
-  const outerStroke = 12;
-  const innerStroke = 10;
+  const outerStroke = 11;
+  const innerStroke = 9;
   const gap = 16;
 
   function renderRing(
@@ -158,14 +158,20 @@ export function DailyGoalRing({
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           {isGoalComplete ? (
             <motion.span
-              className="font-(family-name:--font-display) text-2xl font-bold"
-              style={{ color: CYAN }}
+              className="font-(family-name:--font-display) text-2xl font-bold text-emerald-400"
               initial={{ scale: prefersReduced ? 1 : 0.8 }}
               animate={{ scale: 1 }}
               transition={{ delay: 1.2, type: "spring", stiffness: 300 }}
             >
-              Done!
+              {"\u2713"} Done!
             </motion.span>
+          ) : completedMinutes === 0 && !hasEndowedProgress ? (
+            <span
+              className="font-(family-name:--font-display) text-2xl font-bold"
+              style={{ color: "var(--text-heading)" }}
+            >
+              {targetMinutes}m
+            </span>
           ) : (
             <span
               className="font-(family-name:--font-display) text-2xl font-bold"
@@ -178,19 +184,14 @@ export function DailyGoalRing({
             className="mt-0.5 text-xs"
             style={{ color: "var(--text-muted)" }}
           >
-            {isGoalComplete ? "Goal complete" : `of ${targetMinutes} min goal`}
+            {isGoalComplete
+              ? `${targetMinutes} min goal reached`
+              : completedMinutes === 0 && !hasEndowedProgress
+                ? "to go"
+                : hasEndowedProgress && completedMinutes === 0
+                  ? "You\u2019re already on your way"
+                  : `of ${targetMinutes} min goal`}
           </span>
-          {effectiveOuterPercent > 0 &&
-            effectiveOuterPercent < 100 &&
-            hasEndowedProgress &&
-            completedMinutes === 0 && (
-              <span
-                className="mt-1 text-[10px]"
-                style={{ color: "var(--text-secondary)" }}
-              >
-                You&apos;re already on your way
-              </span>
-            )}
         </div>
 
         {/* Completion glow animation */}
@@ -201,14 +202,16 @@ export function DailyGoalRing({
             animate={{
               opacity: [0, 0.4, 0],
               scale: [1, 1.05, 1],
+              boxShadow: [
+                "0 0 0px rgba(52,211,153,0)",
+                "0 0 24px rgba(52,211,153,0.4)",
+                "0 0 0px rgba(52,211,153,0)",
+              ],
             }}
             transition={{
               duration: 1.5,
               delay: 1.2,
-              ease: "easeOut",
-            }}
-            style={{
-              boxShadow: `0 0 40px ${CYAN}`,
+              ease: "easeInOut",
             }}
           />
         )}

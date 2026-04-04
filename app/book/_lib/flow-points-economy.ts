@@ -103,6 +103,13 @@ export const QUIZ_RETRIES_PER_QUESTION = {
   challenge: 0,
 } as const;
 
+/** Number of quiz questions shown per learning mode */
+export const QUIZ_QUESTION_COUNTS = {
+  guided: 5,
+  standard: 7,
+  challenge: 10,
+} as const;
+
 /** Auto-advance delay per mode (ms) */
 export const QUIZ_AUTO_ADVANCE_DELAY = {
   guided: 3000,

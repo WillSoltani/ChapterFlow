@@ -138,14 +138,14 @@ export function usePhaseCompletion(params: {
     );
   }, [bookId, chapterId, completedPhases, allPhasesCompletedOnce, scenarioInteractions, hydrated]);
 
-  // Reset time and scroll when phase changes
+  // Reset time and scroll when phase or learning mode changes
   useEffect(() => {
     timeRef.current = 0;
     maxScrollRef.current = 0;
     setTimeOnPhase(0);
     setScrollPercent(0);
     setCurrentPhaseReady(false);
-  }, [activePhase]);
+  }, [activePhase, learningMode]);
 
   // Timer for time tracking
   useEffect(() => {
@@ -170,6 +170,7 @@ export function usePhaseCompletion(params: {
       if (!el) return;
       const scrollPosition = window.scrollY + window.innerHeight;
       const contentBottom = el.offsetTop + el.scrollHeight;
+      if (contentBottom <= 0) return;
       const percent = Math.min(1, scrollPosition / contentBottom);
       maxScrollRef.current = Math.max(maxScrollRef.current, percent);
       setScrollPercent(Math.round(maxScrollRef.current * 100));
@@ -190,9 +191,9 @@ export function usePhaseCompletion(params: {
       return;
     }
 
-    // Quiz phase doesn't have scroll/time completion criteria
+    // Quiz phase readiness is driven by whether the quiz has been passed
     if (activePhase === "quiz") {
-      setCurrentPhaseReady(true);
+      if (quizPassed) setCurrentPhaseReady(true);
       return;
     }
 
@@ -232,6 +233,7 @@ export function usePhaseCompletion(params: {
     allPhasesCompletedOnce,
     scenarioInteractions,
     totalScenarios,
+    quizPassed,
   ]);
 
   const markPhaseCompleted = useCallback(

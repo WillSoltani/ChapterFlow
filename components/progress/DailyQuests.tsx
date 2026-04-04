@@ -7,6 +7,7 @@ import type { DailyQuest } from "./progressTypes";
 interface DailyQuestsProps {
   quests: DailyQuest[];
   bonusIP: number;
+  onQuestClick?: (questId: string) => void;
 }
 
 /** Map quest id to accent color and icon component */
@@ -27,7 +28,7 @@ function getQuestAccent(questId: string): {
   }
 }
 
-export function DailyQuests({ quests, bonusIP }: DailyQuestsProps) {
+export function DailyQuests({ quests, bonusIP, onQuestClick }: DailyQuestsProps) {
   const prefersReduced = useReducedMotion();
   const allComplete = quests.every((q) => q.completed);
   const allPartiallyStarted =
@@ -76,7 +77,7 @@ export function DailyQuests({ quests, bonusIP }: DailyQuestsProps) {
               : undefined
           }
         >
-          {"\u{1F381}"} +{bonusIP} IPfor all
+          {"\u{1F381}"} +{bonusIP} IP for all
         </motion.span>
       </div>
 
@@ -89,7 +90,7 @@ export function DailyQuests({ quests, bonusIP }: DailyQuestsProps) {
             color: "var(--accent-emerald)",
           }}
         >
-          {"\u{1F389}"} All quests complete! +{bonusIP} IPearned
+          {"\u{1F389}"} All quests complete! +{bonusIP} IP earned
         </div>
       )}
 
@@ -100,10 +101,16 @@ export function DailyQuests({ quests, bonusIP }: DailyQuestsProps) {
           const progressPct = quest.target > 0 ? (quest.current / quest.target) * 100 : 0;
           const almostThere = progressPct > 80 && !quest.completed;
 
+          const isClickable = !!onQuestClick && quest.id === "q3";
+
           return (
             <div
               key={quest.id}
-              className="flex items-center gap-3 rounded-xl px-3 py-2"
+              role={isClickable ? "button" : undefined}
+              tabIndex={isClickable ? 0 : undefined}
+              onClick={isClickable ? () => onQuestClick(quest.id) : undefined}
+              onKeyDown={isClickable ? (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onQuestClick(quest.id); } } : undefined}
+              className={`flex items-center gap-3 rounded-xl px-3 py-2${isClickable ? " cursor-pointer transition-colors hover:brightness-110" : ""}`}
               style={{
                 background: quest.completed
                   ? "rgba(16,185,129,0.06)"

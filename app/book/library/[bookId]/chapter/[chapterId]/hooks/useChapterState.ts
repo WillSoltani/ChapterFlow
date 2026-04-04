@@ -88,8 +88,7 @@ function parseStored(value: string | null): PersistedChapterState | null {
               ([key, answer]) =>
                 typeof key === "string" &&
                 Number.isFinite(Number(answer)) &&
-                Number(answer) >= 0 &&
-                Number(answer) <= 10
+                Number(answer) >= 0
             )
           )
         : {};
@@ -173,7 +172,11 @@ function parsePrefs(value: string | null): ReaderPrefs | null {
 function inferChapterNumber(chapterId: string) {
   const match = chapterId.match(/(\d+)/);
   const value = match ? Number(match[1]) : NaN;
-  return Number.isFinite(value) && value > 0 ? Math.floor(value) : 1;
+  const result = Number.isFinite(value) && value > 0 ? Math.floor(value) : 1;
+  if (!match || result === 1) {
+    console.warn(`inferChapterNumber: falling back to ${result} for chapterId "${chapterId}"`);
+  }
+  return result;
 }
 
 export function useChapterState(
@@ -266,12 +269,12 @@ export function useChapterState(
     )
       .then((payload) => {
         if (!mounted || !payload.state?.state) return;
-        skipNextServerSave.current = true;
-        setHasPersistedState(true);
-        setState((prev) => ({
-          ...prev,
-          ...(parseStored(JSON.stringify(payload.state?.state)) ?? prev),
-        }));
+        const parsed = parseStored(JSON.stringify(payload.state?.state));
+        if (parsed) {
+          skipNextServerSave.current = true;
+          setHasPersistedState(true);
+          setState((prev) => ({ ...prev, ...parsed }));
+        }
         setServerReady(true);
       })
       .catch(() => {

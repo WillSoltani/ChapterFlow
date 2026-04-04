@@ -11,7 +11,7 @@ export type StoredBookProgressSnapshot = {
 };
 
 export type StoredReaderStateSnapshot = {
-  activeTab: "summary" | "examples" | "quiz";
+  activeTab: "summary" | "examples" | "quiz" | "practice";
   readingDepth: "simple" | "standard" | "deeper";
   exampleFilter: "all" | "work" | "school" | "personal";
   quizAnswers: Record<string, number>;
@@ -24,6 +24,7 @@ export type StoredReaderStateSnapshot = {
   fontScale: "sm" | "md" | "lg";
   showRecap: boolean;
   explanationOpen: Record<string, boolean>;
+  bookmarkedTakeaways: number[];
 };
 
 export const BOOK_PROGRESS_STORAGE_PREFIX = "book-accelerator:book-progress:v3";
@@ -103,7 +104,8 @@ export function parseStoredReaderState(
       activeTab:
         parsed.activeTab === "summary" ||
         parsed.activeTab === "examples" ||
-        parsed.activeTab === "quiz"
+        parsed.activeTab === "quiz" ||
+        parsed.activeTab === "practice"
           ? parsed.activeTab
           : "summary",
       readingDepth:
@@ -131,7 +133,9 @@ export function parseStoredReaderState(
       quizResult:
         parsed.quizResult && typeof parsed.quizResult === "object"
           ? {
-              score: Number(parsed.quizResult.score ?? 0),
+              score: Number.isFinite(Number(parsed.quizResult.score ?? 0))
+                ? Number(parsed.quizResult.score)
+                : 0,
               passed: Boolean(parsed.quizResult.passed),
             }
           : null,
@@ -171,6 +175,12 @@ export function parseStoredReaderState(
               )
             )
           : {},
+      bookmarkedTakeaways: Array.isArray(parsed.bookmarkedTakeaways)
+        ? parsed.bookmarkedTakeaways.filter(
+            (v): v is number =>
+              typeof v === "number" && Number.isFinite(v) && v >= 0 && Number.isInteger(v)
+          )
+        : [],
     };
   } catch {
     return null;

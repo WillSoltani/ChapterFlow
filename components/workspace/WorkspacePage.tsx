@@ -182,6 +182,22 @@ function mapAnalyticsToWorkspaceData(
 
   const weeklyChapters = last7.reduce((sum, cell) => sum + cell.chapters, 0);
 
+  const recommendedProBooks = analytics.isPro
+    ? []
+    : analytics.bookSnapshots
+        .filter((s) => s.status === "not_started")
+        .slice(0, 3)
+        .map((snap) => ({
+          id: snap.book.id,
+          title: snap.book.title,
+          author: snap.book.author ?? "",
+          coverUrl: getBookCoverPath(snap.book.id),
+          rating: 0,
+          readerCount: 0,
+          category: snap.book.category ?? "General",
+        }));
+  const recommendedProBookIds = new Set(recommendedProBooks.map((b) => b.id));
+
   return {
     user: {
       firstName,
@@ -211,22 +227,9 @@ function mapAnalyticsToWorkspaceData(
           ? ("in_progress" as const)
           : ("not_started" as const),
     })),
-    recommendedProBooks: analytics.isPro
-      ? []
-      : analytics.bookSnapshots
-          .filter((s) => s.status === "not_started")
-          .slice(0, 3)
-          .map((snap) => ({
-            id: snap.book.id,
-            title: snap.book.title,
-            author: snap.book.author ?? "",
-            coverUrl: getBookCoverPath(snap.book.id),
-            rating: 0,
-            readerCount: 0,
-            category: snap.book.category ?? "General",
-          })),
+    recommendedProBooks,
     discoveryBooks: analytics.bookSnapshots
-      .filter((s) => s.status === "not_started")
+      .filter((s) => s.status === "not_started" && !recommendedProBookIds.has(s.book.id))
       .slice(0, 4)
       .map((snap) => ({
         id: snap.book.id,

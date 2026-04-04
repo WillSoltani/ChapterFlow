@@ -1,15 +1,20 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { ArrowRight, Check, RotateCcw, X } from "lucide-react";
+import { useCallback, useEffect, useState } from "react";
+import { ArrowRight, Check, Eye, Layers, RotateCcw, X } from "lucide-react";
 import {
   type ReviewItem,
   getPendingReviews,
   processReviewAnswer,
-  estimateReviewTime,
 } from "@/app/book/_lib/spaced-repetition";
 
 const OPTION_LABELS = ["A", "B", "C", "D"];
+
+const DIFFICULTY_COLORS: Record<string, string> = {
+  easy: "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20",
+  medium: "bg-amber-500/10 text-amber-400 border border-amber-500/20",
+  hard: "bg-rose-500/10 text-rose-400 border border-rose-500/20",
+};
 
 type ReviewSessionProps = {
   onClose: () => void;
@@ -20,6 +25,7 @@ export function ReviewSession({ onClose }: ReviewSessionProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedChoice, setSelectedChoice] = useState<string | null>(null);
   const [feedback, setFeedback] = useState<"correct" | "incorrect" | null>(null);
+  const [revealed, setRevealed] = useState(false);
   const [results, setResults] = useState<boolean[]>([]);
   const [done, setDone] = useState(false);
 
@@ -30,7 +36,25 @@ export function ReviewSession({ onClose }: ReviewSessionProps) {
   }, []);
 
   const currentItem = items[currentIndex] ?? null;
+  const isFlashcard = currentItem?.type === "flashcard";
 
+  const advanceToNext = useCallback(
+    (delay: number) => {
+      setTimeout(() => {
+        if (currentIndex < items.length - 1) {
+          setCurrentIndex((prev) => prev + 1);
+          setSelectedChoice(null);
+          setFeedback(null);
+          setRevealed(false);
+        } else {
+          setDone(true);
+        }
+      }, delay);
+    },
+    [currentIndex, items.length]
+  );
+
+  // Quiz-style answer handler
   const handleAnswer = useCallback(
     (choiceId: string) => {
       if (!currentItem || feedback) return;
@@ -41,22 +65,32 @@ export function ReviewSession({ onClose }: ReviewSessionProps) {
       processReviewAnswer(currentItem.id, isCorrect);
       setResults((prev) => [...prev, isCorrect]);
 
-      // Auto-advance after delay
-      setTimeout(() => {
-        if (currentIndex < items.length - 1) {
-          setCurrentIndex((prev) => prev + 1);
-          setSelectedChoice(null);
-          setFeedback(null);
-        } else {
-          setDone(true);
-        }
-      }, isCorrect ? 1500 : 2500);
+      advanceToNext(isCorrect ? 1500 : 2500);
     },
-    [currentItem, currentIndex, items.length, feedback]
+    [currentItem, feedback, advanceToNext]
+  );
+
+  // Flashcard self-rating handler
+  const handleSelfRate = useCallback(
+    (gotIt: boolean) => {
+      if (!currentItem || feedback) return;
+      setFeedback(gotIt ? "correct" : "incorrect");
+      processReviewAnswer(currentItem.id, gotIt);
+      setResults((prev) => [...prev, gotIt]);
+
+      advanceToNext(gotIt ? 1000 : 1500);
+    },
+    [currentItem, feedback, advanceToNext]
   );
 
   const correctCount = results.filter(Boolean).length;
   const incorrectCount = results.length - correctCount;
+
+  // Helper to get display text for an item
+  function getItemDisplayText(item: ReviewItem): string {
+    if (item.type === "flashcard") return item.front ?? "Flashcard";
+    return item.questionText ?? "Question";
+  }
 
   if (items.length === 0) {
     return (
@@ -107,7 +141,8 @@ export function ReviewSession({ onClose }: ReviewSessionProps) {
                   <X className="h-3.5 w-3.5 shrink-0 text-(--cr-error)" />
                 )}
                 <span className="flex-1 text-(--cr-text-secondary) truncate">
-                  {item.questionText.slice(0, 60)}...
+                  {getItemDisplayText(item).slice(0, 60)}
+                  {getItemDisplayText(item).length > 60 ? "..." : ""}
                 </span>
                 <span className="text-(--cr-text-disabled)">
                   {results[i] ? `in ${item.intervalDays}d` : "tomorrow"}
@@ -116,7 +151,9 @@ export function ReviewSession({ onClose }: ReviewSessionProps) {
             ))}
           </div>
 
-          <p className="mt-3 text-sm font-semibold text-(--cr-accent)">+15 IP</p>
+          <p className="mt-3 text-sm font-semibold text-(--cr-accent)">
+            {"\u{2728}"} Knowledge reinforced
+          </p>
 
           <button
             type="button"
@@ -130,13 +167,17 @@ export function ReviewSession({ onClose }: ReviewSessionProps) {
     );
   }
 
-  // ─── Question Screen ─────────────────────────────────────────────
+  // ─── Question/Flashcard Screen ──────────────────────────────────
   return (
     <div className="fixed inset-0 z-50 flex flex-col bg-(--cr-bg-root)/95 backdrop-blur-sm">
       {/* Header */}
       <div className="flex items-center justify-between border-b border-(--cr-glass-border) px-4 py-3">
         <div className="flex items-center gap-2">
-          <RotateCcw className="h-4 w-4 text-(--cr-accent)" />
+          {isFlashcard ? (
+            <Layers className="h-4 w-4 text-(--cr-accent)" />
+          ) : (
+            <RotateCcw className="h-4 w-4 text-(--cr-accent)" />
+          )}
           <span className="text-sm font-semibold text-(--cr-text-heading)">Quick Review</span>
         </div>
         <div className="flex items-center gap-3">
@@ -173,9 +214,90 @@ export function ReviewSession({ onClose }: ReviewSessionProps) {
         ))}
       </div>
 
-      {/* Question */}
+      {/* Content */}
       <div className="flex flex-1 items-center justify-center px-4">
-        {currentItem && (
+        {currentItem && isFlashcard ? (
+          /* ─── Flashcard Item ─── */
+          <div className="w-full max-w-lg">
+            <div className="cr-glass-reading p-6">
+              {/* Difficulty badge */}
+              {currentItem.difficulty && (
+                <span
+                  className={`mb-3 inline-block rounded-md px-2 py-0.5 text-[0.6rem] font-bold uppercase tracking-[0.08em] ${DIFFICULTY_COLORS[currentItem.difficulty] ?? DIFFICULTY_COLORS.easy}`}
+                >
+                  {currentItem.difficulty}
+                </span>
+              )}
+
+              {/* Front text */}
+              <p className="text-lg font-semibold leading-snug text-(--cr-text-heading)">
+                {currentItem.front}
+              </p>
+
+              {!revealed && !feedback ? (
+                /* Reveal button */
+                <button
+                  type="button"
+                  onClick={() => setRevealed(true)}
+                  className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl border border-(--cr-accent)/30 bg-(--cr-accent)/10 px-5 py-3 text-sm font-semibold text-(--cr-accent) transition-colors hover:bg-(--cr-accent)/20"
+                >
+                  <Eye className="h-4 w-4" />
+                  Reveal Answer
+                </button>
+              ) : (
+                <>
+                  {/* Back text (answer) */}
+                  <div
+                    className="mt-5 rounded-xl border border-(--cr-accent)/20 bg-(--cr-accent)/5 px-4 py-3 text-sm leading-relaxed text-(--cr-text-primary)"
+                    style={{ animation: "cr-card-enter 200ms ease-out" }}
+                  >
+                    {currentItem.back}
+                  </div>
+
+                  {/* Self-rating buttons */}
+                  {!feedback && (
+                    <div className="mt-4 flex gap-3">
+                      <button
+                        type="button"
+                        onClick={() => handleSelfRate(false)}
+                        className="flex flex-1 items-center justify-center gap-1.5 rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-2.5 text-sm font-semibold text-amber-400 transition-colors hover:bg-amber-500/20"
+                      >
+                        <RotateCcw className="h-3.5 w-3.5" />
+                        Still learning
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handleSelfRate(true)}
+                        className="flex flex-1 items-center justify-center gap-1.5 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-2.5 text-sm font-semibold text-emerald-400 transition-colors hover:bg-emerald-500/20"
+                      >
+                        <Check className="h-3.5 w-3.5" />
+                        Got it
+                      </button>
+                    </div>
+                  )}
+
+                  {/* Feedback after self-rating */}
+                  {feedback === "correct" && (
+                    <div className="mt-3 rounded-lg border-l-3 border-(--cr-success) bg-(--cr-success-bg) px-4 py-2.5 text-sm font-semibold text-(--cr-success)">
+                      <Check className="mr-1.5 inline h-4 w-4" /> Nice! See you in a few days.
+                    </div>
+                  )}
+                  {feedback === "incorrect" && (
+                    <div className="mt-3 rounded-lg border-l-3 border-amber-500 bg-amber-500/10 px-4 py-2.5 text-sm text-amber-400">
+                      <RotateCcw className="mr-1.5 inline h-4 w-4" /> We'll review this again tomorrow.
+                    </div>
+                  )}
+                </>
+              )}
+            </div>
+
+            {/* Context */}
+            <p className="mt-3 text-center text-xs text-(--cr-text-disabled)">
+              From: {currentItem.bookTitle} · {currentItem.chapterTitle}
+            </p>
+          </div>
+        ) : currentItem ? (
+          /* ─── Quiz Item ─── */
           <div className="w-full max-w-lg">
             <div className="cr-glass-reading p-6">
               <p className="text-lg font-semibold leading-snug text-(--cr-text-heading)">
@@ -183,7 +305,7 @@ export function ReviewSession({ onClose }: ReviewSessionProps) {
               </p>
 
               <div className="mt-5 space-y-2">
-                {currentItem.choices.map((choice, i) => {
+                {(currentItem.choices ?? []).map((choice, i) => {
                   const isSelected = selectedChoice === choice.choiceId;
                   const isCorrectChoice = choice.choiceId === currentItem.correctChoiceId;
                   const showCorrect = feedback && isCorrectChoice;
@@ -238,9 +360,11 @@ export function ReviewSession({ onClose }: ReviewSessionProps) {
                   <div className="rounded-lg border-l-3 border-(--cr-error) bg-(--cr-error-bg) px-4 py-2.5 text-sm text-(--cr-error)">
                     The correct answer is highlighted above.
                   </div>
-                  <div className="rounded-xl border border-(--cr-glass-border) bg-(--cr-bg-surface-3) px-4 py-3 text-xs text-(--cr-text-primary)">
-                    {currentItem.explanation}
-                  </div>
+                  {currentItem.explanation && (
+                    <div className="rounded-xl border border-(--cr-glass-border) bg-(--cr-bg-surface-3) px-4 py-3 text-xs text-(--cr-text-primary)">
+                      {currentItem.explanation}
+                    </div>
+                  )}
                 </div>
               )}
             </div>
@@ -250,7 +374,7 @@ export function ReviewSession({ onClose }: ReviewSessionProps) {
               From: {currentItem.bookTitle} · {currentItem.chapterTitle}
             </p>
           </div>
-        )}
+        ) : null}
       </div>
     </div>
   );

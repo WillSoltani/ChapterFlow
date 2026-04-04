@@ -19,6 +19,7 @@ import {
   chapterStartModeToInitialTab,
 } from "@/app/book/_lib/onboarding-personalization";
 import { FLOW_POINTS_AMOUNTS } from "@/app/book/_lib/flow-points-economy";
+import { createReviewItem, createFlashcardReviewItem } from "@/app/book/_lib/spaced-repetition";
 import { getMotivationMessage } from "@/app/book/_lib/motivation-messages";
 import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
 import { useBookPreferences } from "@/app/book/hooks/useBookPreferences";
@@ -418,7 +419,7 @@ export function ChapterReaderClient({
     localQuiz: chapter
       ? {
           chapterId: chapter.id,
-          questions: chapter.quiz,
+          questions: chapter.quizByDepth[modeToDepth(learningMode)] ?? chapter.quiz,
           passingScorePercent: chapter.quizPassingScorePercent,
         }
       : undefined,
@@ -529,6 +530,45 @@ export function ChapterReaderClient({
       } else {
         setToast(getMotivationMessage(persona, "quiz_fail", { score: nextSession?.result?.scorePercent }));
       }
+
+      // Enroll into spaced-repetition review queue (non-fatal if localStorage is full)
+      try {
+        if (nextSession?.questions) {
+          for (const q of nextSession.questions) {
+            if (q.isCorrect === false && q.correctChoiceId) {
+              createReviewItem({
+                chapterId,
+                bookId,
+                bookTitle: entry?.title ?? "",
+                chapterTitle: chapter?.title ?? "",
+                questionId: q.questionId,
+                questionText: q.prompt,
+                choices: q.choices,
+                correctChoiceId: q.correctChoiceId,
+                explanation: q.explanation ?? "",
+              });
+            }
+          }
+        }
+
+        // Enroll chapter review cards (flashcards) on quiz pass
+        if (nextSession?.result?.passed && chapter?.reviewCards) {
+          for (const card of chapter.reviewCards) {
+            createFlashcardReviewItem({
+              chapterId,
+              bookId,
+              bookTitle: entry?.title ?? "",
+              chapterTitle: chapter?.title ?? "",
+              cardId: card.id,
+              front: card.front,
+              back: card.back,
+              difficulty: card.difficulty,
+            });
+          }
+        }
+      } catch (enrollError) {
+        console.warn("Failed to enroll items into spaced-repetition review:", enrollError);
+      }
     } catch (error: unknown) {
       const message =
         error instanceof Error ? error.message : "Unable to submit quiz right now.";
@@ -543,7 +583,8 @@ export function ChapterReaderClient({
 
   const handlePracticeComplete = () => {
     phaseCompletion.markPhaseCompleted("practice");
-    markChapterComplete(chapter.id, quiz.session?.result?.scorePercent ?? 0);
+    const score = quiz.session?.result?.scorePercent ?? 0;
+    markChapterComplete(chapter.id, score);
     quiz.trackNextChapterClick();
     if (nextChapter) {
       const nextRoute = `/book/library/${encodeURIComponent(bookId)}/chapter/${encodeURIComponent(nextChapter.id)}`;

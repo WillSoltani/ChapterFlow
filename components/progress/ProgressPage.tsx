@@ -22,6 +22,15 @@ import { mockProgressData } from "./progressMockData";
 import { getBookCoverPath } from "@/lib/book-covers";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
 import { aggregateHourlyForDay } from "@/app/book/library/hooks/readingActivityStorage";
+import {
+  getDailyReviewCount,
+  getPendingReviewCount,
+  getOverdueReviewCount,
+  getUpcomingThisWeekCount,
+  getTotalReviewItems,
+  buildReviewForecast,
+} from "@/app/book/_lib/spaced-repetition";
+import { ReviewSession } from "@/app/book/components/ReviewSession";
 import { HeroSection } from "./HeroSection";
 import { DailyQuests } from "./DailyQuests";
 import { WeeklySummary } from "./WeeklySummary";
@@ -49,19 +58,12 @@ function deriveReaderLevelProgress(totalChapters: number): number {
   return Math.round((totalChapters / 5) * 100);
 }
 
-/** Determine the current learning step from reader/book state.
- * The analytics hook doesn't expose per-chapter step info,
- * so we default to 'summary' for step 1. This can be refined
- * when the backend provides step-level progress.
- */
-function inferCurrentStep(
-  completedChapters: number,
-  _status: string
-): { step: LearningStep; stepNumber: StepNumber } {
-  // Default to summary (step 1) since the analytics
-  // hook doesn't track sub-chapter learning steps
-  return { step: "summary", stepNumber: 1 };
-}
+const LOOP_STEP_MAP: Record<string, { step: LearningStep; stepNumber: StepNumber }> = {
+  summary: { step: "summary", stepNumber: 1 },
+  scenarios: { step: "scenarios", stepNumber: 2 },
+  quiz: { step: "quiz", stepNumber: 3 },
+  unlock: { step: "unlock", stepNumber: 4 },
+};
 
 function buildProgressData(
   viewerName: string,
@@ -77,10 +79,8 @@ function buildProgressData(
   // Map active books from analytics
   const activeBooks: ActiveBook[] = analytics.recentlyOpenedSnapshots.map(
     (snapshot) => {
-      const { step, stepNumber } = inferCurrentStep(
-        snapshot.completedChapters,
-        snapshot.status
-      );
+      const loopStep = snapshot.currentLoopStep ?? "summary";
+      const { step, stepNumber } = LOOP_STEP_MAP[loopStep] ?? LOOP_STEP_MAP.summary;
       return {
         id: snapshot.book.id,
         title: snapshot.book.title,
@@ -94,7 +94,7 @@ function buildProgressData(
         currentStepNumber: stepNumber,
         lastActivity: snapshot.lastOpenedLabel,
         lastActivityDate: snapshot.lastActivityAt,
-        readersCount: 0,
+        readersCount: 0, // TODO: Populate from backend reader metrics API
         resumeChapterId: snapshot.resumeChapterId,
       };
     }
@@ -183,6 +183,40 @@ function buildProgressData(
   const effectiveMilestones =
     nextMilestones.length > 0 ? nextMilestones : mockProgressData.nextMilestones;
 
+  // Build daily quests with real completion data
+  const wiredQuests = mockProgressData.dailyQuests
+    .filter((q) => {
+      if (q.id === "q3" && totalCompletedChapters === 0) return false;
+      return true;
+    })
+    .map((q) => {
+      if (q.id === "q1") {
+        return {
+          ...q,
+          current: Math.min(analytics.minutesReadToday, q.target),
+          completed: analytics.minutesReadToday >= q.target,
+        };
+      }
+      if (q.id === "q2") {
+        const todayCell = thisWeekCells.find((c) => c.key === todayKey);
+        const todayChapters = todayCell?.chapters ?? 0;
+        return {
+          ...q,
+          current: Math.min(todayChapters, q.target),
+          completed: todayChapters >= q.target,
+        };
+      }
+      if (q.id === "q3") {
+        const reviewCount = getDailyReviewCount();
+        return {
+          ...q,
+          current: Math.min(reviewCount, q.target),
+          completed: reviewCount >= q.target,
+        };
+      }
+      return q;
+    });
+
   return {
     user: {
       name: viewerName,
@@ -191,12 +225,23 @@ function buildProgressData(
       insightPoints: insightPointsBalance,
       isPro,
     },
-    todayGoal: {
-      targetMinutes: analytics.dailyGoalMinutes,
-      completedMinutes: analytics.minutesReadToday,
-      stepsCompletedToday: 0,
-      totalStepsToday: 4,
-    },
+    todayGoal: (() => {
+      // Count today's chapters from heatmap (each = 4 steps through the learning loop)
+      const todayCellForSteps = analytics.heatmapCells.find((c) => c.key === todayKey);
+      const todayChaptersCompleted = todayCellForSteps?.chapters ?? 0;
+      // Partial step progress from the most recently active book
+      const leadBook = analytics.recentlyOpenedSnapshots[0];
+      const partialSteps = leadBook?.currentLoopStep
+        ? (LOOP_STEP_MAP[leadBook.currentLoopStep]?.stepNumber ?? 1) - 1
+        : 0;
+      const stepsToday = todayChaptersCompleted * 4 + partialSteps;
+      return {
+        targetMinutes: analytics.dailyGoalMinutes,
+        completedMinutes: analytics.minutesReadToday,
+        stepsCompletedToday: stepsToday,
+        totalStepsToday: 4,
+      };
+    })(),
     streak: {
       currentDays: analytics.streakDays,
       bestDays: analytics.longestStreak,
@@ -219,51 +264,14 @@ function buildProgressData(
     },
     activeBooks,
     completedBooks,
-    dailyQuests: mockProgressData.dailyQuests
-      .filter((q) => {
-        // Hide review quest if no completed chapters (nothing to review)
-        if (q.id === "q3" && totalCompletedChapters === 0) return false;
-        return true;
-      })
-      .map((q) => {
-        // Wire up the read quest with real data
-        if (q.id === "q1") {
-          return {
-            ...q,
-            current: Math.min(analytics.minutesReadToday, q.target),
-            completed: analytics.minutesReadToday >= q.target,
-          };
-        }
-        // Wire up the quiz quest with today's chapter completions
-        if (q.id === "q2") {
-          const todayCell = thisWeekCells.find((c) => {
-            const cellDate = new Date(`${c.key}T12:00:00`);
-            return (
-              cellDate.getFullYear() === today.getFullYear() &&
-              cellDate.getMonth() === today.getMonth() &&
-              cellDate.getDate() === today.getDate()
-            );
-          });
-          const todayChapters = todayCell?.chapters ?? 0;
-          return {
-            ...q,
-            current: Math.min(todayChapters, q.target),
-            completed: todayChapters >= q.target,
-          };
-        }
-        return q;
-      }),
-    questBonusFP: mockProgressData.dailyQuests.filter((q) => {
-      if (q.id === "q1") return analytics.minutesReadToday < q.target;
-      if (q.id === "q3" && totalCompletedChapters === 0) return false;
-      return !q.completed;
-    }).length * 25,
+    dailyQuests: wiredQuests,
+    questBonusFP: wiredQuests.filter((q) => !q.completed).length * 25,
     reviews: {
-      overdueCount: 0,
-      dueTodayCount: analytics.upcomingReviews.length,
-      upcomingThisWeekCount: analytics.upcomingReviews.length,
-      totalConceptsLearned: totalCompletedChapters,
-      forecast: [],
+      overdueCount: getOverdueReviewCount(),
+      dueTodayCount: getPendingReviewCount(),
+      upcomingThisWeekCount: getUpcomingThisWeekCount(),
+      totalConceptsLearned: getTotalReviewItems(),
+      forecast: buildReviewForecast(),
     },
     readingActivity: {
       days: readingDays,
@@ -351,6 +359,8 @@ export function ProgressPage() {
   const searchRef = useRef<HTMLInputElement | null>(null);
   const [query, setQuery] = useState("");
   const [primaryBookId, setPrimaryBookId] = useState<string | null>(null);
+  const [showReviewSession, setShowReviewSession] = useState(false);
+  const [refreshKey, setRefreshKey] = useState(0);
 
   // ── Hooks ──
   const { state: onboarding, hydrated: onboardingHydrated } =
@@ -405,7 +415,8 @@ export function ProgressPage() {
       badgeMilestones,
       isPro
     );
-  }, [analytics, viewerName, insightPointsPayload, badgeMilestones, isPro]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [analytics, viewerName, insightPointsPayload, badgeMilestones, isPro, refreshKey]);
 
   // Allow switching primary book via ContinueLearningCard
   const displayData = useMemo<ProgressPageData | null>(() => {
@@ -413,7 +424,7 @@ export function ProgressPage() {
     if (!primaryBookId) return data;
 
     const idx = data.activeBooks.findIndex((b) => b.id === primaryBookId);
-    if (idx <= 0) return data;
+    if (idx < 0) return data;
 
     const reordered = [...data.activeBooks];
     const [selected] = reordered.splice(idx, 1);
@@ -545,6 +556,9 @@ export function ProgressPage() {
           <DailyQuests
             quests={displayData.dailyQuests}
             bonusIP={displayData.questBonusFP}
+            onQuestClick={(questId) => {
+              if (questId === "q3") setShowReviewSession(true);
+            }}
           />
         </motion.div>
 
@@ -595,6 +609,7 @@ export function ProgressPage() {
           <KnowledgeReview
             reviews={displayData.reviews}
             firstActiveBook={displayData.activeBooks[0] ?? null}
+            onStartReview={() => setShowReviewSession(true)}
           />
         </motion.div>
 
@@ -636,6 +651,16 @@ export function ProgressPage() {
         </motion.div>
       </motion.div>
       </motion.section>
+
+      {showReviewSession && (
+        <ReviewSession
+          key={refreshKey}
+          onClose={() => {
+            setShowReviewSession(false);
+            setRefreshKey((k) => k + 1);
+          }}
+        />
+      )}
     </main>
   );
 }
