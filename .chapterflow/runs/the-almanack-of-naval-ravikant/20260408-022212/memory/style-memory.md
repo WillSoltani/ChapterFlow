@@ -1,0 +1,7 @@
+- Sound like a sharp human explainer, not a workbook, therapist, textbook, or startup thread.
+- Open with tension, surprise, or a concrete problem; do not begin by naming the thesis.
+- Give each paragraph a distinct job and a new angle; if two paragraphs move the same idea the same way, cut one.
+- Use specific scenes, decisions, tradeoffs, limits, and failure modes; abstract claims need load-bearing examples or anchors.
+- Depth must change function by band: easy clarifies, medium explains mechanism and application, hard adds contradiction, boundary, or synthesis.
+- Tone variants must earn their existence by changing emphasis, framing, or implied audience, not just wording.
+- If a line sounds assembled, motivational, or fake-deep, rewrite or delete it.

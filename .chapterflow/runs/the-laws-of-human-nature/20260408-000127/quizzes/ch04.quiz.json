@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch04-q01",
+      "prompt": "According to Greene, why do people wear social masks in everyday interactions?",
+      "choices": [
+        "B) Because social life requires a curated version of yourself to fit into groups and protect vulnerabilities",
+        "A) Because they are fundamentally dishonest and want to deceive others",
+        "C) Because they have been formally trained to hide their true personality"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Masks are not about dishonesty. They are survival tools that let you navigate different social settings without exposing every vulnerable part of yourself.",
+        "direct": "Social masks are functional, not pathological. They allow people to move through group life, manage impressions, and protect areas of genuine vulnerability.",
+        "competitive": "Framing masks as deception misses the point entirely. They are standard equipment for human interaction, and the person who does not recognize their universality is operating blind."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch04-q02",
+      "prompt": "What are the three primary channels Greene identifies for detecting the gap between someone's mask and their actual emotional state?",
+      "choices": [
+        "B) Word choice, sentence length, and eye color changes",
+        "A) Facial microexpressions, voice tone shifts, and body language incongruence",
+        "C) Social media behavior, text message frequency, and gift-giving behaviors"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "These three channels broadcast information that people cannot easily control, making them the most reliable windows into what someone actually feels behind their performance.",
+        "direct": "Microexpressions last about one twenty-fifth of a second, voice pitch shifts betray stress before words can cover it, and body language that contradicts speech reveals the real message.",
+        "competitive": "These three involuntary channels leak data faster than the conscious mind can suppress it, giving you access to the signal beneath the performance."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch04-q03",
+      "prompt": "How long do facial microexpressions typically last before the social mask reasserts itself?",
+      "choices": [
+        "A) About two full seconds",
+        "C) Between five and ten seconds",
+        "B) Roughly one twenty-fifth of a second"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "These flashes of genuine emotion are incredibly brief, which is why most people miss them entirely unless they are deliberately watching for them.",
+        "direct": "At roughly one twenty-fifth of a second, microexpressions are involuntary and nearly impossible to fake, which is precisely what makes them such high-signal data.",
+        "competitive": "The speed is the feature. At one twenty-fifth of a second, the conscious mind cannot intercept the signal, which means microexpressions are among the most reliable nonverbal data points available."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch04-q04",
+      "prompt": "Lena is interviewing a candidate who enthusiastically says he thrives on feedback. As he finishes the sentence, Lena catches a flash of tightness around his eyes and notices his hands grip the armrest for a split second. What should Lena conclude from this observation?",
+      "choices": [
+        "B) There is a gap between his verbal claim and his involuntary reaction, suggesting feedback may actually be a sensitive area for him",
+        "A) The candidate is lying and should be eliminated from consideration immediately",
+        "C) The candidate is physically uncomfortable in the chair and the signals are unrelated to the conversation"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The brief facial tightness and grip suggest his body reacted differently than his words. This does not make him a liar, but it hints that feedback might be more complicated for him than he is letting on.",
+        "direct": "The microexpression and hand tension contradict the verbal claim. Lena is seeing two messages at once, and the physical one is closer to the truth about how he actually processes criticism.",
+        "competitive": "Verbal channel says one thing, involuntary channels say another. Lena has caught a classic mask slip that reveals feedback is likely a pressure point, not the strength he is performing."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch04-q05",
+      "prompt": "Tomoko notices that her business partner always speaks in a calm, measured tone during negotiations. However, during a particularly tense deal, she observes his voice pitch rising slightly and his usual relaxed posture stiffening. What does this shift in his baseline behavior indicate?",
+      "choices": [
+        "A) He is becoming more confident as the negotiation intensifies",
+        "B) His usual composure is a practiced mask, and the pitch rise and posture change reveal genuine stress leaking through",
+        "C) He is deliberately raising his voice to intimidate the other party"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "When someone's usual demeanor shifts under pressure, you are seeing the real person emerge from behind the practiced version. The pitch rise and posture change are involuntary stress signals.",
+        "direct": "Baseline deviations are the most reliable mask-reading data. His normal calm is the mask. The pitch shift and postural rigidity are the cracks, and they indicate the deal has triggered real anxiety.",
+        "competitive": "Tomoko has identified a deviation from established baseline behavior. The calm negotiator persona is the mask. The stress signals breaking through are the highest-value intelligence in the room."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch04-q06",
+      "prompt": "Andre, a high school teacher, watches a normally outgoing student give a presentation. The student smiles throughout, but Andre spots that the smile engages only the mouth, not the eyes, and it appears a fraction of a second after each joke rather than spontaneously. What distinction from this chapter is Andre observing?",
+      "choices": [
+        "C) Evidence that the student has been coached by a public speaking instructor",
+        "B) A normal variation in smile intensity that has no diagnostic value",
+        "A) The difference between a trained expression and a spontaneous one, which reveals the student is performing confidence rather than feeling it"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "A real smile involves muscles around the eyes and appears naturally. A performed smile shows up slightly late, lasts a beat too long, and misses the eye engagement. Andre is seeing the mask in action.",
+        "direct": "Trained expressions differ from spontaneous ones in timing and muscle recruitment. The delayed onset and mouth-only activation indicate the student is managing an image of confidence rather than experiencing it.",
+        "competitive": "Andre has caught the timing mismatch that separates genuine from performed expressions. The late onset and missing eye engagement are textbook indicators that the confidence is a mask over real anxiety."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch04-q07",
+      "prompt": "In the Milgram experiment, subjects who continued administering shocks showed visible distress through their faces, voices, and body language even while complying. What does this demonstrate about the relationship between masks and involuntary signals?",
+      "choices": [
+        "A) People can maintain a behavioral mask while their involuntary channels broadcast the truth about their internal state",
+        "B) The subjects were not actually distressed and were performing for the researchers",
+        "C) Involuntary signals disappear entirely when someone commits to a course of action"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The subjects followed orders, but their bodies told a completely different story. The mask of obedience held, while the real person was visible underneath for anyone willing to look.",
+        "direct": "Milgram's footage shows the mask of compliance coexisting with involuntary distress signals. The behavioral output and the emotional reality were running on separate channels simultaneously.",
+        "competitive": "This is the sharpest proof that masks and truth operate on different channels. The subjects performed obedience while leaking distress through every involuntary signal available. Anyone trained to read both channels would have seen the full picture."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch04-q08",
+      "prompt": "Why does Greene argue that recognizing everyone wears masks, including yourself, is actually a compassionate rather than cynical move?",
+      "choices": [
+        "A) Because it gives you permission to manipulate others since they are all performing anyway",
+        "C) Because it lets you stop holding people to an impossible standard of total authenticity and meet them where they actually are",
+        "B) Because it lowers your expectations so you are never disappointed by anyone"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Accepting that masks are universal frees you from expecting people to be perfectly transparent all the time. You can meet them behind the performance, at the level where real connection happens.",
+        "direct": "The compassionate application is that you stop demanding total authenticity, which no one can deliver, and start engaging with the fuller, more complex person behind the curated surface.",
+        "competitive": "The cynical reading misses the point. Recognizing masks lets you bypass the performance and connect with what is real, which builds stronger relationships than pretending everyone is always showing their full selves."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch04-q09",
+      "prompt": "Lord Chesterfield trained his son to observe people without them noticing. Greene argues this skill requires appearing completely relaxed while paying intense attention. What tension does this create, and why is resolving that tension central to effective mask-reading?",
+      "choices": [
+        "B) If people detect that you are watching them closely, they tighten their masks, which eliminates the unguarded moments where real information leaks through",
+        "A) The tension is irrelevant because most people are too self-absorbed to notice whether they are being observed",
+        "C) The tension only matters in formal settings like courtrooms and boardrooms, not in casual conversation"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "People adjust their performance when they feel watched. The skill Chesterfield taught was reading the room without triggering that adjustment, so the unguarded moments keep happening naturally.",
+        "direct": "Detection triggers mask reinforcement. If someone knows they are being observed, they invest more energy in managing their presentation, which reduces the frequency and clarity of involuntary leaks.",
+        "competitive": "Observation that is visible defeats itself. The target tightens their mask, and the data quality drops to zero. Chesterfield's method preserves the unguarded moments where the real signals live."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch04-q10",
+      "prompt": "Someone who has become skilled at reading social masks now encounters a colleague who seems perfectly composed in every situation, never showing cracks. According to the progression from this chapter into the ideas explored in Chapter 10, what might an unusually seamless mask indicate about what is happening beneath the surface?",
+      "choices": [
+        "A) The colleague has genuinely achieved total emotional balance and has nothing to hide",
+        "C) The colleague is simply a better social performer and there is nothing further to investigate",
+        "B) An extremely controlled surface may signal significant repressed material underneath, since the energy required to maintain a flawless mask often correlates with the intensity of what is being concealed"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "A mask that never cracks requires enormous energy to maintain. That level of control often points to something significant being kept out of view, which connects to the repression exchanges explored later.",
+        "direct": "Flawless composure is itself a signal. The effort required to sustain a seamless mask correlates with the intensity of the material being suppressed, a interplay that Chapter 10 examines in depth.",
+        "competitive": "A perfectly controlled surface is paradoxically one of the strongest signals that something substantial is running underneath. The energy cost of a flawless mask is proportional to the pressure of what it conceals."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

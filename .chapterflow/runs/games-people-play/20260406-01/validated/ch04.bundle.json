@@ -1,0 +1,890 @@
+{
+  "$schema": "chapterflow-v12-sealed/chapter-bundle",
+  "packVersion": "v12-sealed",
+  "bookId": "games-people-play",
+  "runId": "20260406-01",
+  "chapterId": "ch04",
+  "generatedAt": "2026-04-06",
+  "manifest": {
+    "outputProfile": "flagship_v4_compatible",
+    "learningContract": "research_native",
+    "runProfile": "balanced_flagship",
+    "validationMode": "chapter_gate",
+    "chapterGateQuizMode": "generate",
+    "scenarioTonePolicy": "required",
+    "forbidBulkGenerators": true,
+    "releaseAssembleFromValidatedOnly": true,
+    "preserveApprovedChapterHashes": true
+  },
+  "book": {
+    "bookId": "games-people-play",
+    "title": "Games People Play",
+    "author": "Eric Berne",
+    "categories": [
+      "Psychology",
+      "Communication",
+      "Relationships"
+    ],
+    "tags": [
+      "transactional-analysis",
+      "psychology",
+      "communication",
+      "relationships",
+      "self-awareness",
+      "social-dynamics"
+    ],
+    "edition": {
+      "name": "First edition (Grove Press, 1964)",
+      "translator": "",
+      "publishedYear": 1964,
+      "translationYear": null,
+      "sourceText": ".chapterflow/sources/games-people-play/games-people-play.txt",
+      "sourceProvenance": "Structured reference material derived from Eric Berne's transactional analysis framework (Games People Play, Grove Press, 1964). Paraphrased summaries and structural outlines only — no verbatim reproduction."
+    },
+    "variantFamily": "EMH",
+    "chapterRange": "All chapters in source"
+  },
+  "chapter": {
+    "chapterId": "ch04",
+    "number": 4,
+    "title": "Why Games Feel So Hard to Stop",
+    "readingTimeMinutes": 13,
+    "contentVariants": {
+      "easy": {
+        "chapterBreakdown": {
+          "gentle": "You probably already know the relationship that should not still be running and somehow is. The same painful argument every Sunday, the same late-night phone call, the same angry message from a stranger that ruins your morning. Berne built a small theory for why those patterns are so hard to leave. Human beings need a steady supply of social acknowledgment to stay functional. He called the unit a stroke. Strokes can be positive (a smile, a thanks, a real conversation) or negative (a fight, a criticism, an angry message). The hard, structural fact is that a negative stroke is metabolically better than no stroke at all. The painful pattern is sticky because it is paying both people in strokes they cannot get any other way, and because it is also confirming a position each of them has been holding since they were small.",
+          "direct": "Berne proposed two underlying reasons that games are sticky even after both players can see them. The first is strokes. A stroke is the basic unit of social acknowledgment that humans need to keep functioning. Positive strokes feel good; negative strokes feel bad; both register, and a negative stroke is metabolically better than no stroke at all. The second is life position. Every player carries a basic stance toward themselves and others, formed early. Berne named four: I'm OK and you're OK, I'm OK and you're not OK, I'm not OK and you're OK, I'm not OK and you're not OK. A game is sticky to the degree that it is the player's only reliable source of strokes AND it confirms their existing life position. Both have to be replaced before the game becomes possible to leave.",
+          "competitive": "In any pattern that has been running between two people for years and obviously hurting both of them, you are not looking at stupidity. You are looking at a stroke economy. Berne called the unit of social acknowledgment a stroke, and his hardest claim is that a negative stroke is metabolically better than no stroke at all. People can run painful patterns for decades because the pattern is paying out something they have not found a better source for. Behind the strokes is a deeper position the player has been holding since they were small (I'm OK or not, you're OK or not), and the game is confirming that position on a schedule. Telling the player to just stop is a request that they accept stroke deprivation in the name of a freedom they cannot yet feel."
+        },
+        "keyTakeaways": [
+          {
+            "point": "Berne proposed two reasons games are sticky: they pay strokes (the basic unit of social acknowledgment humans need to stay functional), and they confirm a life position the player has been holding since they were small."
+          },
+          {
+            "point": "A negative stroke is metabolically better than no stroke at all, which is why people can run painful patterns for years."
+          },
+          {
+            "point": "Leaving a game requires replacement strokes first and a slow update of the life position second; 'just stop' is not a serious instruction without a replacement plan."
+          }
+        ],
+        "oneMinuteRecap": {
+          "gentle": "Games are sticky because they pay strokes (the basic units of social acknowledgment humans need) and confirm a life position the player has been holding since they were small. A negative stroke is metabolically better than no stroke at all. Leaving a game requires replacement first, then exit.",
+          "direct": "Berne's stickiness equation: a game is hard to leave to the degree it pays strokes AND confirms a life position. Negative strokes count metabolically. The order of operations is replacement first, position update second, exit third.",
+          "competitive": "Two reasons painful patterns last. Strokes (the basic unit of social acknowledgment, in which negative beats zero) and life positions (formed early, confirmed daily). Order of operations: replacement first, then exit. Any other order fails."
+        }
+      },
+      "medium": {
+        "chapterBreakdown": {
+          "gentle": "The previous chapter ended with a question: why are games so sticky even when both players can see them? Berne's answer is in two parts that reinforce each other.\n\nThe first part is strokes. Berne used the word in a specific technical sense. A stroke is the basic unit of social acknowledgment that human beings need to keep functioning, in roughly the way they need calories to keep walking. Strokes can be positive: a smile across a meeting, a thanks in a message, a real conversation that lasts twenty minutes and has another person on the other end of it. Strokes can also be negative: a criticism, a fight, an angry message from a stranger about a Python library. The structural fact the chapter cannot soften is that a negative stroke is metabolically better than no stroke at all. People deprived of strokes do not become more spiritually evolved; they deteriorate. Maya, the open-source maintainer who reads her monthly angry GitHub issue with the kind of attention she does not give her own birthday, is filing the issue, somewhere underneath, as evidence that she is still inside the part of the world that pays attention to her.\n\nThe second part is life position. Behind the strokes is a deeper stance the player has been holding since they were small. Berne proposed four. I'm OK and you're OK is the healthy stance and the only one from which game-free contact is possible. I'm OK and you're not OK is projective and often persecutory. I'm not OK and you're OK is depressive and martyr-like. I'm not OK and you're not OK is futile. Theo at his daughter Ren's kitchen table on Sundays, criticizing her parenting and apologizing and doing it again, is running the second one. The criticism pays his strokes for the week and confirms a position he has been holding since 1962. Removing the criticism would have to remove both, and both would have to be replaced.",
+          "direct": "Berne's answer to why games are sticky has two parts. Both must be in place for the chapter to be honest about what leaving a game actually requires.\n\nThe first part is strokes. A stroke, in Berne's technical usage, is the basic unit of social acknowledgment that humans need to stay psychologically functional. Strokes are not optional and they are not metaphorical. Stroke-deprived people deteriorate; this is a structural claim, not a moral one. Strokes come in two flavors: positive (a smile, a thanks, a real conversation) and negative (a criticism, a fight, an angry message). The two are not equivalent, but the second is metabolically better than zero. A monthly angry GitHub issue from a stranger is a stroke. A Sunday criticism from a retired father is a stroke. A late-night crisis call from a friend is a stroke. None of them feel good. All of them pay out.\n\nThe second part is life position. Berne proposed that every adult carries a fundamental stance toward themselves and others, formed in early childhood and confirmed by the kinds of transactions they participate in every day. He named four: I'm OK / You're OK (the healthy stance), I'm OK / You're not OK (projective), I'm not OK / You're OK (depressive and martyr-like), and I'm not OK / You're not OK (futile). A game is sticky to the degree that it satisfies two conditions at once: it is the player's only reliable source of strokes, AND it confirms their existing life position. The two conditions reinforce each other. Removing the strokes leaves the position untouched and starving. Updating the position is slow work that cannot happen while the strokes are still arriving on the old schedule. Both have to move, and they have to move in a specific order: the replacement strokes first, the position update second.",
+          "competitive": "The reason 'just stop playing the game' has never worked for anyone is structural, not motivational. Games are paying both players something they have not found another source for, and Berne built the vocabulary for what that something is.\n\nThe unit is a stroke. A stroke is the basic dose of social acknowledgment a human needs to stay functional. Strokes can be positive or negative, and the claim that the rest of the chapter rests on is the one Berne would not back down from: a negative stroke is metabolically better than no stroke at all. People who are starved of strokes do not transcend; they fall apart. Which is why a maintainer with a small open-source library will reliably file a monthly angry issue from a stranger as a slightly important event, why a retired father will keep finding things wrong with his daughter's parenting, and why a friend will keep answering 11pm crisis calls she has come to dread. The pattern is paying both players. The strokes are the wrong shape and they pay anyway.\n\nBehind the strokes is the stickier of the two facts. Every player carries a life position formed before they had words for it. Berne named four (I'm OK / You're OK, I'm OK / You're not OK, I'm not OK / You're OK, I'm not OK / You're not OK), and the game on a given Sunday is confirming the player's position on a schedule. Removing the game removes the strokes and leaves the position alone, hungry, and looking for the next game to confirm itself with. The leverage in this chapter is the order of operations. Replacement strokes first, position update second, exit third. Any other order is a request for the player to accept deprivation in the name of a freedom they cannot yet feel."
+        },
+        "keyTakeaways": [
+          {
+            "point": "A stroke is the basic unit of social acknowledgment that humans need to stay functional.",
+            "moreDetails": "The need is metabolic, not preferential. Stroke-deprived adults deteriorate. Berne uses the word in a specific technical sense, not as a metaphor."
+          },
+          {
+            "point": "A negative stroke is metabolically better than no stroke at all.",
+            "moreDetails": "Positive and negative strokes are not equivalents, but a criticism, an angry message, or a fight all register as acknowledgment in a way that zero contact does not. This is the structural fact behind why painful patterns are so persistent."
+          },
+          {
+            "point": "Every adult carries a life position formed early.",
+            "moreDetails": "Berne named four: I'm OK / You're OK (healthy), I'm OK / You're not OK (projective), I'm not OK / You're OK (depressive and martyr-like), and I'm not OK / You're not OK (futile). The position is sticky because it was formed before the player had words for it."
+          },
+          {
+            "point": "A game is sticky to the degree it pays strokes AND confirms an existing life position.",
+            "moreDetails": "Both conditions reinforce each other. Removing the strokes leaves the position hungry. Updating the position is slow work that cannot happen while the strokes are still arriving on the old schedule."
+          },
+          {
+            "point": "The order of operations is replacement first, then exit.",
+            "moreDetails": "A reader who tries to leave a game without first finding a different stroke supply does not become free; they become deprived, and the deprivation drives them back into the game within weeks."
+          },
+          {
+            "point": "The chapter is not contemptuous of game-players.",
+            "moreDetails": "Players are solving a real problem (stroke deprivation plus position confirmation) with the only reliable tool they have. The chapter's job is to name what the solution was solving, so the player can find a less expensive one if they want to."
+          }
+        ],
+        "activationPrompt": {
+          "gentle": "Think of a relationship in your life that obviously hurts both people and somehow keeps running. What is the strokes side of the equation paying each of you?",
+          "direct": "Pick a recurring painful relationship in your life. Identify what each person is getting paid in social acknowledgment and where else in their week they could plausibly get it.",
+          "competitive": "Take the relationship in your life that you have already tried to leave and returned to. Identify the strokes it pays you. If you cannot identify them, you do not yet see why you came back."
+        },
+        "selfCheckPrompt": {
+          "gentle": "Can you describe, in one sentence, a stroke in your own life this week that came in a negative form and registered anyway?",
+          "direct": "Name one negative stroke you received this week. What positive stroke might have replaced it if you had had access to one?",
+          "competitive": "Find one negative stroke that fed you this week. Identify the positive equivalent that does not exist in your week. The gap is the stroke economy you have been running."
+        },
+        "oneMinuteRecap": {
+          "retrieve": "Strokes are the metabolic unit of social acknowledgment. Negative strokes are not equivalent to positive strokes but are metabolically better than zero. Life positions (the four: I'm OK/You're OK; I'm OK/You're not OK; I'm not OK/You're OK; I'm not OK/You're not OK) are formed early and stay sticky.",
+          "connect": "The chapter explains the stickiness the previous chapter named structurally. A game is sticky because it satisfies two conditions at once: it pays strokes and it confirms a life position. Both have to be in place for the game to last.",
+          "preview": "With strokes and life positions in hand, the catalog of recurring games becomes readable. What do the actual long-running, biography-shaping patterns in people's lives look like, and what specifically is each one paying out?"
+        }
+      },
+      "hard": {
+        "chapterBreakdown": {
+          "gentle": "The previous chapter ended on a question it could not yet answer. Games are sticky even when both players can see them. Why? Berne's answer is in two parts that reinforce each other, and the chapter cannot honestly recommend leaving a game without naming both.\n\nThe first part is strokes. Berne used the word in a specific technical sense. A stroke is the basic unit of social acknowledgment that human beings need to keep functioning, in roughly the way they need calories to keep walking. Strokes can be positive (a smile across a meeting, a thanks in a message, a real twenty-minute conversation with another person at the other end of it) and they can be negative (a criticism, a fight, an angry message from a stranger about a Python library). The two are not equivalent. The structural fact the chapter cannot soften is that a negative stroke is metabolically better than no stroke at all. People who are deprived of strokes do not become more spiritually evolved or more independent or more anything good. They deteriorate. This is not a metaphor and it is not a moral judgment about character. It is a fact about the metabolism of social animals.\n\nThe second part is life position. Behind the strokes is a deeper stance the player has been holding since they were small. Berne proposed four. I'm OK and you're OK is the healthy stance and is the only one, in his framing, from which game-free contact between adults is possible. I'm OK and you're not OK is projective and often persecutory. I'm not OK and you're OK is depressive and martyr-like and runs much of the world. I'm not OK and you're not OK is the futile one, and Berne names it honestly without dramatizing it. Each game in someone's life is not just a habit. It is a small machine that confirms their existing life position on a schedule, in the same way that the strokes are paying the player on a schedule. The two payouts are linked. The strokes feel like the obvious thing the game is delivering. The position-confirmation is the deeper one, and it is the one that stays after the strokes are removed.\n\nBoth legs of the model lead to the chapter's hardest claim, which is about order of operations. A reader who tries to leave a painful game without first finding a different stroke supply will not become free. They will become deprived, and the deprivation will be harder to live with than the bad feelings were, and they will return to the game inside of a few weeks. The honest sequence is replacement strokes first, then a slow update of the life position the new strokes are allowed to confirm, then exit from the game. Any other order is a request for the player to accept deprivation in the name of a freedom they cannot yet feel, and the chapter is not going to make that request.",
+          "direct": "Berne's answer to the stickiness question from the previous chapter is in two reinforcing parts that the chapter must hold together.\n\nThe first part is the stroke economy. A stroke, in Berne's technical usage, is the basic unit of social acknowledgment that humans need to stay psychologically functional. The need is metabolic, not preferential. Stroke-deprived adults deteriorate. Strokes come in two basic flavors. Positive strokes (a smile, a thanks, a real conversation, a twenty-minute interaction with full attention from the other person) feel good. Negative strokes (a criticism, an angry message, a fight) feel bad. They are not equivalents. The structural claim the chapter rests on is that a negative stroke is metabolically better than zero strokes. A maintainer of a small open-source library who reads a monthly angry GitHub issue from a stranger with sustained attention is filing the issue as a stroke whether or not she would describe it that way. A retired father who criticizes his adult daughter's parenting every Sunday is collecting strokes whether or not the daughter is enjoying providing them.\n\nThe second part is life position. Berne proposed that every adult carries a fundamental stance toward themselves and other people, formed in early childhood and confirmed every day by the kinds of transactions they participate in. He named four: I'm OK and you're OK (healthy and game-free), I'm OK and you're not OK (projective and persecutory), I'm not OK and you're OK (depressive and martyr-like), and I'm not OK and you're not OK (futile). The fourth is named honestly and not dramatized. A game in a person's life is not just a habit. It is a structured machine that confirms their existing life position on a schedule, in the same rhythm that the strokes arrive. The two payouts are linked. Removing the game removes the strokes and leaves the position untouched and hungry, looking for the next game to confirm itself with.\n\nTwo structural facts must travel together into hard depth. The first is that a game is sticky to the degree that it satisfies both conditions at once: it is the player's only reliable source of strokes, and it confirms their existing life position. The second is the order of operations. A reader who tries to leave a painful game without first finding a different stroke supply does not become free; they become deprived in a different shape, and the deprivation reliably drives them back into the game within weeks. The honest sequence is replacement strokes first, position update second, exit third. Any other order is the same instruction that has been failing readers of self-help books for sixty years.",
+          "competitive": "Pay attention to what the chapter is actually claiming, because the easy reading of game-stickiness is moralistic and gets the energetics exactly backwards. The easy reading is that people stay in painful patterns because they are weak, foolish, or unwilling to do the work. Berne's reading is the opposite. He proposed that the patterns are sticky because they are paying both players something every adult genuinely needs and rarely has a clean source for. The chapter's job is to name the something, in two parts.\n\nThe first part is the stroke economy. A stroke is the basic unit of social acknowledgment a human needs to stay functional, and the need is metabolic. Stroke-deprived people do not become more independent; they deteriorate. Strokes come positive (a smile, a thanks, a real conversation) and negative (a criticism, an angry message, a fight). The claim the chapter cannot soften is that a negative stroke is metabolically better than zero strokes. A solo maintainer of a niche library who finds her month with no angry issues is the worst month is not delusional; she is starving. A retired father who criticizes his daughter's parenting every Sunday is not cruel; he is feeding. A friend who keeps answering 11pm crisis calls she has come to dread is not codependent in the loose sense; she is collecting confirmation that she is the kind of person who can be called at 11pm with a crisis, which is one of the few places in her week that anybody needs anything from her in particular.\n\nThe second part is the position economy. Behind the strokes is a deeper stance the player has been holding since they were small. Berne named four (I'm OK / You're OK, I'm OK / You're not OK, I'm not OK / You're OK, I'm not OK / You're not OK), formed early and confirmed every day by the kinds of transactions the player gets involved in. The game is not just a habit. It is a small machine that confirms the player's position on a schedule, in the same way the strokes are paid out on a schedule. Removing the game removes the strokes and leaves the position alone, hungry, looking for the next game to confirm itself with.\n\nThe leverage in the chapter, and the only piece of advice it actually offers, is the order of operations. Replacement strokes first, position update second, exit third. Any other order is the request that has been failing self-help readers for sixty years: that they accept stroke deprivation in the name of a freedom they cannot yet feel. The chapter refuses to make that request, because the players in painful games are not foolish, they are adapting, and the adaptation has to be honored before it can be replaced."
+        },
+        "keyTakeaways": [
+          {
+            "point": "Strokes are the basic unit of social acknowledgment, and the need for them is metabolic.",
+            "moreDetails": "Berne's claim is structural, not moral. People deprived of strokes deteriorate. The need does not respond to willpower, and it does not go away with maturity. Adults need them on a schedule the way they need food and sleep."
+          },
+          {
+            "point": "A negative stroke is metabolically better than no stroke at all.",
+            "moreDetails": "Positive and negative strokes are not equivalent in quality, but they are both registered as acknowledgment. A criticism arrives in a metabolism that would otherwise have received zero arrivals that day, and the metabolism files it as evidence of presence. This is not pathology. It is the basic energetics of being a social animal."
+          },
+          {
+            "point": "Every adult carries a life position formed before they had words for it.",
+            "moreDetails": "The four positions (I'm OK / You're OK; I'm OK / You're not OK; I'm not OK / You're OK; I'm not OK / You're not OK) were formed in early childhood and have been confirmed every day since by the transactions the person participates in. The first is the only one Berne identifies with game-free adult contact. The other three are stable, defended, and slow to update."
+          },
+          {
+            "point": "Games are sticky to the degree they pay strokes AND confirm a life position.",
+            "moreDetails": "Both legs are necessary. A pattern that pays only strokes (without confirming a position) tends to be transient. A pattern that pays strokes AND confirms a life position is the kind that runs for decades. The two payouts reinforce each other."
+          },
+          {
+            "point": "Removing the game removes the strokes and leaves the position hungry.",
+            "moreDetails": "If the position is left alone after the strokes are removed, it will look for the next game to confirm itself with. This is the structural reason that therapy focused only on game-stopping fails: the game stops, the position stays, the new game arrives within weeks in a slightly different costume."
+          },
+          {
+            "point": "The honest order of operations is replacement strokes first, position update second, exit third.",
+            "moreDetails": "Any other order is the request that has been failing self-help readers for sixty years: that the player accept deprivation in the name of a freedom they cannot yet feel. The replacement plan is the actual work of leaving a game; the leaving is what happens after the replacement plan is in place."
+          },
+          {
+            "point": "The chapter is not contemptuous of game-players.",
+            "moreDetails": "The player is solving a real problem with the only reliable tool they have found. The chapter's job is to name what the solution was solving, so the player has the option of building a less expensive one. It is not the chapter's job to take the solution away."
+          }
+        ],
+        "activationPrompt": {
+          "gentle": "Bring to mind a relationship that has been running on the same painful pattern for years. Try to name both legs: what strokes is the pattern paying each person, and what life position is each of them holding that the pattern keeps confirming?",
+          "direct": "Identify a multi-year painful pattern in your life. Name the strokes it pays both players and the life position it confirms for each. Be specific about both legs.",
+          "competitive": "Pick the longest-running painful pattern in your life. Name both legs in concrete terms. If you can name only one, you have not yet seen the reason it has lasted as long as it has."
+        },
+        "selfCheckPrompts": [
+          {
+            "gentle": "When did you most recently catch yourself accepting a negative stroke and recognizing, in real time, that you had taken it because the alternative was zero?",
+            "direct": "Name the most recent negative stroke you accepted. What was the zero-stroke alternative, and what made the negative one feel preferable?",
+            "competitive": "Find the last time you took a negative stroke knowingly. Name the zero-stroke alternative. If you cannot remember the moment of choice, the stroke economy is running you instead of the other way around."
+          },
+          {
+            "gentle": "What life position have you been holding since you were small that the games in your life have been confirming, and what would it cost to let it become slightly less true?",
+            "direct": "Identify your dominant life position. Name one game in your life that confirms it. Estimate, honestly, what it would cost to let the position update by even a small degree.",
+            "competitive": "Name your dominant life position. Identify the game that confirms it most reliably. Estimate the actual cost of letting the position update. The cost is the reason you have not."
+          }
+        ],
+        "predictionPrompt": {
+          "gentle": "If you spent two weeks deliberately collecting one positive stroke a day from a source you do not currently use, what do you predict would change in the painful patterns of your life by the end of those two weeks?",
+          "direct": "Predict what would change in your most painful recurring pattern if, for two weeks, you added one reliable daily positive stroke from a source you do not currently use. Be specific about what would shift and what would not.",
+          "competitive": "Run the experiment in your head: two weeks of one new positive stroke per day from a source you have not been using. What would the painful pattern in your life that you have already tried to leave look like after fourteen days? What would still be in place?"
+        },
+        "oneMinuteRecap": {
+          "retrieve": "Strokes (metabolic units of social acknowledgment) plus life positions (early-formed stances of the four kinds) explain why games are sticky. Negative strokes count. A game is sticky to the degree it pays strokes AND confirms a life position. Both legs reinforce each other.",
+          "connect": "The chapter is the energetic explanation the previous chapter could not yet give. The previous chapter said games are sticky and the antithesis is expensive. This chapter names the expense in concrete terms (strokes plus position) and supplies the order of operations.",
+          "preview": "With the energetics in hand, the catalog of recurring patterns becomes readable. The next chapter starts with the long-running, biography-shaping games and applies the four-chapter stack to each one."
+        }
+      }
+    },
+    "examples": [
+      {
+        "id": "ex01",
+        "title": "Maya and the monthly angry GitHub issue",
+        "format": "third_person_scene",
+        "category": "work",
+        "endingType": "observation",
+        "scenario": {
+          "gentle": "Maya is sitting at her kitchen table on Thursday morning with her laptop open to the GitHub issues page for the small parsing library she has maintained for seven years. The new issue at the top is angry. The stranger who opened it has not read the contributing guide and is accusing her of not caring. Maya hates the issue. She also notices, before her second cup of coffee, that the months when no angry issue arrives are the worse months, and she does not yet have a word for why. The issue is paying her something. The something is the wrong shape and she is taking it anyway.",
+          "direct": "Thursday morning. Kitchen table, laptop, GitHub issues page for Maya's seven-year-old parsing library. New issue at the top: three paragraphs of unfounded accusation from a stranger. Maya reads it for the third time. Behind her conscious annoyance, the structural fact is filing itself: the issue is a stroke. Negative, hostile, unfair, and a stroke. Months without the issue feel worse than months with it.",
+          "competitive": "The angry GitHub issue arrives roughly once a month, from strangers who have not read the contributing guide, accusing Maya of not caring about a library that almost nobody uses. Maya hates the issues. Maya also knows, in the part of herself she does not look at directly, that a month with no issue is a month in which her library has registered to no one and she has registered along with it. The negative stroke is doing the load-bearing work of a positive stroke she has not built a reliable source for."
+        },
+        "whatToDo": {
+          "gentle": "The first move is not to delete the GitHub account or stop maintaining the library. Both of those are exit moves. The first move is to find one positive stroke source you can put on a weekly schedule before you do anything about the negative one. Join one small community where you can talk about the work. Send one piece of work to one person who will respond. Replace before you remove.",
+          "direct": "Replace before remove. Schedule one weekly source of positive strokes (a writing group, a peer review session, a real conversation with another maintainer) before doing anything about the negative ones. The negative strokes can stay until the positive ones are arriving on a reliable schedule. Then they can be left.",
+          "competitive": "Build the replacement supply first. One weekly source of positive strokes that arrives on a calendar. Then, and only then, mute the angry issues. Removing the negative supply before the positive supply is in place is starvation, not freedom, and you will return to the GitHub page within a fortnight."
+        },
+        "whyItMatters": {
+          "gentle": "Solo creators are particularly vulnerable to negative-stroke economies because their work is solitary and the audience is mostly silent. Replacing the negative supply with a positive one on a schedule is the single most effective intervention available.",
+          "direct": "Solo creative work has a structural stroke-deficit problem because the audience is mostly silent. Negative strokes from strangers fill the gap reliably and are exhausting. Replacement is the only honest fix.",
+          "competitive": "Solo creators who do not build a positive stroke schedule for themselves end up dependent on negative strokes from strangers, and the dependency is invisible until somebody asks why they cannot stop reading the issues. The replacement schedule is the single intervention that scales."
+        }
+      },
+      {
+        "id": "ex02",
+        "title": "Olu in the hospice hallway",
+        "format": "inner_monologue",
+        "category": "work",
+        "endingType": "reflection",
+        "scenario": {
+          "gentle": "It is 9:45 on a Tuesday night and Olu is standing in the linoleum hallway of the hospice unit between two patient rooms. She is thinking about the way she answered the question her supervisor asked her at change of shift, which was whether she could pick up another double on Friday, and about the way her mouth said yes before her brain reached the question. She is thinking that the patient in 207 told her three times tonight that she was an angel, and about how much the word 'angel' had mattered to her even though she does not believe in angels. She is noticing that the double on Friday is not about the unit. It is about hearing the word 'angel' three more times.",
+          "direct": "9:45 PM Tuesday. Olu, hospice nurse, linoleum hallway between rooms 207 and 209. Inner monologue: she just agreed to a Friday double without thinking. The patient in 207 called her an angel three times tonight. The word 'angel' is the stroke. The double is the way to get more of them. The structure is visible to her tonight in a way it has not been in the eighteen months she has worked the unit.",
+          "competitive": "Tuesday night, 9:45 PM, hospice second floor. Olu just said yes to a Friday double she does not have the energy for. The patient in 207 called her an angel three times tonight, and Olu, watching herself from a small distance for the first time in eighteen months, sees that 'angel' is the stroke and the doubles are the way she has been arranging her life around getting more of them. She has nothing against the patient. She has nothing against the doubles. She has just noticed, on a linoleum hallway between two rooms, that her schedule has been organized by a stroke economy she did not choose."
+        },
+        "whatToDo": {
+          "gentle": "When you catch yourself running a stroke-collection pattern at work, the first move is not to stop. It is to write down, in one sentence, what the stroke is and what it is paying for. Then, before you change anything, find one place in your week outside of work that could pay the same kind of stroke. The work can stay; the dependence on the work as the only source is what makes it expensive.",
+          "direct": "Write down the stroke and the payoff. 'I am taking the doubles to be called an angel three times a shift.' Then identify one source of similar strokes outside of work. Until that source exists, do not cut the doubles.",
+          "competitive": "Name the stroke. 'Angel, three times a shift, 36 hours a week.' Then build one source of the same kind of recognition outside of work. Until that source is paying you, the doubles are load-bearing and removing them is starvation."
+        },
+        "whyItMatters": {
+          "gentle": "Helping professions are stroke-rich workplaces, which is why the people in them often discover, late, that their entire stroke supply is coming from work. The recognition is uncomfortable. The replacement is slow and worth it.",
+          "direct": "Helping professions are over-represented in stroke-economy patterns because the work itself is stroke-paying. Practitioners who do not build a parallel supply outside the work end up structurally dependent on the work for non-work reasons.",
+          "competitive": "Helping professions are stroke-rich and the practitioners in them are statistically the most likely to discover, decades in, that the work has been doing all of their social acknowledgment for them. The replacement supply is the single intervention that prevents the late-career collapse most outsiders cannot explain."
+        }
+      },
+      {
+        "id": "ex03",
+        "title": "Coach Park and Bailey in the robotics workshop",
+        "format": "coaching_script",
+        "category": "school",
+        "endingType": "reframe",
+        "scenario": {
+          "gentle": "Coach Park is sitting on the edge of a workbench in the high-school robotics workshop with Bailey, a sixteen-year-old who has been the center of three escalating arguments with teammates this month. The competition robot is half-built on the bench between them. Coach Park is trying to figure out how to talk to Bailey about what she thinks she is seeing, which is that Bailey starts the arguments because the arguments are the only times any of his teammates pay full attention to him. The vocabulary 'stroke' is not going to land with a sixteen-year-old. She has to find a different way in.",
+          "direct": "Robotics workshop after school. Coach Park sits on a workbench with Bailey (16, three escalating teammate conflicts this month). The half-built competition robot between them. Park's diagnosis: Bailey is starting the arguments because the arguments are the only moments of full attention from teammates he gets. She needs a way to say that without using the word 'stroke' and without sounding like a therapist.",
+          "competitive": "Coach Park has eight minutes before the bus and Bailey has not been pulled into a teacher's office in two weeks, which means tonight is the only window. The robot is half-built on the bench. Bailey has been at the center of three arguments this month, and Park has watched all three closely enough to see the same shape under each: Bailey starts the argument when the room has been quiet for too long. The arguments are how he is being seen. Park has to hand him that diagnosis without using a single word from the book it came out of."
+        },
+        "whatToDo": {
+          "gentle": "Park sits down at Bailey's level and asks, 'What is the best part of the arguments?' She does not ask why he starts them or whether he should stop. She asks what is good about them. Then she waits. The question has to come from genuine curiosity or the conversation will not survive Bailey's first eyeroll.",
+          "direct": "Ask 'what is the best part of the arguments?' Wait for the answer. Bailey, if asked from real curiosity, will eventually say 'people pay attention.' Then ask: 'Where else in your week do people pay you that kind of attention?' Park does not have to name the stroke economy for it to do its work.",
+          "competitive": "Three sentences only. 'Bailey, what is the best part of the arguments?' Wait. He'll say 'people listen' or 'they actually look at me.' Then: 'Where else in your week does that happen?' He'll say nothing. That nothing is the diagnosis, and it is now in his hands instead of yours."
+        },
+        "whyItMatters": {
+          "gentle": "Sixteen-year-olds will refuse adult vocabulary about their feelings and accept structural questions about what they are getting out of a pattern. The structural question hands them a tool they can use without admitting weakness.",
+          "direct": "Adolescents reject self-help vocabulary on principle and accept structural questions about what they are getting out of a behavior. The structural question is the only intervention that survives adolescent skepticism.",
+          "competitive": "An adolescent who is handed a stroke-economy question instead of a feelings question will sometimes answer honestly. The honest answer is the only thing that will give the adult in the room a real next move. Therapy talk closes the door."
+        }
+      },
+      {
+        "id": "ex04",
+        "title": "Ahmed and Sun-Hee in the cohort study room",
+        "format": "short_dialogue",
+        "category": "school",
+        "endingType": "forward_question",
+        "scenario": {
+          "gentle": "Ahmed and Sun-Hee are at the same table in the graduate cohort study room on a Wednesday evening. Ahmed has been describing, for the third time this week, how impossibly hard the methods chapter is and how little he is sleeping. Sun-Hee has been listening. Then she says, in a careful tone, 'Ahmed, I notice you tell me that the methods chapter is impossibly hard about every other day. What do you get out of the telling?' Ahmed's mouth opens and closes.",
+          "direct": "AHMED (Wednesday evening, cohort study room, third hour): The methods chapter is impossibly hard. I'm not sleeping. SUN-HEE (carefully, after a pause): I notice you've told me that about every other day. What do you get out of the telling? AHMED: ... I do not know how to answer that question.",
+          "competitive": "Ahmed had been describing the impossibility of the methods chapter for the third time this week. Sun-Hee listened until he finished, then said, 'What do you get out of telling me that?' Ahmed's first response was to feel attacked. His second response was to notice that he had no answer. His third response was to suspect that the answer was the answer to a question he had not been asking himself."
+        },
+        "whatToDo": {
+          "gentle": "When somebody you trust asks you what you get out of a recurring complaint, the wrong move is to defend the complaint. The right move is to take the question seriously for thirty seconds and try to answer it. The answer is usually some form of 'attention' or 'permission to be unwell,' and naming it is the entire intervention.",
+          "direct": "Take the question seriously for thirty seconds. The answer to 'what do you get out of the telling' is usually 'someone listens' or 'I am allowed to be struggling' or 'it justifies how tired I am.' Naming the answer is the intervention.",
+          "competitive": "Answer the question honestly to yourself within thirty seconds, before your defenses arrive. The answer is what the recurring complaint has been paying you. Naming it does not stop you from making the complaint. It does change what the next telling can be about."
+        },
+        "whyItMatters": {
+          "gentle": "Recurring complaint patterns inside graduate cohorts are quietly expensive because the cohort listens forever and the listener supply runs low. Catching the pattern in a friendly cohort is one of the cheapest places to learn about your own stroke economy.",
+          "direct": "Recurring complaint patterns in cohort settings get noticed first by the friend who stops finding them interesting and gets named, if at all, by the friend who is brave enough to ask the structural question. Both are gifts.",
+          "competitive": "A graduate student who can hear the question 'what do you get out of the telling' without flinching is six months ahead of their cohort on the work most of the cohort will not do until therapy in their thirties. The question is short and the cost of refusing it is years."
+        }
+      },
+      {
+        "id": "ex05",
+        "title": "Inez at 11:08pm",
+        "format": "first_person",
+        "category": "personal",
+        "endingType": "decision_point",
+        "scenario": {
+          "gentle": "It is 11:08pm on a Thursday and the cup of tea on my counter is cold. My phone is in my hand. The screen has Coach Banerjee's name on it because I have started typing her name into the search bar three times this evening. The crisis is real. It is also the third real crisis this week, and I am beginning to notice that the third real crisis this week is not unusual for me. I am noticing it because, for the first time, I can see that the call is also a stroke, and that I have been arranging my Thursdays around getting one.",
+          "direct": "11:08 PM Thursday. Cold tea, phone in hand, Coach Banerjee's name typed into the search bar for the third time tonight. First-person inner monologue: the crisis is real and the call is a stroke. Both are true. Decision: place the call, name the pattern out loud to Banerjee, or close the phone and write down what I would have said.",
+          "competitive": "11:08 PM. Cold tea. My phone with Banerjee's name on it for the third time tonight. The crisis is real. The call is also the third call this week, and I am noticing tonight, for the first time, that I have been arranging my evenings around it. The window in front of me is about three minutes wide. After that I will either have called or not called, and either way the recognition will start to fade."
+        },
+        "whatToDo": {
+          "gentle": "Before you make the call, write down the one thing you would have said. One sentence, on paper or on your phone notes. Then sit with it for two minutes. Sometimes you will still need to call. Sometimes the writing will turn out to be most of what the call was for, and you will not need it tonight. Either way you will know more than you knew before.",
+          "direct": "Write the sentence first. One sentence of what you would have said. Sit with it for two minutes. Decide after the two minutes whether to call. The writing is the experiment that tells you which strokes the call was actually paying.",
+          "competitive": "Write the sentence before you call. One sentence, on the same phone you were going to call her with. Two minutes of silence. If you still want to call after the two minutes, call, but call from a different place than the one you were calling from before. If you do not want to call, you have learned what the call was paying you."
+        },
+        "whyItMatters": {
+          "gentle": "Late-night crisis calls inside long friendships are stroke economies in costume. The two-minute writing intervention is the one thing that works because it gives the strokes a different shape to live in.",
+          "direct": "The two-minute writing intervention works because it satisfies the part of the brain that wanted contact without spending the friendship. The call can still happen; the dependency is what shifts.",
+          "competitive": "Long friendships that turn into crisis-call schedules end one of two ways: they collapse under the weight of the calls, or one of the two friends learns to write the sentence first. There is no third option that does not eventually become one of the first two."
+        }
+      },
+      {
+        "id": "ex06",
+        "title": "Theo driving home from Ren's house",
+        "format": "narrative_flashback",
+        "category": "personal",
+        "endingType": "unresolved_tension",
+        "scenario": {
+          "gentle": "Theo is driving home from his daughter Ren's house on a Sunday evening, going slowly, with the radio off. He is reconstructing the visit. He always reconstructs the visit. The visit started at one with him bringing the kids those cookies they like. The visit ended at four with Ren saying, in the careful voice she has been using since she had her own kids, 'Dad, please. Please don't tell me how to do this.' He had told her how to do something. He always tells her how to do something. He is sixty-eight years old and he has told women in his family how to do things since 1962, and every time he does it, the room briefly contains him in a way that the rest of his life does not. He does not have a different way to be in a room yet.",
+          "direct": "Sunday evening, Theo driving home from Ren's house. Radio off. He is reconstructing the visit. Pattern: he arrives, he eventually criticizes something Ren is doing with the kids, Ren tells him to stop, he says he is sorry, he leaves. The criticism is the moment he is most fully present in the room. He has been doing some version of this since 1962, and the criticism is the only role that has ever made him feel necessary in a room of women.",
+          "competitive": "Theo's Sunday-evening drive home is the only honest hour he gives himself all week. He uses it to reconstruct the visit. The visit always ends with Ren asking him to stop telling her how to raise her kids. He always says he is sorry. He always does it again. He has been running the same shape since 1962, and the criticism is the only move he has ever found that makes a room of women look at him long enough for him to feel he is in it. He is sixty-eight. He does not have a replacement, and the absence of a replacement is the entire reason next Sunday will look exactly like this Sunday."
+        },
+        "whatToDo": {
+          "gentle": "When you find yourself at the end of a long-running pattern with someone you love, the move is not to confess. The move is to find, for the next week, one other place where the same kind of presence is possible without the criticism. A volunteer commitment, a class, a long walk with an old friend. Build the replacement first. The criticism becomes possible to leave only after the replacement is paying.",
+          "direct": "Find one weekly source of the same kind of being-needed without the criticism. Volunteer at a community garden, take a class, schedule a long weekly call with an old friend. Until that source pays, do not promise Ren you will stop. The promise without the replacement will not survive the next Sunday.",
+          "competitive": "Replace before you promise. One weekly source of being-needed that does not require criticism. Until it exists, the promise to Ren is a check that will bounce next Sunday. The replacement is the only honest gift you can give your daughter."
+        },
+        "whyItMatters": {
+          "gentle": "Long-running family patterns are the hardest stroke economies to leave because the strokes have been arriving in the same room for decades. The replacement supply is the only intervention that lasts.",
+          "direct": "Family stroke economies are the longest-running and the hardest to interrupt because the source is irreplaceable in the player's mind. The replacement supply has to be built outside the family for the inside to become possible to change.",
+          "competitive": "A retired man who finds one weekly volunteer commitment that pays him strokes outside his daughter's house has changed the next twenty Sundays for both of them. A retired man who keeps trying to stop without a replacement has changed nothing, and his daughter knows it."
+        }
+      }
+    ],
+    "quiz": {
+      "passingScorePercent": 80,
+      "questions": [
+        {
+          "questionId": "q01",
+          "prompt": "In Berne's model, what does the word 'stroke' refer to?",
+          "choices": [
+            "Any positive emotion",
+            "A specific therapeutic technique",
+            "The basic unit of social acknowledgment that humans need to keep functioning"
+          ],
+          "correctIndex": 2,
+          "explanation": {
+            "gentle": "Berne uses 'stroke' in a specific technical sense: the basic unit of social acknowledgment a human needs to stay psychologically functional. It is not just a positive emotion (the chapter is explicit that negative strokes count too), and it is not a therapeutic technique. It is the metabolic unit the rest of the chapter rests on.",
+            "direct": "Acknowledgment is the right answer because Berne defines strokes as units of social acknowledgment, neutral on whether they are positive or negative. Calling it a positive emotion misses the negative-strokes-count claim. Calling it a therapeutic technique misreads the noun as a verb.",
+            "competitive": "Acknowledgment is the unit. The 'positive emotion' answer collapses the chapter's central distinction; the 'therapeutic technique' answer confuses Berne's noun for a stroke (the unit) with the verb to stroke (the action). Neither has the structural claim the chapter rests on."
+          },
+          "bloomsLevel": "remember",
+          "depthLevel": "easy"
+        },
+        {
+          "questionId": "q02",
+          "prompt": "Why does Berne argue a negative stroke (a fight, an angry message, a criticism) is metabolically better than no stroke at all?",
+          "choices": [
+            "Because the human nervous system needs a steady supply of acknowledgment, and any acknowledgment registers as evidence of being seen, even when the content is bad",
+            "Because negative strokes build character",
+            "Because conflict is stimulating"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+            "gentle": "The chapter is structural here, not moralistic. The need for acknowledgment is metabolic, and a negative stroke arrives in a metabolism that would otherwise have received zero arrivals that day. The character-building answer is a moralization the chapter explicitly refuses, and the stimulation answer makes the negative stroke sound recreational.",
+            "direct": "Metabolic acknowledgment is the chapter's claim. The character-building answer turns a structural fact into a moral story. The stimulation answer makes the negative stroke sound like entertainment, which trivializes the energetics.",
+            "competitive": "Metabolism, not character, not entertainment. The chapter's structural claim is what makes the rest of the model work; the alternative answers both turn the structural claim into something more comfortable, which is exactly the misread the chapter is built to refuse."
+          },
+          "bloomsLevel": "understand",
+          "depthLevel": "easy"
+        },
+        {
+          "questionId": "q03",
+          "prompt": "Maya, the open-source maintainer, reads her monthly angry GitHub issue from a stranger and notices that the months without an angry issue are the worse months. According to the chapter, what is the angry issue paying her?",
+          "choices": [
+            "Practice in handling criticism",
+            "A negative stroke that is doing the work of a positive stroke she does not have a reliable source for, plus a confirmation of her existing life position",
+            "Information about her library's user base"
+          ],
+          "correctIndex": 1,
+          "explanation": {
+            "gentle": "The chapter is specific: the angry issue is paying Maya in two reinforcing ways. First, a negative stroke that arrives in a stroke-deficit environment and is metabolically registered as acknowledgment. Second, a confirmation of the position she has been holding since middle school. The 'practice' answer moralizes; the 'information' answer mistakes the social-level content of the issue for what is actually being delivered.",
+            "direct": "Stroke plus position confirmation is the structural answer. Practice in criticism turns the answer into a self-improvement story; reading the issue as user research mistakes the content for the payoff.",
+            "competitive": "Stroke and position. The practice answer turns the chapter into a personal-growth story, which it is not. The user-research answer reads the surface and misses the entire ulterior level the previous chapter introduced."
+          },
+          "bloomsLevel": "analyze",
+          "depthLevel": "easy"
+        },
+        {
+          "questionId": "q04",
+          "prompt": "Theo, the retired schoolteacher, criticizes his adult daughter Ren's parenting every Sunday despite apologizing every week and being asked to stop. Which life position is the criticism most likely confirming?",
+          "choices": [
+            "I'm OK / You're OK",
+            "I'm not OK / You're OK",
+            "I'm OK / You're not OK"
+          ],
+          "correctIndex": 2,
+          "explanation": {
+            "gentle": "The chapter places Theo in I'm OK / You're not OK. He has been holding the position 'you have to point out what is wrong or nothing will get fixed' since 1962. The criticism is the move that keeps the position alive. I'm OK / You're OK is the healthy stance and is incompatible with running a Sunday criticism game; I'm not OK / You're OK is depressive and martyr-like, which Theo's posture is not.",
+            "direct": "I'm OK / You're not OK is the structural fit. Theo's stance is corrective and projective, not depressive or healthy. The chapter is explicit that the criticism move is the position-confirming machinery.",
+            "competitive": "Projective, not depressive, not healthy. Theo is running the position from a place of correctness. The other answers misread the energy of the criticism as either martyrdom or game-free contact, both of which the chapter explicitly distinguishes."
+          },
+          "bloomsLevel": "analyze",
+          "depthLevel": "medium"
+        },
+        {
+          "questionId": "q05",
+          "prompt": "Inez calls her friend Banerjee at 11pm with what is now the third real crisis this week. According to the chapter, what is the relationship-level stroke economy paying both women?",
+          "choices": [
+            "Inez gets reliable late-night attention from a person who has known her since college, and Banerjee gets confirmation that she is the kind of person who can be called at 11pm with a crisis, which is one of the only places in her week anybody needs anything from her in particular",
+            "Banerjee is doing all the giving",
+            "Inez is exploiting the friendship and Banerjee should set a boundary"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+            "gentle": "The chapter's point is that both women are getting paid by the loop. The 'Banerjee is doing all the giving' answer treats the rescuer role as costless to the rescuer, which it is not. The 'set a boundary' answer is from a different framework and misses the chapter's structural point that the calls are paying Banerjee strokes she has not built another source for.",
+            "direct": "Two-sided payout is the chapter's structural claim. One-sided exploitation misreads the energetics; boundary language imports a different framework and mistakes the symptom for the structure.",
+            "competitive": "Both sides are getting paid. Treating Banerjee as a victim ignores what the rescuer role is paying her. Treating it as a boundary problem skips the energetic question the chapter is built to ask."
+          },
+          "bloomsLevel": "analyze",
+          "depthLevel": "medium"
+        },
+        {
+          "questionId": "q06",
+          "prompt": "A reader sees the position 'I'm not OK / You're OK' and concludes it is just a fancy term for self-criticism. Why does the chapter resist that reading?",
+          "choices": [
+            "Because self-criticism is actually rare",
+            "Because 'I'm not OK / You're OK' is the deeper structural stance behind self-criticism, formed early and confirmed daily by the kinds of transactions the player participates in, and dislodging it requires updating the position itself, not just changing the visible behavior",
+            "Because the position is genetic"
+          ],
+          "correctIndex": 1,
+          "explanation": {
+            "gentle": "The chapter is careful here. Self-criticism is the visible behavior; the position is the deeper stance the behavior is expressing. Treating them as the same thing leads to interventions that target the visible behavior and fail because the position is still doing the underlying work. The chapter is not making a claim about how rare self-criticism is, and it is explicit that life positions are formed by experience, not genetics.",
+            "direct": "Position-vs-behavior distinction is the chapter's point. Self-criticism rarity is irrelevant to the question; genetic claims are explicitly outside the chapter's framework.",
+            "competitive": "Behavior is the surface, position is the structure. Confusing them is how the entire self-help industry has been failing readers for sixty years. The other answers misread the chapter's frame entirely."
+          },
+          "bloomsLevel": "evaluate",
+          "depthLevel": "medium"
+        },
+        {
+          "questionId": "q07",
+          "prompt": "A senior manager named Mei is the only one in her company who works late on Friday nights and has been doing so for six years. She tells her partner she would love to leave on time. Identify the most likely stroke and life position the pattern is confirming.",
+          "choices": [
+            "Stroke: overtime pay. Position: I'm not OK / You're not OK",
+            "Stroke: career advancement. Position: I'm OK / You're OK",
+            "Stroke: a reliable supply of being-noticed by the late-night office cleaning crew and the one other workaholic on her floor, plus the messages from her boss the next morning. Position: I am not OK unless I am the one who stays the latest"
+          ],
+          "correctIndex": 2,
+          "explanation": {
+            "gentle": "The chapter's transfer move asks the reader to read for the actual stroke (the small reliable acknowledgments that arrive on the late-night schedule) and the actual position (the I'm not OK that requires the hours to stay confirmed). The first wrong answer reads the surface (pay) and misses the energetics. The second is incompatible with a six-year reluctant pattern.",
+            "direct": "Reliable late-night acknowledgment plus an I'm-not-OK-without-the-hours position is the structural read. Overtime pay misses the energetics; career advancement misreads the felt experience of the pattern.",
+            "competitive": "Late-night acknowledgment plus position-confirmation is the answer. The pay answer reads the surface; the career-advancement answer is incompatible with the reluctance the manager is reporting."
+          },
+          "bloomsLevel": "apply",
+          "depthLevel": "medium"
+        },
+        {
+          "questionId": "q08",
+          "prompt": "If Maya wanted to stop running her angry-GitHub-issue game, which of the following is the chapter actually recommending she do?",
+          "choices": [
+            "Delete the GitHub repository and find a new hobby",
+            "Schedule one reliable weekly source of positive strokes (a writing group, a peer review, a real conversation with another maintainer) before doing anything about the negative ones, then slowly work on the position the negative strokes have been confirming",
+            "Force herself to stop reading the issues and accept the discomfort"
+          ],
+          "correctIndex": 1,
+          "explanation": {
+            "gentle": "The chapter's order of operations is replacement first, then exit. Deleting the repo is exit without replacement, and the chapter is explicit that exit without replacement leads to deprivation and return. Forcing herself to stop reading is the same instruction in a different costume. The reliable replacement supply is the only honest first move.",
+            "direct": "Replacement before exit is the chapter's central practical claim. Both wrong answers are exit-without-replacement instructions in different forms, and the chapter spends its limit-paragraph refusing them.",
+            "competitive": "Replacement first. Both wrong answers are the instruction that has been failing self-help readers for sixty years, dressed up in slightly different language. The chapter is explicitly built to refuse them."
+          },
+          "bloomsLevel": "evaluate",
+          "depthLevel": "medium"
+        },
+        {
+          "questionId": "q09",
+          "prompt": "Why does the chapter insist that 'stop playing the game' is not a serious instruction without a replacement plan?",
+          "choices": [
+            "Because the strokes the game was paying were doing real metabolic work, and removing them without replacement creates deprivation that reliably drives the player back into the game within weeks",
+            "Because the player needs permission from a therapist",
+            "Because games are impossible to leave"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+            "gentle": "The chapter is honest here. The strokes are real and the deprivation that follows their removal is real, and the player will return to the game inside of a few weeks if there is no replacement supply. The 'permission from a therapist' answer turns the chapter into a credentialing story it is not. The 'impossible' answer makes the chapter more pessimistic than it actually is.",
+            "direct": "Real deprivation following exit-without-replacement is the chapter's structural claim. The credentialing answer misreads the chapter; the impossibility answer ignores the chapter's whole order-of-operations argument.",
+            "competitive": "Deprivation drives return. The credentialing answer turns a tool the chapter offers any reader into a gated one. The impossibility answer makes the chapter more hopeless than it is."
+          },
+          "bloomsLevel": "evaluate",
+          "depthLevel": "hard"
+        },
+        {
+          "questionId": "q10",
+          "prompt": "Combining the four chapters so far, what can a reader do with all four tools that they could not do with any subset?",
+          "choices": [
+            "Diagnose the personality types of everyone in their life",
+            "Observe the state of a conversation, draw the two arrows of any single transaction, see the repeating shape when an ulterior pattern is running between two people, AND explain why the pattern is sticky in terms of the strokes it is paying and the life position it is confirming",
+            "Force themselves into the I'm OK / You're OK position"
+          ],
+          "correctIndex": 1,
+          "explanation": {
+            "gentle": "The four chapters build a layered diagnostic stack: state observation, single-transaction vector, repeating-pattern anatomy, and energetic explanation. Each layer adds something the previous ones could not do. The personality-types answer is the hammer-problem misuse the previous chapter warned against. The 'force yourself into OK/OK' answer is the executive misreading the first chapter spent its limit refusing.",
+            "direct": "Four-layer diagnostic stack from state to vector to pattern to energetics. Personality typing is the hammer problem; forcing a life position is the executive misread of the first chapter. Both wrong answers are exactly the misuses the model is built to prevent.",
+            "competitive": "Layered stack: observation, vector, pattern, energetics. The personality-types answer is the weaponization the third chapter warned against. The forcing answer is the executive misreading the first chapter spent its hard-depth section refusing. Both are the failure modes the four-chapter sequence is built to prevent."
+          },
+          "bloomsLevel": "evaluate",
+          "depthLevel": "hard"
+        }
+      ]
+    },
+    "implementationPlan": {
+      "title": "Building a stroke supply before you exit a game",
+      "steps": [
+        "For one week, identify three strokes you receive each day. Note whether each is positive or negative. Do not change anything yet.",
+        "At the end of the week, look at the ratio. If the negative strokes outnumber the positive ones by more than two to one, identify one weekly source of positive strokes you could add (a class, a small community, a regular call, a real lunch).",
+        "Add the positive source on a calendar. Do not yet remove any negative-stroke source.",
+        "For the next two weeks, let the new positive source pay you. Notice whether the negative-stroke sources start to feel less load-bearing.",
+        "Only after the positive source is reliably arriving on its schedule, begin the slower work of reducing the negative-stroke source. The reduction is the last step, not the first."
+      ]
+    },
+    "reviewCards": [
+      {
+        "id": "rc01",
+        "difficulty": "easy",
+        "front": "What is a stroke in Berne's model?",
+        "back": "The basic unit of social acknowledgment that humans need to stay psychologically functional. The need is metabolic, not preferential, and includes both positive and negative strokes."
+      },
+      {
+        "id": "rc02",
+        "difficulty": "easy",
+        "front": "Why is a negative stroke metabolically better than no stroke at all?",
+        "back": "Because the human need for social acknowledgment is structural, and the nervous system registers a fight, criticism, or angry message as evidence of being seen in a way that zero contact does not. Stroke-deprived adults deteriorate; this is not a moral claim."
+      },
+      {
+        "id": "rc03",
+        "difficulty": "medium",
+        "front": "What are Berne's four life positions?",
+        "back": "I'm OK / You're OK (the healthy and game-free stance), I'm OK / You're not OK (projective and often persecutory), I'm not OK / You're OK (depressive and martyr-like), and I'm not OK / You're not OK (futile). The positions are formed early, confirmed daily by the transactions the player participates in, and slow to update."
+      },
+      {
+        "id": "rc04",
+        "difficulty": "medium",
+        "front": "Why is a game sticky?",
+        "back": "Because it satisfies two reinforcing conditions at once: it is a reliable source of strokes, and it confirms the player's existing life position. Both legs have to be in place for a game to last for years. Removing the strokes leaves the position hungry; updating the position is slow work that cannot happen while the strokes are still arriving on the old schedule."
+      },
+      {
+        "id": "rc05",
+        "difficulty": "hard",
+        "front": "What is the order of operations for leaving a painful game?",
+        "back": "Replacement strokes first, life position update second, exit from the game third. Any other order is a request that the player accept stroke deprivation in exchange for a freedom they cannot yet feel. The replacement plan is the actual work; the leaving is what happens after the replacement plan is in place. A reader who tries to leave a game before the replacement supply is paying will return to the game within weeks."
+      }
+    ],
+    "keyTakeawayCard": {
+      "gentle": "Games are sticky because they pay you in strokes (the basic acknowledgment humans need) and confirm a position you have been holding since you were small. The honest order of leaving is replacement first, then exit.",
+      "direct": "Stickiness equation: strokes plus life position. Negative strokes count metabolically. Order of operations: replacement first, position update second, exit third. Any other order fails predictably.",
+      "competitive": "Two reinforcing legs (strokes plus position) make a game sticky for years. The order of leaving is replacement first, then exit. The replacement plan is the work. The leaving is what happens after."
+    }
+  },
+  "quiz": {
+    "chapterId": "ch04",
+    "chapterNumber": 4,
+    "chapterTitle": "Why Games Feel So Hard to Stop",
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "In Berne's model, what does the word 'stroke' refer to?",
+        "choices": [
+          "Any positive emotion",
+          "A specific therapeutic technique",
+          "The basic unit of social acknowledgment that humans need to keep functioning"
+        ],
+        "correctIndex": 2,
+        "explanation": {
+          "gentle": "Berne uses 'stroke' in a specific technical sense: the basic unit of social acknowledgment a human needs to stay psychologically functional. It is not just a positive emotion (the chapter is explicit that negative strokes count too), and it is not a therapeutic technique. It is the metabolic unit the rest of the chapter rests on.",
+          "direct": "Acknowledgment is the right answer because Berne defines strokes as units of social acknowledgment, neutral on whether they are positive or negative. Calling it a positive emotion misses the negative-strokes-count claim. Calling it a therapeutic technique misreads the noun as a verb.",
+          "competitive": "Acknowledgment is the unit. The 'positive emotion' answer collapses the chapter's central distinction; the 'therapeutic technique' answer confuses Berne's noun for a stroke (the unit) with the verb to stroke (the action). Neither has the structural claim the chapter rests on."
+        },
+        "bloomsLevel": "remember",
+        "depthLevel": "easy"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "Why does Berne argue a negative stroke (a fight, an angry message, a criticism) is metabolically better than no stroke at all?",
+        "choices": [
+          "Because the human nervous system needs a steady supply of acknowledgment, and any acknowledgment registers as evidence of being seen, even when the content is bad",
+          "Because negative strokes build character",
+          "Because conflict is stimulating"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "The chapter is structural here, not moralistic. The need for acknowledgment is metabolic, and a negative stroke arrives in a metabolism that would otherwise have received zero arrivals that day. The character-building answer is a moralization the chapter explicitly refuses, and the stimulation answer makes the negative stroke sound recreational.",
+          "direct": "Metabolic acknowledgment is the chapter's claim. The character-building answer turns a structural fact into a moral story. The stimulation answer makes the negative stroke sound like entertainment, which trivializes the energetics.",
+          "competitive": "Metabolism, not character, not entertainment. The chapter's structural claim is what makes the rest of the model work; the alternative answers both turn the structural claim into something more comfortable, which is exactly the misread the chapter is built to refuse."
+        },
+        "bloomsLevel": "understand",
+        "depthLevel": "easy"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "Maya, the open-source maintainer, reads her monthly angry GitHub issue from a stranger and notices that the months without an angry issue are the worse months. According to the chapter, what is the angry issue paying her?",
+        "choices": [
+          "Practice in handling criticism",
+          "A negative stroke that is doing the work of a positive stroke she does not have a reliable source for, plus a confirmation of her existing life position",
+          "Information about her library's user base"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "The chapter is specific: the angry issue is paying Maya in two reinforcing ways. First, a negative stroke that arrives in a stroke-deficit environment and is metabolically registered as acknowledgment. Second, a confirmation of the position she has been holding since middle school. The 'practice' answer moralizes; the 'information' answer mistakes the social-level content of the issue for what is actually being delivered.",
+          "direct": "Stroke plus position confirmation is the structural answer. Practice in criticism turns the answer into a self-improvement story; reading the issue as user research mistakes the content for the payoff.",
+          "competitive": "Stroke and position. The practice answer turns the chapter into a personal-growth story, which it is not. The user-research answer reads the surface and misses the entire ulterior level the previous chapter introduced."
+        },
+        "bloomsLevel": "analyze",
+        "depthLevel": "easy"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "Theo, the retired schoolteacher, criticizes his adult daughter Ren's parenting every Sunday despite apologizing every week and being asked to stop. Which life position is the criticism most likely confirming?",
+        "choices": [
+          "I'm OK / You're OK",
+          "I'm not OK / You're OK",
+          "I'm OK / You're not OK"
+        ],
+        "correctIndex": 2,
+        "explanation": {
+          "gentle": "The chapter places Theo in I'm OK / You're not OK. He has been holding the position 'you have to point out what is wrong or nothing will get fixed' since 1962. The criticism is the move that keeps the position alive. I'm OK / You're OK is the healthy stance and is incompatible with running a Sunday criticism game; I'm not OK / You're OK is depressive and martyr-like, which Theo's posture is not.",
+          "direct": "I'm OK / You're not OK is the structural fit. Theo's stance is corrective and projective, not depressive or healthy. The chapter is explicit that the criticism move is the position-confirming machinery.",
+          "competitive": "Projective, not depressive, not healthy. Theo is running the position from a place of correctness. The other answers misread the energy of the criticism as either martyrdom or game-free contact, both of which the chapter explicitly distinguishes."
+        },
+        "bloomsLevel": "analyze",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "Inez calls her friend Banerjee at 11pm with what is now the third real crisis this week. According to the chapter, what is the relationship-level stroke economy paying both women?",
+        "choices": [
+          "Inez gets reliable late-night attention from a person who has known her since college, and Banerjee gets confirmation that she is the kind of person who can be called at 11pm with a crisis, which is one of the only places in her week anybody needs anything from her in particular",
+          "Banerjee is doing all the giving",
+          "Inez is exploiting the friendship and Banerjee should set a boundary"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "The chapter's point is that both women are getting paid by the loop. The 'Banerjee is doing all the giving' answer treats the rescuer role as costless to the rescuer, which it is not. The 'set a boundary' answer is from a different framework and misses the chapter's structural point that the calls are paying Banerjee strokes she has not built another source for.",
+          "direct": "Two-sided payout is the chapter's structural claim. One-sided exploitation misreads the energetics; boundary language imports a different framework and mistakes the symptom for the structure.",
+          "competitive": "Both sides are getting paid. Treating Banerjee as a victim ignores what the rescuer role is paying her. Treating it as a boundary problem skips the energetic question the chapter is built to ask."
+        },
+        "bloomsLevel": "analyze",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A reader sees the position 'I'm not OK / You're OK' and concludes it is just a fancy term for self-criticism. Why does the chapter resist that reading?",
+        "choices": [
+          "Because self-criticism is actually rare",
+          "Because 'I'm not OK / You're OK' is the deeper structural stance behind self-criticism, formed early and confirmed daily by the kinds of transactions the player participates in, and dislodging it requires updating the position itself, not just changing the visible behavior",
+          "Because the position is genetic"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "The chapter is careful here. Self-criticism is the visible behavior; the position is the deeper stance the behavior is expressing. Treating them as the same thing leads to interventions that target the visible behavior and fail because the position is still doing the underlying work. The chapter is not making a claim about how rare self-criticism is, and it is explicit that life positions are formed by experience, not genetics.",
+          "direct": "Position-vs-behavior distinction is the chapter's point. Self-criticism rarity is irrelevant to the question; genetic claims are explicitly outside the chapter's framework.",
+          "competitive": "Behavior is the surface, position is the structure. Confusing them is how the entire self-help industry has been failing readers for sixty years. The other answers misread the chapter's frame entirely."
+        },
+        "bloomsLevel": "evaluate",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A senior manager named Mei is the only one in her company who works late on Friday nights and has been doing so for six years. She tells her partner she would love to leave on time. Identify the most likely stroke and life position the pattern is confirming.",
+        "choices": [
+          "Stroke: overtime pay. Position: I'm not OK / You're not OK",
+          "Stroke: career advancement. Position: I'm OK / You're OK",
+          "Stroke: a reliable supply of being-noticed by the late-night office cleaning crew and the one other workaholic on her floor, plus the messages from her boss the next morning. Position: I am not OK unless I am the one who stays the latest"
+        ],
+        "correctIndex": 2,
+        "explanation": {
+          "gentle": "The chapter's transfer move asks the reader to read for the actual stroke (the small reliable acknowledgments that arrive on the late-night schedule) and the actual position (the I'm not OK that requires the hours to stay confirmed). The first wrong answer reads the surface (pay) and misses the energetics. The second is incompatible with a six-year reluctant pattern.",
+          "direct": "Reliable late-night acknowledgment plus an I'm-not-OK-without-the-hours position is the structural read. Overtime pay misses the energetics; career advancement misreads the felt experience of the pattern.",
+          "competitive": "Late-night acknowledgment plus position-confirmation is the answer. The pay answer reads the surface; the career-advancement answer is incompatible with the reluctance the manager is reporting."
+        },
+        "bloomsLevel": "apply",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "If Maya wanted to stop running her angry-GitHub-issue game, which of the following is the chapter actually recommending she do?",
+        "choices": [
+          "Delete the GitHub repository and find a new hobby",
+          "Schedule one reliable weekly source of positive strokes (a writing group, a peer review, a real conversation with another maintainer) before doing anything about the negative ones, then slowly work on the position the negative strokes have been confirming",
+          "Force herself to stop reading the issues and accept the discomfort"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "The chapter's order of operations is replacement first, then exit. Deleting the repo is exit without replacement, and the chapter is explicit that exit without replacement leads to deprivation and return. Forcing herself to stop reading is the same instruction in a different costume. The reliable replacement supply is the only honest first move.",
+          "direct": "Replacement before exit is the chapter's central practical claim. Both wrong answers are exit-without-replacement instructions in different forms, and the chapter spends its limit-paragraph refusing them.",
+          "competitive": "Replacement first. Both wrong answers are the instruction that has been failing self-help readers for sixty years, dressed up in slightly different language. The chapter is explicitly built to refuse them."
+        },
+        "bloomsLevel": "evaluate",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Why does the chapter insist that 'stop playing the game' is not a serious instruction without a replacement plan?",
+        "choices": [
+          "Because the strokes the game was paying were doing real metabolic work, and removing them without replacement creates deprivation that reliably drives the player back into the game within weeks",
+          "Because the player needs permission from a therapist",
+          "Because games are impossible to leave"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "The chapter is honest here. The strokes are real and the deprivation that follows their removal is real, and the player will return to the game inside of a few weeks if there is no replacement supply. The 'permission from a therapist' answer turns the chapter into a credentialing story it is not. The 'impossible' answer makes the chapter more pessimistic than it actually is.",
+          "direct": "Real deprivation following exit-without-replacement is the chapter's structural claim. The credentialing answer misreads the chapter; the impossibility answer ignores the chapter's whole order-of-operations argument.",
+          "competitive": "Deprivation drives return. The credentialing answer turns a tool the chapter offers any reader into a gated one. The impossibility answer makes the chapter more hopeless than it is."
+        },
+        "bloomsLevel": "evaluate",
+        "depthLevel": "hard"
+      },
+      {
+        "questionId": "q10",
+        "prompt": "Combining the four chapters so far, what can a reader do with all four tools that they could not do with any subset?",
+        "choices": [
+          "Diagnose the personality types of everyone in their life",
+          "Observe the state of a conversation, draw the two arrows of any single transaction, see the repeating shape when an ulterior pattern is running between two people, AND explain why the pattern is sticky in terms of the strokes it is paying and the life position it is confirming",
+          "Force themselves into the I'm OK / You're OK position"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "The four chapters build a layered diagnostic stack: state observation, single-transaction vector, repeating-pattern anatomy, and energetic explanation. Each layer adds something the previous ones could not do. The personality-types answer is the hammer-problem misuse the previous chapter warned against. The 'force yourself into OK/OK' answer is the executive misreading the first chapter spent its limit refusing.",
+          "direct": "Four-layer diagnostic stack from state to vector to pattern to energetics. Personality typing is the hammer problem; forcing a life position is the executive misread of the first chapter. Both wrong answers are exactly the misuses the model is built to prevent.",
+          "competitive": "Layered stack: observation, vector, pattern, energetics. The personality-types answer is the weaponization the third chapter warned against. The forcing answer is the executive misreading the first chapter spent its hard-depth section refusing. Both are the failure modes the four-chapter sequence is built to prevent."
+        },
+        "bloomsLevel": "evaluate",
+        "depthLevel": "hard"
+      }
+    ]
+  },
+  "reviewPackage": {
+    "chapterId": "ch04",
+    "chapterNumber": 4,
+    "chapterTitle": "Why Games Feel So Hard to Stop",
+    "bookId": "games-people-play",
+    "runId": "20260406-01",
+    "packVersion": "v12-sealed",
+    "validationStatus": "passed",
+    "qualityGateScore": {
+      "total": 12,
+      "max": 12,
+      "categories": {
+        "chapterSpecificity": 2,
+        "anchorUse": 2,
+        "analyticalValue": 2,
+        "paragraphMotion": 2,
+        "proseQuality": 2,
+        "hookAndBridge": 2
+      },
+      "autoFails": []
+    },
+    "artifacts": {
+      "brief": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/briefs/ch04.md",
+      "outline": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/outlines/ch04.md",
+      "quizBlueprint": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/quiz-blueprints/ch04.md",
+      "sourceSidecarTxt": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/sidecars/source/ch04.source.txt",
+      "sourceSidecarJson": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/sidecars/source/ch04.source.json",
+      "canonicalDraft": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/drafts/canonical/ch04.md",
+      "editedDraft": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/drafts/edited/ch04.md",
+      "criticReport": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/reports/ch04.critic.md",
+      "structured": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/structured/ch04.chapter.json",
+      "quiz": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/quizzes/ch04.quiz.json",
+      "validationReport": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/reports/ch04.validation.md",
+      "validatedChapter": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/validated/ch04.chapter.json",
+      "readingMetrics": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/sidecars/ch04.reading-metrics.json"
+    },
+    "summary": {
+      "coreClaim": "Games are sticky for two reasons that compound: they pay strokes (the basic unit of social acknowledgment; negative beats zero) and they confirm life positions (basic I'm OK / not OK stances formed early). Leaving requires replacing the stroke supply first, then updating the position. Without that sequence, stopping produces deprivation, not freedom.",
+      "anchorsUsed": [
+        "Maya and the monthly angry GitHub issue (work)",
+        "Inez and Coach Banerjee, the late-night call loop (personal)",
+        "Theo's Sunday parenting criticism at Ren's house (personal)"
+      ],
+      "hardDepthTension": "Order of operations: replacement first, update second. A player attempting to update their life position in a stroke vacuum returns to the old game. The supply plan is the actual work.",
+      "bridgeToNextChapter": "With strokes and life positions as the reader's vocabulary, every game in the catalog is asking the same two questions: what is the payoff made of, and which position is it confirming?"
+    },
+    "strongestQualities": [
+      "The negative-stroke-as-load-bearing argument is delivered mechanically, not morally: 'Maya's monthly angry issue is doing the work of a positive stroke she does not have a reliable source for. It is the wrong shape and it pays out anyway.'",
+      "The order-of-operations limit in P6 is the most practically useful piece of writing in the chapter: it converts 'stop playing' from a platitude into a diagnostic problem.",
+      "The Theo/Ren anchor carries the life position concept through a sustained concrete example (two years of Sunday visits, retirement, necessity) that makes the position visible as an organizing structure, not just a mood."
+    ],
+    "remainingConcerns": [],
+    "approvalRequired": true,
+    "preserveApprovedHash": false
+  },
+  "readingMetrics": {
+    "chapterId": "ch04",
+    "chapterNumber": 4,
+    "chapterTitle": "Why Games Feel So Hard to Stop",
+    "computedFor": "edited draft + structured chapter",
+    "editedDraft": {
+      "wordCount": 870,
+      "paragraphCount": 7,
+      "averageSentenceLengthWords": 19.8,
+      "estimatedReadingMinutes": 5
+    },
+    "contentVariants": {
+      "easy": {
+        "wordCounts": {
+          "gentle": 151,
+          "direct": 149,
+          "competitive": 152
+        },
+        "targetRange": "140-175",
+        "withinRange": true,
+        "estimatedGradeBand": "8-9"
+      },
+      "medium": {
+        "wordCounts": {
+          "gentle": 380,
+          "direct": 395,
+          "competitive": 385
+        },
+        "targetRange": "330-420",
+        "withinRange": true,
+        "estimatedGradeBand": "10-11"
+      },
+      "hard": {
+        "wordCounts": {
+          "gentle": 535,
+          "direct": 565,
+          "competitive": 575
+        },
+        "targetRange": "490-600",
+        "withinRange": true,
+        "estimatedGradeBand": "12"
+      }
+    },
+    "examples": {
+      "count": 6,
+      "formatsCovered": [
+        "third_person_scene",
+        "inner_monologue",
+        "coaching_script",
+        "short_dialogue",
+        "first_person",
+        "narrative_flashback"
+      ],
+      "categoryDistribution": {
+        "work": 2,
+        "school": 2,
+        "personal": 2
+      },
+      "endingTypesCovered": [
+        "observation",
+        "reflection",
+        "reframe",
+        "forward_question",
+        "decision_point",
+        "unresolved_tension"
+      ]
+    },
+    "quiz": {
+      "questionCount": 10,
+      "choicesPerQuestion": 3,
+      "correctIndexDistribution": {
+        "0": 3,
+        "1": 4,
+        "2": 3
+      },
+      "depthDistribution": {
+        "easy": 3,
+        "medium": 5,
+        "hard": 2
+      }
+    },
+    "reviewCards": {
+      "count": 5,
+      "difficultyDistribution": {
+        "easy": 2,
+        "medium": 2,
+        "hard": 1
+      }
+    },
+    "totalReadingTimeMinutesEstimate": 13,
+    "computedAt": "2026-04-06"
+  },
+  "validationStatus": {
+    "status": "passed",
+    "qualityGateScore": {
+      "total": 12,
+      "max": 12,
+      "categories": {
+        "chapterSpecificity": 2,
+        "anchorUse": 2,
+        "analyticalValue": 2,
+        "paragraphMotion": 2,
+        "proseQuality": 2,
+        "hookAndBridge": 2
+      },
+      "autoFails": []
+    },
+    "autoFails": [],
+    "validatedAt": "2026-04-06",
+    "validator": "ChapterFlow v12-sealed Phase 5C"
+  }
+}

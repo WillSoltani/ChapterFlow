@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch15-q01",
+      "prompt": "Before the Cultural Revolution reached his school, how did Gao Yuan spend most of his time?",
+      "choices": [
+        "A) Organizing political study groups with classmates",
+        "B) Reading poetry and writing reflections in a journal",
+        "C) Training for a military career"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Gao Yuan was a bookish, quiet teenager who memorized classical poetry and kept a personal journal. He had no history of political activism before the Cultural Revolution swept through his school.",
+        "direct": "Gao Yuan's pre-revolution life centered on poetry and journaling. He was the opposite of a radical, which makes his transformation under group pressure all the more instructive.",
+        "competitive": "The fact that Gao Yuan was a poetry-loving introvert is the entire point. Group conformity does not need ideological raw material. It just needs proximity and repetition."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch15-q02",
+      "prompt": "Which of the four group forces Greene identifies causes people to absorb the anger or fear of those around them before their rational mind can evaluate it?",
+      "choices": [
+        "A) Emotional contagion",
+        "B) The polarization effect",
+        "C) Diffusion of responsibility"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Emotional contagion moves feelings through a group faster than rational thought can assess them. You absorb the mood of the room before you have time to decide whether that mood is justified.",
+        "direct": "Emotional contagion operates through biological channels that outpace conscious analysis. Mirror neurons fire and your nervous infrastructure syncs to the room before your prefrontal cortex can intervene.",
+        "competitive": "Emotional contagion is the fastest channel in any group. By the time you notice the anger, it has already been installed. Your rational mind arrives late and usually just builds a case for the imported feeling."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch15-q03",
+      "prompt": "Greene describes three possible responses to group conformity pressure. What makes navigation different from both unconscious conformity and loud rebellion?",
+      "choices": [
+        "A) Navigation means avoiding groups entirely to preserve independent judgment",
+        "B) Navigation requires maintaining internal independence while managing external behavior so the group does not turn on you",
+        "C) Navigation involves publicly challenging group decisions at every opportunity"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Navigation means reading the group clearly and keeping your own judgment intact without broadcasting defiance. You stay in the room and choose your positions deliberately rather than being absorbed or expelled.",
+        "direct": "Navigators operate on two channels: an internal one where their judgment runs independently, and an external one calibrated to maintain trust without surrendering their position.",
+        "competitive": "Conformists get absorbed. Rebels get expelled. Navigators keep their thinking and their standing by reading the forces and intervening through channels the group can accept."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch15-q04",
+      "prompt": "At a product launch meeting, the CEO pitches a feature idea and five team members immediately agree. Tomoko has data suggesting the feature will underperform, but she notices that each agreement made the next one happen faster. Which group force drove the rapid consensus?",
+      "choices": [
+        "A) Social proof pressure, where each agreement amplified a single data point into apparent validation",
+        "B) Diffusion of responsibility, where team members felt the CEO would absorb any blame",
+        "C) Emotional contagion, where excitement about the feature spread through the room"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Social proof turned one person's idea into what looked like group validation. Each agreement strengthened the signal for the next person, regardless of whether anyone independently evaluated the data.",
+        "direct": "The cascade followed the social proof pattern precisely. The CEO spoke first, and each subsequent agreement increased the perceived evidence that the idea was sound, even though no independent analysis occurred.",
+        "competitive": "Five agreements after a single assertion is not consensus. It is a social proof cascade. Tomoko's data never had a chance because the room was counting votes, not evaluating evidence."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch15-q05",
+      "prompt": "Javier joins a new friend group that initially bonds over shared humor. Over several months, the group's conversations shift toward increasingly harsh gossip about people outside the circle. Javier feels uncomfortable but participates because staying silent has started to feel like disloyalty. What force pulled Javier along?",
+      "choices": [
+        "A) He was threatened with exclusion if he did not participate",
+        "B) He genuinely changed his values and now agrees with the gossip",
+        "C) The polarization effect gradually escalated the group's baseline, making each round of gossip feel like the new normal"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The group's baseline for acceptable conversation shifted gradually. Each round of gossip was slightly more harsh than the last, and Javier's sense of normal adjusted with it because the people around him were all moving in the same direction.",
+        "direct": "Polarization ratcheted the group norm upward. Each escalation redefined what counted as standard behavior, and Javier's internal baseline tracked the group's movement without conscious adjustment.",
+        "competitive": "The polarization ratchet only turns one direction. Yesterday's extreme becomes today's center. Javier did not decide to become cruel. The group gradually relocated the line, and he followed because silence had already been reclassified as betrayal."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch15-q06",
+      "prompt": "Reena serves on a nonprofit board that unanimously approves a risky financial decision. Six months later, the decision leads to major losses. No board member feels personally responsible, and each one points to the unanimous vote. What group force explains why individual accountability dissolved?",
+      "choices": [
+        "A) Emotional contagion spread overconfidence through the board",
+        "B) Social proof made the decision look well-supported",
+        "C) Diffusion of responsibility distributed blame so evenly that no single member felt the weight of the outcome"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "When the whole group votes together, the moral weight of the decision gets spread across everyone, and nobody feels they personally made the call. That shared responsibility lowers the internal resistance that would normally stop risky choices.",
+        "direct": "Diffusion of responsibility dissolved personal accountability. The unanimous vote meant each member's calculated share of blame was small enough to pass through their moral filters without resistance.",
+        "competitive": "A unanimous vote is not stronger than a split one. It is weaker on the accountability axis. When everyone owns the decision, nobody owns it, and the internal brake that prevents reckless choices simply does not engage."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch15-q07",
+      "prompt": "Greene warns that believing you are too rational to be affected by group pressure is itself a symptom. Why does this self-assessment fail as a defense?",
+      "choices": [
+        "A) The forces operate below conscious detection, so the absence of awareness is not evidence of immunity",
+        "B) Rationality increases your susceptibility to group pressure by making you overconfident",
+        "C) Rational people are targeted more aggressively by groups seeking conformity"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Group forces work beneath the threshold of conscious awareness. Feeling confident that you are unaffected usually means the forces have already done their work without you noticing.",
+        "direct": "The forces operate below detection. Confidence in your own independence is often the strongest indicator that the social signals have already recalibrated your thinking.",
+        "competitive": "The person who declares immunity has already lost the first round. The forces do not announce themselves. They install new preferences and let your rational mind claim ownership."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch15-q08",
+      "prompt": "How did each small step in Gao Yuan's transformation contribute to the total distance he traveled from quiet student to mob participant?",
+      "choices": [
+        "A) His teachers provoked him into increasingly aggressive responses through their resistance",
+        "B) He made a single dramatic decision to join the violence and committed fully from that point",
+        "C) Each step was calibrated by the one before it, with the group's behavior setting the reference point at every stage"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "No single moment felt like a turning point. Each action looked reasonable because it was only a small distance from the last one, and the people around him were all taking the same step at the same time.",
+        "direct": "The reference points shifted constantly in one direction. Attending a rally normalized the next step. Repeating a slogan normalized the step after that. Each increment was small enough to justify, and the group set the scale.",
+        "competitive": "The gap between poetry and property destruction was enormous, but no single step crossed a visible line. The group recalibrated the baseline at each increment, and Gao Yuan's internal compass tracked the moving standard."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch15-q09",
+      "prompt": "Evaluate whether Greene's claim that group conformity operates identically in revolutionary mobs and corporate meetings holds up. What is the strongest argument supporting his position?",
+      "choices": [
+        "A) Corporate meetings produce the same level of physical violence as revolutionary movements",
+        "B) The four underlying forces are content-neutral, meaning they operate through the same psychological channels regardless of the setting's stakes or subject matter",
+        "C) Corporate leaders intentionally use the same tactics as revolutionary organizers"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The forces themselves do not change based on the setting. Social proof, emotional contagion, polarization, and diffusion of responsibility work through the same channels in a boardroom as they do in a street protest. Only the scale and consequences differ.",
+        "direct": "Greene's argument holds because the forces are structural, not contextual. The same social proof that drove Gao Yuan into a faction drives a junior analyst to agree with a flawed projection. The physics is identical; the volume differs.",
+        "competitive": "The strongest support for Greene's claim is the content-neutrality of the mechanisms. These forces do not care what the group is deciding. They care about proximity, repetition, and the number of people already committed."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch15-q10",
+      "prompt": "Chapter 15 argues that group pressure overrides individual judgment. Chapter 16 argues that leaders who understand group forces can redirect them constructively. What must a person master from Chapter 15 before they can lead effectively as described in Chapter 16?",
+      "choices": [
+        "A) The ability to suppress all group currents so that individuals think independently at all times",
+        "B) The skill of recognizing conformity forces as they operate, which is the prerequisite for channeling those forces instead of being consumed by them",
+        "C) A personal immunity to emotional contagion that prevents the leader from being influenced"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "You cannot redirect a current you do not understand. Chapter 15's recognition skill is what makes Chapter 16's leadership possible. Seeing the forces clearly comes before steering them.",
+        "direct": "Chapter 16's leadership model depends entirely on the detection skills built in Chapter 15. A leader who cannot see group conformity forces in action will be swept along by them instead of directing them.",
+        "competitive": "The bridge is recognition. Chapter 15 trains you to see the pull. Chapter 16 trains you to use it. Without the first skill, the second is impossible, and you end up leading from inside the current instead of above it."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

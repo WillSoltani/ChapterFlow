@@ -1,0 +1,13 @@
+{
+  "packRoot": "scripts/book/prompts/chapterflow-v9",
+  "runRoot": ".chapterflow/runs/the-33-strategies-of-war/20260405-01",
+  "bookId": "the-33-strategies-of-war",
+  "runId": "20260405-01",
+  "outputProfile": "flagship_v4_compatible",
+  "learningContract": "research_native",
+  "runProfile": "balanced_flagship",
+  "rightsMode": "startup_light",
+  "chapterGateQuizMode": "generate",
+  "scenarioTonePolicy": "required",
+  "validationMode": "chapter_gate"
+}

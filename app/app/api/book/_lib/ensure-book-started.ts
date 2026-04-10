@@ -39,7 +39,7 @@ import type {
   BookUserBookStateItem,
   BookUserProgress,
 } from "@/app/app/api/book/_lib/types";
-import { FLOW_POINTS_AMOUNTS } from "@/app/book/_lib/flow-points-economy";
+import { INSIGHT_POINTS_AMOUNTS } from "@/app/book/_lib/flow-points-economy";
 
 function sortUniqueNumbers(values: number[]): number[] {
   return Array.from(new Set(values.filter((value) => Number.isFinite(value) && value > 0))).sort(
@@ -269,7 +269,7 @@ export async function ensureUserBookStarted(params: {
 
   const firstBookAward = await awardFlowPoints(tableName, {
     userId: user.sub,
-    amount: FLOW_POINTS_AMOUNTS.firstBookStarted,
+    amount: INSIGHT_POINTS_AMOUNTS.firstBookStarted,
     sourceType: "first_book_started",
     sourceId: "primary",
     metadata: {
@@ -286,7 +286,7 @@ export async function ensureUserBookStarted(params: {
     const [inviterAward, inviteeAward] = await Promise.all([
       awardFlowPoints(tableName, {
         userId: referralClaim.inviterUserId,
-        amount: FLOW_POINTS_AMOUNTS.referralActivationInviter,
+        amount: INSIGHT_POINTS_AMOUNTS.referralActivationInviter,
         sourceType: "referral_activation_inviter",
         sourceId: referralClaim.claimId,
         metadata: {
@@ -296,7 +296,7 @@ export async function ensureUserBookStarted(params: {
       }),
       awardFlowPoints(tableName, {
         userId: user.sub,
-        amount: FLOW_POINTS_AMOUNTS.referralActivationInvitee,
+        amount: INSIGHT_POINTS_AMOUNTS.referralActivationInvitee,
         sourceType: "referral_activation_invitee",
         sourceId: referralClaim.claimId,
         metadata: {
@@ -310,7 +310,7 @@ export async function ensureUserBookStarted(params: {
     await markReferralActivationRewarded(
       tableName,
       referralClaim,
-      FLOW_POINTS_AMOUNTS.referralActivationInviter
+      INSIGHT_POINTS_AMOUNTS.referralActivationInviter
     ).catch(() => false);
   }
 
@@ -322,7 +322,7 @@ export async function ensureUserBookStarted(params: {
         analyticsTasks.push(
           analyticsTrackFlowPointsTransaction(analyticsTable, {
             userId: user.sub,
-            deltaPoints: FLOW_POINTS_AMOUNTS.firstBookStarted,
+            deltaPoints: INSIGHT_POINTS_AMOUNTS.firstBookStarted,
             direction: "earn",
             sourceType: "first_book_started",
             sourceId: "primary",
@@ -337,7 +337,7 @@ export async function ensureUserBookStarted(params: {
         analyticsTasks.push(
           analyticsTrackFlowPointsTransaction(analyticsTable, {
             userId: referralClaim.inviterUserId,
-            deltaPoints: FLOW_POINTS_AMOUNTS.referralActivationInviter,
+            deltaPoints: INSIGHT_POINTS_AMOUNTS.referralActivationInviter,
             direction: "earn",
             sourceType: "referral_activation_inviter",
             sourceId: referralClaim.claimId,
@@ -351,7 +351,7 @@ export async function ensureUserBookStarted(params: {
             eventType: "referral_activated",
             inviteCode: referralClaim.inviteCode,
             referredUserId: user.sub,
-            pointsAwarded: FLOW_POINTS_AMOUNTS.referralActivationInviter,
+            pointsAwarded: INSIGHT_POINTS_AMOUNTS.referralActivationInviter,
           })
         );
       }
@@ -359,7 +359,7 @@ export async function ensureUserBookStarted(params: {
         analyticsTasks.push(
           analyticsTrackFlowPointsTransaction(analyticsTable, {
             userId: user.sub,
-            deltaPoints: FLOW_POINTS_AMOUNTS.referralActivationInvitee,
+            deltaPoints: INSIGHT_POINTS_AMOUNTS.referralActivationInvitee,
             direction: "earn",
             sourceType: "referral_activation_invitee",
             sourceId: referralClaim.claimId,

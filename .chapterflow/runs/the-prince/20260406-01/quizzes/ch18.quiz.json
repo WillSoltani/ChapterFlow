@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What does Machiavelli first say about keeping faith in Chapter 18?",
+      "choices": [
+        "It is praiseworthy for a prince to keep faith",
+        "It is useless in every case",
+        "It matters less than force from the start"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "He begins by granting the moral praise of fidelity before limiting its political sufficiency.",
+        "direct": "The chapter starts with respect for faith, not contempt for it.",
+        "competitive": "Machiavelli destabilizes the virtue only after conceding its honor."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does Machiavelli say the prince must know two ways of contesting?",
+      "choices": [
+        "Because law belongs to the prince and force belongs to subjects",
+        "Because law is often not sufficient, so rulers must know both law and force",
+        "Because force matters only after law has fully failed forever"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "He says political contest is not settled by law alone.",
+        "direct": "The prince must know both the human and beastly sides of action.",
+        "competitive": "One arena is too narrow for real rule."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What do the fox and lion represent together?",
+      "choices": [
+        "Craft for snares and force for open enemies",
+        "Private morality and public morality",
+        "Mercy for subjects and cruelty for soldiers"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The fox detects traps, and the lion frightens wolves.",
+        "direct": "Chapter 18 pairs cunning with strength instead of letting the ruler rely on one alone.",
+        "competitive": "One animal sees the net. The other survives the clash."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Yara is deciding whether to reveal every fallback term in a live negotiation. What best matches Chapter 18?",
+      "choices": [
+        "Stay credible, but keep enough reserve that the other side cannot trap her with her own disclosure",
+        "Reveal every concession immediately because faith always requires full exposure",
+        "Hide everything and rely only on pressure"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter favors credible restraint over self-exposure or total secrecy.",
+        "direct": "Yara needs the fox and the lion together, not pure openness or pure bluff.",
+        "competitive": "Do not hand the other side the map to your own leverage."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Bastien's campaign kept announcing every tactic in the name of integrity and lost leverage. What does that show?",
+      "choices": [
+        "Transparency is always a political mistake",
+        "Integrity should ignore contests and rival behavior",
+        "Openness offered into a competitive field can become self-punishing when it ignores bad-faith conditions"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The issue is not that sincerity is bad, but that it was used without tactical judgment.",
+        "direct": "The campaign treated a contest as though mutual candor already existed.",
+        "competitive": "They fed the rival in the name of virtue."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Noemi worries that not revealing every concession is dishonest. Which answer fits Chapter 18 best?",
+      "choices": [
+        "Strategic restraint can differ from betrayal when the contest is still unsettled",
+        "Only total exposure proves honesty",
+        "A promise matters only when the other side is weak"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter separates bad faith from making yourself unnecessarily easy to trap.",
+        "direct": "Noemi does not have to publish every compromise in advance to remain honest.",
+        "competitive": "Showing every card is not the same thing as being virtuous."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "When does Machiavelli say a wise lord may not keep faith?",
+      "choices": [
+        "Whenever keeping it would be annoying",
+        "When observance would turn against him and the reasons for the pledge no longer exist",
+        "Only after he has already used force first"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter gives conditions, not a blanket excuse.",
+        "direct": "Hostile use and vanished grounds are the key limits on broken faith here.",
+        "competitive": "The promise does not simply die of inconvenience. It fails when its basis collapses and its observance becomes a weapon."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why does Chapter 18 care so much about appearing merciful, faithful, humane, upright, and religious?",
+      "choices": [
+        "Because rulers should never actually change course",
+        "Because appearance matters only in hereditary states",
+        "Because inner virtue is politically invisible while public judgment follows what people can see"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Machiavelli says most people judge by the eye more than by direct knowledge.",
+        "direct": "Seeming virtuous matters because rulers are publicly judged from surfaces and outcomes.",
+        "competitive": "The crowd sees the mask and the victory long before it sees the machinery underneath."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What does the line about judging by the eye and by result add to the chapter?",
+      "choices": [
+        "It proves that secret motives never matter in politics at all",
+        "It shows that force should replace law completely",
+        "It explains why appearance of virtue and successful outcomes protect rulers in public judgment"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The line explains why seeming and success carry so much political weight.",
+        "direct": "Public judgment is shaped less by hidden motive than by visible conduct and outcome.",
+        "competitive": "If the prince holds the state, the many often call the means honest after the fact."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Chapter 15 warned that seeming virtue can ruin a ruler under real conditions. How does Chapter 18 apply that warning to fidelity?",
+      "choices": [
+        "It says fidelity should never matter once a prince has power",
+        "It says a prince must know when faith still serves rule and when necessity forces a turn that must still be publicly masked as virtue",
+        "It says public appearance matters less than private purity"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Chapter 18 takes the earlier realism and applies it to promises and integrity.",
+        "direct": "The ruler must not worship faithful appearance when the grounds of the promise have collapsed and the state is at stake.",
+        "competitive": "Faith becomes one more virtue that can kill the prince if he clings to its surface after its political basis is gone."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is technology mainly doing in this chapter's logic?",
+      "choices": [
+        "Creating greatness by itself",
+        "Accelerating a disciplined concept that already exists",
+        "Replacing the need for clear strategy"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Technology helps most when it multiplies a real concept already in motion.",
+        "direct": "The tool is an accelerator rather than the primary cause of greatness.",
+        "competitive": "It adds force to an engine. It does not invent the engine."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What can technology not do by itself?",
+      "choices": [
+        "Multiply clear momentum",
+        "Support a strong concept",
+        "Create strategic clarity out of weak foundations"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "A tool cannot replace the deeper work of building people, truth, concept, and discipline.",
+        "direct": "Technology can amplify strength, but it cannot manufacture coherent direction from confusion.",
+        "competitive": "Software does not rescue a strategic vacuum."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is the strongest test for whether a technology deserves force?",
+      "choices": [
+        "Whether competitors keep mentioning it",
+        "Whether it strengthens the hedgehog",
+        "Whether the rollout will look decisive to the board"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The main question is whether the tool fits the concept the company is really building.",
+        "direct": "Hedgehog fit separates disciplined adoption from imitation.",
+        "competitive": "If it does not deepen the engine, it does not deserve the fuel."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Iris faces pressure to buy a trendy platform, but a quieter tool would strengthen the team's real edge. What fits best?",
+      "choices": [
+        "Choose the tool that best fits the concept, even if it is less fashionable",
+        "Choose the trendier tool so the team looks current",
+        "Buy both tools to avoid missing any option"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The disciplined choice is to strengthen the real engine, not the room's vanity.",
+        "direct": "Concept fit matters more than trend pressure.",
+        "competitive": "Feed the engine, not the hype."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "A robotics team buys an impressive kit but still lacks a settled design concept. What is the best diagnosis?",
+      "choices": [
+        "The hardware will eventually create clarity if the team waits",
+        "The tool may be amplifying confusion because the concept is still weak",
+        "The purchase proves the team is innovating correctly"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A strong tool can still disappoint when it is serving scattered effort.",
+        "direct": "Technology cannot substitute for disciplined focus.",
+        "competitive": "They upgraded the machine before choosing the race."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which statement most clearly misreads the chapter?",
+      "choices": [
+        "Technology should always be rejected until a company is already dominant",
+        "Technology matters most when it accelerates a clear concept",
+        "A company can adopt tools boldly when the fit is genuine"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter is not anti-technology. It is against undisciplined technology worship.",
+        "direct": "Rejecting every tool would miss the point just as badly as chasing every tool.",
+        "competitive": "This is anti-theater, not anti-tech."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why is saying no to a prestigious tool sometimes the most disciplined move?",
+      "choices": [
+        "Because prestige always weakens technology choices",
+        "Because declining a misfit tool protects the concept from distraction",
+        "Because caution is more important than momentum"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A strong no can protect the team from confusing modernity with progress.",
+        "direct": "The concept should govern adoption, even when the rejected option looks impressive.",
+        "competitive": "The hard no keeps the hype from hijacking the engine."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Amina is offered a prestige editing system even though the publication still has not clarified its real workflow and story focus. What choice best matches the idea?",
+      "choices": [
+        "Take the system because visible progress is better than conceptual delay",
+        "Delay or decline the tool until it clearly strengthens the publication's real concept",
+        "Install the system and let the concept form around it later"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The tool should follow the concept, not lead it.",
+        "direct": "A rollout that bypasses strategic truth usually creates activity without meaningful acceleration.",
+        "competitive": "Do not buy optics when the bottleneck is still conceptual."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the strongest sign of technology frenzy rather than disciplined adoption?",
+      "choices": [
+        "The tool multiplies a concept the company already knows how to carry",
+        "The room mainly argues that the company cannot afford to look late or outdated",
+        "The rollout is tied to a narrow operating need"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Fear and prestige often speak louder than fit when frenzy takes over.",
+        "direct": "The warning sign is that the case for adoption rests on optics or anxiety rather than hedgehog strength.",
+        "competitive": "When embarrassment becomes the strategy, the concept has already left the room."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If technology only accelerates what already exists, what question naturally comes next?",
+      "choices": [
+        "How breakthrough momentum is actually built over time",
+        "How to replace the hedgehog with faster tool cycles",
+        "Why companies should stop using technology altogether"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next issue is where visible breakthrough really comes from.",
+        "direct": "If tools are accelerators, then the deeper question is how momentum is formed in the first place.",
+        "competitive": "If the tool is not the miracle, the next chapter asks what is."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

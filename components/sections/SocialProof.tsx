@@ -8,24 +8,30 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
 const testimonials = [
   {
     name: "Sarah K.",
-    context: "Professional",
+    context: "Senior product manager",
+    role: "Reads 2 books a month",
     quote:
-      "I\u2019ve tried Blinkist, I\u2019ve tried highlighting \u2014 nothing stuck. ChapterFlow\u2019s quiz step is what changed everything for me.",
+      "I've tried Blinkist, I've tried highlighting — nothing stuck. ChapterFlow's quiz step is what changed everything. I actually retained a whole book for the first time.",
     stars: 5,
+    initials: "SK",
   },
   {
     name: "Marcus T.",
-    context: "Student",
+    context: "PhD candidate, neuroscience",
+    role: "Studying spaced repetition",
     quote:
-      "I do one chapter on my commute. Fifteen minutes and I actually remember it weeks later.",
+      "One chapter on my commute. Fifteen minutes and I still remember it weeks later. Replaced my entire notes system.",
     stars: 5,
+    initials: "MT",
   },
   {
     name: "Priya R.",
-    context: "Casual Reader",
+    context: "Founder, early-stage startup",
+    role: "Reads on the train",
     quote:
-      "$8 a month for books I actually retain? That\u2019s less than the last book I bought and forgot.",
-    stars: 5,
+      "$8 a month for books I actually retain? My only wish is they had more sci-fi. The non-fiction library is excellent though.",
+    stars: 4,
+    initials: "PR",
   },
 ];
 
@@ -45,16 +51,20 @@ function StarIcon() {
 interface TestimonialCardProps {
   name: string;
   context: string;
+  role: string;
   quote: string;
   stars: number;
+  initials: string;
   index: number;
 }
 
 function TestimonialCard({
   name,
   context,
+  role,
   quote,
   stars,
+  initials,
   index,
 }: TestimonialCardProps) {
   const ref = useRef<HTMLDivElement>(null);
@@ -96,17 +106,22 @@ function TestimonialCard({
 
       {/* Attribution */}
       <div className="flex items-center gap-3 mt-6">
-        <div className="w-10 h-10 rounded-full bg-[--bg-elevated] flex items-center justify-center">
-          <span className="text-[--accent-teal] font-bold text-[14px]">
-            {name.charAt(0)}
-          </span>
+        <div
+          className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 text-[13px] font-bold"
+          style={{
+            background: "linear-gradient(135deg, rgba(34,211,238,0.2), rgba(34,211,238,0.05))",
+            border: "1.5px solid rgba(34,211,238,0.3)",
+            color: "var(--accent-teal)",
+          }}
+        >
+          {initials}
         </div>
         <div>
           <p className="text-[14px] font-semibold text-[--text-heading]">
             {name}
           </p>
           <p className="text-[12px] text-[--text-muted]">{context}</p>
-          <p className="text-[12px] text-[--text-muted]">Early Reader</p>
+          <p className="text-[12px] text-[--text-muted]">{role}</p>
         </div>
       </div>
     </motion.div>
@@ -119,13 +134,13 @@ export function SocialProof() {
       {/* Header */}
       <div className="text-center">
         <SectionReveal>
-          <SectionLabel>WHAT READERS SAY</SectionLabel>
-        </SectionReveal>
-
-        <SectionReveal delay={0.1}>
           <h2 className="text-[28px] md:text-[36px] lg:text-[44px] font-bold leading-[1.1] tracking-[-0.02em] text-[--text-heading] font-[family-name:--font-display] max-w-2xl mx-auto mt-4">
             They started for the summaries. They stayed for the retention.
           </h2>
+        </SectionReveal>
+
+        <SectionReveal delay={0.1}>
+          <SectionLabel>WHAT READERS SAY</SectionLabel>
         </SectionReveal>
       </div>
 
@@ -136,8 +151,10 @@ export function SocialProof() {
             key={t.name}
             name={t.name}
             context={t.context}
+            role={t.role}
             quote={t.quote}
             stars={t.stars}
+            initials={t.initials}
             index={i}
           />
         ))}

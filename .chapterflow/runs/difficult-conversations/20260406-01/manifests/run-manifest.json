@@ -1,0 +1,53 @@
+{
+  "packVersion": "v12-sealed",
+  "bookId": "difficult-conversations",
+  "runId": "20260406-01",
+  "packRoot": "scripts/book/prompts/chapterflow-v12-sealed",
+  "runRoot": ".chapterflow/runs/difficult-conversations/20260406-01",
+  "sourceRoot": ".chapterflow/sources/difficult-conversations",
+  "outputProfile": "flagship_v4_compatible",
+  "learningContract": "research_native",
+  "runProfile": "balanced_flagship",
+  "validationMode": "chapter_gate",
+  "chapterGateQuizMode": "generate",
+  "scenarioTonePolicy": "required",
+  "rightsMode": "startup_light",
+  "waveSize": 2,
+  "generateChapterReviewWrapper": true,
+  "strictPackAudit": true,
+  "forbidBulkGenerators": true,
+  "releaseAssembleFromValidatedOnly": true,
+  "preserveApprovedChapterHashes": true,
+  "sourceSidecarsRequired": true,
+  "artifactGuardRequired": true,
+  "releaseGuardRequired": true,
+  "qualityDecayStopDelta": 1.5,
+  "book": {
+    "bookId": "difficult-conversations",
+    "title": "Difficult Conversations: How to Discuss What Matters Most",
+    "author": "Douglas Stone, Bruce Patton, Sheila Heen",
+    "categories": ["Communication", "Self-Help", "Psychology", "Negotiation"],
+    "tags": [
+      "dialogue",
+      "conflict-resolution",
+      "feedback",
+      "feelings",
+      "identity",
+      "listening",
+      "negotiation",
+      "harvard-negotiation-project",
+      "relationships",
+      "workplace-communication"
+    ],
+    "edition": {
+      "name": "10th Anniversary Edition",
+      "translator": "",
+      "publishedYear": 2010,
+      "translationYear": null,
+      "sourceText": ".chapterflow/sources/difficult-conversations/difficult-conversations.txt",
+      "sourceProvenance": "Paraphrased summaries and structural outlines only. Authored as original reference material for the ChapterFlow pipeline. No verbatim text from the book is included. All examples and scenarios are invented fresh."
+    },
+    "variantFamily": "EMH",
+    "chapterRange": "1-12"
+  }
+}

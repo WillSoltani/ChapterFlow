@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch01-q01",
+      "prompt": "What central assumption does Chapter 1 challenge first?",
+      "choices": [
+        "That morality mainly begins in careful reasoning",
+        "That people ever disagree about values",
+        "That customs can vary by group"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter opens by weakening the reason-first story, not by denying disagreement or cultural variation.",
+        "direct": "Haidt starts by challenging the prestige of rationalist moral origins.",
+        "competitive": "The first target is reason on the throne."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q02",
+      "prompt": "Why do Piaget and Kohlberg matter in this chapter?",
+      "choices": [
+        "They prove intuition is always right",
+        "They represent the reasoning-heavy model Haidt pressures",
+        "They introduced the full moral foundations theory"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Their work matters because it makes the older development-through-reason picture clear.",
+        "direct": "They are the load-bearing examples of the rationalist developmental tradition.",
+        "competitive": "They are the prestige model under attack, not the final answer."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q03",
+      "prompt": "What does the distinction between convention and morality help show?",
+      "choices": [
+        "That every rule feels equally serious",
+        "That rules are never culturally shaped",
+        "That moral life is not one single ladder of rule-following"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Turiel matters because some rules feel flexible while others feel morally loaded.",
+        "direct": "The distinction complicates any one-track theory of moral development.",
+        "competitive": "One ladder cannot explain two different kinds of rule experience."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q04",
+      "prompt": "In a budget meeting, Lena instantly condemns a legal customer tactic, then keeps changing her reasons as coworkers respond. Which chapter concept best fits the moment?",
+      "choices": [
+        "Moral dumbfounding",
+        "Pure relativism",
+        "Stable convention enforcement"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The judgment stays while the reasons wobble, which is the pattern Chapter 1 is naming.",
+        "direct": "That sequence is moral dumbfounding: verdict first, unstable defense second.",
+        "competitive": "The verdict arrived before the argument could keep up."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q05",
+      "prompt": "Which response best matches Chapter 1 when your first explanation for a moral judgment falls apart?",
+      "choices": [
+        "Assume the judgment must be meaningless",
+        "Pretend your original reason was stronger than it was",
+        "Admit the judgment may be real while the explanation is incomplete"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter rejects both cynicism and fake certainty.",
+        "direct": "A weak explanation does not automatically empty the judgment, but it does lower confidence in your case.",
+        "competitive": "Do not surrender the verdict or oversell the spin."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q06",
+      "prompt": "Why does cross-cultural variation matter in Chapter 1?",
+      "choices": [
+        "It shows morality is only fashion",
+        "It pressures the idea of one narrow universal moral script",
+        "It proves reason never matters"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Different communities drawing the border differently suggests a wider moral mind, not a fake one.",
+        "direct": "Variation matters because it weakens a thin one-script account of moral judgment.",
+        "competitive": "A moving border embarrasses a rigid theory."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q07",
+      "prompt": "During a family argument, Devon realizes one relative sees an issue as deep disrespect while another sees it as only bad manners. What should he notice first?",
+      "choices": [
+        "That one of them must be irrational",
+        "That they may be using different moral boundary maps",
+        "That no moral discussion is possible"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Chapter 1 would start by noticing a map difference, not by declaring the conversation hopeless.",
+        "direct": "The disagreement may involve different moral boundaries rather than simple ignorance.",
+        "competitive": "Border mismatch beats lazy contempt as a diagnosis."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q08",
+      "prompt": "Priya watches students react instantly to a scenario and only later build clean debate cases. What does this most strongly support?",
+      "choices": [
+        "That fast reaction and strong argument quality are the same thing",
+        "That reasoning often follows judgment rather than producing it first",
+        "That students should stop arguing altogether"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The timing is the clue: reaction first, polished defense later.",
+        "direct": "Chapter 1 uses exactly this sequence to pressure reason-first morality.",
+        "competitive": "The case is chasing the verdict."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q09",
+      "prompt": "Which statement best avoids both mistakes Chapter 1 warns against?",
+      "choices": [
+        "If judgment comes first, all moral claims are equally empty",
+        "If I feel strongly, my argument must be strong too",
+        "Judgment can come first, so I should question my certainty without pretending judgment is meaningless"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter asks for humility without cynicism.",
+        "direct": "It downgrades confidence while keeping moral seriousness alive.",
+        "competitive": "No chaos, no ego worship. Harder honesty."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch01-q10",
+      "prompt": "Chapter 1 most directly sets up which next question for Chapter 2?",
+      "choices": [
+        "How to classify every moral foundation in politics",
+        "What job reasoning is actually doing once the judgment already exists",
+        "Why religion creates social cohesion"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter ends by earning a question about reason's role after intuition moves first.",
+        "direct": "Chapter 2 inherits the problem of what reasoning is for once judgment has already landed.",
+        "competitive": "Once reason loses the throne, its real job becomes the next fight."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

@@ -4,11 +4,11 @@ import { useMemo, useState } from "react";
 import { ArrowRight, Coins, Copy, Gift, Sparkles, Users } from "lucide-react";
 import { Button } from "@/app/book/components/ui/Button";
 import { Card } from "@/app/book/components/ui/Card";
-import type { FlowPointsPayload } from "@/app/book/hooks/useFlowPoints";
+import type { InsightPointsPayload } from "@/app/book/hooks/useInsightPoints";
 
 type FlowPointsSectionProps = {
   loading: boolean;
-  payload: FlowPointsPayload | null;
+  payload: InsightPointsPayload | null;
   error: string | null;
   redeemingRewardId: string | null;
   message: string | null;
@@ -181,7 +181,7 @@ export function FlowPointsSection({
               >
                 <p className="text-sm font-semibold text-(--cf-text-1)">{item.label}</p>
                 <p className="mt-2 text-2xl font-semibold tracking-tight text-(--cf-text-1)">
-                  {item.amount > 0 ? `+${formatPoints(item.amount)}` : "Varies"}
+                  {item.displayValue}
                 </p>
                 <p className="mt-2 text-sm leading-6 text-(--cf-text-3)">{item.note}</p>
               </div>

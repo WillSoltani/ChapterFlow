@@ -1,0 +1,112 @@
+{
+  "bookId": "extreme-ownership",
+  "runId": "20260408-230830",
+  "generatedAt": "2026-04-08T23:14:35Z",
+  "sourcePolicy": "public_or_authorized_plus_secondary",
+  "sourceDiscoveryMode": "web_bundle",
+  "notes": "No lawful full-text manuscript was located. The frozen bundle therefore uses Open Library for first-edition chapter-map stability, Google Books for authorized metadata, Macmillan for an official excerpt of the first numbered chapter plus current work-family metadata, and SuperSummary part-level study-guide pages for chapter-by-chapter interpretation support. Reader-facing output must stay paraphrase-first unless a short exact line is directly visible in the frozen official excerpt.",
+  "sources": [
+    {
+      "id": "src-openlibrary-2015-first-edition",
+      "title": "Extreme ownership",
+      "url": "https://openlibrary.org/books/OL27197173M/Extreme_ownership",
+      "type": "bibliographic_record",
+      "role": "canonical chapter map and first-edition identifiers",
+      "confidence": "high",
+      "usedFor": [
+        "edition lock",
+        "table of contents",
+        "publication metadata",
+        "chapter numbering"
+      ],
+      "notes": "Open Library lists the 2015 St. Martin's Press first edition, 298 pages, ISBN-13 9781250067050, and the full package table of contents from the intro through Chapter 12."
+    },
+    {
+      "id": "src-googlebooks-2015-preview",
+      "title": "Extreme Ownership: How U.S. Navy SEALs Lead and Win",
+      "url": "https://books.google.com/books/about/Extreme_Ownership.html?id=Hv-5BwAAQBAJ",
+      "type": "authorized_preview_page",
+      "role": "authorized metadata and work-family cross-check",
+      "confidence": "high",
+      "usedFor": [
+        "edition family cross-check",
+        "publication metadata",
+        "core thesis support"
+      ],
+      "notes": "Google Books confirms St. Martin's Press, October 20, 2015, 256-page ebook metadata, the work family, and the publisher summary describing leadership, Ramadi, and the chapter themes such as Cover and Move and Decentralized Command."
+    },
+    {
+      "id": "src-macmillan-2017-official-page",
+      "title": "Extreme Ownership",
+      "url": "https://us.macmillan.com/books/9781427264305/extremeownership/",
+      "type": "official_publisher_page",
+      "role": "official work-family metadata and lawful excerpt support",
+      "confidence": "high",
+      "usedFor": [
+        "official summary support",
+        "chapter 2 excerpt support",
+        "alternative edition review"
+      ],
+      "notes": "Macmillan hosts the official work-family page for the newer edition and exposes a lawful excerpt from Chapter 1, 'Extreme Ownership,' covering the Ramadi blue-on-blue incident and Willink's ownership response."
+    },
+    {
+      "id": "src-supersummary-foreword-intro",
+      "title": "Extreme Ownership Foreword-Introduction Summary & Analysis",
+      "url": "https://www.supersummary.com/extreme-ownership/foreword-introduction-summary/",
+      "type": "reputable_secondary_summary",
+      "role": "intro framing and opening battlefield dilemma support",
+      "confidence": "medium_high",
+      "usedFor": [
+        "chapter 1 briefing",
+        "whole-book framing",
+        "part boundary support"
+      ],
+      "notes": "SuperSummary provides chapter-level summary coverage of the foreword, preface, and introduction, including the Ramadi combat dilemma and the book's three-part structure."
+    },
+    {
+      "id": "src-supersummary-part1",
+      "title": "Extreme Ownership Part 1 Summary & Analysis",
+      "url": "https://www.supersummary.com/extreme-ownership/part-1-summary/",
+      "type": "reputable_secondary_summary",
+      "role": "chapter-level interpretation for chapters 2 through 5",
+      "confidence": "medium_high",
+      "usedFor": [
+        "chapter 2 briefing",
+        "chapter 3 briefing",
+        "chapter 4 briefing",
+        "chapter 5 briefing"
+      ],
+      "notes": "Provides chapter summaries for 'Extreme Ownership,' 'No Bad Teams, Only Bad Leaders,' 'Believe,' and 'Check the Ego,' including the blue-on-blue aftermath, Hell Week boat crew swap, Iraqi partner-force belief problem, and the danger of SEAL ego."
+    },
+    {
+      "id": "src-supersummary-part2",
+      "title": "Extreme Ownership Part 2 Summary & Analysis",
+      "url": "https://www.supersummary.com/extreme-ownership/part-2-summary/",
+      "type": "reputable_secondary_summary",
+      "role": "chapter-level interpretation for chapters 6 through 9",
+      "confidence": "medium_high",
+      "usedFor": [
+        "chapter 6 briefing",
+        "chapter 7 briefing",
+        "chapter 8 briefing",
+        "chapter 9 briefing"
+      ],
+      "notes": "Provides chapter summaries for 'Cover and Move,' 'Simple,' 'Prioritize and Execute,' and 'Decentralized Command,' including interdependent-unit coordination, simplified patrol planning, rooftop crisis triage, and delegated command."
+    },
+    {
+      "id": "src-supersummary-part3",
+      "title": "Extreme Ownership Part 3-Appendix Summary & Analysis",
+      "url": "https://www.supersummary.com/extreme-ownership/part-3-appendix-summary/",
+      "type": "reputable_secondary_summary",
+      "role": "chapter-level interpretation for chapters 10 through 13 and the afterword",
+      "confidence": "medium_high",
+      "usedFor": [
+        "chapter 10 briefing",
+        "chapter 11 briefing",
+        "chapter 12 briefing",
+        "chapter 13 briefing"
+      ],
+      "notes": "Provides chapter summaries for 'Plan,' 'Leading Up and Down the Chain of Command,' 'Decisiveness amid Uncertainty,' and 'Discipline Equals Freedom,' including the kidnap rescue plan, leading up the chain, the sniper building hesitation, and the disciplined search protocol."
+    }
+  ]
+}

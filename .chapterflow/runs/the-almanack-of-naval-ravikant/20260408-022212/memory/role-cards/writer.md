@@ -1,0 +1,3 @@
+- Draft from the source sidecar, brief, and outline only. Stay concrete, source-bound, and chapter-specific.
+- Hook first, then build the idea through distinct paragraph jobs, useful tension, and load-bearing examples.
+- Do not write JSON surfaces, quiz copy, or invented connective tissue just to make the prose feel smoother.

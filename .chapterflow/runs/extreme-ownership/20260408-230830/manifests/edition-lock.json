@@ -1,0 +1,65 @@
+{
+  "bookId": "extreme-ownership",
+  "runId": "20260408-230830",
+  "lockedAt": "2026-04-08T23:14:35Z",
+  "selectionMode": "auto_locked_after_discovery",
+  "materialAmbiguity": false,
+  "title": "Extreme Ownership",
+  "author": "Jocko Willink, Leif Babin",
+  "chosenEdition": {
+    "name": "First English edition",
+    "fullTitle": "Extreme Ownership: How U.S. Navy SEALs Lead and Win",
+    "publisher": "St. Martin's Press",
+    "publishedDate": "2015-10-20",
+    "publishedYear": 2015,
+    "language": "English",
+    "isbn13": "9781250067050",
+    "isbn10": "1250067057",
+    "format": "Print reference edition for chapter-map stability",
+    "sourceOfTruth": "https://openlibrary.org/books/OL27197173M/Extreme_ownership",
+    "chapterStructure": [
+      "Leadership: The Single Most Important Factor",
+      "Extreme Ownership",
+      "No Bad Teams, Only Bad Leaders",
+      "Believe",
+      "Check the Ego",
+      "Cover and Move",
+      "Simple",
+      "Prioritize and Execute",
+      "Decentralized Command",
+      "Plan",
+      "Leading Up and Down the Chain of Command",
+      "Decisiveness amid Uncertainty",
+      "Discipline Equals Freedom: The Dichotomy of Leadership"
+    ]
+  },
+  "alternativesConsidered": [
+    {
+      "name": "2015 Google Books ebook listing",
+      "publishedDate": "2015-10-20",
+      "isbn13": "9781466874961",
+      "url": "https://books.google.com/books/about/Extreme_Ownership.html?id=Hv-5BwAAQBAJ",
+      "status": "same_work_family_non_material_variant",
+      "notes": "Authorized ebook preview page for the same 2015 work family. Useful for lawful metadata support, but the print-first Open Library record is better for chapter-map stability."
+    },
+    {
+      "name": "2017 St. Martin's / Macmillan new edition page",
+      "publishedDate": "2017-11-21",
+      "isbn13": "9781250183866",
+      "url": "https://us.macmillan.com/books/9781427264305/extremeownership/",
+      "status": "same_core_work_family_with_extra_backmatter",
+      "notes": "Official work-family page with a lawful excerpt from the first numbered chapter. It appears to be a newer edition variant and is useful for excerpt support, but the 2015 first edition remains the cleaner chapter-map lock."
+    }
+  ],
+  "decisionRationale": [
+    "Open Library exposes the 2015 first-edition print identifiers and the full package table of contents, which is the most stable source for chapter numbering in this run.",
+    "Google Books confirms the same 2015 work family and core thesis without indicating a materially different chapter order.",
+    "Macmillan's newer official page supports the same core text family and offers a lawful excerpt, but it is not needed as the chapter-map lock because it reflects a newer edition context.",
+    "No translation or materially different chapter structure was found that would change chapter order, chapter scope, or chapter-level interpretation."
+  ],
+  "operatingRules": {
+    "quotePolicy": "paraphrase_first",
+    "exactQuotePolicy": "allowed_only_if_verified_in_frozen_bundle",
+    "translationQuestionRequired": false
+  }
+}

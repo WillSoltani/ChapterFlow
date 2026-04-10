@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch06-q01",
+      "prompt": "According to Sun Tzu's opening principle in Chapter 6, what advantage does the army that arrives first at the battlefield gain?",
+      "choices": [
+        "A) Numerical superiority over the enemy",
+        "B) The ability to rest and prepare while the latecomer is forced to respond on ground not of their choosing",
+        "C) A guaranteed victory regardless of strategy"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Nice catch. Sun Tzu opens Chapter 6 with the first-in-field principle: the side that arrives early is fresh and sets the terms of engagement, while the latecomer scrambles and is already operating at a disadvantage before a blow is struck.",
+        "direct": "First-in-field advantage is structural, not numerical. Arriving first lets you select the terrain, prepare positions, and conserve energy. The latecomer inherits ground they did not choose and arrives already taxed. Choice A conflates first-mover position with troop count, which are independent variables. Choice C confuses a situational advantage with an absolute guarantee.",
+        "competitive": "A fails because Sun Tzu explicitly separates positional advantage from head count — a smaller, early-arriving force can still set favourable terms. C is disqualified immediately: Sun Tzu never promises certainty, only probability shaped by preparation. B correctly captures the relational dynamic: the first arrival rests and prepares while the enemy is compelled to react on unfamiliar ground."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch06-q02",
+      "prompt": "Sun Tzu describes two mechanisms for moving an opponent to ground of your choosing. What are they?",
+      "choices": [
+        "A) Luring with something desirable and threatening with a danger they must address",
+        "B) Flanking and frontal assault",
+        "C) Feigning retreat and setting ambushes"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nice catch. Sun Tzu names two agenda-control levers: offer something the enemy wants (lure) so they come to you, or create a threat so pressing they are compelled to respond — both maneuvers put them on ground you have chosen.",
+        "direct": "The two mechanisms are persuasion-pull (lure) and compulsion-push (threat). They are tools of positional control, not tactical formations. B describes attack formations, not agenda-control. C describes a single deceptive tactical sequence, not the paired theoretical mechanism Sun Tzu articulates in this chapter.",
+        "competitive": "B names battlefield geometries, not the psychological levers Sun Tzu is analyzing here. C describes a deception tactic — a special case — but misses the generalizable principle of lure-versus-threat. Only A names both levers at the correct level of abstraction: offer desire or impose danger, either way you dictate where the enemy goes."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch06-q03",
+      "prompt": "Sun Tzu argues that an army of ten thousand can pin down fractions of a larger force. What principle makes this concentration-versus-division strategy possible?",
+      "choices": [
+        "A) Superior morale and discipline in the smaller force",
+        "B) The speed advantage inherent in smaller forces",
+        "C) Knowledge asymmetry — you discover the enemy's dispositions while keeping your own hidden"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Nice catch. The engine behind concentration-versus-division is information: when you know where the enemy will be and they do not know where you will strike, you can mass your whole force against their isolated fractions every time.",
+        "direct": "Knowledge asymmetry is the prerequisite; concentration is the result. Without knowing the enemy's dispositions you cannot reliably concentrate at the decisive point. A (morale) and B (speed) are real factors elsewhere in Sun Tzu but are not identified as the mechanism for this specific principle in Chapter 6.",
+        "competitive": "A introduces morale, which Sun Tzu addresses elsewhere but not as the explanatory mechanism here. B introduces speed, also a real but separate variable. C is the only choice that identifies the correct causal link Sun Tzu draws: concealment of your own form plus discovery of the enemy's form enables you to appear concentrated where they are divided."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch06-q04",
+      "prompt": "Priya is a product manager at a fintech startup. Her team is preparing to launch a new payments feature. A much larger competitor has just announced a similar product. Applying Sun Tzu's first-in-field principle, what should Priya do?",
+      "choices": [
+        "A) Accelerate the launch to reach key early-adopter accounts first, so her team sets the integration standards and customer expectations before the larger competitor can",
+        "B) Delay the launch and spend more time on polish to ensure superiority at release",
+        "C) Match the competitor's announced release date exactly to signal competitive parity"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nice catch. Sun Tzu's first-in-field principle says the side that arrives first rests and prepares while the latecomer scrambles. Priya reaching early-adopter accounts first lets her team define the standard — the competitor then has to respond on her terms.",
+        "direct": "First-in-field advantage is relational: it is about setting the terms of comparison, not about perfection. B (delay for polish) concedes the field. C (matching the date) achieves no positional advantage — arriving simultaneously is not arriving first. A alone captures the principle: reach the decisive segment early, establish the norm, and force the larger rival to react.",
+        "competitive": "B is a common quality-bias trap — Sun Tzu is concerned with positional timing, not perfection. C mistakes date-matching for strategic positioning; simultaneous arrival forfeits the first-mover benefit. A correctly operationalizes the principle: target the accounts that define industry adoption patterns, arrive first, and let the competitor inherit a comparison that you have already framed."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q05",
+      "prompt": "Kofi is a department head at a nonprofit organization. A rival department is quietly lobbying leadership to absorb Kofi's team's budget. Kofi learns of this through an internal contact but says nothing publicly. Applying Sun Tzu's knowledge-asymmetry principle, what is Kofi's best move?",
+      "choices": [
+        "A) Immediately confront the rival department head and demand they stop",
+        "B) Announce publicly that his department's budget is under threat to build sympathy across the organization",
+        "C) Use the advance knowledge to quietly secure executive sponsorship and document measurable impact before the budget meeting, while giving no signal that he knows about the rival's campaign"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Nice catch. Knowledge asymmetry means Kofi knows the enemy's disposition while they do not know he knows. Sun Tzu says to use this gap to prepare and concentrate strength — here, locking in sponsors and evidence — before the opponent can adjust their approach.",
+        "direct": "The asymmetry has value only if it is not surrendered. A (direct confrontation) destroys the information advantage and triggers a counter-move. B (public announcement) also eliminates the information gap and may harden opposition. C preserves the gap: Kofi acts on what he knows while appearing uninformed, arriving at the decisive moment — the budget meeting — already fortified.",
+        "competitive": "A trades away the asymmetry for nothing — confrontation alerts the rival and triggers defensive escalation. B is even worse: public disclosure removes the advantage and introduces unpredictable coalition dynamics. C is the only option that keeps the information gap intact and converts it into positional strength, exactly the sequence Sun Tzu prescribes: know their form, conceal your own, concentrate before they can divide your support."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q06",
+      "prompt": "Lena is a freelance consultant competing for a long-term contract. The prospective client has mentioned they are also evaluating two large consulting firms. Applying Sun Tzu's threat-and-lure agenda-control mechanisms, which approach best reflects his teaching?",
+      "choices": [
+        "A) Offer the lowest possible price to make herself the obvious cost-effective choice",
+        "B) Ask the client to compare her résumé directly against the large firms to show she is equally qualified",
+        "C) Demonstrate proprietary insight into the client's specific problem (lure) and quietly note a hidden risk in their current approach that only her specialized experience can address (threat-of-omission)"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Nice catch. Sun Tzu's two levers are lure (offer something desired) and threat (create a danger they must address). Lena offers unique insight — the lure — and surfaces a risk only she can close — the threat. Both moves draw the client toward ground Lena has prepared.",
+        "direct": "Price-cutting (A) is a single-lever play that invites a race to the bottom and positions Lena as a commodity. Direct comparison (B) accepts the large firms' framing — Lena fights on their chosen ground. C applies both levers simultaneously: proprietary insight creates pull, identified risk creates urgency, and together they move the client's decision-making onto terrain where Lena's specific strengths dominate.",
+        "competitive": "A reduces the contest to price, where large firms can outlast a freelancer. B is worse — voluntarily entering a credentials comparison against larger opponents with larger teams is a losing field. C is the only choice that operationalizes both agenda-control mechanisms: the lure (insight no generalist firm can replicate) and the threat (a risk the client cannot ignore), making Lena the only viable answer to the problem she has framed."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q07",
+      "prompt": "Sun Tzu writes: 'Do not repeat the tactics which have gained you one victory, but let your methods be regulated by the infinite variety of circumstances.' What structural insight about strategy does this reveal?",
+      "choices": [
+        "A) Successful tactics should be refined and reused because they have been proven effective",
+        "B) Tactics are always situation-specific; repeating them gifts the opponent a pattern to predict and counter, making formlessness the only durable strategic posture",
+        "C) Commanders should rotate tactics randomly to keep opponents confused"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Nice catch. Sun Tzu's formlessness principle is not randomness — it is adaptive responsiveness. The 'heaven-born captain' modifies methods in direct relation to the opponent and situation; the moment a tactic becomes habitual it becomes predictable, and predictability is the death of advantage.",
+        "direct": "A mistakes past effectiveness for future validity — it ignores the opponent's ability to adapt. C mistakes randomness for formlessness; random action has no relationship to circumstance and is not the same as fluid responsiveness. B identifies the structural logic: a tactic that works once reveals information about your preferences; repetition converts that information into a map the opponent can exploit. Formlessness denies them that map.",
+        "competitive": "A conflates proven-in-the-past with useful-in-the-future, ignoring that the opponent is also a learning system. C is a common misreading — randomness is not adaptive; it simply removes pattern without introducing intelligent variation tied to circumstance. B is the only choice that captures Sun Tzu's actual reasoning: pattern is vulnerability, and formlessness — shape tailored precisely to each opponent — is the structural answer."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q08",
+      "prompt": "Sun Tzu states that reinforcing any one direction inevitably weakens the opposite. Analyze how this principle connects to the defensive-first rule Sun Tzu establishes in Chapter 4.",
+      "choices": [
+        "A) The two principles are unrelated; Chapter 4's defensive-first rule concerns timing, while Chapter 6's division principle concerns numbers",
+        "B) Chapter 4 supersedes Chapter 6: once the defensive posture is established, division of forces is no longer a risk",
+        "C) Both principles derive from the same underlying logic: security comes from concentrating strength where the enemy will strike, and any dispersal — whether across directions in Chapter 6 or before conditions are ripe in Chapter 4 — creates exploitable weakness"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Nice catch. The thread connecting Chapter 4 and Chapter 6 is the conservation-of-strength logic: both chapters warn that strength is finite and its dispersal — across directions or across time — hands the enemy an exploitable gap. Defend first (Ch 4) so you have strength to concentrate; concentrate rather than divide (Ch 6) so you can meet the enemy at full force.",
+        "direct": "A wrongly partitions the two principles as independent. B wrongly makes them sequential and hierarchical. The correct reading is that both chapters instantiate the same rule at different levels of analysis: strategic timing (Ch 4, do not attack until conditions allow) and operational geometry (Ch 6, do not spread forces across all directions). The shared root is that finite strength dispersed is finite strength destroyed.",
+        "competitive": "A creates a false separation — both chapters are expressions of the same resource-conservation logic and Sun Tzu treats them as mutually reinforcing. B introduces a sequentialist hierarchy that Sun Tzu never asserts; the defensive-first rule in Ch 4 does not dissolve the division-weakness warning in Ch 6. C is the only choice that performs genuine cross-chapter analysis, tracing both principles back to their shared premise: concentrated strength is invulnerable, dispersed strength is prey."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch06-q09",
+      "prompt": "Evaluate this claim: 'Sun Tzu's formlessness principle makes Chapter 6 the most practically useful chapter in The Art of War because it tells commanders they are never bound by rules.' Is this an accurate reading?",
+      "choices": [
+        "A) No — formlessness is itself a rule: shape your response precisely to the opponent and situation. It is the most demanding discipline, not freedom from discipline",
+        "B) Yes — formlessness means there are no fixed rules, so commanders have maximum freedom of action",
+        "C) Partially — formlessness frees commanders from tactical rules but still requires following strategic rules"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nice catch. The claim misreads formlessness as absence of constraint. Sun Tzu's formlessness is a rigorous discipline: every modification of tactic must be calibrated to the specific opponent and situation. That is far more demanding than following a fixed playbook.",
+        "direct": "B collapses formlessness into license — the opposite of what Sun Tzu intends. Formlessness requires constant situational analysis and opponent-specific adaptation; arbitrary freedom of action would make strategy impossible. C attempts a partial salvage by splitting tactical from strategic rules, but Sun Tzu does not draw this boundary — the formlessness principle applies at both levels. A is the correct evaluative reading: formlessness is the hardest rule because it offers no template to fall back on.",
+        "competitive": "B is a motivated misreading — commanders who treat formlessness as license have no method and cannot reliably concentrate at the decisive point. C is a compromise that introduces a tactical-strategic split Sun Tzu does not make; it softens the reading without grounding the distinction in the text. A is the only choice that correctly evaluates the principle: formlessness is maximum constraint disguised as maximum freedom — you must match every response to every opponent, which demands more intelligence and more discipline than any fixed rule."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch06-q10",
+      "prompt": "Sun Tzu connects the preserve-intact principle (Chapter 3) with the knowledge-asymmetry and concentration principles of Chapter 6. Evaluate which of the following best describes the relationship between winning without fighting (Ch 3) and discovering the enemy's dispositions while concealing your own (Ch 6).",
+      "choices": [
+        "A) They are independent virtues — preserve-intact is a moral preference for minimal violence, while knowledge asymmetry is a technical intelligence-gathering method",
+        "B) Knowledge asymmetry is the operational mechanism that makes preserve-intact possible: when you know the enemy's dispositions and they know nothing of yours, you can maneuver them into surrender without full battle — the information gap is what makes bloodless victory achievable",
+        "C) Preserve-intact is the goal and knowledge asymmetry is merely one of many optional tools that may or may not be used to reach it"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Nice catch. Sun Tzu's preserve-intact ideal is not a moral preference floating free of method — it depends on knowing enough about the enemy to maneuver them to a position where fighting becomes pointless for them. Knowledge asymmetry is the engine; preserve-intact is what the engine produces when run correctly.",
+        "direct": "A severs a connection Sun Tzu explicitly makes — he does not treat preserve-intact as ethics and knowledge asymmetry as technique; both are strategic tools that work together. C makes the relationship looser than it is: knowledge asymmetry is not merely one optional path to preserve-intact, it is the structural prerequisite. Without knowing the enemy's dispositions you cannot position your force to make their resistance futile, and the preserve-intact outcome becomes a matter of luck rather than design.",
+        "competitive": "A wrongly moralizes preserve-intact and technicizes knowledge asymmetry, breaking a connection Sun Tzu treats as integral. C is closer but wrong in degree — 'one of many optional tools' understates the dependency. Sun Tzu's logic is directional and tight: concealment plus discovery creates a maneuver space wide enough to achieve bloodless victory; remove the asymmetry and the maneuver space collapses. B is the only choice that captures the causal chain: knowledge asymmetry is not a supplement to preserve-intact, it is its structural condition."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

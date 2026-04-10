@@ -1,0 +1,4 @@
+- Judge hook strength, specificity, source anchoring, paragraph motion, convertibility, and whether hard sections genuinely deepen.
+- Pay special attention to overreach: if the draft sounds more certain, richer, or more mechanistic than the sidecar supports, flag it.
+- Call out meta-distance, conceptual repetition, fake depth, and passages that could fit almost any business book.
+- Return PASS, LOCAL_PATCH, or REROUTE based on whether the problem is local or structural.

@@ -1,0 +1,45 @@
+{
+  "bookId": "leaders-eat-last",
+  "runId": "20260408-035700",
+  "chapterNumber": 3,
+  "title": "Belonging",
+  "normalizedTitle": "belonging",
+  "type": "core_chapter",
+  "partTitle": "Our Need to Feel Safe",
+  "alias": [],
+  "printedPageRange": {
+    "start": null,
+    "end": null
+  },
+  "sourceIds": [
+    "simon_sinek_official",
+    "penguin_random_house_us_page",
+    "google_books_2017_paperback",
+    "google_books_2014_ebook",
+    "openlibrary_2017_paperback_family",
+    "uigm_catalog_toc",
+    "overdrive_ebook_metadata"
+  ],
+  "lockedEdition": {
+    "name": "Leaders Eat Last: Why Some Teams Pull Together and Others Don't",
+    "family": "2017 Portfolio / Penguin revised U.S. trade family"
+  },
+  "sourceFiles": {
+    "tocFile": "source-freeze/source-bundle/uigm-catalog-toc.html",
+    "publisherFile": "source-freeze/source-bundle/penguin-random-house.html",
+    "googleBooks2017File": "source-freeze/source-bundle/google-books-2017.html",
+    "textFile": "sidecars/source/ch03.source.txt"
+  },
+  "headings": [
+    {
+      "level": "chapter",
+      "title": "Belonging",
+      "printedPage": null,
+      "anchorId": null
+    }
+  ],
+  "notes": [
+    "TOC anchor: Part 1 - Our Need to Feel Safe; Chapter 3 - Belonging.",
+    "Coverage limits: metadata and catalog only; use paraphrase-first prose and avoid precise page-based claims."
+  ]
+}

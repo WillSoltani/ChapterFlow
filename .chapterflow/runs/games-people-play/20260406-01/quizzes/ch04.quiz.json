@@ -1,0 +1,178 @@
+{
+  "chapterId": "ch04",
+  "chapterNumber": 4,
+  "chapterTitle": "Why Games Feel So Hard to Stop",
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "In Berne's model, what does the word 'stroke' refer to?",
+      "choices": [
+        "Any positive emotion",
+        "A specific therapeutic technique",
+        "The basic unit of social acknowledgment that humans need to keep functioning"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Berne uses 'stroke' in a specific technical sense: the basic unit of social acknowledgment a human needs to stay psychologically functional. It is not just a positive emotion (the chapter is explicit that negative strokes count too), and it is not a therapeutic technique. It is the metabolic unit the rest of the chapter rests on.",
+        "direct": "Acknowledgment is the right answer because Berne defines strokes as units of social acknowledgment, neutral on whether they are positive or negative. Calling it a positive emotion misses the negative-strokes-count claim. Calling it a therapeutic technique misreads the noun as a verb.",
+        "competitive": "Acknowledgment is the unit. The 'positive emotion' answer collapses the chapter's central distinction; the 'therapeutic technique' answer confuses Berne's noun for a stroke (the unit) with the verb to stroke (the action). Neither has the structural claim the chapter rests on."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does Berne argue a negative stroke (a fight, an angry message, a criticism) is metabolically better than no stroke at all?",
+      "choices": [
+        "Because the human nervous system needs a steady supply of acknowledgment, and any acknowledgment registers as evidence of being seen, even when the content is bad",
+        "Because negative strokes build character",
+        "Because conflict is stimulating"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter is structural here, not moralistic. The need for acknowledgment is metabolic, and a negative stroke arrives in a metabolism that would otherwise have received zero arrivals that day. The character-building answer is a moralization the chapter explicitly refuses, and the stimulation answer makes the negative stroke sound recreational.",
+        "direct": "Metabolic acknowledgment is the chapter's claim. The character-building answer turns a structural fact into a moral story. The stimulation answer makes the negative stroke sound like entertainment, which trivializes the energetics.",
+        "competitive": "Metabolism, not character, not entertainment. The chapter's structural claim is what makes the rest of the model work; the alternative answers both turn the structural claim into something more comfortable, which is exactly the misread the chapter is built to refuse."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Maya, the open-source maintainer, reads her monthly angry GitHub issue from a stranger and notices that the months without an angry issue are the worse months. According to the chapter, what is the angry issue paying her?",
+      "choices": [
+        "Practice in handling criticism",
+        "A negative stroke that is doing the work of a positive stroke she does not have a reliable source for, plus a confirmation of her existing life position",
+        "Information about her library's user base"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter is specific: the angry issue is paying Maya in two reinforcing ways. First, a negative stroke that arrives in a stroke-deficit environment and is metabolically registered as acknowledgment. Second, a confirmation of the position she has been holding since middle school. The 'practice' answer moralizes; the 'information' answer mistakes the social-level content of the issue for what is actually being delivered.",
+        "direct": "Stroke plus position confirmation is the structural answer. Practice in criticism turns the answer into a self-improvement story; reading the issue as user research mistakes the content for the payoff.",
+        "competitive": "Stroke and position. The practice answer turns the chapter into a personal-growth story, which it is not. The user-research answer reads the surface and misses the entire ulterior level the previous chapter introduced."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Theo, the retired schoolteacher, criticizes his adult daughter Ren's parenting every Sunday despite apologizing every week and being asked to stop. Which life position is the criticism most likely confirming?",
+      "choices": [
+        "I'm OK / You're OK",
+        "I'm not OK / You're OK",
+        "I'm OK / You're not OK"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter places Theo in I'm OK / You're not OK. He has been holding the position 'you have to point out what is wrong or nothing will get fixed' since 1962. The criticism is the move that keeps the position alive. I'm OK / You're OK is the healthy stance and is incompatible with running a Sunday criticism game; I'm not OK / You're OK is depressive and martyr-like, which Theo's posture is not.",
+        "direct": "I'm OK / You're not OK is the structural fit. Theo's stance is corrective and projective, not depressive or healthy. The chapter is explicit that the criticism move is the position-confirming machinery.",
+        "competitive": "Projective, not depressive, not healthy. Theo is running the position from a place of correctness. The other answers misread the energy of the criticism as either martyrdom or game-free contact, both of which the chapter explicitly distinguishes."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Inez calls her friend Banerjee at 11pm with what is now the third real crisis this week. According to the chapter, what is the relationship-level stroke economy paying both women?",
+      "choices": [
+        "Inez gets reliable late-night attention from a person who has known her since college, and Banerjee gets confirmation that she is the kind of person who can be called at 11pm with a crisis, which is one of the only places in her week anybody needs anything from her in particular",
+        "Banerjee is doing all the giving",
+        "Inez is exploiting the friendship and Banerjee should set a boundary"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter's point is that both women are getting paid by the loop. The 'Banerjee is doing all the giving' answer treats the rescuer role as costless to the rescuer, which it is not. The 'set a boundary' answer is from a different framework and misses the chapter's structural point that the calls are paying Banerjee strokes she has not built another source for.",
+        "direct": "Two-sided payout is the chapter's structural claim. One-sided exploitation misreads the energetics; boundary language imports a different framework and mistakes the symptom for the structure.",
+        "competitive": "Both sides are getting paid. Treating Banerjee as a victim ignores what the rescuer role is paying her. Treating it as a boundary problem skips the energetic question the chapter is built to ask."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "A reader sees the position 'I'm not OK / You're OK' and concludes it is just a fancy term for self-criticism. Why does the chapter resist that reading?",
+      "choices": [
+        "Because self-criticism is actually rare",
+        "Because 'I'm not OK / You're OK' is the deeper structural stance behind self-criticism, formed early and confirmed daily by the kinds of transactions the player participates in, and dislodging it requires updating the position itself, not just changing the visible behavior",
+        "Because the position is genetic"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter is careful here. Self-criticism is the visible behavior; the position is the deeper stance the behavior is expressing. Treating them as the same thing leads to interventions that target the visible behavior and fail because the position is still doing the underlying work. The chapter is not making a claim about how rare self-criticism is, and it is explicit that life positions are formed by experience, not genetics.",
+        "direct": "Position-vs-behavior distinction is the chapter's point. Self-criticism rarity is irrelevant to the question; genetic claims are explicitly outside the chapter's framework.",
+        "competitive": "Behavior is the surface, position is the structure. Confusing them is how the entire self-help industry has been failing readers for sixty years. The other answers misread the chapter's frame entirely."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "A senior manager named Mei is the only one in her company who works late on Friday nights and has been doing so for six years. She tells her partner she would love to leave on time. Identify the most likely stroke and life position the pattern is confirming.",
+      "choices": [
+        "Stroke: overtime pay. Position: I'm not OK / You're not OK",
+        "Stroke: career advancement. Position: I'm OK / You're OK",
+        "Stroke: a reliable supply of being-noticed by the late-night office cleaning crew and the one other workaholic on her floor, plus the messages from her boss the next morning. Position: I am not OK unless I am the one who stays the latest"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter's transfer move asks the reader to read for the actual stroke (the small reliable acknowledgments that arrive on the late-night schedule) and the actual position (the I'm not OK that requires the hours to stay confirmed). The first wrong answer reads the surface (pay) and misses the energetics. The second is incompatible with a six-year reluctant pattern.",
+        "direct": "Reliable late-night acknowledgment plus an I'm-not-OK-without-the-hours position is the structural read. Overtime pay misses the energetics; career advancement misreads the felt experience of the pattern.",
+        "competitive": "Late-night acknowledgment plus position-confirmation is the answer. The pay answer reads the surface; the career-advancement answer is incompatible with the reluctance the manager is reporting."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "If Maya wanted to stop running her angry-GitHub-issue game, which of the following is the chapter actually recommending she do?",
+      "choices": [
+        "Delete the GitHub repository and find a new hobby",
+        "Schedule one reliable weekly source of positive strokes (a writing group, a peer review, a real conversation with another maintainer) before doing anything about the negative ones, then slowly work on the position the negative strokes have been confirming",
+        "Force herself to stop reading the issues and accept the discomfort"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter's order of operations is replacement first, then exit. Deleting the repo is exit without replacement, and the chapter is explicit that exit without replacement leads to deprivation and return. Forcing herself to stop reading is the same instruction in a different costume. The reliable replacement supply is the only honest first move.",
+        "direct": "Replacement before exit is the chapter's central practical claim. Both wrong answers are exit-without-replacement instructions in different forms, and the chapter spends its limit-paragraph refusing them.",
+        "competitive": "Replacement first. Both wrong answers are the instruction that has been failing self-help readers for sixty years, dressed up in slightly different language. The chapter is explicitly built to refuse them."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does the chapter insist that 'stop playing the game' is not a serious instruction without a replacement plan?",
+      "choices": [
+        "Because the strokes the game was paying were doing real metabolic work, and removing them without replacement creates deprivation that reliably drives the player back into the game within weeks",
+        "Because the player needs permission from a therapist",
+        "Because games are impossible to leave"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter is honest here. The strokes are real and the deprivation that follows their removal is real, and the player will return to the game inside of a few weeks if there is no replacement supply. The 'permission from a therapist' answer turns the chapter into a credentialing story it is not. The 'impossible' answer makes the chapter more pessimistic than it actually is.",
+        "direct": "Real deprivation following exit-without-replacement is the chapter's structural claim. The credentialing answer misreads the chapter; the impossibility answer ignores the chapter's whole order-of-operations argument.",
+        "competitive": "Deprivation drives return. The credentialing answer turns a tool the chapter offers any reader into a gated one. The impossibility answer makes the chapter more hopeless than it is."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Combining the four chapters so far, what can a reader do with all four tools that they could not do with any subset?",
+      "choices": [
+        "Diagnose the personality types of everyone in their life",
+        "Observe the state of a conversation, draw the two arrows of any single transaction, see the repeating shape when an ulterior pattern is running between two people, AND explain why the pattern is sticky in terms of the strokes it is paying and the life position it is confirming",
+        "Force themselves into the I'm OK / You're OK position"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The four chapters build a layered diagnostic stack: state observation, single-transaction vector, repeating-pattern anatomy, and energetic explanation. Each layer adds something the previous ones could not do. The personality-types answer is the hammer-problem misuse the previous chapter warned against. The 'force yourself into OK/OK' answer is the executive misreading the first chapter spent its limit refusing.",
+        "direct": "Four-layer diagnostic stack from state to vector to pattern to energetics. Personality typing is the hammer problem; forcing a life position is the executive misread of the first chapter. Both wrong answers are exactly the misuses the model is built to prevent.",
+        "competitive": "Layered stack: observation, vector, pattern, energetics. The personality-types answer is the weaponization the third chapter warned against. The forcing answer is the executive misreading the first chapter spent its hard-depth section refusing. Both are the failure modes the four-chapter sequence is built to prevent."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

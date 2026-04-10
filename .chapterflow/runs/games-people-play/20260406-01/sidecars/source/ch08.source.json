@@ -1,0 +1,43 @@
+{
+  "chapterId": "ch08",
+  "book": "Games People Play",
+  "author": "Eric Berne",
+  "sourceDocument": ".chapterflow/sources/games-people-play/games-people-play.txt",
+  "provenance": "Paraphrased reference.",
+  "slices": [
+    {
+      "id": "A",
+      "sourceLines": "430-491",
+      "summary": "ITHY, Wooden Leg, Greenhouse, Stupid, Psychiatry game structures from consulting room category.",
+      "usageNote": "Primary material."
+    },
+    {
+      "id": "B",
+      "summary": "Ch8 covers helping-profession games. Helper is structurally part. Indigence NOT covered.",
+      "usageNote": "Scope guard."
+    },
+    {
+      "id": "C",
+      "summary": "Wooden Leg: real disabilities exist; game is in deployment.",
+      "usageNote": "Moral framing."
+    },
+    {
+      "id": "D",
+      "summary": "Ch1-7 names locked. Ch8: Ife, R\u00e9my, Bo, Caleb, Tamsin, Zara, Inara, Obi, Nils-Erik, Jade, Tova, Xavier.",
+      "usageNote": "Continuity."
+    },
+    {
+      "id": "E",
+      "summary": "Helper's role is the cover. Both sides of the table are part of the game.",
+      "usageNote": "Hard-depth required."
+    }
+  ],
+  "forbiddenContent": [
+    "Verbatim Berne prose",
+    "Indigence game (1964 framing)",
+    "Moralizing clients",
+    "Ch1-7 names",
+    "Ch10 vocabulary",
+    "DSM language beyond accurate mention of real conditions"
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch02-q01",
+      "prompt": "What does the chapter claim is the relationship between the three leadership disciplines (mission-not-method, segmentation, cause-binding)?",
+      "choices": [
+        "They are three independent tools a leader can pick from based on her preferences.",
+        "They are three sequential stages of leadership maturity that leaders move through over a career.",
+        "They are three shapes of trust the leader extends to people who must carry work she cannot do herself."
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Nice catch. The chapter is explicit that the three moves all hinge on a single underlying claim: leadership through other people requires the leader to trust subordinates with work the leader cannot do. The independent-tools framing misses the underlying hinge; the sequential-stages framing imposes a developmental story that the chapter does not endorse.",
+        "direct": "Three trusts, one hinge. Mission-not-method places trust in judgment, segmentation places trust in autonomy, cause-binding places trust in belief. The other two options either flatten the moves into preferences or impose a developmental sequence that does not exist in the material.",
+        "competitive": "The independent-tools answer is the most common miss because it lets the leader pick whichever move feels right. The chapter explicitly refuses that framing. The hinge underneath all three is trust, and the three moves are the same hinge applied in different shapes."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch02-q02",
+      "prompt": "Naya's experiment with her six regional managers makes which specific failure mode visible?",
+      "choices": [
+        "Manufactured cause-language used by a leader who does not believe the cause.",
+        "Segmentation pushed onto units that lack the competence to use the autonomy.",
+        "The silence-wins mechanism, where competent people in a hierarchy that punishes dissent produce decisions worse than any of them would alone."
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Nice catch. Naya's memo is specifically aimed at the silence-wins mechanism: removing the tactical instructions removes the trained reflex to wait for the leader. The other two options describe failures that belong to Camila's example (cause-language) and Tomas's example (segmentation).",
+        "direct": "Silence-wins. Naya's regional managers had been trained, by the previous version of her job, to wait for instructions. The memo removes the part of her job that taught the wait. The other two options misattribute her experiment to the wrong move.",
+        "competitive": "The trap is the segmentation option because Naya is doing something structural to her team, but the structural change she is making is to mission-not-method, not to segmentation. The mechanism she is interrupting is the silence-wins one, where the cost of speaking up is real and the cost of silence is invisible."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch02-q03",
+      "prompt": "Mission-not-method, in the chapter's framing, is best characterized as which kind of trust?",
+      "choices": [
+        "Trust in the team's judgment to make competent decisions about the method without the leader in the room.",
+        "Trust in the team's loyalty to follow the leader's strategic vision regardless of disagreement.",
+        "Trust in the team's obedience to execute the steps the leader has specified."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nice catch. The chapter explicitly says that mission-not-method places trust in judgment. The loyalty-and-obedience options describe the older command-and-control move that mission-not-method is an alternative to.",
+        "direct": "Judgment. The whole point of giving the team the mission instead of the method is that the team has the context to make competent decisions about the method without the leader in the room. The other options describe the move that mission-not-method is designed to replace.",
+        "competitive": "The obedience option is the trap because it sounds like what 'leadership' means in the older register. The chapter is explicit that mission-not-method is the opposite move, and the trust it places is in judgment, not in compliance."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch02-q04",
+      "prompt": "A manager named Owen notices that in his last six leadership meetings, his four direct reports have agreed with him in sequence on every topic. Which diagnostic should he run first?",
+      "choices": [
+        "Whether the four direct reports are colluding privately before the meetings to present a united front.",
+        "Whether his own decisions have actually been correct, in which case the agreement is signal of consensus, not silence.",
+        "Whether the room has been training itself out of disagreement, with the cost of speaking up becoming higher than the cost of silence."
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Nice catch. This is the silence-wins mechanism the chapter describes through Naya's experiment and Jamil's standup pivot. Six meetings of consecutive agreement is the textbook signal that the room has stopped being a place where dissent is free, and the diagnostic is to ask why. The other two options either invent a conspiracy or assume agreement is signal.",
+        "direct": "Silence-wins diagnostic. Six meetings of sequential agreement is the textbook signal of the mechanism the chapter names: the cost of speaking up has become too high, and the cost of silence is invisible. Treating the agreement as signal of correctness is exactly the misread the chapter warns against.",
+        "competitive": "The trap is the his-decisions-are-correct option because it lets Owen avoid the diagnostic. Six meetings of consecutive agreement, across four people on every topic, is not consensus. It is the mechanism the chapter spends real space describing, and the move is to remove himself for a meeting and listen."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q05",
+      "prompt": "A founder reorganizes her 60-person company into four pods of fifteen, each owning a customer segment, each with quarterly autonomy on roadmap. Two of the four pods ship faster than before. The other two stall and produce no roadmap. Which diagnosis fits the chapter's framing?",
+      "choices": [
+        "The segmentation move is structurally wrong for her company, and she should reverse it and return to the monolith.",
+        "Two pods had leads with the context to use the autonomy and two did not, and the fix is to give the two stalled pods method (not mission) on the part of the work they lack context for, without rolling back the segmentation.",
+        "The two stalled pods are evidence that segmentation as a structural move requires more cross-team coordination, not less, and the founder should add a coordinating layer."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Nice catch. The chapter's segmentation reversal is explicit: segmentation only works when each unit is competent. The fix is not to undo the structural move but to give method narrowly to the pods that lack the context, exactly as Kiran does with his autonomous-routines pod. Rolling back the segmentation across the whole team is the wrong response, and adding a coordinating layer recreates the monolith.",
+        "direct": "Conditional fix. The structural move is correct for two of four pods and wrong for two of four, which means the diagnosis is unit-by-unit, not company-wide. Method narrowly to the stalled pods, segmentation everywhere else. The other two options either over-correct or recreate the original monolith.",
+        "competitive": "The trap is the reverse-it option because two of four stalling looks like a 50% failure rate of the structure. The chapter explicitly distinguishes the structural move from the unit-level competence diagnostic. The right move is to fix the units that need fixing without changing the structure that is working for the other half."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q06",
+      "prompt": "Under what condition does mission-not-method become abdication rather than leadership?",
+      "choices": [
+        "When the team receiving the mission lacks the context to make competent decisions about the method on their own.",
+        "When the leader has not articulated the mission in sufficiently inspiring language to motivate the team.",
+        "When the team is too senior to need direction and the leader is therefore redundant."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nice catch. The chapter is explicit that mission-not-method only works when the people receiving the mission have enough context to operate on judgment. New hires, novices, and people in unfamiliar terrain need the older command-and-control move, and giving them mission instead is abdication. The other two options misframe the failure as one of presentation or seniority.",
+        "direct": "Lack of context. The chapter says directly that the diagnostic is whether the subordinate can make a competent decision without the leader in the room. If the answer is no, mission-not-method is abandonment. The inspiring-language option recasts the move as motivational; the redundant-leader option inverts the diagnostic.",
+        "competitive": "The trap is the inspiring-language option because it sounds like a craft critique. The chapter is precise: the failure is structural, not rhetorical. A perfectly delivered mission to people without the context to receive it produces paralysis, and the leader who skips the diagnostic does not find out until the costs are sunk."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q07",
+      "prompt": "A new executive director has been at her organization for four months and is preparing her first all-staff meeting. She is considering using cause-language to bind the team to the mission. Which question should she answer for herself before deciding to use the cause-language?",
+      "choices": [
+        "Whether the team will be motivated by the cause-language as opposed to the standard quarterly-goals language.",
+        "Whether the previous executive director used cause-language successfully and whether she can match the previous register.",
+        "Whether she would resign over the loss of the cause she is about to name, in the specific sense that she would not stay if it were taken away."
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Nice catch. The chapter's sincerity test on the leader is exactly this: would you resign over the loss of this cause? If the answer is no, the cause-language is a manufactured cause, and the team will detect it within months. The other two options either treat cause-language as a motivation technique or compare against a predecessor in a way that misses the test.",
+        "direct": "Sincerity test. The single gating variable for cause-binding is whether the leader actually believes the cause, and the operational form of that question is whether she would resign over its loss. Motivation comparison and predecessor comparison are both irrelevant to the failure mode the chapter warns about.",
+        "competitive": "The trap is the motivation-comparison option because cause-language usually does motivate teams, and the question feels like a craft question. It is not. The chapter is explicit that manufactured cause-language produces cynicism worse than no cause at all, and the only question that prevents the failure is the resignation test on the leader herself."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q08",
+      "prompt": "A leader is pushing initiative downward to a team that does not yet have the context to operate on judgment. Which intervention does the chapter prescribe?",
+      "choices": [
+        "Continue pushing initiative downward, on the theory that the team will develop the context by being forced to use it.",
+        "Roll back to method temporarily on the parts of the work the team lacks context for, while keeping the broader structure intact.",
+        "Recentralize all decisions back to the leader, on the theory that the team has demonstrated it cannot be trusted with autonomy."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Nice catch. The chapter's segmentation example with Kiran's robotics team is exactly this: when one pod cannot use the autonomy, the move is to give that pod method on the specific part of the work it lacks context for, without rolling back the segmentation across the whole team. The other two options either over-trust or over-correct.",
+        "direct": "Method narrowly, structure intact. The chapter explicitly distinguishes the conditional failure of one unit from the structural validity of the move. The push-through option is exactly the failure the chapter warns against; the recentralize option throws out the structure that is working elsewhere.",
+        "competitive": "The trap is the push-through option because 'forcing the team to develop' sounds bracing. The chapter is explicit that pushing initiative onto people who lack the context produces paralysis or crisis, not adaptive judgment. The fix is narrow method, not punishment."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q09",
+      "prompt": "Why does the chapter treat the diagnostic that comes before the three moves as the prior skill, rather than something the leader can run after she has chosen the move?",
+      "choices": [
+        "Because under-trust and over-trust produce different costs in opposite directions, and the leader cannot run any of the moves well without first knowing which direction she is at risk of.",
+        "Because the diagnostic itself takes long enough to run that it has to be done in advance to avoid slowing down the work.",
+        "Because the three moves are mutually exclusive at the level of execution and the leader has to choose between them based on the diagnostic."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nice catch. The chapter is explicit that the cost asymmetry is what makes the diagnostic mandatory: brittleness and attrition on one side, fragmentation and cynicism on the other. From inside, leadership and abdication feel the same, and the diagnostic is the only thing that distinguishes them before the costs are sunk. The other options either misframe the diagnostic as a timing issue or impose a mutual exclusivity the chapter does not endorse.",
+        "direct": "Cost asymmetry. The chapter's exact framing is that the costs of misplaced trust run in different directions and the leader has no way to tell which direction she is at risk of without the diagnostic. The timing-issue option turns it into a logistics question; the mutual-exclusivity option misreads the relationship between the moves.",
+        "competitive": "The trap is the mutual-exclusivity option because it sounds like the chapter is structuring a decision tree. It is not. The three moves are not mutually exclusive at the level of execution; they apply to different relationships within the same team, and the diagnostic is what tells the leader which trust she is misplacing in each."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch02-q10",
+      "prompt": "Connecting to Chapter 1: how does an operator who has skipped the four self-directed contests systematically mis-place the trusts of Chapter 2?",
+      "choices": [
+        "She will reach for cause-language she does not believe, because she has not done the polarity diagnostic that would tell her what she actually cares about.",
+        "She will push initiative downward in the same patterns she has refused to examine in herself, and segment teams in the same patterns, and use cause-language she has not tested for sincerity, because the diagnostic discipline of Chapter 1 is the precondition for the diagnostic discipline of Chapter 2.",
+        "She will be unable to use any of the three moves at all, because the moves require self-mastery as a prerequisite before they can be deployed externally."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Nice catch. The chapter's bridge from Chapter 1 is precisely this: the leader who has not done the internal contests will mis-place every trust she tries to extend, because the discipline of running the diagnostic on herself is the precondition for running it on the people she leads. The narrow cause-only option misses the breadth of the failure; the cannot-deploy-at-all option overstates the dependency.",
+        "direct": "All three trusts. The chapter is explicit that the Chapter 1 diagnostic discipline is the precondition for the Chapter 2 diagnostic discipline. A leader who has not learned to read her own internal state will not learn to read her team's, and the three moves will be mis-placed in patterns that match the patterns she has been refusing to examine in herself.",
+        "competitive": "The trap is the cannot-deploy-at-all option because it sounds rigorous. The chapter does not say the moves are unavailable; it says they will be deployed badly. The leader who skipped Chapter 1 still gets to push initiative downward, segment teams, and use cause-language. She just cannot tell whether she is doing any of it well, and the costs of her failures will be paid by the people she leads."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

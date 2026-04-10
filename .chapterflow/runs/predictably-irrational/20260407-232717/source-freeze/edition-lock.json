@@ -1,0 +1,61 @@
+{
+  "bookId": "predictably-irrational",
+  "title": "Predictably Irrational",
+  "author": "Dan Ariely",
+  "selectionDate": "2026-04-07",
+  "editionSelectionMode": "auto_resolve_unless_material",
+  "decision": "auto_lock",
+  "lockedEdition": {
+    "name": "Predictably Irrational, Revised and Expanded Edition: The Hidden Forces That Shape Our Decisions",
+    "publisher": "Harper / Harper Perennial",
+    "publishedDate": "2010-04-27",
+    "publishedYear": 2010,
+    "hardcoverIsbn13": "9780061854545",
+    "paperbackIsbn13": "9780061353246",
+    "language": "English",
+    "translator": "",
+    "format": "revised and expanded English trade family (hardcover / ebook / paperback)",
+    "chapterCount": 13,
+    "sectionCount": 1,
+    "nonNumberedExtras": [
+      "Introduction",
+      "Bonus material added for the revised and expanded edition",
+      "Thoughts about the subprime mortgage crisis and its consequences",
+      "Thanks",
+      "List of collaborators",
+      "Notes",
+      "Bibliography and additional readings",
+      "Index"
+    ]
+  },
+  "rationale": [
+    "The revised and expanded English Harper trade family is the clearest current canonical edition trail available from official and library metadata.",
+    "The numbered core chapter map remains stable at 13 chapters even though the revised edition adds bonus material outside the main chapter sequence.",
+    "No translation was requested, and the discovered English edition differences do not materially change the numbered chapter boundaries used by the learning pipeline."
+  ],
+  "candidateEditionsReviewed": [
+    {
+      "label": "2010 revised and expanded Harper trade family",
+      "status": "selected",
+      "reason": "Dominant discoverable English edition family with stable numbered chapter metadata and clear support for the bonus material boundary."
+    },
+    {
+      "label": "2008 original English hardcover family",
+      "status": "selected_same_family",
+      "reason": "Core chapter concepts and sequence align closely, but the revised trade family is easier to verify from current web metadata."
+    },
+    {
+      "label": "Translations and international editions",
+      "status": "not_selected",
+      "reason": "No translation was requested and no translation-dependent chapter ambiguity is needed for this run."
+    }
+  ],
+  "sourceIds": [
+    "predictablyirrational_official",
+    "google_books_revised",
+    "unt_catalog_toc",
+    "duke_papers_index",
+    "wikipedia_summary",
+    "supersummary_guides"
+  ]
+}

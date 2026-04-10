@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
+import { useReducedMotion } from "framer-motion";
 import { Brain, Lightbulb, Target } from "lucide-react";
 import type { ChapterTab } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterState";
 
@@ -25,34 +26,74 @@ const MESSAGES: Record<string, { text: string; icon: "lightbulb" | "brain" | "ta
   },
 };
 
+const FADE_IN_MS = 250;
+const HOLD_MS = 400;
+const FADE_OUT_MS = 250;
+
 export function PhaseInterstitial({ from, to, onComplete }: PhaseInterstitialProps) {
+  const prefersReducedMotion = useReducedMotion();
   const [phase, setPhase] = useState<"in" | "out">("in");
+  const titleId = useId();
+  const previousFocusRef = useRef<HTMLElement | null>(null);
   const key = `${from}-${to}`;
   const config = MESSAGES[key];
 
+  // Reduced motion: skip overlay entirely
   useEffect(() => {
-    // Auto-advance after 1.5s
-    const timer = setTimeout(() => {
-      setPhase("out");
-    }, 1500);
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    if (phase === "out") {
-      const timer = setTimeout(onComplete, 400);
-      return () => clearTimeout(timer);
+    if (prefersReducedMotion) {
+      onComplete();
     }
-  }, [phase, onComplete]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [prefersReducedMotion]);
 
-  // No interstitial for this transition — complete on next tick via effect
+  // No interstitial for this transition — complete immediately
   useEffect(() => {
     if (!config) {
       onComplete();
     }
   }, [config, onComplete]);
 
-  if (!config) {
+  // Save / restore focus
+  useEffect(() => {
+    if (prefersReducedMotion || !config) return;
+    previousFocusRef.current =
+      (document.activeElement as HTMLElement | null) ?? null;
+    return () => {
+      const el = previousFocusRef.current;
+      if (el && typeof el.focus === "function") {
+        el.focus({ preventScroll: true });
+      }
+    };
+  }, [prefersReducedMotion, config]);
+
+  // Auto-advance: fade-in → hold → fade-out
+  useEffect(() => {
+    if (prefersReducedMotion || !config) return;
+    const holdTimer = setTimeout(() => setPhase("out"), FADE_IN_MS + HOLD_MS);
+    return () => clearTimeout(holdTimer);
+  }, [prefersReducedMotion, config]);
+
+  useEffect(() => {
+    if (phase === "out") {
+      const timer = setTimeout(onComplete, FADE_OUT_MS);
+      return () => clearTimeout(timer);
+    }
+  }, [phase, onComplete]);
+
+  // Escape to dismiss
+  useEffect(() => {
+    if (prefersReducedMotion || !config) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.stopPropagation();
+        onComplete();
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [prefersReducedMotion, config, onComplete]);
+
+  if (prefersReducedMotion || !config) {
     return null;
   }
 
@@ -62,8 +103,9 @@ export function PhaseInterstitial({ from, to, onComplete }: PhaseInterstitialPro
     <div
       className="fixed inset-0 z-50 flex items-center justify-center"
       onClick={onComplete}
-      role="status"
-      aria-live="polite"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby={titleId}
     >
       {/* Backdrop */}
       <div className="absolute inset-0 bg-(--cr-bg-root)/80 backdrop-blur-sm" />
@@ -74,18 +116,21 @@ export function PhaseInterstitial({ from, to, onComplete }: PhaseInterstitialPro
         style={{
           animation:
             phase === "in"
-              ? "cr-interstitial-in 400ms ease-out forwards"
-              : "cr-interstitial-out 400ms ease-in forwards",
+              ? `cr-interstitial-in ${FADE_IN_MS}ms ease-out forwards`
+              : `cr-interstitial-out ${FADE_OUT_MS}ms ease-in forwards`,
         }}
       >
         <div className="flex h-14 w-14 items-center justify-center rounded-full bg-(--cr-accent-muted)">
           <Icon className="h-7 w-7 text-(--cr-accent)" />
         </div>
-        <p className="text-xl font-semibold text-(--cr-text-heading)">
+        <p
+          id={titleId}
+          className="text-xl font-semibold text-(--cr-text-heading)"
+        >
           {config.text}
         </p>
         <p className="text-sm text-(--cr-text-secondary)">
-          Tap anywhere to continue
+          Tap anywhere or press Esc to continue
         </p>
       </div>
     </div>

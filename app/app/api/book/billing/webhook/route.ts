@@ -3,6 +3,7 @@ import { withBookApiErrors, bookOk } from "@/app/app/api/book/_lib/http";
 import { getBookTableName, getBookAnalyticsTableName } from "@/app/app/api/book/_lib/env";
 import {
   getUserIdByStripeCustomer,
+  hasStripeWebhookEventBeenProcessed,
   mapStripeCustomerToUser,
   recordStripeWebhookEvent,
   updateUserEntitlementFromStripe,
@@ -22,7 +23,7 @@ import {
   getStripeWebhookSecretOrThrow,
 } from "@/app/app/api/book/_lib/stripe-service";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
-import { FLOW_POINTS_AMOUNTS } from "@/app/book/_lib/flow-points-economy";
+import { INSIGHT_POINTS_AMOUNTS } from "@/app/book/_lib/flow-points-economy";
 
 export const runtime = "nodejs";
 
@@ -40,6 +41,10 @@ function mapSubscriptionStatus(
   if (status === "past_due") {
     return { plan: "PRO", proStatus: "past_due" };
   }
+  // "paused" — Stripe collection paused (e.g. via the portal). Treat as
+  // canceled for entitlement purposes; if it resumes, the next event will
+  // flip it back to active.
+  // "canceled", "incomplete", "incomplete_expired", "unpaid" → no Pro.
   return { plan: "FREE", proStatus: "canceled" };
 }
 
@@ -91,15 +96,22 @@ export async function POST(req: Request) {
       throw err;
     }
 
-    const [firstProcess, analyticsTable] = await Promise.all([
-      recordStripeWebhookEvent(tableName, event.id, event.type),
+    const [alreadyProcessed, analyticsTable] = await Promise.all([
+      hasStripeWebhookEventBeenProcessed(tableName, event.id),
       getBookAnalyticsTableName(),
     ]);
-    if (!firstProcess) {
+    if (alreadyProcessed) {
       return bookOk({ ok: true, duplicate: true });
     }
 
-    if (event.type === "checkout.session.completed") {
+    // checkout.session.completed fires for synchronous payment methods (cards).
+    // checkout.session.async_payment_succeeded fires for delayed methods like
+    // SEPA Debit, Bacs, OXXO once funds clear (sometimes days later). The
+    // session payload shape is identical, so we share the handler.
+    if (
+      event.type === "checkout.session.completed" ||
+      event.type === "checkout.session.async_payment_succeeded"
+    ) {
       const session = event.data.object as { customer: string | null; subscription?: string | null; metadata?: { userId?: string } };
       const customerId = session.customer;
       const userId = await resolveUserIdForEvent(
@@ -107,12 +119,22 @@ export async function POST(req: Request) {
         customerId,
         session.metadata?.userId
       );
-      if (userId && customerId) {
+      if (!userId || !customerId) {
+        // Throw 500 so Stripe retries — silent success would permanently lose
+        // the upgrade if e.g. the customer→user mapping hasn't propagated yet.
+        throw new BookApiError(
+          500,
+          "user_resolution_failed",
+          `checkout.session.completed: could not resolve user (customer=${customerId ?? "null"})`
+        );
+      }
+      {
         await mapStripeCustomerToUser(tableName, customerId, userId);
         await updateUserEntitlementFromStripe(tableName, {
           userId,
           plan: "PRO",
           proStatus: "active",
+          proSource: "stripe",
           stripeCustomerId: customerId,
           stripeSubscriptionId: session.subscription ?? undefined,
         });
@@ -132,16 +154,34 @@ export async function POST(req: Request) {
           userId,
         }).catch(() => {});
       }
+    } else if (event.type === "checkout.session.async_payment_failed") {
+      // Delayed payment method failed before funds cleared. The user never
+      // became Pro, so there's no entitlement to revert — just audit log.
+      const session = event.data.object as { customer: string | null };
+      if (session.customer && analyticsTable) {
+        const userId = await getUserIdByStripeCustomer(tableName, session.customer);
+        if (userId) {
+          analyticsTrackSubscription(analyticsTable, {
+            userId,
+            plan: "FREE",
+            proStatus: "inactive",
+            stripeCustomerId: session.customer,
+          }).catch(() => {});
+        }
+      }
     } else if (
       event.type === "customer.subscription.created" ||
       event.type === "customer.subscription.updated" ||
-      event.type === "customer.subscription.deleted"
+      event.type === "customer.subscription.deleted" ||
+      event.type === "customer.subscription.paused" ||
+      event.type === "customer.subscription.resumed"
     ) {
       const subscription = event.data.object as {
         customer: string;
         id: string;
         status: string;
         current_period_end?: number;
+        cancel_at_period_end?: boolean;
         metadata?: { userId?: string };
       };
       const userId = await resolveUserIdForEvent(
@@ -149,23 +189,32 @@ export async function POST(req: Request) {
         subscription.customer,
         subscription.metadata?.userId
       );
-      if (userId) {
+      if (!userId) {
+        throw new BookApiError(
+          500,
+          "user_resolution_failed",
+          `${event.type}: could not resolve user for customer ${subscription.customer}`
+        );
+      }
+      {
         const mapped = mapSubscriptionStatus(subscription.status);
         await mapStripeCustomerToUser(tableName, subscription.customer, userId);
         await updateUserEntitlementFromStripe(tableName, {
           userId,
           plan: mapped.plan,
           proStatus: mapped.proStatus,
+          proSource: mapped.plan === "PRO" ? "stripe" : undefined,
           stripeCustomerId: subscription.customer,
           stripeSubscriptionId: subscription.id,
           currentPeriodEnd: isoFromUnix(subscription.current_period_end),
+          cancelAtPeriodEnd: subscription.cancel_at_period_end ?? false,
         });
         if (analyticsTable) {
           analyticsTrackSubscription(analyticsTable, {
             userId,
             plan: mapped.plan,
             proStatus: mapped.proStatus,
-            proSource: "stripe",
+            proSource: mapped.plan === "PRO" ? "stripe" : undefined,
             stripeCustomerId: subscription.customer,
             stripeSubscriptionId: subscription.id,
             currentPeriodEnd: isoFromUnix(subscription.current_period_end),
@@ -186,23 +235,30 @@ export async function POST(req: Request) {
       };
       if (invoice.customer) {
         const userId = await getUserIdByStripeCustomer(tableName, invoice.customer);
-        if (userId) {
-          await updateUserEntitlementFromStripe(tableName, {
+        if (!userId) {
+          throw new BookApiError(
+            500,
+            "user_resolution_failed",
+            `invoice.payment_failed: no user for customer ${invoice.customer}`
+          );
+        }
+        await updateUserEntitlementFromStripe(tableName, {
+          userId,
+          plan: "PRO",
+          proStatus: "past_due",
+          proSource: "stripe",
+          stripeCustomerId: invoice.customer,
+          stripeSubscriptionId: invoice.subscription ?? undefined,
+        });
+        if (analyticsTable) {
+          analyticsTrackSubscription(analyticsTable, {
             userId,
             plan: "PRO",
             proStatus: "past_due",
+            proSource: "stripe",
             stripeCustomerId: invoice.customer,
             stripeSubscriptionId: invoice.subscription ?? undefined,
-          });
-          if (analyticsTable) {
-            analyticsTrackSubscription(analyticsTable, {
-              userId,
-              plan: "PRO",
-              proStatus: "past_due",
-              stripeCustomerId: invoice.customer,
-              stripeSubscriptionId: invoice.subscription ?? undefined,
-            }).catch(() => {});
-          }
+          }).catch(() => {});
         }
       }
     } else if (event.type === "invoice.paid") {
@@ -212,19 +268,27 @@ export async function POST(req: Request) {
       };
       if (invoice.customer) {
         const userId = await getUserIdByStripeCustomer(tableName, invoice.customer);
-        if (userId) {
-          await updateUserEntitlementFromStripe(tableName, {
-            userId,
-            plan: "PRO",
-            proStatus: "active",
-            stripeCustomerId: invoice.customer,
-            stripeSubscriptionId: invoice.subscription ?? undefined,
-          });
+        if (!userId) {
+          throw new BookApiError(
+            500,
+            "user_resolution_failed",
+            `invoice.paid: no user for customer ${invoice.customer}`
+          );
+        }
+        await updateUserEntitlementFromStripe(tableName, {
+          userId,
+          plan: "PRO",
+          proStatus: "active",
+          proSource: "stripe",
+          stripeCustomerId: invoice.customer,
+          stripeSubscriptionId: invoice.subscription ?? undefined,
+        });
         if (analyticsTable) {
           analyticsTrackSubscription(analyticsTable, {
             userId,
             plan: "PRO",
             proStatus: "active",
+            proSource: "stripe",
             stripeCustomerId: invoice.customer,
             stripeSubscriptionId: invoice.subscription ?? undefined,
           }).catch(() => {});
@@ -235,7 +299,92 @@ export async function POST(req: Request) {
           userId,
         }).catch(() => {});
       }
+    } else if (event.type === "invoice.payment_action_required") {
+      // 3D Secure / SCA challenge needed. Mark as past_due so the UI can
+      // prompt the user to update their payment method via the portal.
+      const invoice = event.data.object as {
+        customer: string | null;
+        subscription?: string | null;
+      };
+      if (invoice.customer) {
+        const userId = await getUserIdByStripeCustomer(tableName, invoice.customer);
+        if (!userId) {
+          throw new BookApiError(
+            500,
+            "user_resolution_failed",
+            `invoice.payment_action_required: no user for customer ${invoice.customer}`
+          );
+        }
+        await updateUserEntitlementFromStripe(tableName, {
+          userId,
+          plan: "PRO",
+          proStatus: "past_due",
+          proSource: "stripe",
+          stripeCustomerId: invoice.customer,
+          stripeSubscriptionId: invoice.subscription ?? undefined,
+        });
+      }
+    } else if (event.type === "customer.subscription.trial_will_end") {
+      // Trial ending in ~3 days. Nothing to mutate; analytics-only so the
+      // ops side can drive a "your trial ends soon" email if desired.
+      const subscription = event.data.object as { customer: string };
+      if (subscription.customer && analyticsTable) {
+        const userId = await getUserIdByStripeCustomer(tableName, subscription.customer);
+        if (userId) {
+          analyticsTrackSubscription(analyticsTable, {
+            userId,
+            plan: "PRO",
+            proStatus: "active",
+            proSource: "stripe",
+            stripeCustomerId: subscription.customer,
+          }).catch(() => {});
+        }
+      }
+    } else if (event.type === "charge.refunded") {
+      // Audit-only: refunds don't directly downgrade — Stripe will fire a
+      // separate customer.subscription.deleted if the refund cancels the sub.
+      // We just log to analytics so finance has a trail.
+      const charge = event.data.object as { customer: string | null };
+      if (charge.customer && analyticsTable) {
+        const userId = await getUserIdByStripeCustomer(tableName, charge.customer);
+        if (userId) {
+          analyticsTrackSubscription(analyticsTable, {
+            userId,
+            plan: "PRO",
+            proStatus: "canceled",
+            proSource: "stripe",
+            stripeCustomerId: charge.customer,
+          }).catch(() => {});
+        }
+      }
+    } else if (event.type === "customer.deleted") {
+      // Customer wiped from Stripe. Downgrade the user (subject to the
+      // proSource guard inside updateUserEntitlementFromStripe — license
+      // users won't be touched).
+      const customer = event.data.object as { id: string };
+      const userId = await getUserIdByStripeCustomer(tableName, customer.id);
+      if (userId) {
+        await updateUserEntitlementFromStripe(tableName, {
+          userId,
+          plan: "FREE",
+          proStatus: "canceled",
+        });
+      }
     }
+
+    // Only record the event as processed AFTER all side effects succeed.
+    // If recordStripeWebhookEvent itself was the only idempotency gate and
+    // an update threw, we'd permanently lose the upgrade because retries
+    // would short-circuit on "duplicate". By recording last, any failure
+    // above causes Stripe to retry the entire handler.
+    //
+    // Concurrent-delivery race: if Stripe redelivers in parallel, both
+    // invocations will pass the hasStripeWebhookEventBeenProcessed check.
+    // The PutCommand here uses a ConditionExpression so exactly one wins;
+    // the loser sees ConditionalCheckFailed and we treat it as duplicate.
+    const recorded = await recordStripeWebhookEvent(tableName, event.id, event.type);
+    if (!recorded) {
+      return bookOk({ ok: true, duplicate: true });
     }
 
     return bookOk({ ok: true });

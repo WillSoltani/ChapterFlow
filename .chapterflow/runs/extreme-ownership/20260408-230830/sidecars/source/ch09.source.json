@@ -1,0 +1,52 @@
+{
+  "chapterId": "ch09",
+  "number": 9,
+  "title": "Decentralized Command",
+  "heading": "Decentralized Command",
+  "richness": "medium_high",
+  "approxWords": 350,
+  "properNouns": [
+    "Open Library",
+    "Google Books",
+    "SuperSummary"
+  ],
+  "repeatedTerms": [
+    "command",
+    "intent",
+    "trust",
+    "leader",
+    "decide",
+    "front"
+  ],
+  "sourceRefs": [
+    "src-openlibrary-2015-first-edition",
+    "src-googlebooks-2015-preview",
+    "src-supersummary-part2"
+  ],
+  "sourceReferences": [
+    {
+      "sourceId": "src-openlibrary-2015-first-edition",
+      "reason": "chapter order and heading"
+    },
+    {
+      "sourceId": "src-googlebooks-2015-preview",
+      "reason": "2015 edition-family support and principle-family confirmation"
+    },
+    {
+      "sourceId": "src-supersummary-part2",
+      "reason": "junior-leader trust and front-line decision anchor support"
+    }
+  ],
+  "canonicalEdition": {
+    "name": "First English edition",
+    "publisher": "St. Martin's Press",
+    "publishedDate": "2015-10-20",
+    "publishedYear": 2015,
+    "isbn13": "9781250067050",
+    "format": "Print reference edition",
+    "sourceText": ".chapterflow/runs/extreme-ownership/20260408-230830/source-freeze/book-source.md",
+    "sourceProvenance": "Frozen web bundle: Open Library first-edition TOC record, Google Books 2015 preview metadata, and SuperSummary Part 2 chapter summary."
+  },
+  "quotePosture": "paraphrase_first",
+  "anchorSummary": "Use the chapter's claim that leaders train and trust junior leaders so decisions can happen at the front. Keep intent and alignment visible and do not overclaim tactical detail."
+}

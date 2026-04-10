@@ -1,0 +1,54 @@
+{
+  "packVersion": "v13-autonomous",
+  "bookId": "the-one-thing",
+  "runId": "20260408-235801",
+  "packRoot": "scripts/book/prompts/chapterflow-v13-autonomous",
+  "runRoot": ".chapterflow/runs/the-one-thing/20260408-235801",
+  "outputProfile": "flagship_v4_compatible",
+  "learningContract": "research_native",
+  "runProfile": "balanced_flagship",
+  "validationMode": "chapter_gate",
+  "chapterGateMode": "automatic_continue",
+  "chapterGateQuizMode": "generate",
+  "scenarioTonePolicy": "required",
+  "rightsMode": "startup_light",
+  "waveSize": 2,
+  "generateChapterReviewWrapper": true,
+  "strictPackAudit": true,
+  "forbidBulkGenerators": true,
+  "releaseAssembleFromValidatedOnly": true,
+  "preserveApprovedChapterHashes": true,
+  "sourceFreezeRequired": true,
+  "artifactGuardRequired": true,
+  "releaseGuardRequired": true,
+  "qualitySentryRequired": true,
+  "qualityDecayStopDelta": 1.5,
+  "sourceDiscoveryMode": "web_bundle",
+  "editionSelectionMode": "ask_if_ambiguous",
+  "sourcePolicy": "public_or_authorized_plus_secondary",
+  "bookRequest": {
+    "title": "The One Thing",
+    "author": "Gary Keller, Jay Papasan",
+    "editionPreference": "ask_if_ambiguous"
+  },
+  "book": {
+    "bookId": "the-one-thing",
+    "title": "The One Thing",
+    "author": "Gary Keller, Jay Papasan",
+    "categories": [
+      "productivity",
+      "business"
+    ],
+    "tags": [],
+    "edition": {
+      "name": "The ONE Thing: The Surprisingly Simple Truth Behind Extraordinary Results",
+      "translator": "",
+      "publishedYear": 2012,
+      "translationYear": null,
+      "sourceText": ".chapterflow/runs/the-one-thing/20260408-235801/source-freeze/book-source.txt",
+      "sourceProvenance": "Frozen from the official THE ONE Thing book page, Google Books bibliographic record, Hachette UK product page, and library TOC metadata recorded in manifests/source-ledger.json."
+    },
+    "variantFamily": "EMH",
+    "chapterRange": "1-18"
+  }
+}

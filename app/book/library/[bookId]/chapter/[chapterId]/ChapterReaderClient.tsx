@@ -3,12 +3,11 @@
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { BookLock, CheckCircle2, CloudOff, Sparkles } from "lucide-react";
+import { BookLock, CheckCircle2, CloudOff } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 import {
   getBookChaptersBundle,
   getChapterById,
-  personalizeChapterForMotivation,
-  type ChapterMotivationStyle,
   type ChapterExample,
   type ReadingDepth,
   type ToneKey,
@@ -18,7 +17,10 @@ import { BookClientError, fetchBookJson } from "@/app/book/_lib/book-api";
 import {
   chapterStartModeToInitialTab,
 } from "@/app/book/_lib/onboarding-personalization";
-import { FLOW_POINTS_AMOUNTS } from "@/app/book/_lib/flow-points-economy";
+import {
+  INSIGHT_POINTS_AMOUNTS,
+  type LoopPipelineResult,
+} from "@/app/book/_lib/flow-points-economy";
 import { createReviewItem, createFlashcardReviewItem } from "@/app/book/_lib/spaced-repetition";
 import { getMotivationMessage } from "@/app/book/_lib/motivation-messages";
 import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
@@ -38,15 +40,20 @@ import { NotesDrawer } from "@/app/book/library/[bookId]/chapter/[chapterId]/com
 import { QuizPanel } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/QuizPanel";
 import { SummaryCard } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/SummaryCard";
 import { PracticePhase } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/PracticePhase";
+import { QuizPassCelebration } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/QuizPassCelebration";
+import { AchievementToastStack } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/AchievementToastStack";
+import { ChapterCompleteModal } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/ChapterCompleteModal";
+import { ChapterSkeleton } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/ChapterSkeleton";
 import { SessionModeOverlay } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/SessionModeOverlay";
 import { useChapterState, type ChapterTab, type FontScale } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterState";
 import { useQuizSession } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useQuizSession";
-import { usePhaseCompletion } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/usePhaseCompletion";
+import { usePhaseCompletion, getPhaseThresholds } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/usePhaseCompletion";
 import { useBookProgress } from "@/app/book/library/hooks/useBookProgress";
 import { useReadingSessionTracker } from "@/app/book/library/hooks/useReadingSessionTracker";
-import type { LearningMode } from "@/app/book/settings/types/settings";
+import type { LearningMode, ContentTone } from "@/app/book/settings/types/settings";
+import type { LibraryBookDetail } from "@/app/book/_lib/library-data";
 
-const SCENARIO_SUBMISSION_POINTS = FLOW_POINTS_AMOUNTS.scenarioApproved;
+const SCENARIO_SUBMISSION_POINTS = INSIGHT_POINTS_AMOUNTS.scenarioApproved;
 
 function mapLearningStyleToDepth(value: string): ReadingDepth {
   if (value === "concise") return "simple";
@@ -74,9 +81,9 @@ function computeProgressPercent(
   completedPhases: Set<ChapterTab>
 ): number {
   const phaseWeights: Record<ChapterTab, number> = {
-    summary: 25,
-    examples: 50,
-    quiz: 75,
+    summary: 33,
+    examples: 66,
+    quiz: 100,
     practice: 100,
   };
   // If the current tab's phase is also completed, use its full weight
@@ -93,19 +100,37 @@ function computeProgressPercent(
 export function ChapterReaderClient({
   bookId,
   chapterId,
+  initialBook,
 }: {
   bookId: string;
   chapterId: string;
+  initialBook?: LibraryBookDetail;
 }) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const prefersReducedMotion = useReducedMotion();
   const [notesOpen, setNotesOpen] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
   const [sessionMode, setSessionMode] = useState(false);
+  const [showShortcuts, setShowShortcuts] = useState(false);
+  const [showQuizCelebration, setShowQuizCelebration] = useState(false);
+  const [quizCelebrationData, setQuizCelebrationData] = useState<{
+    scorePercent: number;
+    isPerfect: boolean;
+    quizPassIP: number;
+    perfectBonusIP: number;
+    loopPipeline: LoopPipelineResult | null;
+  } | null>(null);
+  const [showCompleteModal, setShowCompleteModal] = useState(false);
+  const [pendingAchievements, setPendingAchievements] = useState<
+    LoopPipelineResult["achievements"]
+  >([]);
   // Quiz success modal removed: chapter completion now happens after Practice phase
   const [approvedUserExamples, setApprovedUserExamples] = useState<ChapterExample[]>([]);
   const [userSubmissions, setUserSubmissions] = useState<UserScenarioSubmission[]>([]);
+  const [scenariosFetchFailed, setScenariosFetchFailed] = useState(false);
+  const [scenariosRefetchKey, setScenariosRefetchKey] = useState(0);
   const [engagementPoints, setEngagementPoints] = useState(0);
   const [bookAccessStatus, setBookAccessStatus] = useState<"loading" | "ready" | "blocked">(
     "loading"
@@ -142,7 +167,6 @@ export function ChapterReaderClient({
   };
 
   const { state: onboarding, hydrated: onboardingHydrated } = useOnboardingState();
-  const preferredReadingDepth = mapLearningStyleToDepth(onboarding.learningStyle);
   const preferredActiveTab: ChapterTab = bookPrefs.reading.defaultChapterTab || chapterStartModeToInitialTab(onboarding.chapterStartMode);
   const preferredExampleFilter = onboarding.preferredExampleContext;
   const preferredFocusMode = bookPrefs.reading.focusModeDefault;
@@ -152,16 +176,10 @@ export function ChapterReaderClient({
   const bundle = useMemo(() => getBookChaptersBundle(bookId, contentTone), [bookId, contentTone]);
   const chapters = bundle.chapters;
   const baseChapter = useMemo(() => getChapterById(bookId, chapterId, contentTone), [bookId, chapterId, contentTone]);
-  const chapter = useMemo(
-    () =>
-      baseChapter
-        ? personalizeChapterForMotivation(
-            baseChapter,
-            onboarding.motivationStyle as ChapterMotivationStyle
-          )
-        : undefined,
-    [baseChapter, onboarding.motivationStyle]
-  );
+  const chapter = baseChapter;
+  const preferredReadingDepth: ReadingDepth = baseChapter?.isStrictV12
+    ? "standard"
+    : mapLearningStyleToDepth(onboarding.learningStyle);
 
   const {
     hydrated,
@@ -221,7 +239,7 @@ export function ChapterReaderClient({
 
   // Wrapped setActiveTab that enforces gating and shows interstitial
   const setActiveTab = useCallback(
-    (newTab: ChapterTab) => {
+    (newTab: ChapterTab, options?: { skipInterstitial?: boolean }) => {
       const phaseOrder: ChapterTab[] = ["summary", "examples", "quiz", "practice"];
       const currentIndex = phaseOrder.indexOf(state.activeTab);
       const newIndex = phaseOrder.indexOf(newTab);
@@ -230,22 +248,59 @@ export function ChapterReaderClient({
         // Forward navigation: mark current phase completed first (this
         // unlocks the next phase), then show the interstitial.
         phaseCompletion.markPhaseCompleted(state.activeTab);
-        setInterstitial({ from: state.activeTab, to: newTab });
+        if (options?.skipInterstitial) {
+          setActiveTabRaw(newTab);
+          window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+        } else {
+          setInterstitial({ from: state.activeTab, to: newTab });
+        }
       } else {
         // Backward navigation: allowed only if the target was already
         // completed or all phases have been done once.
         if (!phaseCompletion.isPhaseAccessible(newTab)) return;
         setActiveTabRaw(newTab);
+        window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
       }
-
-      // Scroll to top of content
-      window.scrollTo({ top: 0, behavior: "smooth" });
     },
     [state.activeTab, setActiveTabRaw, phaseCompletion]
   );
 
+  // The Practice tab is no longer reachable through the stepper. If a user
+  // lands on it (persisted state, deep link), bounce them to the quiz so the
+  // unified completion flow can take over.
+  useEffect(() => {
+    if (state.activeTab === "practice") {
+      setActiveTabRaw("quiz");
+    }
+  }, [state.activeTab, setActiveTabRaw]);
+
+  // Prefetch the next chapter route when user reaches Practice
+  useEffect(() => {
+    if (state.activeTab !== "practice") return;
+    const list = chapters;
+    const idx = list.findIndex((c) => c.id === chapterId);
+    const next = idx >= 0 ? list[idx + 1] : undefined;
+    if (!next) return;
+    const nextRoute = `/book/library/${encodeURIComponent(bookId)}/chapter/${encodeURIComponent(next.id)}`;
+    router.prefetch(nextRoute);
+    if (sessionMode) router.prefetch(`${nextRoute}?session=1`);
+  }, [state.activeTab, bookId, chapterId, chapters, router, sessionMode]);
+
+  // Focus the first heading after a phase change
+  useEffect(() => {
+    if (!chapterHydrated) return;
+    const heading = contentRef.current?.querySelector<HTMLElement>(
+      "[data-phase-heading], h2, h1"
+    );
+    if (heading) {
+      heading.setAttribute("tabindex", "-1");
+      heading.focus({ preventScroll: true });
+    }
+  }, [state.activeTab, chapterHydrated]);
+
   const handleInterstitialComplete = useCallback(() => {
     if (interstitial) {
+      window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
       setActiveTabRaw(interstitial.to);
       setInterstitial(null);
     }
@@ -270,9 +325,22 @@ export function ChapterReaderClient({
   );
 
   useKeyboardShortcut("Escape", () => {
+    if (showShortcuts) {
+      setShowShortcuts(false);
+      return;
+    }
     if (notesOpen) setNotesOpen(false);
     if (sessionMode) pauseSessionMode();
   });
+
+  useKeyboardShortcut(
+    "?",
+    (event) => {
+      event.preventDefault();
+      setShowShortcuts((v) => !v);
+    },
+    { ignoreWhenTyping: true }
+  );
 
   useEffect(() => {
     if (!onboardingHydrated) return;
@@ -364,16 +432,18 @@ export function ChapterReaderClient({
         setApprovedUserExamples(payload.approvedScenarios ?? []);
         setUserSubmissions(payload.mySubmissions ?? []);
         setEngagementPoints(Number.isFinite(payload.points) ? payload.points : 0);
+        setScenariosFetchFailed(false);
       })
       .catch(() => {
         if (!mounted) return;
         setApprovedUserExamples([]);
         setUserSubmissions([]);
+        setScenariosFetchFailed(true);
       });
     return () => {
       mounted = false;
     };
-  }, [bookId, chapter]);
+  }, [bookId, chapter, scenariosRefetchKey]);
 
   const chapterState = chapter ? getChapterState(chapter.id) : "locked";
   const isLocked = chapterState === "locked";
@@ -404,9 +474,14 @@ export function ChapterReaderClient({
   }, [readingSession.dailyGoalReached, dailyGoalMinutes, bookPrefs.extended.motivationPersona]);
 
   const showQuiz = state.activeTab === "quiz";
+  const activeDepth: ReadingDepth = chapter?.isStrictV12
+    ? state.readingDepth
+    : modeToDepth(learningMode);
   const quiz = useQuizSession({
     bookId,
     chapterNumber: chapter?.order ?? baseChapter?.order ?? 1,
+    difficulty: activeDepth,
+    contentTone,
     enabled:
       Boolean(chapter) &&
       onboardingHydrated &&
@@ -419,7 +494,7 @@ export function ChapterReaderClient({
     localQuiz: chapter
       ? {
           chapterId: chapter.id,
-          questions: chapter.quizByDepth[modeToDepth(learningMode)] ?? chapter.quiz,
+          questions: chapter.quizByDepth[activeDepth] ?? chapter.quiz,
           passingScorePercent: chapter.quizPassingScorePercent,
         }
       : undefined,
@@ -437,9 +512,7 @@ export function ChapterReaderClient({
     return (
       <main className="relative min-h-screen overflow-x-hidden">
         <ChapterBackgroundOrbs />
-        <div className="mx-auto flex min-h-screen items-center justify-center px-4 text-(--cr-text-secondary)">
-          Loading chapter...
-        </div>
+        <ChapterSkeleton />
       </main>
     );
   }
@@ -462,8 +535,7 @@ export function ChapterReaderClient({
               {paywallHit && (
                 <Link
                   href="/book/settings"
-                  className="inline-flex rounded-xl px-5 py-2.5 text-sm font-semibold text-white"
-                  style={{ backgroundColor: "var(--accent-teal, #22d3ee)" }}
+                  className="inline-flex rounded-xl px-5 py-2.5 text-sm font-semibold text-(--cr-text-inverse) bg-(--cr-accent)"
                 >
                   Upgrade to Pro
                 </Link>
@@ -507,9 +579,14 @@ export function ChapterReaderClient({
   const chapterIndex = chapters.findIndex((item) => item.id === chapter.id);
   const nextChapter = chapters[chapterIndex + 1];
 
-  // Content depth driven by learning mode — switches instantly
-  const activeDepth = modeToDepth(learningMode);
   const summaryBlocks = chapter.summaryByDepth[activeDepth] ?? chapter.summaryByDepth["standard"];
+  const activeTakeaways = chapter.takeawaysByDepth[activeDepth] ?? chapter.takeaways;
+  const activeRecap = chapter.recapByDepth[activeDepth] ?? [];
+  const activeActivationPrompt = chapter.activationPromptByDepth[activeDepth] ?? chapter.activationPrompt;
+  const activeSelfCheckPrompts =
+    chapter.selfCheckPromptsByDepth[activeDepth] ?? chapter.selfCheckPrompts;
+  const activePredictionPrompt =
+    chapter.predictionPromptByDepth[activeDepth] ?? chapter.predictionPrompt;
 
   const examples = [...chapter.examplesDetailed, ...approvedUserExamples].filter((example) => {
     if (state.exampleFilter === "all") return true;
@@ -522,11 +599,24 @@ export function ChapterReaderClient({
 
   const handleSubmitQuiz = async () => {
     try {
-      const nextSession = await quiz.submit();
+      const submitResult = await quiz.submit();
+      const nextSession = submitResult?.session ?? null;
       const persona = bookPrefs.extended.motivationPersona || "coach";
       if (nextSession?.result?.passed) {
         phaseCompletion.markPhaseCompleted("quiz");
-        setToast(getMotivationMessage(persona, "quiz_pass", { score: nextSession.result.scorePercent }));
+        const pipeline = submitResult?.loopPipeline ?? null;
+        // Only celebrate when the backend actually awarded points (pipeline present).
+        // Provisional/offline submits skip the celebration to avoid showing fake IP.
+        if (pipeline) {
+          setQuizCelebrationData({
+            scorePercent: nextSession.result.scorePercent,
+            isPerfect: nextSession.result.scorePercent === 100,
+            quizPassIP: pipeline.quizPassIP,
+            perfectBonusIP: pipeline.perfectBonusIP,
+            loopPipeline: pipeline,
+          });
+          setShowQuizCelebration(true);
+        }
       } else {
         setToast(getMotivationMessage(persona, "quiz_fail", { score: nextSession?.result?.scorePercent }));
       }
@@ -576,21 +666,29 @@ export function ChapterReaderClient({
     }
   };
 
+  // After quiz pass, we no longer push the user into a separate Practice
+  // phase — the practice content is shown inside ChapterCompleteModal.
   const handleContinueToPractice = () => {
     phaseCompletion.markPhaseCompleted("quiz");
-    setActiveTab("practice");
-  };
-
-  const handlePracticeComplete = () => {
     phaseCompletion.markPhaseCompleted("practice");
     const score = quiz.session?.result?.scorePercent ?? 0;
     markChapterComplete(chapter.id, score);
+    setShowCompleteModal(true);
+  };
+
+  const handleChapterCompleteNext = () => {
+    setShowCompleteModal(false);
     quiz.trackNextChapterClick();
     if (nextChapter) {
       const nextRoute = `/book/library/${encodeURIComponent(bookId)}/chapter/${encodeURIComponent(nextChapter.id)}`;
       router.push(sessionMode ? `${nextRoute}?session=1` : nextRoute);
       return;
     }
+    router.push(`/book/library/${encodeURIComponent(bookId)}`);
+  };
+
+  const handleChapterCompleteLibrary = () => {
+    setShowCompleteModal(false);
     router.push(`/book/library/${encodeURIComponent(bookId)}`);
   };
 
@@ -625,25 +723,44 @@ export function ChapterReaderClient({
 
   const showSummary = state.activeTab === "summary";
   const showExamples = state.activeTab === "examples";
-  const showPractice = state.activeTab === "practice";
   const progressPercent = computeProgressPercent(state.activeTab, phaseCompletion.completedPhases);
+
+  const totalChapterIP = (() => {
+    const p = quiz.lastLoopPipeline;
+    if (!p) return 0;
+    return (
+      p.quizPassIP +
+      p.perfectBonusIP +
+      p.loopCompleteIP +
+      p.bookCompleteIP +
+      p.streak.streakDayIP +
+      p.streak.welcomeBackIP +
+      p.streak.milestones.reduce((sum, m) => sum + m.ip, 0) +
+      p.tier.advancementIP +
+      p.achievements.reduce((sum, a) => sum + a.ip, 0) +
+      p.insightSpark.amount
+    );
+  })();
 
   return (
     <main className="relative min-h-screen overflow-x-hidden text-(--cr-text-primary)">
+      <div role="status" aria-live="polite" className="sr-only">
+        {state.activeTab === "summary" && "Now reading: Summary"}
+        {state.activeTab === "examples" && "Now reading: Examples"}
+        {state.activeTab === "quiz" && "Now taking: Quiz"}
+        {state.activeTab === "practice" && "Now on: Practice"}
+      </div>
       {!state.focusMode && <ChapterBackgroundOrbs />}
 
       <section
-        className={[
-          "mx-auto w-full px-4 pb-8 pt-4 sm:px-6 sm:pt-5 md:pb-10",
-          "max-w-450",
-        ].join(" ")}
+        className="w-full px-5 pb-12 pt-3 sm:px-8 sm:pt-3 md:pb-16"
       >
         <ChapterHeader
           bookId={bookId}
-          bookTitle={entry.title}
+          bookTitle={initialBook?.title ?? entry.title}
           chapterLabel={`Chapter ${chapter.order}`}
           chapterTitle={chapter.title}
-          author={entry.author}
+          author={initialBook?.author ?? entry.author}
           minutes={chapter.minutes}
           chapterOrder={chapter.order}
           totalChapters={chapters.length}
@@ -654,11 +771,26 @@ export function ChapterReaderClient({
           learningMode={learningMode}
           onChangeLearningMode={(mode) => {
             if (mode === learningMode) return;
-            patchBookPrefs("extended", { learningMode: mode });
+            // Mode presets: each mode bundles a depth + tone so the content
+            // actually changes when the user picks a different mode. Users
+            // can still override depth/tone individually via the "Customize"
+            // disclosure in the settings menu.
+            const presets: Record<LearningMode, { depth: ReadingDepth; tone: ContentTone }> = {
+              guided: { depth: "simple", tone: "gentle" },
+              standard: { depth: "standard", tone: "gentle" },
+              challenge: { depth: "deeper", tone: "competitive" },
+            };
+            const preset = presets[mode];
+            patchBookPrefs("extended", {
+              learningMode: mode,
+              contentTone: preset.tone,
+            });
+            // readingDepth lives on per-chapter state (drives strict-v12 content)
+            setReadingDepth(preset.depth);
             const messages: Record<string, string> = {
-              guided: "Switched to Guided. Hints enabled, 2 retries on quiz.",
-              standard: "Switched to Standard. Balanced mode, 1 retry.",
-              challenge: "Switched to Challenge. Timed quiz, no retries, 90% pass.",
+              guided: "Switched to Guided. More pacing support and feedback.",
+              standard: "Switched to Standard. Balanced pacing and feedback.",
+              challenge: "Switched to Challenge. Faster pace, fewer interruptions.",
             };
             setToast(messages[mode] ?? `Switched to ${mode}.`);
           }}
@@ -676,6 +808,10 @@ export function ChapterReaderClient({
           showProgressBar={bookPrefs.reading.showProgressBar}
           showEstimatedReadingTime={bookPrefs.reading.showEstimatedReadingTime}
           showReadingSessionTimer={bookPrefs.reading.showReadingSessionTimer}
+          readingDepth={state.readingDepth}
+          onChangeReadingDepth={setReadingDepth}
+          showDepthSelector={chapter.isStrictV12}
+          onOpenShortcuts={() => setShowShortcuts(true)}
         />
 
         {/* 3-Phase Stepper — hidden in focus mode */}
@@ -693,22 +829,41 @@ export function ChapterReaderClient({
           </div>
         )}
 
+        {/* Single hint above the fold so users know what unlocks "Continue" */}
+        {!state.focusMode && state.activeTab !== "quiz" && !phaseCompletion.currentPhaseReady && (() => {
+          const t = getPhaseThresholds(learningMode, state.activeTab);
+          const seconds = t.minTime;
+          const pct = Math.round(t.minScroll * 100);
+          if (!seconds && !pct) return null;
+          return (
+            <p className="mt-4 text-[12px] text-(--cr-text-secondary)">
+              Read for {seconds}s or scroll to {pct}% to continue.
+              {state.activeTab === "examples" && learningMode === "challenge" && " You also need to react to every scenario."}
+            </p>
+          );
+        })()}
+
         {/* Content area */}
-        <div ref={contentRef} className="mt-6 space-y-5">
+        <div ref={contentRef} className="mt-8 space-y-5">
           {showSummary && (
-            <>
+            <motion.div
+              key={`summary-${state.readingDepth}`}
+              initial={prefersReducedMotion ? false : { opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+            >
               <SummaryCard
                 blocks={summaryBlocks}
-                takeaways={chapter.takeaways}
+                takeaways={activeTakeaways}
                 keyQuote={chapter.keyQuote}
-                recap={chapter.recap}
+                recap={activeRecap}
                 showRecap={state.showRecap}
                 onToggleRecap={toggleRecap}
                 onSaveTakeaways={() => {
                   const hasBookmarks = state.bookmarkedTakeaways.length > 0;
                   const selected = hasBookmarks
-                    ? chapter.takeaways.filter((_, i) => state.bookmarkedTakeaways.includes(i))
-                    : chapter.takeaways;
+                    ? activeTakeaways.filter((_, i) => state.bookmarkedTakeaways.includes(i))
+                    : activeTakeaways;
                   appendNote(formatNoteWithTakeaways(selected));
                   setToast(hasBookmarks ? "Bookmarked takeaways saved to notes." : "Takeaways saved to notes.");
                 }}
@@ -720,18 +875,27 @@ export function ChapterReaderClient({
                 }}
                 fontScaleClass={textScaleClass}
                 learningMode={learningMode}
-                activationPrompt={chapter.activationPrompt}
+                activationPrompt={activeActivationPrompt}
+                selfCheckPrompts={activeSelfCheckPrompts}
               />
               <ContinueButton
                 ready={phaseCompletion.currentPhaseReady}
                 onClick={() => setActiveTab("examples")}
                 readyText="Continue to Examples"
+                scrollPercent={phaseCompletion.scrollPercent}
+                timeOnPhase={phaseCompletion.timeOnPhase}
+                {...getPhaseThresholds(learningMode, "summary")}
               />
-            </>
+            </motion.div>
           )}
 
           {showExamples && (
-            <>
+            <motion.div
+              key={`examples-${activeDepth}`}
+              initial={prefersReducedMotion ? false : { opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+            >
               <ExamplesList
                 examples={examples}
                 filter={state.exampleFilter}
@@ -740,19 +904,33 @@ export function ChapterReaderClient({
                 mySubmissions={userSubmissions}
                 onSubmitScenario={handleSubmitScenario}
                 fontScaleClass={textScaleClass}
-                learningMode={learningMode}
+                readingDepth={activeDepth}
                 onScenarioInteraction={() => setScenarioInteractions((prev) => prev + 1)}
+                chapterId={chapterId}
+                bookId={bookId}
+                chapterNumber={chapter.order}
+                fetchFailed={scenariosFetchFailed}
+                onRetryFetch={() => setScenariosRefetchKey((k) => k + 1)}
               />
               <ContinueButton
                 ready={phaseCompletion.currentPhaseReady}
                 onClick={() => setActiveTab("quiz")}
                 readyText="Start the Quiz"
+                scrollPercent={phaseCompletion.scrollPercent}
+                timeOnPhase={phaseCompletion.timeOnPhase}
+                {...getPhaseThresholds(learningMode, "examples")}
               />
-            </>
+            </motion.div>
           )}
 
           {showQuiz && (
-            <QuizPanel
+            <motion.div
+              key={`quiz-${activeDepth}`}
+              initial={prefersReducedMotion ? false : { opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+            >
+              <QuizPanel
               session={quiz.session}
               answers={quiz.answers}
               explanationOpen={quiz.explanationOpen}
@@ -768,27 +946,21 @@ export function ChapterReaderClient({
               onToggleExplanation={quiz.toggleExplanation}
               learningMode={learningMode}
               questionFlow={bookPrefs.learning.questionPresentationStyle}
-              shuffleQuestions={bookPrefs.learning.shuffleQuestionOrder}
+              shuffleQuestions={chapter.isStrictV12 ? false : bookPrefs.learning.shuffleQuestionOrder}
               retryIncorrectOnly={bookPrefs.learning.retryIncorrectOnly}
             />
+            {quiz.session?.provisional && (
+              <p
+                className="text-[12px] mt-2 flex items-center gap-1.5 text-(--cr-text-disabled)"
+                role="status"
+              >
+                <span>{"\u23F3"}</span>
+                Results saved locally — they&apos;ll sync and award points when you&apos;re back online.
+              </p>
+            )}
+            </motion.div>
           )}
 
-          {showPractice && (
-            <PracticePhase
-              keyTakeawayCard={chapter.keyTakeawayCard}
-              implementationPlan={chapter.implementationPlan}
-              reviewCards={chapter.reviewCards}
-              predictionPrompt={chapter.predictionPrompt}
-              fontScaleClass={textScaleClass}
-              onContinueToNextChapter={handlePracticeComplete}
-              nextChapterLabel={nextChapter ? `Continue to Chapter ${nextChapter.order} \u2192` : "Finish Book \u2192"}
-              bookmarkedTakeaways={
-                state.bookmarkedTakeaways
-                  .filter((i) => i < chapter.takeaways.length)
-                  .map((i) => chapter.takeaways[i])
-              }
-            />
-          )}
         </div>
       </section>
 
@@ -816,13 +988,125 @@ export function ChapterReaderClient({
           setToast("Notes exported.");
         }}
         onPinTakeaway={() => {
-          appendNote(`Pinned takeaway: ${chapter.takeaways[0] ?? ""}`);
+          appendNote(`Pinned takeaway: ${activeTakeaways[0] ?? ""}`);
           setToast("Takeaway pinned.");
         }}
       />
 
       {sessionMode && (
         <SessionModeOverlay onDone={handleSessionTourDone} />
+      )}
+
+      {/* Quiz-pass celebration overlay */}
+      {showQuizCelebration && quizCelebrationData && (
+        <QuizPassCelebration
+          scorePercent={quizCelebrationData.scorePercent}
+          isPerfect={quizCelebrationData.isPerfect}
+          quizPassIP={quizCelebrationData.quizPassIP}
+          perfectBonusIP={quizCelebrationData.perfectBonusIP}
+          loopPipeline={quizCelebrationData.loopPipeline}
+          onDismiss={() => {
+            setShowQuizCelebration(false);
+            if (quizCelebrationData?.loopPipeline?.achievements.length) {
+              setPendingAchievements(quizCelebrationData.loopPipeline.achievements);
+            }
+            handleContinueToPractice();
+          }}
+        />
+      )}
+
+      {pendingAchievements.length > 0 && (
+        <AchievementToastStack
+          achievements={pendingAchievements}
+          onDismissAll={() => setPendingAchievements([])}
+        />
+      )}
+
+      {/* Chapter complete modal */}
+      {showCompleteModal && (
+        <ChapterCompleteModal
+          chapterTitle={chapter.title}
+          chapterNumber={chapter.order}
+          quizScore={quiz.session?.result?.scorePercent ?? 0}
+          streak={quiz.lastLoopPipeline?.streak.currentStreak ?? 1}
+          insightPointsEarned={totalChapterIP}
+          hasNextChapter={Boolean(nextChapter)}
+          onNext={handleChapterCompleteNext}
+          onLibrary={handleChapterCompleteLibrary}
+        >
+          <PracticePhase
+            keyTakeawayCard={chapter.keyTakeawayCard}
+            implementationPlan={chapter.implementationPlan}
+            reviewCards={chapter.reviewCards}
+            predictionPrompt={activePredictionPrompt}
+            fontScaleClass={textScaleClass}
+            onContinueToNextChapter={handleChapterCompleteNext}
+            nextChapterLabel={nextChapter ? `Continue to Chapter ${nextChapter.order} \u2192` : "Finish Book \u2192"}
+            bookmarkedTakeaways={
+              state.bookmarkedTakeaways
+                .filter((i) => i < activeTakeaways.length)
+                .map((i) => activeTakeaways[i])
+            }
+            chapterId={chapterId}
+            onBookmarkStep={(text) => {
+              appendNote(`\u2022 Step: ${text}`);
+              setToast("Step saved to notes.");
+            }}
+            hideContinueCta
+          />
+        </ChapterCompleteModal>
+      )}
+
+      {/* Keyboard shortcuts overlay */}
+      {showShortcuts && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center px-4"
+          style={{
+            background: "rgba(0,0,0,0.6)",
+            backdropFilter: "blur(8px)",
+            WebkitBackdropFilter: "blur(8px)",
+          }}
+          onClick={() => setShowShortcuts(false)}
+          role="dialog"
+          aria-label="Keyboard shortcuts"
+        >
+          <div
+            className="rounded-2xl p-6 max-w-sm w-full bg-(--cr-bg-surface-2) border border-(--cr-glass-border)"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h3 className="text-[16px] font-semibold mb-4 text-(--cr-text-heading)">
+              Keyboard Shortcuts
+            </h3>
+            <div className="space-y-3 text-[13px] text-(--cr-text-secondary)">
+              {(
+                [
+                  ["1 \u2013 4", "Select quiz answer"],
+                  ["Enter", "Submit answer"],
+                  ["F", "Toggle focus mode"],
+                  ["N", "Open notes"],
+                  ["Esc", "Close drawers / overlays"],
+                  ["?", "Show this overlay"],
+                ] as const
+              ).map(([key, desc]) => (
+                <div key={key} className="flex items-center justify-between">
+                  <span>{desc}</span>
+                  <kbd
+                    className="px-2 py-0.5 rounded text-[12px] font-mono bg-(--cr-bg-surface-3) border border-(--cr-glass-border) text-(--cr-text-heading)"
+                  >
+                    {key}
+                  </kbd>
+                </div>
+              ))}
+            </div>
+            <button
+              type="button"
+              onClick={() => setShowShortcuts(false)}
+              className="mt-5 w-full py-2 rounded-full text-[13px] bg-(--cr-bg-surface-3) text-(--cr-text-secondary) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_55%,transparent)]"
+            >
+              Close
+            </button>
+          </div>
+        </div>
       )}
 
       {/* Phase transition interstitial */}
@@ -837,27 +1121,22 @@ export function ChapterReaderClient({
 
 
       {syncFailed && !toast && (
-        <div className="pointer-events-none fixed bottom-24 left-1/2 z-40 -translate-x-1/2 inline-flex items-center gap-1.5 rounded-xl border border-(--cr-warning)/30 bg-(--cr-warning)/10 px-3 py-2 text-xs text-(--cr-warning)">
+        <div className="pointer-events-none fixed bottom-20 left-1/2 z-40 -translate-x-1/2 inline-flex items-center gap-1.5 rounded-xl border border-(--cr-warning)/30 bg-(--cr-warning)/10 px-3 py-2 text-xs text-(--cr-warning)">
           <CloudOff className="h-3.5 w-3.5" />
           Changes saved locally only
         </div>
       )}
 
       {toast && (
-        <div className="fixed bottom-24 left-1/2 z-50 -translate-x-1/2 rounded-xl border border-(--cr-glass-border) bg-(--cr-bg-surface-2) px-3 py-2 text-sm text-(--cr-text-primary) shadow-[0_14px_28px_rgba(0,0,0,0.22)]">
+        <div className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-xl border border-(--cr-glass-border) bg-(--cr-bg-surface-2) px-3 py-2 text-sm text-(--cr-text-primary) shadow-[0_14px_28px_rgba(0,0,0,0.22)]">
           {toast}
         </div>
       )}
 
-      {state.focusMode ? (
+      {state.focusMode && (
         <div className="pointer-events-none fixed bottom-6 right-6 hidden rounded-xl border border-(--cr-success)/30 bg-(--cr-success-bg) px-3 py-1.5 text-xs text-(--cr-success) md:inline-flex md:items-center md:gap-1.5">
           <CheckCircle2 className="h-4 w-4" />
           Focus mode enabled
-        </div>
-      ) : (
-        <div className="pointer-events-none fixed bottom-6 right-6 hidden rounded-xl border border-(--cr-glass-border) bg-(--cr-bg-surface-2) px-3 py-1.5 text-xs text-(--cr-text-secondary) md:inline-flex md:items-center md:gap-1.5">
-          <Sparkles className="h-4 w-4" />
-          Tip: press N for notes, F for focus
         </div>
       )}
     </main>

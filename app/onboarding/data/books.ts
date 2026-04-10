@@ -17,8 +17,9 @@ export interface OnboardingBook {
 
 /** Map book id to the cover filename in public/book-covers/ */
 const COVER_MAP: Record<string, string> = {
-  "48-laws-power": "the-48-laws-of-power",
-  "how-to-win-friends": "friends-and-influence",
+  "crucial-conversations": "crucial-conversations",
+  "thinking-fast-and-slow": "thinking-fast-and-slow",
+  "the-almanack-of-naval-ravikant": "the-almanack-of-naval-ravikant",
 };
 
 /** Get cover image path for a book (returns null if no cover available) */
@@ -29,11 +30,10 @@ export function getBookCoverPath(bookId: string): string | null {
 }
 
 export const ONBOARDING_BOOKS: OnboardingBook[] = [
-  // Strategy
-  { id: "48-laws-power", title: "The 48 Laws of Power", author: "Robert Greene", category: "Strategy", difficulty: "Hard", estimatedHours: 5.0, gradient: "linear-gradient(135deg, #991B1B, #7F1D1D)", interests: ["history", "strategy", "leadership"], tagline: "3,000 years of power distilled into 48 laws." },
-
   // Communication
-  { id: "how-to-win-friends", title: "How to Win Friends and Influence People", author: "Dale Carnegie", category: "Communication", difficulty: "Easy", estimatedHours: 2.6, gradient: "linear-gradient(135deg, #059669, #047857)", interests: ["communication", "relationships"], tagline: "The timeless guide to human connection." },
+  { id: "crucial-conversations", title: "Crucial Conversations", author: "Joseph Grenny, Kerry Patterson, Ron McMillan, Al Switzler", category: "Communication", difficulty: "Medium", estimatedHours: 2.2, gradient: "linear-gradient(135deg, #0f766e, #0f172a)", interests: ["communication", "relationships"], tagline: "A practical guide to handling hard conversations well." },
+  { id: "thinking-fast-and-slow", title: "Thinking, Fast and Slow", author: "Daniel Kahneman", category: "Psychology", difficulty: "Hard", estimatedHours: 18.5, gradient: "linear-gradient(135deg, #0f172a, #1d4ed8)", interests: ["psychology", "decision-making", "self-improvement"], tagline: "A deep guide to bias, judgment, and better decisions under uncertainty." },
+  { id: "the-almanack-of-naval-ravikant", title: "The Almanack of Naval Ravikant", author: "Eric Jorgenson", category: "Philosophy", difficulty: "Medium", estimatedHours: 1.4, gradient: "linear-gradient(135deg, #0f172a, #155e75)", interests: ["philosophy", "finance", "self-awareness", "leadership"], tagline: "A compact guide to wealth, judgment, and inner freedom." },
 ];
 
 export function getBookById(id: string): OnboardingBook | undefined {

@@ -1,0 +1,68 @@
+{
+  "packVersion": "v13-autonomous",
+  "bookId": "the-art-of-war",
+  "runId": "20260406-01",
+  "packRoot": "scripts/book/prompts/chapterflow-v13-autonomous",
+  "runRoot": ".chapterflow/runs/the-art-of-war/20260406-01",
+  "sourceRoot": ".chapterflow/sources/the-art-of-war",
+  "outputProfile": "flagship_v4_compatible",
+  "learningContract": "research_native",
+  "runProfile": "apex_flagship",
+  "validationMode": "chapter_gate",
+  "chapterGateQuizMode": "generate",
+  "scenarioTonePolicy": "required",
+  "rightsMode": "startup_light",
+  "waveSize": 2,
+  "generateChapterReviewWrapper": true,
+  "strictPackAudit": true,
+  "forbidBulkGenerators": true,
+  "releaseAssembleFromValidatedOnly": true,
+  "preserveApprovedChapterHashes": true,
+  "sourceSidecarsRequired": true,
+  "artifactGuardRequired": true,
+  "releaseGuardRequired": true,
+  "qualityDecayStopDelta": 1.5,
+  "book": {
+    "bookId": "the-art-of-war",
+    "title": "The Art of War",
+    "author": "Sunzi",
+    "categories": [
+      "Military Strategy",
+      "Philosophy",
+      "Leadership",
+      "Classics"
+    ],
+    "tags": [
+      "strategy",
+      "warfare",
+      "deception",
+      "leadership",
+      "intelligence",
+      "tactics",
+      "ancient-china",
+      "classics",
+      "sun-tzu"
+    ],
+    "edition": {
+      "name": "Project Gutenberg / Lionel Giles translation",
+      "translator": "Lionel Giles",
+      "publishedYear": null,
+      "translationYear": 1910,
+      "sourceText": ".chapterflow/runs/the-art-of-war/20260406-01/source-freeze/book-source.txt",
+      "sourceProvenance": "Project Gutenberg eBook #17405, translated by Lionel Giles, released December 28, 2005 and most recently updated October 30, 2021. Cross-referenced against Project Gutenberg eBook #132 (annotated Lionel Giles edition)."
+    },
+    "variantFamily": "EMH",
+    "chapterRange": "Chapters I-XIII (1-13)"
+  },
+  "chapterGateMode": "automatic_continue",
+  "sourceDiscoveryMode": "preexisting_bundle",
+  "editionSelectionMode": "locked",
+  "sourcePolicy": "public_or_authorized_plus_secondary",
+  "sourceFreezeRequired": true,
+  "qualitySentryRequired": true,
+  "bookRequest": {
+    "title": "The Art of War",
+    "author": "Sunzi",
+    "editionPreference": "Project Gutenberg / Lionel Giles translation"
+  }
+}

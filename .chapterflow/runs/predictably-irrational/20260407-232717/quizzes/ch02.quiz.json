@@ -1,0 +1,155 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What concept names the pattern in which an arbitrary starting price shapes later willingness to pay?",
+      "choices": [
+        "Social proof",
+        "Arbitrary coherence",
+        "Loss aversion"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Ariely calls the pattern arbitrary coherence. The first price can be arbitrary, but later judgments become coherent around it.",
+        "direct": "The chapter's main term is arbitrary coherence: a shaky anchor followed by internally consistent later pricing.",
+        "competitive": "The right answer is arbitrary coherence, the mechanism that lets a planted opening number rule later bids."
+      }
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does Ariely use Tahitian black pearls in this chapter?",
+      "choices": [
+        "To show how high prices can help create demand",
+        "To prove pearls are always overpriced",
+        "To argue that supply never matters"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The pearls illustrate how an opening luxury price can teach buyers what to value.",
+        "direct": "Ariely uses the pearls to show that pricing and framing can construct later willingness to pay.",
+        "competitive": "The pearl story matters because price helped build desire instead of merely reflecting it."
+      }
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What does the word 'arbitrary' emphasize in arbitrary coherence?",
+      "choices": [
+        "Later decisions never make sense",
+        "The first anchor may lack a solid objective basis",
+        "All market prices are random forever"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The initial price can be weak or accidental even though later choices feel orderly.",
+        "direct": "Arbitrary refers to the opening anchor, not to every later comparison.",
+        "competitive": "The foundation can be flimsy even when the structure built on it looks disciplined."
+      }
+    },
+    {
+      "questionId": "q04",
+      "prompt": "According to Chapter 2, when are anchors especially powerful?",
+      "choices": [
+        "When people already know the true price well",
+        "When value is uncertain or unfamiliar",
+        "When sellers never mention price"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Anchors matter more when people do not have a strong internal sense of what something should cost.",
+        "direct": "Ambiguous value increases anchor power because buyers need an external reference.",
+        "competitive": "When the internal meter is weak, the first outside number takes over."
+      }
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What is the chapter's main criticism of simple supply-and-demand stories?",
+      "choices": [
+        "They assume demand is more stable and independent than it often is",
+        "They ignore that goods can be produced",
+        "They only apply to food markets"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Ariely argues that willingness to pay is shaped by earlier anchors, not only by fixed preferences.",
+        "direct": "The critique is that demand is partly constructed by prior prices and frames.",
+        "competitive": "The theory treats demand as clean. Ariely shows it often arrives already bent."
+      }
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What does 'coherence' mean in the phrase arbitrary coherence?",
+      "choices": [
+        "Later prices line up with the first anchor in a consistent way",
+        "The first price is always correct",
+        "Everyone agrees on the same value"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Coherence means later judgments can fit together even if the starting point was weak.",
+        "direct": "The later pattern looks internally sensible because people keep pricing relative to the anchor.",
+        "competitive": "The chain hangs together, which is why people stop questioning the first link."
+      }
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Which response best matches Ariely's practical advice in this chapter?",
+      "choices": [
+        "Always buy the cheapest option",
+        "Trace your judgment back to the first anchor and inspect it",
+        "Avoid all price comparisons forever"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The point is to question the first number, not to stop comparing altogether.",
+        "direct": "Ariely's practical move is anchor inspection: where did the opening price come from, and should it still govern the choice?",
+        "competitive": "Fight the anchor, not just the later quote."
+      }
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why are experiments with unfamiliar goods useful in this chapter?",
+      "choices": [
+        "They remove the influence of memory and force pure instinct",
+        "They make it easier to see anchors because participants lack strong price habits",
+        "They prove experts are irrational but novices are not"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Unfamiliar items make anchoring easier to spot because people cannot lean on well-learned market prices.",
+        "direct": "Ambiguity lets the first number act as borrowed judgment.",
+        "competitive": "No market memory means the anchor gets clean access."
+      }
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What broader area besides shopping does Ariely say can inherit anchors?",
+      "choices": [
+        "Salary and rent expectations",
+        "Only personal hobbies",
+        "Only emergency decisions"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter applies to recurring life expectations such as pay, rent, and fees.",
+        "direct": "Anchors can shape career and housing judgments as well as product prices.",
+        "competitive": "The market logic follows you into work and status decisions too."
+      }
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What is the best summary of Ariely's claim about first prices?",
+      "choices": [
+        "They are unimportant once more data appears",
+        "They can keep steering later judgments long after the moment they were set",
+        "They matter only for luxury goods"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "First prices can keep influencing later choices because people build around them.",
+        "direct": "Anchors persist. Later evidence does not automatically erase them.",
+        "competitive": "The first number lingers longer than people think and keeps collecting obedience."
+      }
+    }
+  ]
+}

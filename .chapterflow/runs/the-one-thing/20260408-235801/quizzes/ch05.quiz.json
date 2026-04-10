@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What main claim does Chapter 5 make about multitasking?",
+      "choices": [
+        "It is proof of high competence",
+        "It divides attention instead of multiplying force",
+        "It only matters in school settings"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says multitasking feels productive while weakening real progress.",
+        "direct": "Keller treats multitasking as split force, not expanded capability.",
+        "competitive": "The look of speed hides broken attention."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does multitasking often weaken important work?",
+      "choices": [
+        "Because switching keeps restarting the task",
+        "Because every interruption is morally wrong",
+        "Because tools automatically reduce intelligence"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says switching breaks the thread and forces the task to restart.",
+        "direct": "Repeated beginnings weaken depth.",
+        "competitive": "Every switch makes the work pay again."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is the better alternative to multitasking in this chapter?",
+      "choices": [
+        "Handle every live demand at once",
+        "Wait until life is perfectly quiet",
+        "Protect one meaningful task in sequence"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter recommends sequence so one important task can receive full pressure.",
+        "direct": "Protected sequence is the correction.",
+        "competitive": "One live fight beats six weak fronts."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Iris is writing a proposal while unread messages keep flashing. Which response best fits Chapter 5?",
+      "choices": [
+        "Close the inbox for a focused block",
+        "Reply between every paragraph to stay responsive",
+        "Open more tabs so the messages feel less urgent"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The proposal needs uninterrupted force more than the inbox needs constant warmth.",
+        "direct": "Sequence the draft before reopening messages.",
+        "competitive": "Feed the argument, not the badges."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Which sentence would Chapter 5 reject as false?",
+      "choices": [
+        "Switching can weaken depth even when the task still gets finished",
+        "A demanding task often needs uninterrupted pressure",
+        "Visible responsiveness always means meaningful progress"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter says motion across several fronts can look productive while still weakening the result.",
+        "direct": "Responsiveness is not the same as depth.",
+        "competitive": "Warm channels do not prove strong work."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Mateo studied with half-highlighted notes, several tabs open, and a vibrating phone beside the keyboard. What did Chapter 5 say he was really doing?",
+      "choices": [
+        "Building strong memory through variety",
+        "Switching more than learning",
+        "Practicing useful multitasking skill"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The session looked busy, but the constant switching kept the material from settling.",
+        "direct": "He was rotating attention instead of deepening thought.",
+        "competitive": "The blur looked alive and stayed shallow."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What limit keeps Chapter 5 from becoming cartoonishly rigid?",
+      "choices": [
+        "That all interruptions should be removed forever",
+        "That multitasking is only a problem for students",
+        "That real coordination and monitoring sometimes exist"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter allows that some roles involve genuine coordination, but it separates that from deep simultaneous thinking.",
+        "direct": "Coordination is real; divided cognition is still costly.",
+        "competitive": "Complexity exists, but it does not make fractured focus excellent."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Celine notices that messages, errands, and a live conversation are all getting thinner at once. What is the best Chapter 5 response?",
+      "choices": [
+        "Keep all three active so nothing is neglected",
+        "Give the conversation whole attention and handle the rest later",
+        "Add another reminder list to stay organized"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter favors sequence so one meaningful interaction can receive real presence.",
+        "direct": "Stop splitting the interaction across side tasks.",
+        "competitive": "Pick the person or the list. Do not weaken both."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "How does Chapter 5 build on Chapter 4?",
+      "choices": [
+        "It shows what people do when they refuse to let ranked attention stay protected",
+        "It abandons ranking and says every task should stay active",
+        "It claims multitasking makes equal weighting work better"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Chapter 4 asks the reader to rank, and Chapter 5 shows the chaos created when people still try to keep everything alive at once.",
+        "direct": "Multitasking becomes a substitute for real ranking.",
+        "competitive": "When one task should win and you still cannot starve the rest, multitasking becomes the alibi."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Which action best applies Chapter 5 to a crowded digital workflow?",
+      "choices": [
+        "Keep every communication channel visible while doing the hard task",
+        "Create one protected block where the hardest task gets uninterrupted attention",
+        "Move constantly between tabs so all fronts feel active"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter works when the hardest task is allowed to deepen before the surrounding noise returns.",
+        "direct": "Protect sequence instead of glorifying overlap.",
+        "competitive": "Do not multitask the hard part into weakness."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

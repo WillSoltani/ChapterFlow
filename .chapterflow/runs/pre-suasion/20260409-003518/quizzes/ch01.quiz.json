@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "Robert leaves Chapter 1 saying, So persuasion really begins when the request begins. Which response best fits the chapter's argument?",
+      "choices": [
+        "Yes, because wording is the only part that truly changes outcomes",
+        "Not quite. The chapter argues that receptivity is often being shaped before the request appears",
+        "No, because requests never matter once a first impression exists"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter's main shift is that setup matters before the formal ask arrives. The request still matters, but it is not the whole event.",
+        "direct": "Option B captures the core claim. Pre-suasion is about arranging readiness before the proposal itself is heard.",
+        "competitive": "If you think the contest starts at the ask, you are already late."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the gardener image matter in the opening chapter?",
+      "choices": [
+        "It shows that a strong message can still fail if it lands in unreceptive conditions",
+        "It proves that patient people are always more persuasive than fast people",
+        "It means persuasion should stay completely natural and never be planned"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The image helps the reader feel why setup matters. Good seeds still depend on the ground they enter.",
+        "direct": "Option A is the point. The metaphor shifts attention from message quality alone to message plus conditions.",
+        "competitive": "Great seeds die in bad soil. Great requests die in bad rooms."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What does the Toronto consultant example mainly prove?",
+      "choices": [
+        "That humor is always the best pricing tactic",
+        "That changing the comparison point can change how the same price is judged",
+        "That clients mainly care about how friendly the consultant sounds"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The key move is not comedy for its own sake. It is setting a frame that changes the feel of the next number.",
+        "direct": "Option B wins because the story is about anchoring. The fee stays the same while the frame changes.",
+        "competitive": "The joke is not the magic. The first number is."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Lena is about to name a consulting fee that usually creates resistance when it arrives cold. Based on Chapter 1, what is the strongest move?",
+      "choices": [
+        "Deliver the number as fast as possible so the client has less time to react",
+        "Set an honest comparison point first so the fee is not judged in a vacuum",
+        "Avoid naming the fee and hope the client asks later"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says sequence matters. A comparison point can help the client hear the real number differently.",
+        "direct": "Option B fits the consultant logic exactly. The goal is to shape the frame before the fee lands.",
+        "competitive": "If Lena loses the first number, she may lose the next one with it."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "A reader says, Jim's story proves trust only matters after you start explaining yourself. What is the best correction?",
+      "choices": [
+        "Wrong. The story shows trust can be cued before the pitch begins",
+        "Right. The whole point is that trust arrives only through long explanations",
+        "Partly right, but only if the product is weak"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Jim's tactic works because the trust cue happens before the recommendation, not after it.",
+        "direct": "Option A matches the chapter. Association and access alter how the later message is received.",
+        "competitive": "Jim did not wait to be trusted inside the pitch. He entered carrying trust."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "During a student budget pitch, Omar realizes the committee was restless before his best evidence arrived. What question should he ask first in the postmortem?",
+      "choices": [
+        "Did we ever prepare the room to care before we asked it to process details?",
+        "Should we double the amount of supporting data next time?",
+        "Were committees always impossible to persuade anyway?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter points him back to receptivity first. A setup failure can hide inside what looks like a content failure.",
+        "direct": "Option A is the best diagnostic. The strongest evidence cannot help much if the room never became ready to receive it.",
+        "competitive": "When the room dies early, more data is often just a prettier autopsy."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Talia keeps loading a family request with anxiety before she even states it. What risk from Chapter 1 is she triggering?",
+      "choices": [
+        "She is making the setup heavier, so the request arrives in a more defensive emotional climate",
+        "She is proving she cares enough, which guarantees a yes",
+        "She is removing every social factor and making the ask purely rational"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter shows that feelings in the room before the ask matter. Anxiety can make the request harder to hear fairly.",
+        "direct": "Option A fits the mechanism. Receptivity can be emotional as well as analytical.",
+        "competitive": "If Talia makes the room carry her pressure first, the ask starts uphill."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Which statement best captures why Chapter 1 applies outside sales settings?",
+      "choices": [
+        "Because every important ask enters a mind that is already noticing, comparing, and feeling something",
+        "Because all conversations are secretly negotiations about money",
+        "Because first impressions fully determine every later outcome"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter scales because people never receive requests in a blank state. That is true in work, school, and personal settings.",
+        "direct": "Option A captures the transfer principle. The before-the-ask stage exists wherever an important request is made.",
+        "competitive": "Different room, same law: the audience is already somewhere before your ask gets there."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does Chapter 1 become more trustworthy when it keeps Jim's tactic morally unsettled instead of celebrating it cleanly?",
+      "choices": [
+        "Because it shows the method only works when people feel guilty",
+        "Because it admits that effective setup can either clarify judgment or tilt it in dubious ways",
+        "Because it proves ethical questions never matter if the result is good"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter gains honesty by admitting that a powerful influence move can also raise moral concerns.",
+        "direct": "Option B is right. The clarifying-versus-steering tension is part of the chapter's core seriousness.",
+        "competitive": "A method worth trusting tells you where its sharp edge can cut the wrong way."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If Chapter 1 proves that setup matters, what is the most natural next question for the book to answer?",
+      "choices": [
+        "Which moments give setup unusual leverage over what happens next?",
+        "How to remove all emotion from every persuasive exchange",
+        "Why only professional persuaders need to think about framing"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter naturally leads to a timing question. If setup matters, some moments must be more open to it than others.",
+        "direct": "Option A fits the bridge perfectly. The next step is understanding why some moments are especially powerful for receptivity.",
+        "competitive": "Once you know setup wins early, the next move is to find the moments where it bites hardest."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "title": "Essentialism",
+  "author": "Greg McKeown",
+  "edition": {
+    "name": "Essentialism: The Disciplined Pursuit of Less",
+    "publisher": "Crown Business",
+    "publishedDate": "2014-04-15",
+    "publishedYear": 2014,
+    "hardcoverIsbn13": "9780804137386",
+    "paperbackPublishedDate": "2020-12-29",
+    "paperbackPublishedYear": 2020,
+    "paperbackIsbn13": "9780804137409",
+    "language": "English",
+    "translator": "",
+    "format": "hardcover / ebook / paperback trade family",
+    "chapterCount": 20,
+    "sectionCount": 4
+  },
+  "sections": [
+    {
+      "slug": "essence",
+      "heading": "Essence: What is the core mind-set of an Essentialist?",
+      "range": [1, 4],
+      "chapters": [
+        { "number": 1, "title": "The Essentialist" },
+        { "number": 2, "title": "Choose: The Invincible Power of Choice" },
+        { "number": 3, "title": "Discern: The Unimportance of Practically Everything" },
+        { "number": 4, "title": "Trade-Off: Which Problem Do I Want?" }
+      ]
+    },
+    {
+      "slug": "explore",
+      "heading": "Explore: How can we discern the trivial many from the vital few?",
+      "range": [5, 9],
+      "chapters": [
+        { "number": 5, "title": "Escape: The Perks of Being Unavailable" },
+        { "number": 6, "title": "Look: See What Really Matters" },
+        { "number": 7, "title": "Play: Embrace the Wisdom of Your Inner Child" },
+        { "number": 8, "title": "Sleep: Protect the Asset" },
+        { "number": 9, "title": "Select: The Power of Extreme Criteria" }
+      ]
+    },
+    {
+      "slug": "eliminate",
+      "heading": "Eliminate: How can we cut out the trivial many?",
+      "range": [10, 14],
+      "chapters": [
+        { "number": 10, "title": "Clarify: One Decision That Makes a Thousand" },
+        { "number": 11, "title": "Dare: The Power of a Graceful \"No\"" },
+        { "number": 12, "title": "Uncommit: Win Big by Cutting Your Losses" },
+        { "number": 13, "title": "Edit: The Invisible Art" },
+        { "number": 14, "title": "Limit: The Freedom of Setting Boundaries" }
+      ]
+    },
+    {
+      "slug": "execute",
+      "heading": "Execute: How can we make doing the vital few things almost effortless?",
+      "range": [15, 20],
+      "chapters": [
+        { "number": 15, "title": "Buffer: The Unfair Advantage" },
+        { "number": 16, "title": "Subtract: Bring Forth More by Removing Obstacles" },
+        { "number": 17, "title": "Progress: The Power of Small Wins" },
+        { "number": 18, "title": "Flow: The Genius of Routine" },
+        { "number": 19, "title": "Focus: What's Important Now?" },
+        { "number": 20, "title": "Be: The Essentialist Life" }
+      ]
+    }
+  ],
+  "appendix": "Leadership Essentials",
+  "anniversaryExtras": {
+    "introduction": "10th Anniversary introduction",
+    "bonus": "21-day challenge",
+    "note": "Frozen as contextual extras and excluded from the numbered pipeline."
+  },
+  "chapters": [
+    { "number": 1, "title": "The Essentialist", "sectionHeading": "Essence: What is the core mind-set of an Essentialist?" },
+    { "number": 2, "title": "Choose: The Invincible Power of Choice", "sectionHeading": "Essence: What is the core mind-set of an Essentialist?" },
+    { "number": 3, "title": "Discern: The Unimportance of Practically Everything", "sectionHeading": "Essence: What is the core mind-set of an Essentialist?" },
+    { "number": 4, "title": "Trade-Off: Which Problem Do I Want?", "sectionHeading": "Essence: What is the core mind-set of an Essentialist?" },
+    { "number": 5, "title": "Escape: The Perks of Being Unavailable", "sectionHeading": "Explore: How can we discern the trivial many from the vital few?" },
+    { "number": 6, "title": "Look: See What Really Matters", "sectionHeading": "Explore: How can we discern the trivial many from the vital few?" },
+    { "number": 7, "title": "Play: Embrace the Wisdom of Your Inner Child", "sectionHeading": "Explore: How can we discern the trivial many from the vital few?" },
+    { "number": 8, "title": "Sleep: Protect the Asset", "sectionHeading": "Explore: How can we discern the trivial many from the vital few?" },
+    { "number": 9, "title": "Select: The Power of Extreme Criteria", "sectionHeading": "Explore: How can we discern the trivial many from the vital few?" },
+    { "number": 10, "title": "Clarify: One Decision That Makes a Thousand", "sectionHeading": "Eliminate: How can we cut out the trivial many?" },
+    { "number": 11, "title": "Dare: The Power of a Graceful \"No\"", "sectionHeading": "Eliminate: How can we cut out the trivial many?" },
+    { "number": 12, "title": "Uncommit: Win Big by Cutting Your Losses", "sectionHeading": "Eliminate: How can we cut out the trivial many?" },
+    { "number": 13, "title": "Edit: The Invisible Art", "sectionHeading": "Eliminate: How can we cut out the trivial many?" },
+    { "number": 14, "title": "Limit: The Freedom of Setting Boundaries", "sectionHeading": "Eliminate: How can we cut out the trivial many?" },
+    { "number": 15, "title": "Buffer: The Unfair Advantage", "sectionHeading": "Execute: How can we make doing the vital few things almost effortless?" },
+    { "number": 16, "title": "Subtract: Bring Forth More by Removing Obstacles", "sectionHeading": "Execute: How can we make doing the vital few things almost effortless?" },
+    { "number": 17, "title": "Progress: The Power of Small Wins", "sectionHeading": "Execute: How can we make doing the vital few things almost effortless?" },
+    { "number": 18, "title": "Flow: The Genius of Routine", "sectionHeading": "Execute: How can we make doing the vital few things almost effortless?" },
+    { "number": 19, "title": "Focus: What's Important Now?", "sectionHeading": "Execute: How can we make doing the vital few things almost effortless?" },
+    { "number": 20, "title": "Be: The Essentialist Life", "sectionHeading": "Execute: How can we make doing the vital few things almost effortless?" }
+  ]
+}

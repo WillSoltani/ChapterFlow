@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What are the two opposing desires Machiavelli says exist in every city?",
+      "choices": [
+        "The people want honor, and the nobles want security",
+        "The people want not to be oppressed, and the nobles want to rule and oppress",
+        "The people want conquest, and the nobles want peace"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Chapter 9 starts with the city's two humors: the people want not to be oppressed, and the nobles want to oppress.",
+        "direct": "This opposition is the chapter's foundation. It explains why civil principality grows out of civic conflict.",
+        "competitive": "Protection and domination, not harmony, are the chapter's starting forces."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why is a prince raised by nobles harder to maintain than a prince raised by the people?",
+      "choices": [
+        "Because nobles are too numerous to replace",
+        "Because the people refuse all obedience",
+        "Because noble backers think of themselves as the prince's equals and are harder to manage"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Machiavelli says noble backers act like equals, which makes them harder to rule freely.",
+        "direct": "The difficulty is structural: the prince rises among ambitious near-peers, not ordinary subjects.",
+        "competitive": "The makers who feel like partners become pressure inside the regime."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why are the people easier to satisfy than the nobles in Chapter 9?",
+      "choices": [
+        "Because their object is not to be oppressed",
+        "Because they want office for themselves",
+        "Because they are more skilled at governing"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The people ask for protection from oppression, which is a narrower demand than noble ambition.",
+        "direct": "Machiavelli calls their object more righteous because it asks less from the prince.",
+        "competitive": "A body asking safety is easier to govern from than a circle asking elevation."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Alina was elevated by senior partners while the staff stayed wary. According to Chapter 9, what should she secure next?",
+      "choices": [
+        "The partners' equality inside the office",
+        "The wider staff's confidence that she will protect them",
+        "A larger private coalition among the executives"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A ruler raised by insiders must win the broader body by protection.",
+        "direct": "Alina's title is not enough. She needs the wider staff friendly before adversity arrives.",
+        "competitive": "The makers launched her, but the people under her still determine whether the office has a real base."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What did Desmond's postmortem in the student council chamber reveal?",
+      "choices": [
+        "That broad support seeking relief was steadier than a small officer bloc seeking rank",
+        "That officer prestige was the safest foundation for the presidency",
+        "That student leaders should avoid all popular backing"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Desmond learns that the broader body wanting relief gave him a steadier base than the officers who wanted standing.",
+        "direct": "The chapter's point is that a narrow elite bloc is less secure than a wider group asking not to be dominated.",
+        "competitive": "Prestige looked louder. Relief proved stronger."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "In Farah's household dialogue, what makes the larger family body safer to govern from than the loud elder siblings?",
+      "choices": [
+        "The larger family wants equal rank in the decision",
+        "The larger family mainly wants the conflict to stop ruling the house",
+        "The larger family controls the household money"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The wider household wants peace, not a share in the rank struggle.",
+        "direct": "Its demand is narrower than the insiders' demand for standing, which makes it a safer base.",
+        "competitive": "Relief from the fight is easier to satisfy than the desire to win it."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "How should a prince treat nobles who do not bind themselves to his fortune because they are ambitious and self-serving?",
+      "choices": [
+        "Honor them first because they see further than others",
+        "Fear them as if they were open enemies",
+        "Ignore them because the people matter more"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Machiavelli says ambitious nobles who think first of themselves should be feared like open enemies.",
+        "direct": "They are dangerous because adversity reveals that they plan for themselves before the prince.",
+        "competitive": "The polished insider who keeps his options open is tomorrow's defector."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why must a prince raised by nobles seek above all to win the people over?",
+      "choices": [
+        "Because nobles are always morally inferior",
+        "Because the people will automatically love any new ruler",
+        "Because without the people's friendliness he has no security in adversity"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Without the people's friendliness, a prince has no safety when hard times come.",
+        "direct": "Winning the people is the first condition of security for a ruler who rose through noble favor.",
+        "competitive": "Elite sponsorship may lift the prince, but only the people keep him from falling in a crisis."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "How does Machiavelli answer the proverb that building on the people is like building on mud?",
+      "choices": [
+        "He says the proverb fails when a true prince can command, keep courage in adversity, and sustain confidence among the people",
+        "He says the proverb is always correct, even for real princes",
+        "He says the proverb matters only in hereditary principalities"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The proverb fits a private man expecting rescue, not a true prince who can command and endure pressure.",
+        "direct": "Nabis helps Machiavelli show that popular foundations can hold when the ruler has real authority and courage.",
+        "competitive": "Mud is the crowd without power, not the people under a prince who can actually command and keep confidence alive."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If a civil principality is to hold in troubled times, what must citizens continue to need?",
+      "choices": [
+        "The nobles' approval and the magistrates' goodwill",
+        "The state and the prince",
+        "Calm conditions and old promises"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Machiavelli's final rule is that citizens must keep needing the state and the prince in every sort of circumstance.",
+        "direct": "Quiet-time loyalty is not enough. Durable rule exists when dependence survives adversity.",
+        "competitive": "The regime is real when trouble sends people toward it, not away from it."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deep"
+    }
+  ]
+}

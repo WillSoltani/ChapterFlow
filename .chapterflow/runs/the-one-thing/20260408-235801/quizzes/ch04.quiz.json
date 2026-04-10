@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What main claim does Chapter 4 make about tasks and priorities?",
+      "choices": [
+        "Everything matters equally if you want to stay fair",
+        "Not every task carries the same consequence",
+        "Only urgent tasks deserve attention"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter's main correction is that consequence is uneven, so equal weighting is false.",
+        "direct": "Keller rejects flat weighting because leverage is uneven.",
+        "competitive": "The field is not level, even if the list pretends it is."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does Keller call equal weighting a lie?",
+      "choices": [
+        "Because all tasks should be ignored until the weekend",
+        "Because only one task exists at any time",
+        "Because equal attention weakens force across an unequal field"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter says equal treatment sounds fair, but it spreads force thinly across tasks that do not change the result equally.",
+        "direct": "Dilution is the cost of flat weighting.",
+        "competitive": "Equal pressure is softness wearing manners."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What should justify ranking in Chapter 4?",
+      "choices": [
+        "Personal convenience",
+        "Unequal consequence and leverage",
+        "Whatever feels most visible"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter's standard is consequence, not ease or visibility.",
+        "direct": "Ranking is justified by uneven leverage.",
+        "competitive": "Priority has to earn itself through impact."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Nadia can answer five small update requests or resolve the blocker freezing the launch page. Which choice fits Chapter 4 best?",
+      "choices": [
+        "Resolve the blocker because it changes the field more",
+        "Split the morning evenly so every request feels respected",
+        "Choose the smallest tasks because they create momentum faster"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The blocker deserves more force because it changes the rest of the project.",
+        "direct": "Chapter 4 ranks by consequence rather than by task count.",
+        "competitive": "One decisive move beats five polite distractions."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Which sentence would Chapter 4 reject as false?",
+      "choices": [
+        "Treating every task equally is the fairest way to protect a result",
+        "Some tasks deserve more force because they change more",
+        "A crowded list can hide avoidance of hard ranking"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says equal attention can feel fair while still weakening the outcome.",
+        "direct": "Fairness to the list is not the same as fairness to the result.",
+        "competitive": "The list loves equality. The result often gets punished by it."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Peter reviewed every chapter evenly, but the exam score was mostly driven by one essay section he barely practiced. What does Chapter 4 say he missed?",
+      "choices": [
+        "The need for more colorful notes",
+        "The value of equal review",
+        "The unequal leverage built into the test"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Peter treated the material evenly even though the exam itself was not weighted evenly.",
+        "direct": "He missed the load-bearing part of the grading field.",
+        "competitive": "The test was ranked. His study plan was not."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What limit keeps Chapter 4 from turning into an excuse for selfishness?",
+      "choices": [
+        "That consequence must stay tied to real duty and responsibility",
+        "That ranking is only allowed at work",
+        "That visible urgency always outranks quieter obligations"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter stays serious by saying ranking cannot erase real care, maintenance, or duty.",
+        "direct": "Consequence must stay linked to responsibility, not convenience.",
+        "competitive": "If priority talk only protects comfort, the ranking is fake."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Sol notices that confirming child care keeps the week stable, while many other reminders only make the phone screen look busy. What is the best Chapter 4 response?",
+      "choices": [
+        "Give every reminder a little time so the list stays fair",
+        "Rank the stabilizing obligation above the symbolic tasks",
+        "Wait until the whole week feels calm before choosing"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The stabilizing obligation deserves more force because it changes the week more than the nearby reminders do.",
+        "direct": "Chapter 4 asks for ranked attention, not democratic reminders.",
+        "competitive": "Feed the hinge. Ignore the wallpaper."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "How does Chapter 4 build on Chapter 3?",
+      "choices": [
+        "It claims that studying success removes the need to rank tasks",
+        "It says clues from success often reveal unequal consequence among actions",
+        "It rejects pattern learning in favor of intuition"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Chapter 3 teaches the reader to study successful patterns, and Chapter 4 explains that those patterns often reveal unequal leverage.",
+        "direct": "Clue-reading exposes why some moves deserve more force than others.",
+        "competitive": "The tracks do not just show success. They show hierarchy."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Which action best applies Chapter 4 to a crowded week?",
+      "choices": [
+        "Spread time evenly across every respectable demand",
+        "Focus only on whatever is easiest to finish fast",
+        "Choose the obligation with the strongest downstream effect and protect it first"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter works when the reader ranks by consequence instead of trying to honor every demand equally.",
+        "direct": "Protect the move with the highest leverage first.",
+        "competitive": "Do not democratize the week. Feed the claim that bends it."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

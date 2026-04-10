@@ -1,0 +1,155 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch16-q01",
+      "prompt": "What is the chapter's main claim about the smartphone?",
+      "choices": [
+        "It is a concentrated portable source of external triggers that should be reconfigured rather than simply endured",
+        "It can only be handled by giving it up entirely",
+        "It is not a meaningful trigger source at all"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter treats the phone as powerful and portable, but still redesignable.",
+        "direct": "Its core move is reconfiguration rather than abstinence theater.",
+        "competitive": "The empire gets audited, not worshipped or exiled."
+      }
+    },
+    {
+      "questionId": "ch16-q02",
+      "prompt": "Why is the smartphone especially potent as a distraction source?",
+      "choices": [
+        "Because it travels everywhere, stays close at hand, and keeps making low-friction cues available",
+        "Because it only works at a desk",
+        "Because it cannot be redesigned at all"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The phone brings triggers along across many parts of the day.",
+        "direct": "Portability and low-friction access make it unusually powerful.",
+        "competitive": "The trigger factory fits in your pocket."
+      }
+    },
+    {
+      "questionId": "ch16-q03",
+      "prompt": "Why does the chapter prefer reconfiguration to endless willpower?",
+      "choices": [
+        "Because design changes reduce how often the same self-control contest has to be fought",
+        "Because willpower never matters in any situation",
+        "Because the goal is to make the phone unusable"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A better setup asks less resistance of you in the first place.",
+        "direct": "Environment design weakens the trigger loop upstream.",
+        "competitive": "Change the battlefield instead of signing up for the same war."
+      }
+    },
+    {
+      "questionId": "ch16-q04",
+      "prompt": "Which of these fits the chapter's design logic?",
+      "choices": [
+        "Reducing notifications and moving tempting apps out of immediate reach",
+        "Leaving every alert on and trusting motivation",
+        "Treating the phone as morally bad rather than redesignable"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants practical redesign of cues and access.",
+        "direct": "Alerts, layout, and friction are the main levers here.",
+        "competitive": "Redraw the map instead of delivering a lecture."
+      }
+    },
+    {
+      "questionId": "ch16-q05",
+      "prompt": "Why does the chapter talk about home-screen layout?",
+      "choices": [
+        "Because what is visible and easy to reach shapes which triggers win first",
+        "Because decoration is the main point of the chapter",
+        "Because layout matters only for laptop use"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The first things the phone offers strongly shape behavior.",
+        "direct": "Layout is part of trigger design, not cosmetic trivia.",
+        "competitive": "The home screen is policy in icon form."
+      }
+    },
+    {
+      "questionId": "ch16-q06",
+      "prompt": "A student opens the phone for a calculator but drifts into other apps because they are closer and more tempting. What is the chapter's stronger correction?",
+      "choices": [
+        "Reconfigure the layout so the useful tool is closer and the tempting route is less immediate",
+        "Assume the drift proves the phone must be abandoned forever",
+        "Keep the setup the same and just feel worse about it"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter would change the design instead of only blaming the student.",
+        "direct": "The useful task should become lower-friction than the distraction path.",
+        "competitive": "Move the tool to the runway and the bait off it."
+      }
+    },
+    {
+      "questionId": "ch16-q07",
+      "prompt": "What mistake does the chapter avoid by rejecting anti-phone shame?",
+      "choices": [
+        "Turning a design problem into a moral story about purity or weakness",
+        "Noticing that phones can interrupt",
+        "Admitting that some phone functions matter"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter stays practical rather than moralizing.",
+        "direct": "It treats the phone as a governable environment, not as a morality test.",
+        "competitive": "Rewrite the rules before writing self-contempt."
+      }
+    },
+    {
+      "questionId": "ch16-q08",
+      "prompt": "What limit does the chapter preserve?",
+      "choices": [
+        "The phone still has useful functions, so the goal is governance rather than disappearance",
+        "Useful phones are impossible",
+        "Every function should move to another device immediately"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps room for communication, safety, and practical use.",
+        "direct": "The point is a governed phone, not a vanished one.",
+        "competitive": "Keep the tool. End the occupation."
+      }
+    },
+    {
+      "questionId": "ch16-q09",
+      "prompt": "How does this chapter connect to the earlier external-trigger chapters?",
+      "choices": [
+        "It takes the same redesign logic and applies it to the most portable trigger source of all",
+        "It abandons environment design and returns only to willpower",
+        "It says the phone is unrelated to external triggers"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter scales the trigger-design logic into the device that travels everywhere.",
+        "direct": "Portable environment design is the key continuation here.",
+        "competitive": "The empire changes shape, not the rule of the chapter."
+      }
+    },
+    {
+      "questionId": "ch16-q10",
+      "prompt": "Why does the next chapter move into the desktop?",
+      "choices": [
+        "Because once portable trigger design is clear, the same logic can be extended to the larger digital workspace",
+        "Because smartphones and desktops have nothing in common",
+        "Because the phone chapter has already covered every digital trigger"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next step is a less portable but more work-heavy digital environment.",
+        "direct": "The book is extending trigger redesign from phone to desktop.",
+        "competitive": "After the pocket empire comes the larger province."
+      }
+    }
+  ]
+}

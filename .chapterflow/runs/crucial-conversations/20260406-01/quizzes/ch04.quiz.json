@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "Which sequence best matches the Path to Action in Chapter 4?",
+      "choices": [
+        "Fact -> feeling -> story -> action",
+        "Fact -> story -> feeling -> action",
+        "Feeling -> fact -> story -> action"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says a person sees a fact, tells a story about it, feels the result, and then acts.",
+        "direct": "Correct. Interpretation sits between observation and emotion, which is why the model matters.",
+        "competitive": "Story is the hidden middle. Miss that, and the whole reaction feels automatic."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What hidden step do most people miss when they feel upset?",
+      "choices": [
+        "The story or interpretation they added",
+        "The existence of facts",
+        "The need to stay calm at all times"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Most people feel the emotion and miss the story that helped create it.",
+        "direct": "The chapter's main diagnostic is the invisible interpretation step between fact and feeling.",
+        "competitive": "You usually miss the story and then call the whole surge truth."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A professor says, \"This draft is still unclear.\" A student thinks, \"She thinks I am not serious.\" Which part is the story?",
+      "choices": [
+        "\"This draft is still unclear\"",
+        "\"She thinks I am not serious\"",
+        "Both are equally factual"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The first line is the observable comment. The second line is the meaning the student adds to it.",
+        "direct": "Correct. The interpretation about motive and identity is the story layered on top of the fact.",
+        "competitive": "The critique is the fact. The verdict about character is the story."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Which statement is the clearest example of a villain story?",
+      "choices": [
+        "\"I do not yet know why they did that\"",
+        "\"They did this because they are selfish and always will be\"",
+        "\"I may have missed part of what happened\""
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A villain story flattens the other person into a bad type and treats that type as the whole explanation.",
+        "direct": "Option B reduces the person to a single trait and stops the search for complexity.",
+        "competitive": "That answer convicts them fast and kills curiosity faster."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Which thought best fits a victim story?",
+      "choices": [
+        "\"I was completely acted upon and had no role at all\"",
+        "\"I need to ask what else might explain this\"",
+        "\"The situation is hard, but I still have one move\""
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Victim stories erase the speaker's role so completely that no action remains.",
+        "direct": "Correct. The victim trap is about perfect innocence paired with lost leverage.",
+        "competitive": "Pure innocence sounds clean and leaves you stranded."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What makes a helpless story different from a simple description of a hard situation?",
+      "choices": [
+        "A helpless story turns every constraint into proof that no option exists",
+        "A helpless story means the person is lying about the facts",
+        "A helpless story is only possible in work settings"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The situation may really be hard. The helpless story problem is closing the field before looking for a path.",
+        "direct": "Correct. Helpless stories exaggerate closure, not necessarily the presence of friction.",
+        "competitive": "Hard becomes sealed shut, and that jump is the distortion."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Which counter-question best challenges a villain story?",
+      "choices": [
+        "\"What do I actually want, and what would I need to do to get it?\"",
+        "\"Why would a reasonable, rational, decent person do what this person did?\"",
+        "\"Am I pretending not to notice my own role in this problem?\""
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That question restores complexity by looking for a fuller explanation of the other person's behavior.",
+        "direct": "The villain counter-question tests whether your certainty about motive is outrunning the facts.",
+        "competitive": "Option B pries open the caricature."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "A team lead says, \"There is no point raising this concern; it will only backfire.\" What is the most useful Chapter 4 response?",
+      "choices": [
+        "Accept that all powerful people make dialogue impossible",
+        "Ask what they really want and what move might still serve that goal",
+        "Tell them to ignore their feeling because feelings are irrational"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter would test whether the person has turned hard into impossible too quickly.",
+        "direct": "Correct. The helpless-story counter-question reopens agency without pretending the risk is not real.",
+        "competitive": "Do not worship impossibility until you have audited the field."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Which statement best captures the chapter's honest limit?",
+      "choices": [
+        "If you change the story, the other person can no longer harm you",
+        "Better story work improves leverage, but it does not erase hierarchy, bad faith, or unsafe rooms",
+        "The chapter only works when the first interpretation was completely false"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter stays credible by admitting that some harms and some constraints are real even while story work still matters.",
+        "direct": "Correct. Revising interpretation is not the same as denying context. It improves diagnosis without erasing structural reality.",
+        "competitive": "Clean interpretation is leverage, not magic."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "After cleaning up your own story, what problem does Chapter 5 most naturally address next?",
+      "choices": [
+        "How to notice when the room is slipping into silence or force",
+        "How to finalize tasks after a meeting ends",
+        "How to memorize the four decision methods"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Chapter 4 works on the inside. Chapter 5 moves outward to the signs that dialogue itself is starting to break.",
+        "direct": "Correct. Once interpretation is more visible, the next need is noticing the room's warning signs in real time.",
+        "competitive": "You cleaned up the inside. Next you learn to catch the room turning."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    }
+  ]
+}

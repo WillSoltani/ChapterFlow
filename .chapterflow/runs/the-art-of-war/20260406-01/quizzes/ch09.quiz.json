@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch09-q01",
+      "prompt": "According to Sun Tzu in 'The Army on the March,' what general rule governs encampment near rivers?",
+      "choices": [
+        "A) Encamp on low ground close to the water's edge for easy resupply.",
+        "B) After crossing, move away from the river and encamp on high ground with the river at your back.",
+        "C) Divide the army so that half remains on each bank to secure both sides."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Nice catch. Sun Tzu is clear: once you have crossed a river, gain distance from it and occupy high ground facing the sun, keeping the river behind you. Low ground near water is avoided, and dividing the force is never prescribed here.",
+        "direct": "The structural rule for river terrain has two components: (1) move away after crossing, and (2) occupy high ground with the river to the rear. This secures a natural obstacle behind the army and denies the enemy the same advantage. Neither low encampment nor force division is part of this rule.",
+        "competitive": "A fails because low, water-adjacent ground is explicitly the type of position Sun Tzu warns against—it invites disease and vulnerability. C fails because splitting the army near a water obstacle is tactically dangerous and unsupported by the text. Only B captures both prescribed actions: distance from the river and elevation."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch09-q02",
+      "prompt": "Sun Tzu warns that an enemy offering seemingly advantageous ground to lure you across a river should be met with what response?",
+      "choices": [
+        "A) Accept the offer immediately to seize the initiative before the enemy can prepare.",
+        "B) Deploy archers along your bank to prevent the crossing entirely.",
+        "C) Do not advance to meet him at the water's edge; let him cross partway, then strike."
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Nice catch. Sun Tzu's logic is to let the enemy commit to a crossing—splitting his force between both banks—and then attack when he is most vulnerable mid-transit, not to rush forward or to block the crossing at the bank.",
+        "direct": "The principle exploits the vulnerability created by a river crossing: a force mid-river is divided and unable to mass. By waiting until the enemy is partly across, the defender destroys a fragment rather than the whole. Accepting the bait (A) or purely defensive blocking (B) do not exploit this structural vulnerability.",
+        "competitive": "A fails because it falls directly into the lure—accepting bait without understanding the trap. B fails because blocking at the bank forfeits the tactical advantage of striking a divided enemy mid-crossing. C is the prescribed response because it turns the enemy's own river into a weapon against his divided force."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch09-q03",
+      "prompt": "A field commander notices that the enemy's emissaries speak in humble, deferential terms while a large number of chariots and supply wagons are simultaneously being moved to the front. Applying Sun Tzu's signal-reading doctrine, what should the commander conclude?",
+      "choices": [
+        "A) The physical preparations for advance override the verbal signals—an attack is likely being prepared.",
+        "B) The humble words indicate the enemy seeks peace; the wagons are routine logistics.",
+        "C) Both signals are ambiguous on their own and no conclusion should be drawn without more data."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nice catch. Sun Tzu's doctrine treats observable preparations as the authoritative signal when words and deeds conflict. Chariots moving forward is a deed; humble words are words. The deed wins the interpretation contest.",
+        "direct": "The word-vs-deed asymmetry is foundational in Chapter 9: stated intent is cheap and easily manufactured, while physical preparations incur real cost and reveal real commitment. When the two conflict, preparations are authoritative. The humble speech here is precisely the kind of screen Sun Tzu flags as a warning sign.",
+        "competitive": "B inverts the hierarchy Sun Tzu establishes—words are subordinate to deeds, not the other way around. C is epistemically overcautious; Sun Tzu's framework is designed to yield actionable conclusions from this exact combination of signals. Only A correctly applies the word-vs-deed asymmetry."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch09-q04",
+      "prompt": "Kwame is a senior engineer at a logistics company who has just been promoted to lead a team of ten people he has never managed before. He wants to establish high performance standards immediately. Applying Sun Tzu's affection-before-discipline sequence from Chapter 9, what should Kwame do first?",
+      "choices": [
+        "A) Issue a clear performance policy on day one so the team knows what is expected from the start.",
+        "B) Alternate between friendly gestures and firm enforcement to calibrate the team's response.",
+        "C) Invest time building genuine rapport and demonstrating care for the team before enforcing any standards."
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Nice catch. Sun Tzu is explicit about the sequence: attachment comes before discipline. Kwame must first earn the team's trust and demonstrate genuine care before enforcement will be received as legitimate rather than arbitrary.",
+        "direct": "The affection-before-discipline sequence in Chapter 9 is a structural constraint, not a stylistic preference. Punishing or enforcing standards before soldiers—or team members—have grown attached to their commander produces non-submission. Issuing policy immediately (A) skips the required first step. Alternating (B) violates the sequence by introducing enforcement before attachment is established.",
+        "competitive": "A fails because policy without prior attachment creates compliance theater at best and resentment at worst—exactly the failure mode Sun Tzu describes. B fails because alternating undermines the trust-building phase; the team cannot grow attached if enforcement is already present. Only C follows the prescribed sequence: attachment first, discipline second."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q05",
+      "prompt": "Ingrid is a high school principal who has built strong relationships with her teaching staff over two years. A senior teacher recently violated a clear professional boundary that Ingrid had communicated explicitly. Ingrid is now considering whether to enforce a formal consequence. According to Sun Tzu's framework from Chapter 9, which reasoning best supports her decision to enforce the standard?",
+      "choices": [
+        "A) Because attachment has already been established, enforcing the standard now is structurally appropriate and will be received as legitimate.",
+        "B) Enforcement is premature; she should continue building trust before imposing consequences.",
+        "C) The length of the relationship is irrelevant; standards should always be enforced immediately regardless of attachment."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nice catch. The affection-before-discipline sequence requires that attachment be established first—and here it has been, over two years. That means Ingrid has satisfied the precondition; enforcement is now the correct next step, not a premature one.",
+        "direct": "Sun Tzu's sequence is a precondition logic: enforcement is structurally appropriate only after attachment is established. Two years of demonstrated care fulfills that precondition. B misreads the framework by suggesting the trust-building phase is never complete. C discards the sequence entirely, which contradicts the chapter's explicit structure.",
+        "competitive": "B fails because it treats the trust-building phase as endless, which would make discipline permanently unavailable—that is not Sun Tzu's intent. C fails because it removes the sequencing constraint that gives the framework its explanatory power. Only A correctly identifies that the precondition has been met, making enforcement both appropriate and likely effective."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q06",
+      "prompt": "Cora is a family therapist in private practice. A new client family arrives in crisis—parents and a teenager in open conflict. The parents want Cora to begin setting firm therapeutic rules for the teenager immediately. Cora recalls Sun Tzu's affection-before-discipline principle. What is the most sound application of that principle to her situation?",
+      "choices": [
+        "A) Comply with the parents' request; the crisis context makes immediate rule-setting necessary to prevent further harm.",
+        "B) Set rules for the parents but not the teenager, since the teenager is the one who lacks attachment to Cora.",
+        "C) Explain that therapeutic effectiveness requires first building the teenager's sense of safety and trust before introducing behavioral expectations."
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Nice catch. Sun Tzu's sequence holds regardless of urgency: attachment must precede discipline or the discipline will not be received as legitimate. Cora needs to build a working alliance with the teenager before any behavioral framework will land.",
+        "direct": "The affection-before-discipline sequence is a structural constraint that applies even under pressure. A crisis creates urgency but does not override the precondition. Without first establishing the teenager's trust in Cora, imposed rules will be experienced as coercive rather than supportive, reducing therapeutic effectiveness. B creates an asymmetry that is therapeutically incoherent and unsupported by the principle.",
+        "competitive": "A fails because urgency is not listed as an exception to the sequence; applying discipline before attachment in a crisis simply accelerates the failure mode Sun Tzu describes. B fails because the principle applies to every relationship where Cora seeks to exercise authority, and selectively applying it is incoherent. Only C correctly preserves the sequence under real-world pressure."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q07",
+      "prompt": "Sun Tzu lists many behavioral signals that can be read from an enemy force at a distance. Which of the following best describes the analytical limitation he implicitly acknowledges when he advises reading clusters of signals rather than relying on any single one?",
+      "choices": [
+        "A) Single signals are too small to observe reliably from a distance.",
+        "B) Any individual signal is ambiguous because it may be produced by multiple different underlying causes.",
+        "C) Soldiers are trained to suppress individual signals, making clusters the only observable unit."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Nice catch. The reason clusters are more reliable is that a single observable behavior—say, soldiers leaning on their weapons—could have several innocent or deceptive explanations. When many signals converge on the same interpretation, the alternative explanations become implausible.",
+        "direct": "The epistemological issue is underdetermination: a single signal is consistent with multiple hypotheses. Clusters reduce underdetermination because each additional signal constrains the set of plausible explanations. A conflates observability with interpretive reliability. C introduces a training assumption not present in the text and misidentifies the reason clusters are preferred.",
+        "competitive": "A fails because Sun Tzu's signal catalog includes many easily observable individual behaviors—the problem is not perception but interpretation. C fails because the text does not describe trained signal suppression; the limitation is analytical, not observational. Only B identifies the correct epistemological reason: individual signals are ambiguous because they are consistent with too many competing explanations."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q08",
+      "prompt": "Analyze the signal-forgery failure mode in Chapter 9's signal-reading doctrine. Under what condition does the system become least reliable, and why?",
+      "choices": [
+        "A) When the enemy moves too quickly for signals to accumulate into interpretable clusters.",
+        "B) When terrain obscures the enemy's movements, preventing any signals from being observed.",
+        "C) When the enemy is sophisticated enough to deliberately manufacture the signals that correlate with non-threatening behavior."
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Nice catch. Signal-reading was designed for opponents who are not aware they are being read. A sophisticated opponent who understands Sun Tzu's signal catalog can engineer a false picture—producing humble behavior, dispersing chariots, and so on—turning the intelligence system into a deception channel.",
+        "direct": "The signal-reading framework assumes that the enemy's behaviors are authentic expressions of underlying states. When an opponent models the observer's inference process and reverse-engineers the signals that would produce a desired interpretation, the framework becomes a liability: the observer's confidence increases precisely as accuracy decreases. A describes a timing problem, not a forgery problem. B describes an observability problem, not a structural one.",
+        "competitive": "A fails because speed affects signal accumulation timing but does not invalidate the framework's logic—more time simply restores reliability. B fails because it is a perceptual limitation; better observation would fix it. Only C identifies the structural failure mode: the framework assumes authentic signals, and a sophisticated adversary can violate that assumption, turning the system against itself."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch09-q09",
+      "prompt": "Sun Tzu prescribes different encampment rules for rivers, salt marshes, flat ground, and mountains. Evaluate the following claim: 'Because high ground is recommended for river crossings, it should also be sought when encamping in salt marshes.' Is this reasoning valid within Sun Tzu's framework?",
+      "choices": [
+        "A) No — each terrain type has rules applicable only to that type; applying a river rule to marsh terrain is a category error.",
+        "B) Yes — high ground is universally superior and its advantage applies in all terrain types.",
+        "C) Partially — the high-ground preference transfers, but other river-specific rules do not."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nice catch. Sun Tzu treats each terrain type as its own domain with its own rules. The prescription for rivers is derived from the specific tactical logic of river crossings and cannot be exported wholesale to salt marshes, which have their own distinct prescriptions.",
+        "direct": "The terrain-specific rules in Chapter 9 are not derived from a single master principle like 'always seek high ground'; they are domain-specific prescriptions fitted to the tactical geometry of each terrain type. Transferring a rule across terrain types treats a contextual prescription as a universal law—a category error. B makes this error explicitly. C attempts a partial transfer that is still unsupported within the marsh terrain's own logic.",
+        "competitive": "B fails because Sun Tzu's rules are terrain-indexed, not universally ranked—what is right for a river bank may be wrong for a marsh. C fails because even a 'partial' transfer requires justification within the specific terrain's logic, which C does not provide; it simply asserts one element transfers without grounding. Only A correctly identifies that each terrain type is its own analytical domain and that cross-terrain rule application is a category error."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch09-q10",
+      "prompt": "A modern intelligence analyst argues: 'Sun Tzu's signal-reading method is obsolete because adversaries today are trained to manage their observable behaviors.' Evaluate this critique using Chapter 9's concepts.",
+      "choices": [
+        "A) The critique is fully valid; trained adversaries nullify the method entirely and a new framework is needed.",
+        "B) The critique is partially valid: signal-forgery by sophisticated adversaries is a genuine failure mode, but the method retains full value against unsophisticated or unaware opponents.",
+        "C) The critique is invalid; signal-reading remains reliable because trained adversaries cannot maintain behavioral discipline indefinitely."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Nice catch. The critique correctly identifies the signal-forgery failure mode that Chapter 9 implicitly contains. But it overclaims by treating this as a total invalidation. The framework works well against opponents who do not know they are being read—a large and practically important population.",
+        "direct": "The signal-forgery failure mode is real: against a sophisticated, aware adversary, signal-reading becomes a second-order game in which the observer's confidence is decoupled from accuracy. The critique is correct to identify this limitation. But 'obsolete' implies the method has no valid domain, which is false. Against unsophisticated or unaware opponents, the original framework functions as designed. A overclaims by declaring total obsolescence. C underclaims by asserting the method is fully reliable even against trained adversaries.",
+        "competitive": "A fails because it treats the failure mode as domain-eliminating rather than domain-limiting; unsophisticated opponents do not disappear just because sophisticated ones exist. C fails because it introduces a behavioral-discipline fatigue argument that is speculative and not grounded in the chapter's text, and it also dismisses the genuine vulnerability the critique identifies. Only B holds the correct dual verdict: the critique names a real limitation without successfully proving total obsolescence."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

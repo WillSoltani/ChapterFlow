@@ -26,8 +26,8 @@ import {
   PREFERRED_EXAMPLE_CONTEXT_VALUES,
 } from "@/app/book/_lib/onboarding-personalization";
 import {
-  FLOW_POINTS_AMOUNTS,
-  FLOW_POINTS_COOKIE_NAME,
+  INSIGHT_POINTS_AMOUNTS,
+  INSIGHT_POINTS_COOKIE_NAME,
 } from "@/app/book/_lib/flow-points-economy";
 import {
   awardFlowPoints,
@@ -362,7 +362,7 @@ export async function PATCH(req: Request) {
     if (completedOnboardingNow) {
       const pointsAward = await awardFlowPoints(tableName, {
         userId: user.sub,
-        amount: FLOW_POINTS_AMOUNTS.onboardingComplete,
+        amount: INSIGHT_POINTS_AMOUNTS.onboardingComplete,
         sourceType: "onboarding_complete",
         sourceId: "primary",
         metadata: {
@@ -373,7 +373,7 @@ export async function PATCH(req: Request) {
       riskDevice = await recordRiskSignals(tableName, req, user, "onboarding_completed").catch(
         () => null
       );
-      const pendingReferralCode = readCookieValue(req, FLOW_POINTS_COOKIE_NAME);
+      const pendingReferralCode = readCookieValue(req, INSIGHT_POINTS_COOKIE_NAME);
       if (pendingReferralCode) {
         clearReferralCookie = true;
         const referralClaim = await createReferralClaimFromCode(tableName, {
@@ -423,7 +423,7 @@ export async function PATCH(req: Request) {
           pointsAward.awarded
             ? analyticsTrackFlowPointsTransaction(analyticsTable, {
                 userId: user.sub,
-                deltaPoints: FLOW_POINTS_AMOUNTS.onboardingComplete,
+                deltaPoints: INSIGHT_POINTS_AMOUNTS.onboardingComplete,
                 direction: "earn",
                 sourceType: "onboarding_complete",
                 sourceId: "primary",
@@ -442,7 +442,7 @@ export async function PATCH(req: Request) {
       issuedDeviceId: riskDevice?.issuedDeviceId,
     });
     if (clearReferralCookie) {
-      response.cookies.set(FLOW_POINTS_COOKIE_NAME, "", {
+      response.cookies.set(INSIGHT_POINTS_COOKIE_NAME, "", {
         ...getAuthCookieBase(),
         maxAge: 0,
       });

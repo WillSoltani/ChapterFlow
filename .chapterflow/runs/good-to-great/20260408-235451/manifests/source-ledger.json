@@ -1,0 +1,98 @@
+{
+  "bookId": "good-to-great",
+  "runId": "20260408-235451",
+  "lockedAt": "2026-04-08",
+  "selectionMode": "auto_locked_dominant_edition",
+  "sources": [
+    {
+      "id": "google_books_good_to_great",
+      "title": "Google Books metadata page for Good to Great",
+      "url": "https://books.google.com/books/about/Good_to_Great.html?id=pJNt2ZFFT3sC",
+      "type": "authorized_metadata_preview",
+      "role": "primary edition metadata and publication-family confirmation",
+      "confidence": "high",
+      "accessedAt": "2026-04-08",
+      "notes": "Confirms the title, Jim Collins as author, HarperCollins as publisher, October 16, 2001 metadata, 320 pages, and the canonical long subtitle."
+    },
+    {
+      "id": "harper_good_to_great",
+      "title": "HarperAcademic product page for Good to Great",
+      "url": "https://www.harperacademic.com/book/9780060794415/good-to-great/",
+      "type": "official_publisher_page",
+      "role": "official publisher framing and concept confirmation",
+      "confidence": "high",
+      "accessedAt": "2026-04-08",
+      "notes": "Confirms the HarperBusiness trade family and highlights the book's major findings, including Level 5 Leadership, the Hedgehog Concept, a Culture of Discipline, Technology Accelerators, and the Flywheel and the Doom Loop."
+    },
+    {
+      "id": "jimcollins_map",
+      "title": "Jim Collins Concepts Map",
+      "url": "https://www.jimcollins.com/concepts.html",
+      "type": "official_author_page",
+      "role": "official concept map linking the book's core ideas",
+      "confidence": "high",
+      "accessedAt": "2026-04-08",
+      "notes": "Confirms the staging from disciplined people to disciplined thought and disciplined action, and shows the official placement of Level 5, First Who, the brutal-facts discipline, the Hedgehog Concept, the Flywheel, and Culture of Discipline."
+    },
+    {
+      "id": "jimcollins_level5",
+      "title": "Can You Grow into Level 5 Leadership?",
+      "url": "https://www.jimcollins.com/article_topics/articles/can-you-grow-into-level-5.html",
+      "type": "official_author_excerpt",
+      "role": "authorized support for Chapter 2 and the leadership frame",
+      "confidence": "high",
+      "accessedAt": "2026-04-08",
+      "notes": "Supports the Level 5 idea as humility plus will in the transition from good to great and reinforces the rarity of that leadership profile in the study set."
+    },
+    {
+      "id": "jimcollins_firstwho",
+      "title": "First Who, Then What",
+      "url": "https://www.jimcollins.com/concepts/first-who-then-what.html",
+      "type": "official_author_concept",
+      "role": "authorized support for Chapter 3 and for the people-before-direction mechanism",
+      "confidence": "high",
+      "accessedAt": "2026-04-08",
+      "notes": "Confirms the get-the-right-people-on-the-bus concept and its use under uncertainty."
+    },
+    {
+      "id": "jimcollins_stockdale",
+      "title": "The Stockdale Paradox",
+      "url": "https://www.jimcollins.com/concepts/Stockdale-Concept.html",
+      "type": "official_author_concept",
+      "role": "authorized support for Chapter 4 and the brutal-facts discipline",
+      "confidence": "high",
+      "accessedAt": "2026-04-08",
+      "notes": "Supports the chapter's dual demand: confront brutal facts while maintaining faith in eventual success."
+    },
+    {
+      "id": "jimcollins_hedgehog",
+      "title": "Hedgehog Concept in the Social Sectors",
+      "url": "https://www.jimcollins.com/article_topics/articles/hedgehog-concept-social-sectors.html",
+      "type": "official_author_excerpt",
+      "role": "authorized support for Chapter 5 and the three-circle logic",
+      "confidence": "high",
+      "accessedAt": "2026-04-08",
+      "notes": "Confirms the three intersecting circles and the discipline of saying no to opportunities that fail the hedgehog test."
+    },
+    {
+      "id": "jimcollins_good_to_great_article",
+      "title": "Good to Great article page",
+      "url": "https://www.jimcollins.com/article_topics/articles/good-to-great.html",
+      "type": "official_author_article",
+      "role": "official support for the broader study findings and later-chapter flywheel logic",
+      "confidence": "medium-high",
+      "accessedAt": "2026-04-08",
+      "notes": "Used to support the study framing, the long time horizon, and the interplay between the book's main concepts."
+    },
+    {
+      "id": "runn_good_to_great_summary",
+      "title": "Good to Great - A Summary to Make a Leap Yourself",
+      "url": "https://www.runn.io/blog/good-to-great-summary",
+      "type": "secondary_summary",
+      "role": "chapter-order confirmation and chapter-level support where official public text is thin",
+      "confidence": "medium",
+      "accessedAt": "2026-04-08",
+      "notes": "Provides a clean nine-chapter map and concise chapter summaries that align with the official concept pages and publisher framing."
+    }
+  ]
+}

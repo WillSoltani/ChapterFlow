@@ -45,7 +45,7 @@ Determine:
 - Full title, author, edition
 - Total number of chapters (N)
 - How the book is organized (parts, sections, etc.)
-- Generate a kebab-case bookId slug (e.g., "the-48-laws-of-power")
+- Generate a kebab-case bookId slug (e.g., "crucial-conversations")
 - Determine appropriate categories and tags
 
 **Step 2: For each chapter, document:**

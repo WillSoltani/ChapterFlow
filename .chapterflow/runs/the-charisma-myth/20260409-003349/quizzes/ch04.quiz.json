@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "Which statement best matches this chapter's starting claim about a bad room?",
+      "choices": [
+        "A weak start usually proves the interaction cannot recover",
+        "Once the obstacle is visible, the room may still be movable through repair",
+        "Recovery matters only if the person can remove all anxiety first"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter opens by rejecting the idea that a shaky beginning is automatically final. Seeing the obstacle creates room to repair what the interaction is losing.",
+        "direct": "Its first move is anti-resignation. A bad room can often still change if the failing signal is restored before the read hardens.",
+        "competitive": "The chapter attacks early surrender, not pressure itself. The room is often still live after the first slip."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What is usually the chapter's repair move when presence is failing?",
+      "choices": [
+        "Return attention outward and re-enter the interaction",
+        "Increase status display so the room forgets the awkwardness",
+        "Wait silently until private calm feels complete"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Presence returns when the room can feel contact again. The wrong answers either chase performance or wait for a perfect feeling that the chapter does not require.",
+        "direct": "The reset is outward attention. Presence repairs through arrival, not through status theater or passive delay.",
+        "competitive": "If presence is dying, get back in the room. Bigger acting and perfect-calm fantasies both miss the point."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "How does the chapter distinguish power repair from warmth repair?",
+      "choices": [
+        "Power uses eye contact, while warmth uses smiling",
+        "Power is louder speech, while warmth is slower speech",
+        "Power restores consequence, while warmth restores visible goodwill"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter keeps the two signals separate. Power is about renewed weight, and warmth is about trust becoming visible again.",
+        "direct": "Power repair brings consequence back into the message. Warmth repair makes goodwill legible enough for trust to reopen.",
+        "competitive": "This chapter does not buy decorative body-language definitions. Consequence and goodwill are the real split."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Nadia notices before a meeting that she is already rehearsing excuses for sounding uncertain. What is the best next move by this chapter's logic?",
+      "choices": [
+        "Treat the slip as a repair problem and identify which signal the room needs back first",
+        "Accept that the meeting has probably been lost before it begins",
+        "Hide the uncertainty by speaking faster than usual"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nadia gains leverage once she stops turning the moment into fate. The chapter wants her to restore the right signal, not panic about identity.",
+        "direct": "Early recognition matters because it creates a repair target. The answer is diagnosis plus restoration, not surrender or speed.",
+        "competitive": "Call the miss early and fix the signal. Doom narration and frantic performance both waste the first repair window."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Rowan keeps apologizing before he finally states the real performance concern. What would the chapter most likely say?",
+      "choices": [
+        "He is increasing warmth in the strongest possible way",
+        "He is draining consequence from the message and should recover steadiness instead",
+        "He is proving that feedback conversations should avoid power entirely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Rowan may still care about the other person, but too much retreat makes the concern feel optional. That is why the chapter treats this as power repair.",
+        "direct": "The issue is avoidable shrinkage. Power returns when Rowan stops down-ranking the importance of the point.",
+        "competitive": "This is not tact at its best. It is weight leaking out of the message in real time."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Mira enters a tense personal conversation and softens the brace enough to ask one real question. Why does that fit the chapter?",
+      "choices": [
+        "Because tension disappears as soon as the first question is asked",
+        "Because any personal conversation is mostly about presence, not warmth",
+        "Because warmth repairs when visible goodwill returns even if the room stays difficult"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Mira does not need the whole room to feel easy. She needs the other person to feel more goodwill and less resistance.",
+        "direct": "The chapter ties warmth repair to trust becoming legible again. Difficulty can remain while the social read still improves.",
+        "competitive": "Warmth is not fake sweetness or instant harmony. It is the moment the shield stops leading."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "A scholarship interview begins badly, but the student catches the spiral before the next answer. What does this chapter add to that situation?",
+      "choices": [
+        "The next answer can still matter because partial recovery may change the panel's read before it hardens",
+        "The chapter says first impressions are fixed, so later answers matter less than self-analysis",
+        "The chapter says recovery is strongest when the student hides all nervousness immediately"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps second chances usable. A small repair before the next answer can still keep the room from freezing around the first one.",
+        "direct": "Its practical value is exactly here: partial recovery can alter the read before the panel settles on a final story.",
+        "competitive": "Win back degrees on the next rep. That is better than letting the first stumble own the entire interview."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why does the chapter keep insisting that imperfect recovery still matters?",
+      "choices": [
+        "Because complete recovery is unrealistic in every situation",
+        "Because a small repair can keep the interaction usable and prevent further hardening",
+        "Because the chapter cares more about effort than about social results"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A room does not have to become perfect for repair to be worthwhile. Usable improvement can still protect the conversation.",
+        "direct": "The chapter values degree. A modest shift in contact, consequence, or goodwill can still change what happens next.",
+        "competitive": "Five degrees is not nothing. Sometimes it is the difference between a salvageable room and a frozen one."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does this chapter say repair must touch state and attention rather than only outward scripting?",
+      "choices": [
+        "Because scripted behavior is always dishonest no matter the context",
+        "Because the room reacts to felt contact, consequence, and goodwill, not surface moves alone",
+        "Because state work belongs only to later chapters and should not appear here at all"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter does not reject outward behavior. It says the behavior has to reconnect with a real signal the room can feel.",
+        "direct": "Surface technique alone is too weak if the underlying attention, consequence, or trust signal stays distorted.",
+        "competitive": "Performance without signal return is just theater. The room still feels the miss underneath."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What is the most natural bridge from this chapter into the next one on mental states?",
+      "choices": [
+        "Once repair exists, later state work becomes mostly optional",
+        "Once repair works once, the reader should stop studying pressure entirely",
+        "Once the reader can interrupt a bad loop, the next question is how to enter pressure with stronger states to begin with"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "This chapter proves that recovery can happen in the moment. The next step is learning how to need that rescue less often.",
+        "direct": "The bridge is clean: repair handles the live distortion, and the next chapter asks how to strengthen the state before the distortion begins.",
+        "competitive": "Emergency resets are useful, but they are not the endgame. The next chapter goes after better entries, not just better rescues."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "Which statement best captures what makes a moment 'privileged' in Chapter 2?",
+      "choices": [
+        "It happens early in the conversation",
+        "It is a moment when attention and receptivity are especially loaded before the ask",
+        "It is any moment when the speaker feels confident"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter is not talking about early timing alone. A privileged moment has unusual psychological leverage.",
+        "direct": "Option B fits the chapter's main distinction. Privilege comes from loaded attention and readiness, not from clock position alone.",
+        "competitive": "Early is cheap. Loaded is powerful."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does Chapter 2 care so much about what is active in attention at the moment of decision?",
+      "choices": [
+        "Because whatever is foregrounded then gains extra weight in judgment",
+        "Because attention always replaces the need for evidence",
+        "Because people make no decisions at all unless they are excited"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says the mental foreground matters because it shapes what feels important at the moment of choice.",
+        "direct": "Option A is the mechanism. Elevated attention gains privilege in the decision itself.",
+        "competitive": "The hot cue usually gets first claim on the verdict."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What role do helpfulness or adventurousness questions play in the chapter's logic?",
+      "choices": [
+        "They replace the real request with a softer request",
+        "They activate a self-relevant identity before the later ask appears",
+        "They work only because people dislike saying no to direct questions"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Those questions matter because they wake up an identity cue that the later ask can pass through.",
+        "direct": "Option B matches the chapter exactly. The opener is shaping self-relevance before the main request arrives.",
+        "competitive": "The opener is not the ask. It is the identity doorway."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Rina is organizing a volunteer drive. Which opening best fits Chapter 2's advice?",
+      "choices": [
+        "Start with a question that makes helpfulness salient, then move into the volunteer ask",
+        "Skip all setup because setup only wastes time",
+        "Lead with the longest list of logistics so no one can question the plan"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter suggests activating the relevant identity before the request when that identity genuinely fits the ask.",
+        "direct": "Option A uses a privileged moment properly. It primes self-relevance before the main ask.",
+        "competitive": "Warm up the helper before you ask for help."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What is the strongest distinction between a merely convenient moment and a privileged moment?",
+      "choices": [
+        "Convenient moments are longer",
+        "Privileged moments are psychologically loaded in a way convenient moments are not",
+        "Convenient moments happen only in personal relationships"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A convenient moment is just available. A privileged moment has active attention or self-relevance already shaping the field.",
+        "direct": "Option B is the chapter's key refinement. Privilege means loaded receptivity, not simple convenience.",
+        "competitive": "Available time is not the same thing as loaded time."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Soren's proposal was strong, but the room was still mentally stuck in the previous debate when he made the ask. What does Chapter 2 say he likely missed?",
+      "choices": [
+        "A larger appendix",
+        "A privileged moment in which the room's attention was ready for the request",
+        "A more dramatic speaking voice"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says a good request can still miss if it enters at the wrong mental moment.",
+        "direct": "Option B fits the mechanism. The proposal arrived before receptivity had formed.",
+        "competitive": "Soren did not miss volume. He missed the loaded moment."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Jo notices a favor ask felt easier after dependability was discussed first. What best explains that shift?",
+      "choices": [
+        "The favor became smaller in absolute terms",
+        "The earlier identity cue changed the route through which the later request was judged",
+        "The friend was too distracted to notice the request clearly"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The request entered a mind where dependability was already active, so it felt more fitting.",
+        "direct": "Option B is right. The self-relevance cue changed reception without changing the request itself.",
+        "competitive": "The favor rode a warmed-up identity."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Caleb wants clients to consider a novel pilot program. Why might an adventurousness opener matter?",
+      "choices": [
+        "It guarantees the clients will accept risk",
+        "It can make the later offer feel more identity-consistent than it would in a neutral frame",
+        "It removes the need to explain the offer clearly"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The opener does not guarantee agreement. It changes the frame through which novelty is received.",
+        "direct": "Option B matches the chapter's logic. A self-relevant cue can alter how the later offer feels.",
+        "competitive": "Wake up the adventurous self and the offer starts sounding less like danger and more like fit."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "When does the use of a privileged moment start becoming ethically harder to defend?",
+      "choices": [
+        "When it helps a good request meet an attentive mind",
+        "When it relies on pushing a fresh self-image so resistance feels like inconsistency",
+        "When it happens in a professional setting instead of a personal one"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter's warning is about narrowing judgment through identity pressure, not about timing itself.",
+        "direct": "Option B captures the ethical boundary. The mechanism becomes harder to defend when it starts borrowing selfhood to push compliance.",
+        "competitive": "It turns ugly when the setup makes saying no feel like betraying the self you just activated."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If Chapter 2 is right that foregrounded attention gets special weight, what is the most natural next question for the book?",
+      "choices": [
+        "How attention itself changes what feels important",
+        "How to eliminate identity from persuasion entirely",
+        "Why only experts can notice privileged moments"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter naturally points to attention itself. If the foreground gains privilege, attention must be doing more than selecting.",
+        "direct": "Option A is the logical bridge. The next step is to explain how attention shapes importance.",
+        "competitive": "Once the hot cue wins extra power, you have to ask what attention is doing to the scoreboard."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

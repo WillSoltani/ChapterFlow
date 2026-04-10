@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is Chapter 3 mainly claiming about attention?",
+      "choices": [
+        "Attention only helps people remember information later",
+        "Attention helps determine what feels important, not just what gets noticed",
+        "Attention always leads people to the truth faster"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says attention changes felt importance, not only awareness.",
+        "direct": "Option B captures the central mechanism. Attention is evaluative as well as perceptual.",
+        "competitive": "The spotlight does not just reveal. It ranks."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why can the same feature feel more decisive after it is foregrounded?",
+      "choices": [
+        "Because foregrounding changes its perceived weight in judgment",
+        "Because foregrounding changes the underlying facts automatically",
+        "Because people stop thinking once something is highlighted"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The feature itself may be unchanged. What changes is how much weight the mind gives it.",
+        "direct": "Option A is right. The chapter is about shifted significance, not altered reality.",
+        "competitive": "Same object, different gravity."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Which distinction does Chapter 3 insist on keeping visible?",
+      "choices": [
+        "The difference between deserved importance and attended importance",
+        "The difference between memory and imagination",
+        "The difference between hearing and seeing"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps warning that what feels important is not always what deserves the most weight.",
+        "direct": "Option A is the crucial limit. Spotlighted significance and earned significance can overlap, but they are not the same thing.",
+        "competitive": "Foreground is not proof."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Iris can lead with one product feature before a client decision. What is the strongest Chapter 3 move?",
+      "choices": [
+        "Lead with the feature that genuinely deserves the most weight in a good judgment",
+        "Lead with the flashiest feature, because flash always deserves rank",
+        "Avoid any sequence at all so the client feels completely neutral"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter allows spotlighting, but it insists that the spotlight should match real priority.",
+        "direct": "Option A fits the mechanism and the limit. Foregrounding is powerful, so it should be used in service of proper rank.",
+        "competitive": "If Iris spends the spotlight on glitter, she teaches the client the wrong hierarchy."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What is the main trap when a room keeps returning to one vivid detail?",
+      "choices": [
+        "The detail becomes automatically false",
+        "The room may start treating the most attended detail as the most important one by default",
+        "The room will stop remembering everything else forever"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns that attention can quietly promote one feature into the top rank whether it earned that rank or not.",
+        "direct": "Option B is the trap. Salience can become significance without a proper audit of the whole field.",
+        "competitive": "The bright object starts billing itself as the whole case."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Ben's class presentation kept circling one highlighted chart while stronger context faded. What does Chapter 3 say likely happened?",
+      "choices": [
+        "The chart became the most attended feature and therefore gained too much weight",
+        "The chart changed the underlying evidence more than the other slides",
+        "The class decided charts are always more truthful than words"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chart likely took over because it owned the foreground, not because it necessarily deserved the top rank.",
+        "direct": "Option A matches the chapter's mechanism. Foregrounding altered the room's weighting system.",
+        "competitive": "Ben's slide won the spotlight and then stole the verdict."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Kara notices that one repeated family concern starts feeling like the whole decision. What is the best explanation?",
+      "choices": [
+        "Repetition and attention gave that concern extra psychological rank",
+        "Repeating a concern automatically makes it objectively more serious",
+        "Family conversations cannot weigh more than one issue at a time"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The concern may still be real, but the chapter says repetition can also increase felt importance beyond what it deserves.",
+        "direct": "Option A is right. The mechanism is weighting through attention, not truth creation.",
+        "competitive": "The repeated issue got heavier because it stayed onstage."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why might Milo's whiteboard choice change the whole meeting before anyone argues the merits?",
+      "choices": [
+        "Because large visual emphasis can convert salience into perceived importance quickly",
+        "Because whiteboards make people less rational than screens do",
+        "Because the first written item is always the true cause of the problem"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says display choices can act like weighting choices. What is big and focal can start feeling central.",
+        "direct": "Option A fits the mechanism exactly. The board is helping assign rank before full evaluation.",
+        "competitive": "The marker is deciding gravity before the meeting thinks it is deciding gravity."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "When does the use of attentional spotlighting become hardest to defend?",
+      "choices": [
+        "When it helps a neglected but real priority receive proper weight",
+        "When it inflates a vivid but secondary feature into the main issue",
+        "When it is used in any persuasive setting at all"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter's warning is about manufacturing significance, not about attention itself.",
+        "direct": "Option B captures the ethical limit. Spotlighting becomes harder to defend when it assigns weight a feature has not earned.",
+        "competitive": "The move goes bad when the spotlight rigs the hierarchy instead of revealing it."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If a foregrounded feature already feels most important, what is the most natural next step for the book to examine?",
+      "choices": [
+        "Why the same foregrounded feature may also start feeling causal",
+        "Why importance has nothing to do with explanation",
+        "Why only expert persuaders can use attention strategically"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The bridge is natural: once the spotlighted feature feels weighty, it is close to feeling explanatory too.",
+        "direct": "Option A is the next logical escalation. Importance is the runway for causal credit.",
+        "competitive": "First the spotlight wins rank. Next it wants blame or credit."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

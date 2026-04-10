@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch05-q01",
+      "prompt": "According to Greene, when is someone's true character most reliably revealed?",
+      "choices": [
+        "B) Under conditions of stress, fatigue, or threat when conscious self-management fails",
+        "A) During relaxed social gatherings where people feel comfortable",
+        "C) In their first impression during an interview or initial meeting"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Comfortable conditions let people manage their display. Stress strips that management away, and what remains is the default programming that formed early in life.",
+        "direct": "Stress-state behavior has the highest predictive validity for long-term habits because it exposes the automated defaults that fire when the conscious override budget runs out.",
+        "competitive": "Audition data from calm conditions tells you what someone wants to be. Stress-state data tells you what they actually are. Only one of those holds up over time."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch05-q02",
+      "prompt": "What childhood experience shaped Howard Hughes's compulsive rituals around contamination and control?",
+      "choices": [
+        "B) He grew up in unsanitary conditions and developed hygiene habits as a survival response",
+        "A) His mother monitored his health obsessively, checked his temperature multiple times daily, and isolated him from other children",
+        "C) A childhood illness left him with a medical condition requiring constant hand washing"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "His mother Allene treated every surface as a threat and kept Howard sealed away from peers. Those early years carved grooves that no amount of genius or money could override.",
+        "direct": "Allene Hughes installed contamination anxiety as the baseline emotional state before Howard could name it. The rituals that destroyed his later life were running before age ten.",
+        "competitive": "The compulsive wiring was installed during peak neural plasticity by a mother who operated their household like a quarantine ward. The genius and fortune that came later only funded the grooves."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch05-q03",
+      "prompt": "Greene states that when you see the same behavior from someone under pressure on multiple occasions, you should treat it as what?",
+      "choices": [
+        "A) A temporary response to unusual circumstances that will likely change",
+        "C) A sign that they need coaching to develop better coping functions",
+        "B) A permanent feature of their character rather than a situational glitch"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Repeated behavior under stress is not a fluke. Under enough pressure, a person will always follow the grooves they have worn the deepest.",
+        "direct": "Greene's principle is explicit: people never do something just once. Two occurrences form a signal. The repetition is the person, not the circumstance.",
+        "competitive": "Stop giving second chances to third-time behaviors. If the same response surfaces under pressure twice, that is the operating organism, and no conversation is going to patch it."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch05-q04",
+      "prompt": "Maya hires a freelance designer who produces stunning work during the trial project. Three months in, a tight deadline hits and the designer misses it, blaming the brief. The next crunch, he misses again, this time blaming a software crash. Maya reviews the pattern. What character signal is she detecting?",
+      "choices": [
+        "B) Chronic excuse-making is surfacing under pressure, a repeated behavioral cycle that will not change on its own",
+        "A) The designer is encountering genuinely unusual obstacles that explain each individual miss",
+        "C) The designer needs better project management tools to stay on track"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Each excuse sounds reasonable on its own, but the pattern tells a different story. The same behavior keeps appearing under stress with a different narrative each time and no change in the outcome.",
+        "direct": "Two deadline failures, each accompanied by a polished excuse and no behavioral adjustment, match Greene's chronic excuse-making red flag. The narratives change, the cycle does not.",
+        "competitive": "Maya is looking at a third-time behavior with a new story attached each round. The excuse-making is the groove, and the groove was installed long before Maya's project existed."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch05-q05",
+      "prompt": "Jordan, a startup founder, treats investors and board members with warmth and patience but snaps at junior employees when things go wrong. His co-founder dismisses it as stress. Using the character assessment method, what does this behavioral gap reveal?",
+      "choices": [
+        "A) Jordan is simply more comfortable with junior employees and drops his guard around them",
+        "B) The gap between his public persona with powerful people and his private behavior with juniors is a fault line that indicates his good behavior requires an audience to sustain it",
+        "C) Jordan's co-founder is correct that the stress of startup life temporarily changes his personality"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "When someone acts differently depending on who is watching, the version that appears without an audience is closer to the real person. The warmth with investors is the performance.",
+        "direct": "Behavioral inconsistency across audiences is one of Greene's three core character tests. Jordan passes when the audience matters to him and fails when it does not, which means the good behavior is situational.",
+        "competitive": "The consistency test is binary: same behavior with the intern as with the CEO, or different. Jordan fails it cleanly, and the stress explanation is a cover story for a character groove that predates the startup."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch05-q06",
+      "prompt": "Aisha, a graduate student, watches her advisor rewrite every section of her thesis without explanation, working until midnight to ensure every sentence meets his personal standard. He frames this as mentorship. Based on the chapter's discussion of camouflaged weaknesses, what tendency is Aisha likely observing?",
+      "choices": [
+        "A) Genuine mentorship from an advisor who holds high standards for his students",
+        "C) A reasonable response to Aisha's below-average writing that requires intervention",
+        "B) Extreme perfectionism disguised as high standards, where the advisor's need to control output overrides the student's development"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Rewriting everything without involving the student is not mentorship. The advisor's need for flawless output is a compulsive habit that looks like high standards until you notice it blocks the student from learning.",
+        "direct": "This maps directly to Greene's perfectionism red flag: control substituting for flexibility. The midnight rewrites serve the advisor's anxiety about imperfect output, not the student's growth.",
+        "competitive": "The perfectionism camouflage is effective because it produces polished results. But the cost is hidden: the student develops nothing, and the advisor is running a compulsive loop that started long before this thesis existed."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch05-q07",
+      "prompt": "Someone is evaluating a potential business partner by watching how she handles a deal that falls through at the last minute. The partner calmly acknowledges the loss, identifies what she can learn from it, and begins exploring alternative approaches within the hour. Which character strength is on display?",
+      "choices": [
+        "B) Adaptability under failure, since she separates her identity from the failed strategy and rebuilds",
+        "A) Delayed gratification, since she is choosing patience over immediate reaction",
+        "C) Audience consistency, since she behaves the same whether observed or not"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Instead of freezing, blaming, or gripping the failed approach, she moves to a new plan. That flexibility under disruption is one of the strongest signals of solid character.",
+        "direct": "Adaptability under failure tests whether someone can separate their identity from their strategy. Her quick pivot to alternatives shows she is responding to reality, not defending her ego.",
+        "competitive": "This is the adaptability test in action. She does not double down, blame external factors, or freeze. She treats the failed deal as data and rebuilds, which signals a character groove built around adjustment rather than rigidity."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch05-q08",
+      "prompt": "A colleague has not updated a single belief or approach in three years despite receiving consistent feedback that his methods are outdated. He responds to every critique with a detailed explanation of why his current approach is still correct. Which camouflaged weakness does this match?",
+      "choices": [
+        "A) Chronic excuse-making, where each failure arrives with a polished narrative",
+        "C) Never-wrong behavior, where self-image protection substitutes for the capacity to learn",
+        "B) Extreme perfectionism, where releasing anything feels intolerable"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The inability to update beliefs in the face of new information means learning has stopped. The detailed defenses are protecting his self-image, not advancing his thinking.",
+        "direct": "Never-wrong behavior projects confidence but reveals a person who has not incorporated new data in years. The polished rebuttals are self-image maintenance, not analysis.",
+        "competitive": "Three years without a belief update is a diagnostic signal. The detailed justifications are not intellectual rigor; they are an ego-defense loop that blocks every input that might require revision."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch05-q09",
+      "prompt": "Greene compares character to the grain in wood: you can sand and polish the surface, but the grain runs all the way through. Why does this metaphor challenge the popular belief that people can fundamentally reinvent themselves through willpower alone?",
+      "choices": [
+        "B) Because the grooves carved by early experience deepen with every repetition, making the override progressively harder rather than easier over time",
+        "A) Because willpower is a renewable resource that easily overrides decades of behavioral conditioning",
+        "C) Because character is entirely genetic and cannot be influenced by any external factor"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Each time a default behavior runs unchallenged, the groove gets deeper. Willpower can manage the surface, but the underlying groove requires sustained, deliberate work to redirect, not just a decision to change.",
+        "direct": "The wood grain metaphor captures the compounding nature of behavioral defaults. Every uninterrupted repetition deepens the groove, which means the override cost increases with time rather than decreasing.",
+        "competitive": "Willpower is a finite resource that depletes under stress, which is exactly when the grooves take over. The metaphor exposes the asymmetry: grooves run automatically and strengthen with use, while overrides require active energy and weaken with fatigue."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch05-q10",
+      "prompt": "After identifying a colleague's character pattern of needing control over every detail, a manager predicts this person will resist delegating even as the team grows. How does the character assessment from Chapter 5 connect to the grandiosity shifts examined in Chapter 12?",
+      "choices": [
+        "A) Control-seeking character and grandiosity are identical traits with no meaningful distinction",
+        "C) Grandiosity only affects public figures and has no connection to everyday character sequences",
+        "B) A character groove built on control can feed grandiose tendencies, because the person begins to believe only they can handle important work, inflating their self-image as the team scales"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "A control groove that goes unchecked can gradually inflate into a belief that nobody else is capable, which is where character assessment connects to the inflated self-image movements explored later.",
+        "direct": "The control groove produces delegation resistance, which over time can evolve into a grandiose self-concept where the person genuinely believes only they can do the work. Character rhythms feed the self-image distortions Chapter 12 examines.",
+        "competitive": "Character grooves do not stay static. A control groove that compounds over years can inflate into grandiosity as the person's self-narrative shifts from 'I prefer to do this myself' to 'Nobody else is capable.' That trajectory is exactly what Chapter 12 dissects."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

@@ -2,18 +2,45 @@ import {
   BOOK_PACKAGES,
   getBookPackageById,
   getBookPackagePresentation,
-  getLawsOfPowerPackageForTone,
-  LAWS_OF_POWER_RAW_CHAPTERS,
-  getFriendsAndInfluencePackageForTone,
-  FRIENDS_AND_INFLUENCE_RAW_CHAPTERS,
-  getAtomicHabitsPackageForTone,
-  ATOMIC_HABITS_RAW_CHAPTERS,
-  getLawsOfHumanNaturePackageForTone,
-  LAWS_OF_HUMAN_NATURE_RAW_CHAPTERS,
-  getTheCharismaMythPackageForTone,
-  THE_CHARISMA_MYTH_RAW_CHAPTERS,
+  getThePowerOfHabitPackageForTone,
+  THE_POWER_OF_HABIT_RAW_CHAPTERS,
+  getMakeTimePackageForTone,
+  MAKE_TIME_RAW_CHAPTERS,
+  getCrucialConversationsPackageForTone,
+  CRUCIAL_CONVERSATIONS_RAW_CHAPTERS,
+  getWhatEveryBodyIsSayingPackageForTone,
+  WHAT_EVERY_BODY_IS_SAYING_RAW_CHAPTERS,
+  getThePrincePackageForTone,
+  THE_PRINCE_RAW_CHAPTERS,
+  getTinyHabitsPackageForTone,
+  TINY_HABITS_RAW_CHAPTERS,
+  getEssentialismPackageForTone,
+  ESSENTIALISM_RAW_CHAPTERS,
+  getDeepWorkPackageForTone,
+  DEEP_WORK_RAW_CHAPTERS,
+  getPredictablyIrrationalPackageForTone,
+  PREDICTABLY_IRRATIONAL_RAW_CHAPTERS,
+  getTheLawsOfHumanNaturePackageForTone,
+  THE_LAWS_OF_HUMAN_NATURE_RAW_CHAPTERS,
+  getTheAlmanackOfNavalRavikantPackageForTone,
+  THE_ALMANACK_OF_NAVAL_RAVIKANT_RAW_CHAPTERS,
+  getTheHardThingAboutHardThingsPackageForTone,
+  THE_HARD_THING_ABOUT_HARD_THINGS_RAW_CHAPTERS,
+  getLeadersEatLastPackageForTone,
+  LEADERS_EAT_LAST_RAW_CHAPTERS,
+  getGoodToGreatPackageForTone,
+  GOOD_TO_GREAT_RAW_CHAPTERS,
+  getHowToTalkToAnyonePackageForTone,
+  HOW_TO_TALK_TO_ANYONE_RAW_CHAPTERS,
   getNeverSplitTheDifferencePackageForTone,
   NEVER_SPLIT_THE_DIFFERENCE_RAW_CHAPTERS,
+  getYouCantHurtMePackageForTone,
+  YOU_CANT_HURT_ME_RAW_CHAPTERS,
+  getIndistractablePackageForTone,
+  INDISTRACTABLE_RAW_CHAPTERS,
+  getExtremeOwnershipPackageForTone,
+  EXTREME_OWNERSHIP_RAW_CHAPTERS,
+  isV12BookPackage,
   resolveTone,
   type BookPackage,
   type PackageChapter,
@@ -93,12 +120,17 @@ export type BookChapter = {
   minutes: number;
   summaryByDepth: Record<ReadingDepth, ChapterSummaryBlock[]>;
   takeaways: string[];
+  takeawaysByDepth: Record<ReadingDepth, string[]>;
   keyQuote?: string;
   recap?: string;
+  recapByDepth: Record<ReadingDepth, string[]>;
   activationPrompt?: string;
+  activationPromptByDepth: Partial<Record<ReadingDepth, string>>;
   selfCheckPrompt?: string;
   selfCheckPrompts?: string[];
+  selfCheckPromptsByDepth: Partial<Record<ReadingDepth, string[]>>;
   predictionPrompt?: string;
+  predictionPromptByDepth: Partial<Record<ReadingDepth, string>>;
   keyTakeawayCard?: string;
   implementationPlan?: ImplementationPlanItem;
   reviewCards?: ReviewCardItem[];
@@ -107,6 +139,7 @@ export type BookChapter = {
   quizByDepth: Record<ReadingDepth, ChapterQuizQuestion[]>;
   quizRetryPool: ChapterQuizQuestion[];
   quizPassingScorePercent: number;
+  isStrictV12: boolean;
 };
 
 type BookChapterBundle = {
@@ -127,6 +160,7 @@ const QUIZ_TARGETS: Record<ReadingDepth, number> = {
 };
 
 const SCENARIO_NAMES = ["Maya", "Jordan", "Alex", "Riley"] as const;
+const CANONICAL_DEPTHS: ReadingDepth[] = ["simple", "standard", "deeper"];
 
 function chapterCode(order: number): string {
   return `CH.${String(order).padStart(2, "0")}`;
@@ -280,6 +314,96 @@ function variantSummaryBlocks(
       return null;
     })
     .filter((block): block is PackageSummaryBlock => Boolean(block));
+}
+
+function isStrictV12ReaderPackage(bookPackage: BookPackage): boolean {
+  return isV12BookPackage(bookPackage);
+}
+
+function exactSummaryBlocks(
+  chapter: PackageChapter,
+  family: VariantFamily,
+  depth: ReadingDepth
+): ChapterSummaryBlock[] {
+  const explicitBlocks = variantSummaryBlocks(getVariantContent(chapter, family, depth));
+  if (explicitBlocks.length === 0) return [];
+
+  let paragraphIndex = 0;
+  let bulletIndex = 0;
+  return explicitBlocks.map((block) => {
+    if (block.type === "paragraph") {
+      paragraphIndex += 1;
+      return {
+        id: `${depth}-p-${paragraphIndex}`,
+        type: "paragraph",
+        text: cleanText(block.text),
+      } satisfies ChapterSummaryBlock;
+    }
+
+    bulletIndex += 1;
+    return {
+      id: `${depth}-b-${bulletIndex}`,
+      type: "bullet",
+      text: cleanText(block.text),
+      detail: block.detail ? cleanText(block.detail) : undefined,
+    } satisfies ChapterSummaryBlock;
+  });
+}
+
+function exactTakeaways(
+  chapter: PackageChapter,
+  family: VariantFamily,
+  depth: ReadingDepth
+): string[] {
+  const variant = getVariantContent(chapter, family, depth);
+  const takeawayTexts = variantSummaryBlocks(variant)
+    .filter((block): block is Extract<PackageSummaryBlock, { type: "bullet" }> => block.type === "bullet")
+    .map((block) => cleanText(block.text));
+  const explicit = dedupe([
+    ...(variant?.takeaways ?? []),
+    ...(variant?.keyTakeaways ?? []),
+    ...takeawayTexts,
+  ]);
+  return explicit;
+}
+
+function exactRecap(
+  chapter: PackageChapter,
+  family: VariantFamily,
+  depth: ReadingDepth
+): string[] {
+  const variant = getVariantContent(chapter, family, depth);
+  return dedupe(variant?.oneMinuteRecap ?? []);
+}
+
+function exactActivationPrompt(
+  chapter: PackageChapter,
+  family: VariantFamily,
+  depth: ReadingDepth
+): string | undefined {
+  const variant = getVariantContent(chapter, family, depth);
+  return variant?.activationPrompt ? cleanText(variant.activationPrompt) : undefined;
+}
+
+function exactSelfCheckPrompts(
+  chapter: PackageChapter,
+  family: VariantFamily,
+  depth: ReadingDepth
+): string[] {
+  const variant = getVariantContent(chapter, family, depth);
+  return dedupe([
+    ...(variant?.selfCheckPrompt ? [variant.selfCheckPrompt] : []),
+    ...(variant?.selfCheckPrompts ?? []),
+  ]);
+}
+
+function exactPredictionPrompt(
+  chapter: PackageChapter,
+  family: VariantFamily,
+  depth: ReadingDepth
+): string | undefined {
+  const variant = getVariantContent(chapter, family, depth);
+  return variant?.predictionPrompt ? cleanText(variant.predictionPrompt) : undefined;
 }
 
 function buildSummaryBullets(
@@ -453,7 +577,8 @@ function buildRecap(chapter: PackageChapter, family: VariantFamily): string | un
   const extra = variantPractice(fallback);
   const items = dedupe([...practice, ...extra]).slice(0, 2);
   if (!items.length) return undefined;
-  return `Try this next: ${items.join(" Then ")}.`;
+  const recap = items.map((item) => ensureSentence(item)).filter(Boolean).join(" ");
+  return recap || undefined;
 }
 
 function inferScope(example: PackageExample): ExampleScope {
@@ -509,7 +634,8 @@ function normalizeQuizQuestion(
   family: VariantFamily,
   question: PackageQuizQuestion,
   fallbackId: string,
-  tone: ToneKey = "direct"
+  tone: ToneKey = "direct",
+  strictV12 = false
 ): ChapterQuizQuestion | null {
   const rawChoices = question.choices ?? question.options ?? [];
   const options = normalizeChoices(rawChoices);
@@ -524,22 +650,25 @@ function normalizeQuizQuestion(
   }
   const correctIndex = rawIndex;
   const rawPrompt = question.prompt ?? question.stem ?? "";
-  const prompt = normalizeQuizPrompt(rawPrompt);
+  const prompt = strictV12 ? cleanText(rawPrompt) : normalizeQuizPrompt(rawPrompt);
+  const authoredExplanation = resolveTone(question.explanation, tone);
   return {
     id: question.questionId ? cleanText(question.questionId) : fallbackId,
     prompt,
     options,
     correctIndex,
     explanation:
-      resolveTone(question.explanation, tone) ||
-      buildQuizExplanation(chapter, prompt, options[correctIndex], family),
+      strictV12
+        ? authoredExplanation
+        : authoredExplanation || buildQuizExplanation(chapter, prompt, options[correctIndex], family),
   };
 }
 
 function buildQuizRetryPool(
   chapter: PackageChapter,
   family: VariantFamily,
-  tone: ToneKey = "direct"
+  tone: ToneKey = "direct",
+  strictV12 = false
 ): ChapterQuizQuestion[] {
   return (chapter.quiz.retryQuestions ?? [])
     .map((question, index) =>
@@ -548,7 +677,8 @@ function buildQuizRetryPool(
         family,
         question,
         `${chapter.chapterId}-retry-authored-${String(index + 1).padStart(2, "0")}`,
-        tone
+        tone,
+        strictV12
       )
     )
     .filter((q): q is ChapterQuizQuestion => q !== null);
@@ -652,6 +782,7 @@ function extractNewFields(rawChapter: any, tone: ToneKey): Partial<BookChapter> 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function buildBundle(bookPackage: BookPackage, rawChapters?: any[], tone: ToneKey = "direct"): BookChapterBundle {
   const family = bookPackage.book.variantFamily;
+  const strictV12 = isStrictV12ReaderPackage(bookPackage);
   const rawByNumber = new Map<number, unknown>();
   if (rawChapters) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -669,7 +800,8 @@ function buildBundle(bookPackage: BookPackage, rawChapters?: any[], tone: ToneKe
               family,
               question,
               `${chapter.chapterId}-q-${String(index + 1).padStart(2, "0")}`,
-              tone
+              tone,
+              strictV12
             )
           )
           .filter((q): q is ChapterQuizQuestion => q !== null)
@@ -677,9 +809,67 @@ function buildBundle(bookPackage: BookPackage, rawChapters?: any[], tone: ToneKe
       if (quiz.length === 0) {
         console.error(`Chapter "${chapter.chapterId}" has 0 valid quiz questions after filtering — quiz will be empty`);
       }
-      const quizRetryPool = buildQuizRetryPool(chapter, family, tone);
+      const quizRetryPool = buildQuizRetryPool(chapter, family, tone, strictV12);
 
-      const newFields = extractNewFields(rawByNumber.get(chapter.number), tone);
+      const newFields: Partial<BookChapter> = strictV12
+        ? {}
+        : extractNewFields(rawByNumber.get(chapter.number), tone);
+      const legacyRecap = strictV12 ? undefined : buildRecap(chapter, family);
+      const takeawaysByDepth: Record<ReadingDepth, string[]> = strictV12
+        ? {
+            simple: exactTakeaways(chapter, family, "simple"),
+            standard: exactTakeaways(chapter, family, "standard"),
+            deeper: exactTakeaways(chapter, family, "deeper"),
+          }
+        : {
+            simple: buildTakeaways(chapter, family),
+            standard: buildTakeaways(chapter, family),
+            deeper: buildTakeaways(chapter, family),
+          };
+      const recapByDepth: Record<ReadingDepth, string[]> = strictV12
+        ? {
+            simple: exactRecap(chapter, family, "simple"),
+            standard: exactRecap(chapter, family, "standard"),
+            deeper: exactRecap(chapter, family, "deeper"),
+          }
+        : {
+            simple: [],
+            standard: legacyRecap ? [legacyRecap] : [],
+            deeper: legacyRecap ? [legacyRecap] : [],
+          };
+      const activationPromptByDepth: Partial<Record<ReadingDepth, string>> = strictV12
+        ? {
+            simple: exactActivationPrompt(chapter, family, "simple"),
+            standard: exactActivationPrompt(chapter, family, "standard"),
+            deeper: exactActivationPrompt(chapter, family, "deeper"),
+          }
+        : {
+            standard: newFields.activationPrompt,
+          };
+      const selfCheckPromptsByDepth: Partial<Record<ReadingDepth, string[]>> = strictV12
+        ? {
+            simple: exactSelfCheckPrompts(chapter, family, "simple"),
+            standard: exactSelfCheckPrompts(chapter, family, "standard"),
+            deeper: exactSelfCheckPrompts(chapter, family, "deeper"),
+          }
+        : {
+            standard: newFields.selfCheckPrompt ? [newFields.selfCheckPrompt] : undefined,
+            deeper: newFields.selfCheckPrompts,
+          };
+      const predictionPromptByDepth: Partial<Record<ReadingDepth, string>> = strictV12
+        ? {
+            simple: exactPredictionPrompt(chapter, family, "simple"),
+            standard: exactPredictionPrompt(chapter, family, "standard"),
+            deeper: exactPredictionPrompt(chapter, family, "deeper"),
+          }
+        : {
+            deeper: newFields.predictionPrompt,
+          };
+      const standardTakeaways = takeawaysByDepth.standard ?? [];
+      const standardRecap = recapByDepth.standard ?? [];
+      const standardSelfCheckPrompts = selfCheckPromptsByDepth.standard ?? [];
+      const standardActivationPrompt = activationPromptByDepth.standard;
+      const deeperPredictionPrompt = predictionPromptByDepth.deeper;
 
       return {
         bookId: bookPackage.book.bookId,
@@ -689,24 +879,51 @@ function buildBundle(bookPackage: BookPackage, rawChapters?: any[], tone: ToneKe
         title: chapter.title,
         minutes: chapter.readingTimeMinutes,
         summaryByDepth: {
-          simple: buildSummaryBlocks(chapter, family, "simple"),
-          standard: buildSummaryBlocks(chapter, family, "standard"),
-          deeper: buildSummaryBlocks(chapter, family, "deeper"),
+          simple: strictV12
+            ? exactSummaryBlocks(chapter, family, "simple")
+            : buildSummaryBlocks(chapter, family, "simple"),
+          standard: strictV12
+            ? exactSummaryBlocks(chapter, family, "standard")
+            : buildSummaryBlocks(chapter, family, "standard"),
+          deeper: strictV12
+            ? exactSummaryBlocks(chapter, family, "deeper")
+            : buildSummaryBlocks(chapter, family, "deeper"),
         },
-        takeaways: buildTakeaways(chapter, family),
-        keyQuote: buildKeyQuote(chapter, family),
-        recap: buildRecap(chapter, family),
-        ...newFields,
+        takeaways: standardTakeaways,
+        takeawaysByDepth,
+        keyQuote: strictV12 ? undefined : buildKeyQuote(chapter, family),
+        recap: standardRecap.length > 0 ? standardRecap.join(" ") : undefined,
+        recapByDepth,
+        activationPrompt: standardActivationPrompt,
+        activationPromptByDepth,
+        selfCheckPrompt: standardSelfCheckPrompts[0],
+        selfCheckPrompts: standardSelfCheckPrompts.length > 0 ? standardSelfCheckPrompts : undefined,
+        selfCheckPromptsByDepth,
+        predictionPrompt: deeperPredictionPrompt,
+        predictionPromptByDepth,
+        keyTakeawayCard: chapter.keyTakeawayCard ?? newFields.keyTakeawayCard,
+        implementationPlan: chapter.implementationPlan ?? newFields.implementationPlan,
+        reviewCards: chapter.reviewCards?.map((card) => ({
+          id: card.cardId,
+          front: card.front,
+          back: card.back,
+          difficulty: card.difficulty,
+        })) ?? newFields.reviewCards,
         examplesDetailed: chapter.examples.map((example) => ({
           id: example.exampleId,
           title: example.title,
           scope: inferScope(example),
-          scenario: normalizeScenarioPerspective(
-            example.scenario,
-            `${chapter.chapterId}:${example.exampleId}`
-          ),
-          whatToDo: joinSteps(example.whatToDo),
+          scenario: strictV12
+            ? cleanText(example.scenario)
+            : normalizeScenarioPerspective(
+                example.scenario,
+                `${chapter.chapterId}:${example.exampleId}`
+              ),
+          whatToDo: strictV12
+            ? dedupe(example.whatToDo).join(" ")
+            : joinSteps(example.whatToDo),
           whyItMatters: cleanText(example.whyItMatters),
+          reflectionPrompt: strictV12 ? example.reflectionPrompt : undefined,
         })),
         quiz,
         quizByDepth: buildQuizByDepth(quiz),
@@ -715,6 +932,7 @@ function buildBundle(bookPackage: BookPackage, rawChapters?: any[], tone: ToneKe
           50,
           Math.min(100, Math.round(chapter.quiz.passingScorePercent || 80))
         ),
+        isStrictV12: strictV12,
       };
     });
 
@@ -724,46 +942,90 @@ function buildBundle(bookPackage: BookPackage, rawChapters?: any[], tone: ToneKe
   };
 }
 
-/** Book IDs that support tone-aware content variants */
-const TONE_AWARE_BOOK_IDS = new Set([
-  "the-48-laws-of-power",
-  "friends-and-influence",
-  "atomic-habits",
-  "laws-of-human-nature",
-  "the-charisma-myth",
-  "never-split-the-difference",
-]);
-
 type ToneBundleGetter = (tone: ToneKey) => BookPackage;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ToneRawGetter = () => any[];
 
 const TONE_BUNDLE_GETTERS: Record<string, { getPackage: ToneBundleGetter; getRaw: ToneRawGetter }> = {
-  "the-48-laws-of-power": {
-    getPackage: getLawsOfPowerPackageForTone,
-    getRaw: () => LAWS_OF_POWER_RAW_CHAPTERS,
+  "the-power-of-habit": {
+    getPackage: getThePowerOfHabitPackageForTone,
+    getRaw: () => THE_POWER_OF_HABIT_RAW_CHAPTERS,
   },
-  "friends-and-influence": {
-    getPackage: getFriendsAndInfluencePackageForTone,
-    getRaw: () => FRIENDS_AND_INFLUENCE_RAW_CHAPTERS,
+  "make-time": {
+    getPackage: getMakeTimePackageForTone,
+    getRaw: () => MAKE_TIME_RAW_CHAPTERS,
   },
-  "atomic-habits": {
-    getPackage: getAtomicHabitsPackageForTone,
-    getRaw: () => ATOMIC_HABITS_RAW_CHAPTERS,
+  "crucial-conversations": {
+    getPackage: getCrucialConversationsPackageForTone,
+    getRaw: () => CRUCIAL_CONVERSATIONS_RAW_CHAPTERS,
   },
-  "laws-of-human-nature": {
-    getPackage: getLawsOfHumanNaturePackageForTone,
-    getRaw: () => LAWS_OF_HUMAN_NATURE_RAW_CHAPTERS,
+  "what-every-body-is-saying": {
+    getPackage: getWhatEveryBodyIsSayingPackageForTone,
+    getRaw: () => WHAT_EVERY_BODY_IS_SAYING_RAW_CHAPTERS,
   },
-  "the-charisma-myth": {
-    getPackage: getTheCharismaMythPackageForTone,
-    getRaw: () => THE_CHARISMA_MYTH_RAW_CHAPTERS,
+  "the-prince": {
+    getPackage: getThePrincePackageForTone,
+    getRaw: () => THE_PRINCE_RAW_CHAPTERS,
+  },
+  "tiny-habits": {
+    getPackage: getTinyHabitsPackageForTone,
+    getRaw: () => TINY_HABITS_RAW_CHAPTERS,
+  },
+  essentialism: {
+    getPackage: getEssentialismPackageForTone,
+    getRaw: () => ESSENTIALISM_RAW_CHAPTERS,
+  },
+  "deep-work": {
+    getPackage: getDeepWorkPackageForTone,
+    getRaw: () => DEEP_WORK_RAW_CHAPTERS,
+  },
+  "predictably-irrational": {
+    getPackage: getPredictablyIrrationalPackageForTone,
+    getRaw: () => PREDICTABLY_IRRATIONAL_RAW_CHAPTERS,
+  },
+  "the-almanack-of-naval-ravikant": {
+    getPackage: getTheAlmanackOfNavalRavikantPackageForTone,
+    getRaw: () => THE_ALMANACK_OF_NAVAL_RAVIKANT_RAW_CHAPTERS,
+  },
+  "the-laws-of-human-nature": {
+    getPackage: getTheLawsOfHumanNaturePackageForTone,
+    getRaw: () => THE_LAWS_OF_HUMAN_NATURE_RAW_CHAPTERS,
+  },
+  "the-hard-thing-about-hard-things": {
+    getPackage: getTheHardThingAboutHardThingsPackageForTone,
+    getRaw: () => THE_HARD_THING_ABOUT_HARD_THINGS_RAW_CHAPTERS,
+  },
+  "leaders-eat-last": {
+    getPackage: getLeadersEatLastPackageForTone,
+    getRaw: () => LEADERS_EAT_LAST_RAW_CHAPTERS,
+  },
+  "good-to-great": {
+    getPackage: getGoodToGreatPackageForTone,
+    getRaw: () => GOOD_TO_GREAT_RAW_CHAPTERS,
+  },
+  "how-to-talk-to-anyone": {
+    getPackage: getHowToTalkToAnyonePackageForTone,
+    getRaw: () => HOW_TO_TALK_TO_ANYONE_RAW_CHAPTERS,
   },
   "never-split-the-difference": {
     getPackage: getNeverSplitTheDifferencePackageForTone,
     getRaw: () => NEVER_SPLIT_THE_DIFFERENCE_RAW_CHAPTERS,
   },
+  indistractable: {
+    getPackage: getIndistractablePackageForTone,
+    getRaw: () => INDISTRACTABLE_RAW_CHAPTERS,
+  },
+  "you-can't-hurt-me": {
+    getPackage: getYouCantHurtMePackageForTone,
+    getRaw: () => YOU_CANT_HURT_ME_RAW_CHAPTERS,
+  },
+  "extreme-ownership": {
+    getPackage: getExtremeOwnershipPackageForTone,
+    getRaw: () => EXTREME_OWNERSHIP_RAW_CHAPTERS,
+  },
 };
+
+const TONE_AWARE_BOOK_IDS = new Set(Object.keys(TONE_BUNDLE_GETTERS));
 
 const toneBundleCache = new Map<string, BookChapterBundle>();
 
@@ -866,75 +1128,11 @@ function appendTone(text: string, style: ChapterMotivationStyle, role: "summary"
   return `${normalized}${toneTail(style, role)}`;
 }
 
-const LAWS_OF_POWER_STYLE_COPY: Record<
-  ChapterMotivationStyle,
-  {
-    actionLead: string;
-    meaningTail: string;
-    quizLead: string;
-    recapLead: string;
-    summaryLead: string;
-    summaryWhy: string;
-  }
-> = {
-  gentle: {
-    actionLead: "Take the next step calmly and keep the social field readable.",
-    meaningTail:
-      "That helps you use the law with judgment instead of turning the moment harsher than it needs to be.",
-    quizLead: "The strongest answer protects position without needless display or wasted tension.",
-    recapLead: "Keep the next move calm, measured, and aware of the real power dynamic.",
-    summaryLead: "Read the hierarchy, the incentive, and the pressure before you make your move visible.",
-    summaryWhy:
-      "The aim is not needless manipulation. It is steadier judgment inside live power dynamics.",
-  },
-  direct: {
-    actionLead: "Take the clean move that protects position and keeps leverage intact.",
-    meaningTail:
-      "That keeps the law practical instead of emotional, sloppy, or overplayed.",
-    quizLead: "The strongest answer follows the law cleanly and protects leverage on time.",
-    recapLead: "Use the next move to protect position before the field hardens against you.",
-    summaryLead: "Name the hierarchy, the incentive, and the real risk before you act.",
-    summaryWhy:
-      "That is how Greene's realism becomes usable judgment instead of theatrical severity.",
-  },
-  competitive: {
-    actionLead: "Move where it keeps edge, protects status, and denies easy openings.",
-    meaningTail:
-      "That is how you stop a naive move from quietly donating leverage to someone else.",
-    quizLead: "The strongest answer protects status, timing, and leverage instead of giving any of them away.",
-    recapLead: "Use the next move to keep edge and close avoidable openings.",
-    summaryLead:
-      "This book punishes naive display, so read the field before you step into it.",
-    summaryWhy:
-      "Miss the real power dynamic here and someone more disciplined usually takes the advantage first.",
-  },
-};
-
-function appendSentence(base: string, extra: string): string {
-  const normalizedBase = cleanText(base);
-  const normalizedExtra = cleanText(extra);
-  if (!normalizedBase) return normalizedExtra;
-  if (!normalizedExtra) return normalizedBase;
-  if (normalizedBase.includes(normalizedExtra)) return normalizedBase;
-  return `${normalizedBase} ${normalizedExtra}`;
-}
-
 function personalizeSummaryBlocks(
   chapter: BookChapter,
   blocks: ChapterSummaryBlock[],
   style: ChapterMotivationStyle
 ): ChapterSummaryBlock[] {
-  if (chapter.bookId === "the-48-laws-of-power") {
-    const copy = LAWS_OF_POWER_STYLE_COPY[style];
-    let paragraphIndex = 0;
-    return blocks.map((block) => {
-      if (block.type !== "paragraph") return block;
-      const extra = paragraphIndex === 0 ? copy.summaryLead : copy.summaryWhy;
-      paragraphIndex += 1;
-      return { ...block, text: appendSentence(block.text, extra) };
-    });
-  }
-
   return blocks.map((block) =>
     block.type === "paragraph"
       ? { ...block, text: appendTone(block.text, style, "summary") }
@@ -947,10 +1145,6 @@ function personalizeQuestions(
   questions: ChapterQuizQuestion[],
   style: ChapterMotivationStyle
 ): ChapterQuizQuestion[] {
-  if (chapter.bookId === "the-48-laws-of-power") {
-    return questions;
-  }
-
   return questions.map((question) => ({
     ...question,
     explanation: appendTone(question.explanation, style, "quiz"),
@@ -961,31 +1155,6 @@ export function personalizeChapterForMotivation(
   chapter: BookChapter,
   style: ChapterMotivationStyle
 ): BookChapter {
-  if (chapter.bookId === "the-48-laws-of-power") {
-    const copy = LAWS_OF_POWER_STYLE_COPY[style];
-    return {
-      ...chapter,
-      summaryByDepth: {
-        simple: personalizeSummaryBlocks(chapter, chapter.summaryByDepth.simple, style),
-        standard: personalizeSummaryBlocks(chapter, chapter.summaryByDepth.standard, style),
-        deeper: personalizeSummaryBlocks(chapter, chapter.summaryByDepth.deeper, style),
-      },
-      recap: chapter.recap ? appendSentence(copy.recapLead, chapter.recap) : chapter.recap,
-      examplesDetailed: chapter.examplesDetailed.map((example) => ({
-        ...example,
-        whatToDo: appendSentence(copy.actionLead, example.whatToDo),
-        whyItMatters: appendSentence(example.whyItMatters, copy.meaningTail),
-      })),
-      quiz: personalizeQuestions(chapter, chapter.quiz, style),
-      quizByDepth: {
-        simple: personalizeQuestions(chapter, chapter.quizByDepth.simple, style),
-        standard: personalizeQuestions(chapter, chapter.quizByDepth.standard, style),
-        deeper: personalizeQuestions(chapter, chapter.quizByDepth.deeper, style),
-      },
-      quizRetryPool: personalizeQuestions(chapter, chapter.quizRetryPool, style),
-    };
-  }
-
   return {
     ...chapter,
     summaryByDepth: {

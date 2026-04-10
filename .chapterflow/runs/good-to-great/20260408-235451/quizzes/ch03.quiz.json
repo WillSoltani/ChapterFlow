@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's core reversal?",
+      "choices": [
+        "Set the final strategy, then fill the roles around it",
+        "Get the right people first, then settle the direction",
+        "Keep the wrong people as long as morale stays high"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter puts people before the final route.",
+        "direct": "First who, then what is the reversal. The bus comes before the map.",
+        "competitive": "Who before where. That is the whole turn."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the chapter get stronger when the future is uncertain?",
+      "choices": [
+        "Because uncertainty makes adaptable people more valuable than a fixed plan",
+        "Because uncertainty means strategy no longer matters",
+        "Because uncertain markets always reward gentler leadership"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The more the road can change, the more the right people matter.",
+        "direct": "Uncertainty increases the value of a team that can adapt without breaking execution.",
+        "competitive": "A moving road exposes weak buses fast."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A very capable analyst is slowing the team because she is in the wrong role. What idea from the chapter is most relevant?",
+      "choices": [
+        "Seat fit matters separately from raw talent",
+        "Only loyalty should guide assignments",
+        "The leader should delay action until the next strategy retreat"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A strong person in the wrong seat can still weaken the system.",
+        "direct": "The chapter separates right people from right seats. Both have to be true.",
+        "competitive": "Wrong-seat strength is still expensive."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Aria has good candidates now but an unfinished roadmap. What choice best fits the chapter?",
+      "choices": [
+        "Wait for perfect strategic clarity before hiring anyone",
+        "Hire the people who increase adaptability, then refine the plan with them on board",
+        "Choose the lowest-risk candidate and keep the role vague"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Aria should not postpone the bus until the map feels perfect.",
+        "direct": "The chapter supports securing the right people first so strategy can harden on stronger ground.",
+        "competitive": "Lock in the bus before the market makes the deck old."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "A school club has talented members but weak results because roles are mismatched. What is the strongest diagnosis?",
+      "choices": [
+        "The club's real problem is seat fit rather than lack of talent",
+        "The members need a more inspirational mission statement",
+        "The leader should praise everyone equally and avoid role changes"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Talent alone is not enough when the seats are wrong.",
+        "direct": "The chapter's mechanism points first to role fit, not to more rhetoric.",
+        "competitive": "A pretty roster still loses if the seats are broken."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which statement is the clearest misreading of the chapter's rigor standard?",
+      "choices": [
+        "Rigor means making fit decisions clearly without turning them into theater",
+        "Rigor proves itself mainly by looking harsh in public",
+        "Rigor protects standards and seat fit"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter does not treat harshness as evidence of seriousness.",
+        "direct": "Public toughness theater is closer to ruthlessness than to rigor.",
+        "competitive": "If the room is admiring the leader's hardness, the discipline is already suspect."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why does the chapter want the best people working on opportunities instead of constant cleanup?",
+      "choices": [
+        "Because cleanup work should be ignored entirely",
+        "Because weak seats create an opportunity cost that steals force from growth",
+        "Because top performers should avoid all operational pressure"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The issue is not disrespect for cleanup. It is the cost of letting avoidable weakness trap your strongest people.",
+        "direct": "The chapter sees weak seats as a growth tax because they pull top talent away from leverage.",
+        "competitive": "A bad bus steals from tomorrow first."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "A team depends on one brilliant operator and a set of helpers. What warning fits best?",
+      "choices": [
+        "This structure is strong because the genius keeps standards high",
+        "This structure may look fast but stays fragile when conditions change or the center weakens",
+        "This structure proves strategy matters more than people"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "One central genius can create speed without creating depth.",
+        "direct": "The chapter warns against the genius-with-helpers model because it leaves the institution brittle.",
+        "competitive": "One-engine buses look efficient until the engine stutters."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why is people-first not the same thing as being anti-strategy?",
+      "choices": [
+        "Because strategy still matters, but it becomes more reliable when the roster can carry it under change",
+        "Because the chapter wants leaders to avoid strategy altogether",
+        "Because hiring is easier than strategic thinking"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter changes the order, not the value of strategy itself.",
+        "direct": "People-first protects strategy by giving it a stronger base under uncertainty.",
+        "competitive": "The map still matters. The point is that weak buses cannot carry maps far."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If the bus is finally right, what challenge naturally comes next in the sequence of the book?",
+      "choices": [
+        "Learning how to hear bad news and confront reality directly",
+        "Replacing debate with faster top-down orders",
+        "Skipping straight to technology choices"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next problem is whether truth can reach the room once the right people are there.",
+        "direct": "The chapter bridges naturally to confronting brutal facts, because the right roster still fails if reality is softened.",
+        "competitive": "A strong bus still crashes if the facts get edited."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

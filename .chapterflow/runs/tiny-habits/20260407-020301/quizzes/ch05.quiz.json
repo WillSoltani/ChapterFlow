@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What core claim does Chapter 5 make?",
+      "choices": [
+        "Emotions create habits",
+        "Prompts replace emotion entirely",
+        "Only future rewards matter"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says the feeling after the behavior matters for habit formation.",
+        "direct": "Emotion is treated as part of the mechanism, not as decoration.",
+        "competitive": "The reward slot is emotional before it is abstract."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does celebration matter in Chapter 5?",
+      "choices": [
+        "Because it creates an immediate positive signal when it feels authentic",
+        "Because loud habits are stronger",
+        "Because it removes the need for prompts"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Celebration helps when it creates a real sense of success.",
+        "direct": "The chapter uses celebration as immediate reinforcement.",
+        "competitive": "The job is signal, not spectacle."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is Shine in this chapter?",
+      "choices": [
+        "A long-term personality change",
+        "A quick positive spark after the habit",
+        "A social approval score"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Shine is the little feeling of success after the action.",
+        "direct": "It is the chapter's name for immediate positive reinforcement.",
+        "competitive": "Shine is the short real win signal."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Jules ends her study habit by criticizing herself for doing too little. What would Chapter 5 most likely say?",
+      "choices": [
+        "The criticism weakens reinforcement",
+        "The criticism helps the brain take the habit seriously",
+        "The criticism replaces ability"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says a harsh ending can undercut the loop.",
+        "direct": "Self-criticism is a weak reward signal for a good habit.",
+        "competitive": "The finish is poisoning the repetition."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What is the chapter's main warning about celebration?",
+      "choices": [
+        "Celebration only works in private",
+        "Celebration fails if it feels fake or brittle",
+        "Celebration should always be dramatic"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The signal has to feel real to help.",
+        "direct": "Authenticity matters more than volume.",
+        "competitive": "Fake hype teaches weakly."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which statement matches Chapter 5 best?",
+      "choices": [
+        "Only future rewards count for habit formation",
+        "The immediate emotional finish is part of habit wiring",
+        "Good habits should feel neutral"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter cares about the feeling right after the action.",
+        "direct": "Immediate reinforcement helps determine whether the behavior sticks.",
+        "competitive": "The finish tags the loop."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why is a quiet private celebration sometimes better than a loud one?",
+      "choices": [
+        "Because the chapter bans visible celebration",
+        "Because authenticity is more important than intensity",
+        "Because quiet habits need less repetition"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A smaller signal can still work if it feels real.",
+        "direct": "The chapter values genuine positive emotion over performance style.",
+        "competitive": "Credible beats dramatic."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What problem does immediate reinforcement help solve for good habits?",
+      "choices": [
+        "It helps bridge the gap before distant payoffs arrive",
+        "It eliminates the need for ability",
+        "It turns every habit into a social ritual"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Good habits often pay off later, so a near reward can help now.",
+        "direct": "Chapter 5 adds support in the moment instead of waiting only for future payoff.",
+        "competitive": "Nearer feedback carries the loop while the bigger reward is still far away."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "How could a reader misuse Chapter 5?",
+      "choices": [
+        "By acting excited in a way that feels fake and calling that enough",
+        "By using a private signal",
+        "By noticing the feeling after the habit"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter works only if the signal feels true.",
+        "direct": "Fake celebration weakens the method because the reinforcement is not credible.",
+        "competitive": "Theater is not the same as reward."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What question does Chapter 5 naturally open for the next chapter?",
+      "choices": [
+        "If the habit now starts and feels rewarding, how does it grow over time?",
+        "Why are prompts no longer needed?",
+        "How does celebration replace social support?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Once the loop is better supported, the next question is how tiny habits grow.",
+        "direct": "The chapter naturally leads into growth from rooted habits.",
+        "competitive": "Wiring solved. Next comes scale."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

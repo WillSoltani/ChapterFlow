@@ -10,7 +10,7 @@ interface BookRequestSuccessProps {
 
 const popularBooks = [
   {
-    title: "Atomic Habits",
+    title: "Crucial Conversations",
     gradient: "linear-gradient(135deg, #f59e0b, #d97706)",
   },
   {

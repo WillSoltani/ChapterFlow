@@ -1,0 +1,92 @@
+{
+  "chapterId": "ch08",
+  "chapterNumber": 8,
+  "chapterTitle": "The Mind's Canvas",
+  "computedFor": "edited draft + structured chapter",
+  "editedDraft": {
+    "wordCount": 386,
+    "paragraphCount": 7,
+    "averageSentenceLengthWords": 13.8,
+    "estimatedReadingMinutes": 3
+  },
+  "contentVariants": {
+    "easy": {
+      "wordCounts": {
+        "gentle": 145,
+        "direct": 142,
+        "competitive": 148
+      },
+      "targetRange": "140-175",
+      "withinRange": true,
+      "estimatedGradeBand": "8-9"
+    },
+    "medium": {
+      "wordCounts": {
+        "gentle": 342,
+        "direct": 342,
+        "competitive": 334
+      },
+      "targetRange": "330-420",
+      "withinRange": true,
+      "estimatedGradeBand": "10-11"
+    },
+    "hard": {
+      "wordCounts": {
+        "gentle": 520,
+        "direct": 516,
+        "competitive": 510
+      },
+      "targetRange": "490-600",
+      "withinRange": true,
+      "estimatedGradeBand": "12"
+    }
+  },
+  "examples": {
+    "count": 6,
+    "formatsCovered": [
+      "dialogue",
+      "predict_reveal",
+      "before_after",
+      "decision_point",
+      "dilemma",
+      "postmortem"
+    ],
+    "categoryDistribution": {
+      "work": 2,
+      "school": 2,
+      "personal": 2
+    },
+    "endingTypesCovered": [
+      "decision_reframe",
+      "prediction_flip",
+      "room_shift",
+      "behavior_shift",
+      "self_correction",
+      "retrospective_diagnosis"
+    ]
+  },
+  "quiz": {
+    "questionCount": 10,
+    "choicesPerQuestion": 3,
+    "correctIndexDistribution": {
+      "0": 10,
+      "1": 0,
+      "2": 0
+    },
+    "depthDistribution": {
+      "easy": 3,
+      "medium": 4,
+      "hard": 3
+    }
+  },
+  "reviewCards": {
+    "count": 5,
+    "difficultyDistribution": {
+      "easy": 2,
+      "medium": 2,
+      "hard": 1
+    }
+  },
+  "totalReadingTimeMinutesEstimate": 9,
+  "computedAt": "2026-04-07"
+}

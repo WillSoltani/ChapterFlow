@@ -1324,6 +1324,7 @@ export function BookSettingsClient({}: BookSettingsClientProps) {
               <SubscriptionCard
                 plan={plan}
                 currentPeriodEnd={billingState.payload?.entitlement.currentPeriodEnd}
+                cancelAtPeriodEnd={billingState.payload?.entitlement.cancelAtPeriodEnd}
                 price={price}
                 pricingTiers={billingState.payload?.paywall.pricingTiers}
                 onUpgrade={(interval) => launchBillingAction("upgrade", interval)}

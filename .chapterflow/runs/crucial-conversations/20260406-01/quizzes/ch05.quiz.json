@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the difference between content and conditions in Chapter 5?",
+      "choices": [
+        "Content is the topic, and conditions are the emotional and relational state of the room",
+        "Content is what the strongest speaker wants, and conditions are the agenda",
+        "Content is the feeling, and conditions are the facts"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Content is what the conversation is about. Conditions are what the room feels like while that topic is being discussed.",
+        "direct": "Correct. The chapter distinguishes subject matter from the safety and relational quality of the people carrying that subject.",
+        "competitive": "Topic and room are not the same channel. The chapter says track both."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Which answer best captures silence and violence?",
+      "choices": [
+        "Silence means people are shy, and violence means people are loud",
+        "Silence removes contribution, and violence forces contribution",
+        "Silence is calm disagreement, and violence is emotional honesty"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Silence pulls meaning out of the room, while violence tries to push meaning in by force.",
+        "direct": "The distinction is about contribution patterns, not personality or volume.",
+        "competitive": "Truth gets drained or jammed in. That is the real split."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A teammate says, \"Maybe it is probably fine,\" while clearly hiding their real concern. Which move is most likely active?",
+      "choices": [
+        "Masking",
+        "Attacking",
+        "Controlling"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Masking softens or hides the real meaning instead of putting it into the room clearly.",
+        "direct": "Correct. The hedged language suggests the person is understating what they actually think.",
+        "competitive": "That is the truth wearing padding."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Which statement is the clearest example of labeling?",
+      "choices": [
+        "\"Can you say more about what you mean?\"",
+        "\"You always act like a typical engineer when someone disagrees\"",
+        "\"I need a minute to think before I answer\""
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Labeling reduces the other person to a type or stereotype instead of responding to the actual behavior.",
+        "direct": "Option B fits the chapter's definition because it turns the person into a category.",
+        "competitive": "That sentence stops arguing the issue and starts arguing the person's type."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What is withdrawing in the chapter's vocabulary?",
+      "choices": [
+        "Raising the issue too directly",
+        "Emotionally or verbally leaving the conversation",
+        "Changing your mind after hearing new facts"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Withdrawing means the person is leaving the conversation in spirit or in speech.",
+        "direct": "Correct. It is a form of silence where contribution disappears through exit rather than softness or detour.",
+        "competitive": "The person is no longer really in the room."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "If someone keeps cutting others off and insisting only their frame matters, which move is most active?",
+      "choices": [
+        "Avoiding",
+        "Controlling",
+        "Masking"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Controlling is when a person tries to dominate the frame of the conversation.",
+        "direct": "Option B fits because the speaker is forcing one meaning into the room by cutting others off.",
+        "competitive": "That is force dressed as certainty."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why can text sometimes make masking or labeling easier to spot than speech?",
+      "choices": [
+        "Because text automatically keeps everyone calm",
+        "Because the language stays on screen where the hedging or stereotype can be seen directly",
+        "Because text removes the need to track conditions"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "In text, the exact words stay visible, which makes some patterns easier to notice later.",
+        "direct": "Correct. The medium freezes hedging, absolutes, and stereotypes in writing.",
+        "competitive": "The evidence does not vanish into memory. It sits there on the screen."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why does the chapter say naming the move early matters so much?",
+      "choices": [
+        "Because it proves who is at fault",
+        "Because it interrupts the stress pattern before it fully takes over the room",
+        "Because it guarantees the other person will agree"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Naming the move creates a pause while the conversation is still recoverable.",
+        "direct": "The value is timing. Early naming interrupts momentum before false agreement or force hardens.",
+        "competitive": "Catch the move young, and it costs less to stop."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Which statement best captures the chapter's limit?",
+      "choices": [
+        "Every indirect move is masking, and every blunt move is violence",
+        "The cues are useful, but medium and culture can make them ambiguous",
+        "Once you know the six moves, you no longer need to ask questions"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter stays honest by admitting that pauses, indirectness, and sharpness do not always mean the same thing in every room.",
+        "direct": "Correct. The framework is observational, not omniscient. Video and culture can blur or shift the signals.",
+        "competitive": "Read hard, not arrogantly."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Once you can see that safety has gone missing, what does Chapter 6 most naturally need to teach next?",
+      "choices": [
+        "How to restore safety through the right repair move",
+        "How to memorize the four decision methods",
+        "How to end every conversation quickly"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Chapter 5 helps you see the break. Chapter 6 needs to help you repair it.",
+        "direct": "Correct. The next logical step after diagnosis is learning how to put safety back into the room.",
+        "competitive": "Seeing the failure is not the finish. Repair is next."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    }
+  ]
+}

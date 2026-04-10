@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch02-q01",
+      "prompt": "What does extreme ownership mean in this chapter?",
+      "choices": [
+        "The leader takes responsibility for the outcome and the system behind it before starting with blame",
+        "The leader publicly accepts emotional guilt for every detail whether they influenced it or not",
+        "The leader waits until the full investigation is complete before saying anything about responsibility"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter treats ownership as responsibility tied to repair, not as silence or exaggerated guilt.",
+        "direct": "Correct. Extreme ownership means the leader owns the outcome at the level of planning, standards, communication, and system influence.",
+        "competitive": "That answer works because it keeps authority and responsibility together. The other options dodge or distort the principle."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch02-q02",
+      "prompt": "Why is the Ramadi blue-on-blue incident such a strong anchor for this principle?",
+      "choices": [
+        "Because it is simple enough that one person obviously caused every part of it",
+        "Because it offers many reasonable excuses, which makes ownership harder and more meaningful",
+        "Because it proves leaders should ignore conditions completely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. The event matters because the environment gives the leader plenty of understandable excuses, yet the chapter still insists on ownership.",
+        "direct": "Exactly. The principle is tested under a failure complex enough to justify blame, which makes the ownership move more significant.",
+        "competitive": "That choice wins because ownership is cheap in small clean mistakes and expensive in messy ones. The chapter chooses the expensive test."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch02-q03",
+      "prompt": "What is the biggest problem with blame in the chapter's logic?",
+      "choices": [
+        "It makes the leader look less confident in public",
+        "It turns review into self-protection instead of honest learning",
+        "It causes teams to forgive poor performance too easily"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Correct. The chapter says blame changes the room by making people defend themselves instead of exposing the real problem.",
+        "direct": "That is the key point. Blame poisons review quality because once the leader protects themselves, everyone else follows.",
+        "competitive": "Blame loses because it makes politics outrun truth. Once that happens, the fix gets weaker fast."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch02-q04",
+      "prompt": "Aisha's team ships a broken release because one engineer missed a critical test case. What response best matches extreme ownership?",
+      "choices": [
+        "Open the review by asking why that engineer failed so obviously",
+        "Begin by owning the release process, missing checks, and weak standards that let one mistake become expensive",
+        "Skip ownership language so the engineer does not feel blamed"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Good read. The chapter says the leader should own the system first, then review the individual mistake inside that system.",
+        "direct": "Option B fits because ownership starts at the control point: process, oversight, and standards under leadership influence.",
+        "competitive": "That is the strong move. Scapegoating protects the leader. Silence protects no one. Ownership protects the fix."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q05",
+      "prompt": "Which response shows guilt theater rather than useful ownership?",
+      "choices": [
+        "A leader says, \"This is on me,\" then identifies the unclear standard and changes the process",
+        "A leader explains exactly what they failed to inspect and what must change before the next attempt",
+        "A leader repeatedly says everything is their fault but makes no clear repair decisions"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Yes. The chapter warns that emotional self-blame without repair is not the same thing as ownership.",
+        "direct": "Option C is the distortion. Useful ownership leads to diagnosis and correction, not just dramatic confession.",
+        "competitive": "That answer loses hardest because it turns failure into performance and leaves the system untouched."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q06",
+      "prompt": "What line does the chapter draw around ownership?",
+      "choices": [
+        "Leaders should own what they had authority and influence to shape",
+        "Leaders should claim direct personal causation for every bad result regardless of the facts",
+        "Leaders should avoid ownership until they know exactly who else failed first"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter keeps ownership strong by tying it to real influence rather than to false total blame.",
+        "direct": "Option A matches the limit. Leaders own preparation, standards, communication, and oversight without pretending complexity disappears.",
+        "competitive": "That is the disciplined answer. Over-owning theatrically and under-owning defensively both miss the point."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q07",
+      "prompt": "A student captain reviews a weak team performance and immediately lists three teammates who were lazy. According to this chapter, what should happen first instead?",
+      "choices": [
+        "The captain should inspect the expectations, standards, and communication they led before stopping at those teammates",
+        "The captain should blame themselves for every missed play so the team sees passion",
+        "The captain should avoid all responsibility because high school teams are too volatile to lead cleanly"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The chapter says leadership should inspect itself first so the review does not stop at the easiest visible weakness.",
+        "direct": "Option A fits because ownership asks what the leader shaped that made the underperformance possible or more damaging.",
+        "competitive": "That is the real review move. Calling out lazy teammates may feel decisive, but it usually leaves the leadership failure alive."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q08",
+      "prompt": "Victor's team loses a client after one junior employee misses a follow-up. What is the strongest ownership-based conclusion?",
+      "choices": [
+        "The missed email proves the junior employee is the true cause, so management should stay focused there",
+        "The leader should first ask what weak process, escalation rule, or oversight made one missed follow-up decisive",
+        "The team should move on quickly because too much review will lower morale"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Good catch. The chapter keeps asking what leadership-controlled structure made the visible mistake so costly.",
+        "direct": "Option B is strongest because it stays at the system level where the leader can actually prevent recurrence.",
+        "competitive": "That answer wins because visible errors tempt leaders to hide behind the lowest rung. Ownership drags the review back up to the control point."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q09",
+      "prompt": "Why does ownership improve trust after failure even though it raises the standard on the leader?",
+      "choices": [
+        "Because ownership makes the failure feel less serious than it was",
+        "Because ownership removes the leader's need to escape first, which makes honest truth-telling safer for the team",
+        "Because ownership tells the team individual mistakes no longer matter"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. Trust rises because the room is no longer built around finding someone else to absorb the hit first.",
+        "direct": "Correct. When the leader owns the outcome, people can surface what really failed with less fear of becoming the scapegoat.",
+        "competitive": "That is the mechanism. Ownership stabilizes truth because ego defense no longer runs the room."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch02-q10",
+      "prompt": "If this chapter is right that leaders own outcomes, what pressure does it create for the next chapter's view of weak teams?",
+      "choices": [
+        "It makes team weakness look more like a fixed talent problem than before",
+        "It suggests underperforming teams may reveal leadership quality more than leaders want to admit",
+        "It implies leaders should stop holding teams to high standards altogether"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That is the strongest connection. Once ownership stays with leadership, weak teams start looking less like a complete excuse.",
+        "direct": "Option B follows the chapter's logic directly. If leaders own outcomes, team underperformance becomes a leadership question too.",
+        "competitive": "That answer keeps the pressure on the right person. Ownership makes 'bad team' stories much harder to use as cover."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

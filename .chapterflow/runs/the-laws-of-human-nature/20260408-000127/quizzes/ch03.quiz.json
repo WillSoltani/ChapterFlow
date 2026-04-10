@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch03-q01",
+      "prompt": "What term does Greene use for the ability to feel what another person feels by closely watching their nonverbal signals?",
+      "choices": [
+        "B) Visceral empathy",
+        "A) Cognitive empathy",
+        "C) Emotional mirroring"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Greene calls it visceral empathy because it involves feeling your way into someone else's experience through close observation of their body, face, and posture.",
+        "direct": "Visceral empathy is Greene's term for reading nonverbal output to understand what someone actually feels, as distinct from cognitive empathy, which relies on intellectual perspective-taking.",
+        "competitive": "Visceral empathy is the specific skill Greene identifies: reading posture, breathing, and microexpressions to access emotional data that words never deliver."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch03-q02",
+      "prompt": "How did Milton Erickson develop his extraordinary ability to read people's nonverbal cues?",
+      "choices": [
+        "A) He studied psychology at a prestigious university before his illness",
+        "B) He was paralyzed by polio and compensated by obsessively watching faces, hands, and posture from his wheelchair",
+        "C) He practiced cold-reading techniques used by stage performers"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Stripped of the ability to move or hear clearly, Erickson turned his eyes into instruments, cataloguing nonverbal signals for years until he could read people with remarkable accuracy.",
+        "direct": "Polio removed every other input channel. Erickson built his observational vocabulary because the constraint left him no alternative, proving empathy is trainable under the right conditions.",
+        "competitive": "The constraint of full-body paralysis forced Erickson into a laboratory of pure observation. He did not choose empathy out of warmth. He built it because nothing else was available."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch03-q03",
+      "prompt": "Which of the following is NOT one of the four markers Greene identifies for the deep end of the narcissism spectrum?",
+      "choices": [
+        "A) A cycle of idealizing and then devaluing other people",
+        "C) Controlling behavior that disguises itself as helpfulness",
+        "B) Generous behavior that increases during stressful periods"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The four markers are controlling behavior, hypersensitivity to criticism, idealizing then devaluing others, and an inability to take someone else's perspective. Increased generosity under stress is not among them.",
+        "direct": "Deep narcissistic tendency shows up as control, criticism sensitivity, idealize-devalue cycles, and empathy failure. Generosity under stress would actually signal the opposite direction on the spectrum.",
+        "competitive": "Generous behavior under pressure would indicate someone moving toward the healthy end of the spectrum, not the deep end. The four actual markers all point toward self-absorption intensifying under strain."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch03-q04",
+      "prompt": "Kenji manages a small design team. During a feedback session, one designer says she loves the new direction, but Kenji notices her arms are crossed tightly and her smile disappears the instant she looks down at her notes. What should Kenji do with this observation?",
+      "choices": [
+        "C) Note the mismatch privately and find a low-pressure moment later to ask how she genuinely feels about the changes",
+        "B) Ignore the body language since she verbally expressed support",
+        "A) Call out the contradiction publicly so the team can have an honest discussion"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The crossed arms and vanishing smile suggest her words and feelings do not match. A private follow-up gives her space to share what she could not say in front of the group.",
+        "direct": "The nonverbal signals contradict the verbal agreement. Kenji is reading visceral data correctly, and the appropriate next step is creating a safe context for the real reaction to surface.",
+        "competitive": "Kenji has spotted a classic verbal-nonverbal mismatch. Public confrontation would trigger defensiveness. A private conversation converts the observation into actionable intelligence without damaging trust."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch03-q05",
+      "prompt": "Sonya, a nonprofit director, notices that her board chair lavishes praise on new volunteers but grows cold and dismissive toward them within weeks. Two volunteers have already quit after experiencing this pattern. What force from this chapter explains the board chair's behavior?",
+      "choices": [
+        "A) The board chair is applying strategic withdrawal to maintain authority",
+        "B) The board chair is displaying the idealize-devalue cycle characteristic of deep narcissistic tendency",
+        "C) The board chair is testing volunteers to see which ones have the resilience to stay"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Putting people on a pedestal and then tearing them down in a repeating cycle is one of the four markers of deep narcissistic tendency. The volunteers are caught in that loop.",
+        "direct": "The idealize-devalue cycle is a hallmark of deep narcissistic tendency. The board chair elevates new volunteers rapidly, and when reality fails to match the idealized image, the devaluation kicks in automatically.",
+        "competitive": "This is a textbook idealize-devalue pattern. The praise was never about the volunteers' actual value. It was about the board chair's need for fresh sources of validation, and the coldness arrives when the novelty fades."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch03-q06",
+      "prompt": "Rafael, a sales rep, has been running on four hours of sleep for a week. He catches himself dismissing a client's concerns mid-call, thinking only about closing the deal. After hanging up, he realizes he did not listen to a single thing the client said. What is happening to Rafael on the narcissism spectrum?",
+      "choices": [
+        "A) Rafael has a fixed narcissistic personality that only surfaces during sales calls",
+        "C) Rafael is simply following standard sales technique by staying focused on the close",
+        "B) Sleep deprivation and stress have pushed Rafael toward the deep end of the spectrum, collapsing his capacity for empathy"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Exhaustion and pressure push everyone toward the deep end of the spectrum. Rafael's inability to hear his client is not a character flaw; it is what happens when self-focus thickens under strain.",
+        "direct": "Fatigue is one of the conditions that reliably shifts people toward the deep end. Rafael's attentional bandwidth collapsed, leaving no room for the client's perspective.",
+        "competitive": "Rafael's spectrum position shifted under stress. The inability to register the client's concerns is a temporary empathy failure driven by resource depletion, not a permanent trait, but recognizing the drift is the only way to correct it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch03-q07",
+      "prompt": "Someone who consistently plans their next sentence while the other person is still talking is failing to practice which specific skill from this chapter?",
+      "choices": [
+        "B) Visceral empathy, which requires shifting full attention to the other person's nonverbal signals",
+        "A) Active listening, which requires memorizing key phrases for later use",
+        "C) Emotional suppression, which requires ignoring your own reactions entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "When your attention is on crafting your response, you cannot watch the other person's face, posture, or tone. Visceral empathy requires your focus to move entirely to them.",
+        "direct": "Planning your reply while someone speaks means your attention is on yourself, not on the nonverbal data the other person is broadcasting. Visceral empathy demands the opposite allocation.",
+        "competitive": "Response-planning is self-focused attention disguised as engagement. Visceral empathy requires redirecting that focus outward, reading the signals that words are not delivering."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch03-q08",
+      "prompt": "A therapist who mirrors a patient's posture and breathing rate during a session is using which principle from this chapter to deepen their understanding of the patient's emotional state?",
+      "choices": [
+        "A) The narcissism spectrum assessment technique",
+        "C) Visceral empathy through deliberate nonverbal attunement",
+        "B) The four-marker diagnostic for deep narcissistic tendency"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Matching someone's physical state is one way to feel what they feel. The therapist is using the body as a bridge into the patient's experience, just as Erickson did from his wheelchair.",
+        "direct": "Physical mirroring is a visceral empathy technique. By matching posture and breathing, the therapist gains somatic access to the patient's emotional state, bypassing verbal filters.",
+        "competitive": "This is visceral empathy in its most direct form. The therapist is not just observing nonverbal signals but replicating them to generate a parallel emotional experience, which produces more accurate reads than observation alone."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch03-q09",
+      "prompt": "Greene presents Stalin and Erickson as opposite endpoints of the same spectrum. If both men started with intense self-focus, what was the critical variable that sent them in opposite directions?",
+      "choices": [
+        "C) The direction of their attention diverged: Stalin's collapsed inward while Erickson's constraint forced his outward",
+        "B) Erickson was naturally kinder, which made empathy automatic for him",
+        "A) Stalin had more political power, which inevitably corrupts empathy"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Both started from deep self-focus. Erickson's paralysis forced him to turn that focus outward because he had no other option. Stalin's power removed every reason to look beyond himself.",
+        "direct": "The variable was attentional direction, not personality or morality. Erickson's physical constraint redirected his focus outward. Stalin's unchecked power allowed his focus to collapse inward without consequence.",
+        "competitive": "Neither kindness nor power was the deciding factor. The constraint of polio forced Erickson's attention outward. The absence of constraint allowed Stalin's to spiral inward. The lesson is that empathy often develops from necessity, not disposition."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch03-q10",
+      "prompt": "A team leader has developed strong empathy skills and can accurately read her colleagues' unspoken frustrations. She now wants to determine whether a specific colleague's agreeable surface hides deeper resentment. How does the empathy foundation from Chapter 3 enable the mask-reading techniques explored in Chapter 4?",
+      "choices": [
+        "A) Empathy and mask-reading are separate skills that do not build on each other",
+        "C) Mask-reading replaces empathy entirely once someone becomes skilled enough at spotting nonverbal cues",
+        "B) Empathy provides the interpretive layer that turns raw observation of microexpressions and body language into accurate emotional understanding"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Noticing a tight jaw or a forced smile is observation. Understanding what that tension means for the person feeling it requires the empathic connection you built in this chapter.",
+        "direct": "Without empathy, you see the microexpression but cannot interpret its meaning in context. Empathy converts raw nonverbal data into an accurate model of what the other person is actually experiencing behind their mask.",
+        "competitive": "Observation without empathy is just data collection. The empathic connection is what turns a spotted microexpression into actionable intelligence about what someone's mask is hiding."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

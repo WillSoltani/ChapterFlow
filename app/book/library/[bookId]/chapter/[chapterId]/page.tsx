@@ -110,5 +110,11 @@ export default async function ChapterReaderPage({
 
   const resolvedChapterId = chapter.id;
 
-  return <ChapterReaderClient bookId={bookId} chapterId={resolvedChapterId} />;
+  return (
+    <ChapterReaderClient
+      bookId={bookId}
+      chapterId={resolvedChapterId}
+      initialBook={book}
+    />
+  );
 }

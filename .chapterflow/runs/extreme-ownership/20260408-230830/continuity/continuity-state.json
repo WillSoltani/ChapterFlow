@@ -1,0 +1,660 @@
+{
+  "nameUsage": {
+    "Lena": "ch01",
+    "Marcus": "ch01",
+    "Priya": "ch01",
+    "Devon": "ch01",
+    "Elena": "ch01",
+    "Tomas": "ch01",
+    "Aisha": "ch02",
+    "Nolan": "ch02",
+    "Carmen": "ch02",
+    "Victor": "ch02",
+    "Keisha": "ch02",
+    "Omar": "ch02",
+    "Farah": "ch03",
+    "Isaac": "ch03",
+    "Meera": "ch03",
+    "Julian": "ch03",
+    "Tessa": "ch03",
+    "Andre": "ch03",
+    "Salma": "ch04",
+    "Theo": "ch04",
+    "Lila": "ch04",
+    "Darren": "ch04",
+    "Noor": "ch04",
+    "Malik": "ch04",
+    "Mara": "ch05",
+    "Eli": "ch05",
+    "Sonia": "ch05",
+    "Zuri": "ch05",
+    "Colin": "ch05",
+    "Petra": "ch05",
+    "Rina": "ch06",
+    "Owen": "ch06",
+    "Jade": "ch06",
+    "Pavel": "ch06",
+    "Iris": "ch06",
+    "Leo": "ch06",
+    "Nia": "ch07",
+    "Felix": "ch07",
+    "Tori": "ch07",
+    "Hassan": "ch07",
+    "Mina": "ch07",
+    "Reid": "ch07",
+    "Kira": "ch08",
+    "Mateo": "ch08",
+    "Dana": "ch08",
+    "Quinn": "ch08",
+    "Soren": "ch08",
+    "April": "ch08",
+    "Talia": "ch09",
+    "Idris": "ch09",
+    "Priyanka": "ch09",
+    "Devin": "ch09",
+    "Selah": "ch09",
+    "Marco": "ch09",
+    "Alina": "ch10",
+    "Micah": "ch10",
+    "Rhea": "ch10",
+    "Jonah": "ch10",
+    "Elise": "ch10",
+    "Tariq": "ch10",
+    "Camila": "ch11",
+    "Darius": "ch11",
+    "Mei": "ch11",
+    "Jasper": "ch11",
+    "Noura": "ch11",
+    "Vicente": "ch11",
+    "Anika": "ch12",
+    "Brooks": "ch12",
+    "Yasmin": "ch12",
+    "Hugo": "ch12",
+    "Noemi": "ch12",
+    "Carter": "ch12",
+    "Sabine": "ch13",
+    "Derek": "ch13",
+    "Lina": "ch13",
+    "Oleg": "ch13",
+    "Marisol": "ch13",
+    "Bennett": "ch13"
+  },
+  "formatCategoryHistory": [
+    {
+      "chapterId": "ch01",
+      "format": "decision_point",
+      "category": "work"
+    },
+    {
+      "chapterId": "ch01",
+      "format": "postmortem",
+      "category": "school"
+    },
+    {
+      "chapterId": "ch01",
+      "format": "dialogue",
+      "category": "personal"
+    },
+    {
+      "chapterId": "ch01",
+      "format": "predict_reveal",
+      "category": "work"
+    },
+    {
+      "chapterId": "ch01",
+      "format": "dilemma",
+      "category": "school"
+    },
+    {
+      "chapterId": "ch01",
+      "format": "before_after",
+      "category": "personal"
+    },
+    {
+      "chapterId": "ch02",
+      "format": "decision_point",
+      "category": "work"
+    },
+    {
+      "chapterId": "ch02",
+      "format": "postmortem",
+      "category": "school"
+    },
+    {
+      "chapterId": "ch02",
+      "format": "dialogue",
+      "category": "personal"
+    },
+    {
+      "chapterId": "ch02",
+      "format": "predict_reveal",
+      "category": "work"
+    },
+    {
+      "chapterId": "ch02",
+      "format": "dilemma",
+      "category": "school"
+    },
+    {
+      "chapterId": "ch02",
+      "format": "before_after",
+      "category": "personal"
+    },
+    {
+      "chapterId": "ch03",
+      "format": "decision_point",
+      "category": "work"
+    },
+    {
+      "chapterId": "ch03",
+      "format": "postmortem",
+      "category": "school"
+    },
+    {
+      "chapterId": "ch03",
+      "format": "dialogue",
+      "category": "personal"
+    },
+    {
+      "chapterId": "ch03",
+      "format": "predict_reveal",
+      "category": "work"
+    },
+    {
+      "chapterId": "ch03",
+      "format": "dilemma",
+      "category": "school"
+    },
+    {
+      "chapterId": "ch03",
+      "format": "before_after",
+      "category": "personal"
+    },
+    {
+      "chapterId": "ch04",
+      "format": "decision_point",
+      "category": "work"
+    },
+    {
+      "chapterId": "ch04",
+      "format": "postmortem",
+      "category": "school"
+    },
+    {
+      "chapterId": "ch04",
+      "format": "dialogue",
+      "category": "personal"
+    },
+    {
+      "chapterId": "ch04",
+      "format": "predict_reveal",
+      "category": "work"
+    },
+    {
+      "chapterId": "ch04",
+      "format": "dilemma",
+      "category": "school"
+    },
+    {
+      "chapterId": "ch04",
+      "format": "before_after",
+      "category": "personal"
+    },
+    {
+      "chapterId": "ch05",
+      "format": "decision_point",
+      "category": "work"
+    },
+    {
+      "chapterId": "ch05",
+      "format": "postmortem",
+      "category": "school"
+    },
+    {
+      "chapterId": "ch05",
+      "format": "dialogue",
+      "category": "personal"
+    },
+    {
+      "chapterId": "ch05",
+      "format": "predict_reveal",
+      "category": "work"
+    },
+    {
+      "chapterId": "ch05",
+      "format": "dilemma",
+      "category": "school"
+    },
+    {
+      "chapterId": "ch05",
+      "format": "before_after",
+      "category": "personal"
+    },
+    {
+      "chapterId": "ch06",
+      "format": "decision_point",
+      "category": "work"
+    },
+    {
+      "chapterId": "ch06",
+      "format": "postmortem",
+      "category": "school"
+    },
+    {
+      "chapterId": "ch06",
+      "format": "dialogue",
+      "category": "personal"
+    },
+    {
+      "chapterId": "ch06",
+      "format": "predict_reveal",
+      "category": "work"
+    },
+    {
+      "chapterId": "ch06",
+      "format": "dilemma",
+      "category": "school"
+    },
+    {
+      "chapterId": "ch06",
+      "format": "before_after",
+      "category": "personal"
+    },
+    {
+      "chapterId": "ch07",
+      "format": "decision_point",
+      "category": "work"
+    },
+    {
+      "chapterId": "ch07",
+      "format": "postmortem",
+      "category": "school"
+    },
+    {
+      "chapterId": "ch07",
+      "format": "dialogue",
+      "category": "personal"
+    },
+    {
+      "chapterId": "ch07",
+      "format": "predict_reveal",
+      "category": "work"
+    },
+    {
+      "chapterId": "ch07",
+      "format": "dilemma",
+      "category": "school"
+    },
+    {
+      "chapterId": "ch07",
+      "format": "before_after",
+      "category": "personal"
+    },
+    {
+      "chapterId": "ch08",
+      "format": "decision_point",
+      "category": "work"
+    },
+    {
+      "chapterId": "ch08",
+      "format": "postmortem",
+      "category": "school"
+    },
+    {
+      "chapterId": "ch08",
+      "format": "dialogue",
+      "category": "personal"
+    },
+    {
+      "chapterId": "ch08",
+      "format": "predict_reveal",
+      "category": "work"
+    },
+    {
+      "chapterId": "ch08",
+      "format": "dilemma",
+      "category": "school"
+    },
+    {
+      "chapterId": "ch08",
+      "format": "before_after",
+      "category": "personal"
+    },
+    {
+      "chapterId": "ch09",
+      "format": "decision_point",
+      "category": "work"
+    },
+    {
+      "chapterId": "ch09",
+      "format": "postmortem",
+      "category": "school"
+    },
+    {
+      "chapterId": "ch09",
+      "format": "dialogue",
+      "category": "personal"
+    },
+    {
+      "chapterId": "ch09",
+      "format": "predict_reveal",
+      "category": "work"
+    },
+    {
+      "chapterId": "ch09",
+      "format": "dilemma",
+      "category": "school"
+    },
+    {
+      "chapterId": "ch09",
+      "format": "before_after",
+      "category": "personal"
+    },
+    {
+      "chapterId": "ch10",
+      "format": "decision_point",
+      "category": "work"
+    },
+    {
+      "chapterId": "ch10",
+      "format": "postmortem",
+      "category": "school"
+    },
+    {
+      "chapterId": "ch10",
+      "format": "dialogue",
+      "category": "personal"
+    },
+    {
+      "chapterId": "ch10",
+      "format": "predict_reveal",
+      "category": "work"
+    },
+    {
+      "chapterId": "ch10",
+      "format": "dilemma",
+      "category": "school"
+    },
+    {
+      "chapterId": "ch10",
+      "format": "before_after",
+      "category": "personal"
+    },
+    {
+      "chapterId": "ch11",
+      "format": "decision_point",
+      "category": "work"
+    },
+    {
+      "chapterId": "ch11",
+      "format": "postmortem",
+      "category": "school"
+    },
+    {
+      "chapterId": "ch11",
+      "format": "dialogue",
+      "category": "personal"
+    },
+    {
+      "chapterId": "ch11",
+      "format": "predict_reveal",
+      "category": "work"
+    },
+    {
+      "chapterId": "ch11",
+      "format": "dilemma",
+      "category": "school"
+    },
+    {
+      "chapterId": "ch11",
+      "format": "before_after",
+      "category": "personal"
+    },
+    {
+      "chapterId": "ch12",
+      "format": "decision_point",
+      "category": "work"
+    },
+    {
+      "chapterId": "ch12",
+      "format": "postmortem",
+      "category": "school"
+    },
+    {
+      "chapterId": "ch12",
+      "format": "dialogue",
+      "category": "personal"
+    },
+    {
+      "chapterId": "ch12",
+      "format": "predict_reveal",
+      "category": "work"
+    },
+    {
+      "chapterId": "ch12",
+      "format": "dilemma",
+      "category": "school"
+    },
+    {
+      "chapterId": "ch12",
+      "format": "before_after",
+      "category": "personal"
+    },
+    {
+      "chapterId": "ch13",
+      "format": "decision_point",
+      "category": "work"
+    },
+    {
+      "chapterId": "ch13",
+      "format": "postmortem",
+      "category": "school"
+    },
+    {
+      "chapterId": "ch13",
+      "format": "dialogue",
+      "category": "personal"
+    },
+    {
+      "chapterId": "ch13",
+      "format": "predict_reveal",
+      "category": "work"
+    },
+    {
+      "chapterId": "ch13",
+      "format": "dilemma",
+      "category": "school"
+    },
+    {
+      "chapterId": "ch13",
+      "format": "before_after",
+      "category": "personal"
+    }
+  ],
+  "schoolSettingUsage": {
+    "robotics lab": 1,
+    "student newspaper room": 1,
+    "athletics film room": 1,
+    "group-project war room": 1,
+    "debate prep room": 1,
+    "chemistry lab": 1,
+    "student government committee": 1,
+    "orchestra rehearsal room": 1,
+    "robotics build room": 2,
+    "student newspaper layout table": 1,
+    "lab station cluster": 1,
+    "campus publication room": 1,
+    "debate strategy room": 1,
+    "engineering workshop table": 1,
+    "event command table": 1,
+    "student media deadline board": 1,
+    "student summit control table": 1,
+    "robotics pit lane": 1,
+    "student conference prep room": 1,
+    "science fair staging table": 1,
+    "student senate workroom": 1,
+    "yearbook distribution table": 1,
+    "debate tournament hallway": 1,
+    "lab safety board": 1,
+    "student government dais": 1,
+    "robotics judging aisle": 1
+  },
+  "wordFrequency": {},
+  "phraseFrequency": {},
+  "openerRegistry": {
+    "gentle": {},
+    "direct": {},
+    "competitive": {}
+  },
+  "titleTemplateRegistry": {},
+  "endingPatternRegistry": {
+    "broader_principle": 13,
+    "self_directed_question": 13,
+    "surprising_implication": 13,
+    "cross_domain": 13,
+    "common_trap": 13,
+    "perspective_reframe": 13
+  },
+  "withinChapterNames": {
+    "ch01": [
+      "Lena",
+      "Marcus",
+      "Priya",
+      "Devon",
+      "Elena",
+      "Tomas"
+    ],
+    "ch02": [
+      "Aisha",
+      "Nolan",
+      "Carmen",
+      "Victor",
+      "Keisha",
+      "Omar"
+    ],
+    "ch03": [
+      "Farah",
+      "Isaac",
+      "Meera",
+      "Julian",
+      "Tessa",
+      "Andre"
+    ],
+    "ch04": [
+      "Salma",
+      "Theo",
+      "Lila",
+      "Darren",
+      "Noor",
+      "Malik"
+    ],
+    "ch05": [
+      "Mara",
+      "Eli",
+      "Sonia",
+      "Zuri",
+      "Colin",
+      "Petra"
+    ],
+    "ch06": [
+      "Rina",
+      "Owen",
+      "Jade",
+      "Pavel",
+      "Iris",
+      "Leo"
+    ],
+    "ch07": [
+      "Nia",
+      "Felix",
+      "Tori",
+      "Hassan",
+      "Mina",
+      "Reid"
+    ],
+    "ch08": [
+      "Kira",
+      "Mateo",
+      "Dana",
+      "Quinn",
+      "Soren",
+      "April"
+    ],
+    "ch09": [
+      "Talia",
+      "Idris",
+      "Priyanka",
+      "Devin",
+      "Selah",
+      "Marco"
+    ],
+    "ch10": [
+      "Alina",
+      "Micah",
+      "Rhea",
+      "Jonah",
+      "Elise",
+      "Tariq"
+    ],
+    "ch11": [
+      "Camila",
+      "Darius",
+      "Mei",
+      "Jasper",
+      "Noura",
+      "Vicente"
+    ],
+    "ch12": [
+      "Anika",
+      "Brooks",
+      "Yasmin",
+      "Hugo",
+      "Noemi",
+      "Carter"
+    ],
+    "ch13": [
+      "Sabine",
+      "Derek",
+      "Lina",
+      "Oleg",
+      "Marisol",
+      "Bennett"
+    ]
+  },
+  "approvedChapterHashes": {
+    "ch01": "8547a3463896e7babf73a9645d9dc098ed22d6fafd5f845fb34d90abe889d478",
+    "ch02": "686c58c10b3b773ca743cab6389ccce18e24be05ec6025ad3150fdf734592006",
+    "ch03": "136ceb69a545ea41289e0c5edce066057fcb0a0dbe9229f5c3f0644ac34b3aaf",
+    "ch04": "25f1baaad0f1829f97d12370a43494b58c3937e36004dce17592f4f9bfbf596a",
+    "ch05": "0a8f9dc34487f66daaf954f09916c383bdc0c0beefc3e8520936e87a9ab6e215",
+    "ch06": "6145e051da73e1d78f3848a25d23419a691e3f968691e975b4c4187467fc672a",
+    "ch07": "144a6e7ec768f0c4929267208a9b2ae6e0fc1757a3e373341eef790a6c40a2e4",
+    "ch08": "d5a683ba8a627382208ef7bb71bc6e71892495fd1712cf6e9bb6c93b6a04e2a8",
+    "ch09": "dc0d6c4c80224e734158ab743d8ff660cb7686e98cc0f2c89122728a09f004c3",
+    "ch10": "5f37b26ae9aca50430381a84d1d7db7299ca0f3d8d1f0e3052e8c2642faa9a3b",
+    "ch11": "3920db5d66eeed4069bd3ea3344b37a416f16c7906e75e7a5ed7853824dc5956",
+    "ch12": "57d2b944e8f950f7dc5215373574b32b91520cfcbb577cc5105be32087585778",
+    "ch13": "71f46af78ce5ed2f5b8a935847e98916401fd35dce4e4e50b58d8e563d096b5b"
+  },
+  "baselineQuality": {
+    "ch01": {
+      "criticScore": 11,
+      "validationStatus": "chapter_gate_pass",
+      "wordCounts": {
+        "easyDirect": 142,
+        "mediumDirect": 395,
+        "hardDirect": 490
+      }
+    },
+    "ch02": {
+      "criticScore": 11,
+      "validationStatus": "chapter_gate_pass",
+      "wordCounts": {
+        "easyDirect": 141,
+        "mediumDirect": 354,
+        "hardDirect": 517
+      }
+    }
+  },
+  "lastUpdatedAt": "2026-04-09T14:59:01Z"
+}

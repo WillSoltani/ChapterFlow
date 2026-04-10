@@ -120,8 +120,17 @@ export function buildQuizAttemptQuestions(params: {
   attemptNumber: number;
   /** Maximum number of questions to include (filters by learning mode). Defaults to all. */
   maxQuestions?: number;
+  preserveAuthoredOrder?: boolean;
 }): QuizSessionQuestion[] {
-  const { quiz, userId, bookId, chapterNumber, attemptNumber, maxQuestions } = params;
+  const {
+    quiz,
+    userId,
+    bookId,
+    chapterNumber,
+    attemptNumber,
+    maxQuestions,
+    preserveAuthoredOrder = false,
+  } = params;
   const allQuestions = quiz.questions;
   const baseQuestions = maxQuestions && maxQuestions > 0
     ? allQuestions.slice(0, maxQuestions)
@@ -130,16 +139,14 @@ export function buildQuizAttemptQuestions(params: {
     `${userId}:${bookId}:${chapterNumber}:${Math.max(1, attemptNumber)}`
   );
   const rand = seededRandom(seed);
-  const chosen = shuffle(baseQuestions, rand);
+  const chosen = preserveAuthoredOrder ? [...baseQuestions] : shuffle(baseQuestions, rand);
 
   return chosen.map((question) => {
-    const orderedChoices = shuffle(
-      question.choices.map((text, canonicalIndex) => ({
-        text,
-        canonicalIndex,
-      })),
-      rand
-    );
+    const choicePool = question.choices.map((text, canonicalIndex) => ({
+      text,
+      canonicalIndex,
+    }));
+    const orderedChoices = preserveAuthoredOrder ? choicePool : shuffle(choicePool, rand);
     const choices = orderedChoices.map((choice) => ({
       choiceId: `${question.questionId}::choice::${choice.canonicalIndex}`,
       text: choice.text,
@@ -330,11 +337,10 @@ export function buildQuizClientSession(params: {
   passingScorePercent?: number;
   /** Maximum number of questions to include (based on learning mode) */
   maxQuestions?: number;
+  preserveAuthoredOrder?: boolean;
 }): QuizClientSession {
-  const passingScorePercent = Math.max(
-    80,
-    params.passingScorePercent ?? params.quiz.passingScorePercent ?? 80
-  );
+  const passingScorePercent =
+    params.passingScorePercent ?? params.quiz.passingScorePercent ?? 80;
   const attemptsCount = Math.max(0, params.quizState?.attemptsCount ?? 0);
   const failureStreak = Math.max(0, params.quizState?.failureStreak ?? 0);
   const cooldownSeconds = remainingCooldownSeconds(
@@ -342,15 +348,15 @@ export function buildQuizClientSession(params: {
   );
   const latestAttempt = params.latestAttempt;
   const passed = params.quizState?.passed === true;
-  const nextAttemptNumber = passed ? null : attemptsCount + 1;
-  const status: QuizClientSession["status"] = passed
+  const tentativeNextAttemptNumber = passed ? null : attemptsCount + 1;
+  const tentativeStatus: QuizClientSession["status"] = passed
     ? "passed"
     : cooldownSeconds > 0 && latestAttempt
       ? "cooldown"
       : "ready";
   const viewAttemptNumber =
-    status === "ready"
-      ? Math.max(1, nextAttemptNumber ?? 1)
+    tentativeStatus === "ready"
+      ? Math.max(1, tentativeNextAttemptNumber ?? 1)
       : latestAttempt?.attemptNumber || Math.max(1, attemptsCount);
   const baseQuestions = buildQuizAttemptQuestions({
     quiz: {
@@ -362,7 +368,17 @@ export function buildQuizClientSession(params: {
     chapterNumber: params.chapterNumber,
     attemptNumber: viewAttemptNumber,
     maxQuestions: params.maxQuestions,
+    preserveAuthoredOrder: params.preserveAuthoredOrder,
   });
+  const resultMatchesCurrentQuestionCount =
+    latestAttempt?.totalQuestions == null ||
+    latestAttempt.totalQuestions === baseQuestions.length;
+  const nextAttemptNumber = passed && resultMatchesCurrentQuestionCount ? null : attemptsCount + 1;
+  const status: QuizClientSession["status"] = passed && resultMatchesCurrentQuestionCount
+    ? "passed"
+    : tentativeStatus === "passed"
+      ? "ready"
+      : tentativeStatus;
   const resultsByQuestionId = new Map(
     (latestAttempt?.questionResults ?? []).map((result) => [result.questionId, result])
   );
@@ -392,14 +408,20 @@ export function buildQuizClientSession(params: {
           text: choice.text,
         })),
         explanation: question.explanation || undefined,
-        selectedChoiceId: status === "ready" ? null : result?.selectedChoiceId ?? null,
+        selectedChoiceId:
+          status === "ready" || !resultMatchesCurrentQuestionCount
+            ? null
+            : result?.selectedChoiceId ?? null,
         correctChoiceId: question.correctChoiceId,
         correctIndex: question.correctIndex,
-        isCorrect: status === "ready" ? undefined : result?.isCorrect === true,
+        isCorrect:
+          status === "ready" || !resultMatchesCurrentQuestionCount
+            ? undefined
+            : result?.isCorrect === true,
       };
     }),
     result:
-      latestAttempt && status !== "ready"
+      latestAttempt && status !== "ready" && resultMatchesCurrentQuestionCount
         ? {
             attemptNumber: latestAttempt.attemptNumber || attemptsCount,
             scorePercent: latestAttempt.scorePercent,

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What main claim does Chapter 9 make about big goals?",
+      "choices": [
+        "Large goals are automatically reckless",
+        "Big is not automatically bad when the scale is legitimate",
+        "Only small goals can be realistic"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter rejects default suspicion of size.",
+        "direct": "Keller says scale itself is not the real problem.",
+        "competitive": "Large is not guilty by default."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does Keller treat size aversion as a lie?",
+      "choices": [
+        "Because people often confuse comfort with wisdom when sizing goals",
+        "Because every large goal is smarter than every small one",
+        "Because risk never matters"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says smaller can feel wiser mainly because it disturbs less.",
+        "direct": "Relief can masquerade as judgment.",
+        "competitive": "Comfort often wins the sizing fight and gets called maturity."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What does comfort-sized ambition mean in this chapter?",
+      "choices": [
+        "Lowering the goal until it fits life with less disruption",
+        "Choosing a goal with more detail and sequence",
+        "Waiting until a goal becomes emotionally exciting"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter uses this phrase for shrinking a goal so it feels easier to carry.",
+        "direct": "The target gets resized for ease more than truth.",
+        "competitive": "The goal gets cut until it stops demanding much."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Talia sees a team keep trimming a meaningful target because the bigger version feels exposed. What best fits Chapter 9?",
+      "choices": [
+        "Keep reducing it until nobody feels stretched",
+        "Protect the larger grounded version if comfort is the real reason for cutting it down",
+        "Treat any ambitious target as ego by default"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says a larger goal should not be cut down automatically if it is still real.",
+        "direct": "Do not mistake discomfort for proof against scale.",
+        "competitive": "If the target is real, stop letting comfort shave it down."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Which statement would Chapter 9 reject as false?",
+      "choices": [
+        "A grounded large aim can be legitimate",
+        "Smaller goals are always wiser because they disturb less",
+        "Big is not automatically bad"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter rejects the idea that smaller is automatically wiser.",
+        "direct": "Less disturbance is not enough to prove better judgment.",
+        "competitive": "Easy on comfort is not the same as true."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Marcus lowered his project standard before he even tested whether the stronger version was possible. What did Chapter 9 say he missed?",
+      "choices": [
+        "The value of adding more research citations",
+        "The need to make every goal larger than possible",
+        "The difference between prudence and comfort-sized retreat"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "He may have reduced the standard for comfort before judging it fairly.",
+        "direct": "The chapter asks whether the smaller goal was wiser or just safer.",
+        "competitive": "He may have called relief realism."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What limit keeps Chapter 9 from becoming grandiosity?",
+      "choices": [
+        "Only work goals can be large",
+        "Any bigger goal is automatically justified",
+        "A large aim still has to stay grounded and real"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter does not defend fantasy. It defends legitimate scale.",
+        "direct": "Fake big is still fake.",
+        "competitive": "If the target is inflated theater, it still fails."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Ren keeps rewriting a life aim into smaller versions that feel easier to carry without changing much. What is the best Chapter 9 response?",
+      "choices": [
+        "The smaller version is automatically more mature",
+        "Any larger version would obviously be fantasy",
+        "That pattern may show comfort deciding size more than truth"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter warns that practical-sounding reductions can hide comfort.",
+        "direct": "A smaller life aim may be serving relief rather than judgment.",
+        "competitive": "The respectable rewrite may be the retreat."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "How does Chapter 9 build on Chapter 8?",
+      "choices": [
+        "It explains why people sometimes choose smaller goals to avoid the visible tilt a bigger goal would create",
+        "It says balance no longer matters because ambition replaces it",
+        "It replaces tradeoffs with emotional confidence"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Chapter 8 exposed fear of imbalance, and Chapter 9 shows how that fear can shrink ambition.",
+        "direct": "The smaller goal can be a way to avoid the season the bigger goal would demand.",
+        "competitive": "People cut the target down so life never has to confess a real tilt."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Which action best applies Chapter 9 to a crowded life?",
+      "choices": [
+        "Assume the smaller version of every goal is wiser",
+        "Keep the goal as large as truth requires while rejecting fantasy",
+        "Choose the biggest possible target so you never look timid"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter works when scale is sized by truth instead of by comfort or ego.",
+        "direct": "Defend legitimate scale and reject empty inflation.",
+        "competitive": "Do not cut for relief or swell for show. Size it honestly."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

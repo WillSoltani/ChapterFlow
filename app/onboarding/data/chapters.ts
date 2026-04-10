@@ -35,73 +35,73 @@ export interface FirstLoopContent {
   quiz: QuizQuestion[];
 }
 
-/* The 48 Laws of Power — Law 1 */
+/* Generic onboarding sample lesson */
 const firstLoopData: FirstLoopContent = {
   summary: {
-    bookId: "the-48-laws-of-power",
-    bookTitle: "The 48 Laws of Power",
-    author: "Robert Greene",
-    chapterTitle: "Never Outshine the Master",
+    bookId: "chapterflow-sample",
+    bookTitle: "ChapterFlow Sample Lesson",
+    author: "ChapterFlow",
+    chapterTitle: "Spot the Turn Before It Hardens",
     readingTime: "~2 min read",
     paragraphs: [
-      "The first law of power is deceptively simple: always make those above you feel comfortably superior. When you try to impress them by displaying your talents too eagerly, you risk triggering their insecurities. The result is the opposite of what you intended — instead of admiration, you inspire fear and resentment.",
-      "Greene illustrates this through the story of Nicolas Fouquet, finance minister to Louis XIV, who threw a lavish party at his estate that outshone the king's own palace. Within weeks, Fouquet was arrested and spent the rest of his life in prison. The lesson: your superiors want to feel secure in their position, not threatened by your brilliance.",
-      "The key distinction is between making your master look good versus making yourself look good. The most successful courtiers throughout history understood that their power came from being indispensable to those above them — not from showcasing their own superiority. Discretion, not display, is the foundation of lasting influence.",
+      "Many hard interactions do not start with yelling. They start with a small turn in the room: tension rises, people protect themselves, and the real point gets avoided. A useful reader learns to catch that turn early instead of treating the fallout as a separate problem later.",
+      "The core move is simple. Notice the moment when stakes rise, disagreement sharpens, and emotion starts changing how people speak. Once you can name that shift, you stop reacting only to tone and start asking what the conversation now needs.",
+      "That early recognition creates better options. You can slow the pace, ask a cleaner question, or reset the goal before people drift into silence, defensiveness, or point-scoring. The chapter is not about winning the exchange. It is about keeping the exchange usable.",
     ],
     keyInsight:
-      "Make your superiors feel comfortably superior. Your restraint in displaying talent is itself a form of strategic intelligence that builds lasting influence.",
+      "The first useful skill in any difficult exchange is recognizing the turn early enough to change how you respond.",
   },
   scenarios: {
     work: {
       type: "work",
       situation:
-        "You just joined a new team and your manager presents a strategy you think has obvious flaws. In the next meeting, you feel the urge to propose your own superior plan in front of everyone to make a strong first impression.",
+        "Your manager asks for updates on a delayed project. A teammate starts explaining why another group caused the problem, and the room shifts from solving the issue to protecting reputations.",
       whatToDo:
-        "Instead of publicly correcting your manager, request a one-on-one conversation. Frame your ideas as building on their strategy: 'I was thinking about your plan and had some ideas that might support it.' Let them take ownership of the improvements. Your goal is to become their trusted advisor, not their rival.",
+        "Name the shift without attacking anyone. Try: 'It sounds like we may be moving from the deadline problem to the blame problem. Can we separate those for a minute and get clear on what is still blocking delivery?'",
       whyItMatters:
-        "Greene's first law warns that outshining your superiors triggers defensiveness, not gratitude. By channeling your ideas through your manager, you make them look good while positioning yourself as indispensable. The credit comes later — once trust is established, your influence grows naturally.",
+        "You are protecting the conversation from hardening into defense. Once people start guarding themselves, the useful facts usually disappear first.",
     },
     school: {
       type: "school",
       situation:
-        "Your professor makes a factual error during a lecture. You know the correct answer and several classmates are looking at you expectantly, knowing you're well-read on the topic. You're tempted to raise your hand and correct the mistake publicly.",
+        "Your group project is falling behind. During a planning meeting, one student says, 'Some people clearly care more than others,' and everyone goes quiet.",
       whatToDo:
-        "Let the moment pass in class. After the lecture, approach the professor privately and frame it as a question: 'I was curious about that point — I'd read something slightly different. Could you help me understand?' This lets them save face while still correcting the record. They'll remember you as thoughtful, not threatening.",
+        "Reset the goal before the comment turns into a status fight. Try: 'I think the tension just jumped. Can we get specific about what is unfinished and who needs help, instead of guessing at motivation?'",
       whyItMatters:
-        "The law teaches that people in authority positions are especially sensitive to being shown up publicly. A professor who feels embarrassed by a student is unlikely to become a mentor or advocate. By protecting their dignity, you gain an ally instead of creating a subtle adversary.",
+        "The group is more likely to recover when you move from accusation to observable facts. That keeps the team focused on the task instead of the insult.",
     },
     personal: {
       type: "personal",
       situation:
-        "You're at a family dinner and your older sibling — who everyone looks up to — shares advice about finances that you know is outdated. You've been studying personal finance extensively and could easily correct them with better information.",
+        "A friend says, 'You never make time for me anymore,' after you cancel a plan. You can feel yourself preparing a defense before you fully understand what they mean.",
       whatToDo:
-        "Rather than contradicting them at the table, acknowledge their point first: 'That's a great foundation.' Later, in a private moment, share what you've learned as something you recently discovered — not as a correction. Let them feel like they inspired your interest in the topic rather than feeling shown up.",
+        "Pause and ask for the real concern before replying to the accusation. Try: 'I want to understand what made this feel bigger than one canceled plan. What has it been like from your side lately?'",
       whyItMatters:
-        "Greene's principle applies beyond professional settings. Family dynamics have their own power structures, and publicly outshining a respected family member can create lasting resentment. Preserving the relationship while subtly sharing knowledge is the more powerful move.",
+        "That question shifts the exchange from self-defense to understanding. You are much more likely to solve the real issue when you respond to the concern underneath the sentence.",
     },
   },
   quiz: [
     {
       question:
-        "Your new boss asks for your honest opinion on their proposed marketing strategy. You think it's mediocre. Based on Law 1, what's the best approach?",
+        "What is the main skill this sample chapter is trying to build first?",
       options: [
-        { letter: "A", text: "Give a detailed critique showing all the weaknesses to demonstrate your expertise", isCorrect: false },
-        { letter: "B", text: "Praise the strategy's strengths, then suggest enhancements that build on their vision", isCorrect: true },
-        { letter: "C", text: "Say it's perfect to avoid any conflict", isCorrect: false },
-        { letter: "D", text: "Email your own strategy to their boss instead", isCorrect: false },
+        { letter: "A", text: "Recognizing when an exchange has turned tense enough to need a different approach", isCorrect: true },
+        { letter: "B", text: "Winning the argument before the other person can respond", isCorrect: false },
+        { letter: "C", text: "Collecting as many opinions as possible before saying anything", isCorrect: false },
+        { letter: "D", text: "Avoiding all disagreement so the interaction stays calm", isCorrect: false },
       ],
-      explanation: "Law 1 teaches that you should make superiors feel comfortably superior. Building on their ideas lets you improve the outcome while preserving the relationship.",
+      explanation: "The lesson starts with recognition. If you can spot the shift early, you still have room to change the conversation before it locks into defense or blame.",
     },
     {
       question:
-        "Nicolas Fouquet threw a magnificent party that impressed everyone — yet it destroyed his career. What was his critical mistake according to Greene?",
+        "A discussion suddenly becomes about blame instead of the actual problem. What is the strongest next move?",
       options: [
-        { letter: "A", text: "He spent too much money on the event", isCorrect: false },
-        { letter: "B", text: "He invited the wrong guests", isCorrect: false },
-        { letter: "C", text: "He made the king feel inferior by outshining him in splendor", isCorrect: true },
-        { letter: "D", text: "He forgot to invite the king", isCorrect: false },
+        { letter: "A", text: "Match the intensity so people know you are taking it seriously", isCorrect: false },
+        { letter: "B", text: "Name the shift and redirect the conversation toward concrete facts and goals", isCorrect: true },
+        { letter: "C", text: "Let the tension sit because strong emotion usually clears things up", isCorrect: false },
+        { letter: "D", text: "Move to a new topic so nobody feels uncomfortable", isCorrect: false },
       ],
-      explanation: "Fouquet's party was so magnificent it made Louis XIV feel overshadowed. The king's insecurity turned into swift punishment — a powerful reminder that those above you must always feel secure.",
+      explanation: "Once a conversation turns into defense, the useful information usually gets buried. Naming the shift helps the group recover the original problem.",
     },
   ],
 };
@@ -125,12 +125,12 @@ export function getScenarioForMotivation(motivation: Motivation | null): "work" 
 const toneSummaries: Record<Tone, { paragraphs: string[]; keyInsight: string }> = {
   gentle: {
     paragraphs: [
-      "This opening law is a thoughtful reminder that relationships with people in positions above you require care and awareness. When you display your talents too openly, it can unintentionally make others feel insecure — even if that's not your intention at all.",
-      "Greene tells the story of Nicolas Fouquet, who threw an incredible party that accidentally overshadowed the king. It's a poignant example of how good intentions can backfire when we don't consider how others might feel. The takeaway isn't to hide who you are — it's to be mindful of the dynamics around you.",
-      "The most reassuring part of this law is that restraint isn't weakness — it's wisdom. By making the people around you feel valued and secure, you build the kind of trust that opens doors naturally over time.",
+      "This sample chapter is meant to help you notice the moment a conversation becomes harder than it first looked. That shift can feel subtle at the start, which is why recognizing it calmly matters so much.",
+      "When stakes rise and emotion changes how people speak, it becomes easier to react to surface tone than to the real issue underneath. The chapter invites you to slow down just enough to see what the conversation now needs.",
+      "That is a reassuring skill because it gives you options. Recognition lets you move from reflex to intention before the exchange hardens into something more expensive.",
     ],
     keyInsight:
-      "Making others feel secure in your presence isn't about dimming your light — it's about building the trust that lets your influence grow naturally.",
+      "A calmer read of the moment often gives you the best chance to protect both the relationship and the real problem.",
   },
   direct: {
     paragraphs: firstLoopData.summary.paragraphs,
@@ -138,12 +138,12 @@ const toneSummaries: Record<Tone, { paragraphs: string[]; keyInsight: string }> 
   },
   competitive: {
     paragraphs: [
-      "Most people sabotage themselves before they even start by making the dumbest possible move: showing up their boss. Law 1 is Greene's warning shot — the people who climb fastest aren't the ones who broadcast their superiority. They're the ones who make the people above them feel brilliant while quietly becoming indispensable.",
-      "Nicolas Fouquet had it all — wealth, taste, connections. He threw a party so stunning it made Louis XIV feel like a guest in someone else's kingdom. Weeks later, Fouquet was in chains. The lesson: your talent means nothing if it threatens the wrong person. The smartest players in history understood that discretion is the ultimate power move.",
-      "Here's the edge: while your competition is busy trying to impress everyone in the room, you're making the decision-maker feel like a genius. That's not weakness — that's the kind of strategic restraint that separates people who have influence from people who just want attention.",
+      "Most people lose the conversation at the exact moment it changes and they fail to notice it. The room tightens, someone gets defensive, and the exchange stops being about the issue while everyone still pretends it is.",
+      "The advantage goes to the person who catches that turn first. If you can name the shift before the room locks into blame, you control the next move instead of reacting to the mess after it spreads.",
+      "That is the edge in this sample lesson: early recognition creates leverage. You do not need more intensity. You need a clearer read of what the conversation has become.",
     ],
     keyInsight:
-      "While others compete for attention, the real players make the people above them feel brilliant — and get rewarded with trust, access, and lasting power.",
+      "The fastest way to regain control in a hard exchange is to notice the turn before everyone else starts fighting the wrong problem.",
   },
 };
 

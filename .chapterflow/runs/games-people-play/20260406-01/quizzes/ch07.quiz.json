@@ -1,0 +1,178 @@
+{
+  "chapterId": "ch07",
+  "chapterNumber": 7,
+  "chapterTitle": "Party and Social Games",
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What distinguishes party games from life games and marital games?",
+      "choices": [
+        "Party games are more harmful because they run in groups",
+        "Party games are short-duration social patterns that provide warmth and bonding without genuine contact, at low individual cost per player",
+        "Party games are only run by extroverts"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Scale and social function is the distinction. Party games are short-duration, low-individual-cost, and group-based. They are not more harmful than other games; they are less individually costly but socially expensive in aggregate.",
+        "direct": "Short-duration, low-individual-cost, group-bonding without genuine contact is the category definition. Harm comparison and personality-type framing miss the structural argument.",
+        "competitive": "Scale and social function define the category. Harm is not a comparative judgment the chapter makes. Personality is not a structural claim."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What is the book club's thirty-eight-minute deploring providing to its members?",
+      "choices": [
+        "An outlet for legitimate civic frustration",
+        "Social warmth through mutual agreement, without any of the members having to be genuinely present with each other",
+        "A productive introduction to the book discussion"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Warmth without genuine presence is the payoff. Civic frustration outlet describes the content, not the function. Book introduction is falsified by the fact that three members have stopped reading.",
+        "direct": "Warmth through agreement without personal exposure is the structural payoff. Civic outlet describes the content. Book discussion framing is empirically wrong.",
+        "competitive": "Warmth through agreement is the payment. The content is civic; the function is stroke delivery without personal risk."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "In the kitchen WDYYB pattern, Pita presents a problem and rejects every suggestion. What is the pattern actually doing?",
+      "choices": [
+        "Proving the problem is insoluble, which protects Pita from having to try any of the suggestions and delivers strokes from the colleagues' attempts",
+        "Genuinely seeking a solution but unable to find one",
+        "Trying to share emotional difficulty without asking directly for support"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Proving insolubility is the psychological-level goal. The double payoff is strokes from attempts plus protection from trying. Genuine solution-seeking is falsified by the pattern. Emotional-sharing framing describes a different need.",
+        "direct": "Insolubility proof plus strokes is the double payoff. Genuine seeking is falsified by the consistent rejection pattern. Emotional support framing is a different structure.",
+        "competitive": "The rejection IS the goal, not the obstacle. Genuine seeking would take one suggestion. Emotional support framing does not account for the rejection sequence."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "What does Cass's consistent first-flaw move provide that is harder to get from other sources?",
+      "choices": [
+        "Accurate feedback that other reviewers are too polite to give",
+        "Social superiority achieved through technical accuracy, which cannot be disputed because the flaws are real",
+        "Recognition from other students for having high standards"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Undisputable positioning is the payoff. The accuracy is the vehicle; the sequencing is the game. Recognition is indirect and downstream.",
+        "direct": "Undisputable social superiority through accurate findings is the specific payoff. Accuracy is the vehicle; the sequencing is the game. Recognition from others is downstream.",
+        "competitive": "Undisputable social positioning through technical accuracy. Direct comparison can be challenged; accurate first-findings cannot."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Nneka has just offered Pita a second rejected suggestion. What is the antithesis to the WDYYB loop?",
+      "choices": [
+        "Offer a third, better suggestion",
+        "Ask: 'What would you actually try if you had to?' and refuse to offer another suggestion",
+        "Tell Pita that the pattern is called WDYYB"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The hand-back question is the antithesis. A third suggestion extends the loop. Naming the game is a later, separate conversation.",
+        "direct": "The hand-back question exits the generator role. Another suggestion is more material for the loop. Naming the game is a meta-conversation, not the kitchen move.",
+        "competitive": "One question, refusing the generator role, is the antithesis. Third suggestion continues the loop. Naming the game might be useful later but is not the immediate move."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "How does the chapter say you can tell the difference between Ain't It Awful (a game) and genuine collective processing of a shared problem?",
+      "choices": [
+        "By whether the dynamics are moving the conversation toward something (a plan, a decision, a new understanding) or circling in place over the same ground",
+        "By whether the content of the complaints is accurate",
+        "By how long the conversation has been going"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Moving vs circling is the diagnostic. Accuracy of content is not the distinguishing feature: AIA runs on accurate complaints. Duration is not the distinguishing feature.",
+        "direct": "Dynamics (moving or circling) is the only reliable diagnostic. Accuracy and duration are both present in the game and in the legitimate activity; only the direction of movement distinguishes them.",
+        "competitive": "Moving vs circling is the distinction the chapter names explicitly. Accuracy and duration are not diagnostic. The game is the circling, not the content or the length."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "At a dinner party, a group spends ninety minutes discussing a mutual friend's poor decisions, all agreeing. Nobody offers a plan to help; nobody says anything personal. Which party game pattern does this match?",
+      "choices": [
+        "Why Don't You Yes But, because they are rejecting each other's solutions",
+        "Blemish, because they are finding flaws in the friend",
+        "Ain't It Awful, because the group is bonding through shared deploring without moving toward action or personal disclosure"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Shared deploring without movement is the AIA match. WDYYB requires a player seeking suggestions; no one is seeking advice here. Blemish requires sequential critique; this is group agreement.",
+        "direct": "Mutual agreement deploring without movement is AIA. WDYYB needs suggestion-rejection structure. Blemish needs first-flaw sequencing in a critique context.",
+        "competitive": "AIA: shared deploring without movement. Not WDYYB: no advice-seeking. Not Blemish: no sequential critique setting."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What does the Blemish game provide Cass that direct comparison would not?",
+      "choices": [
+        "Technical superiority that cannot be disputed because it is built on findings that are actually true, rather than on a claim that Cass is better than others",
+        "Recognition from the instructor",
+        "The ability to give more accurate critique than other students"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Undisputable technical positioning is the specific payoff. A direct comparison could be challenged; accurate findings cannot. Instructor recognition is downstream. Accuracy describes the vehicle.",
+        "direct": "Accuracy-grounded undisputable superiority is the payoff. Direct comparison can be disputed; accurate first-findings cannot. Instructor recognition is indirect.",
+        "competitive": "The game's structural advantage over direct comparison: the findings are accurate so the positioning cannot be challenged."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What do all three party game patterns share about the social stroke they pay?",
+      "choices": [
+        "All three pay warmth-through-agreement or warmth-through-superiority strokes without requiring any player to be personally present with another specific person in the room",
+        "All three pay the same kind of stroke as marital games",
+        "All three pay negative strokes that players accept because positive strokes are unavailable"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Warmth without personal presence is the shared feature. Marital game comparison misses the scale difference. Negative stroke framing misapplies Ch4.",
+        "direct": "Agreement-warmth or superiority-warmth without personal disclosure is the shared payoff. Marital game equivalence is wrong on scale. Negative stroke framing misapplies the distinction.",
+        "competitive": "Warmth without personal presence is the shared architecture. The three patterns differ in how they produce the warmth but all three produce it without genuine presence."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How does the WDYYB pattern illustrate the ulterior transaction structure from Chapter 3?",
+      "choices": [
+        "It is a complementary transaction because everyone is being agreeable",
+        "The social level of WDYYB is advice-seeking; the psychological level is a proof-of-insolubility operation. Both levels run simultaneously, and the ulterior level is the one that produces the payoff.",
+        "WDYYB is not an ulterior transaction because there is no hidden agenda"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Two-level structure with ulterior payoff is the Ch3 connection. Advice-seeking is the social level; insolubility proof is the ulterior level. Calling it complementary misapplies Ch2. Denying the ulterior level refuses the structural analysis.",
+        "direct": "Two-level transaction is the Ch3 connection. The ulterior level (insolubility proof) runs simultaneously with the social level (advice-seeking). Complementary misidentifies the transaction type. Denying the ulterior level refuses the analysis.",
+        "competitive": "Ch3 connection: two levels simultaneously. Social level is advice-seeking; ulterior level is insolubility proof. Complementary is wrong. Denying the ulterior level is flat refusal of the structural analysis."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

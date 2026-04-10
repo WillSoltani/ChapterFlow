@@ -1,0 +1,155 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's main claim about crisis?",
+      "choices": [
+        "Crisis can expose entrenched routines and create an opening for change",
+        "Crisis automatically improves every system",
+        "Crisis makes routines irrelevant"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says crisis can make hidden habits visible and harder to defend.",
+        "direct": "Crisis acts as a catalyst by exposing old defaults and weakening resistance to redesign.",
+        "competitive": "Shock can crack the system open."
+      }
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the chapter say institutions often change late?",
+      "choices": [
+        "Because they usually abandon bad habits as soon as a memo arrives",
+        "Because entrenched routines stay protected until a breakdown makes them costly to defend",
+        "Because crisis makes no difference"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Bad routines can survive for a long time when they are familiar and easy to excuse.",
+        "direct": "The chapter explains delay through path dependence and normalization of weak routines.",
+        "competitive": "Systems move when denial gets expensive."
+      }
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What does a crisis change first in the chapter's model?",
+      "choices": [
+        "The visibility and defensibility of the old routine",
+        "Human nature permanently",
+        "The need for replacement routines"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A crisis makes the hidden pattern harder to ignore.",
+        "direct": "The first change is exposure: the old routine loses some of its protective cover.",
+        "competitive": "It blows up the cost of pretending."
+      }
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Why is crisis only an opportunity and not automatically a solution?",
+      "choices": [
+        "Because leaders still have to convert urgency into better routines",
+        "Because routines no longer matter in emergencies",
+        "Because all crises are fake"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A breakdown matters only if it leads to lasting changes in how the system operates.",
+        "direct": "Exposure is not reform until replacement habits are installed.",
+        "competitive": "Opening the door is not the same as walking through it."
+      }
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What ethical warning does the chapter include?",
+      "choices": [
+        "Urgency can be used for genuine reform or for opportunistic power moves",
+        "All crisis responses are equally good",
+        "Fear is the best long-term management tool"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns that crisis can be used well or badly depending on what new habits are built.",
+        "direct": "Urgency is leverage, and leverage can serve reform or abuse.",
+        "competitive": "Leverage cuts both ways."
+      }
+    },
+    {
+      "questionId": "q06",
+      "prompt": "A student council event almost fails because ownership was vague. Which chapter move fits best?",
+      "choices": [
+        "Blame one person and move on",
+        "Use the breakdown to redesign the ownership routine",
+        "Assume the crisis was random"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter's logic is to turn the exposed weakness into a better recurring routine.",
+        "direct": "The breakdown should be translated into a new accountability habit.",
+        "competitive": "Rewrite the default, not just the story."
+      }
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What happens if leaders fail to install a new routine before the crisis window closes?",
+      "choices": [
+        "The system often drifts back toward the old default",
+        "The crisis becomes permanent progress",
+        "Habits stop mattering forever"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Without replacement, the old routine often returns once the urgency fades.",
+        "direct": "Path dependence reasserts itself if redesign is too slow.",
+        "competitive": "No new default, old default regrows."
+      }
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why does the chapter say crisis can weaken resistance to change?",
+      "choices": [
+        "Because defending the old routine becomes harder once its costs are exposed",
+        "Because people forget the old routine existed",
+        "Because replacement is unnecessary"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Once failure is visible, the old pattern loses some of its protection.",
+        "direct": "Exposure destabilizes the political and psychological support for the old routine.",
+        "competitive": "The status quo gets harder to defend in daylight."
+      }
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the difference between panic and reform in this chapter?",
+      "choices": [
+        "Panic is temporary emotion; reform installs durable routines",
+        "They are the same thing",
+        "Reform avoids all urgency"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Temporary alarm is not enough. The system has to change how it regularly behaves.",
+        "direct": "The chapter distinguishes emotional response from habit redesign.",
+        "competitive": "Adrenaline fades. Defaults stay."
+      }
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Which statement best fits Chapter 6?",
+      "choices": [
+        "Institutions change mainly because arguments are elegant",
+        "Institutions often change when breakdown makes the old habit too costly to defend",
+        "Crisis removes the need for leadership"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says systems often need a rupture before they admit their habits are broken.",
+        "direct": "Breakdown-driven exposure often matters more than abstract persuasion.",
+        "competitive": "Elegant memos lose to live failures."
+      }
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "chapterId": "the-33-strategies-of-war-ch06",
+  "chapterNumber": 6,
+  "title": "Speed, Initiative, and the Decisive Point",
+  "metrics": {
+    "easy": {
+      "wordCounts": {
+        "gentle": 162,
+        "direct": 155,
+        "competitive": 152
+      },
+      "gradeBand": "8-9",
+      "estimatedReadMinutes": 1
+    },
+    "medium": {
+      "wordCounts": {
+        "gentle": 405,
+        "direct": 361,
+        "competitive": 350
+      },
+      "gradeBand": "10-11",
+      "estimatedReadMinutes": 3
+    },
+    "hard": {
+      "wordCounts": {
+        "gentle": 557,
+        "direct": 542,
+        "competitive": 513
+      },
+      "gradeBand": "12",
+      "estimatedReadMinutes": 4
+    }
+  },
+  "exampleCount": 6,
+  "quizQuestionCount": 10,
+  "reviewCardCount": 5,
+  "conceptCount": 3,
+  "moralFlag": "low",
+  "callbackChapters": ["ch01", "ch05"],
+  "anchorCharacters": ["Phoebe", "Declan"],
+  "exampleCharacters": ["Amara", "Kofi", "Sigrid", "Idris", "Wren", "Caius"],
+  "schoolSettings": ["phd-defense-seminar", "high-school-math-olympiad"]
+}

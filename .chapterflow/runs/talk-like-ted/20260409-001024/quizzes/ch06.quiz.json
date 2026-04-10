@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch06-q01",
+      "prompt": "What problem is Chapter 6 mainly trying to solve?",
+      "choices": [
+        "Talks that stay tense or heavy for too long",
+        "Talks that include too many visual aids",
+        "Talks that use too much audience participation"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says some presentations lose people because they stay emotionally tight for too long.",
+        "direct": "Gallo is addressing social heaviness and distance, not visual design or interaction volume.",
+        "competitive": "The enemy here is sustained tension, not missing gadgets."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch06-q02",
+      "prompt": "How does Gallo mainly frame humor in this chapter?",
+      "choices": [
+        "As a replacement for strong structure",
+        "As a way to humanize the speaker and lower distance",
+        "As a requirement for every memorable talk"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Humor matters here because it helps the speaker feel more human and the room feel more open.",
+        "direct": "The chapter uses levity as connection and distance reduction, not as structure replacement.",
+        "competitive": "The move is social, not decorative."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch06-q03",
+      "prompt": "Elena's strategy brief feels tense before it even starts. What best fits the chapter's advice?",
+      "choices": [
+        "Open with one brief, natural moment of warmth that helps the team exhale",
+        "Keep the tone fully formal so no one questions the seriousness",
+        "Tell several unrelated jokes to guarantee a relaxed room"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Elena should use one fitting moment of warmth if it helps the room receive the message.",
+        "direct": "The chapter favors aligned release over either full stiffness or joke-chasing.",
+        "competitive": "Buy openness, not random laughter."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch06-q04",
+      "prompt": "Ms. Porter tells Talia not to confuse warmth with comedy. What is the repair?",
+      "choices": [
+        "Remove every lighter moment so the class knows the topic is serious",
+        "Keep one natural human moment that builds trust instead of chasing laughs",
+        "Turn the presentation into a humorous routine so the audience stays entertained"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Talia needs connection, not a pile of jokes.",
+        "direct": "The chapter wants a lighter touch that lowers distance while staying aligned to the point.",
+        "competitive": "Cut the routine and keep the bridge."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch06-q05",
+      "prompt": "Which trap does Chapter 6 most clearly warn against?",
+      "choices": [
+        "Using one warm moment to reduce tension",
+        "Assuming every speaker needs to perform like a comedian",
+        "Ending a talk before every detail has been explained"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says speakers do not need to become comedians for lightness to work.",
+        "direct": "Gallo rejects the false standard that effective levity requires comic performance skill.",
+        "competitive": "The mistake is chasing a comedy identity instead of reducing distance."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch06-q06",
+      "prompt": "Why does Gallo connect lightness to shareability?",
+      "choices": [
+        "Because people usually ignore serious ideas completely",
+        "Because a warm, approachable delivery can make ideas easier to pass along",
+        "Because humor matters only after a talk has already gone viral"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Ideas can travel farther when people experience them as easier to receive and repeat.",
+        "direct": "The chapter links warmth to openness and openness to the likelihood that a message will be shared.",
+        "competitive": "Strained delivery adds drag. Warmth reduces it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch06-q07",
+      "prompt": "Bryce has one funnier story and one truer story that better serves the cause. Which choice fits the chapter?",
+      "choices": [
+        "Use the story that keeps warmth aligned to the real point",
+        "Use the funniest story because a bigger laugh always builds more trust",
+        "Avoid all stories because they make serious talks feel weak"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Bryce should choose the story that keeps the room warm while still supporting the cause.",
+        "direct": "The chapter values message-aligned warmth over a laugh that pulls attention away from purpose.",
+        "competitive": "Take the truer line, not the louder one."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch06-q08",
+      "prompt": "Why does Naomi's town-hall talk underperform even though the information is accurate?",
+      "choices": [
+        "Because accurate information never matters without props",
+        "Because the room felt too much distance and not enough human warmth",
+        "Because town halls should avoid serious subjects altogether"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Naomi's problem is that the room respected the content but still felt held at a distance.",
+        "direct": "This is the chapter's friction problem in action. Substance alone did not reduce the social heaviness of the talk.",
+        "competitive": "The facts were solid, but the room stayed braced."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch06-q09",
+      "prompt": "Felix adds a joke that points away from his proposal. What does that reveal?",
+      "choices": [
+        "Any laugh improves connection even if it weakens the issue",
+        "Misaligned humor can hurt clarity while pretending to help engagement",
+        "School speeches should never use any lighter moment at all"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The laugh does not help when it teaches the room the wrong thing first.",
+        "direct": "Felix's result shows that humor must serve the message or it starts competing with it.",
+        "competitive": "A wrong-point laugh is sabotage with better timing."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch06-q10",
+      "prompt": "Why does Chapter 6 naturally lead into Chapter 7 on making talks shorter?",
+      "choices": [
+        "Because once a speaker adds humor, the next rule is to remove all serious detail",
+        "Because after creating warmth and openness, the next challenge is respecting attention through compression",
+        "Because shorter talks always need more jokes than longer talks"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "After the speaker learns how to keep the room open, the next question is how to say less without losing strength.",
+        "direct": "Chapter 6 handles warmth and reception. Chapter 7 turns toward compression and cognitive respect.",
+        "competitive": "Once the room is open, the next problem is wasting its bandwidth."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

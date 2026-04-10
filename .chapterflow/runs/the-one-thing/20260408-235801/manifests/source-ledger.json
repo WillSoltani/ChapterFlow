@@ -1,0 +1,71 @@
+{
+  "bookId": "the-one-thing",
+  "runId": "20260408-235801",
+  "lockedAt": "2026-04-08",
+  "selectionMode": "auto_locked_dominant_edition_after_metadata_repair",
+  "sources": [
+    {
+      "id": "the1thing_official_book",
+      "title": "The One Thing Book - The ONE Thing",
+      "url": "https://the1thing.com/book/",
+      "type": "official_book_page",
+      "role": "primary official identity, author confirmation, and rights-safe overview",
+      "confidence": "high",
+      "notes": "Confirms the book is presented by THE ONE Thing as Gary Keller and Jay Papasan's bestseller and provides the official high-level promise, outcomes, and author bios."
+    },
+    {
+      "id": "google_books_bard",
+      "title": "The One Thing: The Surprisingly Simple Truth Behind Extraordinary Results - Google Books",
+      "url": "https://books.google.com/books/about/The_One_Thing.html?id=94ScMQEACAAJ",
+      "type": "official_bibliographic_record",
+      "role": "edition metadata, ISBN, page count, and English trade-family confirmation",
+      "confidence": "high",
+      "notes": "Confirms Bard Press, Gary Keller and Jay Papasan, 240 pages, and ISBN 9781885167774 / 1885167776 for the core English edition family."
+    },
+    {
+      "id": "hachette_uk_product",
+      "title": "The One Thing by Gary Keller | Hachette UK",
+      "url": "https://www.hachette.co.uk/titles/gary-keller/the-one-thing/9781848549241/",
+      "type": "official_publisher_page",
+      "role": "official international edition metadata and rights-safe descriptive framing",
+      "confidence": "high",
+      "notes": "Confirms the Gary Keller attribution, the John Murray Press trade family, and a 2013-09-10 UK on-sale record without changing the numbered chapter structure."
+    },
+    {
+      "id": "aou_library_toc",
+      "title": "The One Thing: The Surprisingly Simple Truth Behind Extraordinary Results | AOU Library catalog",
+      "url": "https://lrc.aou.org.bh/cgi-bin/koha/opac-detail.pl?biblionumber=3599",
+      "type": "library_catalog_record",
+      "role": "full numbered TOC and chapter-order confirmation",
+      "confidence": "high",
+      "notes": "Supplies the complete sequence for Chapters 1-18 and the three named parts: The Lies, The Truth, and Extraordinary Results."
+    },
+    {
+      "id": "ncw_library_toc",
+      "title": "The one thing : the surprisingly simple truth behind extraordinary results | NCW Libraries",
+      "url": "https://catalog.ncwlibraries.org/Record/268313",
+      "type": "library_catalog_record",
+      "role": "cross-check for the part structure and first-edition metadata",
+      "confidence": "medium_high",
+      "notes": "Confirms the Bard Press first-edition family, the opening chapters, and the three-part macro-structure."
+    },
+    {
+      "id": "supersummary_guide",
+      "title": "The ONE Thing Summary and Study Guide | SuperSummary",
+      "url": "https://www.supersummary.com/the-one-thing/summary/",
+      "type": "reputable_secondary_summary",
+      "role": "chapter-range grouping and chapter-level interpretation support",
+      "confidence": "medium_high",
+      "notes": "Supports paraphrase-first chapter framing for the introduction block, Part 1, Part 2, and Part 3 when exact primary text is unavailable."
+    },
+    {
+      "id": "vince_summary_map",
+      "title": "The One Thing: The Surprisingly Simple Truth Behind Extraordinary Results (Book Summary) | Vince Imbat",
+      "url": "https://vinceimbat.com/essays/the-one-thing/",
+      "type": "secondary_chapter_map",
+      "role": "cross-check for individual chapter titles and main-point summaries",
+      "confidence": "medium",
+      "notes": "Used only as secondary support to confirm chapter-title wording and broad chapter intent after the primary TOC was locked."
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the main claim of the postscript?",
+      "choices": [
+        "Consumer behavior is explained only by personality",
+        "Consumer expectations are shaped partly by historical conditions",
+        "History no longer matters once people become adults"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says history helps shape what people expect from money.",
+        "direct": "Its main claim is that consumer psychology is partly historical, not only personal.",
+        "competitive": "The appetite had an era that trained it."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the chapter care about the postwar U.S. experience?",
+      "choices": [
+        "Because it trained people to see growth and comfort as normal",
+        "Because it eliminated all uncertainty from consumer life",
+        "Because it proved every consumer wanted the same thing"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That period helped teach rising comfort and access as ordinary.",
+        "direct": "Repeated postwar improvement reset what many consumers saw as the baseline of normal life.",
+        "competitive": "The upgrade became the floor."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "How can historically specific expectations feel timeless?",
+      "choices": [
+        "Because people forget they were trained by an environment",
+        "Because all expectations are biologically fixed",
+        "Because history disappears once markets mature"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "What is repeated long enough can start to feel natural.",
+        "direct": "A long-lived environment can make historical conditions look like common sense from the inside.",
+        "competitive": "One era can hide inside the word normal."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "What behavior does the chapter say these expectations can influence?",
+      "choices": [
+        "Only shopping habits and nothing else",
+        "Spending, borrowing, aspiration, and comfort thresholds",
+        "Only political views"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter ties expectations to several money behaviors.",
+        "direct": "Inherited baselines can shape debt, spending, ambition, and what feels ordinary.",
+        "competitive": "The old script keeps grading lifestyle choices."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What does the postscript add to the earlier psychology chapters?",
+      "choices": [
+        "An external historical frame for the inner forces they describe",
+        "A rejection of every earlier lesson",
+        "A narrower focus on one person's preferences"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "It adds context from the outside.",
+        "direct": "The chapter widens the explanation by linking inner biases to the era that shaped expectations.",
+        "competitive": "It gives the mind its setting."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Does the chapter remove personal responsibility?",
+      "choices": [
+        "Yes, history determines every choice",
+        "No, it widens context without erasing agency",
+        "Yes, because culture matters more than decisions"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "People still make choices, but they do so inside learned expectations.",
+        "direct": "The postscript is explanation, not excuse; context matters without turning behavior into destiny.",
+        "competitive": "History loads the stage, but you still move."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why can borrowing feel emotionally reasonable in the chapter's framework?",
+      "choices": [
+        "Because inherited expectations can assume continued improvement and access",
+        "Because debt is always harmless",
+        "Because consumers naturally prefer loans to saving"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Borrowing can feel normal when growth feels normal.",
+        "direct": "If improvement is treated as the baseline, debt can seem more emotionally acceptable.",
+        "competitive": "The loan can be backed by an inherited growth script."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What does the chapter mean by saying history can become expectation?",
+      "choices": [
+        "Repeated conditions can train what people call ordinary life",
+        "History repeats exactly in every generation",
+        "Expectations are more important than evidence"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A long pattern can shape what feels normal.",
+        "direct": "Repeated social conditions can harden into psychological defaults that people stop noticing.",
+        "competitive": "One era can move into your baseline and stop announcing itself."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why is this a strong final chapter for the book?",
+      "choices": [
+        "Because it adds a wider cultural and historical frame without replacing the earlier lessons",
+        "Because it introduces the book's first real idea",
+        "Because it proves consumer life is simple"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "It ends the book by widening the lens.",
+        "direct": "The postscript keeps the earlier psychology intact while showing the larger environment that trained it.",
+        "competitive": "It finishes by giving the operating mind its historical backdrop."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What is the book's final integrated message after the postscript?",
+      "choices": [
+        "Money behavior is shaped by both the mind and the world that trained it",
+        "Only internal psychology matters in finance",
+        "Historical context replaces all personal discipline"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The ending joins personal psychology with historical context.",
+        "direct": "The book closes by linking internal behavior with the culture and era that shaped expectations.",
+        "competitive": "The psyche does not arrive alone."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    }
+  ]
+}

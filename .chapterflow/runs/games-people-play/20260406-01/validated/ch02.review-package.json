@@ -1,0 +1,55 @@
+{
+  "chapterId": "ch02",
+  "chapterNumber": 2,
+  "chapterTitle": "What a Transaction Is and Why They Go Wrong",
+  "bookId": "games-people-play",
+  "runId": "20260406-01",
+  "packVersion": "v12-sealed",
+  "validationStatus": "passed",
+  "qualityGateScore": {
+    "total": 12,
+    "max": 12,
+    "categories": {
+      "chapterSpecificity": 2,
+      "anchorUse": 2,
+      "analyticalValue": 2,
+      "paragraphMotion": 2,
+      "proseQuality": 2,
+      "hookAndBridge": 2
+    },
+    "autoFails": []
+  },
+  "artifacts": {
+    "brief": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/briefs/ch02.md",
+    "outline": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/outlines/ch02.md",
+    "quizBlueprint": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/quiz-blueprints/ch02.md",
+    "sourceSidecarTxt": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/sidecars/source/ch02.source.txt",
+    "sourceSidecarJson": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/sidecars/source/ch02.source.json",
+    "canonicalDraft": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/drafts/canonical/ch02.md",
+    "editedDraft": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/drafts/edited/ch02.md",
+    "criticReport": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/reports/ch02.critic.md",
+    "structured": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/structured/ch02.chapter.json",
+    "quiz": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/quizzes/ch02.quiz.json",
+    "validationReport": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/reports/ch02.validation.md",
+    "validatedChapter": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/validated/ch02.chapter.json",
+    "readingMetrics": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/sidecars/ch02.reading-metrics.json"
+  },
+  "summary": {
+    "coreClaim": "Every transaction is two arrows: a stimulus from one ego state to another, and a response. Complementary means the arrows line up (stable, but not necessarily good). Crossed means they don't (the conversation breaks faster than vocabulary). The diagram is diagnosis, not prescription, and offers three honest moves on a cross.",
+    "anchorsUsed": [
+      "Tomas/Aiya stand-up (work)",
+      "Coach Reyes/Diego pool deck (school)",
+      "Olivia/Kenji late-night phone call (personal)"
+    ],
+    "hardDepthTension": "Drawing the cross gives the reader a diagnosis, not a prescription. Three moves are available (recross, accept-and-name, wait), and the diagram does not pick.",
+    "bridgeToNextChapter": "Two arrows describe what's visible. The next chapter introduces what's happening underneath, and what changes when the underneath is the message that actually counts."
+  },
+  "strongestQualities": [
+    "Diagram-of-arrows framing is unmistakably this chapter and unmistakably extends Ch1's observation skill into a relational tool.",
+    "Stable-is-not-good distinction lands clean and survives into hard-depth takeaway 3 and quiz q04, preventing the reader from collapsing the chapter into 'complementary good, crossed bad.'",
+    "Three-moves-on-a-cross enumeration in hard depth is the structural payoff for the diagnosis-vs-prescription limit, and is tested in q08."
+  ],
+  "remainingConcerns": [],
+  "approvalRequired": true,
+  "preserveApprovedHash": false
+}

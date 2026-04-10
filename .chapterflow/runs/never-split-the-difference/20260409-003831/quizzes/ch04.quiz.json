@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "Why does Chapter 4 warn against trusting yes too quickly?",
+      "choices": [
+        "Because yes always means the other side is secretly hostile",
+        "Because yes can reflect politeness, pressure relief, or avoidance rather than real commitment",
+        "Because yes is useful only in personal relationships and not in negotiation"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says yes may sound positive while hiding weak commitment.",
+        "direct": "A quick yes can be shallow because it may be serving comfort or politeness instead of real movement.",
+        "competitive": "Yes is risky when it feeds your optimism faster than it feeds your map."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why can no make a conversation safer?",
+      "choices": [
+        "Because it proves the other side respects the negotiator's authority",
+        "Because it preserves the other side's autonomy and lowers the sense of being trapped",
+        "Because it ends disagreement before anyone has to explain further"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "No can feel safer because the other side keeps control over their answer.",
+        "direct": "Preserved autonomy reduces threat, which often makes honesty easier.",
+        "competitive": "Control cools the room and gets you straighter answers."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is a no-oriented question designed to do?",
+      "choices": [
+        "Force the other side to admit they were wrong",
+        "Create engagement while making refusal safe",
+        "Replace every direct question in negotiation"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The question lets the other side stay honest without feeling trapped into yes.",
+        "direct": "No-oriented framing keeps pressure lower while the conversation still moves.",
+        "competitive": "The move advances the room by lowering the cost of resistance."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Rachel wants a vendor to review a proposal. Which Chapter 4 move fits best?",
+      "choices": [
+        "Ask, \"Can you commit to reviewing this today?\"",
+        "Ask, \"Is now a bad time to look at this?\"",
+        "Explain why the vendor should already have said yes"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Option B makes refusal safe while still keeping the conversation open.",
+        "direct": "The chapter prefers a no-oriented timing check over pressure for immediate agreement.",
+        "competitive": "Safe no gets the real timing truth faster than a push for yes."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why can a safe no be more informative than a shallow yes?",
+      "choices": [
+        "Because no automatically reveals the full solution",
+        "Because it can expose the real condition or obstacle that yes was hiding",
+        "Because it guarantees the other side will keep negotiating"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A safe no often reveals what is really blocking movement.",
+        "direct": "Refusal can surface timing, trust, workload, cost, or other real constraints that empty agreement hides.",
+        "competitive": "A real block is worth more than a fake win."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Owen got a polite yes from a professor but no follow-through. What would Chapter 4 suggest next time?",
+      "choices": [
+        "Assume all future yes answers are sincere and wait longer",
+        "Use a no-oriented question such as, \"Is this a bad week to send a full draft?\"",
+        "Push for a faster yes to make the commitment feel stronger"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The better question makes honest timing easier than polite agreement.",
+        "direct": "Chapter 4 would test capacity with a no-friendly frame instead of relying on vague enthusiasm.",
+        "competitive": "Make the no safe and the real bandwidth will show up sooner."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What is the chapter's limit around using no?",
+      "choices": [
+        "No is useful only when refusal can still be part of an ongoing safe conversation",
+        "No should replace yes in every important discussion",
+        "No always means the other side is secretly interested"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says no helps only when the conversation can continue after it.",
+        "direct": "If trust, tone, or timing are weak, no may simply be the honest endpoint.",
+        "competitive": "Not every no is a doorway. Some are the wall."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Which sign most clearly shows that someone is misusing Chapter 4?",
+      "choices": [
+        "They use a no-oriented question to lower pressure",
+        "They assume every no is secretly progress even when the room has little trust",
+        "They treat a quick yes as something to test before trusting"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The misuse is romanticizing no instead of reading the room.",
+        "direct": "The chapter fails when refusal is treated as automatically productive regardless of context.",
+        "competitive": "If every no looks like hidden interest to you, you stopped negotiating and started performing a trick."
+      },
+      "bloomsLevel": "evaluate_create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does preserved autonomy matter so much in this chapter?",
+      "choices": [
+        "Because it makes the other side feel obligated to return a favor later",
+        "Because it reduces the need for defensive self-protection and improves honesty",
+        "Because it eliminates disagreement entirely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Autonomy helps people answer more honestly because they feel less trapped.",
+        "direct": "Control changes the emotional economics of the exchange by lowering defensive behavior.",
+        "competitive": "Less pressure means less theater and more truth."
+      },
+      "bloomsLevel": "evaluate_create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If Chapter 4 creates a safe no, what kind of next step best fits the bridge into Chapter 5?",
+      "choices": [
+        "A question style that helps identify the exact obstacle behind the answer",
+        "A method for ignoring the no and pushing harder immediately",
+        "A tactic for collecting as many no answers as possible"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Once refusal is safe, the next useful move is usually to understand the exact reason behind it.",
+        "direct": "The bridge points toward a question that surfaces the real constraint in detail rather than leaving it vague.",
+        "competitive": "After the fog clears, the next job is to pin down the actual block."
+      },
+      "bloomsLevel": "evaluate_create",
+      "depthLevel": "hard"
+    }
+  ]
+}

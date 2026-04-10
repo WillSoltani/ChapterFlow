@@ -1,0 +1,73 @@
+{
+  "chapterId": "ch10",
+  "title": "What Comes After Games",
+  "generatedAt": "2026-04-09",
+  "breakdownWordCounts": {
+    "easy": {
+      "gentle": 156,
+      "direct": 150,
+      "competitive": 143
+    },
+    "medium": {
+      "gentle": 353,
+      "direct": 332,
+      "competitive": 330
+    },
+    "hard": {
+      "gentle": 562,
+      "direct": 575,
+      "competitive": 503
+    }
+  },
+  "withinTargetRange": {
+    "easy": true,
+    "medium": true,
+    "hard": true
+  },
+  "examples": {
+    "total": 6,
+    "byCategory": {
+      "work": 2,
+      "personal": 2,
+      "school": 2
+    },
+    "byFormat": {
+      "short_dialogue": 1,
+      "first_person": 1,
+      "third_person_scene": 1,
+      "coaching_script": 1,
+      "narrative_flashback": 1,
+      "inner_monologue": 1
+    },
+    "byEndingType": {
+      "observation": 1,
+      "reflection": 1,
+      "reframe": 1,
+      "forward_question": 1,
+      "decision_point": 1,
+      "unresolved_tension": 1
+    }
+  },
+  "quiz": {
+    "total": 10,
+    "byDepth": {
+      "easy": 3,
+      "standard": 5,
+      "deep": 2
+    },
+    "passingScorePercent": 80
+  },
+  "reviewCards": {
+    "total": 5,
+    "byDifficulty": {
+      "easy": 2,
+      "medium": 2,
+      "hard": 1
+    }
+  },
+  "keyTakeawayCounts": {
+    "easy": 3,
+    "medium": 5,
+    "hard": 6
+  }
+}

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "According to Chapter 22, what is the first opinion formed of a prince based on?",
+      "choices": [
+        "The men he keeps around him",
+        "The size of his public ceremonies",
+        "How many wars he has won"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Machiavelli says people judge the prince first by the servants around him.",
+        "direct": "The nearest ministers are the first public evidence of his understanding.",
+        "competitive": "His circle speaks for him before he does."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What is the second class of intellect in Chapter 22?",
+      "choices": [
+        "The mind that comprehends everything by itself",
+        "The mind that appreciates what others have comprehended",
+        "The mind that understands neither by itself nor from others"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The second class can understand what another mind has already grasped.",
+        "direct": "It is the good but not highest rank: strong enough to judge another intelligence.",
+        "competitive": "It is not original genius, but it is still real governing intelligence."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What does the example of Pandolfo Petrucci and Antonio da Venafro show?",
+      "choices": [
+        "That princes should keep all servants ignorant",
+        "That a servant's brilliance matters more than the prince's judgment",
+        "That choosing a capable servant can itself prove the prince's intelligence"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Pandolfo appears clever because he chose Venafro well.",
+        "direct": "The good servant reflects the prince's discrimination, not just the servant's talent.",
+        "competitive": "A sharp lieutenant proves you only if your choice put him there."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Colette is choosing between a dazzling self-promoter and a steadier candidate whose judgment stays tied to the work. Which choice best fits Chapter 22?",
+      "choices": [
+        "Choose the candidate whose ability stays aligned with the office",
+        "Choose the most ambitious candidate because ambition guarantees loyalty",
+        "Avoid choosing anyone strong enough to matter"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Chapter 22 values ability joined to faithful service.",
+        "direct": "The question is alignment, not flash for its own sake.",
+        "competitive": "Pick the deputy who strengthens your rule instead of auditioning against it."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "applied"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why did Jasper's school problem become a judgment on Jasper as well as on his aide?",
+      "choices": [
+        "Because no student aide should ever hold any responsibility",
+        "Because the visible role exposed Jasper's choice and delay in correcting it",
+        "Because school settings never allow trustworthy service"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "People judged Jasper through the aide he empowered.",
+        "direct": "The misaligned deputy reflected the chooser who put her there and left her there.",
+        "competitive": "The damage doubled back on Jasper because the post was his decision."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "applied"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What is the chapter's never-failing test of a bad servant?",
+      "choices": [
+        "He prefers quiet work to public praise",
+        "He asks too many questions before acting",
+        "He thinks more of his own interests than of the prince's"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The untrustworthy servant seeks his own profit first.",
+        "direct": "Self-interest overtaking the prince's charge is the test that never fails.",
+        "competitive": "The office breaks the moment the man inside it starts serving himself."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why does Machiavelli say a prince should praise the good in a servant and correct the bad?",
+      "choices": [
+        "So the servant cannot hope to deceive him",
+        "So the servant becomes dependent only on fear",
+        "So the prince can avoid all need for counsel"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Praise and correction show that the prince is still judging the servant clearly.",
+        "direct": "They keep the ruler in command of service rather than surrendering judgment to talent.",
+        "competitive": "The clever aide stops dreaming of impunity when he knows he is being read accurately."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "core"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why does the chapter pair honors, riches, kindnesses, and shared cares together?",
+      "choices": [
+        "Because generosity alone is enough to solve the loyalty problem",
+        "Because reward and burden together help keep a good servant honest",
+        "Because servants should be made as carefree as possible"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The servant is bound by being valued and burdened together.",
+        "direct": "Machiavelli links reward to responsibility rather than letting it float free.",
+        "competitive": "Prestige tightens service only when weight comes strapped to it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "core"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why must the servant also see that he cannot stand alone?",
+      "choices": [
+        "Because the prince should eliminate all capable subordinates",
+        "Because loneliness automatically produces loyalty",
+        "Because dependence is part of the trust structure, not an optional extra"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The bond is incomplete if the servant feels fully separate from the role he serves.",
+        "direct": "Dependence helps keep reward from turning into an independent power base.",
+        "competitive": "The free-floating minister is already halfway to becoming his own center of force."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If a prince is not the first kind of intellect, what must he still do so that a brilliant secretary proves his wisdom rather than replacing it?",
+      "choices": [
+        "He must judge the secretary well enough to choose, praise, correct, and bind him",
+        "He must keep every secretary ignorant so no comparison can be made",
+        "He must avoid hearing any advice from gifted people at all"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The prince can still be wise if he can judge another mind accurately and keep it faithful.",
+        "direct": "Second-rank intelligence rules by discrimination, correction, and structured loyalty.",
+        "competitive": "The brilliant aide proves you only when your judgment still masters the relationship."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deep"
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { motion } from "framer-motion";
 import {
   ArrowLeft,
   ArrowRight,
@@ -21,8 +22,8 @@ import {
   CHAPTER_FP,
   QUIZ_RETRIES_PER_QUESTION,
   QUIZ_AUTO_ADVANCE_DELAY,
-  QUIZ_PASS_THRESHOLDS,
 } from "@/app/book/_lib/flow-points-economy";
+import { useKeyboardShortcut } from "@/app/book/hooks/useKeyboardShortcut";
 
 const OPTION_LABELS = ["A", "B", "C", "D", "E"];
 
@@ -77,11 +78,15 @@ function isGenericExplanation(text: string | undefined | null): boolean {
 
 function ProgressRing({
   percent,
+  correctAnswers,
+  totalQuestions,
   size = 160,
   strokeWidth = 10,
   passed,
 }: {
   percent: number;
+  correctAnswers: number;
+  totalQuestions: number;
   size?: number;
   strokeWidth?: number;
   passed: boolean;
@@ -107,7 +112,7 @@ function ProgressRing({
       <div className="absolute inset-0 flex flex-col items-center justify-center">
         <span className="text-4xl font-bold text-(--cr-text-heading)">{percent}%</span>
         <span className="text-sm text-(--cr-text-secondary)">
-          {Math.round((percent / 100) * 10)}/10
+          {correctAnswers}/{totalQuestions}
         </span>
       </div>
     </div>
@@ -179,7 +184,7 @@ function ProgressDots({
 function ImmediateQuestionCard({
   index, question, answerChoiceId, learningMode, onAnswer,
   onToggleExplanation, explanationOpen, feedbackState, disabledChoices,
-  retriesLeft, isLast, onSeeResults,
+  retriesLeft, isLast, onSeeResults, totalQuestions,
 }: {
   index: number;
   question: QuizQuestionView;
@@ -193,6 +198,7 @@ function ImmediateQuestionCard({
   retriesLeft: number;
   isLast: boolean;
   onSeeResults: () => void;
+  totalQuestions: number;
 }) {
   const cardRef = useRef<HTMLElement>(null);
   const resolved = feedbackState === "correct" || feedbackState === "incorrect-final";
@@ -304,22 +310,22 @@ function ImmediateQuestionCard({
         </div>
       )}
 
-      {/* FIX 4+10: incorrect-final — neutral banner + smart explanation */}
+      {/* FIX 4+10: incorrect-final — neutral banner + smart explanation (always rendered) */}
       {feedbackState === "incorrect-final" && (
         <div className="mt-3 space-y-3" style={{ animation: "cr-card-enter 200ms ease-out" }}>
           <div className="rounded-lg border-l-3 border-(--cr-text-secondary) bg-(--cr-fill-subtle) px-4 py-2.5 text-sm text-(--cr-text-secondary)">
             The correct answer is {correctLetter}.
           </div>
-          {!isGenericExplanation(question.explanation) && (
-            <div className="rounded-xl border border-(--cr-glass-border) bg-(--cr-bg-surface-3) px-4 py-3">
-              <p className="text-xs font-bold uppercase tracking-[0.16em] text-(--cr-text-secondary)">
-                Why this answer is right
-              </p>
-              <p className="mt-2 text-sm leading-relaxed text-(--cr-text-primary)" style={{ fontWeight: 450 }}>
-                {question.explanation}
-              </p>
-            </div>
-          )}
+          <div className="rounded-xl border border-(--cr-glass-border) bg-(--cr-bg-surface-3) px-4 py-3">
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-(--cr-text-secondary)">
+              Why this answer is right
+            </p>
+            <p className="mt-2 text-sm leading-relaxed text-(--cr-text-primary)" style={{ fontWeight: 450 }}>
+              {isGenericExplanation(question.explanation)
+                ? "The correct answer reinforces a key concept from this chapter's summary. Re-read the takeaways to see why."
+                : question.explanation}
+            </p>
+          </div>
         </div>
       )}
 
@@ -354,7 +360,7 @@ function ImmediateQuestionCard({
             className="flex items-center gap-2 rounded-2xl bg-(--cr-accent) px-6 py-3 text-base font-bold text-(--cr-text-inverse) transition hover:opacity-90">
             See Your Results <ArrowRight className="h-5 w-5" />
           </button>
-          <p className="text-xs text-(--cr-text-disabled)">All {question ? 10 : 0} questions answered</p>
+          <p className="text-xs text-(--cr-text-disabled)">All {totalQuestions} questions answered</p>
         </div>
       )}
     </article>
@@ -464,92 +470,80 @@ function ResultsScreen({
   if (!result) return null;
 
   const incorrectCount = session.questions.filter((q) => q.isCorrect === false).length;
-  const isFirstAttempt = session.attemptNumber === 1;
-  const fpAmount = result.passed
-    ? (isFirstAttempt ? CHAPTER_FP.quizPassFirstAttempt[learningMode] : CHAPTER_FP.quizPassRetry[learningMode])
-    : 0;
-  const fpPotential = isFirstAttempt
-    ? CHAPTER_FP.quizPassFirstAttempt[learningMode]
-    : CHAPTER_FP.quizPassRetry[learningMode];
 
   return (
     <div className="cr-glass-reading relative overflow-hidden p-8 text-center">
       {result.passed && <ConfettiBurst />}
 
-      {/* FIX 11: Score ring with zero-state arc */}
-      <div className="mb-6">
-        <ProgressRing percent={result.scorePercent} passed={result.passed} />
+      {/* 1. Pass/fail headline */}
+      <h2
+        className="text-2xl font-bold text-(--cr-text-heading)"
+        style={{ fontFamily: "var(--font-display)" }}
+      >
+        {result.passed ? "\uD83C\uDF89 Quiz Passed!" : "Not quite \u2014 keep going"}
+      </h2>
+
+      {/* 2. Score ring */}
+      <div className="my-5">
+        <ProgressRing
+          percent={result.scorePercent}
+          correctAnswers={result.correctAnswers}
+          totalQuestions={result.totalQuestions}
+          size={128}
+          passed={result.passed}
+        />
       </div>
 
-      <h2 className={["text-2xl font-bold", result.passed ? "text-(--cr-success)" : "text-(--cr-warning)"].join(" ")}>
-        {result.passed ? "Chapter Passed!" : "Almost there!"}
-      </h2>
-      <p className="mt-2 text-sm text-(--cr-text-secondary)">
-        {result.passed
-          ? `You scored ${result.scorePercent}% (need ${QUIZ_PASS_THRESHOLDS[learningMode]}%)`
-          : `You scored ${result.scorePercent}%. Need ${QUIZ_PASS_THRESHOLDS[learningMode]}% to pass.`}
+      {/* 3. Score text */}
+      <p className="text-[15px] text-(--cr-text-secondary)">
+        {result.correctAnswers} of {result.totalQuestions} correct &middot; {result.scorePercent}%
       </p>
 
       {session.provisional && (
         <p className="mt-2 rounded-lg bg-amber-500/10 px-3 py-1.5 text-xs font-medium text-amber-400">
-          Scored offline — result will be verified when you reconnect.
+          Scored offline \u2014 result will be verified when you reconnect.
         </p>
       )}
 
-      {/* Insight Points display */}
-      {result.passed ? (
-        <p className="mt-2 text-lg font-semibold text-(--cr-accent)" style={{ animation: "cr-card-enter 300ms ease-out 1.5s both" }}>
-          +{fpAmount} IP {"\u2726"}
-        </p>
-      ) : (
-        <p className="mt-2 text-xs text-(--cr-text-disabled)">
-          Earn {fpPotential} IP when you pass
-        </p>
-      )}
-
-      {/* Question breakdown — FIX 9: no duplicate badge */}
-      <div className="mx-auto mt-6 flex max-w-xs flex-wrap justify-center gap-2">
-        {session.questions.map((q) => (
-          <div key={q.questionId}
-            className={[
-              "flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold",
-              q.isCorrect ? "bg-(--cr-success-bg) text-(--cr-success)" : "bg-(--cr-error-bg) text-(--cr-error)",
-            ].join(" ")}>
-            {q.isCorrect ? <Check className="h-3.5 w-3.5" /> : <X className="h-3.5 w-3.5" />}
-          </div>
-        ))}
-      </div>
-
-      {/* FIX 1: Buttons — no cooldown, correct order */}
-      <div className="mx-auto mt-8 flex max-w-sm flex-col gap-3">
-        {result.passed && (
-          <button type="button" onClick={onContinueToPractice}
-            className="flex w-full items-center justify-center gap-2 rounded-2xl bg-(--cr-accent) px-6 py-4 text-lg font-bold text-(--cr-text-inverse) transition hover:opacity-90 hover:shadow-[0_4px_20px_rgba(77,182,172,0.3)]">
-            <Target className="h-5 w-5" /> Continue to Practice <ArrowRight className="h-5 w-5" />
+      {/* 4. Primary CTA + secondary link */}
+      <div className="mx-auto mt-6 flex max-w-sm flex-col gap-3">
+        {result.passed ? (
+          <button
+            type="button"
+            onClick={onContinueToPractice}
+            className="w-full rounded-2xl bg-(--cr-accent) px-6 py-4 text-base font-bold text-(--cr-text-inverse) transition hover:opacity-90 hover:shadow-[0_4px_20px_color-mix(in_srgb,var(--cr-accent)_35%,transparent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cr-accent-glow)"
+          >
+            Continue to Practice &rarr;
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={onRetry}
+            className="w-full rounded-2xl bg-(--cr-accent) px-6 py-4 text-base font-bold text-(--cr-text-inverse) transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cr-accent-glow)"
+          >
+            Try Again
           </button>
         )}
 
-        {/* Review Summary — primary CTA when failed */}
-        {!result.passed && (
-          <button type="button" onClick={onReviewSummary}
-            className="w-full rounded-2xl bg-(--cr-accent) px-4 py-3.5 text-sm font-bold text-(--cr-text-inverse) transition hover:opacity-90">
-            Review Summary
+        {result.passed ? (
+          incorrectCount > 0 ? (
+            <button
+              type="button"
+              onClick={onReviewMistakes}
+              className="text-sm font-semibold text-(--cr-accent) hover:underline"
+            >
+              Review your answers
+            </button>
+          ) : null
+        ) : (
+          <button
+            type="button"
+            onClick={onReviewSummary}
+            className="text-sm font-semibold text-(--cr-accent) hover:underline"
+          >
+            Back to Summary
           </button>
         )}
-
-        {/* Review Mistakes — ghost, only if there are mistakes */}
-        {incorrectCount > 0 && (
-          <button type="button" onClick={onReviewMistakes}
-            className="w-full rounded-2xl border border-(--cr-glass-border) bg-transparent px-4 py-3 text-sm font-semibold text-(--cr-text-primary) transition hover:border-(--cr-accent)/40 hover:text-(--cr-accent)">
-            Review Mistakes
-          </button>
-        )}
-
-        {/* Retake Quiz — ghost, NO COOLDOWN */}
-        <button type="button" onClick={onRetry}
-          className="flex w-full items-center justify-center gap-2 rounded-2xl border border-(--cr-glass-border) bg-transparent px-4 py-3 text-sm font-semibold text-(--cr-text-primary) transition hover:border-(--cr-accent)/40 hover:text-(--cr-accent)">
-          <RotateCcw className="h-4 w-4" /> Retake Quiz
-        </button>
       </div>
     </div>
   );
@@ -655,6 +649,60 @@ export function QuizPanel({
     onSubmit();
   }, [onSubmit]);
 
+  // Keyboard navigation: 1-5 to pick a choice
+  const activeQuestionForKeys = useMemo(() => {
+    if (!session || Boolean(session.result)) return null;
+    if (questionFlow === "one-by-one") {
+      return session.questions[oneByOneIndex] ?? null;
+    }
+    // all-at-once: pick first unresolved question
+    const idx = session.questions.findIndex(
+      (q) =>
+        !questionFeedback[q.questionId] ||
+        questionFeedback[q.questionId] === "incorrect-retry"
+    );
+    return idx >= 0 ? session.questions[idx] : null;
+  }, [session, questionFlow, oneByOneIndex, questionFeedback]);
+
+  const pickChoiceByIndex = useCallback(
+    (zeroBasedIndex: number) => {
+      if (!activeQuestionForKeys) return;
+      const choice = activeQuestionForKeys.choices[zeroBasedIndex];
+      if (!choice) return;
+      const fb = questionFeedback[activeQuestionForKeys.questionId];
+      if (fb === "correct" || fb === "incorrect-final") return;
+      handleAnswer(activeQuestionForKeys.questionId, choice.choiceId);
+    },
+    [activeQuestionForKeys, questionFeedback, handleAnswer]
+  );
+
+  useKeyboardShortcut("1", (e) => { e.preventDefault(); pickChoiceByIndex(0); }, { ignoreWhenTyping: true });
+  useKeyboardShortcut("2", (e) => { e.preventDefault(); pickChoiceByIndex(1); }, { ignoreWhenTyping: true });
+  useKeyboardShortcut("3", (e) => { e.preventDefault(); pickChoiceByIndex(2); }, { ignoreWhenTyping: true });
+  useKeyboardShortcut("4", (e) => { e.preventDefault(); pickChoiceByIndex(3); }, { ignoreWhenTyping: true });
+  useKeyboardShortcut("5", (e) => { e.preventDefault(); pickChoiceByIndex(4); }, { ignoreWhenTyping: true });
+
+  // Enter submits in challenge mode (when allResolved)
+  useKeyboardShortcut(
+    "Enter",
+    (e) => {
+      if (!session || session.result) return;
+      // Only act if all-resolved in challenge mode (avoids accidental submit)
+      if (learningMode === "challenge") {
+        const resolved = session.questions.every(
+          (q) =>
+            questionFeedback[q.questionId] === "correct" ||
+            questionFeedback[q.questionId] === "incorrect-final"
+        );
+        if (resolved && !submitting) {
+          e.preventDefault();
+          handleSeeResults();
+        }
+      }
+    },
+    { ignoreWhenTyping: true }
+  );
+
   if (loading && !session) {
     return (
       <section className="cr-glass-reading p-6">
@@ -699,8 +747,37 @@ export function QuizPanel({
     );
   }
 
+  const safeCurrentIndex = currentQuestionIndex === -1 ? displayQuestions.length - 1 : currentQuestionIndex;
+
   return (
     <section className="cr-reading-content space-y-5">
+      <h2 data-phase-heading className="sr-only">Quiz</h2>
+      {/* Sticky question progress bar */}
+      {!submitted && (
+        <div
+          className="sticky top-(--cr-header-h,64px) z-20 flex items-center gap-3 py-2 px-4 -mx-4 sm:-mx-6 sm:px-6 border-b border-(--cr-glass-border)"
+          style={{
+            background:
+              "color-mix(in srgb, var(--cr-bg-root) 92%, transparent)",
+            backdropFilter: "blur(8px)",
+            WebkitBackdropFilter: "blur(8px)",
+          }}
+        >
+          <span className="text-[13px] font-semibold whitespace-nowrap text-(--cr-text-heading)">
+            Question {safeCurrentIndex + 1} of {displayQuestions.length}
+          </span>
+          <div className="flex-1 h-0.5 rounded-full overflow-hidden bg-(--cr-glass-border)">
+            <motion.div
+              className="h-full rounded-full bg-(--cr-accent)"
+              animate={{
+                width: `${Math.round(((safeCurrentIndex + 1) / displayQuestions.length) * 100)}%`,
+              }}
+              transition={{ duration: 0.3 }}
+            />
+          </div>
+        </div>
+      )}
+
       {/* Quiz Header — FIX 9: simplified when results shown */}
       {!submitted && (
         <div className="cr-glass-reading p-5">
@@ -708,7 +785,7 @@ export function QuizPanel({
             <div>
               <p className="flex items-center gap-2 text-sm font-semibold text-(--cr-accent)">
                 <Target className="h-4 w-4" />
-                Pass <span className="font-bold">{QUIZ_PASS_THRESHOLDS[learningMode]}%</span> to unlock the next chapter
+                Pass <span className="font-bold">{session.passingScorePercent}%</span> to unlock the next chapter
               </p>
               <p className="mt-1 text-sm text-(--cr-text-secondary)">
                 Attempt {session.attemptNumber}
@@ -716,7 +793,7 @@ export function QuizPanel({
             </div>
           </div>
           <ProgressDots questions={displayQuestions} answers={answers}
-            currentIndex={currentQuestionIndex === -1 ? displayQuestions.length - 1 : currentQuestionIndex}
+            currentIndex={safeCurrentIndex}
             questionFeedback={questionFeedback} />
         </div>
       )}
@@ -744,7 +821,10 @@ export function QuizPanel({
                   feedbackState={questionFeedback[displayQuestions[oneByOneIndex].questionId] ?? null}
                   disabledChoices={disabledChoices[displayQuestions[oneByOneIndex].questionId] ?? new Set()}
                   retriesLeft={maxRetries - (retriesUsed[displayQuestions[oneByOneIndex].questionId] ?? 0)}
-                  isLast={oneByOneIndex === displayQuestions.length - 1} onSeeResults={handleSeeResults} />
+                  isLast={oneByOneIndex === displayQuestions.length - 1}
+                  onSeeResults={handleSeeResults}
+                  totalQuestions={displayQuestions.length}
+                />
               )}
               <div className="flex items-center justify-between">
                 <button type="button" disabled={oneByOneIndex === 0}
@@ -770,7 +850,10 @@ export function QuizPanel({
                 feedbackState={questionFeedback[question.questionId] ?? null}
                 disabledChoices={disabledChoices[question.questionId] ?? new Set()}
                 retriesLeft={maxRetries - (retriesUsed[question.questionId] ?? 0)}
-                isLast={index === displayQuestions.length - 1} onSeeResults={handleSeeResults} />
+                isLast={index === displayQuestions.length - 1}
+                onSeeResults={handleSeeResults}
+                totalQuestions={displayQuestions.length}
+              />
             ))
           )}
         </div>

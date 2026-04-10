@@ -1,0 +1,155 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "In Chapter 8, what is the leader's first responsibility when the route forward is unclear?",
+      "choices": [
+        "Project full certainty so the team feels less tension",
+        "Stay psychologically functional enough to create clear next moves",
+        "Delay communication until ambiguity is removed"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says leadership starts with emotional steadiness that supports clear action, not with pretending all uncertainty is gone.",
+        "direct": "Psychological control is the prerequisite mechanism for directional clarity and execution under ambiguity.",
+        "competitive": "If the leader cannot hold composure, the team inherits confusion before any strategy can land."
+      }
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Which update best matches the chapter's operating communication frame?",
+      "choices": [
+        "What we know, what we do not know, and what happens next with owner and timing",
+        "Why everyone should stay confident while details are worked out later",
+        "A broad vision statement without operational assignments"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "This chapter asks leaders to separate known facts, open questions, and immediate next steps so people can act responsibly.",
+        "direct": "The correct option applies the known-unknown-next protocol with explicit accountability.",
+        "competitive": "Direction wins when facts, gaps, and assignments are explicit. Slogans do not run execution."
+      }
+    },
+    {
+      "questionId": "q03",
+      "prompt": "In the newsroom-style deadline scenario, which move preserves credibility without fake omniscience?",
+      "choices": [
+        "Announce a guaranteed outcome to prevent debate",
+        "Stay silent until every source is confirmed",
+        "Name confirmed facts, unresolved pieces, and a bounded publication decision"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Credibility comes from honest boundaries plus action, not from silence or overpromising.",
+        "direct": "The correct answer keeps direction and standards intact while uncertainty remains explicit.",
+        "competitive": "Truthful limits plus a timed call beats both bluffing and paralysis."
+      }
+    },
+    {
+      "questionId": "q04",
+      "prompt": "What does Chapter 8 identify as the fastest-spreading failure mode in uncertainty?",
+      "choices": [
+        "Too many status meetings",
+        "Fear or confusion from leadership spreading through the team",
+        "Teams asking for clearer ownership"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter's hard edge is that unmanaged fear from leadership spreads quickly across the group.",
+        "direct": "Emotional contagion from the top is treated as a primary operational risk.",
+        "competitive": "Leak fear at the top and the whole system amplifies it before memos can catch up."
+      }
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Which statement reflects confidence without denial?",
+      "choices": [
+        "I cannot discuss unknowns because that weakens authority",
+        "Everything is under control and no major changes are likely",
+        "Here is what is unresolved, and here is the decision path we are executing now"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Confidence can include uncertainty when the next steps are clear.",
+        "direct": "The chapter's boundary is explicit: accurate limits plus directional commitment.",
+        "competitive": "Real confidence names the gap and still drives the move."
+      }
+    },
+    {
+      "questionId": "q06",
+      "prompt": "In the delayed launch pattern, what is the common trap?",
+      "choices": [
+        "Calling avoidance prudence and delaying without a decision trigger",
+        "Setting a cutoff date for unresolved variables",
+        "Publishing standards before the next cycle"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The trap is open-ended delay that feels safe but creates more drift.",
+        "direct": "Without a clear trigger, delay becomes exposure avoidance rather than risk management.",
+        "competitive": "Another delay can look disciplined while quietly killing ownership."
+      }
+    },
+    {
+      "questionId": "q07",
+      "prompt": "When contributors ask to loosen standards \"just this week,\" what response aligns with the chapter?",
+      "choices": [
+        "Lower the quality bar temporarily to keep morale high",
+        "Keep standards fixed, narrow scope, and reassign work against the real deadline",
+        "Pause all output until certainty is complete"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter favors protecting standards while adjusting scope and assignments.",
+        "direct": "Hold the bar constant; re-sequence execution instead of relaxing accountability.",
+        "competitive": "Do not buy speed by selling standards. Cut scope, not quality."
+      }
+    },
+    {
+      "questionId": "q08",
+      "prompt": "If a leader admits uncertainty but does not restate standards, what is the most likely consequence?",
+      "choices": [
+        "Higher trust through spontaneous alignment",
+        "Immediate elimination of conflict",
+        "Quality drift and mixed behavior as teams infer different rules"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Without clear standards, people fill gaps differently and consistency slips.",
+        "direct": "Uncertainty disclosure without bar-setting increases variance and coordination drag.",
+        "competitive": "Name the fog but skip the bar, and the org fractures into private playbooks."
+      }
+    },
+    {
+      "questionId": "q09",
+      "prompt": "After leaders communicate boundaries more honestly, why might tension rise before outcomes improve?",
+      "choices": [
+        "Real disagreements become visible once guessing declines",
+        "The chapter requires teams to argue in every meeting",
+        "Standards become less important during transition"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Short-term friction can be a healthy sign that people are now addressing real tradeoffs.",
+        "direct": "Visibility of conflict often increases when ambiguity and ownership are clarified.",
+        "competitive": "Heat can be progress: hidden conflicts are now surfaced and actionable."
+      }
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Which question best captures Chapter 8's core challenge for leaders?",
+      "choices": [
+        "How can I remove all ambiguity before any decision?",
+        "What must I make clear when I cannot make everything certain?",
+        "How can I keep my team from noticing uncertainty?"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter asks leaders to clarify essentials even when full certainty is not available.",
+        "direct": "Directional clarity under bounded uncertainty is the chapter's threshold demand.",
+        "competitive": "You do not need total certainty first. You need to clarify the next decisive truths now."
+      }
+    }
+  ]
+}

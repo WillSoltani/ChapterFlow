@@ -1,0 +1,42 @@
+{
+  "chapterId": "ch04",
+  "chapterNumber": 4,
+  "heading": "CHAPTER IV.",
+  "title": "WHY THE KINGDOM OF DARIUS, CONQUERED BY ALEXANDER, DID NOT REBEL AGAINST THE SUCCESSORS OF ALEXANDER AT HIS DEATH",
+  "sourcePath": ".chapterflow/sources/the-prince/the-prince.txt",
+  "sourceLineStart": 894,
+  "sourceLineEndInclusive": 987,
+  "scope": "Core The Prince text only",
+  "exclusions": [
+    "Project Gutenberg boilerplate",
+    "front matter and dedication before THE PRINCE",
+    "appended works after Chapter XXVI"
+  ],
+  "approxWords": 963,
+  "properNouns": [
+    "Alexander the Great",
+    "Asia",
+    "Turk",
+    "King of France",
+    "Darius",
+    "Romans",
+    "Spain",
+    "Greece",
+    "Pyrrhus"
+  ],
+  "repeatedTerms": [
+    "prince",
+    "servants",
+    "barons",
+    "kingdom",
+    "state",
+    "conquered",
+    "family",
+    "memory"
+  ],
+  "notes": [
+    "Moderate chapter-local source slice built around a single historical puzzle and a two-regime comparison.",
+    "The chapter's governing pressure is internal regime structure, not conqueror charisma.",
+    "Any verbatim reuse in reader-facing prose should still go through the quote ledger."
+  ]
+}

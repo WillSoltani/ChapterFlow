@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch01-q01",
+      "prompt": "Why does the book open with a confused Ramadi combat situation instead of a clean definition of leadership?",
+      "choices": [
+        "To show leadership where the stakes are real and the facts are incomplete",
+        "To prove that battlefield detail matters more than later principles",
+        "To argue that civilian leadership problems are basically identical to combat"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nice catch. The opening scene matters because it places leadership inside confusion and consequence, which keeps the chapter from becoming abstract.",
+        "direct": "Correct. The intro uses the Ramadi dilemma to define leadership by function under pressure, not by polished description after the fact.",
+        "competitive": "That opener wins because it forces leadership onto the clock. The chapter is proving what leadership does before clarity arrives, not after."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q02",
+      "prompt": "What is the chapter's main claim about team performance under pressure?",
+      "choices": [
+        "The strongest teams succeed because pressure makes everyone sharper automatically",
+        "Leadership is the factor that most shapes whether teams stabilize or fragment",
+        "Teams mostly rise or fall based on whether the environment is fair"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The chapter does not deny bad conditions, but it does say leadership most shapes how teams respond to them.",
+        "direct": "Exactly. The intro frames leadership as the leverage point in pressure situations, not as a background trait.",
+        "competitive": "That answer fits because the chapter keeps moving back to leverage. Conditions hurt, but leadership decides whether the hurt spreads."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q03",
+      "prompt": "Which description best matches leadership as this introduction presents it?",
+      "choices": [
+        "The ability to steady people and decide responsibly while uncertainty is still live",
+        "The talent for sounding certain enough that other people stop asking questions",
+        "The habit of keeping morale high until more qualified people arrive"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter presents leadership as steadiness and direction under uncertainty, not performance or delay.",
+        "direct": "Option A fits because the intro ties leadership to orientation and action while the facts are incomplete.",
+        "competitive": "That is the strongest answer because fake certainty and passive morale management both dodge the real job."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q04",
+      "prompt": "Nina is leading a product launch when analytics, customer support, and engineering all report conflicting issues at once. No one has the full picture yet. What response best fits the intro's idea of leadership?",
+      "choices": [
+        "Wait to speak until every stream agrees so the team sees perfect confidence",
+        "Set the top priority, assign one person to verify facts, and orient the team around the next move",
+        "Let each function solve its own problem first so leadership does not get in the way"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Good read. The chapter says leadership narrows confusion before certainty arrives. Nina should create order around the next move.",
+        "direct": "Option B wins because it turns leadership into alignment under incomplete information. Waiting or fragmenting the response both let confusion spread.",
+        "competitive": "That is the operator's move. You do not rent hope from better data while the room keeps splitting apart."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q05",
+      "prompt": "A student team says, \"We just need a more inspiring captain.\" Based on this introduction, what is the strongest correction?",
+      "choices": [
+        "Inspiration matters less than whether the captain can create alignment and direction under pressure",
+        "Inspiration is enough if the captain already has formal authority",
+        "The team should avoid putting too much weight on leadership because conditions matter more"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That is the strongest correction. The chapter is not centered on style. It is centered on what leadership does when a group is under strain.",
+        "direct": "Option A fits because the intro defines leadership by function in messy situations, not by motivational energy alone.",
+        "competitive": "The trap is confusing inspiration with control. The chapter wants a leader who can steady the group when things stop being easy."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q06",
+      "prompt": "What weak response to uncertainty does the introduction clearly reject?",
+      "choices": [
+        "Acting responsibly before every fact is known",
+        "Waiting for perfect clarity before leading at all",
+        "Asking the team to focus on one priority first"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The chapter makes clear that uncertainty does not remove the need for leadership.",
+        "direct": "Option B is the rejected move because the intro treats waiting for perfect clarity as a failure to lead under real conditions.",
+        "competitive": "That answer wins because delay dressed up as caution still leaves chaos in charge."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q07",
+      "prompt": "A volunteer coordinator says, \"This event failed because the morning was too chaotic.\" How would the intro push back on that sentence?",
+      "choices": [
+        "Chaos alone explains failure, so there is nothing leadership could have changed",
+        "The real lesson is to avoid all situations where uncertainty might appear",
+        "Bad conditions matter, but leadership still shapes whether a group stays aligned inside them"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Exactly. The chapter does not pretend conditions are easy. It says leadership still changes the group's response to them.",
+        "direct": "Option C fits the intro's leverage claim: pressure is real, but the leader affects whether confusion narrows or spreads.",
+        "competitive": "That is the clean answer because the chapter refuses to let environment become a full excuse."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q08",
+      "prompt": "On deadline night, a newsroom editor faces missing files, clashing updates, and a nervous staff. Which first move best matches this chapter?",
+      "choices": [
+        "Ask everyone to keep talking until the team feels calmer",
+        "Name the top priority, assign owners, and create a short common plan",
+        "Privately solve the whole problem alone so the staff does not see uncertainty"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Good choice. The chapter points toward leadership as orientation under pressure, which means giving the group a shared next move.",
+        "direct": "Option B is strongest because it creates alignment before the uncertainty hardens into drift.",
+        "competitive": "That move takes the room out of guesswork. Talking and hiding both leave the team leaderless."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q09",
+      "prompt": "Why does the introduction spend time framing the rest of the book as a set of principles rather than simply saying leadership matters and moving on?",
+      "choices": [
+        "Because the intro wants each later chapter to answer the opening pressure problem from a different angle",
+        "Because the authors think overviews are more memorable than concrete tools",
+        "Because later chapters are mainly optional examples rather than core arguments"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nice catch. The intro is building a frame so the reader sees later chapters as connected answers, not random advice.",
+        "direct": "Option A fits because the opening chapter makes the later principles feel necessary responses to leadership under pressure.",
+        "competitive": "That answer wins because the intro is setting a test. Every later principle has to survive the same pressure environment."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch01-q10",
+      "prompt": "If this chapter says leadership is the leverage point under pressure, which next principle follows most naturally?",
+      "choices": [
+        "A leader should first protect their image so the team stays confident",
+        "A leader should begin by owning outcomes instead of pushing blame into the environment",
+        "A leader should avoid making strong calls until someone else confirms them"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That is the natural next step. Once leadership is named as the factor, responsibility has to live there too.",
+        "direct": "Option B follows directly from the intro's leverage claim. Ownership becomes the first concrete test of leadership.",
+        "competitive": "That answer closes the trap the intro sets. If leadership shapes the outcome, blame is already a retreat."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

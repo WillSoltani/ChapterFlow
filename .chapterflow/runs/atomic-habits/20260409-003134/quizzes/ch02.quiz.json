@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "In Chapter 2, which layer of change sits deepest beneath outcomes and processes?",
+      "choices": [
+        "outcomes",
+        "processes",
+        "identity"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "That is the deepest layer in this chapter. Identity sits under what you get and what you do.",
+        "direct": "Identity is the deepest layer in the chapter's model. Outcomes describe results, processes describe actions, and identity describes the self the actions reinforce.",
+        "competitive": "The deepest layer is identity. That is where habits stop being tasks and start becoming evidence."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "A reader says, \"I want to finish a half marathon,\" while another says, \"I am becoming someone who trains consistently.\" What is the chapter highlighting?",
+      "choices": [
+        "the difference between good and bad habits",
+        "the difference between an outcome goal and an identity-based habit",
+        "the difference between a system and a reward"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The second sentence reaches deeper. It points to identity rather than only to a finish-line result.",
+        "direct": "The second statement shifts from outcome language to identity language. Chapter 2 argues that habits last longer when they are tied to the kind of person you are trying to become.",
+        "competitive": "One statement wants a medal. The other is building a trainer's identity. That deeper layer is the chapter's whole move."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why does the chapter refuse to treat one strong day as final proof that a person has changed?",
+      "choices": [
+        "Because identity is built by repeated evidence, not by one isolated action",
+        "Because outcomes matter more than self-concept",
+        "Because habits should never be judged until a full year has passed"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants a record, not a single dramatic moment. Repetition is what gives the identity claim weight.",
+        "direct": "Repeated action matters because identity is earned through accumulated evidence. One good day can help, but it does not settle the story by itself.",
+        "competitive": "A single rep is a signal, not a verdict. The chapter cares about the pattern that can survive repetition."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Ava keeps promising her team she will close incidents cleanly, but she skips the five-minute handoff note whenever the queue gets busy. What choice fits Chapter 2 best?",
+      "choices": [
+        "Wait for a calmer week before acting differently",
+        "Keep the five-minute closeout note because it supports the identity of a reliable operator",
+        "Focus on sounding more committed in the weekly meeting"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Ava needs the repeated action. The short note is evidence for the kind of coworker she wants to become.",
+        "direct": "Ava needs the identity-consistent rep, not a stronger speech. The small closeout note matters because it reinforces reliability every time the work ends.",
+        "competitive": "Talk is cheap here. The handoff note is the vote for reliability, so that is the move Chapter 2 would choose."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Daniel has one rough chemistry lab and immediately says, \"I'm just not a lab person.\" What is the chapter warning against?",
+      "choices": [
+        "using identity language as a fixed label that blocks revisable practice",
+        "taking process seriously before the next lab",
+        "connecting current habits to later results"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That label freezes Daniel too fast. The chapter wants identity to be shaped by repeated evidence, not locked by one setback.",
+        "direct": "Daniel's mistake is turning one event into a fixed identity story. Chapter 2 treats identity as something reinforced or revised through repetition, not as a sentence handed down by one bad lab.",
+        "competitive": "He is promoting a bad moment into a permanent rank. That is exactly the trap the chapter wants to break."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Priya keeps saying she is not a morning person, even though she has started a five-minute walk after putting the kettle on. According to Chapter 2, what should she do with that walk?",
+      "choices": [
+        "Treat it as a small piece of evidence that can challenge the old identity",
+        "Ignore it until she can complete a perfect month",
+        "Drop it and search for a more inspiring goal"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The small walk counts. It is one piece of evidence that the old label may not deserve full control anymore.",
+        "direct": "Priya should stop dismissing the rep as too small to matter. In this chapter, repeated action is how a new identity becomes believable.",
+        "competitive": "That walk is not trivial. It is the crack in the old story, and Chapter 2 says to keep widening it."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What makes an identity-based habit more durable than a habit aimed only at one outcome?",
+      "choices": [
+        "It guarantees that setbacks will not happen",
+        "It removes the need for any systems or routines",
+        "It keeps giving the action meaning after the event or milestone loses urgency"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "That is the key durability point. The action still matters because it fits the kind of person you are trying to be.",
+        "direct": "Outcome goals can lose force once the event passes or progress slows. Identity-based habits keep the behavior meaningful because the action still confirms a present standard.",
+        "competitive": "A finish line can expire. An identity keeps recruiting the next rep."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Which use of identity language would Chapter 2 reject?",
+      "choices": [
+        "Using repeated action to support a revisable self-concept",
+        "Treating identity as a rigid label that turns one success or failure into destiny",
+        "Letting habits and self-concept influence each other over time"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter rejects rigid label thinking. Identity should guide direction, not trap a person inside one moment.",
+        "direct": "The warning here is against turning identity into prison language. Chapter 2 allows identity to stabilize change, but not to become a permanent verdict from a few actions.",
+        "competitive": "The weak move is making a label untouchable. That turns identity from leverage into a cage."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Chapter 1 said systems shape results over time. What does Chapter 2 add to that idea?",
+      "choices": [
+        "It adds that repeated systems also shape the identity of the person running them",
+        "It replaces systems with raw motivation",
+        "It argues that results should be ignored completely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Chapter 2 keeps the systems logic but deepens the stake. The routine is changing the person as well as the outcome.",
+        "direct": "Chapter 1 showed how repetition shapes results. Chapter 2 adds that the same repetition also becomes evidence for identity, so the system is training a self-concept while it trains the result.",
+        "competitive": "The machine is not only bending the scoreboard. It is also training the operator."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If repeated actions become identity evidence, what is the strongest next question for the book to answer?",
+      "choices": [
+        "How can identity be made permanent with one dramatic decision?",
+        "What mechanism makes a habit happen often enough for the evidence to accumulate?",
+        "Why are outcomes irrelevant once identity becomes important?"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That next question fits the bridge. If repetition builds identity, the book now has to explain how repetition gets installed.",
+        "direct": "Chapter 3 must explain the mechanism that lets behavior recur. Once Chapter 2 says identity grows out of repeated action, the next logical move is to ask how a habit gets repeated reliably enough to matter.",
+        "competitive": "Identity needs reps, and reps need an engine. That engine is the next chapter's job."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

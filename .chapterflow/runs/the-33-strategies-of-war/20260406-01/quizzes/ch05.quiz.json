@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch05-q01",
+      "prompt": "What does the chapter mean by a grand strategy?",
+      "choices": [
+        "A set of high-priority quarterly goals that helps the operator focus on what matters most in the near term.",
+        "A long-horizon plan that is explicit, stress-tested, and revisable -- and that gives meaning to short-horizon decisions by supplying a filter they either pass or fail.",
+        "A comprehensive multi-year planning document that organizations develop as a governance exercise."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Nice catch. The definition has three components: explicit (written down, not vague direction), stress-tested, and revisable when the world reveals something new. The filter function -- does this serve the long horizon or merely feel like progress? -- is the operational form. Quarterly goals are short-horizon by definition. The governance-document option describes an organizational process, not the individual operator's discipline the chapter describes.",
+        "direct": "Three-part definition: explicit, stress-tested, revisable. The filter question -- does this serve the long horizon? -- is the mechanism. Quarterly goals operate in the wrong time horizon entirely. The governance-document option is an organizational process that may or may not produce the individual discipline the chapter describes.",
+        "competitive": "The trap is the governance-document option because it sounds like a more serious version of the right answer. The chapter is describing an individual operator's discipline, not an organizational process. The critical word is 'explicit' -- the plan must be written specifically enough that it produces binary answers to specific decision questions, not a collection of directional statements that can rationalize any choice."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch05-q02",
+      "prompt": "Luca sent a three-sentence email declining a senior IC offer. What made that possible?",
+      "choices": [
+        "A one-page document she wrote four years earlier, specific enough that the offer either passed or failed a clear filter.",
+        "A mentor who had told her to specialize in healthcare and avoid consumer platform companies.",
+        "A conversation with a colleague at the consumer platform who revealed the role was less strategic than it appeared."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nice catch. The document is what converted a genuine dilemma into a decision. Without it, the offer -- which was better on paper in every conventional sense -- would have required extensive deliberation and was susceptible to rationalization. With it, the filter produced a binary answer. The mentor option invents a character the chapter does not include. The colleague-conversation option inverts the chapter's point: the decline was based on the plan, not on new information about the role's quality.",
+        "direct": "The document is the mechanism. It was specific enough that the offer's failure of the filter was immediate, not the product of extended deliberation. The offer was not declined because it was bad -- it was declined because it did not serve the stated long horizon. Without the document, 'it doesn't serve my long horizon' would not have been available as a clear answer; it would have been a preference competing with the offer's surface metrics.",
+        "competitive": "The trap is the colleague-conversation option because it sounds like due diligence -- and due diligence is good. The chapter's point is not that Luca gathered more information to make the decision. She had already made the decision four years earlier, when she wrote the document. The offer's quality was irrelevant to the filter. The document was the filter."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch05-q03",
+      "prompt": "What is the 'cheerful loss' and why does it require a real grand strategy to perform?",
+      "choices": [
+        "A psychological technique for reframing setbacks as learning opportunities so that morale stays high during difficult periods.",
+        "The ability to absorb a short-horizon defeat without course-changing, because the loss is testable against the long horizon and is inside a winning trajectory -- genuine strategic clarity, not false optimism.",
+        "A leadership behavior that models resilience for teams during project failures so that engagement stays high."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Nice catch. The cheerful loss requires a real long-horizon anchor because the loss has to be testable against something. The operator who can absorb a defeat cheerfully has a horizon that makes the loss legible -- it is either inside the trajectory (acceptable) or outside it (meaningful signal). The reframing option describes a psychological technique, not a strategic discipline. The leadership option applies to team dynamics, which is a different domain.",
+        "direct": "Strategic clarity, not psychological technique. The cheerful loss is possible only when the loss can be evaluated against a real long horizon and found to be inside a winning trajectory. The operator who panics at every setback has no anchor against which to evaluate it. The psychological-reframing option changes how you feel about the loss; the chapter's discipline changes what the loss means.",
+        "competitive": "The trap is the leadership option because it involves 'modeling' behavior, which sounds strategic. The chapter is not about team dynamics or morale management. The cheerful loss is a first-person discipline about the operator's own decision-making: can I absorb this setback without course-changing because I can test it against the long horizon? That test requires the horizon to be real and explicit."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch05-q04",
+      "prompt": "What is the most useful intelligence question, and why is it more productive than 'what do they want?'",
+      "choices": [
+        "'What would have to be true for them to be behaving this way?' -- because it forces modeling from inside the opponent's actual situation rather than from the analyst's external view.",
+        "'What are their stated priorities and bottom lines?' -- because explicit positions are the only information that can be verified.",
+        "'What would we want if we were in their position?' -- because perspective-taking reduces attribution errors."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nice catch. The 'what would have to be true' question forces the analyst to inhabit the opponent's actual context -- their constraints, their incentives, the pressures they have not disclosed -- and reason from there. This is what revealed Tariq's brand-deadline insight, which the counterparty would not have volunteered in direct questioning. The 'stated priorities' option describes the surface the opponent presents, not the actual situation. The perspective-taking option is adjacent but still starts from the analyst's view rather than the opponent's situation.",
+        "direct": "'What would have to be true' forces a model of the opponent's actual situation. 'What do they want?' asks them to describe their surface. The surface is what they have designed to maximize their apparent leverage. The actual situation is what they cannot afford to lose. Tariq's eleven days answered the 'would have to be true' question about the counterparty's organization; the answer was the brand-deadline constraint that was not on the surface.",
+        "competitive": "The trap is the perspective-taking option because it sounds methodologically sophisticated. The difference is subtle but important: perspective-taking starts from the analyst's external view and asks 'what would I want if I were them?' The chapter's question starts from the opponent's actual context and asks 'given their behavior, what must their situation actually be?' One produces an analogy; the other produces a model."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch05-q05",
+      "prompt": "Tariq's partnership deal gave his company twelve additional revenue share points while the counterparty considered it a win. What intelligence insight made this outcome possible?",
+      "choices": [
+        "Tariq prepared stronger arguments for why the revenue share terms should favor his company.",
+        "The counterparty failed to prepare adequately for the revenue share negotiation and was outmaneuvered on the surface terms.",
+        "Tariq discovered through eleven days of research that the counterparty's actual constraint was a board deadline for a brand partner announcement -- different from their stated priority of revenue share -- and structured the deal to satisfy the actual constraint."
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Nice catch. The intelligence insight was the gap between the stated priority (revenue share) and the actual constraint (brand-partner deadline). Tariq structured the deal to give the counterparty what they actually needed -- the brand announcement -- at a price that allowed him to claim the revenue share advantage. The stronger-arguments option misframes it as argument quality, which is not the chapter's mechanism. The counterparty-failed-to-prepare option makes the outcome contingent on the counterparty's error rather than on Tariq's investment.",
+        "direct": "The gap between stated and actual is the mechanism. Tariq negotiated against the counterparty's real constraint; they negotiated over the stated one. The deal satisfied both levels -- the counterparty's real constraint and their stated interest -- but the allocation of value reflected that Tariq understood both levels and the counterparty understood only one. Argument quality is irrelevant when you are negotiating against a different game than the other side thinks is being played.",
+        "competitive": "The trap is the counterparty-failure option because it sounds like a plausible explanation for any asymmetric negotiation outcome. The chapter's mechanism is not the counterparty's failure -- it is Tariq's investment. The asymmetry was built before the negotiation, not during it. The counterparty could have had the same information Tariq had if they had done the same research. They chose not to. That choice is the operative failure, but the chapter frames it from Tariq's investment, not from their error."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q06",
+      "prompt": "Bram has a stated long-horizon goal of becoming a chief operating officer at a mission-driven company. He was offered a VP Operations role at a high-growth consumer startup -- high compensation, fast trajectory, significant responsibility. He accepted. He describes it as 'building the operational skills the COO role requires.' Which assessment is most accurate?",
+      "choices": [
+        "His decision is consistent with the grand strategy: building operational skills is directly relevant to the COO horizon, and the startup environment will develop them faster than a mission-driven context would.",
+        "This cannot be evaluated without knowing more about Bram's specific timeline and what operational skills he currently lacks.",
+        "This may be drift rationalization: the stated connection between 'operational skills at a consumer startup' and 'COO at a mission-driven company' is general-purpose enough to rationalize almost any operations role, which is the signature of drift rather than a specific traceable connection to the stated horizon."
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Nice catch. The drift-rationalization signature is the generality of the connection: 'building operational skills' is true of almost any operations role at almost any company. A specific, traceable connection to the mission-driven COO horizon would name what specific skills this specific role provides that he cannot get at a mission-driven company, and why those specific skills are the gap in his trajectory. General-purpose reasons that apply to many different choices are the drift rationalization the chapter names. The first option accepts the general reason without requiring specificity. The second option requests more information rather than applying the diagnostic.",
+        "direct": "Drift rationalization. The diagnostic is specificity: can Bram name a specific mechanism by which a consumer startup operations role serves the mission-driven COO horizon rather than adjacent horizons? 'Building operational skills' serves any COO goal at any company -- it cannot distinguish this role from many alternatives and cannot explain why the mission-driven context is temporarily not the right place to build those skills. That generality is the signature of drift.",
+        "competitive": "The trap is the first option because it sounds like a reasonable strategic argument. The chapter's diagnostic does not ask whether the reasoning is reasonable -- it asks whether the reasoning is specific enough to serve as a genuine horizon filter. Reasoning that would justify many different choices is not serving as a filter; it is providing cover. The competitive operator applies the specificity test rather than accepting plausible reasoning at face value."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q07",
+      "prompt": "A consultant is preparing for a major client negotiation about contract renewal. She has done two weeks of research on the client's business context and has a detailed picture of their market position, competitive pressures, and strategic priorities. She is now considering whether to do a third week of research on the client's internal decision-making process. Which question does the chapter say she should ask?",
+      "choices": [
+        "Whether the third week of research would be billable to the client or would have to come from her own time.",
+        "Whether the additional research is likely to update her model of the client's actual situation or confirm what she already knows -- because if it is confirming, the threshold has been crossed and the preparation time is better spent on the negotiation itself.",
+        "Whether her competitors in the negotiation have done equivalent research, since intelligence advantage depends on relative depth rather than absolute depth."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Nice catch. The model-updating diagnostic is the relevant question: is the third week likely to produce information that materially changes her model of the client's actual situation, or is it likely to add details that confirm the picture she already has? If confirming, the information threshold has been crossed and the additional research is no longer intelligence -- it is extending the preparation as a risk-management mechanism. The billability option is a resource question, not an intelligence diagnostic. The relative-depth option is interesting but not the chapter's mechanism: the chapter's threshold is absolute (model stability), not relative (competitor comparison).",
+        "direct": "Model-updating vs. model-confirming. If week three will produce information that changes the model of the client's actual situation -- new constraints, revised priorities, different internal dynamics -- it is worth doing. If it will add granularity to a picture that is already complete, the threshold has been crossed. The question is not about resources or competitor parity; it is about whether additional gathering is improving the move or delaying it.",
+        "competitive": "The trap is the relative-depth option because it sounds like competitive intelligence strategy. The chapter's diagnostic is absolute, not relative: when does additional gathering stop materially improving the model? That question does not depend on what competitors have done. An operator who has reached model stability does not improve by gathering more, regardless of what others have gathered."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q08",
+      "prompt": "Orla has a long-horizon plan to build a recognized practice in environmental litigation. She has been at a large commercial law firm for five years, working on financial services cases that are well-compensated but entirely outside her stated domain. She describes staying as 'building the litigation skills and financial stability I will need before I can make the move.' Which pattern does this most resemble?",
+      "choices": [
+        "Genuine revision: her original plan assumed she could move to environmental litigation sooner, but the financial stability requirement turned out to be a real constraint that justifies staying.",
+        "A coherent intermediate strategy: building financial stability before pursuing a lower-compensation practice area is a legitimate planning sequence.",
+        "Drift rationalization: 'building litigation skills and financial stability' is general-purpose reasoning that could justify staying at any firm in any practice area indefinitely, and the plan has not been tested against a specific threshold condition that would determine when the move becomes appropriate."
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Nice catch. The drift-rationalization signature is present: the reasons for staying ('litigation skills,' 'financial stability') are general-purpose and apply at any level of the conditions they describe. Without a specific threshold -- a defined financial stability number, a specific litigation skill level, a target date -- the reasoning can justify staying indefinitely. Genuine revision would require identifying that the original plan's assumptions were wrong and updating them explicitly. The intermediate-strategy option accepts the reasoning without applying the specificity test.",
+        "direct": "Drift. The diagnostic: can Orla name the specific threshold condition that, when met, will trigger the move? 'Building financial stability' is not a threshold -- it is an ongoing state that can always be 'more stable.' The reasoning satisfies any level of itself, which is the signature of drift rationalization. A genuine intermediate strategy would have a defined exit condition that the intermediate phase is working toward.",
+        "competitive": "The trap is the intermediate-strategy option because planned sequencing is a legitimate strategic approach. The chapter's diagnostic is whether the sequencing has a defined threshold: when is 'enough' financial stability enough? When is 'enough' litigation skill enough? Sequencing without a defined threshold is not a strategy -- it is delay with a planning framing. Orla has the framing without the threshold."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q09",
+      "prompt": "Why does the chapter treat grand strategy and intelligence as 'enabling conditions' rather than 'moves'?",
+      "choices": [
+        "Because they are preparatory activities that take time away from action and should be kept minimal so that the operator can focus on executing the actual moves.",
+        "Because they supply the direction and the accurate terrain model within which offensive moves become rational -- an operator with both can make moves targeted at reality, while an operator with neither is aggressive and uninformed. The moves themselves are what follows.",
+        "Because they are too general to function as moves in specific competitive situations and serve only as background principles."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Nice catch. Enabling conditions are what make the downstream moves rational rather than merely energetic. Grand strategy supplies the direction (which fights to enter); intelligence supplies the accurate terrain model (what the opponent's actual situation is). Without either, the offensive moves in the following chapters are being executed toward an unclear destination or against a constructed image. The preparatory-activities option misframes them as a cost of action rather than as the conditions that make action rational. The too-general option misses the precise functional roles they play.",
+        "direct": "Direction and terrain. Grand strategy tells the operator which fights to enter; intelligence tells them what the opponent's actual situation is. Without the direction, offensive moves may be well-executed but pointed in the wrong direction. Without the terrain model, offensive moves are targeted at a constructed image rather than a real opponent. Both conditions are necessary for the moves to function as intended, which is why they precede the moves in the book's architecture.",
+        "competitive": "The trap is the preparatory-activities option because it sounds like it is diminishing the importance of the two disciplines -- framing them as pre-move overhead. The chapter's position is the opposite: these are the disciplines that determine whether any downstream move is rational. The operator who executes an offensive move without grand strategy and intelligence is applying execution quality to a misspecified problem. The enabling conditions are not overhead; they are the return multiplier."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch05-q10",
+      "prompt": "An operator has a clear grand strategy and has done thorough intelligence work revealing that the market structure her plan depends on has fundamentally changed. Her plan assumed she would be building in an emerging segment; that segment is now dominated by two large incumbents. She has two options: revise the plan to find a different segment, or hold the plan on the grounds that patience is a strategic virtue and the incumbents may over-extend. Which does the chapter's framework support?",
+      "choices": [
+        "Revise the plan: the intelligence has revealed a fact-change (the segment structure has changed) that invalidates a key assumption of the original plan, which is exactly the situation the revisability requirement is designed for.",
+        "Hold the plan: the chapter warns against the operator who revises too quickly when the world changes, and patience under adversarial conditions is a form of the cheerful loss discipline.",
+        "Gather more intelligence before deciding: the market structure change may be temporary, and additional research will clarify whether revision is warranted."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nice catch. The revisability requirement is designed for exactly this situation: facts about the world have changed (the segment structure), and those changed facts invalidate a key assumption of the plan. This is genuine revision, not drift -- the deviation is driven by a change in the external situation, not by the operator's comfort preferences. Holding the plan on the grounds that patience is a virtue is applying the cheerful-loss discipline to the wrong situation -- cheerful loss absorbs setbacks inside a still-valid trajectory; it does not protect a plan whose foundational assumptions have been invalidated. More gathering would loop back into the intelligence-as-paralysis failure mode, especially when the market structure change is already well-documented.",
+        "direct": "Revision is warranted. The drift-vs-revision diagnostic says: if the deviation is driven by a change in the world's facts, it is genuine revision. The segment's change from emerging to dominated is exactly that kind of fact-change. Holding the plan is appropriate when the loss is inside a still-valid trajectory. When the trajectory's foundational assumption has been invalidated by fact-change, holding is rigidity, not discipline. More gathering delays the revision and risks using the gathering as avoidance.",
+        "competitive": "The trap is the hold-and-be-patient option because it sounds like the kind of discipline the chapter endorses. The chapter endorses cheerful loss inside a valid trajectory. It does not endorse holding a plan whose assumptions have been invalidated. The distinction is precise: the cheerful-loss discipline absorbs setbacks; the revisability requirement responds to structural fact-changes. These are different conditions requiring different disciplines, and misapplying the first to the second is the rigidity failure mode the chapter explicitly warns against."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

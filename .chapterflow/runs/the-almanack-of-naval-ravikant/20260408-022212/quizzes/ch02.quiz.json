@@ -1,0 +1,178 @@
+{
+  "chapterId": "ch02-building-judgment",
+  "chapterNumber": 2,
+  "chapterTitle": "Building Judgment",
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "How does the chapter define judgment most accurately?",
+      "choices": [
+        "The ability to sound credible while deciding quickly",
+        "Wisdom applied to external choices by seeing long-term consequences more clearly",
+        "A collection of strong opinions backed by advanced concepts"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter ties judgment to long-term consequences and action. It is not speed or performance by itself.",
+        "direct": "Naval's definition is practical and directional. The other choices confuse image or complexity with real judgment.",
+        "competitive": "Judgment is paid for because it steers well, not because it sounds sharp."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the chapter praise clear thinkers over merely smart-sounding thinkers?",
+      "choices": [
+        "Because advanced ideas are usually worthless in practice",
+        "Because clear thinkers can rebuild from basics instead of relying on prestige language",
+        "Because simple language always proves better reasoning"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter values basics because they let a person rebuild an idea when memory or jargon fails. It is not rejecting complexity itself.",
+        "direct": "Re-derivation is the difference. Clear thinkers own the chain beneath the concept instead of borrowing the concept's social aura.",
+        "competitive": "If the floorboards are yours, the house stands. If only the vocabulary is yours, it collapses fast."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What does the chapter say suffering often reveals?",
+      "choices": [
+        "That reality has finally overpowered the story you were using to avoid it",
+        "That emotions should be removed entirely from decision-making",
+        "That the hardest path is always the wisest path"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Suffering matters here because it can expose truths a person kept editing away. The chapter does not say pain is automatically wisdom.",
+        "direct": "The point is reality contact, not emotion denial. Pain often marks the collapse of a preferred narrative.",
+        "competitive": "The hurt is useful because the spin finally broke, not because pain itself is sacred."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Rina has a polished launch story and ugly churn numbers in the same meeting. What move best fits the chapter's judgment logic?",
+      "choices": [
+        "Show the bad data early and let the room deal with reality before ego protects the story",
+        "Lead with the success slides and wait for a larger data sample before admitting concern",
+        "Hide the churn data until she can explain exactly why it happened"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Rina's best move is early reality contact. The chapter treats delayed truth as more expensive than immediate discomfort.",
+        "direct": "Judgment starts by refusing to let desire edit the evidence. The room cannot choose well until the flattering story loses control.",
+        "competitive": "Bad data hidden for one more week is not strategy. It is denial with a calendar invite."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "In the study room, why does Noor force Theo to rebuild the formula from assumptions instead of memorizing the final line?",
+      "choices": [
+        "Because memorization is always useless in technical fields",
+        "Because the chapter treats first-principles clarity as stronger than prestige-level recitation",
+        "Because the exam will definitely ask for the derivation rather than the answer"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Noor is teaching Theo to own the structure beneath the formula. The chapter prefers understanding that survives pressure and change.",
+        "direct": "First-principles clarity is the point here. Memorization can still help, but it is weaker when the chain underneath is missing.",
+        "competitive": "She is making him buy the spine, not just rent the final sentence."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Jonah keeps extending a spreadsheet for a long-lived personal decision but still cannot get to a real yes. What does the chapter's heuristic suggest?",
+      "choices": [
+        "Keep gathering data until the spreadsheet becomes emotionally convincing",
+        "Treat the sustained inability to say yes as evidence that the answer is no for now",
+        "Choose randomly so identity does not distort the process"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter uses no as protection for high-lock-in choices when conviction stays weak. More columns do not always mean more clarity.",
+        "direct": "This heuristic is for decisions that can absorb years. If the yes never becomes real, the maybe itself is informative.",
+        "competitive": "A spreadsheet can get smarter while the signal gets weaker. At some point the maybe is the answer."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What does Caleb's compensation failure reveal about the principal-agent problem?",
+      "choices": [
+        "People stop caring when a company grows beyond a certain size",
+        "Agents optimize what touches their incentives, even when that harms the principal's real goal",
+        "The safest solution is to remove incentives entirely from complex work"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Caleb's reps did what the plan rewarded. The gap sat between the business goal and the metric that touched the agents directly.",
+        "direct": "Principal-agent thinking asks who bears the outcome and who is actually incentivized by the current design. Those are not always the same person.",
+        "competitive": "He paid for the wrong behavior and got it at scale. That is principal-agent in plain clothes."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "When does the chapter's run-uphill heuristic make the most sense?",
+      "choices": [
+        "When short-term pain is buying stronger long-term foundations rather than just extra suffering",
+        "Whenever one option feels harder, because pain itself is a reliable guide",
+        "Only in business decisions, not in study or personal life"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter is not worshipping pain. It values the harder path when that pain hides long-term gain and stronger judgment.",
+        "direct": "Run uphill is a timing heuristic, not a masochism rule. The hard option has to improve the map, not simply hurt more.",
+        "competitive": "Pain is not the target. Better payoff hidden behind pain is the target."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does the chapter care so much about reading foundations and originals?",
+      "choices": [
+        "Because contemporary writers usually have no useful ideas at all",
+        "Because judgment depends on the quality of the axioms underneath later models and conclusions",
+        "Because rereading is the fastest way to finish more books each year"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Foundations matter because later thinking rests on them. Weak first assumptions can distort everything built above them.",
+        "direct": "The chapter treats reading as model maintenance. Originals and basics strengthen the structure underneath later interpretations and heuristics.",
+        "competitive": "If the axioms are junk, the whole mental stack gets confident and crooked at the same time."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What turns a mental model from a catchy maxim into something the chapter would actually trust?",
+      "choices": [
+        "Its ability to sound memorable enough that you can repeat it under stress",
+        "Its use by famous thinkers, even if you do not understand the chain under it",
+        "Its grounding in foundations, lived testing, and renewed contact with the problem in front of you"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "A model becomes trustworthy when it rests on real foundations and helps you see the current problem more clearly. Otherwise it is just a nice line.",
+        "direct": "The chapter distinguishes live principles from quote collections. Foundations, experience, and reality contact are what keep a model honest.",
+        "competitive": "A slogan becomes a model only when it can survive contact with the world and still sharpen the read."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

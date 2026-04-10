@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch01-q01",
+      "prompt": "According to the chapter's foundational claim, what is the first opponent in any real conflict?",
+      "choices": [
+        "The most powerful person in the room you are about to walk into.",
+        "The operator about to walk into the room.",
+        "The institutional rules that constrain what you are allowed to do."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Nice catch. The chapter opens by claiming that the first opponent is internal: the four self-directed contests have to be won before any external move can land. The first option names a real opponent in many conflicts but not the first one; the third names a constraint, not an opponent. The chapter's whole frame depends on locating the first contest inside the operator.",
+        "direct": "Right answer for the right reason. The chapter is unambiguous that the four internal contests come before any external strategy, and that an operator who has not won them runs every later move from a position they have not earned. The other two options are real considerations elsewhere in the book, but they are not the first opponent.",
+        "competitive": "Picking the powerful-person option is the most common miss because it sounds like the kind of thing a strategy book would say. It is wrong here. The book's distinctive opening is that the quietest fights happen before the room you walk into has noticed you, and they happen inside the head of the operator running the strategy."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q02",
+      "prompt": "Devon is the chapter's anchor for which specific failure?",
+      "choices": [
+        "Refusing to build a personal practice for decisions made under emotional load.",
+        "Deliberately removing his easy escapes on a project he was already overwhelmed by.",
+        "Continuing to run a Series-A operating playbook at a Series-C company that no longer fits it."
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Nice catch. Devon's role in the chapter is to embody the 'do not fight the last war' move. The couch in the office and the three-question Tuesday standup are the playbook that built him at his first company, and they are now driving away the senior people he hired at his second. The first option describes Imani's contest; the second describes the death-ground reversal Aiden's example warns against.",
+        "direct": "Devon's specific symptom is the standup where his head of engineering pauses before answering him for the third time in a week, because the operating style that worked at his first company has stopped fitting the second. The other two options are real moves in the chapter but they belong to other anchors.",
+        "competitive": "The trap in the first option is that Devon also looks like someone who needs a presence-of-mind practice, but the chapter does not assign him that contest. He is the second-contest case, and the choreography of the room around him is the diagnostic the chapter wants the reader to learn to read."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q03",
+      "prompt": "The polarity move (naming the people structurally opposed to you) is best characterized as which kind of discipline?",
+      "choices": [
+        "A diagnostic discipline directed at clarity, not a hostile posture toward colleagues.",
+        "An aggressive posture intended to put opponents on notice that you are aware of them.",
+        "A general suspicion of colleagues that protects the operator from being blindsided."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nice catch. The chapter is explicit that the work is to identify real opposition rather than to manufacture it, and that the failure mode of the move is paranoia. The discipline is internal clarity about who is actually opposed to you. The aggressive-posture option turns the move into adversarial theatre; the general-suspicion option is the failure mode the reversal warns against.",
+        "direct": "Diagnostic clarity is the chapter's framing. It explicitly distinguishes the move from both performative hostility and indiscriminate suspicion. The reversal of the move is paranoia, and the general-suspicion option is exactly what the reversal looks like.",
+        "competitive": "The seductive wrong answer is the general-suspicion option because it sounds like 'the strategy book would say be suspicious.' But the chapter goes out of its way to flag that paranoia is the failure mode and that the discipline is clarity, not posture."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q04",
+      "prompt": "A junior product manager named Maren notices that a senior peer has, in three meetings over the past two months, reframed Maren's shipped redesign as a downstream output of the peer's own research initiative. The audience for those meetings includes the people who will decide Maren's promotion. Which move from the chapter applies first?",
+      "choices": [
+        "Confront the peer directly after the next meeting and ask her to stop misattributing the work.",
+        "Run the polarity diagnostic: name the pattern, write down the three specific instances, and stop calling it a stylistic difference.",
+        "Wait until the promotion review and address the misattribution in the room with senior leadership present."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Nice catch. The chapter's Ruth example is exactly this situation. The first move is internal: name the pattern, write down the evidence, stop calling it a stylistic difference. Direct confrontation is premature; the public correction during the review is the version that fails because the narrative has already been absorbed by the audience.",
+        "direct": "Diagnostic first. The contest-one move comes before any external action because it changes what Maren can see. Confrontation and a public correction during the review are both possible later steps, but they work badly without the discipline that recognizes the pattern is real and persistent rather than incidental.",
+        "competitive": "The diagnostic is the move that opens the others. Acting before the diagnostic means acting on a story Maren has not yet allowed herself to see clearly. Naming first is what makes any later action correctly aimed."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q05",
+      "prompt": "An executive who built his reputation by running his startup at full crisis tempo through year three is, in year five, still running his company in 'wartime mode' and watching senior people leave. Which contest is he most likely losing?",
+      "choices": [
+        "The fourth contest, because his comfort is dulling his judgment and he needs to remove his easy escapes.",
+        "The third contest, because he is acting from the narrow place when he should be slowing down.",
+        "The second contest, because the playbook that built him no longer fits the conditions, and his confidence in it is what makes the misfit invisible."
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Nice catch. This is the Devon case. The executive's symptom is the senior departures, and the diagnosis is that the year-three playbook is being run against year-five conditions. The fourth-contest option does not fit (his problem is not comfort), and the third-contest option describes a moment-level failure rather than a multi-year operating pattern.",
+        "direct": "Second contest. The signature is that the operating move which built the operator is now driving away the people the operator needs. The third-contest option confuses a moment-of-pressure failure with a structural-conditions failure; the fourth-contest option inverts the diagnosis entirely (his problem is misfit confidence, not comfort).",
+        "competitive": "The trap is the fourth-contest option because 'wartime mode' sounds like the kind of pressured state the chapter warns about, but the chapter assigns wartime-mode-overrunning-its-conditions to the second contest, not the fourth. The fourth contest is for the operator who is too comfortable, not the operator who has overstayed a crisis posture."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q06",
+      "prompt": "Under what condition does the death-ground move (deliberately removing your easy escapes) produce collapse instead of delivery?",
+      "choices": [
+        "When the operator is already at the edge of capacity and the removal of escapes adds pressure to overwhelm rather than to drift.",
+        "When the operator is comfortable but does not yet know which specific project to apply the move to.",
+        "When the operator has not yet built a personal practice for presence of mind to pair with the constraint."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nice catch. The chapter is explicit that death ground is for the comfortable, and that aimed at someone already at the edge the same move produces collapse. The image is the drowning operator who does not need a deeper end of the pool. The other two options name real complications but neither is the failure condition the chapter highlights.",
+        "direct": "Edge of capacity. The reversal on this move is the most important one in the chapter, and it is asymmetric: comfortable operator plus constraint produces delivery; overwhelmed operator plus constraint produces collapse. The diagnostic step before the move is what prevents the wrong application.",
+        "competitive": "Overwhelm is the answer the chapter spends real space defending. The trap in the pair-with-presence-of-mind option is that 'pair the moves' sounds wise, but the chapter explicitly says the moves apply to opposite states and should not be run together; the failure mode it warns about is misdiagnosing the state, not failing to combine."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q07",
+      "prompt": "A graduate researcher named Theo proposed a dissertation in 2023 around a central argument that two new monographs have since undermined. His defense is in four months. Which move from the chapter should he apply, and what is the specific risk if he does not?",
+      "choices": [
+        "He should apply the death-ground move by publicly committing to a defense date so that the social cost of revising forces the work; the risk is that without the constraint, he keeps drifting.",
+        "He should apply the second contest (abandon the playbook that no longer fits conditions) by revising the central argument to incorporate the new evidence; the risk is that he spends his remaining months defending a 2023 question in a 2026 field.",
+        "He should apply the polarity move by identifying which scholars are now structurally opposed to his argument; the risk is being blindsided in the defense room."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Nice catch. The chapter's Priya example is exactly this case. The contest-two move (revise rather than defend) is what saves the defense, and the specific risk is exactly what the chapter names: defending a question from before the field moved. The other options describe other moves in the chapter that do not address the underlying problem.",
+        "direct": "Second contest. Theo's situation is a contest-two failure waiting to happen, and the only move that addresses it is the willingness to abandon the original argument and rebuild around the new evidence. The other options are valid moves in other situations and would not save this defense.",
+        "competitive": "Only one answer engages the actual problem. Death-ground is the trap because it sounds productive, but constraint without revision just locks Theo into defending a stale argument under deadline pressure. The work is the rebuild, not the deadline."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q08",
+      "prompt": "Sam tells you he feels calm and unhurried about a project that has been ninety percent finished for fourteen months. He is sleeping well, his job is sustainable, and the partial work is impressive enough that no one is pressing him on the missing piece. Which of the four contests is most likely the right intervention?",
+      "choices": [
+        "The third contest (presence of mind), because his calm suggests he should formalize a personal practice to maintain it.",
+        "The first contest (polarity), because the right intervention is to identify which colleagues are structurally opposed to him finishing.",
+        "The fourth contest (death ground), because the calm is comfort dulling the work, and the move is to deliberately remove the easy escapes."
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Nice catch. Sam's signs (good sleep, sustainable job, no environmental pressure, ninety percent stuck for over a year) are the diagnostic for comfortable drift, which is exactly the state the fourth contest is designed to address. The other options either misread the state or apply moves that do not engage the underlying problem.",
+        "direct": "Fourth contest. The diagnostic is unambiguous: drift sustained over fourteen months in a state of good rest and absent external pressure is the textbook fourth-contest case. The presence-of-mind option misreads calm as a discipline when it is the comfort the chapter warns about; polarity does not engage the problem at all.",
+        "competitive": "The seductive miss is the presence-of-mind option because Sam sounds 'centered' and centeredness reads as wisdom, but the chapter is precise about the difference: presence of mind is for the operator caught in pressure they did not choose, and Sam has been in chosen comfort for over a year."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q09",
+      "prompt": "The third and fourth contests look like contradictory advice. What makes the pairing coherent rather than contradictory, and why does the chapter treat the diagnostic step as more important than either move on its own?",
+      "choices": [
+        "The two moves apply to opposite states (pressure-not-chosen versus comfort-being-chosen), and the diagnostic step matters more because the cost of misreading the state is asymmetric and unforgiving.",
+        "The two moves can be combined safely if the operator runs them in the right order, and the diagnostic step exists to determine the order.",
+        "The two moves are mutually exclusive at the level of philosophy but converge in practice once the operator has enough experience to integrate them."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nice catch. The chapter resolves the apparent contradiction by locating each move in its own state, and it stresses the diagnostic because death-ground applied to overwhelm collapses a person while presence-of-mind applied to drift extends the drift indefinitely. The combine-in-the-right-order option turns the moves into a sequence the chapter does not endorse; the converge-in-practice option dissolves the distinction the chapter is trying to preserve.",
+        "direct": "Opposite states is the chapter's actual resolution. The two moves are not steps in a single plan and not philosophical opposites that converge in practice. They belong to different states, and the asymmetric cost of misreading the state is what makes the diagnostic the prior skill.",
+        "competitive": "The opposite-states answer holds the chapter's hardest content. The trap in the combine-in-order option is that 'combine in the right order' sounds sophisticated but the chapter is explicit that the moves apply to opposite states and should not be run together. The honest answer is that the operator's first job is to know which state they are in."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch01-q10",
+      "prompt": "The chapter ends by claiming that every later strategy in the book presupposes the four internal contests. What is the specific cost the chapter implies for an operator who runs a later strategy from a position they have not yet earned?",
+      "choices": [
+        "Their tactical execution will be visibly poor, and the failure will be obvious enough that they can correct it within a few iterations.",
+        "Their tactical execution may look correct on the surface and still fail, because the operator running it is losing a different and quieter contest at the same time.",
+        "Their tactical execution will succeed at the surface level but cost them long-term reputation, which is a cost they can usually absorb."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Nice catch. The chapter's specific warning is that an unearned strategy fails in a quieter and more dangerous way than a poorly-executed one: it can look right and still lose, because the failure is upstream of execution. The visibly-poor option treats the failure as obvious and self-correcting; the long-term-reputation option treats the cost as primarily reputational, which is not the chapter's claim.",
+        "direct": "Quiet failure. The chapter is precise that the failure mode of an unearned strategy is invisibility, not visibility. The operator runs the move correctly on the surface and is still losing because the contest underneath the move was lost before the move started. This is what makes the four contests foundational rather than preparatory.",
+        "competitive": "Only the quiet-failure option engages the chapter's actual claim. The other two assume the failure is observable, but the whole reason the chapter spends its opening on internal work is that the failures from skipping it look exactly like ordinary tactical execution from the outside, which is what makes them dangerous."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

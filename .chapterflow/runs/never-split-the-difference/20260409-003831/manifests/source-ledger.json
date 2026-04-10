@@ -1,0 +1,71 @@
+{
+  "bookId": "never-split-the-difference",
+  "runId": "20260409-003831",
+  "createdAt": "2026-04-09T00:41:12Z",
+  "policy": "public_or_authorized_plus_secondary",
+  "sources": [
+    {
+      "sourceId": "src-01",
+      "title": "Never Split the Difference: Negotiating as if Your Life Depended on It - Google Books",
+      "url": "https://books.google.com/books/about/Never_Split_the_Difference.html?id=TL8CCwAAQBAJ",
+      "type": "authorized_preview",
+      "role": "bibliographic confirmation, subtitle confirmation, 2016 English reprint-family metadata, and official marketing copy support",
+      "confidence": "high",
+      "notes": "Confirms Chris Voss and Tahl Raz as authors, 2016 publication family, and the book's nine-principles positioning."
+    },
+    {
+      "sourceId": "src-02",
+      "title": "Never Split the Difference catalog record - Ann Arbor District Library",
+      "url": "https://aadl.org/catalog/record/10185345",
+      "type": "library_catalog",
+      "role": "first-edition metadata, chapter map, publisher imprint, and ISBN lock",
+      "confidence": "high",
+      "notes": "Provides Harper Business 2016 print metadata and the full ten-chapter contents line used to preserve chapter order."
+    },
+    {
+      "sourceId": "src-03",
+      "title": "Never Split the Difference: Study Guide - Black Swan Group",
+      "url": "https://www.blackswanltd.com/download-study-guide-never-split-the-difference",
+      "type": "official_author_business",
+      "role": "official support for chapter-by-chapter instructional framing and current rights-safe study posture",
+      "confidence": "high",
+      "notes": "Useful as bounded support for learning emphasis, but not a replacement for the frozen chapter map."
+    },
+    {
+      "sourceId": "src-04",
+      "title": "Never Split the Difference audiobook record - Richland Library",
+      "url": "https://www.richlandlibrary.com/catalog/detail/1512734",
+      "type": "library_catalog",
+      "role": "secondary corroboration of the ten numbered chapter headings and book family",
+      "confidence": "medium",
+      "notes": "Used to cross-check chapter-title continuity when Google Books preview coverage is partial."
+    },
+    {
+      "sourceId": "src-05",
+      "title": "9 Field-Tested, No-Fail Strategies to Use in Your Next Negotiation",
+      "url": "https://www.blackswanltd.com/newsletter/the-9-field-tested-no-fail-strategies-to-help-you-succeed-in-your-next-negotiation",
+      "type": "official_author_business",
+      "role": "chapter-level concept support for mirroring, tactical empathy, labeling, no-oriented questions, and calibrated questioning",
+      "confidence": "high",
+      "notes": "Published by Chris Voss in connection with the book's release and explicitly framed as the book's negotiation strategies."
+    },
+    {
+      "sourceId": "src-06",
+      "title": "Methods of Persuasion: How to Use FBI Empathy",
+      "url": "https://www.blackswanltd.com/newsletter/how-to-use-fbi-empathy",
+      "type": "official_author_business",
+      "role": "supports tactical empathy, perspective articulation, and the 'that's right' framing used in early chapters",
+      "confidence": "high",
+      "notes": "Chris Voss article that explicitly names Tactical Empathy and contrasts 'that's right' against chasing yes."
+    },
+    {
+      "sourceId": "src-07",
+      "title": "How to Use the Key to Tactical Empathy",
+      "url": "https://www.blackswanltd.com/the-edge/how-to-use-the-key-to-tactical-empathy",
+      "type": "official_author_business",
+      "role": "supports Chapter 5's 'that's right' breakthrough framing and summary logic",
+      "confidence": "high",
+      "notes": "Useful later in the run for Chapter 5 sidecars and validation against generic persuasion drift."
+    }
+  ]
+}

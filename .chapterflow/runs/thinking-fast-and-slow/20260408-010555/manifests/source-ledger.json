@@ -1,0 +1,70 @@
+{
+  "bookId": "thinking-fast-and-slow",
+  "runId": "20260408-010555",
+  "lockedAt": "2026-04-08T01:05:55.000Z",
+  "selectionPolicy": {
+    "sourceDiscoveryMode": "web_bundle",
+    "sourcePolicy": "public_or_authorized_plus_secondary",
+    "editionSelectionMode": "ask_if_ambiguous"
+  },
+  "sources": [
+    {
+      "sourceId": "openlibrary-english-toc",
+      "kind": "authorized_preview_metadata",
+      "authority": "Open Library / Internet Archive",
+      "url": "https://openlibrary.org/books/OL25426844M/Thinking_fast_and_slow",
+      "capturedFacts": [
+        "2012 Penguin paperback metadata",
+        "five-part table of contents",
+        "38 numbered chapters plus introduction, conclusions, appendices, notes, acknowledgments, and index",
+        "512-page bibliographic record"
+      ],
+      "quoteSupport": "toc_titles_only",
+      "role": "edition anchor and chapter map"
+    },
+    {
+      "sourceId": "macmillan-fsg-page",
+      "kind": "official_publisher_page",
+      "authority": "Macmillan / Farrar, Straus and Giroux",
+      "url": "https://us.macmillan.com/books/9780374533557/thinkingfastandslow/",
+      "capturedFacts": [
+        "publisher framing for the two-systems model",
+        "five-part book overview",
+        "authorized English edition metadata"
+      ],
+      "quoteSupport": "public_page_only",
+      "role": "official framing support"
+    },
+    {
+      "sourceId": "penguin-random-house-page",
+      "kind": "official_publisher_page",
+      "authority": "Penguin Random House",
+      "url": "https://www.penguinrandomhouse.com/books/89308/thinking-fast-and-slow-by-daniel-kahneman/",
+      "capturedFacts": [
+        "authorized English audiobook metadata",
+        "current market-facing description of the two-system framing",
+        "publication date metadata"
+      ],
+      "quoteSupport": "public_page_only",
+      "role": "edition-family confirmation"
+    },
+    {
+      "sourceId": "coursehero-part-summaries",
+      "kind": "secondary_summary",
+      "authority": "Course Hero literature summaries",
+      "url": "https://www.coursehero.com/lit/Thinking-Fast-and-Slow/",
+      "capturedFacts": [
+        "chapter-group summary support for later parts when the frozen primary bundle is quote-thin",
+        "public summaries of the major claims in Parts III-V"
+      ],
+      "quoteSupport": "summary_page_only",
+      "role": "narrow paraphrase support"
+    }
+  ],
+  "secondarySources": [],
+  "notes": [
+    "No pirated or obviously unauthorized mirrors were used.",
+    "The frozen bundle supports paraphrased synthesis and exact chapter/part titles, not long direct quotation.",
+    "Introduction, Conclusions, Appendix A, Appendix B, notes, acknowledgments, and index remain outside the numbered package."
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "chapterId": "ch06",
+  "title": "Speed, Initiative, and the Decisive Point",
+  "sourceStrategies": [14, 15, 16],
+  "sourcePart": "Part IV — Offensive Warfare",
+  "approximateSourceWords": 400,
+  "keyConcepts": [
+    {
+      "name": "Operational tempo",
+      "strategy": 14,
+      "description": "The sustained cycle rate of observe-orient-decide-act that, when faster than the opponent's cycle, renders the opponent's responses perpetually out of date. Speed is a weapon only when it is faster than the opponent's loop, not just fast in absolute terms."
+    },
+    {
+      "name": "OODA loop (formalized)",
+      "strategy": 14,
+      "description": "Boyd's observe-orient-decide-act framework introduced in Ch1 (counterbalance) and formalized here as an offensive principle. Faster loop wins. Callback opportunity to Ch1 anchor."
+    },
+    {
+      "name": "Initiative",
+      "strategy": 15,
+      "description": "The ongoing act of setting the terms, sequence, pace, and agenda of engagement before the opponent can. Distinct from speed: speed is cycle rate; initiative is who is structuring the engagement."
+    },
+    {
+      "name": "Center of gravity",
+      "strategy": 16,
+      "description": "The one node in the opponent's position whose loss collapses everything built on it. Rarely the most obvious target. Identification requires the intelligence work of Ch5."
+    },
+    {
+      "name": "Asymmetric return on targeting",
+      "strategy": 16,
+      "description": "Attacking the center of gravity produces disproportionate collapse relative to cost, because all dependent structures fail. Attacking secondary targets produces only proportional damage at full cost."
+    }
+  ],
+  "connectingThread": "Speed + Initiative + Decisive Point form a coherent offensive sequence: cycle faster (opponent is always reacting), structure the terms (opponent is navigating your terrain), concentrate force on the deciding node (opponent absorbs disproportionate damage). All three require Ch5's prior conditions: grand strategy (which fights are worth entering) and intelligence (where the center of gravity actually is).",
+  "callbackOpportunities": [
+    {
+      "toChapter": "ch01",
+      "concept": "OODA loop was introduced in Ch1 (Counterbalance strategy) as a stress-narrowing frame; here it becomes an offensive tempo principle. Brief callback validates continuity and rewards returning readers."
+    },
+    {
+      "toChapter": "ch05",
+      "concept": "Intelligence (Strategy 13) is the explicit prerequisite for center-of-gravity identification. Speed without intelligence is misdirected; decisive-point attacks without intelligence misfire."
+    }
+  ],
+  "reversalFlags": [
+    {
+      "strategy": 14,
+      "flag": "Speed multiplies direction -- fast bad decisions reach wrong destinations faster and are harder to correct due to momentum. Speed is a force multiplier, not a substitute for judgment."
+    },
+    {
+      "strategy": 15,
+      "flag": "Initiative without goal is random aggression. Setting terms that do not serve the long horizon is worse than reacting, because it commits resources to terrain the operator did not want to occupy."
+    },
+    {
+      "strategy": 16,
+      "flag": "Misidentification of center of gravity is more dangerous than no attack. Attack on secondary target leaves attacker out of position, resources spent, real center intact. Intelligence prerequisite is non-negotiable."
+    }
+  ],
+  "properNouns": ["OODA loop", "Boyd"],
+  "repeatedTerms": ["operational tempo", "center of gravity", "initiative", "decisive point", "cycle"],
+  "moralFlag": "low",
+  "conceptDensity": 3
+}

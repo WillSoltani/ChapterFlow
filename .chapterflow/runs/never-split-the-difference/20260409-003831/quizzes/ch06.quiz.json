@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "Why can the same offer feel fair to one person and unfair to another?",
+      "choices": [
+        "Because people judge only by formal logic",
+        "Because perception, comparison, and emotion shape how the offer lands",
+        "Because one of the people is always acting irrationally"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says offers are experienced through perception, not through facts alone.",
+        "direct": "Reasonableness changes with fairness, reference points, and perceived loss.",
+        "competitive": "The room reacts to the frame, not just the terms."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What role does fairness play in Chapter 6?",
+      "choices": [
+        "It is only a moral side issue unrelated to negotiation",
+        "It is an emotional frame that changes whether the offer feels respectful or exploitative",
+        "It matters only after the negotiation is complete"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Fairness changes emotional landing.",
+        "direct": "The chapter treats fairness as part of the experienced reality of the offer.",
+        "competitive": "If the frame feels unfair, the math is not enough."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why does loss pressure matter in this chapter?",
+      "choices": [
+        "Because people often react strongly to possible downside",
+        "Because loss always matters more than trust",
+        "Because negotiators should threaten loss whenever possible"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Possible loss can change how acceptable a proposal feels.",
+        "direct": "Perceived downside often weighs heavily in the other side's decision.",
+        "competitive": "Loss can bend the whole room."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Erin's budget request seems balanced to her but unfair to another department. What move best fits Chapter 6?",
+      "choices": [
+        "Argue the spreadsheet harder without addressing the fairness frame",
+        "Address how the proposal is landing in terms of fairness and balance before defending the numbers again",
+        "Ignore the reaction because the request is analytically defensible"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants the negotiator to address perceived fairness, not only formal math.",
+        "direct": "If the frame feels unfair, defending numbers alone misses the live obstacle.",
+        "competitive": "Fix the fairness meaning before you sell the math again."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What does anchoring do in Chapter 6?",
+      "choices": [
+        "It changes the underlying facts completely",
+        "It sets a comparison point that changes what feels normal, high, or low",
+        "It guarantees the other side will accept the first offer"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Anchors change the comparison around the terms.",
+        "direct": "Reference points shape experienced reasonableness by setting a scale for interpretation.",
+        "competitive": "Comparison tells the room what the fact is supposed to feel like."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Nolan offered a deadline extension as help, but his advisor experienced it as added risk. What did Nolan most likely miss?",
+      "choices": [
+        "That the advisor was only interested in gain, not loss",
+        "That loss framing was shaping how the advisor experienced delay",
+        "That deadlines never matter in negotiation"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The same option can feel different once possible loss becomes central.",
+        "direct": "Nolan missed that downside perception was shaping the advisor's reaction.",
+        "competitive": "He sold flexibility into a room living inside loss."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What is the chapter's boundary around perception-shaping?",
+      "choices": [
+        "It should be used even if the other side feels manipulated",
+        "It works only when it clarifies value and risk without collapsing trust",
+        "It replaces the need for earlier understanding"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The move needs trust underneath it.",
+        "direct": "Perception work fails when it feels crude or manipulative instead of clarifying.",
+        "competitive": "If the room feels handled, the edge is gone."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Which sign most clearly shows that Chapter 6 is being misused?",
+      "choices": [
+        "The negotiator checks how the other side is experiencing fairness and risk",
+        "The negotiator uses framing after building trust and understanding",
+        "The negotiator uses crude loss pressure and obvious anchors that make the room feel handled"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The misuse is when the frame damages trust.",
+        "direct": "Crude manipulation turns clarification into pressure and collapses the move.",
+        "competitive": "The moment it feels like a trick, the chapter is being used badly."
+      },
+      "bloomsLevel": "evaluate_create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why do earlier chapters matter so much before Chapter 6 can work well?",
+      "choices": [
+        "Because recognition and alignment make framing feel more legitimate and less manipulative",
+        "Because Chapter 6 has nothing to do with the earlier chapters",
+        "Because fairness and loss work only in business settings"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The room needs understanding and safety before perception work can help.",
+        "direct": "Recognition and alignment are what make framing sound like clarification instead of coercion.",
+        "competitive": "Without foundation, influence just sounds like a trick."
+      },
+      "bloomsLevel": "evaluate_create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If Chapter 6 is about shaping perceived reasonableness, what kind of next step best fits the bridge into Chapter 7?",
+      "choices": [
+        "A move that steers the conversation while preserving the other side's sense of agency",
+        "A tactic for removing the other side's control completely",
+        "A method for avoiding questions and simply setting stronger anchors"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The bridge points toward guiding the room without taking away agency.",
+        "direct": "Once perception is understood, the next logical move is a tool that steers while preserving control on the other side.",
+        "competitive": "After you read the terrain, the next move should steer the wheel without making them feel you took it."
+      },
+      "bloomsLevel": "evaluate_create",
+      "depthLevel": "hard"
+    }
+  ]
+}

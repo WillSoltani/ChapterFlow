@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch09-q01",
+      "prompt": "What main problem does this final chapter solve?",
+      "choices": [
+        "How to sound more humorous at parties",
+        "How to handle socially dangerous moments where embarrassment, debt, emotion, or power make ordinary friendliness too weak",
+        "How to avoid favors entirely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. The chapter focuses on tact when the social stakes become sharp.",
+        "direct": "The part closes the book by handling pressure, face, motive, emotion, and status risk.",
+        "competitive": "This is the endgame of the book: pressure management under human risk."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch09-q02",
+      "prompt": "Why do See No Bloopers, Hear No Bloopers, and Lend a Helping Tongue come first here?",
+      "choices": [
+        "Because mistakes should always be ignored forever",
+        "Because protecting dignity can matter more than pressing correction when someone feels exposed",
+        "Because public correction is always rude no matter what happened"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exactly. The chapter starts by reducing humiliation before trying to win the point.",
+        "direct": "Face-saving matters because exposed people are protecting dignity before they can process content cleanly.",
+        "competitive": "If face is collapsing, forcing the fact gets expensive fast."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch09-q03",
+      "prompt": "What is the chapter's warning about favors and reciprocity?",
+      "choices": [
+        "Every favor should be repaid immediately in public",
+        "Good timing matters because crude repayment can turn help into pressure",
+        "Hidden motives should always be confronted bluntly on sight"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. Help can go bad if the debt arrives too quickly.",
+        "direct": "The chapter slows reciprocity because bad timing can make generosity feel like entrapment.",
+        "competitive": "Rush the debt and you cheapen the help."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch09-q04",
+      "prompt": "Elena hears a coworker misspeak in a meeting. What fits the chapter best?",
+      "choices": [
+        "Correct him immediately in front of everyone so the record stays clean",
+        "Help him recover without spotlighting the stumble more than necessary",
+        "Say nothing and later mock the mistake privately"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Elena protects the person's dignity before pressing harder on the content.",
+        "direct": "The chapter values face-saving rescue over public humiliation when exposure is already live.",
+        "competitive": "Cover the stumble before the damage compounds."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q05",
+      "prompt": "What keeps tact from turning into manipulation in this chapter?",
+      "choices": [
+        "Never thinking about strategy at all",
+        "Keeping protection and dignity louder than control or exploitation",
+        "Always giving the other person everything they want"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Good catch. The chapter keeps ethics visible because vulnerable moments invite misuse.",
+        "direct": "The method stays intact only while it protects people more than it manages them.",
+        "competitive": "The edge dies the second the room stops feeling safe."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q06",
+      "prompt": "Why does the chapter care so much about matching talk to setting?",
+      "choices": [
+        "Because settings have pressure limits and the wrong topic in the wrong room can trap people",
+        "Because small talk is always better than serious talk",
+        "Because meals should never include disagreement"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. A room can carry only so much weight before people feel cornered.",
+        "direct": "Context-fit talk is a pressure-control move, not just an etiquette preference.",
+        "competitive": "Wrong talk in the wrong room multiplies cost."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q07",
+      "prompt": "At a family dinner, Priya senses someone feels cornered. What chapter move helps most?",
+      "choices": [
+        "Push one more hard point so the truth fully lands",
+        "Offer a dignified escape hatch so the person can step back without losing face",
+        "Pretend the tension is not there and change the subject abruptly"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. The chapter protects the relationship by protecting the exit.",
+        "direct": "Escape hatches matter because pressure drops when people are not pinned in place.",
+        "competitive": "A clean route out often saves more than one more point scored."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q08",
+      "prompt": "When someone empties their tanks in a formal setting, what best fits the chapter?",
+      "choices": [
+        "Shut them down immediately so the room stays efficient",
+        "Acknowledge the feeling, contain the pressure, and guide the moment toward a safer level",
+        "Join the emotion fully until the whole room is flooded by it"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter uses containment so the person is heard without the whole room collapsing.",
+        "direct": "Emotional tact means registering the feeling without turning the space into a punishment chamber or panic zone.",
+        "competitive": "Absorb enough heat to cool the room, not enough to drown in it."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch09-q09",
+      "prompt": "Why does The Great Scorecard in the Sky matter in this finale?",
+      "choices": [
+        "Because you should keep a list of every social mistake other people make",
+        "Because long-horizon judgment can be wiser than cheap short-term wins in status-sensitive moments",
+        "Because every conflict should be postponed forever"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The chapter looks beyond the immediate point to what the relationship will carry afterward.",
+        "direct": "Long-scorecard thinking prevents momentary ego wins from causing lasting social damage.",
+        "competitive": "Cheap wins feel good now and bill you later."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch09-q10",
+      "prompt": "What does this final chapter reveal about the whole book?",
+      "choices": [
+        "That all social skill is really about collecting as many people as possible",
+        "That the earlier skills matter most when they make hard moments safer rather than sharper",
+        "That smoothness matters more than ethics under pressure"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That is the closing idea. The earlier skills build toward safer judgment under pressure.",
+        "direct": "The book ends by redefining social intelligence as humane protection plus clear judgment in difficult moments.",
+        "competitive": "The real endgame is simple: skill should lower danger, not exploit it."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

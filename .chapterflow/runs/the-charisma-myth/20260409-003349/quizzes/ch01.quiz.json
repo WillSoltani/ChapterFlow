@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "A coworker says, Some people just walk into a room with charisma and the rest of us do not. Which response fits the chapter best?",
+      "choices": [
+        "That is mostly true because charisma is a fixed trait that practice cannot change much",
+        "That confuses a social effect with a permanent essence; the chapter argues charisma can be trained",
+        "That is wrong only for celebrities because ordinary people do not benefit from charisma in the same way"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter's whole opening move is to challenge the born-with-it story. It reframes charisma as something that can be developed rather than merely inherited.",
+        "direct": "The key correction is essence versus behavior. The chapter says charisma belongs in the category of trainable social patterns, not fixed destiny.",
+        "competitive": "That belief is exactly the myth the chapter wants to kill. It sounds realistic, but it mostly protects people from having to practice."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why are names like Bill Clinton, Steve Jobs, and Oprah useful in the opening argument?",
+      "choices": [
+        "They illustrate how public culture turns visible charisma into proof that some people are born different",
+        "They prove that charisma only matters at the highest levels of fame and leadership",
+        "They show that charisma always looks exactly the same from one person to another"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter uses familiar public figures to show how quickly people jump from visible effect to innate-trait myth.",
+        "direct": "These examples matter because they feed the public story that charisma is essence instead of a readable effect.",
+        "competitive": "The famous names are not there for worship. They are there to expose how lazy the public myth has become."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is the strongest lesson the chapter draws from the Marilyn Monroe story?",
+      "choices": [
+        "Fame automatically creates charisma whether someone changes behavior or not",
+        "Charisma depends only on appearance, so behavior matters less than people think",
+        "If the social effect can strengthen or fade, charisma makes more sense as something variable than fixed"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter leans on the idea that the effect changed. That makes charisma look more movable than permanent.",
+        "direct": "What matters is variability. A changing charisma effect fits a trainable-behavior model better than a fixed-trait model.",
+        "competitive": "The story hurts the destiny argument because the room's reaction does not stay constant."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Lena leaves a strategy meeting saying, I am just not one of those naturally compelling people. Based on the chapter, what is the strongest next move?",
+      "choices": [
+        "Treat the meeting as proof that her personality ceiling is now clear",
+        "Translate the meeting into trainable signal and state questions before calling it identity",
+        "Assume the room only rewards louder personalities and stop trying to change"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Lena's first mistake is turning one room into a verdict. The chapter asks her to treat the result as feedback about what the room read.",
+        "direct": "This is the trainable model in action. Before reaching for identity language, Lena should ask what signals or states might have shaped the room's response.",
+        "competitive": "Calling the meeting fate is the easy move. Breaking it into trainable misses is the useful one."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Victor tells his professor, That student is just naturally magnetic. Which reply best matches the chapter's logic?",
+      "choices": [
+        "Maybe, but first identify what the room seems to be reacting to before you declare it innate",
+        "Correct, because charisma cannot really be studied until much later in life",
+        "Only celebrities have enough charisma to justify that kind of label anyway"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps moving readers from labels toward observation. Once Victor notices repeatable signals, the myth starts losing power.",
+        "direct": "A better analysis begins with behavior, not destiny. The chapter's point is that visible social effect should be studied before being mythologized.",
+        "competitive": "Victor is still worshipping the effect. The stronger move is to dissect it until it stops looking supernatural."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Before a presentation, Mateo thinks, I can prepare slides, but I cannot prepare presence. Why is that belief a problem in this chapter's terms?",
+      "choices": [
+        "Because it protects him from practicing the very category the chapter says can be trained",
+        "Because the chapter claims slides never matter once charisma enters the room",
+        "Because presence only matters in personal situations, not formal ones"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Mateo's sentence makes charisma untouchable. The chapter is trying to move charisma into the category of practice instead.",
+        "direct": "The problem is categorical. Mateo is treating social impact as fate while treating content as the only trainable domain.",
+        "competitive": "That thought gives Mateo a clean excuse to neglect the one skill he most needs to train."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Which statement best captures the chapter's limit on charisma training?",
+      "choices": [
+        "Practice works only if it copies the most charismatic person you know",
+        "Training matters, but the result still has to feel inhabited rather than staged",
+        "Once charisma is trainable, authenticity stops mattering very much"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter keeps one honest boundary in view: learnable does not mean theatrical or fake.",
+        "direct": "Its credibility depends on this limit. The chapter does not endorse costume performance; it insists practice still has to feel congruent.",
+        "competitive": "Practice helps. Amateur acting does not. The room usually feels the seam."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Sora watches a friend glide through a party and concludes, He has it and I do not. What trap is the chapter warning about most directly?",
+      "choices": [
+        "Turning comparison into a fixed-trait story that stops observation and practice",
+        "Assuming charisma never matters in personal life because work rewards it more",
+        "Believing people should hide charisma so they do not intimidate others"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "This is the passive version of the myth. Sora turns someone else's visible effect into proof of her own permanent limit.",
+        "direct": "The chapter warns against moving too quickly from another person's social impact to a trait verdict about yourself.",
+        "competitive": "Admiration becomes self-sabotage the moment it hardens into destiny language."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does the chapter become more believable when it says trainable charisma must still avoid obvious performance?",
+      "choices": [
+        "Because the limit shows the claim is about real social effect, not about wearing a costume",
+        "Because it reduces charisma to a purely moral issue instead of a practical one",
+        "Because it proves everyone already knows exactly how to become charismatic"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps the promise honest by refusing the idea that borrowed swagger or forced warmth will work indefinitely.",
+        "direct": "This boundary strengthens the argument. It keeps learnability tied to congruent signal instead of turning the chapter into technique fantasy.",
+        "competitive": "Magic promises sound bigger, but they are weaker. The chapter earns trust by telling you where fake breaks down."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If charisma is a trainable social effect rather than a gift, what is the most natural next question for the book to answer?",
+      "choices": [
+        "Which public figures were the most charismatic in history",
+        "Which exact ingredients people are reading when someone feels compelling",
+        "Why charisma matters only in jobs that require public speaking"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Once the myth falls away, the next useful question is about components. What are people actually responding to?",
+        "direct": "The chapter points forward to structure. If charisma is learnable, the next step is identifying the ingredients that create the effect.",
+        "competitive": "Once fate is off the table, the room's scorecard becomes the real target."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

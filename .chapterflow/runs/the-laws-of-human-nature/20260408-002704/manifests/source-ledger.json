@@ -1,0 +1,142 @@
+{
+  "bookId": "the-laws-of-human-nature",
+  "runId": "20260408-002704",
+  "frozenAt": "2026-04-08T02:27:04Z",
+  "policy": "public_or_authorized_plus_secondary",
+  "sources": [
+    {
+      "sourceId": "prh",
+      "type": "official_publisher",
+      "authority": "primary",
+      "url": "https://www.penguinrandomhouse.com/books/317474/the-laws-of-human-nature-by-robert-greene/",
+      "usedFor": [
+        "edition metadata",
+        "official description",
+        "page count corroboration",
+        "same-work paperback corroboration"
+      ],
+      "notes": "Publisher page lists paperback and hardcover at 624 pages and states the paperback is the only authorized US paperback edition."
+    },
+    {
+      "sourceId": "google-books",
+      "type": "authorized_preview",
+      "authority": "primary",
+      "url": "https://books.google.com/books/about/The_Laws_of_Human_Nature.html?id=uD9wDwAAQBAJ",
+      "usedFor": [
+        "authorized preview confirmation",
+        "contents confirmation",
+        "chapter-order confirmation",
+        "substantive introduction confirmation"
+      ],
+      "notes": "Google Books shows the contents page, including Introduction, chapter starts, Acknowledgments, Index, and Copyright."
+    },
+    {
+      "sourceId": "open-library",
+      "type": "bibliographic_record",
+      "authority": "secondary_bibliographic",
+      "url": "https://openlibrary.org/works/OL19761410W/The_Laws_of_Human_Nature",
+      "usedFor": [
+        "edition-family corroboration",
+        "work-level identity"
+      ],
+      "notes": "Used to confirm the work family and English edition lineage, not as a prose source."
+    },
+    {
+      "sourceId": "iucat",
+      "type": "library_catalog",
+      "authority": "secondary_bibliographic",
+      "url": "https://iucat.iu.edu/iub/19048967",
+      "usedFor": [
+        "full chapter list corroboration",
+        "publisher summary corroboration"
+      ],
+      "notes": "Catalog contents align with the law sequence across the book; one catalog line appears to contain a typo in the final title, so mortality wording is anchored from Google Books and the widely published edition title."
+    },
+    {
+      "sourceId": "supersummary-intro-ch3",
+      "type": "secondary_summary",
+      "authority": "secondary",
+      "url": "https://www.supersummary.com/the-laws-of-human-nature/introduction-chapter-3-summary/",
+      "usedFor": [
+        "chapter 1 secondary support",
+        "chapter 2 secondary support",
+        "chapter 3 secondary support",
+        "chapter 4 secondary support",
+        "anchor identification for early baseline chapters"
+      ],
+      "notes": "Used narrowly for early baseline chapter support. Supplies anchor candidates such as Pericles, the Athenians after his death, Milton Erickson, Joseph Stalin, and Shackleton."
+    },
+    {
+      "sourceId": "supersummary-ch4-ch6",
+      "type": "secondary_summary",
+      "authority": "secondary",
+      "url": "https://www.supersummary.com/the-laws-of-human-nature/chapters-4-6-summary/",
+      "usedFor": [
+        "chapter 5 secondary support",
+        "chapter 6 secondary support",
+        "chapter 7 secondary support"
+      ],
+      "notes": "Used narrowly to ground Howard Hughes, Coco Chanel, and the South Sea crash / Maria Mitchell cluster for the middle-law wave."
+    },
+    {
+      "sourceId": "supersummary-ch7-ch9",
+      "type": "secondary_summary",
+      "authority": "secondary",
+      "url": "https://www.supersummary.com/the-laws-of-human-nature/chapters-7-9-summary/",
+      "usedFor": [
+        "chapter 8 secondary support",
+        "chapter 9 secondary support",
+        "chapter 10 secondary support"
+      ],
+      "notes": "Used narrowly to ground Lyndon B. Johnson, Anton Chekhov, Richard Nixon, and the bridge from defensiveness into repression."
+    },
+    {
+      "sourceId": "supersummary-ch10-ch12",
+      "type": "secondary_summary",
+      "authority": "secondary",
+      "url": "https://www.supersummary.com/the-laws-of-human-nature/chapters-10-12-summary/",
+      "usedFor": [
+        "chapter 11 secondary support",
+        "chapter 12 secondary support",
+        "chapter 13 secondary support"
+      ],
+      "notes": "Used narrowly to ground Mary Shelley and Jane Williams, Michael Eisner, and Caterina Sforza."
+    },
+    {
+      "sourceId": "supersummary-ch13-ch15",
+      "type": "secondary_summary",
+      "authority": "secondary",
+      "url": "https://www.supersummary.com/the-laws-of-human-nature/chapters-13-15-summary/",
+      "usedFor": [
+        "chapter 14 secondary support",
+        "chapter 15 secondary support",
+        "chapter 16 secondary support"
+      ],
+      "notes": "Used narrowly to ground Martin Luther King Jr., Gao Jianhua / Gao Yuan, and Queen Elizabeth I."
+    },
+    {
+      "sourceId": "supersummary-ch16-ch18",
+      "type": "secondary_summary",
+      "authority": "secondary",
+      "url": "https://www.supersummary.com/the-laws-of-human-nature/chapters-16-18-summary/",
+      "usedFor": [
+        "chapter 17 secondary support",
+        "chapter 18 secondary support",
+        "chapter 19 secondary support"
+      ],
+      "notes": "Used narrowly to ground John D. Rockefeller, Georges-Jacques Danton, and Flannery O'Connor in the closing section."
+    },
+    {
+      "sourceId": "gm-notes",
+      "type": "secondary_summary",
+      "authority": "secondary",
+      "url": "https://grahammann.net/book-notes/the-laws-of-human-nature-robert-greene",
+      "usedFor": [
+        "cross-checking later-law themes",
+        "late-book chapter support where grouped summaries are thinner",
+        "anchor and terminology corroboration"
+      ],
+      "notes": "Used only as a narrow cross-check for later laws such as conformity, generational myopia, and death denial. Not used for quotations."
+    }
+  ]
+}

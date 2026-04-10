@@ -1,0 +1,189 @@
+{
+  "quizId": "ch03-dont-assume-they-meant-it",
+  "chapterId": "ch03-dont-assume-they-meant-it",
+  "chapterNumber": 3,
+  "chapterTitle": "Don't Assume They Meant It",
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch03-q01",
+      "questionText": "What is the central distinction that Chapter 3 introduces?",
+      "bloomLevel": "remember",
+      "options": [
+        "Good communication requires explaining your intent clearly.",
+        "Intent and impact are two separate things that can run in any combination.",
+        "Most people have good intentions even when their actions cause harm.",
+        "The best way to handle conflict is to apologize immediately."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter establishes that intent and impact are two separate dimensions of what happens. Good intent does not guarantee good impact, and bad impact does not prove bad intent. They can run in any combination.",
+      "distractorNotes": {
+        "0": "This is the standard advice people give, but it misses the chapter's point. Clarity of communication is not the main issue.",
+        "2": "While true in many cases, this does not name the distinction that defines the chapter.",
+        "3": "Apology conflates acknowledgment with blame. This is specifically not what the chapter recommends."
+      }
+    },
+    {
+      "questionId": "ch03-q02",
+      "questionText": "When someone does something that hurts us, what does the chapter identify as the receiver-side failure?",
+      "bloomLevel": "understand",
+      "options": [
+        "We fail to communicate clearly how much we were hurt.",
+        "We quickly assemble a story about their intention, almost always imagining something worse than the reality.",
+        "We do not give them enough time to explain themselves.",
+        "We assume they did it on purpose without considering other possibilities."
+      ],
+      "correctIndex": 1,
+      "explanation": "The receiver-side failure is that we invent an intention before we know it, and the invented version is almost always worse than the real one. We then react to the invented version as if it were confirmed fact.",
+      "distractorNotes": {
+        "0": "Communication of hurt is not what the chapter identifies as the core problem on the receiving end.",
+        "2": "This is about timing, not about the actual mechanism of the failure.",
+        "3": "This is partially true but does not capture the specific mechanism: the invention of intention."
+      }
+    },
+    {
+      "questionId": "ch03-q03",
+      "questionText": "When you have caused harm to someone, what is the chapter's recommendation for how to respond?",
+      "bloomLevel": "apply",
+      "options": [
+        "Immediately explain what you actually meant so they understand you are a good person.",
+        "Apologize thoroughly for your bad intentions.",
+        "Acknowledge the impact first, without immediately using your intent as a defense or cancellation of that impact.",
+        "Avoid the conversation until they have had time to calm down."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter specifically recommends acknowledging the impact before explaining the intent. This sequence allows both to exist as real: the impact happened, and your intent was something different. Defending intent first closes the impact conversation.",
+      "distractorNotes": {
+        "0": "This is the standard instinctive response, and the chapter argues it usually makes things worse.",
+        "1": "The chapter does not ask you to apologize for bad intentions — it asks you to acknowledge real impact even when intent was not harmful.",
+        "3": "Avoidance perpetuates the pattern and prevents the disentangle move from happening."
+      }
+    },
+    {
+      "questionId": "ch03-q04",
+      "questionText": "In the example with Kai and Miriam, Kai made a joke about Miriam's accent that made her uncomfortable. What would be a better response than 'I didn't mean anything by that'?",
+      "bloomLevel": "apply",
+      "options": [
+        "I was just joking around — everyone takes it that way, and it is fine.",
+        "I can see that landed badly for you, and I want to understand what happened.",
+        "I did not realize you would take it that way, so obviously you misunderstood my intent.",
+        "Let's just forget about it and move forward."
+      ],
+      "correctIndex": 1,
+      "explanation": "This response acknowledges the impact Miriam experienced while opening a genuine conversation about what happened. It does not use intent defense and leaves the impact in the room as something real to address.",
+      "distractorNotes": {
+        "0": "This defends the joke itself and dismisses Miriam's experience.",
+        "2": "This shifts blame to Miriam for misunderstanding, which closes the impact conversation.",
+        "3": "Avoidance prevents the conversation that could repair the relationship."
+      }
+    },
+    {
+      "questionId": "ch03-q05",
+      "questionText": "What is the difference between 'I caused harm' and 'I intended harm'?",
+      "bloomLevel": "analyze",
+      "options": [
+        "They are essentially the same thing, just described differently.",
+        "The first means you are to blame; the second means you meant well.",
+        "They are two separate claims that can both be true: I caused harm AND my intent was not to cause harm.",
+        "The first is an excuse; the second is an admission of guilt."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter specifically teaches that these are two separate dimensions. You can cause harm without intending it. Acknowledging one does not require accepting the other. Both can be real simultaneously.",
+      "distractorNotes": {
+        "0": "This misses the chapter's entire point: they are distinct, not just different descriptions of the same thing.",
+        "1": "This inverts the actual relationship and treats one as negative and one as positive, when the chapter says both can be true.",
+        "3": "This treats acknowledgment of impact as equivalent to blame, which the chapter specifically argues against."
+      }
+    },
+    {
+      "questionId": "ch03-q06",
+      "questionText": "Why does the chapter argue that explaining your intent before acknowledging the impact usually backfires?",
+      "bloomLevel": "analyze",
+      "options": [
+        "Because most people do not care what you meant; they only care about how you made them feel.",
+        "Because the other person hears it as an argument that their experience does not count.",
+        "Because explaining always sounds defensive no matter how carefully you word it.",
+        "Because the other person is not in a state of mind to listen to explanations."
+      ],
+      "correctIndex": 1,
+      "explanation": "When you defend intent before acknowledging impact, the other person interprets it as a claim that their experience is not real or does not matter. This makes them dig in rather than open up. Acknowledging impact first creates room for the intent to be heard as context, not defense.",
+      "distractorNotes": {
+        "0": "Intent is not irrelevant — it matters, but separately.",
+        "2": "The problem is not the wording; it is the sequence and what it signals about whether you acknowledge the impact.",
+        "3": "This may be true, but it is not the specific mechanism the chapter identifies."
+      }
+    },
+    {
+      "questionId": "ch03-q07",
+      "questionText": "Brianna wants to tell a classmate that a comment made her feel dismissed. If Brianna says 'When you said that, it felt dismissive to me, even though I am not sure what you meant,' what is she doing?",
+      "bloomLevel": "apply",
+      "options": [
+        "Making an accusation of bad intent without evidence.",
+        "Avoiding responsibility for her own feelings.",
+        "Separating the impact (how it landed) from an assumption about intent, so she can name her experience without accusing.",
+        "Being passive-aggressive by pretending not to know what the classmate meant."
+      ],
+      "correctIndex": 2,
+      "explanation": "This is the receiver-side disentangle move. Brianna names the impact on her without inventing or accusing the classmate of having bad intentions. Both things can exist: the comment landed dismissively AND the classmate may not have intended that.",
+      "distractorNotes": {
+        "0": "By separating impact from intent, Brianna actually avoids making an accusation while still naming what happened.",
+        "1": "Brianna is taking responsibility for her experience while not making it the classmate's fault — a more honest position.",
+        "3": "Brianna is being direct about the impact while honest about uncertainty regarding intent — the opposite of passive-aggressive."
+      }
+    },
+    {
+      "questionId": "ch03-q08",
+      "questionText": "In the lab presentation example, why does Adaeze become frustrated when Rodrigo keeps explaining how carefully he followed the rubric?",
+      "bloomLevel": "analyze",
+      "options": [
+        "Because Rodrigo is being defensive rather than taking the feedback.",
+        "Because Adaeze is questioning his work ethic, not the technical quality of the analysis.",
+        "Because Adaeze is talking about the impact (technical quality), but Rodrigo is defending his intent (doing good work), and they are never addressing the same thing.",
+        "Because Rodrigo does not understand the rubric as well as Adaeze does."
+      ],
+      "correctIndex": 2,
+      "explanation": "The core issue is that they are having two different conversations: Adaeze about what the analysis produced (impact), Rodrigo about what he was trying to do (intent). The conversations cannot meet because they are about different dimensions.",
+      "distractorNotes": {
+        "0": "While this is technically true, it does not identify the mechanism the chapter is teaching.",
+        "1": "Actually, Adaeze is not questioning his work ethic at all — Rodrigo is interpreting it that way, but that is the invented intention.",
+        "3": "This is not relevant to the actual problem, which is structural."
+      }
+    },
+    {
+      "questionId": "ch03-q09",
+      "questionText": "What does the chapter say is required for the disentangle move to work when someone acknowledges causing harm?",
+      "bloomLevel": "evaluate",
+      "options": [
+        "The other person must accept that you did not mean harm.",
+        "You must be able to hold both 'I caused harm' and 'I did not intend harm' simultaneously without one claim canceling the other.",
+        "You must frame the harm as a misunderstanding rather than a real impact.",
+        "The other person must have a chance to explain themselves before you acknowledge anything."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter emphasizes that this is the hard move: holding both truths simultaneously. Most people try to use one to cancel the other, but that does not work. Both can be real at the same time.",
+      "distractorNotes": {
+        "0": "The other person may still be angry even if they understand your intent was not harmful. Acceptance is not required — separation is.",
+        "2": "The impact is not a misunderstanding of the impact itself; it is real even if the intent was different.",
+        "3": "The sequence the chapter recommends is to acknowledge impact first, not to wait for their explanation."
+      }
+    },
+    {
+      "questionId": "ch03-q10",
+      "questionText": "What does the chapter identify as the harder version of the intent/impact disentangle move?",
+      "bloomLevel": "evaluate",
+      "options": [
+        "When the impact is very severe and cannot be easily repaired.",
+        "When the other person refuses to believe you had good intentions.",
+        "When the intent was genuinely harmful — when the person did mean it the way it landed.",
+        "When there are witnesses to the harm and you have to address it publicly."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter names the asymmetric case: when the intention was genuinely harmful. The disentangle move still applies (intent and impact are still separate), but the job inverts — instead of defending against the harmful intent, you must acknowledge it. That is a harder conversation with different stakes.",
+      "distractorNotes": {
+        "0": "Severity of impact does not change the mechanism of the disentangle move.",
+        "1": "The chapter is about what you can do on your side, not about getting others to believe you.",
+        "3": "Public vs. private context does not change the fundamental difficulty the chapter identifies."
+      }
+    }
+  ]
+}

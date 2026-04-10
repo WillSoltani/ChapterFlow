@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the Success Habit in Chapter 11?",
+      "choices": [
+        "Repeated use of the Focusing Question",
+        "A promise to keep every routine identical",
+        "A rule that effort matters less than talent"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter defines the Success Habit as repeated use of the Focusing Question.",
+        "direct": "Success Habit means habitual leverage-seeking.",
+        "competitive": "It is the repeated lever hunt, not generic routine worship."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does repetition matter in this chapter?",
+      "choices": [
+        "It proves a person is serious even if the routine is weak",
+        "It helps the leverage question shape ordinary choices",
+        "It removes the need to think about the next move"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Repetition matters because the question starts shaping normal decisions.",
+        "direct": "The gain is behavioral patterning around leverage.",
+        "competitive": "Repeated use keeps force aimed before clutter takes over."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Which description best matches repeated leverage-seeking?",
+      "choices": [
+        "Finishing the easiest task first every time",
+        "Protecting a streak of routine no matter the result",
+        "Returning to the question that identifies the next move with the strongest effect"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Repeated leverage-seeking means asking for the next act that changes the rest.",
+        "direct": "The pattern keeps searching for consequence, not comfort.",
+        "competitive": "It keeps reaching for the move that bends the field."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "In the work examples, what turns the weekly board review into a success habit?",
+      "choices": [
+        "Adding more status updates to cover every open task",
+        "Starting the recurring review with the leverage question",
+        "Waiting to use the question until a project is already in crisis"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The review becomes a success habit when the question appears every week at the front.",
+        "direct": "Habitual narrowing belongs inside the standing review.",
+        "competitive": "The meeting matters when the blade comes out before the backlog talks."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Which statement about habit is false according to Chapter 11?",
+      "choices": [
+        "Any repeated routine automatically counts as success",
+        "Repeated use can sharpen judgment when leverage stays central",
+        "A habit can fail if it becomes mechanical"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter rejects the idea that repetition alone makes a routine successful.",
+        "direct": "Consistency without leverage does not meet the standard.",
+        "competitive": "A polished shell around weak choices still loses."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What problem showed up in Elliot's exam prep example?",
+      "choices": [
+        "He spent too much time rewriting the textbook",
+        "He used the question only irregularly, so familiar tasks kept deciding the session",
+        "He refused to use any planner or study routine at all"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Elliot used the tool only sometimes, so weak selection kept returning.",
+        "direct": "Irregular questioning let familiar tasks run the session.",
+        "competitive": "The lever only appeared on panic days, so comfort won the week."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What limit does the chapter place on repetition?",
+      "choices": [
+        "Repetition must remain tied to judgment and leverage",
+        "Repetition should replace careful choice once the routine is stable",
+        "Repetition works only in work settings, not elsewhere"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says repetition only helps while it still serves thought and leverage.",
+        "direct": "Mechanical repetition is the trap.",
+        "competitive": "If the ritual stops thinking, it stops winning."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What is the personal-life application of recurring narrowing in the chapter?",
+      "choices": [
+        "Collecting more home goals so nothing is forgotten",
+        "Avoiding written planning to stay flexible",
+        "Using a repeated notebook ritual to choose the one act that most clarifies the week"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The personal example uses a recurring notebook ritual to narrow toward one clarifying next act.",
+        "direct": "Home planning becomes leverage-seeking instead of clutter collection.",
+        "competitive": "The notebook matters when it cuts the field instead of admiring it."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "How does Chapter 11 build on Chapter 10?",
+      "choices": [
+        "It turns the question from a one-time tool into a repeated habit",
+        "It argues that the question should be dropped once a good answer appears",
+        "It replaces leverage with generic routine discipline"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Chapter 10 gives the tool, and Chapter 11 shows what happens when it is repeated.",
+        "direct": "The chapter moves from leverage question to leverage habit.",
+        "competitive": "The blade becomes a pattern instead of a one-off move."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What transfer lesson does the chapter teach about repeated questioning?",
+      "choices": [
+        "Occasional questioning is enough as long as the goals are ambitious",
+        "Repeated leverage-seeking creates a stronger pattern of choosing than occasional clarification does",
+        "Habit matters only after every other task is already organized"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says repeated questioning changes behavior more than occasional cleanup does.",
+        "direct": "Habit creates a stronger pattern of selection than sporadic use.",
+        "competitive": "Repeated cuts beat lucky moments of clarity."
+      },
+      "bloomsLevel": "evaluate-transfer",
+      "depthLevel": "hard"
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch05-q01",
+      "prompt": "What is the chapter's main warning about ego?",
+      "choices": [
+        "That ego matters only on weak teams",
+        "That strong teams can still be damaged when pride outruns the mission",
+        "That humility means leaders should stop acting decisively"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The chapter warns that confidence can turn costly when it starts serving status instead of the mission.",
+        "direct": "Correct. The danger is not weakness but capable people becoming harder to coordinate because of pride.",
+        "competitive": "That answer lands because the chapter attacks ego hiding inside visible strength."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch05-q02",
+      "prompt": "Why does the elite-arrogance anchor matter so much in this chapter?",
+      "choices": [
+        "Because it shows that competence can give pride cover and still damage coordination",
+        "Because it proves expertise should be ignored when teams disagree",
+        "Because it means only elite groups have ego problems"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter uses strong teams to show that pride can still break mission focus.",
+        "direct": "Exactly. Competence can hide arrogance well enough that people excuse the damage it causes.",
+        "competitive": "That is the sting. Performance can become camouflage for pride."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch05-q03",
+      "prompt": "How does ego usually weaken coordination according to the chapter?",
+      "choices": [
+        "By making feedback and help feel personal instead of useful",
+        "By making teams too cautious to speak clearly",
+        "By removing the need for strong leadership"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Correct. Ego raises the cost of correction because people hear it as a threat.",
+        "direct": "Option A fits because the chapter says pride turns support and feedback into status conflict.",
+        "competitive": "That is the mechanism. Useful signals start sounding offensive once ego takes the wheel."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch05-q04",
+      "prompt": "Mara refuses cross-team help because she thinks accepting it will make her team look weak. What would this chapter say first?",
+      "choices": [
+        "She should protect image because strong teams should solve everything alone",
+        "She should treat the help as mission support instead of a threat to status",
+        "She should avoid all outside input until her team regains confidence"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Good read. The chapter says useful support should matter more than image protection.",
+        "direct": "Option B matches the principle because status concern is blocking better coordination.",
+        "competitive": "That is the hard move. Let the mission win even if the ego loses a little status."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q05",
+      "prompt": "Which statement best preserves the chapter's view of humility?",
+      "choices": [
+        "Humility means leaders should avoid forceful decisions",
+        "Humility means confidence stays teachable and mission-focused",
+        "Humility means strong teams should stop acting like experts"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The chapter treats humility as strength that can still learn and cooperate.",
+        "direct": "Option B is right because humility here is not passivity but mission-first teachability.",
+        "competitive": "That answer keeps the chapter honest. Humility does not weaken strength; it keeps strength usable."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q06",
+      "prompt": "What limit does the chapter keep in place so it does not become anti-confidence?",
+      "choices": [
+        "That strong judgment and expertise still matter when they stay tied to the mission",
+        "That leaders should lower standards to avoid sounding arrogant",
+        "That confidence should be hidden so nobody feels threatened"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The problem is not strength itself but strength that starts serving the self first.",
+        "direct": "Option A preserves the chapter's balance: expertise and decisiveness still matter when they remain mission-aligned.",
+        "competitive": "That is the line. Confidence helps until it starts charging the mission for your pride."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q07",
+      "prompt": "Eli ignores a teammate's warning during a robotics build because he is the design lead. What does this chapter most likely diagnose?",
+      "choices": [
+        "A technical issue only, not a leadership issue",
+        "An expertise problem that proves Eli should stop leading",
+        "A pride problem where status mattered more than teachability"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Exactly. The chapter says ego can make strong people too brittle to hear useful correction.",
+        "direct": "Option C fits because Eli treated feedback as a status threat instead of as mission help.",
+        "competitive": "That is the real failure. Pride filtered out truth the mission needed."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q08",
+      "prompt": "Zuri's handoffs improve after she stops protecting her lane. What does that result reveal?",
+      "choices": [
+        "That humility can restore cooperation by lowering status friction",
+        "That teams should avoid strong opinions during coordination",
+        "That adjacent teams work best when they stay mostly separate"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Good catch. The work improved when ego stopped turning help into a threat.",
+        "direct": "Option A matches the chapter because lower pride made cross-team coordination easier.",
+        "competitive": "That answer wins because the room got cheaper the moment image stopped taxing every exchange."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch05-q09",
+      "prompt": "What harder question does the chapter push leaders to ask about their own strength?",
+      "choices": [
+        "Whether strength has stopped serving the mission and started serving pride",
+        "Whether confidence should be replaced by constant self-doubt",
+        "Whether authority always causes resentment in teams"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter asks leaders to inspect whether their confidence is still useful to the mission.",
+        "direct": "Option A fits because the real diagnostic line is where strength becomes self-protective instead of mission-focused.",
+        "competitive": "That is the chapter's sharpest question: when did your strength start working for your ego?"
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch05-q10",
+      "prompt": "If a team checks its ego successfully, what problem does the next chapter most naturally need to solve?",
+      "choices": [
+        "How teams can actively support adjacent units instead of operating in silos",
+        "How leaders can avoid all confidence so conflict disappears",
+        "How teams can replace cooperation with clearer competition"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That is the strongest bridge. Lower ego should make it easier for teams to cover one another next.",
+        "direct": "Option A follows the preview because checked pride still has to widen into active mutual support.",
+        "competitive": "That answer lands because less rivalry is not enough. Teams still have to cover the next lane."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

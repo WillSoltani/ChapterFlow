@@ -7,7 +7,6 @@ import "server-only";
 
 import crypto from "crypto";
 import { awardFlowPoints } from "@/app/app/api/book/_lib/flow-points-repo";
-import type { FlowPointsSourceType } from "@/app/app/api/book/_lib/types";
 
 const SPARK_PROBABILITY = 0.12; // 12% per loop
 const SPARK_AMOUNTS = [15, 20, 25, 30, 35, 40, 45] as const;
@@ -19,15 +18,16 @@ export type InsightSparkResult = {
 
 /**
  * §7.1 — Roll for Insight Spark after loop completion.
- * Uses a deterministic seed so the same userId + date + sequence always
- * produces the same result, but is unpredictable to the user.
+ * Seed is anchored to the loop event (bookId + chapter), not the post-update tier
+ * counter, so a pipeline retry for the same loop produces the same result and
+ * the awardFlowPoints idempotency guard rejects duplicates.
  */
 export function rollInsightSpark(
   userId: string,
   dateStr: string,
-  loopSequenceNumber: number
+  loopEventKey: string
 ): InsightSparkResult {
-  const seed = `${userId}:${dateStr}:${loopSequenceNumber}:spark`;
+  const seed = `${userId}:${dateStr}:${loopEventKey}:spark`;
   const hash = crypto.createHash("sha256").update(seed).digest();
 
   // Use first 4 bytes as a 32-bit integer for probability check
@@ -46,26 +46,29 @@ export function rollInsightSpark(
 
 /**
  * Award the Insight Spark if the roll triggered.
- * Returns the amount awarded, or 0 if not triggered / already awarded.
+ * `loopEventKey` should uniquely identify the loop event being processed
+ * (e.g., `${bookId}:${chapterNumber}`). Both the deterministic seed and the
+ * grant sourceId derive from it, so a pipeline retry for the same loop
+ * produces the same roll and is idempotent at the IP-grant layer.
  */
 export async function maybeAwardInsightSpark(
   tableName: string,
   userId: string,
   dateStr: string,
-  loopSequenceNumber: number
+  loopEventKey: string
 ): Promise<InsightSparkResult> {
-  const roll = rollInsightSpark(userId, dateStr, loopSequenceNumber);
+  const roll = rollInsightSpark(userId, dateStr, loopEventKey);
   if (!roll.triggered) return { triggered: false, amount: 0 };
 
   const award = await awardFlowPoints(tableName, {
     userId,
     amount: roll.amount,
-    sourceType: "insight_spark" as FlowPointsSourceType,
-    sourceId: `${dateStr}:${loopSequenceNumber}`,
+    sourceType: "insight_spark",
+    sourceId: loopEventKey,
     metadata: {
       amount: roll.amount,
       date: dateStr,
-      loopSequence: loopSequenceNumber,
+      loopEventKey,
     },
   });
 

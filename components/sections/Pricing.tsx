@@ -5,6 +5,9 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { SectionReveal } from "@/components/ui/SectionReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
+import { AUTH_LOGIN_BOOK_URL } from "@/app/_lib/chapterflow-brand";
+import { track } from "@/lib/analytics";
+import { useAuthStatus } from "@/components/auth/useAuthStatus";
 
 /* ------------------------------------------------------------------ */
 /*  Inline icons                                                      */
@@ -83,7 +86,7 @@ const faqs = [
   {
     question: "Can I cancel anytime?",
     answer:
-      "Yes. Cancel your Pro subscription anytime from your account settings. If you cancel during your 14-day trial, you won\u2019t be charged at all.",
+      "Yes. Upgrade to Pro from your account settings anytime, and cancel just as easily \u2014 no penalties, no lock-in.",
   },
   {
     question: "What happens after my 2 free books?",
@@ -112,7 +115,11 @@ const ANNUAL_SAVINGS_PCT = Math.round((1 - ANNUAL_MONTHLY_PRICE / MONTHLY_PRICE)
 
 export function Pricing() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const [isAnnual, setIsAnnual] = useState(true);
+  const [isAnnual, setIsAnnual] = useState(false);
+  const { loggedIn } = useAuthStatus();
+  const freeHref = loggedIn ? "/book" : AUTH_LOGIN_BOOK_URL;
+  const proHref = loggedIn ? "/book/settings" : AUTH_LOGIN_BOOK_URL;
+  const annualTotal = (ANNUAL_MONTHLY_PRICE * 12).toFixed(2);
 
   const toggleFaq = (index: number) => {
     setOpenIndex((prev) => (prev === index ? null : index));
@@ -122,7 +129,7 @@ export function Pricing() {
   const freeFeatures = [
     "Access to the full book library",
     "Finish up to 2 books",
-    "Simple and Standard depth modes",
+    "Lite and Standard depth modes",
     "Chapter summaries and scenarios",
     "Chapter quizzes",
   ];
@@ -132,7 +139,7 @@ export function Pricing() {
   const proFeatures = [
     "Access to the full book library",
     "Unlimited books",
-    "Simple and Standard depth modes",
+    "Lite and Standard depth modes",
     "Chapter summaries and scenarios",
     "Chapter quizzes",
     "Deeper depth mode",
@@ -182,9 +189,11 @@ export function Pricing() {
             </span>
             <button
               onClick={() => setIsAnnual((v) => !v)}
-              className="relative w-12 h-6 rounded-full transition-colors cursor-pointer"
-              style={{ background: isAnnual ? "var(--accent-teal)" : "var(--bg-elevated)" }}
+              role="switch"
+              aria-checked={isAnnual}
               aria-label="Toggle annual pricing"
+              className="relative w-12 h-6 rounded-full transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
+              style={{ background: isAnnual ? "var(--accent-teal)" : "var(--bg-elevated)" }}
             >
               <div
                 className="absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform"
@@ -260,11 +269,12 @@ export function Pricing() {
 
               {/* CTA */}
               <Link
-                href="/auth/login?returnTo=%2Fbook"
-                className="mt-8 block w-full text-center border border-[--border-medium] text-[--text-heading] hover:bg-[--bg-glass] rounded-xl py-3.5 font-semibold transition-colors"
+                href={freeHref}
+                onClick={() => track("cta_click", { source: "pricing_free" })}
+                className="mt-8 block w-full text-center border border-[--border-medium] text-[--text-heading] hover:bg-[--bg-glass] rounded-xl py-3.5 font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
                 style={{ fontFamily: "var(--font-display)" }}
               >
-                Start reading free
+                Get 2 free books
               </Link>
             </div>
           </SectionReveal>
@@ -310,6 +320,9 @@ export function Pricing() {
 
               <p className="mt-1 text-[13px] text-[--accent-teal]">
                 That&apos;s ${isAnnual ? (ANNUAL_MONTHLY_PRICE / 30).toFixed(2) : (MONTHLY_PRICE / 30).toFixed(2)}/day
+                {isAnnual && (
+                  <span className="text-[--text-muted]"> &middot; ${annualTotal} CAD billed today</span>
+                )}
               </p>
 
               <p
@@ -335,22 +348,22 @@ export function Pricing() {
                 ))}
               </ul>
 
-              {/* CTA */}
-              <Link
-                href="/auth/login?returnTo=%2Fbook"
-                className="mt-8 block w-full text-center bg-[--accent-teal] text-primary-foreground rounded-xl py-3.5 font-semibold transition-transform hover:scale-[1.02]"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                Try Pro free for 14 days
-              </Link>
-
               <p
-                className="mt-2 text-[12px] text-[--text-muted] text-center"
+                className="mt-6 mb-3 text-[12px] text-[--text-muted] text-center"
                 style={{ fontFamily: "var(--font-body)" }}
               >
-                No credit card required. Cancel before 14 days and you&apos;ll
-                never be charged.
+                No credit card to start. Upgrade anytime from your account.
               </p>
+
+              {/* CTA */}
+              <Link
+                href={proHref}
+                onClick={() => track("cta_click", { source: "pricing_pro" })}
+                className="block w-full text-center bg-[--accent-teal] text-primary-foreground rounded-xl py-3.5 font-semibold transition-transform hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                Try ChapterFlow free
+              </Link>
             </div>
           </SectionReveal>
         </div>
@@ -370,7 +383,7 @@ export function Pricing() {
                   }}
                   aria-expanded={openIndex === index}
                   aria-controls={`faq-answer-${index}`}
-                  className="flex w-full items-center justify-between py-4 text-left"
+                  className="flex w-full items-center justify-between py-4 text-left rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
                 >
                   <span
                     className="text-[16px] text-[--text-heading] font-medium"

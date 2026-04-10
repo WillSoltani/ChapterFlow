@@ -1,0 +1,155 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch25-q01",
+      "prompt": "What is the chapter's main claim about children's distraction?",
+      "choices": [
+        "It often starts with internal discomfort before it becomes a visible device or behavior problem",
+        "It is always caused by one device",
+        "It proves the child lacks all discipline"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter uses the internal-trigger lens.",
+        "direct": "Discomfort often precedes the visible outlet.",
+        "competitive": "The storm comes first."
+      }
+    },
+    {
+      "questionId": "ch25-q02",
+      "prompt": "Why does the chapter resist immediate device blame?",
+      "choices": [
+        "Because the device may be serving as an escape from an uncomfortable inner state",
+        "Because devices never matter at all",
+        "Because boundaries should disappear"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The visible object may not be the deepest explanation.",
+        "direct": "The device can be the route out rather than the original cause.",
+        "competitive": "It may be the getaway car."
+      }
+    },
+    {
+      "questionId": "ch25-q03",
+      "prompt": "What is a stronger first move for caregivers in this chapter?",
+      "choices": [
+        "Curiosity about the child's internal trigger",
+        "Immediate accusation about the screen",
+        "Assuming defiance is the full explanation"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Curiosity opens the inner picture.",
+        "direct": "Understanding the emotional job of the distraction matters first.",
+        "competitive": "Read the weather."
+      }
+    },
+    {
+      "questionId": "ch25-q04",
+      "prompt": "What kinds of feelings does the chapter treat as possible internal triggers?",
+      "choices": [
+        "Boredom, frustration, shame, loneliness, anxiety, and pressure",
+        "Only joy and excitement",
+        "None, because internal states do not matter"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps discomfort central.",
+        "direct": "Several uncomfortable states can make distraction attractive.",
+        "competitive": "It is a weather report."
+      }
+    },
+    {
+      "questionId": "ch25-q05",
+      "prompt": "What important limit does the chapter preserve?",
+      "choices": [
+        "Boundaries still matter even though understanding comes first",
+        "Children should never face limits",
+        "Understanding makes all structure unnecessary"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter is not permissive mush.",
+        "direct": "Limits remain useful when they are informed by the inner trigger picture.",
+        "competitive": "A fence still matters."
+      }
+    },
+    {
+      "questionId": "ch25-q06",
+      "prompt": "Why can accusation be a weaker first move than curiosity?",
+      "choices": [
+        "Because it can create secrecy or defensiveness without understanding the discomfort underneath",
+        "Because children always explain everything perfectly when blamed",
+        "Because behavior never needs any response"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A blame-first response can hide the real pattern.",
+        "direct": "Curiosity gives a better chance of understanding what the distraction is doing emotionally.",
+        "competitive": "A courtroom start can lose the witness."
+      }
+    },
+    {
+      "questionId": "ch25-q07",
+      "prompt": "What blame story does the chapter reject?",
+      "choices": [
+        "That the child is simply weak and the caregiver is simply guilty",
+        "That discomfort matters",
+        "That boundaries can still exist"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter stays anti-blame in both directions.",
+        "direct": "Weakness and guilt are less useful than the internal-trigger framework.",
+        "competitive": "Stop auditioning villains."
+      }
+    },
+    {
+      "questionId": "ch25-q08",
+      "prompt": "Why might a distracted pattern reappear even after one device is removed?",
+      "choices": [
+        "Because the internal trigger may remain active and find another outlet",
+        "Because devices are magical",
+        "Because children always need more punishment"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The outlet can change while the discomfort stays.",
+        "direct": "Attacking only the surface object may leave the inner driver intact.",
+        "competitive": "The storm can hire another car."
+      }
+    },
+    {
+      "questionId": "ch25-q09",
+      "prompt": "How does this chapter connect to the book's earlier framework?",
+      "choices": [
+        "It applies the internal-trigger discomfort lens to children",
+        "It abandons the earlier framework completely",
+        "It says children are exempt from internal triggers"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter extends the same core logic into a parenting context.",
+        "direct": "It brings the earlier internal-trigger model downstream to children.",
+        "competitive": "The forecast travels."
+      }
+    },
+    {
+      "questionId": "ch25-q10",
+      "prompt": "Why does the next chapter move into traction together?",
+      "choices": [
+        "Because shared routines make more sense once the child's internal triggers are better understood",
+        "Because internal triggers no longer matter after this chapter",
+        "Because families should skip planning"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Understanding prepares planning.",
+        "direct": "The next chapter moves from emotional map to shared routine.",
+        "competitive": "Forecast first, route second."
+      }
+    }
+  ]
+}

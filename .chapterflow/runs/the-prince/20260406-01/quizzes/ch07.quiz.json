@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "Why does Chapter 7 say rulers raised by fortune or by others' arms keep with difficulty?",
+      "choices": [
+        "Because they reach power before they have roots, loyal force, and settled support of their own",
+        "Because they always lack intelligence",
+        "Because sudden rulers never gain territory in the first place"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Machiavelli's reason is structural. The ascent is easy because someone carries them, but the keeping is hard because the foundations are missing.",
+        "direct": "The chapter does not blame nature or intelligence. It blames rise before roots.",
+        "competitive": "They get the summit before they get the ground."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What does Machiavelli say must be laid afterward if it was not laid before accession?",
+      "choices": [
+        "Only public reputation",
+        "Foundations and correspondencies",
+        "A second hereditary line"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "He says the ruler has to lay afterward the foundations that were not fixed beforehand.",
+        "direct": "The missing element is not merely praise but the real grounding of the state and its relations.",
+        "competitive": "If the roots were not built on the way up, they have to be built after the climb while the wind is already blowing."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is the main contrast between Francesco Sforza and Cesare Borgia in Chapter 7?",
+      "choices": [
+        "Sforza rules only religious territories, while Borgia rules only commercial ones",
+        "Sforza depends entirely on papal favor, while Borgia rises by his own means",
+        "Sforza pays the cost during the ascent, while Borgia must build roots after borrowed elevation"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Sforza rises by his own means and keeps with less trouble, while Borgia has to construct missing supports after he has already been elevated.",
+        "direct": "The contrast is about sequence, not geography. One man builds before accession, the other must build after it.",
+        "competitive": "Sforza bought the roots on the climb. Borgia got the title first and then had to race for the roots."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Maya's sponsor-backed promotion looks smooth, but the strongest loyalties still belong to older managers and the sponsor's allies. What is Chapter 7 warning her about?",
+      "choices": [
+        "That visible elevation is not the same as stable possession",
+        "That she should avoid building any direct support of her own",
+        "That a sponsor's favor permanently solves the authority problem"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Maya has the title, but the supporting structure is not fully hers yet.",
+        "direct": "The warning is that ascent has been solved while keeping has not. The same network that raised her can still limit her.",
+        "competitive": "She got the summit. The floor is still rented."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Colin's appointment begins to collapse once Advisor Shah stops hovering in the newsroom. Which chapter principle does that show?",
+      "choices": [
+        "That every favored appointment is automatically illegitimate",
+        "That favor can solve accession while leaving the holding problem untouched",
+        "That roots are less important in school settings than in political ones"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Colin's appointment was enough to raise him, but not enough to keep him once the borrowed backing receded.",
+        "direct": "The case matches Chapter 7 directly: the role was granted before the roots were built.",
+        "competitive": "The shadow moved, and the missing roots showed up immediately."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "When Uncle Tomas tells Rhea that the elder's blessing is not the same as faithful support, what Chapter 7 distinction is he making?",
+      "choices": [
+        "That public order matters more than every private tie",
+        "That new benefits always erase older tensions",
+        "That office granted is not the same thing as support that truly belongs to you"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Rhea has been placed in the role, but that does not yet mean the needed support is really hers.",
+        "direct": "Uncle Tomas is separating visible transfer from the roots that make a role durable once borrowed authority disappears.",
+        "competitive": "The key ring is the office. The loyal network is the regime."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why does Borgia decide to depend no more on the arms and luck of others?",
+      "choices": [
+        "Because the same forces that elevated him could also stop him or seize what he had won",
+        "Because Machiavelli says allies are always useless",
+        "Because fortune had already disappeared completely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Borgia sees that French help and factional support are not stable foundations for keeping what he has gained.",
+        "direct": "The chapter's reason is dependency. The borrowed supports remain external and therefore dangerous.",
+        "competitive": "The ladder was still controlling the climb after he reached the top."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What is the main political lesson of the Ramiro d'Orco sequence in Romagna?",
+      "choices": [
+        "That the ruler should never regularize justice after a crisis",
+        "That emergency severity, visible institutions, and redirected odium can be sequenced together in consolidation",
+        "That popularity matters more than order"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The sequence shows harsh restoration first, then a more regular form of justice, and then a public separation from the most hated instrument.",
+        "direct": "Machiavelli is analyzing order, institution, and blame management together. The point is not simply cruelty or popularity.",
+        "competitive": "First stop the collapse, then regularize rule, then keep the whole regime from wearing the minister's hatred forever."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does Machiavelli blame Borgia for consenting to Julius II?",
+      "choices": [
+        "Because Julius II was less talented than Borgia",
+        "Because Borgia had already lost all influence by that point",
+        "Because Borgia wrongly believed new benefits could erase old injuries"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter's last warning is that earlier fear and hatred still matter even after fresh favors are offered.",
+        "direct": "Borgia's error lies in misreading memory. He assumes new benefits can cancel past reasons for fear.",
+        "competitive": "He bets on amnesia, and Machiavelli says powerful people do not forget that cheaply."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If a ruler has been lifted quickly by borrowed power but still lacks roots of his own, what Chapter 7 judgment fits best?",
+      "choices": [
+        "He must urgently build independent supports before the patron weakens and the first shock arrives",
+        "He should trust the original patron's network to remain neutral forever",
+        "He should assume fresh favors will solve any older hostility later"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter's hard answer is that borrowed ascent creates a race to build roots before the patron's decline exposes the whole structure.",
+        "direct": "Machiavelli's threshold is not comfort with the original arrangement but whether the ruler can build independent supports before the first shock.",
+        "competitive": "Once the summit is gifted, the clock starts. Build the roots fast or get buried when the borrowed roof comes off."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deep"
+    }
+  ]
+}

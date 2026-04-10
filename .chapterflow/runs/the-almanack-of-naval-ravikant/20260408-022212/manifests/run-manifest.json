@@ -1,0 +1,44 @@
+{
+  "title": "The Almanack of Naval Ravikant",
+  "author": "Eric Jorgenson",
+  "bookId": "the-almanack-of-naval-ravikant",
+  "categories": [
+    "Business",
+    "Investing",
+    "Philosophy",
+    "Self-Development"
+  ],
+  "tags": [
+    "wealth",
+    "leverage",
+    "specific-knowledge",
+    "judgment",
+    "ownership",
+    "reputation"
+  ],
+  "edition": {
+    "name": "2020 Magrathea public-service PDF/EPUB family",
+    "translator": "",
+    "publishedYear": 2020,
+    "translationYear": null,
+    "sourceText": ".chapterflow/runs/the-almanack-of-naval-ravikant/20260408-022212/sidecars/source/ch06.source.txt",
+    "sourceProvenance": "Authorized 2020 official PDF/EPUB family frozen for this run; chapter artifacts are paraphrase-first and source-bound."
+  },
+  "runId": "20260408-022212",
+  "outputProfile": "flagship_v4_compatible",
+  "learningContract": "research_native",
+  "runProfile": "serial_stateful",
+  "sourceDiscoveryMode": "web_first",
+  "editionSelectionMode": "ask_if_ambiguous",
+  "chapterTicketMode": "required",
+  "scenarioTonePolicy": "required",
+  "chapterGateQuizMode": "generate",
+  "forbidBulkGenerators": true,
+  "releaseAssembleFromValidatedOnly": true,
+  "sourceFreezeRequired": true,
+  "artifactGuardRequired": true,
+  "releaseGuardRequired": true,
+  "skipCoverGeneration": true,
+  "integrationMode": "optional_no_cover",
+  "manualCoverPath": null
+}

@@ -54,6 +54,10 @@ export function useReadingSessionTracker({
 
   const [hydrated, setHydrated] = useState(false);
   const [activity, setActivity] = useState<PersistedReadingActivity>(emptyReadingActivity);
+  const activityRef = useRef<PersistedReadingActivity>(activity);
+  useEffect(() => {
+    activityRef.current = activity;
+  }, [activity]);
   const lastActivityAtRef = useRef(0);
   const lastTickAtRef = useRef(0);
 
@@ -71,12 +75,11 @@ export function useReadingSessionTracker({
     const persistDelta = (deltaMs: number) => {
       if (deltaMs <= 0) return;
 
-      setActivity((current) => {
-        const next = appendReadingActivity(current, new Date(), deltaMs);
-        window.localStorage.setItem(storageKey, JSON.stringify(next));
-        emitBookStorageChanged(`reading-activity:${bookId}:${chapterId}`);
-        return next;
-      });
+      const next = appendReadingActivity(activityRef.current, new Date(), deltaMs);
+      activityRef.current = next;
+      window.localStorage.setItem(storageKey, JSON.stringify(next));
+      setActivity(next);
+      emitBookStorageChanged(`reading-activity:${bookId}:${chapterId}`);
 
       fetchBookJson("/app/api/book/me/reading-sessions", {
         method: "POST",

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch07-q01",
+      "prompt": "What is Chapter 7 mainly trying to explain?",
+      "choices": [
+        "Why prior choices can start functioning like evidence",
+        "Why people always ignore their previous promises",
+        "Why unity matters more than commitment in every case"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter centers on commitment, where earlier choices can feel informative.",
+        "direct": "Its main claim is that promises, public stands, and prior yeses can begin doing evidence work in a decision.",
+        "competitive": "This chapter is about yesterday renting proof, not about promise immunity or unity alone."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch07-q02",
+      "prompt": "Why does a promise or public stand matter so much in this chapter?",
+      "choices": [
+        "Because it proves the position is objectively best",
+        "Because visible commitment can make a position feel stronger",
+        "Because it makes reversal legally impossible"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. The commitment signal makes the position feel more important before direct review finishes.",
+        "direct": "The cue matters because earlier alignment begins looking like evidence for what should happen next.",
+        "competitive": "The prior yes upgrades pressure into proof and lets the position ride on it."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch07-q03",
+      "prompt": "What is the main danger when commitment changes loyalty too quickly?",
+      "choices": [
+        "The position may feel more justified even though only the earlier signal is pulling",
+        "The position immediately becomes dishonest",
+        "The position loses all persuasive power"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. A position can feel stronger without becoming better supported.",
+        "direct": "Commitment becomes dangerous when prior alignment is mistaken for present truth.",
+        "competitive": "The old yes can make worth look bigger without actually making it bigger."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch07-q04",
+      "prompt": "A team already announced a project direction and now starts leaning toward keeping it immediately. According to Chapter 7, what should they notice first?",
+      "choices": [
+        "That the commitment cue may be doing evidence work before the current comparison is complete",
+        "That all announced plans are necessarily manipulative",
+        "That the team must stay with it because consistency always means integrity"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Good. The chapter asks readers to notice when earlier alignment starts deciding too early.",
+        "direct": "They should identify that the commitment signal may be standing in for direct evaluation of the plan's actual current merits.",
+        "competitive": "The first question is whether the announcement is thinking for the team before the team thinks for itself."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q05",
+      "prompt": "Why can sensitivity to commitment be reasonable in the first place?",
+      "choices": [
+        "Because real commitments can support trust, coordination, and follow-through",
+        "Because public stands always guarantee quality",
+        "Because commitment removes the need for value checks"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. When commitments really matter, steadiness can genuinely help.",
+        "direct": "The chapter shows that commitment survives as a shortcut because real follow-through often does affect how a decision should be handled.",
+        "competitive": "Reliability makes earlier signals valuable in the first place."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q06",
+      "prompt": "Which response best fits the chapter's warning about commitment?",
+      "choices": [
+        "Commitment always means integrity",
+        "Commitment can be informative, but it is not enough by itself",
+        "Commitment only matters when scarcity endorses it"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That is the key point. Earlier alignment can matter, but it still needs to be inspected.",
+        "direct": "The chapter avoids both extremes: commitment can matter, but it does not close the case automatically.",
+        "competitive": "Continuity is a clue, not a verdict."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q07",
+      "prompt": "Why are present reasons more important than prior alignment by itself?",
+      "choices": [
+        "Because the right position matters more than broad consistency pressure",
+        "Because older promises are always smarter than newer evidence",
+        "Because continuity guarantees honesty"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Correct. The chapter says commitment matters most when it still fits the current choice itself.",
+        "direct": "Present evidence carries more evidentiary weight than the mere appearance of earlier alignment.",
+        "competitive": "A value-matched position hits harder because it belongs in the case, not just near it."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q08",
+      "prompt": "What is the strongest Chapter 7 response when a public stand makes a position feel more convincing than the position itself?",
+      "choices": [
+        "Assume the public stand proves the position is right",
+        "Treat the commitment as one signal, then evaluate whether it still fits and whether the position stands without it",
+        "Reject the position automatically because public commitments are always manipulative"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exactly. The chapter recommends auditing the commitment signal rather than worshipping or dismissing it automatically.",
+        "direct": "Borrowed consistency loses power when earlier alignment becomes part of the evaluation instead of the end of it.",
+        "competitive": "Do not kneel to the old yes or sneer at it by reflex. Score the costume before it scores the position."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q09",
+      "prompt": "Why does Chapter 7 refuse to treat all commitment as irrational pressure?",
+      "choices": [
+        "Because real commitments sometimes really do signal useful responsibility",
+        "Because the author thinks older decisions are morally superior",
+        "Because commitment only appears when truth is already obvious"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter stays balanced by admitting that earlier commitments can often matter.",
+        "direct": "Commitment is often rational because genuine follow-through can contain real information, even though the same shortcut can mislead.",
+        "competitive": "Commitment is dangerous precisely because it is sometimes worth listening to."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch07-q10",
+      "prompt": "How does Chapter 7 point toward the next lever in the book?",
+      "choices": [
+        "By moving from pressure built from prior choices toward pressure built from shared identity and unity",
+        "By arguing that commitment always beats unity",
+        "By showing that commitment and unity are the same thing"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter bridges forward by asking what changes when pressure comes from a shared sense of us rather than from your own earlier choices.",
+        "direct": "It prepares for unity by shifting from commitment as evidence cue to shared identity as evidence cue.",
+        "competitive": "This chapter lets your past self dress up as truth. The next one lets a group try on the same outfit."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

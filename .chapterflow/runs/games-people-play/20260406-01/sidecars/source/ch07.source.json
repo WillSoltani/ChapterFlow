@@ -1,0 +1,31 @@
+{
+  "chapterId": "ch07",
+  "book": "Games People Play",
+  "author": "Eric Berne",
+  "sourceDocument": ".chapterflow/sources/games-people-play/games-people-play.txt",
+  "provenance": "Paraphrased reference.",
+  "slices": [
+    {
+      "id": "A",
+      "sourceLines": "314-345",
+      "summary": "AIA, Blemish, WDYYB patterns, antitheses, payoffs.",
+      "usageNote": "Primary material."
+    },
+    {
+      "id": "B",
+      "summary": "Short-duration social group patterns. Not all complaining is AIA; dynamics (moving vs circling) distinguish.",
+      "usageNote": "Scope + limit framing."
+    },
+    {
+      "id": "C",
+      "summary": "Ch1-Ch6 names locked. Ch7 cast: Pita, Cass, Nneka, Haruto, Dom, Faye, Kira, Leila, Mbeki, Rowan.",
+      "usageNote": "Continuity."
+    }
+  ],
+  "forbiddenContent": [
+    "Verbatim Berne prose",
+    "Ch10 vocabulary",
+    "Ch1-Ch6 names",
+    "Catalog names from other chapters in reader prose"
+  ]
+}

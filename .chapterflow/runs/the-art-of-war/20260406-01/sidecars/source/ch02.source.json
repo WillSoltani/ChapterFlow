@@ -1,0 +1,51 @@
+{
+  "chapterId": "ch02",
+  "title": "Waging War",
+  "romanNumeral": "II",
+  "sourceOrigin": "Project Gutenberg eBook #17405, Lionel Giles translation, 1910",
+  "sourceFile": ".chapterflow/sources/the-art-of-war/the-art-of-war.txt",
+  "sourceLineRange": "159-237",
+  "sourceParagraphRange": "1-20",
+  "approxWords": 640,
+  "properNouns": [
+    "Sun Tzu"
+  ],
+  "repeatedTerms": [
+    "war",
+    "prolonged",
+    "army",
+    "State",
+    "campaign",
+    "forage",
+    "enemy",
+    "resources",
+    "victory",
+    "peasantry"
+  ],
+  "approvedQuoteLedger": [
+    {
+      "text": "There is no instance of a country having benefited from prolonged warfare.",
+      "status": "exact_quote_verified",
+      "sourceLocation": "Ch II, sentence 6"
+    },
+    {
+      "text": "Bring war material with you from home, but forage on the enemy.",
+      "status": "exact_quote_verified",
+      "sourceLocation": "Ch II, sentence 9"
+    },
+    {
+      "text": "In war, then, let your great object be victory, not lengthy campaigns.",
+      "status": "exact_quote_verified",
+      "sourceLocation": "Ch II, sentence 19"
+    }
+  ],
+  "structureSummary": {
+    "part1": "paragraphs 1: the concrete cost of fielding 100,000 men at a thousand ounces of silver per day",
+    "part2": "paragraphs 2-4: the compounding cost of delay (dulled weapons, damped ardour, exhausted treasury, opportunistic rivals)",
+    "part3": "paragraphs 5-7: the anti-prolonged-warfare thesis",
+    "part4": "paragraphs 8-15: forage-on-the-enemy as a logistical doctrine to preserve the home State",
+    "part5": "paragraphs 16-18: captured resources and prisoners as tools to augment one's own strength",
+    "part6": "paragraphs 19-20: closing thesis (victory not lengthy campaigns, the general as arbiter of the nation's peace or peril)"
+  },
+  "usageRules": "This sidecar supports the brief and outline only. Only the three quotes in the approved ledger may be near-quoted in reader-facing prose, and only rarely."
+}

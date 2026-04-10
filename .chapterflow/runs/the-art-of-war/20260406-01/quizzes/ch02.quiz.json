@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch02-q01",
+      "prompt": "What does Sun Tzu's opening cost estimate of a thousand ounces of silver per day actually argue, beyond the size of the number itself?",
+      "choices": [
+        "A) That the expense of war accumulates every day the campaign continues, meaning each day without a decisive result is a day the state has paid the full cost and received nothing in return",
+        "B) That only wealthy states can afford military campaigns, which is why smaller states should rely on diplomacy",
+        "C) That generals who spend too much on equipment are more likely to win because better-equipped armies fight harder"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nice catch. The number itself is not the argument. The argument is the word per day. Once the campaign begins, the expense runs every day until the campaign ends, which means every day without resolution is a day the state has paid the full rate and received no return.",
+        "direct": "Sun Tzu's cost estimate is a structural observation about rate, not magnitude. The daily rate runs as long as the campaign runs, which converts the cost from a one-time budget item into an ongoing drain that degrades the very resources the campaign was supposed to protect.",
+        "competitive": "The trap is option B, which turns the cost estimate into a class argument. The trap is also option C, which turns it into an equipment argument. The actual argument is about the daily rate: every unclosed campaign day is a day the state pays the full rate and receives nothing."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch02-q02",
+      "prompt": "In the compounding-cost chain Sun Tzu describes, what happens after weapons dull?",
+      "choices": [
+        "A) Morale flags, then strength drops, then the treasury drains, then opportunistic rivals move against the exhausted state",
+        "B) Supply lines lengthen, then food becomes scarce, then soldiers desert, then the general is replaced",
+        "C) Taxation increases immediately, then peasants revolt, then the treasury receives less revenue, then the campaign ends"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nice catch. Sun Tzu traces a specific sequence: weapons dull first, then morale flags, then the army's overall strength drops, then the treasury drains, and finally opportunistic rivals who have been watching move in. At that endpoint, he says, no wisdom can reverse the situation.",
+        "direct": "Sun Tzu's chain is specifically weapons to morale to strength to treasury to rivals. Each link makes the next more likely and more severe. The key observation is that the chain is directional and each link represents a different kind of damage, which is why catching it early is much less costly than catching it late.",
+        "competitive": "Options B and C describe plausible sequences but are not the chain Sun Tzu actually traces. The correct chain — weapons, morale, strength, treasury, rivals — ends at a point Sun Tzu explicitly calls unrecoverable. The rivals arriving is the moment when the state's exhaustion becomes public information."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch02-q03",
+      "prompt": "Why does Sun Tzu value one cartload of captured enemy provisions at the equivalent of twenty cartloads from home?",
+      "choices": [
+        "A) Because enemy provisions are generally of higher quality than home provisions",
+        "B) Because capturing enemy provisions demoralizes the enemy far more than simply consuming them, giving the capture a psychological multiplier effect",
+        "C) Because home provisions accumulate the full cost stack of purchase, packing, transportation, and delivery before they reach the front, while captured provisions arrive with none of those costs"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Nice catch. The twenty-to-one ratio is not about quality or morale effects. Home provisions have to be purchased, packed, transported over increasingly long supply routes, and then delivered at the front. Captured provisions are already there. The ratio captures the difference between the full home logistics cost and zero logistics cost.",
+        "direct": "Home supplies carry the embedded cost of every step from production to front-line delivery. Captured supplies carry none of that cost. The twenty-to-one ratio is a way of expressing the full logistics overhead differential, not the nutritional value of the provisions.",
+        "competitive": "Options A and B misidentify the mechanism. Option A is about quality, which Sun Tzu never argues. Option B is about morale effects, which are real but not the argument being made here. Option C names the cost-stack differential, which is the actual economic logic Sun Tzu is using."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch02-q04",
+      "prompt": "Theo, a forty-four-year-old professional, recently won a three-year family property lawsuit. His legal costs slightly exceeded the market value of the land he won. Looking back, which response most closely reflects Sun Tzu's tempo argument applied to his situation?",
+      "choices": [
+        "A) The outcome was right because he was legally correct, and any cost of being correct is worth paying",
+        "B) He should have asked at the start and at each decision point whether the daily cost of continuing the dispute was still inside the window that justified starting it",
+        "C) The dispute should have been resolved by the first offer of settlement, regardless of its terms, because speed always outweighs outcome quality"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Nice catch. The tempo argument is not that Theo was wrong to fight — it is that the daily rate of the campaign should have been tracked against the value of the asset it was protecting. At some point, the daily rate of the campaign exceeded the daily value of the claim. That is the moment the question should have been re-raised, not after three years.",
+        "direct": "Option A ignores the compounding cost entirely. Option C collapses the argument into 'speed always wins,' which contradicts Sun Tzu's own warning against stupid haste. Option B applies the actual logic: the relevant question at each stage is whether the daily cost of continuation is still inside a window that produces more value than the fastest available resolution.",
+        "competitive": "Theo was right and he lost value. Being right is a starting condition, not a permission to ignore the daily rate. The audit question — is the window still open, at current daily cost, against the current asset value — needed to be asked and answered at each major decision point during the three years. It was not."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q05",
+      "prompt": "Which statement most accurately captures the difference between stupid haste and decisive finishing?",
+      "choices": [
+        "A) Decisive finishing is faster than stupid haste because decisive commanders move more efficiently through the same decisions",
+        "B) Stupid haste and decisive finishing are identical from outside; the difference is whether the commander has done the relational audit from the first chapter and confirmed the window for action is still valid",
+        "C) Stupid haste refers to launching a campaign without consulting allies, while decisive finishing means acting with full coalition support"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Nice catch. Both stupid haste and decisive finishing involve moving quickly. The difference is not visible from outside. A commander who has done the relational audit and confirmed the window is open is making a justified decision to act quickly. A commander who has not done the audit is producing the same motion without the information that justifies it.",
+        "direct": "Decisive finishing is speed inside a verified forecast. Stupid haste is speed without one. The distinction is epistemic — it lives in the quality of the commander's information — rather than behavioral. Both look the same in motion. Only the audit determines which one is actually happening.",
+        "competitive": "Option A reduces the distinction to efficiency, which misses the point entirely. Option C invents a coalition criterion Sun Tzu does not use. Option B captures the epistemic distinction: the audit is the only thing that converts speed into decisive finishing rather than expensive motion."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q06",
+      "prompt": "Naomi, a startup co-founder, is trying to convince her CFO Ana to kill a project that has been running eight months past its original window. Ana argues the project still needs more time. Which framing is most consistent with Sun Tzu's tempo argument?",
+      "choices": [
+        "A) Naomi should point out that the daily cost of the project, multiplied by the days remaining before runway exhaustion, is higher than the expected value of the project's outcome given current conditions",
+        "B) Ana is correct because eight months is not enough time to evaluate a product initiative, and the Ch1 audit that justified the project is still technically valid",
+        "C) Naomi should appeal to the company's shareholders because governance decisions of this magnitude should not be made by co-founders alone"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nice catch. Sun Tzu's argument is about whether the daily rate of continuation is still justified by the current conditions. Naomi's move is to make the daily rate visible and compare it to the current forecast of the project's value. The question is not whether the project could theoretically still work. It is whether the window that originally justified starting it is still open.",
+        "direct": "Notice that option B treats the original Ch1 audit as permanently valid, which is exactly the mistake Sun Tzu warns against. The audit was accurate when it was done. Conditions have changed. Option C is a governance distraction. Option A applies the daily-rate argument correctly: does the daily cost of continuation, multiplied by the remaining campaign length, still justify the expected outcome under current conditions?",
+        "competitive": "The trap is option B, which treats the original justification as timeless. Sun Tzu's argument is that the audit has an expiration date. Ana's 'we need more time' position is only sound if the conditions that made the project promising have held or improved. The co-founder conversation Naomi needs to have is about whether those conditions still hold."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q07",
+      "prompt": "A graduate student has been revising her dissertation for three years past her original two-year timeline, driven by perfectionism about a methodology chapter. Her advisor is concerned about her funding expiration. How does Sun Tzu's tempo argument apply?",
+      "choices": [
+        "A) The student should finish immediately, sacrificing quality for speed, because Sun Tzu always prioritizes tempo over quality",
+        "B) The methodology chapter is a fixed cost that must be paid regardless of timeline, so the delay is justified",
+        "C) The daily cost of continued revision is drawing down resources — funding, mental energy, time — that are degrading while the revision runs, and the question is whether the incremental quality gain from continued revision exceeds the daily cost of achieving it"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Nice catch. Sun Tzu's argument is not that quality does not matter. It is that the daily cost of pursuing quality accumulates while the campaign runs, which means at some point the marginal gain from one more day of revision is less than the cost of that day. The student's question is: is the next day of revision worth its cost in funding, mental health, and time to degree?",
+        "direct": "Transferring the tempo argument to an academic context: the dissertation is the campaign. The funding expiration is the compounding-cost chain. The student's job is to estimate whether the next unit of revision time produces more value than the daily rate costs. At some point that calculation changes sign. That is the point Sun Tzu is trying to surface.",
+        "competitive": "Options A and B both miss the logic. Option A collapses it into 'always finish fast.' Option B treats the methodology chapter as a fixed cost that stops the daily rate from running, which is wrong. Option C applies the actual argument: every day of revision draws down resources, and the question is whether the marginal output of that day exceeds the marginal cost of drawing down those resources."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q08",
+      "prompt": "Sun Tzu's forage doctrine says to 'bring war material from home, but forage on the enemy.' A reader argues this makes Sun Tzu an advocate for plunder and theft. What is the most accurate objection to that reading?",
+      "choices": [
+        "A) Sun Tzu does not condone plunder because war was considered an illegitimate activity in ancient China and commanders were expected to pay for everything they consumed",
+        "B) The forage doctrine is a logistics rule about protecting the home state's supply chain from its own campaign; the moral question of whose property it is comes from a different framework that Sun Tzu is not operating in",
+        "C) The forage doctrine only applies to provisions and never to chariots, weapons, or prisoners, so the plunder reading overstates what Sun Tzu actually says"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Nice catch. Sun Tzu's forage argument is about managing the home state's cost of the campaign, not about taking what belongs to others as a moral principle. The instruction exists inside an adversarial context where the 'enemy's' provisions are in disputed territory. Reading it as an endorsement of plunder applies a property-rights framework Sun Tzu is not using.",
+        "direct": "Sun Tzu's forage doctrine is a logistics argument. Its purpose is to protect the home state's supply lines and treasury by reducing their load. The moral question of property rights in war is a genuine and important one, but it belongs to a different framework — Confucian ethics, international law, just-war theory — that Sun Tzu is not engaging. Applying that framework retroactively to dismiss his logistics logic is a category error.",
+        "competitive": "Option A is historically wrong. Option C misreads the text, which explicitly mentions chariots and prisoners. Option B is correct and makes the strongest objection: the forage doctrine is a logistics rule, not a moral position. Conflating the two misidentifies what kind of argument Sun Tzu is making."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch02-q09",
+      "prompt": "Sun Tzu closes by saying the leader of armies is the arbiter of the people's fate. Which explanation best reconstructs why this governance framing is the right conclusion to a chapter that began with a cost estimate?",
+      "choices": [
+        "A) Because the argument runs from the silver cost through the compounding chain to the peasantry's suffering, the governance framing names the accountability that emerges: a general who allows the chain to run has made a governance decision that the population did not authorize",
+        "B) The governance framing is rhetorical flourish designed to give military commanders a sense of importance and motivate them to plan carefully",
+        "C) The governance framing shows that Sun Tzu believed military commanders should also serve as political leaders, combining strategic and civic authority in a single role"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Here, the connection between the opening and the closing matters. Sun Tzu opened with a daily cost. He traced that cost through weapons, morale, treasury, and rivals to the peasantry's drained resources. The closing line names who is responsible for that drain — the general — and calls it governance. The closing is not separate from the economic argument. It is where the economic argument finds its moral weight.",
+        "direct": "Sun Tzu's argument runs in a straight line from the daily rate to the governance claim. The silver that leaves the treasury becomes taxation that falls on the peasantry. A general who allows the chain to run has not made a neutral strategic choice. He has made a governance decision that the people pay for and cannot appeal. The closing line is the accountability label for that decision.",
+        "competitive": "Option B treats the closing line as decoration. Option C reads a modern organizational structure into an ancient text. Option A correctly traces the logical connection: the cost argument and the governance claim are the same argument at different scales. The daily rate is the fiscal dimension; the arbiter claim is the political dimension of the same structural observation."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch02-q10",
+      "prompt": "Sun Tzu argues that prolonged campaigns destroy the resources the campaign was supposed to protect. Given this argument, what is he most likely to argue in the chapter that follows about what the optimal version of military success actually looks like?",
+      "choices": [
+        "A) That the optimal military success is a rapid combined-arms assault that ends in total destruction of the opposing force before their compounding-cost chain activates",
+        "B) That the optimal success is one where the opposing side's resistance is broken before expensive fighting is required, meaning the fastest and cheapest finish is a win that avoids the destructive costs of battle entirely",
+        "C) That the optimal success requires a formal surrender ceremony that maximizes the political signal to watching rivals that the winner is strong and the campaign cost nothing"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Nice catch. If prolonged campaigns destroy the state, and if fighting itself has costs, then the cheapest version of winning is one that does not require battle. The next chapter in Sun Tzu's argument will develop the idea that breaking the enemy's resistance without fighting is the highest form of strategy — which is the logical endpoint of the tempo argument.",
+        "direct": "Sun Tzu's tempo argument from this chapter already treats fighting as a cost. If every day of campaigning costs the state, then battle is a concentrated form of that cost. The logical extension is that the cheapest resolution is one where the opposing side's will is broken before destructive battle becomes necessary — which is exactly what the next chapter argues.",
+        "competitive": "Option A maximizes speed but still requires destructive battle, which is itself a cost. Option C is about signaling, not about cost reduction. Option B correctly identifies the direction of Sun Tzu's argument: if prolonged campaigns are expensive, and fighting is expensive, then the optimal outcome is the one that requires neither prolongation nor destructive battle to achieve."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

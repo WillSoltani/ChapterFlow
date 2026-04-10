@@ -1,0 +1,41 @@
+{
+  "bookId": "talk-like-ted",
+  "runId": "20260409-001024",
+  "decisionDate": "2026-04-08",
+  "decisionMode": "auto_lock",
+  "selectedEdition": {
+    "title": "Talk Like TED: The 9 Public-Speaking Secrets of the World's Top Minds",
+    "author": "Carmine Gallo",
+    "publisher": "St. Martin's Press",
+    "imprint": "St. Martin's Press / St. Martin's Publishing Group",
+    "publishedYear": 2014,
+    "isbn13": "9781250041128",
+    "ebookIsbn13": "9781466837270"
+  },
+  "reasoning": {
+    "dominantEdition": true,
+    "materialAmbiguity": false,
+    "whyNoUserQuestion": "The 2014 St. Martin's edition is the clear canonical release and later printings retain the same nine-chapter structure, so edition ambiguity does not materially change chapter scope or order for this run.",
+    "tradeoffs": [
+      "The Macmillan excerpt gives direct authorized support for Chapter 1 but not the full book.",
+      "Later paperback or ebook printings may vary in pagination, but not in chapter-level structure."
+    ]
+  },
+  "candidatesReviewed": [
+    {
+      "label": "2014 St. Martin's Press hardcover",
+      "status": "selected",
+      "notes": "Direct publisher page plus authorized excerpt."
+    },
+    {
+      "label": "2015 St. Martin's Publishing Group ebook",
+      "status": "compatible_reprint",
+      "notes": "Metadata-compatible digital release; not needed as the lock target because the hardcover page already supplies the authoritative chapter map and excerpt."
+    },
+    {
+      "label": "later paperback reprints",
+      "status": "compatible_reprint",
+      "notes": "Chapter-level content appears stable and does not change the workflow."
+    }
+  ]
+}

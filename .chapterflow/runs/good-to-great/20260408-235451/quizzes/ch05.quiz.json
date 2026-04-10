@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the hedgehog concept mainly trying to produce?",
+      "choices": [
+        "A broad portfolio of adjacent growth options",
+        "One coherent concept built from disciplined strategic narrowing",
+        "A motivational slogan that keeps morale high during change"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The goal is one strong concept, not many defended options.",
+        "direct": "The hedgehog organizes the institution around a single coherent idea rather than broad sprawl.",
+        "competitive": "It is a force-concentration tool, not a branding exercise."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Which three circles have to meet before the concept is real?",
+      "choices": [
+        "Speed, scale, and visibility",
+        "Talent, culture, and technology",
+        "Best-at truth, economic engine, and deep passion"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "All three circles matter together.",
+        "direct": "Capability, economics, and passion have to intersect.",
+        "competitive": "No intersection, no real hedgehog."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A team loves its project but cannot name a durable economic driver. What is the strongest diagnosis?",
+      "choices": [
+        "The concept is incomplete because one circle is missing",
+        "The concept is already strong because passion matters most",
+        "The concept is fine as long as the mission remains inspiring"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Passion helps, but it cannot replace economic clarity.",
+        "direct": "The idea fails the full test because the engine is still vague.",
+        "competitive": "Love for the work is not an economic model."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Leila has three promising initiatives on the board, but only one clearly fits the team's edge, economics, and commitment. What move fits best?",
+      "choices": [
+        "Keep all three alive so the team stays flexible",
+        "Choose the one that survives all three circles and release the rest",
+        "Pick the option that sounds most visionary in the next executive review"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The strongest move is to narrow around the one concept that fully fits.",
+        "direct": "The three-circle test is supposed to force subtraction, not celebrate optionality.",
+        "competitive": "Concentrate the force instead of splitting it three ways."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "A student venture has real passion and strong campus attention, but weak unit economics and no clear best-at arena. What should the team conclude?",
+      "choices": [
+        "The concept is ready because market enthusiasm proves the idea",
+        "The missing circles need to be tested before the strategy deserves commitment",
+        "The project should scale faster so the economics eventually catch up"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The team needs more truth before more commitment.",
+        "direct": "Passion and attention do not substitute for edge or engine.",
+        "competitive": "Do not scale a flattering illusion."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which statement most clearly misreads the best-at circle?",
+      "choices": [
+        "It asks where the company can become truly dominant in a defined arena",
+        "It asks leaders to separate admired strengths from real strategic edge",
+        "It means any capability the company does reasonably well can anchor the strategy"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Doing something fairly well is not the same as having a true best-at claim.",
+        "direct": "The best-at circle is demanding because it includes strong exclusion, not broad self-esteem.",
+        "competitive": "Respectable competence is not a throne."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why is saying no such a central discipline here?",
+      "choices": [
+        "Because rejection keeps strategy honest when attractive options sit outside the intersection",
+        "Because leaders should always prefer the smallest market available",
+        "Because passion becomes stronger when teams feel restricted by default"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A real concept becomes visible when leaders let some appealing paths go.",
+        "direct": "The no matters because coherence requires tradeoffs, not just better phrasing.",
+        "competitive": "If nothing valuable got cut, the focus is probably fake."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Noor is offered a broader media expansion for the student journal, but the team's real edge sits in a narrower concept. What choice best matches the idea?",
+      "choices": [
+        "Decline the expansion unless it strengthens the same three-circle concept",
+        "Take the expansion because prestige is evidence of strategic growth",
+        "Accept the expansion and hope a clearer concept appears later"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The concept stays strong by refusing flattering detours.",
+        "direct": "A broader opportunity is not automatically a better one if it weakens the intersection.",
+        "competitive": "Do not trade edge for applause."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the strongest sign that a strategy is still a flattering story rather than a real hedgehog?",
+      "choices": [
+        "It asks for repeated sacrifices while the same concept keeps surviving all three circles",
+        "It keeps every favored initiative alive and depends on vague language for the weak circle",
+        "It feels narrower than the leadership team initially preferred"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Fake clarity often protects too much and names too little.",
+        "direct": "When the weak circle stays vague and no hard tradeoff appears, the concept is usually cosmetic.",
+        "competitive": "If the trophies all survived, the truth probably did not arrive."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Once the hedgehog is clear, what challenge naturally comes next?",
+      "choices": [
+        "Building a culture that can keep acting inside the concept consistently",
+        "Replacing strategic clarity with more adjacent experimentation",
+        "Choosing technology first so the people can adapt later"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next issue is whether people can live inside the concept steadily.",
+        "direct": "Clarity has to be followed by disciplined culture, not by fresh sprawl.",
+        "competitive": "Pointing the force is step one. Keeping it pointed is next."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

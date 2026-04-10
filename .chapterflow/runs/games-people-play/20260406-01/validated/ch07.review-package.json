@@ -1,0 +1,40 @@
+{
+  "chapterId": "ch07",
+  "chapterNumber": 7,
+  "chapterTitle": "Party and Social Games",
+  "bookId": "games-people-play",
+  "runId": "20260406-01",
+  "packVersion": "v12-sealed",
+  "validationStatus": "passed",
+  "qualityGateScore": {
+    "total": 12,
+    "max": 12,
+    "categories": {
+      "chapterSpecificity": 2,
+      "anchorUse": 2,
+      "analyticalValue": 2,
+      "paragraphMotion": 2,
+      "proseQuality": 2,
+      "hookAndBridge": 2
+    },
+    "autoFails": []
+  },
+  "summary": {
+    "coreClaim": "Party games are short-duration group patterns providing social warmth without genuine contact. Three patterns: AIA, WDYYB, Blemish. Not all complaining is a game; the dynamics (moving vs circling) distinguish.",
+    "anchorsUsed": [
+      "Book club thirty-eight-minute deploring session",
+      "Pita's kitchen advice-rejection loop",
+      "Cass's first-flaw design critique pattern"
+    ],
+    "hardDepthTension": "Applying the party game vocabulary as a filter produces the hammer problem at social scale \u2014 cynicism and isolation. The model is a tool, not a lens.",
+    "bridgeToNextChapter": "Professional and therapy games run where the helper's role provides the cover."
+  },
+  "strongestQualities": [
+    "Moving-vs-circling distinction is the chapter's most practical analytical contribution.",
+    "'The colleagues are not providing solutions; they are providing the raw material for the rejections' is the chapter's most precise sentence.",
+    "The hammer-problem-at-social-scale extension in hard depth correctly applies Ch3's warning."
+  ],
+  "remainingConcerns": [],
+  "approvalRequired": true,
+  "preserveApprovedHash": false
+}

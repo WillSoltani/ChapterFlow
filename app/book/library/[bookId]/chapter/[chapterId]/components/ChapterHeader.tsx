@@ -2,19 +2,23 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { ArrowLeft, ChevronDown, Focus, NotebookPen } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
+import {
+  ArrowLeft,
+  Focus,
+  HelpCircle,
+  NotebookPen,
+  Settings,
+} from "lucide-react";
 import type { LearningMode, ContentTone } from "@/app/book/settings/types/settings";
+import type { ReadingDepth } from "@/app/book/data/mockChapters";
+import { useInsightPoints } from "@/app/book/hooks/useInsightPoints";
+import { ReaderSettingsMenu } from "./ReaderSettingsMenu";
 
 const MODE_LABELS: Record<LearningMode, { icon: string; label: string }> = {
   guided: { icon: "\uD83C\uDF31", label: "Guided" },
   standard: { icon: "\uD83D\uDCDA", label: "Standard" },
   challenge: { icon: "\uD83C\uDFC6", label: "Challenge" },
-};
-
-const TONE_LABELS: Record<ContentTone, { icon: string; label: string }> = {
-  gentle: { icon: "\u2615", label: "Gentle" },
-  direct: { icon: "\u26A1", label: "Direct" },
-  competitive: { icon: "\uD83D\uDD25", label: "Competitive" },
 };
 
 type ChapterHeaderProps = {
@@ -37,6 +41,10 @@ type ChapterHeaderProps = {
   showProgressBar?: boolean;
   showEstimatedReadingTime?: boolean;
   showReadingSessionTimer?: boolean;
+  readingDepth?: ReadingDepth;
+  onChangeReadingDepth?: (value: ReadingDepth) => void;
+  showDepthSelector?: boolean;
+  onOpenShortcuts?: () => void;
 };
 
 export function ChapterHeader({
@@ -51,291 +59,328 @@ export function ChapterHeader({
   focusMode,
   onToggleFocus,
   onOpenNotes,
-  trackedMinutesToday = 0,
+  trackedMinutesToday: _trackedMinutesToday = 0,
   learningMode = "standard",
   onChangeLearningMode,
   contentTone = "gentle",
   onChangeContentTone,
-  showProgressBar = true,
+  showProgressBar: _showProgressBar = true,
   showEstimatedReadingTime = true,
-  showReadingSessionTimer = true,
+  showReadingSessionTimer: _showReadingSessionTimer = true,
+  readingDepth,
+  onChangeReadingDepth,
+  showDepthSelector = false,
+  onOpenShortcuts,
 }: ChapterHeaderProps) {
-  const modeInfo = MODE_LABELS[learningMode];
-  const toneInfo = TONE_LABELS[contentTone];
-  const [modeDropdownOpen, setModeDropdownOpen] = useState(false);
-  const [toneDropdownOpen, setToneDropdownOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const toneDropdownRef = useRef<HTMLDivElement>(null);
+  void _trackedMinutesToday;
+  void _showProgressBar;
+  void _showReadingSessionTimer;
+  const [isDesktop, setIsDesktop] = useState(false);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mq = window.matchMedia("(min-width: 768px)");
+    const update = () => setIsDesktop(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+  const ipState = useInsightPoints(isDesktop);
+  const ipBalance = ipState.payload?.summary.balance ?? null;
+  const reduced = useReducedMotion();
+  const [scrolled, setScrolled] = useState(false);
+  const [readProgress, setReadProgress] = useState(0);
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const settingsAnchorRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
+
+  // Publish header height as a CSS var so child sticky rows can offset themselves.
+  useEffect(() => {
+    const el = headerRef.current;
+    if (!el || typeof ResizeObserver === "undefined") return;
+    const root = document.documentElement;
+    const update = () => {
+      const stickyChild = el.querySelector<HTMLElement>(":scope > div");
+      const h = stickyChild?.offsetHeight ?? el.offsetHeight;
+      root.style.setProperty("--cr-header-h", `${h}px`);
+    };
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    update();
+    return () => {
+      ro.disconnect();
+      root.style.removeProperty("--cr-header-h");
+    };
+  }, [focusMode]);
 
   useEffect(() => {
-    if (!modeDropdownOpen) return;
-    const handler = (e: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-        setModeDropdownOpen(false);
-      }
+    const onScroll = () => {
+      setScrolled(window.scrollY > 8);
+      const el = document.documentElement;
+      const sc = el.scrollTop;
+      const total = el.scrollHeight - el.clientHeight;
+      setReadProgress(total > 0 ? Math.min(100, (sc / total) * 100) : 0);
     };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
-  }, [modeDropdownOpen]);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
-  useEffect(() => {
-    if (!toneDropdownOpen) return;
-    const handler = (e: MouseEvent) => {
-      if (toneDropdownRef.current && !toneDropdownRef.current.contains(e.target as Node)) {
-        setToneDropdownOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
-  }, [toneDropdownOpen]);
+  const stickyStyle: React.CSSProperties = {
+    background:
+      "color-mix(in srgb, var(--cr-bg-root) 88%, transparent)",
+    backdropFilter: "blur(16px)",
+    WebkitBackdropFilter: "blur(16px)",
+    borderBottom: scrolled
+      ? "1px solid var(--cr-glass-border)"
+      : "1px solid transparent",
+    transition: "border-color 0.2s",
+  };
+
+  const ipPill = ipBalance != null && (
+    <Link
+      href="/rewards"
+      className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[12px] font-semibold tabular-nums transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_60%,transparent)]"
+      style={{
+        background: "color-mix(in srgb, var(--cr-accent) 10%, transparent)",
+        color: "var(--cr-accent)",
+        border: "1px solid color-mix(in srgb, var(--cr-accent) 25%, transparent)",
+      }}
+      aria-label={`${ipBalance} insight points — view rewards`}
+    >
+      <span>{"\u2728"}</span>
+      {reduced ? (
+        <span>{ipBalance.toLocaleString()} IP</span>
+      ) : (
+        <motion.span
+          key={ipBalance}
+          initial={{ scale: 1.4 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          {ipBalance.toLocaleString()} IP
+        </motion.span>
+      )}
+    </Link>
+  );
+
+  // ── Focus mode header (minimal chrome) ──
   if (focusMode) {
     return (
-      <header className="flex items-center justify-between border-b border-(--cr-glass-border) pb-3">
-        <div className="flex items-center gap-3 min-w-0">
-          <Link
-            href={`/book/library/${encodeURIComponent(bookId)}`}
-            className="inline-flex items-center gap-1 rounded-lg border border-(--cr-glass-border) bg-(--cr-glass-nav) px-2.5 py-1 text-sm text-(--cr-text-secondary) transition hover:bg-(--cr-accent-muted) hover:text-(--cr-text-primary)"
-          >
-            <ArrowLeft className="h-3.5 w-3.5" />
-            Back
-          </Link>
-          <h1 className="truncate text-sm font-semibold text-(--cr-text-heading)">
-            {chapterLabel}: {chapterTitle}
-          </h1>
+      <header
+        ref={headerRef}
+        className="sticky top-0 z-30 -mx-4 px-4 sm:-mx-6 sm:px-6"
+        style={stickyStyle}
+      >
+        <div className="flex items-center justify-between gap-3 py-3">
+          <div className="flex min-w-0 items-center gap-3">
+            <Link
+              href={`/book/library/${encodeURIComponent(bookId)}`}
+              className="inline-flex items-center gap-1 rounded-lg p-1.5 text-(--cr-text-secondary) transition hover:bg-(--cr-bg-surface-3) hover:text-(--cr-text-primary)"
+              aria-label="Back to library"
+            >
+              <ArrowLeft className="h-4 w-4" />
+            </Link>
+            <h1 className="truncate text-sm font-semibold text-(--cr-text-heading)">
+              {chapterLabel}: {chapterTitle}
+            </h1>
+          </div>
+          <div className="flex items-center gap-1.5">
+            {ipPill}
+            <button
+              type="button"
+              onClick={onToggleFocus}
+              className="inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs font-medium transition"
+              style={{
+                borderColor: "var(--cr-accent)",
+                background: "var(--cr-accent-muted)",
+                color: "var(--cr-accent)",
+              }}
+              title="Exit focus mode (F)"
+              aria-label="Exit focus mode"
+            >
+              <Focus className="h-3.5 w-3.5" />
+              <span className="hidden sm:inline">Focus</span>
+            </button>
+          </div>
         </div>
-        <div className="flex items-center gap-2">
-          <button
-            type="button"
-            onClick={onToggleFocus}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-(--cr-accent) bg-(--cr-accent-muted) px-3 py-1.5 text-xs font-medium text-(--cr-accent) transition"
-          >
-            <Focus className="h-3.5 w-3.5" />
-            Focus
-          </button>
-          <button
-            type="button"
-            onClick={onOpenNotes}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-(--cr-warning)/30 bg-(--cr-warning)/10 px-3 py-1.5 text-xs font-medium text-(--cr-warning) transition hover:bg-(--cr-warning)/15"
-          >
-            <NotebookPen className="h-3.5 w-3.5" />
-            Notes
-          </button>
-        </div>
+        <ScrollProgressBar value={readProgress} />
       </header>
     );
   }
 
+  // ── Default header: minimal sticky chrome ──
   return (
-    <header className="space-y-4">
-      {/* Breadcrumb row */}
-      <div className="flex flex-col gap-3 border-b border-(--cr-glass-border) pb-3 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex min-w-0 items-center gap-2 text-sm">
+    <header
+      className="sticky top-0 z-30 -mx-4 px-4 sm:-mx-6 sm:px-6"
+      style={stickyStyle}
+    >
+      <div className="flex items-center justify-between gap-3 py-3">
+        {/* Left: back + chapter label */}
+        <div className="flex min-w-0 items-center gap-2">
           <Link
             href={`/book/library/${encodeURIComponent(bookId)}`}
-            className="inline-flex items-center gap-1 rounded-lg border border-(--cr-glass-border) bg-(--cr-glass-nav) px-2.5 py-1 text-(--cr-text-secondary) transition hover:bg-(--cr-accent-muted) hover:text-(--cr-text-primary)"
+            className="inline-flex items-center gap-1.5 rounded-lg p-1.5 text-(--cr-text-secondary) transition hover:bg-(--cr-bg-surface-3) hover:text-(--cr-text-primary)"
+            aria-label="Back to library"
           >
-            <ArrowLeft className="h-3.5 w-3.5" />
-            Back
+            <ArrowLeft className="h-4 w-4" />
+            <span className="hidden sm:inline text-sm font-medium">Back</span>
           </Link>
-          <span className="text-(--cr-text-disabled)">/</span>
-          <span className="hidden truncate text-(--cr-text-secondary) sm:inline">
-            {bookTitle}
-          </span>
-          <span className="hidden text-(--cr-text-disabled) sm:inline">/</span>
-          <span className="truncate text-(--cr-text-primary)">
+          <span className="hidden sm:inline-block h-4 w-px bg-(--cr-glass-border)" aria-hidden="true" />
+          <h2 className="hidden sm:block min-w-0 truncate text-sm font-semibold text-(--cr-text-primary)">
             {chapterLabel}
+          </h2>
+          <span
+            className="hidden sm:inline text-[11px] tabular-nums text-(--cr-text-disabled)"
+          >
+            {chapterOrder} / {totalChapters}
           </span>
-
-          {/* Chapter position dots */}
-          {showProgressBar && (
-            <div className="ml-2 hidden items-center gap-1 sm:flex">
-              {Array.from({ length: Math.min(totalChapters, 20) }, (_, i) => (
-                <div
-                  key={i}
-                  className={[
-                    "h-1.5 w-1.5 rounded-full transition-colors",
-                    i + 1 === chapterOrder
-                      ? "bg-(--cr-accent)"
-                      : i + 1 < chapterOrder
-                        ? "bg-(--cr-accent)/40"
-                        : "bg-(--cr-fill-muted)",
-                  ].join(" ")}
-                />
-              ))}
-              <span className="ml-1 text-xs text-(--cr-text-disabled)">
-                {chapterOrder}/{totalChapters}
-              </span>
-            </div>
-          )}
         </div>
 
-        {/* Right controls */}
-        <div className="flex flex-wrap items-center gap-2 sm:justify-end">
-          {/* Learning mode indicator + dropdown */}
-          {!focusMode && (
-            <div ref={dropdownRef} className="relative">
-              <button
-                type="button"
-                onClick={() => setModeDropdownOpen((prev) => !prev)}
-                className="inline-flex items-center gap-1.5 rounded-full border border-(--cr-glass-border) bg-(--cr-glass-nav) px-3 py-1 text-xs text-(--cr-text-secondary) transition hover:border-(--cr-accent)/30 hover:text-(--cr-text-primary)"
-                aria-expanded={modeDropdownOpen}
-                aria-haspopup="true"
-              >
-                <span>{modeInfo.icon}</span>
-                <span className="hidden sm:inline">{modeInfo.label}</span>
-                <ChevronDown className={["h-3 w-3 opacity-50 transition-transform", modeDropdownOpen ? "rotate-180" : ""].join(" ")} />
-              </button>
-
-              {modeDropdownOpen && (
-                <div className="absolute right-0 top-full z-40 mt-2 w-64 rounded-xl border border-(--cr-glass-border) bg-(--cr-bg-surface-2) p-3 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
-                  <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.14em] text-(--cr-text-disabled)">
-                    Learning Mode
-                  </p>
-                  {(["guided", "standard", "challenge"] as const).map((mode) => {
-                    const info = MODE_LABELS[mode];
-                    const active = mode === learningMode;
-                    const descriptions: Record<LearningMode, string> = {
-                      guided: "Relaxed, hints on quiz",
-                      standard: "Balanced, 1 retry",
-                      challenge: "Timed, no retries, 90% pass",
-                    };
-                    return (
-                      <button
-                        key={mode}
-                        type="button"
-                        onClick={() => {
-                          onChangeLearningMode?.(mode);
-                          setModeDropdownOpen(false);
-                        }}
-                        className={[
-                          "flex w-full items-start gap-2.5 rounded-lg px-3 py-2 text-left transition",
-                          active
-                            ? "bg-(--cr-accent-muted) text-(--cr-accent)"
-                            : "text-(--cr-text-secondary) hover:bg-(--cr-bg-surface-3)",
-                        ].join(" ")}
-                      >
-                        <span className="mt-0.5 text-sm">{info.icon}</span>
-                        <div>
-                          <p className={["text-xs font-semibold", active ? "text-(--cr-accent)" : "text-(--cr-text-primary)"].join(" ")}>
-                            {info.label}
-                            {mode === "standard" && (
-                              <span className="ml-1.5 rounded-full bg-(--cr-accent-muted) px-1.5 py-0.5 text-[9px] font-bold text-(--cr-accent)">
-                                REC
-                              </span>
-                            )}
-                          </p>
-                          <p className="mt-0.5 text-[11px] text-(--cr-text-disabled)">{descriptions[mode]}</p>
-                        </div>
-                      </button>
-                    );
-                  })}
-                  <p className="mt-2 border-t border-(--cr-glass-border) pt-2 text-[10px] text-(--cr-text-disabled)">
-                    Mode affects quiz rules. <Link href="/book/settings" className="text-(--cr-accent) hover:underline">Full details</Link>
-                  </p>
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* Content tone dropdown */}
-          {!focusMode && (
-            <div ref={toneDropdownRef} className="relative">
-              <button
-                type="button"
-                onClick={() => setToneDropdownOpen((prev) => !prev)}
-                className="inline-flex items-center gap-1.5 rounded-full border border-(--cr-glass-border) bg-(--cr-glass-nav) px-3 py-1 text-xs text-(--cr-text-secondary) transition hover:border-(--cr-accent)/30 hover:text-(--cr-text-primary)"
-                aria-expanded={toneDropdownOpen}
-                aria-haspopup="true"
-              >
-                <span>{toneInfo.icon}</span>
-                <span className="hidden sm:inline">{toneInfo.label}</span>
-                <ChevronDown className={["h-3 w-3 opacity-50 transition-transform", toneDropdownOpen ? "rotate-180" : ""].join(" ")} />
-              </button>
-
-              {toneDropdownOpen && (
-                <div className="absolute right-0 top-full z-40 mt-2 w-64 rounded-xl border border-(--cr-glass-border) bg-(--cr-bg-surface-2) p-3 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
-                  <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.14em] text-(--cr-text-disabled)">
-                    Content Tone
-                  </p>
-                  {(["gentle", "direct", "competitive"] as const).map((tone) => {
-                    const info = TONE_LABELS[tone];
-                    const active = tone === contentTone;
-                    const descriptions: Record<string, string> = {
-                      gentle: "Warm, curious, invitational",
-                      direct: "Clean, efficient, with a slight edge",
-                      competitive: "Energizing, challenge-driven",
-                    };
-                    return (
-                      <button
-                        key={tone}
-                        type="button"
-                        onClick={() => {
-                          onChangeContentTone?.(tone);
-                          setToneDropdownOpen(false);
-                        }}
-                        className={[
-                          "flex w-full items-start gap-2.5 rounded-lg px-3 py-2 text-left transition",
-                          active
-                            ? "bg-(--cr-accent-muted) text-(--cr-accent)"
-                            : "text-(--cr-text-secondary) hover:bg-(--cr-bg-surface-3)",
-                        ].join(" ")}
-                      >
-                        <span className="mt-0.5 text-sm">{info.icon}</span>
-                        <div>
-                          <p className={["text-xs font-semibold", active ? "text-(--cr-accent)" : "text-(--cr-text-primary)"].join(" ")}>
-                            {info.label}
-                          </p>
-                          <p className="mt-0.5 text-[11px] text-(--cr-text-disabled)">{descriptions[tone]}</p>
-                        </div>
-                      </button>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-          )}
-
-          <button
-            type="button"
-            onClick={onToggleFocus}
-            className={[
-              "inline-flex items-center gap-1.5 rounded-xl border px-3 py-1.5 text-xs font-medium transition",
-              focusMode
-                ? "border-(--cr-accent) bg-(--cr-accent-muted) text-(--cr-accent)"
-                : "border-(--cr-glass-border) bg-(--cr-glass-nav) text-(--cr-text-secondary) hover:text-(--cr-text-primary)",
-            ].join(" ")}
-          >
-            <Focus className="h-3.5 w-3.5" />
-            Focus
-          </button>
+        {/* Right: minimal action cluster */}
+        <div className="flex items-center gap-1.5">
+          {ipPill}
+          <div ref={settingsAnchorRef} className="relative">
+            <button
+              type="button"
+              onClick={() => setSettingsOpen((v) => !v)}
+              className="inline-flex items-center gap-1.5 rounded-lg p-2 text-(--cr-text-secondary) transition hover:bg-(--cr-bg-surface-3) hover:text-(--cr-text-primary) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_50%,transparent)]"
+              aria-expanded={settingsOpen}
+              aria-haspopup="dialog"
+              aria-label="Reading settings"
+              title="Reading settings"
+            >
+              <Settings className="h-4 w-4" />
+            </button>
+            <ReaderSettingsMenu
+              open={settingsOpen}
+              onClose={() => setSettingsOpen(false)}
+              learningMode={learningMode}
+              onChangeLearningMode={(m) => {
+                onChangeLearningMode?.(m);
+              }}
+              contentTone={contentTone}
+              onChangeContentTone={(t) => {
+                onChangeContentTone?.(t);
+              }}
+              showDepthSelector={showDepthSelector}
+              readingDepth={readingDepth}
+              onChangeReadingDepth={onChangeReadingDepth}
+              focusMode={focusMode}
+              onToggleFocus={onToggleFocus}
+            />
+          </div>
           <button
             type="button"
             onClick={onOpenNotes}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-(--cr-warning)/30 bg-(--cr-warning)/10 px-3 py-1.5 text-xs font-medium text-(--cr-warning) transition hover:bg-(--cr-warning)/15"
+            className="inline-flex items-center justify-center rounded-lg p-2 text-(--cr-text-secondary) transition hover:bg-(--cr-bg-surface-3) hover:text-(--cr-text-primary) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_50%,transparent)]"
+            aria-label="Open notes"
+            title="Notes (N)"
           >
-            <NotebookPen className="h-3.5 w-3.5" />
-            Notes
+            <NotebookPen className="h-4 w-4" />
           </button>
+          {onOpenShortcuts && (
+            <button
+              type="button"
+              onClick={onOpenShortcuts}
+              className="hidden md:inline-flex items-center justify-center rounded-lg p-2 text-(--cr-text-secondary) transition hover:bg-(--cr-bg-surface-3) hover:text-(--cr-text-primary) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_50%,transparent)]"
+              aria-label="Show keyboard shortcuts"
+              title="Keyboard shortcuts (?)"
+            >
+              <HelpCircle className="h-4 w-4" />
+            </button>
+          )}
         </div>
       </div>
 
-      {/* Title block */}
-      <div>
-        <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-(--cr-accent)">
-          {bookTitle} &middot; {author}
-        </p>
-        <h1 className="mt-2 text-3xl font-bold tracking-tight text-(--cr-text-heading) sm:text-4xl">
-          {chapterLabel}: {chapterTitle}
-        </h1>
-        {(showEstimatedReadingTime || showReadingSessionTimer) && (
-          <p className="mt-1.5 text-sm text-(--cr-text-secondary)">
-            {showEstimatedReadingTime && <>Est. {minutes} min read</>}
-            {showReadingSessionTimer && trackedMinutesToday > 0 && (
-              <>{showEstimatedReadingTime ? " \u00b7 " : ""}{trackedMinutesToday} min tracked today</>
-            )}
-          </p>
-        )}
-      </div>
+      <ScrollProgressBar value={readProgress} />
+
+      {/* Title block — lives outside the sticky chrome row, scrolls with content */}
+      <TitleBlock
+        bookTitle={bookTitle}
+        author={author}
+        chapterLabel={chapterLabel}
+        chapterTitle={chapterTitle}
+        chapterOrder={chapterOrder}
+        totalChapters={totalChapters}
+        minutes={minutes}
+        learningMode={learningMode}
+        showEstimatedReadingTime={showEstimatedReadingTime}
+      />
     </header>
+  );
+}
+
+function ScrollProgressBar({ value }: { value: number }) {
+  return (
+    <div
+      className="absolute bottom-0 left-0 right-0 h-0.5"
+      style={{ background: "var(--cr-glass-border)" }}
+      aria-hidden="true"
+    >
+      <div
+        className="h-full"
+        style={{
+          width: `${value}%`,
+          background: "var(--cr-accent)",
+        }}
+      />
+    </div>
+  );
+}
+
+function TitleBlock({
+  bookTitle,
+  author,
+  chapterLabel,
+  chapterTitle,
+  chapterOrder,
+  totalChapters,
+  minutes,
+  learningMode,
+  showEstimatedReadingTime,
+}: {
+  bookTitle: string;
+  author: string;
+  chapterLabel: string;
+  chapterTitle: string;
+  chapterOrder: number;
+  totalChapters: number;
+  minutes: number;
+  learningMode: LearningMode;
+  showEstimatedReadingTime: boolean;
+}) {
+  const modeLabel = MODE_LABELS[learningMode]?.label ?? "Standard";
+  return (
+    <div className="pt-6 pb-2 sm:pt-8">
+      <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-(--cr-accent)">
+        {bookTitle} &middot; {author}
+      </p>
+      <h1
+        className="mt-2 text-[28px] sm:text-[36px] font-bold tracking-tight text-(--cr-text-heading) leading-[1.15]"
+      >
+        {chapterLabel}: {chapterTitle}
+      </h1>
+      <p className="mt-2 text-[12px] text-(--cr-text-disabled) flex flex-wrap items-center gap-x-2 gap-y-1">
+        {showEstimatedReadingTime && <span>{minutes} min read</span>}
+        {showEstimatedReadingTime && <span aria-hidden="true">&middot;</span>}
+        <span>{modeLabel} mode</span>
+        <span aria-hidden="true">&middot;</span>
+        <span>
+          Chapter {chapterOrder} of {totalChapters}
+        </span>
+      </p>
+      <div
+        className="mt-3 sm:hidden h-0.5 w-full overflow-hidden rounded-full"
+        style={{ background: "var(--cr-glass-border)" }}
+      >
+        <div
+          className="h-full rounded-full transition-all duration-300"
+          style={{
+            width: `${Math.round((chapterOrder / totalChapters) * 100)}%`,
+            background: "var(--cr-accent)",
+          }}
+        />
+      </div>
+    </div>
   );
 }

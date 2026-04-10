@@ -1,0 +1,61 @@
+{
+  "bookId": "the-almanack-of-naval-ravikant",
+  "runId": "20260408-022212",
+  "chapterNumber": 5,
+  "title": "Philosophy",
+  "normalizedTitle": "philosophy",
+  "type": "core_section",
+  "alias": [
+    "How to Live"
+  ],
+  "printedPageRange": {
+    "start": 193,
+    "end": 206
+  },
+  "sourceIds": [
+    "official_2020_pdf",
+    "official_2020_epub",
+    "official_toc_page",
+    "official_home_page"
+  ],
+  "lockedEdition": {
+    "name": "The Almanack of Naval Ravikant: A Guide to Wealth and Happiness",
+    "family": "2020 Magrathea public-service PDF/EPUB family"
+  },
+  "sourceFiles": {
+    "pdf": "source-freeze/source-bundle/official-2020-edition.pdf",
+    "epub": "source-freeze/source-bundle/official-2020-edition.epub",
+    "epubDocument": "OEBPS/Eric-Jorgenson_The-Almanack-of-Naval-Ravikant_PRODUCTION_v102-14.xhtml",
+    "textFile": "sidecars/source/ch05.source.txt"
+  },
+  "headings": [
+    {
+      "level": "h1",
+      "title": "The Meanings of Life",
+      "printedPage": 194,
+      "anchorId": "_idParaDest-51"
+    },
+    {
+      "level": "h1",
+      "title": "Live by Your Values",
+      "printedPage": 196,
+      "anchorId": "_idParaDest-52"
+    },
+    {
+      "level": "h1",
+      "title": "Rational Buddhism",
+      "printedPage": 198,
+      "anchorId": "_idParaDest-53"
+    },
+    {
+      "level": "h1",
+      "title": "The Present Is All We Have",
+      "printedPage": 202,
+      "anchorId": "_idParaDest-54"
+    }
+  ],
+  "notes": [
+    "Sidecar text was extracted from the frozen official EPUB because it preserves the locked 2020 edition structure in machine-readable XHTML.",
+    "Printed page boundaries remain anchored to the frozen official PDF table of contents."
+  ]
+}

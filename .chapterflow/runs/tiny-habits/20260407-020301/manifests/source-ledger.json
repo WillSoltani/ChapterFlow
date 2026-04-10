@@ -1,0 +1,108 @@
+{
+  "bookId": "tiny-habits",
+  "runId": "20260407-020301",
+  "lockedAt": "2026-04-06",
+  "selectionMode": "auto_locked_dominant_edition",
+  "sources": [
+    {
+      "id": "tinyhabits_challenge",
+      "title": "Tiny Habits Challenge",
+      "url": "https://tinyhabits.com/challenge/",
+      "type": "official_author_page",
+      "role": "official overview of the Tiny Habits method and author framing",
+      "confidence": "high",
+      "accessedAt": "2026-04-06",
+      "notes": "Confirms BJ Fogg as author, the method framing, and the official language around making behavior change small and positive."
+    },
+    {
+      "id": "tinyhabits_extra_credit",
+      "title": "Extra Credit Learning",
+      "url": "https://tinyhabits.com/extra-credit/",
+      "type": "official_method_page",
+      "role": "official support for anchor moments, simplicity, and making behaviors easy",
+      "confidence": "high",
+      "accessedAt": "2026-04-06",
+      "notes": "Used for chapter-level support around anchor prompts, simplicity, and habit growth."
+    },
+    {
+      "id": "tinyhabits_emotions",
+      "title": "Tell Me More2 - Emotions Create Habits",
+      "url": "https://tinyhabits.com/tell-me-more2/",
+      "type": "official_method_page",
+      "role": "official support for celebration, Shine, and the emotions-create-habits claim",
+      "confidence": "high",
+      "accessedAt": "2026-04-06",
+      "notes": "Used for Chapter 5 support and for the broader rewards-over-self-criticism framing."
+    },
+    {
+      "id": "behaviormodel_home",
+      "title": "Fogg Behavior Model",
+      "url": "https://www.behaviormodel.org/home",
+      "type": "official_framework_page",
+      "role": "primary official source for B=MAP",
+      "confidence": "high",
+      "accessedAt": "2026-04-06",
+      "notes": "Confirms the core model that behavior happens when motivation, ability, and a prompt converge at the same moment."
+    },
+    {
+      "id": "google_books_uk_ebury",
+      "title": "Google Books metadata page for Tiny Habits",
+      "url": "https://books.google.com/books/about/Tiny_Habits.html?id=kxCYDwAAQBAJ",
+      "type": "authorized_metadata_preview",
+      "role": "publisher metadata and page-count confirmation",
+      "confidence": "high",
+      "accessedAt": "2026-04-06",
+      "notes": "Confirms title, author, Ebury 2019 metadata, 320-page UK trade edition, and the existence of stable English trade variants."
+    },
+    {
+      "id": "betterworldbooks_toc",
+      "title": "Better World Books product page for Tiny Habits paperback",
+      "url": "https://www.betterworldbooks.com/product/detail/9780358362777",
+      "type": "retail_metadata_toc",
+      "role": "chapter-order and contents confirmation",
+      "confidence": "high",
+      "accessedAt": "2026-04-06",
+      "notes": "Provides a clean table of contents with Introduction, eight numbered chapters, Conclusion, and appendixes."
+    },
+    {
+      "id": "drees_notes",
+      "title": "Book notes: Tiny Habits",
+      "url": "https://www.dreesnotes.com/book/2021/07/29/tiny-habits.html",
+      "type": "secondary_summary",
+      "role": "chapter-level support for ability chain, prompts, chapter 6 growth, chapter 7 master plan, and chapter 8 group-change notes",
+      "confidence": "medium",
+      "accessedAt": "2026-04-06",
+      "notes": "Useful for chapter-specific topic recall where official public text is thin."
+    },
+    {
+      "id": "supersummary_ch2_5",
+      "title": "Tiny Habits Chapters 2-5 Summary & Analysis",
+      "url": "https://www.supersummary.com/tiny-habits/chapters-2-5-summary/",
+      "type": "secondary_summary",
+      "role": "chapter-level support for motivation, ability, prompts, and emotion mechanics",
+      "confidence": "medium",
+      "accessedAt": "2026-04-06",
+      "notes": "Used to cross-check chapter emphasis and named examples such as the Instagram/Burbn simplification story and the floss-one-tooth habit."
+    },
+    {
+      "id": "supersummary_ch6_conclusion",
+      "title": "Tiny Habits Chapter 6-Conclusion Summary & Analysis",
+      "url": "https://www.supersummary.com/tiny-habits/chapter-6-conclusion-summary/",
+      "type": "secondary_summary",
+      "role": "chapter-level support for Chapters 6-8 and the conclusion",
+      "confidence": "medium",
+      "accessedAt": "2026-04-06",
+      "notes": "Used for growth, bad-habit untangling, and collective-change framing when official public excerpts are not chapter-complete."
+    },
+    {
+      "id": "sf_summary",
+      "title": "Tiny Habits Summary",
+      "url": "https://www.sfnonfictionbooks.com/tiny-habits-summary",
+      "type": "secondary_summary",
+      "role": "backup chapter-level support across all eight chapters",
+      "confidence": "medium",
+      "accessedAt": "2026-04-06",
+      "notes": "Used as a secondary cross-check for chapter themes, especially chapter-level applications and prompts."
+    }
+  ]
+}

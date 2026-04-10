@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch07-q01",
+      "prompt": "What is Chapter 7 mainly trying to explain?",
+      "choices": [
+        "Why politics has no moral content",
+        "Why political disagreement can reflect different moral emphases",
+        "Why all political positions are equal"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says rival camps may stress different moral concerns.",
+        "direct": "Its main move is to read politics through different moral emphases.",
+        "competitive": "It maps the fight as rival alarms, not moral emptiness."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch07-q02",
+      "prompt": "Why does the chapter say one side can seem immoral too quickly?",
+      "choices": [
+        "Because facts never matter",
+        "Because readers may treat their own favored concern as the whole field",
+        "Because politics should end"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "People can mistake their own moral emphasis for morality itself.",
+        "direct": "A narrow map makes rivals look morally empty too fast.",
+        "competitive": "Your alarm gets mistaken for the whole system."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch07-q03",
+      "prompt": "What is the chapter careful not to claim?",
+      "choices": [
+        "That explanation is the same as endorsement",
+        "That politics involves values",
+        "That people disagree"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Understanding a position does not mean approving it.",
+        "direct": "The chapter widens diagnosis without erasing criticism.",
+        "competitive": "Accuracy is not surrender."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch07-q04",
+      "prompt": "Priya hears one campus group centering student safety while another centers rule-respect. What does Chapter 7 say this most likely shows?",
+      "choices": [
+        "The disagreement is morally structured by different saliences",
+        "Only one group cares morally",
+        "The framework no longer applies in politics"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Different groups can hear different moral stakes first.",
+        "direct": "This is a patterned salience split in political life.",
+        "competitive": "The room is running on rival alarms."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q05",
+      "prompt": "What stronger question replaces \"does the other side have morality at all?\"",
+      "choices": [
+        "Which moral concern is most salient for them here?",
+        "Which side is louder?",
+        "Which party label do they use?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter asks readers to identify the concern each side hears most strongly.",
+        "direct": "Diagnosis shifts from moral absence to salience profile.",
+        "competitive": "Ask which alarm fired first."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q06",
+      "prompt": "Why is Chapter 7 placed after Chapter 6?",
+      "choices": [
+        "Because politics comes before any framework",
+        "Because it applies the multiple-trigger framework to ideological conflict",
+        "Because Chapter 6 rejected plurality"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Chapter 6 supplied the framework and Chapter 7 uses it in politics.",
+        "direct": "The political application depends on the earlier plurality model.",
+        "competitive": "The wiring diagram had to arrive before the public fight."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q07",
+      "prompt": "Marcus thinks a workplace statement protects the vulnerable, while Elena thinks it disrespects institutions. What should come first under this chapter?",
+      "choices": [
+        "Assume one of them lacks conscience",
+        "Identify the competing moral emphases",
+        "Ignore politics altogether"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The first step is to notice the different concerns each person is centering.",
+        "direct": "The chapter asks for diagnosis before contempt.",
+        "competitive": "Map the rival alarms before sentencing anyone."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q08",
+      "prompt": "What hard tension does Chapter 7 preserve?",
+      "choices": [
+        "How to explain ideological conflict without turning it into moral equivalence",
+        "How to remove moral language from politics",
+        "How to avoid disagreement completely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants interpretation to widen without making every position equally good.",
+        "direct": "Its depth lies in keeping explanation and evaluation distinct.",
+        "competitive": "It wants a broader map without a mushier spine."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q09",
+      "prompt": "How does Chapter 7 build on Chapters 5 and 6 together?",
+      "choices": [
+        "It rejects the wider moral map",
+        "It brings moral plurality into ideological conflict",
+        "It abandons politics for private morality"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Chapter 5 widened the field, Chapter 6 framed it, and Chapter 7 applies it politically.",
+        "direct": "The chapter turns moral plurality into an account of ideological disagreement.",
+        "competitive": "The wider map finally gets used in public combat."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch07-q10",
+      "prompt": "What does Chapter 7 most directly prepare readers to understand next?",
+      "choices": [
+        "A sharper comparison about how political camps speak across moral registers",
+        "Why all ideology disappears",
+        "Why biology replaces politics"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "It prepares the next chapter by making ideological conflict morally legible first.",
+        "direct": "Chapter 8 will build on this diagnostic map with a comparative claim.",
+        "competitive": "The bridge leads to the asymmetry punch next."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

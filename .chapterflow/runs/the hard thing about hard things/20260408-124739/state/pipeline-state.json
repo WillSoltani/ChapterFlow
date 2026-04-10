@@ -1,0 +1,45 @@
+{
+  "currentState": "done",
+  "completedChapters": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "currentWave": 3,
+  "queuedChapters": [],
+  "ticketStatus": {
+    "ch01": "committed",
+    "ch02": "committed",
+    "ch03": "committed",
+    "ch04": "committed",
+    "ch05": "committed",
+    "ch06": "committed",
+    "ch07": "committed",
+    "ch08": "committed",
+    "ch09": "committed",
+    "ch10": "committed"
+  },
+  "committedHashes": {
+    "ch01": "45af8238362471d728084c8f648f2b32044b3083d1d1b92716d1e5998c2eb9bc",
+    "ch02": "eb994d7db850124a9a9b4cb09e013d7c3ecc3fcf7aafd1e26a7ba90d0434ba6a",
+    "ch03": "1a4b9a1911db4894b9c6b9d1798641aa4d741d3523e16b0fe85fbad21db4833a",
+    "ch04": "ab1c08f7d420be5c9d00cd47c7c520664b752b0f16673b478698f901b536dd4b",
+    "ch06": "07cbee01f487b485fa5d363f105717b57ddc68d133e60deba92cb1bf3672f1f1",
+    "ch08": "9f4285ae59b1a4a72752467059dfef55b060c2d0b20da42b3e5636d43003e57f",
+    "ch07": "5458e41dc04a402f378cc87b7ac3dea2fdc9a090a902abd066080daa35404d97",
+    "ch05": "61ed8f8d41dba2fcbcbf16eaac0337aa226c0b39eb8dba17a614479e533ff799",
+    "ch10": "dbac04f4ae58cb8b9e476fd964d7e8de1be2ff567043af7861d86bc65e9ea5e9",
+    "ch09": "250d9ccbbed23ff08ee0ec87179ba689ed95d169618ed45c90273c58f54b45fa"
+  },
+  "calibrationLocked": true,
+  "sourceFreezeLocked": true,
+  "releaseAssembled": true,
+  "releaseValidated": true
+}

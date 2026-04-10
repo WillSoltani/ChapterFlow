@@ -1,0 +1,62 @@
+{
+  "packVersion": "v13-autonomous",
+  "bookId": "essentialism",
+  "runId": "20260407-020432",
+  "packRoot": "scripts/book/prompts/chapterflow-v13-autonomous",
+  "runRoot": ".chapterflow/runs/essentialism/20260407-020432",
+  "outputProfile": "flagship_v4_compatible",
+  "learningContract": "research_native",
+  "runProfile": "balanced_flagship",
+  "validationMode": "chapter_gate",
+  "chapterGateMode": "automatic_continue",
+  "chapterGateQuizMode": "generate",
+  "scenarioTonePolicy": "required",
+  "rightsMode": "startup_light",
+  "waveSize": 2,
+  "generateChapterReviewWrapper": true,
+  "strictPackAudit": true,
+  "forbidBulkGenerators": true,
+  "releaseAssembleFromValidatedOnly": true,
+  "preserveApprovedChapterHashes": true,
+  "sourceFreezeRequired": true,
+  "artifactGuardRequired": true,
+  "releaseGuardRequired": true,
+  "qualitySentryRequired": true,
+  "qualityDecayStopDelta": 1.5,
+  "sourceDiscoveryMode": "web_bundle",
+  "editionSelectionMode": "ask_if_ambiguous",
+  "sourcePolicy": "public_or_authorized_plus_secondary",
+  "bookRequest": {
+    "title": "Essentialism",
+    "author": "Greg McKeown",
+    "editionPreference": "ask_if_ambiguous"
+  },
+  "book": {
+    "bookId": "essentialism",
+    "title": "Essentialism",
+    "author": "Greg McKeown",
+    "categories": [
+      "Productivity",
+      "Leadership",
+      "Personal Development"
+    ],
+    "tags": [
+      "essentialism",
+      "priorities",
+      "decision-making",
+      "focus",
+      "boundaries",
+      "trade-offs"
+    ],
+    "edition": {
+      "name": "Essentialism: The Disciplined Pursuit of Less",
+      "translator": "",
+      "publishedYear": 2014,
+      "translationYear": null,
+      "sourceText": ".chapterflow/runs/essentialism/20260407-020432/source-freeze/book-source.txt",
+      "sourceProvenance": "Frozen web bundle: Greg McKeown official book page, Penguin Random House product metadata, Open Library TOC/edition record, and reputable secondary chapter summaries."
+    },
+    "variantFamily": "EMH",
+    "chapterRange": "1-20"
+  }
+}

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch07-q01",
+      "prompt": "What does A Machine for Jumping to Conclusions say the mind often does?",
+      "choices": [
+        "Treats the available slice as if it were enough",
+        "Stores every impression with equal weight",
+        "Refuses to use fast judgment at all"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter is about turning a narrow slice into something that feels complete.",
+        "direct": "the mind treats what is present as enough and builds a full story from a narrow slice.",
+        "competitive": "The mechanism gives incomplete evidence more authority than it earned."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch07-q02",
+      "prompt": "What usually gets lost once the first coherent answer lands?",
+      "choices": [
+        "The pressure from missing evidence",
+        "All memory of the scene",
+        "Any need to make decisions"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "What is absent stops pushing on the judgment hard enough.",
+        "direct": "missing information is ignored once a coherent first answer has landed.",
+        "competitive": "The evidence gap gets priced at zero once the story feels complete."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch07-q03",
+      "prompt": "Why can this error feel sensible from the inside?",
+      "choices": [
+        "Because coherence feels a lot like adequacy",
+        "Because every first read is right",
+        "Because evidence stops mattering entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A neat story feels like enough even when it is not.",
+        "direct": "People usually feel the closure of the first story more clearly than the facts it omits.",
+        "competitive": "False completeness survives because absence is quieter than presence."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch07-q04",
+      "prompt": "A hiring panel treats one vivid interview answer as proof of future performance. Which chapter pattern fits best?",
+      "choices": [
+        "A narrow slice is being mistaken for the whole case",
+        "The panel has become incapable of memory",
+        "No judgment shortcut is present"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The panel is letting one strong moment do the work of a broader file.",
+        "direct": "The group is acting as if the available evidence is sufficient when it is only coherent.",
+        "competitive": "One polished signal is trying to own a consequential verdict."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch07-q05",
+      "prompt": "What is the best immediate correction in a live decision?",
+      "choices": [
+        "Ask what important evidence is still absent",
+        "Delay all decisions without exception",
+        "Trust the first coherent read more strongly"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter asks for a missing-evidence check, not paralysis.",
+        "direct": "ask what important evidence is absent before trusting the quick conclusion.",
+        "competitive": "A small reopening move stops a thin slice from becoming policy."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch07-q06",
+      "prompt": "Why is this chapter not a call to distrust every quick impression?",
+      "choices": [
+        "Because quick closure is often useful in ordinary low-stakes life",
+        "Because the first conclusion is always accurate",
+        "Because missing evidence never changes outcomes"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Kahneman keeps the lesson selective.",
+        "direct": "quick closure is often useful, so the chapter is about checking thin evidence in consequential decisions.",
+        "competitive": "Calibration matters more than ritual doubt."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch07-q07",
+      "prompt": "What recurring mistake does the chapter expose?",
+      "choices": [
+        "Mistaking coherence for evidential sufficiency",
+        "Avoiding every social judgment forever",
+        "Replacing all intuition with formal statistics"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The story feels complete before the evidence is complete.",
+        "direct": "The category mistake is to let presence stand in for completeness.",
+        "competitive": "The system overpays for a tidy slice and underprices what is missing."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch07-q08",
+      "prompt": "How does this chapter build on Norms, Surprises, and Causes?",
+      "choices": [
+        "It shows what happens once an early story starts feeling sufficient",
+        "It rejects the earlier chapter entirely",
+        "It changes the book into a theory of memory storage"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The earlier chapter leaves the mind leaning on a first story, and this one shows how that thin story starts to feel like enough.",
+        "direct": "A Machine for Jumping to Conclusions inherits a scene where premature repair has already lowered resistance to overreach.",
+        "competitive": "The book is compounding one shortcut into the next."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch07-q09",
+      "prompt": "What is the strongest practical use of the chapter?",
+      "choices": [
+        "Catch when a quick conclusion is broader than the evidence behind it",
+        "Memorize the chapter title only",
+        "Turn every decision into exhaustive analysis"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter helps the reader see when a thin slice is overclaiming.",
+        "direct": "Its value is in identifying false completeness before commitment hardens.",
+        "competitive": "The edge is spotting when the case feels broader than the record really is."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch07-q10",
+      "prompt": "Why does this chapter lead into How Judgments Happen?",
+      "choices": [
+        "Because once a thin slice feels sufficient, the next question is how judgments get built from what is easiest to reach",
+        "Because the next chapter repeats this one word for word",
+        "Because the bridge is only a table-of-contents detail"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "After a narrow slice starts feeling like enough, the book can ask how the mind builds the judgment itself.",
+        "direct": "How Judgments Happen follows by examining how whatever is easiest to access starts shaping the verdict.",
+        "competitive": "False completeness sets the stage for substitution to do its work."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    }
+  ]
+}

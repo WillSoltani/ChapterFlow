@@ -1,0 +1,25 @@
+{
+  "title": "The Hard Thing About Hard Things",
+  "author": "Ben Horowitz",
+  "bookId": "the hard thing about hard things",
+  "runId": "20260408-124739",
+  "packRoot": "scripts/book/prompts/chapterflow-v17-director-worker",
+  "runRoot": ".chapterflow/runs/the hard thing about hard things/20260408-124739",
+  "outputProfile": "flagship_v4_compatible",
+  "learningContract": "research_native",
+  "runProfile": "director_workers_balanced",
+  "validationMode": "chapter_gate",
+  "chapterGateQuizMode": "generate",
+  "scenarioTonePolicy": "required",
+  "waveDefaultWidth": 6,
+  "calibrationChapters": [
+    1,
+    2
+  ],
+  "forbidBulkGenerators": true,
+  "releaseAssembleFromValidatedOnly": true,
+  "preserveCommittedHashes": true,
+  "sourceDiscoveryMode": "web_first",
+  "coverPolicy": "manual_user_supplied_none_generated",
+  "askOnlyOnMaterialEditionAmbiguity": true
+}

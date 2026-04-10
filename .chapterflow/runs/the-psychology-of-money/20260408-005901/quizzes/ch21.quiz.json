@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the main claim of Chapter 21?",
+      "choices": [
+        "Good money principles force identical personal choices",
+        "Strong principles still have to be weighted personally",
+        "Personal preferences matter more than every principle"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says the framework is strong, but the settings stay personal.",
+        "direct": "It argues that durable principles still need individual weighting and tradeoffs.",
+        "competitive": "The system holds, but the configuration is local."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the chapter become more candid and personal?",
+      "choices": [
+        "Because the earlier framework failed",
+        "Because the author is showing how one person personally applies the framework",
+        "Because universal principles no longer matter"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter moves from general rules to one person's weighting of them.",
+        "direct": "Its confessional tone illustrates application, not retreat.",
+        "competitive": "The operating system is being shown with one person's settings."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What mistake does the chapter say readers often make with good advice?",
+      "choices": [
+        "They confuse sound principles with identical behavior",
+        "They ignore all practical guidance immediately",
+        "They assume enoughness means laziness every time"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Readers can mistake agreement with the rules for a duty to copy someone's life.",
+        "direct": "The chapter warns against turning general truth into imitation of visible settings.",
+        "competitive": "They borrow the settings and call it wisdom."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "How does the chapter treat simplicity and enoughness?",
+      "choices": [
+        "As serious possible choices, not automatic compromises",
+        "As proof that ambition is always bad",
+        "As excuses for ignoring numbers"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says calmer settings can still be wise.",
+        "direct": "Enoughness can be a legitimate, self-aware choice rather than a lesser one.",
+        "competitive": "More is not automatically the smarter life."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why can two sensible people follow the same framework differently?",
+      "choices": [
+        "Because goals, temperament, and tradeoffs can differ",
+        "Because one of them must secretly reject the framework",
+        "Because the framework is too weak to guide anyone"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "People can value different things while respecting the same principles.",
+        "direct": "Shared truths can still be expressed through different lives and preferences.",
+        "competitive": "One system can run well with different settings."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What is the chapter's practical safeguard against imitation?",
+      "choices": [
+        "Copy only the plans of the most respected people",
+        "Ask whether the strategy honestly fits the life you want and can carry",
+        "Avoid learning from anyone else's example"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A good plan should fit the person living it.",
+        "direct": "The chapter says self-knowledge and ownership matter more than outward respectability.",
+        "competitive": "If the tradeoffs are not yours, the strategy is not yours."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why does the chapter keep humility alive even in a personal confession?",
+      "choices": [
+        "Because luck, risk, and temperament still limit any one person's example",
+        "Because the author no longer believes any plan can work",
+        "Because personal choices never matter"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "One person's settings cannot settle everything for everyone.",
+        "direct": "The confession is an illustration, not a universal command, because uncertainty still remains.",
+        "competitive": "One calm setup does not retire luck or risk."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "How does enoughness challenge blind optimization in this chapter?",
+      "choices": [
+        "It says more return or complexity is not always worth the life cost",
+        "It says optimization is mathematically false",
+        "It says ambition should disappear entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter asks what more is costing you.",
+        "direct": "A calmer, less maximized setup can be wiser if it better serves autonomy and fit.",
+        "competitive": "The extra edge can be overpriced."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What does Chapter 21 add after the synthesis of Chapter 20?",
+      "choices": [
+        "It shows how the general framework gets personally weighted in one life",
+        "It replaces the synthesis with a totally different framework",
+        "It argues that only autobiographical detail matters"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter turns the general system into one person's settings.",
+        "direct": "It narrows the lens from framework to personal application and tradeoffs.",
+        "competitive": "It moves from operating system to local configuration."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why does the book move from this chapter into the postscript?",
+      "choices": [
+        "Because it widens from one person's settings to a broader cultural story",
+        "Because the confessional chapter ends the need for any wider explanation",
+        "Because the framework now applies only to U.S. consumers"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next chapter widens the lens back out.",
+        "direct": "After one personal weighting of the framework, the postscript explores a larger historical explanation.",
+        "competitive": "The camera pulls back from one person's settings to one culture's instincts."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    }
+  ]
+}

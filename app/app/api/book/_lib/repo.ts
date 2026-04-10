@@ -667,6 +667,7 @@ export async function getUserEntitlement(
     stripeCustomerId: readStr(item.stripeCustomerId),
     stripeSubscriptionId: readStr(item.stripeSubscriptionId),
     currentPeriodEnd,
+    cancelAtPeriodEnd: item.cancelAtPeriodEnd === true,
     licenseKey,
     licenseExpiresAt,
     updatedAt: readStr(item.updatedAt) || "",
@@ -926,6 +927,7 @@ export async function getUserQuizState(
     nextEligibleAttemptAt: readStr(item.nextEligibleAttemptAt) ?? null,
     passedAt: readStr(item.passedAt),
     unlockedNextChapter: item.unlockedNextChapter === true,
+    loopPipelineCompletedAt: readStr(item.loopPipelineCompletedAt),
     createdAt: readStr(item.createdAt) || "",
     updatedAt: readStr(item.updatedAt) || "",
   };
@@ -943,6 +945,36 @@ export async function putUserQuizState(
         SK: quizStateSk(state.bookId, state.chapterNumber),
         entity: "BOOK_USER_QUIZ_STATE",
         ...state,
+      },
+    })
+  );
+}
+
+/**
+ * Mark a quiz state's loop pipeline as fully completed. Used by the quiz
+ * submit route after streak/tier/achievement/spark all run cleanly. The
+ * absence of this field on a `passed: true` record means the pipeline
+ * either crashed mid-flight or had a partial failure and should be retried.
+ */
+export async function markLoopPipelineCompleted(
+  tableName: string,
+  userId: string,
+  bookId: string,
+  chapterNumber: number,
+  completedAt: string
+): Promise<void> {
+  await ddbDoc.send(
+    new UpdateCommand({
+      TableName: tableName,
+      Key: {
+        PK: bookUserPk(userId),
+        SK: quizStateSk(bookId, chapterNumber),
+      },
+      UpdateExpression:
+        "SET loopPipelineCompletedAt = :ts, updatedAt = :ts",
+      ConditionExpression: "attribute_exists(PK)",
+      ExpressionAttributeValues: {
+        ":ts": completedAt,
       },
     })
   );
@@ -1505,6 +1537,20 @@ export async function getManifestFromVersion(
   };
 }
 
+export async function hasStripeWebhookEventBeenProcessed(
+  tableName: string,
+  eventId: string
+): Promise<boolean> {
+  const res = await ddbDoc.send(
+    new GetCommand({
+      TableName: tableName,
+      Key: { PK: webhookPk(), SK: webhookSk(eventId) },
+      ProjectionExpression: "eventId",
+    })
+  );
+  return !!res.Item;
+}
+
 export async function recordStripeWebhookEvent(
   tableName: string,
   eventId: string,
@@ -1576,35 +1622,89 @@ export async function updateUserEntitlementFromStripe(
     userId: string;
     plan: "FREE" | "PRO";
     proStatus: "inactive" | "active" | "past_due" | "canceled";
+    proSource?: "stripe";
     stripeCustomerId?: string;
     stripeSubscriptionId?: string;
     currentPeriodEnd?: string;
+    cancelAtPeriodEnd?: boolean;
   }
 ): Promise<void> {
-  await ddbDoc.send(
-    new UpdateCommand({
-      TableName: tableName,
-      Key: {
-        PK: bookUserPk(params.userId),
-        SK: entitlementSk(),
-      },
-      UpdateExpression:
-        "SET #plan = :plan, proStatus = :proStatus, stripeCustomerId = :stripeCustomerId, stripeSubscriptionId = :stripeSubscriptionId, currentPeriodEnd = :periodEnd, updatedAt = :updatedAt, freeBookSlots = if_not_exists(freeBookSlots, :defaultSlots), unlockedBookIds = if_not_exists(unlockedBookIds, :emptySet)",
-      ExpressionAttributeNames: {
-        "#plan": "plan",
-      },
-      ExpressionAttributeValues: {
-        ":plan": params.plan,
-        ":proStatus": params.proStatus,
-        ":stripeCustomerId": params.stripeCustomerId ?? null,
-        ":stripeSubscriptionId": params.stripeSubscriptionId ?? null,
-        ":periodEnd": params.currentPeriodEnd ?? null,
-        ":updatedAt": nowIso(),
-        ":defaultSlots": 2,
-        ":emptySet": new Set<string>(),
-      },
-    })
-  );
+  // When entering a Pro state via Stripe, we must persist proSource so that
+  // entitlement checks (e.g. reserveBookEntitlement) recognize the user as a
+  // Stripe-backed Pro. When leaving Pro (FREE/canceled), clear proSource.
+  const proSourceValue =
+    params.plan === "PRO" ? params.proSource ?? "stripe" : null;
+
+  // Build the SET clause dynamically. Only fields explicitly provided by the
+  // event source are written, so e.g. invoice.paid (which has no
+  // cancel_at_period_end signal) does NOT clobber a previously-stored
+  // cancellation flag from a customer.subscription.updated event.
+  const setParts: string[] = [
+    "#plan = :plan",
+    "proStatus = :proStatus",
+    "proSource = :proSource",
+    "stripeCustomerId = :stripeCustomerId",
+    "stripeSubscriptionId = :stripeSubscriptionId",
+    "updatedAt = :updatedAt",
+    "freeBookSlots = if_not_exists(freeBookSlots, :defaultSlots)",
+    "unlockedBookIds = if_not_exists(unlockedBookIds, :emptySet)",
+  ];
+  const eav: Record<string, unknown> = {
+    ":plan": params.plan,
+    ":proStatus": params.proStatus,
+    ":proSource": proSourceValue,
+    ":stripeSource": "stripe",
+    ":nullSource": null,
+    ":stripeCustomerId": params.stripeCustomerId ?? null,
+    ":stripeSubscriptionId": params.stripeSubscriptionId ?? null,
+    ":updatedAt": nowIso(),
+    ":defaultSlots": 2,
+    ":emptySet": new Set<string>(),
+  };
+  if (params.currentPeriodEnd !== undefined) {
+    setParts.push("currentPeriodEnd = :periodEnd");
+    eav[":periodEnd"] = params.currentPeriodEnd;
+  }
+  if (params.cancelAtPeriodEnd !== undefined) {
+    setParts.push("cancelAtPeriodEnd = :cancelAtPeriodEnd");
+    eav[":cancelAtPeriodEnd"] = params.cancelAtPeriodEnd;
+  }
+  // When fully downgrading to FREE (e.g. customer.subscription.deleted), the
+  // user is no longer in a cancellation-pending state — clear the flag.
+  if (params.plan === "FREE" && params.cancelAtPeriodEnd === undefined) {
+    setParts.push("cancelAtPeriodEnd = :cancelAtPeriodEnd");
+    eav[":cancelAtPeriodEnd"] = false;
+  }
+
+  try {
+    await ddbDoc.send(
+      new UpdateCommand({
+        TableName: tableName,
+        Key: {
+          PK: bookUserPk(params.userId),
+          SK: entitlementSk(),
+        },
+        // Guard: only allow Stripe to write entitlement when the existing
+        // proSource is absent or already "stripe". This prevents a delayed
+        // Stripe webhook from clobbering a user who upgraded via license key
+        // or flow_points after the Stripe subscription ended.
+        ConditionExpression:
+          "attribute_not_exists(proSource) OR proSource = :stripeSource OR proSource = :nullSource",
+        UpdateExpression: "SET " + setParts.join(", "),
+        ExpressionAttributeNames: { "#plan": "plan" },
+        ExpressionAttributeValues: eav,
+      })
+    );
+  } catch (error: unknown) {
+    if (isConditionalCheckFailed(error)) {
+      // The user is currently on a non-Stripe Pro source (license / flow_points).
+      // Refuse to overwrite. The Stripe customer/subscription IDs themselves
+      // are still safe to attach via attachStripeCustomerToEntitlement; here we
+      // simply skip the entitlement mutation.
+      return;
+    }
+    throw error;
+  }
 }
 
 export async function attachStripeCustomerToEntitlement(
@@ -1633,6 +1733,45 @@ export async function attachStripeCustomerToEntitlement(
       },
     })
   );
+}
+
+/**
+ * Attach a Stripe customer ID to a user entitlement, but ONLY if no customer
+ * is already attached. Returns true on success, false if a different
+ * customerId already exists (race winner). This is used at checkout-session
+ * creation time to deduplicate concurrent customer creations.
+ */
+export async function attachStripeCustomerIfAbsent(
+  tableName: string,
+  userId: string,
+  customerId: string
+): Promise<boolean> {
+  try {
+    await ddbDoc.send(
+      new UpdateCommand({
+        TableName: tableName,
+        Key: {
+          PK: bookUserPk(userId),
+          SK: entitlementSk(),
+        },
+        ConditionExpression: "attribute_not_exists(stripeCustomerId)",
+        UpdateExpression:
+          "SET stripeCustomerId = :customerId, updatedAt = :updatedAt, #plan = if_not_exists(#plan, :freePlan), freeBookSlots = if_not_exists(freeBookSlots, :defaultSlots), unlockedBookIds = if_not_exists(unlockedBookIds, :emptySet)",
+        ExpressionAttributeNames: { "#plan": "plan" },
+        ExpressionAttributeValues: {
+          ":customerId": customerId,
+          ":updatedAt": nowIso(),
+          ":freePlan": "FREE",
+          ":defaultSlots": 2,
+          ":emptySet": new Set<string>(),
+        },
+      })
+    );
+    return true;
+  } catch (error: unknown) {
+    if (isConditionalCheckFailed(error)) return false;
+    throw error;
+  }
 }
 
 export async function adminUpdateUserEntitlement(

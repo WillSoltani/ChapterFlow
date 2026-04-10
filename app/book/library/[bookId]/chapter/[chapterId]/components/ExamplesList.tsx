@@ -9,13 +9,14 @@ import {
   useRef,
   useState,
 } from "react";
-import { ChevronDown, MessageCircle, Plus, Sparkles, X } from "lucide-react";
-import type { ChapterExample } from "@/app/book/data/mockChapters";
+import { MessageCircle, Plus, Sparkles, X } from "lucide-react";
+import type { ChapterExample, ReadingDepth } from "@/app/book/data/mockChapters";
 import type { ExampleFilter } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterState";
-import {
-  FLOW_POINTS_AMOUNTS,
-  FLOW_POINTS_REWARDS,
-} from "@/app/book/_lib/flow-points-economy";
+import { INSIGHT_POINTS_AMOUNTS } from "@/app/book/_lib/flow-points-economy";
+import { track } from "@/lib/analytics";
+import { fetchBookJson } from "@/app/book/_lib/book-api";
+import { emitBookStorageChanged } from "@/app/book/hooks/bookStorageEvents";
+import { AnimatePresence, motion } from "framer-motion";
 
 // ─── types ────────────────────────────────────────────────────────────────────
 
@@ -48,8 +49,24 @@ type ExamplesListProps = {
   mySubmissions: UserScenarioSubmission[];
   onSubmitScenario: (draft: ScenarioSubmissionDraft) => Promise<void>;
   fontScaleClass: string;
-  learningMode?: "guided" | "standard" | "challenge";
+  readingDepth: ReadingDepth;
   onScenarioInteraction?: () => void;
+  chapterId?: string;
+  bookId: string;
+  chapterNumber: number;
+  fetchFailed?: boolean;
+  onRetryFetch?: () => void;
+};
+
+const SCOPE_ICONS: Record<string, string> = {
+  work: "\uD83D\uDCBC",
+  school: "\uD83C\uDF93",
+  personal: "\uD83C\uDFE0",
+  all: "\uD83C\uDF10",
+};
+
+const CARD_TREATMENT: React.CSSProperties = {
+  borderLeft: "3px solid var(--cr-accent)",
 };
 
 // ─── constants ────────────────────────────────────────────────────────────────
@@ -61,7 +78,7 @@ const FILTER_OPTIONS: Array<{ id: ExampleFilter; label: string }> = [
   { id: "personal", label: "Personal" },
 ];
 
-const SCENARIO_REWARD = FLOW_POINTS_AMOUNTS.scenarioApproved;
+const SCENARIO_REWARD = INSIGHT_POINTS_AMOUNTS.scenarioApproved;
 
 // ─── Scenario Card with Reflection Prompt ────────────────────────────────────
 
@@ -69,63 +86,74 @@ function ScenarioCard({
   example,
   index,
   fontScaleClass,
-  learningMode = "standard",
+  readingDepth,
   onInteraction,
+  chapterId,
+  onVisible,
+  onSubmitReflection,
 }: {
   example: ChapterExample;
   index: number;
   fontScaleClass: string;
-  learningMode?: "guided" | "standard" | "challenge";
+  readingDepth: ReadingDepth;
   onInteraction?: () => void;
+  chapterId?: string;
+  onVisible?: (index: number) => void;
+  onSubmitReflection?: (exampleId: string, length: number) => void;
 }) {
-  const [revealed, setRevealed] = useState(learningMode === "guided");
-  // Track whether analysis was auto-revealed by Guided mode (vs user interaction)
-  const [wasAutoRevealed, setWasAutoRevealed] = useState(learningMode === "guided");
+  const hasReflectionPrompt = Boolean(example.reflectionPrompt?.trim());
+  const analysisGateEnabled = readingDepth !== "simple";
+  const [revealed, setRevealed] = useState(!analysisGateEnabled);
   const interactionTracked = useRef(false);
-  const prevMode = useRef(learningMode);
+  const articleRef = useRef<HTMLElement>(null);
 
-  // Reflection prompt: use authored prompt or a generic fallback
-  const reflectionText = example.reflectionPrompt
-    || "How would you handle this situation? Consider the risks and benefits before seeing the analysis.";
-
-  // React to learning mode changes
   useEffect(() => {
-    if (learningMode === prevMode.current) return;
-    const hasInteracted = interactionTracked.current;
+    if (analysisGateEnabled || interactionTracked.current || !onInteraction) return;
+    onInteraction();
+    interactionTracked.current = true;
+  }, [analysisGateEnabled, onInteraction]);
 
-    if (learningMode === "guided" && !hasInteracted) {
-      setRevealed(true);
-      setWasAutoRevealed(true);
-    } else if (prevMode.current === "guided" && wasAutoRevealed && !hasInteracted) {
-      setRevealed(false);
-      setWasAutoRevealed(false);
-    }
+  useEffect(() => {
+    setRevealed(!analysisGateEnabled);
+  }, [analysisGateEnabled]);
 
-    prevMode.current = learningMode;
-  }, [learningMode, wasAutoRevealed]);
+  // Track currently-visible card for the progress header
+  useEffect(() => {
+    if (!articleRef.current || !onVisible) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+            onVisible(index);
+          }
+        }
+      },
+      { threshold: [0.5] }
+    );
+    observer.observe(articleRef.current);
+    return () => observer.disconnect();
+  }, [index, onVisible]);
 
   const handleReveal = useCallback(() => {
     setRevealed(true);
-    setWasAutoRevealed(false);
     if (!interactionTracked.current && onInteraction) {
       onInteraction();
       interactionTracked.current = true;
     }
   }, [onInteraction]);
 
-  // Visual treatment variations
-  const treatmentClass = index % 3;
-
   return (
     <article
+      ref={articleRef}
       className="cr-glass-card overflow-hidden p-0"
       style={{
+        ...CARD_TREATMENT,
         animation: `cr-card-enter 300ms ease-out ${index * 80}ms both`,
       }}
     >
-      {/* Card header */}
-      <div className="border-b border-(--cr-glass-border) px-6 py-5">
-        <h3 className="text-xl font-bold text-(--cr-text-heading)">
+      {/* Card header — title only, no scope text label (filter pill emoji conveys scope) */}
+      <div className="border-b border-(--cr-glass-border) px-6 py-4">
+        <h3 className="text-lg sm:text-xl font-bold text-(--cr-text-heading) leading-snug">
           {example.title}
         </h3>
       </div>
@@ -138,7 +166,7 @@ function ScenarioCard({
           </p>
           <p
             className={[
-              "text-(--cr-text-primary) leading-[1.75] tracking-[0.015em]",
+              "text-(--cr-text-primary) leading-[1.75] tracking-[0.012em]",
               fontScaleClass,
             ].join(" ")}
             style={{ fontWeight: 450 }}
@@ -147,32 +175,32 @@ function ScenarioCard({
           </p>
         </div>
 
-        {/* Reflection Prompt */}
-        {!revealed && (
-          <div className="cr-reflection-prompt rounded-xl border border-dashed border-(--cr-accent)/30 bg-(--cr-accent-muted) p-5">
-            <div className="flex items-center gap-2.5 mb-3">
-              <MessageCircle className="h-5 w-5 text-(--cr-accent)" />
-              <p className="text-lg font-semibold text-(--cr-accent)">
-                Pause and think
-              </p>
+        {/* Think First gate (Medium / Hard) */}
+        {analysisGateEnabled && !revealed && (
+          <div className="rounded-xl border border-(--cr-accent)/25 bg-(--cr-accent-muted) p-4">
+            <div className="flex items-center gap-2 mb-2">
+              <MessageCircle className="h-4 w-4 text-(--cr-accent)" />
+              <p className="text-sm font-semibold text-(--cr-accent)">Think First</p>
             </div>
 
-            <p
-              className={[
-                "text-(--cr-text-primary) leading-[1.75] mb-5",
-                fontScaleClass,
-              ].join(" ")}
-            >
-              {reflectionText}
-            </p>
+            {hasReflectionPrompt && (
+              <p
+                className={[
+                  "text-[14px] text-(--cr-text-primary) leading-[1.6] mb-3",
+                  fontScaleClass,
+                ].join(" ")}
+              >
+                {example.reflectionPrompt}
+              </p>
+            )}
 
-            <div className="text-center">
+            <div className="flex items-center justify-center">
               <button
                 type="button"
                 onClick={handleReveal}
-                className="inline-flex items-center gap-2 rounded-xl bg-(--cr-accent) px-6 py-3 text-base font-semibold text-(--cr-text-inverse) transition hover:opacity-90 hover:shadow-[0_4px_16px_rgba(77,182,172,0.3)]"
+                className="inline-flex items-center justify-center gap-1.5 rounded-lg bg-(--cr-accent) px-4 py-2 text-[13px] font-semibold text-(--cr-text-inverse) transition hover:opacity-90"
               >
-                See Analysis &rarr;
+                Show me the analysis
               </button>
             </div>
           </div>
@@ -186,13 +214,13 @@ function ScenarioCard({
             opacity: revealed ? 1 : 0,
           }}
         >
-          <div className={treatmentClass === 2 ? "border-l-2 border-(--cr-accent) pl-4" : ""}>
+          <div>
             <p className="text-xs font-bold uppercase tracking-[0.15em] text-(--cr-accent) mb-2">
               What To Do
             </p>
             <p
               className={[
-                "text-(--cr-text-heading) leading-[1.75] tracking-[0.015em]",
+                "text-(--cr-text-heading) leading-[1.75] tracking-[0.012em]",
                 fontScaleClass,
               ].join(" ")}
               style={{ fontWeight: 450 }}
@@ -207,7 +235,7 @@ function ScenarioCard({
             </p>
             <p
               className={[
-                "text-(--cr-text-primary) leading-[1.75] tracking-[0.015em]",
+                "text-(--cr-text-primary) leading-[1.75] tracking-[0.012em]",
                 fontScaleClass,
               ].join(" ")}
               style={{ fontWeight: 450 }}
@@ -215,7 +243,6 @@ function ScenarioCard({
               {example.whyItMatters}
             </p>
           </div>
-
         </div>
       </div>
     </article>
@@ -228,13 +255,82 @@ export function ExamplesList({
   examples,
   filter,
   onFilterChange,
-  submissionPoints,
+  submissionPoints: _submissionPoints,
   mySubmissions,
   onSubmitScenario,
   fontScaleClass,
-  learningMode = "standard",
+  readingDepth,
   onScenarioInteraction,
+  chapterId,
+  bookId,
+  chapterNumber,
+  fetchFailed,
+  onRetryFetch,
 }: ExamplesListProps) {
+  void _submissionPoints;
+  const reflectionAwardsKey = `cf-reflection-awards-${bookId}-${chapterNumber}`;
+  const [reflectionAwards, setReflectionAwards] = useState<Set<string>>(new Set());
+  const [reflectionToasts, setReflectionToasts] = useState<Array<{ id: string; exampleId: string; amount: number }>>([]);
+
+  useEffect(() => {
+    try {
+      const stored = window.localStorage.getItem(reflectionAwardsKey);
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed)) {
+          setReflectionAwards(new Set(parsed.filter((v): v is string => typeof v === "string")));
+        }
+      }
+    } catch {
+      // ignore
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [reflectionAwardsKey]);
+
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(reflectionAwardsKey, JSON.stringify(Array.from(reflectionAwards)));
+    } catch {
+      // ignore
+    }
+  }, [reflectionAwards, reflectionAwardsKey]);
+
+  const handleSubmitReflection = useCallback(
+    async (exampleId: string, length: number) => {
+      if (reflectionAwards.has(exampleId)) return;
+      try {
+        const result = await fetchBookJson<{
+          awarded: boolean;
+          amount: number;
+          alreadyClaimed: boolean;
+        }>(`/app/api/book/me/reflections/${encodeURIComponent(bookId)}/${chapterNumber}`, {
+          method: "POST",
+          body: JSON.stringify({ exampleId, reflectionLength: length }),
+        });
+        setReflectionAwards((prev) => {
+          const next = new Set(prev);
+          next.add(exampleId);
+          return next;
+        });
+        if (result.awarded && result.amount > 0) {
+          const toastId = `${exampleId}-${Date.now()}`;
+          setReflectionToasts((prev) => [...prev.slice(-2), { id: toastId, exampleId, amount: result.amount }]);
+          emitBookStorageChanged("insight-points");
+          window.setTimeout(() => {
+            setReflectionToasts((prev) => prev.filter((t) => t.id !== toastId));
+          }, 3000);
+        }
+      } catch (err) {
+        // Non-blocking — analysis already revealed
+        console.warn("[reflection] Failed to submit:", err);
+      }
+    },
+    [bookId, chapterNumber, reflectionAwards]
+  );
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const handleVisible = useCallback((index: number) => {
+    setCurrentIndex(index);
+  }, []);
   const [draft, setDraft] = useState<ScenarioSubmissionDraft>({
     title: "",
     scenario: "",
@@ -245,9 +341,6 @@ export function ExamplesList({
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [showModal, setShowModal] = useState(false);
-  const [showPointsPopover, setShowPointsPopover] = useState(false);
-
-  const pointsContainerRef = useRef<HTMLDivElement>(null);
 
   const sortedSubmissions = useMemo(
     () =>
@@ -294,112 +387,84 @@ export function ExamplesList({
     }
   };
 
-  // Close popover when clicking outside
-  useEffect(() => {
-    if (!showPointsPopover) return;
-    const handler = (event: MouseEvent) => {
-      if (
-        pointsContainerRef.current &&
-        !pointsContainerRef.current.contains(event.target as Node)
-      ) {
-        setShowPointsPopover(false);
-      }
-    };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
-  }, [showPointsPopover]);
-
   const statusTone: Record<UserScenarioSubmission["status"], string> = {
     pending: "border-(--cr-warning)/30 bg-(--cr-warning)/10 text-(--cr-warning)",
     approved: "border-(--cr-success)/30 bg-(--cr-success-bg) text-(--cr-success)",
     rejected: "border-(--cr-error)/30 bg-(--cr-error-bg) text-(--cr-error)",
   };
 
+  const visibleNumber = Math.min(currentIndex + 1, Math.max(examples.length, 1));
+
   return (
     <section className="cr-reading-content">
-      {/* ── Header: title + filters + CTA ── */}
-      <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
-        <div className="flex flex-wrap items-center gap-3">
-          <h2 className="text-2xl font-bold text-(--cr-text-heading)">
-            Real-world examples
-          </h2>
+      {/* ── Title row ── */}
+      <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
+        <h2 data-phase-heading className="text-2xl font-bold text-(--cr-text-heading)">
+          Real-world examples
+        </h2>
+        <button
+          type="button"
+          onClick={() => setShowModal(true)}
+          className="inline-flex items-center gap-1.5 rounded-full border border-(--cr-glass-border-teal) bg-(--cr-accent-muted) px-3.5 py-1.5 text-sm font-semibold text-(--cr-accent) transition hover:bg-(--cr-accent-glow)"
+        >
+          <Plus className="h-3.5 w-3.5" />
+          Add a Scenario
+          <span className="rounded-full bg-(--cr-warning)/20 px-2 py-0.5 text-[11px] font-bold text-(--cr-warning)">
+            +{SCENARIO_REWARD}
+          </span>
+        </button>
+      </div>
 
-          {/* Insight Points badge */}
-          <div ref={pointsContainerRef} className="relative">
+      {fetchFailed && (
+        <button
+          type="button"
+          onClick={onRetryFetch}
+          className="mb-3 w-full text-left rounded-xl border border-(--cr-glass-border) bg-(--cr-bg-surface-2) px-4 py-2 text-[12px] text-(--cr-text-secondary) hover:bg-(--cr-bg-surface-3) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_50%,transparent)]"
+        >
+          Couldn&rsquo;t load community scenarios. Tap to retry.
+        </button>
+      )}
+
+      {/* ── Filter row (sticky) ── */}
+      <div
+        className="sticky top-(--cr-header-h,64px) z-20 -mx-5 sm:-mx-8 px-5 sm:px-8 mb-5 flex flex-wrap items-center gap-2 py-2"
+        style={{
+          background:
+            "color-mix(in srgb, var(--cr-bg-root) 92%, transparent)",
+          backdropFilter: "blur(8px)",
+          WebkitBackdropFilter: "blur(8px)",
+        }}
+      >
+        {FILTER_OPTIONS.map((option) => {
+          const active = option.id === filter;
+          return (
             <button
+              key={option.id}
               type="button"
-              onClick={() => setShowPointsPopover((prev) => !prev)}
-              className="flex items-center gap-1.5 rounded-full border border-(--cr-glass-border-teal) bg-(--cr-accent-muted) px-3 py-1.5 text-xs font-semibold text-(--cr-accent) transition hover:bg-(--cr-accent-glow)"
-              aria-expanded={showPointsPopover}
-              aria-haspopup="true"
+              onClick={() => onFilterChange(option.id)}
+              className={[
+                "rounded-full border px-3 py-1.5 text-[13px] font-medium transition",
+                active
+                  ? "border-(--cr-accent) bg-(--cr-accent) text-(--cr-text-inverse)"
+                  : "border-(--cr-glass-border) bg-(--cr-glass-nav) text-(--cr-text-secondary) hover:border-(--cr-accent)/40",
+              ].join(" ")}
+              aria-pressed={active}
             >
-              <Sparkles className="h-3 w-3" />
-              {submissionPoints} IP
-              <ChevronDown
-                className={[
-                  "h-3 w-3 transition-transform duration-200",
-                  showPointsPopover ? "rotate-180" : "",
-                ].join(" ")}
-              />
+              <span className="mr-1" aria-hidden="true">
+                {SCOPE_ICONS[option.id] ?? ""}
+              </span>
+              {option.label}
             </button>
-
-            {showPointsPopover && (
-              <div className="absolute left-0 top-full z-30 mt-2 w-64 rounded-xl border border-(--cr-glass-border) bg-(--cr-bg-surface-2) p-4 shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
-                <p className="text-xs font-bold uppercase tracking-[0.14em] text-(--cr-text-disabled)">
-                  Insight Points
-                </p>
-                <p className="mt-1 text-2xl font-bold text-(--cr-text-heading)">
-                  {submissionPoints}
-                  <span className="ml-1.5 text-sm font-normal text-(--cr-text-secondary)">pts</span>
-                </p>
-                <div className="mt-3 space-y-1.5 border-t border-(--cr-glass-border) pt-3">
-                  <p className="text-xs font-bold uppercase tracking-[0.12em] text-(--cr-text-disabled)">
-                    How to earn
-                  </p>
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="text-(--cr-text-secondary)">Approved scenario</span>
-                    <span className="font-semibold text-(--cr-accent)">+{SCENARIO_REWARD} pts</span>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Filter pills + Add CTA */}
-        <div className="flex flex-wrap items-center gap-2">
-          {FILTER_OPTIONS.map((option) => {
-            const active = option.id === filter;
-            return (
-              <button
-                key={option.id}
-                type="button"
-                onClick={() => onFilterChange(option.id)}
-                className={[
-                  "rounded-full border px-3 py-1.5 text-sm font-medium transition",
-                  active
-                    ? "border-(--cr-accent) bg-(--cr-accent) text-(--cr-text-inverse)"
-                    : "border-(--cr-glass-border) bg-(--cr-glass-nav) text-(--cr-text-secondary) hover:border-(--cr-accent)/40",
-                ].join(" ")}
-                aria-pressed={active}
-              >
-                {option.label}
-              </button>
-            );
-          })}
-
-          <button
-            type="button"
-            onClick={() => setShowModal(true)}
-            className="flex items-center gap-1.5 rounded-full border border-(--cr-glass-border-teal) bg-(--cr-accent-muted) px-3.5 py-1.5 text-sm font-semibold text-(--cr-accent) transition hover:bg-(--cr-accent-glow)"
+          );
+        })}
+        {examples.length > 0 && (
+          <span
+            className="ml-auto text-[12px] tabular-nums text-(--cr-text-disabled)"
+            aria-live="polite"
           >
-            <Plus className="h-3.5 w-3.5" />
-            Add a Scenario
-            <span className="rounded-full bg-(--cr-warning)/20 px-2 py-0.5 text-[11px] font-bold text-(--cr-warning)">
-              +{SCENARIO_REWARD}
-            </span>
-          </button>
-        </div>
+            {visibleNumber} of {examples.length}
+          </span>
+        )}
       </div>
 
       {/* ── My submissions ── */}
@@ -437,17 +502,24 @@ export function ExamplesList({
       {/* ── Scenario Cards ── */}
       <div className="space-y-5">
         {examples.length === 0 ? (
-          <div className="cr-glass-card flex flex-col items-center justify-center p-10 text-center">
-            <p className="text-sm text-(--cr-text-secondary)">No examples for this filter yet.</p>
-            <button
-              type="button"
-              onClick={() => setShowModal(true)}
-              className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-(--cr-glass-border-teal) bg-(--cr-accent-muted) px-4 py-2 text-sm font-semibold text-(--cr-accent) transition hover:bg-(--cr-accent-glow)"
-            >
-              <Plus className="h-3.5 w-3.5" />
-              Be the first to add one
-            </button>
-          </div>
+          <>
+            <div className="text-center py-12 text-(--cr-text-disabled)">
+              <p className="text-[15px]">No {filter} examples in this chapter.</p>
+              <p className="text-[13px] mt-2">
+                Try a different filter, or submit your own scenario below.
+              </p>
+            </div>
+            <div className="flex justify-center">
+              <button
+                type="button"
+                onClick={() => setShowModal(true)}
+                className="inline-flex items-center gap-1.5 rounded-full border border-(--cr-glass-border-teal) bg-(--cr-accent-muted) px-4 py-2 text-sm font-semibold text-(--cr-accent) transition hover:bg-(--cr-accent-glow)"
+              >
+                <Plus className="h-3.5 w-3.5" />
+                Add a scenario
+              </button>
+            </div>
+          </>
         ) : (
           examples.map((example, index) => (
             <ScenarioCard
@@ -455,12 +527,40 @@ export function ExamplesList({
               example={example}
               index={index}
               fontScaleClass={fontScaleClass}
-              learningMode={learningMode}
+              readingDepth={readingDepth}
               onInteraction={onScenarioInteraction}
+              chapterId={chapterId}
+              onVisible={handleVisible}
+              onSubmitReflection={handleSubmitReflection}
             />
           ))
         )}
       </div>
+
+      <AnimatePresence>
+        {reflectionToasts.map((toast, i) => (
+          <motion.div
+            key={toast.id}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="fixed left-1/2 -translate-x-1/2 z-40 px-4 py-2.5 rounded-full text-[13px] font-semibold flex items-center gap-2 bg-(--cr-bg-surface-2) text-(--cr-accent)"
+            style={{
+              bottom: `${24 + i * 48}px`,
+              border:
+                "1px solid color-mix(in srgb, var(--cr-accent) 35%, transparent)",
+              backdropFilter: "blur(16px)",
+              WebkitBackdropFilter: "blur(16px)",
+              boxShadow: "0 8px 24px rgba(0,0,0,0.4)",
+            }}
+            role="status"
+            aria-live="polite"
+          >
+            <span>{"\u2728"}</span>
+            +{toast.amount} IP for thinking deeply
+          </motion.div>
+        ))}
+      </AnimatePresence>
 
       {/* ── Add Scenario modal ── */}
       {showModal && (

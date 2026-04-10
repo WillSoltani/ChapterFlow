@@ -1,0 +1,77 @@
+{
+  "chapterId": "the-33-strategies-of-war-ch07",
+  "chapterNumber": 7,
+  "contentHash": "eb5965db250f362089e8b8f9aa62d2ebf6cf3affb0aa39119c63cfb911ebe699",
+  "wordCounts": {
+    "easy": {
+      "gentle": 151,
+      "direct": 154,
+      "competitive": 147
+    },
+    "medium": {
+      "gentle": 401,
+      "direct": 358,
+      "competitive": 351
+    },
+    "hard": {
+      "gentle": 555,
+      "direct": 515,
+      "competitive": 511
+    }
+  },
+  "gradeBands": {
+    "easy": "6-8",
+    "medium": "9-11",
+    "hard": "12-14"
+  },
+  "readingTimeMinutes": 8,
+  "characterRoster": {
+    "breakdownAnchors": [
+      "Maisie",
+      "Theron"
+    ],
+    "exampleCharacters": {
+      "ch07-ex01": "Fola",
+      "ch07-ex02": "Leif",
+      "ch07-ex03": "Soren",
+      "ch07-ex04": "Tanvi",
+      "ch07-ex05": "Gus",
+      "ch07-ex06": "Kalani"
+    }
+  },
+  "schoolSettings": [
+    "undergraduate-political-science",
+    "high-school-model-un"
+  ],
+  "exampleDistribution": {
+    "formats": {
+      "decision_point": "ch07-ex01",
+      "cold_open": "ch07-ex02",
+      "dialogue": "ch07-ex03",
+      "case_in_progress": "ch07-ex04",
+      "dilemma": "ch07-ex05",
+      "aftermath": "ch07-ex06"
+    },
+    "endingTypes": {
+      "lever": "ch07-ex01",
+      "pivot": "ch07-ex02",
+      "resolution": "ch07-ex03",
+      "discipline": "ch07-ex04",
+      "commitment": "ch07-ex05",
+      "lesson": "ch07-ex06"
+    },
+    "categories": {
+      "work": 2,
+      "school": 2,
+      "personal": 2
+    }
+  },
+  "quizStats": {
+    "totalQuestions": 10,
+    "correctIndexDistribution": {
+      "2": 3,
+      "0": 3,
+      "1": 4
+    }
+  }
+}

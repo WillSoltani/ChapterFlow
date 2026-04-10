@@ -1,10 +1,12 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAuthStatus } from "@/components/auth/useAuthStatus";
 import { performLogout } from "@/lib/logout";
+import { AUTH_LOGIN_BOOK_URL } from "@/app/_lib/chapterflow-brand";
+import { track } from "@/lib/analytics";
 
 /* ── Logo Icon (matches /dashboard DashboardNavbar) ── */
 
@@ -38,11 +40,12 @@ function LogoIcon({ size = 28 }: { size?: number }) {
 
 const NAV_LINKS = [
   { id: "how-it-works", label: "How it works" },
+  { id: "demo", label: "Demo" },
   { id: "library", label: "Library" },
   { id: "pricing", label: "Pricing" },
 ] as const;
 
-const AUTH_URL = "/auth/login?returnTo=%2Fbook";
+const AUTH_URL = AUTH_LOGIN_BOOK_URL;
 
 /* ── Component ─────────────────────────────────────── */
 
@@ -51,6 +54,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("");
+  const firstLinkRef = useRef<HTMLAnchorElement>(null);
 
   const authResolved = !loading;
   const isLoggedIn = loggedIn === true;
@@ -88,6 +92,26 @@ export function Navbar() {
     return () => {
       document.body.style.overflow = "";
     };
+  }, [mobileOpen]);
+
+  /* ── Escape closes mobile menu ──────────────────── */
+
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [mobileOpen]);
+
+  /* ── Focus first link when mobile menu opens ───── */
+
+  useEffect(() => {
+    if (mobileOpen) {
+      const t = setTimeout(() => firstLinkRef.current?.focus(), 100);
+      return () => clearTimeout(t);
+    }
   }, [mobileOpen]);
 
   /* ── IntersectionObserver for active section ─────── */
@@ -178,14 +202,9 @@ export function Navbar() {
                 >
                   {link.label}
                   {isActive && (
-                    <motion.span
-                      layoutId="nav-active-dot"
+                    <span
                       className="absolute -bottom-2.5 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-(--accent-teal)"
-                      transition={{
-                        type: "spring",
-                        stiffness: 500,
-                        damping: 30,
-                      }}
+                      aria-hidden="true"
                     />
                   )}
                 </a>
@@ -205,14 +224,18 @@ export function Navbar() {
               <>
                 <button
                   type="button"
-                  onClick={performLogout}
-                  className="font-(family-name:--font-body) text-[14px] font-medium text-(--text-secondary) transition-colors duration-200 hover:text-(--text-heading)"
+                  onClick={() => {
+                    track("cta_click", { source: "navbar_desktop_signout" });
+                    performLogout();
+                  }}
+                  className="font-(family-name:--font-body) text-[14px] font-medium text-(--text-secondary) transition-colors duration-200 hover:text-(--text-heading) rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
                 >
                   Sign out
                 </button>
                 <Link
                   href="/dashboard"
-                  className="rounded-full bg-(--accent-teal) px-5 py-2 font-(family-name:--font-body) text-[13px] font-semibold text-primary-foreground transition-all duration-200 hover:brightness-110 hover:shadow-[0_0_16px_rgba(34,211,238,0.4)]"
+                  onClick={() => track("cta_click", { source: "navbar_desktop_dashboard" })}
+                  className="rounded-full bg-(--accent-teal) px-5 py-2 font-(family-name:--font-body) text-[13px] font-semibold text-primary-foreground transition-all duration-200 hover:brightness-110 hover:shadow-[0_0_16px_rgba(34,211,238,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
                 >
                   {displayName}&rsquo;s Dashboard
                 </Link>
@@ -221,15 +244,17 @@ export function Navbar() {
               <>
                 <a
                   href={AUTH_URL}
-                  className="font-(family-name:--font-body) text-[14px] font-medium text-(--text-secondary) transition-colors duration-200 hover:text-(--text-heading)"
+                  onClick={() => track("cta_click", { source: "navbar_desktop_signin" })}
+                  className="font-(family-name:--font-body) text-[14px] font-medium text-(--text-secondary) transition-colors duration-200 hover:text-(--text-heading) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 rounded"
                 >
                   Sign in
                 </a>
                 <a
                   href={AUTH_URL}
-                  className="rounded-full bg-(--accent-teal) px-5 py-2 font-(family-name:--font-body) text-[13px] font-semibold text-primary-foreground transition-all duration-200 hover:brightness-110 hover:shadow-[0_0_16px_rgba(34,211,238,0.4)]"
+                  onClick={() => track("cta_click", { source: "navbar_desktop_primary" })}
+                  className="rounded-full bg-(--accent-teal) px-5 py-2 font-(family-name:--font-body) text-[13px] font-semibold text-primary-foreground transition-all duration-200 hover:brightness-110 hover:shadow-[0_0_16px_rgba(34,211,238,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
                 >
-                  Start free &rarr;
+                  Start reading free &rarr;
                 </a>
               </>
             )}
@@ -238,7 +263,7 @@ export function Navbar() {
           {/* ── Mobile hamburger ────────────────── */}
           <button
             type="button"
-            className="relative flex h-8 w-8 flex-col items-center justify-center gap-[5px] md:hidden"
+            className="relative flex h-8 w-8 flex-col items-center justify-center gap-[5px] md:hidden rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
             onClick={toggleMobile}
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
@@ -273,6 +298,9 @@ export function Navbar() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Navigation menu"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -291,12 +319,13 @@ export function Navbar() {
                 return (
                   <motion.a
                     key={link.id}
+                    ref={i === 0 ? firstLinkRef : undefined}
                     href={`#${link.id}`}
                     onClick={() => handleNavClick(link.id)}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1 + i * 0.08, duration: 0.3 }}
-                    className={`relative font-(family-name:--font-body) text-[24px] font-medium transition-colors duration-200 ${
+                    className={`relative font-(family-name:--font-body) text-[24px] font-medium transition-colors duration-200 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 ${
                       isActive
                         ? "text-(--text-heading)"
                         : "text-(--text-secondary)"
@@ -330,17 +359,21 @@ export function Navbar() {
                   <button
                     type="button"
                     onClick={() => {
+                      track("cta_click", { source: "navbar_mobile_signout" });
                       closeMobile();
                       performLogout();
                     }}
-                    className="font-(family-name:--font-body) text-[16px] font-medium text-(--text-secondary) transition-colors duration-200 hover:text-(--text-heading)"
+                    className="font-(family-name:--font-body) text-[16px] font-medium text-(--text-secondary) transition-colors duration-200 hover:text-(--text-heading) rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
                   >
                     Sign out
                   </button>
                   <Link
                     href="/dashboard"
-                    onClick={closeMobile}
-                    className="rounded-full bg-(--accent-teal) px-7 py-3 font-(family-name:--font-body) text-[15px] font-semibold text-primary-foreground transition-all duration-200 hover:brightness-110"
+                    onClick={() => {
+                      track("cta_click", { source: "navbar_mobile_dashboard" });
+                      closeMobile();
+                    }}
+                    className="rounded-full bg-(--accent-teal) px-7 py-3 font-(family-name:--font-body) text-[15px] font-semibold text-primary-foreground transition-all duration-200 hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
                   >
                     {displayName}&rsquo;s Dashboard
                   </Link>
@@ -349,17 +382,23 @@ export function Navbar() {
                 <>
                   <a
                     href={AUTH_URL}
-                    className="font-(family-name:--font-body) text-[16px] font-medium text-(--text-secondary) transition-colors duration-200 hover:text-(--text-heading)"
-                    onClick={closeMobile}
+                    className="font-(family-name:--font-body) text-[16px] font-medium text-(--text-secondary) transition-colors duration-200 hover:text-(--text-heading) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 rounded"
+                    onClick={() => {
+                      track("cta_click", { source: "navbar_mobile_signin" });
+                      closeMobile();
+                    }}
                   >
                     Sign in
                   </a>
                   <a
                     href={AUTH_URL}
-                    className="rounded-full bg-(--accent-teal) px-7 py-3 font-(family-name:--font-body) text-[15px] font-semibold text-primary-foreground transition-all duration-200 hover:brightness-110"
-                    onClick={closeMobile}
+                    className="rounded-full bg-(--accent-teal) px-7 py-3 font-(family-name:--font-body) text-[15px] font-semibold text-primary-foreground transition-all duration-200 hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
+                    onClick={() => {
+                      track("cta_click", { source: "navbar_mobile_primary" });
+                      closeMobile();
+                    }}
                   >
-                    Start free &rarr;
+                    Start reading free &rarr;
                   </a>
                 </>
               )}

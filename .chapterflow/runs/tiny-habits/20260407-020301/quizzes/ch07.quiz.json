@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What does Chapter 7 mean by untangling a bad habit?",
+      "choices": [
+        "Studying and changing the loop instead of only trying to overpower it",
+        "Ignoring the habit until motivation improves",
+        "Replacing every bad habit with a large good habit immediately"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Untangling means looking at how the loop works so it can be interrupted.",
+        "direct": "The chapter prefers diagnosis and redesign to brute force.",
+        "competitive": "Mechanism comes before the knockout attempt."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the chapter care about triggers and sequence?",
+      "choices": [
+        "Because every bad habit is random",
+        "Because the loop often has parts that can be redesigned",
+        "Because sequence only matters for good habits"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter treats unwanted habits as patterns with changeable parts.",
+        "direct": "Structure creates interruptible weak points.",
+        "competitive": "If the loop has architecture, you can hit the joints."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Which move best fits the chapter's redesign logic?",
+      "choices": [
+        "Keeping the distracting app in place but promising to resist harder",
+        "Removing a cue or adding friction where the loop begins",
+        "Waiting for the bad habit to disappear on its own"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Changing the setup can weaken the loop.",
+        "direct": "The chapter prefers design intervention over repeated vows.",
+        "competitive": "Edit the mechanism, not just the speech."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Carla keeps reaching for her phone before starting work. What chapter move fits best?",
+      "choices": [
+        "Move the phone away and change the opening conditions",
+        "Raise the work goal to make procrastination feel less attractive",
+        "Assume the habit proves she does not care about the project"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants to interrupt the first reach.",
+        "direct": "Changing the cue is stronger than another self-judgment.",
+        "competitive": "Break the launch rail."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Ben's late-night gaming keeps beating homework because the controller is already beside the desk. What is the better diagnosis?",
+      "choices": [
+        "The opening sequence favors the bad loop",
+        "Homework is impossible to improve",
+        "The chapter says gaming should be banned entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The unwanted behavior is owning the first step of the evening.",
+        "direct": "Sequence and access are shaping the outcome.",
+        "competitive": "The loop is winning the opening possession."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which statement misreads Chapter 7?",
+      "choices": [
+        "All serious habit problems can be solved with a tiny tweak alone",
+        "Some unwanted loops can be redesigned through triggers and friction",
+        "Shame is often weaker than diagnosis"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter draws a real limit around severe problems.",
+        "direct": "It does not claim one method covers every crisis.",
+        "competitive": "Universal cure talk is exactly what the chapter avoids."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why is shame treated as weak strategy in this chapter?",
+      "choices": [
+        "Because the chapter thinks bad habits are harmless",
+        "Because self-attack often adds pain without improving redesign",
+        "Because shame is only a school problem"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says shame rarely helps the person see the loop clearly.",
+        "direct": "Self-attack often preserves emotion while leaving design untouched.",
+        "competitive": "Drama is not intervention."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "A reader moves the kitchen snacks out of sight and notices the urge loses some speed. What does that show?",
+      "choices": [
+        "The loop had an environmental cue that could be softened",
+        "The habit was imaginary",
+        "Only rewards matter for bad habits"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The environment was helping the habit repeat.",
+        "direct": "Redesign can weaken a tractable loop.",
+        "competitive": "The room was coaching the behavior."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "When does the chapter say broader help may be needed?",
+      "choices": [
+        "When the problem remains severe enough that solo redesign is not responsible by itself",
+        "Only when the habit happens at work",
+        "Whenever a redesign attempt feels inconvenient"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter distinguishes downhill patterns from more serious freefall problems.",
+        "direct": "Severity changes whether personal design is enough.",
+        "competitive": "Escalate when solo tools stop matching the situation."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What question does Chapter 7 naturally open for the next chapter?",
+      "choices": [
+        "How can shared support and other people strengthen change?",
+        "Why should all habits be handled alone?",
+        "How do prompts replace every social influence?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter points toward change that may need support from other people.",
+        "direct": "Its limit naturally opens a chapter about social reinforcement and shared design.",
+        "competitive": "When solo redesign hits the ceiling, the social chapter starts."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

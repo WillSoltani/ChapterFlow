@@ -1,0 +1,51 @@
+{
+  "packVersion": "v13-autonomous",
+  "bookId": "the-righteous-mind",
+  "runId": "20260409-001811",
+  "packRoot": "scripts/book/prompts/chapterflow-v13-autonomous",
+  "runRoot": ".chapterflow/runs/the-righteous-mind/20260409-001811",
+  "outputProfile": "flagship_v4_compatible",
+  "learningContract": "research_native",
+  "runProfile": "balanced_flagship",
+  "validationMode": "chapter_gate",
+  "chapterGateMode": "automatic_continue",
+  "chapterGateQuizMode": "generate",
+  "scenarioTonePolicy": "required",
+  "rightsMode": "startup_light",
+  "waveSize": 2,
+  "generateChapterReviewWrapper": true,
+  "strictPackAudit": true,
+  "forbidBulkGenerators": true,
+  "releaseAssembleFromValidatedOnly": true,
+  "preserveApprovedChapterHashes": true,
+  "sourceFreezeRequired": true,
+  "artifactGuardRequired": true,
+  "releaseGuardRequired": true,
+  "qualitySentryRequired": true,
+  "qualityDecayStopDelta": 1.5,
+  "sourceDiscoveryMode": "web_bundle",
+  "editionSelectionMode": "ask_if_ambiguous",
+  "sourcePolicy": "public_or_authorized_plus_secondary",
+  "bookRequest": {
+    "title": "The Righteous Mind",
+    "author": "Jonathan Haidt",
+    "editionPreference": "ask_if_ambiguous"
+  },
+  "book": {
+    "bookId": "the-righteous-mind",
+    "title": "The Righteous Mind",
+    "author": "Jonathan Haidt",
+    "categories": [],
+    "tags": [],
+    "edition": {
+      "name": "Pantheon hardcover / Vintage paperback text family",
+      "translator": "",
+      "publishedYear": 2012,
+      "translationYear": null,
+      "sourceText": ".chapterflow/runs/the-righteous-mind/20260409-001811/source-freeze/book-source.md",
+      "sourceProvenance": "Frozen from authorized Righteous Mind and Penguin Random House materials plus narrow secondary support."
+    },
+    "variantFamily": "EMH",
+    "chapterRange": "Introduction through Chapter 12"
+  }
+}

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "ch06-q01",
+      "prompt": "What is the chapter's main warning about siloed teams?",
+      "choices": [
+        "That silos help teams specialize without any major downside",
+        "That local success can still fail the mission when adjacent teams stay unsupported",
+        "That support matters only when a team is already weak"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The chapter warns that a lane can look strong while the shared mission weakens around it.",
+        "direct": "Correct. Local excellence is not enough if the mission is paying for broken handoffs or exposed teams.",
+        "competitive": "That answer lands because the chapter is attacking fake strength inside silos, not lack of effort."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch06-q02",
+      "prompt": "What does cover and move mean in this chapter?",
+      "choices": [
+        "Teams support one another because they are mutually dependent",
+        "Leaders should remove all role boundaries when pressure rises",
+        "Each team should focus on its own speed and trust the rest to adapt"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter treats support as part of the mission, not as an extra kindness.",
+        "direct": "Exactly. Teams cover one another because shared outcomes depend on connected lanes staying usable.",
+        "competitive": "That is the core rule: support is mission logic when the lanes are tied together."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch06-q03",
+      "prompt": "Why can a team still lose even if it performs well inside its own lane?",
+      "choices": [
+        "Because adjacent breakdowns can still damage the same mission",
+        "Because team members should avoid specialization entirely",
+        "Because local metrics are never useful"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Correct. Shared missions can fail when one connected team is left exposed.",
+        "direct": "The chapter says local performance does not cancel shared exposure across handoffs and bottlenecks.",
+        "competitive": "Your dashboard can stay green while the mission dies one lane over. That is the point."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch06-q04",
+      "prompt": "In Rina's launch scenario, what is the best application of the chapter?",
+      "choices": [
+        "Keep engineering focused only on its current sprint so the board stays clean",
+        "Let support absorb the repeated complaint because that team owns customer tickets",
+        "Shift engineering help toward the repeated complaint because support exposure is part of the shared mission"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Yes. Rina should treat the overloaded support queue as part of the same mission.",
+        "direct": "That choice fits the chapter because adjacent-team pressure becomes your problem when outcomes are shared.",
+        "competitive": "Cover the customer wound instead of polishing the sprint board. That is real cover and move."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q05",
+      "prompt": "How does the chapter distinguish mutual support from rescue culture?",
+      "choices": [
+        "Mutual support ignores standards so people can help faster",
+        "Mutual support keeps accountability clear while covering the weak point",
+        "Mutual support works only when every team does every task"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. The chapter keeps support tied to clear ownership and standards.",
+        "direct": "Exactly. Helping another team is not the same as dissolving responsibility or doing everything for them.",
+        "competitive": "The chapter refuses rescue fog. Help hard, but keep someone answerable."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q06",
+      "prompt": "Which choice reflects a common misreading the chapter rejects?",
+      "choices": [
+        "Support is mission logic in a shared effort",
+        "Clear ownership makes support stronger",
+        "Cover and move means role boundaries no longer matter"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Yes. The chapter does not erase roles or standards.",
+        "direct": "Correct. Mutual support without ownership would turn the principle into confusion.",
+        "competitive": "That is the soft drift the chapter blocks. Chaos is not teamwork."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q07",
+      "prompt": "What is the best transfer of the chapter to a school or volunteer setting?",
+      "choices": [
+        "Protect your own section first because shared effort will balance out later",
+        "Cover the overloaded subgroup or task because the whole project depends on it",
+        "Wait until the teacher or organizer assigns new roles before helping"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Correct. The chapter keeps asking people to support the exposed point in a shared mission.",
+        "direct": "That answer transfers the anti-silo principle well: help where the deadline or effort is actually exposed.",
+        "competitive": "Go where the mission is bleeding, not where your role feels safest."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q08",
+      "prompt": "In the warehouse scenario, why did Pavel's execution improve only after he looked sideways?",
+      "choices": [
+        "Because his own checklist had been too short",
+        "Because the real bottleneck sat at the shared handoff with the receiving team",
+        "Because the receiving team stopped making mistakes on its own"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. Pavel improved the mission by covering the exposed handoff, not by polishing only his own station.",
+        "direct": "The chapter pushes leaders to inspect shared choke points because those often decide the outcome.",
+        "competitive": "He stopped optimizing the wrong scoreboard and attacked the real bleed point."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch06-q09",
+      "prompt": "Which statement best captures the chapter's deeper synthesis about interdependence and accountability?",
+      "choices": [
+        "Interdependence means every team should blend into one shared role",
+        "Interdependence means teams cover exposed adjacent lanes while keeping responsibility clear",
+        "Interdependence matters only when a project is already in crisis"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. The chapter joins mutual support and clear ownership instead of treating them as opposites.",
+        "direct": "Exactly. Support protects the mission best when teams know both where to help and who remains answerable.",
+        "competitive": "That is the hard edge: cover the weak point without letting accountability evaporate."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch06-q10",
+      "prompt": "How does this chapter set up the next one?",
+      "choices": [
+        "By arguing that interdependence still needs plans and communication simple enough to execute under pressure",
+        "By proving that support removes the need for clear planning",
+        "By showing that isolated teams should avoid coordination whenever possible"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Once teams accept interdependence, they still need simple coordination that can hold up under stress.",
+        "direct": "Correct. The chapter bridges forward by saying support alone is not enough if the plan becomes too complex to run.",
+        "competitive": "Interdependence without simplicity still breaks. That is why the next chapter has to happen."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

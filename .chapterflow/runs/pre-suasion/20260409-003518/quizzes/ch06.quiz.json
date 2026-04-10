@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is Chapter 6 mainly claiming?",
+      "choices": [
+        "That some cues hold attention after initial capture",
+        "That every attractor automatically becomes a magnetizer",
+        "That recurring thoughts are always the truest thoughts"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says some cues keep the mind returning after the first look.",
+        "direct": "Option A captures the core claim. Magnetizers explain staying power after capture.",
+        "competitive": "Some cues refuse to leave the room."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Which narrow families does Chapter 6 use to explain magnetizers?",
+      "choices": [
+        "Self-relevance, unfinishedness, and mystery",
+        "Threat, contrast, and reward",
+        "Beauty, humor, and status"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter stays narrow on the self, open loops, and mystery.",
+        "direct": "Option A is right. Those are the supported persistence families here.",
+        "competitive": "Identity, incompletion, and uncertainty keep the hook in."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What distinction does Chapter 6 insist on preserving?",
+      "choices": [
+        "The difference between staying active in attention and deserving belief",
+        "The difference between capture and novelty",
+        "The difference between speed and memory"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A cue can keep returning to mind without earning trust or extra weight.",
+        "direct": "Option A is the key limit. Persistence and merit are different questions.",
+        "competitive": "Recurring is not ruling."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Celia can frame a message generically or connect it to the listener's own concerns. What is the strongest Chapter 6 move?",
+      "choices": [
+        "Use self-relevance only if the maintained attention truly serves what matters",
+        "Use self-reference because whatever stays in mind longest must be best",
+        "Avoid any self-relevance so attention fades naturally"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter allows magnetizers, but not treating them as proof.",
+        "direct": "Option A fits the mechanism and the limit. Self-reference should maintain deserved focus, not replace judgment.",
+        "competitive": "If you set the hook in the self, make sure the issue deserves the line."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What is the main trap when an unfinished issue keeps returning?",
+      "choices": [
+        "The issue becomes automatically true",
+        "The room may mistake unresolved recurrence for proper importance",
+        "The room can never close any issue again"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "An open loop can keep the mind hooked even when it is not the strongest issue.",
+        "direct": "Option B is the trap. Incompleteness can preserve attention without earning extra weight.",
+        "competitive": "The open loop starts acting like authority."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Omari notices one unresolved bullet point kept drawing the board back after the meeting. What likely happened?",
+      "choices": [
+        "An unfinished cue stayed mentally active and kept winning extra attention",
+        "The unresolved issue automatically became the most important issue",
+        "The board proved all finished issues were irrelevant"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The unresolved item likely stayed active because it was unfinished, not because it was automatically the best issue.",
+        "direct": "Option A matches the chapter. Open loops preserve attention between returns.",
+        "competitive": "The unfinished item kept charging rent in the room."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why did the half-explained detail keep pulling Paige's conversation back?",
+      "choices": [
+        "Because mystery can keep curiosity alive and invite repeated return",
+        "Because unclear details are always more truthful",
+        "Because conversations can only revolve around mystery"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The detail likely kept returning because people wanted to resolve what they still did not understand.",
+        "direct": "Option A is right. Mystery creates persistence without proving value.",
+        "competitive": "The unclear piece kept the hook buried."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why might Damon's incomplete preview shape the team even after the update ends?",
+      "choices": [
+        "Because unfinishedness can keep attention active beyond first exposure",
+        "Because partial answers are always better than complete ones",
+        "Because teams only remember what is missing"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "An incomplete preview can keep the mind returning because closure has not arrived yet.",
+        "direct": "Option A fits the chapter. Open loops extend engagement after initial capture.",
+        "competitive": "The half-answer keeps the runway lit."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "When does use of a magnetizer become hardest to defend?",
+      "choices": [
+        "When it helps a real unresolved issue stay active long enough for proper thought",
+        "When it lets recurrence itself stand in for merit or truth",
+        "Whenever anyone uses mystery or self-reference at all"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The problem is not sustained attention itself. The problem is treating recurrence as proof.",
+        "direct": "Option B captures the limit. Distortion begins when staying power starts counting as authority.",
+        "competitive": "The move goes bad when the hook starts pretending it earned the throne."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If Chapter 6 explains what keeps a cue mentally active, what is the next natural question for the book?",
+      "choices": [
+        "What begins linking to the held cue while it stays active",
+        "Why held attention should always be distrusted",
+        "Why only unfinished cues matter in persuasion"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next step is to ask what starts attaching itself to the cue while attention keeps returning.",
+        "direct": "Option A is the correct bridge. The book now moves toward association.",
+        "competitive": "Once the cue keeps living in the room, other things start sticking to it."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

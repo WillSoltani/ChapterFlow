@@ -1,0 +1,72 @@
+{
+  "bookId": "how-to-talk-to-anyone",
+  "runId": "20260409-001622",
+  "lockedAt": "2026-04-09T00:20:37Z",
+  "selectionMode": "auto_locked_after_discovery",
+  "materialAmbiguity": false,
+  "title": "How to Talk to Anyone: 92 Little Tricks for Big Success in Relationships",
+  "author": "Leil Lowndes",
+  "chosenEdition": {
+    "name": "Second English edition / 2003 print-reference edition",
+    "fullTitle": "How to Talk to Anyone: 92 Little Tricks for Big Success in Relationships",
+    "publisher": "Contemporary Books / McGraw-Hill",
+    "publishedDate": "2003-09-19",
+    "publishedYear": 2003,
+    "language": "English",
+    "isbn13": "9780071418584",
+    "isbn10": "007141858X",
+    "format": "Print reference edition for part-map stability",
+    "sourceOfTruth": "https://openlibrary.org/works/OL1874705W/How_to_Talk_to_Anyone?edition=howtotalktoanyon0000lown",
+    "chapterStructure": [
+      "How to Intrigue Everyone Without Saying a Word: You Only Have Ten Seconds to Show You're a Somebody",
+      "How to Know What to Say After You Say \"Hi\"",
+      "How to Talk Like a VIP",
+      "How to Be an Insider in Any Crowd: What Are They All Talking About?",
+      "How to Sound Like You're Peas in a Pod: \"Why, We're Just Alike!\"",
+      "How to Differentiate the Power of Praise from the Folly of Flattery",
+      "How to Direct Dial Their Hearts",
+      "How to Work a Party Like a Politician Works a Room: The Politician's Six-Point Party Checklist",
+      "How to Break the Most Treacherous Glass Ceiling of All: Sometimes People Are Tigers"
+    ],
+    "techniqueCount": 92
+  },
+  "alternativesConsidered": [
+    {
+      "name": "2003 Google Books ebook preview listing",
+      "publishedDate": "2003-09-22",
+      "isbn13": "9780071433341",
+      "url": "https://books.google.com/books/about/How_to_Talk_to_Anyone.html?id=6H0XHgAACAAJ",
+      "status": "same_work_family_non_material_variant",
+      "notes": "Authorized preview page for the same 2003 work family. Useful for lawful metadata and part-heading support, but the Open Library print-reference record is cleaner for package identifiers."
+    },
+    {
+      "name": "2017 CreateSpace reprint",
+      "publishedDate": "2017-07-26",
+      "isbn13": "9781973928782",
+      "url": "https://openlibrary.org/works/OL1874705W/How_to_Talk_to_Anyone?edition=howtotalktoanyon0000lown",
+      "status": "same_core_work_family_later_reprint",
+      "notes": "Later English reprint of the same core work family. It does not offer a better chapter map than the 2003 reference edition."
+    },
+    {
+      "name": "2004 abridged audio edition",
+      "publishedDate": "2004-03-26",
+      "isbn13": "9781593160265",
+      "url": "https://openlibrary.org/works/OL1874705W/How_to_Talk_to_Anyone?edition=howtotalktoanyon0000lown",
+      "status": "materially_different_abridged_variant_rejected",
+      "notes": "The abridged audio record exposes only 62 tricks, which materially changes scope and chapter-level coverage, so it is excluded from this run."
+    }
+  ],
+  "decisionRationale": [
+    "Open Library exposes the 2003 print-reference identifiers and the full nine-part table of contents, which is the most stable source for package chapter numbering in this run.",
+    "Google Books confirms the same 2003 work family, gives the nine part headings with start pages, and confirms the domain counts that sum to 92 techniques.",
+    "The official Lowndes page confirms the same work family and general positioning without showing a conflicting structure.",
+    "No translation or materially different English chapter order was found that would change part order, chapter scope, or chapter-level interpretation for the nine-part package.",
+    "The abridged audio variant is materially different and therefore excluded rather than treated as an equal edition candidate."
+  ],
+  "operatingRules": {
+    "quotePolicy": "paraphrase_first",
+    "exactQuotePolicy": "allowed_only_if_verified_in_frozen_bundle",
+    "translationQuestionRequired": false,
+    "chapterGranularity": "official nine-part package chapters with the 92 named tricks preserved as internal source headings"
+  }
+}

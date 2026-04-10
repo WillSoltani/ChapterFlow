@@ -1,0 +1,95 @@
+{
+  "nameUsage": {},
+  "formatCategoryHistory": [],
+  "schoolSettingUsage": {},
+  "wordFrequency": {},
+  "phraseFrequency": {},
+  "openerRegistry": {
+    "gentle": {},
+    "direct": {},
+    "competitive": {}
+  },
+  "titleTemplateRegistry": {},
+  "endingPatternRegistry": {},
+  "withinChapterNames": {},
+  "approvedChapterHashes": {
+    "ch01": {
+      "chapterPath": "validated/ch01.chapter.json",
+      "reviewPackagePath": "validated/ch01.review-package.json",
+      "chapterSha256": "a3292a8746c32ef6f635b26525872fb8385b8a3798eb770a1cee18c9589bbe0c",
+      "reviewPackageSha256": "66a775493f0ce4aefd3016080be0c7244d5eb711f182d156a1fd2e89b5f53f2f",
+      "sealedAt": "2026-04-08T00:00:00-03:00"
+    },
+    "ch02": {
+      "chapterPath": "validated/ch02.chapter.json",
+      "reviewPackagePath": "validated/ch02.review-package.json",
+      "chapterSha256": "046ae5493164576a2d8a0dc616301661ad36b0224af93adc3f878422865280c6",
+      "reviewPackageSha256": "db65e246a564fae4e6dcecf8725be868430af232e52ac0a0108fe66f042ac258",
+      "sealedAt": "2026-04-08T00:00:00-03:00"
+    },
+    "ch03": {
+      "chapterPath": "validated/ch03.chapter.json",
+      "reviewPackagePath": "validated/ch03.review-package.json",
+      "chapterSha256": "fff3950fbfe13eaf7f3d2ecaf3be7ff516d2592ee194a6b4649da113b61688a7",
+      "reviewPackageSha256": "ca95e95074ec7cef786c8b3fce69d760d09d6048735cd6fec51e8d6e64deddf6",
+      "sealedAt": "2026-04-08T00:00:00-03:00"
+    },
+    "ch04": {
+      "chapterPath": "validated/ch04.chapter.json",
+      "reviewPackagePath": "validated/ch04.review-package.json",
+      "chapterSha256": "baf73c0bd915b43e2e70ed29ebb8447996eed6c15393ee43f29bdc02b867f465",
+      "reviewPackageSha256": "e58a3a1a3b9f291c1d79455347052340755d88b16718a914c9dc4b606d959cec",
+      "sealedAt": "2026-04-08T00:00:00-03:00"
+    },
+    "ch05": {
+      "chapterPath": "validated/ch05.chapter.json",
+      "reviewPackagePath": "validated/ch05.review-package.json",
+      "chapterSha256": "da80475a9e5845c0ae57d6b838ef259e1b338619fa9ed951cf8152d9dd85b8ef",
+      "reviewPackageSha256": "5dce94ff8d64cf1431abf6537339b2f0bbf9b803352a23b6ba3924f6d805fe1b",
+      "sealedAt": "2026-04-08T00:00:00-03:00"
+    },
+    "ch06": {
+      "chapterPath": "validated/ch06.chapter.json",
+      "reviewPackagePath": "validated/ch06.review-package.json",
+      "chapterSha256": "268be9146df1d0eafd6b3a4a89a450a9c0e31722d37c5fc5ab82b9d9aa0b2e2a",
+      "reviewPackageSha256": "70170558018337ff3cddea6c8c07957c053d23698d4aa015e07be2363f8300fd",
+      "sealedAt": "2026-04-08T00:00:00-03:00"
+    },
+    "ch07": {
+      "chapterPath": "validated/ch07.chapter.json",
+      "reviewPackagePath": "validated/ch07.review-package.json",
+      "chapterSha256": "d1e861705c258da9ac0cfe2b79e5ce600a769214bdcf321726e132403081364a",
+      "reviewPackageSha256": "1b9bc39e545ad8cce3883f0a169bc73f65bd723bc9bb053d72add9583c01c431",
+      "sealedAt": "2026-04-08T00:00:00-03:00"
+    },
+    "ch08": {
+      "chapterPath": "validated/ch08.chapter.json",
+      "reviewPackagePath": "validated/ch08.review-package.json",
+      "chapterSha256": "3a64320abde4356fe707674368ab9dc525462bdf4116bb008a11ca1dd778717e",
+      "reviewPackageSha256": "2f59a2651b7629f4c56b31e6d8c893bb64a84528635d695296c521337d99c20e",
+      "sealedAt": "2026-04-09T00:00:00-03:00"
+    },
+    "ch09": {
+      "chapterPath": "validated/ch09.chapter.json",
+      "reviewPackagePath": "validated/ch09.review-package.json",
+      "chapterSha256": "f6724e9c342e13961686149914c97bfa921369ebf4aea0a98e9122b2a4167b7a",
+      "reviewPackageSha256": "0350baa9083ee07fd12ea6699eaed9042447bb2792ed6aca0193670e72b60899",
+      "sealedAt": "2026-04-09T00:00:00-03:00"
+    },
+    "ch10": {
+      "chapterPath": "validated/ch10.chapter.json",
+      "reviewPackagePath": "validated/ch10.review-package.json",
+      "chapterSha256": "9c499070558d4cdb62a66cd70b980509d3d24f11e899c93994105b1879bbc506",
+      "reviewPackageSha256": "1cd00f016099babd6b8e39b8d6b0ad1e96a2947c53b1c9eb0c2a660ec3639604",
+      "sealedAt": "2026-04-09T00:00:00-03:00"
+    }
+  },
+  "baselineQuality": {
+    "chapters": [
+      "ch01",
+      "ch02"
+    ],
+    "floorEstablishedAt": "2026-04-08T00:00:00-03:00",
+    "notes": "Ch01 sets the humility-through-sequence floor; Ch02 raises the intuition-first and strategic-reasoning floor. Later chapters must preserve specificity, social realism, and genuine hard-depth tension."
+  }
+}

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What does the chapter call the highest dividend of wealth?",
+      "choices": [
+        "Control over your time",
+        "Public admiration",
+        "Owning the most expensive object possible"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says money is most valuable when it gives you more choice over your time.",
+        "direct": "Reduced compulsion and greater time control are the chapter's core dividend of wealth.",
+        "competitive": "The real flex is calendar ownership."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What is freedom in this chapter not supposed to mean?",
+      "choices": [
+        "Simple laziness or never working again",
+        "More optionality in daily life",
+        "Less dependence on other people's demands"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Freedom is not just doing nothing.",
+        "direct": "The chapter distinguishes autonomy from idleness.",
+        "competitive": "Agency matters here, not passivity."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why can private utility be more important than public signal?",
+      "choices": [
+        "Because control over time can improve daily life more than visible status can",
+        "Because public signal has no effect on anything",
+        "Because private utility always looks impressive to others"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says quiet autonomy can help life more deeply than display.",
+        "direct": "Optionality often creates larger daily returns than visible consumption.",
+        "competitive": "Signal is loud; utility is useful."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Why is the chapter not anti-work?",
+      "choices": [
+        "Because a person may still work hard, but with more choice and less compulsion",
+        "Because the chapter says work should be avoided completely",
+        "Because wealth makes work unnecessary for everyone"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A free person can still care deeply about effort and achievement.",
+        "direct": "The chapter changes the relationship to work, not the existence of work itself.",
+        "competitive": "Chosen pressure is different from trapped pressure."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why is Sabrina's job choice a Chapter 8 example?",
+      "choices": [
+        "Because it compares louder compensation with more control over time",
+        "Because it proves lower pay is always better",
+        "Because titles never matter in any situation"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Sabrina has to choose between a richer-looking role and a freer-feeling one.",
+        "direct": "The example makes autonomy and visible reward compete directly.",
+        "competitive": "She is pricing the calendar, not just the paycheck."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What does Jalen's scholarship postmortem reveal?",
+      "choices": [
+        "Financial relief can also buy back time and reduce compulsion",
+        "Scholarships only matter because of tuition prices",
+        "Time pressure has nothing to do with money"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The scholarship changed more than the bill. It changed the week.",
+        "direct": "The gain included optionality, lower stress, and better control over time.",
+        "competitive": "The hidden payout was calendar recovery."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why does control over time have such a high psychological return here?",
+      "choices": [
+        "Because it lowers subtle pressure and reduces decisions made under desperation",
+        "Because it guarantees perfect judgment",
+        "Because it removes all responsibility"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "More time control can make life feel calmer and less trapped.",
+        "direct": "Optionality improves judgment partly by reducing panic and coercion.",
+        "competitive": "Calendar margin becomes mental margin."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What scoreboard does the chapter reorder?",
+      "choices": [
+        "It moves private utility ahead of public display",
+        "It says only public display matters",
+        "It says all scoreboards should be ignored"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter values what wealth does over what it looks like.",
+        "direct": "Autonomy outranks spectacle in the chapter's framework.",
+        "competitive": "Utility beats costume."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the chapter's better measure of wealth?",
+      "choices": [
+        "How much choice, patience, and dignity money creates in daily life",
+        "How expensive a life looks to strangers",
+        "How many objects a person owns"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter points to lived freedom as a stronger measure than display.",
+        "direct": "Money should be judged by reduced compulsion and greater optionality.",
+        "competitive": "The right metric is control, not spectacle."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why does Freedom lead naturally into Man in the Car Paradox?",
+      "choices": [
+        "Because once autonomy matters more than display, visible status symbols become easier to misread",
+        "Because the next chapter rejects all discussion of wealth",
+        "Because cars are the only symbol that matters in money psychology"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next chapter questions whether visible symbols really show what wealth is doing for someone.",
+        "direct": "If private utility outranks public signal, symbols become weaker evidence of real wealth.",
+        "competitive": "The audience sees the object, not the optionality."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    }
+  ]
+}

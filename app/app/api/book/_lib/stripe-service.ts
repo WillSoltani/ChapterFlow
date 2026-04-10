@@ -23,7 +23,12 @@ export async function getStripeClient(): Promise<Stripe> {
   }
   if (cachedClient?.key === key) return cachedClient.stripe;
   const stripeMod = await import("stripe");
-  const stripe = new stripeMod.default(key);
+  // Pin the API version so Stripe payload shapes don't drift unexpectedly
+  // when the SDK is upgraded. Bump intentionally and re-test all webhook
+  // event handlers when changing this string.
+  const stripe = new stripeMod.default(key, {
+    apiVersion: "2024-06-20" as Stripe.LatestApiVersion,
+  });
   cachedClient = { key, stripe };
   return stripe;
 }
@@ -46,10 +51,20 @@ export async function getStripePriceIdForInterval(interval: BillingInterval): Pr
   if (interval === "annual") {
     const id = await getBookStripePriceIdAnnual();
     if (id) return id;
+    throw new BookApiError(
+      503,
+      "stripe_price_not_configured",
+      "Annual billing is not configured on the server."
+    );
   }
   if (interval === "annual_upfront") {
     const id = await getBookStripePriceIdAnnualUpfront();
     if (id) return id;
+    throw new BookApiError(
+      503,
+      "stripe_price_not_configured",
+      "Annual upfront billing is not configured on the server."
+    );
   }
   return getStripePriceIdOrThrow();
 }

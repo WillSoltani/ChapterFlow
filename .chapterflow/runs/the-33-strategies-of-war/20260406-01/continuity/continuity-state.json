@@ -1,0 +1,406 @@
+{
+  "nameUsage": {
+    "Devon": [
+      "ch01"
+    ],
+    "Imani": [
+      "ch01"
+    ],
+    "Aiden": [
+      "ch01"
+    ],
+    "Ruth": [
+      "ch01"
+    ],
+    "Priya": [
+      "ch01"
+    ],
+    "Marcus": [
+      "ch01"
+    ],
+    "Elena": [
+      "ch01"
+    ],
+    "Yara": [
+      "ch01"
+    ],
+    "Naya": [
+      "ch02"
+    ],
+    "Tomas": [
+      "ch02"
+    ],
+    "Camila": [
+      "ch02"
+    ],
+    "Bea": [
+      "ch02"
+    ],
+    "Jamil": [
+      "ch02"
+    ],
+    "Hadiya": [
+      "ch02"
+    ],
+    "Kiran": [
+      "ch02"
+    ],
+    "Sora": [
+      "ch02"
+    ],
+    "Niko": [
+      "ch02"
+    ],
+    "Renzo": [
+      "ch02"
+    ],
+    "Reyna": [
+      "ch02"
+    ],
+    "Owen": [
+      "ch02"
+    ],
+    "Junichi": [
+      "ch03"
+    ],
+    "Aanya": [
+      "ch03"
+    ],
+    "Ines": [
+      "ch03"
+    ],
+    "Wesley": [
+      "ch03"
+    ],
+    "Aditi": [
+      "ch03"
+    ],
+    "Rafael": [
+      "ch03"
+    ],
+    "Mira": [
+      "ch03"
+    ],
+    "Linnea": [
+      "ch03"
+    ],
+    "Saira": [
+      "ch03"
+    ],
+    "Vivek": [
+      "ch03"
+    ],
+    "Dara": [
+      "ch04"
+    ],
+    "Kenji": [
+      "ch04"
+    ],
+    "Petra": [
+      "ch04"
+    ],
+    "Felix": [
+      "ch04"
+    ],
+    "Chisom": [
+      "ch04"
+    ],
+    "Rowan": [
+      "ch04"
+    ],
+    "Isolde": [
+      "ch04"
+    ],
+    "Clem": [
+      "ch04"
+    ],
+    "Bastian": [
+      "ch04"
+    ],
+    "Luca": [
+      "ch05"
+    ],
+    "Tariq": [
+      "ch05"
+    ],
+    "Suki": [
+      "ch05"
+    ],
+    "Yemi": [
+      "ch05"
+    ],
+    "Cormac": [
+      "ch05"
+    ],
+    "Nadia": [
+      "ch05"
+    ],
+    "Bram": [
+      "ch05"
+    ],
+    "Orla": [
+      "ch05"
+    ],
+    "Zaid": [
+      "ch05"
+    ],
+    "Phoebe": [
+      "ch06"
+    ],
+    "Declan": [
+      "ch06"
+    ],
+    "Amara": [
+      "ch06"
+    ],
+    "Kofi": [
+      "ch06"
+    ],
+    "Sigrid": [
+      "ch06"
+    ],
+    "Idris": [
+      "ch06"
+    ],
+    "Wren": [
+      "ch06"
+    ],
+    "Caius": [
+      "ch06"
+    ],
+    "Maisie": [
+      "ch07"
+    ],
+    "Theron": [
+      "ch07"
+    ],
+    "Fola": [
+      "ch07"
+    ],
+    "Leif": [
+      "ch07"
+    ],
+    "Soren": [
+      "ch07"
+    ],
+    "Tanvi": [
+      "ch07"
+    ],
+    "Gus": [
+      "ch07"
+    ],
+    "Kalani": [
+      "ch07"
+    ]
+  },
+  "formatCategoryHistory": [
+    {
+      "chapter": "ch01",
+      "formats": [
+        "decision_point",
+        "cold_open",
+        "dialogue",
+        "case_in_progress",
+        "dilemma",
+        "aftermath"
+      ]
+    },
+    {
+      "chapter": "ch02",
+      "formats": [
+        "decision_point",
+        "cold_open",
+        "dialogue",
+        "case_in_progress",
+        "dilemma",
+        "aftermath"
+      ]
+    },
+    {
+      "chapter": "ch03",
+      "formats": [
+        "decision_point",
+        "cold_open",
+        "dialogue",
+        "case_in_progress",
+        "dilemma",
+        "aftermath"
+      ]
+    },
+    {
+      "chapter": "ch04",
+      "formats": [
+        "decision_point",
+        "cold_open",
+        "dialogue",
+        "case_in_progress",
+        "dilemma",
+        "aftermath"
+      ]
+    },
+    {
+      "chapter": "ch05",
+      "formats": [
+        "decision_point",
+        "cold_open",
+        "dialogue",
+        "case_in_progress",
+        "dilemma",
+        "aftermath"
+      ]
+    },
+    {
+      "chapter": "ch06",
+      "formats": [
+        "decision_point",
+        "cold_open",
+        "dialogue",
+        "case_in_progress",
+        "dilemma",
+        "aftermath"
+      ]
+    }
+  ],
+  "schoolSettingUsage": {
+    "history-graduate-seminar": [
+      "ch01"
+    ],
+    "organic-chemistry-recitation": [
+      "ch01"
+    ],
+    "university-debate-team": [
+      "ch02"
+    ],
+    "high-school-robotics": [
+      "ch02"
+    ],
+    "graduate-philosophy-seminar": [
+      "ch03"
+    ],
+    "high-school-student-government": [
+      "ch03"
+    ],
+    "law-school-trial-advocacy": [
+      "ch04"
+    ],
+    "high-school-economics-class": [
+      "ch04"
+    ],
+    "mba-strategy-seminar": [
+      "ch05"
+    ],
+    "high-school-speech-and-debate": [
+      "ch05"
+    ],
+    "phd-defense-seminar": [
+      "ch06"
+    ],
+    "high-school-math-olympiad": [
+      "ch06"
+    ],
+    "undergraduate-political-science": [
+      "ch07"
+    ],
+    "high-school-model-un": [
+      "ch07"
+    ]
+  },
+  "wordFrequency": {},
+  "phraseFrequency": {},
+  "openerRegistry": {
+    "gentle": {},
+    "direct": {},
+    "competitive": {}
+  },
+  "titleTemplateRegistry": {},
+  "endingPatternRegistry": {},
+  "withinChapterNames": {
+    "ch01": [
+      "Devon",
+      "Imani",
+      "Aiden",
+      "Ruth",
+      "Priya",
+      "Marcus",
+      "Elena",
+      "Yara"
+    ],
+    "ch02": [
+      "Naya",
+      "Tomas",
+      "Camila",
+      "Bea",
+      "Jamil",
+      "Hadiya",
+      "Kiran",
+      "Sora",
+      "Niko",
+      "Renzo",
+      "Reyna",
+      "Owen"
+    ],
+    "ch03": [
+      "Junichi",
+      "Aanya",
+      "Ines",
+      "Wesley",
+      "Aditi",
+      "Rafael",
+      "Mira",
+      "Linnea",
+      "Saira",
+      "Vivek"
+    ],
+    "ch04": [
+      "Dara",
+      "Kenji",
+      "Petra",
+      "Felix",
+      "Chisom",
+      "Rowan",
+      "Isolde",
+      "Clem",
+      "Bastian"
+    ],
+    "ch05": [
+      "Luca",
+      "Tariq",
+      "Suki",
+      "Yemi",
+      "Cormac",
+      "Nadia",
+      "Bram",
+      "Orla",
+      "Zaid"
+    ],
+    "ch06": [
+      "Phoebe",
+      "Declan",
+      "Amara",
+      "Kofi",
+      "Sigrid",
+      "Idris",
+      "Wren",
+      "Caius"
+    ],
+    "ch07": [
+      "Maisie",
+      "Theron",
+      "Fola",
+      "Leif",
+      "Soren",
+      "Tanvi",
+      "Gus",
+      "Kalani"
+    ]
+  },
+  "approvedChapterHashes": {
+    "ch01": "95ae8f10ec32725deee1acbb0d08f0270df7fa3dd6ea948d8bd9fd89f26fab65",
+    "ch02": "de1791807573325e7fcad1ed119af5b88ff45d2e9ae3c48652eef1bf72462bcb",
+    "ch03": "da103a369d710c9d7fdabfe7cfb6e1cd58db7ee179850a9b0ef13dcc7bba3b8a",
+    "ch04": "3123fd92921ece401a4e6c1fa3b00629694d78585dc0e3bab9229e39637ec086",
+    "ch05": "5606e79f6f08049efd4fd6bb8683fe6da8787f342a0f326eb58254a23f88d75b",
+    "ch06": "272fc62fc02ffcb5154231227bf09dca6feaf8d8d2f7f491f3b045ea9e73ae86",
+    "ch07": "eb5965db250f362089e8b8f9aa62d2ebf6cf3affb0aa39119c63cfb911ebe699"
+  }
+}

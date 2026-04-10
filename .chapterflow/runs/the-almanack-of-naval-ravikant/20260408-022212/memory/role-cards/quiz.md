@@ -1,0 +1,3 @@
+- Build exactly 10 questions with 3 choices each, using supported chapter content only.
+- Prefer concrete situations, decision pressure, and tempting distractors over trivia or wording games.
+- Explanations must teach why the right answer works, why the wrong answers tempt, and what principle transfers.

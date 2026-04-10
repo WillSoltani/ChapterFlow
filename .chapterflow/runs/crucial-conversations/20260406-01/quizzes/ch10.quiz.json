@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is Chapter 10's central claim about tough cases?",
+      "choices": [
+        "Tough cases need a completely different framework",
+        "The framework stays the same while order and emphasis change",
+        "Hard rooms cannot be prepared for in advance"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says the framework does not disappear in hard rooms.",
+        "direct": "Correct. The principles stay, but sequencing adapts.",
+        "competitive": "Same spine, different entry."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What underlying move still applies in the tough cases?",
+      "choices": [
+        "Restore safety, then speak honestly",
+        "Decide fast, then apologize later",
+        "State your facts, then demand agreement"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The same basic move is safety first, then honesty.",
+        "direct": "Right. The chapter keeps that sequence underneath the hard variants.",
+        "competitive": "Safety, then truth. Still."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "How does a power gap usually change the conversation?",
+      "choices": [
+        "It removes the need for honesty",
+        "It can require a narrower and more careful first move",
+        "It means the weaker person should avoid the topic entirely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Power often changes scope and pacing, not the need for truth.",
+        "direct": "Correct. The opening may need to be narrower and more carefully framed.",
+        "competitive": "Smaller entry, same honesty."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Why does the chapter treat text as a special case?",
+      "choices": [
+        "Because truth matters less in writing",
+        "Because text removes many of the repair cues safety depends on",
+        "Because text conversations should always be ignored"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Text is thinner and easier to misread.",
+        "direct": "Right. The problem is degraded repair and climate cues.",
+        "competitive": "Thin channel, thin safety."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What is the chapter's answer to subject-shifting or chronic complaint?",
+      "choices": [
+        "Attack the pattern immediately and force compliance",
+        "Give up because dialogue is impossible",
+        "Restore workable conditions and return to the actual issue"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter rejects both surrender and attack.",
+        "direct": "Correct. Hold the room enough to bring the issue back into focus.",
+        "competitive": "Hold the room, then hold the issue."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Why do identity or cultural differences require extra humility?",
+      "choices": [
+        "Because assumptions about meaning become more expensive",
+        "Because honesty should be delayed indefinitely",
+        "Because the framework should be replaced by silence"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns that confident interpretation can cost more in these rooms.",
+        "direct": "Correct. Assumptions travel badly when frames differ.",
+        "competitive": "Read slower when the cost of misread is high."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What is the chapter's anti-manipulation warning?",
+      "choices": [
+        "The framework fails if used to win or control while sounding reasonable",
+        "The framework only works when the other person already agrees",
+        "The framework should never be used in work settings"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The method fails when the speaker wants compliance more than truth.",
+        "direct": "Correct. Calm wording does not rescue manipulative intent.",
+        "competitive": "Nice control is still control."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "A tense message thread keeps getting colder. What move best fits Chapter 10?",
+      "choices": [
+        "Keep refining the wording until text carries the whole repair",
+        "Move the conversation into a richer medium that can carry repair better",
+        "End the conversation because text makes honesty impossible"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter often prefers a richer channel when text keeps hardening the climate.",
+        "direct": "Correct. Medium choice is part of the skill.",
+        "competitive": "Exit the bad channel."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What makes openness to being changed so important?",
+      "choices": [
+        "It is the ethical condition that keeps the framework from becoming manipulation",
+        "It guarantees the other person will agree with you",
+        "It makes preparation unnecessary"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The book says the framework only works when the speaker is open to what they may hear back.",
+        "direct": "Correct. Motive is the real final test, not wording alone.",
+        "competitive": "No openness, no dialogue."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How does Chapter 10 end the book?",
+      "choices": [
+        "By recommending a summary reread of every chapter",
+        "By asking the reader to choose one or two real avoided conversations and have them",
+        "By advising the reader to wait for easier conversations first"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The book ends by sending the reader into one real planned conversation.",
+        "direct": "Right. The final move is action, not admiration.",
+        "competitive": "Stop rehearsing. Enter the room."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    }
+  ]
+}

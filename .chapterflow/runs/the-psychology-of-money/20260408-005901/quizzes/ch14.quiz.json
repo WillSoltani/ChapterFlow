@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's main claim about room for error?",
+      "choices": [
+        "It is mostly wasted capacity in a financial plan",
+        "It is part of what keeps a plan alive under uncertainty",
+        "It means all plans should avoid risk completely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says margin helps a plan survive rather than collapse.",
+        "direct": "Room for error is treated as anti-ruin design, not waste.",
+        "competitive": "Slack is what keeps the system from getting killed."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why can small mistakes become dangerous in this chapter?",
+      "choices": [
+        "Because small mistakes are always emotionally painful",
+        "Because tight systems can amplify ordinary misses into forced bad decisions",
+        "Because all mistakes are equally catastrophic"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A plan with no spare room can be damaged quickly by a normal mistake.",
+        "direct": "Fragility turns ordinary volatility or small errors into outsized pain.",
+        "competitive": "The system multiplies the hit when it runs too tight."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Which tools does the chapter treat as shock absorbers?",
+      "choices": [
+        "Cash reserves, lower leverage, conservative assumptions, and flexible timelines",
+        "Status signals, optimistic forecasts, and aggressive deadlines",
+        "High utilization and maximum leverage"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter values buffers that absorb stress before it becomes ruin.",
+        "direct": "These tools reduce the chance that one miss destroys the whole plan.",
+        "competitive": "Shock absorbers matter because they keep the system alive after a hit."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Why do people often underbuild margin?",
+      "choices": [
+        "Because slack often looks inefficient during calm periods",
+        "Because buffers always reduce long-term success",
+        "Because uncertainty can be removed with enough planning"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The buffer can look quiet before the stress arrives.",
+        "direct": "Its short-term cost is visible earlier than its survival value.",
+        "competitive": "The reserve looks slow until the hit makes it priceless."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "moderate"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What does the chapter mean by anti-ruin design?",
+      "choices": [
+        "Eliminating every risk from the plan",
+        "Building the plan so ordinary uncertainty is less likely to destroy it",
+        "Avoiding all ambition"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The goal is survival through uncertainty, not total safety.",
+        "direct": "The system should absorb manageable shocks without being forced into catastrophic decisions.",
+        "competitive": "The point is to stay in the game after the miss."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "moderate"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What limit does the chapter place on its own advice?",
+      "choices": [
+        "Too much margin can become stagnation or underuse",
+        "Margin works only in personal budgets",
+        "Buffers matter only when markets are crashing"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter is not asking for endless caution.",
+        "direct": "Too much conservatism can also carry costs and tradeoffs.",
+        "competitive": "Slack can be overbuilt too, but underbuilding is the bigger threat here."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "moderate"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "How does this chapter connect to Surprise!?",
+      "choices": [
+        "It ignores surprise and focuses only on discipline",
+        "It turns forecast humility into buffers that can survive being wrong",
+        "It replaces uncertainty with certainty"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Surprise widened the range; this chapter builds room for that wider range.",
+        "direct": "Room for error is the practical design response to forecasts that miss from the edges.",
+        "competitive": "After the miss becomes real, the answer is shock absorption."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "moderate"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Which plan best fits the chapter's advice?",
+      "choices": [
+        "A plan that uses every bit of capacity and assumes errors will stay small",
+        "A plan that leaves enough breathing room to absorb normal mistakes without forcing bad decisions",
+        "A plan that never tries anything ambitious"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter favors survivable plans, not maximally tight ones.",
+        "direct": "The right design preserves ambition while reducing fragility.",
+        "competitive": "The strong plan can take a hit and stay standing."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why can margin protect compounding?",
+      "choices": [
+        "Because it increases returns automatically",
+        "Because it lowers the chance that the plan gets destroyed before time can help it",
+        "Because it removes uncertainty from the future"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A plan must stay alive long enough for time to work.",
+        "direct": "Buffers help prevent ruin, which is what allows compounding to continue.",
+        "competitive": "Compounding needs survival more than swagger."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Which summary best fits Room for Error?",
+      "choices": [
+        "Margin is wasted space that should be cut whenever possible",
+        "Margin is deliberate slack that helps a plan survive shocks, mistakes, and uncertainty without forced ruin",
+        "The safest plan is always the best plan no matter the tradeoff"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter treats room for error as useful protection, not wasted motion.",
+        "direct": "Buffers in cash, leverage, timelines, and assumptions help plans survive being wrong.",
+        "competitive": "Slack is the thing that keeps the mission alive after the miss."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deep"
+    }
+  ]
+}

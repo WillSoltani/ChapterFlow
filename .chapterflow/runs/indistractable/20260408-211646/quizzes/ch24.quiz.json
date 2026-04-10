@@ -1,0 +1,155 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch24-q01",
+      "prompt": "What is the chapter's main claim about an indistractable workplace?",
+      "choices": [
+        "It is built from shared habits and norms that protect focus",
+        "It depends on one unusually disciplined employee",
+        "It requires a perfectly interruption-free world"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter uses a shared-design frame.",
+        "direct": "Operational norms, not lone heroics, define the healthier workplace.",
+        "competitive": "One saint is not a constitution."
+      }
+    },
+    {
+      "questionId": "ch24-q02",
+      "prompt": "Which kinds of practices does the chapter focus on most?",
+      "choices": [
+        "Meetings, interruptions, response expectations, and coordination habits",
+        "Only private journaling routines",
+        "Only office decor choices"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter stays operational.",
+        "direct": "Shared practices around coordination and focus protection are central.",
+        "competitive": "The scheduler is an architect."
+      }
+    },
+    {
+      "questionId": "ch24-q03",
+      "prompt": "Why is one person's discipline not enough here?",
+      "choices": [
+        "Because workplace attention becomes stable when the group treats healthier habits as normal",
+        "Because individuals never matter at work",
+        "Because teams do not need norms"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The unit of change is collective practice.",
+        "direct": "One worker cannot fully compensate for a bad shared operating system.",
+        "competitive": "The republic needs laws."
+      }
+    },
+    {
+      "questionId": "ch24-q04",
+      "prompt": "What does the chapter mean by saying culture must become operational?",
+      "choices": [
+        "Values have to appear in routines like meetings, response norms, and interruption handling",
+        "Values only matter in speeches",
+        "Operations are unrelated to culture"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Culture becomes real when it reaches routine behavior.",
+        "direct": "The calendar and chat rules show what the company actually values.",
+        "competitive": "The blueprint has to reach the scheduler."
+      }
+    },
+    {
+      "questionId": "ch24-q05",
+      "prompt": "What kind of permission does the chapter say workers need?",
+      "choices": [
+        "Permission to protect planned focus without political penalty",
+        "Permission to ignore every colleague indefinitely",
+        "Permission to abolish coordination entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Focus needs social legitimacy to survive.",
+        "direct": "The chapter wants protection without making attention feel antisocial.",
+        "competitive": "Attention needs a charter."
+      }
+    },
+    {
+      "questionId": "ch24-q06",
+      "prompt": "A team wants fewer distractions but changes none of its meeting or response norms. What would this chapter say?",
+      "choices": [
+        "The workplace has not yet turned its values into operational design",
+        "The culture problem is already solved",
+        "Only the employees need to toughen up"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants routines to change, not just rhetoric.",
+        "direct": "Without operational redesign, the same drains stay in place.",
+        "competitive": "Paint is not plumbing."
+      }
+    },
+    {
+      "questionId": "ch24-q07",
+      "prompt": "What realistic limit does the chapter preserve?",
+      "choices": [
+        "The goal is a healthier workplace with better defaults, not a perfect utopia",
+        "The goal is complete silence forever",
+        "The goal is to eliminate all coordination"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter stays practical.",
+        "direct": "Better norms matter even in imperfect, busy workplaces.",
+        "competitive": "Build a stronger city, not heaven."
+      }
+    },
+    {
+      "questionId": "ch24-q08",
+      "prompt": "How does the chapter treat office, remote, and hybrid contexts?",
+      "choices": [
+        "As different channels that still need the same underlying norm logic",
+        "As completely unrelated worlds with no shared principles",
+        "As proof that norms do not matter"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The channel changes less than the norm behind it.",
+        "direct": "Shared workplace design principles still apply across contexts.",
+        "competitive": "The blueprint survives the floor plan."
+      }
+    },
+    {
+      "questionId": "ch24-q09",
+      "prompt": "What is the chapter's strongest practical unit of change?",
+      "choices": [
+        "Shared team rules and routines that make focus more legitimate",
+        "A single worker's private motivation",
+        "A one-time inspirational speech"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter stays collective and operational.",
+        "direct": "Team-level habits make healthier behavior more durable.",
+        "competitive": "Rewrite the manual."
+      }
+    },
+    {
+      "questionId": "ch24-q10",
+      "prompt": "Why does the next section move toward children?",
+      "choices": [
+        "Because the broader lesson that environments shape behavior continues beyond the workplace",
+        "Because work norms no longer matter after this chapter",
+        "Because childhood is unrelated to environment design"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The design lesson carries forward.",
+        "direct": "The book now applies the environment lens to another setting and age group.",
+        "competitive": "The blueprint travels."
+      }
+    }
+  ]
+}

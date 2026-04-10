@@ -1,0 +1,49 @@
+{
+  "bookId": "the-laws-of-human-nature",
+  "runId": "20260408-002704",
+  "lockedAt": "2026-04-08T02:27:04Z",
+  "materialAmbiguity": false,
+  "decision": {
+    "selectedEdition": {
+      "title": "The Laws of Human Nature",
+      "author": "Robert Greene",
+      "publisher": "Viking",
+      "publishedYear": 2018,
+      "isbn13": "9780525428145",
+      "language": "English",
+      "region": "US"
+    },
+    "sameWorkVariants": [
+      {
+        "format": "Paperback",
+        "publisher": "Penguin Books",
+        "publishedYear": 2019,
+        "isbn13": "9780143111375",
+        "reasonKeptOutOfScope": "Same work family and same 624-page count on the official publisher page; not a different chapter map."
+      }
+    ],
+    "excludedVariants": [
+      {
+        "title": "The Concise Laws of Human Nature",
+        "publishedYear": 2020,
+        "reasonExcluded": "Separate concise edition, materially different content contract."
+      },
+      {
+        "title": "Translations",
+        "reasonExcluded": "No evidence of translation ambiguity affecting this run's English content contract."
+      }
+    ]
+  },
+  "rationale": [
+    "The official Penguin Random House page lists the 2018 hardcover and the 2019 paperback under the same work page and shows both at 624 pages.",
+    "The Google Books authorized preview exposes the same work family and shows a contents page with a substantive Introduction followed by the law sequence.",
+    "Bibliographic records from Open Library and IUCAT corroborate the English work family and the chapter sequence.",
+    "No frozen source showed a competing English edition with a different chapter count, order, or materially different meaning."
+  ],
+  "sourceRefs": [
+    "prh",
+    "google-books",
+    "open-library",
+    "iucat"
+  ]
+}

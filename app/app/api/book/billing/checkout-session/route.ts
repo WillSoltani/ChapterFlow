@@ -1,6 +1,7 @@
 import "server-only";
 import { requireUser } from "@/app/app/api/_lib/auth";
 import { withBookApiErrors, bookOk } from "@/app/app/api/book/_lib/http";
+import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import { getAppBaseUrl, getBookTableName } from "@/app/app/api/book/_lib/env";
 import {
   getStripeClient,
@@ -8,7 +9,7 @@ import {
   type BillingInterval,
 } from "@/app/app/api/book/_lib/stripe-service";
 import {
-  attachStripeCustomerToEntitlement,
+  attachStripeCustomerIfAbsent,
   getUserEntitlement,
   mapStripeCustomerToUser,
 } from "@/app/app/api/book/_lib/repo";
@@ -44,11 +45,31 @@ export async function POST(req: Request) {
         email: user.email,
         metadata: { userId: user.sub },
       });
-      customerId = customer.id;
-      await Promise.all([
-        attachStripeCustomerToEntitlement(tableName, user.sub, customerId),
-        mapStripeCustomerToUser(tableName, customerId, user.sub),
-      ]);
+      const newCustomerId = customer.id;
+      // Conditional attach: only the first concurrent request wins. The
+      // loser re-reads the entitlement to discover the winning customerId
+      // and deletes its own orphan Stripe customer to avoid bloating the
+      // Stripe account with duplicates.
+      const won = await attachStripeCustomerIfAbsent(tableName, user.sub, newCustomerId);
+      if (won) {
+        // Reverse mapping must exist before any webhook can resolve user.
+        await mapStripeCustomerToUser(tableName, newCustomerId, user.sub);
+        customerId = newCustomerId;
+      } else {
+        // Race: another request already attached a customer. Re-read and
+        // clean up our orphan.
+        const fresh = await getUserEntitlement(tableName, user.sub);
+        customerId = fresh?.stripeCustomerId;
+        // Best-effort orphan cleanup; never fail the checkout for this.
+        stripe.customers.del(newCustomerId).catch(() => {});
+        if (!customerId) {
+          throw new BookApiError(
+            500,
+            "customer_attach_race",
+            "Could not attach Stripe customer to account."
+          );
+        }
+      }
     }
 
     const session = await stripe.checkout.sessions.create({

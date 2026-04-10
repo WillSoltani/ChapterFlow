@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the opening danger Collins is trying to make readers see?",
+      "choices": [
+        "Great organizations usually fail because they move too slowly in a crisis",
+        "Good performance can reduce the urgency needed for a real leap",
+        "Only failing companies are willing to study themselves honestly"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The opening idea is that respectable results can make leaders relax too soon. The trap is comfort, not only collapse.",
+        "direct": "The chapter argues that good can become the ceiling. Decent performance lowers pressure and lets drift hide inside stability.",
+        "competitive": "The threat is not obvious failure. It is competence that buys excuses."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the comparison-company design matter so much in the opening argument?",
+      "choices": [
+        "It helps test whether the leap involved a real separating pattern rather than a flattering story",
+        "It proves every winning company used the exact same tactic",
+        "It lets Collins ignore time and focus only on dramatic breakthrough moments"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Comparing the breakthrough companies with similar firms that did not leap helps keep the book grounded in evidence.",
+        "direct": "Comparison is necessary because isolated success can always invent a glamorous explanation for itself.",
+        "competitive": "Matched contrast kills the easy myth-making. It asks what was actually different."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A nonprofit posts one unusually strong fundraising year after a celebrity event. According to the opening chapter, why is that not enough to call it a leap?",
+      "choices": [
+        "Because greatness only counts in public companies",
+        "Because the result may be exciting without being durable",
+        "Because Collins rejects all event-driven growth"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "One bright year can be real progress, but the chapter wants a result strong enough to last.",
+        "direct": "A single burst does not prove a stronger system. The opening chapter keeps the standard tied to sustained performance.",
+        "competitive": "Temporary heat is cheap. Endurance is the test."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Lena's team just had a respectable quarter and wants to celebrate it as proof they are finally becoming great. What is the strongest move from the chapter's logic?",
+      "choices": [
+        "Ask what longer pattern would have to hold before the result counts as real momentum",
+        "Announce that stable performance is enough because panic is gone",
+        "Make a dramatic reorganization so the quarter feels more transformative"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Lena does not need to reject the good quarter. She needs to keep the standard sharp and ask what would make the progress durable.",
+        "direct": "Lena's best move is to test the result against time and pattern, not against relief.",
+        "competitive": "The disciplined answer keeps the bar high. Decent numbers are data, not a coronation."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "A student newspaper has one semester of unusually high readership after a campus controversy. Which mistake would the opening chapter warn against most strongly?",
+      "choices": [
+        "Treating the temporary spike as proof of a durable leap",
+        "Reviewing what worked in the issue cycle",
+        "Comparing this semester with previous ones"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The warning is about labeling a visible burst too quickly. One strong semester may still be only a moment.",
+        "direct": "The trap is confusing attention with enduring superiority.",
+        "competitive": "The wrong call is to crown a breakthrough before time has verified anything."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which statement is the clearest misreading of the opening chapter?",
+      "choices": [
+        "Greatness should be judged over a longer horizon than a single burst",
+        "The comparative study gives the rest of the book a burden of proof",
+        "The chapter is mainly telling readers to want success more intensely"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The opening is tougher than an ambition speech. It is building a research frame for the book.",
+        "direct": "The mistake is treating the chapter like a pep talk. Its job is to define the leap and the standard for evidence.",
+        "competitive": "This is not a hunger lecture. It is a credibility filter."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "A leadership team launches new priorities every quarter so employees always feel a sense of action. Which opening-chapter diagnosis fits best?",
+      "choices": [
+        "They may be generating motion while interrupting momentum",
+        "They are proving that dramatic change is the fastest path to greatness",
+        "They are avoiding the danger of comfort by keeping the organization unsettled"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Lots of action can still break the buildup a stronger system needs.",
+        "direct": "Frequent resets can create movement without reinforcement. The chapter warns against mistaking spectacle for sequence.",
+        "competitive": "This is the classic error of narratable motion. Every reset makes the flywheel start over."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "During a board retreat, Marcus wants to challenge the phrase 'We had a good year.' Which question best matches the chapter's filter?",
+      "choices": [
+        "How do we make next year feel even more exciting?",
+        "Compared with what long-term standard would we call this a real leap?",
+        "Who deserves the most credit for this year's wins?"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Marcus is trying to keep the conversation honest by asking what standard would make the result truly meaningful.",
+        "direct": "The sharper question is about comparison and durability, not emotion or credit.",
+        "competitive": "He is refusing to let comfort set the bar. A leap needs a harder benchmark."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why can good be more dangerous than bad in the opening chapter's logic?",
+      "choices": [
+        "Because bad results always create better leaders",
+        "Because good results can calm people before they have built a stronger system",
+        "Because greatness is impossible without a period of decline first"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Bad results hurt, but they also expose problems. Good results can hide them behind reassurance.",
+        "direct": "Good becomes dangerous when it lowers urgency and protects a system that still needs harder discipline.",
+        "competitive": "Comfort anesthetizes judgment. That is why it can block the leap more effectively than pain."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If the leap depends on a cumulative sequence rather than a dramatic stunt, what kind of leadership question naturally comes next?",
+      "choices": [
+        "How can technology create momentum before people and discipline exist?",
+        "What leader can start the process without needing instant personal glory?",
+        "How can an organization skip evidence and move straight to execution?"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The bridge forward points toward a leader strong enough to build the institution patiently rather than chase fast applause.",
+        "direct": "The next logical question is about leadership fit. A cumulative leap needs someone who can begin a durable sequence instead of a spectacle.",
+        "competitive": "The bridge forward favors institutional will over ego theater. That is why leadership comes next."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

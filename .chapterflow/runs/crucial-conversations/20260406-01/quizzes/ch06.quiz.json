@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What does Chapter 6 mean by Mutual Purpose?",
+      "choices": [
+        "Both people want the exact same strategy",
+        "Both people believe the other is still working toward a goal they can also care about",
+        "Both people agree to avoid conflict for now"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Mutual Purpose is about shared aim, not identical tactics.",
+        "direct": "Correct. The chapter defines Mutual Purpose as a belief that the other person is still moving toward something you can also want.",
+        "competitive": "Same strategy is too low-level. Shared purpose is the deeper target."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What does Mutual Respect mean in this chapter?",
+      "choices": [
+        "The other person believes you still see them as worth hearing",
+        "The other person agrees your evidence is stronger",
+        "The room is quiet and orderly"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Respect here means being regarded as worthy of hearing, even during disagreement.",
+        "direct": "Correct. The chapter ties respect to whether the other person feels they still count in the room.",
+        "competitive": "Quiet rooms can still be disrespectful. Worth-hearing is the real test."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "If someone now thinks you are trying to beat them rather than solve the problem with them, which safety condition most likely broke?",
+      "choices": [
+        "Mutual Purpose",
+        "Mutual Respect",
+        "Reading stamina"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That scenario points to a loss of shared aim.",
+        "direct": "Correct. When the other person reads you as against them, the likely break is Mutual Purpose.",
+        "competitive": "They no longer believe you are on the same side of the goal."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "When is apology the best Chapter 6 repair?",
+      "choices": [
+        "Whenever the other person feels any discomfort",
+        "When the speaker actually caused damage to respect",
+        "Whenever the speaker wants to change the subject"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Apology fits real harm, not every upset reaction.",
+        "direct": "Correct. The chapter reserves apology for situations where the speaker genuinely contributed to the safety breach.",
+        "competitive": "Do not apologize on autopilot. Apologize when you actually hit the room."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Which option is the clearest example of honest Contrasting?",
+      "choices": [
+        "\"I do not mean you are lazy. I do mean the last two deadlines were missed and we need to understand why.\"",
+        "\"I do not mean anything personal, but you really are unreliable and everyone sees it.\"",
+        "\"I do not mean to upset you, so let's skip the issue.\""
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That choice removes a false reading and then states the real concern clearly.",
+        "direct": "Correct. Honest Contrasting first denies an inaccurate meaning and then names the actual issue without retreating from it.",
+        "competitive": "Option A clears the false target and keeps the real target."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What is the correct order inside Contrasting?",
+      "choices": [
+        "State the real concern, then deny any misread motive",
+        "Ask for agreement first, then apologize",
+        "Correct the false meaning, then state the real meaning"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The false meaning has to be cleared before the real meaning can land well.",
+        "direct": "Correct. Chapter 6 places the 'do not mean' before the 'do mean' because the room is first fighting the wrong interpretation.",
+        "competitive": "Remove the lie first or the truth keeps bouncing off it."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "In CRIB, what are Owen and Priyah trying to identify under their clashing hiring strategies?",
+      "choices": [
+        "The deeper purpose each strategy is trying to protect",
+        "The cheaper person to hire immediately",
+        "The person who is more emotionally upset"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "CRIB moves below the tactic to the goal the tactic is serving.",
+        "direct": "Correct. The chapter says the purpose under the strategy has to be named before new options can open.",
+        "competitive": "Tactics clash on the surface. Purpose sits underneath."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "A student club co-lead hears your event plan as proof that you do not care about the club's mission. Which repair best fits first?",
+      "choices": [
+        "Immediate apology for the disagreement itself",
+        "Diagnosis and shared-purpose repair, likely through CRIB",
+        "Ignore the reaction and repeat the budget numbers"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "If the other person doubts shared aim, the first repair is about purpose.",
+        "direct": "Correct. The scenario points to a Mutual Purpose failure, so a purpose-level repair fits before more tactic talk.",
+        "competitive": "Do not answer a purpose break with more spreadsheet worship."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What honest limit does Chapter 6 keep in view?",
+      "choices": [
+        "Safety repair works only in romantic relationships",
+        "One sincere sentence may still be insufficient in a power-asymmetric or bad-faith room",
+        "Mutual Respect matters less than Mutual Purpose"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter stays credible by admitting that some rooms need more than a well-phrased repair attempt.",
+        "direct": "Correct. Power gaps, repeated disrespect, and bad faith can limit what one speaker can repair alone.",
+        "competitive": "Leverage problems do not disappear because the wording improved."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "After safety is restored, what challenge does Chapter 7 most naturally take up next?",
+      "choices": [
+        "How to say the hard thing clearly and responsibly",
+        "How to avoid difficult topics altogether",
+        "How to memorize the six silence and violence labels again"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Once the room can hold candor again, the next step is learning how to place the hard truth into it well.",
+        "direct": "Correct. Chapter 6 repairs the room. Chapter 7 moves to the disciplined speaking method used once the room is safe enough.",
+        "competitive": "You rebuilt the room. Next you learn how to load the truth back in."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    }
+  ]
+}

@@ -1,0 +1,155 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch04-q01",
+      "prompt": "What is the main distinction Ariely builds Chapter 4 around?",
+      "choices": [
+        "The difference between luxury goods and basic goods.",
+        "The difference between social norms and market norms.",
+        "The difference between saving and spending."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter contrasts reciprocity-based social exchange with price-based market exchange.",
+        "direct": "Ariely organizes the chapter around social norms versus market norms.",
+        "competitive": "The whole chapter separates favors from priced deals."
+      }
+    },
+    {
+      "questionId": "ch04-q02",
+      "prompt": "Why can a tiny payment reduce effort instead of increasing it?",
+      "choices": [
+        "Because small payments always insult everyone equally.",
+        "Because the payment crowds out the social motive without creating a strong market motive.",
+        "Because people never work hard when money is involved."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The small payment can replace goodwill without paying enough to justify the work as a job.",
+        "direct": "A weak price can crowd out reciprocity and still fail to buy commitment.",
+        "competitive": "The cheap number kills the favor and does not really fund the job."
+      }
+    },
+    {
+      "questionId": "ch04-q03",
+      "prompt": "What did the daycare fine change in Ariely's example?",
+      "choices": [
+        "It turned lateness into something some parents treated as a paid option.",
+        "It proved that all fines are too small to matter.",
+        "It showed that parents stopped caring about their children."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The fine changed the meaning of lateness from a social burden to something with a posted cost.",
+        "direct": "Parents could reinterpret lateness as a fee-based service rather than only as a moral failure.",
+        "competitive": "The fine put a price on lateness and weakened guilt."
+      }
+    },
+    {
+      "questionId": "ch04-q04",
+      "prompt": "What is dangerous about mixing social and market norms?",
+      "choices": [
+        "It can cool cooperation without creating a strong transactional system.",
+        "It guarantees that people will always choose the selfish option.",
+        "It makes market prices impossible to calculate."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A blended frame can damage the relationship and still fail to motivate performance well.",
+        "direct": "The exchange loses social warmth before it gains real market clarity.",
+        "competitive": "You can poison goodwill and still not buy results."
+      }
+    },
+    {
+      "questionId": "ch04-q05",
+      "prompt": "Why are gifts and gratitude different from tiny cash payments in this chapter?",
+      "choices": [
+        "They never influence motivation at all.",
+        "They can preserve a social frame better than explicit pricing does.",
+        "They always cost less than wages."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A gift or warm thanks can reinforce recognition without always forcing the exchange into a market frame.",
+        "direct": "The chapter treats gifts and gratitude as more compatible with social norms than token cash.",
+        "competitive": "A gift can honor the relationship without slamming a meter into it."
+      }
+    },
+    {
+      "questionId": "ch04-q06",
+      "prompt": "What limit does Ariely place on the chapter's argument about money?",
+      "choices": [
+        "He says all markets are immoral.",
+        "He says market norms are useful when the exchange is truly contractual.",
+        "He says people should stop paying for services entirely."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter is not anti-market. It is against careless mixing of the systems.",
+        "direct": "Market norms are appropriate when clear prices and explicit exchange are actually the point.",
+        "competitive": "Money is not the enemy. Confused framing is."
+      }
+    },
+    {
+      "questionId": "ch04-q07",
+      "prompt": "Why can it be hard to restore social norms after a relationship gets priced?",
+      "choices": [
+        "Because people forget the original task entirely.",
+        "Because the new price changes what people think the relationship is.",
+        "Because all prices are permanent once announced."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "People update their expectations once the exchange is treated as a market exchange.",
+        "direct": "The reframed interaction leaves behind new expectations that can outlast the original price.",
+        "competitive": "Once people hear the meter, they keep hearing it."
+      }
+    },
+    {
+      "questionId": "ch04-q08",
+      "prompt": "Which response best fits the chapter's practical advice?",
+      "choices": [
+        "Use small payments whenever you want to show appreciation.",
+        "Either protect the social frame or build a real market exchange, but do not blur them casually.",
+        "Avoid all incentives because they always backfire."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter recommends choosing the frame clearly instead of drifting between favor and fee.",
+        "direct": "Ariely's practical rule is to pick the norm system deliberately.",
+        "competitive": "Choose the rule book on purpose and stop freelancing with token prices."
+      }
+    },
+    {
+      "questionId": "ch04-q09",
+      "prompt": "What do the low-paid-help cases illustrate?",
+      "choices": [
+        "That people only help when they are paid above market rates.",
+        "That paying a little can be worse than either paying properly or asking under a social mission.",
+        "That volunteers never need recognition."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The small payment can damage goodwill while still failing to compensate the effort fairly.",
+        "direct": "A token fee can underperform both real wages and genuine social appeals.",
+        "competitive": "Cheap pay can lose to free help and to real pay at the same time."
+      }
+    },
+    {
+      "questionId": "ch04-q10",
+      "prompt": "Why does Chapter 4 lead naturally into the chapter on arousal?",
+      "choices": [
+        "Because both chapters are mostly about family life.",
+        "Because Chapter 4 shows an external frame rewrite before Chapter 5 shows an internal state rewrite.",
+        "Because both chapters reject all forms of self-control."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Chapter 4 shows behavior changing when the exchange frame changes. Chapter 5 asks what happens when the person's state changes instead.",
+        "direct": "The book moves from external norm shifts to internal hot-state shifts.",
+        "competitive": "First the relationship gets rewritten, then the chooser does."
+      }
+    }
+  ]
+}

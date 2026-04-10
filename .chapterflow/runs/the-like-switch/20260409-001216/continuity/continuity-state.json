@@ -1,0 +1,55 @@
+{
+  "nameUsage": {},
+  "formatCategoryHistory": [],
+  "schoolSettingUsage": {},
+  "wordFrequency": {},
+  "phraseFrequency": {},
+  "openerRegistry": { "gentle": {}, "direct": {}, "competitive": {} },
+  "titleTemplateRegistry": {},
+  "endingPatternRegistry": {},
+  "withinChapterNames": {},
+  "approvedChapterHashes": {
+    "ch01": {
+      "sha256": "2121e99cce7ade3a4cd0731c21870e2cb3c8122dab8feafc836cd5d3c1193138",
+      "validatedAt": "2026-04-09T00:31:51Z",
+      "title": "The Friendship Formula"
+    },
+    "ch02": {
+      "sha256": "70dbe0d3941eb8fc64caa346e24e52d34b83a94c85cfc83e6475a39321425a8b",
+      "validatedAt": "2026-04-09T00:57:50Z",
+      "title": "Getting Noticed Before a Word Is Spoken"
+    },
+    "ch03": {
+      "sha256": "9acf08bddcbcab449a968365d8db9aa4ed9a8c483ff64bbb77c405e2b4502450",
+      "validatedAt": "2026-04-09T01:10:02Z",
+      "title": "The Golden Rule of Friendship"
+    },
+    "ch04": {
+      "sha256": "72e3b823d17d68896180e44ee32a643527f0aeaa685608ccdd7f6d50ef779a9e",
+      "validatedAt": "2026-04-09T01:27:51Z",
+      "title": "The Laws of Attraction"
+    },
+    "ch05": {
+      "sha256": "cf419bf6d4ed029ffaec4b33a6ae0954626fb03848d0b8d7842637a6efaf5520",
+      "validatedAt": "2026-04-09T02:05:22Z",
+      "title": "Speaking the Language of Friendship"
+    },
+    "ch06": {
+      "sha256": "1f09cf0fb9dff32afb39f7e1811b87010fbd601d2f669126c232907e2c9a5d8a",
+      "validatedAt": "2026-04-09T02:27:49Z",
+      "title": "Building Closeness"
+    },
+    "ch07": {
+      "sha256": "c5061614bd94bfbc15d2be75c5019ecb75e933031c7130c764eeab563efca39f",
+      "validatedAt": "2026-04-09T15:22:16Z",
+      "title": "Nurturing and Sustaining Long-Term Relationships"
+    }
+  },
+  "baselineQuality": {
+    "chapters": [
+      "ch01",
+      "ch02"
+    ],
+    "establishedAt": "2026-04-09T00:57:50Z"
+  }
+}

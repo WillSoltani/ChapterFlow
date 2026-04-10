@@ -1,0 +1,3 @@
+- Judge hook strength, specificity, source anchoring, paragraph motion, convertibility, and whether hard sections genuinely deepen.
+- Call out meta-distance, conceptual repetition, fake depth, and places where the draft could apply to any book.
+- Return PASS, LOCAL_PATCH, or REROUTE based on whether the issues are local or structural.

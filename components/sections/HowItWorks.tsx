@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { Fragment, useRef } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { SectionReveal } from "@/components/ui/SectionReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
@@ -11,7 +11,7 @@ const steps = [
     label: "UNDERSTAND",
     title: "Read the key ideas at your depth",
     description:
-      "Choose Simple, Standard, or Deeper. Get the chapter\u2019s main idea, key insight, and takeaways \u2014 structured for clarity, not length.",
+      "Choose Lite, Standard, or Deeper. Get the chapter\u2019s main idea, key insight, and takeaways \u2014 structured for clarity, not length.",
     icon: (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
         <rect x="3" y="4" width="14" height="2" rx="1" fill="currentColor" />
@@ -98,11 +98,15 @@ export function HowItWorks() {
   const renderCard = (step: (typeof steps)[number]) => (
     <div
       key={step.number}
-      className="group relative overflow-hidden rounded-xl border border-[--border-subtle] bg-[--bg-glass] backdrop-blur-[16px] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[--border-medium]"
+      className={`group relative overflow-hidden rounded-xl border bg-[--bg-glass] backdrop-blur-[16px] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[--border-medium] ${
+        step.number === "01"
+          ? "border-[--accent-teal]/30 shadow-[0_0_24px_rgba(34,211,238,0.08)]"
+          : "border-[--border-subtle]"
+      }`}
     >
       {/* Watermark number */}
       <span
-        className="pointer-events-none absolute top-4 right-4 select-none text-[6rem] font-bold leading-none opacity-[0.05] text-[--text-heading]"
+        className="pointer-events-none absolute top-4 right-4 select-none text-[6rem] font-bold leading-none opacity-[0.10] text-[--accent-teal]"
         style={{ fontFamily: "var(--font-display)" }}
         aria-hidden="true"
       >
@@ -167,22 +171,56 @@ export function HowItWorks() {
         {prefersReducedMotion ? (
           <div
             ref={gridRef}
-            className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
+            className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr]"
           >
-            {steps.map((step) => renderCard(step))}
+            {steps.map((step, i) => (
+              <Fragment key={step.number}>
+                {renderCard(step)}
+                {i < steps.length - 1 && (
+                  <div className="hidden lg:flex items-center justify-center self-center -mx-3 z-10 flex-shrink-0">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                      <path
+                        d="M3 8h10M9 4l4 4-4 4"
+                        stroke="var(--accent-teal)"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        opacity="0.5"
+                      />
+                    </svg>
+                  </div>
+                )}
+              </Fragment>
+            ))}
           </div>
         ) : (
           <motion.div
             ref={gridRef}
-            className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
+            className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr]"
             variants={containerVariants}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
           >
-            {steps.map((step) => (
-              <motion.div key={step.number} variants={cardVariants}>
-                {renderCard(step)}
-              </motion.div>
+            {steps.map((step, i) => (
+              <Fragment key={step.number}>
+                <motion.div variants={cardVariants}>
+                  {renderCard(step)}
+                </motion.div>
+                {i < steps.length - 1 && (
+                  <div className="hidden lg:flex items-center justify-center self-center -mx-3 z-10 flex-shrink-0">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                      <path
+                        d="M3 8h10M9 4l4 4-4 4"
+                        stroke="var(--accent-teal)"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        opacity="0.5"
+                      />
+                    </svg>
+                  </div>
+                )}
+              </Fragment>
             ))}
           </motion.div>
         )}

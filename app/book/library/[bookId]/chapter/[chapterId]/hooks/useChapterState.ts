@@ -41,7 +41,7 @@ type ReaderPrefs = {
 
 const defaultState: PersistedChapterState = {
   activeTab: "summary",
-  readingDepth: "deeper",
+  readingDepth: "standard",
   exampleFilter: "all",
   quizAnswers: {},
   quizResult: null,

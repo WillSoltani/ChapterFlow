@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "ch10-q01",
+      "prompt": "What is the chapter's main claim about planning?",
+      "choices": [
+        "Planning mainly exists to remove uncertainty completely",
+        "Planning makes strong teams rigid by design",
+        "Planning helps teams adapt because they share structure before pressure hits"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Yes. The chapter says planning creates the shared frame that later supports adaptation.",
+        "direct": "Correct. Good planning builds common structure before stress distorts the mission.",
+        "competitive": "That is the core claim: the map makes the bend possible."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch10-q02",
+      "prompt": "Why do underprepared teams often struggle under pressure?",
+      "choices": [
+        "Because they become brittle when gaps in shared understanding get exposed",
+        "Because planning always reduces initiative",
+        "Because only the most senior leader should know the intent"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. Pressure quickly reveals when the team never built a shared picture of the mission.",
+        "direct": "The chapter says weak preparation turns stress into fragmentation instead of adaptation.",
+        "competitive": "That is the break point: the first surprise hits a team with no common map."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch10-q03",
+      "prompt": "What makes commander's intent so important in planning?",
+      "choices": [
+        "It helps people stay aligned when the original steps stop fitting reality",
+        "It replaces the need for rehearsal or contingencies",
+        "It prevents any future change to the plan"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Correct. Intent tells the team what success means even if the first script changes.",
+        "direct": "That is why intent matters: purpose survives longer than any single checklist step.",
+        "competitive": "The team can bend the method because it still knows what the mission is for."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch10-q04",
+      "prompt": "In Alina's rollout example, what best applies the chapter?",
+      "choices": [
+        "Skip rehearsal so the team can stay flexible",
+        "Rehearse the launch and fallback paths before going live",
+        "Wait to name the rollback path until a failure actually happens"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The chapter says rehearsal and contingencies make later adjustment smoother.",
+        "direct": "That choice fits because Alina is preparing flexibility rather than hoping improvisation will cover thin prep.",
+        "competitive": "Walk the move now so the live turn does not become a panic rewrite."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch10-q05",
+      "prompt": "How does the chapter distinguish planning from rigidity?",
+      "choices": [
+        "Planning means following the original script exactly no matter what changes",
+        "Planning helps the team revise coherently when conditions shift",
+        "Planning works only if contingencies are never needed"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. The plan matters because it helps the team adapt without losing coherence.",
+        "direct": "Exactly. The chapter treats preparation as structure for revision, not as a ban on revision.",
+        "competitive": "A strong plan bends with purpose instead of snapping or freezing."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch10-q06",
+      "prompt": "Which misreading does the chapter reject?",
+      "choices": [
+        "That planning should include rehearsal and contingencies",
+        "That the plan can become a form of rigidity if leaders cling to it after reality changes",
+        "That planning guarantees the mission will unfold exactly as expected"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Correct. The chapter explicitly refuses the idea that planning removes uncertainty or guarantees success.",
+        "direct": "That is the false reading: the plan is a preparation tool, not a control fantasy.",
+        "competitive": "Reality still hits back. The chapter just wants the team ready for it."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch10-q07",
+      "prompt": "What is the best transfer of this chapter to school or home life?",
+      "choices": [
+        "Agree on the goal, the sequence, and the backup path before pressure arrives",
+        "Avoid naming contingencies because that makes people anxious",
+        "Assume good intentions will replace clear planning"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter transfers whenever a group needs shared preparation before live changes hit.",
+        "direct": "That answer carries the principle well: planning gives ordinary groups a calmer way to adjust together.",
+        "competitive": "Give the room a mission and a second lane before the first lane breaks."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch10-q08",
+      "prompt": "What was the real reveal in Jonah's scenario?",
+      "choices": [
+        "The team adapted smoothly because the fallback move had already been named and rehearsed",
+        "The team succeeded mainly because they ignored the original plan entirely",
+        "The team only needed more status updates during the disruption"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter says contingencies reduce confusion because the need to adjust is already expected.",
+        "direct": "The reveal is that calm adaptation usually comes from prepared structure, not luck.",
+        "competitive": "The backup path mattered because it existed before the disruption did."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch10-q09",
+      "prompt": "Which statement best captures the chapter's deeper synthesis?",
+      "choices": [
+        "Teams become flexible when they avoid detailed preparation and rely on improvisation",
+        "Good planning, intent, rehearsal, and contingencies make distributed adaptation more coherent",
+        "Rigid loyalty to the first plan is the clearest sign of disciplined leadership"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exactly. The chapter ties strong preparation to later flexibility instead of opposing them.",
+        "direct": "That answer captures the full mechanism: shared structure supports adaptation when the field changes.",
+        "competitive": "The team bends well because it prepared together, not because it walked in loose."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch10-q10",
+      "prompt": "How does this chapter lead into the next one?",
+      "choices": [
+        "By showing that even good planning can fail if purpose and feedback do not move well up and down the chain",
+        "By proving that communication matters less once the plan is good enough",
+        "By arguing that teams should stop sending information upward after rehearsal"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Correct. The next chapter takes the shared plan and asks how meaning and information travel across levels.",
+        "direct": "The bridge is communication: a good map still fails if the chain cannot carry purpose and feedback clearly.",
+        "competitive": "Once the map exists, the next problem is whether the chain keeps it alive."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

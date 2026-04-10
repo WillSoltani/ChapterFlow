@@ -14,7 +14,7 @@ import {
   Zap,
   Copy,
 } from "lucide-react";
-import { useFlowPoints, type FlowPointsPayload } from "@/app/book/hooks/useFlowPoints";
+import { useInsightPoints, type InsightPointsPayload } from "@/app/book/hooks/useInsightPoints";
 
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString(undefined, {
@@ -24,7 +24,7 @@ function formatDate(iso: string) {
   });
 }
 
-function BalanceHeader({ summary }: { summary: FlowPointsPayload["summary"] }) {
+function BalanceHeader({ summary }: { summary: InsightPointsPayload["summary"] }) {
   return (
     <div
       className="rounded-2xl p-6 text-center"
@@ -89,7 +89,7 @@ function RewardCard({
   redeeming,
   onRedeem,
 }: {
-  reward: FlowPointsPayload["rewards"][number];
+  reward: InsightPointsPayload["rewards"][number];
   redeeming: boolean;
   onRedeem: () => void;
 }) {
@@ -174,7 +174,7 @@ function RewardCard({
   );
 }
 
-function ReferralSection({ referral }: { referral: FlowPointsPayload["referral"] }) {
+function ReferralSection({ referral }: { referral: InsightPointsPayload["referral"] }) {
   const [copied, setCopied] = useState(false);
   const fullUrl = typeof window !== "undefined"
     ? `${window.location.origin}${referral.path}`
@@ -247,7 +247,7 @@ function ReferralSection({ referral }: { referral: FlowPointsPayload["referral"]
 
 export function RewardsPageClient() {
   const { loading, payload, error, redeemingRewardId, redeemMessage, redeemReward } =
-    useFlowPoints();
+    useInsightPoints();
 
   return (
     <div className="min-h-screen" style={{ background: "var(--bg-base)" }}>
@@ -357,23 +357,26 @@ export function RewardsPageClient() {
                   background: "var(--bg-surface-1)",
                 }}
               >
-                {payload.waysToEarn.map((way, i) => (
-                  <div key={i} className="flex items-center justify-between px-4 py-3">
-                    <div>
+                {payload.waysToEarn.map((way) => (
+                  <div key={way.label} className="flex items-start justify-between gap-4 px-4 py-3">
+                    <div className="min-w-0">
                       <p className="text-[14px] font-medium" style={{ color: "var(--text-heading)" }}>
                         {way.label}
                       </p>
+                      <p className="text-[12px] mt-0.5" style={{ color: "var(--text-secondary)" }}>
+                        {way.detail}
+                      </p>
                       {way.note && (
-                        <p className="text-[12px] mt-0.5" style={{ color: "var(--text-muted)" }}>
+                        <p className="text-[11px] mt-0.5" style={{ color: "var(--text-muted)" }}>
                           {way.note}
                         </p>
                       )}
                     </div>
                     <span
-                      className="text-[13px] font-semibold shrink-0"
+                      className="text-[13px] font-semibold shrink-0 tabular-nums"
                       style={{ color: "var(--accent-teal)" }}
                     >
-                      +{way.amount}
+                      {way.displayValue}
                     </span>
                   </div>
                 ))}

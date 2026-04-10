@@ -33,11 +33,11 @@ import type {
 } from "@/app/app/api/book/_lib/types";
 import { analyticsTrackScenario } from "@/app/app/api/book/_lib/analytics-repo";
 import { nowIso } from "@/app/app/api/book/_lib/keys";
-import { FLOW_POINTS_AMOUNTS } from "@/app/book/_lib/flow-points-economy";
+import { INSIGHT_POINTS_AMOUNTS } from "@/app/book/_lib/flow-points-economy";
 
 export const runtime = "nodejs";
 
-const SCENARIO_APPROVAL_POINTS = FLOW_POINTS_AMOUNTS.scenarioApproved;
+const SCENARIO_APPROVAL_POINTS = INSIGHT_POINTS_AMOUNTS.scenarioApproved;
 
 function normalizeScenarioPerspective(value: string): string {
   const cleaned = value.replace(/\s+/g, " ").trim();

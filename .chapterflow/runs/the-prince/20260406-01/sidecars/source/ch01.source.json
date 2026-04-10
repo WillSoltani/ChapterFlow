@@ -1,0 +1,37 @@
+{
+  "chapterId": "ch01",
+  "chapterNumber": 1,
+  "heading": "CHAPTER I.",
+  "title": "HOW MANY KINDS OF PRINCIPALITIES THERE ARE, AND BY WHAT MEANS THEY ARE ACQUIRED",
+  "sourcePath": ".chapterflow/sources/the-prince/the-prince.txt",
+  "sourceLineStart": 551,
+  "sourceLineEndInclusive": 573,
+  "scope": "Core The Prince text only",
+  "exclusions": [
+    "Project Gutenberg boilerplate",
+    "front matter and dedication before THE PRINCE",
+    "appended works after Chapter XXVI"
+  ],
+  "approxWords": 118,
+  "properNouns": [
+    "Francesco Sforza",
+    "Milan",
+    "Naples",
+    "King of Spain"
+  ],
+  "repeatedTerms": [
+    "principalities",
+    "hereditary",
+    "new",
+    "state",
+    "dominion",
+    "freedom",
+    "arms",
+    "fortune",
+    "ability"
+  ],
+  "notes": [
+    "Chapter-local source slice for dossier and brief work.",
+    "Any verbatim reuse in reader-facing prose should still go through the quote ledger."
+  ]
+}

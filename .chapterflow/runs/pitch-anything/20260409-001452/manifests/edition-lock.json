@@ -1,0 +1,76 @@
+{
+  "bookId": "pitch-anything",
+  "title": "Pitch Anything",
+  "author": "Oren Klaff",
+  "selectionDate": "2026-04-09",
+  "editionSelectionMode": "ask_if_ambiguous",
+  "decision": "auto_lock",
+  "lockedEdition": {
+    "name": "Pitch Anything: An Innovative Method for Presenting, Persuading, and Winning the Deal",
+    "publisher": "McGraw-Hill",
+    "imprint": "McGraw-Hill Professional",
+    "publishedYear": 2011,
+    "hardcoverIsbn13": "9780071752855",
+    "hardcoverIsbn10": "0071752854",
+    "ebookIsbn13": "9780071759762",
+    "ebookIsbn10": "007175976X",
+    "language": "English",
+    "translator": "",
+    "format": "print / ebook English trade family",
+    "chapterCount": 11,
+    "sectionCount": 3
+  },
+  "rationale": [
+    "McGraw Hill, Google Books, and Fnac converge on the same 2011 English trade-family record for `Pitch Anything` by Oren Klaff.",
+    "No translation, abridgment, or alternate chapter-order family surfaced in source discovery.",
+    "The locked chapter map is stable across the official publisher page and retailer TOC record, so no user edition question is needed."
+  ],
+  "candidateEditionsReviewed": [
+    {
+      "label": "2011 McGraw-Hill Professional English first-edition family",
+      "status": "selected",
+      "reason": "Canonical publisher record with stable three-part / eleven-chapter structure and complete ISBN metadata."
+    },
+    {
+      "label": "2011 ebook / digital English family",
+      "status": "selected_same_family",
+      "reason": "Separate ebook ISBN, same English work and chapter map."
+    },
+    {
+      "label": "Later reprints or international listings",
+      "status": "not_selected",
+      "reason": "No materially different chapter structure or translation requirement surfaced."
+    }
+  ],
+  "metadataRepair": {
+    "fields": [
+      {
+        "field": "bookRequest.title",
+        "previousValue": "“Pitch-Anything“",
+        "repairedValue": "Pitch Anything",
+        "reason": "Launch smart-quote corruption introduced noncanonical punctuation into the title."
+      },
+      {
+        "field": "bookRequest.author",
+        "previousValue": "“Oren",
+        "repairedValue": "Oren Klaff",
+        "reason": "Launch smart-quote corruption truncated the author name."
+      },
+      {
+        "field": "editionSelectionMode",
+        "previousValue": "Klaff”",
+        "repairedValue": "ask_if_ambiguous",
+        "reason": "The launch artifact misplaced author text into the edition-selection field."
+      }
+    ]
+  },
+  "sourceIds": [
+    "mcgraw_hill_official",
+    "google_books_record",
+    "oren_klaff_official",
+    "fnac_toc_record",
+    "shortform_summary",
+    "getstoryshots_summary",
+    "getabstract_summary"
+  ]
+}

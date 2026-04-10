@@ -1,0 +1,53 @@
+{
+  "chapterId": "ch13",
+  "title": "The Use of Spies",
+  "romanNumeral": "XIII",
+  "sourceOrigin": "Project Gutenberg eBook #17405, The Art of War by Sunzi, Lionel Giles translation, 1910, public domain",
+  "sourceFile": ".chapterflow/sources/the-art-of-war/the-art-of-war.txt",
+  "sourceLineRange": "1475-1580",
+  "sourceParagraphRange": "1-27",
+  "approxWords": 590,
+  "properNouns": [
+    "Sun Tzu",
+    "I Chih",
+    "Lü Ya",
+    "Yin dynasty",
+    "Hsia",
+    "Chou dynasty"
+  ],
+  "repeatedTerms": [
+    "spies",
+    "enemy",
+    "converted",
+    "foreknowledge",
+    "information",
+    "knowledge"
+  ],
+  "approvedQuoteLedger": [
+    {
+      "text": "What enables the wise sovereign and the good general to strike and conquer, and achieve things beyond the reach of ordinary men, is foreknowledge.",
+      "status": "exact_quote_verified",
+      "sourceLocation": "Ch XIII, sentence 4"
+    },
+    {
+      "text": "Knowledge of the enemy's dispositions can only be obtained from other men.",
+      "status": "exact_quote_verified",
+      "sourceLocation": "Ch XIII, sentence 6"
+    },
+    {
+      "text": "Spies are a most important element in war, because on them depends an army's ability to move.",
+      "status": "exact_quote_verified",
+      "sourceLocation": "Ch XIII, sentence 27"
+    }
+  ],
+  "structureSummary": {
+    "part1": "sentences 1-3: opening economic argument — cost of armies versus cost of intelligence",
+    "part2": "sentences 4-6: foreknowledge as the decisive differentiator; rejected sources (spirits, experience, calculation); human sources only",
+    "part3": "sentences 7-13: five spy classes defined (local, inward, converted, doomed, surviving)",
+    "part4": "sentence 8: divine manipulation of threads — all five types operating simultaneously",
+    "part5": "sentences 14-19: management requirements for spies (sagacity, liberality, secrecy)",
+    "part6": "sentences 20-25: converted spy as the hinge — enables all other types; treated with utmost liberality",
+    "part7": "sentences 26-27: historical precedent (I Chih, Lü Ya) and closing claim — spies are most important element in war"
+  },
+  "usageRules": "This sidecar supports the brief and outline only. No verbatim copy into reader-facing breakdowns except through the approved quote ledger."
+}

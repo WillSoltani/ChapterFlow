@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch07-q01",
+      "prompt": "What happened to Isaac Newton during the South Sea Bubble that illustrates the danger of short-term thinking?",
+      "choices": [
+        "B) He sold his shares for a profit, then bought back in near the peak driven by fear of missing out, and lost a fortune in the crash",
+        "A) He refused to invest and missed a major opportunity",
+        "C) He predicted the crash accurately but was unable to convince other investors to sell"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Newton had already made a smart exit. The emotional pull of watching others get richer dragged him back in at the worst possible time, proving that intelligence alone does not protect against reactive decision-making.",
+        "direct": "Newton's first trade was rational. His second was emotional. The fear of being left behind compressed his analytical window from years to weeks, and within that narrow frame, buying near the peak looked reasonable.",
+        "competitive": "Newton proved that reactive thinking defeats intelligence every time. His analytical ability was not the variable that failed. His time horizon was."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch07-q02",
+      "prompt": "Greene identifies four recurring signs of shortsightedness. Which of the following is one of those signs?",
+      "choices": [
+        "A) Gathering excessive data before making any decision",
+        "B) Tribal thinking, where you adopt the group's beliefs without running your own analysis",
+        "C) Consistently choosing long-term investments over short-term gains"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "When everyone around you agrees, it feels like evidence. But tribal thinking often means the group is reinforcing its own assumptions rather than each person reaching an independent conclusion.",
+        "direct": "Tribal thinking converts mutual reinforcement into something that feels like independent validation. The apparent strength of consensus is inflated when each member was influenced by learning what others thought.",
+        "competitive": "Tribal thinking is one of the four markers because it disguises collective emotion as collective wisdom. The weight of numbers feels like evidence, but only if those numbers arrived independently."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch07-q03",
+      "prompt": "How does Greene distinguish between first-order, second-order, and third-order thinking?",
+      "choices": [
+        "C) First-order applies to finance, second-order to relationships, and third-order to military strategy",
+        "B) First-order is emotional, second-order is logical, and third-order is intuitive",
+        "A) First-order asks what happens next, second-order asks who benefits or loses from that, and third-order asks what shifts in the larger situation because of those changes"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Think of a rock thrown into a pond. The splash is first-order. The wave that swamps a boat at the far shore is second-order. The reshaping of the shoreline over time is third-order.",
+        "direct": "Each level extends the consequence chain further. Most people stop at the splash. The advantage comes from tracing the waves to the far shore and understanding how the shoreline changes.",
+        "competitive": "First-order is where everyone operates. Second-order is where the game gets interesting. Third-order is where you see the field reshaping before anyone else notices."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch07-q04",
+      "prompt": "Tariq, a marketing director, is losing market share to a competitor. His instinct is to slash prices immediately to win back customers. Before acting, he maps the consequence chain. First order: lower prices attract some buyers back. Second order: the competitor matches the price cut. Third order: both companies are now earning less with no change in relative market position. What has Tariq's analysis revealed?",
+      "choices": [
+        "B) The first-order result looked appealing, but the second and third-order consequences show the move would damage both companies without solving the underlying problem",
+        "A) Price cuts are always the wrong strategy in competitive markets",
+        "C) Tariq should cut prices even deeper to ensure the competitor cannot match him"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The quick fix feels right because it addresses the immediate pain. But tracing the consequences forward reveals that the competitor's response erases the advantage, leaving everyone worse off.",
+        "direct": "Tariq's consequential analysis exposed a race-to-the-bottom dynamic invisible at the first-order level. The price cut solves nothing because the competitor's predictable response neutralizes the move.",
+        "competitive": "This is the chapter's framework in action. The splash looked good. The second and third waves destroyed the rationale. Tariq avoided a quick fix that would have cost margin without changing position."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch07-q05",
+      "prompt": "Gabrielle, a product manager, notices that three different enterprise clients have raised the same integration complaint over the past quarter. Each time, her team treated the complaint as an isolated issue and patched it individually. What sign of shortsightedness is Gabrielle's team displaying?",
+      "choices": [
+        "B) Tribal thinking, since the team is following each other's approach without questioning it",
+        "A) Quick-fix addiction, since they keep choosing the option that stops immediate discomfort without addressing the root cause",
+        "C) Reactive emotion, since the complaints are triggering a fear response in the team"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Each patch stops the immediate complaint but leaves the underlying integration problem in place. The team keeps treating symptoms while the real issue keeps producing new ones.",
+        "direct": "Three identical complaints patched individually is a textbook quick-fix pattern. The discomfort gets addressed each time, but the structure generating the complaints remains untouched.",
+        "competitive": "The team is on the quick-fix treadmill: each patch generates temporary relief while the root cause compounds. By the time the trend becomes undeniable, the remediation cost will have tripled."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch07-q06",
+      "prompt": "Wei, a graduate student, is deciding between accepting a well-paying corporate job and pursuing a research fellowship that pays much less but aligns with her long-term career goals. All her classmates are taking corporate offers, and the social pressure feels overwhelming. Which combination of shortsightedness markers is Wei most at risk of falling into?",
+      "choices": [
+        "C) Only reactive emotion, since the other markers do not apply to career decisions",
+        "B) Trend blindness combined with quick-fix addiction",
+        "A) Reactive emotion from the salary difference combined with tribal thinking from her peer group's choices"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The salary gap creates emotional urgency, and watching every classmate choose the corporate route makes that choice feel like the obvious, validated answer. Both forces are compressing her time horizon.",
+        "direct": "Two markers are stacking: the emotional pull of a higher salary compresses her evaluation window, and the tribal consensus of her peer group converts collective behavior into what feels like independent confirmation.",
+        "competitive": "Wei is facing a classic convergence: reactive emotion from the financial comparison and tribal thinking from the peer group. Both compress her timeline to the next year instead of the next decade."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch07-q07",
+      "prompt": "Scipio Africanus defeated Hannibal not by fighting him directly in Italy but by attacking Carthage, forcing Hannibal to abandon his campaign and return home. What level of consequential thinking did Scipio use that the other Roman generals missed?",
+      "choices": [
+        "B) Second and third-order thinking, tracing the consequences of attacking Carthage through to Hannibal's forced withdrawal and Rome's control of the final engagement",
+        "A) First-order only, focusing on the immediate military threat",
+        "C) Emotional thinking, relying on gut instinct rather than strategic analysis"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Every other general was stuck on the obvious problem: Hannibal is here, fight him here. Scipio asked what would happen if the fight moved to a completely different place, and traced the chain of consequences that would follow.",
+        "direct": "Scipio ran a full consequence chain on an indirect target. The other generals were locked into first-order engagement. Scipio operated at the second and third order, where the lasting outcome of the war was decided.",
+        "competitive": "Scipio outframed Hannibal by operating on a different consequence level entirely. The other generals threw force at the first-order problem. Scipio redesigned the network that produced the problem."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch07-q08",
+      "prompt": "A founder is considering whether to take venture capital funding that would accelerate growth but require giving up board control. She maps three orders of consequence before deciding. This practice of extending the analysis beyond the immediate result represents which core habit from this chapter?",
+      "choices": [
+        "A) Emotional suppression to eliminate bias from the decision",
+        "B) Consequential thinking applied to a high-stakes decision, extending the evaluation beyond the first-order outcome",
+        "C) Tribal thinking, since she is following a approach popular among startup advisors"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "By asking what happens after the obvious result, and then what changes because of that, she is building the depth of perspective that prevents reactive decision-making.",
+        "direct": "Mapping three orders of consequence is the chapter's central practice applied to a real decision. She is expanding her analytical window beyond the funding event itself to its downstream second- and third-order effects.",
+        "competitive": "This is the two-extra-questions habit in live deployment. First order: capital arrives. Second order: board dynamics shift. Third order: strategic direction becomes negotiable. Without that chain, the decision looks like free money."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch07-q09",
+      "prompt": "Greene argues that intelligence did not save Newton from the South Sea Bubble. If raw analytical power cannot prevent shortsightedness, what does this imply about the true nature of the skill Greene is teaching in this chapter?",
+      "choices": [
+        "B) The skill is not analytical power but perspective management: the ability to control how wide your temporal frame is when making decisions, regardless of how smart you are within any given frame",
+        "A) The skill is about reducing emotional intensity so that logic can operate freely",
+        "C) The skill is about avoiding all investment and financial decisions entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Newton was brilliant inside whatever window he was looking through. The problem was the size of the window, not the quality of the thinking inside it. Widening the frame is a different skill from sharpening the analysis.",
+        "direct": "The chapter's core insight is that intelligence and perspective operate on different axes. You can be the sharpest analyst in the room and still make catastrophic decisions if your temporal frame is compressed.",
+        "competitive": "Newton's failure proves that the bottleneck is not processing power but frame width. Perspective management, controlling how far forward you look before committing, is the skill that intelligence cannot substitute for."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch07-q10",
+      "prompt": "A historian studying financial bubbles across centuries notices the same pattern: crowds driven by reactive emotion, quick-fix greed, trend blindness, and tribal reinforcement. The South Sea Bubble of 1720 and the Dutch tulip mania of the 1630s followed nearly identical playbooks despite occurring in different countries and eras. How does recognizing this recurring cycle across generations connect to the generational relationships examined in Chapter 18?",
+      "choices": [
+        "A) Financial bubbles are purely economic events with no connection to generational psychology",
+        "C) Later generations always learn from earlier bubbles, which is why they become less frequent over time",
+        "B) Each generation believes its circumstances are unique, but the same cognitive vulnerabilities repeat because the shortsightedness markers are built into human wiring, not learned from the previous generation's mistakes"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Every generation encounters the same human wiring and believes its situation is different. The cycle repeats not because people fail to study history, but because the cognitive vulnerabilities that drive shortsightedness are baked into how brains work.",
+        "direct": "The generational repetition of identical bubble patterns demonstrates that shortsightedness markers are structural, not cultural. Each generation inherits the same cognitive vulnerabilities and re-discovers them under new circumstances.",
+        "competitive": "The cross-generational repetition is the strongest evidence that these markers are hardware, not software. Chapter 18's generational tensions explain why the lessons never transfer: each generation's conviction in its own uniqueness is itself a product of the same shortsightedness."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

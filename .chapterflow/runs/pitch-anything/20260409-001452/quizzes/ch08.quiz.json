@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is hookpoint doing in this method at a practical level?",
+      "choices": [
+        "Creating a catchy slogan for the pitch",
+        "Concentrating the strongest value moment into one memorable peak",
+        "Replacing the need for earlier setup"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Hookpoint gives the pitch one strongest moment.",
+        "direct": "Correct. Klaff uses hookpoint to concentrate force rather than scatter it.",
+        "competitive": "Hookpoint is the summit, not the slogan."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does hookpoint come after prize?",
+      "choices": [
+        "Because once value feels scarce, the peak can hit harder and mean more",
+        "Because prize makes timing irrelevant",
+        "Because hookpoint should appear before the audience understands the offer"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Prize makes the offer feel worth winning, and hookpoint concentrates that value into one hit.",
+        "direct": "Correct. The peak lands harder once scarcity and value are already in place.",
+        "competitive": "Value first. Summit second."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is the main problem with spreading impact across too many moments?",
+      "choices": [
+        "It gives the room more peaks to remember",
+        "It diffuses force so no decisive summit emerges",
+        "It guarantees the room will stay energized longer"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Too many medium peaks can weaken the memory of any real peak.",
+        "direct": "Correct. Distributed force often leaves the pitch without one decisive moment.",
+        "competitive": "Sprayed heat flattens the landscape."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Hannah has several strong contrasts. What is the strongest move?",
+      "choices": [
+        "Give each contrast equal peak energy",
+        "Choose the one contrast that should carry the summit",
+        "Lead with the strongest contrast immediately before any setup"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "She needs one real hookpoint, not many small ones.",
+        "direct": "Correct. The summit should carry the highest load after the setup earns it.",
+        "competitive": "Pick the mountain, not the weather report."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "applied"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Which option best respects the limit of hookpoint?",
+      "choices": [
+        "Use dramatic wording only when the underlying consequence can carry the peak",
+        "Write the loudest possible line and trust the energy",
+        "Turn every slide into a breakthrough moment"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A real hookpoint needs consequence underneath the wording.",
+        "direct": "Correct. Style can help, but it cannot replace earned force.",
+        "competitive": "If the logic is thin, the peak stays thin."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "applied"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What went wrong in Karim's postmortem?",
+      "choices": [
+        "The team had too little content",
+        "The team spread the temperature too evenly for a clear hookpoint to emerge",
+        "The judges wanted more slogans and less analysis"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The room understood the content but had no summit to hold onto.",
+        "direct": "Correct. Equal emphasis across too many points weakened the peak.",
+        "competitive": "Too many highs can still produce no mountain."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "applied"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why did Sol's one consequence work better than his many partial claims?",
+      "choices": [
+        "Because one concentrated implication gave the conversation a summit",
+        "Because people dislike nuance in personal conversations",
+        "Because six partial claims are always false"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "One clear summit organized the whole case better.",
+        "direct": "Correct. A concentrated implication can feel stronger and be easier to remember than many scattered reasons.",
+        "competitive": "One hard hit beat six polite taps."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "applied"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What usually happens when the strongest contrast is held until the setup is ready?",
+      "choices": [
+        "The moment can land with more force and full price",
+        "The room always becomes impatient and hostile",
+        "The peak loses impact because it came later"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The same contrast can hit harder once the room understands what it changes.",
+        "direct": "Correct. Timing gives the hookpoint price and force.",
+        "competitive": "Build the runway, then spend the spike."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "applied"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the key ethical line in this move?",
+      "choices": [
+        "Whether the peak sharpens real consequence or only performs drama",
+        "Whether the presenter should ever use emphasis",
+        "Whether a hookpoint must always be verbal"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Hookpoint becomes weak when it chases punch without earned meaning.",
+        "direct": "Correct. The key question is whether the summit clarifies value or only decorates it.",
+        "competitive": "If the spike is style without consequence, it burns trust."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why is decision the natural move after hookpoint?",
+      "choices": [
+        "Because once the room has felt the summit clearly, commitment can follow more proportionately",
+        "Because hookpoint replaces the need for any final ask",
+        "Because the strongest peak should always end the pitch immediately"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Hookpoint makes the offer vivid enough that the next move toward commitment feels earned.",
+        "direct": "Correct. Decision lands more cleanly once the room has already felt the peak.",
+        "competitive": "First the summit. Then the ask."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "deep"
+    }
+  ]
+}

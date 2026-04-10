@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "Which two abilities does Chapter 2 say deep work strengthens most?",
+      "choices": [
+        "Learning hard things quickly and producing high-quality work",
+        "Networking more easily and multitasking faster",
+        "Checking messages more efficiently and scheduling meetings"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Chapter 2 says deep work matters because it improves difficult learning and strong production together.",
+        "direct": "The value case centers on skill acquisition and output quality, not faster reactivity.",
+        "competitive": "The right answer names the two abilities that actually create leverage."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does deep work help with difficult learning?",
+      "choices": [
+        "Because hard material yields more easily to uninterrupted attention",
+        "Because deep work removes the need to review anything twice",
+        "Because talent matters more than focus"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter argues that continuity helps the mind hold difficult structures together.",
+        "direct": "Deep work speeds learning because it reduces reentry costs and supports deeper understanding.",
+        "competitive": "If the hard thing keeps getting interrupted, mastery slows down."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why does Chapter 2 connect deep work to output quality?",
+      "choices": [
+        "Because strong work often needs more than fragmented first-pass effort",
+        "Because quality depends only on natural ability",
+        "Because shallow work never supports any project"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says better work often comes from staying with the problem longer and thinking more clearly.",
+        "direct": "Depth improves revision, judgment, and substance in the finished result.",
+        "competitive": "Half-attention usually stops at the obvious answer."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "What makes the value argument stronger than a generic focus appeal?",
+      "choices": [
+        "It ties deep work to skills the market actually rewards",
+        "It says shallow work disappears from real life",
+        "It says calm feelings are the main goal"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Chapter 2 is practical. It connects deep work to valued abilities rather than to mood alone.",
+        "direct": "The argument is economic and strategic, not merely therapeutic.",
+        "competitive": "The market case is what gives the chapter its force."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "How does distraction hurt in Chapter 2's logic?",
+      "choices": [
+        "It weakens both learning and output quality",
+        "It only reduces relaxation",
+        "It matters only during meetings"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter treats distraction as a double cost, not just a small irritation.",
+        "direct": "Interruption lowers the quality of both mastery and production.",
+        "competitive": "Distraction taxes two valuable capacities at once."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Why does the chapter say deep work functions like leverage?",
+      "choices": [
+        "Because it improves multiple linked capacities instead of one isolated metric",
+        "Because it removes every shallow obligation forever",
+        "Because it makes every task enjoyable"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Deep work keeps paying because it strengthens more than one important ability.",
+        "direct": "It improves learning and production together, which creates compounding return.",
+        "competitive": "Leverage means one capability keeps multiplying outcomes elsewhere."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What loop does Chapter 2 expose?",
+      "choices": [
+        "Faster learning improves output, and better output raises the value of learning",
+        "More meetings produce more understanding, which produces more meetings",
+        "Shallow work creates deep work, which removes all shallow work"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says learning and production reinforce each other.",
+        "direct": "The loop matters because deep work strengthens both sides at once.",
+        "competitive": "This is where depth starts compounding."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why is a busy distracted worker still at risk according to Chapter 2?",
+      "choices": [
+        "Because visible activity can hide strategic decline in skill growth and output quality",
+        "Because busyness always means laziness",
+        "Because all coordination should be removed"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns that busyness can mask losses instead of preventing them.",
+        "direct": "A person may look committed while deep work capacity keeps weakening underneath.",
+        "competitive": "Being active is weak protection if learning and production are still degrading."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Which example best fits the chapter's production claim?",
+      "choices": [
+        "Giving a demanding draft uninterrupted revision time",
+        "Sorting folders for an hour",
+        "Replying to every message immediately"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The production claim is about what helps demanding work become better, not what merely looks organized.",
+        "direct": "Uninterrupted revision time fits the chapter because output quality rises with sustained attention.",
+        "competitive": "The deeper block improves the work. The other options mostly maintain circulation."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If someone wants to become more valuable in a knowledge economy, what does Chapter 2 imply they should protect?",
+      "choices": [
+        "Their capacity for deep work",
+        "Only their reputation for instant replies",
+        "Only their number of visible tasks"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter's conclusion is that deep work deserves protection because it trains valuable abilities.",
+        "direct": "If the market rewards hard learning and strong output, deep work becomes a core asset.",
+        "competitive": "Protect depth if you want durable value instead of performative busyness."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

@@ -1,51 +1,11 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { motion, useInView } from "framer-motion";
 import { SectionReveal } from "@/components/ui/SectionReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-
-function PulseCTA({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: false });
-  const [shouldPulse, setShouldPulse] = useState(false);
-
-  useEffect(() => {
-    if (isInView) {
-      const timer = setTimeout(() => setShouldPulse(true), 3000);
-      return () => clearTimeout(timer);
-    } else {
-      setShouldPulse(false);
-    }
-  }, [isInView]);
-
-  return (
-    <motion.div
-      ref={ref}
-      className={className}
-      animate={
-        shouldPulse
-          ? {
-              boxShadow: [
-                "0 0 0 0 rgba(34, 211, 238, 0)",
-                "0 0 0 8px rgba(34, 211, 238, 0.15)",
-                "0 0 0 0 rgba(34, 211, 238, 0)",
-              ],
-            }
-          : {}
-      }
-      transition={
-        shouldPulse
-          ? { duration: 2.5, repeat: Infinity, repeatDelay: 1 }
-          : {}
-      }
-      style={{ borderRadius: 9999 }}
-    >
-      {children}
-    </motion.div>
-  );
-}
+import { PulseCTA } from "@/components/landing/PulseCTA";
+import { AUTH_LOGIN_BOOK_URL } from "@/app/_lib/chapterflow-brand";
+import { track } from "@/lib/analytics";
 
 export function FinalCTA() {
   return (
@@ -61,7 +21,7 @@ export function FinalCTA() {
               color: "var(--text-heading)",
             }}
           >
-            Pick a book. Read one chapter. Take the quiz.
+            Read like it actually sticks.
           </h2>
 
           <p
@@ -71,7 +31,7 @@ export function FinalCTA() {
               color: "var(--accent-teal)",
             }}
           >
-            You&apos;ll know in 20 minutes.
+            No summaries. No shortcuts. Real retention.
           </p>
 
           <p
@@ -81,16 +41,17 @@ export function FinalCTA() {
               color: "var(--text-secondary)",
             }}
           >
-            No credit card. No commitment. Just one chapter to see if
-            ChapterFlow changes how you read.
+            Every chapter is a 20-minute loop: read, apply, prove, unlock.
+            Start free &mdash; no credit card, no commitment.
           </p>
 
           {/* CTA button */}
           <div className="mt-8 flex flex-col items-center gap-3">
             <PulseCTA className="inline-block">
               <Link
-                href="/auth/login?returnTo=%2Fbook"
-                className="cta-shine inline-flex items-center rounded-full px-8 py-4 font-semibold text-[16px] transition-transform hover:scale-[1.03] active:scale-[0.98]"
+                href={AUTH_LOGIN_BOOK_URL}
+                onClick={() => track("cta_click", { source: "final_cta_primary" })}
+                className="cta-shine inline-flex items-center rounded-full px-8 py-4 font-semibold text-[16px] transition-transform hover:scale-[1.03] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
                 style={{
                   backgroundColor: "var(--accent-teal)",
                   color: "var(--primary-foreground)",
@@ -101,11 +62,12 @@ export function FinalCTA() {
             </PulseCTA>
 
             <Link
-              href="/auth/login?returnTo=%2Fbook"
-              className="text-[14px] font-medium transition-colors duration-200 hover:text-[--text-heading]"
+              href={AUTH_LOGIN_BOOK_URL}
+              onClick={() => track("cta_click", { source: "final_cta_signin" })}
+              className="text-[14px] font-medium transition-colors duration-200 hover:text-[--text-heading] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 rounded"
               style={{ color: "var(--text-secondary)" }}
             >
-              Sign in
+              Already have an account? Sign in
             </Link>
           </div>
 

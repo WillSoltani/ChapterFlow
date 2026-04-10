@@ -1,0 +1,74 @@
+{
+  "nameUsage": {},
+  "formatCategoryHistory": [],
+  "schoolSettingUsage": {},
+  "wordFrequency": {},
+  "phraseFrequency": {},
+  "openerRegistry": {
+    "gentle": {},
+    "direct": {},
+    "competitive": {}
+  },
+  "titleTemplateRegistry": {},
+  "endingPatternRegistry": {},
+  "withinChapterNames": {},
+  "approvedChapterHashes": {
+    "ch01": "07056dc93f4e9a998328e63ed08a6346c0bbf4b0d2968b16f3a04f10e35ff472",
+    "ch02": "2b225e7816ceb601962ea65d3db8b3a65a4e9c56d85fdfdae48feb776eb8102f",
+    "ch03": "bf4348efa1cff3b7859a10624fa15e571ceeca7083cfd8a974fc9f615fb0bb1a",
+    "ch04": "5c99036590128918bb488d1f850355bce1ef00da89b0768ae5225b8c839d9086",
+    "ch05": "846d65cf79215fb84706a9b30cf999e231a9b8d649c5e23061882a3505dfc763",
+    "ch06": "fd2328b2972fddfa00f3359292f9192149d163e7b7554983e72dda38d75e4126",
+    "ch07": "1910dd3fcd2670032164d27fac772481279b539f80633482ea2580d57ace10ab",
+    "ch08": "39d5a9195cb43e196f4d96977ee0c3051b699993037f942682b01cb222d5b038",
+    "ch09": "56609c59ef1b3b6db8f4d5a67d864375169ce15cbcaf6c3382b9f98d7aeca6df",
+    "ch10": "03d70ab29216c26b2e26ddd30a96edc030dcb6b98445c5b1a3d551627526dda6",
+    "ch11": "dee00a4103dfd896b1995300ab897d7a13d9d367c3eb7eb0e225e180f34e9b88",
+    "ch12": "82e8c90f15b53536b6ab1603d6d7431565d609ef955a5f5bb9572925ea1eb540",
+    "ch13": "8c1ecb437efb92520c321b91cf5475a316de7f4f7d8dec7c1c20481bbe07def0",
+    "ch14": "30915e10355bcaf0ab820ba2212d8895986a589fbf690017f150ccfe48802f13"
+  },
+  "baselineQuality": {
+    "chapters": [
+      "ch01",
+      "ch02"
+    ],
+    "criticScores": {
+      "ch01": 10,
+      "ch02": 10
+    },
+    "meanScore": 10,
+    "qualityDecayStopDelta": 1.5,
+    "note": "Use Chapters 1 and 2 as the quality floor for later waves."
+  },
+  "qualitySentry": {
+    "checkedAt": "2026-04-09T15:24:58Z",
+    "wave": "13-14",
+    "sourceLedgerPresent": true,
+    "editionLockPresent": true,
+    "sealedHashesVerified": [
+      "ch01",
+      "ch02",
+      "ch03",
+      "ch04",
+      "ch05",
+      "ch06",
+      "ch07",
+      "ch08",
+      "ch09",
+      "ch10",
+      "ch11",
+      "ch12",
+      "ch13"
+    ],
+    "criticScores": {
+      "ch13": 10,
+      "ch14": 10
+    },
+    "baselineMeanScore": 10,
+    "qualityDecayStopDelta": 1.5,
+    "minRecentScore": 10,
+    "decayFromBaseline": 0,
+    "status": "pass"
+  }
+}

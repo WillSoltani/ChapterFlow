@@ -1,0 +1,155 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch08-q01",
+      "prompt": "What does the disappearing-door experiment mainly show?",
+      "choices": [
+        "People always prefer the newest option.",
+        "People can overprotect options that are about to disappear even when those options are not best.",
+        "People never value flexibility."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The experiment shows that threatened options can attract effort simply because losing them feels painful.",
+        "direct": "Imminent closure makes weak doors feel worth preserving.",
+        "competitive": "Vanishing doors get a fake premium."
+      }
+    },
+    {
+      "questionId": "ch08-q02",
+      "prompt": "Why do participants keep revisiting weak doors in Ariely's setup?",
+      "choices": [
+        "Because the weak doors suddenly become more rewarding.",
+        "Because closure itself starts to feel costly.",
+        "Because they forget which door pays best."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The fear of losing the option becomes part of the decision.",
+        "direct": "People respond to threatened loss, not just to payoff.",
+        "competitive": "They are defending against closure more than chasing value."
+      }
+    },
+    {
+      "questionId": "ch08-q03",
+      "prompt": "What hidden cost often comes with keeping many options open?",
+      "choices": [
+        "Less focus and more switching.",
+        "Automatic higher quality choices.",
+        "A stronger sense of commitment."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Open doors can divide attention and make progress weaker.",
+        "direct": "Option maintenance creates switching costs and diluted performance.",
+        "competitive": "The hallway of backups raids the main road."
+      }
+    },
+    {
+      "questionId": "ch08-q04",
+      "prompt": "What is Ariely criticizing in this chapter?",
+      "choices": [
+        "All forms of flexibility.",
+        "Fear-driven option-hoarding.",
+        "Trying new things early."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter targets preserving weak alternatives only because closure feels bad.",
+        "direct": "Ariely is critiquing anxious preservation, not all optionality.",
+        "competitive": "The problem is worshipping every maybe."
+      }
+    },
+    {
+      "questionId": "ch08-q05",
+      "prompt": "Why is this chapter not just generic advice about commitment?",
+      "choices": [
+        "Because it isolates a specific distortion around threatened loss of options.",
+        "Because it says commitment is always easy.",
+        "Because it rejects experimentation altogether."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Ariely is showing how closure anxiety changes behavior, not merely praising decisiveness.",
+        "direct": "The mechanism is loss aversion around vanishing possibilities.",
+        "competitive": "This is a loss problem wearing the clothes of flexibility."
+      }
+    },
+    {
+      "questionId": "ch08-q06",
+      "prompt": "What practical move best fits the chapter's advice?",
+      "choices": [
+        "Keep every possible backup alive just in case.",
+        "Close low-value doors that no longer earn their maintenance cost.",
+        "Avoid making choices until every risk is gone."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Strategic closure helps protect focus for the paths that still matter.",
+        "direct": "Weak options should not stay open by default.",
+        "competitive": "Make doors earn their oxygen or shut them."
+      }
+    },
+    {
+      "questionId": "ch08-q07",
+      "prompt": "How does the chapter apply beyond literal doors in an experiment?",
+      "choices": [
+        "It applies to projects, roles, plans, and schedules that people keep half-open.",
+        "It applies only to casino-style games.",
+        "It applies only when money is directly involved."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Many real-life choices involve maintaining options that consume time and attention.",
+        "direct": "The same pattern appears in work, school, and personal commitments.",
+        "competitive": "Any maybe can turn into a disappearing door if loss starts doing the thinking."
+      }
+    },
+    {
+      "questionId": "ch08-q08",
+      "prompt": "What limit does Ariely place on the chapter's claim?",
+      "choices": [
+        "He says all optionality is irrational.",
+        "He says some flexibility is useful, but weak options should not survive on fear alone.",
+        "He says commitment should replace every form of exploration."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter allows for real uncertainty and useful backups.",
+        "direct": "The issue is fear-driven maintenance, not all flexibility.",
+        "competitive": "Real backups can stay. Panic doors should not."
+      }
+    },
+    {
+      "questionId": "ch08-q09",
+      "prompt": "What resource is most visibly drained when too many options remain open?",
+      "choices": [
+        "Attention",
+        "Luck",
+        "Memory alone"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps showing how focus gets fragmented by too many maintained options.",
+        "direct": "Attention is the main currency lost to option-hoarding.",
+        "competitive": "The calendar and focus pay the bill."
+      }
+    },
+    {
+      "questionId": "ch08-q10",
+      "prompt": "How does Chapter 8 set up the move into expectations in Chapter 9?",
+      "choices": [
+        "It shows how a frame can change behavior before value is fully checked.",
+        "It proves that expectations do not matter.",
+        "It says perception and choice are completely separate."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter prepares the next move by showing that conditions around a choice can shape behavior early.",
+        "direct": "It primes the idea that a frame can distort judgment before evidence is fully weighed.",
+        "competitive": "First vanishing doors bend attention, then expectations bend experience."
+      }
+    }
+  ]
+}

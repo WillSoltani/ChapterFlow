@@ -1,0 +1,155 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What three conditions best explain long-term relationship durability in this chapter?",
+      "choices": [
+        "Maintenance, reciprocity, and repair",
+        "Mystery, distance, and independence",
+        "Status, novelty, and intensity"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps durability tied to upkeep, return, and repair.",
+        "direct": "Schafer turns long-term relationships into a maintenance problem rather than a luck problem.",
+        "competitive": "The mechanics are upkeep, return, repair."
+      }
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does reciprocity still matter after a relationship already feels close?",
+      "choices": [
+        "Because one-sided effort can slowly weaken the bond",
+        "Because reciprocity matters only in the earliest stage",
+        "Because strong relationships should avoid support"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says a bond becomes harder to live in when effort mostly goes one way.",
+        "direct": "Long-term mutuality matters because imbalance can erode a relationship quietly.",
+        "competitive": "If the return drops, the bond leaks."
+      }
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is repair doing in this chapter?",
+      "choices": [
+        "It gives the relationship a way to answer strain before distance hardens",
+        "It guarantees every bond will survive anything",
+        "It matters only when there is a dramatic confrontation"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Repair helps when people notice strain and respond before it grows.",
+        "direct": "The chapter treats repair as answering neglect or misunderstanding in time.",
+        "competitive": "Fix drift before drift becomes structure."
+      }
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A work friendship started strong but has gone quiet. What best fits the chapter?",
+      "choices": [
+        "Assume the old bond is enough and wait",
+        "Use one small act of follow-up or repair instead of relying on history alone",
+        "End the relationship because all distance means failure"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter favors maintenance over passive assumption.",
+        "direct": "This choice treats durability as active rather than automatic.",
+        "competitive": "Do today's upkeep instead of living off yesterday's bond."
+      }
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What is the chapter's main warning about long-term relationships?",
+      "choices": [
+        "Strong relationships sustain themselves automatically",
+        "Relationships often erode through small omissions before any dramatic break appears",
+        "Only dramatic conflict can weaken a bond"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns that neglect can build quietly.",
+        "direct": "Missed follow-up, weak reciprocity, and unanswered strain can accumulate over time.",
+        "competitive": "The leak starts before the rupture."
+      }
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Why is past closeness not enough by itself?",
+      "choices": [
+        "Because history alone cannot do the work of present care",
+        "Because old relationships should be abandoned quickly",
+        "Because closeness has no value once conflict appears"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says a relationship still needs current care.",
+        "direct": "Past strength does not protect a bond from present neglect.",
+        "competitive": "Yesterday's bond cannot do today's work."
+      }
+    },
+    {
+      "questionId": "q07",
+      "prompt": "How does maintenance help an existing friendship or team bond?",
+      "choices": [
+        "It keeps the relationship current instead of leaving it to run on memory",
+        "It removes the need for reciprocity",
+        "It works only in personal relationships"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Maintenance helps the bond stay alive in the present.",
+        "direct": "Upkeep keeps familiarity from replacing actual investment.",
+        "competitive": "The bond stays real when someone still does the work."
+      }
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Maya notices a once-close friendship cooling. What is the strongest risk if she keeps waiting because the relationship has history?",
+      "choices": [
+        "Distance may harden because the neglect goes unanswered",
+        "The history will automatically fix the drift",
+        "Repair always makes things worse"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns that drift can become normal if nobody answers it.",
+        "direct": "History does not repair a bond when current neglect keeps accumulating.",
+        "competitive": "Leave the gap alone and it becomes the structure."
+      }
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the best synthesis of Chapter 7?",
+      "choices": [
+        "Durability comes from ongoing reciprocity, maintenance, and repair after closeness forms",
+        "Durability comes mostly from having a strong beginning",
+        "Durability comes from ignoring minor distance until it disappears"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter combines upkeep, reciprocity, and repair into one account of long-term strength.",
+        "direct": "A bond lasts when current care keeps supporting what past closeness began.",
+        "competitive": "Real durability is maintained, not assumed."
+      }
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How does Chapter 7 build on Chapter 6?",
+      "choices": [
+        "Chapter 6 made closeness unnecessary",
+        "Chapter 7 shows that once closeness exists, it still has to be maintained and repaired over time",
+        "Chapter 7 leaves trust behind and starts an unrelated topic"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Chapter 6 built closeness, and Chapter 7 explains how to keep it alive.",
+        "direct": "The book moves from forming a bond into sustaining it over time.",
+        "competitive": "Depth becomes upkeep here."
+      }
+    }
+  ]
+}

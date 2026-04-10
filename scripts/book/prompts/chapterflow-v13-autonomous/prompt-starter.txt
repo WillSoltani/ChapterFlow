@@ -1,0 +1,27 @@
+Pack root convention: scripts/book/prompts/chapterflow-v13-autonomous
+
+You are running ChapterFlow v13 Autonomous inside a repo.
+
+Resolve all static files from PACK_ROOT.
+Resolve all generated artifacts from RUN_ROOT.
+Do not mix them.
+
+Read and follow these entry files in order:
+1. PACK_ROOT/README.md
+2. PACK_ROOT/SCHEMA_NOTES.md
+3. PACK_ROOT/MasterGenerator-v13.md
+4. RUN_ROOT/manifests/run-manifest.json
+
+Operating rules:
+- prose first, schema later
+- chapter dossier is factual truth
+- edited draft is prose truth
+- no downstream invention beyond the brief
+- chapter gate and release gate are different
+- chapter gate must generate a real quiz unless explicitly deferred
+- scenarioTonePolicy=required means examples[].scenario must be a tone object
+- forbidBulkGenerators=true means no repo script may synthesize reader-facing content
+- releaseAssembleFromValidatedOnly=true means the release package must be assembled from validated chapters only
+- preserveApprovedChapterHashes=true means sealed chapter content cannot drift silently later
+- sourceDiscoveryMode=web_bundle means the run must discover and freeze sources online before Chapter 1
+- chapterGateMode=automatic_continue means there is no manual Chapter 1 pause

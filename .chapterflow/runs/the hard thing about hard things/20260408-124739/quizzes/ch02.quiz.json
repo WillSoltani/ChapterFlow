@@ -1,0 +1,155 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is Chapter 2 mainly doing before the crisis chapters begin?",
+      "choices": [
+        "Listing startup valuation methods",
+        "Showing where Horowitz's operator judgment came from",
+        "Arguing that background no longer matters once someone is a CEO"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter builds trust by tracing the formation of his leadership lens.",
+        "direct": "Its primary function is origin context for later management claims.",
+        "competitive": "This chapter establishes source code, not tactics."
+      }
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Which sequence matches the chapter's three anchors?",
+      "choices": [
+        "Fundraising wins, board politics, media visibility",
+        "Business school, consulting, private equity",
+        "Family ideology, technical apprenticeship, founder responsibility"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "That three-part arc is the structure used to explain his later voice.",
+        "direct": "The chapter is organized around those formative environments.",
+        "competitive": "Power lens, system discipline, consequence ownership."
+      }
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why does the chapter include family and ideological contradiction?",
+      "choices": [
+        "To explain how early environments shape assumptions about power and conflict",
+        "To prove difficult childhoods create better leaders",
+        "To show leadership is mostly inherited"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Background is used as context for how judgment patterns form.",
+        "direct": "The chapter treats formation as influence, not destiny.",
+        "competitive": "Early power lessons become default filters."
+      }
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A new team lead keeps proposing big strategy shifts without checking execution constraints. Which chapter principle is being ignored?",
+      "choices": [
+        "Leadership should avoid technical detail to stay visionary",
+        "Technical grounding should tie decisions to operating reality",
+        "Ambition matters more than feasibility early on"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter stresses that strong leadership claims must survive real constraints.",
+        "direct": "Technical apprenticeship teaches consequence-aware execution discipline.",
+        "competitive": "If the system cannot carry it, the strategy is noise."
+      }
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What does the move toward Loudcloud with Marc Andreessen represent in the chapter?",
+      "choices": [
+        "A shift from personal ambition to carrying organizational consequences",
+        "A rejection of engineering in favor of branding",
+        "Proof that venture capital is the final goal of all operators"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "It marks where responsibility broadens from self to company outcomes.",
+        "direct": "The transition highlights founder-level accountability.",
+        "competitive": "This is where decisions start landing on payroll and runway."
+      }
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which interpretation of biography best matches the chapter's limit?",
+      "choices": [
+        "Biography is mostly irrelevant once crises start",
+        "Biography validates every instinct a founder has",
+        "Biography explains instincts but still requires ongoing testing"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Experience helps explain style, but it does not guarantee correct decisions.",
+        "direct": "Formation is context, not automatic authority.",
+        "competitive": "Backstory gives signal, not immunity."
+      }
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Which hard-edge risk does the chapter warn about?",
+      "choices": [
+        "Useful early patterns can become blind spots in new contexts",
+        "Only people without technical backgrounds can adapt",
+        "Conflict in upbringing always harms leadership outcomes"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The same strengths can mislead when conditions change.",
+        "direct": "Pattern success in one environment can distort later judgment.",
+        "competitive": "Old winning reflexes can become new liabilities."
+      }
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Which reading is a misconception the chapter explicitly pushes against?",
+      "choices": [
+        "The chapter provides context for later management logic",
+        "The chapter is mostly autobiographical filler with little relevance",
+        "The chapter links formation to how pressure is interpreted"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter is structural groundwork, not decorative life story.",
+        "direct": "Treating it as filler misses its role in validating later doctrine.",
+        "competitive": "Skip this chapter's logic and the rest loses calibration."
+      }
+    },
+    {
+      "questionId": "q09",
+      "prompt": "In a school team standup, a student says, \"My old command style worked before, so I'll keep using it across two larger teams.\" Which chapter-consistent response is strongest?",
+      "choices": [
+        "Keep the same style because prior success proves universal fit",
+        "Drop standards completely to avoid conflict",
+        "Keep accountability, but adapt decision flow to the new context"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter supports adjusting method while preserving standards.",
+        "direct": "Formation should inform action, but context should govern design.",
+        "competitive": "Scale demands model upgrades, not reflex loyalty."
+      }
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What is the best bridge from Chapter 2 into \"I Will Survive\"?",
+      "choices": [
+        "Move from formation into real-time testing under company danger",
+        "Pause leadership analysis until later in the book",
+        "Replace operator judgment with abstract theory"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Chapter 2 explains where the instincts came from; Chapter 3 tests them.",
+        "direct": "The transition is from origin context to survival pressure.",
+        "competitive": "Setup ends and stress test begins."
+      }
+    }
+  ]
+}

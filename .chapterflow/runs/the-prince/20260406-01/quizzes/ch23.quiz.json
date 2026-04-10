@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What danger does Chapter 23 name at the start?",
+      "choices": [
+        "Flatterers",
+        "Fortresses",
+        "Mercenaries"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter opens by naming flatterers as the danger.",
+        "direct": "Machiavelli begins with the courtly threat of flattering speech.",
+        "competitive": "The first enemy here is praise that bends judgment."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does letting everyone tell the truth create another danger?",
+      "choices": [
+        "Because it always produces perfect unity",
+        "Because respect for the prince abates",
+        "Because advisers stop having any opinions"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Machiavelli says open truth from everyone lowers respect.",
+        "direct": "Unbounded candor can cheapen authority instead of protecting it.",
+        "competitive": "Open the floor too far and rank starts leaking out of the office."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is the wise prince's third course?",
+      "choices": [
+        "He consults no one and reveals nothing",
+        "He lets the whole court challenge him at all times",
+        "He chooses wise counsellors and lets only them speak truth on matters he asks about"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The prince selects wise men and limits truthful counsel to that governed channel.",
+        "direct": "The third course is invited truth from selected advisers, not openness to everyone or silence from everyone.",
+        "competitive": "The answer is a gate, not a flood and not a wall."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Mireille is flooded with side-channel critique during a major review. Which response best fits Chapter 23?",
+      "choices": [
+        "Create a defined truth channel with selected challengers and a clear advice moment",
+        "Let every message compete equally until no one feels excluded",
+        "Refuse all critique so respect stays high"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants a bounded way for truth to enter.",
+        "direct": "Selected candor on named questions is stronger than either chaos or isolation.",
+        "competitive": "Build the gate before the noise starts governing the room."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "applied"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why did Keaton's student-government leadership start to look contemptible?",
+      "choices": [
+        "Because he never listened to anyone",
+        "Because he kept changing under varying hallway opinions",
+        "Because he chose only one wise adviser"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The constant changes made his decisions feel unsettled.",
+        "direct": "The chapter warns that visible reversals under shifting opinion breed contempt.",
+        "competitive": "He taught the hallway that access to him was a steering wheel."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "applied"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What does Maximilian chiefly illustrate in Chapter 23?",
+      "choices": [
+        "That secrecy always guarantees firmness",
+        "That a ruler should never ask questions of advisers",
+        "That secrecy without disciplined counsel can still leave a prince pliant and unreliable"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Maximilian hid plans but still became weak once obstruction appeared.",
+        "direct": "His problem is secrecy joined to pliancy, not consultation alone.",
+        "competitive": "Silence did not make him firm. It made the later reversal public."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "core"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "When should a prince take counsel according to Chapter 23?",
+      "choices": [
+        "When he wishes, not when others wish",
+        "Only after a public vote forces him to",
+        "Never, because counsel always weakens princes"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The prince should take counsel at his own initiative.",
+        "direct": "He asks for advice instead of letting advice seize the agenda.",
+        "competitive": "The ruler summons counsel. Counsel does not summon the ruler."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "core"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why can an unwise prince not simply become wise through good advisers?",
+      "choices": [
+        "Because good advisers always remain silent",
+        "Because he will not know how to take, judge, and unite their advice well",
+        "Because wise advisers refuse to serve any ruler"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "He still needs his own judgment to use their advice properly.",
+        "direct": "Advice cannot replace the ruler's capacity to choose, question, and control counsel.",
+        "competitive": "Borrowed brilliance fails when the borrower cannot govern it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What two dangers does the chapter name for an unwise prince seeking counsel?",
+      "choices": [
+        "He either becomes popular or invisible",
+        "He either gains too much respect or too little information",
+        "He either yields everything to one prudent man or gets fractured by many counsellors following their own interests"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "One strong governor can take over, while many counsellors can splinter into self-interest.",
+        "direct": "Both the single-master route and the many-interest route show why wisdom must stay in the prince.",
+        "competitive": "Without judgment above them, counsel condenses into a usurper or disperses into factions."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How can a prince invite truth strongly enough to avoid flatterers without letting respect and resolutions collapse?",
+      "choices": [
+        "By choosing wise counsellors, questioning them widely, rewarding frankness inside that gate, and remaining steadfast outside it",
+        "By hearing every opinion equally until a natural consensus appears",
+        "By revealing no designs and waiting to see who supports them later"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter's answer is a bounded truth channel joined to the prince's own judgment.",
+        "direct": "Invited inquiry plus controlled speech protects truth without dissolving authority.",
+        "competitive": "Truth must enter through a gate the ruler commands or it will command him instead."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deep"
+    }
+  ]
+}

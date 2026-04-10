@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "A negotiation gets tense, and one side immediately adds more arguments, more detail, and more pressure. According to the opening chapter, what is the most likely mistake in that move?",
+      "choices": [
+        "It assumes the other side needs more logic when they may already be protecting safety or control",
+        "It shows too much confidence too early and therefore weakens the speaker's credibility automatically",
+        "It proves the negotiator should have opened with a final offer instead of a discussion"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter's reset is that tension often makes people protect themselves before they process more reasons. Extra logic may miss the real issue if safety or autonomy has already become central.",
+        "direct": "The old rules treat resistance like an information gap. Voss says it is often a defense reaction instead, which means more pressure can deepen the problem.",
+        "competitive": "The error is forcing the logic game after the room has switched into protection mode. More facts then arrive through armor."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does Voss's FBI hostage-negotiation background matter in Chapter 1?",
+      "choices": [
+        "It proves every later tactic is guaranteed to work in lower-stakes negotiations",
+        "It gives the opening reset credibility because the method was shaped where fear and mistrust were impossible to ignore",
+        "It mainly functions as a dramatic story element that makes the book more entertaining"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The background matters because it shows the method was shaped in real high-pressure situations where understanding emotion and resistance was essential, not optional.",
+        "direct": "The credential is not decoration. It supports the claim that pressure-first logic fails when fear and mistrust are active.",
+        "competitive": "The point is selection pressure. A method built where stress is obvious earns the right to challenge normal-room habits."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Which description best fits tactical empathy as Chapter 1 defines it?",
+      "choices": [
+        "Giving up your position so the other side feels respected",
+        "Accurately identifying what the other side is feeling or protecting and making that understanding visible",
+        "Using warmth and praise to get the other side relaxed enough to accept your offer"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Tactical empathy is not surrender and it is not charm. It is clear understanding that helps the real issue come into view.",
+        "direct": "The key feature is accurate perspective articulation. The goal is better information and less needless resistance.",
+        "competitive": "This is disciplined reading, not appeasement and not flattery."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Lena is asking for more project budget. The CFO becomes curt and keeps glancing at the clock. What response best follows Chapter 1's new rules?",
+      "choices": [
+        "Walk through the spreadsheet even faster so the CFO sees how solid the logic is",
+        "Say, \"It seems like the concern may be committing too much too early,\" and explore that concern",
+        "Ask for a yes-or-no decision before the meeting ends so the issue does not drag"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Noticing and naming the likely concern lowers heat and invites the real issue into the conversation. That gives Lena something more useful than a defensive no.",
+        "direct": "The chapter says pressure under tension usually reduces disclosure. Surfacing the CFO's likely concern is the move that makes the negotiation more informative.",
+        "competitive": "Option B hunts the protected issue. The other options just press harder on the visible one."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why does the chapter treat a feeling of safety as strategically important in negotiation?",
+      "choices": [
+        "Because safety makes people kinder, which is usually enough to produce agreement",
+        "Because safety reduces the need to defend autonomy and increases the chance of honest disclosure",
+        "Because safety replaces the need for evidence when the relationship is strong enough"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "When people feel less cornered, they often stop protecting themselves so aggressively. That makes the real obstacle easier to hear.",
+        "direct": "Safety matters because it changes information flow. A person who feels threatened gives you less reality to work with.",
+        "competitive": "Threat creates cover stories. Safety makes truth cheaper."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Omar leaves a scholarship interview puzzled. He answered every question well, but the panel cooled early. Which diagnosis best matches Chapter 1?",
+      "choices": [
+        "The panel likely wanted more achievements and clearer proof of merit",
+        "Omar probably should have spoken faster so his strongest credentials landed before time ran out",
+        "Omar may have answered the visible questions while missing the concern the panel was really testing"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter warns that the spoken issue is not always the protected issue. Omar's facts may have been fine while the panel was testing something deeper.",
+        "direct": "This is the stated-issue versus protected-issue distinction. Good answers on the surface do not help if the hidden concern stays unaddressed.",
+        "competitive": "He solved the exam question they asked out loud and missed the exam they were actually grading."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Tessa keeps explaining why moving to another city makes practical sense, but her partner gets quieter each minute. What move best reflects the chapter's method?",
+      "choices": [
+        "Name the likely fear underneath the resistance and let the partner respond to that",
+        "List the financial benefits more clearly so emotion cannot distort the decision",
+        "Pause the discussion until both people are calm enough to remove emotion from it"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says emotion is not noise to remove. It is often the path to the real issue. Naming the fear can make the conversation more honest.",
+        "direct": "Option A uses tactical empathy to surface what the partner may be protecting. The other answers either ignore the hidden concern or pretend emotion can be excluded entirely.",
+        "competitive": "You do not beat the hidden issue by arguing louder at the visible one."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "A sales rep hears, \"We just need to think about it,\" and immediately pushes for commitment before the call ends. What does Chapter 1 predict?",
+      "choices": [
+        "The push is likely to harden caution because it treats hesitation as a surface delay instead of a protected concern",
+        "The client will usually respect the confidence and answer more clearly",
+        "The timing no longer matters once the rep has already made the offer"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter expects early pressure to make people protect themselves more strongly. The rep needs the real concern, not a forced answer.",
+        "direct": "Pushing for yes too early often makes the client defend autonomy instead of disclosing risk. That is the opposite of better information.",
+        "competitive": "Fast pressure turns hesitation into resistance when the hidden issue has not been surfaced yet."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Which situation best marks the difference between genuine tactical empathy and manipulative imitation?",
+      "choices": [
+        "A negotiator reflects the other side's fear but stays open to learning that the concern may justify a real no",
+        "A negotiator uses warm language to lower resistance, then returns to the original pressure once the other side relaxes",
+        "A negotiator avoids all persuasion so they cannot be accused of using empathy strategically"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Real tactical empathy stays willing to discover reality, even when that reality is limiting. That is what separates understanding from performance.",
+        "direct": "The chapter's moral line is whether empathy is being used to clarify the negotiation or merely to disguise a pressure move.",
+        "competitive": "If reflection only matters until you can push again, it was camouflage from the start."
+      },
+      "bloomsLevel": "evaluate_create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If Chapter 1 is right that understanding must be felt before the room becomes more honest, what kind of next step makes the most sense for Chapter 2?",
+      "choices": [
+        "A tactic for repeating your strongest point in a more forceful way",
+        "A practical move that shows you are listening and encourages the other side to keep talking",
+        "A formula for closing negotiations quickly before emotions rise"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The natural next step is a small move that helps the other person feel heard in real time. That is how the opening reset becomes practical.",
+        "direct": "If tactical empathy needs a visible conversational form, the next chapter should deliver a listening move that increases disclosure.",
+        "competitive": "Once pressure is exposed as the wrong opening, the next tool has to buy truth, not speed."
+      },
+      "bloomsLevel": "evaluate_create",
+      "depthLevel": "hard"
+    }
+  ]
+}

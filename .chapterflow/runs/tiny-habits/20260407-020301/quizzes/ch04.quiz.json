@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the missing piece Chapter 4 focuses on?",
+      "choices": [
+        "Reward",
+        "Prompt",
+        "Identity"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says the behavior still needs a real start moment.",
+        "direct": "Chapter 4 centers on prompts and initiation.",
+        "competitive": "The target is ignition."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What is the power of after in this chapter?",
+      "choices": [
+        "Tying the new habit to something that already happens",
+        "Waiting until the behavior feels natural",
+        "Adding more rewards before starting"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "An existing action becomes the handoff point.",
+        "direct": "After prompts use an old routine as the starting line.",
+        "competitive": "Borrow the sequence."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why is a prompt more than a reminder in Chapter 4?",
+      "choices": [
+        "Because it must fit the right timing and context",
+        "Because it only works if it is loud",
+        "Because it replaces ability completely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A good prompt belongs to the flow of the day.",
+        "direct": "Prompt quality depends on placement, not just visibility.",
+        "competitive": "Timing creates trigger strength."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Sofia wants to review one card after class but keeps forgetting in the hallway. What chapter move fits best?",
+      "choices": [
+        "Raise the goal to three cards",
+        "Attach the review to opening the locker",
+        "Assume the habit is not important enough"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The locker opening is a clearer after prompt.",
+        "direct": "The fix is a better anchor, not a stronger speech.",
+        "competitive": "Build the trigger into the handoff."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What makes a poor anchor?",
+      "choices": [
+        "It happens in a stable and ordinary context",
+        "It arrives in a rushed or unstable moment",
+        "It occurs right before the intended habit"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A chaotic anchor can make the new habit brittle.",
+        "direct": "Bad context weakens trigger quality.",
+        "competitive": "A noisy handoff is weak architecture."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which statement is a misreading of Chapter 4?",
+      "choices": [
+        "Any reminder is as good as a well-fitted anchor",
+        "Prompts help because they start the sequence",
+        "After prompts reduce dependence on memory"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter distinguishes good prompt fit from generic reminders.",
+        "direct": "Placement and context matter, so not every reminder is equal.",
+        "competitive": "Existence does not equal trigger quality."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why does the chapter care so much about sequence?",
+      "choices": [
+        "Because sequence gives the habit a real place to begin",
+        "Because sequence replaces motivation forever",
+        "Because sequence only matters for health habits"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The old routine can hand the new one a clearer start.",
+        "direct": "Sequence solves initiation by locating the action in time.",
+        "competitive": "A launch rail beats vague recall."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Aaron's 10:00 reminder keeps failing because the day is already chaotic by then. What is the better diagnosis?",
+      "choices": [
+        "The reminder is visible, so it should work eventually",
+        "The habit is not real",
+        "The prompt is badly placed, even though it exists"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The cue arrives too late to start the behavior cleanly.",
+        "direct": "The problem is timing, not merely reminder presence.",
+        "competitive": "Visible but misplaced is still weak."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the chapter's warning about anchor prompts?",
+      "choices": [
+        "Existing routines can be bad anchors if they are unstable or chaotic",
+        "Anchor prompts only work in the morning",
+        "Anchors make habits emotionally satisfying"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Not every routine deserves to become the handoff point.",
+        "direct": "Anchor quality depends on reliability and fit.",
+        "competitive": "Bad anchors make good methods look weak."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What question does Chapter 4 naturally open for the next chapter?",
+      "choices": [
+        "If the habit starts reliably now, what helps it feel worth repeating?",
+        "How do prompts eliminate all friction?",
+        "Why do communities replace prompts?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Once the habit begins, the next question is what helps wire it in.",
+        "direct": "The chapter naturally leads toward emotion and reinforcement.",
+        "competitive": "Ignition solved. Now ask what accelerates wiring."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

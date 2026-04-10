@@ -2,6 +2,16 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { BookClientError, fetchBookJson } from "@/app/book/_lib/book-api";
+import type { ReadingDepth } from "@/app/book/data/mockChapters";
+import type { ToneKey } from "@/app/book/data/bookPackages";
+import { emitBookStorageChanged } from "@/app/book/hooks/bookStorageEvents";
+import type { LoopPipelineResult } from "@/app/book/_lib/flow-points-economy";
+
+type QuizSubmitResponse = {
+  quiz: QuizSessionView;
+  progress?: { currentChapterNumber: number };
+  loopPipeline?: LoopPipelineResult;
+};
 
 export type QuizChoiceView = {
   choiceId: string;
@@ -56,22 +66,33 @@ function remainingCooldown(nextAttemptAvailableAt: string | null): number {
   return Math.max(0, Math.ceil(deltaMs / 1000));
 }
 
-function draftAnswersKey(bookId: string, chapterNumber: number): string {
-  return `quiz-draft:${bookId}:${chapterNumber}`;
+function draftAnswersKey(bookId: string, chapterNumber: number, difficulty: ReadingDepth): string {
+  return `quiz-draft:${bookId}:${chapterNumber}:${difficulty}`;
 }
 
-function saveDraftAnswers(bookId: string, chapterNumber: number, attemptNumber: number, answers: Record<string, string>): void {
+function saveDraftAnswers(
+  bookId: string,
+  chapterNumber: number,
+  difficulty: ReadingDepth,
+  attemptNumber: number,
+  answers: Record<string, string>
+): void {
   try {
     window.localStorage.setItem(
-      draftAnswersKey(bookId, chapterNumber),
+      draftAnswersKey(bookId, chapterNumber, difficulty),
       JSON.stringify({ attemptNumber, answers })
     );
   } catch { /* ignore quota errors */ }
 }
 
-function loadDraftAnswers(bookId: string, chapterNumber: number, attemptNumber: number): Record<string, string> {
+function loadDraftAnswers(
+  bookId: string,
+  chapterNumber: number,
+  difficulty: ReadingDepth,
+  attemptNumber: number
+): Record<string, string> {
   try {
-    const raw = window.localStorage.getItem(draftAnswersKey(bookId, chapterNumber));
+    const raw = window.localStorage.getItem(draftAnswersKey(bookId, chapterNumber, difficulty));
     if (!raw) return {};
     const parsed = JSON.parse(raw);
     if (parsed.attemptNumber !== attemptNumber) return {};
@@ -81,15 +102,17 @@ function loadDraftAnswers(bookId: string, chapterNumber: number, attemptNumber: 
   }
 }
 
-function clearDraftAnswers(bookId: string, chapterNumber: number): void {
+function clearDraftAnswers(bookId: string, chapterNumber: number, difficulty: ReadingDepth): void {
   try {
-    window.localStorage.removeItem(draftAnswersKey(bookId, chapterNumber));
+    window.localStorage.removeItem(draftAnswersKey(bookId, chapterNumber, difficulty));
   } catch { /* ignore */ }
 }
 
 export function useQuizSession(params: {
   bookId: string;
   chapterNumber: number;
+  difficulty: ReadingDepth;
+  contentTone: ToneKey;
   enabled: boolean;
   /** Local quiz data from mockChapters for offline/dev fallback */
   localQuiz?: {
@@ -104,7 +127,7 @@ export function useQuizSession(params: {
     passingScorePercent: number;
   };
 }) {
-  const { bookId, chapterNumber, enabled, localQuiz } = params;
+  const { bookId, chapterNumber, difficulty, contentTone, enabled, localQuiz } = params;
   const localQuizRef = useRef(localQuiz);
   localQuizRef.current = localQuiz;
   const [session, setSession] = useState<QuizSessionView | null>(null);
@@ -114,6 +137,7 @@ export function useQuizSession(params: {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [cooldownSeconds, setCooldownSeconds] = useState(0);
+  const [lastLoopPipeline, setLastLoopPipeline] = useState<LoopPipelineResult | null>(null);
   const startedAtRef = useRef<number | null>(null);
   const trackedExplanationIds = useRef<Set<string>>(new Set());
 
@@ -135,17 +159,22 @@ export function useQuizSession(params: {
         .filter((entry) => entry[1])
     );
     if (!nextSession.result) {
-      const draft = loadDraftAnswers(bookId, chapterNumber, nextSession.attemptNumber);
+      const draft = loadDraftAnswers(
+        bookId,
+        chapterNumber,
+        difficulty,
+        nextSession.attemptNumber
+      );
       setAnswers({ ...draft, ...serverAnswers });
     } else {
-      clearDraftAnswers(bookId, chapterNumber);
+      clearDraftAnswers(bookId, chapterNumber, difficulty);
       setAnswers(serverAnswers);
     }
 
     setExplanationOpen({});
     trackedExplanationIds.current = new Set();
     startedAtRef.current = nextSession.result ? null : Date.now();
-  }, [bookId, chapterNumber]);
+  }, [bookId, chapterNumber, difficulty]);
 
   const buildLocalSession = useCallback((): QuizSessionView | null => {
     const quiz = localQuizRef.current;
@@ -187,7 +216,7 @@ export function useQuizSession(params: {
       const payload = await fetchBookJson<{
         quiz: QuizSessionView;
       }>(
-        `/app/api/book/books/${encodeURIComponent(bookId)}/chapters/${chapterNumber}/quiz`
+        `/app/api/book/books/${encodeURIComponent(bookId)}/chapters/${chapterNumber}/quiz?difficulty=${encodeURIComponent(difficulty)}&tone=${encodeURIComponent(contentTone)}`
       );
       setSession(payload.quiz);
       syncFromSession(payload.quiz);
@@ -209,7 +238,22 @@ export function useQuizSession(params: {
     } finally {
       setLoading(false);
     }
-  }, [bookId, chapterNumber, enabled, syncFromSession, buildLocalSession]);
+  }, [bookId, chapterNumber, difficulty, contentTone, enabled, syncFromSession, buildLocalSession]);
+
+  // Clear stale state immediately when the chapter (or difficulty) changes.
+  // Without this, navigating from one chapter to another shows the previous
+  // chapter's quiz for one render until `load()` resolves, which can briefly
+  // flash a "passed"/"failed" results screen for the wrong chapter.
+  useEffect(() => {
+    setSession(null);
+    setAnswers({});
+    setExplanationOpen({});
+    setError(null);
+    setCooldownSeconds(0);
+    setLastLoopPipeline(null);
+    startedAtRef.current = null;
+    trackedExplanationIds.current = new Set();
+  }, [bookId, chapterNumber, difficulty, contentTone]);
 
   useEffect(() => {
     if (!enabled) return;
@@ -239,11 +283,11 @@ export function useQuizSession(params: {
       if (!session || session.result) return;
       setAnswers((current) => {
         const next = { ...current, [questionId]: choiceId };
-        saveDraftAnswers(bookId, chapterNumber, session.attemptNumber, next);
+        saveDraftAnswers(bookId, chapterNumber, difficulty, session.attemptNumber, next);
         return next;
       });
     },
-    [bookId, chapterNumber, session]
+    [bookId, chapterNumber, difficulty, session]
   );
 
   const scoreLocally = useCallback((): QuizSessionView | null => {
@@ -277,9 +321,7 @@ export function useQuizSession(params: {
     if (!session) return null;
     setSubmitting(true);
     try {
-      const payload = await fetchBookJson<{
-        quiz: QuizSessionView;
-      }>(
+      const payload = await fetchBookJson<QuizSubmitResponse>(
         `/app/api/book/me/quiz/${encodeURIComponent(bookId)}/${chapterNumber}/submit`,
         {
           method: "POST",
@@ -289,6 +331,8 @@ export function useQuizSession(params: {
               questionId: question.questionId,
               selectedChoiceId: answers[question.questionId] ?? null,
             })),
+            difficulty,
+            tone: contentTone,
             timeSpentSeconds: startedAtRef.current
               ? Math.max(0, Math.round((Date.now() - startedAtRef.current) / 1000))
               : undefined,
@@ -296,11 +340,15 @@ export function useQuizSession(params: {
           }),
         }
       );
-      clearDraftAnswers(bookId, chapterNumber);
+      clearDraftAnswers(bookId, chapterNumber, difficulty);
       setSession(payload.quiz);
       syncFromSession(payload.quiz);
+      if (payload.loopPipeline) {
+        setLastLoopPipeline(payload.loopPipeline);
+        emitBookStorageChanged("insight-points");
+      }
       setError(null);
-      return payload.quiz;
+      return { session: payload.quiz, loopPipeline: payload.loopPipeline ?? null };
     } catch (submitError: unknown) {
       // Fall back to local scoring — mark as provisional so UI can indicate
       // this result is unverified and needs server re-validation
@@ -310,7 +358,7 @@ export function useQuizSession(params: {
         setSession(local);
         syncFromSession(local);
         setError(null);
-        return local;
+        return { session: local, loopPipeline: null };
       }
       if (
         submitError instanceof BookClientError &&
@@ -322,18 +370,32 @@ export function useQuizSession(params: {
     } finally {
       setSubmitting(false);
     }
-  }, [answers, bookId, chapterNumber, load, session, syncFromSession, scoreLocally]);
+  }, [answers, bookId, chapterNumber, difficulty, contentTone, load, session, syncFromSession, scoreLocally]);
 
   const retry = useCallback(async () => {
-    // If the quiz was already passed, the API returns status "passed" with
-    // the old result — it won't reset. Build a fresh local session instead
-    // so the user can retake the quiz for practice.
-    if (session?.status === "passed") {
+    // Whenever the current session already has a result attached (passed or
+    // failed), the API would return that same result and the UI would stay
+    // stuck on the results screen. Build a fresh local session immediately
+    // so the user can retake the quiz, then refresh from the API in the
+    // background to keep server-side attempt tracking honest.
+    setLastLoopPipeline(null);
+    setError(null);
+    if (session?.result) {
       const fresh = buildLocalSession();
       if (fresh) {
-        fresh.attemptNumber = (session.attemptsCount ?? 0) + 1;
+        fresh.attemptNumber = (session.attemptsCount ?? session.attemptNumber ?? 0) + 1;
         setSession(fresh);
         syncFromSession(fresh);
+        // Refresh from server in the background — if it succeeds and returns
+        // a session without a result, we'll swap to that. If it returns the
+        // old failed session (still has result), the local fresh session
+        // wins because we don't overwrite once the user has started answering.
+        void load().then((server) => {
+          if (server && !server.result) {
+            setSession(server);
+            syncFromSession(server);
+          }
+        });
         return fresh;
       }
     }
@@ -388,6 +450,7 @@ export function useQuizSession(params: {
     answerQuestion,
     submit,
     retry,
+    lastLoopPipeline,
     load,
     toggleExplanation,
     trackNextChapterClick,

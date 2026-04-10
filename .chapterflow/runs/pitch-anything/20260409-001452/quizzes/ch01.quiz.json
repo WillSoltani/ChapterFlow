@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "A founder leaves a weak investor meeting saying, We clearly just needed more slides. Which response fits the opening argument best?",
+      "choices": [
+        "That may help, but the first question is whether the meeting failed because the method was wrong rather than because the deck was too short",
+        "That is definitely true because investors always reward the team with the most preparation",
+        "Slides do not matter at all once the product is strong"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter asks readers to diagnose the method before assuming more effort is the answer. Extra slides can help sometimes, but they can also deepen the same mistake if the room was already slipping.",
+        "direct": "Correct. The opening distinction is effort versus method. A short deck is not automatically the problem; sometimes the room rejected the interaction before more detail could help.",
+        "competitive": "More slides are the favorite excuse of people who do not want to admit the room hated the way the pitch was landing."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does Klaff's more-than-$400-million credibility claim matter in the opening chapter?",
+      "choices": [
+        "It proves every later tactic is automatically right",
+        "It suggests the method comes from repeated exposure to real high-stakes rooms rather than from generic confidence advice",
+        "It means the book only applies to venture capitalists"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The number matters because it points to repeated practice in real deal settings. That makes the promise of a trainable method feel more grounded.",
+        "direct": "Option B fits the opening claim. It gives the promise practical credibility without turning the book into a pure brag or a venture-only manual.",
+        "competitive": "The number is not there to make you clap. It is there to show this is a process argument, not a motivational speech."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Which statement best captures why technically correct pitches can still fail early?",
+      "choices": [
+        "Listeners stop caring whenever a presenter uses numbers",
+        "Facts only matter after a room has already judged pace, status, tension, and whether the interaction feels controlled or needy",
+        "Good ideas are usually rejected because audiences dislike novelty"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter does not dismiss facts. It says facts travel through a live room that is reacting to more than content alone.",
+        "direct": "Correct. The opening claim is that live reception is social and fast. A technically strong deck can still lose because the room experiences the interaction badly.",
+        "competitive": "Being right on paper does not help if the room decides you are making them work before the logic gets a fair hearing."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Theo has strong customer data but keeps front-loading every chart in the first three minutes because he wants to look serious. Based on the opening argument, what is the strongest adjustment?",
+      "choices": [
+        "Keep the data but move it behind a tighter opening that wins attention before spending it",
+        "Add even more backup slides so nobody can question his depth",
+        "Drop the data entirely and rely on enthusiasm"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter is not anti-evidence. It is against solving a method problem with heavier early detail. Theo needs better sequence, not less truth.",
+        "direct": "Option A wins because it preserves substance while fixing reception. Option B repeats the same mistake and Option C throws away real support.",
+        "competitive": "Theo does not need a thinner case. He needs to stop using his best attention like cheap currency."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "A reader hears this chapter and concludes, Great, substance barely matters as long as I control the room. What is the best correction?",
+      "choices": [
+        "Correct, because room control can replace weak economics or fake traction if done confidently enough",
+        "Wrong, because the opening argument explicitly keeps the boundary that better method cannot permanently save a weak offer",
+        "Partly right, but only in investor meetings and nowhere else"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter keeps that boundary on purpose. Better method helps strong value land more clearly, but it does not turn weakness into strength forever.",
+        "direct": "Option B matches the opening limit exactly. The promise is about reception, not magic or fraud-proof style.",
+        "competitive": "If technique could rescue anything, the whole chapter would collapse into empty swagger. Its credibility comes from refusing that fantasy."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "After a case-competition loss, Maren says, The judges just needed more analysis. Which question from the opening argument is most useful first?",
+      "choices": [
+        "Did the team ever give the judges a reason to care before the analysis got heavy?",
+        "Would a longer appendix have guaranteed the win?",
+        "Were the judges probably biased against student teams from the start?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter teaches a room-first postmortem. Before assuming the research was too thin, Maren should ask whether the method let the judges stay engaged long enough for the work to matter.",
+        "direct": "Correct. The key diagnostic move is to check when the room slipped, not to assume the answer is automatically more proof.",
+        "competitive": "If the judges were gone by minute four, the appendix was never the deciding issue."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Isha keeps expanding the explanation in her salary conversation because she wants to sound undeniable. What risk does the opening argument say she is creating?",
+      "choices": [
+        "She may make the ask feel needier and less controlled even while the evidence gets stronger",
+        "She may accidentally make the company value her more highly than before",
+        "She may remove all social meaning from the conversation and turn it into pure logic"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns that more proof can weaken the room if it starts sounding like approval-seeking. The evidence may improve while the interaction gets worse.",
+        "direct": "Option A fits the mechanism. Live listeners react to the presenter's stance as well as to the facts, so overexplaining can lower the perceived strength of the ask.",
+        "competitive": "The danger is not too much truth. The danger is teaching the other side that Isha needs them to feel good before she can state value cleanly."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Which statement best fits the broader transfer claim?",
+      "choices": [
+        "Pitch method only matters in fundraising because other decisions are slower and more rational",
+        "The same method problem can show up in clients, internal approvals, and negotiations because those rooms also decide under pressure and social reading",
+        "Any important conversation becomes a pitch the moment slides are involved"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter broadens the idea carefully. It is not about slides alone or about venture capital alone. It is about live asks made in rooms where people react quickly.",
+        "direct": "Correct. The transfer works because the mechanism is about reception conditions, not about one industry.",
+        "competitive": "Different room, same bottleneck. Pressure and status do not disappear just because the logo on the wall changes."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does the opening argument become more credible, not less credible, when it admits method cannot permanently save a weak offer?",
+      "choices": [
+        "Because the boundary shows the claim is about clarifying value rather than pretending technique can create value from nothing",
+        "Because it lowers expectations enough that readers will accept any later tactic without scrutiny",
+        "Because it proves every failure is still the audience's fault"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The limit protects the promise. It tells the reader this is a practical argument about preventable losses, not a fantasy about winning every room no matter what is underneath.",
+        "direct": "Option A is right. The chapter's strength comes from separating reception problems from substance problems instead of pretending the first can erase the second.",
+        "competitive": "Anyone can promise magic. Credible operators tell you exactly where the tool stops working."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If the opening chapter says rooms are reacting before the full explanation is finished, what is the most natural next question for the book to answer?",
+      "choices": [
+        "How to write longer decks that survive tougher scrutiny",
+        "How the audience's brain filters a pitch in real time before logic has complete control",
+        "How to remove all emotion from a negotiation so only data remains"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The opening argument sets up a processing question. If live listeners are filtering more than facts, the next step is to understand that filter.",
+        "direct": "Correct. The bridge points straight toward the audience's real-time mental model, which is exactly what the next chapter promises to unpack.",
+        "competitive": "Once you know the room is deciding early, the next move is obvious: find the filter that is making those early decisions."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

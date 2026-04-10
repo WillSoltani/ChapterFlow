@@ -14,9 +14,9 @@ Use the exact `bookId` filename, with one of these extensions:
 
 Examples:
 
-- `friends-and-influence-student-edition.svg`
+- `crucial-conversations.svg`
 - `deep-work.png`
-- `atomic-habits.jpg`
+- `the-power-of-habit.jpg`
 - `zero-to-one.webp`
 
 ## Where covers are used
@@ -38,8 +38,8 @@ Example:
 
 ```ts
 {
-  id: "friends-and-influence-student-edition",
-  coverImage: "/book-covers/friends-and-influence-student-edition-special-edition.png",
+  id: "crucial-conversations",
+  coverImage: "/book-covers/crucial-conversations-special-edition.png",
   // ...
 }
 ```

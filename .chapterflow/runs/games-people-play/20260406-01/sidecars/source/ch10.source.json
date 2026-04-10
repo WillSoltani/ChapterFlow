@@ -1,0 +1,59 @@
+{
+  "chapterId": "ch10",
+  "sourceFile": ".chapterflow/sources/games-people-play/games-people-play.txt",
+  "provenance": "Paraphrased reference text. No verbatim reproduction from Eric Berne's original. Slices are teaching-note reformulations of Berne's argument for ChapterFlow orchestrator use.",
+  "slices": [
+    {
+      "id": "slice1",
+      "label": "The Autonomy Triad",
+      "sourceLines": "559-572",
+      "section": "PART III — BEYOND GAMES > Autonomy",
+      "keyClaim": "Three qualities constitute autonomy: awareness (direct perception), spontaneity (choice from full ego-state range), intimacy (game-free directness). Not techniques. What remains when games fall away.",
+      "chapterUse": "Core claim. All three qualities receive full treatment in separate paragraphs."
+    },
+    {
+      "id": "slice2",
+      "label": "Context: Games as Adaptive Behavior",
+      "sourceLines": "535-558",
+      "section": "PART III — BEYOND GAMES > Significance / Players / A Good Life",
+      "keyClaim": "Games are adaptive, not contemptible. Players lack access to something better. Goal is not to win games but to become able to stop. Intimacy (direct, ulterior-free contact) is the better thing.",
+      "chapterUse": "Background for P2 and P6. Grounds the honest-limit framing in the chapter."
+    },
+    {
+      "id": "slice3",
+      "label": "Hard-Depth Tension: Failure Modes of Each Quality",
+      "sourceLines": "derived from chapter-map.md teaching notes",
+      "section": "Teaching Notes",
+      "keyClaim": "Each quality has a failure mode: awareness collapses into observation-as-practice; spontaneity collapses into compulsive reaction; intimacy requires both parties to be simultaneously pattern-free, which is rare.",
+      "chapterUse": "Required for hard depth content variants. Also appears in P6 of canonical prose."
+    },
+    {
+      "id": "slice4",
+      "label": "Continuity Discipline: Ch10 Cast",
+      "sourceLines": "n/a",
+      "section": "Continuity discipline",
+      "keyClaim": "Assigned names: Solenne, Casimir, Valeria, Takeshi, Fenna, Galina, Coach Oduya, Ottavia, Anneli, Elio, Mikkel. All confirmed absent from Ch1–Ch9.",
+      "chapterUse": "Character assignment for all 6 examples and the 3 prose anchors."
+    },
+    {
+      "id": "slice5",
+      "label": "Threshold Question",
+      "sourceLines": "derived",
+      "section": "Hard-depth reasoning",
+      "keyClaim": "Naming a direction is not the same as promising arrival. The catalog chapters are useful to readers who will never fully leave the games in them. The triad is useful in the same way.",
+      "chapterUse": "Required for hard depth threshold-question resolution. Also P6 of canonical prose."
+    }
+  ],
+  "forbiddenContent": [
+    "New game catalog entries",
+    "Return to any game from Ch5-Ch9",
+    "Pop-mindfulness framing",
+    "Neurochemistry or brain-region claims",
+    "Evolutionary psychology claims",
+    "Ch1-Ch9 character names",
+    "Em dashes",
+    "Banned phrases from style-memory.md",
+    "Banned sentence skeletons",
+    "Brief/outline contamination phrases in reader prose"
+  ]
+}

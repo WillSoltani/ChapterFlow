@@ -1,7 +1,8 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import { Check, FileText, HelpCircle, Lightbulb, Lock, Target } from "lucide-react";
+import { motion } from "framer-motion";
+import { Check, FileText, HelpCircle, Lightbulb, Lock } from "lucide-react";
 import type { ComponentType } from "react";
 import type { ChapterTab } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterState";
 
@@ -16,8 +17,14 @@ const PHASES: PhaseStep[] = [
   { id: "summary", label: "Summary", shortLabel: "Sum", icon: FileText },
   { id: "examples", label: "Examples", shortLabel: "Ex", icon: Lightbulb },
   { id: "quiz", label: "Quiz", shortLabel: "Quiz", icon: HelpCircle },
-  { id: "practice", label: "Practice", shortLabel: "Prac", icon: Target },
 ];
+
+const PHASE_TIME_ESTIMATES: Record<ChapterTab, string> = {
+  summary: "~5m",
+  examples: "~8m",
+  quiz: "~3m",
+  practice: "~2m",
+};
 
 type StepState = "completed" | "current" | "upcoming-unlocked" | "locked";
 
@@ -95,11 +102,17 @@ export function PhaseStepper({
           const isClickable = state === "completed" || state === "upcoming-unlocked";
           const isLast = index === PHASES.length - 1;
 
+          const stepTitle =
+            state === "locked"
+              ? `${phase.label} \u2014 locked. ${getLockMessage(phase.id) ?? "Complete the previous phase to unlock."}`
+              : `${phase.label} \u2014 about ${PHASE_TIME_ESTIMATES[phase.id]}`;
+
           return (
             <div key={phase.id} className="flex items-center">
               {/* Step circle + label */}
               <button
                 type="button"
+                title={stepTitle}
                 disabled={state === "locked"}
                 onClick={(e) => {
                   if (state === "locked") {
@@ -108,7 +121,7 @@ export function PhaseStepper({
                   }
                   if (isClickable) onChange(phase.id);
                 }}
-                className="group flex flex-col items-center gap-1.5"
+                className="group flex flex-col items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_55%,transparent)] rounded-lg p-0.5"
                 aria-current={state === "current" ? "step" : undefined}
                 aria-disabled={state === "locked"}
                 tabIndex={state === "locked" ? -1 : 0}
@@ -116,7 +129,7 @@ export function PhaseStepper({
                 {/* Circle */}
                 <div
                   className={[
-                    "flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300",
+                    "flex h-9 w-9 items-center justify-center rounded-full transition-all duration-300",
                     state === "completed"
                       ? "bg-(--cr-accent) text-(--cr-text-inverse)"
                       : state === "current"
@@ -133,18 +146,18 @@ export function PhaseStepper({
                   style={state === "current" ? { animation: "cr-stepper-pulse 2s ease-in-out infinite" } : undefined}
                 >
                   {state === "completed" ? (
-                    <Check className="h-5 w-5" strokeWidth={2.5} />
+                    <Check className="h-4 w-4" strokeWidth={2.5} />
                   ) : state === "locked" ? (
-                    <Lock className="h-4 w-4" />
+                    <Lock className="h-3.5 w-3.5" />
                   ) : (
-                    <Icon className="h-5 w-5" />
+                    <Icon className="h-4 w-4" />
                   )}
                 </div>
 
                 {/* Label */}
                 <span
                   className={[
-                    "text-xs font-semibold transition-colors duration-200",
+                    "text-[11px] font-semibold transition-colors duration-200",
                     state === "completed"
                       ? "text-(--cr-accent)"
                       : state === "current"
@@ -161,24 +174,28 @@ export function PhaseStepper({
 
               {/* Connector line */}
               {!isLast && (
-                <div className="mx-1.5 h-0.5 w-8 sm:mx-2 sm:w-14 md:w-20">
-                  <div className="relative h-full w-full overflow-hidden rounded-full bg-(--cr-track)">
+                <div className="mx-3 h-0.5 w-12 sm:mx-4 sm:w-20 md:w-28">
+                  <div className="relative h-full w-full overflow-hidden rounded-full">
+                    {/* Dashed locked underlay */}
                     <div
-                      className="absolute inset-y-0 left-0 rounded-full bg-(--cr-accent) transition-all duration-500"
+                      className="absolute inset-0 rounded-full opacity-50"
                       style={{
-                        width:
-                          (() => {
-                            const leftState = getStepState(
-                              phase.id,
-                              currentPhase,
-                              completedPhases,
-                              isPhaseAccessible(phase.id)
-                            );
-                            return leftState === "completed"
-                              ? "100%"
-                              : "0%";
-                          })(),
+                        backgroundImage:
+                          "repeating-linear-gradient(to right, var(--cr-glass-border) 0 4px, transparent 4px 8px)",
                       }}
+                    />
+                    <motion.div
+                      className="absolute inset-y-0 left-0 rounded-full"
+                      initial={{ scaleX: 0 }}
+                      animate={{
+                        scaleX: completedPhases.has(phase.id) ? 1 : 0,
+                      }}
+                      style={{
+                        originX: 0,
+                        width: "100%",
+                        background: "var(--cr-accent)",
+                      }}
+                      transition={{ duration: 0.4, ease: "easeOut" }}
                     />
                   </div>
                 </div>
@@ -195,7 +212,10 @@ export function PhaseStepper({
 
       {/* Continuous progress bar */}
       {showProgressBar && (
-        <div className="h-[3px] w-full overflow-hidden rounded-full bg-(--cr-track)">
+        <div
+          className="h-[3px] w-full overflow-hidden rounded-full"
+          style={{ background: "var(--cr-glass-border)" }}
+        >
           <div
             className="h-full rounded-full bg-(--cr-accent) transition-[width] duration-300 ease-out"
             style={{ width: `${Math.min(100, Math.max(0, progressPercent))}%` }}

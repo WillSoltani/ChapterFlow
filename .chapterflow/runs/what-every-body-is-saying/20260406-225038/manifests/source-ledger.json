@@ -1,0 +1,103 @@
+{
+  "bookId": "what-every-body-is-saying",
+  "runId": "20260406-225038",
+  "generatedAt": "2026-04-06T22:58:39Z",
+  "sourcePolicy": "public_or_authorized_plus_secondary",
+  "sourceDiscoveryMode": "web_bundle",
+  "notes": "No public-domain full text was located. Frozen bundle uses bibliographic confirmation, authorized preview copy, public table-of-contents records, and author-authored secondary commentary. Reader-facing content must stay paraphrase-first unless a short quote is explicitly verified in the frozen bundle.",
+  "sources": [
+    {
+      "id": "src-openlibrary-2008-first-ed",
+      "title": "What every BODY is saying",
+      "url": "https://openlibrary.org/books/OL19904132M/What_every_BODY_is_saying",
+      "type": "bibliographic_record",
+      "role": "edition confirmation and chapter map",
+      "confidence": "high",
+      "usedFor": [
+        "edition lock",
+        "table of contents",
+        "publication metadata"
+      ],
+      "notes": "Lists the 2008 HarperCollins/Collins first edition, ISBN 9780061438295, and exposes the 10-heading table of contents used as the canonical chapter order for this run."
+    },
+    {
+      "id": "src-tcdc-record",
+      "title": "What every body is saying: an ex-FBI agent's guide to speed reading people",
+      "url": "https://library.tcdc.or.th/record/view/b00042126",
+      "type": "library_catalog_record",
+      "role": "table-of-contents cross-check",
+      "confidence": "medium_high",
+      "usedFor": [
+        "table of contents cross-check",
+        "publication metadata"
+      ],
+      "notes": "Independent catalog record matching the same ISBN and 10-heading TOC. Used as a secondary check that later reissues did not materially change chapter structure."
+    },
+    {
+      "id": "src-googlebooks-2009-paperback",
+      "title": "What Every BODY is Saying: An Ex-FBI Agent's Guide to Speed-Reading People",
+      "url": "https://books.google.com/books/about/What_Every_BODY_is_Saying.html?id=PG0ndz-nmywC",
+      "type": "authorized_preview_page",
+      "role": "lawful preview metadata and concept preview",
+      "confidence": "high",
+      "usedFor": [
+        "source freeze preview",
+        "core concept support",
+        "edition family cross-check"
+      ],
+      "notes": "Authorized Google Books listing for the 2009 Harper Collins paperback, ISBN 9780061755668. Confirms the same work family and highlights key concepts: survival instincts, the face as an unreliable sole signal, feet/thumbs/eyelids, confidence displays, and trust/authority cues."
+    },
+    {
+      "id": "src-psychtoday-body-language-2009",
+      "title": "The Psychology of Body Language",
+      "url": "https://www.psychologytoday.com/us/blog/spycatcher/200911/the-psychology-body-language",
+      "type": "author_authored_secondary",
+      "role": "interpretive support for whole-body observation",
+      "confidence": "medium_high",
+      "usedFor": [
+        "chapter 1 briefing",
+        "chapter 2 briefing",
+        "chapter 3 briefing"
+      ],
+      "notes": "Joe Navarro article reinforcing the book's observational frame: nonverbal communication is expressed across the body, comfort/discomfort patterns matter, and feet/torso orientation can reveal preference before words do."
+    },
+    {
+      "id": "src-psychtoday-truth-about-lie-detection-2012",
+      "title": "The Truth About Lie Detection",
+      "url": "https://www.psychologytoday.com/za/blog/spycatcher/201203/the-truth-about-lie-detection",
+      "type": "author_authored_secondary",
+      "role": "interpretive support for deception caution",
+      "confidence": "high",
+      "usedFor": [
+        "chapter 9 briefing",
+        "global unsupported-zone guard"
+      ],
+      "notes": "Joe Navarro article explicitly warning that humans are no better than chance at lie detection and that behavior is better treated as evidence of discomfort, stress, or unresolved issues than as proof of lying."
+    },
+    {
+      "id": "src-psychtoday-skin-2012",
+      "title": "Nonverbals of the Skin",
+      "url": "https://www.psychologytoday.com/us/blog/spycatcher/201211/nonverbals-of-the-skin",
+      "type": "author_authored_secondary",
+      "role": "body-region interpretation support",
+      "confidence": "medium",
+      "usedFor": [
+        "chapter 5 briefing",
+        "chapter 9 briefing"
+      ],
+      "notes": "Joe Navarro article expanding on physiological comfort/discomfort displays, ventilating behaviors, blushing/paling, goosebumps, self-soothing touch, and the caution that stress signals are not equivalent to deception."
+    },
+    {
+      "id": "src-psychtoday-hands-2019",
+      "title": "Reserved Behaviors of the Hands",
+      "url": "https://www.psychologytoday.com/us/blog/spycatcher/201906/reserved-behaviors-of-the-hands/amp",
+      "type": "author_authored_secondary",
+      "role": "chapter-specific support for hands and fingers",
+      "confidence": "medium",
+      "usedFor": [
+        "chapter 7 briefing"
+      ],
+      "notes": "Joe Navarro article emphasizing that hands remain highly expressive at a distance and that finger interlacing, rubbing, and palm-up tension behaviors are useful stress indicators."
+    }
+  ]
+}

@@ -18,6 +18,8 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
 import { BOOKS_CATALOG, getBookSynopsis } from "@/app/book/data/booksCatalog";
 import { BOOK_PACKAGES } from "@/app/book/data/bookPackages";
 import { getBookCoverPath } from "@/lib/book-covers";
+import { AUTH_LOGIN_BOOK_URL } from "@/app/_lib/chapterflow-brand";
+import { track } from "@/lib/analytics";
 
 /* ================================================================== */
 /*  TYPES                                                              */
@@ -32,7 +34,6 @@ interface LibraryBook {
   difficulty: "easy" | "medium" | "hard";
   estimatedHours: number;
   description: string;
-  rating: number;
   popular?: boolean;
   isNew?: boolean;
   staffPick?: boolean;
@@ -43,37 +44,37 @@ interface LibraryBook {
 type SortOption = "popular" | "newest" | "shortest" | "alphabetical";
 
 /* ================================================================== */
-/*  BOOK DATA — derived from the real catalog (95 books)               */
+/*  BOOK DATA — derived from the real catalog                          */
 /* ================================================================== */
 
 const POPULAR_IDS = new Set([
-  "the-48-laws-of-power", "friends-and-influence",
+  "crucial-conversations",
 ]);
 
-const NEW_IDS = new Set<string>([]);
-
-const FREE_IDS = new Set(["friends-and-influence"]);
-
-const STAFF_PICK_IDS = new Set([
-  "the-48-laws-of-power",
+const NEW_IDS = new Set<string>([
+  "the-almanack-of-naval-ravikant",
 ]);
 
-function makeRating(id: string): number {
-  let h = 0;
-  for (const c of id) h = ((h << 5) - h + c.charCodeAt(0)) | 0;
-  return +(4.2 + (Math.abs(h) % 8) * 0.1).toFixed(1);
-}
+const FREE_IDS = new Set<string>();
+
+const STAFF_PICK_IDS = new Set<string>();
 
 const CHAPTER_COUNTS = new Map(
   BOOK_PACKAGES.map((pkg) => [pkg.book.bookId, pkg.chapters.length]),
 );
 
+const TOTAL_BOOK_COUNT = BOOKS_CATALOG.length;
+
+function truncateSynopsis(text: string, max = 120): string {
+  if (text.length <= max) return text;
+  const periodIdx = text.indexOf(".", 40);
+  if (periodIdx !== -1 && periodIdx <= max) return text.substring(0, periodIdx + 1);
+  return text.substring(0, max - 1).trimEnd() + "…";
+}
+
 const ALL_BOOKS: LibraryBook[] = BOOKS_CATALOG.map((cat) => {
   const synopsis = getBookSynopsis(cat.id);
-  const desc =
-    synopsis.length > 120
-      ? synopsis.substring(0, synopsis.indexOf(".", 40) + 1) || synopsis.substring(0, 117) + "..."
-      : synopsis;
+  const desc = truncateSynopsis(synopsis);
 
   return {
     id: cat.id,
@@ -84,7 +85,6 @@ const ALL_BOOKS: LibraryBook[] = BOOKS_CATALOG.map((cat) => {
     difficulty: cat.difficulty.toLowerCase() as "easy" | "medium" | "hard",
     estimatedHours: Math.round((cat.estimatedMinutes / 60) * 10) / 10,
     description: desc || cat.title,
-    rating: makeRating(cat.id),
     popular: POPULAR_IDS.has(cat.id),
     isNew: NEW_IDS.has(cat.id),
     isFree: FREE_IDS.has(cat.id),
@@ -92,7 +92,16 @@ const ALL_BOOKS: LibraryBook[] = BOOKS_CATALOG.map((cat) => {
   };
 });
 
-const FEATURED_BOOK = ALL_BOOKS.find((b) => b.id === "the-48-laws-of-power") || ALL_BOOKS[0];
+const FEATURED_BOOK =
+  ALL_BOOKS.find((b) => b.staffPick) ??
+  ALL_BOOKS.find((b) => b.popular) ??
+  ALL_BOOKS[0];
+
+const FEATURED_REASON =
+  STAFF_PICK_IDS.has(FEATURED_BOOK.id) ? "Editor's Pick" :
+  POPULAR_IDS.has(FEATURED_BOOK.id) ? "Trending Now" :
+  NEW_IDS.has(FEATURED_BOOK.id) ? "New This Month" :
+  "Featured";
 
 /* ================================================================== */
 /*  HELPERS                                                            */
@@ -110,9 +119,9 @@ function sortBooks(books: LibraryBook[], sort: SortOption): LibraryBook[] {
   const sorted = [...books];
   switch (sort) {
     case "popular":
-      return sorted.sort((a, b) => (a.popular === b.popular ? b.rating - a.rating : a.popular ? -1 : 1));
+      return sorted.sort((a, b) => (a.popular === b.popular ? b.title.localeCompare(a.title) : a.popular ? -1 : 1));
     case "newest":
-      return sorted.sort((a, b) => (a.isNew === b.isNew ? b.rating - a.rating : a.isNew ? -1 : 1));
+      return sorted.sort((a, b) => (a.isNew === b.isNew ? b.title.localeCompare(a.title) : a.isNew ? -1 : 1));
     case "shortest":
       return sorted.sort((a, b) => a.estimatedHours - b.estimatedHours);
     case "alphabetical":
@@ -231,7 +240,10 @@ function SearchBar({
           value={query}
           onChange={(e) => onChange(e.target.value)}
           onFocus={() => setFocused(true)}
-          onBlur={() => setTimeout(() => setFocused(false), 200)}
+          onBlur={() => {
+            if (query.length >= 2) track("library_search", { query, resultCount: results.length });
+            setTimeout(() => setFocused(false), 200);
+          }}
           placeholder="Search by title, author, or topic..."
           className="flex-1 bg-transparent outline-none text-[14px] placeholder:text-[--text-muted]"
           style={{ color: "var(--text-heading)", fontFamily: "var(--font-body)" }}
@@ -309,7 +321,7 @@ function SearchBar({
 /*  FEATURED BOOK SPOTLIGHT                                            */
 /* ================================================================== */
 
-function FeaturedBookSpotlight({ book }: { book: LibraryBook }) {
+function FeaturedBookSpotlight({ book, reason }: { book: LibraryBook; reason: string }) {
   return (
     <div className="flex gap-5 items-center overflow-hidden">
       <div className="shrink-0 w-[100px] sm:w-[130px] md:w-[150px] aspect-[2/3] transform -rotate-2 transition-transform hover:rotate-0 duration-300">
@@ -327,7 +339,7 @@ function FeaturedBookSpotlight({ book }: { book: LibraryBook }) {
           className="text-[10px] px-2.5 py-1 rounded-full font-semibold uppercase tracking-wider w-fit"
           style={{ background: "rgba(34,211,238,0.1)", color: "var(--accent-teal)" }}
         >
-          Editor&apos;s Pick
+          {reason}
         </span>
         <h3
           className="text-[18px] md:text-[20px] font-bold mt-2 leading-snug"
@@ -342,11 +354,12 @@ function FeaturedBookSpotlight({ book }: { book: LibraryBook }) {
           {book.description}
         </p>
         <p className="text-[12px] mt-2" style={{ color: "var(--text-muted)" }}>
-          {book.chapters} chapters · ~{avgMinPerChapter(book)}m each · ★ {book.rating.toFixed(1)}
+          {book.chapters} chapters · ~{avgMinPerChapter(book)}m each
         </p>
         <Link
           href={`/book/library/${book.id}`}
-          className="mt-3 text-[13px] font-semibold hover:underline underline-offset-4 w-fit"
+          onClick={() => track("book_card_click", { source: "browse_library_featured", bookId: book.id })}
+          className="mt-3 text-[13px] font-semibold hover:underline underline-offset-4 w-fit focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
           style={{ color: "var(--accent-teal)" }}
         >
           Start reading →
@@ -385,7 +398,7 @@ function LibraryHero({
                 className="mt-3 text-[15px] md:text-[16px] leading-[1.7] max-w-[520px]"
                 style={{ color: "var(--text-secondary)", fontFamily: "var(--font-body)" }}
               >
-                95+ non-fiction titles across psychology, productivity, leadership, and more.
+                {TOTAL_BOOK_COUNT}+ non-fiction titles across psychology, productivity, leadership, and more.
                 Each one broken into chapter summaries, real-world scenarios, and retention quizzes.
               </p>
               <div className="mt-5">
@@ -403,7 +416,7 @@ function LibraryHero({
                 border: "1px solid var(--border-subtle)",
               }}
             >
-              <FeaturedBookSpotlight book={FEATURED_BOOK} />
+              <FeaturedBookSpotlight book={FEATURED_BOOK} reason={FEATURED_REASON} />
             </div>
           </SectionReveal>
         </div>
@@ -448,12 +461,19 @@ function FilterBar({
     return () => observer.disconnect();
   }, []);
 
-  // Close sort dropdown on outside click
+  // Close sort dropdown on outside click or Escape
   useEffect(() => {
     if (!sortOpen) return;
-    const close = () => setSortOpen(false);
+    const close = (e: MouseEvent | KeyboardEvent) => {
+      if (e instanceof KeyboardEvent && e.key !== "Escape") return;
+      setSortOpen(false);
+    };
     document.addEventListener("click", close);
-    return () => document.removeEventListener("click", close);
+    document.addEventListener("keydown", close);
+    return () => {
+      document.removeEventListener("click", close);
+      document.removeEventListener("keydown", close);
+    };
   }, [sortOpen]);
 
   return (
@@ -462,7 +482,7 @@ function FilterBar({
       <div
         className="sticky z-40 transition-all duration-300 py-3"
         style={{
-          top: 60,
+          top: 64, // matches Navbar height — update here if Navbar height changes
           background: isSticky ? "color-mix(in srgb, var(--bg-base) 85%, transparent)" : "transparent",
           backdropFilter: isSticky ? "blur(24px)" : "none",
           WebkitBackdropFilter: isSticky ? "blur(24px)" : "none",
@@ -514,7 +534,13 @@ function FilterBar({
           <div className="relative shrink-0">
             <button
               onClick={(e) => { e.stopPropagation(); setSortOpen((p) => !p); }}
-              className="flex items-center gap-1.5 text-[13px] px-3 py-2 rounded-lg transition-colors hover:bg-white/5"
+              aria-haspopup="listbox"
+              aria-expanded={sortOpen}
+              onKeyDown={(e) => {
+                if (e.key === "Escape") setSortOpen(false);
+                if (e.key === "ArrowDown") { e.preventDefault(); setSortOpen(true); }
+              }}
+              className="flex items-center gap-1.5 text-[13px] px-3 py-2 rounded-lg transition-colors hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60"
               style={{ color: "var(--text-secondary)" }}
             >
               <span className="hidden sm:inline">Sort:</span>{" "}
@@ -524,6 +550,7 @@ function FilterBar({
 
             {sortOpen && (
               <div
+                role="listbox"
                 className="absolute right-0 top-full mt-1 w-44 rounded-xl overflow-hidden z-50"
                 style={{
                   background: "var(--bg-elevated)",
@@ -534,8 +561,14 @@ function FilterBar({
                 {SORT_OPTIONS.map((opt) => (
                   <button
                     key={opt.value}
+                    role="option"
+                    aria-selected={sortBy === opt.value}
                     onClick={() => { onSortChange(opt.value); setSortOpen(false); }}
-                    className="block w-full text-left px-4 py-2.5 text-[13px] transition-colors hover:bg-white/5"
+                    onKeyDown={(e) => {
+                      if (e.key === "Escape") { setSortOpen(false); }
+                      if (e.key === "Enter" || e.key === " ") { onSortChange(opt.value); setSortOpen(false); }
+                    }}
+                    className="block w-full text-left px-4 py-2.5 text-[13px] transition-colors hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60"
                     style={{
                       color: sortBy === opt.value ? "var(--accent-teal)" : "var(--text-secondary)",
                       fontWeight: sortBy === opt.value ? 600 : 400,
@@ -561,7 +594,12 @@ function BookCard({ book, showCategoryTag = false }: { book: LibraryBook; showCa
   const badge = getBookBadge(book);
 
   return (
-    <Link href={`/book/library/${book.id}`} className="group block">
+    <Link
+      href={`/book/library/${book.id}`}
+      className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 rounded-lg"
+      aria-label={`${book.title} by ${book.author} — ${DIFFICULTY_LABEL[book.difficulty]}, ${book.chapters} chapters`}
+      onClick={() => track("book_card_click", { source: "browse_library", bookId: book.id })}
+    >
       {/* Cover */}
       <div className="relative overflow-hidden rounded-lg aspect-[2/3] transition-all duration-200 group-hover:scale-[1.04] group-hover:shadow-shadow-elevated">
         <BookCover
@@ -615,6 +653,18 @@ function BookCard({ book, showCategoryTag = false }: { book: LibraryBook; showCa
         <p className="text-[12px] mt-0.5" style={{ color: "var(--text-secondary)" }}>
           {book.author}
         </p>
+        <p
+          className="sm:hidden text-[11px] mt-1.5 leading-relaxed line-clamp-2"
+          style={{ color: "var(--text-muted)", fontFamily: "var(--font-body)" }}
+        >
+          {book.description}
+        </p>
+        <span
+          className="sm:hidden inline-block mt-1 text-[10px] px-2 py-0.5 rounded-full"
+          style={{ background: "rgba(255,255,255,0.06)", color: "var(--text-muted)" }}
+        >
+          {DIFFICULTY_LABEL[book.difficulty]}
+        </span>
         {showCategoryTag && (
           <span
             className="inline-block mt-1 text-[10px] px-2 py-0.5 rounded-full"
@@ -623,9 +673,8 @@ function BookCard({ book, showCategoryTag = false }: { book: LibraryBook; showCa
             {book.category}
           </span>
         )}
-        <p className="text-[11px] mt-1 flex items-center gap-1" style={{ color: "var(--text-muted)" }}>
-          <span style={{ color: "var(--accent-teal)" }}>★</span>
-          {book.rating.toFixed(1)} · {book.chapters} ch · ~{avgMinPerChapter(book)}m
+        <p className="text-[11px] mt-1" style={{ color: "var(--text-muted)" }}>
+          {book.chapters} ch · ~{avgMinPerChapter(book)}m
         </p>
       </div>
     </Link>
@@ -711,7 +760,7 @@ function BookRow({
         {canLeft && (
           <button
             onClick={() => scroll("left")}
-            className="absolute left-2 top-1/3 -translate-y-1/2 z-10 w-10 h-10 rounded-full hidden md:flex items-center justify-center opacity-0 group-hover/row:opacity-100 transition-opacity duration-200"
+            className="absolute left-2 top-[38%] -translate-y-1/2 z-10 w-10 h-10 rounded-full hidden md:flex items-center justify-center opacity-40 group-hover/row:opacity-100 transition-opacity duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60"
             style={{
               background: "rgba(17, 24, 39, 0.85)",
               backdropFilter: "blur(8px)",
@@ -721,6 +770,14 @@ function BookRow({
           >
             <ChevronLeft />
           </button>
+        )}
+
+        {/* Left fade */}
+        {canLeft && (
+          <div
+            className="absolute left-0 top-0 bottom-0 w-20 pointer-events-none z-[5]"
+            style={{ background: "linear-gradient(to right, var(--bg-base) 0%, transparent 100%)" }}
+          />
         )}
 
         <div
@@ -743,11 +800,19 @@ function BookRow({
           <div className="shrink-0 w-4" />
         </div>
 
+        {/* Right fade */}
+        {canRight && (
+          <div
+            className="absolute right-0 top-0 bottom-0 w-20 pointer-events-none z-[5]"
+            style={{ background: "linear-gradient(to left, var(--bg-base) 0%, transparent 100%)" }}
+          />
+        )}
+
         {/* Right arrow */}
         {canRight && (
           <button
             onClick={() => scroll("right")}
-            className="absolute right-2 top-1/3 -translate-y-1/2 z-10 w-10 h-10 rounded-full hidden md:flex items-center justify-center opacity-0 group-hover/row:opacity-100 transition-opacity duration-200"
+            className="absolute right-2 top-[38%] -translate-y-1/2 z-10 w-10 h-10 rounded-full hidden md:flex items-center justify-center opacity-40 group-hover/row:opacity-100 transition-opacity duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60"
             style={{
               background: "rgba(17, 24, 39, 0.85)",
               backdropFilter: "blur(8px)",
@@ -768,6 +833,7 @@ function BookRow({
 /* ================================================================== */
 
 const MIN_ROW_SIZE = 4;
+const MIN_CURATED_ROW = 3;
 
 function CategoryRows({
   books,
@@ -792,13 +858,18 @@ function CategoryRows({
   return (
     <div className="space-y-12 py-8">
       {/* Most Read This Week */}
-      {popularBooks.length > 0 && (
+      {popularBooks.length >= MIN_CURATED_ROW && (
         <BookRow title="Most Read This Week" icon="🔥" books={popularBooks} showCategoryTag />
       )}
 
       {/* New This Month */}
-      {newBooks.length > 0 && (
+      {newBooks.length >= MIN_CURATED_ROW && (
         <BookRow title="New This Month" icon="✨" books={newBooks} showCategoryTag />
+      )}
+
+      {/* Fallback when neither curated row meets the threshold */}
+      {popularBooks.length < MIN_CURATED_ROW && newBooks.length < MIN_CURATED_ROW && (
+        <BookRow title="Start Here" icon="✨" books={books.slice(0, 8)} showCategoryTag />
       )}
 
       {/* Large category rows (4+ books each) */}
@@ -923,11 +994,12 @@ function BottomCTA() {
 
           <div className="mt-6">
             <Link
-              href="/auth/login?returnTo=%2Fbook"
-              className="cta-shine inline-flex items-center rounded-full px-7 py-3.5 font-semibold text-[15px] transition-transform hover:scale-[1.03] active:scale-[0.98]"
+              href={AUTH_LOGIN_BOOK_URL}
+              onClick={() => track("cta_click", { source: "browse_library_bottom_cta" })}
+              className="cta-shine inline-flex items-center rounded-full px-7 py-3.5 font-semibold text-[15px] transition-transform hover:scale-[1.03] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
               style={{ backgroundColor: "var(--accent-teal)", color: "#0a0f1a" }}
             >
-              Start reading free →
+              Open my first book →
             </Link>
           </div>
 
@@ -981,6 +1053,12 @@ export function BrowseLibraryPage() {
 
   const handleCategoryChange = useCallback((cat: string) => {
     setActiveCategory(cat);
+    track("library_category_filter", { category: cat });
+  }, []);
+
+  const handleSortChange = useCallback((s: SortOption) => {
+    setSortBy(s);
+    track("library_sort_change", { sort: s });
   }, []);
 
   const handleClearSearch = useCallback(() => {
@@ -1017,7 +1095,7 @@ export function BrowseLibraryPage() {
         activeCategory={activeCategory}
         onCategoryChange={handleCategoryChange}
         sortBy={sortBy}
-        onSortChange={setSortBy}
+        onSortChange={handleSortChange}
         resultCount={filteredBooks.length}
         totalCount={ALL_BOOKS.length}
       />

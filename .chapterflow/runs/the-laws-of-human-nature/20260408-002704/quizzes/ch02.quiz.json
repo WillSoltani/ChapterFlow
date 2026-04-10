@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch02-q01",
+      "prompt": "How does this law define irrationality most precisely?",
+      "choices": [
+        "The absence of all emotion",
+        "Emotion bending judgment before reason inspects it",
+        "Making any decision quickly"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter is not attacking emotion itself. It is identifying the moment emotion starts shaping interpretation before it has been examined.",
+        "direct": "Irrationality here means emotional distortion of judgment, often followed by rationalization.",
+        "competitive": "The danger is not speed alone. It is heat drafting the meaning before analysis secures the room."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch02-q02",
+      "prompt": "Why does Pericles matter in the opening argument of this law?",
+      "choices": [
+        "He proves that fearless aggression is the only rational response to threat",
+        "He shows that strategic restraint often looks weak before it looks wise",
+        "He demonstrates that emotion should be ignored entirely in politics"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Pericles matters because he represents distance from the surge when others wanted immediate emotional release.",
+        "direct": "His example separates short-term emotional satisfaction from long-range strategic reasoning.",
+        "competitive": "Pericles is the counterexample to panic posing as courage."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch02-q03",
+      "prompt": "What do repeated financial bubbles reveal about irrationality?",
+      "choices": [
+        "Only uneducated people become irrational in groups",
+        "Crowds can turn shared emotion into something that feels like collective intelligence",
+        "Markets are irrational only when there is no data at all"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A crowd can make greed or fear feel more trustworthy simply because many people are feeling it together.",
+        "direct": "Bubbles show how imitation, greed, and fear of missing out can masquerade as judgment at scale.",
+        "competitive": "The crowd lends the mood borrowed certainty and makes distortion look sophisticated."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch02-q04",
+      "prompt": "Marcus receives a sharp message from a coworker and wants to answer immediately so he does not look weak. Which move best fits this law?",
+      "choices": [
+        "Reply right away so the emotional edge is still fresh",
+        "Wait, reconstruct the sequence, and decide after the surge cools",
+        "Ignore the issue completely because emotion always corrupts conflict"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A pause gives Marcus room to distinguish the trigger from the story forming around it.",
+        "direct": "The law favors distance and sequence-checking over reacting from the first emotional draft.",
+        "competitive": "Immediate retaliation would only let heat write policy."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch02-q05",
+      "prompt": "After an argument, Nora produces a flawless explanation for why she was right. What question best tests whether the explanation might be a rationalization?",
+      "choices": [
+        "What feeling hit first, before the explanation became clear?",
+        "Did the other person sound persuasive during the fight?",
+        "Would a friend admire how confident she sounded?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Tracing the emotional spark can reveal whether the argument was built after the reaction rather than before it.",
+        "direct": "The chronology matters. A strong explanation may still be a defense for an emotionally chosen position.",
+        "competitive": "Find the hit before you trust the speech."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch02-q06",
+      "prompt": "Which statement best matches the chapter's view of emotion?",
+      "choices": [
+        "Emotion is useless and should be removed from serious decisions",
+        "Emotion is valuable data but poor command when unexamined",
+        "Emotion becomes trustworthy as long as it feels intense"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Feeling can tell you where fear, desire, or ego pain is active, but it should not automatically rule the decision.",
+        "direct": "The chapter rejects emotional numbness and emotional rule. It argues for emotional information under inspection.",
+        "competitive": "Emotion belongs in the briefing, not in solo command."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch02-q07",
+      "prompt": "A student team becomes more certain of a risky plan as more members repeat the same optimistic story. What is happening?",
+      "choices": [
+        "Group contagion is turning shared mood into borrowed certainty",
+        "The plan is automatically stronger because it has consensus",
+        "Independent thought is becoming easier inside the group"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Agreement can make an emotionally attractive plan feel safer than it really is.",
+        "direct": "The group is amplifying mood and converting it into something that resembles evidence.",
+        "competitive": "The crowd is renting confidence to a judgment that may not deserve it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch02-q08",
+      "prompt": "Which intervention is most aligned with this law when a trigger hits hard?",
+      "choices": [
+        "Name the trigger, delay the move, and test the story against pattern",
+        "Express the feeling immediately so it cannot distort you later",
+        "Distract yourself and hope the reaction disappears on its own"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter emphasizes creating distance and examining the sequence before acting.",
+        "direct": "A structured pause is stronger than discharge or avoidance because it interrupts hidden command.",
+        "competitive": "This is sequence control: make the surge answerable before it gets operational authority."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch02-q09",
+      "prompt": "When does calm become fake rather than disciplined?",
+      "choices": [
+        "When it hides emotion without examining how the emotion is still bending the judgment",
+        "When it comes after a period of reflection and note-taking",
+        "When it makes a person less reactive in public"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A calm surface is not enough if the feeling is still quietly ruling the interpretation underneath.",
+        "direct": "Disciplined calm inspects emotion. Fake calm suppresses the display while leaving the distortion intact.",
+        "competitive": "If the surge still owns the frame, the polished exterior is just better camouflage."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch02-q10",
+      "prompt": "Why does the next law move from irrationality to narcissism?",
+      "choices": [
+        "Because once emotion is reduced, the self-centered lens can still distort social perception",
+        "Because rational people never experience self-love or status hunger",
+        "Because narcissism matters only in people who fail to regulate anger"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Cooling emotional heat helps, but the self can still remain at the center of every social scene.",
+        "direct": "The bridge is that emotional control does not automatically create empathy. Narcissistic bias can still warp the read.",
+        "competitive": "Stopping the surge is step one. The self still wants centrality, and that is the next distortion to beat."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

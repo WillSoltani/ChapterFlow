@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch14-q01",
+      "prompt": "What career did Martin Luther King Jr. originally plan to pursue before the Montgomery Bus Boycott?",
+      "choices": [
+        "A) Professor of theology",
+        "B) Civil rights attorney",
+        "C) Baptist minister in Atlanta"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "King planned to become a professor. He loved theology and philosophy, and imagined a quiet academic life before the boycott pulled him in a different direction.",
+        "direct": "King was on track for an academic career in theology. The Montgomery Bus Boycott redirected him toward a path his nature had been preparing for since childhood.",
+        "competitive": "King had the intellect and discipline for academia, but his primal inclination toward justice made that path a mismatch. The boycott revealed what the classroom never could."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch14-q02",
+      "prompt": "Greene draws a distinction between goals and purpose. Which statement captures how he defines purpose?",
+      "choices": [
+        "A) A fixed destination you work toward networkatically",
+        "B) A direction that persists even after individual goals succeed or fail",
+        "C) A detailed plan with measurable milestones"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Purpose is a direction, not a destination. Goals can be checked off, but purpose keeps pulling you forward regardless of whether any single goal succeeds or fails.",
+        "direct": "Greene defines purpose as a bearing that survives individual outcomes. Goals are consumable endpoints. Purpose is the renewable force behind them.",
+        "competitive": "Goals get consumed on contact. Purpose regenerates. The person running on purpose absorbs failures that would strand someone operating on goals alone."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch14-q03",
+      "prompt": "According to Greene, primal inclination refers to what?",
+      "choices": [
+        "A) An aggressive survival instinct triggered under pressure",
+        "B) The career path your parents chose for you",
+        "C) A natural gravity toward certain activities that appears before social conditioning"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Primal inclination is the natural pull you felt as a child toward certain activities and ways of engaging with the world, before anyone told you what to want.",
+        "direct": "Greene defines primal inclination as a built-in orientation that precedes education, parental guidance, and career planning. It shows up earliest in childhood fascinations.",
+        "competitive": "Primal inclination is the only signal that predates outside interference. Everything layered on top of it has been filtered through expectations and market logic."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch14-q04",
+      "prompt": "Diana has spent twelve years climbing the corporate ladder in finance. She earns well and her family is proud, but every weekend she spends hours sketching architectural designs in a notebook she keeps hidden. What does her behavior most likely indicate?",
+      "choices": [
+        "A) Her primal inclination toward design has been buried under external expectations",
+        "B) She should treat sketching as a hobby and keep it separate from work",
+        "C) She lacks the discipline to stay focused on her current career"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Diana's weekend sketching is the quiet signal of a primal inclination that her career path never addressed. The fact that she returns to it without prompting suggests it runs deeper than a casual hobby.",
+        "direct": "The hidden notebook is the clearest indicator of a buried inclination. She did not choose finance because it matched her nature. She chose it because it matched someone else's definition of success.",
+        "competitive": "Twelve years of external validation could not silence the signal. The notebook is her primal inclination broadcasting through the noise of a borrowed ambition."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch14-q05",
+      "prompt": "Marcus quits his stable engineering job to open a restaurant because his friends told him he makes great pasta. Six months in, he is miserable and losing money. How does Greene's perspective explain what went wrong?",
+      "choices": [
+        "A) Marcus confused a compliment with a calling and skipped the step of tracing his actual childhood fascinations",
+        "B) He failed because the restaurant industry is inherently more difficult than engineering",
+        "C) His friends gave him bad advice and should have discouraged the move"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Making good pasta is a skill, but a skill is not the same as a primal inclination. Marcus jumped to a dramatic change without first examining what truly pulled him as a child, before anyone shaped his preferences.",
+        "direct": "Greene's framework requires excavating childhood signals, not following surface-level feedback from friends. Marcus skipped the diagnostic step and treated external validation as proof of purpose.",
+        "competitive": "Marcus replaced one external signal with another. His engineering career was driven by market logic; his restaurant was driven by social approval. Neither originated from his own buried inclination."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch14-q06",
+      "prompt": "Priya hits every quarterly target at her consulting firm but feels a persistent emptiness after each success. She describes the feeling as running fast on a treadmill that goes nowhere. What concept from this chapter explains her experience?",
+      "choices": [
+        "A) She suffers from chronic burnout caused by overwork",
+        "B) She is experiencing the hollowness that comes from operating on goals without an underlying purpose",
+        "C) Her firm has created unrealistic performance expectations"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Priya's emptiness after each target is the signature of a goal-driven life that lacks a deeper purpose. The goals get consumed, and nothing behind them pulls her forward.",
+        "direct": "Hitting targets without a directional purpose produces exactly the pattern Priya describes. Each achievement is consumed on contact, leaving nothing to sustain momentum.",
+        "competitive": "Priya is running Greene's textbook failure mode: high performance on borrowed objectives. The treadmill metaphor is precise because goals without purpose generate motion without progress."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch14-q07",
+      "prompt": "Why does Greene argue that reconnecting with your primal inclination does not require quitting your current job immediately?",
+      "choices": [
+        "A) Because financial stability must always take priority over personal fulfillment",
+        "B) Because most inclinations are impractical in the modern economy",
+        "C) Because the inclination is already present in your life and can be strengthened gradually through attention"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Greene suggests starting by paying attention to what already energizes you, even in small ways. The inclination has not disappeared. It has been outvoted, and you can begin amplifying it without a dramatic upheaval.",
+        "direct": "The inclination is already broadcasting. Reconnecting means turning up the volume on a signal that is already present, not engineering a complete life overhaul overnight.",
+        "competitive": "Greene rejects the false binary of stay miserable or blow up your life. The inclination is operational at low levels. The task is to notice it, feed it, and build a bridge from where you are to where it leads."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch14-q08",
+      "prompt": "Greene's four-step process for discovering your Life's Task begins with recalling childhood fascinations. What is the final step?",
+      "choices": [
+        "A) Wait for certainty before making any commitment",
+        "B) Share your plan with mentors and gather feedback",
+        "C) Commit to a path and iterate as the road reveals itself"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The final step is commitment followed by adaptation. Greene emphasizes that certainty does not arrive before you commit. It arrives after, through the process of engaging with the work itself.",
+        "direct": "Commitment precedes certainty in Greene's model. King did not have a master plan in 1955. He committed to a direction and adjusted as circumstances evolved.",
+        "competitive": "Waiting for certainty is the trap that stalls most people at step three. Greene's architecture demands action before clarity, because clarity is a byproduct of engagement, not a prerequisite for it."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch14-q09",
+      "prompt": "Greene claims that aimlessness is not caused by laziness but by mismatch. Evaluate this claim by considering what happens when an ambitious person pursues targets set entirely by external expectations.",
+      "choices": [
+        "A) The person achieves visible success while accumulating a low-level dissatisfaction that no promotion resolves",
+        "B) External targets build resilience that eventually leads the person toward their true purpose",
+        "C) Ambition itself compensates for the mismatch and prevents dissatisfaction from developing"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Ambitious people can hit every external target and still feel hollow because the targets were never connected to their own deeper direction. The dissatisfaction is the buried inclination signaling that something is misaligned.",
+        "direct": "Greene's point is that ambition without alignment produces credentialed emptiness. The person collects achievements that impress others but generate no internal momentum.",
+        "competitive": "External targets test your ability to execute. They do not test whether you are executing in the right direction. The dissatisfaction is not a bug in the system. The dissatisfaction is the arrangement's only honest feedback."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch14-q10",
+      "prompt": "Chapter 14 argues that purpose provides a direction that survives setbacks. Chapter 19 argues that confronting mortality sharpens purpose into genuine urgency. If someone has identified their purpose but still procrastinates on acting, what does combining these two chapters suggest about the missing element?",
+      "choices": [
+        "A) They need a more detailed action plan with deadlines and accountability partners",
+        "B) They have not yet absorbed the reality of their finite time, so the purpose remains theoretical instead of urgent",
+        "C) Their purpose is not authentic and should be replaced with a more practical goal"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Knowing your purpose is not enough if you still treat time as unlimited. Chapter 19's mortality confrontation supplies the urgency that transforms purpose from a nice idea into a force that drives daily action.",
+        "direct": "Purpose without mortality awareness stays abstract. Chapter 19 argues that genuine contact with your own finitude is what converts purpose from a concept into a daily operating principle.",
+        "competitive": "Purpose gives you direction. Mortality gives you velocity. The person who has one without the other either drifts with direction or rushes without aim. Combining both chapters produces the only sustainable fuel for sustained execution."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

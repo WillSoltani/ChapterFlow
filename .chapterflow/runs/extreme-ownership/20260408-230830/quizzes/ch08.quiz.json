@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "ch08-q01",
+      "prompt": "What is the chapter's main warning about chaos and leadership?",
+      "choices": [
+        "That leaders should react to every visible problem equally fast",
+        "That disorder gets worse when leaders spread attention across everything at once",
+        "That chaos disappears once teams talk about every issue in detail"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The chapter warns that scattered attention usually deepens chaos instead of restoring control.",
+        "direct": "Correct. Reacting to everything at once spreads effort thin and can leave the governing problem untouched.",
+        "competitive": "That answer lands because the chapter attacks noisy reaction, not lack of energy."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch08-q02",
+      "prompt": "What does detachment let leaders do in this chapter?",
+      "choices": [
+        "Avoid making any decision until all facts are perfect",
+        "See the field clearly enough to identify what comes first",
+        "Ignore emotions permanently in every situation"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. Detachment helps leaders see which problem is truly first.",
+        "direct": "Exactly. The chapter treats detachment as the step that prevents urgency from choosing the agenda.",
+        "competitive": "That is the move: step back just enough to stop obeying the loudest signal in the room."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch08-q03",
+      "prompt": "Why does trying to solve everything at once usually fail?",
+      "choices": [
+        "Because it spreads effort across too many problems and weakens sequence",
+        "Because leaders should never move quickly in pressure",
+        "Because teams work best without any priorities at all"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Correct. The chapter says scattered effort often leaves the true first problem untouched.",
+        "direct": "The issue is not effort itself but effort without sequence, which makes control harder to regain.",
+        "competitive": "Trying to fight every fire at once usually protects the fire that actually owns the field."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch08-q04",
+      "prompt": "In Kira's incident scenario, what best applies the chapter?",
+      "choices": [
+        "Keep responding to each alert in order so the team stays busy",
+        "Pause long enough to identify the governing failure and align the team there first",
+        "Wait until all alerts stop before deciding anything"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. Kira should identify the top constraint before letting the noise keep choosing the agenda.",
+        "direct": "That choice fits the chapter because detachment creates the sequence needed to restore control.",
+        "competitive": "Stop obeying the pings and hit the failure that is making the pings breed."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch08-q05",
+      "prompt": "How does the chapter distinguish prioritization from tunnel vision?",
+      "choices": [
+        "Prioritization means ignoring the rest of the field until the end of the day",
+        "Prioritization means hitting the first problem hard and then reassessing what comes next",
+        "Prioritization means following the loudest signal because it usually matters most"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. The chapter says leaders focus first, then look up again.",
+        "direct": "Exactly. One priority at a time stays healthy only when it remains paired with reassessment and awareness.",
+        "competitive": "The chapter wants sequence, not blindness. Hit, then scan."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch08-q06",
+      "prompt": "Which choice reflects a misreading the chapter rejects?",
+      "choices": [
+        "Detachment helps leaders choose what comes first",
+        "After the first move, leaders reassess what matters next",
+        "The loudest problem should usually be treated as the top priority"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Yes. The chapter does not say volume equals priority.",
+        "direct": "Correct. Leaders detach precisely because the most visible problem is not always the governing one.",
+        "competitive": "That is the trap: mistaking noise for the real target."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch08-q07",
+      "prompt": "What is the best transfer of this chapter to school or home life?",
+      "choices": [
+        "Name the first blocking issue clearly instead of reacting equally to every complaint or task",
+        "Avoid action until everyone agrees on every problem",
+        "Treat all visible issues as equally urgent to stay fair"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Correct. The chapter keeps pushing leaders to identify what actually comes first.",
+        "direct": "That answer transfers the principle well: sequence the response instead of spreading energy across every signal.",
+        "competitive": "Hit the real blocker, not the whole pile of noise."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch08-q08",
+      "prompt": "In Quinn's backlog scenario, what was the real reveal?",
+      "choices": [
+        "The newest shipment alert should always get the first response",
+        "The team needed more people watching every signal",
+        "The backlog changed only after Quinn hit the upstream issue driving the alert stack"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Yes. Quinn made progress once he stopped chasing the latest signal and hit the source problem first.",
+        "direct": "The chapter says the first useful move is often against the governing cause, not the noisiest symptom.",
+        "competitive": "He stopped fighting the stack and broke what was breeding it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch08-q09",
+      "prompt": "Which statement best captures the chapter's deeper synthesis about focus and reassessment?",
+      "choices": [
+        "Leaders should focus the team on the governing problem first and then reassess the field before choosing again",
+        "Leaders should stay locked on the first problem until every other issue disappears",
+        "Leaders should keep several top priorities active so the team never slows down"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter joins tight focus and continued awareness instead of treating them as opposites.",
+        "direct": "Exactly. Prioritize and Execute works when detachment, correct sequence, action, and reassessment all stay connected.",
+        "competitive": "That is the hard edge: choose hard, hit hard, then look up before the field changes around you."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch08-q10",
+      "prompt": "How does this chapter set up the next one?",
+      "choices": [
+        "By showing that clear priorities still fail if every front-line decision must wait for one leader at the top",
+        "By proving that priorities remove the need for delegated authority",
+        "By arguing that large teams should centralize every choice during pressure"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Once the right priority is visible, teams still need authority and understanding spread downward.",
+        "direct": "Correct. The bridge forward is that sequencing alone is not enough if decisions still bottleneck at the top.",
+        "competitive": "Seeing first things clearly is useless if the whole team still has to wait for one person to move."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

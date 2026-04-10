@@ -37,7 +37,7 @@ Use the helper script from repo root:
 node scripts/book/upload-book-package.mjs \
   --origin https://your-app-domain \
   --token "<COGNITO_ID_TOKEN>" \
-  --file book-packages/friends-and-influence-student-edition.student.json \
+  --file book-packages/crucial-conversations.modern.json \
   --publish
 ```
 
@@ -77,7 +77,7 @@ Use the exact `bookId` with one of these extensions:
 - `.avif`
 
 Example:
-- `public/book-covers/friends-and-influence-student-edition.svg`
+- `public/book-covers/crucial-conversations.svg`
 
 ### Where covers automatically appear
 - onboarding book cards
@@ -94,8 +94,8 @@ Set `coverImage` on the book entry in:
 Example:
 ```ts
 {
-  id: "atomic-habits",
-  coverImage: "/book-covers/atomic-habits-special-edition.png",
+  id: "crucial-conversations",
+  coverImage: "/book-covers/crucial-conversations-special-edition.png",
   // ...
 }
 ```

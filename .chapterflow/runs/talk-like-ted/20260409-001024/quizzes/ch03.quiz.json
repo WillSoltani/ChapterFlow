@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch03-q01",
+      "prompt": "What is the chapter's main claim about conversational delivery?",
+      "choices": [
+        "It mostly comes from speaking casually and minimizing rehearsal.",
+        "It should feel like one person talking to another, even when the talk is carefully prepared.",
+        "It matters only in informal talks and is less relevant in serious presentations."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That is the core idea. Gallo wants prepared talks to feel direct and human, not stiff or recited.",
+        "direct": "The chapter's target is not casual looseness. It is prepared delivery that still sounds like live human speech.",
+        "competitive": "This is the standard. Conversation is the feel, not the absence of structure."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch03-q02",
+      "prompt": "Why does Gallo think practice helps a speaker sound more natural?",
+      "choices": [
+        "Because practice removes enough private noise that attention can return to the listener and the message.",
+        "Because practice guarantees that the speaker will not feel nervous during the talk.",
+        "Because practice makes exact wording more important than everything else."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Practice helps because it frees the speaker from worrying so much about lines and mistakes. That creates more room for presence.",
+        "direct": "Gallo's mechanism is that rehearsal reduces self-monitoring. Once the speaker is less trapped in private management, the delivery sounds more alive.",
+        "competitive": "Practice clears traffic. The room finally gets the message instead of hearing you steer around fear."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch03-q03",
+      "prompt": "Priya's demo sounds polished but rigid. Which revision best fits the chapter's advice?",
+      "choices": [
+        "Rehearse the script harder word for word until no sentence can shift under pressure.",
+        "Practice the flow and transitions out loud until the demo sounds like a live explanation instead of a recitation.",
+        "Shorten the demo sharply so she can rely on adrenaline rather than repetition."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Priya needs deeper ownership of the material, not tighter protection of every line.",
+        "direct": "The chapter pushes her toward rehearsed naturalness. That means internalizing the flow so the talk can sound spoken, not memorized.",
+        "competitive": "She needs presence, not prison-grade script security."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch03-q04",
+      "prompt": "Mateo slows every sentence to sound serious. What is the chapter-faithful correction?",
+      "choices": [
+        "Keep the slow pace and add more hand gestures so the delivery feels less stiff.",
+        "Return to a spoken pace and use pauses selectively where the point needs emphasis.",
+        "Eliminate pauses entirely so the class feels stronger momentum."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Mateo does not need less seriousness. He needs a more human cadence so the seriousness can still feel alive.",
+        "direct": "Gallo's advice would be to recover conversational rate and let pauses do precise work instead of dragging the whole talk down.",
+        "competitive": "Serious is not the same thing as slow. Mateo needs motion with control, not drag with dignity."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch03-q05",
+      "prompt": "Which common misreading of the chapter does Gallo most clearly reject?",
+      "choices": [
+        "Body language can help a strong talk when it is congruent with the message.",
+        "Conversational delivery means sounding more prepared to speak, not less prepared.",
+        "The best way to sound natural is usually to practice less so the talk stays spontaneous."
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter argues against that idea directly. Practice is supposed to support naturalness, not destroy it.",
+        "direct": "Gallo's correction is that underpreparation usually creates self-consciousness, not authentic spontaneity.",
+        "competitive": "That is the lazy lie the chapter is built to kill."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch03-q06",
+      "prompt": "What is the chapter's strongest warning about body language?",
+      "choices": [
+        "Gestures should be large and constant so the audience never loses energy.",
+        "If the body's signals contradict the words, trust weakens quickly even if the script is strong.",
+        "A speaker should copy one proven gesture system so the delivery feels more professional."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The body matters most when it supports the words instead of quietly fighting them.",
+        "direct": "Gallo's concern is mismatch. Contradictory posture, gesture, and tension can thin credibility before the audience consciously names the problem.",
+        "competitive": "If the body says retreat while the mouth says conviction, the body wins first."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch03-q07",
+      "prompt": "Keisha is preparing a wedding toast. Which approach best matches the chapter's advice?",
+      "choices": [
+        "Memorize every word exactly so emotion cannot disturb the planned delivery.",
+        "Internalize the structure and key lines so the toast stays alive even if some wording shifts.",
+        "Avoid rehearsal so the room gets the freshest version of her feelings."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Keisha still needs preparation, but not the kind that traps her inside exact wording.",
+        "direct": "The chapter points her toward rehearsed familiarity. Structure and emotional beats should be owned deeply enough that the speech can sound lived, not recited.",
+        "competitive": "She should protect the spine, not embalm the script."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch03-q08",
+      "prompt": "A speaker wants more presence. According to the chapter, what is the strongest path?",
+      "choices": [
+        "Improve style cues first, then worry about belief and practice later.",
+        "Work on passion and deep rehearsal so presence can emerge as a result.",
+        "Drop most structure so the talk can feel less constrained in the moment."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Presence grows best when the speaker believes in the material and has practiced it enough to feel steady.",
+        "direct": "Gallo treats presence as downstream of passion and practice. It is not something pasted on with confidence moves.",
+        "competitive": "Presence is the receipt from the real work, not a shortcut around it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch03-q09",
+      "prompt": "Why can heavy rehearsal still fail according to the chapter?",
+      "choices": [
+        "Because audiences dislike any sign that a speaker prepared seriously.",
+        "Because rehearsal is only useful for large conference talks, not smaller settings.",
+        "Because practice can harden into line protection, making the talk sound controlled rather than alive."
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter does not glorify practice blindly. Practice works only when it creates familiarity instead of visible strain.",
+        "direct": "This is the chapter's key limit: rehearsal can help or hurt depending on whether the speaker internalizes the idea or clings to exact wording.",
+        "competitive": "Practice can free the talk or embalm it. That is the line you are being asked to manage."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch03-q10",
+      "prompt": "Why does this chapter naturally hand off to Chapter 4 on teaching something new?",
+      "choices": [
+        "Because once delivery sounds alive, the content still has to feel fresh enough to keep attention.",
+        "Because novelty matters more than presence, story, and conviction combined.",
+        "Because a well-delivered talk no longer needs strong preparation once the audience is engaged."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A speaker can finally sound present and still say something the room expected. The next chapter tackles that problem.",
+        "direct": "The bridge is that delivery solves one kind of distance, but Chapter 4 asks how the material itself becomes surprising and worth learning.",
+        "competitive": "Sounding alive is not the endgame. The room still needs a reason to wake up at the level of content."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

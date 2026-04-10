@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the main claim of this chapter about first impressions?",
+      "choices": [
+        "That first impressions form quickly and shape the opening lens for later interpretation",
+        "That first impressions matter only in formal interviews",
+        "That first impressions are mostly irrelevant once you start speaking"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says first impressions are fast and consequential. It does not limit them to interviews or dismiss them once speech begins.",
+        "direct": "Its core point is that the opening read shapes how later behavior gets interpreted.",
+        "competitive": "The room drafts the story early, and that draft matters."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "According to the chapter, what does the room often read before it fully trusts your words?",
+      "choices": [
+        "Only your clothing budget",
+        "Early demeanor, body language, and visible fit cues",
+        "Only the formal title on your nametag"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter keeps first impressions practical by focusing on early cues, not on money or titles alone.",
+        "direct": "The room reads nonverbal and fit signals before content has much leverage.",
+        "competitive": "Cues start scoring before your argument gets a vote."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "How does the triad help explain first impressions in this chapter?",
+      "choices": [
+        "It proves warmth always matters more than power",
+        "It replaces first impressions with long-term reputation",
+        "It shows that first impressions are really fast estimates of presence, power, and warmth"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter uses the triad to explain the kinds of signals the room is reading early.",
+        "direct": "Fast first impressions are described as quick triad interpretation, not as one-dimensional judgment.",
+        "competitive": "The room is estimating the blend right away."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Aria walks into a new lab and the group starts placing her before she has said much. What is the chapter's best diagnosis?",
+      "choices": [
+        "The room is making a fast opening read from her early cues",
+        "The room should not be reading anything until she gives a speech",
+        "The problem is only that she lacks technical credentials"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Aria's example shows that the room reads the arrival before it knows the resume.",
+        "direct": "The chapter treats this as a fast first-impression process built from early signals.",
+        "competitive": "The lab judged the arrival before it judged the work."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why might overmanaged polish weaken a first impression?",
+      "choices": [
+        "Because any effort at calibration is always manipulative",
+        "Because the room may feel the calculation before it feels the person",
+        "Because strong first impressions never involve visible fit"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns against image theater, not against all calibration.",
+        "direct": "Overproduction can make the management itself part of the read.",
+        "competitive": "If the room spots the manufacturing first, trust drops fast."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Leila changes the warmth-power balance in her introduction and the room reacts differently. What does that show?",
+      "choices": [
+        "First impressions depend only on facts, not on signal balance",
+        "Different triad balances create different opening reads even when content stays similar",
+        "Warmth should always replace power in introductions"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Leila's contrast shows that the opening read changes when the signal balance changes.",
+        "direct": "The chapter ties different first impressions to different mixes of presence, power, and warmth.",
+        "competitive": "Same person, different blend, different story."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why does the chapter resist saying first impressions are destiny?",
+      "choices": [
+        "Because first impressions never affect later interaction",
+        "Because only appearance matters permanently",
+        "Because later conversation can still confirm, revise, or soften the opening frame"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter treats first impressions as opening conditions, not final fate.",
+        "direct": "The early frame matters, but later interaction still has force.",
+        "competitive": "The first draft is strong, not sacred."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What does the chapter say visible-fit cues can do when handled well?",
+      "choices": [
+        "They can reduce early friction by showing calibration to the setting",
+        "They can replace presence, power, and warmth entirely",
+        "They make conversation unnecessary afterward"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Fit cues matter because they can make the opening feel easier and more credible.",
+        "direct": "The chapter says calibration can lower resistance, not replace the rest of charisma.",
+        "competitive": "Fit can smooth the opening, but it is not the whole game."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the chapter's deeper claim about first impressions and later behavior?",
+      "choices": [
+        "Later behavior has no chance once the first read is formed",
+        "The first read creates an interpretive frame through which later behavior is often judged",
+        "Later behavior matters only if the first impression was already perfect"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says the opening read shapes the lens for what comes next.",
+        "direct": "Its deeper claim is about framing: later signals are filtered through the early read.",
+        "competitive": "The first story bends the meaning of what follows."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why does this chapter lead directly into speaking and listening?",
+      "choices": [
+        "Because words finally replace first impressions completely",
+        "Because body language stops mattering after the first ten seconds",
+        "Because once the opening frame exists, conversation has to sustain, sharpen, or revise it"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The bridge is that conversation inherits the opening read and works with it.",
+        "direct": "Chapter 8 becomes necessary because the first frame now needs to be maintained or changed in live interaction.",
+        "competitive": "The room guessed first, then talk has to deal with the guess."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

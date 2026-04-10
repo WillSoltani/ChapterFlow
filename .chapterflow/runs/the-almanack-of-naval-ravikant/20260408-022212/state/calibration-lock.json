@@ -1,0 +1,159 @@
+{
+  "lockedAt": "2026-04-08T06:44:10Z",
+  "basis": {
+    "chapters": [
+      {
+        "chapterId": "ch01-building-wealth",
+        "title": "Building Wealth",
+        "hash": "44d3caba3d538a0d808a7decf14d594644271ec0f649f2d5f88c5810a89373cd",
+        "validatedAt": "2026-04-08T06:13:38.087Z"
+      },
+      {
+        "chapterId": "ch02-building-judgment",
+        "title": "Building Judgment",
+        "hash": "a951da3ebce8b5165a9b95f68d8155405656430f535af4cb836befcb2b005380",
+        "validatedAt": "2026-04-08T06:39:04.756Z"
+      }
+    ],
+    "validationStatus": "Both baseline chapters passed sealed package validation and artifact guard."
+  },
+  "contaminationBans": {
+    "phrases": [
+      "keep the prose narrow and concrete",
+      "keep this question alive",
+      "used lazily, the point turns into",
+      "threshold question",
+      "reading calibration",
+      "unsupported zones",
+      "source is short and works by contrast"
+    ],
+    "additionalArtifacts": [
+      "duplicate word artifact: daily daily",
+      "prompt leakage",
+      "source-splice phrasing",
+      "writer-process language in reader-facing prose"
+    ],
+    "rule": "Reader-facing prose stays source-bound and chapter-specific. Rubric fragments, internal prompt language, and contamination phrases are banned."
+  },
+  "maximumMetaDistance": {
+    "level": "low",
+    "rule": "Brief orienting clauses are allowed, but each paragraph must quickly return to a concrete mechanism, scene, tradeoff, decision, or limit. No paragraph should stay in commentary-about-the-chapter mode for more than two consecutive sentences."
+  },
+  "toneFloor": {
+    "gentle": "Clarify without patronizing. Stay concrete, supportive, and plainspoken while preserving the chapter's real tension.",
+    "direct": "Carry the main analytical load. State the mechanism, structure, tradeoff, or causal chain cleanly and without softening.",
+    "competitive": "Increase pressure, consequence, and selectivity without turning motivational or macho. Sharpen the edge; do not add fluff.",
+    "shared": "All tone variants must stay source-bound, chapter-specific, and meaningfully different in emphasis or implied audience."
+  },
+  "toneDivergenceRule": {
+    "rule": "Tone variants must earn their existence by changing framing, pressure, or explanatory function. Simple synonym swaps or near-duplicate wording are failures.",
+    "hardFails": [
+      "identical tone variants",
+      "same logic with adjective swaps only",
+      "competitive voice drifting into generic hype",
+      "gentle voice drifting into therapist or workbook language"
+    ]
+  },
+  "scenarioVividnessFloor": {
+    "rule": "Every example must begin inside a concrete scene before abstraction.",
+    "requiredSignals": [
+      "named or clearly individuated actor",
+      "specific domain context",
+      "immediate pressure, tradeoff, or decision",
+      "chapter-linked consequence carried through whatToDo and whyItMatters"
+    ]
+  },
+  "gradeBandFloor": {
+    "easy": {
+      "chapterBreakdownWordsPerTone": "140-175",
+      "behavior": "Clarify the chapter's core tension and mechanism in plain language. Open with a concrete pressure line, keep jargon low, and avoid prompts beyond recap.",
+      "requiredShape": [
+        "chapterBreakdown with gentle/direct/competitive tone object",
+        "3 keyTakeaways",
+        "oneMinuteRecap"
+      ]
+    },
+    "medium": {
+      "chapterBreakdownWordsPerTone": "330-420",
+      "behavior": "Explain mechanism and application with concrete stakes, tradeoffs, and causal movement. This band should feel operational, not just longer.",
+      "requiredShape": [
+        "chapterBreakdown with gentle/direct/competitive tone object",
+        "5 keyTakeaways",
+        "activationPrompt",
+        "selfCheckPrompt",
+        "oneMinuteRecap.retrieve/connect/preview"
+      ]
+    },
+    "hard": {
+      "chapterBreakdownWordsPerTone": "490-600",
+      "behavior": "Add contradiction, boundary, threshold, or failure case that medium does not carry. Hard mode must widen the chapter, not just lengthen it.",
+      "requiredShape": [
+        "chapterBreakdown with gentle/direct/competitive tone object",
+        "6 keyTakeaways",
+        "activationPrompt",
+        "2 selfCheckPrompts",
+        "predictionPrompt",
+        "oneMinuteRecap.retrieve/connect/preview"
+      ]
+    }
+  },
+  "hardEdgeRule": {
+    "rule": "Hard mode must preserve a real limit condition. It cannot be medium with extra words.",
+    "baselineExamples": [
+      "Chapter 1 keeps leverage and ambition inside anti-ruin and anti-status drift constraints.",
+      "Chapter 2 shows that heuristics and anti-identity can harden into new ego costumes, and that better judgment does not automatically create inner peace."
+    ]
+  },
+  "quizRule": {
+    "questionCount": 10,
+    "choicesPerQuestion": 3,
+    "requiredFields": [
+      "questionId",
+      "prompt",
+      "choices",
+      "correctIndex",
+      "explanation",
+      "bloomsLevel",
+      "depthLevel"
+    ],
+    "explanationToneObject": true,
+    "directExplanationOpenerUniqueness": "required",
+    "rule": "Quiz must be non-empty, structurally complete, and explanation tones must remain distinct."
+  },
+  "scenarioToneRule": {
+    "exampleFields": [
+      "scenario",
+      "whatToDo",
+      "whyItMatters"
+    ],
+    "toneKeys": [
+      "gentle",
+      "direct",
+      "competitive"
+    ],
+    "rule": "Each required example field must be a non-empty tone object. Plain strings or collapsed tone variants are hard fails."
+  },
+  "exampleRotationBaseline": {
+    "formats": [
+      "decision_point",
+      "postmortem",
+      "dialogue",
+      "predict_reveal",
+      "dilemma",
+      "before_after"
+    ],
+    "endingTypes": [
+      "broader_principle",
+      "common_trap",
+      "self_directed_question",
+      "surprising_implication",
+      "cross_domain",
+      "perspective_reframe"
+    ],
+    "categoryDistribution": {
+      "work": 2,
+      "school": 2,
+      "personal": 2
+    }
+  }
+}

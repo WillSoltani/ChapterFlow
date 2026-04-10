@@ -1,0 +1,155 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch04-q01",
+      "prompt": "What is the chapter's main reframing of an internal trigger?",
+      "choices": [
+        "It should be treated more like a signal than a command",
+        "It should be ignored completely",
+        "It should always be trusted as final truth"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter changes the trigger's authority.",
+        "direct": "It reframes discomfort from verdict to signal.",
+        "competitive": "The feeling gets demoted, not worshiped."
+      }
+    },
+    {
+      "questionId": "ch04-q02",
+      "prompt": "Why does interpretation matter so much in this chapter?",
+      "choices": [
+        "Because the meaning attached to discomfort changes how urgent escape feels",
+        "Because interpretation removes all feelings",
+        "Because only interpretation matters and behavior does not"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The story around the feeling shapes the next move.",
+        "direct": "Meaning affects urgency and response.",
+        "competitive": "The trigger rules through the story you let it tell."
+      }
+    },
+    {
+      "questionId": "ch04-q03",
+      "prompt": "What does the chapter say discomfort may often be?",
+      "choices": [
+        "The cost of difficult, uncertain, repetitive, or exposing work",
+        "Proof that the task should always stop",
+        "Evidence that planning is useless"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The feeling can simply be part of hard work.",
+        "direct": "The trigger may reflect friction rather than a command to quit.",
+        "competitive": "Sometimes it is just the tax, not the verdict."
+      }
+    },
+    {
+      "questionId": "ch04-q04",
+      "prompt": "A student feels bored while studying and assumes the session is pointless. What would this chapter suggest?",
+      "choices": [
+        "Treat boredom as a signal to examine, not as automatic proof the work is wrong",
+        "End the session immediately",
+        "Add more distracting tabs"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The feeling should be interpreted more carefully.",
+        "direct": "The chapter replaces verdict-thinking with signal-thinking.",
+        "competitive": "Do not let boredom walk in wearing judicial robes."
+      }
+    },
+    {
+      "questionId": "ch04-q05",
+      "prompt": "Why does naming the trigger help?",
+      "choices": [
+        "It weakens false urgency by making the feeling more observable",
+        "It makes discomfort disappear instantly",
+        "It proves all triggers are harmless"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Words make the feeling easier to see clearly.",
+        "direct": "Naming creates observational distance.",
+        "competitive": "The feeling loses some theater when it has to answer to language."
+      }
+    },
+    {
+      "questionId": "ch04-q06",
+      "prompt": "What is a key limit preserved by this chapter?",
+      "choices": [
+        "Discomfort can remain unpleasant even after reinterpretation",
+        "All discomfort is secretly enjoyable",
+        "Reframing removes the need for effort"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter does not promise pleasant feelings.",
+        "direct": "Relationship changes, but sensation may not.",
+        "competitive": "Demotion is promised. Deletion is not."
+      }
+    },
+    {
+      "questionId": "ch04-q07",
+      "prompt": "What mistake does the chapter try to stop?",
+      "choices": [
+        "Treating every uncomfortable feeling as a command to escape",
+        "Treating every calendar as bad",
+        "Treating every task as easy"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter challenges automatic obedience to discomfort.",
+        "direct": "It targets the reflex that every trigger deserves compliance.",
+        "competitive": "It refuses to let every feeling become a tiny dictator."
+      }
+    },
+    {
+      "questionId": "ch04-q08",
+      "prompt": "How does this chapter differ from Chapter 3?",
+      "choices": [
+        "Chapter 3 notices the urge sooner, while Chapter 4 changes the meaning of the urge",
+        "Chapter 3 ignores internal triggers",
+        "Chapter 4 says tools are the only problem"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "This chapter goes from visibility to reinterpretation.",
+        "direct": "It changes authority, not just timing.",
+        "competitive": "Chapter 3 catches the trigger. Chapter 4 demotes it."
+      }
+    },
+    {
+      "questionId": "ch04-q09",
+      "prompt": "A professional feels nervous before practice and decides the nerves mean they should delay. What is the stronger diagnosis here?",
+      "choices": [
+        "The nerves may be exposure discomfort rather than a valid stop signal",
+        "Nerves always prove unpreparedness",
+        "Any discomfort means avoidance is wise"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The feeling may be real without deserving command authority.",
+        "direct": "The chapter asks the person to reinterpret the trigger before obeying it.",
+        "competitive": "The feeling is real, but it is not entitled to the throne."
+      }
+    },
+    {
+      "questionId": "ch04-q10",
+      "prompt": "Why does the next chapter move into reimagining the task?",
+      "choices": [
+        "Because once the trigger loses authority, the work itself can be redesigned",
+        "Because internal triggers no longer matter",
+        "Because discomfort is now gone"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The reader can finally change the task without treating discomfort as final truth.",
+        "direct": "Task redesign becomes possible after trigger demotion.",
+        "competitive": "Once the trigger loses veto power, the work can be renegotiated."
+      }
+    }
+  ]
+}

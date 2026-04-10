@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "Why do many new habits fail at the start in Chapter 5?",
+      "choices": [
+        "Because the person lacks ambition",
+        "Because the cue stays too vague to start reliably",
+        "Because rewards always come too late"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says many new habits fail because the start is blurry, not because the desire is fake.",
+        "direct": "Chapter 5 argues that vague intentions do not create a dependable cue. The routine has no clear doorway, so it fails at ignition.",
+        "competitive": "The habit dies at the starting line because the trigger never got built."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What is an implementation intention in this chapter?",
+      "choices": [
+        "A general wish to do better soon",
+        "A highly specific start condition for when, where, or after what the habit will begin",
+        "A reward you promise yourself after the habit ends"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "It is a specific plan for when the habit will start.",
+        "direct": "Implementation intentions matter because they turn a wish into a triggerable start condition.",
+        "competitive": "It is not motivation talk. It is a firing instruction."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is habit stacking?",
+      "choices": [
+        "Attaching a new habit to an existing routine that already happens",
+        "Trying to do several new habits at once",
+        "Making a habit more rewarding after it ends"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Habit stacking attaches the new action to something already in place.",
+        "direct": "Chapter 5 defines habit stacking as using an existing routine as the anchor for the new behavior.",
+        "competitive": "You piggyback on a routine that already runs."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Maya wants to start a daily two-minute project review at work. Which plan best fits Chapter 5?",
+      "choices": [
+        "I will review my projects whenever the afternoon feels calm",
+        "After I close the 4:00 team check-in, I will open the review note and write two lines",
+        "I will care more about review habits next week"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Maya needs a specific cue and a visible anchor.",
+        "direct": "The second plan works because it attaches the new habit to a known meeting close and gives it a clear start condition.",
+        "competitive": "That one has ignition. The others have hope."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Leo keeps saying he will study chemistry after school, but nothing starts once he gets home. What is the clearest diagnosis?",
+      "choices": [
+        "The cue is still too fuzzy to fire reliably",
+        "The reward is too immediate",
+        "The routine needs less specificity"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Leo has intention but not a clear start signal.",
+        "direct": "Chapter 5 would diagnose this as a cue problem. After school is still too vague to function like a dependable trigger.",
+        "competitive": "A respectable intention is not the same as an ignition point."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Nina wants to read each evening and starts doing it right after she makes tea and sets the mug on the table. What is the chapter showing?",
+      "choices": [
+        "That rewards no longer matter once tea is involved",
+        "That stacking a new habit after a stable routine creates a stronger start cue",
+        "That vague goals work best in calm settings"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The tea routine gives Nina a stable anchor for the reading habit.",
+        "direct": "This is habit stacking. The new behavior starts more reliably because it is attached to something that already recurs.",
+        "competitive": "The tea does not motivate magically. It anchors the start."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why does a highly specific cue help a new habit start?",
+      "choices": [
+        "Because specificity removes all later friction",
+        "Because specificity reduces ambiguity about when the behavior begins",
+        "Because specificity guarantees identity change immediately"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A precise cue gives the habit a clear doorway.",
+        "direct": "Specificity matters because it reduces ambiguity at the start. The routine has a clearer signal to follow.",
+        "competitive": "The clearer the start, the less room there is for delay to hide."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Grant tries to stack stretching after his bus ride home, but the timing of the bus changes every day and some days he gets picked up instead. What is the chapter's best concern?",
+      "choices": [
+        "The anchor routine is too unstable to carry the stack well",
+        "The reward is too strong",
+        "The stack needs less specificity"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The problem is the anchor, not the idea of stacking itself.",
+        "direct": "Chapter 5 keeps one limit visible: a stack works best when the existing routine is stable enough to serve as a real anchor.",
+        "competitive": "A shaky anchor turns a neat plan back into a vague hope."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Chapter 4 made cues visible. What does Chapter 5 add?",
+      "choices": [
+        "It replaces cue awareness with pure motivation",
+        "It shows how to place and specify cues deliberately once they can be seen",
+        "It proves that awareness alone was enough all along"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Chapter 5 moves from seeing the cue to designing it on purpose.",
+        "direct": "Chapter 4 exposed the trigger. Chapter 5 adds deliberate cue placement through implementation intentions and habit stacking.",
+        "competitive": "Visibility became design."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why is Chapter 6 the next logical move after Chapter 5?",
+      "choices": [
+        "Because specific cues make rewards irrelevant",
+        "Because once the cue is placed deliberately, the wider environment can either support it or undermine it",
+        "Because habit stacking solves all starting problems by itself"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The next question is about the larger setting around the cue.",
+        "direct": "Chapter 6 follows naturally because even a good cue lives inside an environment that can help it fire or make it harder to notice.",
+        "competitive": "After cue placement comes environmental support or sabotage."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

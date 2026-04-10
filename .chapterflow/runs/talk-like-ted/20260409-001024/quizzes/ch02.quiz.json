@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch02-q01",
+      "prompt": "Which sentence best captures the chapter's main claim about story?",
+      "choices": [
+        "Story mainly gives the audience a short emotional break before the serious proof begins.",
+        "Story lowers the emotional distance around an idea so evidence can land with human meaning.",
+        "Story matters most when the speaker does not have enough evidence to sound rigorous."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That is the chapter's core move. Story is valuable because it helps people feel what the evidence means, not because it replaces evidence or decorates it.",
+        "direct": "The central claim is that narrative makes serious content easier to feel and remember without weakening rigor. The other options reduce story to filler or compensation.",
+        "competitive": "This is the mechanism. Story closes distance so the logic hits a human target. Treating it as a break or a backup plan misses the whole chapter."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch02-q02",
+      "prompt": "Why does Gallo keep returning to Bryan Stevenson in this chapter?",
+      "choices": [
+        "He proves that pathos works best when the speaker drops most of the data and lets the emotion carry the talk.",
+        "He shows that a well-known speaker can hold attention even when the structure of the talk is loose.",
+        "He shows how story can keep a rigorous argument emotionally alive while the evidence continues doing its work."
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Bryan Stevenson's stories matter because they help the audience stay connected to the human cost of the issue while the facts and logic stay in place.",
+        "direct": "Stevenson's example works because story and evidence reinforce each other. His narrative choices keep the room emotionally present without reducing the seriousness of the case.",
+        "competitive": "Stevenson is the proof point because he adds force without sacrificing rigor. He does not swap data for pathos. He makes the data harder to dodge."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch02-q03",
+      "prompt": "Nadia has to open a retention presentation. Which opening best follows the chapter's advice?",
+      "choices": [
+        "Start with the customer's Friday night problem, then use the churn and retention data to show the issue is bigger than one account.",
+        "Lead with the retention chart first so the story, if used at all, feels less emotional and more professional.",
+        "Skip both the chart and the story and open by defining Aristotle's rhetoric triad for the executive team."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nadia's best move is to give the numbers a human shape first. Then the data can prove scale and urgency instead of feeling detached.",
+        "direct": "In that scenario, the customer story should open the problem and the analytics should confirm scope. That sequence fits the chapter's argument about story and proof working together.",
+        "competitive": "Nadia needs a human entry point before the metrics arrive. Otherwise she gets comprehension without traction."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch02-q04",
+      "prompt": "Elias has a history report full of policy shifts and route maps. What is the chapter-faithful repair?",
+      "choices": [
+        "Keep the policy overview first and add the diary line at the end as a quick emotional touch.",
+        "Open with the family diary entry, then widen to the laws and border changes shaping that life.",
+        "Remove the diary entry entirely so the presentation sounds more objective and less literary."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The diary entry gives the class someone to follow. The policy material then becomes easier to understand and remember.",
+        "direct": "Here the repair is to begin with a human thread and then expand into the larger historical frame. That keeps rigor while giving the audience a life to track.",
+        "competitive": "Elias needs a protagonist before he gives the room policy. Otherwise the facts stay weightless."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch02-q05",
+      "prompt": "Serena's fundraiser story is powerful. According to the chapter, what is the real risk?",
+      "choices": [
+        "Donors usually distrust any personal story and want only budget details.",
+        "Her emotion may make the room care too quickly, which means the speech no longer needs a clear ask.",
+        "The story could become so central that people remember Serena's hardship more than the legal-aid service she is asking them to fund."
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "A moving story can still weaken a talk if it becomes the whole point. Serena needs the story to support the mission, not replace it.",
+        "direct": "Serena's danger is misdirected attention. If the narrative absorbs the room and the service fades, the story has taken over instead of carrying the ask.",
+        "competitive": "This is narrative vanity by accident. The room may feel a lot and still miss the mission."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch02-q06",
+      "prompt": "Which misreading of the chapter does Gallo most clearly reject?",
+      "choices": [
+        "Once a story creates emotion, proof matters less because the audience is already engaged.",
+        "Pathos can strengthen persuasion when it is tied tightly to the argument and works alongside ethos and logos.",
+        "Different story types do different jobs, so the speaker has to choose the right category for the point."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter does not say emotion replaces evidence. It says story helps the evidence feel meaningful and memorable.",
+        "direct": "What the chapter rejects is the idea that pathos can do the job alone. Emotion without disciplined connection to the point becomes clutter or theater.",
+        "competitive": "That is the lazy takeaway, and the chapter is against it. Story is force only when it stays attached to proof and purpose."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch02-q07",
+      "prompt": "Malik revises his quarterly update around the warehouse supervisor who exposed the broken process. Why should that help?",
+      "choices": [
+        "It gives leadership a memorable human friction point, then lets the metrics prove how big the problem and improvement really were.",
+        "It allows Malik to remove most of the efficiency numbers because the story now carries the whole argument.",
+        "It makes the update feel more casual, which is always better than sounding operational."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The supervisor's experience gives the numbers somewhere to land. The metrics still matter, but they become easier to care about.",
+        "direct": "Malik's revision works because the human scene becomes the memory hook while the data still establishes scale and credibility.",
+        "competitive": "The update gets traction when the process failure has a face. Then the percentages stop floating."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch02-q08",
+      "prompt": "A founder wants potential partners to understand why she cares about a healthcare workflow problem in the first place. Which story type is most strategic as an opening?",
+      "choices": [
+        "A brand-success story about quarterly growth because business audiences trust performance above all else",
+        "A personal story showing the experience that made the problem impossible for her to ignore",
+        "A detached summary of three industry case studies so the talk sounds maximally objective"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "If the goal is to show motive and trust, a personal story is often the strongest starting point.",
+        "direct": "For that audience need, the personal story is the best category because it reveals motive and explains why the issue matters to the founder.",
+        "competitive": "She needs to position the message through stake, not through abstraction. Personal story is the right lever when motive is the missing piece."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch02-q09",
+      "prompt": "Avery adds several vivid anecdotes to a robotics talk and the audience remembers fragments but not the message. What does that reveal?",
+      "choices": [
+        "The talk needed more humor so the stories felt lighter and less forced.",
+        "The stories worked individually, so the only missing ingredient was a stronger speaking voice.",
+        "Anecdote without a governing idea raises attention for a moment but lowers coherence and retention."
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The stories were not useless because they were stories. They failed because they were not all serving the same clear point.",
+        "direct": "Avery's result shows the chapter's warning in action: narrative material becomes clutter when it does not return the audience to one governing idea.",
+        "competitive": "This is what happens when story becomes decoration. Energy rises, clarity dies, and the room leaves with scraps."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch02-q10",
+      "prompt": "Why does the chapter naturally hand off to Chapter 3 on conversational delivery?",
+      "choices": [
+        "Because once a story is chosen, the rest of the talk can be improvised if the speaker stays relaxed.",
+        "Because a strong narrative still needs to sound spoken and alive when it reaches the audience.",
+        "Because delivery matters only for emotional talks, not for rigorous ones."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A good story on paper still needs a living voice. Otherwise the audience may hear the structure without feeling the life inside it.",
+        "direct": "The bridge to Chapter 3 is that story gives the message shape, but delivery determines whether that shape reaches the room as live speech instead of recital.",
+        "competitive": "Story builds the transport. Delivery decides whether that transport actually moves."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

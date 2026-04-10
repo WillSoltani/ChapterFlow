@@ -1,0 +1,155 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch08-q01",
+      "prompt": "What is the chapter's main claim about daily control?",
+      "choices": [
+        "Inputs are a better daily control target than outcomes",
+        "Outcomes are the only thing that matters",
+        "Process never matters"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says daily integrity is stronger at the level of inputs.",
+        "direct": "Controllable process beats uncertain result as the daily scorecard.",
+        "competitive": "Own the reps, not the fantasy."
+      }
+    },
+    {
+      "questionId": "ch08-q02",
+      "prompt": "Why are outcomes hard to control directly?",
+      "choices": [
+        "They depend partly on outside variables such as timing, other people, and delay",
+        "They respond instantly to effort every time",
+        "They are always fake"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Results depend on more than the person's will.",
+        "direct": "Outcomes are exposed to variables outside direct command.",
+        "competitive": "Too many people and forces get a vote."
+      }
+    },
+    {
+      "questionId": "ch08-q03",
+      "prompt": "What counts as an input in this chapter?",
+      "choices": [
+        "Kept time blocks, repetitions, drafts, practice sessions, and attempts",
+        "Only final results",
+        "Only emotions about the work"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Inputs are the parts of the work you can actually perform.",
+        "direct": "The chapter names process commitments as the honest unit of daily control.",
+        "competitive": "Inputs are the reps that answer directly to you."
+      }
+    },
+    {
+      "questionId": "ch08-q04",
+      "prompt": "A student judges each study block by whether they already feel ready for the exam. What is the chapter's correction?",
+      "choices": [
+        "Judge the block by controllable study inputs instead",
+        "Ignore studying entirely",
+        "Treat the exam score as fully controllable"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The block should be scored by study effort, not by immediate certainty.",
+        "direct": "The chapter moves the scorecard from outcome to input.",
+        "competitive": "Stop asking the hour for a grade it cannot issue yet."
+      }
+    },
+    {
+      "questionId": "ch08-q05",
+      "prompt": "Why does input focus make traction steadier?",
+      "choices": [
+        "Because it aligns the scorecard with what the person actually controls",
+        "Because it makes outcomes irrelevant forever",
+        "Because it guarantees easy work"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The person can own the process even when results lag.",
+        "direct": "Input focus reduces emotional fragility by matching effort to jurisdiction.",
+        "competitive": "It stops luck from grading daily integrity."
+      }
+    },
+    {
+      "questionId": "ch08-q06",
+      "prompt": "What is a good sign that a block is built correctly under this chapter?",
+      "choices": [
+        "It is defined by process the person can execute, not by demanded guaranteed success",
+        "It promises certainty",
+        "It depends mostly on praise from others"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A good block protects effort you can really keep.",
+        "direct": "The chapter wants executable process inside the time block.",
+        "competitive": "Book the reps, not the applause."
+      }
+    },
+    {
+      "questionId": "ch08-q07",
+      "prompt": "What limit does the chapter preserve?",
+      "choices": [
+        "Outcomes still matter for feedback and direction",
+        "Outcomes no longer matter at all",
+        "Inputs guarantee success"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps outcomes relevant as learning signals.",
+        "direct": "Results still guide adjustment even after daily control shifts.",
+        "competitive": "Do not fire the outcome. Just remove its daily crown."
+      }
+    },
+    {
+      "questionId": "ch08-q08",
+      "prompt": "Why can outcome fixation make a work block feel like a referendum on self-worth?",
+      "choices": [
+        "Because the result may not arrive immediately even after honest effort",
+        "Because outcomes are always meaningless",
+        "Because inputs never matter"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The block gets judged by a result it cannot fully command.",
+        "direct": "Outcome fixation gives too much emotional power to delayed and external variables.",
+        "competitive": "The verdict gets outsourced to forces outside the room."
+      }
+    },
+    {
+      "questionId": "ch08-q09",
+      "prompt": "How does this chapter build on Chapter 7?",
+      "choices": [
+        "It asks what can actually be controlled inside the value-protecting time block",
+        "It replaces values with randomness",
+        "It says calendars do not matter anymore"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Once values have time, the next question is what kind of effort belongs there.",
+        "direct": "Chapter 8 refines the calendar block by focusing on controllable process.",
+        "competitive": "After the value gets hours, the block needs a better boss than the result."
+      }
+    },
+    {
+      "questionId": "ch08-q10",
+      "prompt": "Why does the next chapter move into important relationships?",
+      "choices": [
+        "Because relationships also depend on protected controllable inputs rather than instant guaranteed outcomes",
+        "Because relationships have no inputs",
+        "Because outcomes are always irrelevant in personal life"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The same logic applies beyond solo work.",
+        "direct": "Important relationships also grow through repeated protected effort.",
+        "competitive": "Human priorities need reps too, not just declarations."
+      }
+    }
+  ]
+}

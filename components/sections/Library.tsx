@@ -7,45 +7,42 @@ import { SectionReveal } from "@/components/ui/SectionReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { CounterAnimation } from "@/components/ui/CounterAnimation";
 import { BookCover } from "@/app/book/components/BookCover";
-import { getBookById } from "@/app/book/data/booksCatalog";
+import { BOOKS_CATALOG } from "@/app/book/data/booksCatalog";
 import { getBookCoverPath } from "@/lib/book-covers";
+import { track } from "@/lib/analytics";
 
-const BOOK_IDS = [
-  "the-48-laws-of-power",
-  "friends-and-influence",
-];
+const BOOK_COUNT = BOOKS_CATALOG.length;
+const FREE_TO_START_COUNT: number = 2;
 
-const CATEGORIES = [
-  "All",
-  "Productivity",
-  "Psychology",
-  "Leadership",
-  "Communication",
-  "Finance",
-  "Health",
-  "Philosophy",
-  "Business",
-  "Self-Help",
-];
+// Derive ordered categories from full catalog (by count, descending)
+const ALL_CATEGORY_COUNTS = (() => {
+  const counts = new Map<string, number>();
+  BOOKS_CATALOG.forEach((b) => counts.set(b.category, (counts.get(b.category) || 0) + 1));
+  return Array.from(counts.entries()).sort((a, b) => b[1] - a[1]);
+})();
+
+const CATEGORIES = ["All", ...ALL_CATEGORY_COUNTS.map(([name]) => name)];
 
 const STATS = [
-  { label: "Books available", target: 95, suffix: "+", prefix: "" },
-  { label: "Per chapter", target: 20, suffix: " min", prefix: "~" },
-  { label: "Free to start", target: 2, suffix: " books", prefix: "" },
-  { label: "Simple · Standard · Deeper", target: 3, suffix: " levels", prefix: "" },
+  { label: "Books available", target: BOOK_COUNT, suffix: "", prefix: "" },
+  { label: "Minutes per chapter", target: 20, suffix: " min", prefix: "~" },
+  {
+    label: "Free to start",
+    target: FREE_TO_START_COUNT,
+    suffix: FREE_TO_START_COUNT === 1 ? " book" : " books",
+    prefix: "",
+  },
+  { label: "Lite · Standard · Deeper", target: 3, suffix: " levels", prefix: "" },
 ];
 
 export function Library() {
   const [activeCategory, setActiveCategory] = useState("All");
 
-  const allBooks = BOOK_IDS.map((id) => getBookById(id)).filter(
-    (b): b is NonNullable<typeof b> => b != null
-  );
-
+  // Show up to 8 books — from the full catalog filtered by category
   const filteredBooks =
     activeCategory === "All"
-      ? allBooks
-      : allBooks.filter((book) => book.category === activeCategory);
+      ? BOOKS_CATALOG.slice(0, 8)
+      : BOOKS_CATALOG.filter((b) => b.category === activeCategory).slice(0, 8);
 
   return (
     <section id="library" className="py-14 lg:py-20">
@@ -60,7 +57,7 @@ export function Library() {
                 className="mt-4 text-[28px] md:text-[36px] lg:text-[44px] font-bold leading-[1.1] tracking-[-0.02em] text-(--text-heading)"
                 style={{ fontFamily: "var(--font-display)" }}
               >
-                95+ books, each structured the same way.
+                {BOOK_COUNT} books, each structured the same way.
               </h2>
 
               <p
@@ -69,15 +66,31 @@ export function Library() {
               >
                 Every title is broken into chapters with summaries, scenarios,
                 and quizzes. Browse by topic, pick a book, start reading with
-                structure.
+                structure.{" "}
+                <span style={{ color: "var(--accent-teal)" }}>
+                  {activeCategory === "All"
+                    ? `Showing ${filteredBooks.length} of ${BOOK_COUNT}.`
+                    : `Showing ${filteredBooks.length} of ${BOOKS_CATALOG.filter((b) => b.category === activeCategory).length} in ${activeCategory}.`}
+                </span>
               </p>
             </div>
 
             <div className="flex-shrink-0">
               <Link
                 href="/books"
-                className="inline-block border border-(--border-subtle) text-(--text-heading) hover:bg-(--bg-glass) rounded-lg px-5 py-2.5 transition-colors"
-                style={{ fontFamily: "var(--font-display)" }}
+                onClick={() => track("browse_library_click", { source: "landing_library" })}
+                className="inline-flex items-center gap-1.5 border rounded-lg px-5 py-2.5 text-[14px] font-semibold transition-all duration-200 hover:bg-[--bg-glass] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
+                style={{
+                  borderColor: "rgba(34,211,238,0.35)",
+                  color: "var(--text-heading)",
+                  fontFamily: "var(--font-display)",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 0 16px rgba(34,211,238,0.12)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none";
+                }}
               >
                 Browse the library &rarr;
               </Link>
@@ -95,13 +108,18 @@ export function Library() {
                   <button
                     key={category}
                     onClick={() => setActiveCategory(category)}
-                    className={`flex-shrink-0 rounded-full px-4 py-2 text-[13px] transition-colors ${
+                    className={`flex-shrink-0 rounded-full px-4 py-2 text-[13px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 ${
                       isActive
                         ? "bg-(--accent-teal) text-primary-foreground font-semibold"
                         : "bg-transparent border border-(--border-subtle) text-(--text-secondary) hover:text-(--text-heading)"
                     }`}
                   >
                     {category}
+                    {isActive && category !== "All" && (
+                      <span className="ml-1 text-[10px] opacity-75">
+                        ({BOOKS_CATALOG.filter((b) => b.category === category).length})
+                      </span>
+                    )}
                   </button>
                 );
               })}
@@ -111,57 +129,85 @@ export function Library() {
 
         {/* Book grid */}
         <div className="mt-8">
-          <LayoutGroup>
-            <motion.div
-              layout
-              className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5"
-            >
-              <AnimatePresence mode="popLayout">
-                {filteredBooks.map((book) => (
-                  <motion.div
-                    key={book.id}
-                    layout
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                    className="group cursor-pointer"
-                    whileHover={{ scale: 1.03, y: -4, transition: { duration: 0.2 } }}
-                  >
-                    <div className="overflow-hidden rounded-lg shadow-shadow-elevated group-hover:shadow-[rgba(34,211,238,0.05)] transition-shadow duration-300">
-                      <BookCover
-                        bookId={book.id}
-                        title={book.title}
-                        icon={book.icon}
-                        coverImage={getBookCoverPath(book.id)}
-                        className="w-full aspect-[3/4] rounded-lg border border-(--border-subtle)"
-                        sizes="(max-width: 768px) 45vw, (max-width: 1024px) 30vw, 22vw"
-                        interactive={false}
-                      />
+          {filteredBooks.length === 0 ? (
+            <div className="text-center py-16">
+              <p className="text-[15px]" style={{ color: "var(--text-muted)" }}>
+                No {activeCategory} books in the preview.
+              </p>
+              <Link
+                href={`/books?category=${encodeURIComponent(activeCategory)}`}
+                onClick={() =>
+                  track("browse_category_click", {
+                    source: "landing_library_empty",
+                    category: activeCategory,
+                  })
+                }
+                className="mt-3 inline-block text-[13px] font-semibold hover:underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
+                style={{ color: "var(--accent-teal)" }}
+              >
+                Browse all {activeCategory} books &rarr;
+              </Link>
+            </div>
+          ) : (
+            <LayoutGroup>
+              <motion.div
+                layout
+                className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5"
+              >
+                <AnimatePresence mode="popLayout">
+                  {filteredBooks.map((book) => (
+                    <motion.div
+                      key={book.id}
+                      layout
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.9 }}
+                      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                      className="group cursor-pointer"
+                      whileHover={{ scale: 1.03, y: -4, transition: { duration: 0.2 } }}
+                    >
+                      <Link
+                        href={`/book/library/${book.id}`}
+                        aria-label={`Open ${book.title} by ${book.author}`}
+                        onClick={() => track("book_card_click", { source: "landing_library", bookId: book.id })}
+                        className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2 rounded-lg"
+                      >
+                        <div className="overflow-hidden rounded-lg shadow-shadow-elevated group-hover:shadow-[0_0_20px_rgba(34,211,238,0.18)] transition-shadow duration-300">
+                          <BookCover
+                            bookId={book.id}
+                            title={book.title}
+                            icon={book.icon}
+                            coverImage={getBookCoverPath(book.id)}
+                            className="w-full aspect-[3/4] rounded-lg border border-(--border-subtle)"
+                            sizes="(max-width: 768px) 45vw, (max-width: 1024px) 30vw, 22vw"
+                            interactive={false}
+                          />
+                        </div>
 
-                      <div className="mt-3 space-y-1">
-                        <p
-                          className="text-[14px] font-semibold text-(--text-heading) truncate"
-                          style={{ fontFamily: "var(--font-display)" }}
-                        >
-                          {book.title}
-                        </p>
-                        <p
-                          className="text-[12px] text-(--text-muted) truncate"
-                          style={{ fontFamily: "var(--font-body)" }}
-                        >
-                          {book.author}
-                        </p>
-                        <span className="inline-block text-[11px] text-(--text-secondary) border border-(--border-subtle) px-2.5 py-0.5 rounded-full">
-                          {book.category}
-                        </span>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </AnimatePresence>
-            </motion.div>
-          </LayoutGroup>
+                        <div className="mt-3 space-y-1">
+                          <p
+                            className="text-[14px] font-semibold text-(--text-heading) truncate"
+                            style={{ fontFamily: "var(--font-display)" }}
+                          >
+                            {book.title}
+                          </p>
+                          <p
+                            className="text-[12px] text-(--text-muted) truncate"
+                            style={{ fontFamily: "var(--font-body)" }}
+                          >
+                            {book.author}
+                          </p>
+                          <span className="inline-block text-[11px] text-(--text-secondary) border border-(--border-subtle) px-2.5 py-0.5 rounded-full">
+                            {book.category}
+                          </span>
+                        </div>
+                      </Link>
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
+              </motion.div>
+            </LayoutGroup>
+          )}
         </div>
 
         {/* Stats bar */}

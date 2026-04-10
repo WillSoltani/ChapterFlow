@@ -1,0 +1,155 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "Why does Horowitz put people before product and profit in this chapter?",
+      "choices": [
+        "Because profit no longer matters once a company grows",
+        "Because the people system determines whether product quality and durable profit can hold",
+        "Because culture should always be protected from accountability"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "He treats the order as causal. Strong people systems help create strong products, which support lasting profit.",
+        "direct": "People quality comes first because product reliability and profit durability depend on managerial quality and standards.",
+        "competitive": "Profit sits downstream. If the people layer cracks, the later wins get weaker too."
+      }
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What is a common misreading of 'take care of the people' that the chapter rejects?",
+      "choices": [
+        "That care includes training and role clarity",
+        "That people-first means profit is irrelevant and comfort should replace accountability",
+        "That product quality matters for customer trust"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter does not treat care as soft comfort without standards.",
+        "direct": "Horowitz rejects the idea that people-first means anti-profit or anti-accountability.",
+        "competitive": "The soft reading is wrong. Care without standards just hides weakness."
+      }
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What does the chapter mean by management debt?",
+      "choices": [
+        "The cost that builds when leaders postpone management discipline and system-building",
+        "The legal debt created by executive compensation",
+        "The accounting loss from a single bad quarter"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Management debt grows when training, role clarity, and feedback systems are delayed.",
+        "direct": "It is the compounding cost of postponed management work.",
+        "competitive": "Every skipped management repair becomes debt, and the bill arrives later."
+      }
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Why does the chapter say a good place to work is not the same as a comfort-first culture?",
+      "choices": [
+        "Because strong workplaces need standards, feedback, and accountability",
+        "Because pressure automatically improves performance",
+        "Because culture should be ignored while scaling"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter defines a good workplace through clear expectations and honest support.",
+        "direct": "Care includes accountability because people need standards to do strong work.",
+        "competitive": "Comfort alone does not build execution. Standards do."
+      }
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What is the role of training in this chapter's logic?",
+      "choices": [
+        "It is optional overhead until the company is much larger",
+        "It multiplies judgment across decisions leaders cannot personally review",
+        "It mainly protects morale from hard feedback"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Training helps more people make stronger decisions without waiting for founder rescue.",
+        "direct": "Horowitz treats training as leverage for management quality and execution consistency.",
+        "competitive": "Training scales judgment. Skipping it pushes every hard call back to the top."
+      }
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Why is executive hiring alone not enough according to the chapter?",
+      "choices": [
+        "Because startups should avoid outside leaders entirely",
+        "Because a strong hire cannot fix a weak internal management system by themselves",
+        "Because product teams should manage themselves without leadership"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "External leaders help, but they cannot replace a neglected management foundation.",
+        "direct": "Executive hiring adds leverage only when the organization can absorb stronger practice.",
+        "competitive": "One great hire does not save a company that never built management strength underneath them."
+      }
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What usually fails first when scale outruns the management system, according to this chapter?",
+      "choices": [
+        "The profit line immediately collapses",
+        "The people system starts making weaker and less consistent decisions",
+        "Customers stop caring about product quality"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The earliest break often appears in management quality, role clarity, and standards.",
+        "direct": "The people layer weakens first, then product and profit absorb the damage later.",
+        "competitive": "Profit is late. The first crack shows up in the management core."
+      }
+    },
+    {
+      "questionId": "q08",
+      "prompt": "A founder says, 'We can fix management later because numbers are strong right now.' Which chapter response fits best?",
+      "choices": [
+        "That is sensible because profit proves the system is healthy",
+        "Strong numbers can temporarily hide people-system weakness and delay an expensive correction",
+        "Management quality matters only after product quality is solved"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns that healthy numbers can hide deeper management debt for a while.",
+        "direct": "Short-term success does not disprove weak management. It can postpone the visible cost.",
+        "competitive": "A good quarter can camouflage a bad system. That is why delay feels smart until it is not."
+      }
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Which choice best captures the chapter's hard-edge contradiction?",
+      "choices": [
+        "Delaying management discipline can produce short-term speed while creating long-term fragility",
+        "Every process decision reduces speed and should be avoided",
+        "Care and accountability cannot exist in the same culture"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter shows that the same delay that helps today can hurt badly later.",
+        "direct": "Short-term output can mask long-term operating weakness when discipline is postponed.",
+        "competitive": "What feels like agility now can become fragility later."
+      }
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How does this chapter prepare the reader for the next one?",
+      "choices": [
+        "By arguing that once profits rise, scaling tensions disappear",
+        "By showing that after management infrastructure is built, the next problems involve going-concern questions like process, politics, and executive fit",
+        "By concluding that culture matters more than product forever"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The next chapter can move into scaling tensions because this one built the management-system foundation first.",
+        "direct": "Horowitz uses this chapter to establish management infrastructure before turning to larger going-concern challenges.",
+        "competitive": "Once the core is steadier, the next fight shifts to scaling complexity, not basic management neglect."
+      }
+    }
+  ]
+}

@@ -452,6 +452,13 @@ export function BookDetailClient({
                     stepsCompleted={getStepsCompleted(chapter.id)}
                     isCurrent={isCurrent}
                     onClick={() => openChapter(chapter)}
+                    onMouseEnter={() => {
+                      if (status !== "locked") {
+                        router.prefetch(
+                          `/book/library/${encodeURIComponent(bookId)}/chapter/${encodeURIComponent(chapter.id)}`,
+                        );
+                      }
+                    }}
                     onLockedClick={() =>
                       setLockedToast(
                         `Complete Chapter ${currentChapter?.number ?? ""} to unlock this chapter`,

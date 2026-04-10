@@ -1,0 +1,41 @@
+{
+  "packageVersion": "v12-sealed",
+  "chapterId": "the-33-strategies-of-war-ch04",
+  "chapterNumber": 4,
+  "title": "Absorbing and Returning an Attack",
+  "runId": "20260406-01",
+  "validatedAt": "2026-04-09",
+  "contentHash": "3123fd92921ece401a4e6c1fa3b00629694d78585dc0e3bab9229e39637ec086",
+  "criticScore": "12/12",
+  "validationStatus": "PASS",
+  "artifactPaths": {
+    "brief": "briefs/ch04.md",
+    "outline": "outlines/ch04.md",
+    "quizBlueprint": "quiz-blueprints/ch04.md",
+    "sourceSidecarTxt": "sidecars/source/ch04.source.txt",
+    "sourceSidecarJson": "sidecars/source/ch04.source.json",
+    "canonicalDraft": "drafts/canonical/ch04.md",
+    "editedDraft": "drafts/edited/ch04.md",
+    "criticReport": "reports/ch04.critic.md",
+    "structuredChapter": "structured/ch04.chapter.json",
+    "quiz": "quizzes/ch04.quiz.json",
+    "validatedChapter": "validated/ch04.chapter.json",
+    "validationReport": "reports/ch04.validation.md",
+    "readingMetrics": "sidecars/ch04.reading-metrics.json"
+  },
+  "quizStats": {
+    "questionCount": 10,
+    "choicesPerQuestion": 3,
+    "passingScorePercent": 80,
+    "correctIndexDistribution": {"0": 3, "1": 4, "2": 3}
+  },
+  "exampleStats": {
+    "count": 6,
+    "formats": ["decision_point", "cold_open", "dialogue", "case_in_progress", "dilemma", "aftermath"],
+    "categories": {"work": 2, "school": 2, "personal": 2},
+    "endingTypes": ["lever", "pivot", "resolution", "discipline", "commitment", "lesson"]
+  },
+  "primaryCharacters": ["Dara", "Kenji", "Petra", "Felix", "Chisom", "Rowan"],
+  "secondaryCharacters": ["Isolde", "Clem", "Bastian"],
+  "schoolSettings": ["law-school-trial-advocacy", "high-school-economics-class"]
+}

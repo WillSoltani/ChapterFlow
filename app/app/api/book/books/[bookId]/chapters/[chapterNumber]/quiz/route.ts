@@ -8,7 +8,11 @@ import {
 } from "@/app/app/api/book/_lib/ensure-book-started";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import { bookOk, withBookApiErrors } from "@/app/app/api/book/_lib/http";
-import { getLocalQuizQuestions, getUserAccessibleQuiz } from "@/app/app/api/book/_lib/content-service";
+import {
+  getLocalQuizQuestions,
+  getUserAccessibleQuiz,
+  isLocalV12Package,
+} from "@/app/app/api/book/_lib/content-service";
 import {
   buildQuizClientSession,
   buildQuizStateFromAttempts,
@@ -19,8 +23,39 @@ import {
   listRecentQuizAttempts,
 } from "@/app/app/api/book/_lib/repo";
 import { QUIZ_QUESTION_COUNTS } from "@/app/book/_lib/flow-points-economy";
+import type { ReadingDepth } from "@/app/book/data/mockChapters";
+import type { ToneKey } from "@/app/book/data/bookPackages";
 
 export const runtime = "nodejs";
+
+const QUIZ_QUESTION_COUNTS_BY_DIFFICULTY: Record<ReadingDepth, number> = {
+  simple: 5,
+  standard: 7,
+  deeper: 10,
+};
+
+function parseDifficulty(value: string | null): ReadingDepth {
+  if (value === "simple" || value === "standard" || value === "deeper") {
+    return value;
+  }
+  return "standard";
+}
+
+function parseTone(value: string | null): ToneKey {
+  if (value === "gentle" || value === "direct" || value === "competitive") {
+    return value;
+  }
+  return "direct";
+}
+
+function readSavedTone(settings: unknown): string | null {
+  if (!settings || typeof settings !== "object" || Array.isArray(settings)) return null;
+  const extended = (settings as { extended?: unknown }).extended;
+  if (!extended || typeof extended !== "object" || Array.isArray(extended)) return null;
+  return typeof (extended as { contentTone?: unknown }).contentTone === "string"
+    ? ((extended as { contentTone?: string }).contentTone ?? null)
+    : null;
+}
 
 export async function GET(
   req: Request,
@@ -28,6 +63,8 @@ export async function GET(
 ) {
   return withBookApiErrors(req, async () => {
     const user = await requireUser();
+    const searchParams = new URL(req.url).searchParams;
+    const difficulty = parseDifficulty(searchParams.get("difficulty"));
     const { bookId, chapterNumber } = await params;
     const chapterNum = Number(chapterNumber);
     if (!bookId || !Number.isFinite(chapterNum) || chapterNum < 1) {
@@ -59,19 +96,22 @@ export async function GET(
       getUserSettingsItem(tableName, user.sub),
     ]);
 
-    // Prefer quiz questions from the local book-package JSON over stale S3 data.
-    const localQuestions = getLocalQuizQuestions(bookId, chapterNumberInt);
-    const quiz = localQuestions
-      ? { ...s3Quiz, questions: localQuestions }
-      : s3Quiz;
-
     const rawMode = userSettings?.settings?.learningMode;
     type LearningMode = "guided" | "standard" | "challenge";
     const learningMode: LearningMode =
       rawMode === "guided" || rawMode === "standard" || rawMode === "challenge"
         ? rawMode
         : "standard";
-    const maxQuestions = QUIZ_QUESTION_COUNTS[learningMode];
+    const tone = parseTone(searchParams.get("tone") ?? readSavedTone(userSettings?.settings));
+    // Prefer quiz questions from the local book-package JSON over stale S3 data.
+    const localQuestions = getLocalQuizQuestions(bookId, chapterNumberInt, tone);
+    const quiz = localQuestions
+      ? { ...s3Quiz, questions: localQuestions }
+      : s3Quiz;
+    const strictV12 = isLocalV12Package(bookId);
+    const maxQuestions = strictV12
+      ? QUIZ_QUESTION_COUNTS_BY_DIFFICULTY[difficulty]
+      : QUIZ_QUESTION_COUNTS[learningMode];
 
     const quizState =
       persistedQuizState ??
@@ -93,7 +133,9 @@ export async function GET(
         quizState,
         latestAttempt,
         history: history.slice(0, 5),
+        passingScorePercent: strictV12 ? quiz.passingScorePercent : undefined,
         maxQuestions,
+        preserveAuthoredOrder: strictV12,
       }),
       progress: {
         currentChapterNumber: progress.currentChapterNumber,

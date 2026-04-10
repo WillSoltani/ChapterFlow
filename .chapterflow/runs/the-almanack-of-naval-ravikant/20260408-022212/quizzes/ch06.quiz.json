@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "Why does the appendix begin by saying Naval does not read for self-improvement first?",
+      "choices": [
+        "Because curiosity and interest are what create the kind of attention that real reading needs",
+        "Because the appendix thinks self-improvement is always fake and useless",
+        "Because reading should stay entirely unstructured and impulsive"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter is not attacking all improvement. It is saying that curiosity is what makes attention come alive enough for a book to be truly absorbed.",
+        "direct": "Curiosity is the starting filter because attention matters more than worthy appearance. The wrong answers overstate the point into anti-improvement or randomness.",
+        "competitive": "Reading that never gets enough attention to be digested is mostly shelf theater."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What does the line the best book is the one you'll devour actually mean here?",
+      "choices": [
+        "The shortest book is usually the most efficient choice",
+        "The strongest reading choice is the one your attention will truly engage with and absorb",
+        "You should only read books that feel entertaining and never difficult"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The line is about depth of engagement, not about ease or speed. A book matters more when it is actually metabolized.",
+        "direct": "Devouring means sustained, live attention. The wrong answers confuse engagement with shallowness or mere efficiency.",
+        "competitive": "A gripped mind extracts more than a polite mind skimming for status."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What happens, according to the appendix, when someone reads enough over time?",
+      "choices": [
+        "They become a connoisseur and gravitate toward theory, concepts, and denser signal",
+        "They stop needing curiosity because discipline fully replaces it",
+        "They should narrow down to one approved category and ignore the rest"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The appendix says volume can sharpen taste. Reading enough helps someone recognize what kinds of inputs keep paying off.",
+        "direct": "Connoisseurship is the chapter's answer to random curiosity. The other answers wrongly remove appetite or category variety.",
+        "competitive": "Taste gets sharper, not narrower into one prestige lane."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Piper can read a respectable bestseller she is unlikely to finish or a denser source she already feels compelled to keep reading. What best follows the appendix?",
+      "choices": [
+        "Choose the denser source if it is the one she will actually devour and use",
+        "Choose the bestseller because social proof guarantees stronger signal",
+        "Wait until she finds a book that looks good and feels effortless"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Piper's better move is to follow the source her attention is already alive toward, then test whether it is rich in concepts or signal.",
+        "direct": "Piper's case turns the devour rule into a real decision. Social proof is not the same thing as engagement or yield.",
+        "competitive": "The useful book is the one that gets inside her head, not the one that flatters the room."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Andre's team reads lots of updates and headlines but keeps producing shallow strategy. What does the appendix suggest is missing?",
+      "choices": [
+        "More speed and more current examples",
+        "Deeper theory, concepts, and framework-rich inputs underneath the updates",
+        "A complete refusal to read anything current at all"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Andre's team has freshness but not enough depth. The appendix suggests that stronger concepts and theories are what make later examples more useful.",
+        "direct": "Andre's postmortem reveals a thin input diet. Updates without upstream frameworks leave judgment weak.",
+        "competitive": "Current noise is not the same thing as conceptual nutrition."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Naomi wants to dismiss a science fiction or graphic work as unserious before reading it closely. Which chapter idea best challenges that instinct?",
+      "choices": [
+        "Only hardcover nonfiction can count as real reading once taste matures",
+        "Medium matters less than whether the source delivers real signal, surprise, or conceptual yield",
+        "Narrative media are useful only for relaxation, not for judgment"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The appendix keeps returning to signal over medium. A story, graphic work, or show can still be intellectually serious if it sharpens the mind.",
+        "direct": "Naomi's instinct confuses container prestige with informational yield. The chapter rejects that substitution.",
+        "competitive": "A better mind should be loyal to signal, not to format snobbery."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why does the appendix include blogs, essays, and other live or unusual sources alongside books?",
+      "choices": [
+        "Because all media are identical in every relevant way",
+        "Because signal can arrive through many formats, and the chapter judges seriousness by yield rather than by packaging",
+        "Because books have mostly become irrelevant to serious reading"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter does not flatten media into sameness. It simply says that strong insight can come through more than one format.",
+        "direct": "Medium is secondary to usefulness here. The wrong answers either erase differences completely or overcorrect against books.",
+        "competitive": "The wrapper does not decide the value. The return on attention does."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What is the point of rereading and keeping certain texts or posts open as templates?",
+      "choices": [
+        "It proves you failed to understand them the first time",
+        "It lets high-yield sources become recurring tools whose value compounds as the reader changes",
+        "It saves money by reducing the need to buy any new material"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The appendix treats rereading as a way to let strong inputs keep paying out, especially when the reader has changed enough to see more in them.",
+        "direct": "Rereading matters because some sources function as tools, not just completed experiences. The other answers shrink that compounding logic too much.",
+        "competitive": "A source that keeps improving your judgment is an asset, not a one-time event."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What does the appendix imply about reading material that feels embarrassing, strange, or disagreeable?",
+      "choices": [
+        "If it is low-status, it should be avoided automatically",
+        "If it is mind-bending and survives taste, it can still belong in the input stream without being endorsed wholesale",
+        "Once something is controversial, it becomes more valuable than anything respectable"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says status is a weak selector of useful inputs. It still keeps taste and signal as filters, so reading something does not automatically canonize it.",
+        "direct": "Status is not allowed to choose the source, but indiscriminate consumption is not the rule either. The value still has to survive scrutiny.",
+        "competitive": "Do not let embarrassment censor good signal, and do not let shock value masquerade as signal either."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why does this appendix belong after the earlier chapters on judgment and philosophy?",
+      "choices": [
+        "Because it reveals the upstream input stream feeding the judgment and worldview built earlier in the book",
+        "Because the book needed one final random bonus list before ending",
+        "Because reading only matters after every philosophical question has already been solved"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The final chapter works as a source map. It shows where earlier judgment and worldview were being fed from, not just what titles Naval likes.",
+        "direct": "Upstream is the key idea. The appendix explains the supply chain behind earlier chapters instead of acting as a disconnected extra.",
+        "competitive": "If judgment and worldview were outputs, this chapter shows the raw material and pipeline that kept producing them."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

@@ -43,6 +43,14 @@ const MODE_CONFIG: Record<LearningMode, Record<ChapterTab, PhaseCompletionConfig
   },
 };
 
+export function getPhaseThresholds(
+  learningMode: LearningMode,
+  activePhase: ChapterTab
+): { minTime: number; minScroll: number } {
+  const cfg = MODE_CONFIG[learningMode][activePhase];
+  return { minTime: cfg.timeThreshold, minScroll: cfg.scrollThreshold };
+}
+
 const STORAGE_KEY_PREFIX = "book-accelerator:phase-completion:v1";
 
 function getStorageKey(bookId: string, chapterId: string): string {
@@ -113,6 +121,14 @@ export function usePhaseCompletion(params: {
   const timeRef = useRef(0);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const maxScrollRef = useRef(0);
+  // Per-phase progress, kept across tab switches within a session
+  const phaseProgressRef = useRef<Record<ChapterTab, { scroll: number; time: number }>>({
+    summary: { scroll: 0, time: 0 },
+    examples: { scroll: 0, time: 0 },
+    quiz: { scroll: 0, time: 0 },
+    practice: { scroll: 0, time: 0 },
+  });
+  const prevPhaseRef = useRef<ChapterTab | null>(null);
 
   // Hydrate from localStorage
   useEffect(() => {
@@ -138,14 +154,43 @@ export function usePhaseCompletion(params: {
     );
   }, [bookId, chapterId, completedPhases, allPhasesCompletedOnce, scenarioInteractions, hydrated]);
 
-  // Reset time and scroll when phase or learning mode changes
+  // Restore per-phase progress when switching phases. Save the previous
+  // phase's progress before swapping so the user sees their actual position
+  // when they come back to it.
+  //
+  // Important: only react to actual phase changes here. Mode / completedPhases
+  // changes must NOT clobber `currentPhaseReady` — the completion-check effect
+  // below owns that flag and will recompute it against the new thresholds.
   useEffect(() => {
-    timeRef.current = 0;
-    maxScrollRef.current = 0;
-    setTimeOnPhase(0);
-    setScrollPercent(0);
+    const prev = prevPhaseRef.current;
+    if (prev === activePhase) return;
+
+    if (prev) {
+      phaseProgressRef.current[prev] = {
+        scroll: maxScrollRef.current,
+        time: timeRef.current,
+      };
+    }
+    prevPhaseRef.current = activePhase;
+
+    // If the phase the user just landed on is already completed, snap to
+    // 100%/ready immediately.
+    if (completedPhases.has(activePhase) || allPhasesCompletedOnce) {
+      maxScrollRef.current = 1;
+      timeRef.current = Math.max(timeRef.current, 1);
+      setScrollPercent(100);
+      setTimeOnPhase(timeRef.current);
+      setCurrentPhaseReady(true);
+      return;
+    }
+
+    const stored = phaseProgressRef.current[activePhase] ?? { scroll: 0, time: 0 };
+    maxScrollRef.current = stored.scroll;
+    timeRef.current = stored.time;
+    setScrollPercent(Math.round(stored.scroll * 100));
+    setTimeOnPhase(stored.time);
     setCurrentPhaseReady(false);
-  }, [activePhase, learningMode]);
+  }, [activePhase, completedPhases, allPhasesCompletedOnce]);
 
   // Timer for time tracking
   useEffect(() => {
@@ -153,6 +198,10 @@ export function usePhaseCompletion(params: {
 
     timerRef.current = setInterval(() => {
       timeRef.current += 1;
+      phaseProgressRef.current[activePhase] = {
+        scroll: maxScrollRef.current,
+        time: timeRef.current,
+      };
       setTimeOnPhase(timeRef.current);
     }, 1000);
 
@@ -168,19 +217,38 @@ export function usePhaseCompletion(params: {
     const handleScroll = () => {
       const el = contentRef.current;
       if (!el) return;
-      const scrollPosition = window.scrollY + window.innerHeight;
-      const contentBottom = el.offsetTop + el.scrollHeight;
-      if (contentBottom <= 0) return;
-      const percent = Math.min(1, scrollPosition / contentBottom);
+      const rect = el.getBoundingClientRect();
+      const contentTop = rect.top + window.scrollY;
+      const contentHeight = el.scrollHeight;
+      const viewportHeight = window.innerHeight;
+
+      // Content fits in viewport: the user can see it all without scrolling.
+      // Mark fully "scrolled" immediately so the time gate becomes the only requirement.
+      if (contentHeight <= viewportHeight) {
+        maxScrollRef.current = 1;
+        setScrollPercent(100);
+        return;
+      }
+
+      const scrollBottom = window.scrollY + viewportHeight;
+      const contentBottom = contentTop + contentHeight;
+      const percent = Math.min(
+        1,
+        Math.max(0, (scrollBottom - contentTop) / (contentBottom - contentTop))
+      );
       maxScrollRef.current = Math.max(maxScrollRef.current, percent);
       setScrollPercent(Math.round(maxScrollRef.current * 100));
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll, { passive: true });
     // Initial check
     handleScroll();
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
   }, [enabled, contentRef, activePhase]);
 
   // Check completion criteria
@@ -202,21 +270,12 @@ export function usePhaseCompletion(params: {
     const timeMet = timeRef.current >= config.timeThreshold;
 
     if (scrollMet || timeMet) {
-      // Additional check for examples phase: interaction requirement
-      if (activePhase === "examples") {
-        if (learningMode === "guided") {
-          // Guided: scrolling is enough
+      // Examples phase: only Challenge mode requires interacting with every
+      // scenario. Guided + Standard unlock as soon as the read gate is met —
+      // chapter-level enforcement still happens at the quiz.
+      if (activePhase === "examples" && learningMode === "challenge") {
+        if (scenarioInteractions >= totalScenarios) {
           setCurrentPhaseReady(true);
-        } else if (learningMode === "standard") {
-          // Standard: need at least 1 interaction
-          if (scenarioInteractions >= 1) {
-            setCurrentPhaseReady(true);
-          }
-        } else {
-          // Challenge: need ALL interactions
-          if (scenarioInteractions >= totalScenarios) {
-            setCurrentPhaseReady(true);
-          }
         }
       } else {
         setCurrentPhaseReady(true);

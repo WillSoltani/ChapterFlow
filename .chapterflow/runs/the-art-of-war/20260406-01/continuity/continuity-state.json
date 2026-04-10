@@ -1,0 +1,31 @@
+{
+  "nameUsage": {},
+  "formatCategoryHistory": [],
+  "schoolSettingUsage": {},
+  "wordFrequency": {},
+  "phraseFrequency": {},
+  "openerRegistry": {
+    "gentle": {},
+    "direct": {},
+    "competitive": {}
+  },
+  "titleTemplateRegistry": {},
+  "endingPatternRegistry": {},
+  "withinChapterNames": {},
+  "approvedChapterHashes": {
+    "ch01": "7d0e5e629cf25b2b8ca4355d8f62e0a96190644246071d9df2aeb1488f5b0de8",
+    "ch02": "61bce9fbea224c647c725cea59d217aba082ec289947cc8719d2f4aa814c33d3",
+    "ch03": "702673748b40aac5a38f14f3c1b0bcc011ee8fd434eeeb5c6a0287e46fa5b7de",
+    "ch04": "b0bc58ae1c565d07c09ffacbb21614525e6b0f46b6b5f60b83288056cab33170",
+    "ch05": "8fb36c9580b9d863c3cff04bac3d9a09c19fc6a17e845187dbcf905b0f51b85b",
+    "ch06": "12f7e53305d8eca70ca59eabdaf22091de40ee919e15f45eaf1e366bb04f6df5",
+    "ch07": "e7c0aab1ca784208c3fb512d003d7ce99c2d5623adc87d53e4d2950f8a83e58d",
+    "ch08": "286e2cb355df50cae4404031d3012be26698b1a3e09e0d5592be188a08da1cdb",
+    "ch09": "4cad61b2b66c9e47d325e574627c889fe8ad5300b0a52927b18abcb65860d4cb",
+    "ch10": "7c3202979ffd0a2b534785743e28724e2ea2bd3a3218d4e6fd1bdb23714a0043",
+    "ch11": "d0c14b8243f71c8c7a4b24a32f9b11a37439337430cd133ea4ef4445cdbfa90f",
+    "ch12": "ffb1cdedfe86ae147498c8e23e25e318d06987ea8d4afefdc81194c51a56bd56",
+    "ch13": "42d5b29b6dffcd5f1a12324f42147738b45e95ce880193155788c8e8545e524b"
+  },
+  "note_ch01_rehash": "v12->v13 migration: hard moreDetails rewritten to eliminate duplicate sentences and add structurally distinct hard-depth content. Old hash 0fe4bf62... invalidated by retargeting."
+}

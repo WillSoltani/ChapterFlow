@@ -1,0 +1,37 @@
+{
+  "chapterId": "ch06",
+  "book": "Games People Play",
+  "author": "Eric Berne",
+  "sourceDocument": ".chapterflow/sources/games-people-play/games-people-play.txt",
+  "provenance": "Structured reference material (paraphrased, no verbatim reproduction).",
+  "slices": [
+    {
+      "id": "A",
+      "sourceLines": "248-309",
+      "summary": "Marital games: Corner, Courtroom, IWFY, Look How Hard I've Tried, Sweetheart. Structural patterns, antitheses, payoffs. Frigid Woman/equivalents described structurally without Berne's title.",
+      "usageNote": "Primary material."
+    },
+    {
+      "id": "B",
+      "summary": "All 1964 marital game examples are gendered; use neutral framing throughout.",
+      "usageNote": "Moral framing."
+    },
+    {
+      "id": "C",
+      "summary": "Ch6 unique claim: marital games = intimacy avoidance. 'Intimacy' allowed as the avoided thing; Ch10 definition must not be preempted.",
+      "usageNote": "Scope."
+    },
+    {
+      "id": "D",
+      "summary": "Continuity: Ch1\u2013Ch5 names locked. Ch6 cast: Parveen, Dev, Luca, Nadia, Vera, Bastian, Cleo, Jae, Strommen, Rosie, Kwame, Adaeze.",
+      "usageNote": "Per continuity-state.json."
+    }
+  ],
+  "forbiddenContent": [
+    "Verbatim Berne prose",
+    "1964 gendered examples",
+    "Frigid Woman game name",
+    "Ch10 three-part intimacy definition",
+    "Ch1-Ch5 names"
+  ]
+}

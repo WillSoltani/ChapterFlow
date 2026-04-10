@@ -11,7 +11,6 @@ import { Problem } from "@/components/sections/Problem";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { InteractiveDemo } from "@/components/sections/InteractiveDemo";
 import { Library } from "@/components/sections/Library";
-import { SocialProof } from "@/components/sections/SocialProof";
 import { Pricing } from "@/components/sections/Pricing";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Footer } from "@/components/sections/Footer";
@@ -29,12 +28,71 @@ export const metadata: Metadata = {
     url: getChapterFlowSiteUrl(),
     siteName: CHAPTERFLOW_NAME,
     type: "website",
+    images: [
+      {
+        url: "/og",
+        width: 1200,
+        height: 630,
+        alt: `${CHAPTERFLOW_NAME} — Stop forgetting what you read`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${CHAPTERFLOW_NAME} | Stop forgetting what you read`,
+    description:
+      "Guided reading that turns every chapter into a 20-minute learning loop. 95+ non-fiction books, free to start.",
+    images: ["/og"],
   },
 };
 
 export default function Home() {
+  const siteUrl = getChapterFlowSiteUrl();
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: CHAPTERFLOW_NAME,
+      url: siteUrl,
+      logo: `${siteUrl}/og`,
+      description:
+        "ChapterFlow turns every non-fiction book into a guided learning loop with summaries, scenarios, and quizzes.",
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: CHAPTERFLOW_NAME,
+      url: siteUrl,
+      potentialAction: {
+        "@type": "SearchAction",
+        target: `${siteUrl}/books?q={search_term_string}`,
+        "query-input": "required name=search_term_string",
+      },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: `${CHAPTERFLOW_NAME} Pro`,
+      description:
+        "Unlimited access to a structured non-fiction reading library with summaries, scenarios, quizzes, and spaced-repetition retention.",
+      offers: {
+        "@type": "AggregateOffer",
+        lowPrice: "5.99",
+        highPrice: "7.99",
+        priceCurrency: "CAD",
+        offerCount: 2,
+        availability: "https://schema.org/InStock",
+      },
+    },
+  ];
+
   return (
     <div className="relative min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       {/* Noise texture overlay */}
       <div className="noise-overlay pointer-events-none fixed inset-0 z-0" aria-hidden />
 
@@ -51,18 +109,29 @@ export default function Home() {
         }}
       />
 
+      {/* Skip to main content (WCAG 2.4.1) */}
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:rounded-lg focus:font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
+        style={{
+          background: "var(--accent-teal)",
+          color: "var(--primary-foreground)",
+        }}
+      >
+        Skip to main content
+      </a>
+
       <Navbar />
-      <Suspense>
+      <Suspense fallback={null}>
         <AuthErrorBanner />
       </Suspense>
 
-      <main>
+      <main id="main" tabIndex={-1} className="focus:outline-none">
         <Hero />
         <Problem />
         <HowItWorks />
         <InteractiveDemo />
         <Library />
-        <SocialProof />
         <Pricing />
         <FinalCTA />
       </main>

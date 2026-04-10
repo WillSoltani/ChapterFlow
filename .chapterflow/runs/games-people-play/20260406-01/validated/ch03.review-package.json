@@ -1,0 +1,55 @@
+{
+  "chapterId": "ch03",
+  "chapterNumber": 3,
+  "chapterTitle": "Ulterior Transactions and the Anatomy of a Game",
+  "bookId": "games-people-play",
+  "runId": "20260406-01",
+  "packVersion": "v12-sealed",
+  "validationStatus": "passed",
+  "qualityGateScore": {
+    "total": 12,
+    "max": 12,
+    "categories": {
+      "chapterSpecificity": 2,
+      "anchorUse": 2,
+      "analyticalValue": 2,
+      "paragraphMotion": 2,
+      "proseQuality": 2,
+      "hookAndBridge": 2
+    },
+    "autoFails": []
+  },
+  "artifacts": {
+    "brief": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/briefs/ch03.md",
+    "outline": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/outlines/ch03.md",
+    "quizBlueprint": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/quiz-blueprints/ch03.md",
+    "sourceSidecarTxt": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/sidecars/source/ch03.source.txt",
+    "sourceSidecarJson": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/sidecars/source/ch03.source.json",
+    "canonicalDraft": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/drafts/canonical/ch03.md",
+    "editedDraft": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/drafts/edited/ch03.md",
+    "criticReport": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/reports/ch03.critic.md",
+    "structured": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/structured/ch03.chapter.json",
+    "quiz": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/quizzes/ch03.quiz.json",
+    "validationReport": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/reports/ch03.validation.md",
+    "validatedChapter": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/validated/ch03.chapter.json",
+    "readingMetrics": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/sidecars/ch03.reading-metrics.json"
+  },
+  "summary": {
+    "coreClaim": "Some transactions run on two levels at once (ulterior). When the same ulterior transaction repeats between the same people with a recognizable shape and payoff, it is a game in Berne's technical sense. Every game has a four-part anatomy (thesis, antithesis, dynamics, payoff). The anatomy is diagnostic, not prescriptive; the antithesis is expensive because it removes the payoff the player has been using.",
+    "anchorsUsed": [
+      "Lena's dinner party 'yes, but' sequence (personal)",
+      "Victor's Tuesday retrospective and the three-second silence (work)",
+      "Priscilla's 'helpful' interventions with her adult son Nils (personal)"
+    ],
+    "hardDepthTension": "If the antithesis costs the player something they actually needed, is seeing the game still a net good? The chapter answers: yes, because it converts blind reaction into decision, but the decision must belong to the player.",
+    "bridgeToNextChapter": "The anatomy says what a game is. It does not yet say why games are so sticky even once you see them. That answer is in what the payoff is made of (strokes) and what deeper position it is protecting (life positions)."
+  },
+  "strongestQualities": [
+    "The two-level framing (ulterior) + four-part anatomy are both taught clearly and without overlap. The chapter distinguishes a single ulterior transaction from a full game sharply enough that a reader won't conflate them later.",
+    "The hammer-problem limit in P6 and hard-depth takeaway 7 is the honest cost accounting that prevents the anatomy from being weaponized against other people \u2014 the distinction the rest of the book depends on.",
+    "Example 6 (Priscilla remembering her mother) carries the multi-generational game transmission in a single paragraph and makes the antithesis concrete (fifteen words, short on purpose)."
+  ],
+  "remainingConcerns": [],
+  "approvalRequired": true,
+  "preserveApprovedHash": false
+}

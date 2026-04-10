@@ -54,14 +54,12 @@ export type InsightPointsPayload = {
   waysToEarn: Array<{
     label: string;
     amount: number;
-    displayValue?: string;
-    detail?: string;
+    displayValue: string;
+    detail: string;
+    cadence: string;
     note: string;
   }>;
 };
-
-/** @deprecated Use InsightPointsPayload */
-export type FlowPointsPayload = InsightPointsPayload;
 
 type InsightPointsState = {
   loading: boolean;
@@ -169,6 +167,3 @@ export function useInsightPoints(enabled = true) {
     redeemReward,
   };
 }
-
-/** @deprecated Use useInsightPoints */
-export const useFlowPoints = useInsightPoints;

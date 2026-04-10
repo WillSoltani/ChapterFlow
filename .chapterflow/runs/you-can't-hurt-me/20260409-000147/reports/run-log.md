@@ -1,0 +1,21 @@
+# Run Log
+
+- 2026-04-08: Phase 0 preflight found a launch-state deviation. `run-manifest.json` had corrupted title/author fields, a bad `bookId`, and a bad `runRoot` that pointed to a non-existent directory.
+- 2026-04-08: Repaired manifest to match the real run root `.chapterflow/runs/you-can't-hurt-me/20260409-000147` and the requested book `Can't Hurt Me: Master Your Mind and Defy the Odds` by David Goggins.
+- 2026-04-08: Phase 0 complete.
+- 2026-04-08: Phase 1 source discovery complete. Source guard passed with frozen ledger, edition lock, TOC, discovery report, and source bundle notes.
+- 2026-04-08: Phase 2 memory files complete.
+- 2026-04-08: Phase 3 whole-book skeleton complete.
+- 2026-04-08: Chapter 1 completed through brief, outline, quiz blueprint, source sidecar, canonical draft, edited draft, critic report, structured chapter, quiz, validation report, validated chapter, review package, reading metrics, and continuity hash seal.
+- 2026-04-08: Chapter 1 artifact guard passed. Continuing automatically to Chapter 2.
+- 2026-04-08: Chapter 2 completed through brief, outline, quiz blueprint, source sidecar, canonical draft, edited draft, critic report, structured chapter, quiz, validation report, validated chapter, review package, reading metrics, and continuity hash seal.
+- 2026-04-08: Baseline quality report written for Chapters 1 and 2.
+- 2026-04-08: Chapter 3 completed through brief, outline, quiz blueprint, source sidecar, canonical draft, edited draft, critic report, structured chapter, quiz, validation report, validated chapter, review package, reading metrics, and continuity hash seal.
+- 2026-04-08: Chapter 4 completed through brief, outline, quiz blueprint, source sidecar, canonical draft, edited draft, critic report, structured chapter, quiz, validation report, validated chapter, review package, reading metrics, and continuity hash seal.
+- 2026-04-08: Chapter 5 completed through brief, outline, quiz blueprint, source sidecar, canonical draft, edited draft, critic report, structured chapter, quiz, validation report, validated chapter, review package, reading metrics, and continuity hash seal.
+- 2026-04-08: Chapter 6 completed through brief, outline, quiz blueprint, source sidecar, canonical draft, edited draft, critic report, structured chapter, quiz, validation report, validated chapter, review package, reading metrics, and continuity hash seal.
+- 2026-04-08: Chapter 7 completed through brief, outline, quiz blueprint, source sidecar, canonical draft, edited draft, critic report, structured chapter, quiz, validation report, validated chapter, review package, reading metrics, and continuity hash seal.
+- 2026-04-08: Chapter 8 completed through brief, outline, quiz blueprint, source sidecar, canonical draft, edited draft, critic report, structured chapter, quiz, validation report, validated chapter, review package, reading metrics, and continuity hash seal.
+- 2026-04-08: Chapter 9 completed through brief, outline, quiz blueprint, source sidecar, canonical draft, edited draft, critic report, structured chapter, quiz, validation report, validated chapter, review package, reading metrics, and continuity hash seal.
+- 2026-04-08: Chapter 10 completed through brief, outline, quiz blueprint, source sidecar, canonical draft, edited draft, critic report, structured chapter, quiz, validation report, validated chapter, review package, reading metrics, and continuity hash seal.
+- 2026-04-08: Chapter 11 completed through brief, outline, quiz blueprint, source sidecar, canonical draft, edited draft, critic report, structured chapter, quiz, validation report, validated chapter, review package, reading metrics, and continuity hash seal.

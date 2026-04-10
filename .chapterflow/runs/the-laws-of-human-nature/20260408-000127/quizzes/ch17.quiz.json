@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch17-q01",
+      "prompt": "During the Cleveland Massacre of 1872, how did Rockefeller present his acquisition offers to independent refiners?",
+      "choices": [
+        "A) With warmth, compliments, and proposals that sounded like partnerships",
+        "B) Through legal threats and public pressure campaigns",
+        "C) By sending intermediaries to negotiate anonymously"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Rockefeller was calm, friendly, and generous-sounding in every meeting. His aggression was invisible because it arrived wrapped in courtesy and reasonable-sounding terms.",
+        "direct": "Rockefeller's delivery system was warmth. He smiled, praised their businesses, and proposed what sounded like partnerships. The predatory terms were concealed behind hospitality.",
+        "competitive": "Rockefeller understood that the most effective aggression does not look like aggression. His competitors walked out of meetings feeling they had negotiated well. They had not."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch17-q02",
+      "prompt": "Greene identifies three primary types of concealed aggression. Which type expresses hostility through inaction, delay, and strategic incompetence?",
+      "choices": [
+        "A) Chronic aggressors",
+        "B) Territorial aggressors",
+        "C) Passive aggressors"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Passive aggressors agree to help but then forget, delay, or underperform. Each individual act looks like an accident, which makes the behavior difficult to confront directly.",
+        "direct": "Passive aggression operates through indirection. The hostility is expressed by what does not happen rather than what does, making each instance plausibly deniable.",
+        "competitive": "Passive aggressors weaponize inaction. They agree eagerly and deliver poorly, and each failure is small enough to avoid confrontation while the cumulative damage compounds."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch17-q03",
+      "prompt": "What does Greene mean by controlled aggression as a constructive force?",
+      "choices": [
+        "A) Using aggression strategically against competitors to gain market advantage",
+        "B) Suppressing all aggressive impulses to maintain a peaceful demeanor",
+        "C) Directing aggressive energy toward productive ambition and sustained effort rather than toward other people"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Controlled aggression means channeling your drive and intensity into building something rather than tearing someone down. The energy itself is valuable when aimed at goals instead of people.",
+        "direct": "Greene does not advocate passivity. He advocates redirection. Aggressive energy aimed at execution and persistence becomes fuel. Aimed at people, it becomes destruction.",
+        "competitive": "The person who converts aggressive energy into relentless execution has an engine the purely calm person lacks. Controlled aggression is a competitive advantage that compounds over time."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch17-q04",
+      "prompt": "Lena's coworker Darren always volunteers to help with her projects and offers enthusiastic compliments. Yet her presentations keep getting sent to clients with formatting errors that only appear in sections Darren reviewed. When she mentions the errors, Darren expresses surprise and apologizes warmly. What should Lena recognize about what is happening?",
+      "choices": [
+        "A) The recurring gap between Darren's warmth and the consistent damage to her work indicates passive aggression disguised as helpfulness",
+        "B) Darren is overwhelmed with his own workload and making honest mistakes",
+        "C) Lena should accept that errors are a normal part of collaborative work"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "When charm and damage travel together repeatedly, the charm is camouflage. Darren's helpfulness looks genuine in isolation, but the recurring errors following his involvement tell a different story.",
+        "direct": "Track outcomes, not tone. Darren's warmth is the delivery system. The formatting errors are the payload. One incident is an accident. A trail of repeated choices is information.",
+        "competitive": "Lena is watching Greene's detection framework play out in real time. Friendliness that produces no measurable goodwill but coincides with recurring setbacks is not friendliness. Friendliness like that is a weapon."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch17-q05",
+      "prompt": "Omar shares an idea during a team brainstorm. His colleague Nadia immediately tenses, talks over him, and spends the rest of the meeting subtly discrediting the idea even though it falls outside her area of responsibility. What type of aggression is Nadia displaying?",
+      "choices": [
+        "A) Passive aggression through strategic delay",
+        "B) Chronic aggression driven by a need to dominate all interactions",
+        "C) Territorial aggression triggered by a perceived boundary violation"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Nadia reacted with disproportionate force to what she perceived as Omar stepping into her territory. The response was too large for the trigger, which is the hallmark of territorial behavior.",
+        "direct": "Territorial aggressors respond to perceived encroachments with a force that does not match the size of the incursion. Nadia's reaction reveals that she had silently claimed ownership of a domain Omar's idea touched.",
+        "competitive": "The disproportionate response is the diagnostic. Omar floated an idea. Nadia launched a defense campaign. The gap between the stimulus and the reaction tells you exactly what you are dealing with."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch17-q06",
+      "prompt": "Wei notices that his manager Grant praises him publicly every week but has quietly blocked three internal transfer requests without explanation. When Wei asks about the transfers, Grant smiles and says the timing was not right. What detection principle from this chapter should Wei apply?",
+      "choices": [
+        "A) Assume Grant has legitimate organizational reasons for the denials and wait patiently",
+        "B) Separate Grant's words from his track record, since a history of public praise combined with private obstruction reveals concealed hostility",
+        "C) Confront Grant publicly to force transparency about the transfer decisions"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The gap between Grant's warm words and his obstructive actions is the signal. When someone consistently says supportive things but their behavior produces the opposite result, the behavior is the truth.",
+        "direct": "Greene's detection framework is built on tracking the gap between tone and outcome. Three blocked transfers behind a wall of weekly praise is a textbook case of aggression wearing a friendly mask.",
+        "competitive": "Wei is being managed, not supported. The praise is the cover story. The blocked transfers are the policy. Stop listening to the soundtrack and start reading the actions."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch17-q07",
+      "prompt": "Why does Greene argue that civilization does not eliminate aggressive impulses but only forces them underground?",
+      "choices": [
+        "A) Legal networks are not strict enough to prevent all forms of aggression",
+        "B) Social norms suppress open hostility, but the biological drives that produce aggression remain active and find indirect outlets",
+        "C) People consciously choose to hide their aggression as a strategic advantage"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Aggressive impulses evolved over millions of years and are part of our biology. Civilization creates rules against open hostility, but the impulses do not disappear. They find indirect channels like passive resistance, sabotage, and territorial guarding.",
+        "direct": "The biological hardware is unchanged. Social norms only suppress the most visible expressions. The impulses reroute through indirect channels that are harder to name and harder to confront.",
+        "competitive": "Civilization did not rewire the brain. It added a filter. The aggressive drives run the same code they always have. The only difference is the output format: indirect instead of direct, deniable instead of overt."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch17-q08",
+      "prompt": "Rockefeller leveraged secret railroad rebates to make independent operation financially impossible for competitors before ever sitting down to negotiate. How does this sequence reveal the structure of calculated aggression?",
+      "choices": [
+        "A) He preferred infrastructure investment over direct competition",
+        "B) The negotiation table was theater; the real aggression had already occurred through behind-the-scenes pressure that removed the competitors' alternatives",
+        "C) He used railroad partnerships as legitimate business strategy with no aggressive intent"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "By the time Rockefeller sat across from his competitors, their choices had already been narrowed to almost nothing. The friendly meetings were the visible layer. The behind-the-scenes pressure was the aggression.",
+        "direct": "Calculated aggression separates the damage from the visible interaction. Rockefeller's competitors experienced warm meetings while the real assault had already been executed through pricing and logistics.",
+        "competitive": "The meetings were packaging. The aggression was in the rebates, the pipeline access, and the pricing pressure that preceded every handshake. By the time the competitors sat down, the war was already over."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch17-q09",
+      "prompt": "Greene claims that the most dangerous aggressors are those who combine charm with harm. Evaluate why this combination is harder to defend against than open hostility.",
+      "choices": [
+        "A) Open hostility triggers your defensive instincts immediately, while charm disarms those instincts and delays recognition until the damage has accumulated",
+        "B) Charming aggressors have larger social networks that make retaliation risky",
+        "C) Society punishes people who accuse charming individuals of aggression"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "When someone is openly hostile, your defenses activate right away. Charm bypasses those defenses because your brain reads friendliness as safety. By the time you recognize what is happening, the damage is already done.",
+        "direct": "Charm disengages the threat-detection system. Open hostility triggers an immediate defensive response. The charming aggressor gets past your perimeter because your own social wiring lets them through.",
+        "competitive": "Open hostility is self-announcing. Charm is a cloaking device. The charming aggressor operates inside your defenses because your own nervous organism classified them as safe before your thinking could object."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch17-q10",
+      "prompt": "Chapter 17 describes how aggression surfaces as territorial behavior when people feel their domain is threatened. Chapter 18 shows how entire generations develop collective blind spots that make them unable to see cultural shifts. How might territorial aggression from an established generation block the changes that a rising generation needs to make?",
+      "choices": [
+        "A) Generational conflict is primarily driven by economic competition rather than territorial behavior",
+        "B) Older generations lack the energy to resist younger generations effectively",
+        "C) The established generation's territorial instincts cause them to protect existing structures reflexively, even when those structures no longer serve the culture's evolving needs"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "When a generation has built institutions and claimed positions, their territorial instincts kick in when the next generation pushes for change. The resistance is not rational analysis. It is the automatic defensive response to a perceived boundary violation, scaled up to an entire generational cohort.",
+        "direct": "Territorial aggression from Chapter 17 scales to the generational level in Chapter 18. The established generation defends structures not because they evaluated the incoming changes but because their territorial wiring fires automatically when the boundaries of their domain are crossed.",
+        "competitive": "The established generation does not block change through argument. They block it through reflex. Territorial aggression operates below conscious strategy, which means the resistance feels principled to the people doing it while functioning as pure self-preservation."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

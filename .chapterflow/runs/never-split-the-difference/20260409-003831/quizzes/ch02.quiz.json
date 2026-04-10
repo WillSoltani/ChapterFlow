@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is a mirror in Chapter 2?",
+      "choices": [
+        "A short repetition of the last one to three words or the critical one to three words the other side used",
+        "A full summary of the other side's last answer to prove you were listening closely",
+        "A direct question that restates the concern in your own words"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps the move short on purpose. The mirror is a small reflection that invites the other person to keep going.",
+        "direct": "Mirroring is not summary and not interrogation. It is a precise repetition of the key words carrying the tension.",
+        "competitive": "The power is in the compact return of the loaded phrase, not in a long recap."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why can a mirror create more disclosure than a direct argument?",
+      "choices": [
+        "Because repetition makes people feel obligated to answer quickly",
+        "Because it lowers pressure and preserves the other person's sense of control",
+        "Because it proves the negotiator is smarter than the other side expected"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "People often say more when they feel less pinned down. The mirror helps create that lighter feeling.",
+        "direct": "The technique works by changing the emotional shape of the exchange from pressure to invitation.",
+        "competitive": "Control stays with them, truth starts coming to you."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What role does silence play after a mirror?",
+      "choices": [
+        "It is mostly cosmetic and can be skipped if the negotiator feels awkward",
+        "It gives the other side space to elaborate, clarify, or reveal the real issue",
+        "It shows dominance by making the other side nervous enough to keep talking"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The pause matters because it gives the other person room to continue. That is often where the useful detail appears.",
+        "direct": "Without the silence, the mirror loses much of its function. The pause is what invites disclosure.",
+        "competitive": "If you rush to fill the gap, you throw away the payoff."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Naomi hears a client say, \"This feels like too much too early.\" What move best fits the chapter?",
+      "choices": [
+        "Explain why the rollout is actually conservative and low risk",
+        "Ask the client to rank all the reasons they are hesitant",
+        "Say, \"Too much too early?\" in a calm voice and wait"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Mirroring the loaded phrase gives the client room to explain what is really bothering them.",
+        "direct": "Option C uses the chapter's exact mechanism: short reflection, low pressure, then silence.",
+        "competitive": "That move reopens the phrase carrying the hidden issue instead of fighting the shell."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Eli's committee meeting went badly because he answered every objection immediately. What did he most likely lose by doing that?",
+      "choices": [
+        "The chance to hear what the objection actually meant before arguing with it",
+        "The respect that comes from speaking first and longest in a tense meeting",
+        "The ability to prove that his evidence was stronger than everyone else's"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "By jumping into rebuttals, Eli gave the room less space to explain itself.",
+        "direct": "Immediate answering can cut off disclosure. Mirroring would have slowed the room enough to get better information.",
+        "competitive": "He was solving objections before they had even finished becoming real."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Serena hears, \"You only bring this up when you're already frustrated.\" Which response best uses mirroring?",
+      "choices": [
+        "\"Already frustrated?\" followed by a short pause",
+        "\"That is unfair, and here is why\"",
+        "\"Can you provide three examples of what you mean?\""
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The mirrored phrase invites the other person to say more without Serena surrendering her position.",
+        "direct": "Option A reflects the loaded words and keeps the conversation open. The other options raise pressure immediately.",
+        "competitive": "A short mirror turns accusation into disclosure faster than a counterpunch ever will."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why does tone matter so much when using a mirror?",
+      "choices": [
+        "Because the mirror only works when the other side hears it as curiosity rather than accusation",
+        "Because a forceful tone makes the mirror sound more authoritative and therefore more effective",
+        "Because tone matters only in personal conversations, not in professional ones"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A calm tone helps the mirror feel safe. A harsh tone can make the same words feel threatening.",
+        "direct": "The emotional landing determines whether rapport grows or defense grows. That makes voice part of the method itself.",
+        "competitive": "Bad delivery flips a clean tool into a trap in one sentence."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "A prospect says, \"It is not really the price.\" Victor mirrors the phrase and stays quiet. What is Chapter 2 expecting to happen next?",
+      "choices": [
+        "The prospect will probably reveal what issue is actually hiding behind the pricing language",
+        "The prospect will feel embarrassed by the repetition and agree to move forward quickly",
+        "The mirror will work only if Victor immediately follows it with a stronger pitch"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter expects the mirror and pause to draw out the meaning behind the vague phrase.",
+        "direct": "This is the discovery function of mirroring. The move reopens the phrase so the other side can unpack it.",
+        "competitive": "The mirror is supposed to crack the shell, not force the close."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Which sign most clearly shows that mirroring has become mechanical rather than useful?",
+      "choices": [
+        "The negotiator uses it sparingly when a phrase seems loaded",
+        "The other side starts feeling managed, scripted, or strangely studied",
+        "The negotiator follows the mirror with silence instead of a quick explanation"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter's warning is that people can hear the technique before they feel the listening. That is when trust starts to drop.",
+        "direct": "Mechanical mirroring breaks rapport because repetition without real curiosity sounds manipulative.",
+        "competitive": "Once they hear the script, the edge is gone and the room gets colder."
+      },
+      "bloomsLevel": "evaluate_create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If Chapter 2 teaches you to reflect the other side's words, what kind of next step best fits the bridge into Chapter 3?",
+      "choices": [
+        "A tool for repeating the same mirrored phrase more forcefully until the other side responds",
+        "A technique for shifting from reflected language to reflected emotion beneath the language",
+        "A faster closing tactic that uses mirroring as a setup for a final offer"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The bridge points toward a deeper reflective move. After words, the next layer is the feeling inside them.",
+        "direct": "Mirroring handles language. The next chapter logically deepens the method by addressing emotion underneath the words.",
+        "competitive": "Once words are open, the next leverage layer is the feeling they were hiding."
+      },
+      "bloomsLevel": "evaluate_create",
+      "depthLevel": "hard"
+    }
+  ]
+}

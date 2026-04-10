@@ -1,0 +1,155 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch15-q01",
+      "prompt": "What is the chapter's main reframing of meetings?",
+      "choices": [
+        "Meetings are costly claims on shared attention that should be earned",
+        "Meetings are harmless because they look organized",
+        "Meetings should always happen whenever people feel uncertain"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter treats meetings as expensive uses of shared time.",
+        "direct": "Meetings must justify their live claim on attention.",
+        "competitive": "The invite is an invoice, not a decoration."
+      }
+    },
+    {
+      "questionId": "ch15-q02",
+      "prompt": "Why are meetings especially expensive?",
+      "choices": [
+        "Because they claim multiple calendars and attention blocks at once",
+        "Because rooms are always expensive to rent",
+        "Because meetings are longer than writing by law"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The cost multiplies across everyone in the room.",
+        "direct": "Shared attention is the key unit of cost here.",
+        "competitive": "One hour times many people stops being small fast."
+      }
+    },
+    {
+      "questionId": "ch15-q03",
+      "prompt": "What makes weak meetings survive socially?",
+      "choices": [
+        "Formal scheduling can make vague meetings look justified even when they are not",
+        "Every meeting has obvious value the moment it is booked",
+        "People can always tell in advance which meetings will be excellent"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The calendar can make weak meetings look more necessary than they are.",
+        "direct": "Procedure often launders vague purpose into legitimacy.",
+        "competitive": "Booked is not the same as earned."
+      }
+    },
+    {
+      "questionId": "ch15-q04",
+      "prompt": "Which of these fits the chapter's design logic?",
+      "choices": [
+        "Use narrower attendance and written updates where live time adds little",
+        "Invite everyone because exclusion feels awkward",
+        "Keep every recurring meeting the same forever"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants live time reserved for what truly needs it.",
+        "direct": "Attendance and async alternatives should answer to value.",
+        "competitive": "Cut the room until necessity is what's left."
+      }
+    },
+    {
+      "questionId": "ch15-q05",
+      "prompt": "Why does the chapter mention written updates?",
+      "choices": [
+        "Because some meeting goals can be handled asynchronously more efficiently",
+        "Because writing automatically replaces all live collaboration",
+        "Because meetings should never include information sharing"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Some live time can be saved by moving updates out of the room.",
+        "direct": "Async formats are part of good meeting design.",
+        "competitive": "Not every status report deserves chairs."
+      }
+    },
+    {
+      "questionId": "ch15-q06",
+      "prompt": "A recurring status meeting keeps taking an hour for eight people even though most updates are routine. What is the chapter's stronger correction?",
+      "choices": [
+        "Move routine updates to writing and keep only the live discussion that truly requires the room",
+        "Make the meeting longer so people feel heard",
+        "Assume the time is justified because it is recurring"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The meeting should shrink to the part that genuinely needs live discussion.",
+        "direct": "The chapter would test the room against purpose and async alternatives.",
+        "competitive": "Stop paying full price for low-value theater."
+      }
+    },
+    {
+      "questionId": "ch15-q07",
+      "prompt": "What mistake does the chapter avoid by refusing a generic anti-meeting rant?",
+      "choices": [
+        "Erasing the fact that some meetings really do deserve synchronous time",
+        "Assuming meetings can never improve",
+        "Treating calendars as unrelated to distraction"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter still allows useful meetings when they earn their time.",
+        "direct": "It aims for earned meetings, not abolition.",
+        "competitive": "Some rooms help. The lazy ones freeload."
+      }
+    },
+    {
+      "questionId": "ch15-q08",
+      "prompt": "What practical levers help a meeting earn its claim?",
+      "choices": [
+        "Agenda, narrower scope, smaller attendance, and shorter duration",
+        "Only louder facilitation",
+        "Keeping every participant on camera no matter what"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter relies on design discipline, not just energy.",
+        "direct": "Sharper purpose and smaller claims are key meeting improvements.",
+        "competitive": "A tighter room wastes less life."
+      }
+    },
+    {
+      "questionId": "ch15-q09",
+      "prompt": "How does this chapter connect to the earlier chat and meeting-pressure material?",
+      "choices": [
+        "It treats meetings as the larger synchronous time claims that can grow out of weak coordination norms",
+        "It abandons the communication theme entirely",
+        "It says meetings and chat are the exact same trigger source"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The book is scaling from smaller interruptions to bigger calendar claims.",
+        "direct": "Weak coordination norms can spill from chat into meetings.",
+        "competitive": "Channel chaos often ends up renting a room."
+      }
+    },
+    {
+      "questionId": "ch15-q10",
+      "prompt": "Why does the next chapter move into the smartphone?",
+      "choices": [
+        "Because after shared time claims are tightened, the next portable trigger source is the device people carry everywhere",
+        "Because meetings are unrelated to external triggers",
+        "Because smartphones are only a workplace problem"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next trigger source is personal and portable rather than room-based.",
+        "direct": "The section is shifting from organized claims on time to a device that follows the person everywhere.",
+        "competitive": "Once the room stops stealing hours, the phone is still in your pocket."
+      }
+    }
+  ]
+}

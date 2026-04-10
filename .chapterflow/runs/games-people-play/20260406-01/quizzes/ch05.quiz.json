@@ -1,0 +1,178 @@
+{
+  "chapterId": "ch05",
+  "chapterNumber": 5,
+  "chapterTitle": "Life Games",
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What feature distinguishes a life game from the kind of recurring game the previous chapters described?",
+      "choices": [
+        "A life game involves more dramatic content",
+        "A life game runs at biographical scale: the same opening move, counter, switch, and payoff distributed across years rather than across a single conversation",
+        "A life game involves a larger cast of people"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Time horizon and biographical scope are the structural difference. The previous chapters dealt with games inside single conversations or single relationships; life games organize whole working lives. Drama and cast size are surface differences that some life games happen to have but that are not the criterion.",
+        "direct": "Time horizon distinguishes a life game. Drama is a side effect of duration; cast size is incidental. The structural fact the chapter is built on is the multi-year scale.",
+        "competitive": "Years, not minutes. Years, not relationships. The other answers describe surface features of some life games but miss the structural criterion the chapter is built on."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Greta is signing the fourth partnership agreement of her career and the previous three ended the same way. According to the chapter, what specifically is the pattern paying her?",
+      "choices": [
+        "A series of bad-luck stories to tell at parties",
+        "Practice in choosing better business partners",
+        "A confirmation of a position she has been holding since her twenties (the world will take what it can take from me) plus the small reliable strokes of being seen as the generous and put-upon one afterward"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter is specific. The pattern is paying Greta two reinforcing things: the position she has been holding since her twenties gets confirmed each time, and the small strokes of being seen as generous and put-upon afterward arrive on a schedule. The first wrong answer trivializes the payoff; the second moralizes it.",
+        "direct": "Position confirmation plus reliable post-ending strokes is the structural answer. Calling the payoff 'bad-luck stories' trivializes it; calling it 'practice in better choices' moralizes it into a learning opportunity, which the chapter is explicit it is not.",
+        "competitive": "Position and post-ending strokes. The other answers are the soft readings the chapter spends six paragraphs refusing. Greta is not collecting stories for parties and she is not learning to choose better partners. She is solving a structural problem with the only tool she has."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Felix has been running a righteous-outrage pattern at his hospital department for twenty years, releasing stored procedural lapses as justified outrage when a colleague makes an unambiguous mistake. According to the chapter, what does the antithesis to this pattern require?",
+      "choices": [
+        "A colleague who is so impeccable in their procedure that Felix's collection file stays empty, with the cost that the impeccable procedure takes unmeasured hours of the colleague's time",
+        "Confronting Felix about the pattern",
+        "A different department head"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter is explicit. The antithesis to the righteous-outrage pattern is impeccable procedure that gives Felix no opening, and the chapter is honest that the impeccability is expensive in time. Confronting Felix directly will provoke the next release. A different department head changes the player but not the pattern.",
+        "direct": "Impeccable procedure, with the cost named honestly, is the chapter's structural answer. Confrontation provokes the release; changing the department head substitutes one player for another and does not address the pattern.",
+        "competitive": "Impeccable procedure. Costs hours. Worth it. Confronting Felix is the move that runs the next instance of the pattern, and changing department heads is the move that pretends the pattern lived in one person."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Ivar, a project coordinator, explains every mistake on every project as the consequence of a colleague who interrupted him at the critical moment. In the most recent instance, he blamed Zoe. What role is Zoe being cast in?",
+      "choices": [
+        "The persecutor in a substance-pattern cast",
+        "The interrupting witness whose presence lets Ivar offload responsibility for a mistake that did not actually have anything to do with her",
+        "Felix's colleague in a different game"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter is structural here. Zoe is being cast as the interrupting witness whose presence lets Ivar offload the blame. The mistake had nothing to do with her. The first wrong answer borrows vocabulary from a different pattern; the third confuses two of the chapter's anchors.",
+        "direct": "Interrupting witness is the role Ivar's pattern assigns to whoever was nearest. The chapter is explicit that the witness's actual involvement in the mistake is not the criterion. Persecutor vocabulary belongs to the substance pattern, which this chapter does not cover.",
+        "competitive": "Witness, not persecutor, not Felix's colleague. The mistake had nothing to do with her. Her job in the script is to have been nearby. The other answers borrow from games this chapter is explicitly not running."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Mona is a freelancer who has been taking on more work than she can complete at rates she cannot sustain for ten years. What does the chapter say the dynamics of her pattern are?",
+      "choices": [
+        "She is bad at project management",
+        "She is unlucky in client selection",
+        "She needs the proof that nothing can be done about her situation, and the over-commit cycle reliably produces that proof on a schedule, with sympathy strokes from her closest friends as the secondary payoff"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter is structural about Mona. The dynamics are her need for the proof that nothing can be done, and the over-commit cycle is producing the proof on a schedule. The wrong answers both moralize the pattern as bad project management or bad luck, which the chapter explicitly refuses.",
+        "direct": "Need for proof of impossibility plus reliable sympathy strokes is the chapter's structural answer. Project management and luck are the surface readings the chapter is built to refuse.",
+        "competitive": "Proof of impossibility. Sympathy strokes. Both reliable, both on a schedule. The chapter spends multiple paragraphs refusing the project-management and luck readings, which are the comfortable answers and the wrong ones."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Tomi is a high school junior running a rejection-inviting pattern in Mr. Wendell's history class: late, wrong tone with the wrong students, surprised hurt at the consequences. According to the chapter, which move is Wendell most likely to make WORSE the pattern with?",
+      "choices": [
+        "Calling Tomi out directly in front of the class for the pattern, or punishing him with a detention",
+        "Giving Tomi a small specific responsibility in the next class period that has nothing to do with the pattern",
+        "Speaking with another teacher about the pattern privately"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Direct confrontation and punishment both confirm the pattern, because the pattern is paying Tomi the sympathy strokes that follow each consequence. The chapter is explicit that the structural intervention is a different stroke source in the same setting, not a stronger version of the response the pattern was inviting.",
+        "direct": "Direct confrontation and punishment are both moves that the pattern feeds on. The structural intervention is a different stroke source in the same setting. Speaking with another teacher privately is neutral.",
+        "competitive": "Confrontation and punishment are exactly what the pattern was inviting. Both confirm it. The structural intervention is a different stroke source in the same room, and the chapter is explicit that the punitive responses are the wrong tools for this case."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "A senior worker who has been passed over for promotion three times in five years tells the same story each time about how the colleague who got the promotion was unfairly favored. According to the chapter, which structural reading is most likely?",
+      "choices": [
+        "The worker is correct and the workplace is structurally unfair",
+        "A displaced-blame pattern at multi-year scale: the worker is offloading the responsibility for not being promoted onto the colleagues who were, with the position confirmed that they never cause the things that go wrong in their own career",
+        "An unrelated personality issue"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter applies the displaced-blame pattern at multi-year scale to the workplace example. The structural reading is not that the workplace is unfair (it might be) or that the worker has a personality issue (which is the moralizing read). It is that the same pattern Ivar runs at the project scale runs at the multi-year promotion scale in the same shape.",
+        "direct": "Multi-year displaced-blame is the structural reading. The unfairness answer might be true in any specific case but is not what the chapter is teaching. The personality answer is the moralizing read the chapter refuses.",
+        "competitive": "Same pattern, longer scale. The unfairness answer is the comfortable one and might be true in any specific case but does not teach the structural reading. The personality answer is the moralizing read this chapter is built to refuse."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why does the chapter insist that the antithesis to a life game that has been running for thirty years is not a single sentence?",
+      "choices": [
+        "Because thirty-year patterns are impossible to leave",
+        "Because the player needs professional help",
+        "Because the strokes have been arriving for thirty years and the life position has been confirmed for thirty years, and the replacement supply has to match the scale of what the pattern has been paying"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter is honest about the time horizon. A thirty-year pattern has been paying strokes for thirty years and confirming a position for thirty years, and the replacement supply has to match that scale. The first wrong answer is more pessimistic than the chapter; the second turns the chapter into a credentialing story.",
+        "direct": "Scale matching is the chapter's structural argument. The impossibility answer overstates the chapter's claim; the credentialing answer turns a tool the chapter offers any reader into a gated one.",
+        "competitive": "Scale, scale, scale. Thirty years of strokes need years of replacement, not minutes. Both wrong answers misread the chapter's tone or its frame in the way the previous chapter spent its limit-paragraph refusing."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Looking at all four life-game patterns the chapter walks through (exploitability, righteous-outrage, displaced-blame, and the over-commit pattern), what do all four share about their payoff?",
+      "choices": [
+        "The payoff is always a confirmation of a life position the player has been holding since long before any of these jobs existed, plus a reliable stroke supply the player has not built another source for",
+        "The payoff is always money",
+        "The payoff is always revenge"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter's structural answer is that all four patterns are paying the same two reinforcing things: a position confirmation that long predates the current setting, plus a reliable stroke supply. The money and revenge answers misread three of the four patterns and trivialize the chapter's structural reading.",
+        "direct": "Both reinforcing payoffs (position confirmation and reliable strokes) are what all four share. Money and revenge are surface features of one or two of the patterns and are not the structural common feature.",
+        "competitive": "Position plus strokes. Same as the previous chapter, applied at biographical scale. Money and revenge are the moralizing reads that miss the chapter entirely."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Combining this chapter with the energetics chapter, what new question can a reader ask about a multi-year painful pattern in their own life that they could not ask using only the four chapters before this one?",
+      "choices": [
+        "Whether the pattern is morally wrong",
+        "On what time horizon the replacement stroke supply would have to be built for me to actually be able to leave the pattern, and what life position I have been holding that the pattern has been confirming all this time",
+        "Which of my colleagues to blame"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter combines the energetics from the previous chapter with the time horizon from this one to give the reader two new questions: replacement-supply scale and life-position identification. The first wrong answer is the moralizing read the chapter refuses; the third is the diagnose-others misuse the previous chapter warned against.",
+        "direct": "Replacement scale and life position are the two new questions this chapter adds to the stack. The moralizing and blame answers are exactly the misreadings the chapter is built to refuse.",
+        "competitive": "Two new questions, both honest, both about the player's own work. The other answers are the failure modes the chapter is built to prevent."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

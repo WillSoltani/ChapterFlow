@@ -1,0 +1,59 @@
+{
+  "packVersion": "v13-autonomous",
+  "bookId": "talk-like-ted",
+  "runId": "20260409-001024",
+  "packRoot": "scripts/book/prompts/chapterflow-v13-autonomous",
+  "runRoot": ".chapterflow/runs/talk-like-ted/20260409-001024",
+  "outputProfile": "flagship_v4_compatible",
+  "learningContract": "research_native",
+  "runProfile": "balanced_flagship",
+  "validationMode": "chapter_gate",
+  "chapterGateMode": "automatic_continue",
+  "chapterGateQuizMode": "generate",
+  "scenarioTonePolicy": "required",
+  "rightsMode": "startup_light",
+  "waveSize": 2,
+  "generateChapterReviewWrapper": true,
+  "strictPackAudit": true,
+  "forbidBulkGenerators": true,
+  "releaseAssembleFromValidatedOnly": true,
+  "preserveApprovedChapterHashes": true,
+  "sourceFreezeRequired": true,
+  "artifactGuardRequired": true,
+  "releaseGuardRequired": true,
+  "qualitySentryRequired": true,
+  "qualityDecayStopDelta": 1.5,
+  "sourceDiscoveryMode": "web_bundle",
+  "editionSelectionMode": "ask_if_ambiguous",
+  "sourcePolicy": "public_or_authorized_plus_secondary",
+  "bookRequest": {
+    "title": "Talk Like TED",
+    "author": "Carmine Gallo",
+    "editionPreference": "ask_if_ambiguous"
+  },
+  "book": {
+    "bookId": "talk-like-ted",
+    "title": "Talk Like TED: The 9 Public-Speaking Secrets of the World's Top Minds",
+    "author": "Carmine Gallo",
+    "categories": [
+      "Business Communication",
+      "Public Speaking"
+    ],
+    "tags": [
+      "TED",
+      "presentation design",
+      "persuasion",
+      "storytelling"
+    ],
+    "edition": {
+      "name": "St. Martin's Press first edition",
+      "translator": "",
+      "publishedYear": 2014,
+      "translationYear": null,
+      "sourceText": ".chapterflow/runs/talk-like-ted/20260409-001024/source-freeze/book-source.md",
+      "sourceProvenance": "Locked to the dominant 2014 St. Martin's Press / Macmillan U.S. edition because the chapter map is stable across reprints and the authorized Macmillan excerpt plus Google Books preview support this edition directly."
+    },
+    "variantFamily": "EMH",
+    "chapterRange": "1-9"
+  }
+}

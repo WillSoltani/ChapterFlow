@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "Which combination best defines a crucial conversation in this chapter?",
+      "choices": [
+        "An uncomfortable conversation where at least one person is annoyed",
+        "A conversation with high stakes, disagreement, and emotion strong enough to affect judgment",
+        "A conversation where someone has more formal power than the other person"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter uses a three-part test, not a loose feeling of discomfort. Something important has to be at stake, people have to see it differently, and the emotional charge has to be high enough to make clear thinking harder. Option A is too broad, and option C can be true without the other two conditions.",
+        "direct": "The category is defined by three conditions working together: consequence, disagreement, and emotional heat. Annoyance alone is insufficient, and power differences do not automatically create the category unless the other variables are present too.",
+        "competitive": "Option B is the only precise answer. Option A overlabels ordinary friction. Option C mistakes one common context for the full definition. The chapter rewards diagnostic accuracy, not vague intensity."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "A teammate avoids a direct conversation about missed work, then sends a cold late-night message instead. In the chapter's terms, that message is best understood as what?",
+      "choices": [
+        "A surrogate action created by avoiding the real conversation",
+        "A healthy cooling-off strategy that protects the relationship",
+        "Proof that the issue was never important enough for a direct talk"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The cold message is not neutral. It is the issue returning in another form after the direct conversation was avoided. That is exactly how the chapter explains many bad outcomes: the pressure does not vanish, it comes back sideways.",
+        "direct": "Correct. The chapter's mechanism is displacement. Avoidance converts the unresolved issue into an indirect behavior such as sarcasm, withdrawal, or a passive-aggressive note. Option B confuses delay with resolution, and option C ignores the high-stakes pattern entirely.",
+        "competitive": "A late-night jab is rarely peacekeeping. It is deferred cost with a new wrapper. The real conversation was skipped, so the pressure leaked out through a colder channel."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Which situation from below is most likely not a crucial conversation yet?",
+      "choices": [
+        "You and a roommate calmly divide grocery costs and already agree on the total",
+        "You need to tell a project partner their work is late, they think it is fine, and both of you are getting tense",
+        "You challenge feedback from a professor because the grade matters and your body is already bracing at the door"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The first situation may still be important, but it is missing real disagreement and strong emotional heat. The other two already contain the full mix the chapter is watching for.",
+        "direct": "Option A lacks the chapter's key combination. Stakes may exist, but there is no active disagreement or emotional strain. Options B and C clearly meet the definition.",
+        "competitive": "Do not overlabel. Calm agreement about a routine matter is not the same game. The other two scenarios already have all three variables stacked."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Nina is angry about Elias missing another handoff and is about to send a sharp Slack message at 10:47 p.m. What is the strongest first move based on Chapter 1?",
+      "choices": [
+        "Send the message while the details are fresh so Elias understands the seriousness",
+        "Delete the message and never raise the issue unless it happens a third time",
+        "Treat the moment as a crucial conversation and set up a direct talk instead of using Slack as a substitute"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Nina's best first step is not better wording on the sharp message or more silence. It is recognizing that the issue has become consequential and deserves a direct conversation. That shifts her out of the chapter's two common defaults.",
+        "direct": "The chapter's main lesson is early recognition. Nina is in the classic zone: trust matters, views differ, and emotion is high. Slack can easily become the substitute move here. A direct conversation is the stronger first response.",
+        "competitive": "Option C wins because it names the real game. Option A feels satisfying but hardens the conflict. Option B looks calm but just stores more pressure. Diagnosis first, then direct engagement."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Priya looks back at a failed group project and realizes Ben went silent during the planning meeting but nobody checked in. Why is that silence significant in Chapter 1's logic?",
+      "choices": [
+        "It shows that silence can be mistaken for agreement when it may actually mean someone has already left the conversation",
+        "It proves Ben never cared about the project and should have been removed immediately",
+        "It means the meeting was not crucial because no one openly argued"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Priya's hindsight matters because the earlier meeting may have been the real hinge. Ben's silence was not necessarily agreement. It may have been withdrawal inside a moment with real stakes and disagreement.",
+        "direct": "Correct. The chapter warns that people often miss the crucial moment because the room looks quiet. Silence can hide disagreement and emotional strain. That makes the later failure look sudden when it was actually developing earlier.",
+        "competitive": "Quiet rooms fool people. Ben's silence was likely data, not peace. Option B jumps to motive without evidence, and option C misses the point that disagreement can go underground."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Marcus says, 'I finally told my teammate the truth,' after unloading weeks of frustration in one angry burst. What distinction from the chapter best challenges Marcus's self-description?",
+      "choices": [
+        "Any strong emotion automatically means the conversation was honest",
+        "Blurting under pressure is different from saying a hard truth on purpose",
+        "If the facts were accurate, the delivery does not matter"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter does not treat emotional overflow as the same thing as honest dialogue. Marcus may have included real facts, but the timing and tone turned the truth into a hit rather than a conversation.",
+        "direct": "This is a core distinction. Accuracy does not erase delivery. A hard statement delivered as backlog is different from a hard statement delivered deliberately. The first often pushes the other person out of dialogue.",
+        "competitive": "Marcus is confusing intensity with courage. Option B names the trap cleanly. Facts delivered as overflow still shrink the room."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "A student tells herself office hours are 'just awkward' even though the grade matters, she disagrees with the professor, and she feels her stomach drop at the door. What is the most useful correction from Chapter 1?",
+      "choices": [
+        "Awkward settings cannot contain crucial conversations because the room stays polite",
+        "She should ignore her physical reaction and wait for more evidence",
+        "She should test the moment against the three conditions instead of using politeness to dismiss it"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter teaches readers to diagnose the moment by the conditions, not by whether the room looks formal or calm. Polite settings can still hold high stakes, disagreement, and real emotional heat.",
+        "direct": "Correct. The visible atmosphere can mislead. If the grade matters, disagreement is active, and stress is already affecting her thinking, the chapter's definition applies even in a quiet office.",
+        "competitive": "Furniture is not the test. Variables are. Option C wins because it refuses to let a calm-looking setting hide a consequential exchange."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Which response best fits the chapter's warning about the short-term appeal of avoidance?",
+      "choices": [
+        "Avoidance feels attractive because it postpones discomfort, even though it often creates a messier indirect cost later",
+        "Avoidance is usually the mature choice because it keeps everyone calm until emotions disappear completely",
+        "Avoidance only becomes a problem when the other person is clearly behaving in bad faith"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter understands why people avoid. Relief in the moment is real. The warning is that the issue keeps working underneath the calm and usually returns in another form.",
+        "direct": "Option A captures the asymmetry exactly. Short-term relief is immediate and visible; delayed cost is slower and easier to misread. Options B and C both understate how often silence creates its own fallout.",
+        "competitive": "Avoidance sells you comfort now and bills you later. That is why smart people keep buying it. The chapter is trying to break that trade."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does the chapter spend so much time on substitute moves like cold messages, withdrawal, and arguments about smaller topics?",
+      "choices": [
+        "Because those behaviors prove the original issue no longer matters",
+        "Because they reveal how often the visible problem is really the delayed cost of an earlier missed conversation",
+        "Because the authors think indirect communication is always worse than direct communication in every context"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants readers to see that fallout often arrives wearing different clothes. The cold message or small-topic fight is a clue that an earlier, more important conversation was not handled well.",
+        "direct": "Correct. Substitute moves are diagnostically useful because they trace visible symptoms back to the unresolved exchange underneath. Option C goes too far; the chapter is warning about a common pattern, not issuing an absolute rule about every indirect move.",
+        "competitive": "This is the chapter's strongest analytical move. Stop treating every symptom as a separate event. Trace the visible mess back to the missed hinge."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If Chapter 1 teaches you to recognize a crucial conversation sooner, what is the most likely question Chapter 2 needs to answer next?",
+      "choices": [
+        "How to keep both people contributing useful meaning once the room is already loaded",
+        "How to avoid all emotional conversations completely by better planning",
+        "How to prove that your version of events is the correct one before the conversation starts"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Recognition is only the start. Once you can spot the moment, the next need is a picture of what healthy dialogue looks like inside it. That is why the book moves toward a shared pool in the next chapter.",
+        "direct": "Option A follows the chapter's own bridge. The reader now knows when the conversation matters. The next structural question is how people stay in dialogue and keep contributing what they really know.",
+        "competitive": "Diagnosis without method is half a win. Chapter 2 has to explain what keeps the room useful once the stakes, disagreement, and heat are already in play."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

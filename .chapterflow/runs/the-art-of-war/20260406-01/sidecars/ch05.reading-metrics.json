@@ -1,0 +1,44 @@
+{
+  "chapterId": "ch05-energy",
+  "title": "Energy",
+  "depths": {
+    "easy": {
+      "gentle": {
+        "wordCount": 227
+      },
+      "direct": {
+        "wordCount": 220
+      },
+      "competitive": {
+        "wordCount": 184
+      }
+    },
+    "medium": {
+      "gentle": {
+        "wordCount": 358
+      },
+      "direct": {
+        "wordCount": 355
+      },
+      "competitive": {
+        "wordCount": 344
+      }
+    },
+    "hard": {
+      "gentle": {
+        "wordCount": 494
+      },
+      "direct": {
+        "wordCount": 470
+      },
+      "competitive": {
+        "wordCount": 386
+      }
+    }
+  },
+  "warnings": [],
+  "qualityGateScore": {
+    "critic": "11/12",
+    "passed": true
+  }
+}

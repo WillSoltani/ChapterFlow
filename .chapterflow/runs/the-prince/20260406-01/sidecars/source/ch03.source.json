@@ -1,0 +1,55 @@
+{
+  "chapterId": "ch03",
+  "chapterNumber": 3,
+  "heading": "CHAPTER III.",
+  "title": "CONCERNING MIXED PRINCIPALITIES",
+  "sourcePath": ".chapterflow/sources/the-prince/the-prince.txt",
+  "sourceLineStart": 605,
+  "sourceLineEndInclusive": 893,
+  "scope": "Core The Prince text only",
+  "exclusions": [
+    "Project Gutenberg boilerplate",
+    "front matter and dedication before THE PRINCE",
+    "appended works after Chapter XXVI"
+  ],
+  "approxWords": 3104,
+  "properNouns": [
+    "Louis XII",
+    "France",
+    "Milan",
+    "Lodovico Moro",
+    "Brittany",
+    "Burgundy",
+    "Gascony",
+    "Normandy",
+    "Turk in Greece",
+    "Romans",
+    "Achaeans",
+    "Aetolians",
+    "Macedonia",
+    "Antiochus",
+    "Philip",
+    "Venetians",
+    "Pope Alexander",
+    "Romagna",
+    "Spain",
+    "Naples",
+    "Rouen",
+    "Cesare Borgia"
+  ],
+  "repeatedTerms": [
+    "new prince",
+    "acquisition",
+    "goodwill",
+    "laws",
+    "taxes",
+    "colonies",
+    "foreign power",
+    "war"
+  ],
+  "notes": [
+    "Dense chapter-local source slice for dossier and brief work.",
+    "The source moves from mechanism to historical case study, so later artifacts must preserve both layers.",
+    "Any verbatim reuse in reader-facing prose should still go through the quote ledger."
+  ]
+}

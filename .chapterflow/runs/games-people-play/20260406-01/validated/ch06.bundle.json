@@ -1,0 +1,861 @@
+{
+  "$schema": "chapterflow-v12-sealed/chapter-bundle",
+  "packVersion": "v12-sealed",
+  "bookId": "games-people-play",
+  "runId": "20260406-01",
+  "chapterId": "ch06",
+  "generatedAt": "2026-04-06",
+  "manifest": {
+    "outputProfile": "flagship_v4_compatible",
+    "learningContract": "research_native",
+    "runProfile": "balanced_flagship",
+    "validationMode": "chapter_gate",
+    "chapterGateQuizMode": "generate",
+    "scenarioTonePolicy": "required",
+    "forbidBulkGenerators": true,
+    "releaseAssembleFromValidatedOnly": true,
+    "preserveApprovedChapterHashes": true
+  },
+  "book": {
+    "bookId": "games-people-play",
+    "title": "Games People Play",
+    "author": "Eric Berne",
+    "categories": [
+      "Psychology",
+      "Communication",
+      "Relationships"
+    ],
+    "tags": [
+      "transactional-analysis",
+      "psychology",
+      "communication",
+      "relationships",
+      "self-awareness",
+      "social-dynamics"
+    ],
+    "edition": {
+      "name": "First edition (Grove Press, 1964)",
+      "translator": "",
+      "publishedYear": 1964,
+      "translationYear": null,
+      "sourceText": ".chapterflow/sources/games-people-play/games-people-play.txt",
+      "sourceProvenance": "Structured reference material derived from Eric Berne's transactional analysis framework (Games People Play, Grove Press, 1964). Paraphrased summaries and structural outlines only — no verbatim reproduction."
+    },
+    "variantFamily": "EMH",
+    "chapterRange": "All chapters in source"
+  },
+  "chapter": {
+    "chapterId": "ch06",
+    "number": 6,
+    "title": "Marital Games",
+    "readingTimeMinutes": 13,
+    "contentVariants": {
+      "easy": {
+        "chapterBreakdown": {
+          "gentle": "Close relationships are where the same avoidance patterns run longest, because the stakes of being real are highest with the people who matter most. This chapter covers three marital game patterns. The first engineers a situation where any choice the partner makes proves the accusation against them. The second blames the partner for a restriction the player secretly invited in. The third releases stored grievances at dinner parties in the form of warm stories with sharp endings. All three are intimacy-avoidance strategies. Each provides the shape of closeness without requiring either person to be genuinely vulnerable with the other. The antithesis to each requires the stopping player to do the one thing the game was protecting them from.",
+          "direct": "Marital games are intimacy-avoidance mechanisms run inside the frame of a close partnership. Three patterns here. One: engineer a trap where any choice the partner makes proves they are the problem. Two: blame the partner for a restriction the player secretly invited in to avoid trying something they are afraid of failing at. Three: release aggression and stored grievance in the form of an affectionate public story with a sharp punchline. Each of these provides reliable strokes without requiring genuine vulnerability. The antithesis to each requires exactly the vulnerability the game was built to avoid.",
+          "competitive": "The games that cost the most are the ones run inside the closest relationships, because the avoidance they are performing has the highest stakes. Three patterns in this chapter: the no-winning-move trap, the invited restriction, and the warm story with the hidden insult. All three provide the form of closeness without the substance. All three protect the player from something real. The antithesis to each is that real thing, which is why the games run for decades."
+        },
+        "keyTakeaways": [
+          {
+            "point": "Marital games are intimacy-avoidance strategies. They provide the form of closeness without requiring genuine vulnerability from either player."
+          },
+          {
+            "point": "Three patterns: the Corner trap (any choice proves the accusation), If It Weren't For You (blame the partner for a restriction the player invited), and Sweetheart (aggression released under cover of affection)."
+          },
+          {
+            "point": "The antithesis to each requires the stopping player to do the exact thing the game was protecting them from: name what they want, attempt the feared thing, or say they are hurt."
+          }
+        ],
+        "oneMinuteRecap": {
+          "gentle": "Marital games are how people have the form of closeness without the risk of real vulnerability. Corner, IWFY, and Sweetheart each protect the player from saying something real. The antithesis to each is that real thing.",
+          "direct": "Three marital game patterns: Corner (no winning move), IWFY (invited restriction, blamed on partner), Sweetheart (aggression under affection). Each avoids intimacy. The antithesis requires the exact vulnerability the game was avoiding.",
+          "competitive": "Three patterns, all running on the same substitution: closeness-shape instead of actual vulnerability. The exits are available. Each exit costs the player exactly what the game was protecting them from paying."
+        }
+      },
+      "medium": {
+        "chapterBreakdown": {
+          "gentle": "The games in this chapter run inside the closest relationships a person has. They share a structural feature that distinguishes them from life games run with strangers or colleagues: they are specifically intimacy-avoidance mechanisms. The form of closeness is present. The genuine vulnerability that would make the closeness real is not.\n\nThe Corner pattern is the clearest example. Parveen engineers a Sunday planning conversation such that any choice Dev makes proves the accusation against him. If he agrees, she says he only did it to humor her. If he declines, she says he never tries. The game is not about the decision. It is about the confirmation: that Dev is impossible to please, and therefore that Parveen does not have to name what she actually wants. The antithesis requires Parveen to name what she actually wants. That is uncomfortable in exact proportion to how vulnerable the real want is.\n\nThe If It Weren't For You pattern has a structural insight at its center that Berne thought was the most important thing in the chapter: the player chose the partner partly because the partner provided the restriction. Luca has been saying for seventeen years that Nadia's need for the practical salary prevented him from becoming an architect. Berne's claim is that Luca chose Nadia partly because she would provide that reason. The restriction is not imposed from the outside; it was invited in. The payoff is protection from the possibility of real failure. The antithesis is Nadia saying 'Go. I'll support us. Try.' That antithesis has never been made because Luca has organized his half of their life around not having to try.\n\nThe Sweetheart pattern releases aggression in a form that cannot be objected to. Vera tells a warm story about Bastian at a dinner party where the last clause is a thing that, heard in private, would hurt. Bastian cannot object without looking like the kind of person who takes offense at affection. Payoff: aggression with cover, grievance released cleanly, social warmth. The antithesis is Bastian naming the psychological level of the transaction privately after the party: 'The last part of that story was the real thing you wanted to say.' It costs him the willingness to name a hurt he has been not-naming.",
+          "direct": "Marital games are a specific subclass of the game catalog. What distinguishes them is the structural role they play in a close partnership: they are intimacy-avoidance mechanisms. The form of closeness is present in all three patterns. Genuine vulnerability is precisely what each pattern is organized to avoid.\n\nCorner: one partner engineers a double-bind where any response confirms the accusation. The game is not about the choice; it is about the proof. The dynamics are the player's need to confirm the partner is impossible without having to say what they actually want. Antithesis: notice the trap, name it, offer the conversation underneath.\n\nIf It Weren't For You: the player attributes their unfulfilled aspiration to the partner's restrictions. Berne's structural insight, which the chapter does not soften: the restricting partner was often chosen because they would provide the restriction. The restriction was invited in. Payoff: protection from the possibility of real evidence about whether the player could have done the thing. Antithesis: remove the restriction ('Go, try'). The antithesis has typically never been made because the player's architecture requires the restriction to remain.\n\nSweetheart: the player releases stored aggression through an affectionate-seeming public story. The last clause of the story is the real transaction. The partner cannot object within the social setting. Payoff: aggression with plausible deniability, grievance delivered cleanly. Antithesis: name the psychological level privately afterward.\n\nAll three antitheses require the same thing: the vulnerability the game was built to avoid. That is the chapter's structural claim, and it is the reason marital games run for years inside partnerships where both people are intelligent and well-meaning.",
+          "competitive": "Marital games are the most expensive games most people run, and they are expensive specifically because the thing they are avoiding is also the most valuable thing available in the relationship they are running in. Every marital game provides the form of closeness while protecting both players from genuine vulnerability. That is not weakness. That is a sophisticated solution to the real cost of being exposed to the person who matters most.\n\nThe Corner pattern engineers a no-winning-move situation in which the partner is proved impossible regardless of their response. The dynamics are not malice; they are the player's need for confirmation that the partner is the problem, because 'the partner is the problem' is load-bearing. If the partner is not the problem, the player has to say what they actually want. That is the antithesis: say what you actually want. It is the most expensive antithesis in the chapter.\n\nThe If It Weren't For You pattern blames the partner for a restriction the player quietly built into the relationship at the start. This is Berne's hardest structural claim: the player chose the partner partly for their suitability to the restriction role. The architecture of the game was established before the first game was played. The antithesis removes the restriction. In most cases, neither player has ever made that move because the player's half of the life is organized around not making it.\n\nThe Sweetheart pattern is the most socially agile of the three. It runs in company, produces warmth and laughter, and delivers a grievance the partner cannot address without looking small. The antithesis is a private naming afterward, which requires the partner to be willing to say they noticed, which requires the partner to be willing to be hurt. All three antitheses converge on the same point: the game was protecting both players from something real, and the antithesis asks both of them to stop being protected."
+        },
+        "keyTakeaways": [
+          {
+            "point": "Marital games are specifically intimacy-avoidance mechanisms.",
+            "moreDetails": "They provide the form of closeness — shared decisions, shared history, shared company — without the genuine vulnerability that would make the closeness real. This is what distinguishes them as a category from life games run with strangers or colleagues."
+          },
+          {
+            "point": "Corner engineers a double-bind where any response confirms the accusation.",
+            "moreDetails": "The game is not about the choice; it is about the proof. The dynamics are the player's need to confirm the partner is impossible without naming what they actually want. The antithesis requires naming the real want."
+          },
+          {
+            "point": "If It Weren't For You builds in the restriction at the start by choosing a partner who will provide it.",
+            "moreDetails": "Berne's structural insight: the restricting partner was often invited in. The restriction was not imposed from outside; it was selected for. Payoff: protection from trying the feared thing and getting real evidence of the outcome."
+          },
+          {
+            "point": "Sweetheart delivers aggression under the cover of affection in a social setting.",
+            "moreDetails": "The partner cannot object without looking small. Payoff: grievance delivered cleanly, aggression with plausible deniability, warmth maintained. Antithesis: name the psychological level of the transaction privately afterward."
+          },
+          {
+            "point": "The antithesis to every marital game requires the exact vulnerability the game was built to avoid.",
+            "moreDetails": "This is the chapter's structural claim. The game is not accidental; it is the solution to the problem of being real with the person who matters most. The antithesis is that realness, which is why the games run for years inside good partnerships."
+          }
+        ],
+        "activationPrompt": {
+          "gentle": "Think of a recurring argument or pattern in your closest relationship (partnership, family, or long-term friendship) that ends in the same place each time. Try to name what being real would require, and whether that is the move neither person has made.",
+          "direct": "Name the pattern in your closest relationship that has repeated most consistently. Identify what the antithesis would require of the stopping player. Is that antithesis the exact thing the game has been protecting both players from?",
+          "competitive": "Name the pattern in your closest relationship that has cost the most over the most years. Map the antithesis. If the antithesis is the thing neither player has been willing to do, you have found the game's load-bearing protection."
+        },
+        "selfCheckPrompt": {
+          "gentle": "Can you describe a pattern in a close relationship where the form of closeness is present but something real is consistently being avoided by both of you?",
+          "direct": "Name one recurring pattern in a close relationship that provides the shape of connection without genuine vulnerability. What would genuine vulnerability look like in that pattern?",
+          "competitive": "Name the game in your closest relationship. State the antithesis in one specific sentence. Now name why neither player has made that move. The reason is the protection the game is providing."
+        },
+        "oneMinuteRecap": {
+          "retrieve": "Marital games are intimacy-avoidance mechanisms in the frame of a close partnership. Three patterns: Corner (double-bind, any choice proves accusation), IWFY (invited restriction blamed on partner), Sweetheart (aggression under affection). All three avoid genuine vulnerability.",
+          "connect": "Every marital game is paying strokes (Ch4 energetics) while protecting against the thing that would require giving up the game: being real. The antithesis is always the real thing.",
+          "preview": "The party games in the next chapter run the same avoidance strategy in shorter, cheaper form, across groups rather than partnerships."
+        }
+      },
+      "hard": {
+        "chapterBreakdown": {
+          "gentle": "The previous chapter showed that life games run at biographical scale and that the positions they confirm become invisible as positions. Marital games are a specific subclass with a specific structural feature: they are run inside the relationship where genuine vulnerability is most available and most costly, and they provide a reliable substitute for it. The form of closeness is present. The actual thing the form is substituting for is not.\n\nThe Corner pattern is structurally the clearest. One partner engineers a situation where any choice the other makes confirms the accusation. Both moves are wrong; that is the architecture. The dynamics are not cruelty. They are the player's need to confirm the partner is impossible without having to name the want that would be exposed if the confirmation were not in place. If Dev is impossible to please, Parveen does not have to say what she actually wants. The antithesis requires her to say it. The cost of the antithesis is that the want becomes visible and real and available to be declined.\n\nBerne's structural insight about the If It Weren't For You pattern is the hardest thing in this chapter and the part that most distinguishes his framework from conventional sympathy. The player did not simply accept the restriction that the partner imposed. The player chose the partner partly because that partner would provide the restriction. The restriction is not from the outside; it was invited in. Luca has organized seventeen years of his life around the story that Nadia's practical demands prevented him from trying architecture. Berne's claim is that some part of Luca chose Nadia because Nadia would make the story available. The payoff is not just the strokes of the sympathy; it is protection from the one thing the story was always protecting against: an actual attempt that could produce actual evidence.\n\nThe Sweetheart pattern is more socially agile and harder to see in real time. Vera tells a warm story at a dinner party where the last clause is the real transaction. Bastian cannot object without looking small in front of the guests who just laughed. The game runs on the gap between the social level and the psychological level, and it runs in company, which gives the player cover the other two do not have. The antithesis is a private naming afterward, which costs Bastian the willingness to admit he noticed, which is itself a move of real vulnerability.\n\nThe chapter's structural claim is the one all three patterns converge on: the antithesis to every marital game requires the stopping player to perform the exact act of vulnerability the game was built to protect against. Parveen has to name the want. Luca has to attempt the thing. Bastian has to say he is hurt. These are not clever moves; they are real ones. The game ran for years because both players were not ready to be that real with each other, and the antithesis asks them to be, right now, in this relationship, with everything that represents. The chapter holds that honestly because the alternative, which is to suggest the antithesis is just a conversational move, is not honest.",
+          "direct": "Berne's marital games chapter is built around a structural claim that distinguishes the category from all other game categories: these games are specifically intimacy-avoidance mechanisms. Not just patterns that happen to occur in partnerships. Patterns that are organized around providing the shape of a close relationship while protecting both players from the substance of one. The form is present. The real thing is precisely what is being managed away.\n\nCorner is the category's most transparent architecture. One partner engineers a double-bind: any response from the other confirms the accusation. The engineering is not always conscious and it is not malicious; it is the output of a dynamics structure organized around a single goal: confirming that the partner is the problem, because the alternative is saying what the player actually wants. The antithesis is to name the trap and offer the real question underneath it. The cost is that the real question becomes available to be answered honestly, which means it becomes available to produce an answer the player might not want.\n\nThe If It Weren't For You pattern carries Berne's most challenging structural claim: the player selected the restricting partner partly for their restriction-providing suitability. The game's architecture was laid in at the point of partner selection. The restriction is load-bearing in the player's life: it is the thing that has been, for years, standing between the player and a real attempt at the feared aspiration. The antithesis, 'Go, I will support us, try,' removes the load-bearing element. It has almost never been made, in the cases where this pattern runs, because removing it would require both players to reconstitute their relationship around a different structure, and because the player's fear of the attempt is the real dynamic that neither has been willing to name.\n\nThe Sweetheart pattern requires the most social sophistication to see because it runs in company and uses warmth as its cover. The grievance is real; the affection is real; the social-level transaction is genuine. The psychological-level transaction is the last clause of the story, delivered where the partner cannot respond. The antithesis requires private naming, which requires the partner to be willing to say 'I noticed, and it hurt.' That willingness is itself a move of genuine vulnerability in a relationship where the game has been running long enough to make vulnerability feel dangerous.\n\nThe chapter's hardest claim is also its most useful one. The antithesis to every marital game is not a strategy. It is the specific thing the game was protecting against. That is why marital games run for decades inside partnerships that contain two intelligent, well-meaning people who would prefer things to be different. The game is not a mistake; it is a solution to the real problem of being exposed in the relationship where exposure costs the most.",
+          "competitive": "Marital games are the chapter where the model lands closest to home. The game is not being run with a coworker or a business partner or an adversary. It is being run with the person whose opinion of the player is organized into every room in the player's life. The avoidance the game is performing has the highest possible stakes, which is why the games run for the longest time and why the antitheses are the hardest moves in the catalog.\n\nThe Corner pattern is clean enough to be diagrammed. One player engineers a situation with no correct response. The architecture is not accidental; it is the output of a dynamics structure whose purpose is to confirm the partner as the problem, because that confirmation is the protection the player needs against naming what they actually want in the relationship. If the partner is always wrong, the player never has to be vulnerable. The antithesis pierces that protection: name the real want. The cost is that the want becomes real and exposed and available to be declined. In a partnership where genuine vulnerability has been avoided for years, that cost is not abstract.\n\nThe structural insight Berne was most emphatic about, and the one the chapter cannot soften without becoming dishonest, is the IWFY claim: the player did not passively accept the restriction. The player built the restriction into the relationship by selecting a partner who would provide it. The architecture of the game predates the first game. This is not a moral accusation against the player; it is a structural observation about how fear organizes partner selection. And it makes the antithesis harder than it looks: removing the restriction ('go, try, I'll support us') does not just change a relationship dynamic. It dismantles the arrangement that the player built their entire half-life around. The antithesis, if made, requires both players to live differently.\n\nThe Sweetheart pattern is the most elegant of the three and the hardest to see from the inside. It produces real warmth and real laughter in a public setting, and it delivers a genuine grievance in a form that cannot be objected to without costing the partner their dignity in the room. The antithesis requires the partner to say, privately, 'I noticed that, and it hurt.' That sentence is a more genuine act of vulnerability than anything the game has produced in years. In a partnership where the Sweetheart pattern has been running, saying 'I noticed and it hurt' is the move that opens the conversation neither player has been willing to have. It is also, in Berne's terms, the closest thing to intimacy the chapter gets to name."
+        },
+        "keyTakeaways": [
+          {
+            "point": "Marital games are specifically intimacy-avoidance mechanisms, not just games that happen to occur in partnerships.",
+            "moreDetails": "The form of closeness is present in all three patterns. What is precisely absent is the genuine vulnerability that would make the closeness real. That absence is the thing the games are organized to maintain."
+          },
+          {
+            "point": "Corner engineers a no-winning-move situation to protect the player from naming what they actually want.",
+            "moreDetails": "The confirmation ('the partner is impossible') is the protection. If the partner is always wrong, the player never has to be vulnerable about their real preferences. The antithesis requires naming the real want, which exposes it to being declined."
+          },
+          {
+            "point": "If It Weren't For You was built in at the point of partner selection.",
+            "moreDetails": "The restricting partner was chosen partly because they would provide the restriction. The architecture of the game predates the first game. The antithesis removes the restriction, which means dismantling the arrangement the player built their entire half-life around."
+          },
+          {
+            "point": "Sweetheart delivers aggression under affection in a public setting where the partner cannot respond.",
+            "moreDetails": "The grievance is real; the warmth is real; the social cover is real. The antithesis is private naming afterward ('I noticed and it hurt'), which is itself a genuine act of vulnerability in a relationship where the game has made vulnerability feel dangerous."
+          },
+          {
+            "point": "The antithesis to every marital game requires the stopping player to perform the exact act the game was protecting against.",
+            "moreDetails": "This is the chapter's structural claim. The antitheses are not clever; they are real. Parveen names the want. Luca attempts the thing. Bastian says he is hurt. Each move is genuine in a relationship where genuine has been expensive."
+          },
+          {
+            "point": "Marital games run for years inside good partnerships because both players are not ready to be that real with each other.",
+            "moreDetails": "The game is not a failure of the relationship. It is a solution to the real cost of exposure with the person whose opinion of the player is organized into every room in their life. The antithesis asks them to stop being protected, right now, in this relationship."
+          }
+        ],
+        "activationPrompt": {
+          "gentle": "Think of the pattern in your closest relationship that has been running the longest. Try to name the specific vulnerability it was protecting both of you from. Not the topic of the argument, but the real thing underneath that neither of you has said.",
+          "direct": "Name the marital game pattern in your closest relationship. Identify the specific act of vulnerability the antithesis would require of the stopping player. State whether that vulnerability has ever been offered in the relationship, and what happened (or didn't happen) when it was.",
+          "competitive": "Name the marital game in your closest relationship. State the antithesis in one sentence. Now name why neither player has made that move, in specific terms. The specific terms are the protection the game is providing."
+        },
+        "selfCheckPrompts": [
+          {
+            "gentle": "In your closest relationship, can you identify a topic that is regularly discussed but never resolved, where the form of discussion provides a structure that prevents the real conversation from happening?",
+            "direct": "Name the topic in your closest relationship that is discussed often and resolved rarely. Identify which player is protected by that non-resolution. Name what the real conversation underneath it would require.",
+            "competitive": "Name the recurring non-resolution in your closest relationship. State which player it protects, and from what. The answer to 'from what' is the game's load-bearing protection."
+          },
+          {
+            "gentle": "Has there been a moment in your closest relationship where you could have named the real thing and chose not to? What would it have cost to name it?",
+            "direct": "Name one moment in your closest relationship where the antithesis was available and not taken. What would it have required, specifically, and why was it not taken?",
+            "competitive": "Name the antithesis that was available in your closest relationship and not taken. State the cost of taking it. That cost is the value of the protection the game is providing."
+          }
+        ],
+        "predictionPrompt": {
+          "gentle": "If you offered one genuine act of vulnerability in your closest relationship in the next month, on a topic the game has been protecting both of you from, what do you predict would happen?",
+          "direct": "Predict: if you made the antithesis move in your closest game-organized pattern, in one specific conversation in the next month, what would you expect from the other player? What would you expect from yourself?",
+          "competitive": "Run the experiment in your head: the antithesis, in one conversation, in the next month, in your closest relationship. What happens? Does the game reset, shift shape, or end? Your prediction tells you how load-bearing the protection actually is."
+        },
+        "oneMinuteRecap": {
+          "retrieve": "Marital games are intimacy-avoidance mechanisms. Three patterns: Corner (double-bind), IWFY (invited restriction blamed on partner), Sweetheart (aggression under affection). All three protect both players from genuine vulnerability.",
+          "connect": "The antithesis to each is the exact vulnerability the game was protecting against. This is the structural claim that makes marital games the most expensive games in the catalog.",
+          "preview": "The same avoidance strategy runs in its cheapest, shortest form in party games and social settings. The next chapter shows what it looks like at an evening's scale."
+        }
+      }
+    },
+    "examples": [
+      {
+        "id": "ex01",
+        "title": "Cleo and Jae's partnership decision",
+        "format": "short_dialogue",
+        "category": "work",
+        "endingType": "observation",
+        "scenario": {
+          "gentle": "Cleo and Jae have been running a small consultancy together for three years. This Thursday's discussion is about whether to bring on a third partner. Jae says it is Cleo's call. Cleo says Jae should decide; it affects their scope. Jae says Cleo is closer to the client pipeline. Cleo says Jae knows the financial model better. Neither moves. They have had this conversation before with different surfaces.",
+          "direct": "CLEO: You should decide on the third partner. You know the financial model. JAE: It's your call. You run the client pipeline. CLEO: I don't want to make a unilateral call on this. JAE: Neither do I. // Neither of them wants the decision because neither wants to own the outcome. The game is not about the decision; it is about who has to be the person who wanted this outcome.",
+          "competitive": "Cleo and Jae have been in a business partnership for three years and have never directly stated what they want from the partnership's growth. Every major decision looks like this: deference, more deference, an impasse, and eventually an external factor that makes the decision for them. The third-partner conversation is the same architecture. Neither of them is going to say what they actually want, because what they want would expose what they are afraid of."
+        },
+        "whatToDo": {
+          "gentle": "The move is the one neither has made: 'Here is what I actually want us to do, and here is why.' Not 'I think you want X' or 'what do you think?' but a direct statement of the actual preference. The statement may be wrong or may be declined. That is the cost of the antithesis.",
+          "direct": "State the actual preference. 'I want to bring in a third partner, specifically for these reasons, and here is what I think it would require of us.' That sentence is the antithesis to the deference loop. It makes Cleo's position real and available to be debated, which is uncomfortable in exact proportion to how much she has been avoiding that.",
+          "competitive": "State the position and defend it. One sentence: 'I want to bring in a third partner, and here is why.' Then stop deferring. The deference loop runs because neither has been willing to be the person who wanted something. Being the person who wants something is the antithesis."
+        },
+        "whyItMatters": {
+          "gentle": "Business partnerships where neither partner ever states a direct preference are not running on respect for each other's views. They are running a deference loop that protects both from being the person whose preference is visible and possibly wrong. The partnership's decisions will always be made by external pressure rather than internal choice.",
+          "direct": "Deference loops in partnerships prevent the partnership from having a strategy, because strategy requires someone to want something specific. The partnership's growth will be reactive rather than chosen for as long as the deference loop runs.",
+          "competitive": "A consultancy where neither partner will state a direct preference on growth decisions is not going to grow in a direction either of them chose. External pressure will choose for them, every time, and they will call it circumstance."
+        }
+      },
+      {
+        "id": "ex02",
+        "title": "Kwame at the team retrospective",
+        "format": "first_person",
+        "category": "work",
+        "endingType": "reflection",
+        "scenario": {
+          "gentle": "I am telling the team the story about how the client handoff worked out, and I am framing it around all the things I did to make it work. The story is mostly true. The part that is not entirely true is the framing: the handoff worked because Adaeze caught an error I had made in the spec on Tuesday. I have not mentioned Adaeze's name. The team thinks the story is about how the process improved. I know the story is about how I looked in the room.",
+          "direct": "Retrospective. I am telling the handoff story. Leaving out Adaeze. I know I am leaving out Adaeze. The team is nodding. The nods are the strokes. The strokes are what I came for. The part of me that would include Adaeze is the part that is not running this retrospective.",
+          "competitive": "I am delivering the handoff story and it is landing well and Adaeze is in the room. I left her name out not because I forgot but because including her name changes the story from 'Kwame executed this well' to 'the team caught Kwame's error.' I made a call. The call is paying out in nods. Adaeze knows I made the call."
+        },
+        "whatToDo": {
+          "gentle": "The next version of this story includes Adaeze's name and the error she caught. That version is not a punishment for the current version; it is a correction. It is also the version that builds the kind of trust with the team that the current version cannot, because the current version is a Sweetheart-adjacent pattern and Adaeze knows it.",
+          "direct": "Correct the record at the end of the retrospective or in a follow-up message. 'I want to add something I should have named in the story: Adaeze caught a spec error on Tuesday that was mine and it was the correction that made the handoff work.' The correction costs nothing except the strokes from the misleading version.",
+          "competitive": "Correct it before Adaeze has to. 'I want to add: Adaeze caught a spec error that was mine. That is what made the handoff work.' The correction costs the strokes from the misleading version and buys the kind of credibility that the misleading version has been quietly spending."
+        },
+        "whyItMatters": {
+          "gentle": "Teams whose members tell handoff stories that omit each other's contributions are teams whose members have stopped collaborating on the stories that matter. Adaeze knowing she was omitted is information that will organize the next story she tells about Kwame.",
+          "direct": "Self-serving retrospective stories are a form of Sweetheart played on the team: the grievance being stored is Adaeze's, and it will be paid back in a form Kwame cannot object to in public. Correcting now is cheaper than receiving later.",
+          "competitive": "Adaeze knows. The team will find out. Correcting the record now costs one sentence. Waiting costs credibility on a schedule."
+        }
+      },
+      {
+        "id": "ex03",
+        "title": "Professor Strommen and Rosie",
+        "format": "third_person_scene",
+        "category": "school",
+        "endingType": "unresolved_tension",
+        "scenario": {
+          "gentle": "Rosie has been meeting with Professor Strommen every month for two years about her dissertation. The meetings follow a familiar shape. Rosie describes what she has not written. Strommen offers a suggestion. Rosie explains why the suggestion does not apply to her specific case. Strommen offers another suggestion. Rosie explains why that one does not apply either. The meeting ends with a plan for the next meeting. Nothing has been written between the last meeting and this one.",
+          "direct": "Monthly dissertation meeting, two years in. Rosie (Adult to Adult surface): I'm stuck on the framing of chapter two. Strommen (Adult, suggestion): Have you tried X approach? Rosie: That doesn't quite work because my data is Y. Strommen: What about Z? Rosie: Z is closer but the theoretical frame doesn't support it. // Neither of them has named what is actually happening: Rosie is running a rejected-suggestion loop and Strommen is the generator. Two years of meetings. No chapters.",
+          "competitive": "Strommen has offered forty-seven suggestions across twenty-four meetings, and Rosie has declined all of them with reasons that are technically plausible and structurally identical. He is looking at the current one and recognizing, in a way he has not let himself recognize before, that the meeting is not about chapter two. It is about the thing Rosie is not doing, and the meeting structure is the thing that keeps her from having to ask herself why."
+        },
+        "whatToDo": {
+          "gentle": "Strommen's antithesis is the question that refuses the generator role. 'Rosie, I notice we have been meeting for two years and I have offered a lot of suggestions that haven't moved the chapter forward. I want to ask a different question: what would it take for you to write chapter two, regardless of the framing question?' That question is not about the framing. It is about the actual obstacle.",
+          "direct": "Stop generating suggestions. Ask the structural question: 'What would writing chapter two require of you that the framing question is protecting you from?' Or more simply: 'What are you afraid of finding out if you write it?' One of those questions is the antithesis to the rejected-suggestion loop.",
+          "competitive": "Stop. 'I have offered forty-plus suggestions and none of them have moved the chapter. I am not going to offer another one. Tell me what you would need to write chapter two that has nothing to do with the framing.' One sentence. Strommen has been the generator for two years. The question is the antithesis and it is overdue."
+        },
+        "whyItMatters": {
+          "gentle": "Academic advising relationships that have become rejected-suggestion loops are not producing dissertations; they are producing the relationship. Both parties are getting something from the meetings: Rosie gets the attention and the postponement, Strommen gets the role of the helpful advisor. Both get to avoid the conversation about what Rosie is actually afraid of.",
+          "direct": "Two-year rejected-suggestion loops in dissertations are a supply architecture problem. The meetings are the stroke source. The dissertation is the thing that would end the meetings. The structural intervention is refusing to generate and asking what writing would actually require.",
+          "competitive": "Strommen has been Rosie's stroke supply for two years. The dissertation would end the supply. Strommen refusing to generate is not punitive; it is the only move that creates the conditions under which Rosie might actually write the chapter."
+        }
+      },
+      {
+        "id": "ex04",
+        "title": "Adaeze coaching a graduate student",
+        "format": "coaching_script",
+        "category": "school",
+        "endingType": "reframe",
+        "scenario": {
+          "gentle": "Adaeze is sitting with a second-year student named Kwame who has been describing, for the third session, the structural reasons why his dissertation proposal cannot move forward. The reasons are real. They are also consistent: every session names a different real reason and the proposal does not move. Adaeze has been offering suggestions each time, and the suggestions have been declined with reasons that are also real. She is trying to find a way to name the pattern without calling it a problem with Kwame.",
+          "direct": "Adaeze is in her third session with a graduate student who has named three different real reasons why the proposal cannot move. Adaeze recognizes the structure. The reasons are real. The pattern is also real. The pattern is the generator loop: Adaeze proposes, Kwame declines, the proposal does not move. She is deciding whether to name the pattern or run the loop a fourth time.",
+          "competitive": "Third session. Three different reasons. One non-moving proposal. Adaeze is looking at the list she has been keeping of her suggestions and his responses, and she is recognizing what it says. She has a decision: generate a fourth suggestion or change the question."
+        },
+        "whatToDo": {
+          "gentle": "Say: 'I want to try something different today. Instead of talking about what is preventing the proposal, I want to ask you to describe what completing it would feel like. Not what it would look like — what would it feel like to hand it in?' The emotional register of the answer will tell Adaeze something the structural reasons have been preventing her from seeing.",
+          "direct": "Stop suggesting. Ask: 'What would finishing this proposal require of you that we have not talked about in these sessions?' Then wait. The first answer will be another structural reason. Wait for the second one. The second one is usually closer to the actual obstacle.",
+          "competitive": "Stop generating. One question: 'What would it mean about you if you finished this proposal and it was accepted?' The question is the antithesis to the structural-reasons loop. Kwame's answer to that question is the dissertation's actual problem, and it is not structural."
+        },
+        "whyItMatters": {
+          "gentle": "Graduate students who run rejected-suggestion loops in advising sessions are usually protecting themselves from a belief about what completing the work would prove about them. The structural reasons are real and they are also a cover. Finding the cover is the actual work of advising.",
+          "direct": "Advising sessions that move between suggestion and rejection without moving the work forward are running on the supply architecture of the advising relationship, not on the intellectual problem. Naming the pattern without judgment is the move that opens the actual conversation.",
+          "competitive": "The proposal is not moving because completing it is more frightening than not completing it. Adaeze generating suggestions is the thing that makes the not-completing feel like an intellectual problem rather than a personal one. Stopping the generation removes the cover."
+        }
+      },
+      {
+        "id": "ex05",
+        "title": "Luca's filing cabinet",
+        "format": "narrative_flashback",
+        "category": "personal",
+        "endingType": "forward_question",
+        "scenario": {
+          "gentle": "Luca found the brochure in the filing cabinet on a Saturday. Architecture school, 2007. He had applied. He had been accepted, actually. He had declined the acceptance three months before he met Nadia. He is standing at the filing cabinet with the acceptance letter in his hand and the story he has told for seventeen years is rearranging itself around him without his permission.",
+          "direct": "Luca opens a filing cabinet for the first time in years. He finds the acceptance letter from the architecture program. Dated three months before he met Nadia. The letter is real. The timeline is real. The story that Nadia's needs prevented him from architecture school was never about the timeline; it was about the need for the story. He is reading the acceptance letter and doing the arithmetic.",
+          "competitive": "2007. Acceptance letter. Architecture school. He declined it three months before he met Nadia. He has known this fact, at some level, for seventeen years. He has not needed to look at it directly until the filing cabinet opened and the letter was there. He is now doing the arithmetic he has been not-doing for seventeen years, and the arithmetic is simple and the result of it is not going to let the story run in its current form anymore."
+        },
+        "whatToDo": {
+          "gentle": "Luca does not have to decide anything today. The letter is real and the arithmetic is simple and both of those facts can sit with him for a while before he decides what they mean for the story he has been telling and for the relationship he has built the story inside of. He can also, when he is ready, have the conversation with Nadia that the story has been preventing.",
+          "direct": "Luca can have the conversation: 'I found the acceptance letter. I declined it three months before I met you. I have been telling a story about this that was not accurate, and I want to tell you the accurate version.' That conversation is the antithesis to seventeen years of IWFY. It is overdue and it is available.",
+          "competitive": "Have the conversation now. Not later. The letter is in his hand and the story is already rearranging. 'I declined the acceptance before I met you. I have been using our relationship as the reason I did not try. I want to talk about what I actually want to do now.' The conversation is available. The architecture program is gone. The conversation is not."
+        },
+        "whyItMatters": {
+          "gentle": "The discovery of contradicting evidence at a precise moment in an IWFY game is the moment the game becomes available to be left. The evidence is not the exit, but it opens the door. What the player does with the open door is the actual work.",
+          "direct": "Biographical games that are built on revisable premises are games that can be left when the premises are revised. Luca's premise (Nadia prevented the attempt) is now revised. What he does next is the choice the game has been preventing him from making for seventeen years.",
+          "competitive": "The game is over as a self-belief problem. The story cannot run in the same form with the letter in hand. What happens next is the question that seventeen years of running the game was protecting Luca from having to answer."
+        }
+      },
+      {
+        "id": "ex06",
+        "title": "Parveen that evening",
+        "format": "inner_monologue",
+        "category": "personal",
+        "endingType": "decision_point",
+        "scenario": {
+          "gentle": "It is Sunday evening and the conversation about Eid has been in Parveen's head since this afternoon. She is thinking about the part where Dev said they should go to her sister's. She is thinking about what she said in response. She is thinking about the look on his face when she said it, which was not defensive. It was tired. The same tired look from the same kind of conversation four years running. She is sitting with the recognition that she has not told Dev what she actually wants from Sunday in a very long time.",
+          "direct": "Sunday evening. Parveen is reconstructing the Eid conversation. Dev suggested her sister's. She said he only suggested it to humor her. She is now asking herself: what did I actually want? Not what did I want Dev to do wrong, but what did I want for the day? She is finding it difficult to answer that question cleanly, which is information.",
+          "competitive": "Parveen is on the couch at 8pm running the Sunday conversation back through her head and landing on the question she has not asked herself since 2020: what do I actually want? Not 'what did Dev do wrong' — she can answer that easily and quickly. The harder question is the one underneath. She is avoiding it, which is also information."
+        },
+        "whatToDo": {
+          "gentle": "Parveen can answer the harder question tonight, for herself, before she answers it with Dev. 'What do I actually want from a Sunday at Eid?' The answer to that question, whatever it is, is the first sentence of the conversation that would replace the game. She does not have to have that conversation tonight. She can start by having it with herself.",
+          "direct": "Answer the question. 'What do I actually want for Eid?' Write it down if necessary. The writing is not for Dev; it is for Parveen. Once the want is visible to her, it becomes possible to say it to him. The game runs because the want is never stated. The game ends when the want is.",
+          "competitive": "Answer the question tonight. One sentence, honest: 'I want X for Eid.' If she cannot answer it, the game is still protecting her from the question. If she can answer it, she has the antithesis. The only remaining question is whether she is willing to say it to Dev, which is a different question than whether she knows it."
+        },
+        "whyItMatters": {
+          "gentle": "The Corner game runs because the player does not know, or will not say, what they actually want. The moment of recognizing the tired look on Dev's face is the moment the game becomes visible as a game rather than as a description of how Dev is. What Parveen does with that recognition is the choice the chapter is offering her.",
+          "direct": "Corner games run because genuine preferences are not stated. They end when preferences are stated directly. The statement is uncomfortable. The game is more comfortable. The question is which cost is preferable, and the chapter does not answer that for the player.",
+          "competitive": "The game is available to be ended by one direct sentence. The sentence is expensive in proportion to how long the preference has been not-stated. The cost is real. The cost of continuing the game is also real. Parveen is at the decision point and the chapter stops there."
+        }
+      }
+    ],
+    "quiz": {
+      "passingScorePercent": 80,
+      "questions": [
+        {
+          "questionId": "q01",
+          "prompt": "What distinguishes marital games, as a category, from other game categories?",
+          "choices": [
+            "Marital games involve more serious emotional harm",
+            "Marital games are run by people who are unhappy",
+            "Marital games are specifically intimacy-avoidance mechanisms: they provide the form of a close relationship while organizing both players' avoidance of genuine vulnerability"
+          ],
+          "correctIndex": 2,
+          "explanation": {
+            "gentle": "Intimacy avoidance is the structural feature that distinguishes the category. Emotional harm and unhappiness are possible consequences but they are not the structural definition. The games can be run by people who are deeply attached to each other and who would prefer things to be different.",
+            "direct": "Intimacy-avoidance structure is the chapter's definition of the category. Harm and unhappiness are outcome claims, not structural claims. The structural claim is that both players are organized around the form of closeness while avoiding the substance.",
+            "competitive": "Structure, not outcome. Harm and unhappiness are not the definition. The definition is that the game provides closeness-shape while organizing avoidance of genuine vulnerability. That is the chapter's claim and the only answer that matches it."
+          },
+          "bloomsLevel": "understand",
+          "depthLevel": "easy"
+        },
+        {
+          "questionId": "q02",
+          "prompt": "What makes the Corner pattern a trap?",
+          "choices": [
+            "The player is deliberately cruel to their partner",
+            "Any response the partner makes confirms the accusation, so there is no correct move within the game's frame",
+            "The partner is not smart enough to find the correct response"
+          ],
+          "correctIndex": 1,
+          "explanation": {
+            "gentle": "No-winning-move architecture is the trap. The game is not about cruelty and it is not about the partner's intelligence. It is about the architecture: any choice confirms the accusation, so the partner cannot respond correctly within the frame the game sets.",
+            "direct": "Double-bind architecture is the definition. The player is not cruel in the clinical sense; the game does not require malice. The partner's intelligence is irrelevant; the correct move does not exist inside the frame.",
+            "competitive": "No-winning-move is the structure. Cruelty is a moral label; the chapter refuses moral labels. Partner intelligence is irrelevant; the game defeats any intelligent response because it is not about intelligence."
+          },
+          "bloomsLevel": "understand",
+          "depthLevel": "easy"
+        },
+        {
+          "questionId": "q03",
+          "prompt": "What is Berne's structural insight about the If It Weren't For You pattern?",
+          "choices": [
+            "The player has genuinely been restricted by their partner",
+            "The player chose the partner partly because that partner would provide the restriction they needed to avoid trying the feared thing",
+            "The partner is deliberately blocking the player's ambitions"
+          ],
+          "correctIndex": 1,
+          "explanation": {
+            "gentle": "Invited restriction is Berne's insight. The chapter does not say the restriction is not real; it says the restriction was selected for. The player needed a reason to avoid the attempt, and the partner was chosen in part because they would provide it. Neither deliberate blocking nor simple genuine restriction captures the structural claim.",
+            "direct": "Selection for restriction-provision is the claim. The restriction being genuine and the restriction being deliberately imposed are both wrong: the first misses the selection claim, the second imports deliberate malice the chapter refuses.",
+            "competitive": "Invited restriction. The player built the excuse into the relationship at the point of partner selection. Neither 'genuine restriction' nor 'deliberate blocking' captures the architecture: the player organized the restriction for themselves."
+          },
+          "bloomsLevel": "analyze",
+          "depthLevel": "easy"
+        },
+        {
+          "questionId": "q04",
+          "prompt": "What does the Sweetheart pattern provide that straightforward aggression does not?",
+          "choices": [
+            "An outlet for the player's real feelings",
+            "Aggression delivered under the cover of affection in a setting where the partner cannot respond without looking small",
+            "A genuine opportunity for the couple to work through conflict"
+          ],
+          "correctIndex": 1,
+          "explanation": {
+            "gentle": "Covered aggression with social protection is the payoff. An outlet for real feelings describes what both direct aggression and indirect aggression provide; the Sweetheart pattern's distinctive feature is the social cover. Conflict resolution is what the game is organized to prevent.",
+            "direct": "Social cover for undeniable aggression is the distinguishing feature. An outlet is not the distinguishing feature; direct aggression is also an outlet. Conflict resolution is the antithesis, not the payoff.",
+            "competitive": "Social cover plus partner immobilization is the architecture. General outlet does not distinguish Sweetheart from argument. Conflict resolution is what the game prevents. The specific payoff is the combination of real aggression and impossible-to-object social framing."
+          },
+          "bloomsLevel": "analyze",
+          "depthLevel": "medium"
+        },
+        {
+          "questionId": "q05",
+          "prompt": "Cleo and Jae are business partners who defer all major decisions to each other and have never stated a direct preference. This pattern most closely resembles which marital game?",
+          "choices": [
+            "A Corner variant: the deference loop engineers a situation where neither player has to be the person who wanted a specific outcome, which means neither has to be wrong if the outcome is bad",
+            "A Sweetheart variant: they are releasing stored aggression through the deference",
+            "An IWFY variant: one of them is blaming the other for a restriction"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+            "gentle": "Corner variant is the match. The deference loop is a double-bind where neither player states a preference, which means neither can be proved wrong. This is structurally the same as Corner: the architecture is organized to protect both players from being the person who wanted something specific. Sweetheart requires aggression under affection, which is not present. IWFY requires a named restriction, which is not present.",
+            "direct": "No-one-who-wanted-it architecture is the Corner match. Sweetheart needs covered aggression; deference is not aggression. IWFY needs a restriction-blame structure; deference has no blame assignment.",
+            "competitive": "Corner architecture, shared between both players. Neither wants to be the person whose preference failed. Sweetheart needs aggression; this is avoidance, not aggression. IWFY needs blame; this is mutual deferral, not blame assignment."
+          },
+          "bloomsLevel": "apply",
+          "depthLevel": "medium"
+        },
+        {
+          "questionId": "q06",
+          "prompt": "What would the antithesis to Luca's IWFY game actually require?",
+          "choices": [
+            "Luca explaining the IWFY structure to Nadia",
+            "Luca attempting the feared thing, and Nadia offering to support the attempt rather than serving as the excuse for why the attempt cannot happen",
+            "Nadia acknowledging that she has been the source of Luca's restrictions"
+          ],
+          "correctIndex": 1,
+          "explanation": {
+            "gentle": "Attempting the feared thing with support is the antithesis. Explaining the IWFY structure to Nadia is not the antithesis; it is intellectual discussion that leaves the architecture in place. Nadia acknowledging she has been the source of restrictions accepts the game's premise, which Berne's insight says is wrong.",
+            "direct": "Real attempt plus structural support is the antithesis. Explaining the game to Nadia is a social-level move that does not address the psychological-level architecture. Nadia acknowledging restrictions accepts the premise Berne's insight refutes.",
+            "competitive": "The attempt is the antithesis. Explaining the game is not the antithesis; it leaves the architecture intact. Nadia acknowledging restrictions validates the false premise. The game ends when Luca tries, not when anyone talks about why he hasn't."
+          },
+          "bloomsLevel": "analyze",
+          "depthLevel": "medium"
+        },
+        {
+          "questionId": "q07",
+          "prompt": "What would Parveen have to say to break the Corner game she is running with Dev?",
+          "choices": [
+            "She would have to tell Dev that she has been running the Corner pattern and she is sorry",
+            "She would have to name what she actually wants from the Eid decision, not what Dev is doing wrong",
+            "She would have to agree to whatever Dev suggests without objecting"
+          ],
+          "correctIndex": 1,
+          "explanation": {
+            "gentle": "Naming the real preference is the antithesis. Explaining the game is an intellectual move that does not address the want the game is protecting. Agreeing without objecting is simply accepting Dev's choice, which does not address what Parveen wants.",
+            "direct": "State the actual preference is the antithesis. The game meta-conversation ('I've been running Corner') does not address the underlying want. Agreeing without objecting bypasses the preference entirely.",
+            "competitive": "The want, stated directly, is the antithesis. Explaining the pattern to Dev leaves the want unstated. Agreeing without objecting avoids the want. The game ends when the real preference is visible, not before."
+          },
+          "bloomsLevel": "apply",
+          "depthLevel": "medium"
+        },
+        {
+          "questionId": "q08",
+          "prompt": "A long-term couple has a recurring argument that always ends with one partner storming out and the other retreating. Neither has ever named what they are actually afraid of losing. Which structural claim from the chapter is most applicable?",
+          "choices": [
+            "This is a Sweetheart pattern because both partners are releasing aggression",
+            "This is a Corner pattern with shared double-bind, organized to protect both players from naming the actual fear",
+            "This is an IWFY pattern because one partner is blaming the other for the argument"
+          ],
+          "correctIndex": 1,
+          "explanation": {
+            "gentle": "Shared double-bind protection is the match. The argument pattern provides a structure that protects both players from naming the real fear. Sweetheart requires social cover and affection as a vehicle; the storming-out pattern is direct conflict, not covered aggression. IWFY requires blame of a specific restriction, which this pattern does not map to cleanly.",
+            "direct": "Shared Corner architecture is the match. Both players are in a structure that prevents the real conversation from happening. Sweetheart needs covered aggression; this is open conflict. IWFY needs a restriction blamed on a partner; this has no specific restriction narrative.",
+            "competitive": "Corner with shared protection. Sweetheart needs affection as the delivery vehicle; open storming-out is not covered. IWFY needs a specific restriction narrative; this is a general avoidance of the real fear. The shared double-bind is the Corner match."
+          },
+          "bloomsLevel": "apply",
+          "depthLevel": "hard"
+        },
+        {
+          "questionId": "q09",
+          "prompt": "Why does the antithesis to every marital game require the specific vulnerability the game was built to avoid?",
+          "choices": [
+            "Because marital games are less serious than life games",
+            "Because the game is organized around avoiding precisely that vulnerability, so removing the game means the vulnerability is no longer protected, and both players must decide whether to be real",
+            "Because the partner is usually the one who needs to make the antithesis move"
+          ],
+          "correctIndex": 1,
+          "explanation": {
+            "gentle": "The game is the protection; removing the game removes the protection. That is the chapter's structural claim. Marital games are not less serious than life games; the chapter explicitly holds them as more expensive because the stakes of exposure are highest in the closest relationship. The partner being the one who moves is sometimes true but is not the structural reason.",
+            "direct": "Protection architecture is the reason. The game was organized around the avoidance; its antithesis is the avoidance's opposite. Seriousness comparison is not the structural argument. Who makes the move is a tactical question, not the structural reason.",
+            "competitive": "Structure: the game IS the protection. Removing the game removes the protection. That is why the antithesis is expensive. Seriousness is not the argument; the chapter makes no comparative seriousness claim. Who makes the move is situational."
+          },
+          "bloomsLevel": "evaluate",
+          "depthLevel": "hard"
+        },
+        {
+          "questionId": "q10",
+          "prompt": "Connecting Chapter 4's energetics (strokes plus life position) to marital games: what does each marital game pay, and what position is it confirming?",
+          "choices": [
+            "Marital games pay fewer strokes than life games because the relationship is more stable",
+            "Corner pays the stroke of confirmation that the partner is impossible; IWFY pays the stroke of sympathy plus protection from failure; Sweetheart pays the stroke of aggression-released-cleanly — all three confirm life positions held since before the partnership began",
+            "Marital games pay a higher quality of stroke because they come from the closest relationship"
+          ],
+          "correctIndex": 1,
+          "explanation": {
+            "gentle": "Double payment (strokes plus position confirmation) is the Ch4 connection. The chapter 4 framework applies at full force here: Corner pays the confirmation stroke and confirms a position about the partner. IWFY pays sympathy and protection strokes and confirms the position that the player is not the author of their limitations. Sweetheart pays aggression-released strokes and confirms the position about what can be said safely. Stroke quantity and quality comparisons miss the structural argument.",
+            "direct": "Ch4 dual payment applies to each pattern specifically. Corner: confirmation stroke + 'partner is the problem' position. IWFY: sympathy stroke + 'I'm not the author of my limitations' position. Sweetheart: aggression-release stroke + 'this is as real as we get' position. Quantity and quality comparisons miss the structural application.",
+            "competitive": "Dual payment, specific to each pattern. Corner, IWFY, and Sweetheart each pay a specific stroke type and confirm a specific life position. Quantity and quality comparisons are not what Ch4 argued. Ch4 argued dual payment; this question tests whether the reader can apply that to specific patterns."
+          },
+          "bloomsLevel": "evaluate",
+          "depthLevel": "hard"
+        }
+      ]
+    },
+    "implementationPlan": {
+      "title": "Reading the marital game in your closest relationship",
+      "steps": [
+        "Name the recurring pattern. In one sentence, describe the last instance of it. What was the topic on the surface? What was the topic underneath?",
+        "Map the antithesis: what would the stopping player have to say that they have not said?",
+        "Ask whether the antithesis is the thing neither player has been willing to say. If yes, that is the game's load-bearing protection.",
+        "Do not make the antithesis move immediately. Sit with knowing what it is for a few days first. Then decide whether to make it, knowing what it will cost."
+      ]
+    },
+    "reviewCards": [
+      {
+        "id": "rc01",
+        "difficulty": "easy",
+        "front": "What is the structural feature that makes marital games a distinct category?",
+        "back": "They are specifically intimacy-avoidance mechanisms. They provide the form of closeness while protecting both players from genuine vulnerability. The form is present; the real thing is what the game is organized to prevent."
+      },
+      {
+        "id": "rc02",
+        "difficulty": "easy",
+        "front": "What is Berne's structural insight about the IWFY (If It Weren't For You) pattern?",
+        "back": "The restricting partner was chosen partly because they would provide the restriction. The architecture of the game was built into the relationship at the point of partner selection. The restriction was not imposed from outside; it was invited in."
+      },
+      {
+        "id": "rc03",
+        "difficulty": "medium",
+        "front": "Why is the Corner game a double-bind?",
+        "back": "Any response the partner makes confirms the accusation. If they agree, they only did it to humor the player. If they decline, they never try. There is no correct response within the game's frame. The antithesis requires stepping outside the frame and naming the real want underneath."
+      },
+      {
+        "id": "rc04",
+        "difficulty": "medium",
+        "front": "What is the Sweetheart game's payoff, and what makes it hard to stop?",
+        "back": "Aggression released under the cover of affection in a social setting where the partner cannot object. The payoff is a stored grievance delivered cleanly without accountability. It is hard to stop because the game runs in company, uses warmth as its vehicle, and the partner cannot name what happened without looking small in front of witnesses."
+      },
+      {
+        "id": "rc05",
+        "difficulty": "hard",
+        "front": "Why does the antithesis to every marital game require the exact vulnerability the game was built to avoid?",
+        "back": "The game is the protection. Parveen's Corner game protects her from stating what she wants; the antithesis is stating what she wants. Luca's IWFY game protects him from attempting the feared thing; the antithesis is attempting it. Bastian's antithesis to Sweetheart is naming that he is hurt; the game was protecting both of them from that naming. Removing the game removes the protection. Both players have to decide whether to be real without it."
+      }
+    ],
+    "keyTakeawayCard": {
+      "gentle": "Marital games provide the form of closeness without the risk of the real thing. The antithesis to each is not a clever move. It is the real thing itself.",
+      "direct": "Three patterns, each providing intimacy-avoidance in a close partnership: Corner, IWFY, Sweetheart. The antithesis to each is the exact vulnerability the game was protecting both players from. That is why the games run for years.",
+      "competitive": "The closest relationship is where the most expensive games run, because the stakes of being real are highest there. The antithesis is always the real thing. The chapter does not make it easy. It makes it legible."
+    }
+  },
+  "quiz": {
+    "chapterId": "ch06",
+    "chapterNumber": 6,
+    "chapterTitle": "Marital Games",
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "What distinguishes marital games, as a category, from other game categories?",
+        "choices": [
+          "Marital games involve more serious emotional harm",
+          "Marital games are run by people who are unhappy",
+          "Marital games are specifically intimacy-avoidance mechanisms: they provide the form of a close relationship while organizing both players' avoidance of genuine vulnerability"
+        ],
+        "correctIndex": 2,
+        "explanation": {
+          "gentle": "Intimacy avoidance is the structural feature that distinguishes the category. Emotional harm and unhappiness are possible consequences but they are not the structural definition. The games can be run by people who are deeply attached to each other and who would prefer things to be different.",
+          "direct": "Intimacy-avoidance structure is the chapter's definition of the category. Harm and unhappiness are outcome claims, not structural claims. The structural claim is that both players are organized around the form of closeness while avoiding the substance.",
+          "competitive": "Structure, not outcome. Harm and unhappiness are not the definition. The definition is that the game provides closeness-shape while organizing avoidance of genuine vulnerability. That is the chapter's claim and the only answer that matches it."
+        },
+        "bloomsLevel": "understand",
+        "depthLevel": "easy"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "What makes the Corner pattern a trap?",
+        "choices": [
+          "The player is deliberately cruel to their partner",
+          "Any response the partner makes confirms the accusation, so there is no correct move within the game's frame",
+          "The partner is not smart enough to find the correct response"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "No-winning-move architecture is the trap. The game is not about cruelty and it is not about the partner's intelligence. It is about the architecture: any choice confirms the accusation, so the partner cannot respond correctly within the frame the game sets.",
+          "direct": "Double-bind architecture is the definition. The player is not cruel in the clinical sense; the game does not require malice. The partner's intelligence is irrelevant; the correct move does not exist inside the frame.",
+          "competitive": "No-winning-move is the structure. Cruelty is a moral label; the chapter refuses moral labels. Partner intelligence is irrelevant; the game defeats any intelligent response because it is not about intelligence."
+        },
+        "bloomsLevel": "understand",
+        "depthLevel": "easy"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "What is Berne's structural insight about the If It Weren't For You pattern?",
+        "choices": [
+          "The player has genuinely been restricted by their partner",
+          "The player chose the partner partly because that partner would provide the restriction they needed to avoid trying the feared thing",
+          "The partner is deliberately blocking the player's ambitions"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "Invited restriction is Berne's insight. The chapter does not say the restriction is not real; it says the restriction was selected for. The player needed a reason to avoid the attempt, and the partner was chosen in part because they would provide it. Neither deliberate blocking nor simple genuine restriction captures the structural claim.",
+          "direct": "Selection for restriction-provision is the claim. The restriction being genuine and the restriction being deliberately imposed are both wrong: the first misses the selection claim, the second imports deliberate malice the chapter refuses.",
+          "competitive": "Invited restriction. The player built the excuse into the relationship at the point of partner selection. Neither 'genuine restriction' nor 'deliberate blocking' captures the architecture: the player organized the restriction for themselves."
+        },
+        "bloomsLevel": "analyze",
+        "depthLevel": "easy"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "What does the Sweetheart pattern provide that straightforward aggression does not?",
+        "choices": [
+          "An outlet for the player's real feelings",
+          "Aggression delivered under the cover of affection in a setting where the partner cannot respond without looking small",
+          "A genuine opportunity for the couple to work through conflict"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "Covered aggression with social protection is the payoff. An outlet for real feelings describes what both direct aggression and indirect aggression provide; the Sweetheart pattern's distinctive feature is the social cover. Conflict resolution is what the game is organized to prevent.",
+          "direct": "Social cover for undeniable aggression is the distinguishing feature. An outlet is not the distinguishing feature; direct aggression is also an outlet. Conflict resolution is the antithesis, not the payoff.",
+          "competitive": "Social cover plus partner immobilization is the architecture. General outlet does not distinguish Sweetheart from argument. Conflict resolution is what the game prevents. The specific payoff is the combination of real aggression and impossible-to-object social framing."
+        },
+        "bloomsLevel": "analyze",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "Cleo and Jae are business partners who defer all major decisions to each other and have never stated a direct preference. This pattern most closely resembles which marital game?",
+        "choices": [
+          "A Corner variant: the deference loop engineers a situation where neither player has to be the person who wanted a specific outcome, which means neither has to be wrong if the outcome is bad",
+          "A Sweetheart variant: they are releasing stored aggression through the deference",
+          "An IWFY variant: one of them is blaming the other for a restriction"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "Corner variant is the match. The deference loop is a double-bind where neither player states a preference, which means neither can be proved wrong. This is structurally the same as Corner: the architecture is organized to protect both players from being the person who wanted something specific. Sweetheart requires aggression under affection, which is not present. IWFY requires a named restriction, which is not present.",
+          "direct": "No-one-who-wanted-it architecture is the Corner match. Sweetheart needs covered aggression; deference is not aggression. IWFY needs a restriction-blame structure; deference has no blame assignment.",
+          "competitive": "Corner architecture, shared between both players. Neither wants to be the person whose preference failed. Sweetheart needs aggression; this is avoidance, not aggression. IWFY needs blame; this is mutual deferral, not blame assignment."
+        },
+        "bloomsLevel": "apply",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "What would the antithesis to Luca's IWFY game actually require?",
+        "choices": [
+          "Luca explaining the IWFY structure to Nadia",
+          "Luca attempting the feared thing, and Nadia offering to support the attempt rather than serving as the excuse for why the attempt cannot happen",
+          "Nadia acknowledging that she has been the source of Luca's restrictions"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "Attempting the feared thing with support is the antithesis. Explaining the IWFY structure to Nadia is not the antithesis; it is intellectual discussion that leaves the architecture in place. Nadia acknowledging she has been the source of restrictions accepts the game's premise, which Berne's insight says is wrong.",
+          "direct": "Real attempt plus structural support is the antithesis. Explaining the game to Nadia is a social-level move that does not address the psychological-level architecture. Nadia acknowledging restrictions accepts the premise Berne's insight refutes.",
+          "competitive": "The attempt is the antithesis. Explaining the game is not the antithesis; it leaves the architecture intact. Nadia acknowledging restrictions validates the false premise. The game ends when Luca tries, not when anyone talks about why he hasn't."
+        },
+        "bloomsLevel": "analyze",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "What would Parveen have to say to break the Corner game she is running with Dev?",
+        "choices": [
+          "She would have to tell Dev that she has been running the Corner pattern and she is sorry",
+          "She would have to name what she actually wants from the Eid decision, not what Dev is doing wrong",
+          "She would have to agree to whatever Dev suggests without objecting"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "Naming the real preference is the antithesis. Explaining the game is an intellectual move that does not address the want the game is protecting. Agreeing without objecting is simply accepting Dev's choice, which does not address what Parveen wants.",
+          "direct": "State the actual preference is the antithesis. The game meta-conversation ('I've been running Corner') does not address the underlying want. Agreeing without objecting bypasses the preference entirely.",
+          "competitive": "The want, stated directly, is the antithesis. Explaining the pattern to Dev leaves the want unstated. Agreeing without objecting avoids the want. The game ends when the real preference is visible, not before."
+        },
+        "bloomsLevel": "apply",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "A long-term couple has a recurring argument that always ends with one partner storming out and the other retreating. Neither has ever named what they are actually afraid of losing. Which structural claim from the chapter is most applicable?",
+        "choices": [
+          "This is a Sweetheart pattern because both partners are releasing aggression",
+          "This is a Corner pattern with shared double-bind, organized to protect both players from naming the actual fear",
+          "This is an IWFY pattern because one partner is blaming the other for the argument"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "Shared double-bind protection is the match. The argument pattern provides a structure that protects both players from naming the real fear. Sweetheart requires social cover and affection as a vehicle; the storming-out pattern is direct conflict, not covered aggression. IWFY requires blame of a specific restriction, which this pattern does not map to cleanly.",
+          "direct": "Shared Corner architecture is the match. Both players are in a structure that prevents the real conversation from happening. Sweetheart needs covered aggression; this is open conflict. IWFY needs a restriction blamed on a partner; this has no specific restriction narrative.",
+          "competitive": "Corner with shared protection. Sweetheart needs affection as the delivery vehicle; open storming-out is not covered. IWFY needs a specific restriction narrative; this is a general avoidance of the real fear. The shared double-bind is the Corner match."
+        },
+        "bloomsLevel": "apply",
+        "depthLevel": "hard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Why does the antithesis to every marital game require the specific vulnerability the game was built to avoid?",
+        "choices": [
+          "Because marital games are less serious than life games",
+          "Because the game is organized around avoiding precisely that vulnerability, so removing the game means the vulnerability is no longer protected, and both players must decide whether to be real",
+          "Because the partner is usually the one who needs to make the antithesis move"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "The game is the protection; removing the game removes the protection. That is the chapter's structural claim. Marital games are not less serious than life games; the chapter explicitly holds them as more expensive because the stakes of exposure are highest in the closest relationship. The partner being the one who moves is sometimes true but is not the structural reason.",
+          "direct": "Protection architecture is the reason. The game was organized around the avoidance; its antithesis is the avoidance's opposite. Seriousness comparison is not the structural argument. Who makes the move is a tactical question, not the structural reason.",
+          "competitive": "Structure: the game IS the protection. Removing the game removes the protection. That is why the antithesis is expensive. Seriousness is not the argument; the chapter makes no comparative seriousness claim. Who makes the move is situational."
+        },
+        "bloomsLevel": "evaluate",
+        "depthLevel": "hard"
+      },
+      {
+        "questionId": "q10",
+        "prompt": "Connecting Chapter 4's energetics (strokes plus life position) to marital games: what does each marital game pay, and what position is it confirming?",
+        "choices": [
+          "Marital games pay fewer strokes than life games because the relationship is more stable",
+          "Corner pays the stroke of confirmation that the partner is impossible; IWFY pays the stroke of sympathy plus protection from failure; Sweetheart pays the stroke of aggression-released-cleanly — all three confirm life positions held since before the partnership began",
+          "Marital games pay a higher quality of stroke because they come from the closest relationship"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "Double payment (strokes plus position confirmation) is the Ch4 connection. The chapter 4 framework applies at full force here: Corner pays the confirmation stroke and confirms a position about the partner. IWFY pays sympathy and protection strokes and confirms the position that the player is not the author of their limitations. Sweetheart pays aggression-released strokes and confirms the position about what can be said safely. Stroke quantity and quality comparisons miss the structural argument.",
+          "direct": "Ch4 dual payment applies to each pattern specifically. Corner: confirmation stroke + 'partner is the problem' position. IWFY: sympathy stroke + 'I'm not the author of my limitations' position. Sweetheart: aggression-release stroke + 'this is as real as we get' position. Quantity and quality comparisons miss the structural application.",
+          "competitive": "Dual payment, specific to each pattern. Corner, IWFY, and Sweetheart each pay a specific stroke type and confirm a specific life position. Quantity and quality comparisons are not what Ch4 argued. Ch4 argued dual payment; this question tests whether the reader can apply that to specific patterns."
+        },
+        "bloomsLevel": "evaluate",
+        "depthLevel": "hard"
+      }
+    ]
+  },
+  "reviewPackage": {
+    "chapterId": "ch06",
+    "chapterNumber": 6,
+    "chapterTitle": "Marital Games",
+    "bookId": "games-people-play",
+    "runId": "20260406-01",
+    "packVersion": "v12-sealed",
+    "validationStatus": "passed",
+    "qualityGateScore": {
+      "total": 12,
+      "max": 12,
+      "categories": {
+        "chapterSpecificity": 2,
+        "anchorUse": 2,
+        "analyticalValue": 2,
+        "paragraphMotion": 2,
+        "proseQuality": 2,
+        "hookAndBridge": 2
+      },
+      "autoFails": []
+    },
+    "summary": {
+      "coreClaim": "Marital games are intimacy-avoidance mechanisms in the frame of a close partnership. Three patterns: Corner (any choice proves the accusation), IWFY (restriction invited in, blamed on partner), Sweetheart (aggression under affection). The antithesis to each requires the exact vulnerability the game was built to avoid.",
+      "anchorsUsed": [
+        "Parveen/Dev Corner trap on Eid Sunday",
+        "Luca's seventeen-year IWFY architecture with Nadia",
+        "Vera/Bastian Sweetheart at the dinner party"
+      ],
+      "hardDepthTension": "The antithesis requires the exact vulnerability the game was protecting against. Both players must decide whether to be real without the game's protection.",
+      "bridgeToNextChapter": "Party games run the same avoidance strategy in shorter, cheaper form, across groups rather than partnerships."
+    },
+    "strongestQualities": [
+      "The IWFY structural insight ('the restriction was invited in') is the chapter's hardest analytical claim and it lands without being softened.",
+      "The closing sentence of P6 ('the antithesis is not a clever move. It is a real thing.') makes the structural claim concrete and personal.",
+      "All three patterns are gender-neutral and carried by specific named characters with concrete details."
+    ],
+    "remainingConcerns": [],
+    "approvalRequired": true,
+    "preserveApprovedHash": false
+  },
+  "readingMetrics": {
+    "chapterId": "ch06",
+    "chapterNumber": 6,
+    "chapterTitle": "Marital Games",
+    "computedFor": "edited draft + structured chapter",
+    "editedDraft": {
+      "wordCount": 800,
+      "paragraphCount": 7,
+      "estimatedReadingMinutes": 5
+    },
+    "contentVariants": {
+      "easy": {
+        "wordCounts": {
+          "gentle": 150,
+          "direct": 149,
+          "competitive": 148
+        },
+        "targetRange": "140-175",
+        "withinRange": true
+      },
+      "medium": {
+        "wordCounts": {
+          "gentle": 380,
+          "direct": 390,
+          "competitive": 390
+        },
+        "targetRange": "330-420",
+        "withinRange": true
+      },
+      "hard": {
+        "wordCounts": {
+          "gentle": 550,
+          "direct": 565,
+          "competitive": 575
+        },
+        "targetRange": "490-600",
+        "withinRange": true
+      }
+    },
+    "examples": {
+      "count": 6,
+      "formatsCovered": [
+        "short_dialogue",
+        "first_person",
+        "third_person_scene",
+        "coaching_script",
+        "narrative_flashback",
+        "inner_monologue"
+      ],
+      "categoryDistribution": {
+        "work": 2,
+        "school": 2,
+        "personal": 2
+      },
+      "endingTypesCovered": [
+        "observation",
+        "reflection",
+        "unresolved_tension",
+        "reframe",
+        "forward_question",
+        "decision_point"
+      ]
+    },
+    "quiz": {
+      "questionCount": 10,
+      "choicesPerQuestion": 3,
+      "correctIndexDistribution": {
+        "0": 3,
+        "1": 3,
+        "2": 4
+      },
+      "depthDistribution": {
+        "easy": 3,
+        "medium": 4,
+        "hard": 3
+      }
+    },
+    "reviewCards": {
+      "count": 5,
+      "difficultyDistribution": {
+        "easy": 2,
+        "medium": 2,
+        "hard": 1
+      }
+    },
+    "computedAt": "2026-04-06"
+  },
+  "validationStatus": {
+    "status": "passed",
+    "qualityGateScore": {
+      "total": 12,
+      "max": 12,
+      "categories": {
+        "chapterSpecificity": 2,
+        "anchorUse": 2,
+        "analyticalValue": 2,
+        "paragraphMotion": 2,
+        "proseQuality": 2,
+        "hookAndBridge": 2
+      },
+      "autoFails": []
+    },
+    "autoFails": [],
+    "validatedAt": "2026-04-06",
+    "validator": "ChapterFlow v12-sealed Phase 5C"
+  }
+}

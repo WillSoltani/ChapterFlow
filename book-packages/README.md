@@ -3,7 +3,7 @@
 Put JSON book packages in this folder for ingestion uploads.
 
 Included sample:
-- `friends-and-influence-student-edition.student.json`
+- `crucial-conversations.modern.json`
 
 Upload this package with:
 
@@ -11,7 +11,7 @@ Upload this package with:
 node scripts/book/upload-book-package.mjs \
   --origin https://your-app-domain \
   --token "<COGNITO_ID_TOKEN>" \
-  --file book-packages/friends-and-influence-student-edition.student.json \
+  --file book-packages/crucial-conversations.modern.json \
   --publish
 ```
 

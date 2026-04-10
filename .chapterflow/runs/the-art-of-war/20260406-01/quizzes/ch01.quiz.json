@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch01-q01",
+      "prompt": "In the opening paragraphs, what does Sun Tzu identify as the reason strategy must begin with a disciplined audit rather than with initiative in the field?",
+      "choices": [
+        "A) Because a single bad military decision can end the country that makes it, which makes gambling on intuition an act of negligence rather than courage",
+        "B) Because generals earn prestige by displaying careful planning before their courtiers and sovereigns",
+        "C) Because soldiers fight harder when they know their commander has visibly studied the situation before committing"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nice catch. Sun Tzu frames war as a matter of state survival. The audit matters so much because the stakes are absolute, and a single bad military decision can erase a country.",
+        "direct": "Sun Tzu's framing treats war as a state-survival problem. A bad call can erase a country, which is why he treats the audit as the job rather than as an optional refinement of strategy.",
+        "competitive": "The scale of the opening claim is easy to miss. In Sun Tzu's political world, one bad military decision ends a dynasty. That is why the audit is the strategist's first discipline and why gambling on it counts as negligence at state level."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q02",
+      "prompt": "Sun Tzu's opening audit is built on five connected factors. Which of these is the complete set, in his own terms?",
+      "choices": [
+        "A) Moral Law, Heaven, Earth, the Commander, and Method and discipline",
+        "B) Moral Law, Sky, Terrain, the Officer Corps, and the Supply Chain",
+        "C) Moral Law, Time, Distance, Individual Genius, and Troop Morale"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Picture the five as a small system: Moral Law is whether people follow the ruler into danger, Heaven is time, Earth is terrain, the Commander is individual judgment, and Method and discipline is organizational plumbing. Each piece only works because the others are in play.",
+        "direct": "Sun Tzu's exact list is Moral Law (social cohesion), Heaven (time and seasons), Earth (terrain and distances), the Commander (individual judgment), and Method and discipline (organizational capacity). Options B and C reskin the terms and lose the interconnection the original insists on.",
+        "competitive": "Notice that the distractors flatten Sun Tzu's vocabulary into more familiar modern terms and quietly break the system. 'Troop Morale' is not a factor in Sun Tzu's schema; it is a consequence of Moral Law and Method together. The exact terms matter because they carry the interconnection."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q03",
+      "prompt": "A student begins studying for a final exam by listing every topic she has not yet mastered. Based on Sun Tzu's opening audit, what is the structural problem with her approach?",
+      "choices": [
+        "A) She has planned too linearly, when Sun Tzu recommends parallel subject review across all topics at once",
+        "B) She has neglected the Moral Law factor, which would require her to consult her classmates' motivation levels before studying",
+        "C) She has built a one-sided audit by measuring only her own preparation, with no parallel measurement of the exam's rubric, the likely questions, or the grader's priorities"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Nice catch. Sun Tzu keeps pressing the point that the audit has to be relational. The student's plan covers her own column carefully; she has not yet built the column for the exam itself.",
+        "direct": "Sun Tzu's comparison requires measuring the opposing side of the contest. In exam prep, that means the rubric, the likely questions, and the grader's priorities. Without that second column, the preparation is a rehearsal rather than a plan.",
+        "competitive": "Options A and B invent principles Sun Tzu does not hold. The real gap is exactly the one he warns about: a commander who studies only his own army has not done the audit, and a student who studies only her own notes has not either."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q04",
+      "prompt": "Lena, a product manager, is weighing whether to finish a pre-mortem document her VP did not ask for before Monday's launch-plan meeting. Her VP Priya has signaled she wants confidence, not hesitation. Which move is most consistent with Sun Tzu's relational audit in this situation?",
+      "choices": [
+        "A) Submit the optimistic deck unchanged because Priya is the most important factor in the audit and Priya has asked for confidence",
+        "B) Finish the pre-mortem and fold it into the Monday deck as a two-slide 'Conditions for Success' section that makes the remaining confidence survivable under the quarterly review",
+        "C) Schedule a separate meeting with Priya to discuss the pre-mortem before the Monday presentation, so the audit happens without surprising her"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Picture what Priya actually needs. She asked for confidence, but what will serve her in the quarterly review is confidence that has already been weighed against the failure modes. Option B gives her both.",
+        "direct": "Folding the pre-mortem into the deck gives Lena a confident recommendation that survives scrutiny from above. Option A skips the audit entirely. Option C trades a real document for a soft conversation that may never happen.",
+        "competitive": "The trap is Option A, treating a boss's tone as the whole audit. The weaker move is Option C, which outsources the work to a meeting. Option B delivers what Priya actually needs, which is confidence that will still look good when the numbers come in."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q05",
+      "prompt": "Which statement best captures why Sun Tzu refuses to present the five factors as a ranked priority list?",
+      "choices": [
+        "A) Because ranking was culturally inappropriate in classical Chinese military writing, and Sun Tzu wanted to avoid appearing disrespectful to the tradition",
+        "B) Because the five factors are actually six, and Sun Tzu is intentionally hiding the sixth factor for a later chapter as a structural surprise",
+        "C) Because the factors are interdependent, and a reliable forecast requires measuring all five at once, with any single factor failing to collapse the usefulness of the other four"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Nice catch. The pieces feed each other. Moral Law without organization collapses. Terrain without timing fails. That is why Sun Tzu presents the five as a working system rather than a ranked menu of variables.",
+        "direct": "Sun Tzu's refusal to rank the factors reflects their interdependence. A brilliant commander with broken supply lines still loses. The audit only produces a reliable forecast when all five are evaluated simultaneously and in combination.",
+        "competitive": "Option A is cultural hand-waving with no basis in the text. Option B invents a hidden factor that is not there. Option C engages with the actual logic: the interconnection is the whole point, and a lazy strategist who picks a 'most important' factor has already missed what Sun Tzu is doing."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q06",
+      "prompt": "Aisha has three job offers in Boston, Chicago, and Denver, with different family members lobbying for different cities. Which move honors Sun Tzu's relational audit applied to a major personal decision?",
+      "choices": [
+        "A) Take whichever job her mother prefers, because family harmony is the Moral Law factor in Sun Tzu's five",
+        "B) Build a structured comparison grid with all three cities scored on the same concrete variables, completed in isolation before the family conversations resume",
+        "C) Choose the highest-paying offer, because in Sun Tzu's framework economic factors override the other four when a civilian decision has a clear numeric variable"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Nice catch. Aisha's problem is that advocacy from the family has been distorting the comparison before she can build it. Option B constructs the audit the advocacy conversations had been burying, and only after the grid is complete does the family conversation resume.",
+        "direct": "Sun Tzu's audit requires measuring all columns in isolation first. Option A misapplies Moral Law as a trump card. Option C invents a hierarchy Sun Tzu explicitly refuses. Option B is the structural fix: build the comparison, then talk about it.",
+        "competitive": "Here, the contrast between Option A and Option B matters. Option A treats the loudest voice as the audit. Option B rebuilds the audit from scratch, which is the whole point of a relational comparison. Option C invents a priority Sun Tzu does not hold."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q07",
+      "prompt": "A reader argues that Sun Tzu's line 'all warfare is based on deception' should guide how she negotiates with her business partners and her romantic partners alike. What does the opening argument actually say about the scope of that line?",
+      "choices": [
+        "A) Sun Tzu's deception catalogue is a repertoire of specific operational moves for corrupting an adversary's assessment inside an already-diagnosed adversarial contest, not a lifestyle recommendation for cooperative relationships",
+        "B) Sun Tzu intends the line as a universal guide to human interaction, explicitly including intimate relationships as contests of information control to be won",
+        "C) The line applies only to literal military conflict and has no transferable operational meaning outside the battlefield"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nice catch. Sun Tzu does not recommend generalized dishonesty as a style of life. He names specific moves for specific adversarial situations where the opposing audit is the target.",
+        "direct": "The deception catalogue targets specific inputs to an opponent's forecast inside a contest that has already been correctly diagnosed. Option B glamorizes the line into manipulation. Option C denies any transferable meaning and is equally a misreading.",
+        "competitive": "The trap is Option B, the reader-as-manipulator misreading that has flattened Sun Tzu's reputation for a century. Option C is the opposite trap. Option A is the accurate position: operational inside a narrow adversarial contest, not a universal endorsement of deception."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q08",
+      "prompt": "Which of the following best captures a serious counterargument to Sun Tzu's confidence that a disciplined pre-battle audit can reliably forecast the outcome of a contest?",
+      "choices": [
+        "A) No serious counterargument exists, because Sun Tzu's audit has been empirically verified by every major commander since the fifth century BCE",
+        "B) The Confucian tradition accepts Sun Tzu's audit but rejects his emphasis on timing as culturally inappropriate for Chinese political life",
+        "C) Clausewitzian thinking is more pessimistic about information quality, friction, and chance, which means Sun Tzu's confidence in pre-battle forecasting can look overconfident once the fog of war actually begins"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Nice catch. The Clausewitzian objection is that real situations include friction, chance, and partial information in ways that make pre-battle forecasts harder than Sun Tzu suggests. It is the strongest challenge to the opening audit.",
+        "direct": "Clausewitzian thinking is more pessimistic about the quality of information and the role of uncertainty in combat. In high-noise settings, Sun Tzu's confidence in the audit's forecast can look overconfident. This is a serious counterargument, not a side objection.",
+        "competitive": "Option A is an empirical claim no historian would make. Option B mischaracterizes the Confucian objection, which is about deception and moral order, not about timing. Option C is the real pushback that every honest reader of Sun Tzu has to address at some point."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch01-q09",
+      "prompt": "Which explanation best accounts for why Sun Tzu's opening argument needs both the audit and the deception catalogue, rather than simply recommending disciplined assessment as a stand-alone practice?",
+      "choices": [
+        "A) Because Sun Tzu wanted the opening to carry memorable aphorisms on both mechanism and misdirection for stylistic reasons",
+        "B) Because the audit tells a commander what is true about the situation, while deception stops the opposing commander from reaching the same conclusion, which makes the two halves sequential moves in the same epistemic contest",
+        "C) Because Sun Tzu believed that assessment without deception is unethical, so the two halves are a moral system rather than an operational one"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Here, the contrast matters. Sun Tzu is describing a contest between two assessments, not a single insight about planning. The audit and the deception are both moves in that contest, which is why they belong together in sequence.",
+        "direct": "Sun Tzu's opening holds both halves on purpose. Assessment produces a correct internal picture. Deception produces an incorrect internal picture in the opponent's mind. A commander who does only one half is running half a contest, and a weaker adversary can exploit the gap.",
+        "competitive": "Option A reads the text as literature and misses the logic. Option C inverts the ethics; Sun Tzu is not making a moral argument here at all. Option B reconstructs the real structure, which is the sequential epistemic contest the rest of the book works inside."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch01-q10",
+      "prompt": "Given that Sun Tzu's opening treats the five factors as static variables to be audited before the decision to move, what is he most likely to emphasize in the chapter that immediately follows, and why?",
+      "choices": [
+        "A) The tempo of the campaign itself, because time is the dynamic pressure the static audit cannot handle on its own, and prolonged warfare erodes the five factors that produced the favorable forecast in the first place",
+        "B) The moral character of individual soldiers, because the Moral Law factor in the opening audit is too abstract to guide execution without individual-level analysis",
+        "C) The specific weapons and equipment required to execute the deception catalogue from the opening chapter, because execution requires a hardware vocabulary the first chapter did not supply"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nice catch. The opening treats the five factors as they stand at the moment of the audit. The obvious next pressure is what happens to them over time, which is the tempo argument the next chapter will develop.",
+        "direct": "Sun Tzu's opening audits static conditions. The natural next pressure on that audit is time itself. The second chapter argues that prolonged warfare erodes the five factors that produced the favorable forecast, which is why tempo becomes the core concern.",
+        "competitive": "Option B shifts to an individual-level variable Sun Tzu does not build his next chapter on. Option C treats the opening like a hardware manual, which it is not. Option A recognizes that tempo is the dynamic pressure a static audit cannot survive on its own, and that is exactly where Sun Tzu takes the argument next."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

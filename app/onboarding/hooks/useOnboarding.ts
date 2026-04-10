@@ -8,6 +8,7 @@ export type Motivation = "career" | "academic" | "personal" | "curiosity";
 export type ChapterOrder = "summary_first" | "scenarios_first";
 export type DailyGoal = 10 | 20 | 30;
 export type Tone = "gentle" | "direct" | "competitive";
+export type StarterShelfItem = string | { id?: string };
 
 export interface OnboardingState {
   currentStep: number;
@@ -16,7 +17,7 @@ export interface OnboardingState {
   tone: Tone;
   dailyGoal: DailyGoal;
   chapterOrder: ChapterOrder;
-  starterShelf: any[];
+  starterShelf: StarterShelfItem[];
   firstQuizScore: number;
   firstChapterCompleted: boolean;
   direction: 1 | -1;
@@ -127,7 +128,7 @@ export function useOnboarding() {
     setState({ chapterOrder: order });
   }, []);
 
-  const setStarterShelf = useCallback((shelf: any[]) => {
+  const setStarterShelf = useCallback((shelf: StarterShelfItem[]) => {
     setState({ starterShelf: shelf });
   }, []);
 

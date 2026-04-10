@@ -1,0 +1,77 @@
+{
+  "bookId": "make-time",
+  "runId": "20260407-221315",
+  "lockedAt": "2026-04-07T22:30:00Z",
+  "selectionPolicy": {
+    "sourceDiscoveryMode": "web_bundle",
+    "sourcePolicy": "public_or_authorized_plus_secondary",
+    "editionSelectionMode": "ask_if_ambiguous"
+  },
+  "sources": [
+    {
+      "sourceId": "prh-hardcover-metadata",
+      "kind": "official_metadata",
+      "authority": "Penguin Random House",
+      "url": "https://www.penguinrandomhouse.com/books/564727/make-time-by-jake-knapp-and-john-zeratsky/",
+      "capturedFacts": [
+        "Title and subtitle",
+        "Authors",
+        "Hardcover ISBN 9780525572428",
+        "Published on Sep 25, 2018",
+        "Published by Crown Currency",
+        "304 pages",
+        "Publisher description"
+      ],
+      "quoteSupport": "limited_public_page_only",
+      "role": "edition anchor"
+    },
+    {
+      "sourceId": "google-books-preview",
+      "kind": "authorized_preview",
+      "authority": "Google Books",
+      "url": "https://books.google.com/books/about/Make_Time.html?id=nV9EDwAAQBAJ",
+      "capturedFacts": [
+        "Contents listing",
+        "Public bibliographic summary",
+        "Public preview support for section order",
+        "Section labels for Highlight, Laser, Energize, and Reflect"
+      ],
+      "quoteSupport": "preview_visible_only",
+      "role": "contents and structure support"
+    },
+    {
+      "sourceId": "maketime-book-site",
+      "kind": "official_book_site",
+      "authority": "Make Time official site",
+      "url": "https://maketime.blog/make-time-book/",
+      "capturedFacts": [
+        "Framework overview",
+        "Busy Bandwagon definition",
+        "Infinity Pools definition",
+        "High-level summaries for Highlight, Laser, Energize, Reflect",
+        "Positioning of the book as friendly and flexible rather than macho productivity"
+      ],
+      "quoteSupport": "public_page_only",
+      "role": "framework framing"
+    },
+    {
+      "sourceId": "jake-knapp-book-page",
+      "kind": "official_author_page",
+      "authority": "Jake Knapp official site",
+      "url": "https://jakeknapp.com/make-time",
+      "capturedFacts": [
+        "Official author attribution",
+        "Public positioning of the book",
+        "External link chain to the official book site"
+      ],
+      "quoteSupport": "public_page_only",
+      "role": "secondary official confirmation"
+    }
+  ],
+  "secondarySources": [],
+  "notes": [
+    "No pirated or unauthorized mirrors were used.",
+    "Because the frozen bundle is public-web only, exact quotations were avoided in reader-facing prose.",
+    "Public evidence strongly supports a single dominant English reference edition."
+  ]
+}

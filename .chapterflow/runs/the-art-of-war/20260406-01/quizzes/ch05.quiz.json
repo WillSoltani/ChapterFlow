@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch05-q01",
+      "prompt": "In Sun Tzu's framework, what is the role of the direct method vs. the indirect method?",
+      "choices": [
+        "A) Direct wins the decisive battle; indirect sets up the initial engagement.",
+        "B) Direct handles logistics while indirect handles tactical maneuvers.",
+        "C) Direct joins battle; indirect wins victory. The combination of the two produces endless tactical variations."
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Nice catch. Sun Tzu is explicit in §5: the direct method joins battle and holds the engagement, while the indirect method is what wins the victory. Neither is complete without the other.",
+        "direct": "§5 is unambiguous on this point. Direct (zheng) holds the engagement. Indirect (qi) decides it. Options A and B invert the relationship or mislocate the functions entirely.",
+        "competitive": "The inversion trap in Option A is the classic misread: confusing the holding function with the deciding function. Sun Tzu assigns them clearly — direct holds, indirect wins — and the combination of both generates the endless tactical variations he describes."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch05-q02",
+      "prompt": "What does the crossbow metaphor describe in Sun Tzu's argument?",
+      "choices": [
+        "A) Energy is accumulated potential, like a drawn crossbow. Decision is the trigger release. The discipline is in holding the tension until the right moment.",
+        "B) The crossbow represents the range of the indirect attack — it reaches further than direct force but requires more preparation time.",
+        "C) The crossbow metaphor describes the five-step chain from measurement to victory, where each step draws the bow further."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nice catch. §15 makes the mapping explicit: energy is bending the crossbow, decision is releasing the trigger. The discipline lives in the timing gap between the two — holding until the right moment, not releasing too early.",
+        "direct": "§15 is the source passage. Energy = bending the crossbow. Decision = releasing the trigger. Options B and C import ideas from other parts of the text or from other chapters that the crossbow image does not describe.",
+        "competitive": "Option C tries to attach the crossbow to a five-step chain that belongs to a different chapter. The metaphor in §15 is tight: draw, hold, release. Everything else is projection."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch05-q03",
+      "prompt": "A lawyer is preparing a major case. She has spent six months building precedent research, relationship-building with expert witnesses, and understanding the opposing counsel's typical approach. When the trial date is set, she moves quickly and decisively. Which element of Sun Tzu's argument does her preparation best illustrate?",
+      "choices": [
+        "A) The simulated-disorder principle: she appeared unprepared during the six months to prevent the opposing counsel from reading her strategy.",
+        "B) The energy-decision metaphor: she accumulated potential during six months of preparation and released it at the right moment when the opportunity arrived.",
+        "C) The combined-energy principle: she picked the right individuals and let the system generate momentum without requiring exceptional effort from any one person."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Nice catch. The six months of preparation is the crossbow being drawn back. The trial date is the trigger. The discipline was in doing the accumulation work before the moment of release arrived.",
+        "direct": "The crossbow-trigger metaphor maps directly onto the lawyer's sequence: accumulation phase (six months of research and relationship-building), then decisive release (moving quickly when the trial date is set). Options A and C apply different principles from the same chapter.",
+        "competitive": "Option A imports the simulated-disorder principle, which requires projecting confusion outward — the lawyer was not doing that. Option C describes combined energy, which is about positional conditions, not individual accumulation. Option B is the precise match."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch05-q04",
+      "prompt": "Chiara's marketing team has been responding immediately to every competitor move with direct campaigns. She shifts their approach: publicly acknowledge the competitor's move, then spend three weeks building an indirect response targeting a segment the competitor hasn't entered. Which structural principle from Sun Tzu best explains the value of Chiara's new approach?",
+      "choices": [
+        "A) The direct method (immediate acknowledgment) sets up the engagement, while the indirect method (targeting uncontested terrain) decides the contest. The combination gives Chiara's team more options than either method alone.",
+        "B) The direct response is always wrong in competitive marketing because it confirms the competitor's agenda. Chiara should respond only indirectly to avoid validating competitor moves.",
+        "C) Chiara's three-week delay is an application of the defense-first principle from Ch4 rather than an energy principle — she is securing her position before moving."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nice catch. Chiara has formalized the direct-indirect separation: the immediate acknowledgment holds the engagement, while the three weeks of indirect positioning are where the real contest is decided.",
+        "direct": "Option A correctly identifies the structural principle. The direct acknowledgment performs the holding function; the indirect positioning move performs the deciding function. Option B overstates the case against direct methods. Option C misattributes the principle to Ch4.",
+        "competitive": "Option B would have Chiara abandon direct methods entirely, which is the opposite of what Sun Tzu prescribes. The direct-indirect combination is the principle, not a preference for one method over the other. Chiara's new approach gets the combination right."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q05",
+      "prompt": "Sun Tzu says simulated disorder requires real discipline. What does this paradox imply for organizations that want to appear flexible and adaptive?",
+      "choices": [
+        "A) Organizations must genuinely abandon structure to appear flexible. Simulated flexibility that is internally rigid will be detected as inauthentic.",
+        "B) Genuine flexibility in appearance requires rigid discipline underneath. An organization that is genuinely disorganized cannot simulate adaptability — it will simply be disorganized. The visible agility is produced by internal structure.",
+        "C) The simulated-disorder paradox applies only to military contexts where precise coordination is possible. In civilian organizations, genuine disorder and simulated disorder are indistinguishable."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Nice catch. §16-17 make the paradox explicit: simulated disorder requires perfect discipline underneath it. An organization that actually is disorganized cannot fake adaptability — it will produce genuine disorder instead of the manufactured kind.",
+        "direct": "The paradox is structural: visible chaos is a product of internal control, not the absence of it. Option A inverts the requirement. Option C limits the principle to military contexts without textual basis. Option B states the paradox accurately.",
+        "competitive": "Option A makes the error Sun Tzu is arguing against. A genuinely disorganized organization has no gap between its internal state and its external appearance — it cannot manufacture one. The simulation requires internal control over both states simultaneously."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q06",
+      "prompt": "Remi has been quietly building relational credit with key family members for months while a difficult family situation simmers. When her direct-confrontation-preferring cousin pushes for an immediate family meeting, Remi already has the support structure in place to shape the outcome. Which element of Sun Tzu's argument does Remi's approach most precisely illustrate?",
+      "choices": [
+        "A) The simulated-disorder principle: Remi appeared to avoid the problem while actually managing it through indirection.",
+        "B) The direct-indirect rotation: Remi used direct relationship-building to prepare for an indirect resolution.",
+        "C) The energy-decision metaphor applied to personal situations: Remi accumulated relational potential during the months of preparation and is positioned to release it decisively when the moment arrives."
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Nice catch. Remi's months of relationship-building are the crossbow being drawn back. The family meeting is the potential trigger moment. She has stored relational energy before the moment of release — the classic accumulation-decision sequence.",
+        "direct": "The energy-decision metaphor maps precisely: accumulation phase (months of relational credit), then a positioned release when the timing arrives. Option A misapplies simulated disorder, which requires projecting confusion, not patience. Option B mislabels the activity.",
+        "competitive": "Option A imports the simulated-disorder principle, but Remi is not projecting confusion — she is accumulating energy. Option B's 'direct-indirect rotation' is not a named principle in the text. Option C is the exact match: the crossbow has been drawn, and she is positioned to release at the right moment."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q07",
+      "prompt": "Sun Tzu claims that indirect methods are inexhaustible, \"like the four seasons, they pass away but to return once more.\" What is the actual claim being made, and what is its limit?",
+      "choices": [
+        "A) The correct claim is that the combinations available within any constrained situation are more than an opponent can reliably anticipate, not that they are literally infinite. In practice, terrain, supply, and position constrain the accessible set.",
+        "B) The claim is straightforwardly mathematical: with only two elements (direct and indirect), the number of combinations is fixed, not infinite. Sun Tzu is using hyperbole to motivate commanders.",
+        "C) The claim is literally true: indirect methods are never exhausted because they can always be recycled after being used, returning to availability in a new form."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nice catch. The inexhaustibility claim is grounded in the mathematics of combination — five notes, five colors — but practically, terrain, supply, and position constrain which combinations are reachable from any given situation. The correct claim is that accessible combinations exceed what the opponent can model, not that they are literally unlimited.",
+        "direct": "Option A accurately names the practical qualification the mathematical version does not carry. Option B misreads the argument by treating it as hyperbole rather than as a bounded claim. Option C takes the seasonal metaphor too literally and misses the practical constraint.",
+        "competitive": "The infinite-combinations claim is strategically significant — the opponent's modeling bandwidth is always the binding constraint, not mathematical infinitude. Option A captures both the valid claim and its real-world limit. Options B and C each make a different error: B deflates the claim, C inflates it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q08",
+      "prompt": "Sun Tzu argues that the direct method and indirect method, when combined, produce endless variations. A critic points out that if both sides simultaneously use indirect methods against each other, the indirect advantage disappears and the contest collapses into a contest of intelligence about the opponent's indirect plan. What does this criticism expose?",
+      "choices": [
+        "A) The criticism is invalid because two sophisticated commanders will always produce an asymmetry in which one side's indirect method is superior, breaking the tie.",
+        "B) The criticism identifies a structural limit: the direct-indirect combination assumes an asymmetry in sophistication or information. When both sides are equally sophisticated in indirect methods, the framework does not resolve which side wins — it merely pushes the contest one level deeper into intelligence about the opponent's plan.",
+        "C) The criticism is valid but addresses a different problem than Sun Tzu's: he is writing for commanders who face opponents less sophisticated than themselves, not symmetric opponents."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Nice catch. The indirect-vs-indirect problem is a genuine structural limit on Sun Tzu's principle. When both commanders are deploying indirect methods with equal sophistication, the advantage disappears and the contest moves to a different level — intelligence about the other side's indirect plan.",
+        "direct": "Option B names the boundary accurately. The direct-indirect combination produces advantage only when one side is more sophisticated in deploying it. Option A asserts that asymmetry will always emerge without argument. Option C concedes the criticism applies but tries to limit its scope in a way Sun Tzu's text does not support.",
+        "competitive": "Option A is question-begging: it claims asymmetry will always exist, which is exactly what the criticism challenges. Option C's audience-limitation move is plausible but unsupported by the text. Option B is the honest structural reading: the principle assumes what it cannot guarantee."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch05-q09",
+      "prompt": "Chapter 4 argued that making defeat impossible must precede seeking to defeat the opponent. Chapter 5 argues that energy must be accumulated before the trigger is released. How do these two arguments relate structurally?",
+      "choices": [
+        "A) The two arguments are sequential: Ch4's invincibility must be achieved first, and then Ch5's energy can begin to accumulate.",
+        "B) The two arguments are independent: Ch4 addresses positioning, Ch5 addresses force application. They operate in different phases of the campaign.",
+        "C) Ch4's defense-first is the organizational precondition for Ch5's energy accumulation. You cannot reliably accumulate energy in a position that is vulnerable to disruption. Invincibility is what makes the crossbow-drawing period safe enough to complete."
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Nice catch. Ch4's stable position is what allows the Ch5 accumulation phase to proceed without being interrupted. If the force is vulnerable during the drawing-back phase, the bow may never reach full tension. Defense-first creates the conditions under which energy accumulation becomes possible.",
+        "direct": "Option C captures the structural relationship. Ch4's invincibility is not just a prior phase — it is the organizational precondition for Ch5's accumulation to work. A force that is not secure cannot sustain the patience required to hold the crossbow drawn. Options A and B both miss this dependency.",
+        "competitive": "Option A is partially right about sequence but misses the dependency: Ch4's contribution is not just temporal priority but the creation of conditions that make Ch5's accumulation phase viable. Option B's independence claim is the weaker reading. The two chapters are architecturally linked, not merely sequential."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch05-q10",
+      "prompt": "Ch5 ends with the image of a round stone released down a mountain — accumulated energy producing inevitable momentum. What is Ch6 most likely to argue, and why?",
+      "choices": [
+        "A) Where to direct that force: Ch6 (Weak Points and Strong) will argue that the accumulated force must be aimed at the opponent's weakest point, not at their strongest. The stone needs to know which slope to roll down.",
+        "B) Why force multiplication through energy is not sufficient on its own, because morale and supply must also be secured before any release of accumulated force can succeed.",
+        "C) How to prevent the opponent from accumulating energy against you, which is the logical defensive counterpart to Ch5's offensive argument."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nice catch. Ch5 stores the energy and releases it. Ch6 (Weak Points and Strong) asks where the release should be directed. The accumulated force needs a target — specifically the opponent's weakest point — which is exactly the argument the next chapter will develop.",
+        "direct": "Ch6 (Weak Points and Strong) develops the targeting question that Ch5 leaves open. Once energy is accumulated and ready to release, the decisive question is where to aim it. Option A identifies that question correctly. Options B and C address different problems that Ch6 does not make central.",
+        "competitive": "Option C is the most tempting distractor: it sounds like the logical defensive counterpart. But Ch6 is not primarily about preventing the opponent's accumulation — it is about identifying the opponent's weakest point so that the released energy meets minimal resistance. Option A gets the chapter's actual argument right."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

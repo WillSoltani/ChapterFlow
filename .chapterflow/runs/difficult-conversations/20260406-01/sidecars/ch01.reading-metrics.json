@@ -1,0 +1,47 @@
+{
+  "chapterId": "ch01-sort-out-the-three-conversations",
+  "bookId": "difficult-conversations",
+  "runId": "20260406-01",
+  "computedAt": "2026-04-06T00:00:00Z",
+  "chapterNumber": 1,
+  "editedDraftWordCount": 825,
+  "estimatedReadingTimeByDepth": {
+    "easy": {
+      "estimatedMinutes": 5,
+      "totalBreakdownWords": 488,
+      "avgWordsPerTone": 163
+    },
+    "medium": {
+      "estimatedMinutes": 12,
+      "totalBreakdownWords": 3210,
+      "avgWordsPerTone": 357
+    },
+    "hard": {
+      "estimatedMinutes": 18,
+      "totalBreakdownWords": 4860,
+      "avgWordsPerTone": 540
+    }
+  },
+  "anchorsUsed": 2,
+  "anchorsAvailable": 3,
+  "examplesCount": 6,
+  "exampleCategoryDistribution": {
+    "work": 2,
+    "school": 2,
+    "personal": 2
+  },
+  "quizQuestionCount": 10,
+  "reviewCardCount": 5,
+  "gradeLevel": {
+    "easy": "8-9",
+    "medium": "10-11",
+    "hard": "12"
+  },
+  "chapterHash": "a5f41671f9ca283ff09a1435b895a81dd06d5e8e0e32095a8a632068b5a2a766",
+  "validationStatus": "PASS",
+  "patchesApplied": 2,
+  "patchNotes": [
+    "Contamination: 6 instances of 'threshold question' in reader-facing content replaced with reader-appropriate language",
+    "Prose quality: easy/gentle and easy/competitive breakdowns patched from thesis-first to scene-first openings"
+  ]
+}

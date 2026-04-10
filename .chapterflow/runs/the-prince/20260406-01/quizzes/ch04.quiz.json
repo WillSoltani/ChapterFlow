@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "Why does Machiavelli open Chapter 4 with Alexander's successors instead of starting directly with the Turk and France?",
+      "choices": [
+        "To prove that every conqueror should copy Alexander's personal style",
+        "To pose a puzzle that forces the reader to look at the conquered state's structure",
+        "To argue that successors are always more effective than founders"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter begins with a puzzle so the reader feels the need for a sharper explanation. Alexander's case raises the question that regime structure will answer.",
+        "direct": "The opening puzzle matters because it pushes attention away from hero worship and toward the kind of kingdom Darius had ruled. The other choices turn the chapter into advice it does not give.",
+        "competitive": "The first move is diagnostic. Alexander is the bait, but the real target is the structure that stayed behind after he died."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "In Machiavelli's split, what marks a prince-with-servants kingdom?",
+      "choices": [
+        "Local lords hold ancient rank and their own subjects independently of the prince",
+        "The conqueror can usually enter by winning over a few dissatisfied nobles",
+        "Officials govern by the prince's favor and do not carry broad independent loyalty"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "A prince-with-servants kingdom is built around officials who depend on the ruler rather than around hereditary lords with their own standing.",
+        "direct": "Servants matter here because they do not possess the same natural authority barons do. The wrong answers describe the baronial pattern instead.",
+        "competitive": "The key is dependent office, not ancient local rank. Miss that and you reverse the whole chapter."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why is the Turk's state hard to seize according to Chapter 4?",
+      "choices": [
+        "Because no powerful insider can easily bring the people over to the attacker",
+        "Because barons are too beloved to betray one another",
+        "Because the conqueror must preserve old local privileges before attacking"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The Turk's state is hard to seize because it stays relatively united and offers little insider leverage to the attacker.",
+        "direct": "Hard to seize means the invader cannot count on a baron-like bridge from inside the kingdom. The other answers either import barons where the chapter denies them or add a rule from nowhere.",
+        "competitive": "No insider bridge, no easy entry. The attacker has to break a more unified state himself."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Avery can step into a family venture run by one central aunt or one run through three cousins with their own tenant loyalties. Which reading fits Chapter 4 best?",
+      "choices": [
+        "The cousin-run venture is safer because more insiders are already offering help",
+        "The cousin-run venture may be easier to enter but harder to hold together once Avery is in charge",
+        "The central-aunt venture is easier to enter because one leader can be replaced quickly"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Avery should notice that the cousins' help signals surviving local power, not guaranteed stability.",
+        "direct": "Avery's problem is structural. Several insiders easing her entry also means several insiders may remain capable of resisting her later. The central case is the one that is harder to enter, not easier.",
+        "competitive": "The welcoming cousins are flashing a warning sign. Access is cheap there because future rivals are already in place."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Simon took over a student program after one senior leader backed him, but other student leaders later fought him over meetings and assignments. What does Chapter 4 say that postmortem reveals?",
+      "choices": [
+        "Simon should have relied even more on the first leader's faction",
+        "The program was really centralized, and Simon simply lacked confidence",
+        "The easy entrance exposed a baron-like structure that stayed alive after the handoff"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Simon's trouble came from surviving local influence, not from a mysterious change in mood.",
+        "direct": "Simon's problem is that one faction leader could help him in because several faction leaders already had independent standing. That made the program easier to enter and harder to secure afterward.",
+        "competitive": "The endorsement was not proof of settlement. It was proof that the field still had multiple power centers."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Leila's mentor tells her that a partner-run firm may be more dangerous after acquisition than a founder-run hierarchy. Why?",
+      "choices": [
+        "Because the partners who help with entry can survive as later centers of resistance",
+        "Because a founder-run hierarchy always welcomes outsiders faster",
+        "Because Chapter 4 says centralized states are impossible to hold after victory"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Leila's warning is that local partners can remain powerful after the deal closes.",
+        "direct": "Leila's warning follows the France pattern: insiders who ease entry may still have enough authority to organize trouble later. The other options reverse the chapter's main rule.",
+        "competitive": "Helpful partners are not neutral helpers. They are the post-deal problem if they keep their own following."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why is killing the old ruling family not enough in a kingdom like France?",
+      "choices": [
+        "Because the old taxes automatically restore the former prince",
+        "Because surviving lords can still become heads of fresh movements",
+        "Because servants immediately form a new dynasty from among themselves"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The remaining lords still matter because they keep their own authority and followers.",
+        "direct": "France is harder to hold because the barons who remain can still turn local standing into revolt. The wrong choices either invent a mechanism or confuse barons with servants.",
+        "competitive": "Removing the crown does not remove the political field beneath it. The barons are the field."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why does Machiavelli bring Rome's experience in Spain, France, and Greece into the chapter's closing argument?",
+      "choices": [
+        "To show that republics always refuse conquest for moral reasons",
+        "To prove that conquering distant places is impossible",
+        "To show that memory of many principalities can keep possession insecure for a long time"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Rome appears here because it shows how long old political memories can keep trouble alive.",
+        "direct": "Rome appears here to confirm the rule about plurality and memory. The issue is not mere distance, and it is not a moral refusal of conquest.",
+        "competitive": "The Roman cases keep the chapter honest. Multiple remembered power centers make possession bleed longer."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Chapter 3 described how mixed acquisitions often stay unstable. Chapter 4 explains why Alexander's successors still held Asia. Which answer joins the two chapters most accurately?",
+      "choices": [
+        "Asia behaved differently because Darius's empire was more centralized and left fewer surviving local rivals after the crown fell",
+        "Asia behaved differently because all large empires automatically calm down after the conqueror dies",
+        "Asia behaved differently because Chapter 4 abandons the idea that local memory matters"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Darius matters because his empire fit the centralized pattern, so Alexander's successors inherited fewer rival centers of remembered loyalty.",
+        "direct": "Darius matters because Chapter 4 adds a structural distinction to Chapter 3's instability. The calmer result came from the kind of state Asia was, not from a rejection of memory or a rule about size alone.",
+        "competitive": "This is the bridge between chapters: mixed instability stays real, but a more uniform empire can leave fewer rivals alive after conquest."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Suppose local elites are eager to help you enter a state. According to Chapter 4, what should govern your judgment first?",
+      "choices": [
+        "The fact that their help proves the state will be easy to hold later",
+        "The fact that their help may already show a plural power structure that will make holding harder than entry",
+        "The fact that any alliance with insiders turns the state into a centralized one"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The first distinction is not how pleasant the alliance feels. It is what their help reveals about the structure you would inherit.",
+        "direct": "The first distinction should be structural. Insider help may be evidence that authority is spread among surviving local powers, which means the harder fight may come after entry, not before it.",
+        "competitive": "Treat the open gate as intelligence, not comfort. It may be the earliest sign that victory hands you a live baron problem."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deep"
+    }
+  ]
+}

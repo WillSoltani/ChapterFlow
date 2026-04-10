@@ -1,0 +1,36 @@
+{
+  "nameUsage": {},
+  "formatCategoryHistory": [],
+  "schoolSettingUsage": {},
+  "wordFrequency": {},
+  "phraseFrequency": {},
+  "openerRegistry": {
+    "gentle": {},
+    "direct": {},
+    "competitive": {}
+  },
+  "titleTemplateRegistry": {},
+  "endingPatternRegistry": {},
+  "withinChapterNames": {},
+  "approvedChapterHashes": {
+    "ch01": "468bbf84306c0471833a73aa1dbabfd56b7dcca21e1d84a48787edeb1f478082",
+    "ch02": "d04920a05a1e677297f1ed7e17da32e44d07ee18989cbd6ed9c023feaf26dc5a",
+    "ch03": "b9002bec9e566650d076d2504fbd4f8bbebaa0b0a45757f2db57dce8207b6c3a",
+    "ch04": "f1153cf742e6f452e4c784b5fc8370dca7efdb5c0cbc67a88f3dd83b961df964",
+    "ch05": "adefc392b3cad23a31aff08c8080ed795c809e69581d6d0c460ec46fdb02f182",
+    "ch06": "22bf3f9a60f83b4c9c9a367dcce26b09beb8ecfe6b2629401e26071dfd730d52",
+    "ch07": "0cc23c6b535934cb9ba4cf90eec6f6541914232ad0317d58ce908c3f3b463a55",
+    "ch08": "f9a7a773a5e4279835dc0079507ac7368e7d93df1f1252d1858011417e1fa127",
+    "ch09": "80d9b5113c2f9d1a781161cbe672584acf6e4818df0a83d3fe25788ad88b5450"
+  },
+  "baselineQuality": {
+    "ch01": {
+      "criticScore": 11,
+      "status": "PASS"
+    },
+    "ch02": {
+      "criticScore": 11,
+      "status": "PASS"
+    }
+  }
+}

@@ -5,21 +5,28 @@
 import { BADGE_DEFINITIONS } from "@/app/book/data/mockBadges";
 
 export const INSIGHT_POINTS_COOKIE_NAME = "cf_ref";
-/** @deprecated Use INSIGHT_POINTS_COOKIE_NAME */
-export const FLOW_POINTS_COOKIE_NAME = INSIGHT_POINTS_COOKIE_NAME;
 
 export type FlowPointsSourceType =
   | "onboarding_complete"
   | "first_book_started"
   | "quiz_pass"
+  | "loop_complete"
+  | "reflection_submitted"
   | "book_complete"
   | "badge_earned"
+  | "achievement_earned"
   | "scenario_approved"
+  | "streak_day"
+  | "welcome_back"
+  | "streak_milestone"
+  | "tier_advance"
+  | "insight_spark"
   | "referral_activation_inviter"
   | "referral_activation_invitee"
   | "referral_pro_inviter"
   | "reward_redemption"
-  | "admin_adjustment";
+  | "admin_adjustment"
+  | "expiration";
 
 export type FlowPointsRewardId =
   | "bonus_book_unlock"
@@ -40,7 +47,7 @@ export type FlowPointsRewardDefinition = {
 };
 
 export type InsightPointsEarningRule = {
-  sourceType: FlowPointsSourceType | "loop_complete" | "streak_day" | "welcome_back";
+  sourceType: FlowPointsSourceType;
   label: string;
   /** Exact amount, or 0 if variable. For display, use displayValue. */
   amount: number;
@@ -48,11 +55,10 @@ export type InsightPointsEarningRule = {
   displayValue: string;
   /** Explanatory detail shown under the earning rule */
   detail: string;
-  cadence: "one_time" | "per_chapter" | "per_book" | "per_badge" | "per_approved_submission" | "per_referral_stage" | "daily" | "per_return";
+  // "per_example" — once per chapter example (reflections in the Think First gate)
+  cadence: "one_time" | "per_chapter" | "per_book" | "per_badge" | "per_approved_submission" | "per_referral_stage" | "daily" | "per_return" | "per_example";
   note: string;
 };
-/** @deprecated Use InsightPointsEarningRule */
-export type FlowPointsEarningRule = InsightPointsEarningRule;
 
 export const INSIGHT_POINTS_AMOUNTS = {
   onboardingComplete: 120,
@@ -64,11 +70,10 @@ export const INSIGHT_POINTS_AMOUNTS = {
   referralProInviter: 600,
   streakDayBonus: 15,          // §1.1 — awarded on first loop of each active streak day
   welcomeBack: 30,             // §1.1 — awarded on first loop after 7+ inactive days
+  reflectionSubmitted: 5,      // Awarded when user submits a non-empty reflection in the "Think First" gate (idempotent per example)
   // Removed in IP migration: quizPass (15), dailyGoalComplete (25), weeklyGoalComplete (50)
   // — see achievement-definitions.ts and streak system for replacements
 } as const;
-/** @deprecated Use INSIGHT_POINTS_AMOUNTS */
-export const FLOW_POINTS_AMOUNTS = INSIGHT_POINTS_AMOUNTS;
 
 /** Mode-dependent Insight Points for the chapter reading experience.
  *  Quiz pass values are the quiz-pass-only portion (§1.1).
@@ -120,7 +125,7 @@ export const QUIZ_AUTO_ADVANCE_DELAY = {
 /** Challenge mode total time limit (seconds) */
 export const CHALLENGE_QUIZ_TIME_LIMIT = 600; // 10 minutes
 
-export const FLOW_POINTS_REWARDS: FlowPointsRewardDefinition[] = [
+export const INSIGHT_POINTS_REWARDS: FlowPointsRewardDefinition[] = [
   {
     rewardId: "bonus_book_unlock",
     name: "Bonus Book Unlock",
@@ -168,6 +173,15 @@ export const INSIGHT_POINTS_EARNING_RULES: InsightPointsEarningRule[] = [
     note: "Includes quiz pass + loop completion. Only on the first pass for each chapter.",
   },
   {
+    sourceType: "reflection_submitted",
+    label: "Submit a reflection",
+    amount: INSIGHT_POINTS_AMOUNTS.reflectionSubmitted,
+    displayValue: "+5 IP",
+    detail: "Type your own answer in the 'Think First' prompt before revealing the analysis. Awarded once per example.",
+    cadence: "per_example",
+    note: "One-time per example. Empty submissions don't count.",
+  },
+  {
     sourceType: "streak_day",
     label: "Maintain your streak",
     amount: INSIGHT_POINTS_AMOUNTS.streakDayBonus,
@@ -213,22 +227,14 @@ export const INSIGHT_POINTS_EARNING_RULES: InsightPointsEarningRule[] = [
     note: "Paid when the referred user completes their first full learning loop.",
   },
 ];
-/** @deprecated Use INSIGHT_POINTS_EARNING_RULES */
-export const FLOW_POINTS_EARNING_RULES = INSIGHT_POINTS_EARNING_RULES;
-
-export const INSIGHT_POINTS_REWARDS = FLOW_POINTS_REWARDS;
 
 export function getInsightPointsReward(rewardId: FlowPointsRewardId): FlowPointsRewardDefinition | null {
-  return FLOW_POINTS_REWARDS.find((reward) => reward.rewardId === rewardId) ?? null;
+  return INSIGHT_POINTS_REWARDS.find((reward) => reward.rewardId === rewardId) ?? null;
 }
-/** @deprecated Use getInsightPointsReward */
-export const getFlowPointsReward = getInsightPointsReward;
 
 export function getAchievementIP(badgeId: string): number {
   return BADGE_DEFINITIONS.find((badge) => badge.id === badgeId)?.flowPoints ?? 0;
 }
-/** @deprecated Use getAchievementIP */
-export const getBadgeFlowPoints = getAchievementIP;
 
 export function getBadgeName(badgeId: string): string | null {
   return BADGE_DEFINITIONS.find((badge) => badge.id === badgeId)?.name ?? null;
@@ -244,6 +250,8 @@ export function getInsightPointsSourceTitle(sourceType: string): string {
       return "Quiz passed";
     case "loop_complete":
       return "Learning loop completed";
+    case "reflection_submitted":
+      return "Reflection submitted";
     case "book_complete":
       return "Book completed";
     case "badge_earned":
@@ -272,12 +280,12 @@ export function getInsightPointsSourceTitle(sourceType: string): string {
       return "Insight Spark";
     case "welcome_back":
       return "Welcome back";
+    case "expiration":
+      return "Inactivity decay";
     default:
       return "Insight Points";
   }
 }
-/** @deprecated Use getInsightPointsSourceTitle */
-export const getFlowPointsSourceTitle = getInsightPointsSourceTitle;
 
 export function getInsightPointsSourceSubtitle(
   sourceType: string,
@@ -312,6 +320,13 @@ export function getInsightPointsSourceSubtitle(
       if (bookTitle && chapterLabel) return `${bookTitle} · ${chapterLabel}`;
       return chapterLabel ?? bookTitle;
     }
+    case "reflection_submitted": {
+      const bookTitle = typeof metadata?.bookTitle === "string" ? metadata.bookTitle : null;
+      const chapterLabel =
+        typeof metadata?.chapterLabel === "string" ? metadata.chapterLabel : null;
+      if (bookTitle && chapterLabel) return `${bookTitle} · ${chapterLabel}`;
+      return chapterLabel ?? bookTitle;
+    }
     case "streak_day":
       return typeof metadata?.date === "string" ? `Day ${metadata.currentStreak ?? ""}` : null;
     case "streak_milestone":
@@ -322,9 +337,52 @@ export function getInsightPointsSourceSubtitle(
       return typeof metadata?.tierName === "string" ? metadata.tierName : null;
     case "welcome_back":
       return null;
+    case "expiration": {
+      const previousBalance =
+        typeof metadata?.previousBalance === "number" ? metadata.previousBalance : null;
+      const decayAmount =
+        typeof metadata?.decayAmount === "number" ? metadata.decayAmount : null;
+      if (previousBalance != null && decayAmount != null) {
+        return `Inactive 60+ days · ${previousBalance} → ${previousBalance - decayAmount}`;
+      }
+      return "Inactive 60+ days";
+    }
     default:
       return null;
   }
 }
-/** @deprecated Use getInsightPointsSourceSubtitle */
-export const getFlowPointsSourceSubtitle = getInsightPointsSourceSubtitle;
+
+export type LoopPipelineResult = {
+  quizPassIP: number;
+  perfectBonusIP: number;
+  loopCompleteIP: number;
+  bookCompleteIP: number;
+  streak: {
+    currentStreak: number;
+    longestStreak: number;
+    shieldsHeld: number;
+    streakReset: boolean;
+    shieldsConsumed: number;
+    streakDayIP: number;
+    welcomeBackIP: number;
+    milestones: { days: number; ip: number }[];
+  };
+  tier: {
+    advanced: boolean;
+    newTier: string | null;
+    displayName: string | null;
+    advancementIP: number;
+  };
+  achievements: {
+    id: string;
+    name: string;
+    track: string;
+    ip: number;
+    celebrationCopy: string;
+    isHidden: boolean;
+  }[];
+  insightSpark: {
+    triggered: boolean;
+    amount: number;
+  };
+};

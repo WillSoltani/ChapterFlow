@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch07-q01",
+      "prompt": "In Chapter 7 of The Art of War, what term does Sun Tzu use to describe the core strategic principle of turning a longer, indirect route into the faster, decisive path?",
+      "choices": [
+        "A) The deviation principle",
+        "B) The supply doctrine",
+        "C) The morale cycle"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nice catch. The deviation principle is Sun Tzu's name for the maneuver in which a lure draws the enemy off the direct road, leaving that road open for you — so the roundabout way becomes the swift one.",
+        "direct": "Sun Tzu's Chapter 7 opens with the deviation principle as the chapter's organizing concept: use misdirection (a working lure) to clear the direct path. Supply doctrine and morale cycle are real chapter topics but are not the named strategic principle.",
+        "competitive": "B) The supply doctrine describes logistics prerequisites, not the principle of indirect-to-direct conversion. C) The morale cycle is the dawn-noon-dusk energy framework. Neither names the circuitous-becomes-direct maneuver that Sun Tzu explicitly calls the core difficulty of maneuvering."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch07-q02",
+      "prompt": "Sun Tzu describes a 'forced-march cost schedule' for covering 100 li to seize an advantage. Which outcome does he predict?",
+      "choices": [
+        "A) The full army arrives intact but exhausted and fights at half effectiveness",
+        "B) Only the fastest tenth of the force arrives; the generals of the three divisions are captured",
+        "C) Two-thirds of the force arrives; the remainder catches up by nightfall"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Nice catch. At 100 li, Sun Tzu says only the fastest tenth of the troops will arrive — the bulk of the force is strung out along the road — and the leaders of the three divisions will likely fall into enemy hands.",
+        "direct": "Sun Tzu provides a precise diminishing-returns schedule: 100 li = only the top 10% arrive (generals captured); 50 li = two-thirds arrive; 30 li = full force intact. Choice C describes the 50-li outcome, not the 100-li outcome.",
+        "competitive": "A) Sun Tzu does not describe the full army arriving at 100 li — the chapter explicitly states that most soldiers are left behind at that distance. C) Two-thirds arriving is the prediction for a 50-li forced march, not 100 li. Confusing the distances inverts the cost schedule."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch07-q03",
+      "prompt": "According to Sun Tzu's morale timing principle, when is the ideal moment to attack an enemy force?",
+      "choices": [
+        "A) At dawn, when the enemy's morning spirit is at its keenest",
+        "B) At noon, when the enemy transitions between shifts of guard",
+        "C) In the evening, when the enemy's spirit is spent and its soldiers think only of home"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Nice catch. Sun Tzu's daily morale cycle is explicit: morning spirit is keenest, noon it flags, evening it is spent. You wait until the opponent is at the bottom of that curve before you engage.",
+        "direct": "The morale timing principle prescribes attacking during decline, not peak. Morning is when you should avoid engaging a fresh, spirited enemy; evening is when that same force is depleted. Choice A describes exactly the moment Sun Tzu says to withhold attack.",
+        "competitive": "A) Attacking at dawn hits the enemy at peak morale — the opposite of Sun Tzu's advice. The text says 'avoid' keen morning spirit, not exploit it. B) Noon is the flagging midpoint, which Sun Tzu mentions but does not identify as the optimal strike moment; evening exhaustion is the preferred window."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch07-q04",
+      "prompt": "Amara is a project lead at a software consultancy competing for a lucrative enterprise contract. Her rival firm is pursuing the same client aggressively. Amara quietly arranges a flashy joint workshop with a secondary client — generating buzz that pulls her rival's attention and resources there. Meanwhile, Amara moves quickly to close the enterprise deal uncontested. Which element of Sun Tzu's deviation principle does Amara's plan depend on most critically?",
+      "choices": [
+        "A) A large headcount advantage so she can pursue both opportunities simultaneously",
+        "B) A lure compelling enough that the rival genuinely redirects effort, combined with a clear path Amara can actually exploit",
+        "C) Perfect secrecy so the rival never learns about the enterprise contract"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Nice catch. Sun Tzu's deviation principle requires two things working together: a lure that actually draws the opponent away, and a route that becomes genuinely available once they leave. Amara's plan hinges on both — the workshop lure must work AND the enterprise path must be clear.",
+        "direct": "The deviation principle is not about secrecy alone or numerical superiority — it is a two-part mechanism: (1) a working lure that redirects the opponent and (2) a route that becomes passable as a result. If either part fails, the maneuver collapses. Amara's success depends entirely on this dual condition being met.",
+        "competitive": "A) Headcount would enable parallel pursuit, which is not the deviation principle — it is just resource multiplication. Sun Tzu's insight is doing more with the same force by redirecting the opponent. C) Secrecy helps but is not the critical dependency; even if the rival learns of the enterprise contract after being fully committed to the workshop, the deviation has already worked. The lure's effectiveness and the route's accessibility are the load-bearing elements."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q05",
+      "prompt": "Diego is a sales director at a B2B manufacturing firm. His team is behind on quota and he considers having every rep sprint to close as many deals as possible before month-end, accepting any terms to hit the number. He has seen the risk: reps burning out, margin destroyed, and key accounts poorly onboarded. Which of Sun Tzu's concepts from Chapter 7 most directly predicts Diego's problem if he proceeds?",
+      "choices": [
+        "A) The seven prohibitions — specifically, do not pursue simulated flight",
+        "B) The forced-march cost schedule — speed traded for capability leaves only the fastest fraction functional",
+        "C) The logistics prerequisite — foraging from the enemy is necessary when supply lines are long"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Nice catch. Sun Tzu's forced-march cost schedule maps directly onto Diego's situation: when you demand maximum speed over a fixed distance (or deadline), only the hardiest fraction of your force arrives intact. Most of the team — and most deal quality — is left strung out behind.",
+        "direct": "The forced-march cost schedule is a diminishing-returns model: speed extracts a capability price. Diego's plan to sprint every rep to close at any cost mirrors the 100-li march — perhaps 10% of reps close strong deals, the rest burn out or produce low-margin, high-churn accounts. The chapter's cost schedule quantifies this trade-off precisely.",
+        "competitive": "A) The seven prohibitions address trap-recognition in adversarial maneuver — Diego's problem is internal resource degradation, not falling for an enemy feint. C) The logistics prerequisite is about supply-chain dependency, not about the internal cost of forcing a team beyond sustainable pace. Only the forced-march cost schedule names the specific trade-off Diego is about to make."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q06",
+      "prompt": "Yuki is a department head at a regional hospital. A competing hospital has just announced a new specialist service and patients are shifting over. Yuki's administrator pressures her to immediately launch a counter-program to stop the outflow. Yuki instead argues for waiting three months to staff properly, stockpile supplies, and train frontline teams before going public. Which pair of Sun Tzu's principles from Chapter 7 most directly supports Yuki's argument?",
+      "choices": [
+        "A) Logistics prerequisites and morale timing — a force without supply cannot maneuver, and a rested, prepared force fights from a stronger morale position",
+        "B) The deviation principle and the seven prohibitions — lure the rival into overextension and avoid pursuing their feigned retreat",
+        "C) The forced-march cost schedule and the deviation principle — slow the march to preserve capability, then use a lure to draw patients back"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nice catch. Sun Tzu insists that an army without supply cannot maneuver effectively, and that morale timing — stacking rest, supply, and proximity before engaging — is the structural advantage that makes an attack decisive rather than desperate. Yuki is building exactly that stack.",
+        "direct": "Yuki's argument rests on two Chapter 7 pillars: (1) logistics prerequisites — launch without proper staffing and supply and you cannot sustain the program; (2) morale timing — her team, fully trained and rested, will outperform a rushed, undersupplied launch. The three-month pause is Sun Tzu's 'await the order and calm' applied to a healthcare context.",
+        "competitive": "B) The deviation principle and seven prohibitions concern adversarial maneuvering and trap recognition — useful in competitive strategy but not the argument Yuki is making, which is about internal readiness, not about luring a rival. C) The forced-march cost schedule does support slowing down, but the deviation principle requires a lure redirecting the rival, which Yuki's plan does not involve. The logistics plus morale pairing is the tightest fit."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q07",
+      "prompt": "Sun Tzu warns against 'swallowing offered bait' as one of his seven prohibitions. What is the underlying structural reason this prohibition exists, and how does it connect to the deviation principle?",
+      "choices": [
+        "A) Bait depletes your supply faster than direct assault, making the logistics situation untenable",
+        "B) Pursuing bait always violates morale timing because the enemy sets the bait at dawn when your troops are keenest and most likely to charge",
+        "C) The offered bait is itself the lure in a deviation maneuver — the opponent has constructed a trap where the apparent prize draws you off your position and onto ground of their choosing"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Nice catch. The prohibition against swallowing bait is the deviation principle seen from the defender's perspective: the bait is the lure, and chasing it surrenders the position or route the opponent actually wants to clear. Recognizing bait means recognizing that you are being maneuvered against.",
+        "direct": "The seven prohibitions are a trap-recognition framework. Each named trap has a surface appearance (fleeing soldiers, offered supplies) that invites a predictable response. 'Offered bait' is structurally identical to a lure in the deviation principle — the opponent is using it to move you so they can exploit the space you vacate. Understanding the prohibition requires understanding that the bait is not the objective; it is the mechanism.",
+        "competitive": "A) The supply concern is real but is not why the prohibition exists — the prohibition is about positional and strategic manipulation, not logistics cost. B) There is no textual basis for the claim that bait is specifically set at dawn; the morale cycle operates independently of the bait prohibition. Conflating the two mechanisms misreads both."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q08",
+      "prompt": "Sun Tzu states that an army without supplies, provisions, and base support 'cannot even start' a campaign. How does this logistics prerequisite interact with the deviation principle's requirement for a 'clear deviation route'?",
+      "choices": [
+        "A) They are independent requirements; logistics determine whether you can fight at all, while deviation routes determine how you get there — both must be satisfied before maneuvering is viable",
+        "B) A strong logistics position makes the deviation principle unnecessary, because a well-supplied army can simply overpower the enemy on any route",
+        "C) The deviation principle compensates for logistics shortfalls by shortening the actual travel distance through misdirection"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nice catch. Sun Tzu treats logistics and the deviation route as separate but equally necessary conditions. An army with a perfect deviation plan and no supply will collapse on the route; an army with full supply and no viable deviation route will be contested the whole way. Both conditions must hold simultaneously.",
+        "direct": "Chapter 7 integrates logistics and maneuvering as co-requisites, not substitutes. Logistics set the floor (without supply, no campaign is possible). The deviation principle sets the route strategy (how to arrive with force intact). Neither compensates for the absence of the other; both are prerequisites to effective maneuvering.",
+        "competitive": "B) Sun Tzu never argues that supply replaces strategic ingenuity. Overwhelming supply does not eliminate the need for correct route strategy — an army marching directly into a contested route still takes casualties and loses the element of surprise regardless of provisioning. C) The deviation principle does not shorten travel distance — it makes a longer route strategically equivalent to a shorter one by clearing the obstacle. It does not reduce supply consumption; it potentially increases it on the longer path."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch07-q09",
+      "prompt": "A critic argues that Sun Tzu's seven prohibitions are too rigid: 'Real battles are chaotic — sometimes you must pursue retreating troops to prevent regrouping, even if it looks like simulated flight.' Evaluate this critique against the chapter's logic.",
+      "choices": [
+        "A) The critique is partially valid: the prohibition against pursuit applies only to infantry engagements and Sun Tzu acknowledges cavalry commanders may pursue freely",
+        "B) The critique is valid; Sun Tzu's prohibitions are absolute rules that fail in fluid situations where regrouping is the greater threat",
+        "C) The critique misreads the prohibitions as mechanical bans rather than as a trap-recognition framework requiring the commander to distinguish genuine retreat from feigned retreat before acting"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Nice catch. The seven prohibitions are not unconditional stop signs — they are a framework for recognizing the difference between a genuine situation and a manufactured appearance. The skill Sun Tzu is cultivating is discriminating judgment, not reflexive restraint. A commander who can reliably identify simulated flight is free to pursue genuine flight.",
+        "direct": "The prohibitions are structured as 'do not X when X is a trap' — not 'never X.' The chapter's logic is that each prohibited action names a surface appearance (retreating soldiers, offered bait, a homeward army) that commonly conceals a trap. The competent commander learns to read the appearance accurately. The critic's objection assumes the prohibition bans pursuit categorically, which the text does not support.",
+        "competitive": "A) There is no cavalry exception in Chapter 7 or elsewhere in the Giles translation; this choice fabricates a textual distinction that does not exist. B) Treating the prohibitions as rigid absolutes is the error the critic projects onto Sun Tzu, not a feature of the text. Sun Tzu is a strategist who repeatedly emphasizes situational reading over fixed rules — the prohibitions are taught as heuristics that require interpretation."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch07-q10",
+      "prompt": "Across Chapter 7, Sun Tzu argues that maneuvering — not direct confrontation — is the decisive advantage. Evaluate which of the following best captures the chapter's integrated claim about why maneuvering is superior.",
+      "choices": [
+        "A) Maneuvering is superior because it conserves troops: by avoiding battle entirely, losses are minimized and the army remains intact for future engagements",
+        "B) Maneuvering converts multiple structural advantages simultaneously — route control, morale timing, logistics stability, and trap avoidance — into a compounding positional edge before a blow is struck",
+        "C) Maneuvering is superior primarily because speed of movement prevents the enemy from reacting, making the quality of the force less important than its velocity"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Nice catch. Chapter 7's integrated argument is that maneuvering stacks multiple independent advantages — the deviation route clears the path, logistics ensure the force is functional on arrival, morale timing ensures the army is fresh and the enemy is spent, and trap-recognition prevents being diverted. These compound before engagement begins, which is why Sun Tzu treats maneuvering as the decisive act.",
+        "direct": "The chapter is not a single-thesis argument about speed or casualty avoidance — it is a multi-factor framework. Deviation, logistics, morale timing, and the seven prohibitions are distinct mechanisms that reinforce each other. The integrated claim is that a commander who stacks all four arrives at the engagement already holding the decisive margin. No single mechanism captures this; the compounding is the point.",
+        "competitive": "A) The chapter does not argue for avoiding battle — Sun Tzu elsewhere accepts that battle is sometimes necessary. Chapter 7 is about arriving at battle in the strongest possible position, not about bypassing it. C) Speed is explicitly shown to carry costs in the forced-march schedule — Sun Tzu cautions against prioritizing velocity above all else. Quality of force (intact supply, rested morale) is precisely what the chapter works to preserve against the temptation of pure speed."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

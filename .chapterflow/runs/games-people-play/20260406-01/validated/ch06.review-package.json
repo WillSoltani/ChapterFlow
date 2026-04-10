@@ -1,0 +1,40 @@
+{
+  "chapterId": "ch06",
+  "chapterNumber": 6,
+  "chapterTitle": "Marital Games",
+  "bookId": "games-people-play",
+  "runId": "20260406-01",
+  "packVersion": "v12-sealed",
+  "validationStatus": "passed",
+  "qualityGateScore": {
+    "total": 12,
+    "max": 12,
+    "categories": {
+      "chapterSpecificity": 2,
+      "anchorUse": 2,
+      "analyticalValue": 2,
+      "paragraphMotion": 2,
+      "proseQuality": 2,
+      "hookAndBridge": 2
+    },
+    "autoFails": []
+  },
+  "summary": {
+    "coreClaim": "Marital games are intimacy-avoidance mechanisms in the frame of a close partnership. Three patterns: Corner (any choice proves the accusation), IWFY (restriction invited in, blamed on partner), Sweetheart (aggression under affection). The antithesis to each requires the exact vulnerability the game was built to avoid.",
+    "anchorsUsed": [
+      "Parveen/Dev Corner trap on Eid Sunday",
+      "Luca's seventeen-year IWFY architecture with Nadia",
+      "Vera/Bastian Sweetheart at the dinner party"
+    ],
+    "hardDepthTension": "The antithesis requires the exact vulnerability the game was protecting against. Both players must decide whether to be real without the game's protection.",
+    "bridgeToNextChapter": "Party games run the same avoidance strategy in shorter, cheaper form, across groups rather than partnerships."
+  },
+  "strongestQualities": [
+    "The IWFY structural insight ('the restriction was invited in') is the chapter's hardest analytical claim and it lands without being softened.",
+    "The closing sentence of P6 ('the antithesis is not a clever move. It is a real thing.') makes the structural claim concrete and personal.",
+    "All three patterns are gender-neutral and carried by specific named characters with concrete details."
+  ],
+  "remainingConcerns": [],
+  "approvalRequired": true,
+  "preserveApprovedHash": false
+}

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch03-q01",
+      "prompt": "What is the core difference between the rider and the elephant in Chapter 3?",
+      "choices": [
+        "The rider has force and the elephant has language",
+        "The rider explains while the elephant carries more momentum",
+        "The rider is moral and the elephant is immoral"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The rider speaks and plans, while the elephant carries more of the actual force.",
+        "direct": "Chapter 3 separates verbal precision from behavioral mass.",
+        "competitive": "The rider has the map. The elephant has the weight."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch03-q02",
+      "prompt": "Why can a person understand a bad pattern and still repeat it?",
+      "choices": [
+        "Because explanation and control are different achievements",
+        "Because understanding never matters",
+        "Because the chapter says change is impossible"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says the rider can learn while the elephant stays pointed the same way.",
+        "direct": "Insight can improve without steering improving with it.",
+        "competitive": "The commentary got better. The route did not."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch03-q03",
+      "prompt": "What does Chapter 3 say is usually wrong with direct lecture?",
+      "choices": [
+        "It reaches the rider more than the elephant",
+        "It gives too much emotional support",
+        "It always makes people angry"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Lecture often produces agreement in language without changing the larger momentum.",
+        "direct": "It usually addresses the verbal self and misses the force carrying the behavior.",
+        "competitive": "You can win the speech and lose the motion."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch03-q04",
+      "prompt": "Mira promises herself she will stay calm in a meeting, then interrupts again under stress. Which diagnosis best fits Chapter 3?",
+      "choices": [
+        "She lacks any understanding of the pattern",
+        "Her rider had insight but the elephant kept the old momentum",
+        "The chapter proves self-command does not exist"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "She may understand the better move while still lacking leverage over the larger force.",
+        "direct": "This is the insight-versus-control split the chapter describes.",
+        "competitive": "Her rider had the policy. Her elephant kept the habit."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q05",
+      "prompt": "Why can a strong team retrospective still fail to change the next cycle?",
+      "choices": [
+        "Because teams should avoid reflection",
+        "Because explanation can improve without leverage changing",
+        "Because the chapter rejects planning entirely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The team may gain language while the momentum producing the failure stays intact.",
+        "direct": "A better diagnosis is not the same thing as a different route.",
+        "competitive": "The postmortem upgraded commentary, not force."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q06",
+      "prompt": "Which response best avoids a fatalistic misreading of the chapter?",
+      "choices": [
+        "The rider is useless, so trying is pointless",
+        "The elephant carries force, so change must reach it differently",
+        "The rider should simply give longer speeches"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter lowers the rider's authority without erasing the possibility of change.",
+        "direct": "Haidt narrows the rider's power but keeps leverage and discipline in play.",
+        "competitive": "The animal can turn. The speech alone is just not enough."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q07",
+      "prompt": "Caleb gets instant agreement from a friend after a careful lecture, but the same behavior returns the next day. What should he conclude first?",
+      "choices": [
+        "Agreement alone proved the problem was solved",
+        "The lecture may have reached the rider without reaching the elephant",
+        "His friend is incapable of understanding any argument"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The nod may reflect language-level agreement rather than changed momentum.",
+        "direct": "Verbal assent is not the same thing as leverage over the larger force.",
+        "competitive": "The rider surrendered. The elephant stayed armed."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q08",
+      "prompt": "What kind of change does the chapter treat as most credible?",
+      "choices": [
+        "A more elegant explanation of the same pattern",
+        "A shift that alters the larger momentum when the trigger returns",
+        "A stronger public promise"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Real change shows up when the larger force moves differently in the live moment.",
+        "direct": "The chapter judges progress by changed motion, not improved commentary alone.",
+        "competitive": "If the animal turns under pressure, that is evidence."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q09",
+      "prompt": "How does Chapter 3 deepen the point of Chapter 2?",
+      "choices": [
+        "It turns intuition-first into a leverage and control problem",
+        "It replaces intuition with pure rationality",
+        "It abandons the rider-elephant picture completely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Chapter 2 reordered the sequence, and Chapter 3 asks what that means for steering.",
+        "direct": "The control problem follows naturally once the rider is no longer first mover.",
+        "competitive": "A late rider becomes a weak steering system. That is the bridge."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch03-q10",
+      "prompt": "What question does Chapter 3 most directly hand to Chapter 4?",
+      "choices": [
+        "How many moral foundations exist",
+        "How private control problems become public persuasion problems",
+        "Why religion binds groups"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "If the elephant matters this much in private, the next question is what public argument tries to reach.",
+        "direct": "Chapter 4 inherits the problem of persuasion after Chapter 3 clarifies leverage.",
+        "competitive": "Once you know the animal matters, crowds and campaigns look different."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

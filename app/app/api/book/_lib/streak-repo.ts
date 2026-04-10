@@ -323,13 +323,16 @@ export async function updateStreakOnLoopComplete(
   };
 
   // §1.1 — Streak day bonus (15 IP, first loop of the day on active streak)
+  // sourceId is anchored to UTC day (not user tz) so a user can't farm multiple
+  // streak day bonuses by switching timezones across UTC midnight on the same day.
+  const utcToday = now.slice(0, 10);
   if (newCurrentStreak >= 1) {
     const streakDayAward = await awardFlowPoints(tableName, {
       userId,
       amount: INSIGHT_POINTS_AMOUNTS.streakDayBonus,
       sourceType: "streak_day",
-      sourceId: today,
-      metadata: { currentStreak: newCurrentStreak, date: today },
+      sourceId: utcToday,
+      metadata: { currentStreak: newCurrentStreak, date: today, utcDate: utcToday },
     });
     result.streakDayAwarded = streakDayAward.awarded;
   }
@@ -340,8 +343,8 @@ export async function updateStreakOnLoopComplete(
       userId,
       amount: INSIGHT_POINTS_AMOUNTS.welcomeBack,
       sourceType: "welcome_back",
-      sourceId: today,
-      metadata: { inactiveDays: gapDays, returnDate: today },
+      sourceId: utcToday,
+      metadata: { inactiveDays: gapDays, returnDate: today, utcDate: utcToday },
     });
     result.welcomeBackAwarded = welcomeBackAward.awarded;
   }

@@ -1,0 +1,110 @@
+{
+  "bookId": "the-almanack-of-naval-ravikant",
+  "runId": "20260408-022212",
+  "lockedAt": "2026-04-08",
+  "selectionMode": "auto_locked_authorized_full_text",
+  "coverage": "authorized_full_text_locked_2020_family",
+  "rightsPosture": "official free web, PDF, and EPUB edition available; no unlicensed mirrors used",
+  "sources": [
+    {
+      "id": "official_home_page",
+      "title": "Almanack of Naval Ravikant",
+      "url": "https://www.navalmanack.com/",
+      "type": "official_book_site",
+      "role": "rights posture, public-service availability, and alias support",
+      "confidence": "high",
+      "captureFiles": [
+        "source-freeze/source-bundle/official-home.html"
+      ],
+      "notes": "Confirms the book is freely posted on the site and downloadable as PDF and EPUB. Also surfaces the home-page chapter-list alias 'How to Live' for the Philosophy section."
+    },
+    {
+      "id": "official_toc_page",
+      "title": "TABLE OF CONTENTS — Almanack of Naval Ravikant",
+      "url": "https://www.navalmanack.com/almanack-of-naval-ravikant/table-of-contents",
+      "type": "official_toc_page",
+      "role": "official section ordering cross-check",
+      "confidence": "high",
+      "captureFiles": [
+        "source-freeze/source-bundle/official-toc.html"
+      ],
+      "notes": "Matches the printed TOC structure and confirms the major section labels used for the six-entry ChapterFlow index."
+    },
+    {
+      "id": "official_2020_pdf",
+      "title": "Eric-Jorgenson_The-Almanack-of-Naval-Ravikant_Final.pdf",
+      "url": "https://navalmanack.s3.amazonaws.com/Eric-Jorgenson_The-Almanack-of-Naval-Ravikant_Final.pdf",
+      "type": "authorized_full_text_pdf",
+      "role": "canonical printed TOC, ISBN block, and fixed page references",
+      "confidence": "high",
+      "captureFiles": [
+        "source-freeze/source-bundle/official-2020-edition.pdf"
+      ],
+      "notes": "Static official PDF containing the full 2020 text, printed contents pages, and paperback / hardcover / ebook ISBNs."
+    },
+    {
+      "id": "official_2020_epub",
+      "title": "Eric-Jorgenson_The-Almanack-of-Naval-Ravikant_EBOOK_v103.epub",
+      "url": "https://navalmanack.s3.amazonaws.com/Eric-Jorgenson_The-Almanack-of-Naval-Ravikant_EBOOK_v103.epub",
+      "type": "authorized_full_text_epub",
+      "role": "structured text extraction for section sidecars",
+      "confidence": "high",
+      "captureFiles": [
+        "source-freeze/source-bundle/official-2020-edition.epub",
+        "source-freeze/source-bundle/official-2020-epub-content.opf.xml",
+        "source-freeze/source-bundle/official-2020-epub-toc.ncx.xml"
+      ],
+      "notes": "Frozen alongside extracted NCX and OPF files so chapter sidecars can be sourced from locked XHTML rather than live site HTML."
+    },
+    {
+      "id": "openlibrary_2020_edition",
+      "title": "The Almanack of Naval Ravikant - Open Library",
+      "url": "https://openlibrary.org/books/OL30677089M/The_Almanack_of_Naval_Ravikant",
+      "type": "library_catalog_edition_record",
+      "role": "publication date, page count, and edition family cross-check",
+      "confidence": "high",
+      "captureFiles": [
+        "source-freeze/source-bundle/openlibrary-2020-edition.html"
+      ],
+      "notes": "Confirms Sep 8, 2020 Magrathea paperback, Aug 15, 2020 Magrathea hardcover, 2020 Scribe ebook, and a 242-page physical book."
+    },
+    {
+      "id": "worldcat_magrathea_record",
+      "title": "The almanack of Naval Ravikant : a guide to wealth and happiness - WorldCat",
+      "url": "https://search.worldcat.org/title/The-almanack-of-Naval-Ravikant-%3A-a-guide-to-wealth-and-happiness/oclc/1199993087",
+      "type": "library_catalog_record",
+      "role": "print record corroboration for the Magrathea family",
+      "confidence": "medium_high",
+      "captureFiles": [
+        "source-freeze/source-bundle/worldcat-2021-print-record.html"
+      ],
+      "notes": "Confirms the Magrathea Publishing print record and the hardcover / paperback ISBN pair, though the saved HTML is noisy because WorldCat serves an application shell."
+    },
+    {
+      "id": "simon_schuster_2025_second_edition",
+      "title": "The Almanack of Naval Ravikant | Simon & Schuster UK",
+      "url": "https://www.simonandschuster.co.uk/books/The-Almanack-of-Naval-Ravikant/Eric-Jorgenson/9798893310948",
+      "type": "official_later_edition_metadata",
+      "role": "later same-family edition comparison",
+      "confidence": "medium_high",
+      "captureFiles": [
+        "source-freeze/source-bundle/simon-schuster-2025-second-edition.html",
+        "source-freeze/source-bundle/simon-schuster-uk-2025-second-edition.html",
+        "source-freeze/source-bundle/simon-schuster-2025-second-edition.snapshot.txt"
+      ],
+      "notes": "Browser-visible official metadata shows a 2025 Authors Equity / Simon & Schuster hardcover second edition, 256 pages, and ISBN13 9798893310948. Shell fetches hit Cloudflare blocks, so a text snapshot preserves the metadata used for comparison."
+    },
+    {
+      "id": "official_translations_page",
+      "title": "Translations of the Almanack of Naval Ravikant",
+      "url": "https://www.navalmanack.com/translations",
+      "type": "official_translation_registry",
+      "role": "translation scope check",
+      "confidence": "high",
+      "captureFiles": [
+        "source-freeze/source-bundle/official-translations.html"
+      ],
+      "notes": "Confirms many official translations exist or are pending, reinforcing that translation selection matters but remains out of scope for this English run."
+    }
+  ]
+}

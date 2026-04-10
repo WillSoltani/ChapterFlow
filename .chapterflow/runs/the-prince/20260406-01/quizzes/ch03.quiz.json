@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "Why do people initially help replace one ruler with another in a mixed principality?",
+      "choices": [
+        "Because they already know the new ruler will leave burdens unchanged",
+        "Because they hope the new arrangement will make things better",
+        "Because they have already accepted the new ruler's taxes and soldiers"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "People help replace a ruler because they hope life will improve. Machiavelli begins there because that hopeful welcome later becomes part of the instability.",
+        "direct": "Hope of improvement is the right answer. The other options describe settled acceptance, but Chapter 3 says the welcome comes before people feel the burdens of the new rule.",
+        "competitive": "Mixed acquisition opens on expectation, not calm obedience. Miss that and you miss the first wound in the whole chapter."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Even if the new ruler enters with strong armed force, what does Machiavelli say he still needs?",
+      "choices": [
+        "The goodwill of the natives",
+        "The permission of the former ruling family",
+        "A larger garrison than any neighbor can field"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Machiavelli says the new ruler still needs the goodwill of the natives. Force may get him into the province, but goodwill matters for keeping it.",
+        "direct": "Goodwill of the natives is the chapter's answer. The former ruling family is a danger to remove, and a larger garrison is not presented as the cure for mixed instability.",
+        "competitive": "Armed entry is not enough. If the population turns against you fast, your strength arrives already half-spent."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is Machiavelli's maintenance rule for a newly annexed territory that is close in language and custom to the old state?",
+      "choices": [
+        "Move a large permanent garrison through every town",
+        "Raise taxes immediately so the new ruler's authority is visible",
+        "End the former ruling line and leave laws and taxes unchanged"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "For a similar territory, Machiavelli says to remove the former ruling family and keep laws and taxes steady. That reduces political memory without disturbing daily life.",
+        "direct": "The right rule is narrow: extinguish the old line and alter neither laws nor taxes. The wrong answers would keep reminding the population that conquest has changed everything.",
+        "competitive": "You secure the close case by cutting off the old rally point and refusing to advertise conquest through daily disruption."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Amira takes over a committee that helped put her in office and now wants immediate rewards. Which move best fits Chapter 3?",
+      "choices": [
+        "Give the loudest backers special access so they stay loyal",
+        "Remove the old power center, keep most working rules steady, and make one limited fair change",
+        "Rewrite every rule before the rest of the campus can object"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Amira should cut off the old center of control while keeping daily rules mostly steady. That limits resentment and avoids paying supporters with disorder.",
+        "direct": "Chapter logic treats the committee like a mixed acquisition where welcome is unstable. Rewarding the coalition too much or rewriting everything would widen the number of enemies.",
+        "competitive": "Entry does not buy a free reset. The sharp move is to end the old line's advantage without turning the whole committee into a reminder of conquest."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What is the clearest lesson from Theo's failed household reset?",
+      "choices": [
+        "A new authority always needs a stricter schedule than the old one",
+        "The household failed because Theo was too gentle with his allies",
+        "He injured the old order and still failed to satisfy the people who wanted change"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Theo's mistake was double. He displaced existing routines and still did not deliver the cleaner life his supporters imagined.",
+        "direct": "The right answer captures the mixed-acquisition double bind. Theo created resentment among the displaced while disappointing the people who had hoped his arrival would help.",
+        "competitive": "He managed to produce enemies on both sides of the threshold. That double backlash is the trap Machiavelli keeps putting in view."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Celeste is trying to stabilize an acquired branch with different habits. What does Chapter 3 most strongly recommend first?",
+      "choices": [
+        "Spend real time onsite so small disorders reach her early",
+        "Increase the reporting dashboard until every complaint is categorized",
+        "Keep the branch at a distance until the staff prove they can be trusted"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Chapter 3 favors presence in unlike territories. Being onsite helps Celeste hear small problems before they become larger ones.",
+        "direct": "Real presence is the right move because Machiavelli treats distance as a source of late information and official abuse. More dashboards are not the same thing as residence.",
+        "competitive": "If the branch is unlike headquarters, absence teaches the office to experience takeover through intermediaries, and the whole case starts hardening against her before she can answer it."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why does Machiavelli prefer colonies to heavy garrisons in unlike territories?",
+      "choices": [
+        "Because colonies avoid changing any law at all",
+        "Because colonies localize injury while garrisons spread hardship across the whole territory",
+        "Because colonies guarantee the former ruling family will return"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Colonies hurt fewer people, while garrisons make nearly everyone feel the burden of the acquisition.",
+        "direct": "The key difference is the spread of injury. Colonies narrow it, but garrisons turn the whole state into the daily victim of occupation costs.",
+        "competitive": "Machiavelli is choosing the form of control that creates fewer shared reasons to hate the new order."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What does Rome teach Machiavelli about future troubles in annexed territories?",
+      "choices": [
+        "That war disappears if you wait long enough",
+        "That lesser allies should always be allowed to grow however they wish",
+        "That future dangers must be treated early, because delayed war helps the other side"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Rome acts early. Machiavelli says delayed war is not avoided war. It usually helps someone else more than it helps you.",
+        "direct": "The Roman lesson is early remedy. Waiting until trouble is obvious makes cure harder and gives the advantage to the rival who benefits from your delay.",
+        "competitive": "Their prudence is temporal. They fight tomorrow's cheap problem before it grows into today's expensive one."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Which choice best captures why Louis XII becomes Machiavelli's anti-model in Chapter 3?",
+      "choices": [
+        "He strengthened the Church and Spain while neglecting residence and colonies in Italy",
+        "He left laws and taxes untouched in every acquired territory",
+        "He refused all local friendships before entering Italy"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Louis XII fails because he keeps empowering larger rivals around his acquisition while ignoring the maintenance rules the chapter recommends.",
+        "direct": "The first answer is right because it names the compounding errors Machiavelli emphasizes: helping other powers grow while failing to root his own control locally.",
+        "competitive": "Louis does not just make one mistake. He keeps improving the position of the forces that later squeeze him out."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "A mixed territory partly resembles your old state, but its people still have grievances and nearby rivals could profit from unrest. What should govern your first move?",
+      "choices": [
+        "Reward the allies who opened the gates, because their loyalty will settle the rest",
+        "Classify how similar or unlike the territory really is, because that determines whether minimal alteration or local presence and stronger containment must come first",
+        "Ignore local structure and strike the strongest neighbor immediately, because force solves goodwill later"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The first move is to classify the territory correctly. Machiavelli's rules change depending on whether the annexed place is close to the old state or still fundamentally unlike it.",
+        "direct": "Similarity comes first because it tells you which maintenance logic applies. Rewarding allies alone does not solve the double bind, and force alone does not answer the local structure of the case.",
+        "competitive": "The threshold is diagnostic before it is muscular. Run the wrong case and you will either underreact to difference or overreact where steadiness was enough."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

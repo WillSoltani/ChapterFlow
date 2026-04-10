@@ -1,0 +1,78 @@
+{
+  "bookId": "the-48-laws-of-power",
+  "runId": "20260409-002544",
+  "lockedAt": "2026-04-08",
+  "selectionMode": "auto_locked_dominant_edition",
+  "sources": [
+    {
+      "id": "penguin_48laws",
+      "title": "Penguin Random House product page for The 48 Laws of Power",
+      "url": "https://www.penguinrandomhouse.com/books/330912/the-48-laws-of-power-by-robert-greene/9781101042458/",
+      "type": "official_publisher_page",
+      "role": "primary edition-family confirmation and official publisher framing",
+      "confidence": "high",
+      "accessedAt": "2026-04-08",
+      "notes": "Confirms Robert Greene as author, Joost Elffers as producer, the Penguin Books family, the September 1 2000 trade-paperback metadata, and the publisher description naming the book's power manual framing."
+    },
+    {
+      "id": "google_books_48laws",
+      "title": "Google Books metadata page for The 48 Laws of Power",
+      "url": "https://books.google.com/books?id=P69yuCuK07gC",
+      "type": "authorized_metadata_preview",
+      "role": "authorized edition metadata and ISBN support",
+      "confidence": "high",
+      "accessedAt": "2026-04-08",
+      "notes": "Confirms the 1998 Penguin Publishing Group metadata, 496-page illustrated edition, ISBN 0140280197 / 9780140280197, and the authorized-paperback framing."
+    },
+    {
+      "id": "openlibrary_48laws",
+      "title": "Open Library edition page for The 48 Laws of Power",
+      "url": "https://openlibrary.org/books/OL24274306M/The_48_Laws_of_Power",
+      "type": "library_metadata_preview",
+      "role": "cross-check on edition family, preview availability, and publication variants",
+      "confidence": "medium-high",
+      "accessedAt": "2026-04-08",
+      "notes": "Confirms stable English editions across 1998 Viking hardcover and 2000 Penguin paperback / later ebook family, with preview-only availability and no evidence of chapter-count drift."
+    },
+    {
+      "id": "military_wiki_48laws_list",
+      "title": "Military Wiki article mirroring the law-by-law list for The 48 Laws of Power",
+      "url": "https://military-history.fandom.com/wiki/The_48_Laws_of_Power",
+      "type": "secondary_chapter_map",
+      "role": "chapter-order and law-title map for all 48 chapters",
+      "confidence": "medium",
+      "accessedAt": "2026-04-08",
+      "notes": "Used only for the stable 48-law chapter map and law titles. The page explicitly notes that its law list incorporates Wikipedia text."
+    },
+    {
+      "id": "supersummary_48laws_1_16",
+      "title": "SuperSummary: The 48 Laws of Power Preface and Laws 1-16 Summary & Analysis",
+      "url": "https://www.supersummary.com/48-laws-of-power/preface-and-laws-1-16-summary/",
+      "type": "secondary_summary",
+      "role": "chapter-level support for the preface and Laws 1-16",
+      "confidence": "medium",
+      "accessedAt": "2026-04-08",
+      "notes": "Provides grouped law summaries, named historical examples, and recurring mechanism-level interpretations for the first third of the book."
+    },
+    {
+      "id": "supersummary_48laws_17_32",
+      "title": "SuperSummary: The 48 Laws of Power Laws 17-32 Summary & Analysis",
+      "url": "https://www.supersummary.com/48-laws-of-power/laws-17-32-summary/",
+      "type": "secondary_summary",
+      "role": "chapter-level support for Laws 17-32",
+      "confidence": "medium",
+      "accessedAt": "2026-04-08",
+      "notes": "Provides grouped summaries for the middle third of the law sequence with enough signal for chapter-brief narrowing when official text is thin."
+    },
+    {
+      "id": "supersummary_48laws_33_48",
+      "title": "SuperSummary: The 48 Laws of Power Laws 33-48 Summary & Analysis",
+      "url": "https://www.supersummary.com/48-laws-of-power/laws-33-48-summary/",
+      "type": "secondary_summary",
+      "role": "chapter-level support for Laws 33-48",
+      "confidence": "medium",
+      "accessedAt": "2026-04-08",
+      "notes": "Provides grouped summaries for the final third of the law sequence and reinforces the book's later emphasis on timing, perception, reform, and adaptability."
+    }
+  ]
+}

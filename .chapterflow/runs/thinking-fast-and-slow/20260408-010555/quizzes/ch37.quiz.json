@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch37-q01",
+      "prompt": "What is the main job of the mechanism in Experienced Well-Being?",
+      "choices": [
+        "Guide judgment through a hidden cue",
+        "Store every memory exactly",
+        "Eliminate uncertainty completely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter studies a cue that shapes judgment before fuller review.",
+        "direct": "experience sampling reveals how activities actually feel while they are happening.",
+        "competitive": "The mechanism moves fast and cheaply, which is why it matters."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch37-q02",
+      "prompt": "What does the chapter cue often get mistaken for?",
+      "choices": [
+        "Evidence or reliability",
+        "Pure chance only",
+        "Long-term intelligence"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The mind often promotes the cue into something like evidence.",
+        "direct": "retrospective judgment gets treated as the whole truth about well-being.",
+        "competitive": "Once that promotion happens, weak support can dominate the scene."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch37-q03",
+      "prompt": "Why can the mistake feel reasonable from the inside?",
+      "choices": [
+        "Because the confidence is felt more clearly than the shortcut",
+        "Because every first answer is correct",
+        "Because evidence stops mattering"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The shortcut stays hidden while the confidence feels normal.",
+        "direct": "People feel the verdict, not the cue that strengthened it.",
+        "competitive": "Hidden leverage is exactly what makes the pattern repeat."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch37-q04",
+      "prompt": "A team trusts a polished case before checking assumptions. Which chapter pattern fits best?",
+      "choices": [
+        "The hidden cue is inflating confidence",
+        "Random memory loss is driving the decision",
+        "No judgment is taking place"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The case matches the chapter because the room is trusting the cue more than the support.",
+        "direct": "The support has not improved, but the atmosphere of judgment has.",
+        "competitive": "The room is about to let a low-cost cue set policy."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch37-q05",
+      "prompt": "What is the best immediate correction?",
+      "choices": [
+        "Test what supports the verdict if the cue is removed",
+        "Delay every decision indefinitely",
+        "Trust the first story even more"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A useful fix is to test what remains persuasive when the cue loses power.",
+        "direct": "look at lived moments directly instead of relying only on summary memory.",
+        "competitive": "A small check keeps cheap certainty from becoming expensive commitment."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch37-q06",
+      "prompt": "Why is this chapter not a call for universal suspicion?",
+      "choices": [
+        "Because the cue is sometimes useful and low-stakes speed still matters",
+        "Because quick judgment is always perfect",
+        "Because evidence can never help"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Kahneman keeps the lesson selective rather than absolute.",
+        "direct": "memory still matters for meaning and decision, but it should not erase the value of the experienced time itself.",
+        "competitive": "Calibration beats ritual doubt."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch37-q07",
+      "prompt": "What recurring mistake does the chapter expose?",
+      "choices": [
+        "Treating a proxy signal as if it were proof",
+        "Avoiding all intuition forever",
+        "Ignoring every social context"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The error is to upgrade a proxy into proof.",
+        "direct": "That is the core category mistake exposed by the chapter.",
+        "competitive": "The system is mispricing the source of confidence."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch37-q08",
+      "prompt": "How does Experienced Well-Being build on Life as a Story?",
+      "choices": [
+        "It shows how an earlier fast process becomes persuasive in judgment",
+        "It rejects the earlier mechanism completely",
+        "It proves the earlier chapter irrelevant"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Life as a Story sets up the pressure that Experienced Well-Being makes more persuasive.",
+        "direct": "The two chapters are linked by sequence rather than repetition.",
+        "competitive": "The book compounds by turning each pressure into the next."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch37-q09",
+      "prompt": "What is the strongest practical use of the chapter?",
+      "choices": [
+        "Catch when confidence outruns support",
+        "Memorize the title only",
+        "Replace all fast thinking with math"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter is practical because it helps the reader interrupt hidden leverage.",
+        "direct": "Its value lies in identifying confidence that is borrowing strength.",
+        "competitive": "The edge is noticing the cue while the decision can still be reopened."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch37-q10",
+      "prompt": "Why does the chapter lead into Thinking About Life?",
+      "choices": [
+        "Because the next pressure begins where this mechanism reaches its limit",
+        "Because the next chapter repeats the same point word for word",
+        "Because the bridge is only structural and not conceptual"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Thinking About Life follows because the next mechanism responds to the pressure left here.",
+        "direct": "The bridge is conceptual because the next chapter inherits the unresolved tension.",
+        "competitive": "The system is moving from one leverage point to the next."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    }
+  ]
+}

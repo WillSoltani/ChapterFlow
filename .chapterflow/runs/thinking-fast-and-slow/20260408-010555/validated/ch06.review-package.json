@@ -1,0 +1,769 @@
+{
+  "schemaVersion": "1.1.0",
+  "packageId": "thinking-fast-and-slow-20260408-010555-ch06-review",
+  "createdAt": "2026-04-08T01:05:55.000Z",
+  "contentOwner": "ChapterFlow",
+  "book": {
+    "bookId": "thinking-fast-and-slow",
+    "title": "Thinking, Fast and Slow",
+    "author": "Daniel Kahneman",
+    "categories": [
+      "Psychology",
+      "Behavioral Economics",
+      "Decision Making",
+      "Cognitive Science"
+    ],
+    "tags": [
+      "judgment",
+      "bias",
+      "heuristics",
+      "overconfidence",
+      "prospect-theory",
+      "risk",
+      "decision-making",
+      "well-being"
+    ],
+    "edition": {
+      "name": "English reference edition",
+      "translator": "",
+      "publishedYear": 2011,
+      "translationYear": null,
+      "sourceText": ".chapterflow/runs/thinking-fast-and-slow/20260408-010555/source-freeze/book-source.md",
+      "sourceProvenance": "Paraphrase-first web bundle frozen from authorized metadata and reputable secondary support. Direct quotation is limited to chapter and part titles supported by the frozen TOC."
+    },
+    "variantFamily": "EMH",
+    "chapterRange": "1-38"
+  },
+  "chapters": [
+    {
+      "chapterId": "ch06-norms-surprises-and-causes",
+      "number": 6,
+      "title": "Norms, Surprises, and Causes",
+      "contentVariants": {
+        "easy": {
+          "chapterBreakdown": {
+            "gentle": "Maya watches a service review change the instant an error breaks what the team expected. The room stops asking what happened and starts reaching for who caused it. Kahneman uses Norms, Surprises, and Causes to show that surprise is not just a feeling. It is the moment a norm breaks and the mind rushes to repair the break with a cause. That is useful, but it becomes dangerous when the first tidy explanation feels convincing before it is checked. Priya sees the same move in class, and Jonah sees it in private conversation. The practical move is simple: notice the broken expectation, then ask what else could still fit the same surprise before blame or motive settles in. That extra pause keeps the scene human. It reminds the reader that surprise is a prompt to inspect, not permission to accuse.",
+            "direct": "Norms, Surprises, and Causes explains why surprise quickly turns into a judgment problem. When an event violates expectation, the mind wants order back fast. It searches for cause, intention, and often blame. That search is not irrational by itself. The risk is that the first explanation that repairs the scene starts to feel like proof. A neat story closes the gap between confusion and understanding, and people can mistake that relief for evidence. In work, school, and personal life, the same pattern appears: a broken norm gets repaired by a story before the story has earned full trust. Kahneman's correction is to separate the need for explanation from the right to trust the first explanation. The chapter therefore asks for a brief pause before judgment hardens. That pause keeps explanation useful without turning the first story into evidence. in practice.",
+            "competitive": "A service failure lands, the room tightens, and someone starts naming the cause before the timeline is even clear. That is the pressure this chapter isolates. Broken expectations create urgency, and urgency rewards the first story that restores order. Once surprise lands, the mind starts hunting for the cause that makes the scene legible again. That gives the first clean explanation an unfair head start. If no one checks alternatives, the room starts acting as if the cause has been established when it has only been nominated. The edge is to catch that nomination stage before it hardens into policy, blame, or certainty. The first repair story is fast, but speed is not the same thing as proof. Strong readers buy themselves one more look before the room starts treating relief like verified fact. That extra check protects teams from expensive overreaction."
+          },
+          "keyTakeaways": [
+            {
+              "point": {
+                "gentle": "Surprise begins when a norm or expectation breaks.",
+                "direct": "when an event violates expectation, the mind rushes to rebuild order with a causal story.",
+                "competitive": "The first pressure in the chapter is not confusion alone. It is violated expectation demanding repair."
+              }
+            },
+            {
+              "point": {
+                "gentle": "The first explanation can feel stronger than it is.",
+                "direct": "the first satisfying cause can harden before alternatives are tested.",
+                "competitive": "The first neat repair often borrows authority before it earns it."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Better judgment asks what else could still explain the surprise.",
+                "direct": "Separate the need for explanation from proof that the first explanation is right.",
+                "competitive": "Strong operators slow the jump from violation to verdict."
+              }
+            }
+          ],
+          "oneMinuteRecap": {
+            "gentle": "Remember the move: surprise marks a broken expectation, and the mind quickly reaches for a cause that makes the scene feel normal again.",
+            "direct": "Recall the mechanism: violated norms trigger fast causal search, and relief can be mistaken for evidence.",
+            "competitive": "Keep the leverage point in view: the first repair story is a lead, not a verdict."
+          }
+        },
+        "medium": {
+          "chapterBreakdown": {
+            "gentle": "Maya feels the room shift after a customer-facing error. Before the team has mapped the sequence, people are already talking as if the main job is to identify who caused the failure. That is where Norms, Surprises, and Causes becomes practical. Kahneman shows that surprise is not bare novelty. It is the recognition that a norm has been violated. Something happened that should not have happened, or something failed to happen that should have. Once that break is noticed, the mind starts trying to repair it with a cause.\n\nThat repair is useful because people need orientation. Priya sees it when one classroom mistake suddenly starts reading like attitude instead of circumstance. Jonah feels it when an unexpected text seems loaded with motive before any fuller context appears. In each case, the mind is trying to make the scene orderly again. The problem is not the search for explanation. The problem is the authority granted to the first explanation that makes the surprise feel manageable.\n\nThat authority often comes from relief rather than from evidence. A neat account closes the gap between confusion and understanding, so it feels stronger than an open question. Blame, intention, and causation then arrive bundled together. The room starts acting as if the first story has been established, when in reality it has only reduced discomfort. One cause story can now shape what questions get asked next, which makes later correction harder.\n\nKahneman keeps the lesson narrow enough to stay useful. causal search is useful and often necessary, but it becomes risky when surprise is allowed to nominate a single explanation too early. The correction is not to mock causal hunger. It is to ask what norm was broken, what evidence supports the first story, and what alternative stories still fit.\n\nThat pause matters because the next chapter grows out of it. Once the first causal story is accepted too quickly, it becomes easier to treat the available material as sufficient. A Machine for Jumping to Conclusions begins exactly where this pressure is left unresolved.",
+            "direct": "Norms, Surprises, and Causes studies the moment when violated expectation becomes explanation. Kahneman argues that when an event breaks a norm, the mind moves fast toward cause, intention, and often blame. That movement is not a flaw in itself. People need to reestablish order when the world stops making immediate sense. The problem is that the first explanation that repairs the break can acquire credibility before stronger checking happens.\n\nThe chapter becomes concrete the moment you watch the pattern in live scenes. A service failure makes Maya's team reach for blame before they reconstruct the chain of events. A classroom mistake leads Priya to see attitude where circumstance may still explain the result. An unexpected message lands with Jonah as motive before ambiguity has been priced in. In each case, surprise is doing more than attracting attention. It is pushing judgment toward the first story that restores coherence.\n\nThat is why relief matters so much here. A tidy explanation reduces uncertainty, and that reduction feels like progress. People can then mistake the emotional payoff of repaired order for evidence that the chosen cause is right. The first satisfying cause hardens because it closes the scene, not because it has won a serious comparison. It can also reshape what the group notices next, because once a cause feels settled, rival explanations receive less effort.\n\nKahneman does not ask the reader to stop searching for causes. causal search is useful and often necessary, but it becomes risky when surprise is allowed to nominate a single explanation too early. The discipline is to separate the need for explanation from proof that the first explanation is correct. Ask what expectation was broken, what evidence really points to the chosen cause, and what alternatives survive the same facts.\n\nThat discipline also explains the chapter bridge. Cognitive Ease showed how comfort can make a judgment feel right. Norms, Surprises, and Causes shows what happens when comfort breaks and the mind races to repair it. A Machine for Jumping to Conclusions then shows how quickly a thin but satisfying story can become enough.",
+            "competitive": "A service failure hits, the room wants order back immediately, and the first clean explanation starts acting like a winner before review begins. Norms, Surprises, and Causes exposes that failure mode in judgment. Broken expectations create urgency. Urgency rewards the explanation that restores order fastest. That means the first clean story about cause or motive can take the lead before evidence has earned it. People often read that lead as merit when it is really just speed.\n\nThe work setting makes the pattern obvious. Maya's team sees a service failure and starts assigning blame before the event chain is mapped. The school setting does the same thing more quietly. Priya can watch one odd answer turn into a character read. The personal setting is just as sharp. Jonah can receive an unexpected text and feel certain that intention has been revealed. In every case, surprise is not sitting still. It is financing a race toward causal closure.\n\nThat race matters because repaired order feels like understanding. The first story removes discomfort, organizes the facts in view, and gives the group or the individual something to act on. Once that happens, alternatives become expensive. The chapter's real warning is that the first neat repair can win status simply by arriving at the right emotional moment. It can even narrow the search space before anyone notices that the search space has narrowed.\n\nThe practical edge is not permanent suspicion. It is selective interference. causal search is useful and often necessary, but it becomes risky when surprise is allowed to nominate a single explanation too early. The operator's job is to catch the moment when nomination starts masquerading as proof.\n\nThat is why the bridge forward matters. If the first repair story is not challenged, the next move is predictable. The mind starts treating the available material as sufficient and moves toward broader conclusions with too little support. The next chapter inherits exactly that vulnerability. That is where disciplined comparison creates its advantage."
+          },
+          "keyTakeaways": [
+            {
+              "point": {
+                "gentle": "Surprise is a broken expectation, not just a strange feeling.",
+                "direct": "The chapter begins when a norm is violated and the mind wants order back.",
+                "competitive": "Judgment accelerates when expectation breaks and the scene demands repair."
+              },
+              "moreDetails": {
+                "gentle": "That is why surprise quickly becomes a search for cause, motive, or blame.",
+                "direct": "The search starts because the scene no longer fits the pattern that was expected.",
+                "competitive": "Violated norms create the pressure that the rest of the chapter explains."
+              }
+            },
+            {
+              "point": {
+                "gentle": "The first explanation often feels persuasive because it reduces uncertainty.",
+                "direct": "the first satisfying cause can harden before alternatives are tested.",
+                "competitive": "The first repair story can win because it closes the gap, not because it wins the evidence."
+              },
+              "moreDetails": {
+                "gentle": "Relief is easy to confuse with proof.",
+                "direct": "A cleaner scene feels like a truer scene even when the support is still thin.",
+                "competitive": "Order restoration often gets mispriced as epistemic strength."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Blame and intention arrive quickly once the norm break is noticed.",
+                "direct": "People often move from surprise to motive before they know they have made that move.",
+                "competitive": "Cause, blame, and intention can be smuggled in together by the same fast repair process."
+              },
+              "moreDetails": {
+                "gentle": "That is why classroom mistakes and awkward texts can get overread so fast.",
+                "direct": "The mind wants a story that makes the event legible again.",
+                "competitive": "Fast explanation often upgrades thin facts into character judgments."
+              }
+            },
+            {
+              "point": {
+                "gentle": "The correction is to inspect the first story before trusting it.",
+                "direct": "Separate the need for explanation from proof that the first explanation is right.",
+                "competitive": "Catch the story while it is still a nomination instead of a verdict."
+              },
+              "moreDetails": {
+                "gentle": "Ask what norm was broken and what else could still fit.",
+                "direct": "The best pause keeps alternatives alive long enough to compare them.",
+                "competitive": "One disciplined check can stop a room from acting on premature blame."
+              }
+            },
+            {
+              "point": {
+                "gentle": "The chapter should stay selective, not absolute.",
+                "direct": "causal search is useful and often necessary, but it becomes risky when surprise is allowed to nominate a single explanation too early.",
+                "competitive": "The lesson fails if every fast explanation is treated as corruption."
+              },
+              "moreDetails": {
+                "gentle": "People still need causes to orient themselves.",
+                "direct": "The point is calibration, not endless hesitation.",
+                "competitive": "You want triggers for where to spend doubt, not a culture of paralysis."
+              }
+            },
+            {
+              "point": {
+                "gentle": "The next chapter begins where this one leaves off.",
+                "direct": "A Machine for Jumping to Conclusions inherits a scene where the first story already feels sufficient.",
+                "competitive": "Once the repair story feels settled, the jump to larger conclusions gets much easier."
+              },
+              "moreDetails": {
+                "gentle": "The book is building one pressure into the next.",
+                "direct": "That bridge keeps this chapter from becoming a standalone warning.",
+                "competitive": "Sequence matters because the mechanism compounds."
+              }
+            }
+          ],
+          "activationPrompt": {
+            "gentle": "Pick one surprising moment this week and ask what expectation was broken before you decide what caused it.",
+            "direct": "Audit one judgment that moved quickly from surprise to explanation, and test what alternatives still fit the facts.",
+            "competitive": "Find one live decision where a first repair story is overclaiming and interrupt it before commitment."
+          },
+          "oneMinuteRecap": {
+            "retrieve": {
+              "gentle": "Recall the main move: surprise marks a broken expectation and starts a search for cause.",
+              "direct": "Retrieve the mechanism: violated norms push the mind toward the first story that restores order.",
+              "competitive": "Recall why repaired coherence can outrun evidence."
+            },
+            "connect": {
+              "gentle": "Where in your day do odd events become judgments about people too fast?",
+              "direct": "How does this chapter change the way you read blame, motive, and intention in live scenes?",
+              "competitive": "How would better handling of surprise improve a current decision?"
+            },
+            "preview": {
+              "gentle": "What happens next when the first story is treated as enough?",
+              "direct": "Why does the next chapter inherit a mind already leaning toward a conclusion?",
+              "competitive": "How does premature repair set up the jump to bigger claims?"
+            }
+          },
+          "selfCheckPrompt": {
+            "gentle": "What expectation was broken, and what other explanation could still fit the same surprise?",
+            "direct": "What norm was violated, and what would remain convincing if the first cause were wrong?",
+            "competitive": "What broken pattern is financing the rush to certainty, and which rival story deserves airtime before blame hardens?"
+          }
+        },
+        "hard": {
+          "chapterBreakdown": {
+            "gentle": "Norms, Surprises, and Causes matters because it names the pressure that appears when the world stops behaving as expected. Kahneman shows that surprise is not just interruption. It is recognition that a norm has been broken, and that recognition starts a fast search for the cause that will make the scene feel orderly again.\n\nThat search is often intelligent. People need orientation when the event in front of them no longer fits their running model of what should be happening. Maya's team cannot ignore a service failure. Priya cannot simply shrug at an odd classroom result. Jonah cannot help noticing when a message lands with a different tone than expected. The problem is not the search. The problem is the status granted to the first explanation that reduces the discomfort of not knowing.\n\nOnce that first explanation arrives, blame and intention are never far behind. A broken norm encourages the mind to ask who failed, who intended what, and what hidden cause now explains the scene. Because the explanation repairs confusion, it often feels stronger than the evidence behind it. The first story becomes sticky because it restores coherence. That stickiness matters because the next questions asked by the room are now shaped by the first answer rather than by the full event.\n\nThat is why the chapter is harder than it first appears. It is not warning against reason. It is warning against the unpriced emotional payoff of explanation. Relief can masquerade as proof. A group can start governing by the first causal story before it has compared alternatives. A teacher, student, friend, or partner can do the same thing in smaller scenes.\n\nKahneman keeps an important boundary in place. causal search is useful and often necessary, but it becomes risky when surprise is allowed to nominate a single explanation too early. The chapter asks for restraint inside explanation, not an escape from explanation. It still honors the fact that people need to move, interpret, and respond when the world stops making immediate sense.\n\nThe durable habit is to identify the broken expectation, name the first repair story, and then keep at least one rival story alive long enough to inspect the evidence. That move protects judgment without pretending that uncertainty can be made comfortable. It also keeps later learning possible, because the room has not already organized itself around a fragile story.\n\nThe next chapter picks up from there. Once a repaired story feels sufficient, the mind becomes ready to conclude more than the evidence can bear. A Machine for Jumping to Conclusions is waiting inside that shift. In practical terms, that means asking which parts of the story come from evidence and which parts come from the comfort of having any story at all. It also means noticing when a group is becoming more coordinated around an explanation than justified by the facts. Once that coordination happens, error becomes socially sticky as well as cognitively sticky. early.",
+            "direct": "Norms, Surprises, and Causes isolates a subtle but powerful transition in judgment. An event violates expectation. The mind reacts by searching for the cause that will restore order. That restoration process is efficient, often necessary, and epistemically dangerous at exactly the same time.\n\nThe danger comes from what the first explanation accomplishes. It reduces uncertainty, organizes the scene, and gives people something to act on. Because it does those jobs well, it can acquire authority before it has faced serious comparison. Maya's team can move from error to blame before reconstructing the event chain. Priya can move from one strange answer to a character reading. Jonah can move from ambiguity to motive on the strength of one surprising message. The same mechanism is doing the work in each case.\n\nThe chapter's key distinction is therefore between causal need and causal warrant. People need explanations when norms break. They do not automatically earn trust in the first explanation that makes the break feel manageable. The first satisfying cause hardens because it repairs a disrupted scene, not because it has won against alternatives. Once it hardens, it can also redirect attention, which makes rival interpretations look weaker simply because they arrive later.\n\nThat is why Kahneman's warning is narrow and durable. causal search is useful and often necessary, but it becomes risky when surprise is allowed to nominate a single explanation too early. The task is not endless skepticism. It is to notice when relief is being mistaken for evidence. Ask what expectation was broken, what facts really support the chosen cause, and what competing explanations still survive.\n\nThis chapter also clarifies the bridge backward and forward. Cognitive Ease described how smoothness can make a judgment feel right. Norms, Surprises, and Causes shows what happens when smoothness breaks and the mind rushes to repair the rupture. A Machine for Jumping to Conclusions shows what follows once that first repair story is treated as enough.\n\nThe practical result is not passivity. It is better sequencing. First identify the violation. Then inspect the first story. Then decide whether the evidence deserves the certainty that surprise is already trying to fund. That order preserves speed where speed helps and interrupts it where premature blame or motive would distort the case. It also preserves a group's ability to learn, because the explanation remains inspectable instead of sacred.\n\nSeen this way, the chapter is a discipline for moments when understanding feels urgent. It keeps causal hunger useful while refusing to let urgency decide the verdict on its own. That is the operational test the chapter leaves behind. If certainty is rising because the scene feels repaired, the reader has work to do. If certainty is rising because rival explanations have been compared and ruled out, the confidence may be earned. The distinction sounds small, but it determines whether explanation is serving judgment or merely calming it. That is where disciplined explanation earns its authority instead of borrowing it from urgency.",
+            "competitive": "A service failure lands, the room wants order back immediately, and the first clean explanation starts behaving like operational truth before anyone has earned the right to treat it that way. This chapter gives away one of the most expensive shortcuts in judgment. Broken expectations create pressure. Pressure rewards the explanation that restores order fastest. If that explanation is clean enough, it can become policy, blame, or social certainty before review is real.\n\nThe pattern is obvious once you watch live scenes. Maya's team starts treating blame as progress. A classroom anomaly appears, and Priya can feel how quickly character inference wants to replace uncertainty. An unexpected text hits, and Jonah's mind starts pricing motive before ambiguity has even been defended. In all three settings, surprise is financing the race toward causal closure.\n\nThat race is dangerous because repaired order feels like understanding. The first neat repair lowers discomfort, coordinates action, and gives the group a story strong enough to defend. That makes alternatives look costly or weak even when they remain live. The first story has not won the evidence contest. It has won the emotional timing contest. It can then narrow the search, reshape what counts as relevant, and make reopening the case look like inefficiency.\n\nHigh-agency readers should care because nomination often masquerades as proof in consequential settings. Once the room acts on the first story, the cost of reopening the case rises. That means a bad explanation can compound into bad policy, bad blame, or bad social judgment simply because it arrived first and restored order.\n\nThe right response is selective resistance. causal search is useful and often necessary, but it becomes risky when surprise is allowed to nominate a single explanation too early. The operator's job is to delay commitment just long enough to test whether the repair story is carrying evidence or merely carrying relief.\n\nThis is also why the bridge to the next chapter matters. If the first repair story survives without comparison, the jump to broader conclusions becomes cheaper and faster. The next mechanism does not start from zero. It inherits a mind already primed to treat available material as sufficient.\n\nThe durable edge is not cynicism. It is process control. Name the broken norm, identify the first repair story, and force a comparison before the story starts governing the room. That keeps urgency useful without letting urgency run the decision by itself. That is the hidden tax on uninspected repair. A room that settles too early becomes harder to steer, and a person who overtrusts the first explanation starts defending it as if defense were analysis. The smarter move is to make comparison cheap before commitment becomes expensive. That is where real control over the process returns. The first explanation should have to survive friction, challenge, and comparison before it gets to govern action. If it cannot survive those tests, it was never strong enough to lead. Under pressure and scrutiny."
+          },
+          "keyTakeaways": [
+            {
+              "point": {
+                "gentle": "Surprise is the feeling of a broken expectation becoming cognitively urgent.",
+                "direct": "The mechanism begins when a violated norm demands an explanation.",
+                "competitive": "The chapter starts with disrupted order, not with abstract reasoning."
+              },
+              "moreDetails": {
+                "gentle": "That urgency is why the mind turns so quickly toward cause and intention.",
+                "direct": "The broken pattern creates pressure to restore coherence.",
+                "competitive": "Urgency is the fuel behind the rest of the error."
+              }
+            },
+            {
+              "point": {
+                "gentle": "The first explanation feels strong because it repairs confusion.",
+                "direct": "the first satisfying cause can harden before alternatives are tested.",
+                "competitive": "Repair value is often mistaken for evidential value."
+              },
+              "moreDetails": {
+                "gentle": "Relief can be real even when the explanation is still weak.",
+                "direct": "The scene feels better organized before it is actually well supported.",
+                "competitive": "Timing can beat substance if no one forces comparison."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Blame, motive, and character judgment can all ride on the same fast repair.",
+                "direct": "The mind often loads intention onto the first story that restores order.",
+                "competitive": "Thin facts can become thick social judgments at high speed."
+              },
+              "moreDetails": {
+                "gentle": "That is why classroom mistakes and strange messages get overinterpreted.",
+                "direct": "Once the norm break is named, the mind starts populating the cause story.",
+                "competitive": "The mechanism scales from private conversation to institutional review."
+              }
+            },
+            {
+              "point": {
+                "gentle": "The chapter asks for a pause inside explanation, not a refusal to explain.",
+                "direct": "Separate causal need from causal warrant.",
+                "competitive": "You want delay at the commitment point, not paralysis at the noticing point."
+              },
+              "moreDetails": {
+                "gentle": "Ask what norm broke and what else might still fit.",
+                "direct": "A rival explanation keeps the first story from becoming automatic truth.",
+                "competitive": "One counter-story is often enough to reopen the board."
+              }
+            },
+            {
+              "point": {
+                "gentle": "The boundary condition preserves usefulness.",
+                "direct": "causal search is useful and often necessary, but it becomes risky when surprise is allowed to nominate a single explanation too early.",
+                "competitive": "The lesson fails if it turns into suspicion toward every fast explanation."
+              },
+              "moreDetails": {
+                "gentle": "People still need orientation when the scene breaks.",
+                "direct": "Calibration matters more than permanent doubt.",
+                "competitive": "Spend skepticism where commitment is outrunning support."
+              }
+            },
+            {
+              "point": {
+                "gentle": "This chapter sets up the next one by leaving a story in place too soon.",
+                "direct": "A Machine for Jumping to Conclusions starts once the first repair story feels sufficient.",
+                "competitive": "Premature repair lowers the cost of later overreach."
+              },
+              "moreDetails": {
+                "gentle": "The book is showing how one mental shortcut hands off to another.",
+                "direct": "Sequence is part of the explanation.",
+                "competitive": "Understanding the bridge prevents the chapter from becoming a slogan."
+              }
+            }
+          ],
+          "activationPrompt": {
+            "gentle": "Notice the next surprising event in your day and write down the expectation it broke before you write down the cause you prefer.",
+            "direct": "Catch one moment when surprise pushes you toward motive or blame, and test whether the evidence really supports the first story.",
+            "competitive": "Intercept one fast repair story in a consequential decision before it turns into operational truth."
+          },
+          "selfCheckPrompts": [
+            {
+              "gentle": "What expectation made this event feel wrong or strange?",
+              "direct": "What norm was violated before your explanation arrived?",
+              "competitive": "What broken pattern is making the room hungry for a cause right now?"
+            },
+            {
+              "gentle": "What other story could still fit the same facts?",
+              "direct": "If the first cause were false, what explanation would remain live?",
+              "competitive": "Which rival explanation would most effectively challenge premature blame?"
+            }
+          ],
+          "predictionPrompt": {
+            "gentle": "Predict the next setting where a surprise will tempt you to overread one person's motives.",
+            "direct": "Where is violated expectation most likely to push you from uncertainty to explanation too quickly?",
+            "competitive": "What upcoming decision is most vulnerable to letting a first repair story become policy?"
+          },
+          "oneMinuteRecap": {
+            "retrieve": {
+              "gentle": "Recall that surprise begins with a broken norm and quickly becomes a search for cause.",
+              "direct": "Retrieve the distinction between needing an explanation and having evidence for the first one.",
+              "competitive": "Recall why repaired order can outrank support unless someone intervenes."
+            },
+            "connect": {
+              "gentle": "Where have you recently turned one odd event into a confident read of a person?",
+              "direct": "How does this chapter change the way you evaluate blame, intention, and motive?",
+              "competitive": "How would delaying commitment improve a live judgment you care about?"
+            },
+            "preview": {
+              "gentle": "What happens once the first repair story starts feeling sufficient?",
+              "direct": "Why does the next chapter begin with a mind already leaning toward a conclusion?",
+              "competitive": "How does premature repair make broader overreach cheaper?"
+            }
+          }
+        }
+      },
+      "examples": [
+        {
+          "exampleId": "ch06-ex01",
+          "title": "The Blame Rush in the Review",
+          "category": "work",
+          "format": "decision_point",
+          "endingType": "broader_principle",
+          "contexts": [
+            "meetings",
+            "forecasting",
+            "evaluation"
+          ],
+          "scenario": {
+            "gentle": "Maya is in a service review after a customer-facing error. Before the timeline is mapped, people are already speaking as if the main job is to identify who caused the failure.",
+            "direct": "A work review turns into a blame search before the event chain is reconstructed. The surprising failure is already pushing the room toward one cause.",
+            "competitive": "A team is about to operationalize blame on the basis of the first story that repairs the surprise. The evidence trail is still incomplete."
+          },
+          "whatToDo": {
+            "gentle": "Pause the room and ask what happened first, not who failed first.",
+            "direct": "Reconstruct the sequence before you let a cause claim authority.",
+            "competitive": "Force the room to compare explanations before the first repair story becomes policy."
+          },
+          "whyItMatters": {
+            "gentle": "The example shows how quickly surprise turns into a social judgment.",
+            "direct": "It makes the nomination-versus-proof distinction visible in a live decision.",
+            "competitive": "Many expensive blame errors start in exactly this stage."
+          }
+        },
+        {
+          "exampleId": "ch06-ex02",
+          "title": "The Postmortem in the Classroom",
+          "category": "school",
+          "format": "postmortem",
+          "endingType": "self_directed_question",
+          "contexts": [
+            "classroom",
+            "feedback",
+            "study review"
+          ],
+          "scenario": {
+            "gentle": "Priya looks back at a moment when one surprising classroom mistake got treated like attitude instead of circumstance.",
+            "direct": "A school postmortem shows how one odd answer triggered a character reading before the context was checked.",
+            "competitive": "The review hurts because the original surprise hardened into judgment faster than the evidence justified."
+          },
+          "whatToDo": {
+            "gentle": "Write down the first story that felt right and then list the missing facts it skipped.",
+            "direct": "Separate the relief of having an explanation from the evidence that would support it.",
+            "competitive": "Use the miss to identify where a rival explanation should have been kept alive."
+          },
+          "whyItMatters": {
+            "gentle": "Looking back makes the mechanism easier to name next time.",
+            "direct": "A postmortem separates the emotional payoff of explanation from the quality of the reasoning.",
+            "competitive": "The gain is a better stopping rule for future surprises."
+          }
+        },
+        {
+          "exampleId": "ch06-ex03",
+          "title": "The Message With a Motive",
+          "category": "personal",
+          "format": "dialogue",
+          "endingType": "surprising_implication",
+          "contexts": [
+            "conversation",
+            "self-judgment",
+            "daily decisions"
+          ],
+          "scenario": {
+            "gentle": "Jonah gets an unexpected text and immediately starts reading motive into it.",
+            "direct": "A private conversation tilts because one surprising message is treated like evidence of intention before ambiguity is examined.",
+            "competitive": "In a personal exchange, the first motive story is trying to harden before the facts catch up."
+          },
+          "whatToDo": {
+            "gentle": "Say what surprised you before you say what you think it means.",
+            "direct": "Name the broken expectation and test at least one non-motive explanation.",
+            "competitive": "Break the first intention story before it recruits more certainty than the evidence deserves."
+          },
+          "whyItMatters": {
+            "gentle": "The chapter applies to ordinary social life, not just formal decisions.",
+            "direct": "Personal judgment often confuses repaired order with real understanding.",
+            "competitive": "Private scenes are where fast causal stories often go unchallenged."
+          }
+        },
+        {
+          "exampleId": "ch06-ex04",
+          "title": "The Forecast After the Shock",
+          "category": "work",
+          "format": "predict_reveal",
+          "endingType": "cross_domain",
+          "contexts": [
+            "meetings",
+            "forecasting",
+            "evaluation"
+          ],
+          "scenario": {
+            "gentle": "A team has to predict what happens next after an unexpected operational miss, and the first explanation is already steering the forecast.",
+            "direct": "A work forecast is being built on top of a surprise before the cause story has been tested.",
+            "competitive": "The group is about to scale a fragile explanation into a forward plan."
+          },
+          "whatToDo": {
+            "gentle": "Predict the outcome, then mark which assumption depends entirely on the first cause story being right.",
+            "direct": "Stress-test the leading explanation before you let it shape the forecast.",
+            "competitive": "Spend effort where surprise is trying to turn one guess into strategy."
+          },
+          "whyItMatters": {
+            "gentle": "Forecasting reveals whether the group really separated surprise from proof.",
+            "direct": "The case shows how fast causal repair can distort not just blame but planning.",
+            "competitive": "Unchecked repair stories multiply their cost when they become forecasts."
+          }
+        },
+        {
+          "exampleId": "ch06-ex05",
+          "title": "The Advising Office Dilemma",
+          "category": "school",
+          "format": "dilemma",
+          "endingType": "common_trap",
+          "contexts": [
+            "classroom",
+            "feedback",
+            "study review"
+          ],
+          "scenario": {
+            "gentle": "Elena has to choose between acting on the first convincing explanation for a student's odd behavior and doing the slower check.",
+            "direct": "A school dilemma makes the tradeoff visible: quick orientation now, or a better explanation after more evidence.",
+            "competitive": "The local choice is simple to state and costly to get wrong: commit to the first repair story, or pay the smaller price of delay."
+          },
+          "whatToDo": {
+            "gentle": "Choose the next step that improves evidence instead of the step that only relieves uncertainty.",
+            "direct": "Delay the judgment long enough to test whether the first story is merely satisfying.",
+            "competitive": "Take the smaller timing cost now to avoid a larger credibility cost later."
+          },
+          "whyItMatters": {
+            "gentle": "The example shows the real price of better judgment: some temporary uncertainty.",
+            "direct": "The chapter becomes practical when readers can price the cost of not deciding too fast.",
+            "competitive": "Good process beats comfortable speed here."
+          }
+        },
+        {
+          "exampleId": "ch06-ex06",
+          "title": "The Second Reading at Home",
+          "category": "personal",
+          "format": "before_after",
+          "endingType": "perspective_reframe",
+          "contexts": [
+            "conversation",
+            "self-judgment",
+            "daily decisions"
+          ],
+          "scenario": {
+            "gentle": "Later, Jonah rereads the same situation after naming the broken expectation and notices that the first motive story no longer feels inevitable.",
+            "direct": "A before-and-after comparison shows how naming surprise and norm violation changes the next personal judgment.",
+            "competitive": "Once the mechanism has a name, the same scene stops looking destined and starts looking governable."
+          },
+          "whatToDo": {
+            "gentle": "Compare the first explanation with the later one and note what changed once the surprise was named.",
+            "direct": "Use the second reading to build a trigger for the next time a message lands oddly.",
+            "competitive": "Turn retrospective insight into a live rule for the next surprise."
+          },
+          "whyItMatters": {
+            "gentle": "Before-and-after contrast makes the hidden process visible.",
+            "direct": "The chapter pays off when later judgments become less captive to the first repair story.",
+            "competitive": "That is the operational gain: more control at the next moment of surprise."
+          }
+        }
+      ],
+      "implementationPlan": {
+        "coreSkill": {
+          "gentle": "Notice when surprise turns into explanation before the explanation has been tested.",
+          "direct": "Separate the need for a cause from evidence that the first cause is right.",
+          "competitive": "Catch the first repair story while it is still a nomination instead of a verdict."
+        },
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": {
+              "gentle": "If a work review jumps quickly from error to blame, then I will map the sequence before I endorse a cause.",
+              "direct": "If a team starts assigning motive or fault right after a surprise, then I will ask what other causes still fit the facts.",
+              "competitive": "If the room is treating the first repair story like policy, then I will force comparison before commitment."
+            }
+          },
+          {
+            "context": "school",
+            "plan": {
+              "gentle": "If one surprising result makes me read a student or classmate differently, then I will ask what context is still missing.",
+              "direct": "If an odd answer or behavior tempts me toward a character judgment, then I will separate the norm break from the cause story.",
+              "competitive": "If a school scene turns one anomaly into a trait judgment, then I will reopen the evidence before I let it stick."
+            }
+          },
+          {
+            "context": "personal",
+            "plan": {
+              "gentle": "If an unexpected message or action feels loaded with meaning, then I will name the surprise before I name the motive.",
+              "direct": "If I feel certain about what someone meant right after a surprise, then I will test one non-motive explanation.",
+              "competitive": "If a private surprise is trying to recruit me into premature certainty, then I will slow the story before I defend it."
+            }
+          }
+        ],
+        "twentyFourHourChallenge": {
+          "gentle": "For one day, catch three moments when a surprise made you reach for a cause immediately, and note what expectation had been broken.",
+          "direct": "Spend twenty-four hours tracing quick explanations back to the norm violations that triggered them.",
+          "competitive": "Run one day like an incident analyst and mark where repaired order is being mistaken for proof."
+        },
+        "weeklyPractice": {
+          "gentle": "At the end of the week, review one case where the first explanation held up and one where it collapsed after a second look.",
+          "direct": "Keep a short log of surprises, first stories, and what stronger checking changed.",
+          "competitive": "Each week, identify one fast explanation that deserved trust and one that was only early, not strong."
+        }
+      },
+      "reviewCards": [
+        {
+          "cardId": "ch06-rc01",
+          "difficulty": "easy",
+          "front": {
+            "gentle": "What starts the chapter mechanism?",
+            "direct": "What does Norms, Surprises, and Causes say happens first?",
+            "competitive": "What pressure activates the rush to explanation?"
+          },
+          "back": {
+            "gentle": "A broken expectation starts the process.",
+            "direct": "when an event violates expectation, the mind rushes to rebuild order with a causal story.",
+            "competitive": "Violated norms create the pressure that drives the rest of the chapter."
+          }
+        },
+        {
+          "cardId": "ch06-rc02",
+          "difficulty": "easy",
+          "front": {
+            "gentle": "Why does the first explanation feel strong?",
+            "direct": "What gives the first cause story extra weight?",
+            "competitive": "Why does the repair story win too often?"
+          },
+          "back": {
+            "gentle": "Because it reduces uncertainty and makes the scene feel orderly again.",
+            "direct": "the first satisfying cause can harden before alternatives are tested.",
+            "competitive": "The story restores order fast, and that relief gets mistaken for merit."
+          }
+        },
+        {
+          "cardId": "ch06-rc03",
+          "difficulty": "medium",
+          "front": {
+            "gentle": "What social judgments ride on this process?",
+            "direct": "What often gets assigned too quickly after surprise?",
+            "competitive": "What does the mechanism smuggle into judgment?"
+          },
+          "back": {
+            "gentle": "Blame, intention, and motive often arrive quickly once the norm break is noticed.",
+            "direct": "The mind can move from surprise to character or motive before it knows it has made that move.",
+            "competitive": "The repair story can import fault and intention before the evidence deserves either."
+          }
+        },
+        {
+          "cardId": "ch06-rc04",
+          "difficulty": "medium",
+          "front": {
+            "gentle": "What is the practical correction?",
+            "direct": "How should a reader interrupt the mechanism?",
+            "competitive": "What move prevents nomination from becoming verdict?"
+          },
+          "back": {
+            "gentle": "Ask what expectation was broken and what other explanation could still fit.",
+            "direct": "Separate the need for explanation from proof that the first explanation is right.",
+            "competitive": "Keep one rival story alive long enough to compare evidence before commitment."
+          }
+        },
+        {
+          "cardId": "ch06-rc05",
+          "difficulty": "hard",
+          "front": {
+            "gentle": "What is the boundary condition?",
+            "direct": "How can this chapter be overapplied?",
+            "competitive": "What error appears if the lesson becomes too broad?"
+          },
+          "back": {
+            "gentle": "People still need causes when the world stops making sense.",
+            "direct": "causal search is useful and often necessary, but it becomes risky when surprise is allowed to nominate a single explanation too early.",
+            "competitive": "The lesson fails if every fast explanation is treated as guilty by default."
+          }
+        }
+      ],
+      "keyTakeawayCard": {
+        "gentle": "Norms, Surprises, and Causes shows that surprise is a broken expectation that pushes the mind toward a quick cause. Better judgment begins when that first explanation is inspected before it hardens.",
+        "direct": "Norms, Surprises, and Causes explains how violated norms trigger fast causal search and why the first tidy explanation can borrow more authority than the evidence deserves. The gain is learning to separate causal need from causal warrant.",
+        "competitive": "Norms, Surprises, and Causes is process control for moments of disruption. It teaches you to catch the first repair story before it turns urgency into premature blame, motive, or policy."
+      },
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch06-q01",
+            "prompt": "What starts the mechanism in Norms, Surprises, and Causes?",
+            "choices": [
+              "A broken expectation that calls for explanation",
+              "A perfect memory of earlier events",
+              "A complete absence of uncertainty"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "The chapter begins when something happens that should not have happened, or fails to happen when it should have.",
+              "direct": "when an event violates expectation, the mind rushes to rebuild order with a causal story.",
+              "competitive": "Violated norms create the pressure that drives fast explanation."
+            },
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "ch06-q02",
+            "prompt": "Why can the first explanation feel convincing so quickly?",
+            "choices": [
+              "Because it reduces uncertainty and repairs the scene",
+              "Because first explanations are always correct",
+              "Because surprise removes the need for evidence"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "The explanation feels strong because it makes the event easier to live with.",
+              "direct": "the first satisfying cause can harden before alternatives are tested.",
+              "competitive": "Relief can be mistaken for proof."
+            },
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "ch06-q03",
+            "prompt": "What extra judgments often arrive with the first cause story?",
+            "choices": [
+              "Blame, intention, or motive",
+              "Perfect statistical calibration",
+              "Freedom from ambiguity"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Once the norm break is noticed, people often start reading what someone meant or who is at fault.",
+              "direct": "The mind often moves from surprise to blame or motive before it realizes that move has happened.",
+              "competitive": "The repair story smuggles in social judgment."
+            },
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "ch06-q04",
+            "prompt": "Maya's team hits a service failure and starts assigning blame before mapping the event chain. Which chapter pattern fits best?",
+            "choices": [
+              "Surprise is nominating a cause too early",
+              "Memory storage has broken down",
+              "No judgment is being made"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "The team is letting the broken expectation push them straight to a cause.",
+              "direct": "The room is treating the first repair story like proof before the sequence is understood.",
+              "competitive": "A nomination is about to become policy."
+            },
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch06-q05",
+            "prompt": "Priya sees one surprising classroom mistake and starts reading attitude into it. What is the best immediate correction?",
+            "choices": [
+              "Ask what other explanation still fits the same surprise",
+              "Trust the first character judgment more",
+              "Avoid explaining anything at all"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "A better move is to keep alternatives alive before the judgment sticks.",
+              "direct": "Separate the need for explanation from proof that the first explanation is right.",
+              "competitive": "Reopen the board before the first social read hardens."
+            },
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch06-q06",
+            "prompt": "Why is this chapter not telling readers to stop searching for causes?",
+            "choices": [
+              "Because causal search is useful when the world stops making sense",
+              "Because surprise always reveals the truth immediately",
+              "Because evidence becomes irrelevant after a shock"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "People still need explanations when something breaks expectation.",
+              "direct": "causal search is useful and often necessary, but it becomes risky when surprise is allowed to nominate a single explanation too early.",
+              "competitive": "Calibration beats paralysis."
+            },
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "ch06-q07",
+            "prompt": "What recurring error does the chapter expose?",
+            "choices": [
+              "Mistaking repaired order for verified explanation",
+              "Avoiding all intuition forever",
+              "Ignoring every social setting equally"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "The scene feels clearer, so the explanation starts to feel truer than it has earned.",
+              "direct": "The first story closes uncertainty before it wins a real comparison.",
+              "competitive": "Emotional timing gets mispriced as epistemic strength."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "deeper"
+          },
+          {
+            "questionId": "ch06-q08",
+            "prompt": "How does Norms, Surprises, and Causes build on Cognitive Ease?",
+            "choices": [
+              "It shows what the mind does when easy comfort breaks and coherence must be repaired",
+              "It rejects the earlier mechanism completely",
+              "It changes the book into a theory of memory storage"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Cognitive Ease explains comfort. This chapter explains what happens when the comfort disappears.",
+              "direct": "The earlier chapter describes why judgments feel right; this one describes the rush to repair that feeling when surprise breaks it.",
+              "competitive": "The book is moving from easy trust to urgent repair."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "deeper"
+          },
+          {
+            "questionId": "ch06-q09",
+            "prompt": "What is the strongest practical use of the chapter?",
+            "choices": [
+              "Catch when surprise is turning the first explanation into a verdict",
+              "Memorize the chapter title only",
+              "Replace every judgment with formal mathematics"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "The chapter helps the reader notice when a cause story is getting trusted too quickly.",
+              "direct": "Its value is in identifying the moment when explanation outruns evidence.",
+              "competitive": "The edge is interrupting premature closure while the case is still movable."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "deeper"
+          },
+          {
+            "questionId": "ch06-q10",
+            "prompt": "Why does the chapter lead into A Machine for Jumping to Conclusions?",
+            "choices": [
+              "Because once the first repair story feels sufficient, broader conclusions become easier to draw",
+              "Because the next chapter repeats this one word for word",
+              "Because the bridge is only a table-of-contents detail"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "The next chapter follows once one early story starts feeling like enough.",
+              "direct": "A Machine for Jumping to Conclusions inherits a mind already leaning on a thin but satisfying explanation.",
+              "competitive": "Premature repair lowers the cost of later overreach."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "deeper"
+          }
+        ]
+      },
+      "readingTimeMinutes": 30
+    }
+  ]
+}

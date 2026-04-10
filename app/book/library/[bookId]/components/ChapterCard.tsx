@@ -21,6 +21,7 @@ type ChapterCardProps = {
   teaser?: string;
   onClick: () => void;
   onLockedClick?: () => void;
+  onMouseEnter?: () => void;
   isCurrent?: boolean;
 };
 
@@ -33,6 +34,7 @@ export function ChapterCard({
   teaser,
   onClick,
   onLockedClick,
+  onMouseEnter,
   isCurrent = false,
 }: ChapterCardProps) {
   const prefersReducedMotion = useReducedMotion();
@@ -77,6 +79,7 @@ export function ChapterCard({
         role="button"
         tabIndex={-1}
         onClick={handleClick}
+        onMouseEnter={onMouseEnter}
         className={[
           "w-full rounded-2xl bg-(--cf-surface-muted) p-4 text-left opacity-50",
           "cursor-default select-none",
@@ -113,6 +116,7 @@ export function ChapterCard({
         role="button"
         tabIndex={-1}
         onClick={handleClick}
+        onMouseEnter={onMouseEnter}
         className={[
           "w-full rounded-2xl border border-dashed border-(--cf-success-border) bg-(--cf-surface) p-4 text-left",
           "cursor-default",
@@ -155,6 +159,7 @@ export function ChapterCard({
     <motion.button
       type="button"
       onClick={handleClick}
+        onMouseEnter={onMouseEnter}
       whileHover={
         !prefersReducedMotion
           ? {

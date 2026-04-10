@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch08-q01",
+      "prompt": "What did Lyndon Johnson do before asking a senator to change a vote?",
+      "choices": [
+        "A) He presented polling data showing the senator's constituents wanted the bill",
+        "B) He confirmed the senator's self-image by reflecting back qualities the senator valued about himself",
+        "C) He threatened to withhold committee assignments unless the senator cooperated"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Johnson studied each senator's self-concept and opened every persuasion attempt by validating who that person believed they were, which kept defenses from activating.",
+        "direct": "Johnson's method bypassed resistance by confirming the target's identity before introducing the ask, ensuring the defensive reflex never triggered.",
+        "competitive": "Johnson targeted the self-image first because he understood that an undefended mind evaluates arguments on merit, while a defensive mind rejects them on principle."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch08-q02",
+      "prompt": "Why does direct confrontation typically fail to change someone's mind?",
+      "choices": [
+        "B) Challenging a position triggers an identity protection reflex that shuts down rational evaluation",
+        "A) People lack the intellectual capacity to process opposing arguments under pressure",
+        "C) Most arguments are poorly constructed and fail on logical grounds alone"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "When someone feels their self-image is under attack, their brain prioritizes self-protection over open evaluation, making even strong evidence ineffective.",
+        "direct": "The brain treats a challenge to identity the same way it treats a physical threat, redirecting cognitive resources from evaluation to defense.",
+        "competitive": "Identity defense fires faster than rational processing. By the time your evidence arrives, the gate is already closed."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch08-q03",
+      "prompt": "Which five keys does Greene identify as the core dimensions of identity that people guard reflexively?",
+      "choices": [
+        "A) Autonomy, status, certainty, fairness, and relatedness",
+        "B) Power, wealth, reputation, safety, and belonging",
+        "C) Intelligence, morality, competence, loyalty, and independence"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "These five dimensions represent the aspects of self-image that people protect without conscious thought, and confirming any one of them signals safety to the other person's brain.",
+        "direct": "Autonomy, status, certainty, fairness, and relatedness map to the identity dimensions that trigger defensive shutdown when threatened and openness when confirmed.",
+        "competitive": "Each key is an independent trigger. Threaten one and the wall goes up. Confirm the right one for the specific person and you bypass defenses that logic alone cannot penetrate."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch08-q04",
+      "prompt": "Priya manages a software team and needs her lead engineer, Raj, to adopt a new testing framework he has publicly dismissed. Raj prides himself on writing clean, reliable code. How should Priya approach the conversation?",
+      "choices": [
+        "A) Send Raj a research report comparing the new method's error-detection rates against the current one",
+        "C) Announce the perspective switch in a team meeting so peer pressure encourages Raj to comply",
+        "B) Open by acknowledging Raj's reputation for code quality and frame the new architecture as a tool that would raise his standards even higher"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "By connecting the new blueprint to the quality Raj already values about himself, Priya makes adoption feel like a natural extension of his identity rather than a challenge to it.",
+        "direct": "Confirming Raj's self-image as a quality-driven engineer lowers his defenses and lets him evaluate the template without feeling his competence is being questioned.",
+        "competitive": "Priya targets Raj's primary identity key, status tied to code quality, and positions the ask as something that serves that key rather than threatening it."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch08-q05",
+      "prompt": "Marcus, a department head, wants his colleague Diane to support a budget reallocation she previously opposed. Diane values being seen as fair and principled. Marcus opens by saying her commitment to fairness is why he trusts her judgment on resource decisions, then presents the reallocation as a way to distribute funding more equitably. What principle is Marcus using?",
+      "choices": [
+        "A) He is exploiting Diane's desire for approval to extract compliance on a decision she would otherwise reject",
+        "B) He is applying the confirm-then-influence model by validating Diane's fairness identity before introducing his proposal",
+        "C) He is using reciprocity by offering a compliment so Diane feels obligated to agree"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Marcus validates the specific dimension of identity Diane protects most, fairness, which keeps her defenses down and allows her to evaluate the reallocation on its merits.",
+        "direct": "The confirm-then-influence sequence targets Diane's fairness key, making the proposal arrive in a mind that is open rather than braced for a fight.",
+        "competitive": "Marcus diagnosed fairness as Diane's primary identity key and built his entire approach around confirming it before the ask, which is the operational core of this chapter's method."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch08-q06",
+      "prompt": "Kenji asks his friend Tomoko for honest feedback on his startup pitch. Tomoko believes the pitch has a major flaw but knows Kenji values his independence and hates feeling managed. She opens by saying she admires how he built the company without outside direction, then raises the flaw as something that might limit the autonomy he has worked to protect. Why does this approach have a higher chance of landing?",
+      "choices": [
+        "A) Tomoko is softening the blow with flattery so the criticism feels less personal",
+        "B) Tomoko framed the criticism around a dimension Kenji does not actually care about",
+        "C) Tomoko confirmed Kenji's autonomy identity first, so the feedback arrives as protection of that autonomy rather than an attack on his judgment"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Because Kenji guards his autonomy, hearing the flaw framed as a threat to that autonomy makes him want to fix it rather than defend against the messenger.",
+        "direct": "Tomoko matched her feedback to Kenji's primary identity key. The flaw is now positioned as something that endangers what he values most, which motivates action instead of resistance.",
+        "competitive": "Tomoko turned potential defensiveness into motivation by aligning the criticism with Kenji's autonomy drive. He processes the flaw as a problem to solve, not an attack to repel."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch08-q07",
+      "prompt": "What distinguishes the mirroring phase from the initial validation step in Greene's confirm-then-influence model?",
+      "choices": [
+        "B) Mirroring deepens rapport by reflecting the other person's language, concerns, and emotional state so they feel understood at a level beyond surface agreement",
+        "A) Mirroring involves repeating the other person's words back to them verbatim to show you were listening",
+        "C) Mirroring replaces the validation step when you do not have enough information about the other person's self-image"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Validation opens the door by confirming identity, but mirroring holds it open by making the person feel genuinely understood, not just complimented.",
+        "direct": "The mirroring phase sustains the lowered defenses that validation created. Skipping it causes the other person to sense a pivot and raise their guard again.",
+        "competitive": "Validation gets you past the gate. Mirroring keeps it open long enough for your actual message to land. Skip mirroring and the gate swings shut before your argument arrives."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch08-q08",
+      "prompt": "A manager presents overwhelming evidence that a process change will save the team 15 hours per week, yet the team resists adoption. Based on this chapter, what is the most likely explanation for the resistance?",
+      "choices": [
+        "A) The team lacks the technical skill to implement the new process",
+        "B) The evidence was presented before the team's identity concerns were addressed, so the defensive reflex filtered out the data",
+        "C) Fifteen hours per week is not a meaningful enough improvement to motivate change"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Even strong evidence bounces off a mind that has already shifted into self-protection mode, and that mode activates whenever a change feels like a challenge to how people see themselves.",
+        "direct": "The manager led with the argument instead of the validation. The team's identity defense activated before the evidence could be evaluated, making the strength of the case irrelevant.",
+        "competitive": "Evidence quality is secondary to gate status. The manager treated this as an information problem when it was actually an identity problem, and the result was predictable."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch08-q09",
+      "prompt": "Greene draws a line between manipulation and effective communication when using the confirm-then-influence approach. Which criterion separates the two?",
+      "choices": [
+        "A) Manipulation uses fabricated validation, while effective communication uses only observations the speaker genuinely believes",
+        "C) Manipulation targets emotional triggers, while effective communication relies exclusively on logical arguments after the initial validation",
+        "B) Manipulation exploits the other person's self-image for your benefit while leaving them worse off, while effective communication respects their self-image and guides toward an outcome that serves both parties"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The ethical boundary is whether the other person would feel respected or used if they could see your full preparation, and whether the outcome serves them alongside you.",
+        "direct": "Manipulation leaves the other person worse off. Effective communication produces durable agreement because the outcome aligns with values the person genuinely holds.",
+        "competitive": "The durability test is the clearest dividing line. Manipulation creates brittle compliance that collapses under reflection. Aligned influence strengthens over time because the person integrates the decision into their identity."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch08-q10",
+      "prompt": "Someone masters the validation and mirroring techniques from this chapter but consistently fails to influence others. Chapter 9 suggests the missing variable is most likely which of the following?",
+      "choices": [
+        "A) The person has not memorized enough specific compliments to use during the validation phase",
+        "B) The person's underlying attitude projects hostility before any words are spoken, triggering resistance at the threshold",
+        "C) The person needs to increase the number of mirroring repetitions per conversation"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Chapter 9 argues that the attitude you carry into a room shapes the other person's defensive posture before you say anything, which means validation can arrive too late if your presence already triggered resistance.",
+        "direct": "The energy and attitude you project act as a pre-verbal signal. If that signal reads as confrontational, the defensive gate closes before your carefully prepared validation even begins.",
+        "competitive": "Technique without the right underlying attitude is like arriving with the right key after the lock has already been changed. Chapter 9 addresses the upstream variable that determines whether your skills even get a chance to work."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

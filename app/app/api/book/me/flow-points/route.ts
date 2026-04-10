@@ -11,10 +11,10 @@ import {
   listRecentFlowPointsLedger,
 } from "@/app/app/api/book/_lib/flow-points-repo";
 import {
-  FLOW_POINTS_EARNING_RULES,
-  FLOW_POINTS_REWARDS,
-  getFlowPointsSourceSubtitle,
-  getFlowPointsSourceTitle,
+  INSIGHT_POINTS_EARNING_RULES,
+  INSIGHT_POINTS_REWARDS,
+  getInsightPointsSourceSubtitle,
+  getInsightPointsSourceTitle,
 } from "@/app/book/_lib/flow-points-economy";
 
 export const runtime = "nodejs";
@@ -32,7 +32,7 @@ export async function GET(request: Request) {
     ]);
 
     const rewardClaims = await Promise.all(
-      FLOW_POINTS_REWARDS.map((reward) => getUserRewardClaim(tableName, user.sub, reward.rewardId))
+      INSIGHT_POINTS_REWARDS.map((reward) => getUserRewardClaim(tableName, user.sub, reward.rewardId))
     );
     const rewardClaimMap = new Map(
       rewardClaims
@@ -40,7 +40,7 @@ export async function GET(request: Request) {
         .map((claim) => [claim.rewardId, claim])
     );
 
-    const rewards = FLOW_POINTS_REWARDS.map((reward) => {
+    const rewards = INSIGHT_POINTS_REWARDS.map((reward) => {
       const claim = rewardClaimMap.get(reward.rewardId) ?? null;
       const isPro = (entitlement?.plan ?? "FREE") === "PRO";
       const unavailableReason =
@@ -101,8 +101,8 @@ export async function GET(request: Request) {
         amount: entry.amount,
         sourceType: entry.sourceType,
         rewardId: entry.rewardId ?? null,
-        title: getFlowPointsSourceTitle(entry.sourceType),
-        subtitle: getFlowPointsSourceSubtitle(entry.sourceType, entry.metadata ?? null),
+        title: getInsightPointsSourceTitle(entry.sourceType),
+        subtitle: getInsightPointsSourceSubtitle(entry.sourceType, entry.metadata ?? null),
         createdAt: entry.createdAt,
       })),
       referral: {
@@ -114,9 +114,12 @@ export async function GET(request: Request) {
         activationPointsEarned: referralProfile.activationPointsEarned,
         proPointsEarned: referralProfile.proPointsEarned,
       },
-      waysToEarn: FLOW_POINTS_EARNING_RULES.map((rule) => ({
+      waysToEarn: INSIGHT_POINTS_EARNING_RULES.map((rule) => ({
         label: rule.label,
         amount: rule.amount,
+        displayValue: rule.displayValue,
+        detail: rule.detail,
+        cadence: rule.cadence,
         note: rule.note,
       })),
     });

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the main contrast Chapter 2 makes about progress?",
+      "choices": [
+        "Progress depends mostly on motivation speeches",
+        "Progress is sequential rather than one giant leap",
+        "Progress improves when every task gets equal pressure"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter's main correction is that strong results usually build through linked sequence rather than one dramatic burst.",
+        "direct": "Keller replaces spectacle with cumulative action.",
+        "competitive": "The breakthrough fantasy loses to the chain."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the domino image matter in Chapter 2?",
+      "choices": [
+        "Because it proves any small task is useful",
+        "Because one move can change what the next move can do",
+        "Because it shows planning should stay playful"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The metaphor matters because the first move changes the conditions of later moves.",
+        "direct": "Sequence matters when one action alters the leverage of what follows.",
+        "competitive": "A domino is valuable because it carries force forward."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Which statement fits the chapter's idea of cumulative progress?",
+      "choices": [
+        "The whole goal must be mapped perfectly before action starts",
+        "The first move should make later progress easier or stronger",
+        "Small steps matter even when they are disconnected"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Chapter 2 keeps returning to one test: the first move should improve the conditions of what follows.",
+        "direct": "A cumulative sequence works because later effort inherits value from earlier effort.",
+        "competitive": "The opener earns its status by changing the next hit."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Omar can either clean up a dashboard or make the pricing decision that unblocks two teams. Which choice follows Chapter 2 best?",
+      "choices": [
+        "Split the hour evenly so all work feels respected",
+        "Choose the dashboard because it shows visible progress faster",
+        "Make the pricing decision because it starts a stronger chain"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The pricing decision matters more because later work depends on it.",
+        "direct": "Chapter 2 rewards the first move with downstream consequence, not the most visible task.",
+        "competitive": "The unblocker is the domino. The dashboard is just noise with a nice outfit."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Which sentence would Chapter 2 reject as false?",
+      "choices": [
+        "Any tiny task counts as progress if it lowers your stress",
+        "A useful first step should change what comes after it",
+        "Sequence helps because not every move deserves to happen first"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter is careful here. A small task only matters strategically when it is connected to later consequence.",
+        "direct": "Lower anxiety is not the same as creating momentum. Connection is the standard.",
+        "competitive": "Comforting motion is exactly how fake momentum sneaks in."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Leah reviewed every chapter evenly but skipped the force-diagram method the later problems depended on. What does Chapter 2 say she missed?",
+      "choices": [
+        "The first domino in the learning chain",
+        "The value of taking longer breaks",
+        "The need to keep her goals smaller"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Leah spent time, but not on the concept that would have made later questions easier.",
+        "direct": "She missed the load-bearing step in the sequence.",
+        "competitive": "Coverage beat order, and the exam punished her for it."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What limit does Chapter 2 keep alive instead of pretending it away?",
+      "choices": [
+        "That some work stays messy enough that the chain is not fully visible at first",
+        "That sequence only works in solo personal goals",
+        "That progress becomes impossible once conditions are uncertain"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says sequence is useful, but it does not claim every path is neat from the beginning.",
+        "direct": "Keller keeps the nonlinearity limit visible so the metaphor stays honest.",
+        "competitive": "A chain can guide messy work without pretending the mess is gone."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Victor keeps describing the life he wants but cannot name the first move that would make the next move easier. What is the best Chapter 2 response?",
+      "choices": [
+        "Ask him to dream bigger until the right chain appears",
+        "Push him to identify the next consequential move instead of carrying the whole goal at once",
+        "Tell him to wait until he can see the whole path clearly"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Domino thinking helps by shrinking the problem to the first move with real consequence.",
+        "direct": "The chapter replaces whole-goal paralysis with sequence: find the opener that changes the next step.",
+        "competitive": "Victor needs an opener, not a prettier fantasy."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "How does Chapter 2 build on Chapter 1?",
+      "choices": [
+        "Chapter 1 rejects leverage, and Chapter 2 replaces it with routine",
+        "Chapter 1 says every priority is equal, and Chapter 2 corrects that mistake",
+        "Chapter 1 finds the high-leverage move, and Chapter 2 asks how that move should start a sequence"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The first chapter identifies what matters most. The second chapter explains how the right move should carry force forward.",
+        "direct": "Sequence is the structural upgrade to Chapter 1's leverage logic.",
+        "competitive": "Chapter 1 picks the target. Chapter 2 turns that hit into a chain."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Which action best applies Chapter 2 to a vague ambitious goal?",
+      "choices": [
+        "Break the goal into many tiny tasks, even if they are unrelated",
+        "Push every part of the goal forward a little each day",
+        "Find the first move that changes later conditions and start there"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter works when the first move improves the path ahead instead of merely making you feel active.",
+        "direct": "A real first domino changes the later field. That is the transfer point.",
+        "competitive": "Do not spread pressure everywhere. Hit the step that can drag the line behind it."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

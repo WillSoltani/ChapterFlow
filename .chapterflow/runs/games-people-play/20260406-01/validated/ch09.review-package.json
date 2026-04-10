@@ -1,0 +1,40 @@
+{
+  "chapterId": "ch09",
+  "chapterNumber": 9,
+  "chapterTitle": "Games That Aren't Worth Fighting",
+  "bookId": "games-people-play",
+  "runId": "20260406-01",
+  "packVersion": "v12-sealed",
+  "validationStatus": "passed",
+  "qualityGateScore": {
+    "total": 12,
+    "max": 12,
+    "categories": {
+      "chapterSpecificity": 2,
+      "anchorUse": 2,
+      "analyticalValue": 2,
+      "paragraphMotion": 2,
+      "proseQuality": 2,
+      "hookAndBridge": 2
+    },
+    "autoFails": []
+  },
+  "summary": {
+    "coreClaim": "Berne's good games have the full game anatomy and produce net positive effects. Three examples: Busman's Holiday, Homely Sage, Happy To Help. The chapter's central discipline: see the structure clearly and leave the pattern alone when the net effect is positive.",
+    "anchorsUsed": [
+      "Margot's vacation open-source volunteering",
+      "Harriet's Saturday writing workshop",
+      "Yonatan shoveling the Jensens' walk"
+    ],
+    "hardDepthTension": "The antithesis instinct from the previous eight chapters, applied without the good-game filter, is its own failure mode. The reader who interrupts every pattern is more isolated, not more free.",
+    "bridgeToNextChapter": "The final chapter moves from patterns to what sits underneath them."
+  },
+  "strongestQualities": [
+    "The chapter's central argument (see-and-leave-alone as correction to the antithesis instinct) is the book's most counterintuitive structural move and it lands cleanly.",
+    "The Happy To Help vs ITHY structural comparison is the clearest articulation in the book of why two near-identical patterns can have completely opposite net effects.",
+    "The chapter is shorter than other catalog chapters per the skeleton's thin-chapter mitigation strategy and compensates with example richness rather than padding."
+  ],
+  "remainingConcerns": [],
+  "approvalRequired": true,
+  "preserveApprovedHash": false
+}

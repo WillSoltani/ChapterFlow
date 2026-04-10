@@ -1,0 +1,21 @@
+# Run Log
+
+- 2026-04-08: Phase 0 repair complete. Corrected malformed manifest quoting drift and locked run manifest for `The Righteous Mind` by `Jonathan Haidt`.
+- 2026-04-08: Phase 1 complete. Source bundle frozen from official Righteous Mind materials and official publisher metadata, with narrow secondary support recorded in `manifests/source-ledger.json`.
+- 2026-04-08: Phase 2 complete. Style memory, quality memory, and role cards written from the v13 autonomous pack.
+- 2026-04-08: Phase 3 complete. Whole-book skeleton written from the frozen table of contents and source bundle.
+- 2026-04-08: Chapter 1 passed chapter gate. Validator PASS, artifact guard PASS, review wrapper sealed, continuity hash recorded.
+- 2026-04-08: Chapter 2 passed chapter gate. Validator PASS, artifact guard PASS, review wrapper sealed, continuity hash recorded.
+- 2026-04-08: Baseline quality floor established from Chapters 1 and 2. Ready to continue in waves of 2.
+- 2026-04-08: Chapter 3 passed chapter gate. Validator PASS, artifact guard PASS, review wrapper sealed, continuity hash recorded.
+- 2026-04-08: Chapter 4 passed chapter gate. Validator PASS, artifact guard PASS, review wrapper sealed, continuity hash recorded.
+- 2026-04-08: Wave 3-4 verified clean. Repo artifact guard PASS. Ready to continue into the next wave.
+- 2026-04-08: Chapter 5 passed chapter gate. Validator PASS, artifact guard PASS, review wrapper sealed, continuity hash recorded.
+- 2026-04-08: Chapter 6 passed chapter gate. Validator PASS, artifact guard PASS, review wrapper sealed, continuity hash recorded.
+- 2026-04-08: Wave 5-6 verified clean. Repo artifact guard PASS. Ready to continue into the next wave.
+- 2026-04-09: Chapter 7 passed chapter gate. Validator PASS, artifact guard PASS, review wrapper sealed, continuity hash recorded.
+- 2026-04-09: Chapter 8 passed chapter gate. Validator PASS, artifact guard PASS, review wrapper sealed, continuity hash recorded.
+- 2026-04-09: Wave 7-8 verified clean. Repo artifact guard PASS. Ready to continue into the next wave.
+- 2026-04-09: Chapter 9 passed chapter gate. Validator PASS, artifact guard PASS, review wrapper sealed, continuity hash recorded.
+- 2026-04-09: Chapter 10 passed chapter gate. Validator PASS, artifact guard PASS, review wrapper sealed, continuity hash recorded.
+- 2026-04-09: Wave 9-10 verified clean. Repo artifact guard PASS. Ready to continue into the next wave.

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What reputation does Machiavelli say every prince should want at the start of Chapter 17?",
+      "choices": [
+        "To be considered clement rather than cruel",
+        "To be considered loved rather than feared",
+        "To be considered feared rather than clement"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "He begins by saying a prince should want to be thought clement.",
+        "direct": "The chapter opens with the attraction of clemency before testing its consequences.",
+        "competitive": "Machiavelli grants mercy the better label first, then he asks what that label costs."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why can a few severe acts be more merciful than softness, according to Chapter 17?",
+      "choices": [
+        "Because people admire severity more than mercy",
+        "Because unchecked disorder can injure the whole people more than a few punishments injure the few",
+        "Because cruelty never produces resentment"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter judges mercy by whether it prevents wider harm.",
+        "direct": "A few punishments may spare the public from robberies, murders, or larger disorder.",
+        "competitive": "The softer image loses its innocence once everyone else pays for it."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why does Machiavelli say a new prince cannot avoid some imputation of cruelty?",
+      "choices": [
+        "Because new princes enjoy being harsh",
+        "Because old states are gentler than new ones by nature",
+        "Because new states are full of dangers that make some severity hard to avoid"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "New rule begins under danger, so severity is harder to avoid there.",
+        "direct": "The point is about insecure authority, not about personal taste for harshness.",
+        "competitive": "Fresh power has to secure itself before it can look mild."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Elowen's team keeps copying a safety shortcut after soft warnings. What best matches Chapter 17?",
+      "choices": [
+        "Keep the tone gentle and wait for the pattern to fix itself",
+        "Use one clear, proportionate sanction that restores the rule before the risk spreads",
+        "Punish everyone at once so fear becomes total"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A bounded correction can be kinder than letting the whole group drift into danger.",
+        "direct": "The chapter favors limited severity when it prevents wider disorder.",
+        "competitive": "One sharp line is better than a floor-wide bill for your softness."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Cassian's postmortem on the prop cage mainly shows what?",
+      "choices": [
+        "Avoiding a harsh appearance let the whole production absorb the cost of disorder",
+        "Strict sign-out rules always damage morale more than they help",
+        "Kind leadership means never restricting access"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The leaders protected a gentle image while the wider group paid for the looseness.",
+        "direct": "Their softness spread the injury outward instead of containing it early.",
+        "competitive": "The clean hallway tone came at the cost of a chaotic production."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Petra needs people to respect standards without hating her. Which action fits Chapter 17 best?",
+      "choices": [
+        "Quietly cut a bonus so the warning feels more painful",
+        "Avoid all punishment so the office stays friendly",
+        "Tie one visible sanction to clear cause and avoid arbitrary grabs at pay or property"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter wants fear of the rule, not hatred caused by arbitrary seizure.",
+        "direct": "Clear cause keeps punishment from feeling greedy or private.",
+        "competitive": "Discipline must bite without looking like appetite."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why does Machiavelli say fear is safer than love when one must choose?",
+      "choices": [
+        "Because love is impossible to feel toward rulers",
+        "Because fear rests on punishment while love rests on obligations people may break",
+        "Because feared rulers never need prudence"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "People can abandon affection more easily than they abandon feared consequences.",
+        "direct": "Love depends on other people's will, while fear depends more on enforceable punishment.",
+        "competitive": "Moods defect sooner than sanctions."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What practical boundary helps a prince be feared without becoming hated?",
+      "choices": [
+        "Punish with manifest cause and keep hands off the property of others",
+        "Promise mercy to everyone and then surprise them with harshness",
+        "Make punishments unpredictable so nobody grows comfortable"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Machiavelli turns the boundary into concrete limits, especially around property.",
+        "direct": "Justified punishment is safer than arbitrary injury or seizure.",
+        "competitive": "Fear stays stable only while the ruler's hand stays bounded."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "How do Hannibal and Scipio function together in Chapter 17?",
+      "choices": [
+        "They prove all severe leaders are morally better than lenient ones",
+        "They show that military discipline never matters as much as affection",
+        "They contrast severity that held discipline together with forbearance that gave soldiers too much license"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The pair shows how opposite styles can lead to opposite disciplinary results.",
+        "direct": "Hannibal's severity reinforced obedience, while Scipio's softness loosened it.",
+        "competitive": "The chapter uses them to judge command by obedience, not by pleasant labels."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Chapter 15 says rulers should judge conduct by real effect rather than admired appearance. How does Chapter 17 apply that rule to mercy?",
+      "choices": [
+        "It says a few blamed punishments can be more merciful than a praised softness that lets wider harm spread",
+        "It says mercy is useless because only cruelty preserves rule",
+        "It says love and fear are equally dependable if the ruler has good intentions"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Chapter 17 applies realism by asking what mercy actually causes in public life.",
+        "direct": "The admired image of clemency loses if it permits disorder that hurts many more people.",
+        "competitive": "Appearance bows to consequence once soft virtue starts producing hard public damage."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

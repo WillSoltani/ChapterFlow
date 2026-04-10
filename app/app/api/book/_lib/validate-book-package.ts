@@ -3,8 +3,10 @@ import type {
   BookPackage,
   BookPackageBook,
   BookPackageChapter,
+  BookPackageEdition,
   BookPackageExample,
   BookPackageQuizQuestion,
+  OneMinuteRecapToneKeyed,
   ToneKeyed,
   VariantFamily,
   VariantKey,
@@ -34,11 +36,23 @@ const BOOK_KEYS = new Set([
   "cover",
   "edition",
   "variantFamily",
+  "chapterRange",
   "chapters",
 ]);
 
 const COVER_KEYS = new Set(["emoji", "color"]);
-const EDITION_KEYS = new Set(["name", "publishedYear"]);
+const EDITION_KEYS = new Set([
+  "name",
+  "publishedYear",
+  "publisher",
+  "publishedDate",
+  "isbn13",
+  "format",
+  "translator",
+  "translationYear",
+  "sourceText",
+  "sourceProvenance",
+]);
 const CHAPTER_KEYS = new Set([
   "chapterId",
   "number",
@@ -53,7 +67,14 @@ const CHAPTER_KEYS = new Set([
   "takeaways",
 ]);
 const EXAMPLE_KEYS = new Set(["exampleId", "title", "scenario", "whatToDo", "whyItMatters", "contexts", "category", "format", "endingType"]);
-const QUIZ_KEYS = new Set(["passingScorePercent", "questions", "retryQuestions"]);
+const QUIZ_KEYS = new Set([
+  "chapterId",
+  "chapterNumber",
+  "chapterTitle",
+  "passingScorePercent",
+  "questions",
+  "retryQuestions",
+]);
 const QUESTION_KEYS = new Set([
   "questionId",
   "prompt",
@@ -76,6 +97,7 @@ const VARIANT_CONTENT_KEYS = new Set([
   "activationPrompt",
   "selfCheckPrompt",
   "selfCheckPrompts",
+  "reflectionPrompts",
   "predictionPrompt",
 ]);
 const EMH_VARIANTS: VariantKey[] = ["easy", "medium", "hard"];
@@ -208,7 +230,11 @@ function parseVariantFamily(value: unknown, path: string, issues: ValidationIssu
   return "EMH";
 }
 
-function parseEdition(value: unknown, path: string, issues: ValidationIssue[]): string {
+function parseEdition(
+  value: unknown,
+  path: string,
+  issues: ValidationIssue[]
+): string | BookPackageEdition {
   if (value == null) return "";
   if (typeof value === "string") {
     return readString(value, path, issues, { optional: true, min: 1, max: 80 });
@@ -220,21 +246,83 @@ function parseEdition(value: unknown, path: string, issues: ValidationIssue[]): 
 
   hasOnlyKeys(value, EDITION_KEYS, path, issues);
   const name = readString(value.name, `${path}.name`, issues, { max: 80 });
-  const year =
+  const publishedYear =
     value.publishedYear == null
-      ? null
+      ? undefined
       : readInteger(value.publishedYear, `${path}.publishedYear`, issues, {
+          min: 0,
+          max: 3000,
+        });
+  const translationYear =
+    value.translationYear == null
+      ? value.translationYear === null
+        ? null
+        : undefined
+      : readInteger(value.translationYear, `${path}.translationYear`, issues, {
           min: 0,
           max: 3000,
         });
 
   if (!name) return "";
-  return typeof year === "number" && year > 0 ? `${name} (${year})` : name;
+  return {
+    name,
+    publishedYear,
+    publisher: value.publisher
+      ? readString(value.publisher, `${path}.publisher`, issues, {
+          optional: true,
+          min: 1,
+          max: 200,
+        })
+      : undefined,
+    publishedDate: value.publishedDate
+      ? readString(value.publishedDate, `${path}.publishedDate`, issues, {
+          optional: true,
+          min: 1,
+          max: 40,
+        })
+      : undefined,
+    isbn13: value.isbn13
+      ? readString(value.isbn13, `${path}.isbn13`, issues, {
+          optional: true,
+          min: 1,
+          max: 40,
+        })
+      : undefined,
+    format: value.format
+      ? readString(value.format, `${path}.format`, issues, {
+          optional: true,
+          min: 1,
+          max: 120,
+        })
+      : undefined,
+    translator:
+      value.translator != null
+        ? readString(value.translator, `${path}.translator`, issues, {
+            optional: true,
+            min: 0,
+            max: 120,
+          })
+        : undefined,
+    translationYear,
+    sourceText: value.sourceText
+      ? readString(value.sourceText, `${path}.sourceText`, issues, {
+          optional: true,
+          min: 1,
+          max: 4000,
+        })
+      : undefined,
+    sourceProvenance: value.sourceProvenance
+      ? readString(value.sourceProvenance, `${path}.sourceProvenance`, issues, {
+          optional: true,
+          min: 1,
+          max: 4000,
+        })
+      : undefined,
+  };
 }
 
 function parseBook(
   bookRaw: unknown,
-  topLevelChaptersRaw: unknown,
   issues: ValidationIssue[]
 ): BookPackageBook {
   if (!isRecord(bookRaw)) {
@@ -245,7 +333,6 @@ function parseBook(
       author: "",
       categories: [],
       variantFamily: "EMH",
-      chapters: [],
     };
   }
 
@@ -254,30 +341,6 @@ function parseBook(
   if (coverRaw) {
     hasOnlyKeys(coverRaw, COVER_KEYS, "book.cover", issues);
   }
-
-  const hasTopLevelChapters = Array.isArray(topLevelChaptersRaw);
-  const hasBookChapters = Array.isArray(bookRaw.chapters);
-  if (topLevelChaptersRaw != null && !hasTopLevelChapters) {
-    issues.push({ path: "chapters", message: "chapters must be an array." });
-  }
-  let chaptersRaw: unknown[] = [];
-  let chapterPathBase = "book.chapters";
-
-  if (hasTopLevelChapters) {
-    chaptersRaw = topLevelChaptersRaw;
-    chapterPathBase = "chapters";
-  } else if (hasBookChapters) {
-    chaptersRaw = bookRaw.chapters as unknown[];
-  } else {
-    issues.push({
-      path: "chapters",
-      message: "chapters must be an array (either top-level or book.chapters).",
-    });
-  }
-
-  const chapters = chaptersRaw.map((chapterRaw, index) =>
-    parseChapter(chapterRaw, `${chapterPathBase}[${index}]`, issues)
-  );
 
   return {
     bookId: readString(bookRaw.bookId, "book.bookId", issues, { max: 120 }),
@@ -310,8 +373,43 @@ function parseBook(
       : undefined,
     edition: parseEdition(bookRaw.edition, "book.edition", issues),
     variantFamily: parseVariantFamily(bookRaw.variantFamily, "book.variantFamily", issues),
-    chapters,
+    chapterRange: readString(bookRaw.chapterRange, "book.chapterRange", issues, {
+      optional: true,
+      min: 1,
+      max: 120,
+    }),
   };
+}
+
+function parseChapters(
+  topLevelChaptersRaw: unknown,
+  bookRaw: unknown,
+  issues: ValidationIssue[]
+): BookPackageChapter[] {
+  const hasTopLevelChapters = Array.isArray(topLevelChaptersRaw);
+  const bookRecord = isRecord(bookRaw) ? bookRaw : null;
+  const hasBookChapters = Array.isArray(bookRecord?.chapters);
+  if (topLevelChaptersRaw != null && !hasTopLevelChapters) {
+    issues.push({ path: "chapters", message: "chapters must be an array." });
+  }
+  let chaptersRaw: unknown[] = [];
+  let chapterPathBase = "book.chapters";
+
+  if (hasTopLevelChapters) {
+    chaptersRaw = topLevelChaptersRaw;
+    chapterPathBase = "chapters";
+  } else if (hasBookChapters) {
+    chaptersRaw = bookRecord?.chapters as unknown[];
+  } else {
+    issues.push({
+      path: "chapters",
+      message: "chapters must be an array (either top-level or book.chapters).",
+    });
+  }
+
+  return chaptersRaw.map((chapterRaw, index) =>
+    parseChapter(chapterRaw, `${chapterPathBase}[${index}]`, issues)
+  );
 }
 
 function parseChapter(chapterRaw: unknown, path: string, issues: ValidationIssue[]): BookPackageChapter {
@@ -445,15 +543,27 @@ function parseChapter(chapterRaw: unknown, path: string, issues: ValidationIssue
       };
     }
 
-    let oneMinuteRecap: { gentle: string; direct: string; competitive: string } | undefined;
-    if (isRecord(variantValue.oneMinuteRecap)) {
-      const omr = variantValue.oneMinuteRecap as Record<string, unknown>;
-      oneMinuteRecap = {
-        gentle: typeof omr.gentle === "string" ? omr.gentle : "",
-        direct: typeof omr.direct === "string" ? omr.direct : "",
-        competitive: typeof omr.competitive === "string" ? omr.competitive : "",
-      };
-    }
+    const oneMinuteRecap = parseOneMinuteRecap(
+      variantValue.oneMinuteRecap,
+      `${path}.contentVariants.${variantKey}.oneMinuteRecap`,
+      issues
+    );
+    const reflectionPrompts = Array.isArray(variantValue.reflectionPrompts)
+      ? variantValue.reflectionPrompts
+          .map((prompt, index) =>
+            parseToneKeyed(
+              prompt,
+              `${path}.contentVariants.${variantKey}.reflectionPrompts[${index}]`,
+              issues,
+            ),
+          )
+          .filter(
+            (
+              prompt,
+            ): prompt is { gentle: string; direct: string; competitive: string } =>
+              Boolean(prompt),
+          )
+      : undefined;
 
     contentVariants[variantKey as VariantKey] = {
       summaryBullets: summaryBullets.length > 0 ? summaryBullets : undefined,
@@ -462,6 +572,8 @@ function parseChapter(chapterRaw: unknown, path: string, issues: ValidationIssue
       keyTakeaways: keyTakeawaysModern,
       chapterBreakdown,
       oneMinuteRecap,
+      reflectionPrompts:
+        reflectionPrompts && reflectionPrompts.length > 0 ? reflectionPrompts : undefined,
       practice: readStringArray(
         variantValue.practice,
         `${path}.contentVariants.${variantKey}.practice`,
@@ -508,6 +620,31 @@ function parseToneKeyed(value: unknown, path: string, issues: ValidationIssue[])
     direct: typeof value.direct === "string" ? value.direct : "",
     competitive: typeof value.competitive === "string" ? value.competitive : "",
   };
+}
+
+function parseOneMinuteRecap(
+  value: unknown,
+  path: string,
+  issues: ValidationIssue[]
+): OneMinuteRecapToneKeyed | undefined {
+  const flat = parseToneKeyed(value, path, issues);
+  if (flat) return flat;
+  if (!isRecord(value)) return undefined;
+
+  const retrieve = parseToneKeyed(value.retrieve, `${path}.retrieve`, issues);
+  const connect = parseToneKeyed(value.connect, `${path}.connect`, issues);
+  const preview = parseToneKeyed(value.preview, `${path}.preview`, issues);
+
+  if (!retrieve && !connect && !preview) return undefined;
+  if (!retrieve || !connect || !preview) {
+    issues.push({
+      path,
+      message: "oneMinuteRecap must be tone-keyed or contain retrieve, connect, and preview tone objects.",
+    });
+    return undefined;
+  }
+
+  return { retrieve, connect, preview };
 }
 
 function parseStringOrToneKeyed(value: unknown, path: string, issues: ValidationIssue[]): string | { gentle: string; direct: string; competitive: string } {
@@ -588,6 +725,29 @@ function parseQuiz(quizRaw: unknown, path: string, issues: ValidationIssue[]) {
   );
 
   return {
+    chapterId:
+      typeof quizRaw.chapterId === "string"
+        ? readString(quizRaw.chapterId, `${path}.chapterId`, issues, {
+            optional: true,
+            min: 1,
+            max: 120,
+          })
+        : undefined,
+    chapterNumber:
+      quizRaw.chapterNumber == null
+        ? undefined
+        : readInteger(quizRaw.chapterNumber, `${path}.chapterNumber`, issues, {
+            min: 1,
+            max: 5000,
+          }),
+    chapterTitle:
+      typeof quizRaw.chapterTitle === "string"
+        ? readString(quizRaw.chapterTitle, `${path}.chapterTitle`, issues, {
+            optional: true,
+            min: 1,
+            max: 200,
+          })
+        : undefined,
     passingScorePercent: readInteger(quizRaw.passingScorePercent, `${path}.passingScorePercent`, issues, {
       min: 50,
       max: 100,
@@ -665,10 +825,10 @@ function enforceSemanticRules(pkg: BookPackage, issues: ValidationIssue[]) {
   const chapterNumbers = new Set<number>();
   const allowedVariants = pkg.book.variantFamily === "EMH" ? EMH_VARIANTS : PBC_VARIANTS;
 
-  for (const chapter of pkg.book.chapters) {
+  for (const chapter of pkg.chapters) {
     if (chapterIds.has(chapter.chapterId)) {
       issues.push({
-        path: `book.chapters.${chapter.chapterId}`,
+        path: `chapters.${chapter.chapterId}`,
         message: "chapterId must be unique.",
       });
     }
@@ -676,7 +836,7 @@ function enforceSemanticRules(pkg: BookPackage, issues: ValidationIssue[]) {
 
     if (chapterNumbers.has(chapter.number)) {
       issues.push({
-        path: `book.chapters.${chapter.number}`,
+        path: `chapters.${chapter.number}`,
         message: "chapter number must be unique.",
       });
     }
@@ -685,7 +845,7 @@ function enforceSemanticRules(pkg: BookPackage, issues: ValidationIssue[]) {
     const variantKeys = Object.keys(chapter.contentVariants);
     if (variantKeys.length !== allowedVariants.length) {
       issues.push({
-        path: `book.chapters.${chapter.number}.contentVariants`,
+        path: `chapters.${chapter.number}.contentVariants`,
         message: `Must include exactly ${allowedVariants.join(", ")} variants.`,
       });
     }
@@ -693,7 +853,7 @@ function enforceSemanticRules(pkg: BookPackage, issues: ValidationIssue[]) {
     for (const required of allowedVariants) {
       if (!chapter.contentVariants[required]) {
         issues.push({
-          path: `book.chapters.${chapter.number}.contentVariants.${required}`,
+          path: `chapters.${chapter.number}.contentVariants.${required}`,
           message: `Missing required variant '${required}'.`,
         });
       }
@@ -704,7 +864,7 @@ function enforceSemanticRules(pkg: BookPackage, issues: ValidationIssue[]) {
     for (const question of [...chapter.quiz.questions, ...retryQuestions]) {
       if (questionIds.has(question.questionId)) {
         issues.push({
-          path: `book.chapters.${chapter.number}.quiz.questions.${question.questionId}`,
+          path: `chapters.${chapter.number}.quiz.questions.${question.questionId}`,
           message: "questionId must be unique across questions and retryQuestions within chapter.",
         });
       }
@@ -715,7 +875,7 @@ function enforceSemanticRules(pkg: BookPackage, issues: ValidationIssue[]) {
     for (const example of chapter.examples) {
       if (exampleIds.has(example.exampleId)) {
         issues.push({
-          path: `book.chapters.${chapter.number}.examples.${example.exampleId}`,
+          path: `chapters.${chapter.number}.examples.${example.exampleId}`,
           message: "exampleId must be unique within chapter.",
         });
       }
@@ -743,7 +903,8 @@ export function validateBookPackage(raw: unknown): BookPackage {
       min: 1,
       max: 4000,
     }),
-    book: parseBook(raw.book, raw.chapters, issues),
+    book: parseBook(raw.book, issues),
+    chapters: parseChapters(raw.chapters, raw.book, issues),
   };
 
   enforceSemanticRules(pkg, issues);

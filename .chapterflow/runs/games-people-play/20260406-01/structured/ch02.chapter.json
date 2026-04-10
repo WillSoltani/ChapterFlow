@@ -1,0 +1,484 @@
+{
+  "chapterId": "ch02",
+  "number": 2,
+  "title": "What a Transaction Is and Why They Go Wrong",
+  "readingTimeMinutes": 12,
+  "contentVariants": {
+    "easy": {
+      "chapterBreakdown": {
+        "gentle": "You already know what it feels like when somebody asks you a normal question and you accidentally answer it from a place that has nothing to do with what they asked. Tomas asks Aiya whether the API change is going to land Friday, and Aiya answers in a tone that says she is tired of explaining things to him. The question was clean. The answer arrived in a different room. Berne built a small picture for what just happened. Every exchange is two arrows: one from the speaker, one back from the listener. When the second arrow lands where the first one was waiting for it, the conversation is stable and can continue. When it lands somewhere else, the conversation breaks in the second sentence and most of the people in the room feel the break before they can name it. Most stalled meetings and most stalled phone calls are crossed in exactly this way.",
+        "direct": "A transaction is the smallest unit Berne's model handles: one person sends a message, the other sends one back. Each message comes from one ego state and is aimed at another ego state. When the response comes from the state that was addressed and is aimed back at the sender state, the transaction is complementary, and the conversation is stable. When the response comes from a different state, or is aimed somewhere else, the transaction is crossed, and the conversation breaks in the second exchange. Most communication failures that feel personal are not personal. They are crossed transactions, and they have a shape on a page: two arrows that did not line up. The work is to draw the two arrows in your head in real time and to read, before either person has the vocabulary for it, whether the arrows line up or whether they cross.",
+        "competitive": "In any conversation that has gone wrong on you, the cost was almost certainly paid in the second exchange. Somebody sent a message from one ego state aimed at another. The reply did not come from where it was supposed to come from, and the conversation derailed in the time it takes a sentence to land. Berne built a notation for that exact failure mode. Two arrows on a page: one from the speaker's state, one back from the listener's state. When the arrows line up, the exchange is complementary and the meeting can run for an hour. When they cross, the meeting changes shape inside two sentences and nobody in the room can quite say why. Reading the cross before anyone in the room has the vocabulary for it is the cheapest leverage you have in a stalled conversation, and the most reliable."
+      },
+      "keyTakeaways": [
+        { "point": "A transaction is the smallest unit Berne's model handles: one message out, one message back, with the question of which state each came from and where each was aimed." },
+        { "point": "When the response comes from the state the message was aimed at, and is aimed back at the sender's state, the transaction is complementary and the conversation is stable." },
+        { "point": "When the response comes from a different state, or is aimed somewhere else, the transaction is crossed, and the conversation breaks in the second exchange." }
+      ],
+      "oneMinuteRecap": {
+        "gentle": "Every conversation is two arrows. One out, one back. When the arrows line up, the conversation is stable. When they do not, it breaks in the second sentence. Berne called the line-up case complementary and the miss case crossed.",
+        "direct": "A transaction is two arrows: a stimulus from one state to another, and a response. Complementary means the arrows line up; crossed means they do not. Most stalled conversations are crossed, and the cross is structural, not personal.",
+        "competitive": "Two arrows. They line up or they cross. Line up is complementary and the meeting runs. Cross is what just happened in the meeting that went sideways on you. Reading the cross before anyone has the vocabulary for it is the move."
+      }
+    },
+    "medium": {
+      "chapterBreakdown": {
+        "gentle": "Once you have the three voices in your head, the next thing the model gives you is a way to draw what happens between voices. Berne's word for the smallest unit of social exchange is transaction. Two messages: one out, one back. The picture you can draw of any transaction is two arrows. The first arrow leaves the sender from one of their three states and points at one of the receiver's three states. The second arrow does the same thing in reverse. The whole question is whether the two arrows line up.\n\nWhen the arrows line up, the exchange is complementary. The response comes from the state the sender was addressing, and it aims back at the state the sender sent from. Coach Reyes meets Diego on the pool deck, towel around his shoulders, and offers him the soothing line that nurturing coaches have offered after bad races forever. Reyes is in Nurturing Parent, talking to Diego's Adapted Child. Diego thanks him, from his Adapted Child, talking back to Reyes's Nurturing Parent. Both arrows are parallel. The exchange is stable. It could be repeated after every bad race for four years and never break. The trap to avoid is the easy reading that complementary means good. Stable is not good. A long-running complementary loop on the wrong vector can run for years and serve neither person.\n\nWhen the arrows do not line up, the exchange is crossed. The response comes from a state the sender did not address, or it aims back at a state the sender was not in, or both. Olivia called Kenji asking, from her Child, for Kenji's Parent to soothe her. Kenji answered from her Adult: 'What specifically happened on Tuesday?' The arrows crossed inside two sentences. Both sisters are technically right, and the call ended with a small wound that will not be discussed next week. Crossed transactions are not anyone's moral failure. They are an alignment problem with the arrows.",
+        "direct": "Berne calls the smallest unit of social exchange a transaction. A transaction has two parts: a stimulus and a response. The stimulus comes from one of the speaker's three ego states and is aimed at one of the listener's three ego states. The response is the same kind of vector in reverse. He proposed that you can draw any transaction as two arrows on a single picture, and that whether the arrows line up or cross is the central diagnostic question.\n\nWhen the response comes from the state the stimulus addressed, and is aimed back at the state the stimulus came from, the transaction is complementary. The arrows are parallel. Adult to Adult, Adult back. Parent to Child, Child back. Child to Parent, Parent back. Complementary transactions are stable: they can continue indefinitely on the same vector because expectations are met on both sides. The error to avoid is the moral one. Stable is not good. A coach and a thirteen-year-old swimmer can run a Nurturing Parent to Adapted Child loop for four years after every bad race, and that loop is complementary, and it can also be exactly the conversation that prevents the swimmer from ever asking whether he wants to keep swimming.\n\nWhen the response comes from a different state than the one the stimulus addressed, or is aimed at a different state than the sender's, the transaction is crossed. The arrows do not line up. The conversation breaks in the second exchange, almost always before either party has the vocabulary for what happened. A late-night phone call between sisters illustrates the cleanest version: one sister calls Child-to-Parent for comfort, the other answers Adult-to-Adult with a clarifying question, and the call ends with a small unspoken wound. Both sisters are technically right. The exchange crossed because the two arrows did not align, and that is what the diagram is built to show.",
+        "competitive": "The reason most stalled conversations stay stalled is that the people inside them are still arguing about content when the actual problem is structural. Berne's contribution to that problem was a small notation. He proposed that any single exchange between two people can be drawn as two arrows. The first arrow leaves the speaker from one of three ego states and points at one of the listener's three. The second arrow does the same thing in reverse. The whole leverage of the model lives in whether the second arrow lands where the first one was waiting for it.\n\nWhen it does, the transaction is complementary, and the conversation is stable. The conversation can continue on that vector for an hour, a meeting, four years of swim practice. The trap to refuse is the soft reading: that complementary is the same thing as good. It is not. Two people can run a Nurturing-Parent-to-Adapted-Child loop after every bad race for years and never have the conversation that one of them actually needs. Stability is a fact about the bones of the exchange, not a value judgment about whether the exchange is doing useful work.\n\nWhen the arrows do not line up, the transaction is crossed, and the conversation breaks in the second exchange. The break is faster than vocabulary. People feel it before they can describe it. A clean example: one sister calls another asking, from her Child, to be soothed by the other's Parent. The other sister answers from her Adult, with a sharp clarifying question. The call ends with a residue both sisters will pretend they did not notice. Both are technically right. The exchange crossed because the second arrow did not land where the first one was aimed, and the diagram is the only place that fact has anywhere to go. Reading the cross before anyone else in the room can name it is the cheapest leverage available in a conversation that is already going wrong."
+      },
+      "keyTakeaways": [
+        {
+          "point": "A transaction is two arrows.",
+          "moreDetails": "Sender state to receiver state, and a return vector. The smallest unit the model handles. The whole question, every time, is whether the second arrow lands where the first one was waiting for it."
+        },
+        {
+          "point": "Complementary transactions are stable.",
+          "moreDetails": "The response comes from the state the stimulus addressed and aims back at the state the stimulus came from. Both people get the kind of reply they were unconsciously expecting, and the conversation can continue indefinitely on that vector."
+        },
+        {
+          "point": "Stable is not the same as good.",
+          "moreDetails": "A long-running complementary loop on the wrong vector can serve neither person. A coach and a thirteen-year-old swimmer can run a Nurturing-Parent-to-Adapted-Child exchange for four years and never have the conversation either of them actually needs."
+        },
+        {
+          "point": "Crossed transactions break in the second exchange.",
+          "moreDetails": "The response comes from a state the sender did not address, or aims at a state the sender was not in, or both. The break is faster than vocabulary. People feel it before they can name it."
+        },
+        {
+          "point": "The diagram is observational.",
+          "moreDetails": "It shows you where the bones of the exchange went out of alignment. It does not show you what to do about it. That decision belongs to the person, not the model."
+        }
+      ],
+      "activationPrompt": {
+        "gentle": "Bring to mind the most recent meeting or phone call that ended worse than it started. Try to picture the second exchange, who said what to whom, and see if you can locate the moment the arrows did not line up.",
+        "direct": "Pick the last conversation that derailed in two sentences. Locate the second exchange. Was the response from the state that was addressed?",
+        "competitive": "Take the last call you replayed afterward. Find the second exchange. Identify the state that sent the original arrow and the state that answered. They will not match."
+      },
+      "selfCheckPrompt": {
+        "gentle": "Can you describe a recent transaction in your own life where the second arrow came back from a different state than the first arrow was aimed at?",
+        "direct": "Name a recent crossed transaction you were in. From which state to which state was the original arrow, and which state did the second arrow come from?",
+        "competitive": "Find one crossed transaction you were on the receiving end of in the last week. Identify the four states involved (two in the original arrow, two in the second). If you cannot, you have not been drawing yet."
+      },
+      "oneMinuteRecap": {
+        "retrieve": "A transaction is two arrows. Complementary means the second arrow lands where the first one was aimed; crossed means it does not. Stable is not the same as good, and crossed is not the same as wrong.",
+        "connect": "The diagram is built on the previous chapter's observation skill. It adds a relational question (which state is addressing which) to the noticing question that chapter taught.",
+        "preview": "Two arrows describe what is visible in the room. What if there is also a hidden third arrow running underneath every transaction, and that one is the message that actually matters?"
+      }
+    },
+    "hard": {
+      "chapterBreakdown": {
+        "gentle": "The three voices alone are not enough. Once you can hear which state somebody is speaking from, the next question is the relational one: what just happened between their state and yours? Berne's answer was to give us a notation small enough to use in a real conversation. He called the unit a transaction. The notation is two arrows. The first arrow leaves the sender from one ego state and points at one ego state in the receiver. The second arrow does the same thing in reverse. The whole question, every time, is whether the two arrows line up.\n\nWhen they line up, the exchange is complementary. The response comes from the state the stimulus was addressed to, and it aims back at the state the stimulus came from. Adult to Adult, Adult back. Parent to Child, Child back. Child to Parent, Parent soothing. Complementary transactions are stable. They can run on the same vector indefinitely because both people are getting the kind of reply they were unconsciously expecting. The trap most readers fall into here is the easy moral reading: complementary is good, crossed is bad. The chapter cannot let you have that reading. A swim coach and a thirteen-year-old can run a Nurturing-Parent-to-Adapted-Child exchange after every bad race for four years and have a complementary, stable loop that never once has the conversation the boy actually needs about whether he wants to keep swimming. Stability is a fact about the bones of an exchange, not a verdict about whether the exchange is doing the work that needed doing.\n\nWhen the arrows do not line up, the transaction is crossed. The response comes from a different state, or aims at a different state, or both. The conversation breaks in the second sentence, faster than vocabulary. The clearest version is small and sad: a phone call between two sisters where one is asking, from her Child, for the other's Parent to soothe her, and the other answers from her Adult with a clarifying question. Both are technically right. Both are also in different conversations now, and the call ends with a residue that will not be mentioned next week. The diagram does not blame either sister. It just shows that the second arrow did not land where the first one was aimed.\n\nTwo things have to survive into the rest of the chapter, and they cut against each other on purpose. The first is that complementary and crossed are real, observable, and diagrammable in real time. The second is that drawing the diagram does not tell you what to do about the cross. The diagram is a diagnosis, not a prescription. The next section will pay the price for that distinction honestly, by showing that the same diagnosed cross can have three different right answers depending on what the person actually wants from the conversation.",
+        "direct": "Berne's structural contribution after the three states was a notation for what happens between states. He called the unit of exchange a transaction. A transaction has two parts: a stimulus, sent from one of the speaker's three ego states and aimed at one of the listener's three, and a response, which is the same kind of vector in reverse. The notation is two arrows on a single picture. The diagnostic question, every time, is whether the second arrow lands where the first one expected it.\n\nThe complementary case is the case where it does. The response comes from the state the stimulus addressed, and aims back at the state the stimulus came from. The arrows are parallel. Adult to Adult, Adult back. Parent to Child, Child back. Child to Parent, Parent soothing. Complementary transactions are stable in the technical sense that the exchange can be repeated indefinitely without breaking, because both people are receiving the reply their state was unconsciously demanding. The reader's first temptation is to translate stability as goodness. The chapter must refuse that translation. A nurturing coach and a thirteen-year-old swimmer can run a Nurturing-Parent-to-Adapted-Child exchange after every bad race for four years, and the exchange is fully complementary, fully stable, and exactly the conversation that prevents the swimmer from ever raising the question of whether he wants to keep racing. Stability describes the bones, not the value.\n\nThe crossed case is the case where the second arrow does not land. The response comes from a different state than the one addressed, or aims at a different state than the one that sent the stimulus, or both. The conversation breaks in the second exchange, almost always faster than the participants can vocabulary it. The cleanest example is structural: one sister calls another asking, from Child, for the other's Parent to soothe her. The second sister answers from Adult with a clarifying question. The arrows crossed in the second sentence. Both sisters are technically right. The call ends with a residue that will not be discussed next week. The diagram is silent on whose fault the cross was, because the diagram is not a tool for assigning fault.\n\nTwo structural facts must survive together into hard depth. The first is that complementary and crossed are observable and diagrammable in real time. The second is that the diagram is diagnostic only. Knowing that the second arrow crossed does not tell the reader which of three available responses is the right one: deliberately recrossing (sending an Adult arrow back into the other person's Parent and refusing to play the assigned Child role), accepting the cross and naming it ('there is a different conversation we need to have first'), or doing nothing in the moment and using the recognition to walk into the next instance of the same exchange differently. Each is sometimes the right answer, and the model itself does not pick.",
+        "competitive": "Pay attention to the seam in this chapter, because the seam is what separates a useful tool from a useless one. The first half teaches a notation: every transaction has a sender state, a receiver state, and a return vector, and the whole picture lives in whether the return vector lands where the original arrow was waiting for it. The second half teaches the limit of the notation, which is what most readers will need most.\n\nWhen the return vector lands where it was expected, the exchange is complementary, and the conversation is stable on that vector. Adult-to-Adult requests met by Adult-to-Adult answers run sprints. Parent-to-Child instructions met by Child compliance run institutions. Child-to-Parent appeals met by Parent comfort run families. Stability, in this sense, is a structural fact about the bones of the exchange. It is not a verdict on what the exchange is doing for either party. A swim coach and a thirteen-year-old can run a four-year Nurturing-Parent-to-Adapted-Child loop after every bad race in which both arrows always line up, and that loop works perfectly as a transaction and prevents the conversation the boy actually needs about whether he still wants to be in the pool.\n\nWhen the return vector misses, the exchange is crossed, and the conversation breaks in the time it takes a sentence to land. The cleanest version is small and sad: one sister calls another asking, from her Child, for the other's Parent to soothe her, and the other sister answers from her Adult with a clarifying question. Both are technically right, and the call ends with a residue neither of them will mention next week. The diagram is silent on whose fault the cross was, because fault is not what the diagram is built to compute.\n\nThe leverage in the chapter, and the reason it has to come second in the book and not first, is the limit. Drawing the cross gives the reader a diagnosis. It does not give them a prescription. The diagnosed cross has at least three available answers, and the diagram does not pick. The first is to recross deliberately, sending an Adult arrow back into the other person's Parent and refusing to play the assigned Child role. The second is to accept the cross and name it openly: 'there is a different conversation we need to have first.' The third is to do nothing in the moment and use the recognition to walk into the next instance differently. Each is the right answer in some setting. A reader who wants the diagram to also pick for them is asking the model to do work the model is not built to do, and will be disappointed in exactly the way last chapter's reader was disappointed when noticing a state did not let them choose it."
+      },
+      "keyTakeaways": [
+        {
+          "point": "A transaction is a vector, and the smallest unit the model operates on.",
+          "moreDetails": "Sender state, receiver state, return vector. The diagnostic question is always whether the return vector lands where the original arrow expected it."
+        },
+        {
+          "point": "Complementary means parallel arrows.",
+          "moreDetails": "Adult to Adult returned by Adult, Parent to Child returned by Child, Child to Parent returned by Parent. The expectations on both sides match, and the exchange is stable on that vector."
+        },
+        {
+          "point": "Stable is not the same as good.",
+          "moreDetails": "Stability is a structural fact about the bones of an exchange. It is not a verdict on whether the exchange is doing the work that needed doing. A four-year complementary loop can be perfectly stable and exactly the conversation that prevents the conversation that mattered."
+        },
+        {
+          "point": "Crossed means the second arrow did not land where the first one was aimed.",
+          "moreDetails": "The response comes from an unexpected state, or aims at an unexpected state. The break is faster than vocabulary. Both parties are usually technically right, and neither of them is to blame."
+        },
+        {
+          "point": "The diagram is diagnosis, not prescription.",
+          "moreDetails": "Drawing the cross tells the reader where the bones went out of alignment. It does not tell them what to do about it. That decision is a separate one, made by the person, not the model."
+        },
+        {
+          "point": "Three moves are available on a cross. The diagram does not pick.",
+          "moreDetails": "Recross deliberately, sending an Adult arrow back into the other person's Parent and refusing the assigned Child role. Accept the cross and name it openly. Or do nothing in the moment and use the recognition to walk into the next instance differently. Each is right in a different setting."
+        }
+      ],
+      "activationPrompt": {
+        "gentle": "Bring to mind a recurring conversation in your life that always seems to end in the same place. Think of it as a series of arrow pairs that keep crossing in the same way, and see if you can find the recurring cross.",
+        "direct": "Identify a recurring conversation in your life that ends the same way every time. The pattern is a recurring cross. Locate the cross point: which state in you keeps sending, and which state in them keeps answering.",
+        "competitive": "Pick the conversation in your life that you have already had four times this year and will have again. The pattern is a recurring crossed transaction. Find the recurring cross point. The cross point is the conversation you are not having."
+      },
+      "selfCheckPrompts": [
+        {
+          "gentle": "When did you most recently catch yourself deliberately recrossing a transaction, and what made you choose to recross instead of accepting it or waiting?",
+          "direct": "Name the last time you recrossed a transaction on purpose. What told you that recrossing was the right move rather than naming or waiting?",
+          "competitive": "Find the most recent deliberate recross you made. Name the signal that told you it was the right move and not naming or waiting. If you cannot find one, you have been defaulting to one of the three moves without choosing."
+        },
+        {
+          "gentle": "Where in your life do you most often run a stable complementary loop that is not actually serving you?",
+          "direct": "Identify a stable complementary loop in your life that has been running for years and is crowding out a conversation you have been avoiding.",
+          "competitive": "Name the longest-running stable complementary loop in your life. Now name the conversation it has been preventing. The loop is doing work; the question is whether the work is the work you want done."
+        }
+      ],
+      "predictionPrompt": {
+        "gentle": "If, for the next two weeks, you tried to draw the two arrows of every important conversation in your head before responding, what would you predict you would notice that you do not currently notice?",
+        "direct": "Predict what would change if you spent two weeks deliberately drawing the two arrows of each important exchange in your head before responding. What would you start to see?",
+        "competitive": "Run the experiment in your head: two weeks of consciously drawing the two arrows in your head before answering. What conversations would change? What would stay the same? What pattern that you have been calling personal would turn out to be structural?"
+      },
+      "oneMinuteRecap": {
+        "retrieve": "Transactions are two-arrow vectors. Complementary means arrows line up and the conversation is stable, which is not the same as good. Crossed means arrows do not line up and the conversation breaks faster than vocabulary. The diagram is observational and structural; it does not assign blame.",
+        "connect": "The diagram is diagnostic only. Three moves are available on a cross (recross deliberately, accept and name, or wait and recognize later) and the model does not pick.",
+        "preview": "Two arrows describe what is visible. The next question is what happens when there is also a hidden third arrow underneath, and that one is the message that actually matters."
+      }
+    }
+  },
+  "examples": [
+    {
+      "id": "ex01",
+      "title": "Tomas's Tuesday stand-up",
+      "format": "short_dialogue",
+      "category": "work",
+      "endingType": "observation",
+      "scenario": {
+        "gentle": "It is Tuesday morning stand-up. Five people are on the call. Tomas types a status into chat and then unmutes. 'Aiya, is the API change going to land Friday or do I need to push the release notes?' Aiya unmutes and waits a beat. 'Tomas, we have been over this. The dependency on the auth service hasn't changed since last week.' Tomas's face does something he did not authorize. The other four people on the call look at the screen and wait.",
+        "direct": "TOMAS (Adult to Adult): Aiya, is the API change going to land Friday, or do I need to push the release notes? AIYA (Parent to Child, with a quarter-inch of disappointment): Tomas, we have been over this. The dependency on the auth service hasn't changed since last week. The arrows crossed in the second exchange. The next ten minutes belong to a different meeting.",
+        "competitive": "Tomas asked a clean question on a Tuesday stand-up. Aiya answered in a tone that took the question as evidence of his incompetence. Two sentences in, the meeting was no longer about the API change, and the four other people on the call were watching to see what Tomas would do with his face. The rest of stand-up cost his team forty minutes."
+      },
+      "whatToDo": {
+        "gentle": "Notice the cross before you respond. Take one breath. Then ask one clean Adult question that returns to the original content: 'Just to be sure I have it, is the auth dependency still where it was last week?' The Adult question is not a fix for Aiya's Parent. It is a way to keep your own arrow where you wanted it.",
+        "direct": "Recross deliberately. Send an Adult question back into Aiya's Parent and refuse the Child role she just assigned you. 'The question I am asking is whether the auth dependency moved this week.' The recross does not soothe Aiya. It refuses the role.",
+        "competitive": "Recross. Send a clean Adult arrow back into her Parent and refuse the Child role. The line is short: 'The question is whether the dependency moved this week.' The other four people on the call will register the recross before Aiya does, and the meeting will move."
+      },
+      "whyItMatters": {
+        "gentle": "Crossed transactions in stand-ups cost more than the meeting they happen in. The team learns to read the room as Tomas's-meeting-just-went-sideways and starts bracing for it. Catching the cross in real time and recrossing prevents the team from learning the wrong pattern.",
+        "direct": "Group meetings calibrate to the second arrow. If the second arrow stands, the team learns that this is the room Tomas operates in. A clean recross teaches the room the opposite.",
+        "competitive": "A meeting where the project manager visibly takes a Parent hit and answers from Child has changed shape for the team that watched it. The pattern is not local. It will show up in the next four meetings unless the recross teaches the room to expect a different second arrow."
+      }
+    },
+    {
+      "id": "ex02",
+      "title": "Mei, Devi, and the triage policy",
+      "format": "third_person_scene",
+      "category": "work",
+      "endingType": "unresolved_tension",
+      "scenario": {
+        "gentle": "In the customer support stand-up at a small SaaS company, the lead engineer Mei asks Devi, the most junior on the team, a routine question: 'Did the new ticket triage policy slow you down yesterday?' Devi hears it as criticism, not as a question, and answers from somewhere small. 'I did my best.' Mei did not mean it as criticism. The room knows Mei did not mean it as criticism. The room also watches Devi go quiet for the rest of the stand-up.",
+        "direct": "Stand-up. Mei (lead engineer, Adult to Adult): Did the new triage policy slow you down yesterday? Devi (junior, Adapted Child): I did my best. Mei's question was an information request. Devi's answer was an apology to a Parent that Mei was not. The room registers the cross. Nobody names it. Devi does not speak again until end of stand-up.",
+        "competitive": "Mei asked Devi a clean Adult question about the new triage policy. Devi heard a Parent. Devi answered from her Adapted Child with an apology Mei did not need and could not redirect, and the rest of the stand-up was conducted around a junior engineer who had stopped being present in it. Mei's three sentences trying to fix it later did not land, because the room had already filed the cross and moved on without her."
+      },
+      "whatToDo": {
+        "gentle": "Mei's best move is not to apologize for asking. It is to address Devi's actual answer, gently, after stand-up. 'When you said you did your best, what did you hear me ask?' That question, asked alone, gives Devi a chance to bring her Adult back into the conversation.",
+        "direct": "After stand-up, take Devi aside. Ask: 'What did you hear me asking in there?' The question pulls Devi out of Adapted Child by treating her as the person who can answer it. Apologizing for the original question keeps the Parent role in the room.",
+        "competitive": "Pull Devi aside after stand-up. One question: 'What did you hear me asking?' The question is the recross, not the apology. The apology keeps you in the Parent seat. The question hands the seat back."
+      },
+      "whyItMatters": {
+        "gentle": "Junior engineers calibrate quickly to the question of whether their lead is a Parent or an Adult. The first crossed transaction usually does not break the relationship. The third one does.",
+        "direct": "Adapted Child responses to Adult questions are how juniors learn to stop volunteering information. The cost is not the meeting; it is the next month of meetings, when the junior is quieter and slower.",
+        "competitive": "A team where juniors answer Adult questions from Adapted Child is a team that has stopped reporting information. Mei's job in the next forty-eight hours is not to apologize. It is to make the next exchange a clean Adult-to-Adult one."
+      }
+    },
+    {
+      "id": "ex03",
+      "title": "Coach Reyes on the pool deck",
+      "format": "coaching_script",
+      "category": "school",
+      "endingType": "reframe",
+      "scenario": {
+        "gentle": "Coach Reyes meets Diego on the pool deck after the boy's slowest 200 free of the season. The towel is around Diego's shoulders. The chlorine is still in the air. Reyes says, in a tone that has been carrying boys through bad races for fifteen years, 'It's okay, Diego. You swam your best.' Diego says, 'Thanks, Coach.' The exchange is over in five seconds. Both of them have done it before. Both of them will do it again next week.",
+        "direct": "REYES (Nurturing Parent to Adapted Child): It's okay, Diego. You swam your best. DIEGO (Adapted Child to Nurturing Parent): Thanks, Coach. Two parallel arrows. Complementary. Stable. Repeatable. Exactly the conversation Diego does not need.",
+        "competitive": "Reyes and Diego have run this exchange after every bad race for two seasons. Reyes from Nurturing Parent, Diego from Adapted Child, both arrows lined up like a chord chart. The exchange is stable. The exchange is also the reason Diego has not asked, in two years, whether he wants to keep swimming. The conversation that would matter has been crowded out of the pool deck by the conversation that always works."
+      },
+      "whatToDo": {
+        "gentle": "Reyes can break the loop by sending the next message from Adult instead of Nurturing Parent. 'Diego, can you tell me what you noticed in the second fifty?' That question treats Diego as someone who has data, which pulls his Adult forward and gives him a different state to answer from.",
+        "direct": "Replace the Nurturing Parent line with an Adult question. 'What did you notice in the second fifty?' The question is the same recross move from earlier in the chapter, applied to a complementary loop instead of a crossed one. Stability gets broken on purpose.",
+        "competitive": "Stop running the loop. Send Adult next time: 'Tell me what you saw in the second fifty.' The question deliberately crosses the complementary vector you have both been running for two years. The cross is the point. It is the only way the actual conversation gets a chance to start."
+      },
+      "whyItMatters": {
+        "gentle": "Stable conversations are not the same as useful ones. A complementary loop that prevents the conversation that matters is a structural problem, not a relationship problem, and it is fixed by changing the state the loop runs on.",
+        "direct": "Long-running complementary loops on the wrong vector are how relationships avoid the conversations that would matter most. Breaking the loop intentionally is the move that lets the avoided conversation become available.",
+        "competitive": "A coach who runs the same complementary line after every bad race for two years has trained the swimmer to never bring the actual question into the pool deck. The cost is not visible until the swimmer quits, and by then the loop is the only conversation either of them knows how to have."
+      }
+    },
+    {
+      "id": "ex04",
+      "title": "Yusuf in Mara's office",
+      "format": "first_person",
+      "category": "school",
+      "endingType": "reflection",
+      "scenario": {
+        "gentle": "I was sitting in Mara's office for our biweekly thesis meeting. She was looking at the chapter I had submitted, with the highlighter still in her hand from her own margin notes. She asked me, 'Yusuf, what is this paragraph trying to do?' It was a clean Adult question. Before I could form an Adult answer, I heard myself say, 'I'm sorry, I know it's not working.' The 'I'm sorry' was not from where the question had been aimed. I had crossed my own conversation in the middle of it.",
+        "direct": "Mara's office. Open thesis chapter on her desk, highlighter in her hand. Mara (Adult to Adult): Yusuf, what is this paragraph trying to do? Me (Adapted Child to a Nurturing Parent that I had just constructed inside my own head): I'm sorry, I know it's not working. I crossed my own transaction. Mara had not been in Parent. I built one for her so I could answer from Child.",
+        "competitive": "Two minutes into the meeting Mara asked me what the paragraph was trying to do. It was the cleanest Adult question she had asked me in a year. I answered from a place that had nothing to do with what she had asked, and I did it in a tone that constructed her as a parent who was disappointed in me. She had not been disappointed. I had built her disappointment into the room and then answered to it. By the time I noticed, I had spent the rest of the meeting apologizing for things she had not asked me to apologize for."
+      },
+      "whatToDo": {
+        "gentle": "When you catch yourself crossing your own transaction, the first move is the same one from chapter one: notice. Do not apologize for the apology. Take a breath, then return to the original question. 'Let me try again. What the paragraph is trying to do is...' The restate is the recross.",
+        "direct": "Restate the question and answer the actual one. 'Let me try that again. The paragraph is trying to argue X.' The restate refuses the Parent you constructed and pulls you back into Adult. Apologizing for the apology compounds the cross.",
+        "competitive": "Restate. 'Let me try again. The paragraph is trying to argue X.' Anything else extends the cross you started. The advisor was not in Parent until you put her there, and the only way out of the room you built is to walk back to the original question."
+      },
+      "whyItMatters": {
+        "gentle": "Crossing your own transaction is a real category, and it is more common than crossing somebody else's. Catching it is harder because the Parent you are answering to is one you built. The fix is the same: return to the original question.",
+        "direct": "Self-crossed transactions are the hardest to spot because the Parent role is being played by a hallucinated version of the listener. The fix is mechanical: restate the original question and answer it.",
+        "competitive": "Apologizing for things nobody asked you to apologize for is a state move, not a kindness. The move builds a Parent that was not in the room and then answers to it. The cost is two years of meetings where the advisor never got the answer she actually asked for, and where you never got the meeting you actually came to have."
+      }
+    },
+    {
+      "id": "ex05",
+      "title": "Olivia's Tuesday phone call",
+      "format": "inner_monologue",
+      "category": "personal",
+      "endingType": "forward_question",
+      "scenario": {
+        "gentle": "It is 9:47 on a Tuesday night. The phone is propped against the salt shaker on the kitchen counter. Olivia called Kenji because the week had been bad and she wanted to be told that everything was going to be okay. Kenji has just asked, 'What specifically happened on Tuesday?' Olivia hears the question and feels her mouth start to answer it, and feels something else in her chest get smaller. The question is reasonable. Kenji is reasonable. Olivia is going to be off the phone in about four minutes, and tomorrow she is going to wonder why she didn't call somebody else.",
+        "direct": "9:47 PM. Phone on the counter. Inner monologue: Olivia just sent a Child-to-Parent appeal for comfort. Kenji answered from Adult. Olivia recognizes the cross in real time. The question 'What specifically happened on Tuesday?' is a perfectly fine Adult question; it is not the conversation Olivia called for. She has about thirty seconds to decide whether to answer Kenji's question, name the cross, or hang up sooner than planned.",
+        "competitive": "9:47 PM. Olivia called for one reason and her sister has answered as if the call were about a different reason. The Adult question is technically correct. The Adult question is also the conversation that ends the call early and leaves Olivia to spend Wednesday wondering why she does not feel called back. She has thirty seconds to choose whether the next sentence she sends is the answer to the question, or the conversation she actually came for."
+      },
+      "whatToDo": {
+        "gentle": "Olivia can name the cross, gently. 'I'm not really looking for a postmortem on Tuesday. I'm just having a hard week and I wanted to hear your voice.' That sentence does what the diagram cannot: it tells Kenji which conversation is in the room.",
+        "direct": "Name the cross out loud. 'I am not looking for a postmortem. I am having a hard week and wanted to hear your voice.' Naming the cross tells Kenji which arrow Olivia actually sent and gives Kenji a chance to send a different one back.",
+        "competitive": "Name it. 'I am not looking for a postmortem. I am having a bad week and I wanted to hear your voice.' Anything less specific lets Kenji answer the wrong question for another five minutes and lets Olivia walk into Wednesday wondering whose fault the call was."
+      },
+      "whyItMatters": {
+        "gentle": "Naming the cross is the second of the three moves the chapter offers. It does not always work. It works often enough that it is worth knowing as the first available answer when recrossing feels like asking for a fight.",
+        "direct": "Naming the cross is a structural intervention. It tells the other person which arrow you actually sent and asks them to send a different one back. It works when the relationship can hold the request and not when it cannot.",
+        "competitive": "The unspoken cost of an unnamed cross between two close people is paid in the next four phone calls neither of them quite makes. Naming it converts the residue into a question both people can answer."
+      }
+    },
+    {
+      "id": "ex06",
+      "title": "Bea walks back the Saturday-trip conversation",
+      "format": "narrative_flashback",
+      "category": "personal",
+      "endingType": "decision_point",
+      "scenario": {
+        "gentle": "Bea walked back through the conversation about the Saturday trip later that night, after her husband had gone to bed. It had started, she remembered, as a clean Adult-to-Adult exchange about whether they wanted to drive up to her sister's on Saturday. Somewhere in the middle her husband had said, 'You always do this.' She remembered the moment her own voice had changed, and the moment she had stopped wanting to talk about the trip and started wanting to win the conversation about whether she 'always' did anything. Tracing the seam, she could see exactly where the second arrow had stopped lining up with the first.",
+        "direct": "Bea's narrative flashback: the Saturday-trip conversation, reconstructed three hours later. Opening exchange: Adult to Adult about driving to her sister's. Second exchange: husband sends 'You always do this' from his Parent, aimed at her Child. Bea answers from her own Parent, escalating. The original arrow was about a trip; the second arrow was about a long-running grievance. By the third exchange both of them were in different conversations.",
+        "competitive": "Bea spent ninety minutes after her husband went to bed walking the conversation backwards looking for the seam. The opening had been clean: an Adult question about Saturday. The second move was 'you always do this,' which had been a Parent arrow into her Child. She remembered her own state changing in the next sentence and remembered that the next sentence had been the moment she stopped trying to plan a Saturday and started trying to win a fight she had not signed up for. The decision in front of her now was whether to bring the seam to her husband in the morning, or to let it go and run the same conversation again next month."
+      },
+      "whatToDo": {
+        "gentle": "When you find the seam of a routine conversation that fell apart, the next move is rarely to relitigate the whole conversation. It is to bring the seam itself to the other person, briefly, and ask whether they want to start at the seam tomorrow. 'Last night, around the part where you said I always do this, I think the conversation changed shape. Can we go back to there?'",
+        "direct": "Bring the seam, not the fight. 'I noticed the conversation last night changed shape around the moment you said I always do this. Can we restart from there?' The sentence is short on purpose. Long versions reopen the full disagreement; short versions name the structural moment and ask for a recross.",
+        "competitive": "Walk in with the seam, not the grievance. One sentence: 'Last night, around the part where you said I always do this, the conversation changed shape. Can we restart there?' Anything longer is the next instance of the same fight. The seam-naming is the only move that is not the fight."
+      },
+      "whyItMatters": {
+        "gentle": "Routine conversations between long-term partners that fall apart are usually crossed in a specific sentence. Couples who can name the sentence have a different fight available the next time. Couples who cannot are running the same fight in slightly different rooms.",
+        "direct": "Long-term relationships accumulate routine crossed transactions that recur because the cross point is never named. Naming it converts a recurring fight into a structural question, and structural questions can sometimes actually be answered.",
+        "competitive": "Couples who can locate the seam after the fact have a different fight available the next time. Couples who cannot are running the same fight in slightly different rooms for years, paying for it on Saturdays they keep not taking."
+      }
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "In Berne's notation, when does a transaction count as complementary?",
+        "choices": [
+          "When both people in the conversation are calm",
+          "When the response addresses the same topic as the stimulus",
+          "When the response comes from the state the stimulus addressed and is aimed back at the state the stimulus came from"
+        ],
+        "correctIndex": 2,
+        "explanation": {
+          "gentle": "Complementary is a structural fact about which states the two arrows connect. It is not about calmness, and it is not about staying on topic. Two people can be perfectly calm and still be in a crossed transaction; two people can be on the same topic and still be crossed.",
+          "direct": "Complementary is defined by the alignment of the two arrows: the response coming from the addressed state and aiming back at the sender state. Calmness is a tone, not an alignment. Topic continuity is content, not structure.",
+          "competitive": "Alignment of the arrows is the diagnosis. Tone is irrelevant; the chapter says crossed transactions can be perfectly polite. Topic is irrelevant; people can stay on topic and still cross."
+        },
+        "bloomsLevel": "understand",
+        "depthLevel": "easy"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "In the Tuesday stand-up where Tomas asks Aiya whether the API change will land Friday, what is the marker that the second exchange has crossed the first?",
+        "choices": [
+          "Aiya answers from Parent in a tone that addresses Tomas as a Child who has not been listening, and Tomas's face changes before he can decide what to do with it",
+          "Aiya answers slowly",
+          "Tomas asks the question twice"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "The marker is structural and visible: the response came from a different state than the question, and aimed back at a different state too. Tomas's face changing is the body's signal that the second arrow did not land where the first one was waiting. Slow answers and repeated questions are not the marker; they are downstream consequences.",
+          "direct": "State mismatch in the second arrow is the marker. The body's reaction is the early signal because state changes register faster than vocabulary. Slowness and repetition are not the marker; they are noise that sometimes accompanies a cross.",
+          "competitive": "Mismatch of states in the second arrow is what you are looking for. Tomas's involuntary face change is the body acknowledging the cross before vocabulary can. Slow answers and repetition are not diagnostic of anything in particular."
+        },
+        "bloomsLevel": "understand",
+        "depthLevel": "easy"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A team lead says, 'Can someone post the deploy log before the retro?' A junior engineer replies, 'Sorry, I'll do it.' Which kind of transaction is this most likely to be?",
+        "choices": [
+          "Complementary, Adult to Adult",
+          "Crossed, with the lead's Adult addressed and the engineer answering from Adapted Child",
+          "Ulterior"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "The 'sorry' is the marker. Nothing in the lead's question called for an apology; the question was an Adult-to-Adult request for an action. The 'sorry' inserts an Adapted Child where the lead had aimed at Adult, which is exactly the structure of a cross. Ulterior is a different chapter.",
+          "direct": "An Adult request answered by an apology is a small but textbook cross: the response comes from Adapted Child instead of Adult. Calling it complementary misreads the apology as content. Calling it ulterior crosses into territory the chapter has not covered yet.",
+          "competitive": "Apology to an Adult action request is the cross. Reading it as complementary misses what the 'sorry' is doing structurally. Reading it as ulterior is jumping a chapter ahead, into material that has not been introduced."
+        },
+        "bloomsLevel": "apply",
+        "depthLevel": "easy"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "Coach Reyes and Diego have run the same Nurturing-Parent-to-Adapted-Child exchange after every bad race for two seasons. According to the chapter, what is the most accurate description of this exchange?",
+        "choices": [
+          "Crossed, because Reyes is using the wrong tone",
+          "An ulterior transaction, because Reyes wants something underneath",
+          "Complementary and stable, and exactly the conversation that has prevented the conversation Diego actually needs"
+        ],
+        "correctIndex": 2,
+        "explanation": {
+          "gentle": "The exchange is fully complementary. Both arrows line up. Stable does not mean good, and the chapter is careful about that distinction. The trap is the moral reading that complementary exchanges are valuable just because they last; sometimes they last because they are crowding out the conversation that would matter.",
+          "direct": "Complementary, stable, and crowding out a needed conversation is the chapter's point about Reyes and Diego. Calling it crossed misreads the alignment. Calling it ulterior is another chapter's vocabulary.",
+          "competitive": "Stable on the wrong vector is the diagnosis. Calling it crossed gets the alignment wrong. Calling it ulterior borrows vocabulary the chapter has explicitly left for later."
+        },
+        "bloomsLevel": "analyze",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "Yusuf is in his thesis advisor Mara's office. She asks an Adult question about a paragraph. He hears himself answer, 'I'm sorry, I know it's not working.' What has just happened, in the chapter's terms?",
+        "choices": [
+          "Yusuf has crossed his own transaction by constructing a Parent in Mara that she had not been in, and answering it from Adapted Child",
+          "Mara has crossed the transaction by being secretly disappointed",
+          "The transaction is complementary because both people are trying to fix the chapter"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "This is a self-crossed transaction. Yusuf built a Parent role for Mara that she was not actually in, and then answered to it. The chapter calls these the hardest crosses to spot because the Parent you are answering is one you constructed. Treating it as Mara's cross misses where the construction happened. Treating it as complementary substitutes intention for structure.",
+          "direct": "Self-crossed transactions are real and the chapter names them. Yusuf invented a Parent and answered it. Saying Mara crossed it locates the cross in the wrong person. Calling it complementary mistakes intention for state alignment.",
+          "competitive": "Yusuf invented the Parent, then answered it. The cross is on his side of the table, not Mara's. Locating it on Mara is the misread the chapter is built to refuse. Calling it complementary mistakes shared good intention for arrow alignment."
+        },
+        "bloomsLevel": "analyze",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "Olivia calls her sister Kenji from her Child asking for comfort, and Kenji answers from Adult with 'What specifically happened on Tuesday?' The chapter says both sisters are technically right. What does the chapter mean by that?",
+        "choices": [
+          "Both answers are equally helpful",
+          "Each sister sent a coherent message from a coherent state, and the cross is structural rather than anyone's failure of intent or character",
+          "The transaction is actually complementary because both sisters care"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "The chapter is being careful with the word 'right.' It is not saying both answers were equally useful, and it is not saying nobody is to blame because both people care. It is saying the cross is structural: each sister sent a coherent arrow from a coherent state, and the arrows did not line up, and that is the whole story.",
+          "direct": "Structural mismatch, not moral failure, is what 'technically right' is doing. Saying the answers were equally helpful collapses the chapter's distinction between alignment and value. Saying it was complementary because they care confuses intent with structure.",
+          "competitive": "'Technically right' marks the chapter's refusal to assign blame. Each sister sent a coherent arrow. The arrows did not align. That is the diagnosis, and it is silent on whether either of them was being a good sister."
+        },
+        "bloomsLevel": "analyze",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A customer phones a help line and asks, 'How do I cancel my subscription?' The agent replies, 'I'm sorry to hear you're considering leaving. Can you tell me more about what's not working for you?' Which kind of transaction is this most likely to be?",
+        "choices": [
+          "Complementary, Adult to Adult",
+          "Complementary, Parent to Child",
+          "Crossed: an Adult information request answered by a Nurturing Parent that aims at the customer's Child"
+        ],
+        "correctIndex": 2,
+        "explanation": {
+          "gentle": "The customer asked an Adult question with one answer in it: a procedure for cancellation. The agent's response sounds caring but does the structural work of treating the customer as someone whose feelings should be processed before their request is honored. That is a Nurturing Parent move aimed at Child, and it crosses the original arrow.",
+          "direct": "Information request answered by a feelings inquiry is the cross. The Nurturing-Parent face is what makes it look like service; the structure is still misaligned. Calling either of the complementary options correct misses the state mismatch.",
+          "competitive": "Caring tone, crossed arrow. The agent's first move treats the customer as someone whose feelings need handling rather than as someone whose Adult question needs answering. The complementary readings both miss the mismatch."
+        },
+        "bloomsLevel": "apply",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "After the stand-up where Aiya's Parent crossed Tomas's Adult question, Tomas wants to walk into next Tuesday's stand-up differently. Of the three moves the chapter offers on a cross, recross deliberately, accept and name it, or wait and recognize later, which one is the chapter most likely recommending here?",
+        "choices": [
+          "Wait and recognize later, since the moment has passed",
+          "Recross deliberately at the start of next stand-up, by sending a clean Adult question into the room and refusing the Child role",
+          "Accept and name the cross with Aiya privately before stand-up begins"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "All three moves are sometimes right, and the chapter is careful about that. For Tomas, with stand-up as a recurring structural setting, the most useful move is the deliberate recross at the start of next stand-up: a clean Adult question that gives the room a different second arrow to predict. Waiting in this case keeps the team's pattern in place. Naming privately can work but is slower.",
+          "direct": "Deliberate recross is the move with the most leverage in a recurring meeting setting. Waiting cedes the pattern; private naming is slower and less visible to the room. The chapter explicitly says all three are right in some setting; this setting wants the recross.",
+          "competitive": "Recross is the move that resets the room. Waiting lets the team learn the wrong pattern. Private naming fixes the bilateral relationship but does not reset the meeting. Stand-up is a recurring structural setting, and the recross has the highest leverage there."
+        },
+        "bloomsLevel": "evaluate",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "If drawing a crossed transaction tells the reader where the bones of the exchange went out of alignment but does not tell the reader what to do about it, why does the chapter argue the diagram is still worth drawing?",
+        "choices": [
+          "Because the diagnosis opens three honest options the reader can choose between, and choosing from three options is a different problem than reacting from no options at all",
+          "Because the diagram makes the other person change",
+          "Because complementary transactions are always preferable to crossed ones"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "The chapter's claim is the smaller, honest one. The diagram does not fix the conversation. It opens a choice between recrossing, naming, and waiting, and choosing among real options is different from reacting blindly. The diagram does not change the other person, and the chapter is explicit that complementary is not always preferable.",
+          "direct": "Three honest options, made available by the diagnosis, is what the chapter argues. The diagram is not a tool for changing other people, and complementary versus crossed is structure not value. Both alternative answers misread the chapter's central limit.",
+          "competitive": "Three options instead of zero is the trade. The diagram does not change the other person and the chapter is explicit that complementary is not always preferable. Both wrong answers ask the model to do work it has refused to do."
+        },
+        "bloomsLevel": "evaluate",
+        "depthLevel": "hard"
+      },
+      {
+        "questionId": "q10",
+        "prompt": "Building on the observational skill from chapter one, what is the new question a reader can ask using the chapter two diagram that they could not ask using chapter one alone?",
+        "choices": [
+          "Which of these three states is the better state to be in?",
+          "Which of these three states is currently in the room?",
+          "Which state in me is talking to which state in the other person, and is the second arrow landing where the first one was aimed?"
+        ],
+        "correctIndex": 2,
+        "explanation": {
+          "gentle": "The previous chapter taught the reader to hear which voice was in the room. This one adds the relational question: which state in me is addressing which state in them, and is the answer landing where I aimed it. The new question is structural, not evaluative; the first wrong answer is evaluative, and the second is just the previous chapter's question again.",
+          "direct": "Relational alignment is the new question this chapter adds. Asking which state is better is a value question the model does not answer; asking which state is in the room is the previous chapter's question, not this chapter's extension.",
+          "competitive": "Pair-and-vector is the upgrade on simple observation. Asking which state is better is asking the wrong kind of question entirely. Asking which state is in the room repeats the previous chapter without adding anything."
+        },
+        "bloomsLevel": "evaluate",
+        "depthLevel": "hard"
+      }
+    ]
+  },
+  "implementationPlan": {
+    "title": "Drawing the two arrows in real time",
+    "steps": [
+      "For one week, in three conversations a day, try to draw the two arrows of the most recent exchange in your head before you respond. Identify the four states involved.",
+      "When you spot a cross, do not reflexively respond. Pause. Pick one of the three moves on purpose: recross, name, or wait. Note which one you picked and why.",
+      "At the end of the day, identify one stable complementary loop you ran today. Ask whether the loop is doing the work you want done, or whether it is crowding out a conversation that mattered.",
+      "At the end of the week, look for the recurring crosses in your notes. Recurring crosses point to relationships where the structural conversation is overdue."
+    ]
+  },
+  "reviewCards": [
+    {
+      "id": "rc01",
+      "difficulty": "easy",
+      "front": "What is a transaction in Berne's notation?",
+      "back": "The smallest unit of social exchange. One message out, one back. Each message has a sender state and a receiver state, and the two together form a vector you can draw."
+    },
+    {
+      "id": "rc02",
+      "difficulty": "easy",
+      "front": "When is a transaction complementary?",
+      "back": "When the response comes from the state the stimulus addressed and is aimed back at the state the stimulus came from. Both arrows line up. The conversation is stable on that vector."
+    },
+    {
+      "id": "rc03",
+      "difficulty": "medium",
+      "front": "Why is 'stable' not the same as 'good' for a complementary transaction?",
+      "back": "Stability is a structural fact about whether the bones of the exchange line up. It is not a verdict on whether the exchange is doing useful work. A coach and a thirteen-year-old swimmer can run a stable Nurturing-Parent-to-Adapted-Child loop after every bad race for four years and never have the conversation either of them actually needs."
+    },
+    {
+      "id": "rc04",
+      "difficulty": "medium",
+      "front": "What does it mean for a transaction to be crossed?",
+      "back": "The response comes from a state the sender did not address, or aims at a state the sender was not in, or both. The arrows do not line up. The conversation breaks in the second exchange, almost always faster than vocabulary can name it."
+    },
+    {
+      "id": "rc05",
+      "difficulty": "hard",
+      "front": "If the diagram of a crossed transaction is diagnostic but not prescriptive, what are the three moves available, and how do you choose between them?",
+      "back": "Recross deliberately (send a clean arrow back from the state you wanted to be in, and refuse the role you have been assigned). Accept the cross and name it openly ('there is a different conversation we need to have first'). Or do nothing in the moment and use the recognition to walk into the next instance differently. Each is right in a different setting. Recurring structural meetings usually want the recross. Private close relationships often want the naming. One-off encounters often want the wait."
+    }
+  ],
+  "keyTakeawayCard": {
+    "gentle": "Every conversation is two arrows. Sometimes they line up and sometimes they cross. Drawing the picture is the move; the picture itself is silent on what to do next, and that silence is the chapter's honesty.",
+    "direct": "Transactions are vectors. Complementary stays on the rails; crossed breaks in the second exchange. The diagram is diagnostic, not prescriptive, and offers three honest moves on a cross.",
+    "competitive": "Two arrows decide the fate of every conversation. Read them before anyone in the room has the vocabulary for the cross, and you have the cheapest leverage available in a stalled meeting. The diagram never picks for you, and that is the point."
+  }
+}

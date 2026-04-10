@@ -1,0 +1,52 @@
+{
+  "bookId": "atomic-habits",
+  "title": "Atomic Habits",
+  "author": "James Clear",
+  "selectionDate": "2026-04-08",
+  "editionSelectionMode": "ask_if_ambiguous",
+  "decision": "auto_lock",
+  "lockedEdition": {
+    "name": "Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones",
+    "publisher": "Penguin Random House / Avery / Random House Business",
+    "publishedDate": "2018-10-16",
+    "publishedYear": 2018,
+    "isbn13": "9780735211292",
+    "language": "English",
+    "translator": "",
+    "format": "print / ebook / audiobook trade family",
+    "chapterCount": 20,
+    "sectionCount": 6
+  },
+  "rationale": [
+    "The English-original 2018 trade family is the clearly dominant working edition family across the official publisher page, James Clear's own launch and book pages, and the authorized metadata trail.",
+    "The public TOC evidence shows a stable 20-chapter structure with the same six major section headings across the main English trade variants, so no user clarification is required for chapter-level interpretation.",
+    "Translations and territory-specific reprints exist, but the manifest requests the English-original work and no materially different chapter order or scope surfaced in the frozen bundle."
+  ],
+  "candidateEditionsReviewed": [
+    {
+      "label": "2018 English trade family",
+      "status": "selected",
+      "reason": "Best-supported canonical chapter map with the strongest official and authorized metadata trail."
+    },
+    {
+      "label": "Later English reprints and territory variants",
+      "status": "not_selected_separately",
+      "reason": "Useful for cross-checking metadata, but no material chapter-order divergence was found."
+    },
+    {
+      "label": "Translations and non-English editions",
+      "status": "not_selected",
+      "reason": "No translated edition was requested, and translation-level differences are not needed for this English run."
+    }
+  ],
+  "sourceIds": [
+    "penguin_random_house_us_page",
+    "google_books_preview",
+    "jamesclear_introducing_atomic_habits",
+    "openlibrary_toc_ol27918581m"
+  ],
+  "notes": [
+    "Treat the English 2018 trade family as one stable working text family for this run.",
+    "Use paraphrase-first because the frozen bundle is authorized summary plus official excerpts plus secondary chapter summaries, not a full licensed text."
+  ]
+}

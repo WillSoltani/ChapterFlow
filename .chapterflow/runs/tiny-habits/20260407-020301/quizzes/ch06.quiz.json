@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "How does Chapter 6 describe tiny habits?",
+      "choices": [
+        "As seeds",
+        "As permanent limits",
+        "As public performances"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter uses seeds to explain how small habits can grow.",
+        "direct": "Tiny habits are framed as beginnings that can root and expand.",
+        "competitive": "The model is root-first, not ceiling-first."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the chapter care so much about roots or stability?",
+      "choices": [
+        "Because growth works better from a stable base",
+        "Because growth should always be avoided",
+        "Because small habits must stay small"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The habit needs something real to grow from.",
+        "direct": "Stability is the platform for expansion or ripple effects.",
+        "competitive": "No roots, no reliable scale."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is the chapter's warning about growing a habit?",
+      "choices": [
+        "Growth should happen before repetition is stable",
+        "Forced escalation too early can weaken the habit",
+        "Only tiny habits matter forever"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns against pushing bigger too soon.",
+        "direct": "Premature scale can damage the stability that made growth possible.",
+        "competitive": "Scale before roots often means breakage."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Miles notices his tiny planning habit makes his mornings calmer too. What does Chapter 6 call that kind of effect?",
+      "choices": [
+        "A ripple or spillover effect",
+        "A prompt failure",
+        "A motivation collapse"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The small habit is affecting nearby routines.",
+        "direct": "The chapter allows growth through spillover, not only through bigger reps.",
+        "competitive": "Scale can happen sideways."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What does the chapter say about tiny habits that stay small?",
+      "choices": [
+        "They are failures",
+        "They can still be meaningful",
+        "They only count in work settings"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter does not require every habit to become dramatic.",
+        "direct": "A modest stable gain can still be a real win.",
+        "competitive": "Value is not measured only by visible scale."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which statement misreads Chapter 6?",
+      "choices": [
+        "Every tiny habit must become huge or it does not count",
+        "Stability should come before expansion",
+        "Growth can happen through ripple effects"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter allows both modest stability and larger growth.",
+        "direct": "Transformation is possible, not mandatory.",
+        "competitive": "Demanding spectacle from every habit misses the point."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why does the chapter push back on urgency?",
+      "choices": [
+        "Because urgency is the same as growth",
+        "Because impatience can force the habit before it has roots",
+        "Because habits should remain private"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter protects patient growth.",
+        "direct": "Urgency can create premature escalation.",
+        "competitive": "Impatience often scales fantasy instead of reality."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Farah jumps from five stable minutes of practice to forty and loses the habit. What is the best diagnosis?",
+      "choices": [
+        "The habit was rooted enough for the jump",
+        "The growth was forced too early",
+        "The prompt became irrelevant"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter would call this premature escalation.",
+        "direct": "She expanded before the base was stable enough.",
+        "competitive": "She scaled without roots."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What deeper idea does Chapter 6 add to the method?",
+      "choices": [
+        "Transformation can emerge from rooted repetition",
+        "Only big dramatic changes count",
+        "Growth must always be scheduled aggressively"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter reframes transformation as something that can grow slowly from small habits.",
+        "direct": "Big change can be the visible result of steady tiny repetition.",
+        "competitive": "Scale can be the surface of patience."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What question does Chapter 6 naturally open for the next chapter?",
+      "choices": [
+        "If good habits can grow roots, how do you deal with bad habits that already have roots?",
+        "Why do prompts no longer matter?",
+        "How does celebration replace communities?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter naturally leads toward undoing entrenched bad habits.",
+        "direct": "Growth in the wrong direction raises the next repair question.",
+        "competitive": "If scale can hurt too, repair becomes the next battlefield."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

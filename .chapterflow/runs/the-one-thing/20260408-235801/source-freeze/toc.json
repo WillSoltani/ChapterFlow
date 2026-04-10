@@ -1,0 +1,84 @@
+{
+  "title": "The One Thing",
+  "author": "Gary Keller, Jay Papasan",
+  "edition": {
+    "name": "The ONE Thing: The Surprisingly Simple Truth Behind Extraordinary Results",
+    "publisher": "Bard Press",
+    "publishedYear": 2012,
+    "hardcoverIsbn13": "9781885167774",
+    "hardcoverIsbn10": "1885167776",
+    "language": "English",
+    "translator": "",
+    "format": "hardcover / ebook / international trade family",
+    "chapterCount": 18,
+    "sectionCount": 3
+  },
+  "openingSequence": {
+    "slug": "opening-sequence",
+    "heading": "Opening sequence (before Part 1)",
+    "range": [1, 3],
+    "chapters": [
+      { "number": 1, "title": "The One Thing" },
+      { "number": 2, "title": "The Domino Effect" },
+      { "number": 3, "title": "Success Leaves Clues" }
+    ]
+  },
+  "sections": [
+    {
+      "slug": "the-lies",
+      "heading": "Part 1: The Lies",
+      "range": [4, 9],
+      "chapters": [
+        { "number": 4, "title": "Everything Matters Equally" },
+        { "number": 5, "title": "Multitasking" },
+        { "number": 6, "title": "A Disciplined Life" },
+        { "number": 7, "title": "Willpower Is Always on Will-Call" },
+        { "number": 8, "title": "A Balanced Life" },
+        { "number": 9, "title": "Big Is Bad" }
+      ]
+    },
+    {
+      "slug": "the-truth",
+      "heading": "Part 2: The Truth",
+      "range": [10, 12],
+      "chapters": [
+        { "number": 10, "title": "The Focusing Question" },
+        { "number": 11, "title": "The Success Habit" },
+        { "number": 12, "title": "The Path to Great Answers" }
+      ]
+    },
+    {
+      "slug": "extraordinary-results",
+      "heading": "Part 3: Extraordinary Results",
+      "range": [13, 18],
+      "chapters": [
+        { "number": 13, "title": "Live With Purpose" },
+        { "number": 14, "title": "Live By Priority" },
+        { "number": 15, "title": "Live for Productivity" },
+        { "number": 16, "title": "The Three Commitments" },
+        { "number": 17, "title": "The Four Thieves" },
+        { "number": 18, "title": "The Journey" }
+      ]
+    }
+  ],
+  "chapters": [
+    { "number": 1, "title": "The One Thing", "sectionHeading": "Opening sequence (before Part 1)" },
+    { "number": 2, "title": "The Domino Effect", "sectionHeading": "Opening sequence (before Part 1)" },
+    { "number": 3, "title": "Success Leaves Clues", "sectionHeading": "Opening sequence (before Part 1)" },
+    { "number": 4, "title": "Everything Matters Equally", "sectionHeading": "Part 1: The Lies" },
+    { "number": 5, "title": "Multitasking", "sectionHeading": "Part 1: The Lies" },
+    { "number": 6, "title": "A Disciplined Life", "sectionHeading": "Part 1: The Lies" },
+    { "number": 7, "title": "Willpower Is Always on Will-Call", "sectionHeading": "Part 1: The Lies" },
+    { "number": 8, "title": "A Balanced Life", "sectionHeading": "Part 1: The Lies" },
+    { "number": 9, "title": "Big Is Bad", "sectionHeading": "Part 1: The Lies" },
+    { "number": 10, "title": "The Focusing Question", "sectionHeading": "Part 2: The Truth" },
+    { "number": 11, "title": "The Success Habit", "sectionHeading": "Part 2: The Truth" },
+    { "number": 12, "title": "The Path to Great Answers", "sectionHeading": "Part 2: The Truth" },
+    { "number": 13, "title": "Live With Purpose", "sectionHeading": "Part 3: Extraordinary Results" },
+    { "number": 14, "title": "Live By Priority", "sectionHeading": "Part 3: Extraordinary Results" },
+    { "number": 15, "title": "Live for Productivity", "sectionHeading": "Part 3: Extraordinary Results" },
+    { "number": 16, "title": "The Three Commitments", "sectionHeading": "Part 3: Extraordinary Results" },
+    { "number": 17, "title": "The Four Thieves", "sectionHeading": "Part 3: Extraordinary Results" },
+    { "number": 18, "title": "The Journey", "sectionHeading": "Part 3: Extraordinary Results" }
+  ]
+}

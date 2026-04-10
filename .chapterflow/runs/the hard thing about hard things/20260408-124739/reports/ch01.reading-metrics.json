@@ -1,0 +1,67 @@
+{
+  "chapterId": "ch01-introduction",
+  "number": 1,
+  "title": "Introduction",
+  "generatedAt": "2026-04-08T16:46:42.786Z",
+  "canonicalDraftWords": null,
+  "editedDraftWords": 666,
+  "readingTimeMinutes": 8,
+  "breakdownWordCounts": {
+    "easy": {
+      "gentle": 148,
+      "direct": 162,
+      "competitive": 161
+    },
+    "medium": {
+      "gentle": 332,
+      "direct": 332,
+      "competitive": 339
+    },
+    "hard": {
+      "gentle": 596,
+      "direct": 521,
+      "competitive": 586
+    }
+  },
+  "takeawayCounts": {
+    "easy": 3,
+    "medium": 5,
+    "hard": 5
+  },
+  "exampleCount": 6,
+  "exampleCategoryCounts": {
+    "work": 2,
+    "school": 2,
+    "personal": 2
+  },
+  "exampleFormats": [
+    "decision_point",
+    "postmortem",
+    "dialogue",
+    "predict_reveal",
+    "dilemma",
+    "before_after"
+  ],
+  "exampleEndingTypes": [
+    "broader_principle",
+    "self_directed_question",
+    "surprising_implication",
+    "cross_domain",
+    "common_trap",
+    "perspective_reframe"
+  ],
+  "quizQuestionCount": 10,
+  "quizCorrectIndexCounts": {
+    "0": 2,
+    "1": 5,
+    "2": 3
+  },
+  "reviewCardCount": 5,
+  "reviewCardDifficultyCounts": {
+    "easy": 2,
+    "medium": 2,
+    "hard": 1
+  },
+  "criticScoreOutOf12": null,
+  "status": "validated"
+}

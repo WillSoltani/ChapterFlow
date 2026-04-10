@@ -1,0 +1,78 @@
+{
+  "bookId": "the-laws-of-human-nature",
+  "runId": "20260407-233814",
+  "lockedAt": "2026-04-07T23:38:14Z",
+  "selectionMode": "auto_locked_after_discovery",
+  "materialAmbiguity": false,
+  "title": "The Laws of Human Nature",
+  "author": "Robert Greene",
+  "chosenEdition": {
+    "name": "Original U.S. English hardcover reference edition",
+    "fullTitle": "The Laws of Human Nature",
+    "publisher": "Viking",
+    "publishedDate": "2018-10-23",
+    "publishedYear": 2018,
+    "language": "English",
+    "isbn13": "9780525428145",
+    "isbn10": "0525428143",
+    "format": "Hardcover reference edition for chapter-map stability",
+    "sourceOfTruth": "https://catalog.freelibrary.org/Record/2426225",
+    "chapterStructure": [
+      "Introduction",
+      "Master Your Emotional Self: The Law of Irrationality",
+      "Transform Self-Love into Empathy: The Law of Narcissism",
+      "See Through People's Masks: The Law of Role-playing",
+      "Determine the Strength of People's Character: The Law of Compulsive Behavior",
+      "Become an Elusive Object of Desire: The Law of Covetousness",
+      "Elevate Your Perspective: The Law of Shortsightedness",
+      "Soften People's Resistance by Confirming Their Self-Opinion: The Law of Defensiveness",
+      "Change Your Circumstances by Changing Your Attitude: The Law of Self-Sabotage",
+      "Confront Your Dark Side: The Law of Repression",
+      "Beware the Fragile Ego: The Law of Envy",
+      "Know Your Limits: The Law of Grandiosity",
+      "Reconnect to the Masculine or Feminine Within You: The Law of Gender Rigidity",
+      "Advance with a Sense of Purpose: The Law of Aimlessness",
+      "Resist the Downward Pull of the Group: The Law of Conformity",
+      "Make Them Want to Follow You: The Law of Fickleness",
+      "See the Hostility Behind the Friendly Façade: The Law of Aggression",
+      "Seize the Historical Moment: The Law of Generational Myopia",
+      "Meditate on Our Common Mortality: The Law of Death Denial"
+    ]
+  },
+  "alternativesConsidered": [
+    {
+      "name": "2019 Penguin Books paperback",
+      "publishedDate": "2019-10-01",
+      "isbn13": "9780143111375",
+      "url": "https://www.penguinrandomhouse.com/books/317474/the-laws-of-human-nature-by-robert-greene/",
+      "status": "same_work_family_non_material_variant",
+      "notes": "Official publisher page lists the paperback and hardcover together at 624 pages."
+    },
+    {
+      "name": "2020 Concise Laws of Human Nature",
+      "publishedDate": "2020-01-01",
+      "isbn13": "9781788161565",
+      "url": "https://openlibrary.org/books/OL30160717M/Concise_Laws_of_Human_Nature",
+      "status": "materially_shorter_out_of_scope_variant",
+      "notes": "The concise edition is materially shorter and therefore unsuitable for chapter-map stability in this run."
+    },
+    {
+      "name": "Translated editions",
+      "url": "https://openlibrary.org/works/OL19761410W/The_Laws_of_Human_Nature",
+      "status": "translation_out_of_scope",
+      "notes": "Translations were excluded because the source request is for the original English work family."
+    }
+  ],
+  "decisionRationale": [
+    "The 2018 U.S. Viking hardcover is the earliest located English edition with stable bibliographic support and a full public chapter list.",
+    "The official Penguin Random House product page shows the 2018 hardcover and 2019 paperback as the same 624-page U.S. work family.",
+    "The library catalog and Ingram table of contents agree on the same 19-entry chapter order.",
+    "The concise edition is materially shorter and therefore excluded from the chapter contract.",
+    "No translation or edition ambiguity was found that would materially change chapter count, order, or chapter-level interpretation."
+  ],
+  "operatingRules": {
+    "quotePolicy": "paraphrase_first",
+    "exactQuotePolicy": "allowed_only_if_verified_in_frozen_bundle",
+    "translationQuestionRequired": false
+  }
+}

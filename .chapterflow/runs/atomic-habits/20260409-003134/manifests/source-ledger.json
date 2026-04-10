@@ -1,0 +1,188 @@
+{
+  "bookId": "atomic-habits",
+  "runId": "20260409-003134",
+  "lockedAt": "2026-04-08",
+  "selectionMode": "auto_locked_dominant_edition",
+  "sources": [
+    {
+      "id": "penguin_random_house_us_page",
+      "title": "Atomic Habits by James Clear: 9780735211292 | Penguin Random House",
+      "url": "https://www.penguinrandomhouse.com/books/543993/atomic-habits-by-james-clear/9780735211292/",
+      "type": "official_publisher_page",
+      "role": "primary edition metadata, publication date, page count, and official description",
+      "confidence": "high",
+      "accessedAt": "2026-04-08",
+      "notes": "Confirms the U.S. English trade edition family, 2018 publication date, 320-page length, and official framing for the book."
+    },
+    {
+      "id": "google_books_preview",
+      "title": "Atomic Habits - Google Books metadata page",
+      "url": "https://books.google.com/books/about/Atomic_Habits.html?id=rruOEAAAQBAJ",
+      "type": "authorized_metadata_preview",
+      "role": "authorized metadata and preview trail cross-check",
+      "confidence": "high",
+      "accessedAt": "2026-04-08",
+      "notes": "Used to confirm stable English trade metadata and preview availability without relying on unauthorized mirrors."
+    },
+    {
+      "id": "jamesclear_introducing_atomic_habits",
+      "title": "Introducing Atomic Habits - James Clear",
+      "url": "https://jamesclear.com/introducing-atomic-habits",
+      "type": "official_author_page",
+      "role": "author announcement and official publication framing",
+      "confidence": "high",
+      "accessedAt": "2026-04-08",
+      "notes": "Confirms Penguin Random House publication on October 16, 2018 and frames the book as a practical habits guide."
+    },
+    {
+      "id": "jamesclear_atomic_habits_book_page",
+      "title": "Atomic Habits: Tiny Changes, Remarkable Results - James Clear",
+      "url": "https://jamesclear.com/atomic-habits",
+      "type": "official_author_book_page",
+      "role": "official book landing page and current author-maintained framing",
+      "confidence": "high",
+      "accessedAt": "2026-04-08",
+      "notes": "Supports the Four Laws framing, the 1% better theme, and the official book positioning."
+    },
+    {
+      "id": "jamesclear_atomic_habits_summary",
+      "title": "Atomic Habits Summary - James Clear",
+      "url": "https://jamesclear.com/atomic-habits-summary",
+      "type": "official_author_summary",
+      "role": "official summary for the core mechanisms, identity framing, habit loop, and Four Laws",
+      "confidence": "high",
+      "accessedAt": "2026-04-08",
+      "notes": "This is the strongest official public concept summary in the frozen bundle and the main quote-support surface."
+    },
+    {
+      "id": "jamesclear_identity_based_habits",
+      "title": "Identity-Based Habits: How to Actually Stick to Your Goals This Year - James Clear",
+      "url": "https://jamesclear.com/identity-based-habits",
+      "type": "official_author_excerpt",
+      "role": "official chapter-adjacent support for identity change",
+      "confidence": "high",
+      "accessedAt": "2026-04-08",
+      "notes": "Explicitly marked by the author as an excerpt from Atomic Habits; used primarily for Chapter 2."
+    },
+    {
+      "id": "jamesclear_goals_systems",
+      "title": "Forget About Setting Goals. Focus on This Instead. - James Clear",
+      "url": "https://jamesclear.com/goals-systems",
+      "type": "official_author_excerpt",
+      "role": "official support for systems-over-goals framing",
+      "confidence": "high",
+      "accessedAt": "2026-04-08",
+      "notes": "Supports the fundamentals chapters, especially the systems argument in Chapters 1 and 2."
+    },
+    {
+      "id": "jamesclear_habit_stacking",
+      "title": "Habit Stacking: How to Build New Habits by Taking Advantage of Old Ones - James Clear",
+      "url": "https://jamesclear.com/habit-stacking",
+      "type": "official_author_excerpt",
+      "role": "official support for implementation intentions and habit stacking",
+      "confidence": "high",
+      "accessedAt": "2026-04-08",
+      "notes": "Explicitly marked by the author as an excerpt from Atomic Habits; used for cue design and Chapter 5 support."
+    },
+    {
+      "id": "jamesclear_power_of_environment",
+      "title": "Motivation is Overvalued. Environment Often Matters More. - James Clear",
+      "url": "https://jamesclear.com/power-of-environment",
+      "type": "official_author_excerpt",
+      "role": "official support for environment design, visibility, and friction",
+      "confidence": "high",
+      "accessedAt": "2026-04-08",
+      "notes": "Explicitly marked by the author as an excerpt from Atomic Habits; used for Chapters 6 and 7 and nearby law-1/law-3 interpretation."
+    },
+    {
+      "id": "jamesclear_goldilocks_rule",
+      "title": "The Goldilocks Rule: How to Stay Motivated in Life and Business - James Clear",
+      "url": "https://jamesclear.com/goldilocks-rule",
+      "type": "official_author_excerpt",
+      "role": "official support for Chapter 19 motivation and boredom framing",
+      "confidence": "high",
+      "accessedAt": "2026-04-08",
+      "notes": "Explicitly marked by the author as an excerpt from Atomic Habits; used for Chapter 19."
+    },
+    {
+      "id": "atoms_app",
+      "title": "Atoms. The official Atomic Habits app",
+      "url": "https://atoms.jamesclear.com/",
+      "type": "official_product_page",
+      "role": "official support for the Four Laws, starting small, reminders, accountability, and identity-based framing",
+      "confidence": "high",
+      "accessedAt": "2026-04-08",
+      "notes": "Useful for reinforcing the author-approved operational surfaces when the public book preview is thin."
+    },
+    {
+      "id": "openlibrary_toc_ol27918581m",
+      "title": "Atomic Habits by James Clear | Open Library",
+      "url": "https://openlibrary.org/books/OL27918581M/Atomic_Habits",
+      "type": "bibliographic_toc",
+      "role": "chapter order, section headings, and page anchors",
+      "confidence": "high",
+      "accessedAt": "2026-04-08",
+      "notes": "Provides a clean contents listing for the English 2018 edition family with all 20 chapters and back matter."
+    },
+    {
+      "id": "supersummary_intro_ch3",
+      "title": "Atomic Habits Introduction-Chapter 3 Summary & Analysis | SuperSummary",
+      "url": "https://www.supersummary.com/atomic-habits/introduction-chapter-3/",
+      "type": "secondary_summary",
+      "role": "chapter-level support for the introduction and Chapters 1-3",
+      "confidence": "medium",
+      "accessedAt": "2026-04-08",
+      "notes": "Used only where official public text is thinner than the needed chapter-specific brief detail."
+    },
+    {
+      "id": "supersummary_ch4_7",
+      "title": "Atomic Habits Chapters 4-7 Summary & Analysis | SuperSummary",
+      "url": "https://www.supersummary.com/atomic-habits/chapters-4-7/",
+      "type": "secondary_summary",
+      "role": "chapter-level support for the 1st Law section",
+      "confidence": "medium",
+      "accessedAt": "2026-04-08",
+      "notes": "Covers awareness, implementation intentions, environment design, and self-control framing."
+    },
+    {
+      "id": "supersummary_ch8_10",
+      "title": "Atomic Habits Chapters 8-10 Summary & Analysis | SuperSummary",
+      "url": "https://www.supersummary.com/atomic-habits/chapters-8-10/",
+      "type": "secondary_summary",
+      "role": "chapter-level support for the 2nd Law section",
+      "confidence": "medium",
+      "accessedAt": "2026-04-08",
+      "notes": "Covers temptation bundling, social norms, status imitation, and reframing bad habits."
+    },
+    {
+      "id": "supersummary_ch11_14",
+      "title": "Atomic Habits Chapters 11-14 Summary & Analysis | SuperSummary",
+      "url": "https://www.supersummary.com/atomic-habits/chapters-11-14/",
+      "type": "secondary_summary",
+      "role": "chapter-level support for the 3rd Law section",
+      "confidence": "medium",
+      "accessedAt": "2026-04-08",
+      "notes": "Covers repetition, the law of least effort, the Two-Minute Rule, and commitment devices."
+    },
+    {
+      "id": "supersummary_ch15_17",
+      "title": "Atomic Habits Chapters 15-17 Summary & Analysis | SuperSummary",
+      "url": "https://www.supersummary.com/atomic-habits/chapters-15-17/",
+      "type": "secondary_summary",
+      "role": "chapter-level support for the 4th Law section",
+      "confidence": "medium",
+      "accessedAt": "2026-04-08",
+      "notes": "Covers immediate rewards, habit tracking, never miss twice, Goodhart's Law, and accountability contracts."
+    },
+    {
+      "id": "supersummary_ch18_conclusion",
+      "title": "Atomic Habits Chapter 18-Conclusion Summary & Analysis | SuperSummary",
+      "url": "https://www.supersummary.com/atomic-habits/chapter-18-conclusion/",
+      "type": "secondary_summary",
+      "role": "chapter-level support for Chapters 18-20 and the conclusion",
+      "confidence": "medium",
+      "accessedAt": "2026-04-08",
+      "notes": "Covers talent fit, explore-exploit framing, Goldilocks motivation, deliberate practice, and the closing systems argument."
+    }
+  ]
+}

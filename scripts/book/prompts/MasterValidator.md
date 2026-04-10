@@ -679,10 +679,6 @@ These benchmarks come from detailed analysis of 5 chapter content packages score
 | Book | Chapter | Content Score | Primary Strength | Primary Weakness |
 |------|---------|--------------|------------------|------------------|
 | 48 Laws of Power | Ch.1 | 93/100 | Multi-component framework, scenario variety | 7 hard takeaways |
-| Never Split the Difference | Ch.1 | 89/100 (93 with quiz) | Intellectual honesty, boundary conditions, tone mastery | Missing quiz |
-| Laws of Human Nature | Ch.1 | 88/100 | Neurological depth, strong implementation | 9 hard takeaways, generation artifacts |
-| The Charisma Myth | Ch.1 | 84/100 | Clean copy, best activation prompt | Thin source, scenario convergence |
-| How to Win Friends | Ch.1 | 78/100 | Scenario authenticity, implementation specificity | Broken prompts, missing quiz metadata |
  
 **Consistent pipeline strengths**: High-quality prose across all tones, strong scenario writing with sensory detail, excellent "Go Deeper" content, actionable implementation plans.
  

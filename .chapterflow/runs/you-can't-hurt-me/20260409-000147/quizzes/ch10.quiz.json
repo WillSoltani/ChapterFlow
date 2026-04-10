@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch10-q01",
+      "prompt": "What two failure anchors most define Chapter 10?",
+      "choices": [
+        "Delta Force failure and repeated pull-up world-record attempts",
+        "Ranger School graduation and a marathon win",
+        "Childhood trauma and school discipline"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Those repeated failures make the chapter real rather than abstract.",
+        "direct": "Correct. Delta Force failure and the record misses are the main concrete anchors.",
+        "competitive": "This is the chapter where the standard hits back."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch10-q02",
+      "prompt": "What does the title The Empowerment of Failure most strongly mean?",
+      "choices": [
+        "Failure is automatically good for people who try hard",
+        "Failure becomes useful when it is honestly reviewed and corrected",
+        "Repeated losses prove ambition should be reduced"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That is the key distinction. Failure is only useful when it teaches.",
+        "direct": "The chapter does not romanticize losing. It values the review and correction that follow.",
+        "competitive": "No review, no payout."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch10-q03",
+      "prompt": "Why is after-action review so important in this chapter?",
+      "choices": [
+        "Because it turns failure into instruction for the next attempt",
+        "Because it makes failure hurt less immediately",
+        "Because it lowers the standard to protect confidence"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says the lesson lives in the honest review.",
+        "direct": "Correct. Review converts the miss from humiliation into usable evidence.",
+        "competitive": "The replay room is where the power is."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch10-q04",
+      "prompt": "A person fails and immediately starts listing excuses about conditions. What would Chapter 10 challenge first?",
+      "choices": [
+        "The idea that the ego should be protected before the lesson is studied",
+        "The belief that standards should be respected at all",
+        "The claim that correction takes time"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That fits the chapter. Excuses can block the useful part of failure.",
+        "direct": "Chapter 10 challenges ego-protection because it keeps the miss from becoming instruction.",
+        "competitive": "The alibi is stealing the tape."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch10-q05",
+      "prompt": "What does it mean to respect the standard in Chapter 10?",
+      "choices": [
+        "To let it grade you honestly without lowering it to save face",
+        "To abandon it after repeated failure",
+        "To treat it as symbolic rather than real"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter says the standard must stay hard enough to teach.",
+        "direct": "Respect here means preserving the difficulty of the standard while revising yourself in response to it.",
+        "competitive": "Keep the rule hard and fix the machine."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch10-q06",
+      "prompt": "Why do repeated failures matter more than a single setback in this chapter?",
+      "choices": [
+        "Because repeated losses remove easy rationalizations and demand honesty",
+        "Because one failure can never teach anything useful",
+        "Because repeated losses guarantee eventual success"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter uses repetition to force cleaner learning.",
+        "direct": "A pattern of misses makes excuse-based storytelling harder to sustain.",
+        "competitive": "One loss can hide. A streak strips the legend."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch10-q07",
+      "prompt": "A second attempt changes nothing except intensity. Why would Chapter 10 distrust that?",
+      "choices": [
+        "Because louder effort without correction ignores what failure taught",
+        "Because ambition is the real problem",
+        "Because second attempts are usually pointless"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants a cleaner rerun, not just a louder one.",
+        "direct": "Without tactical correction, the second attempt fails to answer the evidence of the first.",
+        "competitive": "More noise is not a better machine."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch10-q08",
+      "prompt": "Which statement best fits the hardest boundary of the chapter?",
+      "choices": [
+        "Failure is empowering all by itself",
+        "Failure only empowers when it is converted into review and correction",
+        "The best response to failure is to protect confidence by avoiding analysis"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That is the boundary. Failure must teach, not just hurt.",
+        "direct": "Exactly. The chapter rejects both romanticized failure and ego-protected failure.",
+        "competitive": "No correction, no power."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch10-q09",
+      "prompt": "How does Chapter 10 most clearly prepare Chapter 11?",
+      "choices": [
+        "By ending with a final victory pose",
+        "By weakening failure power to act like an identity verdict",
+        "By arguing that standards do not matter anymore"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter opens the final one by making setbacks less final.",
+        "direct": "Correct. Once failure becomes instruction instead of verdict, a wider reflective horizon becomes possible.",
+        "competitive": "The loss stops owning the map."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch10-q10",
+      "prompt": "What is the strongest overall claim of Chapter 10?",
+      "choices": [
+        "Toughness means refusing to study failure",
+        "Real resilience includes review, revision, and re-entry after defeat",
+        "Standards should become easier after repeated misses"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The chapter expands toughness by adding honest correction.",
+        "direct": "Its main claim is that resilience becomes durable when failure can be reviewed without destroying identity.",
+        "competitive": "Real toughness audits the hit and comes back cleaner."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

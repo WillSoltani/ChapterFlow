@@ -1,0 +1,155 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "Which set of forces best explains attraction in this chapter?",
+      "choices": [
+        "Mystery, chemistry, and confidence",
+        "Repeated contact, reciprocity, disclosure, and support",
+        "Physical appearance, status, and luck"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter treats attraction as a process built through repeated contact, reciprocity, disclosure, and support.",
+        "direct": "Schafer widens attraction into a structure rather than leaving it as vague chemistry talk.",
+        "competitive": "The model is system, not magic."
+      }
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does repeated contact matter in this chapter?",
+      "choices": [
+        "It guarantees closeness once two people meet enough times",
+        "It creates more chances for attraction to begin, though it is not enough by itself",
+        "It matters only in romantic relationships"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Repeated contact gives the relationship more chances to grow, but the chapter never says frequency alone is enough.",
+        "direct": "Contact creates runway for attraction, not an automatic result.",
+        "competitive": "Reps help, but they do not do the whole job."
+      }
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What role does reciprocity play here?",
+      "choices": [
+        "It turns familiarity into mutual attraction by moving interest both ways",
+        "It matters only after a deep friendship already exists",
+        "It is less important than seeing someone often"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says reciprocity helps contact become a real bond.",
+        "direct": "Mutual return is what separates repeated exposure from deeper attraction.",
+        "competitive": "No return, no real growth."
+      }
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Lena keeps seeing Darius at lunch and wants to share something highly personal right away. What fits the chapter best?",
+      "choices": [
+        "Disclose everything now so the bond becomes intense quickly",
+        "Match the openness to the trust they have already built",
+        "Avoid all self-disclosure until months have passed"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter favors disclosure that fits the relationship rather than total restraint or premature intensity.",
+        "direct": "Calibrated disclosure deepens attraction better than oversharing.",
+        "competitive": "Earn depth before you dump depth."
+      }
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What is the chapter's main warning about self-disclosure?",
+      "choices": [
+        "More disclosure is always better",
+        "Disclosure can weaken attraction if it becomes too intimate too early",
+        "Disclosure matters only when there is no support"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns that openness has to be paced well.",
+        "direct": "Premature intimacy can create pressure instead of closeness.",
+        "competitive": "Too much honesty too fast can overload the bond."
+      }
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Why does support matter for attraction in this chapter?",
+      "choices": [
+        "Because attraction lasts better when the relationship feels understanding and emotionally useful",
+        "Because support replaces the need for reciprocity",
+        "Because support only matters in family relationships"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Feeling understood and backed up makes the relationship more attractive over time.",
+        "direct": "Supportive responsiveness helps the bond last instead of becoming hollow or draining.",
+        "competitive": "People stay where the bond actually helps them live."
+      }
+    },
+    {
+      "questionId": "q07",
+      "prompt": "A campus club meets every week, but nobody follows up, shares much, or invests outside the room. What best explains the stall?",
+      "choices": [
+        "The group needs stronger mystery and chemistry",
+        "Repeated contact is present, but reciprocity and disclosure are weak",
+        "Weekly contact should be enough on its own"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says frequency without reciprocity often stays shallow.",
+        "direct": "The group has exposure but not much mutual movement or deepening openness.",
+        "competitive": "There are reps but no structure."
+      }
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What best fits a one-sided support problem?",
+      "choices": [
+        "One person keeps carrying the emotional load while the other mostly receives",
+        "Both people feel understood and backed up",
+        "Neither person shares anything personal yet"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "One-sided support can make attraction feel draining instead of mutual.",
+        "direct": "The chapter treats badly imbalanced support as a risk to attraction.",
+        "competitive": "If one side does all the carrying, the pull starts leaking."
+      }
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the best synthesis of the chapter's model?",
+      "choices": [
+        "Attraction grows when repeated contact becomes mutual, well-paced, and supportive",
+        "Attraction mostly depends on first impressions after that",
+        "Attraction deepens by escalating intensity as quickly as possible"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter combines contact, reciprocity, disclosure, and support into one account.",
+        "direct": "Attraction compounds when the relationship structure remains mutual and stable enough to deepen.",
+        "competitive": "The bond grows when the system keeps paying off."
+      }
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How does Chapter 4 build on Chapter 3?",
+      "choices": [
+        "Chapter 3 explained the immediate good feeling, and Chapter 4 explains the broader forces that make attraction deepen over time",
+        "Chapter 4 replaces the need to make people feel good about themselves",
+        "Chapter 3 and Chapter 4 describe unrelated processes"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Chapter 3 focused on the emotional experience of one interaction, while Chapter 4 widens to the ongoing bond.",
+        "direct": "Immediate residue still needs repeated contact, reciprocity, disclosure, and support to become attraction over time.",
+        "competitive": "Residue opens the path. Structure compounds it."
+      }
+    }
+  ]
+}

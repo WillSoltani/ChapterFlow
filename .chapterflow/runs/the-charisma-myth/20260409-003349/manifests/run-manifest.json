@@ -1,0 +1,51 @@
+{
+  "packVersion": "v13-autonomous",
+  "bookId": "the-charisma-myth",
+  "runId": "20260409-003349",
+  "packRoot": "scripts/book/prompts/chapterflow-v13-autonomous",
+  "runRoot": ".chapterflow/runs/the-charisma-myth/20260409-003349",
+  "outputProfile": "flagship_v4_compatible",
+  "learningContract": "research_native",
+  "runProfile": "balanced_flagship",
+  "validationMode": "chapter_gate",
+  "chapterGateMode": "automatic_continue",
+  "chapterGateQuizMode": "generate",
+  "scenarioTonePolicy": "required",
+  "rightsMode": "startup_light",
+  "waveSize": 2,
+  "generateChapterReviewWrapper": true,
+  "strictPackAudit": true,
+  "forbidBulkGenerators": true,
+  "releaseAssembleFromValidatedOnly": true,
+  "preserveApprovedChapterHashes": true,
+  "sourceFreezeRequired": true,
+  "artifactGuardRequired": true,
+  "releaseGuardRequired": true,
+  "qualitySentryRequired": true,
+  "qualityDecayStopDelta": 1.5,
+  "sourceDiscoveryMode": "web_bundle",
+  "editionSelectionMode": "ask_if_ambiguous",
+  "sourcePolicy": "public_or_authorized_plus_secondary",
+  "bookRequest": {
+    "title": "The Charisma Myth",
+    "author": "Olivia Fox Cabane",
+    "editionPreference": "ask_if_ambiguous"
+  },
+  "book": {
+    "bookId": "the-charisma-myth",
+    "title": "The Charisma Myth",
+    "author": "Olivia Fox Cabane",
+    "categories": [],
+    "tags": [],
+    "edition": {
+      "name": "The Charisma Myth: How Anyone Can Master the Art and Science of Personal Magnetism",
+      "translator": "",
+      "publishedYear": 2013,
+      "translationYear": null,
+      "sourceText": ".chapterflow/runs/the-charisma-myth/20260409-003349/source-freeze/book-source.md",
+      "sourceProvenance": "Frozen from the current Google Books preview, Penguin Random House product metadata, the official Charisma Myth site, the authorized sample chapter PDF, and the historical 2012 chapter-map cross-check recorded in manifests/source-ledger.json."
+    },
+    "variantFamily": "EMH",
+    "chapterRange": "1-13"
+  }
+}

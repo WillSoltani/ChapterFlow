@@ -1,0 +1,155 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the main claim of Discern: The Unimportance of Practically Everything?",
+      "choices": [
+        "almost everything is noise and only a vital few options deserve concentrated effort.",
+        "That staying open to every decent option is the safest path.",
+        "That motivation alone can solve the chapter's problem without a rule."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter makes this clear because almost everything is noise and only a vital few options deserve concentrated effort.",
+        "direct": "That is correct because almost everything is noise and only a vital few options deserve concentrated effort.",
+        "competitive": "The right answer is the one that actually obeys the chapter's rule: almost everything is noise and only a vital few options deserve concentrated effort."
+      }
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What problem does the chapter diagnose most directly?",
+      "choices": [
+        "capable people keep treating many decent options as if they were equally important",
+        "A simple lack of talent in otherwise clear systems.",
+        "The belief that more information always fixes weak decisions."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter makes this clear because capable people keep treating many decent options as if they were equally important",
+        "direct": "That is correct because capable people keep treating many decent options as if they were equally important",
+        "competitive": "The right answer is the one that actually obeys the chapter's rule: capable people keep treating many decent options as if they were equally important"
+      }
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What move does the chapter ask the reader to make?",
+      "choices": [
+        "use the law of the vital few to rank sharply instead of spreading effort evenly",
+        "Wait for conditions to improve before making any hard choice.",
+        "Keep options broad so later regret stays lower."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter makes this clear because use the law of the vital few to rank sharply instead of spreading effort evenly",
+        "direct": "That is correct because use the law of the vital few to rank sharply instead of spreading effort evenly",
+        "competitive": "The right answer is the one that actually obeys the chapter's rule: use the law of the vital few to rank sharply instead of spreading effort evenly"
+      }
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Why do the stakes of this chapter matter?",
+      "choices": [
+        "without discernment, energy gets diluted before any real trade-off is named",
+        "Because the chapter is mainly about appearing more disciplined to other people.",
+        "Because the chapter tries to make life feel busier but more impressive."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter makes this clear because without discernment, energy gets diluted before any real trade-off is named",
+        "direct": "That is correct because without discernment, energy gets diluted before any real trade-off is named",
+        "competitive": "The right answer is the one that actually obeys the chapter's rule: without discernment, energy gets diluted before any real trade-off is named"
+      }
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Which skill best summarizes the chapter's practical contribution?",
+      "choices": [
+        "ranking by relative importance",
+        "Unlimited flexibility under every condition",
+        "Avoiding all conflict by keeping options vague"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter makes this clear because ranking by relative importance",
+        "direct": "That is correct because ranking by relative importance",
+        "competitive": "The right answer is the one that actually obeys the chapter's rule: ranking by relative importance"
+      }
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What role does this chapter play in the wider book?",
+      "choices": [
+        "this chapter makes Chapter 2's recovered agency useful by showing what to do with it",
+        "It disconnects the chapter from the rest of the system so it can stand alone.",
+        "It replaces the book's earlier logic with a new unrelated framework."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter makes this clear because this chapter makes Chapter 2's recovered agency useful by showing what to do with it",
+        "direct": "That is correct because this chapter makes Chapter 2's recovered agency useful by showing what to do with it",
+        "competitive": "The right answer is the one that actually obeys the chapter's rule: this chapter makes Chapter 2's recovered agency useful by showing what to do with it"
+      }
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What tension does the chapter deliberately keep visible?",
+      "choices": [
+        "discernment feels harsh because it rejects many good options before they become commitments",
+        "That the principle works only when there is no cost to using it.",
+        "That the chapter is mainly a slogan and not a real operating rule."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter makes this clear because discernment feels harsh because it rejects many good options before they become commitments",
+        "direct": "That is correct because discernment feels harsh because it rejects many good options before they become commitments",
+        "competitive": "The right answer is the one that actually obeys the chapter's rule: discernment feels harsh because it rejects many good options before they become commitments"
+      }
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Which option best reflects a sourced support point from this chapter?",
+      "choices": [
+        "Joseph Moses Juran's law of the vital few explains why a small fraction of issues often drives most of the result.",
+        "The chapter claims every opportunity should be scored emotionally rather than strategically.",
+        "The chapter says speed matters more than accuracy in all important decisions."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter makes this clear because joseph Moses Juran's law of the vital few explains why a small fraction of issues often drives most of the result.",
+        "direct": "That is correct because joseph Moses Juran's law of the vital few explains why a small fraction of issues often drives most of the result.",
+        "competitive": "The right answer is the one that actually obeys the chapter's rule: joseph Moses Juran's law of the vital few explains why a small fraction of issues often drives most of the result."
+      }
+    },
+    {
+      "questionId": "q09",
+      "prompt": "In one sentence, what weak habit is the chapter trying to interrupt?",
+      "choices": [
+        "capable people keep treating many decent options as if they were equally important",
+        "The habit of protecting essential work too aggressively.",
+        "The habit of making decisions only after every uncertainty disappears."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter makes this clear because capable people keep treating many decent options as if they were equally important",
+        "direct": "That is correct because capable people keep treating many decent options as if they were equally important",
+        "competitive": "The right answer is the one that actually obeys the chapter's rule: capable people keep treating many decent options as if they were equally important"
+      }
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What question should a reader ask after finishing this chapter?",
+      "choices": [
+        "Where in my life do I need to use the law of the vital few to rank sharply instead of spreading effort evenly?",
+        "How can I keep every good option alive a little longer?",
+        "How can I avoid ever paying the cost of a real priority?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter makes this clear because where in my life do I need to use the law of the vital few to rank sharply instead of spreading effort evenly?",
+        "direct": "That is correct because where in my life do I need to use the law of the vital few to rank sharply instead of spreading effort evenly?",
+        "competitive": "The right answer is the one that actually obeys the chapter's rule: where in my life do I need to use the law of the vital few to rank sharply instead of spreading effort evenly?"
+      }
+    }
+  ]
+}

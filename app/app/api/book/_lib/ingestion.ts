@@ -126,7 +126,7 @@ function buildArtifacts(pkg: BookPackage): {
   chapterPayloads: ChapterSummaryPayload[];
   quizPayloads: ChapterQuizPayload[];
 } {
-  const sortedChapters = [...pkg.book.chapters].sort((a, b) => a.number - b.number);
+  const sortedChapters = [...pkg.chapters].sort((a, b) => a.number - b.number);
 
   const manifestChapters: BookManifestChapter[] = sortedChapters.map((chapter) => ({
     chapterId: chapter.chapterId,

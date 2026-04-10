@@ -1,0 +1,480 @@
+{
+  "chapterId": "ch01",
+  "number": 1,
+  "title": "The Three Voices Inside You",
+  "readingTimeMinutes": 12,
+  "contentVariants": {
+    "easy": {
+      "chapterBreakdown": {
+        "gentle": "You probably already know what it feels like when a conversation slides without anyone choosing to slide it. One minute someone is making a calm point about a code change. The next minute they sound like a tired teacher, and you find yourself sitting up a little straighter, the way you used to in middle school. Eric Berne built a small tool for noticing this. He said an adult, at any moment, is speaking from one of three places inside themselves. There is the Parent voice, made of rules and shoulds picked up early. There is the Adult voice, which looks at what is in front of it and handles information in the present. And there is the Child voice, which still carries the original feelings of being little. Nobody is only one of these. The point is to start hearing which voice is in the room right now.",
+        "direct": "At any moment, an adult is operating from one of three observable states. Berne called them Parent, Adult, and Child. Parent is the voice of the rules a person learned from early authority figures. Adult is the voice that handles current information neutrally and can update on new evidence. Child is the voice that still carries the original feelings from one's own childhood. These are not personality types. They are states a single person moves through, sometimes several times in a single conversation. The signals are external: voice, posture, vocabulary, the kind of reply the speaker is unconsciously demanding. When a code review comment shifts mid-sentence from technical note to scolding, the speaker has just moved from Adult to Parent. When a graduate student answers a professor from a hurt place instead of a thinking one, that is Adult sliding into Child. The model is for noticing those moves.",
+        "competitive": "In any conversation that matters, you are not just exchanging information with one person. You are exchanging it with whichever of their three voices is currently in the room, and you are answering from one of your three. Miss the shift and you will spend the next ten minutes losing an argument you did not know you were in. Berne's three states give you a faster read. The Parent voice runs on rules. The Adult voice runs on present-tense facts. The Child voice runs on old feelings still alive in a grown body. Watch a colleague's tone drop a register mid-sentence and you have just watched a state change. Most of the cost in a stalled meeting, a tense one-on-one, or a kitchen argument is paid because nobody noticed which voice arrived. Reading the voice in the room first is the cheapest leverage you have."
+      },
+      "keyTakeaways": [
+        { "point": "An adult is not one thing. At any moment they are speaking from one of three observable states: Parent, Adult, or Child." },
+        { "point": "Parent is the voice of rules learned early. Adult is the voice that handles what is in front of it now. Child is the voice that still carries the original feelings of being little, in a grown body." },
+        { "point": "The work, on a first read, is to start hearing which voice is in the room right now, in yourself and in the other person." }
+      ],
+      "oneMinuteRecap": {
+        "gentle": "Three voices, all in the same person, all at once. Parent runs on rules learned early. Adult runs on what is in front of it now. Child runs on the original feelings of being little, still alive in a grown body. The work is to start hearing which voice is in the room.",
+        "direct": "Berne's three states: Parent (rules from early authority), Adult (present-tense data-handling), Child (original emotional life). One person, three states, observable from outside, switching mid-sentence without permission. The first move is to hear the switch.",
+        "competitive": "Three voices, one body. Parent on inherited rules, Adult on present facts, Child on old feelings. Most conversations that go badly go badly because one of those voices replaced another and nobody in the room caught it. Catch the switch and you have already won the next thirty seconds."
+      }
+    },
+    "medium": {
+      "chapterBreakdown": {
+        "gentle": "Most people, when they think about how a conversation works, picture two minds exchanging sentences. Eric Berne thought that was too simple. He noticed that the same person could speak in two completely different voices inside the same five minutes, and that the people they were speaking to would respond to the change before they could even name it. So he built a small vocabulary, deliberately plain, that anyone could use without therapy training.\n\nHis claim was that at any moment an adult is in one of three states. Not three personality types. Three voices a single person moves through. Parent is the voice of the rules and judgments and shoulds that a person picked up from the authority figures of their early life. It comes in two flavors: a critical version that finds fault and corrects, and a nurturing version that takes care and reassures. Both are still Parent. A warm voice telling you what you should feel is not less Parent for being warm. Adult is the voice that observes what is in front of it, in the present, and handles information without coloring it. It is the only state that can update its mind on new evidence. Child is the voice that still carries the original emotional life of one's own childhood, the wanting, the curiosity, the hurt, the rebellious flicker, the wish to be approved of. None of these states is a problem on its own. A person without access to their Child is not healthier; they are flatter.\n\nWhat makes the model useful is not the names. It is that the signals are external. You can see a state change from the outside. When Priya's code-review comment shifted from technical to scolding in its last clause, what changed was not her information about Marcus's code. What changed was her register, and Marcus's shoulders answered the change before his fingers did. That is the level the model is built to operate on. Not the inside of a person's head, but the visible texture of how they are talking right now. The work, on a first reading, is just to start hearing it.",
+        "direct": "Berne's first claim is that adult behavior is not one thing. The same person, in the same room, in a single conversation, can switch between several distinct ways of speaking, thinking, and reacting. He called these ways ego states, and he proposed that there are three of them in active use at any moment: Parent, Adult, and Child.\n\nParent is the residue of the authority figures of the person's early life. It speaks in rules ('this is how it is done'), judgments ('that was lazy work'), shoulds and shouldn'ts. It has a Critical face, which restricts and finds fault, and a Nurturing face, which protects and reassures. Both are Parent. Adult is the present-tense state. It evaluates current information and decides based on the situation actually in front of it. It is neutral in tone. It is the only state that can revise its position on new evidence. Child is what remains, in the grown person, of the emotional and reactive patterns of their own childhood. It contains creativity, curiosity, original feeling, and old strategies for handling authority figures.\n\nThe reason this scheme is useful is the source of its evidence. The states are observable. They show up as changes in voice register, vocabulary choice, posture, and the kind of reply the speaker is unconsciously demanding. When a senior engineer's code-review comment shifts mid-sentence into a teacher's tone, the comment's information has not changed but the engineer's state has, and the junior engineer reading the comment can feel the shift before they can name it. When a graduate student's factual question is answered by a professor as if it were a challenge, the question came from Adult and the answer came from Parent, and the room can feel the mismatch immediately even though no one has the vocabulary for it. The model gives that vocabulary. The first job of a reader using it is not to fix anything. It is to start hearing which voice is currently in the room and which voice is answering it.",
+        "competitive": "Three quarters of the conversations that go badly do not go badly because the people involved are stupid or hostile. They go badly because both people quietly changed who was talking partway through and neither of them noticed. Berne built a tool for catching that.\n\nThe tool is a small, deliberately blunt vocabulary. At any moment, an adult is operating from one of three states: Parent, Adult, or Child. Parent is the voice of the rules a person absorbed from early authority. It speaks in shoulds and judgments, and it has both a critical edge and a nurturing edge, but a nurturing voice telling you what you should feel is still Parent, and is still doing work the speaker cannot quite see. Adult is the voice that handles what is actually in front of it, in present tense, and is the only state that can take in new evidence without distorting it. Child is the original emotional life of the person, still resident in a grown body: the wanting, the hurt, the cleverness, the small flare of rebellion. These are not three kinds of people. They are three voices any one person carries, and they trade off without asking permission.\n\nThe leverage in the model is that the signals are external. State shifts show up in voice, posture, word choice, and the kind of reply the speaker is unconsciously trying to pull from the room. A code-review comment that begins as a technical note and ends as a tired teacher's correction has changed states mid-sentence. A graduate student's hand goes up to ask a factual question, and a professor answers as if his authority has been challenged: the question came from Adult, the answer came from Parent, and the discussion is now in a smaller room than it was a minute ago. People who can read those moves at the level of voice rather than at the level of content have a faster, cheaper signal about where the conversation actually is, and they get to ask the next question from a different place."
+      },
+      "keyTakeaways": [
+        {
+          "point": "Three states, not three personalities.",
+          "moreDetails": "Parent, Adult, and Child are not three kinds of people. They are three configurations a single person moves through, sometimes several times inside one five-minute exchange. The model treats them as positions, not identities."
+        },
+        {
+          "point": "The Parent voice carries rules learned early.",
+          "moreDetails": "It speaks in shoulds, judgments, and 'that's how it is done.' It has both a critical face that finds fault and a nurturing face that reassures. A warm voice telling you what to feel is still Parent, just in its kinder register."
+        },
+        {
+          "point": "The Adult voice handles what is in front of it now.",
+          "moreDetails": "It is the present-tense state. It takes in current information, evaluates it on its own terms, and is the only state capable of changing its mind on new evidence. It is also the rarest state in conversations that have been going wrong for a while."
+        },
+        {
+          "point": "The Child voice carries the original emotional life of childhood, still alive in a grown body.",
+          "moreDetails": "It contains wanting, hurt, curiosity, creativity, and old strategies for handling authority figures. Cutting it off does not make a person more rational; it usually makes them flatter and more brittle."
+        },
+        {
+          "point": "The signals of a state shift are external.",
+          "moreDetails": "Voice register, vocabulary, posture, and the kind of reply the speaker is unconsciously demanding all carry the change. Because the markers are observable from outside the person, a careful listener can catch a state change in real time, before the speaker has the vocabulary for what just happened."
+        }
+      ],
+      "activationPrompt": {
+        "gentle": "Think of a recent conversation that left you feeling smaller or larger than you wanted to be. Where in the exchange do you remember the register changing?",
+        "direct": "Pick the last conversation that ended worse than it started. Locate the sentence where the register shifted. Whose voice arrived at that sentence?",
+        "competitive": "Take the last argument you replayed in your head later. Find the sentence where you stopped sounding like yourself. That sentence is the only data you need for this chapter."
+      },
+      "selfCheckPrompt": {
+        "gentle": "Can you describe one moment in the last twenty-four hours when your own voice stopped sounding like the voice you meant to use?",
+        "direct": "Name a sentence from the last day where the state you spoke from was not the state you would have chosen. What was the marker?",
+        "competitive": "Find one sentence in the last day where someone else's script walked out of your mouth. If you cannot find one, you have not been listening yet."
+      },
+      "oneMinuteRecap": {
+        "retrieve": "An adult is not one thing. At any moment they are speaking from one of three observable states: Parent (rules from early authority), Adult (present-tense data-handling), or Child (original emotional life). State shifts are mostly unchosen and show up as register changes a careful listener can catch in real time.",
+        "connect": "The model is observational, not executive. Recognition gives you a place to stand and a different question to ask, not a switch that turns the state off.",
+        "preview": "If voices can shift mid-sentence, what happens when one person's voice answers another person's voice? Some pairings stabilize a conversation, and others knock it sideways. That is what comes next."
+      }
+    },
+    "hard": {
+      "chapterBreakdown": {
+        "gentle": "It is worth slowing down on what Berne was actually proposing, because the model is more careful than the version of it that usually escapes into pop psychology. He was not saying that there is a Parent in your head, an Adult in your head, and a Child in your head, like three little roommates arguing over the dinner table. He was saying that 'Parent,' 'Adult,' and 'Child' are convenient names for three coherent ways an adult human can be at any given moment, three packages of voice, vocabulary, posture, expectation, and bodily tone, and that the package can change inside one conversation without the person changing it on purpose.\n\nThe Parent state is everything a person picked up from the authority figures of their early life: the rules they were taught, the shoulds they absorbed, the way those people held their faces when they were disappointed. It comes in two forms. Critical Parent is the version that restricts, judges, and finds fault. Nurturing Parent is the version that takes care, reassures, and soothes. Both are still Parent, and both are still operating from a script written by someone other than the present-tense person speaking. A warm voice telling you what you should feel is not less Parent for being warm; it is just gentler Parent.\n\nAdult is the part that handles what is actually in front of it, right now, with the information it actually has. It is neutral in tone. It is the only state capable of taking in new information without bending it to fit a story already in place. When you change your mind on the basis of something you did not know an hour ago, that is Adult.\n\nChild is the original emotional life of one's own childhood, still alive inside the grown body. Not the cute version. The whole thing: the wanting, the hurt, the curiosity, the cleverness, the old strategies for handling whoever held the authority back then. A person with no access to their Child is not healthier than other people; they are flatter, and usually working very hard to stay that way.\n\nTwo things matter most in this part of the chapter, and they matter in opposite directions. The first is that these states are real and observable: you can see one switch on in another person, and on a good day in yourself, before either of you can name it. The second is that the switching is almost never chosen. It is something that happens to a person, not something a person does. That is the part of the model that makes it honest, and it is the part that the next section will hold to its limit.",
+        "direct": "Berne's structural model starts with a refusal to flatten the inside of an adult into one thing. The same person, in the same room, in a single five-minute exchange, can be operating from one set of assumptions and reflexes one moment and a completely different set the next, and the change does not require the person to notice it. He proposed that the available sets are three: Parent, Adult, and Child. The names are convenient labels for clusters of voice, vocabulary, posture, expectation, and emotional default.\n\nParent is the residue of the authority figures of the person's early life. It speaks in rules, judgments, shoulds and shouldn'ts. It has two recognizable faces: Critical Parent restricts and finds fault, while Nurturing Parent protects and reassures. The fact that Nurturing Parent sounds kind does not make it less Parent. It is still the voice of a script learned from somebody else, deployed in the present tense by a person who is not consulting their own current judgment. A line like 'you should be proud of yourself for trying' can be Nurturing Parent doing exactly the same structural work that 'you should know better' does as Critical Parent, just in a softer register.\n\nAdult is the present-tense data-handling state. It observes what is in front of it, evaluates current information, and decides on the basis of the situation actually present rather than the script of past authority or the reaction of past wounds. It is the only state capable of updating beliefs in response to new evidence. It is also the rarest state in conversations that have been going wrong for a while.\n\nChild is what remains, in the grown person, of the original emotional life of their own childhood: the wanting, the hurt, the creativity, the rebellious flicker, the strategies for handling authority that were laid down before the person had words for them. Healthy access to Child is not optional. A person who has lost contact with Child is not more rational; they are flatter, and the access has usually been paid for at a real cost.\n\nTwo structural points are doing the work in this chapter, and they cut against each other on purpose. The first is that the states are observable from outside the person. That is what makes the model usable in real time, and is why it is a tool and not a theory. The second is that state shifts are mostly unchosen. They happen in mid-sentence, without permission, and noticing them does not, on its own, switch them off. Both things are true at once, and the next section will hold to that.",
+        "competitive": "Pay attention to the seam in Berne's model, because the seam is where most of its leverage lives. He is not making the soft pop-psychology claim that you contain a wise inner adult, a wounded inner child, and a stern inner critic, and that good mental health is about putting the right one in charge. He is making a sharper, less consoling claim: that the inside of a working adult is not one thing, that the available configurations are three, and that the configurations trade off in real time without the person's permission.\n\nParent is the configuration assembled from the authority figures of the person's early life. It runs on rules, on judgments, on shoulds and shouldn'ts. It has two faces. Critical Parent restricts and finds fault. Nurturing Parent takes care and reassures. Both are still Parent. A warm voice telling someone what they should feel is performing exactly the same structural maneuver as a sharp voice telling them what they should not feel. The maneuver is using a script written by somebody other than the present moment. People who can only hear Parent in its critical face will miss most of the times their nurturing relatives were running it on them.\n\nAdult is the present-tense state: the part that looks at the situation actually in front of it, takes in current information, and is willing to revise its position when the information changes. It is neutral in tone. It is the only configuration capable of new learning. It is also the configuration that disappears first when a conversation stops going well.\n\nChild is the original emotional life of one's own childhood, still active inside a grown body. Not a sanitized inner child. The full inventory: wanting, hurt, curiosity, cleverness, the old reflexes for managing whoever was in charge. Cutting Child off does not make a person more Adult. It usually makes them brittle, and the brittleness costs more than the access would have.\n\nThe leverage in the model lives in two facts that point in opposite directions. The first is that the configurations are visible from outside the person. Voice register, vocabulary choice, posture, the kind of reply the speaker is trying to pull from the room: these are all on the outside, which means a sharp observer can read a state shift in real time, before the person experiencing it can. The second is that the shifts themselves are almost never under the speaker's control. They happen mid-sentence, without permission. Noticing one rarely switches it off. The next section is where the chapter pays the price for both of those facts honestly, instead of pretending the model is a remote control."
+      },
+      "keyTakeaways": [
+        {
+          "point": "The three states are observable, not inferred.",
+          "moreDetails": "The model is built on outside-the-person evidence: voice register, posture, vocabulary, the kind of reply being pulled from the room. That outside-in basis is what makes it usable in real time and not just in retrospect, and is why it is a tool a non-clinician can pick up."
+        },
+        {
+          "point": "Each state has a characteristic vocabulary and cadence.",
+          "moreDetails": "Parent speaks in rules ('that is how it is done'), Adult speaks in observations ('the function mutates state on line 42'), Child speaks in wants and reactions ('that is not fair'). The cadence and word choice signal the state more reliably than the topic does."
+        },
+        {
+          "point": "Most state shifts are unchosen.",
+          "moreDetails": "A person sliding from Adult into Parent in the middle of a sentence is not deciding to slide. The shift happens to them. This is the structural fact that distinguishes Berne's model from any framework that asks the reader to choose to be calm, and it is what the rest of the chapter has to hold honestly."
+        },
+        {
+          "point": "The Parent has two faces, and both are Parent.",
+          "moreDetails": "Critical Parent restricts and finds fault. Nurturing Parent reassures and protects. The temptation, especially the first time someone uses the model, is to mistake Nurturing Parent for Adult because it sounds kind. It is not Adult. It is still operating from a script written by somebody other than the present-tense person."
+        },
+        {
+          "point": "Noticing a state does not switch it off.",
+          "moreDetails": "Recognition is observational, not executive. Catching yourself in Child rarely makes Child release its grip. What it gives you is a place to stand, and a different question to ask next, but not a guaranteed escape from the state itself. A reader who treats the model as a remote control will feel betrayed by it within a week."
+        },
+        {
+          "point": "The point of the model is not to diagnose the other person.",
+          "moreDetails": "The temptation, the first time this vocabulary is in someone's hands, is to use it to label other people's behavior at them. That use of the model is precisely the use it does not support. What it supports is reading the voice in the room, yours included, without already knowing what to do about it."
+        }
+      ],
+      "activationPrompt": {
+        "gentle": "Think of a person whose Parent voice you can hear most clearly when they speak to you. Now think of the move you usually make in response. Whose voice is that response coming from?",
+        "direct": "Identify someone in your life whose Parent state shows up in conversation most reliably. Identify the state you most often answer from. The pair is the loop you have been running with them.",
+        "competitive": "Pick the relationship in your life that contains the most repeated arguments. Locate the two states that usually meet in those arguments. The pair is the conversation you have been having for years."
+      },
+      "selfCheckPrompts": [
+        {
+          "gentle": "When did you last catch yourself sliding into a state mid-sentence, and what gave you the first warning that the slide was happening?",
+          "direct": "Name the most recent state shift you noticed in yourself. What was the external marker that tipped you off, before you had a name for it?",
+          "competitive": "Find the last unchosen shift you caught in yourself. Identify the one external signal that gave it away. If you cannot identify the signal, you were not watching closely enough."
+        },
+        {
+          "gentle": "Where in your week does a particular setting, person, or kind of room reliably call up Child in you?",
+          "direct": "Identify one setting, person, or location that pulls you into Child more often than others do. What about that setting does the pulling?",
+          "competitive": "Name the place that puts you in Child the fastest. Now name what about it does the work. The thing that does the work is what you were going to need to know."
+        }
+      ],
+      "predictionPrompt": {
+        "gentle": "If you started using this model only to notice your own state shifts, and never said the word Parent or Adult to anybody else, what do you think would change in the next two weeks?",
+        "direct": "Predict what you would observe if you used the model exclusively as an internal observation tool, with no external naming, for two weeks. What changes? What does not?",
+        "competitive": "Run the experiment in your head: two weeks of using this model only on yourself, never on anyone else, never as a label. What would change in your conversations? What would stay exactly the same?"
+      },
+      "oneMinuteRecap": {
+        "retrieve": "Three states (Parent, Adult, Child), each with its own vocabulary and cadence. Parent has both Critical and Nurturing faces, both still Parent. State shifts are mostly unchosen, observable from outside the person, and noticing them does not switch them off.",
+        "connect": "Recognition is observational, not executive. The leverage comes from a different next question, not from a different state.",
+        "preview": "Three voices is the noun list. The next question is what happens when one voice answers another, and why some pairings stabilize a conversation while others derail it."
+      }
+    }
+  },
+  "examples": [
+    {
+      "id": "ex01",
+      "title": "The last clause of a code review",
+      "format": "short_dialogue",
+      "category": "work",
+      "endingType": "observation",
+      "scenario": {
+        "gentle": "Priya is reviewing Marcus's pull request. She types out a comment. 'This function mutates state on line 42, looks like the bug from last sprint. Could you switch it to return a new object? Also, I don't know why I keep having to explain this.' Marcus reads the comment, hunches a little, and types back, 'Sorry, will fix.' Nothing about the code has changed.",
+        "direct": "PRIYA (typing): The function on line 42 mutates state. Same bug pattern as last sprint. Please return a new object instead. (pause) I don't know why I keep having to explain this. MARCUS (reading on his screen, shoulders shifting): Sorry. Will fix it tonight. The first sentence was Adult. The last clause was Parent. Marcus's reply came from Child.",
+        "competitive": "Priya's code-review comment ran on rails for two sentences and then derailed in the third. The first two sentences were a senior engineer noticing a bug. The third was a tired teacher who had had enough. Marcus, on the other side of the screen, did not need to be told what had just happened. His shoulders did the math first, his fingers second, and the apology he typed could have been written by a tenth-grader."
+      },
+      "whatToDo": {
+        "gentle": "Before sending the next review comment, reread your draft and look at the last clause. If the last clause has changed register from the rest of the comment, delete it. The information was complete by the second sentence.",
+        "direct": "Treat the last clause of any feedback comment as a state-shift detector. If it sounds like a different person wrote it, the answer is to cut it before sending. Send only the technical content.",
+        "competitive": "Audit your own outgoing feedback for the late-clause shift before you press send. The cost of a Parent line buried at the end of an Adult comment is not the line itself; it is the way the recipient will read every comment from you for the next month."
+      },
+      "whyItMatters": {
+        "gentle": "When a comment shifts register at the end, the recipient remembers the shift, not the content. Cleaning it up before sending keeps the comment doing the work it was meant to do.",
+        "direct": "Information in a feedback comment is delivered Adult-to-Adult and read in the register the comment was sent in. A Parent clause changes the read of everything around it.",
+        "competitive": "A code review comment is also a relationship. One Parent clause buried at the end is enough to make the reviewer a person to be defended against, not a person to learn from, and that costs every comment that comes after."
+      }
+    },
+    {
+      "id": "ex02",
+      "title": "Sam's first one-on-one",
+      "format": "first_person",
+      "category": "work",
+      "endingType": "reflection",
+      "scenario": {
+        "gentle": "I had been a manager for nine days when Rebecca, my new direct report, told me she was going to push her deadline by a week. My mouth opened. The voice that came out belonged to my old boss, the one who used to ask 'when do you think this could realistically be done?' in a tone that meant the answer had better be tomorrow. Rebecca's face changed before I had finished the sentence.",
+        "direct": "I am nine days into managing a team. Rebecca asks for a one-week extension on a project. Before I form a response from the actual situation in front of me, her workload, the dependencies, what I actually think, a fully formed Parent question arrives in my throat. It is in my old boss's cadence. I hear myself ask it. Rebecca registers the cadence before I do.",
+        "competitive": "Nine days into the job. Rebecca walks into our first one-on-one and asks for a one-week extension. I have a chance to be the kind of manager I told myself I was going to be. Instead, an entire sentence in my old boss's voice walks out of my mouth before I can think, and Rebecca's face goes flat in a way I have seen on my own face many times. I am the boss now. The boss is also somebody else."
+      },
+      "whatToDo": {
+        "gentle": "Before responding to a request you did not expect, give yourself one breath of silence. In that breath, ask: whose voice is about to come out of my mouth? You will not always be able to redirect it, but the asking buys a small gap.",
+        "direct": "Insert a five-second pause before your first answer. Use the pause to check whether the voice you are about to use is yours or somebody else's. The pause is the only intervention available, and it works partly.",
+        "competitive": "Make the silence first. Five seconds. In five seconds you can hear who is about to talk through you. If it is your old boss, you cannot stop them, but you can refuse to send the sentence they wrote and write your own instead."
+      },
+      "whyItMatters": {
+        "gentle": "The first one-on-one is the conversation a direct report uses to decide who you are as a manager. A Parent voice in your throat is not the manager you are; it is the manager you had once. Catching it gives the actual you a chance to speak.",
+        "direct": "Direct reports calibrate to the voice their manager used the first time they made a request. If that voice was someone else's, the calibration is wrong from the start.",
+        "competitive": "Whatever voice you use in the first three of these conversations is the voice your team will assume for the next year. A borrowed Parent voice will buy you a quieter team. Not a candid one."
+      }
+    },
+    {
+      "id": "ex03",
+      "title": "A factual question in Halden's seminar",
+      "format": "third_person_scene",
+      "category": "school",
+      "endingType": "unresolved_tension",
+      "scenario": {
+        "gentle": "Elena raises her hand in Professor Halden's seminar on Monday afternoon. The question she asks is not a complaint and not a challenge. It is a request: she would like to know what Halden means by the term he has been using for the last fifteen minutes, because she is taking notes and wants to use the term correctly in her paper. Halden hears the question for several seconds before he answers, and when he answers, the answer is not addressed to the request she actually made.",
+        "direct": "In Halden's seminar, Elena asks a definitional question about a key term. Adult-to-Adult: tell me what you mean by this so I can use it accurately. Halden takes the question as a challenge to his authority. He answers from Parent, in a register that is half-correction and half-warning. The room registers the mismatch. No one names it.",
+        "competitive": "Halden's seminar has fourteen students and an oxygen budget that depends on whether anyone speaks. Elena spends one of her speaking turns asking what Halden means by a term he has been using all hour. It is a clean question. Halden does not hear it as a clean question. He hears it as the kind of question students ask when they are going to be a problem, and his answer is built for that. The cost is not measured in Elena's grade. It is measured in the next eight Mondays of silence."
+      },
+      "whatToDo": {
+        "gentle": "If you are the professor and a student's question lands in your Parent, the move is to ask the student to restate the question. Restating it gives both of you a second chance to land it Adult-to-Adult. If you are the student, the move is to write the question down before you ask it next time, and to ask it from the page.",
+        "direct": "Restate the question yourself before answering. 'Just to make sure I have it: you are asking what I mean by X.' The restate is a state-check disguised as a clarification.",
+        "competitive": "Restate the question in your own mouth before you answer it. If you cannot restate it without flinching, the flinch is the data; the question landed in Parent. Restate it again from the actual content and answer that one."
+      },
+      "whyItMatters": {
+        "gentle": "A professor who answers Adult questions from Parent loses the room slowly, over weeks, in ways nobody complains about and nobody can quite explain. Catching the state shift is the cheapest fix available.",
+        "direct": "Seminars are won and lost in the second the instructor decides which state to answer from. The decision is rarely made consciously. Practicing the restate makes it conscious.",
+        "competitive": "An instructor who consistently answers Adult questions from Parent has trained the room to stop asking. The damage is invisible until the day there are no questions left, and by then it is too late to find out what the students actually thought."
+      }
+    },
+    {
+      "id": "ex04",
+      "title": "Ms. Alvarez and the marker fight",
+      "format": "coaching_script",
+      "category": "school",
+      "endingType": "reframe",
+      "scenario": {
+        "gentle": "Ms. Alvarez is sitting on a low chair next to two seventh-graders. They have been working on a group project for an hour and are now arguing about whose turn it is to use the markers. The argument is no longer about markers. Ms. Alvarez has watched this happen enough times to know what she is looking at: one of the kids has slipped into a voice that sounds like a tired adult, and the other has slipped into a voice that sounds five years younger than they actually are.",
+        "direct": "Ms. Alvarez observes two students in the middle of a group-project conflict. Student A is making rules at Student B in a voice borrowed from a parent. Student B is responding from Child, in a register of grievance. The content is markers. The exchange is Parent-to-Child. Alvarez's job is to give the kids a way to see the exchange without using vocabulary they cannot yet hold.",
+        "competitive": "Group projects in seventh grade are a state-shift laboratory. Ms. Alvarez has eight minutes before the bell. Two of her students are locked in a Parent-to-Child loop about markers, and the loop will end in tears or in punishment unless somebody names the loop without naming the theory. She does not have time for theory. She has time for one sentence and one question."
+      },
+      "whatToDo": {
+        "gentle": "Sit down at their level. Say: 'I am going to ask both of you a weird question. Right now, do you sound like yourselves, or do you sound like somebody else you know?' Then wait. Let them think about it. Do not solve the markers.",
+        "direct": "Mirror the voices back to them. 'A minute ago you were both seventh-graders. Right now one of you is a parent and one of you is a five-year-old. Where did you go?' Wait for them to answer. Then ask what they want to do about the markers.",
+        "competitive": "Cut the content. Hand them the picture instead. 'I want you to listen to your own voices for thirty seconds. Whose voice is it?' If they laugh, you have your opening. If they don't, ask them to swap chairs and try the conversation as themselves again."
+      },
+      "whyItMatters": {
+        "gentle": "Twelve-year-olds can absolutely hear when their voices have stopped being their own. They do not have words for it yet. A teacher who asks the right question gives them a memory of the moment they noticed.",
+        "direct": "Children pick up the observational use of the model faster than adults do, because they have less invested in being the voice they are using. A teacher who interrupts the loop with a state question is teaching the skill at the right age.",
+        "competitive": "A seventh-grader who learns, once, that their voice can stop being theirs in the middle of a sentence has been handed a tool that will quietly save them in twenty conversations a year for the rest of their life. Teachers are the cheapest place this skill can be taught."
+      }
+    },
+    {
+      "id": "ex05",
+      "title": "Noor reconstructs the dishes argument",
+      "format": "narrative_flashback",
+      "category": "personal",
+      "endingType": "forward_question",
+      "scenario": {
+        "gentle": "Looking back at the dishes conversation later that night, Noor could not pinpoint the exact sentence where she had stopped talking about a schedule and started giving a speech. She remembered the proposal: alternating days, she did not mind taking the odd ones, it would take thirty seconds to set up. Then somehow she remembered standing at the counter listing things about responsibility, about how she had grown up, about the kind of person who understood without being told. Chidi had not said anything for a while. The kitchen had felt different, and Noor had not noticed when.",
+        "direct": "That night, Noor reconstructs the dishes conversation in her head. The opening was Adult: a clean scheduling proposal. By the third sentence she was no longer in Adult. She was in Parent, giving a speech she could now hear in her mother's cadence. The shift happened in the silence between sentence two and sentence three. She did not decide to make it. The kitchen made it for her, or her mother did from inside her, or both.",
+        "competitive": "Noor lay in bed and replayed the kitchen conversation. The clean proposal she had walked in with. The speech she had walked out of. Somewhere between sentence two and sentence three of her own argument, she had stopped being a person solving a sink problem and started being her mother giving a sermon. Chidi had stopped meeting her eyes around sentence four. The next morning was going to be expensive."
+      },
+      "whatToDo": {
+        "gentle": "After a conversation that left a strange taste, take five minutes alone and walk back through it sentence by sentence. Try to find the place where the voice you were using stopped sounding like you. Do not use it as evidence against yourself. Use it as a marker for next time.",
+        "direct": "Reconstruct the conversation backwards, looking only for the moment your register changed. The moment is not always the moment you got loud. Often it is two sentences earlier, and you stopped being in Adult before you stopped being in your own voice.",
+        "competitive": "Rebuild the conversation in your head, sentence by sentence, until you find the seam. Mark the seam. Next time you are in that room with that person on that topic, you will recognize the seam approaching, and recognizing it is most of what the model gives you."
+      },
+      "whyItMatters": {
+        "gentle": "Retroactive recognition is the most common way the model first works on a person. The fix is rarely available in the moment. The marker, laid down at night, is what changes the next morning's conversation.",
+        "direct": "Recognition is rarely live. It is mostly retrospective. The retrospective recognition lays down the marker that lets the next conversation be different in small ways the speaker can feel.",
+        "competitive": "Couples who can locate the seam after the fact have a different fight available the next time. Couples who cannot locate it are running the same fight in slightly different rooms for years."
+      }
+    },
+    {
+      "id": "ex06",
+      "title": "Danielle in the low chair",
+      "format": "inner_monologue",
+      "category": "personal",
+      "endingType": "decision_point",
+      "scenario": {
+        "gentle": "She is sitting in a low chair in Ms. Alvarez's classroom, the kind of chair that puts your knees up by your chin. Across the table is the teacher, who is calmly explaining that Jamal is doing fine. Danielle's body is sitting in the chair, but her stomach is somewhere in 1996, in the principal's office, waiting for someone to tell her she is in trouble. The teacher has not said anything that warrants this. Danielle notices the gap, and notices that she is about to answer from a place that is not the actual conversation.",
+        "direct": "Inner monologue, parent-teacher conference, low chair, strip of construction paper on the wall. Danielle observes her own state: shoulders tense, breathing shallow, the urge to apologize for something Ms. Alvarez has not yet asked her to apologize for. This is Child, called up by the school setting itself. The question Danielle is about to be asked is neutral. The answer she is about to give is going to be from the wrong state.",
+        "competitive": "She has been in Ms. Alvarez's classroom for ninety seconds and her body is already a fourteen-year-old's body. The chair is too low. The wall has a strip of tape on it. Ms. Alvarez is being kind. Danielle is ten seconds away from agreeing to whatever the teacher says next, not because she agrees but because Child is the state in the chair and Child agrees to get out of trouble. If she does not interrupt this in the next breath, the next forty minutes will be a parenting conversation she did not have."
+      },
+      "whatToDo": {
+        "gentle": "Notice the body first. Adjust your posture in the chair. Take one breath that is longer than the last one. Then ask one neutral question about your child that requires Adult to answer. The question is your way back into the room.",
+        "direct": "Use a body check as the entry point. Sit straighter, slow your breathing, and ask an Adult-grade question: 'Tell me what you are seeing in his work this term.' Asking from Adult pulls Adult forward. It does not always work; it works often enough.",
+        "competitive": "Refuse to answer first. Ask. 'Walk me through what you have been seeing this term.' Two things happen. You stop being the one being graded, and you give yourself the ninety seconds you need to climb back into the chair as yourself."
+      },
+      "whyItMatters": {
+        "gentle": "Schools call up the Child state in adults more reliably than almost any other setting in life. Knowing that in advance, and having one move ready, gives you a different conference.",
+        "direct": "Child reactivation in formal settings is one of the most predictable things the model predicts. Carrying a single, repeatable Adult move into those settings is the most useful self-defense the chapter offers.",
+        "competitive": "A parent who walks into a school as Child will agree to interventions they do not believe in, sign forms they did not read, and leave the building feeling smaller than when they came. A parent who carries one Adult question into the room walks out with the same posture they brought in."
+      }
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "Among Berne's three states, which one is the only one that takes in current information neutrally and is capable of changing its position when new evidence arrives?",
+        "choices": ["Parent", "Adult", "Child"],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "Adult is the present-tense data-handling state. The Parent is busy running rules picked up from somebody else, and the Child is busy running feelings still alive from earlier in your own life. Only Adult is built to update on what is actually in front of it.",
+          "direct": "Adult is defined by present-tense observation and the willingness to revise on new evidence. Parent is a script from past authorities and does not update easily. Child is the original emotional life from one's own childhood and reacts before evaluating.",
+          "competitive": "Updating on new evidence is the move only Adult can make. Parent will try to fit the new evidence into the script it already has. Child will react to the evidence before reading it."
+        },
+        "bloomsLevel": "remember",
+        "depthLevel": "easy"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "In the code review where Priya leaves a comment on Marcus's pull request, what is the marker that her state has shifted by the end of the comment?",
+        "choices": [
+          "Marcus replies more slowly than usual",
+          "The technical content of the comment changes from the first sentence to the last",
+          "The register of the last clause is different from the rest of the comment, and Marcus's body answers the change before he does"
+        ],
+        "correctIndex": 2,
+        "explanation": {
+          "gentle": "The shift is in the register, not the content. Marcus's hunched shoulders are the early signal because the body picks up the new voice before the conscious mind names it. A slower reply happens, but it happens downstream of the shift.",
+          "direct": "Register change is the marker; the content of the technical note stayed the same. Body language is the early signal because state shifts move faster than vocabulary. A slower reply is a consequence, not the marker.",
+          "competitive": "Register, not content, is the move you are looking for. The technical note Priya wrote does not change in information; it changes in voice. A reply that comes more slowly is downstream of that change, not evidence of it."
+        },
+        "bloomsLevel": "understand",
+        "depthLevel": "easy"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A senior colleague says, in a warm and encouraging tone, 'You should feel really proud of yourself for trying.' Which state is this most likely coming from?",
+        "choices": [
+          "Parent (specifically Nurturing Parent)",
+          "Adult",
+          "Child"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "Warmth does not move a line out of Parent. The 'should' is a rule about what someone is supposed to feel, and rules about feeling are still Parent territory, just in their kinder face.",
+          "direct": "Nurturing Parent is the kind face of the same script. The word 'should' tied to a feeling is the marker; an Adult observation about the same situation would describe what happened, not prescribe the response.",
+          "competitive": "Look at the verb. 'Should feel' is a Parent prescription dressed in nurturing tone. An Adult observation would describe rather than instruct. The tone is kind; the move is still Parent."
+        },
+        "bloomsLevel": "understand",
+        "depthLevel": "easy"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "Sam, nine days into managing a new team, hears a sentence in his old boss's cadence walk out of his own mouth during a one-on-one with Rebecca. Of the following, which move is the chapter actually recommending?",
+        "choices": [
+          "Apologize aloud for using the wrong tone and start the sentence over",
+          "Insert a brief silence before the next answer and use it to check whose voice is about to come out",
+          "Decide in advance to be the Adult and trust that decision to hold"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "Inserting a small silence is the only move the chapter actually claims will work, and it only works partly. Apologizing on the spot can make the moment more about Sam than about Rebecca, and deciding to be Adult is exactly the kind of remote-control move the chapter says the model does not give you.",
+          "direct": "A short pause before the next response is the realistic intervention because it interrupts the script long enough to check it. Apologizing in the moment escalates self-focus. 'Deciding to be Adult' is the move the chapter explicitly says is unavailable, because state shifts are not under will.",
+          "competitive": "Five seconds of silence is the move the chapter actually backs. Apologizing on the spot puts the manager at the center of a conversation that should still be about the report. Willing yourself into Adult is the failure mode the chapter spends its hard-depth section refusing to promise."
+        },
+        "bloomsLevel": "apply",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "When Professor Halden answers Elena's factual question as if it were a challenge, the most accurate description of what happened is:",
+        "choices": [
+          "Halden was rude and Elena's question deserved a better answer",
+          "Elena's question was unclear and prompted a defensive answer",
+          "Elena's question was sent from Adult and Halden's answer came back from Parent, and the room felt the mismatch even though no one named it"
+        ],
+        "correctIndex": 2,
+        "explanation": {
+          "gentle": "The chapter is not making a moral claim about Halden. It is describing a state mismatch: Elena asked from Adult, and Halden answered from Parent. Calling him rude misses the structural point and does not give the reader a tool. Saying the question was unclear is a story about Elena, not about the exchange.",
+          "direct": "Mismatch between sending state and answering state is the diagnosis the chapter is offering. 'Rude' is a moral label that does not tell the reader anything they can use. 'Unclear question' is a story that locates the problem in the wrong person.",
+          "competitive": "Mismatch of states is the diagnosis. Rudeness is a label, and it gives you nothing to do next. Blaming the question lets the listener off the hook for the state they answered from. Naming the mismatch gives you a tool for the next class."
+        },
+        "bloomsLevel": "analyze",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "Danielle notices, in the low chair at her son's parent-teacher conference, that her body has slipped into Child. According to the chapter, what does noticing this give her?",
+        "choices": [
+          "A place to stand and a different question to ask next, but not a guaranteed escape from the Child state itself",
+          "An immediate exit from Child once she names it",
+          "Permission to apologize to Ms. Alvarez for being defensive"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "The chapter is careful here. Noticing is observational, not executive. Danielle does not get to leave the state by recognizing it. What she gets is a small gap in which she can ask the next question from a slightly different place. That is the smaller, more honest claim the model makes.",
+          "direct": "Recognition gives location, not control. The state does not lift on being named. The gap between recognition and reaction is where the next move can come from, and that gap is most of what the model offers a person. A preemptive apology is its own state move, not a fix.",
+          "competitive": "Recognition gives Danielle a place to stand. It does not give her a switch. The honest version of the chapter is that the state stays for a while and the person gets to ask a different question from inside it. Anyone selling her an exit from Child by naming it is selling something the model does not contain."
+        },
+        "bloomsLevel": "analyze",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "A customer-service agent on a call answers an angry customer's reasonable question with a scripted line that begins, 'Sir, you need to understand...'. Which state is the agent operating from at that moment?",
+        "choices": [
+          "Adult",
+          "Child",
+          "Parent"
+        ],
+        "correctIndex": 2,
+        "explanation": {
+          "gentle": "The phrase 'you need to understand' is a rule directed at someone else, which puts it in Parent. An Adult response would describe the actual policy or the actual situation. A Child response would react to the customer's anger emotionally, often defensively.",
+          "direct": "'You need to understand' is a Parent move because it is a rule about how the other person should be in this conversation. Adult would handle the substance. Child would react to the anger.",
+          "competitive": "Watch the verb. 'You need to' is rule-issuing. Rule-issuing belongs to Parent. The agent is not yet handling the customer's question; they are positioning the customer in the room. Adult would address content. Child would absorb the anger."
+        },
+        "bloomsLevel": "apply",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "Noor, the morning after the dishes conversation with Chidi, wants to do something useful with the recognition that her state had shifted. Which next question is the chapter actually recommending?",
+        "choices": [
+          "How can I be more Adult in our next conversation?",
+          "What was actually happening in the kitchen last night, including which voices were in the room?",
+          "How can I get Chidi to recognize that he was being defensive?"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "The chapter explicitly redirects from 'how do I win the argument' to 'what was actually happening in the room.' That second question is what observation buys you. The first question treats the model as a self-improvement tool, and the third treats it as a way to label other people, which is the misuse the chapter warns against.",
+          "direct": "Locating what happened, including the voices present, is the use of recognition the chapter argues for. 'How can I be more Adult' is the executive misreading the chapter spends its limit-paragraph correcting. 'How do I get Chidi to recognize' is the diagnose-the-other-person misuse.",
+          "competitive": "'What was actually happening' is the question the chapter pays for. 'Be more Adult' is the move the chapter says you cannot make. Diagnosing Chidi is the move the chapter explicitly does not support, because the model is not for labeling other people's behavior at them."
+        },
+        "bloomsLevel": "apply",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "If the model cannot let a reader will themselves into Adult, why does the chapter argue it is still worth using?",
+        "choices": [
+          "Because recognition gives the reader a different question to ask next, and a different question leads to a different conversation, even when the state itself does not lift",
+          "Because the model is more accurate than other psychological frameworks",
+          "Because labeling other people's states gives the reader leverage in conflicts"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "The chapter's smaller, honest claim is that the model gives you a place to stand and a different question to ask. That different question is what changes the next conversation, not the state itself. Accuracy claims are not what the chapter argues, and using the model on other people is exactly the misuse it warns against.",
+          "direct": "Recognition opens a different question. A different question is what the model trades for the lack of an executive switch. The chapter does not make accuracy claims about the model relative to other frameworks. It explicitly rejects using the model to label other people.",
+          "competitive": "Different question, different conversation. That is the trade. Accuracy claims are not what the chapter is selling. Using the model as a labeling weapon is the failure mode the chapter is built to refuse."
+        },
+        "bloomsLevel": "evaluate",
+        "depthLevel": "hard"
+      },
+      {
+        "questionId": "q10",
+        "prompt": "If naming a state cannot make a reader choose it, what does the chapter say noticing is actually for?",
+        "choices": [
+          "For locating the state honestly, so the next move comes from a different place than the last move did",
+          "For gradually retraining the brain to default to Adult",
+          "For developing an internal scoreboard of how often each state shows up"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "The chapter calls this 'locating.' Once you know which voice was actually in the room, the question you ask next is different, and the answer you give next comes from somewhere different too. The chapter does not promise gradual retraining, and it does not propose the model as a counting tool.",
+          "direct": "Locating is the word the chapter uses. Noticing is for finding where the conversation actually was, so the next move is not the same move. There is no claim of gradual retraining and no scoreboard model in the chapter.",
+          "competitive": "Locate the state. That is the use. The next move comes from a different place because it has a different starting point. Retraining is not what the chapter promises, and treating the model as a scoreboard turns it into the diagnostic tool the chapter explicitly tells you it is not."
+        },
+        "bloomsLevel": "evaluate",
+        "depthLevel": "hard"
+      }
+    ]
+  },
+  "implementationPlan": {
+    "title": "Hearing the voice in the room",
+    "steps": [
+      "For one week, in three conversations a day, try to identify the state you ended a sentence in. Not the other person's state. Yours.",
+      "When you hear yourself slide mid-sentence, write down the seam afterward, in a single sentence. Not as judgment. As a marker.",
+      "In one conversation a day, when you notice a state shift in someone else, do not name it aloud. Notice it, and ask the next question from a different place than your reflex would have asked it.",
+      "At the end of the week, look at your seam notes. The seams will repeat. The pattern they show you is the conversation you keep half-having."
+    ]
+  },
+  "reviewCards": [
+    {
+      "id": "rc01",
+      "difficulty": "easy",
+      "front": "What are Berne's three states, in one line each?",
+      "back": "Parent: rules learned from early authority figures. Adult: present-tense data-handling. Child: original feelings from one's own childhood, still alive in a grown body."
+    },
+    {
+      "id": "rc02",
+      "difficulty": "easy",
+      "front": "Which state can take in new evidence and update its position?",
+      "back": "Adult, the only state that handles current information neutrally and is willing to revise on new evidence."
+    },
+    {
+      "id": "rc03",
+      "difficulty": "medium",
+      "front": "What are the two faces of the Parent state, and why does it matter that both are still Parent?",
+      "back": "Critical Parent (restrictive, fault-finding) and Nurturing Parent (caretaking, reassuring). Both are Parent because both are running a script written by an early authority figure rather than a present-tense judgment. A warm voice telling you what you should feel is performing the same structural maneuver as a sharp voice telling you what you should not feel."
+    },
+    {
+      "id": "rc04",
+      "difficulty": "medium",
+      "front": "What signal tells you a state has shifted in a conversation?",
+      "back": "An external one. Voice register, vocabulary, posture, and the kind of reply the speaker is unconsciously trying to pull from the room. The marker is on the outside of the person, which is what lets a careful listener catch a state change in real time, before the speaker has the vocabulary for what just happened."
+    },
+    {
+      "id": "rc05",
+      "difficulty": "hard",
+      "front": "If the model cannot let me will myself into Adult, what is noticing actually for?",
+      "back": "For locating the state honestly, so the next question you ask comes from a different place than the last one did. Recognition is observational, not executive. The state does not switch off when named. What it gives you is a small gap and a better next question. A reader who treats the model as a remote control will feel betrayed by it within a week."
+    }
+  ],
+  "keyTakeawayCard": {
+    "gentle": "An adult is three voices, not one. The work is to start hearing which voice is in the room before you answer it.",
+    "direct": "Parent, Adult, Child. Three observable states, switching mid-sentence without permission. Recognition gives you a place to stand, not a switch.",
+    "competitive": "Three voices in every adult, swapping in the dark. The reader who can hear the swap has the cheapest leverage in the room. The reader who cannot will keep losing arguments they did not know they were in."
+  }
+}

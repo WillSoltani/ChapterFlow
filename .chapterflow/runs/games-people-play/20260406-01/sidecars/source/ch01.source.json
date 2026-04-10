@@ -1,0 +1,46 @@
+{
+  "chapterId": "ch01",
+  "book": "Games People Play",
+  "author": "Eric Berne",
+  "sourceDocument": ".chapterflow/sources/games-people-play/games-people-play.txt",
+  "provenance": "Structured reference material (paraphrased, no verbatim reproduction).",
+  "slices": [
+    {
+      "id": "A",
+      "sourceLines": "39-72",
+      "summary": "Definition of the three ego states (Parent, Adult, Child) and their observable markers; Critical vs Nurturing Parent; Natural / Adapted / Little Professor variants of Child; contamination and exclusion as two failure modes.",
+      "usageNote": "Core teaching material for this chapter. Paraphrase only; do not quote."
+    },
+    {
+      "id": "B",
+      "sourceFile": ".chapterflow/sources/games-people-play/criticism-and-limits.md",
+      "summary": "1964 examples in the original book are gendered and dated; modern ChapterFlow scenarios must be drawn from neutral contemporary settings. The observational content of the model is preserved; the case studies are replaced.",
+      "usageNote": "Global framing constraint for Ch1 examples and moral-complexity handling."
+    },
+    {
+      "id": "C",
+      "sourceFile": ".chapterflow/sources/games-people-play/chapter-map.md",
+      "summary": "Chapter 1 intent: introduce Parent / Adult / Child as behavioral states, focus on the observational skill, reserve transactions / games / strokes / payoffs for Chs 2–4.",
+      "usageNote": "Scope guard. Do not anticipate later chapters."
+    },
+    {
+      "id": "D",
+      "sourceLines": "65-72 (synthesized)",
+      "summary": "State-shifts are mostly unchosen. A person slipping from Adult into Parent is not making a decision; the shift happens without their permission. The model gives the person a way to notice after the fact.",
+      "usageNote": "Load-bearing for the chapter's hard-depth tension: observational vs executive."
+    },
+    {
+      "id": "E",
+      "sourceLines": "560-572",
+      "summary": "The three qualities of autonomy (awareness, spontaneity, intimacy) are the destination of the whole book. Awareness is a long arc of Ch1's observational skill but that language belongs to Ch10.",
+      "usageNote": "Forbidden-drift marker. Do not reference 'awareness' as a term in Ch1."
+    }
+  ],
+  "forbiddenContent": [
+    "Verbatim or near-verbatim reproduction of Berne's prose.",
+    "Reproduction of Berne's original gendered case studies.",
+    "References to Freud by name beyond one paraphrase ('not those three').",
+    "Any extension into transactions, games, strokes, payoffs, or life positions (later chapters).",
+    "Any neurochemistry, hormones, evolutionary psychology, or millisecond claims."
+  ]
+}

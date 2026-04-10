@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's main claim about pessimism?",
+      "choices": [
+        "Pessimism is always more accurate than optimism",
+        "Pessimism feels persuasive because danger is vivid and progress is quiet",
+        "Optimism should replace all caution"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says bad stories get extra force because danger is easier to notice.",
+        "direct": "Negative narratives gain power from vividness and urgency, not just from evidence.",
+        "competitive": "Fear sounds smart because it gets emotional help."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does progress usually lose the attention contest?",
+      "choices": [
+        "Because progress never matters",
+        "Because progress is often slow and emotionally unimpressive",
+        "Because people cannot measure progress at all"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Progress often happens quietly.",
+        "direct": "Slow improvement is harder to dramatize than sudden damage.",
+        "competitive": "Boring progress loses the headline war."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What mistake does the chapter say people often make with dark stories?",
+      "choices": [
+        "They confuse emotional seriousness with stronger evidence",
+        "They ignore every warning immediately",
+        "They assume all progress is fake"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A scary story can feel stronger than it really is.",
+        "direct": "People often reward severity in tone as if it were proof.",
+        "competitive": "They let fear borrow authority."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "What is the chapter's practical answer?",
+      "choices": [
+        "Refuse to think about risk",
+        "Separate emotional force from evidentiary force",
+        "Assume calm stories are always correct"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants readers to ask why a story feels persuasive.",
+        "direct": "Emotional vividness should be tested rather than automatically trusted.",
+        "competitive": "Intensity is not proof."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why is this bias especially strong in money?",
+      "choices": [
+        "Because gains are always fake",
+        "Because losses are visible while gains are often slow and quiet",
+        "Because markets never produce positive outcomes"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Bad financial events stand out more than gradual gains.",
+        "direct": "Losses are event-like and easy to narrate, while progress often compounds quietly.",
+        "competitive": "Damage headlines while progress works backstage."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which statement best matches the chapter's position on pessimism?",
+      "choices": [
+        "All pessimistic stories are false",
+        "Some pessimistic stories are true, but they also get emotional over-weighting",
+        "Pessimism should always be trusted more than optimism"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter is about weighting, not denial.",
+        "direct": "Risk can be real while still receiving extra persuasive power from fear.",
+        "competitive": "The warning can be true and still be emotionally oversold."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why can a frightening headline dominate attention?",
+      "choices": [
+        "Because vivid danger is easy to imagine and remember",
+        "Because quiet progress never exists",
+        "Because all headlines are equally supported"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Danger grabs attention quickly.",
+        "direct": "Vivid, event-like stories leave stronger emotional marks than gradual trends.",
+        "competitive": "The cinematic threat beats the statistical trend."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "How does Chapter 18 connect to Chapter 17?",
+      "choices": [
+        "Chapter 17 removed all confusion from markets",
+        "Chapter 18 explains why dark stories feel especially persuasive when markets already feel hard to read",
+        "The chapters address unrelated topics"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Confusing markets make dark stories feel simpler and stronger.",
+        "direct": "When many motives collide, pessimism can seem like the cleanest explanation.",
+        "competitive": "Chaos makes the bleak story look like order."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does this chapter lead into 'When You'll Believe Anything'?",
+      "choices": [
+        "Because fear makes people easier to recruit into simple explanations",
+        "Because optimism makes people gullible",
+        "Because evidence no longer matters after bad news"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Fear can lower the standard for what people accept.",
+        "direct": "Once pessimism feels authoritative, weak but certain stories become easier to believe.",
+        "competitive": "A scared audience is easier to sell to."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What is the strongest action implied by the chapter?",
+      "choices": [
+        "Automatically distrust every severe story",
+        "Ask whether a narrative's authority comes from evidence or from vivid fear",
+        "Ignore all news and commentary forever"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants readers to examine why a story feels powerful.",
+        "direct": "Better judgment comes from testing whether emotional seriousness is doing work that evidence has not earned.",
+        "competitive": "Make the fear prove itself."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    }
+  ]
+}

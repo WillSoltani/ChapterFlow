@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch04-q01",
+      "prompt": "The chapter's central claim about the counterattack is that the best moment to counter is when?",
+      "choices": [
+        "The moment the opponent signals they are about to attack, so you can preempt.",
+        "Immediately after the initial hit lands, before the opponent can regroup.",
+        "After the opponent has fully committed and extended, when they have no recovery position."
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Nice catch. Maximum extension is the window -- when the attacker has committed so fully that retreat would require visible reversal. The first option describes preemption, not counterattack. The second is the too-early failure mode the chapter names explicitly: the attacker can still retreat from their position when the counter arrives.",
+        "direct": "Maximum extension is the only moment the counter has real force. The preemption option is a different move entirely. The immediate-response option is the failure mode the chapter warns against -- fire before the attacker is committed and they can still walk back, making the counter land on a fluid target.",
+        "competitive": "The trap is the immediate-response option because it sounds like decisive action. The chapter is precise: immediate response catches the attacker at their most fluid, when they can still reframe or retreat. Waiting for maximum extension turns the attacker's overcommitment into the weapon."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch04-q02",
+      "prompt": "Why does the chapter say deterrence is not bluff?",
+      "choices": [
+        "Because a reputation without real capacity behind it collapses the first time it is tested, and cannot be rebuilt with the audience that watched.",
+        "Because bluffing is ethically problematic and deterrence must rest on honest communication.",
+        "Because bluffs can work short-term but deterrence only functions over long periods."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nice catch. The structural argument is clear: a deterrent without real capacity will be tested eventually, and the test will produce direct evidence that the deterrent is not real. That evidence cannot be overwritten by subsequent claims. The second option introduces an ethical framing the chapter does not use. The third is vague and misses the collapse mechanism entirely.",
+        "direct": "The collapse is permanent with the audience that tested it. That is the structural reason: the test produces evidence that overwrites the prior claimed reputation. Ethics is not the chapter's argument. The long-term vs. short-term framing misses the key point, which is the evidentiary irreversibility of a failed test.",
+        "competitive": "The trap is the ethics option because it sounds principled. The chapter's argument is structural, not moral: a bluff deterrent fails because tests produce evidence, and evidence cannot be countered by claims. The strategic cost of a failed deterrent -- permanent with the testing audience and communicated to their network -- is what makes deterrence require real capacity."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch04-q03",
+      "prompt": "The absorption window is best described as which of the following?",
+      "choices": [
+        "The delay caused by an operator who is too cautious to counter-attack at all.",
+        "The period during which the operator takes damage from an attack while reading its shape -- a necessary precondition of the well-timed counter.",
+        "The time between deciding to counter-attack and executing the counter-attack."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Nice catch. The absorption window is active, not passive -- the operator is reading the attack's shape, tracking what the attacker is committing to, while taking the damage. This observation work is what makes the eventual counter targeted. The first option mischaracterizes it as excessive caution. The third describes the execution gap, not the observation period.",
+        "direct": "Active observation under adversarial conditions. The absorption window is the time the operator uses to learn what the attacker is committing to -- so the counter can target the commitment rather than the original accusation. It is not hesitation and it is not the delay between deciding and acting.",
+        "competitive": "The trap is the execution-gap option because timing language makes it sound adjacent to the right answer. The absorption window is before the counter decision, not after it. It is the observation phase that produces the information needed to decide when and where to counter."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch04-q04",
+      "prompt": "What is deterrence capital composed of?",
+      "choices": [
+        "The financial and legal resources available to mount a deterrent threat.",
+        "The accumulated pattern of past behavior that is visible to the audiences deciding whether to attack -- built by actually following through at cost, not by claiming you will.",
+        "The formal statements and documented positions that define what actions you will take in response to various attacks."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Nice catch. Deterrence capital is behavioral and historical -- it is the pattern of what you have actually done, visible to the right audiences. Financial and legal resources are underlying capacity, but they are not what the capital is made of. Formal statements describe what you claim you will do, which is the opposite of deterrence capital: the chapter is explicit that claims without behavioral track record collapse under test.",
+        "direct": "Behavioral pattern plus visibility plus actual follow-through at cost. That is the composition. Financial resources are part of real capacity but not deterrence capital itself. Formal statements are precisely what Petra had -- stated positions without behavioral backing -- and the chapter uses her collapse to show why statements without behavior fail.",
+        "competitive": "The trap is the formal-statements option because it sounds like the operationalized version of deterrence. The chapter's point is that statements have no deterrence value without the behavioral record underneath them. Kenji never made a formal statement about what he would do. He just did it twice, visibly, at cost to himself."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch04-q05",
+      "prompt": "Dara absorbs a public attack at the all-hands and waits six weeks before countering. Which of the following best explains why timing was more important than the evidence itself?",
+      "choices": [
+        "Waiting gave her time to gather more evidence than she had at the all-hands.",
+        "The board would not have believed her at the all-hands because she was more junior than the VP Sales.",
+        "By the time she countered, the VP Sales had overcommitted to a narrative he could not walk back -- the same evidence that would have been a defense in week one was a counter against a locked position in week six."
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Nice catch. The overcommitment is what the timing operates on. Dara had everything she needed from the beginning. What changed across six weeks was the VP's position -- he had doubled down in three more forums and the CEO was acting on the assumption. The same documents had different force against a locked position than against one still forming. The evidence-gathering option is false (she had the documentation from the start). The hierarchy option invents a credibility gap the chapter does not describe.",
+        "direct": "Same evidence, different target. At the all-hands, the VP's position was still forming -- he could have softened it in the Q&A. At the board review, he had committed publicly and specifically enough that retraction would have required visible reversal in front of the CEO. The counter's force came from the opponent's overextension, not from the quality of the evidence.",
+        "competitive": "The trap is the hierarchy option because it sounds like a plausible organizational dynamic. The chapter does not make a seniority argument. It makes a timing argument: the attacker's overcommitment is the weapon, and the weapon is at maximum strength when the attacker cannot retreat. Dara built the overcommitment by waiting."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q06",
+      "prompt": "A startup founder has been warned by three investors that a larger competitor is planning to enter her market. She is preparing a response. Which question does the chapter's diagnostic say she should answer first?",
+      "choices": [
+        "How quickly can she fortify her existing customer base before the competitor arrives.",
+        "Has the competitor actually moved yet, or are they still deciding -- because the available disciplines differ depending on the answer.",
+        "Whether she has the resources to mount a counterattack if the competitor enters directly."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Nice catch. The diagnostic question -- has the opponent moved or are they still deciding? -- determines which discipline applies. If they have not yet moved, deterrence is available and the work is different from counterattack preparation. If they have moved, the counterattack sequence applies. The other two options are tactics inside a response that has already been chosen, which assumes the prior diagnostic has been answered. The chapter says the prior question is which response to choose.",
+        "direct": "Moved or deciding? That is the prior question. The answer determines whether the counterattack or deterrence discipline applies. Fortifying customers and modeling resources are both tactics inside a response, not the diagnostic that selects the response. She cannot know what to prepare for until she knows which condition she is in.",
+        "competitive": "The trap is the resource-modeling option because it sounds like strategic preparation. But modeling counterattack resources assumes the counterattack is the right discipline, which assumes the opponent has moved, which assumes the diagnostic has been run. The chapter's structure is clear: diagnostic first, discipline second, tactics third."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q07",
+      "prompt": "Petra's deterrence reputation collapsed in a single negotiation call. What structural property of deterrence does her failure illustrate?",
+      "choices": [
+        "Deterrence capital is asymmetrically fragile: years of building can be eliminated by one tested-and-failed bluff, because the audience now has direct evidence the deterrent is not real.",
+        "Deterrence requires periodic public displays of willingness to fight, and Petra had not maintained enough visible confrontations to keep her reputation current.",
+        "The counterparty in Petra's negotiation was unusually sophisticated and would have seen through any deterrence posture."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nice catch. Asymmetric fragility is the structural property. The collapse is not proportional to the building -- years of signaling eliminated by one failure with the right audience. The reason is evidentiary: the test produced direct evidence that the deterrent is not real, and that evidence overwrites the prior claimed reputation. The second option invents a maintenance requirement about periodic confrontations that the chapter does not specify. The third removes the structural lesson by attributing the failure to an unusually sophisticated counterparty.",
+        "direct": "One failed test, permanent consequence with the testing audience. The asymmetry is between building (slow, continuous, costly) and destroying (instantaneous, evidentiary). The sophistication option is a counterparty explanation that makes the lesson contingent rather than structural. The periodic-confrontation option describes a different maintenance mechanism the chapter does not endorse.",
+        "competitive": "The trap is the periodic-confrontation option because it sounds like a maintenance strategy. The chapter does not recommend periodic public displays -- it recommends consistent behavioral follow-through in every relevant situation. Petra's failure was not about frequency of display; it was about the gap between her stated and actual positions under test."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q08",
+      "prompt": "An executive receives a public written criticism of her work from a peer in a company all-staff channel. She wants to counter. Which failure mode does the chapter warn against?",
+      "choices": [
+        "Responding in the same channel the attack happened in, rather than escalating to a more formal forum.",
+        "Involving her manager in the counter without giving the peer a chance to respond privately first.",
+        "Countering immediately, before the peer has fully committed to the position, when the peer could still retreat -- making the counter land on a position that was never truly extended."
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Nice catch. The too-early failure mode: fire before the attacker is committed and they can still retreat, reframe, or soften the criticism. The counter lands on a fluid target and is absorbed. The channel question and the manager question both introduce response-format considerations the chapter does not address. The chapter's concern is the timing of the counter, not the medium or the social protocol.",
+        "direct": "Too-early is the failure mode. The peer has written a criticism in a channel but has not necessarily doubled down on it, elaborated on it, or committed to it publicly in a way that prevents retreat. Firing immediately gives the peer room to walk it back and leaves the counter landing on a modifiable position. Wait for commitment.",
+        "competitive": "The trap is the channel-escalation option because it sounds like strategic thinking about forum selection. The chapter is not about forum selection -- it is about timing. Fire immediately and the peer has not overextended yet. Let the peer add more specificity, involve others, or repeat the claim, and the overcommitment that gives the counter real force has a chance to develop."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q09",
+      "prompt": "A mid-level manager has been waiting eight months for a counterattack opportunity against a peer who has been undermining her in meetings. The peer's damage is gradual and distributed, never committed to a single overextended move. Which of the following applies?",
+      "choices": [
+        "She should continue waiting; the chapter says the counterattack window always arrives eventually.",
+        "The counterattack is parasitic on the opponent making an exposed, committed move. Against an opponent running attrition -- distributed, gradual, never fully committed -- the opening may never arrive, and waiting for it is losing by erosion.",
+        "She should force the opponent into a committed move by escalating the confrontation to create the opening she is waiting for."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Nice catch. The reversal applies here. The counterattack strategy requires the opponent to make a committed, exposed move. An opponent who distributes damage gradually and deliberately never creates the extension window the counter needs. Waiting indefinitely for an opening that the opponent's strategy is designed to deny is exactly the attrition failure mode the chapter names. The first option denies the reversal. The third option -- forcing an escalation -- is a different move the chapter does not endorse and may accelerate the erosion.",
+        "direct": "Attrition reversal. The counterattack is parasitic on the opponent extending, and an attrition opponent deliberately refuses to extend. Eight months of waiting for a window that the opponent's strategy is designed to prevent is losing by erosion. A different discipline is required. Forced escalation is not the counterattack -- it is a different and potentially more costly move.",
+        "competitive": "The trap is the forced-escalation option because it feels like initiative. But escalating to create an opening changes the entire dynamic: you are no longer running the counterattack discipline, you are running an offensive move in a context where your position is already being eroded. The chapter is clear that the counterattack requires the opponent to move first. Against an attrition opponent, the correct response is a different discipline entirely."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch04-q10",
+      "prompt": "How does the deterrence discipline relate to the strategic depth condition that nonengagement requires from the previous chapter?",
+      "choices": [
+        "Both require real underlying capacity -- deterrence needs genuine executable follow-through capacity, and nonengagement needs actual ground to trade. The same structural condition (real reserves) is what makes both available.",
+        "They are unrelated disciplines from different chapters -- deterrence is offensive in posture and nonengagement is defensive, so they apply to entirely different conditions.",
+        "Deterrence makes nonengagement unnecessary because a credible deterrent prevents the attack that would have forced the nonengagement in the first place."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nice catch. Both disciplines require the same structural condition: real underlying capacity. Nonengagement requires strategic depth (ground to trade). Deterrence requires actual behavioral follow-through capacity (real record, not claimed record). An operator without real capacity cannot nonengagement without losing everything, and cannot deter without bluffing. The same structural weakness disables both. The unrelated-disciplines option mischaracterizes deterrence as offensive -- it is defensive and consolidating. The third option is a clever synthesis that actually misses the structural point: deterrence and nonengagement address different opponent states, and either may fail if real capacity is absent.",
+        "direct": "Real capacity is the shared prerequisite. Nonengagement requires ground to trade; deterrence requires genuine follow-through track record. Both require something real underneath the move. Without it, both fail under test in the same way: the weakness is exposed to the relevant audience. The deterrence-eliminates-nonengagement option is a false synthesis -- the two disciplines address different conditions (opponent deciding vs. opponent engaged) and the capacity condition applies to both.",
+        "competitive": "The trap is the false-synthesis option because it sounds like strategic efficiency -- why nonengagement if deterrence works? The chapter's structure shows that deterrence prevents the fight from starting, while nonengagement applies when the opponent has already engaged. The two situations are different, and real capacity is needed in both. The single-move-replaces-all-others framing misunderstands the diagnostic sequence."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

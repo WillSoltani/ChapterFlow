@@ -146,53 +146,53 @@ export const chapterContent: Record<PersonalizationChoice, ChapterContentItem> =
     },
 
     habits: {
-      bookTitle: "Atomic Habits",
-      author: "James Clear",
+      bookTitle: "The Power of Habit",
+      author: "Charles Duhigg",
       chapter: "Chapter 1",
       coverGradient: "linear-gradient(135deg, #D4A574, #C4956A)",
       summary: {
         mainIdea:
-          "Your outcomes are a lagging measure of your habits. You do not rise to the level of your goals — you fall to the level of your systems.",
+          "Habits follow a loop: cue, routine, reward. Lasting change becomes easier when you identify the loop and redesign the routine instead of relying on willpower alone.",
         keyTakeaway:
-          "Focus on building better systems rather than setting better goals. Small habits compound into remarkable results.",
+          "If you can see the cue and reward clearly, you can swap in a better routine and make the behavior easier to repeat.",
       },
       scenario: {
         prompt:
-          "Sarah wants to get healthier. She sets a goal to lose 20 pounds. Based on this chapter's idea, what should Sarah focus on instead?",
+          "Marcus automatically grabs chips every afternoon when work gets stressful. Based on this chapter's idea, what should he do first?",
         optionA: {
-          text: "Set a more specific target with weekly milestones",
+          text: "Set a stricter rule and hope willpower is stronger tomorrow",
           isCorrect: false,
         },
         optionB: {
-          text: "Build a system: prep meals Sunday, walk daily, sleep by 10pm",
+          text: "Identify the cue and reward, then replace the routine with a better response to the same trigger",
           isCorrect: true,
         },
-        correctFeedback: "Exactly. The system produces the result.",
+        correctFeedback: "Exactly. The loop is the lever. Once you see the cue and reward, you can redesign the routine.",
         wrongFeedback:
-          "Not quite — the key insight is systems over goals. Try the other option.",
+          "Not quite — the chapter argues that change gets easier when you understand the habit loop instead of just demanding more discipline.",
       },
       quiz: {
         question:
-          "According to Chapter 1, why do most people fail to build lasting habits?",
+          "According to Chapter 1, what are the three parts of a habit loop?",
         options: [
           {
             letter: "A",
-            text: "They lack motivation and willpower",
+            text: "Trigger, action, outcome",
             isCorrect: false,
           },
           {
             letter: "B",
-            text: "They focus on goals instead of systems",
+            text: "Cue, routine, reward",
             isCorrect: true,
           },
           {
             letter: "C",
-            text: "They try to change too many things at once",
+            text: "Goal, plan, result",
             isCorrect: false,
           },
           {
             letter: "D",
-            text: "They don't track their progress enough",
+            text: "Need, effort, success",
             isCorrect: false,
           },
         ],
@@ -200,54 +200,54 @@ export const chapterContent: Record<PersonalizationChoice, ChapterContentItem> =
     },
 
     growth: {
-      bookTitle: "How to Win Friends and Influence People",
-      author: "Dale Carnegie",
+      bookTitle: "Crucial Conversations",
+      author: "Joseph Grenny, Kerry Patterson, Ron McMillan, Al Switzler",
       chapter: "Chapter 1",
-      coverGradient: "linear-gradient(135deg, #059669, #047857)",
+      coverGradient: "linear-gradient(135deg, #0f766e, #0f172a)",
       summary: {
         mainIdea:
-          "Criticism is futile because it puts people on the defensive and usually makes them strive to justify themselves. Instead of condemning, try to understand why people do what they do.",
+          "A conversation turns crucial when stakes are high, people disagree, and emotion is strong enough to distort judgment. If you miss that turn, the problem usually comes back in a disguised form.",
         keyTakeaway:
-          "Any fool can criticize — and most do. It takes character and self-control to be understanding and forgiving.",
+          "The first skill is recognizing the moment early enough to stop silence or force from becoming your default response.",
       },
       scenario: {
         prompt:
-          "Marcus's colleague turned in a report full of errors. Marcus is frustrated and wants to email his feedback. Based on this chapter, how should Marcus handle it?",
+          "Nadia and her teammate keep trading clipped messages after a missed deadline, and the real issue is getting harder to name. Based on this chapter, what should Nadia do first?",
         optionA: {
-          text: "List every error clearly so the colleague knows exactly what went wrong",
+          text: "Keep the conversation on Slack until the tension settles down on its own",
           isCorrect: false,
         },
         optionB: {
-          text: "Start by acknowledging the effort, then ask questions about the areas that need work",
+          text: "Name that the conversation matters, disagreement is real, and tension is rising before the fallout spreads",
           isCorrect: true,
         },
         correctFeedback:
-          "Right. Understanding before correction. People respond to appreciation, not criticism.",
+          "Right. Recognition comes first. If she spots the crucial conversation early, she can address the real problem instead of chasing the downstream symptoms.",
         wrongFeedback:
-          "That's the instinct, but this chapter says direct criticism makes people defensive. Try the other approach.",
+          "That delay usually makes the disguised fallout worse. The chapter argues that missed crucial conversations do not disappear; they mutate.",
       },
       quiz: {
         question:
-          "According to Chapter 1, why is criticism usually ineffective?",
+          "According to Chapter 1, what three conditions define a crucial conversation?",
         options: [
           {
             letter: "A",
-            text: "People don't listen to feedback",
+            text: "A public setting, a long history, and a final decision",
             isCorrect: false,
           },
           {
             letter: "B",
-            text: "It puts people on the defensive and makes them justify themselves",
+            text: "High stakes, differing opinions, and strong emotions",
             isCorrect: true,
           },
           {
             letter: "C",
-            text: "Only managers should give criticism",
+            text: "Clear evidence, equal power, and enough time",
             isCorrect: false,
           },
           {
             letter: "D",
-            text: "Written feedback is better than verbal",
+            text: "A shared goal, a calm room, and formal authority",
             isCorrect: false,
           },
         ],
@@ -298,16 +298,16 @@ export const shelfBooks: Record<PersonalizationChoice, ShelfBook[]> = {
   ],
   habits: [
     {
-      title: "Atomic Habits",
-      author: "James Clear",
-      category: "Productivity",
-      gradient: "linear-gradient(135deg, #D4A574, #C4956A)",
-    },
-    {
       title: "The Power of Habit",
       author: "Charles Duhigg",
       category: "Productivity",
       gradient: "linear-gradient(135deg, #059669, #047857)",
+    },
+    {
+      title: "Tiny Habits",
+      author: "BJ Fogg",
+      category: "Productivity",
+      gradient: "linear-gradient(135deg, #D4A574, #C4956A)",
     },
     {
       title: "Essentialism",
@@ -318,10 +318,10 @@ export const shelfBooks: Record<PersonalizationChoice, ShelfBook[]> = {
   ],
   growth: [
     {
-      title: "How to Win Friends and Influence People",
-      author: "Dale Carnegie",
+      title: "Crucial Conversations",
+      author: "Joseph Grenny et al.",
       category: "Communication",
-      gradient: "linear-gradient(135deg, #059669, #047857)",
+      gradient: "linear-gradient(135deg, #0f766e, #0f172a)",
     },
     {
       title: "The 7 Habits of Highly Effective People",

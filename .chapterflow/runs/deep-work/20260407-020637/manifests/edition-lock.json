@@ -1,0 +1,61 @@
+{
+  "bookId": "deep-work",
+  "runId": "20260407-020637",
+  "lockedAt": "2026-04-06T23:20:00Z",
+  "selectionMode": "auto_locked_after_discovery",
+  "materialAmbiguity": false,
+  "title": "Deep Work",
+  "author": "Cal Newport",
+  "chosenEdition": {
+    "name": "Original English edition",
+    "fullTitle": "Deep Work: Rules for Focused Success in a Distracted World",
+    "publisher": "Grand Central Publishing",
+    "publishedDate": "2016-01-05",
+    "publishedYear": 2016,
+    "language": "English",
+    "isbn13": "9781455586691",
+    "isbn10": "1455586692",
+    "format": "Print reference edition for chapter-map stability",
+    "sourceOfTruth": "https://openlibrary.org/works/OL17713267W/Deep_Work",
+    "chapterStructure": [
+      "Introduction",
+      "Deep Work Is Valuable",
+      "Deep Work Is Rare",
+      "Deep Work Is Meaningful",
+      "Work Deeply",
+      "Embrace Boredom",
+      "Quit Social Media",
+      "Drain the Shallows",
+      "Conclusion"
+    ]
+  },
+  "alternativesConsidered": [
+    {
+      "name": "2016 Grand Central ebook listing",
+      "publishedDate": "2016-01-05",
+      "isbn13": "9781455586660",
+      "url": "https://www.hachettebookgroup.com/titles/cal-newport/deep-work/9781455586660/",
+      "status": "same_work_family_non_material_variant",
+      "notes": "Official publisher listing for the ebook format. Confirms the same work family, release date, and four-rule structure without evidence of chapter-level changes."
+    },
+    {
+      "name": "2016 Google Books preview edition",
+      "publishedDate": "2016-01-05",
+      "isbn13": "9781455586660",
+      "url": "https://books.google.com/books?id=B_L8CAAAQBAJ",
+      "status": "same_work_family_non_material_variant",
+      "notes": "Authorized preview page for the ebook listing. Used as lawful preview support, not as evidence of a materially different edition."
+    }
+  ],
+  "decisionRationale": [
+    "The 2016 English Grand Central work family is the dominant canonical edition visible across official and bibliographic sources.",
+    "Open Library supplies the full chapter map and stable print identifiers needed for chapter numbering.",
+    "The Hachette and Google Books listings describe the same work family and do not indicate revised, abridged, or reordered chapter content.",
+    "No translation or edition ambiguity was found that would materially change chapter count, order, or chapter-level interpretation."
+  ],
+  "operatingRules": {
+    "quotePolicy": "paraphrase_first",
+    "exactQuotePolicy": "allowed_only_if_verified_in_frozen_bundle",
+    "translationQuestionRequired": false
+  }
+}

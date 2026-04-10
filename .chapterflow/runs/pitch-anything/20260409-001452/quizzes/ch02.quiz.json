@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the main claim here about how a live pitch is received?",
+      "choices": [
+        "Listeners first use a fast filter for salience before deeper analysis begins",
+        "Listeners ignore emotion and social signals when the numbers are strong enough",
+        "Listeners mostly decide based on how many slides the presenter prepared"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The key point is that a pitch first meets a fast screen that checks whether the message feels worth more attention. Deeper analysis comes after that, not before it.",
+        "direct": "Correct. Klaff's model is a sequence argument: first filter, then deeper reasoning if the pitch survives.",
+        "competitive": "The room screens first and scores later. Miss that order and the rest of the pitch makes less sense."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Which set of signals best matches what the croc-brain heuristic notices early?",
+      "choices": [
+        "Novelty, threat, simplicity, and obvious relevance",
+        "Citation count, analytical depth, and presenter humility",
+        "Perfectly complete context and every qualifying detail"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Those are the signals that matter first because they help the audience decide whether the pitch deserves more attention now.",
+        "direct": "Option A matches the practical filter exactly. The model contrasts those fast signals with the slower rewards of full analysis.",
+        "competitive": "The gate wants signal, not your whole appendix."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why can a technically correct opening still fail early?",
+      "choices": [
+        "Because strong evidence always sounds arrogant in a live room",
+        "Because the opening can make the audience feel processing cost before it feels significance",
+        "Because audiences generally dislike logic when money is involved"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The warning here is that a pitch can feel heavy before it feels important. That makes even good material harder to absorb.",
+        "direct": "Correct. The issue is sequence, not truth. The room cools when labor arrives before obvious relevance.",
+        "competitive": "Make them work before they care, and you built your own headwind."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Lena's investor opening spends a full minute on market background before the opportunity feels urgent. Based on this model, what is the strongest fix?",
+      "choices": [
+        "Keep the background but move the clearest stake or contrast earlier so the room has a reason to stay with the pitch",
+        "Add more background so the investors see how thorough the team is",
+        "Drop all evidence and replace the opening with pure confidence language"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "This idea is not anti-context. It says context should follow a reason to care, not replace it.",
+        "direct": "Option A fits the sequence rule. The fix is stronger salience first, then depth in support.",
+        "competitive": "Lena does not need less truth. She needs to stop making the room buy it in the wrong order."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "A reader concludes, If the first filter matters, then logic barely matters at all. What is the best correction?",
+      "choices": [
+        "Correct, because early attention always decides the whole outcome permanently",
+        "Wrong, because the model argues that logic still matters after the room grants it enough attention",
+        "Partly right, but only when pitching investors rather than clients or judges"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The idea keeps analysis alive. Attention has to be won first so analysis can actually do its job.",
+        "direct": "Option B is the key correction. This is a sequencing argument, not a declaration that substance no longer matters.",
+        "competitive": "The point is not kill logic. The point is stop sending logic through a gate that is still closed."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Watching the replay of a pitch competition, Omar sees the judges checking the timer before his team's strongest evidence appears. What is the most useful diagnosis from this model?",
+      "choices": [
+        "The judges are proving they do not care about research under any circumstances",
+        "The first filter likely never cleared, so the best evidence arrived after attention had already weakened",
+        "The only fix is to add more slides so the judges realize how much work the team did"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "This model would say the problem may have happened before the best proof showed up. The room was already drifting.",
+        "direct": "Correct. The evidence was not necessarily weak. It may have been trapped behind a poor opening sequence.",
+        "competitive": "If the gate shut early, the best slide was already speaking to a half-gone room."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Tori keeps opening a negotiation ask with a long personal explanation. Which risk from this model best applies?",
+      "choices": [
+        "She may make the listener process too much before the request feels relevant enough to deserve attention",
+        "She may accidentally remove all emotional salience from the conversation",
+        "She may make the ask succeed too quickly and leave no room for discussion"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The warning is against making the audience work before it knows why the point matters. That is what Tori's long opening risks.",
+        "direct": "Option A fits the first-filter model. The request needs relevance first, then supporting explanation.",
+        "competitive": "Bury the ask under backstory and the first filter files it under burden."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why does this model value novelty or sharp contrast in the opening of a pitch?",
+      "choices": [
+        "Because gimmicks are usually more persuasive than evidence",
+        "Because salience helps a real idea survive the audience's first filter long enough for deeper analysis to begin",
+        "Because listeners refuse all ordinary language in high-stakes rooms"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "This model treats salience as a way to keep good substance alive, not as a replacement for substance.",
+        "direct": "Correct. Contrast and novelty work here as access tools. They buy hearing for the later reasoning.",
+        "competitive": "Salience is clearance, not decoration."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does this model get weaker if a reader turns the croc-brain idea into precise neuroscience or into an excuse for shallow manipulation?",
+      "choices": [
+        "Because both moves miss that the model is a bounded field heuristic for sequencing attention honestly",
+        "Because the book only intends the model for entertainment-industry pitches",
+        "Because precise neuroscience would show that audiences actually want more setup than Klaff suggests"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The model stays useful by staying practical and limited. It is meant to improve openings, not become swagger science or permission for empty theater.",
+        "direct": "Option A captures the boundary exactly. The model is strongest as an operational rule with limits.",
+        "competitive": "Cheapen the heuristic into fake science or manipulation fantasy, and you lose the discipline that made it useful."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If this model is right that the audience screens first and analyzes second, what is the most natural next step?",
+      "choices": [
+        "Build a step-by-step method that wins the first filter on purpose before expanding into deeper reasoning",
+        "Stop using any analytical support at all and rely entirely on tension and novelty",
+        "Make every pitch as short as possible no matter what the offer requires"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next need is a process that helps the presenter clear the first screen without abandoning substance. That is why the book moves toward a named method next.",
+        "direct": "Correct. Once the audience model is clear, the practical question becomes procedural: what sequence is designed for that model?",
+        "competitive": "If the gate is real, luck is not a plan. You need an operating system next."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

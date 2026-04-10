@@ -17,7 +17,7 @@ import {
   redeemFlowPointsReward,
 } from "@/app/app/api/book/_lib/flow-points-repo";
 import {
-  getFlowPointsReward,
+  getInsightPointsReward,
   type FlowPointsRewardId,
 } from "@/app/book/_lib/flow-points-economy";
 
@@ -52,7 +52,7 @@ export async function POST(req: Request) {
       minLength: 3,
       maxLength: 64,
     }) as FlowPointsRewardId;
-    const reward = getFlowPointsReward(rewardId);
+    const reward = getInsightPointsReward(rewardId);
     if (!reward) {
       throw new BookApiError(400, "invalid_reward", "That reward is not available.");
     }

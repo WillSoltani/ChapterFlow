@@ -1,0 +1,155 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's main claim about habits and companies?",
+      "choices": [
+        "Habits leave readable patterns that companies can predict and influence",
+        "Habits are invisible to outsiders",
+        "Prediction requires direct confession"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says routines create patterns that outsiders can analyze.",
+        "direct": "Habits generate data trails that can support prediction and influence.",
+        "competitive": "Routine is signal."
+      }
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why is the Target case central to the chapter?",
+      "choices": [
+        "It shows how purchase patterns can reveal life changes before direct disclosure",
+        "It proves every prediction is perfect",
+        "It argues products should never be marketed"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The case shows how strong routine patterns can become when read at scale.",
+        "direct": "Target demonstrates predictive inference built from habit-pattern data.",
+        "competitive": "The model can get ahead of the announcement."
+      }
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why do marketers place new products inside familiar contexts?",
+      "choices": [
+        "Because familiarity lowers resistance to novelty",
+        "Because routines do not matter",
+        "Because new products always fail otherwise"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "People trust what already feels normal, so new items are easier to accept there.",
+        "direct": "Familiar context functions as an adoption bridge for novelty.",
+        "competitive": "Habit is the delivery channel."
+      }
+    },
+    {
+      "questionId": "q04",
+      "prompt": "What moral tension does Chapter 7 keep visible?",
+      "choices": [
+        "The line between convenience and manipulation",
+        "The line between memory and disease",
+        "The line between exercise and sleep"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The same predictive tools can feel helpful or invasive depending on how they are used.",
+        "direct": "The chapter centers the tension between relevance and manipulation.",
+        "competitive": "Same data, different power story."
+      }
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What does the chapter say habits create besides internal experience?",
+      "choices": [
+        "External data trails",
+        "Automatic wisdom",
+        "Perfect self-knowledge"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Repeated behavior leaves traces that can be analyzed from the outside.",
+        "direct": "Routines generate observable signals in data systems.",
+        "competitive": "Habits leak pattern."
+      }
+    },
+    {
+      "questionId": "q06",
+      "prompt": "A store places a new drink next to customers' usual morning purchases. Which chapter strategy is this?",
+      "choices": [
+        "Embedding novelty inside a familiar routine",
+        "Removing all cues from the store",
+        "Eliminating rewards entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The store is using familiar behavior to make the new item feel less strange.",
+        "direct": "This is a familiarity-based adoption strategy.",
+        "competitive": "Old habit carries new product."
+      }
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why is partial prediction still powerful according to the chapter?",
+      "choices": [
+        "Because useful accuracy at scale can still shape behavior",
+        "Because only perfect prediction matters",
+        "Because habits never change"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A company does not need flawless certainty to act effectively on patterns.",
+        "direct": "Probabilistic accuracy at scale is commercially meaningful.",
+        "competitive": "Good enough plus scale is plenty."
+      }
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What changes once habits become readable at scale?",
+      "choices": [
+        "They become economically valuable and steerable",
+        "They stop existing",
+        "They can no longer be influenced"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Readable routines become useful for prediction and targeting.",
+        "direct": "Datafied habits become assets for forecasting and influence.",
+        "competitive": "Readable routine becomes leverage."
+      }
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does the chapter feel more unsettling than a normal retail story?",
+      "choices": [
+        "Because the company can infer meaning the customer did not expect to reveal",
+        "Because no one buys anything in the chapter",
+        "Because rewards no longer matter"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The discomfort comes from realizing how much ordinary behavior can disclose when interpreted by a model.",
+        "direct": "The asymmetry of interpretation is what makes the chapter morally sharp.",
+        "competitive": "The model knows what the trail means before you think you said it."
+      }
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What is the best summary of Chapter 7?",
+      "choices": [
+        "Habits are private and cannot be monetized",
+        "Habits create patterns that can be predicted, packaged, and used to influence behavior",
+        "Marketing has nothing to do with routine"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter treats habits as visible patterns with commercial value.",
+        "direct": "Prediction and influence follow once routines become readable data.",
+        "competitive": "Routine becomes model, model becomes market power."
+      }
+    }
+  ]
+}

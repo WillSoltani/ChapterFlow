@@ -1,0 +1,92 @@
+{
+  "chapterId": "ch04",
+  "chapterNumber": 4,
+  "chapterTitle": "Why Games Feel So Hard to Stop",
+  "computedFor": "edited draft + structured chapter",
+  "editedDraft": {
+    "wordCount": 870,
+    "paragraphCount": 7,
+    "averageSentenceLengthWords": 19.8,
+    "estimatedReadingMinutes": 5
+  },
+  "contentVariants": {
+    "easy": {
+      "wordCounts": {
+        "gentle": 151,
+        "direct": 149,
+        "competitive": 152
+      },
+      "targetRange": "140-175",
+      "withinRange": true,
+      "estimatedGradeBand": "8-9"
+    },
+    "medium": {
+      "wordCounts": {
+        "gentle": 380,
+        "direct": 395,
+        "competitive": 385
+      },
+      "targetRange": "330-420",
+      "withinRange": true,
+      "estimatedGradeBand": "10-11"
+    },
+    "hard": {
+      "wordCounts": {
+        "gentle": 535,
+        "direct": 565,
+        "competitive": 575
+      },
+      "targetRange": "490-600",
+      "withinRange": true,
+      "estimatedGradeBand": "12"
+    }
+  },
+  "examples": {
+    "count": 6,
+    "formatsCovered": [
+      "third_person_scene",
+      "inner_monologue",
+      "coaching_script",
+      "short_dialogue",
+      "first_person",
+      "narrative_flashback"
+    ],
+    "categoryDistribution": {
+      "work": 2,
+      "school": 2,
+      "personal": 2
+    },
+    "endingTypesCovered": [
+      "observation",
+      "reflection",
+      "reframe",
+      "forward_question",
+      "decision_point",
+      "unresolved_tension"
+    ]
+  },
+  "quiz": {
+    "questionCount": 10,
+    "choicesPerQuestion": 3,
+    "correctIndexDistribution": {
+      "0": 3,
+      "1": 4,
+      "2": 3
+    },
+    "depthDistribution": {
+      "easy": 3,
+      "medium": 5,
+      "hard": 2
+    }
+  },
+  "reviewCards": {
+    "count": 5,
+    "difficultyDistribution": {
+      "easy": 2,
+      "medium": 2,
+      "hard": 1
+    }
+  },
+  "totalReadingTimeMinutesEstimate": 13,
+  "computedAt": "2026-04-06"
+}

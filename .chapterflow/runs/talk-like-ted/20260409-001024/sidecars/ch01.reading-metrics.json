@@ -1,0 +1,35 @@
+{
+  "chapterId": "ch01",
+  "title": "Unleash the Master Within",
+  "canonicalWordCount": 987,
+  "editedWordCount": 973,
+  "breakdownWordCounts": {
+    "easy": {
+      "gentle": 140,
+      "direct": 152,
+      "competitive": 141
+    },
+    "medium": {
+      "gentle": 337,
+      "direct": 345,
+      "competitive": 357
+    },
+    "hard": {
+      "gentle": 490,
+      "direct": 591,
+      "competitive": 490
+    }
+  },
+  "quizQuestionCount": 10,
+  "exampleCount": 6,
+  "takeawayCounts": {
+    "easy": 3,
+    "medium": 5,
+    "hard": 6
+  },
+  "readabilityTargets": {
+    "easy": "grade 8-9",
+    "medium": "grade 10-11",
+    "hard": "grade 12"
+  }
+}

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch14-q01",
+      "prompt": "What is aimlessness in this law?",
+      "choices": [
+        "A temporary lack of motivation after a setback",
+        "Movement without an organizing direction or mission",
+        "A refusal to work hard at all"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter defines aimlessness as drift, not simply laziness.",
+        "direct": "The problem is activity without a governing purpose.",
+        "competitive": "Motion keeps happening, but no strategy allocates it."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch14-q02",
+      "prompt": "Why does Greene use Martin Luther King Jr. in this chapter?",
+      "choices": [
+        "To show a life whose force came from mission and direction",
+        "To argue that only public leaders can have real purpose",
+        "To prove that purpose removes fear and sacrifice"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "King anchors the law in a life organized by mission.",
+        "direct": "The case shows how purpose gathers talent and urgency into directed force.",
+        "competitive": "The anchor makes allocation visible."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch14-q03",
+      "prompt": "What best describes false purpose?",
+      "choices": [
+        "A mission that grows slowly over time",
+        "A path shaped mainly by prestige, pressure, or borrowed expectations",
+        "A quiet goal that requires patience"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "False purpose often looks admirable from the outside.",
+        "direct": "It is a borrowed direction that lacks deeper fit.",
+        "competitive": "The mission is rented from external pricing."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch14-q04",
+      "prompt": "A professional keeps saying yes to every exciting opportunity and cannot explain what larger direction any of it serves. Which reading best fits the chapter?",
+      "choices": [
+        "The person is showing healthy flexibility",
+        "The person may be mistaking busyness for purpose",
+        "The person has already found the right mission"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The warning sign is motion without clear direction.",
+        "direct": "Too many yeses can signal weak mission rather than strength.",
+        "competitive": "The portfolio is filling without a governing strategy."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "ch14-q05",
+      "prompt": "Which personal pattern most clearly shows a borrowed goal rather than real purpose?",
+      "choices": [
+        "Someone keeps pursuing a path mainly because it looks impressive to others",
+        "Someone chooses a quieter path that still feels meaningful over time",
+        "Someone cuts one commitment to protect deeper work"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns that admiration from others can disguise weak fit.",
+        "direct": "External approval can keep counterfeit purpose alive.",
+        "competitive": "Prestige can keep drift looking legitimate."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "ch14-q06",
+      "prompt": "In the chapter's terms, what is one of the clearest signs that direction is weak?",
+      "choices": [
+        "A packed schedule with no hierarchy for what matters most",
+        "A willingness to say no to some distractions",
+        "A mission that deepens over time"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Scattered effort is a common sign of aimlessness.",
+        "direct": "When every demand feels equally urgent, the mission is not filtering well.",
+        "competitive": "Weak hierarchy means weak allocation."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch14-q07",
+      "prompt": "Why does purpose make discipline easier to sustain?",
+      "choices": [
+        "Because it removes all uncertainty from life",
+        "Because it gives effort a clearer reason and filters distractions",
+        "Because it guarantees public recognition"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Purpose helps effort feel more coherent.",
+        "direct": "A real mission makes sacrifice easier to understand and defend.",
+        "competitive": "Mission turns friction into legible cost."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "ch14-q08",
+      "prompt": "Why can busyness be misleading in this chapter?",
+      "choices": [
+        "Because all hard work is secretly meaningless",
+        "Because activity can hide drift when no mission is organizing it",
+        "Because purpose always requires a slower life"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns against mistaking motion for direction.",
+        "direct": "A full calendar can still belong to an aimless life.",
+        "competitive": "Throughput can mask weak strategy."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "ch14-q09",
+      "prompt": "How does chapter 14 connect to chapter 13 on gender rigidity?",
+      "choices": [
+        "Chapter 14 rejects the idea that identity affects direction",
+        "Chapter 14 asks where the wider range recovered in chapter 13 should actually be aimed",
+        "Chapter 14 proves identity no longer matters once purpose appears"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Once the self regains range, the next question is what that range should serve.",
+        "direct": "Chapter 13 recovers capacity; chapter 14 asks for direction.",
+        "competitive": "Freed capital still needs allocation."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "ch14-q10",
+      "prompt": "Which plan best fits the law of aimlessness?",
+      "choices": [
+        "Say yes to every promising option until your purpose becomes obvious by accident",
+        "Identify the work that keeps recurring, cut one borrowed commitment, and organize your week around the stronger direction",
+        "Wait for one dramatic moment of certainty before changing anything"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter asks for chosen direction and gradual reorganization, not passivity.",
+        "direct": "Purpose is built by filtering commitments and aligning effort, not by waiting for perfect clarity.",
+        "competitive": "Reprice the week around mission instead of letting noise bid on every slot."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deep"
+    }
+  ]
+}

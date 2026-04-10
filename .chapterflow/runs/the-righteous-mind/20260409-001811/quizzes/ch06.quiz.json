@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch06-q01",
+      "prompt": "What does the taste-buds metaphor mainly do in Chapter 6?",
+      "choices": [
+        "It proves morality is just biology",
+        "It gives readers a framework for several moral triggers",
+        "It replaces all earlier chapters"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The metaphor helps readers picture multiple moral sensitivities.",
+        "direct": "Chapter 6 uses the image to organize moral plurality.",
+        "competitive": "It gives the widened field a workable shape."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch06-q02",
+      "prompt": "Why can two people react differently to the same event under this chapter's framework?",
+      "choices": [
+        "Because only one of them cares morally",
+        "Because different moral cues may be most salient for each person",
+        "Because facts no longer matter"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says different people may hear different moral triggers first.",
+        "direct": "The framework explains divergent responses through salience differences.",
+        "competitive": "The same scene can light up different receptors."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch06-q03",
+      "prompt": "What is the chapter careful to avoid claiming about the metaphor?",
+      "choices": [
+        "That it is strict literal biology",
+        "That it is useful",
+        "That it connects to later chapters"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Haidt treats the taste-buds image as heuristic, not as exact biology.",
+        "direct": "The chapter places a limit on the metaphor so readers do not literalize it.",
+        "competitive": "This is machinery for thought, not a lab specimen."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch06-q04",
+      "prompt": "Aria hears unfairness first in a policy dispute while Victor hears disrespect for roles first. What does Chapter 6 say this shows?",
+      "choices": [
+        "One of them lacks moral concern",
+        "The same case can activate different moral saliences",
+        "The metaphor fails in real life"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter expects different moral cues to stand out for different people.",
+        "direct": "This is exactly the kind of salience split the taste-buds model is meant to explain.",
+        "competitive": "The same scene lit up different receptors."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q05",
+      "prompt": "What better question replaces \"who is moral at all?\" in this chapter?",
+      "choices": [
+        "Which side is more educated?",
+        "Which moral trigger is strongest for each side?",
+        "Which political party is involved?"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The framework asks readers to identify the moral cue each person is responding to most strongly.",
+        "direct": "Diagnosis shifts from moral absence to salience profile.",
+        "competitive": "Ask which signal fired first."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q06",
+      "prompt": "Why does the chapter say the framework is helpful before politics?",
+      "choices": [
+        "Because it ends moral disagreement entirely",
+        "Because it helps readers interpret moral difference before partisan application",
+        "Because politics no longer matters"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The framework widens interpretation before the later political chapters arrive.",
+        "direct": "It prepares the reader for patterned political disagreement without importing it too early.",
+        "competitive": "The wiring diagram arrives before the campaign fight."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q07",
+      "prompt": "Nina realizes her classmates were hearing different moral violations in the same case. What should she conclude first?",
+      "choices": [
+        "The debate was morally empty",
+        "The disagreement may reflect different salience profiles",
+        "Only the loudest reaction matters"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says conflict can arise because different moral cues become dominant for different people.",
+        "direct": "This is a salience mismatch, not proof of moral absence.",
+        "competitive": "Different receptors were running the room."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q08",
+      "prompt": "What is the hardest tension Chapter 6 must preserve?",
+      "choices": [
+        "How to use the framework without literalizing it or turning it into relativism",
+        "How to avoid all metaphors",
+        "How to reduce morality back to harm and fairness"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter needs the metaphor to clarify without becoming strict biology or a blank check.",
+        "direct": "Its depth lies in keeping explanatory power without overreach.",
+        "competitive": "The model has to stay strong without pretending to be scripture or science."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q09",
+      "prompt": "How does Chapter 6 build on Chapter 5?",
+      "choices": [
+        "It turns moral widening into a usable framework of salience",
+        "It rejects the idea of multiple concerns",
+        "It abandons plurality for politics"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Chapter 5 widened the moral field, and Chapter 6 gives that field a form readers can use.",
+        "direct": "The taste-buds framework organizes the plurality introduced in the previous chapter.",
+        "competitive": "The widened terrain finally gets equipment."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch06-q10",
+      "prompt": "What question does Chapter 6 most directly hand to Chapter 7?",
+      "choices": [
+        "Why different groups respond so strongly to different moral appeals",
+        "Why morality should become purely biological",
+        "Why disagreement should stop"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Once several moral triggers are on the map, the next question is why different groups answer to different ones so reliably.",
+        "direct": "Chapter 7 will apply this framework to political life.",
+        "competitive": "The next move is from receptors to group-level political patterns."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

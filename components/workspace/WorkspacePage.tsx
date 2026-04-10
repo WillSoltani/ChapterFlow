@@ -24,7 +24,7 @@ import {
   evaluateBadges,
   type BadgeProgressStats,
 } from "@/app/book/data/mockBadges";
-import { FLOW_POINTS_REWARDS } from "@/app/book/_lib/flow-points-economy";
+import { INSIGHT_POINTS_REWARDS } from "@/app/book/_lib/flow-points-economy";
 
 const jetBrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -241,8 +241,8 @@ function mapAnalyticsToWorkspaceData(
         category: snap.book.category ?? "General",
       })),
     nextReward: {
-      name: FLOW_POINTS_REWARDS[0]?.name ?? "Bonus Book Unlock",
-      pointsRequired: FLOW_POINTS_REWARDS[0]?.costPoints ?? 900,
+      name: INSIGHT_POINTS_REWARDS[0]?.name ?? "Bonus Book Unlock",
+      pointsRequired: INSIGHT_POINTS_REWARDS[0]?.costPoints ?? 900,
       currentPoints: analytics.insightPoints,
     },
     nextAchievement: deriveNextAchievement(analytics),

@@ -63,6 +63,7 @@ export async function GET(req: Request) {
         unlockedBooksCount: unlockedBookIds.length,
         remainingFreeStarts: Math.max(0, freeBookSlots - unlockedBookIds.length),
         currentPeriodEnd: entitlement?.currentPeriodEnd,
+        cancelAtPeriodEnd: entitlement?.cancelAtPeriodEnd ?? false,
         licenseKey: entitlement?.licenseKey,
         licenseExpiresAt: entitlement?.licenseExpiresAt,
       },

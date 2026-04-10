@@ -1,0 +1,178 @@
+{
+  "chapterId": "ch02",
+  "chapterNumber": 2,
+  "chapterTitle": "What a Transaction Is and Why They Go Wrong",
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "In Berne's notation, when does a transaction count as complementary?",
+      "choices": [
+        "When both people in the conversation are calm",
+        "When the response addresses the same topic as the stimulus",
+        "When the response comes from the state the stimulus addressed and is aimed back at the state the stimulus came from"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Complementary is a structural fact about which states the two arrows connect. It is not about calmness, and it is not about staying on topic. Two people can be perfectly calm and still be in a crossed transaction; two people can be on the same topic and still be crossed.",
+        "direct": "Complementary is defined by the alignment of the two arrows: the response coming from the addressed state and aiming back at the sender state. Calmness is a tone, not an alignment. Topic continuity is content, not structure.",
+        "competitive": "Alignment of the arrows is the diagnosis. Tone is irrelevant; the chapter says crossed transactions can be perfectly polite. Topic is irrelevant; people can stay on topic and still cross."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "In the Tuesday stand-up where Tomas asks Aiya whether the API change will land Friday, what is the marker that the second exchange has crossed the first?",
+      "choices": [
+        "Aiya answers from Parent in a tone that addresses Tomas as a Child who has not been listening, and Tomas's face changes before he can decide what to do with it",
+        "Aiya answers slowly",
+        "Tomas asks the question twice"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The marker is structural and visible: the response came from a different state than the question, and aimed back at a different state too. Tomas's face changing is the body's signal that the second arrow did not land where the first one was waiting. Slow answers and repeated questions are not the marker; they are downstream consequences.",
+        "direct": "State mismatch in the second arrow is the marker. The body's reaction is the early signal because state changes register faster than vocabulary. Slowness and repetition are not the marker; they are noise that sometimes accompanies a cross.",
+        "competitive": "Mismatch of states in the second arrow is what you are looking for. Tomas's involuntary face change is the body acknowledging the cross before vocabulary can. Slow answers and repetition are not diagnostic of anything in particular."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A team lead says, 'Can someone post the deploy log before the retro?' A junior engineer replies, 'Sorry, I'll do it.' Which kind of transaction is this most likely to be?",
+      "choices": [
+        "Complementary, Adult to Adult",
+        "Crossed, with the lead's Adult addressed and the engineer answering from Adapted Child",
+        "Ulterior"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The 'sorry' is the marker. Nothing in the lead's question called for an apology; the question was an Adult-to-Adult request for an action. The 'sorry' inserts an Adapted Child where the lead had aimed at Adult, which is exactly the structure of a cross. Ulterior is a different chapter.",
+        "direct": "An Adult request answered by an apology is a small but textbook cross: the response comes from Adapted Child instead of Adult. Calling it complementary misreads the apology as content. Calling it ulterior crosses into territory the chapter has not covered yet.",
+        "competitive": "Apology to an Adult action request is the cross. Reading it as complementary misses what the 'sorry' is doing structurally. Reading it as ulterior is jumping a chapter ahead, into material that has not been introduced."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Coach Reyes and Diego have run the same Nurturing-Parent-to-Adapted-Child exchange after every bad race for two seasons. According to the chapter, what is the most accurate description of this exchange?",
+      "choices": [
+        "Crossed, because Reyes is using the wrong tone",
+        "An ulterior transaction, because Reyes wants something underneath",
+        "Complementary and stable, and exactly the conversation that has prevented the conversation Diego actually needs"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The exchange is fully complementary. Both arrows line up. Stable does not mean good, and the chapter is careful about that distinction. The trap is the moral reading that complementary exchanges are valuable just because they last; sometimes they last because they are crowding out the conversation that would matter.",
+        "direct": "Complementary, stable, and crowding out a needed conversation is the chapter's point about Reyes and Diego. Calling it crossed misreads the alignment. Calling it ulterior is another chapter's vocabulary.",
+        "competitive": "Stable on the wrong vector is the diagnosis. Calling it crossed gets the alignment wrong. Calling it ulterior borrows vocabulary the chapter has explicitly left for later."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Yusuf is in his thesis advisor Mara's office. She asks an Adult question about a paragraph. He hears himself answer, 'I'm sorry, I know it's not working.' What has just happened, in the chapter's terms?",
+      "choices": [
+        "Yusuf has crossed his own transaction by constructing a Parent in Mara that she had not been in, and answering it from Adapted Child",
+        "Mara has crossed the transaction by being secretly disappointed",
+        "The transaction is complementary because both people are trying to fix the chapter"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "This is a self-crossed transaction. Yusuf built a Parent role for Mara that she was not actually in, and then answered to it. The chapter calls these the hardest crosses to spot because the Parent you are answering is one you constructed. Treating it as Mara's cross misses where the construction happened. Treating it as complementary substitutes intention for structure.",
+        "direct": "Self-crossed transactions are real and the chapter names them. Yusuf invented a Parent and answered it. Saying Mara crossed it locates the cross in the wrong person. Calling it complementary mistakes intention for state alignment.",
+        "competitive": "Yusuf invented the Parent, then answered it. The cross is on his side of the table, not Mara's. Locating it on Mara is the misread the chapter is built to refuse. Calling it complementary mistakes shared good intention for arrow alignment."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Olivia calls her sister Kenji from her Child asking for comfort, and Kenji answers from Adult with 'What specifically happened on Tuesday?' The chapter says both sisters are technically right. What does the chapter mean by that?",
+      "choices": [
+        "Both answers are equally helpful",
+        "Each sister sent a coherent message from a coherent state, and the cross is structural rather than anyone's failure of intent or character",
+        "The transaction is actually complementary because both sisters care"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter is being careful with the word 'right.' It is not saying both answers were equally useful, and it is not saying nobody is to blame because both people care. It is saying the cross is structural: each sister sent a coherent arrow from a coherent state, and the arrows did not line up, and that is the whole story.",
+        "direct": "Structural mismatch, not moral failure, is what 'technically right' is doing. Saying the answers were equally helpful collapses the chapter's distinction between alignment and value. Saying it was complementary because they care confuses intent with structure.",
+        "competitive": "'Technically right' marks the chapter's refusal to assign blame. Each sister sent a coherent arrow. The arrows did not align. That is the diagnosis, and it is silent on whether either of them was being a good sister."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "A customer phones a help line and asks, 'How do I cancel my subscription?' The agent replies, 'I'm sorry to hear you're considering leaving. Can you tell me more about what's not working for you?' Which kind of transaction is this most likely to be?",
+      "choices": [
+        "Complementary, Adult to Adult",
+        "Complementary, Parent to Child",
+        "Crossed: an Adult information request answered by a Nurturing Parent that aims at the customer's Child"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The customer asked an Adult question with one answer in it: a procedure for cancellation. The agent's response sounds caring but does the structural work of treating the customer as someone whose feelings should be processed before their request is honored. That is a Nurturing Parent move aimed at Child, and it crosses the original arrow.",
+        "direct": "Information request answered by a feelings inquiry is the cross. The Nurturing-Parent face is what makes it look like service; the structure is still misaligned. Calling either of the complementary options correct misses the state mismatch.",
+        "competitive": "Caring tone, crossed arrow. The agent's first move treats the customer as someone whose feelings need handling rather than as someone whose Adult question needs answering. The complementary readings both miss the mismatch."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "After the stand-up where Aiya's Parent crossed Tomas's Adult question, Tomas wants to walk into next Tuesday's stand-up differently. Of the three moves the chapter offers on a cross, recross deliberately, accept and name it, or wait and recognize later, which one is the chapter most likely recommending here?",
+      "choices": [
+        "Wait and recognize later, since the moment has passed",
+        "Recross deliberately at the start of next stand-up, by sending a clean Adult question into the room and refusing the Child role",
+        "Accept and name the cross with Aiya privately before stand-up begins"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "All three moves are sometimes right, and the chapter is careful about that. For Tomas, with stand-up as a recurring structural setting, the most useful move is the deliberate recross at the start of next stand-up: a clean Adult question that gives the room a different second arrow to predict. Waiting in this case keeps the team's pattern in place. Naming privately can work but is slower.",
+        "direct": "Deliberate recross is the move with the most leverage in a recurring meeting setting. Waiting cedes the pattern; private naming is slower and less visible to the room. The chapter explicitly says all three are right in some setting; this setting wants the recross.",
+        "competitive": "Recross is the move that resets the room. Waiting lets the team learn the wrong pattern. Private naming fixes the bilateral relationship but does not reset the meeting. Stand-up is a recurring structural setting, and the recross has the highest leverage there."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "If drawing a crossed transaction tells the reader where the bones of the exchange went out of alignment but does not tell the reader what to do about it, why does the chapter argue the diagram is still worth drawing?",
+      "choices": [
+        "Because the diagnosis opens three honest options the reader can choose between, and choosing from three options is a different problem than reacting from no options at all",
+        "Because the diagram makes the other person change",
+        "Because complementary transactions are always preferable to crossed ones"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter's claim is the smaller, honest one. The diagram does not fix the conversation. It opens a choice between recrossing, naming, and waiting, and choosing among real options is different from reacting blindly. The diagram does not change the other person, and the chapter is explicit that complementary is not always preferable.",
+        "direct": "Three honest options, made available by the diagnosis, is what the chapter argues. The diagram is not a tool for changing other people, and complementary versus crossed is structure not value. Both alternative answers misread the chapter's central limit.",
+        "competitive": "Three options instead of zero is the trade. The diagram does not change the other person and the chapter is explicit that complementary is not always preferable. Both wrong answers ask the model to do work it has refused to do."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Building on the observational skill from chapter one, what is the new question a reader can ask using the chapter two diagram that they could not ask using chapter one alone?",
+      "choices": [
+        "Which of these three states is the better state to be in?",
+        "Which of these three states is currently in the room?",
+        "Which state in me is talking to which state in the other person, and is the second arrow landing where the first one was aimed?"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The previous chapter taught the reader to hear which voice was in the room. This one adds the relational question: which state in me is addressing which state in them, and is the answer landing where I aimed it. The new question is structural, not evaluative; the first wrong answer is evaluative, and the second is just the previous chapter's question again.",
+        "direct": "Relational alignment is the new question this chapter adds. Asking which state is better is a value question the model does not answer; asking which state is in the room is the previous chapter's question, not this chapter's extension.",
+        "competitive": "Pair-and-vector is the upgrade on simple observation. Asking which state is better is asking the wrong kind of question entirely. Asking which state is in the room repeats the previous chapter without adding anything."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

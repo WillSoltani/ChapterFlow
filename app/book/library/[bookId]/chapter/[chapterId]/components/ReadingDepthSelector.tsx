@@ -3,7 +3,7 @@
 import type { ReadingDepth } from "@/app/book/data/mockChapters";
 
 const options: Array<{ id: ReadingDepth; label: string }> = [
-  { id: "simple", label: "Simple" },
+  { id: "simple", label: "Lite" },
   { id: "standard", label: "Standard" },
   { id: "deeper", label: "Deeper" },
 ];
@@ -16,7 +16,9 @@ type ReadingDepthSelectorProps = {
 export function ReadingDepthSelector({ value, onChange }: ReadingDepthSelectorProps) {
   return (
     <div className="flex flex-wrap items-center gap-3">
-      <p className="text-2xl text-(--cf-text-3)">Reading depth:</p>
+      <p className="text-sm font-semibold uppercase tracking-[0.12em] text-(--cr-text-secondary)">
+        Difficulty
+      </p>
       {options.map((option) => {
         const active = option.id === value;
         return (
@@ -25,11 +27,11 @@ export function ReadingDepthSelector({ value, onChange }: ReadingDepthSelectorPr
             type="button"
             onClick={() => onChange(option.id)}
             className={[
-              "rounded-xl border px-4 py-1.5 text-xl font-medium transition",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)",
+              "rounded-xl border px-4 py-1.5 text-sm font-semibold transition",
+              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cr-accent-glow)",
               active
-                ? "border-(--cf-accent-border) bg-(--cf-accent-soft) text-(--cf-info-text)"
-                : "border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-2) hover:border-(--cf-border-strong)",
+                ? "border-(--cr-glass-border-teal) bg-(--cr-accent-muted) text-(--cr-accent)"
+                : "border-(--cr-glass-border) bg-(--cr-bg-surface-3) text-(--cr-text-secondary) hover:border-(--cr-glass-border-teal)",
             ].join(" ")}
             aria-pressed={active}
           >

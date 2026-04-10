@@ -1,0 +1,4 @@
+- Enforce artifact shape first: no empty quiz, no instruction leakage, no plain-string scenarios, no missing required fields, and no collapsed tone variants.
+- Fix narrow mechanical issues directly, but route prose, depth, teaching, or source-overreach failures into repair with explicit findings.
+- Check that thin-source chapters stay narrow enough for the evidence available.
+- Review wrappers should contain exactly one chapter and report only the checks that matter for release safety.

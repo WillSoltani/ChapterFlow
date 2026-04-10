@@ -1,0 +1,159 @@
+{
+  "nameUsage": {
+    "Lena": "ch01",
+    "Victor": "ch01",
+    "Sora": "ch01",
+    "Mateo": "ch01",
+    "Elise": "ch01",
+    "Jonah": "ch01",
+    "Amina": "ch02",
+    "Cole": "ch02",
+    "Hana": "ch02",
+    "Derek": "ch02",
+    "Lucia": "ch02",
+    "Ben": "ch02",
+    "Iris": "ch03",
+    "Nolan": "ch03",
+    "Tessa": "ch03",
+    "Karim": "ch03",
+    "Eva": "ch03",
+    "Miles": "ch03",
+    "Nadia": "ch04",
+    "Felix": "ch04",
+    "Mira": "ch04",
+    "Rowan": "ch04",
+    "Paige": "ch04",
+    "Leo": "ch04",
+    "Clara": "ch05",
+    "Dev": "ch05",
+    "Quinn": "ch05",
+    "Omar": "ch05",
+    "Sophie": "ch05",
+    "Elias": "ch05",
+    "Tara": "ch06",
+    "Leon": "ch06",
+    "Mei": "ch06",
+    "Hugo": "ch06",
+    "Anika": "ch06",
+    "Seth": "ch06",
+    "Aria": "ch07",
+    "Dominic": "ch07",
+    "Leila": "ch07",
+    "Marcus": "ch07",
+    "Nina": "ch07",
+    "Theo": "ch07",
+    "Celia": "ch08",
+    "Ravi": "ch08",
+    "June": "ch08",
+    "Malik": "ch08",
+    "Petra": "ch08",
+    "Simon": "ch08"
+  },
+  "formatCategoryHistory": [],
+  "schoolSettingUsage": {},
+  "wordFrequency": {},
+  "phraseFrequency": {},
+  "openerRegistry": {
+    "gentle": {},
+    "direct": {},
+    "competitive": {}
+  },
+  "titleTemplateRegistry": {},
+  "endingPatternRegistry": {},
+  "withinChapterNames": {
+    "ch01": [
+      "Lena",
+      "Victor",
+      "Sora",
+      "Mateo",
+      "Elise",
+      "Jonah"
+    ],
+    "ch02": [
+      "Amina",
+      "Cole",
+      "Hana",
+      "Derek",
+      "Lucia",
+      "Ben"
+    ],
+    "ch03": [
+      "Iris",
+      "Nolan",
+      "Tessa",
+      "Karim",
+      "Eva",
+      "Miles"
+    ],
+    "ch04": [
+      "Nadia",
+      "Felix",
+      "Mira",
+      "Rowan",
+      "Paige",
+      "Leo"
+    ],
+    "ch05": [
+      "Clara",
+      "Dev",
+      "Quinn",
+      "Omar",
+      "Sophie",
+      "Elias"
+    ],
+    "ch06": [
+      "Tara",
+      "Leon",
+      "Mei",
+      "Hugo",
+      "Anika",
+      "Seth"
+    ],
+    "ch07": [
+      "Aria",
+      "Dominic",
+      "Leila",
+      "Marcus",
+      "Nina",
+      "Theo"
+    ],
+    "ch08": [
+      "Celia",
+      "Ravi",
+      "June",
+      "Malik",
+      "Petra",
+      "Simon"
+    ]
+  },
+  "approvedChapterHashes": {
+    "ch01": "6426f331ec7a3f20ab3878c2a4cd80804bcd829936f282948dc1638bae56dca1",
+    "ch02": "ea44cd11cd770457d0952e88167061f3e4ddffc3ea6e1171246dd5a471b16dc1",
+    "ch03": "fdf5e14ec372bcf7bedcead27a1519bd5bf5a42546d8e4148de5e1efa645ebab",
+    "ch04": "5e58f176d2f9b6b40ac171a20e8a9ca59bb8ea6d81910aa7e30e9cfa004180b4",
+    "ch05": "d88d83f49c91c966c8c0697a86b697f364d7da38e8d5b944d75958540fb22568",
+    "ch06": "278435433b549a2319b90a1ae183b730a069412eaf1edf4c699bc6d892e00f03",
+    "ch07": "4532663e17433e2662d9761097baf60d3c75e48dfbe5b89830fe1233b6ba58d7",
+    "ch08": "c93fc7fa6517199b1fe1b98e8684444957aab7be127eee4320b6432caa513ca0"
+  },
+  "baselineQuality": {
+    "ch01": {
+      "criticScore": 11,
+      "validator": "pass",
+      "lint": {
+        "fail": 0,
+        "warn": 0
+      },
+      "validatedAt": "2026-04-09T01:22:57Z"
+    },
+    "ch02": {
+      "criticScore": 11,
+      "validator": "pass",
+      "lint": {
+        "fail": 0,
+        "warn": 0
+      },
+      "validatedAt": "2026-04-09T01:22:57Z"
+    }
+  }
+}

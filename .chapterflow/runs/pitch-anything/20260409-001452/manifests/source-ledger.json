@@ -1,0 +1,71 @@
+{
+  "bookId": "pitch-anything",
+  "runId": "20260409-001452",
+  "lockedAt": "2026-04-09",
+  "selectionMode": "auto_locked_dominant_english_edition_after_manifest_repair",
+  "sources": [
+    {
+      "id": "mcgraw_hill_official",
+      "title": "Pitch Anything: An Innovative Method for Presenting, Persuading, and Winning the Deal, 1st Edition | McGraw Hill",
+      "url": "https://www.mheducation.com/highered/mhp/product/pitch-anything-innovative-method-presenting-persuading-winning-deal.html?viewOption=student",
+      "type": "official_publisher_page",
+      "role": "primary official identity, edition metadata, overview, STRONG method list, and table of contents",
+      "confidence": "high",
+      "notes": "Confirms Oren Klaff, 2011 publication, print and ebook ISBNs, the book's official positioning, and the full three-section / eleven-chapter map."
+    },
+    {
+      "id": "google_books_record",
+      "title": "Pitch Anything: An Innovative Method for Presenting, Persuading, and Winning the Deal | Google Books",
+      "url": "https://books.google.com/books/about/Pitch_Anything_An_Innovative_Method_for.html?id=P3EFa-WuMMkC",
+      "type": "official_bibliographic_record",
+      "role": "edition metadata, page count, publisher confirmation, and search-preview support",
+      "confidence": "high",
+      "notes": "Confirms McGraw-Hill Professional, 2011 publication, 240-page length, and the same English title family."
+    },
+    {
+      "id": "oren_klaff_official",
+      "title": "Pitch Anything | Oren Klaff",
+      "url": "https://orenklaff.com/pitch-anything-2/",
+      "type": "official_author_page",
+      "role": "author-side positioning and rights-safe framing support",
+      "confidence": "medium_high",
+      "notes": "Supports the modern author presentation of the book's promise and audience without changing the locked chapter map."
+    },
+    {
+      "id": "fnac_toc_record",
+      "title": "Pitch anything: an innovative method for presenting, persuading, and winning the deal | Fnac",
+      "url": "https://www.fnac.com/a3487821/Oren-Klaff-Pitch-anything-an-innovative-method-for-presenting-persuad",
+      "type": "retailer_toc_record",
+      "role": "cross-check for section headings, chapter order, ISBN, and March 2011 trade metadata",
+      "confidence": "high",
+      "notes": "Repeats the complete table of contents and matches the McGraw Hill chapter structure."
+    },
+    {
+      "id": "shortform_summary",
+      "title": "Pitch Anything Book Summary by Oren Klaff | Shortform",
+      "url": "https://www.shortform.com/summary/pitch-anything-summary-oren-klaff",
+      "type": "reputable_secondary_summary",
+      "role": "chapter-range interpretation support for croc-brain, frame-control, status, pitch phases, and neediness themes",
+      "confidence": "medium_high",
+      "notes": "Useful for paraphrase-first framing across the book's concept sequence when exact primary text is not frozen."
+    },
+    {
+      "id": "getstoryshots_summary",
+      "title": "Pitch Anything Summary and Review | StoryShots",
+      "url": "https://www.getstoryshots.com/books/pitch-anything-summary/",
+      "type": "secondary_summary",
+      "role": "additional cross-check for the sequence of concepts and late-book application chapters",
+      "confidence": "medium",
+      "notes": "Supports broad chapter intent only; not used for exact phrasing or unsupported anecdotes."
+    },
+    {
+      "id": "getabstract_summary",
+      "title": "Pitch Anything | getAbstract",
+      "url": "https://www.getabstract.com/ru/%D0%9A%D1%80%D0%B0%D1%82%D0%BA%D0%BE%D0%B5-%D0%B8%D0%B7%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5/pitch-anything/17415?si=2159&st=RELATED",
+      "type": "secondary_summary",
+      "role": "high-level quality cross-check for the book's deal-winning framing and applicability",
+      "confidence": "medium",
+      "notes": "Used only as a secondary confidence check on the book's scope and emphasis."
+    }
+  ]
+}

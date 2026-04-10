@@ -1,9 +1,26 @@
-import lawsOfPowerPackageJson from "@/book-packages/the-48-laws-of-power.modern.json";
-import friendsAndInfluencePackageJson from "@/book-packages/friends-and-influence.modern.json";
-import lawsOfHumanNaturePackageJson from "@/book-packages/laws-of-human-nature.modern.json";
-import theCharismaMythPackageJson from "@/book-packages/the-charisma-myth.modern.json";
-import atomicHabitsPackageJson from "@/book-packages/atomic-habits.modern.json";
+import thePowerOfHabitPackageJson from "@/book-packages/the-power-of-habit.modern.json";
+import makeTimePackageJson from "@/book-packages/make-time.modern.json";
+import crucialConversationsPackageJson from "@/book-packages/crucial-conversations.modern.json";
+import whatEveryBodyIsSayingPackageJson from "@/book-packages/what-every-body-is-saying.modern.json";
+import thePrincePackageJson from "@/book-packages/the-prince.modern.json";
+import tinyHabitsPackageJson from "@/book-packages/tiny-habits.modern.json";
+import essentialismPackageJson from "@/book-packages/essentialism.modern.json";
+import deepWorkPackageJson from "@/book-packages/deep-work.modern.json";
+import predictablyIrrationalPackageJson from "@/book-packages/predictably-irrational.modern.json";
+import thinkingFastAndSlowPackageJson from "@/book-packages/thinking-fast-and-slow.modern.json";
+import thePsychologyOfMoneyPackageJson from "@/book-packages/the-psychology-of-money.modern.json";
+import theLawsOfHumanNaturePackageJson from "@/book-packages/the-laws-of-human-nature.modern.json";
+import theAlmanackOfNavalRavikantPackageJson from "@/book-packages/the-almanack-of-naval-ravikant.modern.json";
+import theHardThingAboutHardThingsPackageJson from "@/book-packages/the-hard-thing-about-hard-things.modern.json";
+import leadersEatLastPackageJson from "@/book-packages/leaders-eat-last.modern.json";
+import goodToGreatPackageJson from "@/book-packages/good-to-great.modern.json";
+import howToTalkToAnyonePackageJson from "@/book-packages/how-to-talk-to-anyone.modern.json";
 import neverSplitTheDifferencePackageJson from "@/book-packages/never-split-the-difference.modern.json";
+import pitchAnythingPackageJson from "@/book-packages/pitch-anything.modern.json";
+import youCantHurtMePackageJson from "@/book-packages/you-can't-hurt-me.modern.json";
+import indistractablePackageJson from "@/book-packages/indistractable.modern.json";
+import extremeOwnershipPackageJson from "@/book-packages/extreme-ownership.modern.json";
+import theArtOfWarPackageJson from "@/book-packages/the-art-of-war.modern.json";
 import { getBookCoverPath } from "@/lib/book-covers";
 
 export type VariantFamily = "EMH" | "PBC";
@@ -27,12 +44,18 @@ export type PackageSummaryBlock =
     };
 
 export type PackageVariantContent = {
+  chapterBreakdown?: string;
   importantSummary?: string;
   summaryBullets?: string[];
   summaryBlocks?: PackageSummaryBlock[];
   keyTakeaways?: string[];
   takeaways?: string[];
   practice?: string[];
+  oneMinuteRecap?: string[];
+  activationPrompt?: string;
+  selfCheckPrompt?: string;
+  selfCheckPrompts?: string[];
+  predictionPrompt?: string;
 };
 
 export type PackageQuizQuestion = {
@@ -47,6 +70,9 @@ export type PackageQuizQuestion = {
 };
 
 export type PackageQuiz = {
+  chapterId?: string;
+  chapterNumber?: number;
+  chapterTitle?: string;
   passingScorePercent: number;
   questions: PackageQuizQuestion[];
   retryQuestions?: PackageQuizQuestion[];
@@ -62,6 +88,20 @@ export type PackageExample = {
   reflectionPrompt?: string;
 };
 
+export type PackageImplementationPlan = {
+  coreSkill: string;
+  ifThenPlans: Array<{ context: string; plan: string }>;
+  twentyFourHourChallenge: string;
+  weeklyPractice: string;
+};
+
+export type PackageReviewCard = {
+  cardId: string;
+  front: string;
+  back: string;
+  difficulty: "easy" | "medium" | "hard";
+};
+
 export type PackageChapter = {
   chapterId: string;
   number: number;
@@ -70,6 +110,9 @@ export type PackageChapter = {
   contentVariants: Partial<Record<VariantKey, PackageVariantContent>>;
   examples: PackageExample[];
   quiz: PackageQuiz;
+  implementationPlan?: PackageImplementationPlan;
+  reviewCards?: PackageReviewCard[];
+  keyTakeawayCard?: string;
 };
 
 export type PackageBook = {
@@ -78,8 +121,22 @@ export type PackageBook = {
   author: string;
   categories: string[];
   tags?: string[];
-  edition?: string | { name: string; publishedYear?: number };
+  edition?:
+    | string
+    | {
+        name: string;
+        publishedYear?: number | null;
+        publisher?: string;
+        publishedDate?: string;
+        isbn13?: string;
+        format?: string;
+        translator?: string;
+        translationYear?: number | null;
+        sourceText?: string;
+        sourceProvenance?: string;
+      };
   variantFamily: VariantFamily;
+  chapterRange?: string;
 };
 
 export type BookPackage = {
@@ -93,7 +150,7 @@ export type BookPackage = {
 
 export type BookPackagePresentation = {
   icon: string;
-  coverImage: string;
+  coverImage?: string;
   difficulty: "Easy" | "Medium" | "Hard";
   synopsis: string;
   pages?: number;
@@ -101,30 +158,41 @@ export type BookPackagePresentation = {
 
 /* ── NSTD tone-aware JSON normalization ────────────────────────────── */
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type ToneObject = { gentle?: string; direct?: string; competitive?: string };
 export type ToneKey = "gentle" | "direct" | "competitive";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function resolveTone(value: any, tone: ToneKey = "direct"): string {
+function asRecord(value: unknown): Record<string, unknown> | null {
+  return value && typeof value === "object" ? (value as Record<string, unknown>) : null;
+}
+
+function getRawChapters(raw: unknown): unknown[] {
+  const record = asRecord(raw);
+  return Array.isArray(record?.chapters) ? record.chapters : [];
+}
+
+export function resolveTone(value: unknown, tone: ToneKey = "direct"): string {
   if (typeof value === "string") return value;
-  if (value && typeof value === "object") {
-    if (typeof value[tone] === "string") return value[tone];
+  const record = asRecord(value);
+  if (record) {
+    if (typeof record[tone] === "string") return record[tone] as string;
     for (const k of ["direct", "gentle", "competitive"] as const) {
-      if (typeof value[k] === "string") return value[k];
+      if (typeof record[k] === "string") return record[k] as string;
     }
   }
   return "";
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function normalizeNstdVariant(v: any, tone: ToneKey = "direct"): PackageVariantContent {
+export function isV12BookPackage(bookPackage: Pick<BookPackage, "schemaVersion"> | undefined): boolean {
+  return bookPackage?.schemaVersion === "1.1.0";
+}
+
+function normalizeNstdVariant(v: Record<string, unknown> | null | undefined, tone: ToneKey = "direct"): PackageVariantContent {
   const summaryBlocks: PackageSummaryBlock[] = [];
 
   // chapterBreakdown → paragraphs (tone-object format, e.g. 48 Laws)
-  const breakdown = resolveTone(v?.chapterBreakdown, tone);
-  if (breakdown) {
-    for (const p of breakdown.split(/\n\n+/).filter((s: string) => s.trim())) {
+  const chapterBreakdown = resolveTone(v?.chapterBreakdown, tone);
+  if (chapterBreakdown) {
+    for (const p of chapterBreakdown.split(/\n\n+/).filter((s: string) => s.trim())) {
       summaryBlocks.push({ type: "paragraph", text: p.trim() });
     }
   }
@@ -141,207 +209,654 @@ function normalizeNstdVariant(v: any, tone: ToneKey = "direct"): PackageVariantC
     }
   }
 
-  // oneMinuteRecap → practice
+  // oneMinuteRecap → explicit recap items + legacy practice list
+  const oneMinuteRecap: string[] = [];
   const practice: string[] = [];
   if (v?.oneMinuteRecap) {
-    if (typeof v.oneMinuteRecap === "object" && v.oneMinuteRecap.retrieve) {
-      const retrieve = resolveTone(v.oneMinuteRecap.retrieve, tone);
-      const connect = resolveTone(v.oneMinuteRecap.connect, tone);
-      const preview = resolveTone(v.oneMinuteRecap.preview, tone);
-      if (retrieve) practice.push(retrieve);
-      if (connect) practice.push(connect);
-      if (preview) practice.push(preview);
+    const recapRecord = asRecord(v.oneMinuteRecap);
+    if (recapRecord?.retrieve) {
+      const retrieve = resolveTone(recapRecord.retrieve, tone);
+      const connect = resolveTone(recapRecord.connect, tone);
+      const preview = resolveTone(recapRecord.preview, tone);
+      if (retrieve) {
+        oneMinuteRecap.push(retrieve);
+        practice.push(retrieve);
+      }
+      if (connect) {
+        oneMinuteRecap.push(connect);
+        practice.push(connect);
+      }
+      if (preview) {
+        oneMinuteRecap.push(preview);
+        practice.push(preview);
+      }
     } else {
       const recap = resolveTone(v.oneMinuteRecap, tone);
-      if (recap) practice.push(recap);
+      if (recap) {
+        oneMinuteRecap.push(recap);
+        practice.push(recap);
+      }
     }
   }
-  if (v?.selfCheckPrompt) practice.push(resolveTone(v.selfCheckPrompt, tone));
-  if (Array.isArray(v?.selfCheckPrompts)) {
-    for (const p of v.selfCheckPrompts) practice.push(resolveTone(p, tone));
+  const activationPrompt = v?.activationPrompt ? resolveTone(v.activationPrompt, tone) : undefined;
+  const selfCheckPrompt = v?.selfCheckPrompt ? resolveTone(v.selfCheckPrompt, tone) : undefined;
+  const selfCheckPrompts = Array.isArray(v?.selfCheckPrompts)
+    ? v.selfCheckPrompts
+        .map((p: unknown) => resolveTone(p, tone))
+        .filter(Boolean)
+    : undefined;
+  const predictionPrompt = v?.predictionPrompt ? resolveTone(v.predictionPrompt, tone) : undefined;
+
+  if (selfCheckPrompt) practice.push(selfCheckPrompt);
+  if (Array.isArray(selfCheckPrompts)) {
+    for (const prompt of selfCheckPrompts) practice.push(prompt);
   }
-  if (v?.predictionPrompt) practice.push(resolveTone(v.predictionPrompt, tone));
+  if (predictionPrompt) practice.push(predictionPrompt);
 
   return {
-    importantSummary: breakdown ? breakdown.split(/\n\n+/)[0]?.trim() : undefined,
+    chapterBreakdown: chapterBreakdown || undefined,
+    importantSummary: chapterBreakdown ? chapterBreakdown.split(/\n\n+/)[0]?.trim() : undefined,
     summaryBullets: keyTakeaways.length > 0 ? keyTakeaways : undefined,
     summaryBlocks,
     keyTakeaways: keyTakeaways.length > 0 ? keyTakeaways : undefined,
     practice: practice.length > 0 ? practice : undefined,
+    oneMinuteRecap: oneMinuteRecap.length > 0 ? oneMinuteRecap : undefined,
+    activationPrompt,
+    selfCheckPrompt,
+    selfCheckPrompts: selfCheckPrompts && selfCheckPrompts.length > 0 ? selfCheckPrompts : undefined,
+    predictionPrompt,
   };
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function normalizeNstdPackage(raw: any, tone: ToneKey = "direct"): BookPackage {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const chapters: PackageChapter[] = (raw.chapters ?? []).map((ch: any) => {
+function normalizeNstdPackage(raw: Record<string, unknown>, tone: ToneKey = "direct"): BookPackage {
+  const chapters: PackageChapter[] = getRawChapters(raw).map((chapter) => {
+    const ch = asRecord(chapter) ?? {};
     const contentVariants: Partial<Record<VariantKey, PackageVariantContent>> = {};
     for (const key of ["easy", "medium", "hard"] as const) {
-      const v = ch.contentVariants?.[key];
+      const variants = asRecord(ch.contentVariants);
+      const v = asRecord(variants?.[key]);
       if (v) contentVariants[key] = normalizeNstdVariant(v, tone);
     }
     return {
-      chapterId: ch.chapterId,
-      number: ch.number,
-      title: ch.title,
-      readingTimeMinutes: ch.readingTimeMinutes,
+      chapterId: ch.chapterId as string,
+      number: ch.number as number,
+      title: ch.title as string,
+      readingTimeMinutes: ch.readingTimeMinutes as number,
       contentVariants,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      examples: (ch.examples ?? []).map((ex: any) => ({
-        exampleId: ex.exampleId,
-        title: ex.title,
-        scenario: resolveTone(ex.scenario, tone),
-        whatToDo: Array.isArray(ex.whatToDo)
-          ? ex.whatToDo
-          : [resolveTone(ex.whatToDo, tone)],
-        whyItMatters: resolveTone(ex.whyItMatters, tone),
-        contexts: ex.contexts ?? (ex.category ? [ex.category] : []),
-      })),
+      examples: (Array.isArray(ch.examples) ? ch.examples : []).map((example) => {
+        const ex = asRecord(example) ?? {};
+        return {
+          exampleId: ex.exampleId as string,
+          title: ex.title as string,
+          scenario: resolveTone(ex.scenario, tone),
+          whatToDo: Array.isArray(ex.whatToDo)
+            ? ex.whatToDo
+              .map((step: unknown) => resolveTone(step, tone))
+              .filter(Boolean)
+            : [resolveTone(ex.whatToDo, tone)].filter(Boolean),
+          whyItMatters: resolveTone(ex.whyItMatters, tone),
+          contexts: Array.isArray(ex.contexts)
+            ? ex.contexts.filter((context): context is string => typeof context === "string")
+            : typeof ex.category === "string"
+              ? [ex.category]
+              : [],
+          reflectionPrompt: ex.reflectionPrompt ? resolveTone(ex.reflectionPrompt, tone) : undefined,
+        };
+      }),
       quiz: {
-        passingScorePercent: ch.quiz?.passingScorePercent ?? 80,
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        questions: (ch.quiz?.questions ?? []).map((q: any) => ({
-          questionId: q.questionId,
-          prompt: q.prompt,
-          choices: q.choices,
-          correctIndex: q.correctIndex,
-          explanation: resolveTone(q.explanation, tone),
-        })),
+        passingScorePercent: (asRecord(ch.quiz)?.passingScorePercent as number | undefined) ?? 80,
+        questions: (Array.isArray(asRecord(ch.quiz)?.questions) ? (asRecord(ch.quiz)?.questions as unknown[]) : []).map((question) => {
+          const q = asRecord(question) ?? {};
+          return {
+            questionId: q.questionId as string,
+            prompt: (q.prompt ?? q.stem) as string | undefined,
+            choices: (q.choices ?? q.options) as string[] | undefined,
+            correctIndex: (q.correctIndex ?? q.correctAnswerIndex) as number | undefined,
+            explanation: resolveTone(q.explanation, tone),
+          };
+        }),
+        retryQuestions: (Array.isArray(asRecord(ch.quiz)?.retryQuestions)
+          ? (asRecord(ch.quiz)?.retryQuestions as unknown[])
+          : []).map((question) => {
+          const q = asRecord(question) ?? {};
+          return {
+            questionId: q.questionId as string,
+            prompt: (q.prompt ?? q.stem) as string | undefined,
+            choices: (q.choices ?? q.options) as string[] | undefined,
+            correctIndex: (q.correctIndex ?? q.correctAnswerIndex) as number | undefined,
+            explanation: resolveTone(q.explanation, tone),
+          };
+        }),
       },
+      implementationPlan: ch.implementationPlan
+        ? {
+            coreSkill: resolveTone(asRecord(ch.implementationPlan)?.coreSkill, tone),
+            ifThenPlans: (Array.isArray(asRecord(ch.implementationPlan)?.ifThenPlans)
+              ? (asRecord(ch.implementationPlan)?.ifThenPlans as unknown[])
+              : []).map((item) => {
+              const planItem = asRecord(item) ?? {};
+              return {
+                context: typeof planItem.context === "string" ? planItem.context : "",
+                plan: resolveTone(planItem.plan, tone),
+              };
+            }),
+            twentyFourHourChallenge: resolveTone(
+              asRecord(ch.implementationPlan)?.twentyFourHourChallenge,
+              tone
+            ),
+            weeklyPractice: resolveTone(asRecord(ch.implementationPlan)?.weeklyPractice, tone),
+          }
+        : undefined,
+      reviewCards: Array.isArray(ch.reviewCards)
+        ? ch.reviewCards.map((card, index: number) => {
+            const reviewCard = asRecord(card) ?? {};
+            return {
+              cardId: (reviewCard.cardId as string | undefined) ?? `rc-${index + 1}`,
+              front: resolveTone(reviewCard.front, tone),
+              back: resolveTone(reviewCard.back, tone),
+              difficulty: (reviewCard.difficulty as "easy" | "medium" | "hard" | undefined) ?? "easy",
+            };
+          })
+        : undefined,
+      keyTakeawayCard: ch.keyTakeawayCard ? resolveTone(ch.keyTakeawayCard, tone) : undefined,
     } satisfies PackageChapter;
   });
   return {
-    schemaVersion: raw.schemaVersion,
-    packageId: raw.packageId,
-    createdAt: raw.createdAt,
-    contentOwner: raw.contentOwner,
-    book: raw.book,
+    schemaVersion: raw.schemaVersion as string,
+    packageId: raw.packageId as string,
+    createdAt: raw.createdAt as string,
+    contentOwner: raw.contentOwner as string,
+    book: raw.book as PackageBook,
     chapters,
   };
 }
 
-export const LAWS_OF_POWER_PACKAGE =
-  normalizeNstdPackage(lawsOfPowerPackageJson, "direct");
+export const THE_POWER_OF_HABIT_PACKAGE =
+  normalizeNstdPackage(thePowerOfHabitPackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const LAWS_OF_POWER_RAW_CHAPTERS: any[] = (lawsOfPowerPackageJson as any).chapters ?? [];
+export const THE_POWER_OF_HABIT_RAW_CHAPTERS = getRawChapters(thePowerOfHabitPackageJson);
 
-export function getLawsOfPowerPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(lawsOfPowerPackageJson, tone);
-}
-export const FRIENDS_AND_INFLUENCE_PACKAGE =
-  normalizeNstdPackage(friendsAndInfluencePackageJson, "direct");
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const FRIENDS_AND_INFLUENCE_RAW_CHAPTERS: any[] = (friendsAndInfluencePackageJson as any).chapters ?? [];
-
-export function getFriendsAndInfluencePackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(friendsAndInfluencePackageJson, tone);
+export function getThePowerOfHabitPackageForTone(tone: ToneKey): BookPackage {
+  return normalizeNstdPackage(thePowerOfHabitPackageJson, tone);
 }
 
-export const LAWS_OF_HUMAN_NATURE_PACKAGE =
-  normalizeNstdPackage(lawsOfHumanNaturePackageJson, "direct");
+export const MAKE_TIME_PACKAGE = normalizeNstdPackage(makeTimePackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const LAWS_OF_HUMAN_NATURE_RAW_CHAPTERS: any[] = (lawsOfHumanNaturePackageJson as any).chapters ?? [];
+export const MAKE_TIME_RAW_CHAPTERS = getRawChapters(makeTimePackageJson);
 
-export function getLawsOfHumanNaturePackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(lawsOfHumanNaturePackageJson, tone);
+export function getMakeTimePackageForTone(tone: ToneKey): BookPackage {
+  return normalizeNstdPackage(makeTimePackageJson, tone);
 }
 
-export const THE_CHARISMA_MYTH_PACKAGE =
-  normalizeNstdPackage(theCharismaMythPackageJson, "direct");
+export const CRUCIAL_CONVERSATIONS_PACKAGE =
+  normalizeNstdPackage(crucialConversationsPackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const THE_CHARISMA_MYTH_RAW_CHAPTERS: any[] = (theCharismaMythPackageJson as any).chapters ?? [];
+export const CRUCIAL_CONVERSATIONS_RAW_CHAPTERS = getRawChapters(crucialConversationsPackageJson);
 
-export function getTheCharismaMythPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(theCharismaMythPackageJson, tone);
+export function getCrucialConversationsPackageForTone(tone: ToneKey): BookPackage {
+  return normalizeNstdPackage(crucialConversationsPackageJson, tone);
 }
 
-export const ATOMIC_HABITS_PACKAGE =
-  normalizeNstdPackage(atomicHabitsPackageJson, "direct");
+export const WHAT_EVERY_BODY_IS_SAYING_PACKAGE =
+  normalizeNstdPackage(whatEveryBodyIsSayingPackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const ATOMIC_HABITS_RAW_CHAPTERS: any[] = (atomicHabitsPackageJson as any).chapters ?? [];
+export const WHAT_EVERY_BODY_IS_SAYING_RAW_CHAPTERS = getRawChapters(whatEveryBodyIsSayingPackageJson);
 
-export function getAtomicHabitsPackageForTone(tone: ToneKey): BookPackage {
-  return normalizeNstdPackage(atomicHabitsPackageJson, tone);
+export function getWhatEveryBodyIsSayingPackageForTone(tone: ToneKey): BookPackage {
+  return normalizeNstdPackage(whatEveryBodyIsSayingPackageJson, tone);
 }
 
-export const NEVER_SPLIT_THE_DIFFERENCE_PACKAGE =
-  normalizeNstdPackage(neverSplitTheDifferencePackageJson, "direct");
+export const THE_PRINCE_PACKAGE = normalizeNstdPackage(thePrincePackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const NEVER_SPLIT_THE_DIFFERENCE_RAW_CHAPTERS: any[] =
-  (neverSplitTheDifferencePackageJson as any).chapters ?? [];
+export const THE_PRINCE_RAW_CHAPTERS = getRawChapters(thePrincePackageJson);
+
+export function getThePrincePackageForTone(tone: ToneKey): BookPackage {
+  return normalizeNstdPackage(thePrincePackageJson, tone);
+}
+
+export const TINY_HABITS_PACKAGE = normalizeNstdPackage(tinyHabitsPackageJson, "direct");
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const TINY_HABITS_RAW_CHAPTERS = getRawChapters(tinyHabitsPackageJson);
+
+export function getTinyHabitsPackageForTone(tone: ToneKey): BookPackage {
+  return normalizeNstdPackage(tinyHabitsPackageJson, tone);
+}
+
+export const ESSENTIALISM_PACKAGE = normalizeNstdPackage(essentialismPackageJson, "direct");
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const ESSENTIALISM_RAW_CHAPTERS = getRawChapters(essentialismPackageJson);
+
+export function getEssentialismPackageForTone(tone: ToneKey): BookPackage {
+  return normalizeNstdPackage(essentialismPackageJson, tone);
+}
+
+export const DEEP_WORK_PACKAGE = normalizeNstdPackage(deepWorkPackageJson, "direct");
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const DEEP_WORK_RAW_CHAPTERS = getRawChapters(deepWorkPackageJson);
+
+export function getDeepWorkPackageForTone(tone: ToneKey): BookPackage {
+  return normalizeNstdPackage(deepWorkPackageJson, tone);
+}
+
+export const PREDICTABLY_IRRATIONAL_PACKAGE = normalizeNstdPackage(
+  predictablyIrrationalPackageJson,
+  "direct"
+);
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const PREDICTABLY_IRRATIONAL_RAW_CHAPTERS = getRawChapters(predictablyIrrationalPackageJson);
+
+export function getPredictablyIrrationalPackageForTone(tone: ToneKey): BookPackage {
+  return normalizeNstdPackage(predictablyIrrationalPackageJson, tone);
+}
+
+export const THINKING_FAST_AND_SLOW_PACKAGE = normalizeNstdPackage(
+  thinkingFastAndSlowPackageJson,
+  "direct"
+);
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const THINKING_FAST_AND_SLOW_RAW_CHAPTERS = getRawChapters(thinkingFastAndSlowPackageJson);
+
+export function getThinkingFastAndSlowPackageForTone(tone: ToneKey): BookPackage {
+  return normalizeNstdPackage(thinkingFastAndSlowPackageJson, tone);
+}
+
+export const THE_PSYCHOLOGY_OF_MONEY_PACKAGE = normalizeNstdPackage(
+  thePsychologyOfMoneyPackageJson,
+  "direct"
+);
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const THE_PSYCHOLOGY_OF_MONEY_RAW_CHAPTERS = getRawChapters(thePsychologyOfMoneyPackageJson);
+
+export function getThePsychologyOfMoneyPackageForTone(tone: ToneKey): BookPackage {
+  return normalizeNstdPackage(thePsychologyOfMoneyPackageJson, tone);
+}
+
+export const THE_LAWS_OF_HUMAN_NATURE_PACKAGE = normalizeNstdPackage(
+  theLawsOfHumanNaturePackageJson,
+  "direct"
+);
+
+export const THE_LAWS_OF_HUMAN_NATURE_RAW_CHAPTERS =
+  getRawChapters(theLawsOfHumanNaturePackageJson);
+
+export function getTheLawsOfHumanNaturePackageForTone(tone: ToneKey): BookPackage {
+  return normalizeNstdPackage(theLawsOfHumanNaturePackageJson, tone);
+}
+
+export const THE_ALMANACK_OF_NAVAL_RAVIKANT_PACKAGE = normalizeNstdPackage(
+  theAlmanackOfNavalRavikantPackageJson,
+  "direct"
+);
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const THE_ALMANACK_OF_NAVAL_RAVIKANT_RAW_CHAPTERS =
+  getRawChapters(theAlmanackOfNavalRavikantPackageJson);
+
+export function getTheAlmanackOfNavalRavikantPackageForTone(tone: ToneKey): BookPackage {
+  return normalizeNstdPackage(theAlmanackOfNavalRavikantPackageJson, tone);
+}
+
+export const THE_HARD_THING_ABOUT_HARD_THINGS_PACKAGE = normalizeNstdPackage(
+  theHardThingAboutHardThingsPackageJson,
+  "direct"
+);
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const THE_HARD_THING_ABOUT_HARD_THINGS_RAW_CHAPTERS =
+  getRawChapters(theHardThingAboutHardThingsPackageJson);
+
+export function getTheHardThingAboutHardThingsPackageForTone(tone: ToneKey): BookPackage {
+  return normalizeNstdPackage(theHardThingAboutHardThingsPackageJson, tone);
+}
+
+export const LEADERS_EAT_LAST_PACKAGE = normalizeNstdPackage(
+  leadersEatLastPackageJson,
+  "direct"
+);
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const LEADERS_EAT_LAST_RAW_CHAPTERS = getRawChapters(leadersEatLastPackageJson);
+
+export function getLeadersEatLastPackageForTone(tone: ToneKey): BookPackage {
+  return normalizeNstdPackage(leadersEatLastPackageJson, tone);
+}
+
+export const GOOD_TO_GREAT_PACKAGE = normalizeNstdPackage(goodToGreatPackageJson, "direct");
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const GOOD_TO_GREAT_RAW_CHAPTERS = getRawChapters(goodToGreatPackageJson);
+
+export function getGoodToGreatPackageForTone(tone: ToneKey): BookPackage {
+  return normalizeNstdPackage(goodToGreatPackageJson, tone);
+}
+
+export const HOW_TO_TALK_TO_ANYONE_PACKAGE = normalizeNstdPackage(
+  howToTalkToAnyonePackageJson,
+  "direct"
+);
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const HOW_TO_TALK_TO_ANYONE_RAW_CHAPTERS = getRawChapters(howToTalkToAnyonePackageJson);
+
+export function getHowToTalkToAnyonePackageForTone(tone: ToneKey): BookPackage {
+  return normalizeNstdPackage(howToTalkToAnyonePackageJson, tone);
+}
+
+export const NEVER_SPLIT_THE_DIFFERENCE_PACKAGE = normalizeNstdPackage(
+  neverSplitTheDifferencePackageJson,
+  "direct"
+);
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const NEVER_SPLIT_THE_DIFFERENCE_RAW_CHAPTERS = getRawChapters(
+  neverSplitTheDifferencePackageJson
+);
 
 export function getNeverSplitTheDifferencePackageForTone(tone: ToneKey): BookPackage {
   return normalizeNstdPackage(neverSplitTheDifferencePackageJson, tone);
 }
 
+export const PITCH_ANYTHING_PACKAGE = normalizeNstdPackage(pitchAnythingPackageJson, "direct");
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const PITCH_ANYTHING_RAW_CHAPTERS = getRawChapters(pitchAnythingPackageJson);
+
+export function getPitchAnythingPackageForTone(tone: ToneKey): BookPackage {
+  return normalizeNstdPackage(pitchAnythingPackageJson, tone);
+}
+
+export const YOU_CANT_HURT_ME_PACKAGE = normalizeNstdPackage(youCantHurtMePackageJson, "direct");
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const YOU_CANT_HURT_ME_RAW_CHAPTERS = getRawChapters(youCantHurtMePackageJson);
+
+export function getYouCantHurtMePackageForTone(tone: ToneKey): BookPackage {
+  return normalizeNstdPackage(youCantHurtMePackageJson, tone);
+}
+
+export const INDISTRACTABLE_PACKAGE = normalizeNstdPackage(indistractablePackageJson, "direct");
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const INDISTRACTABLE_RAW_CHAPTERS = getRawChapters(indistractablePackageJson);
+
+export function getIndistractablePackageForTone(tone: ToneKey): BookPackage {
+  return normalizeNstdPackage(indistractablePackageJson, tone);
+}
+
+export const EXTREME_OWNERSHIP_PACKAGE = normalizeNstdPackage(
+  extremeOwnershipPackageJson,
+  "direct"
+);
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const EXTREME_OWNERSHIP_RAW_CHAPTERS = getRawChapters(extremeOwnershipPackageJson);
+
+export function getExtremeOwnershipPackageForTone(tone: ToneKey): BookPackage {
+  return normalizeNstdPackage(extremeOwnershipPackageJson, tone);
+}
+
+export const THE_ART_OF_WAR_PACKAGE = normalizeNstdPackage(theArtOfWarPackageJson, "direct");
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const THE_ART_OF_WAR_RAW_CHAPTERS = getRawChapters(theArtOfWarPackageJson);
+
+export function getTheArtOfWarPackageForTone(tone: ToneKey): BookPackage {
+  return normalizeNstdPackage(theArtOfWarPackageJson, tone);
+}
+
 export const BOOK_PACKAGES: BookPackage[] = [
-  LAWS_OF_POWER_PACKAGE,
-  FRIENDS_AND_INFLUENCE_PACKAGE,
-  ATOMIC_HABITS_PACKAGE,
-  LAWS_OF_HUMAN_NATURE_PACKAGE,
-  THE_CHARISMA_MYTH_PACKAGE,
+  THE_POWER_OF_HABIT_PACKAGE,
+  MAKE_TIME_PACKAGE,
+  ESSENTIALISM_PACKAGE,
+  CRUCIAL_CONVERSATIONS_PACKAGE,
+  WHAT_EVERY_BODY_IS_SAYING_PACKAGE,
+  THE_PRINCE_PACKAGE,
+  TINY_HABITS_PACKAGE,
+  DEEP_WORK_PACKAGE,
+  PREDICTABLY_IRRATIONAL_PACKAGE,
+  THINKING_FAST_AND_SLOW_PACKAGE,
+  THE_PSYCHOLOGY_OF_MONEY_PACKAGE,
+  THE_LAWS_OF_HUMAN_NATURE_PACKAGE,
+  THE_ALMANACK_OF_NAVAL_RAVIKANT_PACKAGE,
+  THE_HARD_THING_ABOUT_HARD_THINGS_PACKAGE,
+  LEADERS_EAT_LAST_PACKAGE,
+  GOOD_TO_GREAT_PACKAGE,
+  HOW_TO_TALK_TO_ANYONE_PACKAGE,
   NEVER_SPLIT_THE_DIFFERENCE_PACKAGE,
+  PITCH_ANYTHING_PACKAGE,
+  YOU_CANT_HURT_ME_PACKAGE,
+  INDISTRACTABLE_PACKAGE,
+  EXTREME_OWNERSHIP_PACKAGE,
+  THE_ART_OF_WAR_PACKAGE,
 ];
 
+const BOOK_PACKAGE_TONE_GETTERS: Partial<Record<string, (tone: ToneKey) => BookPackage>> = {
+  "the-power-of-habit": getThePowerOfHabitPackageForTone,
+  "make-time": getMakeTimePackageForTone,
+  "essentialism": getEssentialismPackageForTone,
+  "crucial-conversations": getCrucialConversationsPackageForTone,
+  "what-every-body-is-saying": getWhatEveryBodyIsSayingPackageForTone,
+  "the-prince": getThePrincePackageForTone,
+  "tiny-habits": getTinyHabitsPackageForTone,
+  "deep-work": getDeepWorkPackageForTone,
+  "predictably-irrational": getPredictablyIrrationalPackageForTone,
+  "thinking-fast-and-slow": getThinkingFastAndSlowPackageForTone,
+  "the-psychology-of-money": getThePsychologyOfMoneyPackageForTone,
+  "the-laws-of-human-nature": getTheLawsOfHumanNaturePackageForTone,
+  "the-almanack-of-naval-ravikant": getTheAlmanackOfNavalRavikantPackageForTone,
+  "the-hard-thing-about-hard-things": getTheHardThingAboutHardThingsPackageForTone,
+  "leaders-eat-last": getLeadersEatLastPackageForTone,
+  "good-to-great": getGoodToGreatPackageForTone,
+  "how-to-talk-to-anyone": getHowToTalkToAnyonePackageForTone,
+  "never-split-the-difference": getNeverSplitTheDifferencePackageForTone,
+  "pitch-anything": getPitchAnythingPackageForTone,
+  "you-can't-hurt-me": getYouCantHurtMePackageForTone,
+  indistractable: getIndistractablePackageForTone,
+  "extreme-ownership": getExtremeOwnershipPackageForTone,
+  "the-art-of-war": getTheArtOfWarPackageForTone,
+};
+
 export const BOOK_PACKAGE_PRESENTATION: Record<string, BookPackagePresentation> = {
-  "friends-and-influence": {
-    icon: "🤝",
-    coverImage: getBookCoverPath("friends-and-influence"),
+  "the-power-of-habit": {
+    icon: "🧭",
+    coverImage: getBookCoverPath("the-power-of-habit"),
     difficulty: "Medium",
     synopsis:
-      "A classic communication guide focused on first impressions, attentive listening, better questions, respectful disagreement, and the habits that make relationships stronger over time.",
+      "A modern reading of cues, cravings, willpower, organizational routines, social movements, and the question of responsibility inside automatic behavior.",
+    pages: 371,
+  },
+  "make-time": {
+    icon: "⏳",
+    coverImage: getBookCoverPath("make-time"),
+    difficulty: "Medium",
+    synopsis:
+      "A practical guide to reclaiming attention day by day through a clear Highlight, better focus defenses, stronger energy, and a lightweight reflection loop.",
     pages: 304,
   },
-  "atomic-habits": {
-    icon: "🔁",
-    coverImage: getBookCoverPath("atomic-habits"),
+  "crucial-conversations": {
+    icon: "💬",
+    coverImage: getBookCoverPath("crucial-conversations"),
     difficulty: "Medium",
     synopsis:
-      "A modern reading of habits, identity, and behavior design: how tiny changes compound into remarkable results through the Four Laws of Behavior Change.",
-    pages: 320,
+      "A practical guide to high-stakes dialogue: spotting crucial conversations early, avoiding silence and force, restoring safety, and turning hard talks into real action.",
+    pages: 336,
   },
-  "the-48-laws-of-power": {
-    icon: "♜",
-    coverImage: getBookCoverPath("the-48-laws-of-power"),
+  "what-every-body-is-saying": {
+    icon: "👁️",
+    coverImage: getBookCoverPath("what-every-body-is-saying"),
+    difficulty: "Medium",
+    synopsis:
+      "A practical guide to reading nonverbal behavior with more discipline: noticing comfort, discomfort, confidence, stress, and withdrawal without turning one cue into false certainty.",
+  },
+  "the-prince": {
+    icon: "👑",
+    coverImage: getBookCoverPath("the-prince"),
     difficulty: "Hard",
     synopsis:
-      "A modern reading of power, timing, reputation, influence, and strategic awareness for students and early career builders.",
-    pages: 480,
+      "A modern reading of political founding, power, arms, fortune, reputation, and statecraft across Machiavelli's twenty-six chapters.",
+    pages: 176,
   },
-  "laws-of-human-nature": {
+  "tiny-habits": {
+    icon: "🌱",
+    coverImage: getBookCoverPath("tiny-habits"),
+    difficulty: "Medium",
+    synopsis:
+      "A modern reading of BJ Fogg's behavior design method: matching motivation, making habits tiny, anchoring prompts, using celebration, untangling bad loops, and growing change through shared support.",
+  },
+  essentialism: {
+    icon: "🎯",
+    coverImage: getBookCoverPath("essentialism"),
+    difficulty: "Medium",
+    synopsis:
+      "A modern reading of Greg McKeown's framework for choosing the vital few, cutting the trivial many, and building a life around less but better.",
+    pages: 288,
+  },
+  "deep-work": {
     icon: "🧠",
-    coverImage: getBookCoverPath("laws-of-human-nature"),
+    coverImage: getBookCoverPath("deep-work"),
+    difficulty: "Medium",
+    synopsis:
+      "A modern reading of focus, distraction, scheduling, boredom training, tool selection, and shallow-work control for people trying to build a deeper working life.",
+    pages: 304,
+  },
+  "predictably-irrational": {
+    icon: "🧪",
+    coverImage: getBookCoverPath("predictably-irrational"),
+    difficulty: "Medium",
+    synopsis:
+      "A modern reading of Dan Ariely's thirteen chapters on relativity, anchoring, zero price, norms, expectations, dishonesty, and practical design fixes for predictable decision errors.",
+  },
+  "thinking-fast-and-slow": {
+    icon: "🧠",
+    coverImage: getBookCoverPath("thinking-fast-and-slow"),
     difficulty: "Hard",
     synopsis:
-      "A deep exploration of emotional mastery, empathy, character assessment, group dynamics, and the hidden forces that drive human behavior.",
+      "A modern reading of Kahneman's thirty-eight chapters on System 1 and System 2, heuristics, bias, prospect theory, overconfidence, and the limits of judgment under uncertainty.",
+    pages: 499,
+  },
+  "the-psychology-of-money": {
+    icon: "💸",
+    coverImage: getBookCoverPath("the-psychology-of-money"),
+    difficulty: "Medium",
+    synopsis:
+      "A modern reading of Morgan Housel's twenty-two chapters on luck, risk, enoughness, compounding, saving, freedom, pessimism, and the historical forces shaping consumer expectations.",
+    pages: 256,
+  },
+  "the-laws-of-human-nature": {
+    icon: "🧠",
+    coverImage: getBookCoverPath("the-laws-of-human-nature"),
+    difficulty: "Hard",
+    synopsis:
+      "A modern reading of Robert Greene's nineteen chapters on irrationality, narcissism, role-playing, envy, conformity, aggression, historical mood, and mortality across everyday human behavior.",
     pages: 624,
   },
-  "the-charisma-myth": {
-    icon: "✨",
-    coverImage: getBookCoverPath("the-charisma-myth"),
+  "the-almanack-of-naval-ravikant": {
+    icon: "🧭",
+    coverImage: getBookCoverPath("the-almanack-of-naval-ravikant"),
     difficulty: "Medium",
     synopsis:
-      "A practical guide to developing presence, power, and warmth through learnable behaviors that make up charisma, from first impressions to crisis leadership.",
-    pages: 264,
+      "A modern reading of Naval Ravikant's six-part guide to wealth, judgment, happiness, self-governance, philosophy, and the reading life behind those ideas.",
+  },
+  "the-hard-thing-about-hard-things": {
+    icon: "🏢",
+    coverImage: getBookCoverPath("the-hard-thing-about-hard-things"),
+    difficulty: "Hard",
+    synopsis:
+      "A modern reading of Ben Horowitz's ten chapters on CEO struggle, layoffs, executive hiring, wartime leadership, culture, and building through crisis.",
+  },
+  "leaders-eat-last": {
+    icon: "🛡️",
+    coverImage: getBookCoverPath("leaders-eat-last"),
+    difficulty: "Medium",
+    synopsis:
+      "A modern reading of Simon Sinek's twenty-seven chapters on trust, leadership, cortisol, culture, sacrifice, and building circles of safety inside groups.",
+  },
+  "good-to-great": {
+    icon: "📈",
+    coverImage: getBookCoverPath("good-to-great"),
+    difficulty: "Hard",
+    synopsis:
+      "A modern reading of Jim Collins's nine chapters on disciplined leadership, strategic clarity, cumulative momentum, and the difference between a breakthrough and an enduring institution.",
+    pages: 320,
+  },
+  indistractable: {
+    icon: "🎯",
+    coverImage: getBookCoverPath("indistractable"),
+    difficulty: "Medium",
+    synopsis:
+      "A modern reading of Nir Eyal's thirty chapters on internal triggers, timeboxing, external triggers, pacts, workplace culture, parenting, and relational attention.",
+    pages: 290,
+  },
+  "how-to-talk-to-anyone": {
+    icon: "🗣️",
+    coverImage: getBookCoverPath("how-to-talk-to-anyone"),
+    difficulty: "Medium",
+    synopsis:
+      "A modern reading of Leil Lowndes's nine-part guide to first impressions, conversation flow, rapport, social tact, and practical relationship-building under real-world pressure.",
+    pages: 368,
   },
   "never-split-the-difference": {
-    icon: "🦢",
+    icon: "🤝",
     coverImage: getBookCoverPath("never-split-the-difference"),
     difficulty: "Medium",
     synopsis:
-      "A negotiation guide on tactical empathy, calibrated questions, price bargaining, execution, and the hidden variables that change a deal.",
+      "A modern reading of Chris Voss's ten chapters on tactical empathy, calibrated questions, mirroring, labeling, bargaining, and reading the hidden leverage inside high-stakes negotiation.",
     pages: 288,
+  },
+  "pitch-anything": {
+    icon: "🎤",
+    coverImage: getBookCoverPath("pitch-anything"),
+    difficulty: "Medium",
+    synopsis:
+      "A modern reading of Oren Klaff's eleven chapters on frame control, attention, story, intrigue, prizing, hookpoints, and turning high-stakes pitches into repeatable room command.",
+    pages: 240,
+  },
+  "you-can't-hurt-me": {
+    icon: "🏃",
+    coverImage: getBookCoverPath("you-can't-hurt-me"),
+    difficulty: "Hard",
+    synopsis:
+      "A modern reading of David Goggins's eleven chapters on abuse, accountability, suffering, discipline, failure, recovery, and widening strength beyond old verdicts.",
+  },
+  "extreme-ownership": {
+    icon: "🪖",
+    coverImage: getBookCoverPath("extreme-ownership"),
+    difficulty: "Hard",
+    synopsis:
+      "A modern reading of Jocko Willink and Leif Babin's thirteen chapters on ownership, trust, planning, decentralized command, disciplined execution, and leadership under pressure.",
+    pages: 298,
+  },
+  "the-art-of-war": {
+    icon: "⚔️",
+    coverImage: getBookCoverPath("the-art-of-war"),
+    difficulty: "Hard",
+    synopsis:
+      "A modern reading of Sun Tzu's thirteen chapters on strategy, deception, terrain, intelligence, and the conditions that produce victory before battle begins.",
+    pages: 68,
   },
 };
 
 export function getBookPackageById(bookId: string): BookPackage | undefined {
   return BOOK_PACKAGES.find((pkg) => pkg.book.bookId === bookId);
+}
+
+export function getBookPackageByIdForTone(
+  bookId: string,
+  tone: ToneKey = "direct"
+): BookPackage | undefined {
+  const getter = BOOK_PACKAGE_TONE_GETTERS[bookId];
+  return getter ? getter(tone) : getBookPackageById(bookId);
 }
 
 function formatSynopsisTopics(topics: string[]): string {

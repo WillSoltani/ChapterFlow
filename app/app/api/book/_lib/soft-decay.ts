@@ -173,6 +173,7 @@ export async function processSoftDecay(
                     sourceId: `soft-decay:${now.slice(0, 7)}`, // Monthly identifier
                     metadata: {
                       previousBalance: balance,
+                      decayAmount,
                       decayRate: DECAY_RATE,
                       threshold: DECAY_THRESHOLD,
                     },

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "According to Chapter 21, what most makes a prince esteemed?",
+      "choices": [
+        "Great enterprises and setting a fine example",
+        "Remaining neutral in dangerous disputes",
+        "Avoiding public visibility whenever possible"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter opens by tying esteem to visible greatness and example.",
+        "direct": "Renown begins with memorable enterprise, not quiet caution.",
+        "competitive": "Greatness is built by action that cannot be ignored."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why is Ferdinand of Aragon Machiavelli's leading example in this chapter?",
+      "choices": [
+        "Because he never used religion in politics",
+        "Because his great acts followed one another and kept subjects and rivals occupied",
+        "Because he always stayed out of foreign conflict"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Ferdinand matters because one enterprise leads into another and keeps attention fixed on him.",
+        "direct": "The chapter praises sequence and public occupation, not one isolated exploit.",
+        "competitive": "He stays politically large by keeping the next move arriving."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What do Bernabo da Milano's unusual rewards and punishments show?",
+      "choices": [
+        "That internal affairs should remain hidden from public memory",
+        "That neutrality is best maintained through silence",
+        "That memorable internal examples can help make a ruler seem great and remarkable"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter says esteem can grow inside the state as well as through foreign exploits.",
+        "direct": "Publicly memorable examples give the ruler visible shape.",
+        "competitive": "Domestic memory can carry greatness too."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Imogen is tempted to stay neutral while two major partners fight. What best fits Chapter 21?",
+      "choices": [
+        "Test whether declared alignment would create more durable respect than a middle that leaves no one indebted to her",
+        "Stay quiet because neutrality is always the safest course",
+        "Delay all decisions until one side wins on its own"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter treats neutrality as less safe than it first appears.",
+        "direct": "Imogen should ask whether refusing to choose is stripping away future debt and protection.",
+        "competitive": "The quiet middle can leave her owed by nobody."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What does Tariq's student postmortem show about neutrality?",
+      "choices": [
+        "It keeps both sides equally grateful after the result",
+        "It can leave the leader without favor from either side once the outcome is known",
+        "It matters only when the rival sides are equal in strength"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Trying to stay above the fight can dissolve obligation on both sides.",
+        "direct": "The winning camp does not owe the neutral leader, and the losing camp does not feel protected by him.",
+        "competitive": "Keeping both doors open can leave you with no room behind either one."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Ruben's editor publicly rewards excellent reporting and design. What Chapter 21 lesson does that fit?",
+      "choices": [
+        "Public rewards weaken a ruler because they create favoritism",
+        "Only war can create renown",
+        "Honoring ability publicly helps give the office visible standards and standing"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter widens renown beyond war by making public honor politically significant.",
+        "direct": "Rewarding ability teaches the whole room what the office notices and values.",
+        "competitive": "Visible honor builds the standard as well as the winner."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why can declared support still be wiser than neutrality even when the eventual victor may be powerful?",
+      "choices": [
+        "Because declared support can still create debt and amity, while neutrality creates neither",
+        "Because powerful victors never oppress weaker allies",
+        "Because neutrality always makes the prince stronger than the conqueror"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A declared ally may still be owed some regard, while the neutral is owed nothing.",
+        "direct": "Machiavelli says neutrality often leaves the prince without reasons, shelter, or debt on his side.",
+        "competitive": "The ally may be risky, but the spectator is disposable."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What warning does Machiavelli give about joining a stronger power to attack others?",
+      "choices": [
+        "That it is always the boldest path to renown",
+        "That if the stronger ally conquers, the prince may be left at his discretion",
+        "That only hereditary princes may do it safely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A stronger ally can become a new danger after the victory.",
+        "direct": "The prince should avoid ending at another's discretion unless necessity compels the alliance.",
+        "competitive": "One rescue can become the next master."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What does Machiavelli mean when he says prudence consists in choosing the lesser evil?",
+      "choices": [
+        "That the prince should wait until a perfectly safe path appears",
+        "That evil choices disappear if the prince is renowned enough",
+        "That political judgment compares doubtful troubles because no course is free of danger"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter says one trouble is avoided only by entering another.",
+        "direct": "Prudence is comparison of risks, not escape from risk.",
+        "competitive": "Wisdom here is picking the wound that does not finish you."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If every course carries danger, why is neutrality still usually worse in Chapter 21?",
+      "choices": [
+        "Because it leaves the prince shapeless, unsupported, and without debt from either outcome",
+        "Because it always angers the people more than foreign war does",
+        "Because neutrality is only forbidden in republics"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter prefers visible, chosen risk to the unsupported middle.",
+        "direct": "Neutrality often strips away the bonds and recognition that declared action creates.",
+        "competitive": "The middle can feel safe while making you most expendable."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

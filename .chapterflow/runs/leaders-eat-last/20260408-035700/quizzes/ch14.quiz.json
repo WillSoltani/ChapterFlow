@@ -1,0 +1,178 @@
+{
+  "chapterId": "ch14-modern-abstraction",
+  "chapterNumber": 14,
+  "chapterTitle": "Modern Abstraction",
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the safest reading of `Modern Abstraction`?",
+      "choices": [
+        "A claim that modern life is entirely corrupt",
+        "A chapter about current conditions amplifying the distance named in the previous chapter",
+        "A rejection of all large systems"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter treats the present as an amplifier of abstraction, not as a total villain.",
+        "direct": "Its claim is that modern conditions scale distance more easily.",
+        "competitive": "The present gives old abstraction more reach."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does Chapter 14 follow `Abstraction Kills` so naturally?",
+      "choices": [
+        "Because it abandons the earlier mechanism entirely",
+        "Because it asks what present conditions do to intensify that mechanism",
+        "Because it proves abstraction only exists in modern times"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Chapter 13 names the danger. Chapter 14 explains why the danger is stronger now.",
+        "direct": "The sequence moves from mechanism to multiplier.",
+        "competitive": "First distance is diagnosed, then its modern infrastructure is named."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "How does the official line about how we function today help this chapter?",
+      "choices": [
+        "It supports the idea that current conditions can demand more mediated judgment than human design handles well",
+        "It proves all old systems were better",
+        "It means leaders should ignore modern coordination tools"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The line supports a modern mismatch argument without forcing nostalgia.",
+        "direct": "It helps frame modern abstraction as a condition problem.",
+        "competitive": "The present can push judgment farther from direct human knowing."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "What is the strongest balance this chapter tries to keep?",
+      "choices": [
+        "Modern tools solve real problems but also increase the pressure toward abstraction",
+        "Modern tools are useless and should be removed",
+        "Distance has no modern dimension at all"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter is careful to preserve both usefulness and risk.",
+        "direct": "Its best claim is not abolition of tools but compensation for their side effects.",
+        "competitive": "The trap works because the tools actually help."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why can modern abstraction weaken trust?",
+      "choices": [
+        "Because people may feel measured or standardized without feeling known",
+        "Because trust automatically disappears in all large groups",
+        "Because modern systems always remove every human choice"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "People can become visible to the system without feeling humanly understood by it.",
+        "direct": "Modern summaries can make the organization legible while making people feel thinly known.",
+        "competitive": "If the system reads your signal better than your reality, cynicism starts making sense."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What is the chapter's core mechanism?",
+      "choices": [
+        "Current conditions give summaries, standardized signals, and system distance more authority than before",
+        "Modern leaders are uniquely immoral",
+        "Every metric is deceptive"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter is about modern amplification of distance.",
+        "direct": "Present systems can make abstraction feel more normal and more legitimate.",
+        "competitive": "Distance gets stronger when the era itself helps dress it up as rigor."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What hard limit keeps Chapter 14 honest?",
+      "choices": [
+        "Modern tools are harmful in every case",
+        "Modern systems solve real coordination problems even while creating more pressure toward distance",
+        "Only very small groups can ever be humane"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter keeps usefulness in view so it does not collapse into nostalgia.",
+        "direct": "Its boundary is that scale and metrics can help while still requiring human compensation.",
+        "competitive": "The point is not 'burn the tools.' It is 'stop worshipping them.'"
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Which situation best fits the chapter's warning?",
+      "choices": [
+        "A large process stays consistent at scale but starts making leaders trust the summary more than the people inside it",
+        "A friend writes a handwritten note",
+        "A teacher learns everyone's name on the first day"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The warning is about helpful scale turning into over-trusted distance.",
+        "direct": "Modern abstraction appears when the system's legibility starts outrunning human judgment.",
+        "competitive": "The clean surface keeps winning while the people underneath fade."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What would Chapter 14 most likely reject as too simplistic?",
+      "choices": [
+        "Modern tools can create clarity and distance at the same time",
+        "All modern systems are dehumanizing by nature",
+        "Current conditions can amplify an older problem"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter avoids treating the modern world as a single villain.",
+        "direct": "Its claim is narrower and more useful than total condemnation.",
+        "competitive": "Calling all modern systems evil is lazy and misses the multiplier logic."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why does this chapter naturally lead into `Managing the Abstraction`?",
+      "choices": [
+        "Because once modern abstraction is named as a default pressure, the next question is how leaders counteract it",
+        "Because abstraction disappears after Chapter 14",
+        "Because leaders should leave large systems entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "If present conditions create distance by default, leadership must respond deliberately.",
+        "direct": "The next chapter can turn diagnosis into an operational response.",
+        "competitive": "Once the system widens the gap automatically, someone has to close it on purpose."
+      },
+      "bloomsLevel": "predict",
+      "depthLevel": "hard"
+    }
+  ]
+}

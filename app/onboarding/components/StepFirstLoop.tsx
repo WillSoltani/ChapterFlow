@@ -139,7 +139,7 @@ export default function StepFirstLoop({ onFinish, onBack, backRef }: StepFirstLo
               margin: "0 0 8px",
             }}
           >
-            Chapter 1 · Atomic Habits
+            Chapter 1 · Sample Lesson
           </p>
         </div>
       )}

@@ -1,0 +1,4 @@
+- Remove unsupported claims, repetition, filler, thesis-first openings, and generic leadership language.
+- Tighten paragraph jobs and transitions without sanding off tension, limits, or chapter-specific distinctions.
+- In thin-source chapters, cut scope before adding speculation.
+- Do not add new facts; improve the draft by subtraction, compression, and cleaner emphasis.

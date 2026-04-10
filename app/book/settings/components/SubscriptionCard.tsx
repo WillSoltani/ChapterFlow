@@ -9,6 +9,7 @@ import type { BillingInterval, PricingTier } from "@/app/book/hooks/useBookEntit
 type SubscriptionCardProps = {
   plan: "FREE" | "PRO";
   currentPeriodEnd?: string;
+  cancelAtPeriodEnd?: boolean;
   price: string;
   pricingTiers?: PricingTier[];
   onUpgrade: (interval?: BillingInterval) => Promise<string | null>;
@@ -26,6 +27,7 @@ const TIER_DISPLAY: Record<BillingInterval, { name: string; badge?: string }> = 
 export function SubscriptionCard({
   plan,
   currentPeriodEnd,
+  cancelAtPeriodEnd,
   price,
   pricingTiers,
   onUpgrade,
@@ -38,6 +40,7 @@ export function SubscriptionCard({
   const [keyStatus, setKeyStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [keyMessage, setKeyMessage] = useState("");
   const [actionLoading, setActionLoading] = useState(false);
+  const [actionError, setActionError] = useState<string | null>(null);
   const [selectedInterval, setSelectedInterval] = useState<BillingInterval>(
     pricingTiers && pricingTiers.length > 1 ? "annual" : "monthly"
   );
@@ -67,15 +70,32 @@ export function SubscriptionCard({
   }
 
   async function handleUpgrade() {
+    if (actionLoading) return; // double-click guard
+    setActionError(null);
     setActionLoading(true);
-    await onUpgrade(selectedInterval);
-    setActionLoading(false);
+    const error = await onUpgrade(selectedInterval);
+    if (error) {
+      setActionError(error);
+      setActionLoading(false);
+      return;
+    }
+    // On success the page navigates to Stripe Checkout, so we leave the
+    // spinner running until the unload happens. If for some reason it
+    // doesn't unload within 8s, restore the button so the user isn't stuck.
+    window.setTimeout(() => setActionLoading(false), 8000);
   }
 
   async function handleManage() {
+    if (actionLoading) return;
+    setActionError(null);
     setActionLoading(true);
-    await onManage();
-    setActionLoading(false);
+    const error = await onManage();
+    if (error) {
+      setActionError(error);
+      setActionLoading(false);
+      return;
+    }
+    window.setTimeout(() => setActionLoading(false), 8000);
   }
 
   if (plan === "PRO") {
@@ -89,8 +109,17 @@ export function SubscriptionCard({
           All 95+ books &middot; Full feature access
         </p>
         <p className="text-sm text-(--cf-text-soft) mt-1">
-          {formattedDate ? `Next renewal: ${formattedDate}` : "Monthly billing"}
+          {cancelAtPeriodEnd && formattedDate
+            ? `Cancels on ${formattedDate}`
+            : formattedDate
+              ? `Next renewal: ${formattedDate}`
+              : "Monthly billing"}
         </p>
+        {cancelAtPeriodEnd && (
+          <p className="mt-1 text-xs text-(--cf-warning-text, #b45309)">
+            Your Pro access will end on the date above and won&apos;t auto-renew.
+          </p>
+        )}
         <Button
           variant="secondary"
           size="sm"
@@ -104,6 +133,12 @@ export function SubscriptionCard({
             "Manage subscription"
           )}
         </Button>
+        {actionError && (
+          <div className="mt-2 flex items-center gap-2 text-xs text-(--cf-danger-text)">
+            <XCircle className="h-3.5 w-3.5" />
+            <span>{actionError}</span>
+          </div>
+        )}
       </div>
     );
   }
@@ -201,6 +236,12 @@ export function SubscriptionCard({
             "Start 14-day free trial"
           )}
         </Button>
+        {actionError && (
+          <div className="mt-2 flex items-center gap-2 text-xs text-(--cf-danger-text)">
+            <XCircle className="h-3.5 w-3.5" />
+            <span>{actionError}</span>
+          </div>
+        )}
       </div>
 
       <div className="mt-3">

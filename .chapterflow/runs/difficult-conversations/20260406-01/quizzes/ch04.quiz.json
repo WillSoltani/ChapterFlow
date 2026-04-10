@@ -1,0 +1,189 @@
+{
+  "quizId": "ch04-abandon-blame",
+  "chapterId": "ch04-abandon-blame",
+  "chapterNumber": 4,
+  "chapterTitle": "Abandon Blame",
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch04-q01",
+      "questionText": "What is the central distinction between blame and contribution?",
+      "bloomLevel": "remember",
+      "options": [
+        "Blame is harsher; contribution is a kinder way of saying the same thing.",
+        "Blame asks who deserves punishment; contribution asks what each person can change.",
+        "Blame is for serious problems; contribution is for minor disagreements.",
+        "Contribution means both people are equally responsible."
+      ],
+      "correctIndex": 1,
+      "explanation": "Blame is retrospective — it looks backward to establish who was wrong. Contribution is prospective — it asks what each person is doing right now that keeps the situation going, and what each could do differently. These are different questions that point toward different actions.",
+      "distractorNotes": {
+        "0": "This misses the structural difference: they are not the same message delivered with different intensity — they ask fundamentally different questions.",
+        "2": "The chapter does not distinguish seriousness of problem as the relevant factor — it is about what question you ask.",
+        "3": "The chapter explicitly says contributions are rarely equal — this is the chapter's explicit rejection target."
+      }
+    },
+    {
+      "questionId": "ch04-q02",
+      "questionText": "In the situation where Dara stops communicating and Felix increases oversight, what does contribution analysis reveal?",
+      "bloomLevel": "apply",
+      "options": [
+        "Felix is primarily responsible because his oversight is excessive.",
+        "Dara is primarily responsible because she stopped communicating first.",
+        "Both are playing roles in a self-reinforcing system — Dara's withdrawal creates conditions for Felix's anxiety, which produces the oversight that produces more withdrawal.",
+        "Neither contributed because both were responding to circumstances beyond their control."
+      ],
+      "correctIndex": 2,
+      "explanation": "The contribution analysis shows a self-reinforcing system: Dara's withdrawal created the information gap that Felix's oversight is trying to fill, and Felix's oversight confirmed Dara's story about not being trusted, which produced more withdrawal. Both are maintaining the pattern.",
+      "distractorNotes": {
+        "0": "This is blame framing — it assigns primary fault. Contribution analysis looks at the system both people are maintaining.",
+        "1": "This is also blame framing. Contribution does not assign primary fault; it maps both parties' roles in the system.",
+        "3": "Both did contribute specific behaviors to the system. Circumstances do not nullify contribution."
+      }
+    },
+    {
+      "questionId": "ch04-q03",
+      "questionText": "Which contribution type describes a situation where two people have work styles that are not wrong individually but produce friction in combination?",
+      "bloomLevel": "understand",
+      "options": [
+        "Avoiding until now",
+        "Being unapproachable",
+        "Style intersection",
+        "Problematic role assumption"
+      ],
+      "correctIndex": 2,
+      "explanation": "Style intersections occur when two people's approaches — work styles, communication patterns, relational preferences — are each reasonable on their own but produce friction when combined. Neither person is wrong; the combination is the contribution source.",
+      "distractorNotes": {
+        "0": "Avoiding until now refers to not raising an issue earlier when it would have been easier — it is about the delay, not work style incompatibility.",
+        "1": "Unapproachability refers to creating conditions (defensiveness, volatility) that make it hard for the other person to raise concerns.",
+        "3": "Role assumptions refer to both people playing fixed roles that guarantee the same result — the critic and the defender, the organizer and the disengaged."
+      }
+    },
+    {
+      "questionId": "ch04-q04",
+      "questionText": "Marta has been managing the family's holiday logistics for a decade and resents it. Her brother Sione has never had to care because Marta handled everything. Which contribution type best describes Marta's role in this pattern?",
+      "bloomLevel": "apply",
+      "options": [
+        "Being unapproachable — Marta made it hard for Sione to offer to help.",
+        "Problematic role assumption — Marta's competence maintained a role structure where Sione's disengagement was never challenged.",
+        "Avoiding until now — Marta did not raise the issue earlier.",
+        "Style intersection — Marta and Sione have different organizational styles."
+      ],
+      "correctIndex": 1,
+      "explanation": "Marta is in a role assumption: her competence at logistics has invisibly guaranteed that Sione never had to develop logistics capacity. The more competently she handles everything, the less Sione has to care. Her role — the organizer — maintains the other role — the disengaged.",
+      "distractorNotes": {
+        "0": "While this might have some truth, the primary contribution pattern described is the role structure itself, not unapproachability.",
+        "2": "Avoiding until now is about the delay in raising an issue. The chapter describes Marta as raising the issue each year — the contribution is the system, not the avoidance of it.",
+        "3": "Style intersection applies to work style or relational preference incompatibility. The chapter describes a role structure, not a style difference."
+      }
+    },
+    {
+      "questionId": "ch04-q05",
+      "questionText": "In a situation where one person contributed 90% and you contributed 10%, what does the chapter say about naming your 10%?",
+      "bloomLevel": "analyze",
+      "options": [
+        "You should not name your 10% until the other person acknowledges their 90%.",
+        "Naming your 10% means accepting equal responsibility for the outcome.",
+        "Your 10% and the other person's 90% are independent claims — naming yours does not erase theirs, and it identifies what you can change.",
+        "You should only name your 10% if the other person has already acknowledged theirs."
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter explicitly addresses asymmetric contributions: naming your 10% is not a claim that the split is equal. Your contribution and the other person's are independent claims that can both be true simultaneously. The reason to name yours is that it is what you can actually change.",
+      "distractorNotes": {
+        "0": "The chapter does not condition naming your contribution on the other person's acknowledgment. Your contribution is yours to name.",
+        "1": "The chapter explicitly rejects this. Contributions are rarely equal, and naming yours does not claim they are.",
+        "3": "Same problem as option 0 — the chapter does not make your contribution naming conditional on theirs."
+      }
+    },
+    {
+      "questionId": "ch04-q06",
+      "questionText": "Which question opens the possibility of change in a stuck situation?",
+      "bloomLevel": "analyze",
+      "options": [
+        "'Who is more responsible for how this got so bad?'",
+        "'What is each of us doing that keeps this going, and what could each do differently?'",
+        "'Why do you keep doing this to me?'",
+        "'What would a fair outcome look like here?'"
+      ],
+      "correctIndex": 1,
+      "explanation": "This is the contribution question: what is each person doing now that keeps the pattern running, and what would it take for each to change? It is forward-looking, locates actionable levers in each party's behavior, and does not assign blame.",
+      "distractorNotes": {
+        "0": "This is a blame question — it assigns greater responsibility. It is retrospective and produces defensiveness.",
+        "2": "This is blame framing directed at the other person. It looks backward and requires the other person to defend their behavior.",
+        "3": "Fairness of outcome is not the contribution question. Contribution asks about each party's role in producing the situation."
+      }
+    },
+    {
+      "questionId": "ch04-q07",
+      "questionText": "You have been in a conflict with a colleague for three months. You never raised your concern when it was small because you thought it would resolve itself. Now it has calcified. Which contribution type describes your role?",
+      "bloomLevel": "apply",
+      "options": [
+        "Being unapproachable — you made the colleague feel they could not raise things with you.",
+        "Avoiding until now — you did not raise the issue earlier when it would have been easier.",
+        "Style intersection — you have a conflict-avoidant style your colleague does not share.",
+        "There is no contribution type that applies — the delay was reasonable."
+      ],
+      "correctIndex": 1,
+      "explanation": "Avoiding until now is the contribution type for situations where someone does not raise an issue when it is small, and the delay itself becomes part of the problem. The calcification of the concern — and the harder conversation it now requires — is partly a product of the delay.",
+      "distractorNotes": {
+        "0": "Unapproachability is about making it hard for the other person to raise things with you — not about your own avoidance.",
+        "2": "Style intersection would apply if the conflict-avoidant style is interacting with a different style to produce friction. The chapter describes your avoidance as a contribution type in its own right.",
+        "3": "The chapter names this as a contribution type: not raising an issue earlier contributes to how the situation develops."
+      }
+    },
+    {
+      "questionId": "ch04-q08",
+      "questionText": "The chapter describes both people in a difficult conversation as 'playing roles in a system that keeps producing the same outcome.' What does this mean for how to address the problem?",
+      "bloomLevel": "analyze",
+      "options": [
+        "It means the problem is unfixable because systems are too complex.",
+        "It means you need to find the true cause — the one person whose role is more responsible.",
+        "It means the system, not just any individual, is the target of change — and either party's changed behavior can disrupt the system.",
+        "It means both people need to change simultaneously, or the effort is wasted."
+      ],
+      "correctIndex": 2,
+      "explanation": "The contribution system analysis means the self-reinforcing pattern is the target, not just the 'more responsible' individual. When either party changes their move in the system, the conditions for the other party's behavior also change. The system can be disrupted by one party's changed contribution.",
+      "distractorNotes": {
+        "0": "The chapter does not suggest systems are unfixable — it suggests they need to be addressed at the system level.",
+        "1": "Finding the true cause or more-responsible party is the blame framing. Contribution analysis targets the system rather than the villain.",
+        "3": "The chapter does not require simultaneous change. Either party's changed behavior disrupts the system."
+      }
+    },
+    {
+      "questionId": "ch04-q09",
+      "questionText": "Why does the chapter say naming your contribution is the right move even when your proportion of the contribution is much smaller than the other person's?",
+      "bloomLevel": "evaluate",
+      "options": [
+        "Because it shows moral humility and sets a good example for the other person.",
+        "Because your contribution — however small — is the part of the system that is in your direct control, and changing it is the only lever you have direct access to.",
+        "Because it reduces the other person's defensiveness and makes them more likely to acknowledge their larger contribution.",
+        "Because contribution should always be named proportionally to avoid false equivalence."
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter's specific reasoning: your contribution is what you can change. The other person's 90% is not in your direct control. Your 10% is. Naming yours identifies your lever — the one part of the system you can move. That is why it is worth naming regardless of proportion.",
+      "distractorNotes": {
+        "0": "Moral humility may be a side effect but it is not the chapter's reasoning. The reason is about what you can actually control.",
+        "2": "This may sometimes be true, but the chapter does not claim this as the reason. The reason is about direct control, not about triggering acknowledgment.",
+        "3": "The chapter is not concerned with proportional naming as a principle — it is concerned with identifying what each party can change."
+      }
+    },
+    {
+      "questionId": "ch04-q10",
+      "questionText": "In what situation does the chapter say contribution-mapping has asymmetric risks?",
+      "bloomLevel": "evaluate",
+      "options": [
+        "When a significant power gap exists — a manager asking a junior employee to name their contribution before the manager's behavior is addressed — contribution-mapping can deflect accountability rather than map the system.",
+        "When both parties have contributed roughly equally and neither wants to go first.",
+        "When the contributions are so unequal that naming the smaller one feels meaningless.",
+        "When the situation has already escalated beyond repair."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter names the power-gap complication explicitly: in high-power-gap situations, applying contribution-mapping primarily to the less-powerful party can serve to deflect accountability from the more powerful party. Contribution is a system-analysis tool, not a responsibility-equalization mechanism, and it carries asymmetric risks when applied asymmetrically across a power difference.",
+      "distractorNotes": {
+        "1": "Equal contributions are not the asymmetric risk the chapter identifies — the power gap is.",
+        "2": "Unequal proportions are addressed in the chapter but are not the asymmetric risk — the power gap is.",
+        "3": "Escalation is not the asymmetric risk the chapter identifies."
+      }
+    }
+  ]
+}

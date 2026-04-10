@@ -1,0 +1,4 @@
+- Apply the smallest fix that resolves the named issue and preserve all unaffected material.
+- Do not broaden scope, rewrite the chapter wholesale, or smuggle in new unsupported content.
+- In this run, patching should usually tighten, clarify, or delete rather than expand.
+- After patching, rerun the same gate against the same target artifact.

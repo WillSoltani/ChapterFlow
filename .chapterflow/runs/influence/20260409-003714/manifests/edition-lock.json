@@ -1,0 +1,36 @@
+{
+  "bookId": "influence",
+  "runId": "20260409-003714",
+  "lockedAt": "2026-04-08",
+  "decisionMode": "auto_lock",
+  "ambiguityAssessment": {
+    "askUserRequired": false,
+    "materialAmbiguityDetected": true,
+    "reason": "The 2009 revised edition and the May 4, 2021 New and Expanded edition differ materially at chapter level because the 2021 edition adds Unity and reorders chapter-level flow, but the official author site presents the 2021 edition as the current dominant edition."
+  },
+  "lockedEdition": {
+    "editionId": "influence-2021-harpercollins-expanded",
+    "title": "Influence, New and Expanded: The Psychology of Persuasion",
+    "author": "Robert B. Cialdini, PhD",
+    "publisher": "HarperCollins",
+    "publishedDate": "2021-05-04",
+    "isbn13": "9780062937674",
+    "isbn10": "0062937677",
+    "pageCount": 352,
+    "language": "English",
+    "sourceText": ".chapterflow/runs/influence/20260409-003714/source-freeze/book-source.md",
+    "sourceProvenance": "Official author site plus authorized Google Books preview"
+  },
+  "rejectedCandidates": [
+    {
+      "editionId": "influence-2009-harpercollins-revised",
+      "publishedDate": "2009-06-02",
+      "reasonRejected": "Still authoritative historically, but not the current dominant official edition and materially different for chapter mapping."
+    }
+  ],
+  "decisionRationale": [
+    "The official author site lists the 2021 New and Expanded edition first as the latest edition and separately lists the older revised edition.",
+    "The authorized Google Books preview for the 2021 edition confirms HarperCollins metadata, the added Unity principle, and a chapter-level table of contents.",
+    "Using the 2021 edition minimizes edition drift and aligns the run with the current canonical commercial edition."
+  ]
+}

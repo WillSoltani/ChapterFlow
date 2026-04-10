@@ -118,30 +118,8 @@ export function Problem() {
           <SectionLabel>THE PROBLEM</SectionLabel>
         </SectionReveal>
 
-        {/* Headline */}
-        <SectionReveal delay={0.1}>
-          <h2
-            className="mt-4 text-[28px] md:text-[36px] lg:text-[44px] font-bold leading-[1.1] tracking-[-0.02em] font-(family-name:--font-display)"
-            style={{ color: "var(--text-heading)" }}
-          >
-            You read books but forget most of it within days.
-          </h2>
-        </SectionReveal>
-
-        {/* Body */}
-        <SectionReveal delay={0.2}>
-          <p
-            className="mt-6 text-[16px] md:text-[18px] leading-[1.7] font-(family-name:--font-body)"
-            style={{ color: "var(--text-secondary)" }}
-          >
-            You highlight. You take notes. You tell yourself you&apos;ll come
-            back to it. A month later, you can barely name the chapters — let
-            alone use the ideas that were supposed to change how you think.
-          </p>
-        </SectionReveal>
-
         {/* Forgetting Curve Chart */}
-        <SectionReveal delay={0.35}>
+        <SectionReveal delay={0.1}>
           <div
             ref={chartRef}
             className="mt-10 rounded-xl p-6 md:p-8"
@@ -257,6 +235,28 @@ export function Problem() {
               only proven method to beat it.
             </p>
           </div>
+        </SectionReveal>
+
+        {/* Headline */}
+        <SectionReveal delay={0.25}>
+          <h2
+            className="mt-4 text-[28px] md:text-[36px] lg:text-[44px] font-bold leading-[1.1] tracking-[-0.02em] font-(family-name:--font-display)"
+            style={{ color: "var(--text-heading)" }}
+          >
+            You read it. You highlighted it. You forgot it.
+          </h2>
+        </SectionReveal>
+
+        {/* Body */}
+        <SectionReveal delay={0.35}>
+          <p
+            className="mt-6 text-[16px] md:text-[18px] leading-[1.7] font-(family-name:--font-body)"
+            style={{ color: "var(--text-secondary)" }}
+          >
+            You highlight. You take notes. You tell yourself you&apos;ll come
+            back to it. A month later, you can barely name the chapters — let
+            alone use the ideas that were supposed to change how you think.
+          </p>
         </SectionReveal>
       </div>
     </section>

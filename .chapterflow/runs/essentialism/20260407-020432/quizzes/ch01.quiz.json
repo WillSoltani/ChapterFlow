@@ -1,0 +1,155 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the main contrast Chapter 1 uses to open the book's argument?",
+      "choices": [
+        "The Essentialist versus the Nonessentialist",
+        "The planner versus the procrastinator",
+        "The minimalist versus the collector"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Chapter 1 starts by contrasting two operating mindsets: the Essentialist, who filters hard, and the Nonessentialist, who keeps accumulating demands.",
+        "direct": "McKeown's opening contrast is not about tidiness or speed. It is about selection versus accumulation.",
+        "competitive": "The chapter opens by splitting the world into two rule systems: filter or drown."
+      }
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does Chapter 1 call success a paradox?",
+      "choices": [
+        "Because success usually makes work disappear",
+        "Because success can create options that weaken the focus that produced it",
+        "Because success proves every opportunity is equally important"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The paradox is that success often brings new options and expectations that blur the clarity that created the success.",
+        "direct": "McKeown argues that success can generate the overload that later dilutes contribution.",
+        "competitive": "Winning can flood you with enough good noise to wreck the focus that made you win."
+      }
+    },
+    {
+      "questionId": "q03",
+      "prompt": "In Chapter 1, what does less but better mainly mean?",
+      "choices": [
+        "Doing fewer things for appearance's sake",
+        "Protecting the vital few instead of treating every good option as equal",
+        "Avoiding ambitious work"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The phrase is about concentrated contribution, not about shrinking life for style.",
+        "direct": "Less but better is a filter for protecting what matters most.",
+        "competitive": "The phrase only matters if it helps you cut good-but-lower-value work."
+      }
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Lena gets promoted and starts saying yes to every useful cross-team meeting. Which Chapter 1 idea best explains why her main work begins to slip?",
+      "choices": [
+        "The paradox of success",
+        "Learned helplessness",
+        "The genius of routine"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Lena's success produces more good demands, and those demands start weakening the contribution that earned the promotion.",
+        "direct": "This is the paradox of success in work form: success multiplies noise faster than attention can absorb it.",
+        "competitive": "Promotion turned into fragmentation because unfiltered success invites dilution."
+      }
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Which false assumption does Chapter 1 directly challenge?",
+      "choices": [
+        "Only specialists can make strong contributions",
+        "Everything is equally important",
+        "Progress must always be slow"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "McKeown argues that only a few things really matter, so treating everything as equally important is a serious mistake.",
+        "direct": "One of the chapter's key corrections is that importance is not evenly distributed.",
+        "competitive": "Equal importance is the lie that keeps the overload machine running."
+      }
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Arjun joins several strong student activities and ends the term busy but thinly spread. According to Chapter 1, what is the better diagnosis?",
+      "choices": [
+        "He lacked enough motivation",
+        "He faced the vital-few versus trivial-many problem and never ranked hard enough",
+        "He needed more hobbies"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The issue is not that the activities were bad. The issue is that he never protected the few that mattered most.",
+        "direct": "Chapter 1 treats this as a ranking failure, not a motivation failure.",
+        "competitive": "Good options beat him because he refused to choose among them."
+      }
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What important limit does Chapter 1 keep alive instead of ignoring it?",
+      "choices": [
+        "That saying yes is often socially rewarded, making exclusion costly",
+        "That selection only matters in private life",
+        "That success should always be avoided"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter admits that visible responsiveness and broad availability are often rewarded, which makes essentialism harder.",
+        "direct": "McKeown does not present selection as frictionless. He notes that systems often praise overextension.",
+        "competitive": "The world often pays for fast yeses before it pays for wisdom, and the chapter knows it."
+      }
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Marta realizes she has been treating every decent request like a duty. Which Chapter 1 move should come next?",
+      "choices": [
+        "Assume all requests are manipulative",
+        "Identify which requests belong to the vital few and which do not",
+        "Promise to answer all requests faster"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Chapter 1 asks Marta to rank by contribution, not by guilt or speed.",
+        "direct": "The next move is hard selection: protect the vital few and stop treating every ask as equal.",
+        "competitive": "Once she sees the pattern, she has to cut, not just feel bad better."
+      }
+    },
+    {
+      "questionId": "q09",
+      "prompt": "How does Chapter 1 prepare the reader for Chapter 2?",
+      "choices": [
+        "By proving routines matter more than choice",
+        "By showing that selection is necessary and raising the question of how choice is reclaimed",
+        "By concluding that all commitments should be dropped immediately"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The first chapter makes selection necessary, then leaves open the question of how someone actually recovers the act of choosing.",
+        "direct": "Chapter 1 establishes the need for filtering and hands Chapter 2 the problem of agency.",
+        "competitive": "The trap is clear by the end of Chapter 1. The next fight is getting choice back online."
+      }
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Which statement best captures Chapter 1's deepest transfer point?",
+      "choices": [
+        "A fuller calendar usually proves higher contribution",
+        "Essentialism matters when it forces disciplined exclusion in service of the highest contribution",
+        "Good opportunities stop being dangerous once they are recognized"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Chapter 1 is strongest when the reader sees that contribution often improves through selective refusal.",
+        "direct": "The chapter's real transfer point is that exclusion is necessary if the highest contribution is going to remain protected.",
+        "competitive": "The chapter lands when you accept that your best work may require losing good options on purpose."
+      }
+    }
+  ]
+}

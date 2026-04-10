@@ -1,0 +1,51 @@
+{
+  "packVersion": "v13-autonomous",
+  "bookId": "never-split-the-difference",
+  "runId": "20260409-003831",
+  "packRoot": "scripts/book/prompts/chapterflow-v13-autonomous",
+  "runRoot": ".chapterflow/runs/never-split-the-difference/20260409-003831",
+  "outputProfile": "flagship_v4_compatible",
+  "learningContract": "research_native",
+  "runProfile": "balanced_flagship",
+  "validationMode": "chapter_gate",
+  "chapterGateMode": "automatic_continue",
+  "chapterGateQuizMode": "generate",
+  "scenarioTonePolicy": "required",
+  "rightsMode": "startup_light",
+  "waveSize": 2,
+  "generateChapterReviewWrapper": true,
+  "strictPackAudit": true,
+  "forbidBulkGenerators": true,
+  "releaseAssembleFromValidatedOnly": true,
+  "preserveApprovedChapterHashes": true,
+  "sourceFreezeRequired": true,
+  "artifactGuardRequired": true,
+  "releaseGuardRequired": true,
+  "qualitySentryRequired": true,
+  "qualityDecayStopDelta": 1.5,
+  "sourceDiscoveryMode": "web_bundle",
+  "editionSelectionMode": "ask_if_ambiguous",
+  "sourcePolicy": "public_or_authorized_plus_secondary",
+  "bookRequest": {
+    "title": "“Never-Split-the-Difference“",
+    "author": "“Chris-Voss”",
+    "editionPreference": "ask_if_ambiguous"
+  },
+  "book": {
+    "bookId": "never-split-the-difference",
+    "title": "“Never-Split-the-Difference“",
+    "author": "“Chris-Voss”",
+    "categories": [],
+    "tags": [],
+    "edition": {
+      "name": "2016 Harper Business first-edition / unabridged English trade family",
+      "translator": "",
+      "publishedYear": 2016,
+      "translationYear": null,
+      "sourceText": ".chapterflow/runs/never-split-the-difference/20260409-003831/source-freeze/book-source.md",
+      "sourceProvenance": "Locked from Harper Business first-edition library metadata, Google Books bibliographic metadata for the 2016 English reprint family, Ann Arbor District Library contents metadata, and Black Swan Group official study-guide positioning; see manifests/source-ledger.json."
+    },
+    "variantFamily": "EMH",
+    "chapterRange": "10 numbered chapters"
+  }
+}

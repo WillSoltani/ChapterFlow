@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What does Machiavelli say a new prince in a new principality usually does with his subjects' arms?",
+      "choices": [
+        "He arms them",
+        "He disarms them immediately",
+        "He leaves them exactly as he found them"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "He says new princes usually arm subjects because those arms can become theirs politically.",
+        "direct": "Arming helps convert subjects into dependents and adherents.",
+        "competitive": "The new prince binds with arms rather than opening with distrust."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does disarming subjects often hurt the prince?",
+      "choices": [
+        "Because it always strengthens foreign enemies first",
+        "Because it advertises distrust and breeds hatred",
+        "Because it makes factions impossible"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Disarming tells subjects they are suspected.",
+        "direct": "Machiavelli says the act reveals distrust and breeds hatred.",
+        "competitive": "Take the arms badly and the resentment arrives with them."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why does Machiavelli reject ruling by factions?",
+      "choices": [
+        "Because factions always disappear in peace",
+        "Because divided cities collapse under outside pressure",
+        "Because factions prevent fortresses from being built"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The weaker party will often assist outsiders when war arrives.",
+        "direct": "What feels manageable in peace becomes weakness in war.",
+        "competitive": "Division turns into the enemy's opening."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Sabina is taking over a newly absorbed team. Which choice best fits Chapter 20?",
+      "choices": [
+        "Strip every approval right at once because visible control is always safer",
+        "Avoid any structure so no one feels distrusted",
+        "Convert selected responsibility into dependence rather than opening by treating everyone as a suspect"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter favors devices that make the group more yours, not simply more restricted.",
+        "direct": "Targeted responsibility may bind better than blanket revocation.",
+        "competitive": "Security is not the same thing as mass suspicion."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Rory's student leaders managed through rival factions until an outside inspection arrived. What does this show?",
+      "choices": [
+        "Factions are useful in peace but often fail when a larger test comes",
+        "The problem was only that the rivals were too equal in number",
+        "Outside pressure usually heals internal division"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The arrangement looked stable only before the real pressure arrived.",
+        "direct": "Chapter 20 says factions are a peacetime illusion and a war-time weakness.",
+        "competitive": "The enemy inherits the split you cultivated."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Why might a formerly distrusted person serve more faithfully than someone trusted from the start?",
+      "choices": [
+        "Because distrust automatically produces affection",
+        "Because early trusted people are always traitors",
+        "Because the formerly distrusted person may need to reverse the old impression by deeds"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The once-suspected person often has something to prove.",
+        "direct": "Pressure to erase suspicion can create more disciplined service.",
+        "competitive": "Old distrust can make a person work harder than old comfort will."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Which supporters does Machiavelli say are often hardest to satisfy?",
+      "choices": [
+        "Those who favored the prince only because they were discontented with the old government",
+        "Those who were once hostile but now need the prince's support",
+        "Those who were armed by the prince himself"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Their support came from grievance rather than stable affection.",
+        "direct": "Opportunistic discontent is harder to satisfy than recoverable former hostility.",
+        "competitive": "Grievance keeps bargaining long after seizure succeeds."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "How does Machiavelli say a prince should reason about fortresses?",
+      "choices": [
+        "He should always build them in every principality",
+        "He should never build them because stone always weakens rule",
+        "He should judge them by whether he fears the people more or foreigners more"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter treats fortresses as conditional rather than universal.",
+        "direct": "Their usefulness depends on where the decisive danger comes from.",
+        "competitive": "A fortress is only as smart as the fear it is answering."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What does the Countess of Forli example show?",
+      "choices": [
+        "That fortresses can help in one situation yet fail in another when the people and foreigners align against the ruler",
+        "That fortresses always save rulers if the walls are strong enough",
+        "That popular hatred does not matter once a fortress exists"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Her fortress helped once, but not once the wider political field changed.",
+        "direct": "The case proves that fortresses are conditional tools, not final solutions.",
+        "competitive": "The wall bought time, not immunity."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If many expedients can sometimes help, why does Machiavelli still call not being hated by the people the best fortress?",
+      "choices": [
+        "Because popular goodwill removes the need for all other devices forever",
+        "Because walls and other devices cannot save a prince once public hatred invites wider resistance and outside help",
+        "Because hatred matters only in hereditary states"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter places the deeper political condition above the visible defense.",
+        "direct": "Hatred from the people can nullify the security a fortress appears to provide.",
+        "competitive": "Stone cannot rescue a ruler from a city already ready to open the gate against him."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

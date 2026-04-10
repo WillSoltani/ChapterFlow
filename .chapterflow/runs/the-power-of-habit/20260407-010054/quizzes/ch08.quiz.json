@@ -1,0 +1,155 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's central claim about movements?",
+      "choices": [
+        "They rely only on abstract ideas",
+        "They depend on social habits, networks, and repeated participation routines",
+        "They require no relationships"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says movements need shared routines and relationships, not only belief.",
+        "direct": "Collective action depends on social habits plus network structure.",
+        "competitive": "Movements run on ties and defaults."
+      }
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What job do strong ties perform in the chapter?",
+      "choices": [
+        "They help launch participation by creating personal commitment",
+        "They only matter after a movement is global",
+        "They remove the need for routines"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Close relationships often get people moving at the start.",
+        "direct": "Strong ties create commitment for initial costly action.",
+        "competitive": "Close bonds light the fuse."
+      }
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What job do weak ties perform?",
+      "choices": [
+        "They help spread norms across wider networks",
+        "They make strong ties unnecessary",
+        "They stop belonging from mattering"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Weak ties bridge groups and help the movement reach farther.",
+        "direct": "They solve the scaling problem by connecting clusters.",
+        "competitive": "Weak links widen the map."
+      }
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Why are shared routines so important in this chapter?",
+      "choices": [
+        "They make participation repeatable and socially normal",
+        "They eliminate all disagreement",
+        "They matter only to churches"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Shared routines help people know how to keep acting together.",
+        "direct": "They convert belief into repeatable collective behavior.",
+        "competitive": "They turn action into default."
+      }
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why does the chapter say inspiration alone is not enough?",
+      "choices": [
+        "Because a movement without participation routines can flare and fade",
+        "Because emotions never matter",
+        "Because weak ties are useless"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Emotion can start a movement, but routine helps it continue.",
+        "direct": "Without social scripts and repetition, outrage often lacks durability.",
+        "competitive": "Rage starts. Infrastructure stays."
+      }
+    },
+    {
+      "questionId": "q06",
+      "prompt": "A group has close friendships but never expands beyond one cluster. Which chapter concept explains the problem?",
+      "choices": [
+        "It lacks enough weak ties to scale",
+        "It has too much routine",
+        "It has no strong ties"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Strong ties can launch action, but weak ties help it travel farther.",
+        "direct": "The movement is missing network bridges.",
+        "competitive": "It has ignition without spread."
+      }
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What does the chapter mean by saying communities install scripts?",
+      "choices": [
+        "They teach members repeated ways of showing up and participating",
+        "They remove all personal choice",
+        "They only write speeches"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Communities create routines that show members what participation looks like.",
+        "direct": "The group socializes action into repeated behavior.",
+        "competitive": "Belonging comes with a playbook."
+      }
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What caution does the chapter include about social habits?",
+      "choices": [
+        "They can support admirable or harmful group behavior",
+        "They always produce justice",
+        "They only matter in history books"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The mechanism is powerful, but it is not morally pure on its own.",
+        "direct": "Shared routines and network ties can sustain good or bad collective ends.",
+        "competitive": "Same machinery, different moral payload."
+      }
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does belonging lower the cost of participation?",
+      "choices": [
+        "Because people feel they are stepping into a known group routine rather than acting alone",
+        "Because belonging removes all risk",
+        "Because routine stops mattering"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A social script makes it easier to know what to do and how to keep doing it.",
+        "direct": "Belonging supplies a repeatable pattern that reduces isolated improvisation.",
+        "competitive": "The group carries part of the courage load."
+      }
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What is the best summary of Chapter 8?",
+      "choices": [
+        "Movements scale only through speeches",
+        "Collective action depends on strong ties, weak ties, and shared habits of participation",
+        "Strong ties and weak ties are basically the same"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That combination is the chapter's full structure for how movements begin, spread, and persist.",
+        "direct": "The chapter's model integrates network ties with repeated communal routine.",
+        "competitive": "Launch, spread, script: that is the formula."
+      }
+    }
+  ]
+}

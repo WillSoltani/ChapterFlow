@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "Which of the following best describes what distinguishes the identity conversation from the other two conversations?",
+      "choices": [
+        "It concerns who is at fault for what happened and who should apologize",
+        "It is the internal running commentary about what this situation says about who you are",
+        "It is the most visible of the three conversations and the one people argue about most openly"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. The identity conversation is not about what happened or about feelings in the ordinary sense \u2014 it is the internal question about what the situation says about who you are: competent, good, worthy. That is what makes it different from the other two.",
+        "direct": "Correct. The identity conversation is defined by its self-referential nature: it asks what this situation says about the speaker's competence, goodness, or worthiness. That distinguishes it from a facts conversation, which argues about events, and from a feelings conversation, which concerns emotional experience.",
+        "competitive": "Right answer. The identity conversation is not about the topic. It is about the self \u2014 specifically about whether this situation is evidence for or against a fundamental belief about who you are. That is what makes it the most powerful and the least visible."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "A parent and adult child are arguing about a missed birthday. The parent keeps adding more details about what the child did wrong, but the child's responses grow more agitated rather than more engaged with the facts. What is most likely happening?",
+      "choices": [
+        "The child's identity conversation has been triggered \u2014 the argument has moved from the facts to what missing the birthday says about whether the child is a good son or daughter",
+        "The parent is providing too many facts at once, which overwhelms the what-happened conversation",
+        "The feelings conversation needs to be acknowledged before the facts conversation can proceed"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. When someone becomes more agitated as more facts are added, the facts are usually not what they are actually responding to. The identity layer is almost always the explanation: the missed birthday is being heard as evidence about who they are as a child, not just as a logistical failure.",
+        "direct": "The pattern \u2014 more evidence produces more agitation rather than more engagement \u2014 almost always means the identity layer has fired. The child is no longer processing the facts argument. They are defending something about who they are as a son or daughter, which the facts conversation cannot address.",
+        "competitive": "More facts into an escalating identity conversation make it worse, not better. The child's growing agitation is the diagnostic signal: they are not in the facts conversation anymore. The argument about the birthday has become evidence about who they are as a person, and that conversation requires a completely different response."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "During a budget meeting, two colleagues argue for thirty minutes about project cost estimates. Neither convinces the other. Afterward, one says privately that the real issue is whether her judgment is trusted by senior leadership. Which conversation were they actually in?",
+      "choices": [
+        "The feelings conversation, because trust has an emotional dimension",
+        "The what-happened conversation, because the explicit argument was about data",
+        "The identity conversation, because the real stakes were about professional credibility and whether her judgment matters"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "That is right. The after-the-meeting disclosure is the tell. The explicit argument was about cost estimates, but the real stakes \u2014 whether her judgment is trusted by leadership \u2014 were about professional identity, not about the data. The thirty-minute facts argument was running on top of an identity conversation that neither person named.",
+        "direct": "When the real stakes turn out to be about whether someone's judgment is trusted, the identity conversation was running throughout. The what-happened argument about cost estimates was the visible layer. The identity question about professional credibility was the layer doing the actual work.",
+        "competitive": "The thirty-minute stalemate and the after-the-meeting disclosure are both signals: the facts layer was not where the real conversation was. The post-meeting statement \u2014 'the real issue is whether my judgment is trusted' \u2014 names the identity layer explicitly. That layer ran the whole argument. The cost estimate was the surface."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Naomi, 18 months into a team lead role, has been rewriting the opening paragraph of a feedback document for Derek, a 14-year company veteran, for more than an hour. The document is factually complete. Based on the three-conversation framework, what is most likely making the opening so hard to write?",
+      "choices": [
+        "The document is too specific and Naomi needs softer, less detailed language for the opening",
+        "Both Naomi and Derek have active identity stakes underneath the facts \u2014 Naomi needs to feel like a fair leader, Derek needs to feel like someone whose 14 years matter \u2014 and no opening sentence about deadlines can address those stakes",
+        "The feelings conversation between Naomi and Derek has not been acknowledged, so the document cannot be completed until that layer is surfaced"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exactly. The document is not failing because the facts are wrong. It is failing because she is trying to make an opening sentence do something it cannot do \u2014 speak to two identity conversations simultaneously. No rewrite of the facts conversation will address the question of whether she is a fair leader or whether his 14 years matter.",
+        "direct": "The opening paragraph problem is a three-layer problem. The document is complete for the what-happened layer. The identity layer \u2014 Naomi's stake in being a fair leader, Derek's stake in his 14-year standing \u2014 is not addressable by a facts opener. Recognizing this does not change what the document says. It changes what Naomi expects from the opening.",
+        "competitive": "The rewrite loop is driven by an impossible requirement: write a facts opener that also resolves two identity conversations. That cannot be done. The opening will keep failing until Naomi recognizes what the opening is and is not equipped to address."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "After a performance review, a manager asks why a team member went quiet during the meeting. The team member says he was 'just processing the information.' Which conversation is most likely being avoided?",
+      "choices": [
+        "The identity conversation \u2014 the quiet is more likely a response to an identity threat than a simple information-processing pause",
+        "The feelings conversation \u2014 the team member is suppressing an emotional reaction they need more time to process",
+        "The what-happened conversation \u2014 the team member needs more factual clarification before they can respond"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. 'Just processing' is often what an identity conversation looks like from the outside when the person in it does not have words for what is happening. The quiet is less likely to be factual processing \u2014 the facts were clear \u2014 and more likely to be a response to something the feedback said about who this person is.",
+        "direct": "The what-happened content was available. The quiet was not about missing data. The most likely explanation is that the feedback touched the identity layer \u2014 something about competence, standing, or how he is perceived \u2014 and he is now in an internal conversation the performance review did not account for.",
+        "competitive": "When someone goes quiet in a feedback conversation after the facts have been clear, the identity layer is almost always the explanation. The 'just processing' statement is real \u2014 he is processing, but not the data. He is processing what the feedback says about who he is. That conversation cannot be addressed by providing more information."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Midway through a difficult conversation, someone tells their colleague: 'I think this is really about your identity \u2014 you feel like your competence is being questioned.' What does the three-conversation framework suggest about this move?",
+      "choices": [
+        "It is the recommended move \u2014 naming the identity conversation explicitly to the other person helps them see what is happening and usually opens the conversation",
+        "It is an acceptable move if the colleague has already acknowledged feeling defensive",
+        "This move is risky \u2014 naming the identity conversation to yourself is clarifying, but naming someone else's identity layer during the conversation often reads as psychologizing and can entrench the defensiveness it was meant to defuse"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Right. There is a real difference between seeing the three conversations yourself and telling someone else which conversation they are in. The second move requires the other person to accept both your diagnosis and your authority to make it \u2014 and most people will resist that, even if you are accurate. It can feel like being told how they feel, which is usually not a welcome move.",
+        "direct": "The framework is asymmetric in its application. Using it as a private diagnostic is consistently useful. Using it as a conversational statement \u2014 telling someone which conversation they are in \u2014 has real risks. Even an accurate diagnosis, delivered mid-conversation as 'this is really about your identity,' can read as an accusation or a closing move rather than an opening one.",
+        "competitive": "The diagnostic power of the framework is strongest when it is internal. Turning it into a statement about the other person's inner state during the conversation is a different move with a narrower window of safe application. Even a correct diagnosis, delivered this way, can close the conversation rather than open it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Two roommates have argued about household chores for three days. Each conversation starts with specific tasks but quickly escalates to 'you never' and 'I always.' What most likely explains this pattern?",
+      "choices": [
+        "The feelings conversation keeps overriding the facts conversation because both roommates are too emotional to stay with the data",
+        "The what-happened conversation is being used as a surface argument while the identity conversation \u2014 about who they each are as fair and responsible people \u2014 is doing the real work",
+        "The feelings and what-happened conversations are running simultaneously and the roommates need to address feelings first before facts can be heard"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The shift to 'you never' and 'I always' is the tell. Those are not task-level statements. They are identity-level statements \u2014 claims about who each person fundamentally is as a partner or roommate. The task conversation is the surface. The identity conversation is driving the escalation.",
+        "direct": "The escalation pattern from specific tasks to absolute language \u2014 'never' and 'always' \u2014 is a reliable indicator that the identity layer is active. The what-happened conversation was being used to carry an identity argument neither person knew how to name directly.",
+        "competitive": "The 'never' and 'always' language is the diagnostic signal. That is not task language. That is identity language \u2014 claims about the fundamental character of the other person. The task conversation is the proxy. Once the identity layer fires, adding more task-level evidence makes the argument worse."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Theo has been in the university library for an hour, rereading the same paragraph, unable to concentrate. Last week his classmate Jordan made a comment in a study group that bothered him. Theo keeps telling himself it was no big deal. He cannot stop thinking about it. What is most likely keeping him stuck?",
+      "choices": [
+        "The identity conversation is probably keeping it alive \u2014 the comment may have touched a question about whether Theo belongs, is valued, or is the kind of person who raises things, and that question is hard to file as no big deal",
+        "The feelings conversation has not been processed \u2014 Theo should journal or talk to a friend before deciding whether to raise the comment",
+        "The what-happened conversation is unresolved \u2014 Theo needs to determine exactly what was said and whether Jordan intended it before he can decide"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The signature of an identity conversation that has not been named is exactly this: the rational let-it-go reasoning makes sense, but it is not working. Something keeps pulling the attention back. That persistence usually means the comment touched a question about who the person is, not just about what was said.",
+        "direct": "When rational reasons to let something go are not working, the identity layer is almost always the explanation. The let-it-go reasoning addresses the what-happened layer. The identity question \u2014 does he belong here, do his ideas matter, is he the kind of person who raises these things \u2014 has not been addressed. That question is what is keeping him at the library.",
+        "competitive": "The inability to let go despite sound reasoning is the diagnostic signal. The reasoning addresses the what-happened layer. The identity layer has not been named. Once Theo names the identity question \u2014 what did that comment say about whether he belongs here \u2014 the decision about whether to raise it becomes a much smaller, more manageable question."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Someone prepares carefully for a difficult conversation by gathering all relevant facts and anticipating counterarguments. What does the three-conversation framework predict about the most likely source of failure in that conversation?",
+      "choices": [
+        "The feelings conversation \u2014 the other person will become emotional before the facts can land, and factual preparation cannot prevent that",
+        "The preparation process itself \u2014 thorough factual preparation creates overconfidence that makes the speaker less able to hear the other person",
+        "The identity conversation \u2014 both people bring identity stakes into the room, and no amount of factual preparation addresses that layer, which is where the most unpredictable behavior tends to emerge"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Exactly right. Careful factual preparation is not useless \u2014 the what-happened conversation needs it. But the identity layer will be present regardless of preparation quality, and behavior driven by the identity layer does not respond to factual evidence. The best-prepared facts conversation can still fail at the identity layer because the preparation was designed for a different layer.",
+        "direct": "The prediction is structural. Factual preparation addresses the what-happened layer. The identity layer is active regardless of preparation quality, and behavior driven by the identity layer \u2014 overdefense, collapse, disproportionate reaction \u2014 cannot be answered by better arguments. That is the structural failure point of facts-only preparation.",
+        "competitive": "The failure point is not inadequate preparation. It is preparation aimed at the wrong layer. The identity layer will be active in any conversation with significant stakes. No factual preparation addresses it. The conversation that fails at the identity layer was not underprepared. It was prepared for the wrong problem."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "After learning about the three conversations, someone can now identify all three layers in a recent difficult exchange. What is the most important limitation of this diagnostic understanding?",
+      "choices": [
+        "The framework applies primarily to professional contexts and is less reliable in personal relationships where emotions are more intense",
+        "Seeing all three conversations does not tell you what to do about any of them \u2014 the framework is diagnostic, and diagnosis without further skill does not produce better outcomes on its own",
+        "Most people cannot identify the identity conversation accurately in real time, so the framework is most useful in retrospect"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. Seeing all three conversations clearly is genuinely useful \u2014 it changes what you notice and what you can respond to. But seeing the three conversations does not tell you how to handle the feelings conversation, how to prepare your identity for feedback, or how to open a learning conversation rather than a facts argument. Those skills come later. The framework in this chapter is purely diagnostic.",
+        "direct": "The diagnostic value of the three-conversation frame is real. The prescriptive gap is equally real. Knowing which conversation is running does not supply the moves for handling it. The feelings conversation requires specific acknowledgment skills. The identity conversation requires specific internal preparation. Both are addressed in later chapters. The diagnostic is the prerequisite, not the solution.",
+        "competitive": "Recognition is leverage, but it is not the full hand. Seeing all three conversations accurately is a necessary first move. It is not sufficient. The skills for handling the feelings layer, the skills for preparing the identity layer, and the skills for opening the exchange differently are all specific tools built on the diagnostic but not contained within it."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch08-q01",
+      "prompt": "What does How Judgments Happen say the mind often does with hard questions?",
+      "choices": [
+        "Answers them with an easier impression",
+        "Refuses to answer them at all",
+        "Stores them as neutral memories"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter is about hard judgments drifting into easier answers.",
+        "direct": "the mind borrows accessible impressions when formal calculation is hard.",
+        "competitive": "A surrogate answer often arrives first and tries to pass as the real one."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch08-q02",
+      "prompt": "What is the core error once substitution takes hold?",
+      "choices": [
+        "The answer fits the easier impression instead of the original question",
+        "The mind loses all access to evidence",
+        "Every quick judgment becomes wrong"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The problem is mismatch between the question asked and the answer returned.",
+        "direct": "the answer fits the easier impression rather than the original question.",
+        "competitive": "A nearby dimension is impersonating the target variable."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch08-q03",
+      "prompt": "Why can substitution feel natural from the inside?",
+      "choices": [
+        "Because the easier question usually seems relevant to the harder one",
+        "Because every accessible impression is identical to evidence",
+        "Because people know they are changing the question"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The substitute often feels close enough to count.",
+        "direct": "The easier answer feels legitimate because the surrogate dimension is adjacent to the original question.",
+        "competitive": "The shortcut survives because it borrows relevance, not because it announces itself as a shortcut."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch08-q04",
+      "prompt": "A forecasting meeting shifts from likelihood to how persuasive the presenter feels. Which chapter pattern fits best?",
+      "choices": [
+        "The room is answering a substitute question",
+        "The team has stopped making judgments entirely",
+        "The evidence has become perfectly objective"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The room is using confidence as a stand-in for probability.",
+        "direct": "The judgment has drifted from the target question to an easier dimension.",
+        "competitive": "Conviction is trying to pass as forecast quality."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch08-q05",
+      "prompt": "What is the best immediate correction in a live decision?",
+      "choices": [
+        "Restate the exact question and test whether the answer belongs to it",
+        "Accept the first answer because it arrived quickly",
+        "Delay every judgment indefinitely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter asks the reader to recover the target question.",
+        "direct": "state the exact question and ask whether the answer was built from a substitute dimension.",
+        "competitive": "The fix is to restore question control before the surrogate becomes official."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch08-q06",
+      "prompt": "Why is this chapter not a demand for permanent formality in all decisions?",
+      "choices": [
+        "Because shortcuts are often useful when the fit is close enough",
+        "Because approximate answers are always perfect",
+        "Because hard questions never matter much"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Kahneman keeps the lesson calibrated rather than absolute.",
+        "direct": "shortcuts help under pressure, but they mislead when the borrowed impression is too loose for the task.",
+        "competitive": "The point is better fit, not endless suspicion of approximation."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch08-q07",
+      "prompt": "What recurring mistake does the chapter expose?",
+      "choices": [
+        "Mistaking an easier surrogate answer for the real judgment",
+        "Rejecting all intuition permanently",
+        "Ignoring every context difference"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The mistake is to let the easier answer count as if it answered the original question.",
+        "direct": "The category error is substitution without relabeling.",
+        "competitive": "The system overpays for accessibility and underprices target mismatch."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch08-q08",
+      "prompt": "How does How Judgments Happen build on A Machine for Jumping to Conclusions?",
+      "choices": [
+        "It shows how a mind already satisfied with a thin slice builds the judgment from what is easiest to access",
+        "It rejects the earlier chapter completely",
+        "It changes the book into a memory theory"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The earlier chapter shows why the available slice can feel sufficient, and this one shows how the judgment gets assembled from easy materials.",
+        "direct": "How Judgments Happen inherits a mind already leaning on what is present and examines the substitution process inside that judgment.",
+        "competitive": "False completeness lowers resistance, then substitution takes control."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch08-q09",
+      "prompt": "What is the strongest practical use of the chapter?",
+      "choices": [
+        "Catch when the answer belongs to a different question than the one you meant to solve",
+        "Memorize the title only",
+        "Replace every judgment with exhaustive calculation"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter helps the reader detect question drift.",
+        "direct": "Its value is in spotting substitution before the surrogate answer hardens into action.",
+        "competitive": "The edge is protecting the target variable while the decision is still movable."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch08-q10",
+      "prompt": "Why does this chapter lead into Answering an Easier Question?",
+      "choices": [
+        "Because the next chapter names directly the substitution move this chapter makes visible",
+        "Because the next chapter repeats this one word for word",
+        "Because the bridge is only structural"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "This chapter shows the drift, and the next chapter names the move directly.",
+        "direct": "Answering an Easier Question follows because it formalizes the substitution that this chapter has already exposed in practice.",
+        "competitive": "The book is moving from observed question drift to the explicit mechanism behind it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    }
+  ]
+}

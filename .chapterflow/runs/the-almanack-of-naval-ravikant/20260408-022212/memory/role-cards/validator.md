@@ -1,0 +1,3 @@
+- Enforce artifact shape first: no empty quiz, no instruction leakage, no plain-string scenarios, no collapsed tone variants.
+- Fix narrow mechanical issues directly, but route prose, depth, or teaching failures into repair with explicit findings.
+- Review wrappers should contain exactly one chapter and report only the checks that matter for release safety.

@@ -113,7 +113,7 @@ export default function MiniSummary({ onContinue }: MiniSummaryProps) {
             color: "var(--cf-text-soft)",
           }}
         >
-          ~2 min read
+          {summary.readingTime}
         </span>
       </motion.div>
 

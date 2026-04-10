@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch04-q01",
+      "prompt": "What is the associative machine mainly doing?",
+      "choices": [
+        "Activating linked ideas quickly from a single cue",
+        "Checking every claim for truth",
+        "Eliminating emotional carryover"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter is about fast linkage from cue to network.",
+        "direct": "Associative memory spreads activation before reflection sorts it out.",
+        "competitive": "The machine warms a field of related material very quickly."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch04-q02",
+      "prompt": "Why can activated ideas be dangerous in judgment?",
+      "choices": [
+        "Because connectedness can feel like support",
+        "Because all associations are false",
+        "Because memory stops working"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The risk is false authority, not linkage itself.",
+        "direct": "A warm network can make a story feel more evidential than it is.",
+        "competitive": "Activation can borrow the authority that belongs to proof."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch04-q03",
+      "prompt": "What often happens before conscious reflection catches up?",
+      "choices": [
+        "A cue changes the mental climate of later judgment",
+        "The evidence automatically improves",
+        "System 2 completely shuts down"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Carryover begins before the person notices it.",
+        "direct": "The network around the later judgment may already be primed.",
+        "competitive": "The field is tilted early, before review starts working deliberately."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch04-q04",
+      "prompt": "A scary headline makes a later business delay feel suspicious. What chapter idea fits best?",
+      "choices": [
+        "Associative carryover is shaping the later judgment",
+        "The delay alone proves fraud",
+        "The person has lost all capacity for review"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The later read inherited force from the earlier cue.",
+        "direct": "The headline primed a threat network that changed how the delay felt.",
+        "competitive": "The climate was altered before the current evidence was evaluated on its own."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch04-q05",
+      "prompt": "What is a good corrective move when a conclusion feels unusually ready-made?",
+      "choices": [
+        "Ask whether it is primed rather than proved",
+        "Trust it immediately because fluency is efficient",
+        "Ignore all linked ideas forever"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter teaches a distinction between readiness and support.",
+        "direct": "A ready-made feeling should trigger inspection of what warmed the network.",
+        "competitive": "The question is whether evidence improved or only activation increased."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch04-q06",
+      "prompt": "Why is the chapter not a demand to distrust all association?",
+      "choices": [
+        "Because fast linkage is part of useful thought",
+        "Because association never affects judgment",
+        "Because only emotions matter"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Association is necessary for recognition and fluent thinking.",
+        "direct": "Kahneman preserves the useful role of fast linkage.",
+        "competitive": "The target is false authority, not connected thinking itself."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch04-q07",
+      "prompt": "What is the core mistake Chapter 4 warns against?",
+      "choices": [
+        "Treating activated coherence as if it were evidence",
+        "Using memory in daily life",
+        "Feeling uncertain during a choice"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The warning is about confusing linked fit with verified support.",
+        "direct": "A primed network can make a claim feel stronger than the checking warrants.",
+        "competitive": "The expensive error is paying proof prices for activation."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch04-q08",
+      "prompt": "How does this chapter build on The Lazy Controller?",
+      "choices": [
+        "It explains what kind of fluent stories the lazy reviewer is endorsing",
+        "It abandons the idea of shallow review",
+        "It proves review no longer matters"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Chapter 3 showed endorsement; Chapter 4 shows fast generation.",
+        "direct": "The new focus is the machine that keeps producing coherent stories for endorsement.",
+        "competitive": "Lazy approval becomes clearer once the source of low-friction stories is visible."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch04-q09",
+      "prompt": "What is the strongest practical use of the chapter?",
+      "choices": [
+        "Inspect the climate around a judgment, not only the conclusion itself",
+        "Ignore all mood and salience entirely",
+        "Assume every available thought is equally important"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter teaches the reader to inspect carryover and priming.",
+        "direct": "Judgment improves when you ask what cue may be warming the conclusion.",
+        "competitive": "The climate of the decision may be doing as much work as the argument itself."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch04-q10",
+      "prompt": "Why does Chapter 4 lead into Cognitive Ease?",
+      "choices": [
+        "Because the next question is what smoothness and familiarity do to belief",
+        "Because association stops mattering after this chapter",
+        "Because the next chapter is unrelated to fluency"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The bridge is from activated coherence to felt ease.",
+        "direct": "Once networks are warm, Kahneman turns to what smooth processing does to confidence.",
+        "competitive": "The next lever is not just linkage, but how effortless that linkage can feel."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    }
+  ]
+}

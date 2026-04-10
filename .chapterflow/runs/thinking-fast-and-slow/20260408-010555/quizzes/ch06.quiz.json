@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch06-q01",
+      "prompt": "What starts the mechanism in Norms, Surprises, and Causes?",
+      "choices": [
+        "A broken expectation that calls for explanation",
+        "A perfect memory of earlier events",
+        "A complete absence of uncertainty"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter begins when something happens that should not have happened, or fails to happen when it should have.",
+        "direct": "when an event violates expectation, the mind rushes to rebuild order with a causal story.",
+        "competitive": "Violated norms create the pressure that drives fast explanation."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch06-q02",
+      "prompt": "Why can the first explanation feel convincing so quickly?",
+      "choices": [
+        "Because it reduces uncertainty and repairs the scene",
+        "Because first explanations are always correct",
+        "Because surprise removes the need for evidence"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The explanation feels strong because it makes the event easier to live with.",
+        "direct": "the first satisfying cause can harden before alternatives are tested.",
+        "competitive": "Relief can be mistaken for proof."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch06-q03",
+      "prompt": "What extra judgments often arrive with the first cause story?",
+      "choices": [
+        "Blame, intention, or motive",
+        "Perfect statistical calibration",
+        "Freedom from ambiguity"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Once the norm break is noticed, people often start reading what someone meant or who is at fault.",
+        "direct": "The mind often moves from surprise to blame or motive before it realizes that move has happened.",
+        "competitive": "The repair story smuggles in social judgment."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch06-q04",
+      "prompt": "Maya's team hits a service failure and starts assigning blame before mapping the event chain. Which chapter pattern fits best?",
+      "choices": [
+        "Surprise is nominating a cause too early",
+        "Memory storage has broken down",
+        "No judgment is being made"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The team is letting the broken expectation push them straight to a cause.",
+        "direct": "The room is treating the first repair story like proof before the sequence is understood.",
+        "competitive": "A nomination is about to become policy."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch06-q05",
+      "prompt": "Priya sees one surprising classroom mistake and starts reading attitude into it. What is the best immediate correction?",
+      "choices": [
+        "Ask what other explanation still fits the same surprise",
+        "Trust the first character judgment more",
+        "Avoid explaining anything at all"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A better move is to keep alternatives alive before the judgment sticks.",
+        "direct": "Separate the need for explanation from proof that the first explanation is right.",
+        "competitive": "Reopen the board before the first social read hardens."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch06-q06",
+      "prompt": "Why is this chapter not telling readers to stop searching for causes?",
+      "choices": [
+        "Because causal search is useful when the world stops making sense",
+        "Because surprise always reveals the truth immediately",
+        "Because evidence becomes irrelevant after a shock"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "People still need explanations when something breaks expectation.",
+        "direct": "causal search is useful and often necessary, but it becomes risky when surprise is allowed to nominate a single explanation too early.",
+        "competitive": "Calibration beats paralysis."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch06-q07",
+      "prompt": "What recurring error does the chapter expose?",
+      "choices": [
+        "Mistaking repaired order for verified explanation",
+        "Avoiding all intuition forever",
+        "Ignoring every social setting equally"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The scene feels clearer, so the explanation starts to feel truer than it has earned.",
+        "direct": "The first story closes uncertainty before it wins a real comparison.",
+        "competitive": "Emotional timing gets mispriced as epistemic strength."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch06-q08",
+      "prompt": "How does Norms, Surprises, and Causes build on Cognitive Ease?",
+      "choices": [
+        "It shows what the mind does when easy comfort breaks and coherence must be repaired",
+        "It rejects the earlier mechanism completely",
+        "It changes the book into a theory of memory storage"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Cognitive Ease explains comfort. This chapter explains what happens when the comfort disappears.",
+        "direct": "The earlier chapter describes why judgments feel right; this one describes the rush to repair that feeling when surprise breaks it.",
+        "competitive": "The book is moving from easy trust to urgent repair."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch06-q09",
+      "prompt": "What is the strongest practical use of the chapter?",
+      "choices": [
+        "Catch when surprise is turning the first explanation into a verdict",
+        "Memorize the chapter title only",
+        "Replace every judgment with formal mathematics"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter helps the reader notice when a cause story is getting trusted too quickly.",
+        "direct": "Its value is in identifying the moment when explanation outruns evidence.",
+        "competitive": "The edge is interrupting premature closure while the case is still movable."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch06-q10",
+      "prompt": "Why does the chapter lead into A Machine for Jumping to Conclusions?",
+      "choices": [
+        "Because once the first repair story feels sufficient, broader conclusions become easier to draw",
+        "Because the next chapter repeats this one word for word",
+        "Because the bridge is only a table-of-contents detail"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next chapter follows once one early story starts feeling like enough.",
+        "direct": "A Machine for Jumping to Conclusions inherits a mind already leaning on a thin but satisfying explanation.",
+        "competitive": "Premature repair lowers the cost of later overreach."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    }
+  ]
+}

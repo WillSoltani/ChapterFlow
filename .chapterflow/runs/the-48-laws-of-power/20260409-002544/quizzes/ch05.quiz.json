@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch05-q01",
+      "prompt": "What is the chapter's main claim about reputation?",
+      "choices": [
+        "It is a private feeling you control fully from the inside",
+        "It shapes how people receive you before they know you directly",
+        "It matters only after many long conversations"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The law treats reputation as a social force that arrives before direct contact and changes the field in advance.",
+        "direct": "Reputation matters here because expectation starts influencing trust, caution, and resistance before fresh evidence has much room to work.",
+        "competitive": "Right. The room is often reacting to the file before it is reacting to you."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch05-q02",
+      "prompt": "Why do appearances, actions, and circulating stories matter so much in this chapter?",
+      "choices": [
+        "Because people usually cannot inspect inner character directly",
+        "Because the chapter says truth and behavior do not matter",
+        "Because social judgment is always perfectly fair"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That is the mechanism. People rely on visible cues because motive and character are mostly hidden from them.",
+        "direct": "The chapter makes social judgment a proxy problem. When character is opaque, surfaces and stories do the sorting.",
+        "competitive": "Exactly. If they cannot read your core, they read the signal and the story."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch05-q03",
+      "prompt": "What is the strategic advantage of one outstanding quality?",
+      "choices": [
+        "It makes you look perfect in every area",
+        "It gives people a stable strength to organize around",
+        "It removes the need to keep proving anything"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. One clear strength gives anticipation somewhere useful to settle.",
+        "direct": "The point is not perfection. It is one-trait anchoring, which gives later evidence a consistent frame.",
+        "competitive": "Correct. One hard label beats a blur the room cannot use."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch05-q04",
+      "prompt": "Keira misses one client handoff after months of reliable work. Which response best fits the chapter?",
+      "choices": [
+        "Send a long emotional defense in Slack so nobody can misread her intent",
+        "Post a short factual note and let the next clean deliverables repair the read",
+        "Ignore the miss entirely because a good reputation makes explanation unnecessary"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That response fits the law. Her existing reliability can act like a shield, but only if later conduct keeps supporting it.",
+        "direct": "Option B uses conduct-based repair instead of theatrical self-defense. Option A sounds panicked, and option C wastes the credit she still has.",
+        "competitive": "Right. She stops arguing with the file and feeds it better receipts."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q05",
+      "prompt": "Malik runs the student newspaper and one article needs a visible correction. What should he protect first?",
+      "choices": [
+        "The larger reputation for care by correcting plainly and tightening process",
+        "His pride, by reminding everyone that he usually does good work",
+        "Mystery, by refusing to discuss the correction at all"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. A calm correction and better process help keep one mistake from becoming the paper's whole identity.",
+        "direct": "The chapter favors visible repair that feeds the stronger story. Defensive pride and theatrical silence both weaken trust.",
+        "competitive": "Exactly. He has to defend the file for care, not his wounded ego."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q06",
+      "prompt": "Zoe hears a loose social story that she has become unreliable. Which move matches the chapter's repair logic?",
+      "choices": [
+        "Text every person separately until everyone agrees the rumor was unfair",
+        "Wait passively and trust truth to fix itself with no visible effort",
+        "Rebuild the pattern through consistent follow-through with the people who matter most"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "That is the stronger repair. Reputation changes when the visible pattern changes, not when the defense grows longer.",
+        "direct": "Option C uses repeated conduct. Option A turns repair into panic, and option B assumes reality is always noticed on a useful timeline.",
+        "competitive": "Right. She quits chasing smoke and starts rebuilding the signal."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q07",
+      "prompt": "Why can association with a trusted person, system, or process help repair a damaged reputation?",
+      "choices": [
+        "Because borrowed credibility can lend a new interpretive frame when the link is real",
+        "Because association allows someone to avoid changing their own behavior",
+        "Because reputation depends only on status, not on evidence"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Credible association can help because trust sometimes travels through respected connections while new evidence builds.",
+        "direct": "The key is that the association must be real and must support actual behavioral repair. Otherwise it becomes another fragile image layer.",
+        "competitive": "Correct. Borrowed credit buys breathing room only if you turn it into earned credit fast."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q08",
+      "prompt": "When is an attack on another person's reputation most likely to backfire under this chapter's logic?",
+      "choices": [
+        "When the move is obvious, weakly supported, or visibly self-serving",
+        "Whenever the other person has any supporters at all",
+        "Only when the attacker already has a perfect reputation"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That is the chapter's warning. Reckless image war can stain the attacker and damage the whole environment.",
+        "direct": "Backfire happens when the strike lacks discipline. Social anticipation is powerful, which is exactly why careless attacks become messy fast.",
+        "competitive": "Exactly. Throw sloppy dirt and the splash starts writing your file too."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q09",
+      "prompt": "How does Chapter 5 develop the strategic problem introduced in Chapter 4 about speech and silence?",
+      "choices": [
+        "It argues that silence permanently solves all image problems",
+        "It shows how repeated impression signals accumulate into a reputation that starts traveling ahead of you",
+        "It replaces impression control with pure honesty as the only tactic"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That is the deeper connection. Chapter 4 focuses on the immediate impression, while Chapter 5 shows what happens when those impressions accumulate.",
+        "direct": "Speech and silence create moments of interpretation. Reputation is the stored social forecast built from many such moments.",
+        "competitive": "Right. Yesterday's impression habits become today's file."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch05-q10",
+      "prompt": "If reputation already changes the field before you arrive, what question naturally opens the next chapter?",
+      "choices": [
+        "How do you make every reputation equally warm and private?",
+        "How can one strong trait replace the need for attention altogether?",
+        "What happens when visibility itself becomes a strategic asset people compete for?"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Yes. The next chapter follows the logic of being seen once the traveling image already matters.",
+        "direct": "Chapter 5 leads into Chapter 6 by shifting from stored image to the strategic value of attention itself.",
+        "competitive": "That is the bridge. If the file already works ahead of you, the next fight is over the spotlight."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

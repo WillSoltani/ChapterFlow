@@ -1,0 +1,208 @@
+{
+  "nameUsage": {
+    "Nadia": [
+      "ch01"
+    ],
+    "Elise": [
+      "ch01"
+    ],
+    "Tomas": [
+      "ch01"
+    ],
+    "Maren": [
+      "ch01"
+    ],
+    "Luca": [
+      "ch01"
+    ],
+    "Serena": [
+      "ch01"
+    ],
+    "Imani": [
+      "ch02"
+    ],
+    "Cora": [
+      "ch02"
+    ],
+    "Julian": [
+      "ch02"
+    ],
+    "Asha": [
+      "ch02"
+    ],
+    "Pavel": [
+      "ch02"
+    ],
+    "Mina": [
+      "ch02"
+    ],
+    "Rhea": [
+      "ch03"
+    ],
+    "Tessa": [
+      "ch03"
+    ],
+    "Farah": [
+      "ch03"
+    ],
+    "Omar": [
+      "ch03"
+    ],
+    "Leon": [
+      "ch03"
+    ],
+    "Noam": [
+      "ch03"
+    ],
+    "Selene": [
+      "ch04"
+    ],
+    "Priya": [
+      "ch04"
+    ],
+    "Marcus": [
+      "ch04"
+    ],
+    "Jonah": [
+      "ch04"
+    ],
+    "Keira": [
+      "ch05"
+    ],
+    "Malik": [
+      "ch05"
+    ],
+    "Zoe": [
+      "ch05"
+    ],
+    "Ethan": [
+      "ch05"
+    ],
+    "Talia": [
+      "ch06"
+    ],
+    "Graham": [
+      "ch06"
+    ],
+    "Iris": [
+      "ch06"
+    ],
+    "Niko": [
+      "ch06"
+    ],
+    "Celia": [
+      "ch07"
+    ],
+    "Rowan": [
+      "ch07"
+    ],
+    "Mira": [
+      "ch07"
+    ],
+    "Dax": [
+      "ch07"
+    ],
+    "Lila": [
+      "ch08"
+    ],
+    "Owen": [
+      "ch08"
+    ],
+    "Sasha": [
+      "ch08"
+    ],
+    "Cole": [
+      "ch08"
+    ]
+  },
+  "formatCategoryHistory": [],
+  "schoolSettingUsage": {},
+  "wordFrequency": {},
+  "phraseFrequency": {},
+  "openerRegistry": {
+    "gentle": {},
+    "direct": {},
+    "competitive": {}
+  },
+  "titleTemplateRegistry": {},
+  "endingPatternRegistry": {},
+  "withinChapterNames": {
+    "ch01": [
+      "Nadia",
+      "Elise",
+      "Tomas",
+      "Maren",
+      "Luca",
+      "Serena"
+    ],
+    "ch02": [
+      "Imani",
+      "Cora",
+      "Julian",
+      "Asha",
+      "Pavel",
+      "Mina"
+    ],
+    "ch03": [
+      "Rhea",
+      "Tessa",
+      "Farah",
+      "Omar",
+      "Leon",
+      "Noam"
+    ],
+    "ch04": [
+      "Selene",
+      "Priya",
+      "Marcus",
+      "Jonah"
+    ],
+    "ch05": [
+      "Keira",
+      "Malik",
+      "Zoe",
+      "Ethan"
+    ],
+    "ch06": [
+      "Talia",
+      "Graham",
+      "Iris",
+      "Niko"
+    ],
+    "ch07": [
+      "Celia",
+      "Rowan",
+      "Mira",
+      "Dax"
+    ],
+    "ch08": [
+      "Lila",
+      "Owen",
+      "Sasha",
+      "Cole"
+    ]
+  },
+  "approvedChapterHashes": {
+    "ch01": "a0fd81aaf39a9888fa289f031f96d593b7f97b5612515c2807291d10f1ddb217",
+    "ch02": "54601335b1ede1e296e055a2c41a58582caf6e64a3ea4c9b3b20e066b11e90b3",
+    "ch03": "bd48e09e85ddf43bf44010cc853278b56348c327e00c75be3958d453d757df4a",
+    "ch04": "65e3157c6a6b81fdd8ec7159092fc94cfe0bc341102f1042c015d47a13e983c7",
+    "ch05": "72dd8e39c97ffc634934d6a8a725db8931ec96bbb75f73e2eacb7529abf63bb7",
+    "ch06": "ff65e157fb107f27a94bf9c60ce2cb28f0ef7b3a0bbce509bfc7de35aa58adb5",
+    "ch07": "751cc3ae17fab15808089a734b685680b2a2ed5644cbb5fbec888d6659af6880",
+    "ch08": "810f3a547dcab773a684ff85223c5afd1d9e181e282c4c1158c56d0e8a0c6308"
+  },
+  "baselineQuality": {
+    "chapters": [
+      "ch01",
+      "ch02"
+    ],
+    "criticScores": {
+      "ch01": 12,
+      "ch02": 12
+    },
+    "meanScore": 12,
+    "qualityDecayStopDelta": 1.5,
+    "note": "Use Chapters 1 and 2 as the quality floor for later waves."
+  }
+}

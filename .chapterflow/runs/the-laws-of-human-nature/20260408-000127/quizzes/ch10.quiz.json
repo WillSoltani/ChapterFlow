@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch10-q01",
+      "prompt": "What is the shadow, as Carl Jung defined it?",
+      "choices": [
+        "A) A deliberate persona people construct to manipulate others in social settings",
+        "B) The collection of traits, impulses, and feelings a person pushes out of conscious awareness because they conflict with their desired self-image",
+        "C) The negative self-talk that arises during periods of depression or anxiety"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Jung described the shadow as the parts of yourself you refuse to acknowledge, not because they vanish, but because admitting them would threaten the image you want to maintain.",
+        "direct": "The shadow is the reservoir of denied traits that continues to influence behavior from outside conscious view, gaining power precisely because it operates unsupervised.",
+        "competitive": "The shadow holds everything you filed under not-me. It does not delete. It accumulates, and it runs without oversight."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch10-q02",
+      "prompt": "Why does repressing a trait make it stronger rather than weaker?",
+      "choices": [
+        "A) The brain allocates extra energy to suppressed traits as a survival response",
+        "C) Suppressed traits merge with other negative emotions to form a more powerful combined impulse",
+        "B) Removing the trait from conscious oversight eliminates any checks on its influence, allowing it to accumulate pressure and operate unchallenged"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "When you refuse to look at a quality in yourself, it keeps operating without any counterbalance, building pressure like steam in a sealed container.",
+        "direct": "Repression removes conscious monitoring. Without that monitoring, the trait grows in influence because nothing is checking or moderating its expression.",
+        "competitive": "An unmonitored input in any system produces unpredictable outputs. Repression is the removal of monitoring, and the trait exploits the gap."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch10-q03",
+      "prompt": "How did Nixon's shadow contribute to his downfall?",
+      "choices": [
+        "B) His unexamined paranoia and vindictiveness operated unchecked for decades, producing the wiretaps, enemies list, and cover-up that ended his presidency",
+        "A) His repressed desire for public approval led him to make populist policy decisions that alienated his base",
+        "C) His suppressed artistic ambitions distracted him from the daily work of governing"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nixon never examined his own suspicion and vindictiveness, so those traits grew in the dark and eventually drove decisions that destroyed everything he built.",
+        "direct": "Decades of unacknowledged paranoia accumulated until it produced behavior at presidential scale that even Nixon's political genius could not survive.",
+        "competitive": "Nixon had the most powerful position on earth and the least self-knowledge. The shadow had root access for forty years before it finally crashed the order."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch10-q04",
+      "prompt": "Valerie manages a nonprofit and insists she never feels angry. Her staff notices she goes silent for days after disagreements, cancels meetings without explanation, and assigns undesirable tasks to people who challenged her. What exchange from this chapter explains her behavior?",
+      "choices": [
+        "A) Valerie is using a calculated management strategy to maintain authority over her team",
+        "B) Valerie's repressed anger is expressing itself indirectly through passive aggression because she refuses to acknowledge the emotion consciously",
+        "C) Valerie has an avoidant personality that prevents her from engaging with conflict of any kind"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Because Valerie will not admit to anger, the emotion finds sideways exits: silence, cancellations, and punitive task assignments that she does not recognize as expressions of the feeling she denies.",
+        "direct": "The anger did not vanish when Valerie decided she does not get angry. It rerouted into indirect channels that damage her team more than honest disagreement ever would.",
+        "competitive": "Valerie sealed the valve on anger and the pressure is escaping through every joint in the system. The indirect expression is always more destructive than the direct version would have been."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch10-q05",
+      "prompt": "Theo considers himself completely selfless and devotes long hours to volunteering. When his colleague Mia receives a community service award, Theo finds himself composing a detailed email about why the selection process was flawed. What psychological process is at work?",
+      "choices": [
+        "A) Theo is projecting his disowned selfishness onto Mia, converting his hidden sense of competition into moral criticism of the award process",
+        "B) Theo has a legitimate concern about transparency in the selection process",
+        "C) Theo is motivated by a desire to improve community recognition processs for future recipients"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Theo's selfless identity cannot accommodate the competitive feelings Mia's award triggers, so his brain converts the discomfort into a moral objection that feels principled rather than envious.",
+        "direct": "The shadow is doing the typing. Theo's denied competitive impulse found a socially acceptable exit through process criticism, preserving his selfless self-image.",
+        "competitive": "Projection in real time: Theo cannot own the competitive feeling, so his psyche repackages it as institutional critique. He believes every word of the email."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch10-q06",
+      "prompt": "Nadia prides herself on being calm and rational. During a routine team review, a junior colleague mildly questions one of her assumptions. Nadia responds with a sharp, disproportionate rebuke that shocks everyone in the room, including herself. Which concept from this chapter accounts for the intensity of her reaction?",
+      "choices": [
+        "A) Nadia has poor emotional regulation skills that require professional intervention",
+        "B) The junior colleague was being deliberately provocative in a way that justified a strong response",
+        "C) Decades of suppressed defensiveness erupted because the mild challenge hit a vulnerability Nadia had never examined"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The outburst was not proportional to the trigger because it carried the accumulated force of a trait Nadia had been sealing away for years.",
+        "direct": "Repressed defensiveness does not stay at the level it was when first denied. It compounds. When it finally breaks through, the force reflects years of pressure, not the size of the trigger.",
+        "competitive": "The eruption was decades in the making. The junior colleague just happened to tap the container at the moment it exceeded capacity."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch10-q07",
+      "prompt": "What does shadow integration require, according to Jung's approach as presented in this chapter?",
+      "choices": [
+        "A) Acting out your darkest impulses in controlled settings to release the accumulated pressure",
+        "B) Bringing denied traits into conscious awareness so they can be seen and managed, without necessarily acting on them",
+        "C) Eliminating negative traits entirely through sustained meditation and self-discipline"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Integration means acknowledging that you contain contradictions. The recognition itself removes the trait's power to ambush you, without requiring you to perform the impulse.",
+        "direct": "Seeing the impulse arriving gives you the gap between stimulus and response. That gap is where conscious choice lives. Without integration, the shadow skips the gap entirely.",
+        "competitive": "Integration is surveillance, not permission. You map the trait so it cannot operate in the dark. The advantage is that nothing about your own behavior is a complete surprise."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch10-q08",
+      "prompt": "Greene notes that Nixon's shadow borrowed the vocabulary of his strengths, making paranoid decisions feel like political calculations. What danger does this mimicry create?",
+      "choices": [
+        "A) The person becomes unable to distinguish between genuine strategic thinking and shadow-driven compulsion because both speak the same internal language",
+        "B) The person starts intentionally deceiving others by framing emotional decisions as rational ones",
+        "C) The person's colleagues begin to adopt the same paranoid thinking through social contagion"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "When the shadow learns to speak in the voice of your greatest strength, you lose the ability to tell which decisions come from clear thinking and which come from unexamined impulse.",
+        "direct": "Shadow mimicry eliminates the internal signal that would normally flag a decision as emotionally driven. The person processes compulsive choices as rational ones.",
+        "competitive": "The shadow wearing the persona's vocabulary is the most dangerous configuration. The person cannot audit their own decisions because the threat looks identical to the asset."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch10-q09",
+      "prompt": "Someone who has read this chapter might argue that shadow integration is dangerous because it encourages people to dwell on their worst qualities. How would Greene likely respond to this objection?",
+      "choices": [
+        "A) He would concede that some people are better off leaving their shadow unexamined to avoid psychological distress",
+        "C) He would recommend integration only for people who have access to professional therapeutic support",
+        "B) He would argue that the qualities you refuse to examine are the ones most likely to control you, making avoidance far more dangerous than honest recognition"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Greene's position throughout the chapter is that the unexamined trait is the one that does the most damage, because it operates without your knowledge or consent.",
+        "direct": "The risk of examining the shadow is discomfort. The risk of ignoring it is being hijacked by impulses you cannot see coming. Greene treats the second risk as categorically worse.",
+        "competitive": "Avoidance is not safety. Avoidance is handing control to an unmonitored process. Greene would call the objection itself a form of the very denial the chapter warns against."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch10-q10",
+      "prompt": "A leader discovers a repressed competitive streak through shadow work but then begins using that awareness to undermine colleagues while maintaining a collaborative public image. Based on the connection to Chapter 4, what has gone wrong?",
+      "choices": [
+        "A) The leader confused shadow integration with shadow permission and is now using self-knowledge to construct a more effective mask rather than to operate with genuine honesty",
+        "B) The leader's competitive streak was too strong to integrate and should have remained repressed",
+        "C) Shadow integration always produces this outcome because self-awareness inevitably leads to manipulation"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Chapter 4 warns about the gap between the persona we present and who we actually are. This leader used integration to sharpen the mask rather than to close the gap between public image and private behavior.",
+        "direct": "Integration is supposed to reduce the distance between the persona and the real self. This leader widened it by weaponizing self-knowledge in service of a more sophisticated mask.",
+        "competitive": "Self-knowledge without honesty is just better camouflage. Chapter 4's mask concept meets Chapter 10's shadow work, and the combination goes wrong when awareness serves performance instead of authenticity."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

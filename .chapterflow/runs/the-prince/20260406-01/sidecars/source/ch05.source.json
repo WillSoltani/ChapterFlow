@@ -1,0 +1,43 @@
+{
+  "chapterId": "ch05",
+  "chapterNumber": 5,
+  "heading": "CHAPTER V.",
+  "title": "CONCERNING THE WAY TO GOVERN CITIES OR PRINCIPALITIES WHICH LIVED UNDER THEIR OWN LAWS BEFORE THEY WERE ANNEXED",
+  "sourcePath": ".chapterflow/sources/the-prince/the-prince.txt",
+  "sourceLineStart": 988,
+  "sourceLineEndInclusive": 1035,
+  "scope": "Core The Prince text only",
+  "exclusions": [
+    "Project Gutenberg boilerplate",
+    "front matter and dedication before THE PRINCE",
+    "appended works after Chapter XXVI"
+  ],
+  "approxWords": 457,
+  "properNouns": [
+    "Spartans",
+    "Romans",
+    "Athens",
+    "Thebes",
+    "Capua",
+    "Carthage",
+    "Numantia",
+    "Greece",
+    "Pisa",
+    "Florentines"
+  ],
+  "repeatedTerms": [
+    "laws",
+    "freedom",
+    "reside",
+    "oligarchy",
+    "liberty",
+    "privileges",
+    "destroy",
+    "memory"
+  ],
+  "notes": [
+    "Thin but morally dense chapter-local source slice.",
+    "The governing pressure is remembered liberty and the persistence of political memory in self-governing cities.",
+    "Any verbatim reuse in reader-facing prose should still go through the quote ledger."
+  ]
+}

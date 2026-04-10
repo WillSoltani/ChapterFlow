@@ -1,10 +1,12 @@
 import Link from "next/link";
+import { AUTH_LOGIN_BOOK_URL } from "@/app/_lib/chapterflow-brand";
+import { CurrentYear } from "./CurrentYear";
 
 const navLinks = [
   { label: "How it works", href: "/#how-it-works" },
   { label: "Library", href: "/books" },
   { label: "Pricing", href: "/#pricing" },
-  { label: "Sign in", href: "/auth/login?returnTo=%2Fbook" },
+  { label: "Sign in", href: AUTH_LOGIN_BOOK_URL },
 ];
 
 export function Footer() {
@@ -63,7 +65,7 @@ export function Footer() {
               <Link
                 key={link.label}
                 href={link.href}
-                className="nav-link text-[13px]"
+                className="nav-link text-[13px] rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
                 style={{ color: "var(--text-muted)" }}
               >
                 {link.label}
@@ -78,14 +80,14 @@ export function Footer() {
           style={{ color: "var(--text-muted)" }}
         >
           <div className="flex gap-4">
-            <Link href="/legal/terms" className="hover:underline">
+            <Link href="/legal/terms" className="hover:underline rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2">
               Terms
             </Link>
-            <Link href="/legal/privacy" className="hover:underline">
+            <Link href="/legal/privacy" className="hover:underline rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2">
               Privacy
             </Link>
           </div>
-          <span>&copy; 2026 ChapterFlow</span>
+          <span>&copy; <CurrentYear /> ChapterFlow</span>
         </div>
       </div>
     </footer>

@@ -1,0 +1,106 @@
+{
+  "bookId": "the-almanack-of-naval-ravikant",
+  "runId": "20260408-022212",
+  "chapterNumber": 4,
+  "title": "Saving Yourself",
+  "normalizedTitle": "saving-yourself",
+  "type": "core_section",
+  "alias": [],
+  "printedPageRange": {
+    "start": 157,
+    "end": 192
+  },
+  "sourceIds": [
+    "official_2020_pdf",
+    "official_2020_epub",
+    "official_toc_page"
+  ],
+  "lockedEdition": {
+    "name": "The Almanack of Naval Ravikant: A Guide to Wealth and Happiness",
+    "family": "2020 Magrathea public-service PDF/EPUB family"
+  },
+  "sourceFiles": {
+    "pdf": "source-freeze/source-bundle/official-2020-edition.pdf",
+    "epub": "source-freeze/source-bundle/official-2020-edition.epub",
+    "epubDocument": "OEBPS/Eric-Jorgenson_The-Almanack-of-Naval-Ravikant_PRODUCTION_v102-13.xhtml",
+    "textFile": "sidecars/source/ch04.source.txt"
+  },
+  "headings": [
+    {
+      "level": "h1",
+      "title": "Choosing to Be Yourself",
+      "printedPage": 158,
+      "anchorId": "_idParaDest-44"
+    },
+    {
+      "level": "h1",
+      "title": "Choosing to Care for Yourself",
+      "printedPage": 161,
+      "anchorId": "_idParaDest-45"
+    },
+    {
+      "level": "h2",
+      "title": "Diet",
+      "printedPage": null,
+      "anchorId": null
+    },
+    {
+      "level": "h2",
+      "title": "Exercise",
+      "printedPage": null,
+      "anchorId": null
+    },
+    {
+      "level": "h1",
+      "title": "Meditation + Mental Strength",
+      "printedPage": 168,
+      "anchorId": "_idParaDest-46"
+    },
+    {
+      "level": "h1",
+      "title": "Choosing to Build Yourself",
+      "printedPage": 178,
+      "anchorId": "_idParaDest-47"
+    },
+    {
+      "level": "h1",
+      "title": "Choosing to Grow Yourself",
+      "printedPage": 183,
+      "anchorId": "_idParaDest-48"
+    },
+    {
+      "level": "h1",
+      "title": "Choosing to Free Yourself",
+      "printedPage": 187,
+      "anchorId": "_idParaDest-49"
+    },
+    {
+      "level": "h2",
+      "title": "Freedom from Expectations",
+      "printedPage": null,
+      "anchorId": null
+    },
+    {
+      "level": "h2",
+      "title": "Freedom from Anger",
+      "printedPage": null,
+      "anchorId": null
+    },
+    {
+      "level": "h2",
+      "title": "Freedom from Employment",
+      "printedPage": null,
+      "anchorId": null
+    },
+    {
+      "level": "h2",
+      "title": "Freedom from Uncontrolled Thinking",
+      "printedPage": null,
+      "anchorId": null
+    }
+  ],
+  "notes": [
+    "Sidecar text was extracted from the frozen official EPUB because it preserves the locked 2020 edition structure in machine-readable XHTML.",
+    "Printed page boundaries remain anchored to the frozen official PDF table of contents."
+  ]
+}

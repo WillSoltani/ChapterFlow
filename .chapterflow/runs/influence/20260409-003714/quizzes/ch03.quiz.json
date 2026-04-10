@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch03-q01",
+      "prompt": "What is Chapter 3 mainly trying to explain?",
+      "choices": [
+        "Why liking the asker can make agreement easier",
+        "Why people trust only those they have known for years",
+        "Why most persuasion depends on fear instead of warmth"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter centers on liking as a lever of influence.",
+        "direct": "Its main claim is that positive feeling toward the asker can lower resistance to the request.",
+        "competitive": "This chapter is about charm carrying the ask, not fear or long history."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch03-q02",
+      "prompt": "Why does friendship-based or home-party selling matter in this chapter?",
+      "choices": [
+        "Because the product becomes cheaper in private homes",
+        "Because the relationship around the ask strengthens the ask itself",
+        "Because people stop caring about quality when they sit down"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. The chapter shows that warmth around the request can make agreement easier.",
+        "direct": "The selling environment matters because the proposal borrows force from friendship and hospitality.",
+        "competitive": "The room is doing persuasion work before the product earns it."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch03-q03",
+      "prompt": "What is the halo effect in this chapter's logic?",
+      "choices": [
+        "A single positive trait coloring broader judgments",
+        "A method for making products look scarce",
+        "A formal rule that makes praise legally binding"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. One favorable trait can spill into larger judgments about the person.",
+        "direct": "The halo effect means attractiveness or appeal can inflate trust or competence estimates.",
+        "competitive": "One glow spreads too far, and the mind starts over-crediting the messenger."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch03-q04",
+      "prompt": "A hiring manager feels unusually confident about a charismatic candidate before reviewing the scorecard closely. Which Chapter 3 idea best explains the risk?",
+      "choices": [
+        "Social proof from a large crowd",
+        "The halo effect making one favorable trait spread too far",
+        "Reciprocation pressure from an earlier gift"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Good. The chapter warns that a person's general appeal can distort unrelated judgments.",
+        "direct": "This is halo-effect spillover: the messenger feels stronger, so the evaluation starts drifting upward with them.",
+        "competitive": "Charisma is inflating the file before the evidence gets its turn."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q05",
+      "prompt": "Why do similarity and compliments matter so much in this chapter?",
+      "choices": [
+        "They make the interaction feel safer and less defensive",
+        "They replace the need for any evidence at all",
+        "They work only when both people are already close friends"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Shared traits and praise can warm the exchange and lower resistance.",
+        "direct": "Similarity and compliments matter because they make the request feel embedded in rapport rather than standing alone.",
+        "competitive": "They lower the evidence bar by turning evaluation into connection."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q06",
+      "prompt": "Which response best fits the chapter's warning about attractive or warm people?",
+      "choices": [
+        "Warmth automatically proves honesty",
+        "Attractive people should never be trusted",
+        "A likable person can make an offer feel stronger than it really is"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "That is the key idea. The chapter warns about spillover, not about hating likable people.",
+        "direct": "The problem is not warmth itself. The problem is when positive feeling starts upgrading the proposal unfairly.",
+        "competitive": "Charm is dangerous here because it can do evidence work by default."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q07",
+      "prompt": "How does association work in this chapter?",
+      "choices": [
+        "It makes people repay favors more quickly",
+        "It transfers positive feeling from one linked object or person to another",
+        "It makes large groups move in the same direction"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Correct. The chapter shows that approval can spread across a connection.",
+        "direct": "Association works when admired people, symbols, or settings lend positive feeling to something nearby.",
+        "competitive": "The glow jumps the wire and lands on an offer that did not earn it."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q08",
+      "prompt": "What is the strongest Chapter 3 response when you notice you like the asker more than you understand the offer?",
+      "choices": [
+        "Separate the proposal from the person and test the offer on its own merits",
+        "Say yes quickly before the warm feeling fades",
+        "Treat all friendliness as manipulation and end the interaction"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The defense is not coldness. It is separation and inspection.",
+        "direct": "The chapter asks readers to judge the request independently of the asker's likability.",
+        "competitive": "Kill the glow, score the deal, then decide."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q09",
+      "prompt": "Why does Chapter 3 refuse to treat all liking as fake or manipulative?",
+      "choices": [
+        "Because warmth and cooperation can be real social goods even though they can also be used strategically",
+        "Because the author thinks emotional judgment is always superior to evidence",
+        "Because only celebrity endorsements create this problem"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter keeps the social value of warmth and cooperation in view while warning about misuse.",
+        "direct": "Liking is not false by definition, which is why the real issue is separation rather than blanket distrust.",
+        "competitive": "Real warmth can still be leverage. That is what makes the chapter sharper than simple cynicism."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch03-q10",
+      "prompt": "How does Chapter 3 point toward the next lever in the book?",
+      "choices": [
+        "By showing that one warm person can lower resistance before many similar others do the same at scale",
+        "By arguing that liking is the last lever that matters",
+        "By proving that groups are less persuasive than individuals"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter ends by preparing the move from one likable person to a wider social signal.",
+        "direct": "It bridges into social proof by asking what happens when visible groups, not just one pleasant person, start shaping judgment.",
+        "competitive": "This chapter gives the ask one likable carrier. The next chapter gives it a crowd."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

@@ -1,0 +1,170 @@
+{
+  "chapterId": "ch10",
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "Berne closes his book by naming three qualities that together constitute autonomy. Which of the following is his definition of autonomy?",
+      "choices": [
+        "The ability to make decisions without consulting other people",
+        "Emotional self-regulation achieved through therapy or reflection",
+        "The capacity to live without games: making contact with people and situations without the ulterior structures games provide"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Autonomy is Berne's term for a specific structural capacity: living without games, making contact without the ulterior transaction layers that games provide. It is not about independence in the general sense or about emotional regulation as a skill. The three qualities that constitute it are awareness, spontaneity, and intimacy.",
+        "direct": "Autonomy in Berne's use is a structural term, not a psychological one. It names the capacity to make contact without game-structure. The first choice describes independence from others, which is not what Berne means. The second describes a therapeutic skill, which is not the claim. The correct answer is structural.",
+        "competitive": "Berne's autonomy is defined by what it does not need: games. The self-regulation answer and the independence answer both substitute a psychological or behavioral attribute for a structural condition. Only the third choice names the absence of game-structure as the defining property."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "How does Berne define awareness in the context of his closing argument?",
+      "choices": [
+        "Perceiving what is actually present rather than what Parent programming or Child reaction has always told you is present",
+        "Consistent daily mindfulness practice that builds an observational habit over time",
+        "The intellectual ability to understand your own behavioral patterns through self-study"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Perception in the present, rather than through the filters of Parent programming or Child reactivity, is Berne's definition. It is not a practice, not an intellectual understanding, and not a scheduled habit. The defining feature is directness: seeing what is actually there rather than what your history tells you should be there.",
+        "direct": "Berne's awareness is about the filter, not the practice. The mindfulness answer converts awareness into a scheduled activity, which is exactly the failure mode the chapter names. The self-study answer makes awareness cognitive. Neither has the structural claim: that the filters of Parent/Child state normally stand between the person and direct perception.",
+        "competitive": "Both wrong answers make awareness into something you build or practice. Berne's definition is structural: awareness is what happens when the Parent/Child filters are, in a specific moment, not mediating what you perceive. It is not a skill. It is a condition. The mindfulness answer especially mimics the thing while missing the mechanism."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What distinguishes Berne's definition of spontaneity from how the word is usually used?",
+      "choices": [
+        "Spontaneity means acting without any planning or forethought in all situations",
+        "Spontaneity means having the freedom to respond from whichever ego state is actually appropriate to the situation rather than the one your history defaults to",
+        "Spontaneity means expressing your emotions openly and without social filtering"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Choice from the appropriate ego state is Berne's definition, not general impulsivity or emotional expressiveness. The chapter is explicit that spontaneity is not 'just be yourself' and not 'act before thinking.' It is specific access: the ability to respond from the state the moment calls for rather than the state your years have made automatic.",
+        "direct": "Berne's spontaneity is a structural concept about ego-state access, not a behavioral style. Acting without planning (choice A) is impulsivity. Open emotional expression (choice C) is a communication style. Neither addresses the mechanism: that most people are limited to one or two default states and spontaneity is the loosening of those defaults.",
+        "competitive": "The two wrong answers both make spontaneity about style (unfiltered, unplanned). Berne's definition is about access. You can only respond from a state you can reach. Spontaneity is available when the range of reachable states is wider than the default set your games have been confirming."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "In the chapter, Solenne notices that her defensive explanation is assembled in her throat before she has decided to say it. According to the chapter, what quality does this three-second pause represent?",
+      "choices": [
+        "Spontaneity, because she is choosing to respond differently than she usually would",
+        "Intimacy, because she is being transparent about her internal experience in a group setting",
+        "Awareness, because she can see the pre-formed response as assembled rather than inevitable"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Seeing the sentence as assembled rather than simply saying it is the working definition of awareness. The chapter is explicit that Solenne has not yet chosen differently, has not been transparent with the group, and has not made any visible move. The quality is in the seeing, not in the outcome. That is why it is awareness rather than spontaneity.",
+        "direct": "Spontaneity would require responding from a different state. Solenne does not respond differently; she pauses. Intimacy would require a two-person dynamic. The chapter names this as awareness because the defining move is the gap between the person and the pre-formed response: she can see it as formed rather than simply being inside it.",
+        "competitive": "Spontaneity would show in the response she gives, not in the pause. Intimacy is a two-person quality and requires both parties to be pattern-free. Awareness is correctly identified here because the quality is in the perceiving, specifically in the moment when the pre-formed sentence becomes visible to her as pre-formed."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Casimir asks Valeria 'Tell me what starting looks like when it goes wrong' instead of explaining the concept again. The chapter treats this as an instance of spontaneity. What specifically makes it spontaneous rather than just a good teaching technique?",
+      "choices": [
+        "The question came from a state the situation called for rather than from the default reach Casimir always makes, and it surprised him as much as Valeria",
+        "Casimir consciously decided to try a different approach after his usual explanation failed to work",
+        "The question addressed the emotional component of Valeria's problem rather than the cognitive one"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Casimir's question arrived from somewhere the situation called for rather than from his default. The chapter is specific that the surprise was mutual: he was as surprised as Valeria. That mutual surprise is the marker of spontaneity, distinguishing it from a deliberate technique. A technique would not surprise its user.",
+        "direct": "Choice B describes deliberate adaptation, which is not spontaneity as Berne defines it. Choice C describes emotional attunement, which is not the mechanism. The correct answer names the mechanism: the question arrived from a state outside Casimir's default reach, and the surprise he felt confirmed that it was not chosen from his usual repertoire.",
+        "competitive": "Casimir's question arriving from outside his default range is the move. The 'good teaching technique' answer and the 'emotional component' answer both make the question deliberate. Berne's spontaneity is specifically not deliberate: it is what happens when access is available. Casimir's surprise at his own question is the structural evidence."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "The chapter describes Takeshi and Fenna's March Saturday conversation as intimate in Berne's sense. What specifically makes it intimate?",
+      "choices": [
+        "They discuss unusually personal topics they have not talked about in eleven years of friendship",
+        "Neither is running a pattern on the other; both are present with what the other is actually saying rather than with what they have prepared to say back",
+        "They have known each other long enough to feel completely safe expressing vulnerability"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Pattern-free contact is what Berne means by intimacy, and the chapter uses Takeshi and Fenna's conversation to show it. The topic is not the determining factor; close friendships often discuss deeply personal topics while both parties are running familiar patterns on each other. The key is that neither is preparing their response while the other is speaking.",
+        "direct": "Unusual topics (A) and safety through long familiarity (C) can both be present in conversations that are fully pattern-organized. The chapter names intimacy as a quality of the exchange, not the content or the history. The marker is both parties attending to what is actually said rather than to the categories they have prepared responses for.",
+        "competitive": "Long friendships routinely discuss personal topics inside well-organized patterns. Safety from familiarity can be the very thing that enables both parties to run their familiar patterns without friction. Neither of those is Berne's intimacy. His definition is the absence of pattern-running from both parties simultaneously, which is structural, not topical or historical."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "The chapter warns that awareness can collapse into 'observation-as-practice.' Why does the chapter treat this as a failure mode?",
+      "choices": [
+        "Because a scheduled practice of observation becomes its own structure, and the person is performing directness rather than perceiving directly",
+        "Because observing too carefully can lead to excessive self-criticism and anxiety",
+        "Because stopping to observe interrupts the natural flow of experience and creates new cognitive burdens"
+      ],
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard",
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A new observing practice becomes its own script when it has a schedule and a payoff. The chapter is explicit that this is the failure mode: not excessive self-criticism and not cognitive burden, but the structural fact that a scheduled practice of noticing has the same shape as any other pattern. The person is now inside a new structure rather than perceiving directly.",
+        "direct": "Both wrong answers describe psychological consequences of excessive observation, which is not Berne's concern. The failure mode is structural: observation-as-practice acquires the form of a pattern (scheduled, repeated, confirming a position about oneself as someone who practices awareness) and the person is no longer perceiving directly but executing the practice.",
+        "competitive": "Anxiety and cognitive burden are consequences of a different problem. The chapter's failure-mode claim is structural: any routine that has a schedule and a payoff is a structure, and awareness that has become a routine is awareness converted back into a game. The person running the noticing practice is as inside a structure as the person running any other game."
+      }
+    },
+    {
+      "questionId": "q08",
+      "prompt": "The chapter says intimacy is the rarest of the three qualities Berne names. What structural reason does it give?",
+      "choices": [
+        "Intimacy requires formal training in communication and the willingness to be vulnerable",
+        "Intimacy is conditioned on cultural norms that make directness uncomfortable in most settings",
+        "Intimacy requires two people to be simultaneously free of their patterns, rather than one person making a solo move"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Simultaneity is the distinction the chapter draws. Awareness and spontaneity are solo qualities; one person can reach them independently. Intimacy cannot occur through one person's effort alone. Both people have to be present without their patterns at the same moment, and this depends on each person's individual access to the other two qualities, plus the shared history not organizing the conversation before it starts.",
+        "direct": "Training and vulnerability (A) and cultural norms (B) are both real factors in communication but are not Berne's structural claim here. The chapter's reason for intimacy's rarity is mechanical: it is the only one of the three that requires a meeting condition rather than an individual condition. One person cannot produce it alone.",
+        "competitive": "The simultaneity bottleneck is the chapter's specific claim for intimacy's rarity. Training and cultural norms apply to communication broadly; they do not explain why this quality is rarer than awareness or spontaneity in particular. The answer is structural: awareness is one-person, spontaneity is one-person, intimacy is two-person simultaneously, and that constraint is what makes it rare."
+      }
+    },
+    {
+      "questionId": "q09",
+      "prompt": "A reader argues: the triad is so difficult to reach that naming it sets up unrealistic expectations and creates discouragement. How does the chapter respond to this concern?",
+      "choices": [
+        "By encouraging readers to commit to sustained practices that gradually build toward all three qualities",
+        "By pointing out that naming a direction is not the same as promising arrival; the catalog chapters have been useful to people who will not fully exit the games in them, and the triad is useful in the same way",
+        "By acknowledging the concern is valid and framing the triad as an aspirational ideal rather than an achievable state"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Direction versus destination is the chapter's response. The catalog chapters described patterns that most readers will not fully exit after reading about them. They were still worth writing. The triad is useful in the same way: it names where the work of the catalog points, which makes the catalog chapters retrospectively meaningful even when the triad is not reached. This is not an aspiration claim; it is a claim about what naming does.",
+        "direct": "Sustained practices (A) are the exact thing the chapter refuses, since practices are the failure mode of awareness. Aspirational ideal (C) softens the chapter's claim in a direction the chapter does not take; Berne names the triad as something that actually occurs, not something to aim for. The correct response names the function of the naming itself: a direction is useful even when the destination is rarely reached.",
+        "competitive": "Practices (A) and aspirational ideals (C) both accept the premise that reaching the triad should be the goal. The chapter does not accept that premise. It claims that naming the triad is useful independently of whether any given reader reaches it, because naming a direction changes the relationship to the work the catalog chapters describe. The discouragement concern assumes arrival is the point; the chapter's answer is that direction is the point."
+      }
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If you wanted to build a single weekly habit that moves toward awareness rather than observation-as-practice, which approach is most consistent with the chapter's framing?",
+      "choices": [
+        "Journal every evening about the patterns you noticed during the day to build cumulative self-knowledge",
+        "Revisit Chapters 1-9 once a week to keep the vocabulary active and the patterns identifiable",
+        "In one specific recurring moment, notice whether your response arrived before you chose it, and do nothing else with the noticing"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Noticing without journaling or accumulating is the approach closest to awareness rather than observation-as-practice. Journaling (A) and weekly review (B) both create structures around the noticing, and structures around noticing are exactly what the chapter names as the failure mode. The third choice minimizes the structure: one specific moment, one observation, nothing added to it.",
+        "direct": "Journaling and weekly review are both practices that acquire their own schedules, their own payoffs, and their own shapes. They produce knowledge about patterns, which is useful, but it is not awareness as the chapter defines it. Awareness is the momentary gap. The third choice preserves the gap by not converting it into a practice.",
+        "competitive": "Both A and B convert awareness into a system. Systems produce outputs (self-knowledge, vocabulary maintenance) that are real and are not awareness in Berne's sense. The chapter's framing requires that the noticing not become a structure. One specific moment, one observation, no follow-through, is the one approach that does not immediately convert the gap into a scheduled event."
+      }
+    }
+  ]
+}

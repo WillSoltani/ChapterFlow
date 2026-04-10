@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch11-q01",
+      "prompt": "Why does envy hide itself rather than appearing as an openly acknowledged emotion?",
+      "choices": [
+        "A) Social norms make it illegal to express envy in professional settings",
+        "B) Admitting envy requires admitting inferiority, which is too painful for most people to tolerate consciously",
+        "C) Envy is a mild emotion that people simply do not notice when they experience it"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Envy carries a built-in confession of feeling lesser, so the brain converts it into something more bearable before it reaches conscious awareness.",
+        "direct": "The emotion conceals itself because the admission it requires, that someone else is above you, is intolerable to the ego. The brain performs the conversion automatically.",
+        "competitive": "Envy is the only emotion that destroys itself by being named. Admitting it means admitting inferiority, so the psyche launders it into moral criticism before you ever feel it."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch11-q02",
+      "prompt": "What are the four telltale signals Greene identifies for detecting envy in others?",
+      "choices": [
+        "B) A flash of displeasure at your good news, praise that deflates you, sudden helpfulness only after your success, and moral criticism of how you achieved something",
+        "A) Increased gift-giving, exaggerated enthusiasm, avoidance of shared topics, and sudden career changes",
+        "C) Direct insults, social withdrawal, public complaints about unfairness, and attempts to copy your methods"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "These four signals are envy wearing different costumes, each one disguised as something socially acceptable while carrying the underlying message of diminishment.",
+        "direct": "Each signal represents a different channel through which converted inferiority expresses itself: microexpressions, loaded praise, strategic timing of help, and process-focused critique.",
+        "competitive": "Four costumes, one emotion. The flash, the sting, the timing, and the moral pivot are the diagnostic markers that separate coincidence from probable cause."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch11-q03",
+      "prompt": "Greene calls proximity the primary fuel for envy. What does this mean?",
+      "choices": [
+        "A) People who spend more time physically near each other develop stronger envious feelings regardless of status",
+        "C) Geographic proximity determines envy because people compare themselves only to neighbors and local acquaintances",
+        "B) Envy burns hottest between people who are close in status, because a peer's success forces a personal comparison that a distant figure's success does not"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "You do not envy a billionaire because the gap feels abstract. You envy the coworker who got the role you wanted because the closeness makes the comparison feel personal.",
+        "direct": "Status proximity turns someone else's success into a mirror. The closer the starting positions, the more their advancement feels like a judgment on your stagnation.",
+        "competitive": "Distance neutralizes envy. Proximity weaponizes it. The person one step behind you is the one whose envy will be sharpest and most sustained."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch11-q04",
+      "prompt": "Amir and Luca joined the same marketing agency on the same day with similar portfolios. After Amir lands a high-profile client, Luca starts volunteering to review Amir's campaign decks before client presentations. His feedback consistently targets Amir's creative choices as risky while framing his own suggestions as safer alternatives. Which envy signal is Luca displaying?",
+      "choices": [
+        "A) Microexpressions of displeasure that reveal his true feelings before his social filter activates",
+        "B) Post-success helpfulness combined with moral criticism of Amir's methods, disguised as professional mentorship",
+        "C) Direct competitive behavior that is normal and healthy in a professional environment"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Luca's help appeared only after Amir's win, and his feedback targets the how rather than the what, two of the four envy signals operating together.",
+        "direct": "The timing of the helpfulness and the shift from evaluating results to questioning methods are two converging signals that point to converted envy.",
+        "competitive": "Two signals from the same person after the same trigger: post-win helpfulness and process-focused critique. The convergence moves this from coincidence to working hypothesis."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch11-q05",
+      "prompt": "Renata receives a promotion. Her colleague Ingrid, who started at the company six months earlier, congratulates her by saying: 'Good for you, especially since you had that lucky break with the Henderson account.' Renata feels deflated despite the congratulations. What is happening in this exchange?",
+      "choices": [
+        "A) Ingrid is offering honest context about the role luck played in Renata's career trajectory",
+        "C) Renata is being oversensitive to normal workplace conversation",
+        "B) Ingrid delivered a compliment structured with a qualifier that repositions Renata's achievement as smaller and luckier than it was"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The qualifier does the real work in Ingrid's sentence, converting what sounds like praise into a subtle diminishment that leaves Renata feeling worse, not better.",
+        "direct": "This is the second envy signal: praise that wounds. The congratulations is the wrapper. The qualifier is the payload, and it repositions the promotion as a product of fortune rather than merit.",
+        "competitive": "Ingrid's sentence is a precision instrument. The congratulations provides social cover while the qualifier performs the actual function: shrinking Renata's achievement to a manageable size."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch11-q06",
+      "prompt": "Wei notices that whenever someone in his friend group achieves something notable, his friend Jerome responds by emphasizing that the achievement came with unfair advantages or that the person should stay humble. Jerome uses the language of fairness and modesty to redirect attention away from individual success. What personality type does Jerome fit?",
+      "choices": [
+        "A) Jerome is a principled person with genuine concerns about meritocracy and humility",
+        "B) Jerome fits the leveler type, who uses fairness language to pull high achievers back to the group baseline",
+        "C) Jerome is a natural mediator who wants to prevent conflict caused by jealousy among other group members"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The leveler does not target one person. They target anyone who rises above the group average, using fairness as a tool to enforce uniformity.",
+        "direct": "Jerome's pattern is consistent across different people and different achievements, which reveals the behavior as positional rather than principled. He targets rising, not specific individuals.",
+        "competitive": "The consistency is the tell. A principled person's concerns vary with the situation. A leveler's concerns activate identically every time someone pulls ahead, regardless of context."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch11-q07",
+      "prompt": "How did Polidori experience his own undermining of Mary Shelley's work?",
+      "choices": [
+        "B) He experienced himself as offering honest literary analysis, unaware that his brain had converted inferiority into moral criticism",
+        "A) He recognized his jealousy but chose to act on it because he believed his literary career depended on diminishing hers",
+        "C) He deliberately planned a campaign against her reputation because he wanted Byron's attention for himself"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Polidori was not putting on a performance. The feeling of inferiority had been translated into a moral story so smoothly that he genuinely believed his criticisms were fair.",
+        "direct": "The conversion from inferiority to moral judgment happened below Polidori's conscious awareness. He operated from the output with complete sincerity.",
+        "competitive": "Polidori's sincerity is the weapon. A deliberate saboteur can be caught. A sincere critic fueled by converted envy will escalate when challenged because pushback confirms their self-narrative."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch11-q08",
+      "prompt": "Greene identifies three proximity variables that compound to predict where envy will be most intense. Which combination correctly names them?",
+      "choices": [
+        "A) Status similarity, domain overlap, and shared starting conditions",
+        "B) Physical distance, communication frequency, and emotional closeness",
+        "C) Income level, education background, and family structure"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "When all three are high, the other person's success creates a maximally personal comparison because there is no external variable to absorb the explanation for the gap.",
+        "direct": "Status similarity, domain overlap, and shared starting conditions function as independent predictors. When all three converge, the divergence points directly at the observer.",
+        "competitive": "Three variables, each independently predictive, compounding when combined. Maximum proximity means the gap between you and the other person has no external explanation to hide behind."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch11-q09",
+      "prompt": "A founder detects envy signals from a close collaborator and responds by dimming her own visibility, sharing credit she earned, and filtering good news through the collaborator's comfort level. Has she handled the situation effectively?",
+      "choices": [
+        "A) Yes, because managing the collaborator's emotional state preserves the relationship and prevents escalation",
+        "C) Yes, because showing empathy toward an envious person will eventually cause the envy to dissolve on its own",
+        "B) No, because she has turned her detection skill into a liability by accommodating the envy instead of protecting her own trajectory"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Detection without protective boundaries turns your perception into a vulnerability. Shrinking your visibility to manage someone else's envy costs you the very achievements that generated the signal.",
+        "direct": "Empathy for detection is an asset. Empathy that reshapes your behavior around another person's discomfort is a liability. The correct integration is to read the signal and then act on your own behalf.",
+        "competitive": "She converted a diagnostic advantage into operational self-sabotage. Detection without a protection protocol is worse than no detection at all because you see the threat and absorb it anyway."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch11-q10",
+      "prompt": "A person who struggles with envy toward peers begins telling themselves they are actually superior to everyone around them, dismissing others' achievements as undeserved. Based on the connection to Chapter 12, what has happened?",
+      "choices": [
+        "A) The person has successfully overcome their envy by building genuine confidence in their own abilities",
+        "B) The envy has flipped into grandiosity, where the same fragile self-image now inflates rather than deflates, producing a different distortion from the same root",
+        "C) The person has developed a healthy competitive drive that will motivate them to achieve more"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Chapter 12 shows that grandiosity and envy share the same root: a self-image too fragile to survive honest comparison. Envy tears others down to close the gap. Grandiosity inflates the self to make the gap invisible.",
+        "direct": "The underlying wound is identical. The direction of the distortion changed from downward comparison to upward self-inflation, but neither version produces accurate perception.",
+        "competitive": "Same brittle core, different defense. Envy says they do not deserve to be above me. Grandiosity says I am already above everyone. Both shields are held by hands that are shaking."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

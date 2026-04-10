@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch05-q01",
+      "prompt": "What is the chapter's main claim about jaw-dropping moments?",
+      "choices": [
+        "They matter because any strong surprise automatically makes a talk persuasive.",
+        "They matter because a designed peak can make the message easier to remember.",
+        "They matter only in entertainment-style talks, not in serious presentations."
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That is the chapter's main point. The memorable moment should help the audience carry the message afterward.",
+        "direct": "Gallo treats wow as a memory and clarity tool, not as spectacle for its own sake.",
+        "competitive": "The peak earns its place by stamping the argument deeper, not by proving you can get a reaction."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch05-q02",
+      "prompt": "What makes Bill Gates's malaria demonstration chapter-faithful rather than gimmicky?",
+      "choices": [
+        "It used a surprising action to make the argument feel more real.",
+        "It proved that every talk should include a risky live stunt.",
+        "It worked mainly because it had nothing to do with the talk's main point."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The surprise mattered because it clarified the problem instead of distracting from it.",
+        "direct": "Gates's move is useful in the chapter because the reaction deepened the audience's understanding of the issue.",
+        "competitive": "The demo performs argumentative work. That is what saves it from becoming empty spectacle."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch05-q03",
+      "prompt": "Sloane has one product demo that makes her case obvious. Which choice best fits the chapter's advice?",
+      "choices": [
+        "Hide the demo so the pitch feels more professional and even",
+        "Lead with the live demonstration if it makes the point clearer, then support it with explanation",
+        "Replace the demo with more slides so the room gets more detail before any memorable moment"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Sloane should use the moment that makes the point vivid, then let the rest of the talk build on it.",
+        "direct": "The chapter favors a designed peak when that peak sharpens the argument rather than distracting from it.",
+        "competitive": "She should build around compressed proof, not bury it under deck order."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch05-q04",
+      "prompt": "Coach Nolan tells Darius that one reveal beats ten flat slides. What is the repair?",
+      "choices": [
+        "Add more slides so the audience respects the amount of work behind the talk",
+        "Find one memorable reveal or comparison and let the rest of the material support it",
+        "Make every slide equally dramatic so the talk never loses energy"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Darius needs one moment that rises above the rest and gives memory something to hold.",
+        "direct": "The chapter's logic is contrast, not constant escalation. One aligned peak is stronger than uniform intensity.",
+        "competitive": "Ten equal slides cannot do the work of one clean snap in understanding."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch05-q05",
+      "prompt": "Which common trap does the chapter most clearly warn against?",
+      "choices": [
+        "Assuming every memorable moment must include humor",
+        "Assuming the audience prefers no variation in emotional intensity",
+        "Assuming a flashy reaction is enough even if the message gets weaker"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter warns that a strong reaction is not enough if the point becomes less clear.",
+        "direct": "Gallo's limit is message alignment. Showmanship becomes a problem the moment it starts stealing force from the argument.",
+        "competitive": "Reaction without message fit is not impact. It is leakage disguised as success."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch05-q06",
+      "prompt": "What do Jill Bolte Taylor and Steve Jobs mainly add to the chapter's argument?",
+      "choices": [
+        "They prove that only celebrity speakers can create wow moments",
+        "They show that props and reveals can create memorable payoff through structure and vividness",
+        "They show that the best talks avoid all planning so surprise can stay authentic"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "They widen the chapter beyond one kind of surprise and show that different tools can still make a point stick.",
+        "direct": "Taylor and Jobs matter because the chapter is not only about one demo. It is about memorable design through physical vividness and sequencing.",
+        "competitive": "They prove that wow is built through fit and payoff, not through random boldness."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch05-q07",
+      "prompt": "Mina must choose between a bigger prop and a better-fitting prop. Which approach best matches the chapter?",
+      "choices": [
+        "Choose the prop that aligns most clearly with the message, even if the reaction is smaller",
+        "Choose the largest prop because bigger reactions always create stronger memory",
+        "Avoid props entirely because they always weaken serious speaking"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Mina should choose the prop that helps the audience understand the point most clearly.",
+        "direct": "The chapter values alignment over raw theatrical size. A smaller move can be stronger if it fits the idea better.",
+        "competitive": "Cleaner beats louder. Fit beats spectacle."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch05-q08",
+      "prompt": "Why does Victor's flashy reveal fail in the postmortem even though people applauded?",
+      "choices": [
+        "Because applause is never useful in a serious presentation",
+        "Because the moment became more memorable than the strategy point it was supposed to support",
+        "Because the reveal happened too early in the presentation to matter"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Victor's problem is not that the room reacted. It is that the reaction did not carry the meaning with it.",
+        "direct": "This is the chapter's warning in action. The memorable moment hijacked attention instead of locking the point into place.",
+        "competitive": "The room kept the spark and dropped the sentence. That is failure, not proof of impact."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch05-q09",
+      "prompt": "Keira uses a dramatic opening image that points at the wrong idea. What does that reveal?",
+      "choices": [
+        "Any surprise helps because the audience will stay alert no matter what",
+        "Surprise can weaken understanding when it creates memory around the wrong frame",
+        "School presentations should avoid memorable moments and stay purely informational"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The strong reaction does not help if it teaches the audience the wrong thing first.",
+        "direct": "Keira's result shows that wow without message fit can damage clarity while pretending to increase memorability.",
+        "competitive": "A wrong-frame peak is sabotage with better lighting."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch05-q10",
+      "prompt": "Why does this chapter naturally hand off to Chapter 6 on lightening up?",
+      "choices": [
+        "Because once a speaker can build strong memorable peaks, the next challenge is avoiding a performance that feels too heavy overall",
+        "Because humor is the only kind of wow moment that audiences truly remember",
+        "Because a speaker should replace all serious demonstrations with jokes as soon as possible"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "After the speaker learns how to create strong peaks, the next question is how to keep the whole talk human and open.",
+        "direct": "Chapter 5 handles memorable force. Chapter 6 turns toward humor and lightness as the balance to that intensity.",
+        "competitive": "Once you know how to hit hard, the next problem is how not to stay heavy."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

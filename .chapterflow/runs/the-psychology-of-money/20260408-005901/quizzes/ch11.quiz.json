@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's main claim about saving?",
+      "choices": [
+        "Saving is useful only when every dollar has a specific named goal",
+        "Saving can be useful even before the future use is clearly specified",
+        "Saving only matters for high earners"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says reserve money can already be valuable before it has a specific assignment.",
+        "direct": "Savings do not need a named purchase goal to have real purpose under uncertainty.",
+        "competitive": "Cash can work before it gets a label."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the chapter think unlabeled savings can still be rational?",
+      "choices": [
+        "Because the future is uncertain and reserve money creates room for it",
+        "Because planning is never useful",
+        "Because spending is always wrong"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The unknown future gives savings a purpose even before details appear.",
+        "direct": "Uncertainty itself makes reserve money valuable.",
+        "competitive": "A messy future justifies stored options."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "How does the chapter describe one major benefit of savings?",
+      "choices": [
+        "They create time, options, and room for error",
+        "They eliminate all risk permanently",
+        "They automatically increase social status"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter treats savings as stored flexibility.",
+        "direct": "Savings reduce pressure and widen the set of available responses.",
+        "competitive": "The buffer keeps you from being cornered."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "What does the chapter say matters more than income alone?",
+      "choices": [
+        "The gap between what comes in and what goes out",
+        "The size of visible purchases",
+        "How confidently you talk about money"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A saving gap can create resilience even without a huge income.",
+        "direct": "The chapter shifts attention from income alone to retained margin.",
+        "competitive": "Gap beats headline."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why does the chapter reject the idea that every dollar must already have a mission?",
+      "choices": [
+        "Because uncertainty makes reserve money useful before details are known",
+        "Because goals are always fake",
+        "Because budgeting never helps"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The future cannot be fully mapped in advance.",
+        "direct": "Reserve money can be productive without perfect foresight.",
+        "competitive": "The unknown future is already a job description."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "How does saving change the emotional quality of decisions in this chapter?",
+      "choices": [
+        "It makes all decisions disappear",
+        "It reduces desperation and makes mistakes less catastrophic",
+        "It guarantees happiness"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Savings can make future choices feel less trapped.",
+        "direct": "The reserve lowers urgency and dependency under pressure.",
+        "competitive": "The buffer turns panic down."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Which statement best reflects the chapter's view of constraint?",
+      "choices": [
+        "Everyone has equal room to save if they try hard enough",
+        "Some people have very little margin, but where a gap exists it matters",
+        "Constraint is only a mindset problem"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter does not pretend everyone faces the same conditions.",
+        "direct": "It acknowledges unequal room while still defending the value of real margins where they exist.",
+        "competitive": "This is not discipline theater."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why can a smaller income still produce more resilience than a larger one?",
+      "choices": [
+        "Because social confidence matters more than money",
+        "Because a real saving gap can matter more than a large income with no margin",
+        "Because low income automatically builds discipline"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "What remains unspent can matter more than the bigger headline number.",
+        "direct": "A smaller income with margin may be safer than a larger income with none.",
+        "competitive": "Retention can beat bragging rights."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does this chapter lead into Reasonable > Rational?",
+      "choices": [
+        "Because saving is being defended as a human response to uncertainty, not only as clean optimization",
+        "Because the next chapter rejects all saving",
+        "Because rationality means ignoring emotion completely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter prepares a standard that fits real lives, not only perfect formulas.",
+        "direct": "Saving makes sense here because humans live with uncertainty and imperfect information.",
+        "competitive": "The spreadsheet is not the whole court."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Which summary best fits Save Money?",
+      "choices": [
+        "Savings matter only when they are assigned to a named purchase",
+        "Saving is valuable because it creates flexibility and independence in an uncertain future, even before the exact need is known",
+        "Saving is mainly a way to impress other people with discipline"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says savings matter because they create room before the future is fully known.",
+        "direct": "Reserve money is defended as stored optionality under uncertainty.",
+        "competitive": "The buffer works before the mission briefing arrives."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deep"
+    }
+  ]
+}

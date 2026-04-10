@@ -1,0 +1,155 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the main claim of Clarify: One Decision That Makes a Thousand?",
+      "choices": [
+        "clarity of essential intent eliminates noise because one real decision governs hundreds of later ones.",
+        "That staying open to every decent option is the safest path.",
+        "That motivation alone can solve the chapter's problem without a rule."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter makes this clear because clarity of essential intent eliminates noise because one real decision governs hundreds of later ones.",
+        "direct": "That is correct because clarity of essential intent eliminates noise because one real decision governs hundreds of later ones.",
+        "competitive": "The right answer is the one that actually obeys the chapter's rule: clarity of essential intent eliminates noise because one real decision governs hundreds of later ones."
+      }
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What problem does the chapter diagnose most directly?",
+      "choices": [
+        "teams and individuals drift into politics or scattered effort when the real purpose stays vague",
+        "A simple lack of talent in otherwise clear systems.",
+        "The belief that more information always fixes weak decisions."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter makes this clear because teams and individuals drift into politics or scattered effort when the real purpose stays vague",
+        "direct": "That is correct because teams and individuals drift into politics or scattered effort when the real purpose stays vague",
+        "competitive": "The right answer is the one that actually obeys the chapter's rule: teams and individuals drift into politics or scattered effort when the real purpose stays vague"
+      }
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What move does the chapter ask the reader to make?",
+      "choices": [
+        "replace pretty clear direction with essential intent that is specific enough to organize behavior",
+        "Wait for conditions to improve before making any hard choice.",
+        "Keep options broad so later regret stays lower."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter makes this clear because replace pretty clear direction with essential intent that is specific enough to organize behavior",
+        "direct": "That is correct because replace pretty clear direction with essential intent that is specific enough to organize behavior",
+        "competitive": "The right answer is the one that actually obeys the chapter's rule: replace pretty clear direction with essential intent that is specific enough to organize behavior"
+      }
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Why do the stakes of this chapter matter?",
+      "choices": [
+        "without clear intent, people chase short-term wins that do not add up to meaningful progress",
+        "Because the chapter is mainly about appearing more disciplined to other people.",
+        "Because the chapter tries to make life feel busier but more impressive."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter makes this clear because without clear intent, people chase short-term wins that do not add up to meaningful progress",
+        "direct": "That is correct because without clear intent, people chase short-term wins that do not add up to meaningful progress",
+        "competitive": "The right answer is the one that actually obeys the chapter's rule: without clear intent, people chase short-term wins that do not add up to meaningful progress"
+      }
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Which skill best summarizes the chapter's practical contribution?",
+      "choices": [
+        "defining essential intent",
+        "Unlimited flexibility under every condition",
+        "Avoiding all conflict by keeping options vague"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter makes this clear because defining essential intent",
+        "direct": "That is correct because defining essential intent",
+        "competitive": "The right answer is the one that actually obeys the chapter's rule: defining essential intent"
+      }
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What role does this chapter play in the wider book?",
+      "choices": [
+        "the eliminate section starts by naming the target precisely enough that later noes and cuts become easier",
+        "It disconnects the chapter from the rest of the system so it can stand alone.",
+        "It replaces the book's earlier logic with a new unrelated framework."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter makes this clear because the eliminate section starts by naming the target precisely enough that later noes and cuts become easier",
+        "direct": "That is correct because the eliminate section starts by naming the target precisely enough that later noes and cuts become easier",
+        "competitive": "The right answer is the one that actually obeys the chapter's rule: the eliminate section starts by naming the target precisely enough that later noes and cuts become easier"
+      }
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What tension does the chapter deliberately keep visible?",
+      "choices": [
+        "people love wordsmithing around goals because it feels safer than making a hard commitment",
+        "That the principle works only when there is no cost to using it.",
+        "That the chapter is mainly a slogan and not a real operating rule."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter makes this clear because people love wordsmithing around goals because it feels safer than making a hard commitment",
+        "direct": "That is correct because people love wordsmithing around goals because it feels safer than making a hard commitment",
+        "competitive": "The right answer is the one that actually obeys the chapter's rule: people love wordsmithing around goals because it feels safer than making a hard commitment"
+      }
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Which option best reflects a sourced support point from this chapter?",
+      "choices": [
+        "Lack of clarity creates politics or a leaderless 'it's all good' drift.",
+        "The chapter claims every opportunity should be scored emotionally rather than strategically.",
+        "The chapter says speed matters more than accuracy in all important decisions."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter makes this clear because lack of clarity creates politics or a leaderless 'it's all good' drift.",
+        "direct": "That is correct because lack of clarity creates politics or a leaderless 'it's all good' drift.",
+        "competitive": "The right answer is the one that actually obeys the chapter's rule: lack of clarity creates politics or a leaderless 'it's all good' drift."
+      }
+    },
+    {
+      "questionId": "q09",
+      "prompt": "In one sentence, what weak habit is the chapter trying to interrupt?",
+      "choices": [
+        "teams and individuals drift into politics or scattered effort when the real purpose stays vague",
+        "The habit of protecting essential work too aggressively.",
+        "The habit of making decisions only after every uncertainty disappears."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter makes this clear because teams and individuals drift into politics or scattered effort when the real purpose stays vague",
+        "direct": "That is correct because teams and individuals drift into politics or scattered effort when the real purpose stays vague",
+        "competitive": "The right answer is the one that actually obeys the chapter's rule: teams and individuals drift into politics or scattered effort when the real purpose stays vague"
+      }
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What question should a reader ask after finishing this chapter?",
+      "choices": [
+        "Where in my life do I need to replace pretty clear direction with essential intent that is specific enough to organize behavior?",
+        "How can I keep every good option alive a little longer?",
+        "How can I avoid ever paying the cost of a real priority?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter makes this clear because where in my life do I need to replace pretty clear direction with essential intent that is specific enough to organize behavior?",
+        "direct": "That is correct because where in my life do I need to replace pretty clear direction with essential intent that is specific enough to organize behavior?",
+        "competitive": "The right answer is the one that actually obeys the chapter's rule: where in my life do I need to replace pretty clear direction with essential intent that is specific enough to organize behavior?"
+      }
+    }
+  ]
+}

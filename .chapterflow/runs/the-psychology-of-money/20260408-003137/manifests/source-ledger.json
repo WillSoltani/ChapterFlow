@@ -1,0 +1,96 @@
+{
+  "bookId": "the-psychology-of-money",
+  "runId": "20260408-003137",
+  "lockedAt": "2026-04-08T00:41:18Z",
+  "selectionPolicy": {
+    "sourceDiscoveryMode": "web_bundle",
+    "sourcePolicy": "public_or_authorized_plus_secondary",
+    "editionSelectionMode": "ask_if_ambiguous"
+  },
+  "sources": [
+    {
+      "sourceId": "harriman-2020-official-page",
+      "kind": "official_metadata",
+      "authority": "Harriman House",
+      "url": "https://harriman.house/books/the-psychology-of-money/",
+      "capturedFacts": [
+        "Official title and author page",
+        "Official contents list including Confessions and Postscript",
+        "Official positioning of the book as 19 short stories"
+      ],
+      "quoteSupport": "public_page_only",
+      "role": "edition anchor and contents support"
+    },
+    {
+      "sourceId": "google-books-2020-preview",
+      "kind": "authorized_preview",
+      "authority": "Google Books",
+      "url": "https://books.google.com/books/about/The_Psychology_of_Money.html?id=l81NzQEACAAJ",
+      "capturedFacts": [
+        "Publication date Sep 8, 2020",
+        "Publisher Harriman House Limited",
+        "ISBN 9780857197689",
+        "Selected contents listing and page markers"
+      ],
+      "quoteSupport": "preview_visible_only",
+      "role": "bibliographic support"
+    },
+    {
+      "sourceId": "icpl-catalog",
+      "kind": "library_catalog",
+      "authority": "ICPL",
+      "url": "https://catstage.icpl.org/Record/1671099",
+      "capturedFacts": [
+        "2020 English print record",
+        "242-page physical description",
+        "Full contents list including Endnotes and Acknowledgements"
+      ],
+      "quoteSupport": "catalog_page_only",
+      "role": "full chapter list support"
+    },
+    {
+      "sourceId": "richland-catalog",
+      "kind": "library_catalog",
+      "authority": "Richland Library",
+      "url": "https://www.richlandlibrary.com/catalog/detail/1946456",
+      "capturedFacts": [
+        "Full contents line with Introduction through Postscript",
+        "242-page print description",
+        "References location in back matter"
+      ],
+      "quoteSupport": "catalog_page_only",
+      "role": "secondary chapter list confirmation"
+    },
+    {
+      "sourceId": "harriman-2025-special-hardback",
+      "kind": "official_alternate_edition",
+      "authority": "Harriman House",
+      "url": "https://www.harriman-house.com/POMspced",
+      "capturedFacts": [
+        "Special hardback edition",
+        "Published 16th Sep 2025",
+        "Bonus chapter language",
+        "272 pages"
+      ],
+      "quoteSupport": "public_page_only",
+      "role": "ambiguity check and rejected alternate edition"
+    }
+  ],
+  "secondarySources": [
+    {
+      "sourceId": "raincoast-2025-hardback",
+      "kind": "retail_bibliography",
+      "authority": "Raincoast Group",
+      "url": "https://www.raincoastgroup.com/item/9781804091609",
+      "capturedFacts": [
+        "On sale Sep 16/25",
+        "272-page hardcover listing for the alternate edition"
+      ]
+    }
+  ],
+  "notes": [
+    "No pirated or unauthorized mirrors were used.",
+    "Exact quotations were avoided in reader-facing prose because the frozen bundle is public-web and preview based rather than full-text complete.",
+    "The 2025 special hardback was considered but rejected because the user chose the original 2020 edition and the alternate adds bonus chapter content outside the original package."
+  ]
+}

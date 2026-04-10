@@ -1,0 +1,174 @@
+{
+  "chapterId": "ch01",
+  "chapterNumber": 1,
+  "chapterTitle": "The Three Voices Inside You",
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "Among Berne's three states, which one is the only one that takes in current information neutrally and is capable of changing its position when new evidence arrives?",
+      "choices": ["Parent", "Adult", "Child"],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Adult is the present-tense data-handling state. The Parent is busy running rules picked up from somebody else, and the Child is busy running feelings still alive from earlier in your own life. Only Adult is built to update on what is actually in front of it.",
+        "direct": "Adult is defined by present-tense observation and the willingness to revise on new evidence. Parent is a script from past authorities and does not update easily. Child is the original emotional life from one's own childhood and reacts before evaluating.",
+        "competitive": "Updating on new evidence is the move only Adult can make. Parent will try to fit the new evidence into the script it already has. Child will react to the evidence before reading it."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "In the code review where Priya leaves a comment on Marcus's pull request, what is the marker that her state has shifted by the end of the comment?",
+      "choices": [
+        "Marcus replies more slowly than usual",
+        "The technical content of the comment changes from the first sentence to the last",
+        "The register of the last clause is different from the rest of the comment, and Marcus's body answers the change before he does"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The shift is in the register, not the content. Marcus's hunched shoulders are the early signal because the body picks up the new voice before the conscious mind names it. A slower reply happens, but it happens downstream of the shift.",
+        "direct": "Register change is the marker; the content of the technical note stayed the same. Body language is the early signal because state shifts move faster than vocabulary. A slower reply is a consequence, not the marker.",
+        "competitive": "Register, not content, is the move you are looking for. The technical note Priya wrote does not change in information; it changes in voice. A reply that comes more slowly is downstream of that change, not evidence of it."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A senior colleague says, in a warm and encouraging tone, 'You should feel really proud of yourself for trying.' Which state is this most likely coming from?",
+      "choices": [
+        "Parent (specifically Nurturing Parent)",
+        "Adult",
+        "Child"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Warmth does not move a line out of Parent. The 'should' is a rule about what someone is supposed to feel, and rules about feeling are still Parent territory, just in their kinder face.",
+        "direct": "Nurturing Parent is the kind face of the same script. The word 'should' tied to a feeling is the marker; an Adult observation about the same situation would describe what happened, not prescribe the response.",
+        "competitive": "Look at the verb. 'Should feel' is a Parent prescription dressed in nurturing tone. An Adult observation would describe rather than instruct. The tone is kind; the move is still Parent."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Sam, nine days into managing a new team, hears a sentence in his old boss's cadence walk out of his own mouth during a one-on-one with Rebecca. Of the following, which move is the chapter actually recommending?",
+      "choices": [
+        "Apologize aloud for using the wrong tone and start the sentence over",
+        "Insert a brief silence before the next answer and use it to check whose voice is about to come out",
+        "Decide in advance to be the Adult and trust that decision to hold"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Inserting a small silence is the only move the chapter actually claims will work, and it only works partly. Apologizing on the spot can make the moment more about Sam than about Rebecca, and deciding to be Adult is exactly the kind of remote-control move the chapter says the model does not give you.",
+        "direct": "A short pause before the next response is the realistic intervention because it interrupts the script long enough to check it. Apologizing in the moment escalates self-focus. 'Deciding to be Adult' is the move the chapter explicitly says is unavailable, because state shifts are not under will.",
+        "competitive": "Five seconds of silence is the move the chapter actually backs. Apologizing on the spot puts the manager at the center of a conversation that should still be about the report. Willing yourself into Adult is the failure mode the chapter spends its hard-depth section refusing to promise."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "When Professor Halden answers Elena's factual question as if it were a challenge, the most accurate description of what happened is:",
+      "choices": [
+        "Halden was rude and Elena's question deserved a better answer",
+        "Elena's question was unclear and prompted a defensive answer",
+        "Elena's question was sent from Adult and Halden's answer came back from Parent, and the room felt the mismatch even though no one named it"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter is not making a moral claim about Halden. It is describing a state mismatch: Elena asked from Adult, and Halden answered from Parent. Calling him rude misses the structural point and does not give the reader a tool. Saying the question was unclear is a story about Elena, not about the exchange.",
+        "direct": "Mismatch between sending state and answering state is the diagnosis the chapter is offering. 'Rude' is a moral label that does not tell the reader anything they can use. 'Unclear question' is a story that locates the problem in the wrong person.",
+        "competitive": "Mismatch of states is the diagnosis. Rudeness is a label, and it gives you nothing to do next. Blaming the question lets the listener off the hook for the state they answered from. Naming the mismatch gives you a tool for the next class."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Danielle notices, in the low chair at her son's parent-teacher conference, that her body has slipped into Child. According to the chapter, what does noticing this give her?",
+      "choices": [
+        "A place to stand and a different question to ask next, but not a guaranteed escape from the Child state itself",
+        "An immediate exit from Child once she names it",
+        "Permission to apologize to Ms. Alvarez for being defensive"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter is careful here. Noticing is observational, not executive. Danielle does not get to leave the state by recognizing it. What she gets is a small gap in which she can ask the next question from a slightly different place. That is the smaller, more honest claim the model makes.",
+        "direct": "Recognition gives location, not control. The state does not lift on being named. The gap between recognition and reaction is where the next move can come from, and that gap is most of what the model offers a person. A preemptive apology is its own state move, not a fix.",
+        "competitive": "Recognition gives Danielle a place to stand. It does not give her a switch. The honest version of the chapter is that the state stays for a while and the person gets to ask a different question from inside it. Anyone selling her an exit from Child by naming it is selling something the model does not contain."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "A customer-service agent on a call answers an angry customer's reasonable question with a scripted line that begins, 'Sir, you need to understand...'. Which state is the agent operating from at that moment?",
+      "choices": [
+        "Adult",
+        "Child",
+        "Parent"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The phrase 'you need to understand' is a rule directed at someone else, which puts it in Parent. An Adult response would describe the actual policy or the actual situation. A Child response would react to the customer's anger emotionally, often defensively.",
+        "direct": "'You need to understand' is a Parent move because it is a rule about how the other person should be in this conversation. Adult would handle the substance. Child would react to the anger.",
+        "competitive": "Watch the verb. 'You need to' is rule-issuing. Rule-issuing belongs to Parent. The agent is not yet handling the customer's question; they are positioning the customer in the room. Adult would address content. Child would absorb the anger."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Noor, the morning after the dishes conversation with Chidi, wants to do something useful with the recognition that her state had shifted. Which next question is the chapter actually recommending?",
+      "choices": [
+        "How can I be more Adult in our next conversation?",
+        "What was actually happening in the kitchen last night, including which voices were in the room?",
+        "How can I get Chidi to recognize that he was being defensive?"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter explicitly redirects from 'how do I win the argument' to 'what was actually happening in the room.' That second question is what observation buys you. The first question treats the model as a self-improvement tool, and the third treats it as a way to label other people, which is the misuse the chapter warns against.",
+        "direct": "Locating what happened, including the voices present, is the use of recognition the chapter argues for. 'How can I be more Adult' is the executive misreading the chapter spends its limit-paragraph correcting. 'How do I get Chidi to recognize' is the diagnose-the-other-person misuse.",
+        "competitive": "'What was actually happening' is the question the chapter pays for. 'Be more Adult' is the move the chapter says you cannot make. Diagnosing Chidi is the move the chapter explicitly does not support, because the model is not for labeling other people's behavior at them."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "If the model cannot let a reader will themselves into Adult, why does the chapter argue it is still worth using?",
+      "choices": [
+        "Because recognition gives the reader a different question to ask next, and a different question leads to a different conversation, even when the state itself does not lift",
+        "Because the model is more accurate than other psychological frameworks",
+        "Because labeling other people's states gives the reader leverage in conflicts"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter's smaller, honest claim is that the model gives you a place to stand and a different question to ask. That different question is what changes the next conversation, not the state itself. Accuracy claims are not what the chapter argues, and using the model on other people is exactly the misuse it warns against.",
+        "direct": "Recognition opens a different question. A different question is what the model trades for the lack of an executive switch. The chapter does not make accuracy claims about the model relative to other frameworks. It explicitly rejects using the model to label other people.",
+        "competitive": "Different question, different conversation. That is the trade. Accuracy claims are not what the chapter is selling. Using the model as a labeling weapon is the failure mode the chapter is built to refuse."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If naming a state cannot make a reader choose it, what does the chapter say noticing is actually for?",
+      "choices": [
+        "For locating the state honestly, so the next move comes from a different place than the last move did",
+        "For gradually retraining the brain to default to Adult",
+        "For developing an internal scoreboard of how often each state shows up"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter calls this 'locating.' Once you know which voice was actually in the room, the question you ask next is different, and the answer you give next comes from somewhere different too. The chapter does not promise gradual retraining, and it does not propose the model as a counting tool.",
+        "direct": "Locating is the word the chapter uses. Noticing is for finding where the conversation actually was, so the next move is not the same move. There is no claim of gradual retraining and no scoreboard model in the chapter.",
+        "competitive": "Locate the state. That is the use. The next move comes from a different place because it has a different starting point. Retraining is not what the chapter promises, and treating the model as a scoreboard turns it into the diagnostic tool the chapter explicitly tells you it is not."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

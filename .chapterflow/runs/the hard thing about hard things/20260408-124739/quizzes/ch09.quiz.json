@@ -1,0 +1,155 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "A founder says, \"Just tell me the rule and I will follow it.\" Which response best matches Chapter 9?",
+      "choices": [
+        "Give the rule and stop thinking once the policy is stated",
+        "Name the principle, then decide based on the actual context",
+        "Avoid standards so no one has to make a hard call"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter keeps principles intact, but it says judgment has to decide how they fit the live situation.",
+        "direct": "This is the chapter's core move: principles guide, context decides.",
+        "competitive": "A rule that decides for you is usually the wrong rule."
+      }
+    },
+    {
+      "questionId": "q02",
+      "prompt": "A deal looks settled in a meeting, but the terms can still shift later. What should the leader do?",
+      "choices": [
+        "Act as if the outcome is fixed because the room sounded confident",
+        "Assume the outcome is uncertain until leverage, trust, and timing settle",
+        "Stop negotiating and move on to the next idea"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter treats deals as contingent until the real-world pressures stop moving.",
+        "direct": "False certainty distorts the next move; the leader has to stay alert to what is still provisional.",
+        "competitive": "Paper certainty is cheap. Real certainty keeps changing."
+      }
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A school team wants one permanent answer for a live accountability-versus-creativity problem. Which option fits the chapter?",
+      "choices": [
+        "Set one rule forever so the tension disappears",
+        "Preserve both standards and creativity, then choose based on context",
+        "Choose creativity every time because rules limit innovation"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says the tension stays live, so the leader has to balance both sides in context.",
+        "direct": "No permanent formula resolves accountability and creativity once and for all.",
+        "competitive": "If you think you solved the tension forever, you probably killed one side of it."
+      }
+    },
+    {
+      "questionId": "q04",
+      "prompt": "What is the chapter's boundary around \"no rules\"?",
+      "choices": [
+        "It means standards and accountability should be abandoned",
+        "It means discipline still matters, but rigid formula-thinking should not run the decision",
+        "It means the leader should improvise with no principles at all"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Chapter 9 rejects rigidity, not standards.",
+        "direct": "Anti-rigidity is not anti-discipline.",
+        "competitive": "No rules does not mean no standards; it means no universal script."
+      }
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Selah and Omar are in residential adviser leadership training. The policy is clean, but the actual moment needs timing, trust, and judgment. What should they do?",
+      "choices": [
+        "Use the policy exactly as written and ignore the live tradeoff",
+        "Read the context and choose the move that fits the real problem",
+        "Drop the policy entirely because any rule is a trap"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter asks readers to practice context reading, not rule worship or rule rejection.",
+        "direct": "The correct move is to fit the standard to the situation instead of hiding behind the standard.",
+        "competitive": "When the rule fits the wrong context more neatly than the real one, the rule has to lose."
+      }
+    },
+    {
+      "questionId": "q06",
+      "prompt": "A work team treats a contingent operating outcome as if it were already settled. What is the likely consequence?",
+      "choices": [
+        "The team becomes more flexible because confidence spreads",
+        "The next move is distorted because the leader is acting on false certainty",
+        "The chapter would say this is harmless if the policy is clear"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says contingency has to stay visible until the situation actually settles.",
+        "direct": "Acting as if the outcome is fixed warps judgment and the next decision cycle.",
+        "competitive": "If you call it settled too early, you will solve the wrong problem with confidence."
+      }
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Which statement best captures the chapter's view of principles?",
+      "choices": [
+        "Principles are useless because every situation is different",
+        "Principles matter, but they do not replace judgment",
+        "Principles should always override context because consistency is the goal"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter keeps principles in place while insisting they still need judgment to become useful.",
+        "direct": "Principles guide what matters; judgment decides how to act in the actual context.",
+        "competitive": "A principle that thinks for you has already become a script."
+      }
+    },
+    {
+      "questionId": "q08",
+      "prompt": "A leader keeps repeating \"This is how strong companies do it\" instead of looking at the current tradeoff. What is the chapter's critique?",
+      "choices": [
+        "The leader is being disciplined in the right way",
+        "The leader may be using the rule as shelter from harder judgment",
+        "The leader is proving that standards should be removed"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns that a rule can become a hiding place when it stops serving the real problem.",
+        "direct": "Stress can turn policy into avoidance with better branding.",
+        "competitive": "A neat slogan can hide a messy problem long enough to become expensive."
+      }
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Which choice best shows the chapter's transfer across settings?",
+      "choices": [
+        "Use the same rule everywhere so the team never has to think",
+        "Use accountability, creativity, and context together whether the setting is startup, school, or personal",
+        "Treat the chapter as permission to ignore standards in non-startup settings"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter transfers by keeping the tension visible, not by turning entrepreneurship into chaos permission.",
+        "direct": "Context-sensitive judgment works across settings because the issue is how to read the moment, not the industry label.",
+        "competitive": "If the setting changes, the rule may not survive, but judgment still can."
+      }
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What is the chapter's core challenge to leaders?",
+      "choices": [
+        "How can I find a universal rule that removes the need to decide?",
+        "When does following a clean rule become a way to avoid harder judgment?",
+        "How can I make every situation fit the same policy?"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter's threshold question is about when a rule starts protecting the leader from the actual context.",
+        "direct": "Chapter 9 asks leaders to notice when a clean rule becomes avoidance.",
+        "competitive": "The danger is not rule-breaking. The danger is letting the rule think for you."
+      }
+    }
+  ]
+}

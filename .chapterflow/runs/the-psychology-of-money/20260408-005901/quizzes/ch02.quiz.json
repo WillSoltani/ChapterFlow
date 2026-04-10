@@ -1,0 +1,158 @@
+{
+  "chapterId": "ch02-no-ones-crazy",
+  "number": 2,
+  "title": "No One's Crazy",
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch02-no-ones-crazy-q01",
+      "prompt": "What is the main claim of No One's Crazy?",
+      "choices": [
+        "Every money decision is equally wise",
+        "Money behavior often makes sense once you understand the experience shaping it",
+        "Only recent generations understand money correctly"
+      ],
+      "correctAnswerIndex": 1,
+      "explanation": {
+        "gentle": "The chapter asks for understanding before judgment, not the end of judgment.",
+        "direct": "Housel's point is that biography often explains financial behavior that looks irrational from the outside.",
+        "competitive": "The right answer upgrades interpretation. Context makes behavior legible before it gets evaluated."
+      }
+    },
+    {
+      "questionId": "ch02-no-ones-crazy-q02",
+      "prompt": "Why can two intelligent people react very differently to the same financial risk?",
+      "choices": [
+        "Because one of them is probably ignoring evidence entirely",
+        "Because their lived economic histories may have shaped different definitions of danger",
+        "Because financial principles change completely from person to person"
+      ],
+      "correctAnswerIndex": 1,
+      "explanation": {
+        "gentle": "Different experiences can make the same choice feel very different from the inside.",
+        "direct": "The chapter argues that memory and context shape what risk means before data is processed.",
+        "competitive": "Same chart, different biography, different felt threat."
+      }
+    },
+    {
+      "questionId": "ch02-no-ones-crazy-q03",
+      "prompt": "What does the chapter say about many modern investing and retirement norms?",
+      "choices": [
+        "They are timeless habits people have followed for centuries",
+        "They are historically recent, which should increase humility about judging other people",
+        "They are too new to take seriously"
+      ],
+      "correctAnswerIndex": 1,
+      "explanation": {
+        "gentle": "The chapter uses recency to weaken smug certainty, not to dismiss current systems altogether.",
+        "direct": "Present-day norms are younger than many people assume, so they should not be treated as obvious timeless common sense.",
+        "competitive": "A young rulebook does not deserve old confidence."
+      }
+    },
+    {
+      "questionId": "ch02-no-ones-crazy-q04",
+      "prompt": "What important limit does the chapter place on the phrase \"no one's crazy\"?",
+      "choices": [
+        "It means context explains a decision, but does not automatically endorse it",
+        "It means no money decision should ever be criticized",
+        "It means evidence matters less than feelings"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": {
+        "gentle": "The chapter asks for understanding first, not permanent approval.",
+        "direct": "Explanation and endorsement are different. A decision can be understandable and still poorly calibrated.",
+        "competitive": "Context is a lens, not a permission slip."
+      }
+    },
+    {
+      "questionId": "ch02-no-ones-crazy-q05",
+      "prompt": "Nina's disagreement with Marcus about company cash mainly illustrates what chapter lesson?",
+      "choices": [
+        "Conservative policies are always correct",
+        "Past crises can shape present caution, so context should be examined before judgment",
+        "Cash policy should always be set by the newest team member"
+      ],
+      "correctAnswerIndex": 1,
+      "explanation": {
+        "gentle": "The chapter would want Nina to understand what history Marcus is responding to before deciding whether he is too cautious now.",
+        "direct": "The example shows that a policy may be anchored in remembered risk, not random personality.",
+        "competitive": "If you skip the history, you misread the move."
+      }
+    },
+    {
+      "questionId": "ch02-no-ones-crazy-q06",
+      "prompt": "Why does copied money advice often fail according to this chapter?",
+      "choices": [
+        "Because advice is never useful",
+        "Because the adviser and the reader may be carrying very different histories, tolerances, and assumptions",
+        "Because only professionals can use advice well"
+      ],
+      "correctAnswerIndex": 1,
+      "explanation": {
+        "gentle": "Advice can break when it is detached from the context that made it work.",
+        "direct": "The strategy may be fine, but the biography and conditions may not transfer.",
+        "competitive": "Borrowed advice fails when the borrowed world does not come with it."
+      }
+    },
+    {
+      "questionId": "ch02-no-ones-crazy-q07",
+      "prompt": "What is one reason saving might feel especially important to someone in this chapter's framework?",
+      "choices": [
+        "Because saving is always mathematically optimal in every context",
+        "Because past instability can make liquidity feel like protection against remembered chaos",
+        "Because saving means the person dislikes investing"
+      ],
+      "correctAnswerIndex": 1,
+      "explanation": {
+        "gentle": "The chapter treats some saving behavior as a response to memory, not just a response to interest rates.",
+        "direct": "Saving can function as protection shaped by what a person has seen before.",
+        "competitive": "Cash may be defending against a remembered world, not only chasing a low return."
+      }
+    },
+    {
+      "questionId": "ch02-no-ones-crazy-q08",
+      "prompt": "Why is Daniel's changed view of his parents' cash habit important?",
+      "choices": [
+        "Because it proves cash is always the best choice",
+        "Because it shows how historical context can transform contempt into a more accurate reading",
+        "Because it means generational habits should never be updated"
+      ],
+      "correctAnswerIndex": 1,
+      "explanation": {
+        "gentle": "The reframe improves understanding even if it does not create full agreement.",
+        "direct": "Historical context helps Daniel judge the habit more precisely instead of dismissing it as obvious stupidity.",
+        "competitive": "The upgrade is interpretive. Once the old threat is visible, the habit becomes readable instead of laughable."
+      }
+    },
+    {
+      "questionId": "ch02-no-ones-crazy-q09",
+      "prompt": "What inward-looking warning does the chapter give the reader?",
+      "choices": [
+        "Your own money instincts may feel like common sense because you are inside your own history",
+        "Your own instincts are always more objective than other people's",
+        "Self-reflection is less useful than copying experts"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants humility to turn inward as well as outward.",
+        "direct": "Your own rationality may be historically shaped in ways that are hard for you to notice.",
+        "competitive": "The hardest biography to see is your own because it feels like neutral logic."
+      }
+    },
+    {
+      "questionId": "ch02-no-ones-crazy-q10",
+      "prompt": "Why does Chapter 3 naturally follow this one?",
+      "choices": [
+        "Because once history explains behavior, the next question is what outside forces still shape outcomes beyond personal judgment",
+        "Because the next chapter rejects history and focuses only on skill",
+        "Because this chapter fully explains every difference in financial outcomes"
+      ],
+      "correctAnswerIndex": 0,
+      "explanation": {
+        "gentle": "Chapter 2 explains part of behavior. Chapter 3 widens the frame to luck and risk beyond biography.",
+        "direct": "The next logical layer after experience-shaped judgment is the role of uncontrollable forces in outcomes.",
+        "competitive": "History explains the operator. Luck and risk still move the scoreboard."
+      }
+    }
+  ]
+}

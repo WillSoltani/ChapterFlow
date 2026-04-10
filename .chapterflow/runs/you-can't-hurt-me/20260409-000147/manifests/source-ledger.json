@@ -1,0 +1,118 @@
+{
+  "bookId": "you-can't-hurt-me",
+  "runId": "20260409-000147",
+  "lockedAt": "2026-04-08T23:59:00-03:00",
+  "selectionPolicy": {
+    "sourceDiscoveryMode": "web_bundle",
+    "sourcePolicy": "public_or_authorized_plus_secondary",
+    "editionSelectionMode": "ask_if_ambiguous"
+  },
+  "sources": [
+    {
+      "sourceId": "google-books-2018-metadata",
+      "kind": "authorized_preview_metadata",
+      "authority": "Google Books",
+      "url": "https://books.google.co.jp/books?vid=ISBN9781544512273&redir_esc=y",
+      "capturedFacts": [
+        "2018 Lioncrest Publishing edition metadata",
+        "363-page illustrated edition listing",
+        "ISBN 9781544512273",
+        "book overview copy for the standard English edition"
+      ],
+      "quoteSupport": "short_visible_lines_only",
+      "role": "edition metadata anchor"
+    },
+    {
+      "sourceId": "google-books-2021-toc-preview",
+      "kind": "authorized_preview_metadata",
+      "authority": "Google Books",
+      "url": "https://books.google.com/books/about/Can_t_Hurt_Me.html?id=OSchEAAAQBAJ",
+      "capturedFacts": [
+        "visible table of contents for the same 11-chapter English text family",
+        "chapter title sequence from Introduction through Chapter 11",
+        "e-book metadata for a later digital listing with matching chapter order"
+      ],
+      "quoteSupport": "toc_titles_and_short_visible_lines_only",
+      "role": "chapter map and heading support"
+    },
+    {
+      "sourceId": "lioncrest-book-page",
+      "kind": "official_publisher_page",
+      "authority": "Lioncrest Publishing",
+      "url": "https://lioncrest.com/books",
+      "capturedFacts": [
+        "Lioncrest still lists Can't Hurt Me by David Goggins in its active catalog",
+        "publisher continuity support for the title family"
+      ],
+      "quoteSupport": "public_page_only",
+      "role": "publisher continuity confirmation"
+    },
+    {
+      "sourceId": "free-library-record",
+      "kind": "library_catalog_record",
+      "authority": "Free Library of Philadelphia / OCLC-linked catalog metadata",
+      "url": "https://catalog.freelibrary.org/Record/2448199",
+      "capturedFacts": [
+        "11 numbered chapters listed in order",
+        "electronic record tied to ISBN 9781544512266",
+        "chapter-title confirmation independent of Google Books"
+      ],
+      "quoteSupport": "toc_titles_only",
+      "role": "table-of-contents cross-check"
+    },
+    {
+      "sourceId": "supersummary-intro-2",
+      "kind": "secondary_chapter_summary",
+      "authority": "SuperSummary",
+      "url": "https://www.supersummary.com/cant-hurt-me/introduction-chapter-2-summary/",
+      "capturedFacts": [
+        "chapter-level summary support for the introduction and Chapters 1-2",
+        "challenge framing for early accountability and trauma inventory"
+      ],
+      "quoteSupport": "paraphrase_only",
+      "role": "chapter interpretation support"
+    },
+    {
+      "sourceId": "supersummary-3-5",
+      "kind": "secondary_chapter_summary",
+      "authority": "SuperSummary",
+      "url": "https://www.supersummary.com/cant-hurt-me/chapters-3-5-summary/",
+      "capturedFacts": [
+        "chapter-level summary support for Chapters 3-5",
+        "weight-loss mission, Hell Week, and calloused-mind progression"
+      ],
+      "quoteSupport": "paraphrase_only",
+      "role": "chapter interpretation support"
+    },
+    {
+      "sourceId": "supersummary-6-8",
+      "kind": "secondary_chapter_summary",
+      "authority": "SuperSummary",
+      "url": "https://www.supersummary.com/cant-hurt-me/chapters-6-8-summary/",
+      "capturedFacts": [
+        "chapter-level summary support for Chapters 6-8",
+        "cookie jar, 40% rule, governor, and strategic-planning material"
+      ],
+      "quoteSupport": "paraphrase_only",
+      "role": "chapter interpretation support"
+    },
+    {
+      "sourceId": "supersummary-9-11",
+      "kind": "secondary_chapter_summary",
+      "authority": "SuperSummary",
+      "url": "https://www.supersummary.com/cant-hurt-me/chapters-9-11-summary/",
+      "capturedFacts": [
+        "chapter-level summary support for Chapters 9-11",
+        "leadership, failure review, illness, forgiveness, and what-if framing"
+      ],
+      "quoteSupport": "paraphrase_only",
+      "role": "chapter interpretation support"
+    }
+  ],
+  "secondarySources": [],
+  "notes": [
+    "No pirated or obviously unauthorized mirrors were used.",
+    "The frozen bundle supports paraphrased synthesis, chapter titles, and short visible lines only.",
+    "There is no lawful full-text freeze in this bundle, so unsupported claims should be narrowed or excluded rather than expanded."
+  ]
+}

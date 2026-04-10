@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
 
 interface BookCoverProps {
   title: string;
@@ -30,28 +31,41 @@ export function BookCover({
   height,
   borderRadius,
 }: BookCoverProps) {
-  if (coverImage) {
+  const [failedSrc, setFailedSrc] = useState<string | null>(null);
+  const activeCoverImage = coverImage && failedSrc !== coverImage ? coverImage : undefined;
+
+  if (activeCoverImage) {
     if (fill) {
       return (
         <Image
-          src={coverImage}
+          src={activeCoverImage}
           alt={title}
           fill
           sizes="(max-width: 768px) 160px, 200px"
           className={`object-cover ${className}`}
           style={{ borderRadius }}
+          onError={() => setFailedSrc(activeCoverImage)}
         />
       );
     }
     return (
-      <Image
-        src={coverImage}
-        alt={title}
-        width={width ?? 160}
-        height={height ?? 240}
-        className={`object-cover ${className}`}
-        style={{ width, height, borderRadius }}
-      />
+      <div
+        className={`relative overflow-hidden ${className}`}
+        style={{
+          width: width ?? 160,
+          height: height ?? 240,
+          borderRadius,
+        }}
+      >
+        <Image
+          src={activeCoverImage}
+          alt={title}
+          fill
+          sizes={`${width ?? 160}px`}
+          className="object-cover"
+          onError={() => setFailedSrc(activeCoverImage)}
+        />
+      </div>
     );
   }
 

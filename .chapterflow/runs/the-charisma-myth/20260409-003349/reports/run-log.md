@@ -1,0 +1,86 @@
+# Run Log
+
+- 2026-04-08T00:33:49-03:00 Phase 0 preflight started for `The Charisma Myth` by `Olivia Fox Cabane`.
+- 2026-04-08T00:33:49-03:00 Manifest repair: normalized title and author fields, restored `editionSelectionMode = ask_if_ambiguous`, and preserved the launched `bookId` / `runId`.
+- 2026-04-08T00:33:49-03:00 Confirmed manifest lock:
+  - title: `The Charisma Myth`
+  - author: `Olivia Fox Cabane`
+  - editionPreference: `ask_if_ambiguous`
+  - bookId: `the-charisma-myth`
+  - runId: `20260409-003349`
+  - outputProfile: `flagship_v4_compatible`
+  - learningContract: `research_native`
+  - runProfile: `balanced_flagship`
+  - validationMode: `chapter_gate`
+  - chapterGateMode: `automatic_continue`
+  - chapterGateQuizMode: `generate`
+  - scenarioTonePolicy: `required`
+  - sourceDiscoveryMode: `web_bundle`
+  - editionSelectionMode: `ask_if_ambiguous`
+  - sourcePolicy: `public_or_authorized_plus_secondary`
+  - forbidBulkGenerators: `true`
+  - releaseAssembleFromValidatedOnly: `true`
+  - preserveApprovedChapterHashes: `true`
+- 2026-04-08T00:33:49-03:00 Created the required v13 run directories under `.chapterflow/runs/the-charisma-myth/20260409-003349/`.
+- 2026-04-08T00:33:49-03:00 Pack audit passed with `FAIL=0`.
+- 2026-04-08T00:33:49-03:00 Phase 0 complete.
+- 2026-04-08T21:41:56-03:00 Phase 1 source discovery froze the current official English 2013 Portfolio family after resolving a material prior-edition split against the 2012 chapter map.
+- 2026-04-08T21:41:56-03:00 Wrote `manifests/source-ledger.json`, `manifests/edition-lock.json`, `source-freeze/source-discovery.md`, `source-freeze/source-freeze-report.md`, `source-freeze/book-source.md`, `source-freeze/toc.json`, and `sidecars/source/source-heading-index.json`.
+- 2026-04-08T21:41:56-03:00 Updated `manifests/run-manifest.json` with the locked edition metadata, chapter range `1-13`, and source provenance.
+- 2026-04-08T21:41:56-03:00 Source guard passed with `FAIL=0 WARN=0`. Phase 1 complete.
+- 2026-04-08T21:41:56-03:00 Phase 2 wrote condensed memory files: `memory/style-memory.md`, `memory/quality-memory.md`, and role cards for writer, editor, critic, converter, quiz, validator, and patch.
+- 2026-04-08T21:41:56-03:00 Phase 2 complete.
+- 2026-04-08T21:41:56-03:00 Phase 3 wrote `skeleton/book-skeleton.md` covering all 13 chapters with chapter intent, source richness, concept density, moral flags, rotation plan, school-setting plan, vocabulary watchlist, motif/callback opportunities, thin-chapter risks, and premium-routing candidates.
+- 2026-04-08T21:41:56-03:00 Phase 3 complete.
+- 2026-04-08T21:41:56-03:00 Phase 4 pre-writer package for Chapter 1 wrote `briefs/ch01.md`, `outlines/ch01.md`, `quiz-blueprints/ch01.md`, `sidecars/source/ch01.source.txt`, and `sidecars/source/ch01.source.json`.
+- 2026-04-08T21:41:56-03:00 Chapter 1 writer and editor passes wrote `drafts/canonical/ch01.md` and `drafts/edited/ch01.md`.
+- 2026-04-08T21:41:56-03:00 Chapter 1 critic gate passed at `11/12` and approved conversion with no prose reroute.
+- 2026-04-08T21:41:56-03:00 Chapter 1 converter and quiz passes wrote `structured/ch01.chapter.json` and `quizzes/ch01.quiz.json`.
+- 2026-04-08T21:41:56-03:00 Corrective repair: removed a banned contamination phrase from the hard breakdown before final validation and regenerated the validated chapter, reading metrics, and review wrapper.
+- 2026-04-08T21:41:56-03:00 Chapter 1 validator produced `validated/ch01.chapter.json`, `validated/ch01.review-package.json`, `sidecars/ch01.reading-metrics.json`, and `reports/ch01.validation.md`.
+- 2026-04-08T21:41:56-03:00 Chapter 1 final checks passed: chapter lint `FAIL=0 WARN=0`, review-package lint `FAIL=0 WARN=0`, artifact guard `FAIL=0 WARN=0`.
+- 2026-04-08T21:41:56-03:00 Sealed Chapter 1 hash `6426f331ec7a3f20ab3878c2a4cd80804bcd829936f282948dc1638bae56dca1` into `continuity/continuity-state.json`. Phase 4 complete.
+
+- 2026-04-08T22:23:14-03:00 Phase 5 Chapter 2 converter repair raised the undersized breakdown fields to the required easy and hard word floors before final validation.
+- 2026-04-08T22:23:14-03:00 Chapter 2 quiz and validator passes wrote `quizzes/ch02.quiz.json`, `validated/ch02.chapter.json`, `validated/ch02.review-package.json`, `sidecars/ch02.reading-metrics.json`, and `reports/ch02.validation.md`.
+- 2026-04-08T22:23:14-03:00 Chapter 2 final checks passed: chapter lint `FAIL=0 WARN=0`, review-package lint `FAIL=0 WARN=0`, artifact guard `FAIL=0 WARN=0`.
+- 2026-04-08T22:23:14-03:00 Sealed Chapter 2 hash `ea44cd11cd770457d0952e88167061f3e4ddffc3ea6e1171246dd5a471b16dc1` into `continuity/continuity-state.json` and recorded the Chapter 1-2 baseline floor at `reports/baseline-quality.md`.
+- 2026-04-08T22:23:14-03:00 Wave `01-02` is clean. Automatic continuation is unlocked for wave `03-04`.
+- 2026-04-08T22:29:57-03:00 Wave `03-04` pre-writer package wrote `briefs/ch03.md`, `outlines/ch03.md`, `quiz-blueprints/ch03.md`, `sidecars/source/ch03.source.txt`, `sidecars/source/ch03.source.json`, `briefs/ch04.md`, `outlines/ch04.md`, `quiz-blueprints/ch04.md`, `sidecars/source/ch04.source.txt`, and `sidecars/source/ch04.source.json`.
+- 2026-04-08T22:29:57-03:00 Chapters 3 and 4 writer/editor passes wrote `drafts/canonical/ch03.md`, `drafts/edited/ch03.md`, `drafts/canonical/ch04.md`, and `drafts/edited/ch04.md`.
+- 2026-04-08T22:29:57-03:00 Chapters 3 and 4 critic gates passed at `11/12` with no prose reroute. Structured conversion is now the active stage for wave `03-04`.
+- 2026-04-08T23:17:41-03:00 Chapter 4 converter repair raised undersized easy and medium breakdown fields to the required word floors and completed the missing chapter-gate quiz before final validation.
+- 2026-04-08T23:17:41-03:00 Chapter 4 validator produced `quizzes/ch04.quiz.json`, `validated/ch04.chapter.json`, `validated/ch04.review-package.json`, `sidecars/ch04.reading-metrics.json`, and `reports/ch04.validation.md`.
+- 2026-04-08T23:18:32-03:00 Strict-path repair: removed the premature `ch04` continuity seal, re-ran chapter lint, review-package lint, and artifact guard, then restored the approved hash only after all checks returned `FAIL=0 WARN=0`.
+- 2026-04-08T23:18:32-03:00 Chapter 4 final checks passed: chapter lint `FAIL=0 WARN=0`, review-package lint `FAIL=0 WARN=0`, artifact guard `FAIL=0 WARN=0`.
+- 2026-04-08T23:18:32-03:00 Sealed Chapter 4 hash `5e58f176d2f9b6b40ac171a20e8a9ca59bb8ea6d81910aa7e30e9cfa004180b4` into `continuity/continuity-state.json`.
+- 2026-04-08T23:18:32-03:00 Wave `03-04` is clean. Automatic continuation is unlocked for wave `05-06`.
+- 2026-04-08T23:24:41-03:00 Wave `05-06` pre-writer package wrote `briefs/ch05.md`, `outlines/ch05.md`, `quiz-blueprints/ch05.md`, `sidecars/source/ch05.source.txt`, `sidecars/source/ch05.source.json`, `briefs/ch06.md`, `outlines/ch06.md`, `quiz-blueprints/ch06.md`, `sidecars/source/ch06.source.txt`, and `sidecars/source/ch06.source.json`.
+- 2026-04-08T23:24:41-03:00 Chapters 5 and 6 writer/editor passes wrote `drafts/canonical/ch05.md`, `drafts/edited/ch05.md`, `drafts/canonical/ch06.md`, and `drafts/edited/ch06.md`.
+- 2026-04-08T23:24:41-03:00 Chapters 5 and 6 critic gates passed at `11/12` with no prose reroute. Structured conversion is now the active stage for wave `05-06`.
+- 2026-04-09T11:28:17-03:00 Chapter 5 converter repair raised undersized easy breakdown fields, trimmed the oversized hard gentle breakdown to the required band, and rebalanced quiz answer positions before final validation.
+- 2026-04-09T11:28:17-03:00 Chapter 5 validator produced `quizzes/ch05.quiz.json`, `validated/ch05.chapter.json`, `validated/ch05.review-package.json`, `sidecars/ch05.reading-metrics.json`, and `reports/ch05.validation.md`.
+- 2026-04-09T11:28:17-03:00 Chapter 5 final checks passed: chapter lint `FAIL=0 WARN=0`, review-package lint `FAIL=0 WARN=0`, artifact guard `FAIL=0 WARN=0`.
+- 2026-04-09T11:28:17-03:00 Sealed Chapter 5 hash `d88d83f49c91c966c8c0697a86b697f364d7da38e8d5b944d75958540fb22568` into `continuity/continuity-state.json`.
+
+- 2026-04-09T14:54:11Z Chapter 6 converter repair raised the undersized easy, medium competitive, and hard direct/competitive breakdown fields and rebalanced quiz answer positions before final validation.
+- 2026-04-09T14:54:11Z Chapter 6 validator produced `quizzes/ch06.quiz.json`, `validated/ch06.chapter.json`, `validated/ch06.review-package.json`, `sidecars/ch06.reading-metrics.json`, and `reports/ch06.validation.md`.
+- 2026-04-09T14:54:11Z Chapter 6 final checks passed: chapter lint `FAIL=0 WARN=0`, review-package lint `FAIL=0 WARN=0`, artifact guard `FAIL=0 WARN=0`.
+- 2026-04-09T14:54:11Z Sealed Chapter 6 hash `278435433b549a2319b90a1ae183b730a069412eaf1edf4c699bc6d892e00f03` into `continuity/continuity-state.json`.
+- 2026-04-09T14:54:11Z Wave `05-06` is clean. Automatic continuation is unlocked for wave `07-08`.
+- 2026-04-09T14:57:10Z Wave `07-08` pre-writer package wrote `briefs/ch07.md`, `outlines/ch07.md`, `quiz-blueprints/ch07.md`, `sidecars/source/ch07.source.txt`, `sidecars/source/ch07.source.json`, `briefs/ch08.md`, `outlines/ch08.md`, `quiz-blueprints/ch08.md`, `sidecars/source/ch08.source.txt`, and `sidecars/source/ch08.source.json`.
+- 2026-04-09T15:03:00Z Chapters 7 and 8 writer/editor passes wrote `drafts/canonical/ch07.md`, `drafts/edited/ch07.md`, `drafts/canonical/ch08.md`, and `drafts/edited/ch08.md`.
+- 2026-04-09T15:03:00Z Chapters 7 and 8 critic gates passed at `11/12` with no prose reroute. Structured conversion is now the active stage for wave `07-08`.
+
+- 2026-04-09T15:11:57Z Chapter 7 converter pass produced a chapter-gate clean structured artifact and rebalanced quiz answer positions before final validation.
+- 2026-04-09T15:11:57Z Chapter 7 validator produced `quizzes/ch07.quiz.json`, `validated/ch07.chapter.json`, `validated/ch07.review-package.json`, `sidecars/ch07.reading-metrics.json`, and `reports/ch07.validation.md`.
+- 2026-04-09T15:11:57Z Chapter 7 final checks passed: chapter lint `FAIL=0 WARN=0`, review-package lint `FAIL=0 WARN=0`, artifact guard `FAIL=0 WARN=0`.
+- 2026-04-09T15:11:57Z Sealed Chapter 7 hash `4532663e17433e2662d9761097baf60d3c75e48dfbe5b89830fe1233b6ba58d7` into `continuity/continuity-state.json`.
+- 2026-04-09T15:36:24Z Chapter 8 converter repair rebalanced quiz answer positions inside the structured artifact before final validation.
+- 2026-04-09T15:36:24Z Chapter 8 validator produced `quizzes/ch08.quiz.json`, `validated/ch08.chapter.json`, `validated/ch08.review-package.json`, `sidecars/ch08.reading-metrics.json`, and `reports/ch08.validation.md`.
+- 2026-04-09T15:36:24Z Chapter 8 final checks passed: chapter lint `FAIL=0 WARN=0`, review-package lint `FAIL=0 WARN=0`, artifact guard `FAIL=0 WARN=0`.
+- 2026-04-09T15:36:24Z Sealed Chapter 8 hash `c93fc7fa6517199b1fe1b98e8684444957aab7be127eee4320b6432caa513ca0` into `continuity/continuity-state.json`.
+- 2026-04-09T15:36:24Z Wave `07-08` is clean. Automatic continuation is unlocked for wave `09-10`.
+- 2026-04-09T15:50:12Z Wave `09-10` pre-writer package wrote `briefs/ch09.md`, `outlines/ch09.md`, `quiz-blueprints/ch09.md`, `sidecars/source/ch09.source.txt`, `sidecars/source/ch09.source.json`, `briefs/ch10.md`, `outlines/ch10.md`, `quiz-blueprints/ch10.md`, `sidecars/source/ch10.source.txt`, and `sidecars/source/ch10.source.json`.
+- 2026-04-09T15:56:41Z Chapters 9 and 10 writer/editor passes wrote `drafts/canonical/ch09.md`, `drafts/edited/ch09.md`, `drafts/canonical/ch10.md`, and `drafts/edited/ch10.md`.
+- 2026-04-09T15:56:41Z Chapters 9 and 10 critic gates passed at `11/12` with no prose reroute. Structured conversion is now the active stage for wave `09-10`.

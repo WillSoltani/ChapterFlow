@@ -446,7 +446,7 @@ function SummaryStep({
       {/* Header with book cover */}
       <div className="flex items-start gap-2">
         <img
-          src="/book-covers/the-48-laws-of-power-20260328-real.jpg"
+          src="/book-covers/the-power-of-habit.svg"
           alt=""
           className="w-5 h-7 rounded-sm object-cover shrink-0"
           style={{
@@ -464,7 +464,7 @@ function SummaryStep({
             className="text-[9px]"
             style={{ color: "var(--text-secondary)" }}
           >
-            Atomic Habits
+            The Power of Habit
           </p>
         </div>
       </div>

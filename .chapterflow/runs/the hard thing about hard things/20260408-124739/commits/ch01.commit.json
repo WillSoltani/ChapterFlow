@@ -1,0 +1,16 @@
+{
+  "chapter": 1,
+  "committedAt": "2026-04-08T16:57:56.059308Z",
+  "artifacts": {
+    "validatedChapter": ".chapterflow/runs/the hard thing about hard things/20260408-124739/validated/ch01.chapter.json",
+    "reviewPackage": ".chapterflow/runs/the hard thing about hard things/20260408-124739/validated/ch01.review-package.json",
+    "quiz": ".chapterflow/runs/the hard thing about hard things/20260408-124739/quizzes/ch01.quiz.json",
+    "validationReport": ".chapterflow/runs/the hard thing about hard things/20260408-124739/reports/ch01.validation.md"
+  },
+  "hashes": {
+    "validatedChapter": "45af8238362471d728084c8f648f2b32044b3083d1d1b92716d1e5998c2eb9bc",
+    "reviewPackage": "d30724b4224f454961f01268ab299d2e0b01df46cd13b351654cdc89f86f6bca",
+    "quiz": "3a7ee3cad3643b60fab3a72868e9914ada1a94d71126fbaf447f061b70c5c061",
+    "validationReport": "e1dac1b66856702145a672de98c7b06d56732b5b2df5604bc5f8c436e9131ce4"
+  }
+}

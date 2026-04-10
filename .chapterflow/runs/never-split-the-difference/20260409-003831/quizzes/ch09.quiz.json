@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What changes when negotiation enters Chapter 9's bargaining zone?",
+      "choices": [
+        "Numbers and concessions become visible signals of discipline",
+        "The earlier chapters stop mattering completely",
+        "Emotion no longer affects the negotiation"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Bargaining makes movement easier for the other side to read.",
+        "direct": "Price and term haggling turn each move into evidence about leverage and patience.",
+        "competitive": "The money fight makes your structure visible."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does Chapter 9 resist splitting the difference as a default move?",
+      "choices": [
+        "Because compromise is always wrong",
+        "Because quick splitting can signal discomfort relief rather than strategy",
+        "Because the midpoint is illegal in negotiation"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns that fast midpoint movement can leak leverage.",
+        "direct": "Quick splitting may show the other side that pressure is working on you.",
+        "competitive": "The room may hear softness, not maturity."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is the main point of using non-round numbers here?",
+      "choices": [
+        "They guarantee better deals",
+        "They can sound more deliberate and grounded than round ones",
+        "They eliminate all disagreement about value"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter treats number form as part of the bargaining message.",
+        "direct": "A more precise number can feel less casually invented and more anchored to reality.",
+        "competitive": "Digits shape the room's read of seriousness."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Asha's client wants to split the difference immediately. What move best fits Chapter 9?",
+      "choices": [
+        "Accept the split right away because it sounds fair",
+        "Pause before defaulting to the midpoint and test whether stronger bargaining structure is possible",
+        "End the negotiation rather than discuss numbers"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants discipline before relief.",
+        "direct": "A quick midpoint can reveal softness before the bargain has been properly worked.",
+        "competitive": "Do not donate comfort too early."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why does concession rhythm matter in this chapter?",
+      "choices": [
+        "Because it can teach the other side how to keep pressing",
+        "Because any movement means the negotiation has failed",
+        "Because concession size matters but timing never does"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Patterns of movement communicate patience and range.",
+        "direct": "Predictable concessions can become a roadmap for the other side.",
+        "competitive": "Every step is also a lesson you are teaching the room."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What would Colin's postmortem suggest about his round-number funding ask?",
+      "choices": [
+        "Number form may have made the ask sound more casual than intended",
+        "Round numbers always prove the request is dishonest",
+        "The amount alone matters and the form never does"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter uses number shape as part of the bargaining read.",
+        "direct": "A smooth round number can sound less grounded than a more deliberate one.",
+        "competitive": "The room may hear convenience where you meant seriousness."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What is strategic umbrage supposed to do in Chapter 9?",
+      "choices": [
+        "Create uncontrolled emotional chaos",
+        "Mark an offer as outside the expected range through a controlled reaction",
+        "Replace all other bargaining tactics"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The move is a measured signal, not a tantrum.",
+        "direct": "A controlled reaction can raise the psychological cost of a weak offer without breaking the negotiation.",
+        "competitive": "The signal works only while it still feels disciplined."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Which sign most clearly suggests a bargain is drifting into lazy compromise?",
+      "choices": [
+        "The negotiator is tracking what each move communicates",
+        "The negotiator keeps moving mainly to reduce discomfort",
+        "The negotiator treats concessions as information"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter draws the line between structure and relief-seeking.",
+        "direct": "A bargain weakens when tension avoidance becomes the hidden decision-maker.",
+        "competitive": "If comfort is calling the shots, the room will price that weakness."
+      },
+      "bloomsLevel": "evaluate_create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why can predictable concessions weaken leverage?",
+      "choices": [
+        "Because they give the other side a map of how to keep pressing",
+        "Because they prevent any agreement from happening",
+        "Because negotiation rules ban patterns"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The other side starts modeling your range from the pattern.",
+        "direct": "Predictable movement reduces uncertainty for them and usually not for you.",
+        "competitive": "Once they solve your rhythm, your softness gets easier to price."
+      },
+      "bloomsLevel": "evaluate_create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If disciplined bargaining still leaves the room stuck, what chapter does Chapter 9 logically point toward next?",
+      "choices": [
+        "A chapter about hidden information that could reset leverage",
+        "A chapter about ending all negotiations quickly",
+        "A chapter about avoiding discovery and evidence"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The preview bridge points toward information that could overturn the apparent range.",
+        "direct": "When numbers stop moving the room, hidden facts may matter more than another concession.",
+        "competitive": "After the haggle, the next possible unlock is what nobody knows yet."
+      },
+      "bloomsLevel": "evaluate_create",
+      "depthLevel": "hard"
+    }
+  ]
+}

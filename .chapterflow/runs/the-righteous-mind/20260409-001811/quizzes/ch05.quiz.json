@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch05-q01",
+      "prompt": "What is Chapter 5 mainly correcting?",
+      "choices": [
+        "The idea that morality only belongs in politics",
+        "The assumption that a WEIRD moral lens is universal",
+        "The belief that fairness never matters"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says a familiar WEIRD moral style is often mistaken for morality itself.",
+        "direct": "Haidt is correcting the overgeneralization of a narrow moral map.",
+        "competitive": "A local cluster got mistaken for the whole field."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch05-q02",
+      "prompt": "Which pair dominates the WEIRD moral core in this chapter?",
+      "choices": [
+        "Loyalty and authority",
+        "Purity and honor",
+        "Harm and fairness"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Chapter 5 says WEIRD readers often center harm and fairness so strongly that they treat them as the whole map.",
+        "direct": "Those two concerns are the narrowed core the chapter challenges.",
+        "competitive": "The WEIRD center is harm-plus-fairness overpromotion."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch05-q03",
+      "prompt": "Why can a disagreement look irrational to a WEIRD reader too quickly?",
+      "choices": [
+        "Because other people never use moral language",
+        "Because unfamiliar moral concerns can be dismissed before being recognized as moral",
+        "Because all cultures value the same things equally"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says a narrow map can misread other concerns before argument even starts.",
+        "direct": "Unfamiliarity gets confused with moral emptiness.",
+        "competitive": "The map is too small, so the verdict arrives early."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch05-q04",
+      "prompt": "Naomi says a workplace policy is obviously moral because it is fair, while her coworker keeps focusing on respect for role obligations. What does Chapter 5 say is happening?",
+      "choices": [
+        "Only Naomi is making a moral argument",
+        "The conflict may involve different moral concerns being centered",
+        "Role concerns can never be moral"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter invites readers to see a clash of emphasis, not just morality versus non-morality.",
+        "direct": "This is a map-level disagreement about what counts as morally central.",
+        "competitive": "One side is defending fairness. The other is defending another live region of the field."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q05",
+      "prompt": "What does Chapter 5 say about widening the moral map?",
+      "choices": [
+        "It means every norm deserves equal approval",
+        "It is descriptive breadth before judgment",
+        "It proves liberal morality is invalid"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter widens description first without erasing criticism.",
+        "direct": "Haidt expands the field before asking readers to judge it.",
+        "competitive": "A bigger map is not a blank check."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q06",
+      "prompt": "Which misreading does the chapter explicitly resist?",
+      "choices": [
+        "That it is a blanket rejection of modern liberal morality",
+        "That it is too narrow",
+        "That it ignores fairness entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter widens the map without turning into a broad attack on liberal concern for harm and fairness.",
+        "direct": "It resists caricature as much as relativism.",
+        "competitive": "The point is not anti-liberal theater. It is anti-overgeneralization."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q07",
+      "prompt": "Lila realizes her relatives were reacting to respect and duty rather than fairness alone. What should she conclude first under Chapter 5?",
+      "choices": [
+        "Their reaction is automatically correct",
+        "They may be centering different moral concerns rather than lacking morality",
+        "Family conflict is never moral"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter pushes readers to widen the map before deciding what to reject.",
+        "direct": "Different salience is a better first diagnosis than moral absence.",
+        "competitive": "They may be on another part of the map, not outside it."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q08",
+      "prompt": "What is the chapter's hardest tension?",
+      "choices": [
+        "How to widen the map without collapsing into relativism",
+        "How to eliminate all moral difference",
+        "How to avoid every cross-cultural comparison"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants broader description without moral surrender.",
+        "direct": "Its depth lies in separating descriptive breadth from equal endorsement.",
+        "competitive": "The question is how to enlarge the field without turning it into a blank check."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q09",
+      "prompt": "How does Chapter 5 build on Chapter 4?",
+      "choices": [
+        "It explains why different audiences find different moral concerns salient",
+        "It rejects the idea that audiences matter",
+        "It replaces public reasoning with private reasoning"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Chapter 4 showed audience-shaped persuasion, and Chapter 5 asks why different audiences care about different concerns.",
+        "direct": "The widening move explains the moral diversity beneath public persuasion.",
+        "competitive": "The crowd was never random. It was tuned to different parts of the map."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch05-q10",
+      "prompt": "What question does Chapter 5 most directly hand to Chapter 6?",
+      "choices": [
+        "How can a broader moral field be pictured more concretely?",
+        "How many elections can be won with the right message?",
+        "Why harm and fairness should be abandoned?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Once the map widens, the next task is to make that wider field easier to picture.",
+        "direct": "Chapter 6 will provide a framework for multiple moral concerns.",
+        "competitive": "After widening the terrain, the book needs a usable model of the wiring."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

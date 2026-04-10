@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch19-q01",
+      "prompt": "What disease did Flannery O'Connor receive a diagnosis for at age 25?",
+      "choices": [
+        "A) Multiple sclerosis",
+        "B) Tuberculosis",
+        "C) Lupus"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "O'Connor was diagnosed with lupus, the same disease that had killed her father. She spent her remaining fourteen years producing some of the sharpest fiction in American literature.",
+        "direct": "Lupus was the diagnosis, and it fundamentally changed how O'Connor worked. The awareness of a visible expiration date eliminated the luxury of procrastination and sharpened every creative decision.",
+        "competitive": "Lupus gave O'Connor what most writers never receive: a deadline they cannot negotiate. The result was fourteen years of output that outstripped writers with three times her lifespan."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch19-q02",
+      "prompt": "Greene describes four shifts that occur when someone genuinely confronts their own mortality. Which of the following is NOT one of those shifts?",
+      "choices": [
+        "A) Pettiness dissolves because grudges cannot survive contact with genuine stakes",
+        "B) Ambition increases as the person tries to accomplish as much as possible before time runs out",
+        "C) Gratitude replaces entitlement because every experience registers as something that was not guaranteed"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Greene's four shifts are: pettiness dissolves, urgency replaces procrastination, gratitude replaces entitlement, and purpose sharpens. Raw ambition for its own sake is not part of the template.",
+        "direct": "The sublime perspective produces clarity, not frantic accumulation. The four axes are pettiness dissolving, urgency arriving, gratitude developing, and purpose solidifying. Undirected ambition is a different response entirely.",
+        "competitive": "Greene's mortality framework is about precision, not volume. The person operating from genuine mortality awareness does not try to do more. They stop doing what does not matter and double down on what does."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch19-q03",
+      "prompt": "Marcus Aurelius practiced memento mori while governing the Roman Empire. What was the practical function of this daily exercise?",
+      "choices": [
+        "A) Recalibrating priorities by holding the reality of finite time close enough to dissolve trivial concerns",
+        "B) Building philosophical credibility among other Stoic thinkers",
+        "C) Preparing emotionally for assassination attempts"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "For Aurelius, thinking about death was not morbid. It was a way to stay focused on what genuinely mattered while governing under enormous pressure. The exercise kept trivial frustrations from consuming his attention.",
+        "direct": "Memento mori functioned as a daily priority filter. By confronting mortality each morning, Aurelius maintained perspective that prevented small irritations from dominating his decisions.",
+        "competitive": "Aurelius used death as a calibration tool. While his peers were consumed by court politics and petty grievances, he held mortality close enough to see through the noise and govern with unusual clarity."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch19-q04",
+      "prompt": "Sarita keeps postponing a career change she has wanted for years. She tells herself she will start next quarter, then next year. She is healthy, financially stable, and has the skills to make the transition. According to this chapter, what is the most likely root cause of her delay?",
+      "choices": [
+        "A) She has not yet developed the skills needed for the new career",
+        "B) She is operating under the unconscious assumption that her time is unlimited, which makes delay feel costless",
+        "C) The new career is objectively riskier than her current position"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Sarita's delay is powered by the illusion that there will always be more time. When tomorrow always feels available, today's inaction carries no perceived cost.",
+        "direct": "Death denial is the engine of indefinite postponement. Sarita defers because her nervous system treats time as renewable. Confronting its actual finitude would make delay feel like what it is: waste.",
+        "competitive": "Sarita is not cautious. She is anesthetized. The illusion of unlimited time removes the cost signal from procrastination. Restore the signal and the delay becomes intolerable."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch19-q05",
+      "prompt": "After surviving a serious car accident, Dante reports that colors look brighter, food tastes better, and arguments with his partner feel trivial. His friends assume the effect will fade, but six months later his perspective remains shifted. What does Greene's scaffold call this altered state of awareness?",
+      "choices": [
+        "A) Temporary emotional elevation caused by adrenaline",
+        "B) Post-traumatic growth syndrome",
+        "C) The sublime perspective, where viewing life from the vantage point of its ending makes remaining time feel more vivid"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Dante is living in the sublime perspective. His brush with death cleared away the background noise that normally dulls daily experience, and what remains is a heightened appreciation for ordinary moments.",
+        "direct": "The sublime perspective is Greene's term for the perceptual shift that occurs when mortality becomes real rather than theoretical. Dante's accident forced the confrontation that most people avoid voluntarily.",
+        "competitive": "Dante received involuntarily what Greene argues you should pursue deliberately. The sublime perspective is not a temporary high. Anyone willing to hold mortality close enough gains a permanent recalibration that never fully fades."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch19-q06",
+      "prompt": "Maya has been feuding with a colleague over credit for a joint project. The dispute has consumed weeks of emotional energy. She then learns that a close friend has been diagnosed with a terminal illness. Suddenly, the credit dispute feels meaningless. What mortality-related trigger caused her priorities to shift so rapidly?",
+      "choices": [
+        "A) She felt guilty about arguing while her friend was suffering",
+        "B) Proximity to mortality dissolved the pettiness by exposing the dispute as trivial against the scale of finite time",
+        "C) Her empathy for her friend temporarily suppressed her competitive instincts"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The friend's diagnosis brought mortality close enough to recalibrate Maya's sense of scale. What had felt urgent and important shrank instantly when measured against the reality that time is genuinely limited.",
+        "direct": "Mortality contact functions as a scale reset. The credit dispute occupied the same emotional weight as a life-or-death situation until an actual life-or-death situation arrived and exposed the mismatch.",
+        "competitive": "Maya was spending finite resources on an infinite-feeling timeline. Her friend's diagnosis compressed the timeline and the dispute collapsed under the new math. The sublime perspective arrived uninvited and did in one afternoon what years of rationalization could not."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch19-q07",
+      "prompt": "Greene argues that modern culture has engineered death out of daily experience. How does this cultural habit contribute to chronic procrastination?",
+      "choices": [
+        "A) Without regular reminders of finite time, people default to treating each day as if another is guaranteed, which removes the urgency that drives action",
+        "B) People avoid death-related topics out of superstition, which has no connection to productivity",
+        "C) Modern medicine has extended lifespans enough that procrastination no longer carries meaningful consequences"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "When death stays invisible, time feels unlimited. And when time feels unlimited, there is no internal pressure to act today rather than tomorrow. The urgency that mortality naturally provides gets removed by a culture that hides dying behind hospital walls.",
+        "direct": "Death denial strips the cost signal from delay. Procrastination only works as a strategy when you believe tomorrow is guaranteed. Remove that belief and the delay becomes impossible to justify.",
+        "competitive": "Modern culture has given people the one thing that guarantees waste: the feeling that time is a renewable resource. Restore contact with mortality and the procrastination collapses because the math no longer supports it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch19-q08",
+      "prompt": "O'Connor's post-diagnosis fiction was described as braver, more precise, and more willing to confront uncomfortable truths than her earlier work. What connection does Greene draw between mortality awareness and creative output?",
+      "choices": [
+        "A) Mortality awareness removes the need for audience approval, freeing the creator to produce honest work without filtering for comfort",
+        "B) Terminal illness increases cognitive function due to heightened stress hormones",
+        "C) O'Connor's editors gave her more creative freedom after learning about her diagnosis"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "When you know your time is short, the desire to please others loses its grip. O'Connor stopped filtering her work through what audiences might prefer and started writing what was true, which is why her later work hit so much harder.",
+        "direct": "Mortality awareness removes the safety calculations that dilute creative work. O'Connor had no time left for comfortable lies, which freed her to write with a directness that healthy writers often avoid.",
+        "competitive": "O'Connor's lupus eliminated the single biggest drag on creative output: the instinct to self-censor for approval. When the clock is visible, you stop writing for the room and start writing for the record."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch19-q09",
+      "prompt": "Evaluate whether Greene's claim that confronting mortality produces energy rather than despair holds up when applied to everyday life, not just extreme cases like O'Connor's terminal diagnosis.",
+      "choices": [
+        "A) The claim is philosophical speculation with no practical application beyond academic discussion",
+        "B) The claim only applies to people facing actual terminal illness and cannot be replicated voluntarily",
+        "C) The claim holds because even voluntary exercises like memento mori produce measurable shifts in priority-setting and urgency, as demonstrated by Aurelius and near-death experience research"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Greene supports the claim with both historical and experiential evidence. Aurelius practiced memento mori daily without being terminally ill, and near-death survivors consistently report permanent perspective shifts. The exercise works voluntarily, not only under extreme conditions.",
+        "direct": "The evidence spans voluntary practice and involuntary exposure. Aurelius chose the exercise. Near-death survivors had it forced on them. Both groups report the same pattern: clarity, urgency, and reduced pettiness. The process does not require a diagnosis.",
+        "competitive": "The claim survives scrutiny because the evidence is not limited to terminal cases. Aurelius governed for decades using voluntary mortality confrontation. The mechanism is biological, not situational. You do not need a death sentence. You need the willingness to stop pretending you do not have one."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch19-q10",
+      "prompt": "Chapter 19 argues that mortality awareness produces emotional clarity and dissolves pettiness. Chapter 2 focused on mastering emotional reactions to prevent them from distorting your judgment. How do these two chapters function as bookends for the entire sequence?",
+      "choices": [
+        "A) They cover unrelated topics and their placement at opposite ends of the book is coincidental",
+        "B) Chapter 2 teaches you to manage emotions in the moment while Chapter 19 provides the deeper perspective that makes emotional mastery feel necessary and urgent, creating a frame where awareness of mortality fuels the discipline introduced at the start",
+        "C) Chapter 19 makes Chapter 2 unnecessary because mortality awareness automatically eliminates all emotional reactivity"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Chapter 2 gives you the tools to handle emotions as they arise. Chapter 19 gives you the reason to use those tools by making clear that your time for applying them is finite. Together, they frame the entire book: start with emotional control, end with the urgency to practice it.",
+        "direct": "The two chapters create a closed loop. Chapter 2 establishes emotional mastery as a skill. Chapter 19 supplies the ultimate motivation to practice it by confronting you with the reality that your window for doing so will close.",
+        "competitive": "Chapter 2 is the operating manual. Chapter 19 is the countdown timer. Without the timer, the manual gathers dust. Without the manual, the timer just produces panic. The full circuit requires both."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

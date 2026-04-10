@@ -1,0 +1,56 @@
+{
+  "chapterId": "ch01",
+  "number": 1,
+  "title": "Leadership: The Single Most Important Factor",
+  "heading": "Leadership: The Single Most Important Factor",
+  "richness": "medium_high",
+  "approxWords": 430,
+  "properNouns": [
+    "Leif Babin",
+    "Jocko Willink",
+    "Ramadi",
+    "St. Martin's Press",
+    "SuperSummary",
+    "Google Books",
+    "Open Library"
+  ],
+  "repeatedTerms": [
+    "leadership",
+    "chaos",
+    "uncertainty",
+    "team",
+    "responsibility",
+    "mission"
+  ],
+  "sourceRefs": [
+    "src-openlibrary-2015-first-edition",
+    "src-googlebooks-2015-preview",
+    "src-supersummary-foreword-intro"
+  ],
+  "sourceReferences": [
+    {
+      "sourceId": "src-openlibrary-2015-first-edition",
+      "reason": "intro heading and package order"
+    },
+    {
+      "sourceId": "src-googlebooks-2015-preview",
+      "reason": "authorized work-family metadata and leadership framing"
+    },
+    {
+      "sourceId": "src-supersummary-foreword-intro",
+      "reason": "opening Ramadi dilemma and intro thesis support"
+    }
+  ],
+  "canonicalEdition": {
+    "name": "First English edition",
+    "publisher": "St. Martin's Press",
+    "publishedDate": "2015-10-20",
+    "publishedYear": 2015,
+    "isbn13": "9781250067050",
+    "format": "Print reference edition",
+    "sourceText": ".chapterflow/runs/extreme-ownership/20260408-230830/source-freeze/book-source.md",
+    "sourceProvenance": "Frozen web bundle: Open Library first-edition TOC record, Google Books authorized metadata, and SuperSummary foreword-introduction support."
+  },
+  "quotePosture": "paraphrase_first",
+  "anchorSummary": "Use the Ramadi opening dilemma, the leadership-is-the-factor frame, and the book-structure bridge. Do not overclaim unseen battlefield detail."
+}

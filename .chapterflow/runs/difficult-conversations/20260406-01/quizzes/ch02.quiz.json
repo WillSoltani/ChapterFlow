@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "A person enters a difficult conversation having prepared a thorough case for their position. What assumption is most likely driving their preparation?",
+      "choices": [
+        "The conversation's purpose is to get the other person to accept their version of what happened",
+        "The conversation is an opportunity to understand what both parties are missing",
+        "Good preparation means having answers ready for the other person's objections"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. Thorough case-preparation is almost always built on the message delivery assumption: I know what is true, and the conversation is for getting you to accept it. That assumption is so natural it usually goes unexamined.",
+        "direct": "Correct. Preparing arguments, evidence, and responses to objections is the structure of message delivery. The goal is acceptance of a version. That goal is the issue, not the preparation quality.",
+        "competitive": "Exactly. The preparation structure reveals the goal: get acceptance. That is the delivery stance. The learning stance would produce a different kind of preparation \u2014 one with genuine questions, not just answers."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Two colleagues have been debating the same project decision for three weeks. Both have clear arguments. Both have tried different framings. The conversation keeps ending in the same place. What does this pattern most likely indicate?",
+      "choices": [
+        "One party has not yet found the right framing for their position",
+        "Both parties need more data before the decision can be made",
+        "Both parties are in message delivery mode, and the impasse is a goal-structure problem rather than a content problem"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Correct. When three weeks of argument has not moved the conversation, and the pattern is consistent, the problem is almost always not that the arguments are unclear. It is that both parties are in delivery mode and neither is making room for the other's version.",
+        "direct": "A three-week impasse that has survived multiple framings is a structural diagnosis, not a content diagnosis. The arguments are clear. The goal is the problem: both parties are trying to deliver a version, not understand a gap.",
+        "competitive": "The correct read. More framings will produce the same result. The issue is not the framing \u2014 it is the goal. Two delivery systems in the same room cannot produce convergence within either stance. The exit requires a goal change."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Which of the following best describes what the learning stance actually requires?",
+      "choices": [
+        "Being willing to agree with whatever the other person says in order to de-escalate the conversation",
+        "Treating your own view as one perspective that might be missing something you cannot currently see, and entering the conversation to find out what the other person is seeing",
+        "Listening carefully to the other person's arguments before presenting your own position"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The learning stance is not agreement \u2014 it is a different goal. You keep your view. What changes is how you hold it: as one perspective, not as the obvious truth. And your goal changes: find out what the other person is seeing, not get them to accept your version.",
+        "direct": "Correct. The learning stance changes the goal of the conversation from persuasion to understanding, and requires treating your own position as a view \u2014 one that is informed by your specific experience and information, and therefore incomplete in some direction.",
+        "competitive": "Right. The learning stance is not softness \u2014 it is a different goal. The goal is understanding the gap, not winning the argument. Your view stays present. What changes is whether you are trying to deliver it or trying to see where it fits in a larger picture."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Reza has tried two framings of a product roadmap argument with his co-founder Yuki. Neither has landed. He is about to try a third framing. What does the chapter suggest he consider instead?",
+      "choices": [
+        "Ask a genuine question about what Yuki is seeing that he has not accounted for \u2014 entering the conversation to understand rather than to re-deliver",
+        "Wait until he has stronger data before raising the roadmap issue again",
+        "Request a mediator to help resolve the impasse"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The third framing would be the third delivery attempt with the same underlying goal. Reza has not once asked what Yuki is seeing. Asking a genuine question \u2014 one where he does not already have the answer \u2014 is the move that changes the conversation's goal and generates new information.",
+        "direct": "Correct. Two failed framings are a goal diagnosis: the problem is not the delivery vehicle, it is the stance. Reza has been in delivery mode. The alternative is to ask what Yuki is seeing \u2014 genuinely, not rhetorically \u2014 and to be willing to hear something he did not predict.",
+        "competitive": "Right answer. A third framing extends the impasse. The goal change \u2014 from persuasion to understanding \u2014 is what breaks it. Reza asking a real question about Yuki's concerns is the one move that generates information four weeks of argument could not."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "During a conversation, someone asks careful questions and listens attentively, but their internal orientation is still: I know what the right answer is here, and I'm looking for the right moment to make my case. What does this represent?",
+      "choices": [
+        "A skilled negotiator managing the conversation well",
+        "A combination of the learning stance and the message delivery stance that produces the best outcome",
+        "Performed openness \u2014 a version of the message delivery stance that looks like the learning stance from the outside but produces the same outcome"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Yes. The outer behavior matches the learning stance. The inner goal is still delivery. That combination is performed openness, and it produces the same result as honest delivery \u2014 often with extra frustration, because it looked like an opening and produced no movement.",
+        "direct": "Correct. The learning stance is a goal, not a behavior. Performing the behaviors of the learning stance while maintaining the delivery goal is not the learning stance. The other person responds to the goal, and the goal gives itself away \u2014 in the quality of questions, the nature of listening, the response to unexpected answers.",
+        "competitive": "That is performed openness, not the learning stance. It fails on two dimensions: it does not produce the information the learning stance generates, and it often leaves the other person more frustrated than honest delivery would have, because the conversation appeared to be one thing and produced nothing."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What is the most important limitation of the learning stance that this chapter acknowledges?",
+      "choices": [
+        "It requires a significant amount of time and is not practical in fast-moving situations",
+        "It does not guarantee agreement \u2014 you can fully understand the other person's position and still disagree",
+        "It only works when both parties are in the learning stance simultaneously"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. The learning stance promises that you will know more, and that the next conversation will start from a different place. It does not promise convergence. The gap between two positions may be real \u2014 a genuine difference in values or information that understanding reveals but does not close.",
+        "direct": "Correct. This is the chapter's honest limit. The learning stance is an epistemic tool, not a resolution mechanism. Understanding the other person's full position does not mean aligning with it. When the gap is real, the learning stance reveals it accurately \u2014 which is more useful than continuing to argue about a misdiagnosed gap.",
+        "competitive": "Right. The learning stance does not close the gap \u2014 it gives you an accurate map of where the gap actually is. That is more useful than a delivery win on a misdiagnosed gap, but it is a narrower promise. Readers who expect agreement from the stance shift will misread the result."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "A parent and a college-age child have been arguing about the child's career decision for months. The parent has explained the practical concerns many times. The child has explained their reasoning many times. Neither is moving. What does the chapter suggest has been missing from every version of this conversation?",
+      "choices": [
+        "A genuine attempt by at least one party to understand what the other is most afraid of losing \u2014 not to counter it, but to know what it is",
+        "Enough emotional distance from both parties before the conversation can be productive",
+        "A concrete proposal from the child that addresses the parent's specific concerns"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Both parties have delivered their versions of the argument in multiple forms. Neither has asked what the other is actually most afraid of losing. That question is not a debate tactic \u2014 it is an honest attempt to understand what is driving the other person's position, which is information neither has generated in any delivery attempt.",
+        "direct": "Correct. The missing element is a genuine inquiry into the other person's picture. Both parties have explained their positions. Neither has asked what the other is trying to protect. That information has been unavailable in every delivery version of this conversation.",
+        "competitive": "Right answer. Both parties have been delivering to each other for months. Neither has asked what the other is most afraid of. That question is the one that generates information the delivery stance cannot, and that information is what changes subsequent moves."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Omar has tried three different framings of the same feedback to his colleague Fatima. Each time, Fatima has responded with the same defense. What does this consistent pattern most likely reveal?",
+      "choices": [
+        "Fatima does not understand what Omar is asking for and would benefit from a clearer example",
+        "Omar and Fatima have a fundamental values disagreement that cannot be resolved through conversation",
+        "Fatima is responding to the underlying stance \u2014 get her to accept a verdict \u2014 not to the specific framing, and that stance is the same in all three versions"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Exactly. Fatima's consistent response is the signal: the framing is not the variable. She is responding to the underlying assumption in all three versions \u2014 that Omar has a verdict and the conversation is for getting her to accept it. That assumption is the same in every framing, and it is what keeps producing the same defense.",
+        "direct": "Correct. The consistent response across three different framings is diagnostic. Fatima is not evaluating the framings on their merits \u2014 she is reading the stance they carry. The stance is identical in all three. Changing the framing without changing the stance produces the same result.",
+        "competitive": "The consistent pattern across three framings reveals that framing was not the variable. Fatima is reading Omar's goal \u2014 get her to accept a verdict \u2014 not his framing choices. That goal is the same in all three versions. The third framing confirmed her read of the first two."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why is the message delivery stance described as the precondition for the rest of the book's skills failing \u2014 specifically, why would applying later techniques without this stance shift cause them to not work?",
+      "choices": [
+        "Because later techniques require a calm emotional state that message delivery prevents",
+        "Because the skills in later chapters are tools for understanding, and a person in delivery mode will use them to deliver more effectively rather than to understand \u2014 which produces a different result",
+        "Because message delivery makes conversations adversarial in a way that later skills cannot overcome"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. A person in delivery mode who learns the listening techniques from Chapter 9 will use them to find better delivery opportunities. A person who learns the third-story opener from Chapter 8 will use it to start their message more smoothly. The technique produces a different output depending on the underlying goal. Without the stance shift, the techniques become tools for more effective delivery.",
+        "direct": "Correct. Each technique in the book is designed to serve the learning goal. Applied inside the delivery stance, the same techniques serve the delivery goal instead. They are not neutral tools \u2014 their output depends on what goal they are in service of. The stance shift is the precondition because without it, the techniques are applied to the wrong goal.",
+        "competitive": "Exactly right. The tools are goal-dependent. Listening tools used in delivery mode produce strategic intelligence for delivery, not understanding. Expression tools used in delivery mode produce cleaner messages, not honest self-disclosure. The entire toolkit of the book only works in service of the learning goal."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Someone genuinely enters the learning stance, asks real questions, hears the other person's full position \u2014 and ends the conversation still holding the same view they walked in with. Has the learning stance failed?",
+      "choices": [
+        "Yes, because the goal of the learning stance is to produce a change of mind in at least one party",
+        "Not necessarily \u2014 the learning stance produces an accurate picture of where the gap is, and finding out that the gap is real and not resolvable by understanding alone is itself a useful outcome",
+        "Only if the person did not genuinely consider the other person's position after hearing it"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. The learning stance promises that you will know more about where the gap is, not that the gap will close. If the gap turns out to be a real difference in values or facts that understanding does not resolve, then the learning stance has done its job \u2014 it has produced an accurate picture of what the disagreement actually is. That is different from the conversation failing.",
+        "direct": "Correct. The learning stance's promise is epistemic, not convergent. It generates an accurate map of the gap between two positions. When the gap is real, the map accurately shows that. The conversation has not failed \u2014 it has revealed something important: that this difference requires a decision or a negotiation, not just better understanding.",
+        "competitive": "Right. The learning stance does not close the gap \u2014 it locates it accurately. If the gap is real, finding that out is more valuable than continuing to argue about a gap you had misdiagnosed. You now know what you are dealing with. That changes subsequent moves, even if it does not produce agreement in this conversation."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

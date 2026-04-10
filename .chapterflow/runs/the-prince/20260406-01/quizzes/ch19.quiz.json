@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What does Machiavelli say makes a prince hated above all things in Chapter 19?",
+      "choices": [
+        "Rapacity and violating the property and women of his subjects",
+        "Appearing too merciful in military affairs",
+        "Delegating blame to institutions"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "He ties hatred first to injury, especially to property and honor.",
+        "direct": "The chapter says plunder and violation create the deepest hostility.",
+        "competitive": "Hatred starts where subjects feel the ruler has reached into what is theirs."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What makes a prince contemptible according to Chapter 19?",
+      "choices": [
+        "Protecting the people from nobles",
+        "Being seen as fickle, frivolous, weak, and irresolute",
+        "Giving grace directly instead of through officers"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Contempt grows from visible smallness and instability.",
+        "direct": "Machiavelli lists flimsy, unserious, and irresolute conduct here, not plunder.",
+        "competitive": "The prince falls in estimation when the office starts to look soft on him."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why is not being hated and despised by the people such an effective remedy against conspiracies?",
+      "choices": [
+        "Because conspirators always act alone",
+        "Because armed allies fully remove internal danger",
+        "Because plotters expect to please the people, and their plan weakens when the people would resent the prince's removal"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The conspirator wants a public that will welcome the deed, not reject it.",
+        "direct": "Recruitment and escape both become harder when the people are not hostile to the prince.",
+        "competitive": "A plot needs a crowd it can land in."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Mireya can fix a budget gap by canceling stipends the team already treats as theirs. What best matches Chapter 19?",
+      "choices": [
+        "Avoid solving the problem by seizing what people already count as their share if a narrower correction is available",
+        "Take the stipend back because short-term firmness always matters more than resentment",
+        "Ignore the budget problem so no one feels disappointed"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns that touching what people count as theirs creates deeper hostility than ordinary disappointment.",
+        "direct": "Mireya should notice the difference between imposing a limit and producing felt dispossession.",
+        "competitive": "The fastest fix may be the most politically expensive if it feels like seizure."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Harlan's senate president kept reversing rulings and acting unserious in public. What does that show?",
+      "choices": [
+        "That student politics only fails because of policy differences",
+        "That contempt can grow from visible instability and make opponents bolder",
+        "That public warmth matters more than firm judgment"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The issue is not only disagreement. It is that the leader began to look too small for the office.",
+        "direct": "Chapter 19 treats contempt as a real political danger built by public weakness.",
+        "competitive": "Once the room learns you fold, the challenge speeds up."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What lesson does the library exhibit scenario draw from Machiavelli's example of France?",
+      "choices": [
+        "A ruler should personally deliver every hard refusal to prove courage",
+        "Only nobles need intermediaries",
+        "A fair process can absorb reproach while the leader keeps visible grace"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "France shows how hard decisions can be routed without making the ruler wear every resentment directly.",
+        "direct": "The point is not cowardice but blame management through institutions.",
+        "competitive": "Let the rulebook take the blow so the office does not collect every wound."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What special difficulty did the Roman emperors face that most princes did not face in the same way?",
+      "choices": [
+        "They had to manage soldiers as a third force alongside people and nobles",
+        "They ruled without any concern for public esteem",
+        "They could rely on hereditary succession in every case"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The emperors had an extra body to satisfy, and it wanted different things from the people.",
+        "direct": "Soldiers complicate the chapter because they alter which hatred matters most.",
+        "competitive": "Rome added a third appetite to an already unstable equation."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why does Marcus fare better than Pertinax and Alexander in Machiavelli's account?",
+      "choices": [
+        "Because he was more cruel than they were",
+        "Because hereditary authority and respect let him hold both orders in place",
+        "Because he ignored the soldiers completely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Marcus begins from a stability the others do not have.",
+        "direct": "His hereditary title and authority matter as much as his virtues do.",
+        "competitive": "Marcus is not just good. He is good from a stronger starting position."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does the chapter end by telling a new prince to take from Severus and from Marcus rather than copy either whole?",
+      "choices": [
+        "Because all Roman examples are mostly irrelevant to modern princes",
+        "Because Marcus and Severus were equally suited to every regime",
+        "Because founding and preserving are different tasks that require different qualities"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Machiavelli treats them as selective lessons, not full models.",
+        "direct": "Severus helps explain unstable founding pressure, while Marcus helps explain stable preservation.",
+        "competitive": "Extract the useful parts. Do not imitate the whole body."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If a prince cannot avoid every reproach, why must hatred and contempt still be avoided first?",
+      "choices": [
+        "Because those states make removal look welcome and make conspiracy easier to recruit and complete",
+        "Because lesser complaints never matter at all",
+        "Because institutions can replace public judgment completely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter ranks hatred and contempt first because they change how opposition behaves.",
+        "direct": "Other reproaches may be survivable, but these two create the conditions in which plots and collapse become much more likely.",
+        "competitive": "They are the faults that make enemies think the city might help them."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

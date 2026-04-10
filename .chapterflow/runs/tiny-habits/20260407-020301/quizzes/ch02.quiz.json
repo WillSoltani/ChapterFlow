@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the main problem with relying on motivation alone, according to Chapter 2?",
+      "choices": [
+        "Motivation changes too much to support a badly matched habit every day",
+        "Motivation only matters at work",
+        "Motivation makes habits impossible to measure"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter treats motivation as real but unstable.",
+        "direct": "Volatile motivation cannot reliably carry a mismatched behavior forever.",
+        "competitive": "A shaky support beam should not hold the whole structure."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What does matching mean in this chapter?",
+      "choices": [
+        "Choosing the biggest behavior you can imagine",
+        "Choosing a behavior that fits the aspiration and your real current conditions",
+        "Copying a habit from someone more disciplined"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A matched habit fits the goal and the life you are actually living.",
+        "direct": "Matching joins aspiration with present capacity and conditions.",
+        "competitive": "Strong design points forward without ignoring reality."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why can a large inspiring plan still be a weak habit design?",
+      "choices": [
+        "Because all large plans are bad",
+        "Because the plan may fit an ideal self rather than the real operator",
+        "Because planning itself lowers motivation"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns against plans built for fantasy conditions.",
+        "direct": "A behavior can be inspiring and still be mismatched to ordinary life.",
+        "competitive": "Theatrical ambition is not the same as durable design."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Noor keeps missing her ninety-minute review block after school. Which chapter response fits best?",
+      "choices": [
+        "Keep the same plan and wait for stronger motivation",
+        "Switch to one review card after class as the stable minimum",
+        "Assume studying is not really her goal"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter would choose the version that fits the real day.",
+        "direct": "Matching favors a smaller survivable behavior over a collapsing heroic one.",
+        "competitive": "A real base beats a glamorous mismatch."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What is the chapter's view of a small matched behavior?",
+      "choices": [
+        "It may protect a bigger aspiration better than an overbuilt plan",
+        "It always proves the person lacks ambition",
+        "It only works for health habits"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A smaller fit can keep the deeper goal alive.",
+        "direct": "The chapter treats matched smallness as strategic, not weak.",
+        "competitive": "Repeatable beats impressive when the goal is consistency."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which statement is a misreading of Chapter 2?",
+      "choices": [
+        "Matching means giving up on growth forever",
+        "Matching asks what works on ordinary days",
+        "Matching protects the aspiration by changing the form"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter does not erase growth. It changes the starting point.",
+        "direct": "Matching is fit-first, not ambition-never.",
+        "competitive": "Deleting stretch entirely is a misuse of the chapter."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why does the chapter emphasize ordinary-day fit?",
+      "choices": [
+        "Because habits are built only on weekends",
+        "Because average conditions are where repetition either survives or fails",
+        "Because challenging days should be ignored"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Ordinary life is where habits become real.",
+        "direct": "If the behavior dies on a normal day, it is not well matched yet.",
+        "competitive": "Median-day survivability is the real test."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Lena keeps missing her nightly hour-long writing session but could reliably write one sentence. What would Chapter 2 say?",
+      "choices": [
+        "One sentence is too small to count",
+        "The smaller behavior may be the better match for now",
+        "She should wait until she feels more inspired"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter values the version that fits the real life she has now.",
+        "direct": "A matched one-sentence habit can serve the aspiration better than a collapsed hour.",
+        "competitive": "The fit that repeats is stronger than the dream that breaks."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the chapter's main warning about matching?",
+      "choices": [
+        "Matching only works for beginners",
+        "Matching can become an excuse if challenge never returns later",
+        "Matching always lowers standards permanently"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter keeps fit and future growth together.",
+        "direct": "Matching is strongest when it is a start, not a permanent hiding place.",
+        "competitive": "Realism can become camouflage for comfort if you let it."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What question does Chapter 2 naturally open for the next chapter?",
+      "choices": [
+        "If the behavior fits but still feels hard, how should ease be designed?",
+        "How do prompts replace goals entirely?",
+        "Why are habits mostly social?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "After matching, the reader naturally wonders how to make the action easier.",
+        "direct": "The next design issue is ability and friction, not motivation worship.",
+        "competitive": "Once fit is handled, execution cost becomes the obvious next target."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

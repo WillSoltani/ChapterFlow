@@ -1,0 +1,178 @@
+{
+  "chapterId": "ch01",
+  "chapterNumber": 1,
+  "chapterTitle": "I See What You're Thinking",
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the safest first claim this chapter makes about body language?",
+      "choices": [
+        "The body often reacts before speech fully catches up",
+        "One cue can expose a hidden motive if you watch closely",
+        "The face is the best single place to read a room"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter starts with timing. The body often moves earlier than the sentence. It does not say one cue solves motive, and it explicitly warns against face-only confidence.",
+        "direct": "The central claim is temporal, not magical. Physical behavior can surface earlier information than speech. The other two options are the exact overreaches the chapter resists.",
+        "competitive": "Early signal is the opening edge. Cue-dictionary fantasy and face worship are the traps."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does Lena's foot in the waiting room matter in the chapter's logic?",
+      "choices": [
+        "It proves she wants to leave the interview",
+        "It suggests the room is tighter than her polished answer alone admits",
+        "It shows she is being dishonest"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The foot matters as an early clue that the room contains more strain than the sentence shows. It does not prove escape or dishonesty.",
+        "direct": "The cue is useful because it reveals mismatch, not because it completes interpretation. The chapter keeps the meaning narrower than the dramatic options.",
+        "competitive": "The right read is tension in the room, not some overconfident verdict about motive."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Which reading posture does the chapter prefer?",
+      "choices": [
+        "Face-first because the face is most expressive",
+        "Whole-body observation because several channels together reduce overreach",
+        "Word-first because body language is too ambiguous to matter"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter argues for a broader read. Feet, torso, hands, timing, and face belong together.",
+        "direct": "Whole-body observation is stronger because it compares channels instead of overloading one expressive surface.",
+        "competitive": "The wider read disciplines confidence. Face-only reading flatters it."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Danielle stays polite in the hallway while her shoulder turns toward the stairs. What is the best use of that cue?",
+      "choices": [
+        "Accuse her of wanting to escape the conversation",
+        "Treat it as timing information and ask one clear follow-up before the room closes",
+        "Ignore it because polite words matter more than body language"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The cue helps the observer notice that the opening for a real answer is fading. It is there to guide timing, not accusation.",
+        "direct": "The chapter's practical payoff is better next moves. The shoulder turn signals the room may be ending physically before the words admit it.",
+        "competitive": "Read the exit cue and spend it on one useful move. Do not waste it on theater."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Theo says he agrees, but his body still looks tense. What does the chapter say this mismatch earns you first?",
+      "choices": [
+        "Proof that he is lying",
+        "Reason to keep watching instead of treating the sentence as the whole event",
+        "Permission to publicly decode his feelings"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Mismatch should widen observation before it narrows interpretation. The chapter treats it as a clue that the room may be less settled than it sounds.",
+        "direct": "The correct move is continued observation. The chapter rejects both lie claims and public decoding performances.",
+        "competitive": "The split buys you more attention, not a courtroom verdict."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Kira sees a guest smiling tightly and gripping a water glass, then later notices throat-clearing and coughing. What lesson does the chapter want from that shift?",
+      "choices": [
+        "Context can change the category of a cue, not just its nuance",
+        "Smiles are always false when they look tight",
+        "The first interpretation is usually the strongest one"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The new context changes what kind of discomfort may be present. That is why the chapter keeps warning against fast stories.",
+        "direct": "Context can reverse an interpretation, not merely soften it. The other two options describe exactly the kind of one-cue overconfidence the chapter rejects.",
+        "competitive": "The wider room wrecks the first clever theory. Good. That is the method working."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Which observer is using body language the way this chapter recommends?",
+      "choices": [
+        "A manager who declares, 'I know exactly what that gesture means'",
+        "A teacher who notices a shift and adjusts pacing before deciding what caused it",
+        "A friend who ignores the body and trusts only explicit words"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The teacher is using the cue to guide the next move while keeping interpretation modest. That is the chapter's preferred posture.",
+        "direct": "Calibration beats certainty. The manager overclaims, and the friend throws away useful signal entirely.",
+        "competitive": "The winner reads the shift, changes the move, and keeps the ego out of the verdict."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What is one of the biggest risks the chapter identifies in body-language reading?",
+      "choices": [
+        "That observers become too cautious to notice anything useful",
+        "That the observer's own appetite for certainty or cleverness starts distorting the read",
+        "That people stop listening to words at all"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter worries that the method flatters the observer into projection. That ego risk is one of the main reasons restraint matters so much.",
+        "direct": "Projection often arrives disguised as insight. The chapter treats overconfident certainty as a major failure mode.",
+        "competitive": "The cue gets dangerous when it makes you feel smarter than the evidence allows."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does the chapter say restraint is part of the method rather than a weakness in it?",
+      "choices": [
+        "Because ambiguity has to survive long enough for pattern and context to outrun impulse",
+        "Because the best readers should avoid making any interpretation at all",
+        "Because body language matters only in formal settings"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Restraint keeps the observer from mistaking the first clue for the whole truth. It protects the read until more of the room arrives.",
+        "direct": "The method depends on holding a cue open instead of cashing it too early. That delay is how accuracy improves.",
+        "competitive": "If you spend the cue before the evidence matures, you are not reading well. You are gambling."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What unresolved problem does this opening chapter hand to the next one?",
+      "choices": [
+        "How to turn every cue into a fast motive read",
+        "How to build rules that let early signals be read responsibly instead of sloppily",
+        "How to replace words with body-language reading"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter ends by asking for method. Early signal is real, but it needs guardrails.",
+        "direct": "The next step is responsible interpretation, not more theatrical confidence and not replacing verbal communication.",
+        "competitive": "Signal alone is only half the weapon. The next problem is discipline."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

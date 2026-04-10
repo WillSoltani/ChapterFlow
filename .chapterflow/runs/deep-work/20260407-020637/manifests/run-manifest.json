@@ -1,0 +1,51 @@
+{
+  "packVersion": "v13-autonomous",
+  "bookId": "deep-work",
+  "runId": "20260407-020637",
+  "packRoot": "scripts/book/prompts/chapterflow-v13-autonomous",
+  "runRoot": ".chapterflow/runs/deep-work/20260407-020637",
+  "outputProfile": "flagship_v4_compatible",
+  "learningContract": "research_native",
+  "runProfile": "balanced_flagship",
+  "validationMode": "chapter_gate",
+  "chapterGateMode": "automatic_continue",
+  "chapterGateQuizMode": "generate",
+  "scenarioTonePolicy": "required",
+  "rightsMode": "startup_light",
+  "waveSize": 2,
+  "generateChapterReviewWrapper": true,
+  "strictPackAudit": true,
+  "forbidBulkGenerators": true,
+  "releaseAssembleFromValidatedOnly": true,
+  "preserveApprovedChapterHashes": true,
+  "sourceFreezeRequired": true,
+  "artifactGuardRequired": true,
+  "releaseGuardRequired": true,
+  "qualitySentryRequired": true,
+  "qualityDecayStopDelta": 1.5,
+  "sourceDiscoveryMode": "web_bundle",
+  "editionSelectionMode": "ask_if_ambiguous",
+  "sourcePolicy": "public_or_authorized_plus_secondary",
+  "bookRequest": {
+    "title": "Deep Work",
+    "author": "Cal Newport",
+    "editionPreference": "ask_if_ambiguous"
+  },
+  "book": {
+    "bookId": "deep-work",
+    "title": "Deep Work",
+    "author": "Cal Newport",
+    "categories": [],
+    "tags": [],
+    "edition": {
+      "name": "Original English edition",
+      "translator": "",
+      "publishedYear": 2016,
+      "translationYear": null,
+      "sourceText": ".chapterflow/runs/deep-work/20260407-020637/source-freeze/book-source.md",
+      "sourceProvenance": "Frozen web bundle: Hachette / Grand Central official page, Google Books authorized preview metadata, Open Library TOC record, and Cal Newport's official annotated TOC post."
+    },
+    "variantFamily": "EMH",
+    "chapterRange": ""
+  }
+}

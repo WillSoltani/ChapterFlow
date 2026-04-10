@@ -1,0 +1,60 @@
+{
+  "bookId": "the-one-thing",
+  "title": "The One Thing",
+  "author": "Gary Keller, Jay Papasan",
+  "selectionDate": "2026-04-08",
+  "editionSelectionMode": "ask_if_ambiguous",
+  "decision": "auto_lock",
+  "lockedEdition": {
+    "name": "The ONE Thing: The Surprisingly Simple Truth Behind Extraordinary Results",
+    "publisher": "Bard Press",
+    "publishedYear": 2012,
+    "hardcoverIsbn13": "9781885167774",
+    "hardcoverIsbn10": "1885167776",
+    "language": "English",
+    "translator": "",
+    "format": "hardcover / ebook / international trade family",
+    "chapterCount": 18,
+    "sectionCount": 3,
+    "ukTradePublisher": "John Murray Press",
+    "ukTradeOnSaleDate": "2013-09-10"
+  },
+  "rationale": [
+    "Official and bibliographic sources consistently identify `The ONE Thing` as Gary Keller and Jay Papasan's English-language business book; no authoritative source matched the initial `Jocko Willink, Jim Collins` author pair.",
+    "The Bard Press first-edition family provides the stable numbered structure for Chapters 1-18.",
+    "The John Murray UK trade page represents the same English chapter family rather than a materially different edition.",
+    "No translation, abridgment, or chapter-order ambiguity was found that would justify a user prompt."
+  ],
+  "candidateEditionsReviewed": [
+    {
+      "label": "2012 Bard Press first-edition English family",
+      "status": "selected",
+      "reason": "Canonical core structure with the stable 18-chapter map and primary ISBN metadata."
+    },
+    {
+      "label": "2013 John Murray UK trade family",
+      "status": "selected_same_family",
+      "reason": "Same English work and chapter sequence packaged for the UK market."
+    },
+    {
+      "label": "International translations and later reprints",
+      "status": "not_selected",
+      "reason": "No translation was requested and no materially different chapter map surfaced in discovery."
+    }
+  ],
+  "metadataRepair": {
+    "field": "author",
+    "previousValue": "Jocko Willink, Jim Collins",
+    "repairedValue": "Gary Keller, Jay Papasan",
+    "reason": "The initial title-author pair could not be supported by authoritative source discovery, and the canonical dominant match for this title was unambiguous."
+  },
+  "sourceIds": [
+    "the1thing_official_book",
+    "google_books_bard",
+    "hachette_uk_product",
+    "aou_library_toc",
+    "ncw_library_toc",
+    "supersummary_guide",
+    "vince_summary_map"
+  ]
+}

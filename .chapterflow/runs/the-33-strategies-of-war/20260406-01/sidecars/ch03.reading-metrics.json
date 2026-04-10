@@ -1,0 +1,43 @@
+{
+  "chapterId": "the-33-strategies-of-war-ch03",
+  "computedAt": "2026-04-06T21:38:08.530004+00:00",
+  "fleschKincaidGradeByDepthTone": {
+    "easy": {
+      "gentle": 8.44,
+      "direct": 9.09,
+      "competitive": 8.36
+    },
+    "medium": {
+      "gentle": 9.29,
+      "direct": 9.35,
+      "competitive": 8.45
+    },
+    "hard": {
+      "gentle": 9.14,
+      "direct": 9.18,
+      "competitive": 9.31
+    }
+  },
+  "wordCountsByDepthTone": {
+    "easy": {
+      "gentle": 170,
+      "direct": 145,
+      "competitive": 161
+    },
+    "medium": {
+      "gentle": 332,
+      "direct": 349,
+      "competitive": 330
+    },
+    "hard": {
+      "gentle": 495,
+      "direct": 518,
+      "competitive": 541
+    }
+  },
+  "targets": {
+    "easy": "grade 8-9",
+    "medium": "grade 10-11",
+    "hard": "grade 12"
+  }
+}

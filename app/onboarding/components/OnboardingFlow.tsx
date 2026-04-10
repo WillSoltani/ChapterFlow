@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { ChevronLeft } from "lucide-react";
 import { useOnboarding } from "../hooks/useOnboarding";
+import type { StarterShelfItem } from "../hooks/useOnboarding";
 import { stepVariants, stepTransition } from "../utils/animations";
 import OnboardingProgress from "./OnboardingProgress";
 import StepMotivation from "./StepMotivation";
@@ -22,6 +23,9 @@ export function OnboardingFlow() {
 
   // Ref for Step 6 sub-step back navigation
   const loopBackRef = useRef<(() => void) | null>(null);
+
+  const normalizeStarterShelfItem = (item: StarterShelfItem): string =>
+    typeof item === "string" ? item : item.id ?? "";
 
   const handleBack = useCallback(() => {
     if (currentStep === 6 && loopBackRef.current) {
@@ -44,7 +48,7 @@ export function OnboardingFlow() {
       dailyGoal: onboarding.dailyGoal,
       chapterOrder: onboarding.chapterOrder,
       starterShelf: Array.isArray(onboarding.starterShelf)
-        ? onboarding.starterShelf.map((b: { id?: string }) => b?.id ?? b)
+        ? onboarding.starterShelf.map(normalizeStarterShelfItem).filter(Boolean)
         : [],
       firstQuizScore: onboarding.firstQuizScore,
     };
@@ -66,7 +70,7 @@ export function OnboardingFlow() {
               tone: saveData.tone || "direct",
               dailyGoal: [10, 20, 30].includes(saveData.dailyGoal) ? saveData.dailyGoal : 20,
               chapterOrder: saveData.chapterOrder || "summary_first",
-              starterShelf: saveData.starterShelf?.length ? saveData.starterShelf : ["atomic-habits"],
+              starterShelf: saveData.starterShelf?.length ? saveData.starterShelf : ["crucial-conversations"],
               firstQuizScore: saveData.firstQuizScore ?? 0,
             }),
           });

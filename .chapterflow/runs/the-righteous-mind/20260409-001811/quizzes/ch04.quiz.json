@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch04-q01",
+      "prompt": "What is Chapter 4's main claim about reasoning in public?",
+      "choices": [
+        "Public reasoning is always objective",
+        "Public reasoning often does persuasion work",
+        "Public reasoning disappears under pressure"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says public reasons often help persuade and justify at the same time.",
+        "direct": "Haidt treats public argument as socially strategic rather than purely detached.",
+        "competitive": "The speech is doing sales work, not just thought work."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch04-q02",
+      "prompt": "Why does the same argument often sound different in different rooms?",
+      "choices": [
+        "Because audience shapes which reasons get emphasized",
+        "Because truth changes completely with the room",
+        "Because sincerity becomes impossible in public"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says audience changes what sounds persuasive.",
+        "direct": "A shift in listeners often changes the framing even when the position stays the same.",
+        "competitive": "The crowd edits the script."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch04-q03",
+      "prompt": "What role do allies play in Chapter 4's account of reasoning?",
+      "choices": [
+        "They are irrelevant to moral argument",
+        "They are part of why arguments are framed as they are",
+        "They only matter in private reflection"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Arguments often help gather or reassure supporters.",
+        "direct": "Alliance management is part of what public reasoning does.",
+        "competitive": "Reasons help hold the side together."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch04-q04",
+      "prompt": "Marcus presents the same student senate proposal as fairness to students and as stability to administrators. What does Chapter 4 say this shows?",
+      "choices": [
+        "He must secretly reject the proposal",
+        "Public reasoning often adapts to audience",
+        "Good arguments never change language"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The shift shows the argument being shaped by who is listening.",
+        "direct": "This is the audience effect central to the chapter.",
+        "competitive": "Same vote, different pitch."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q05",
+      "prompt": "Why can public debate sound cleaner than the motives beneath it?",
+      "choices": [
+        "Because motives do not exist in politics",
+        "Because arguments are often selected to sound acceptable and recruit support",
+        "Because only experts are allowed to speak"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Public reasons often present motives in language the audience can accept.",
+        "direct": "The argument is chosen partly for social fit and persuasive power.",
+        "competitive": "The speech is moral makeup for a mixed motive set."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q06",
+      "prompt": "Which statement best avoids a cheap cynical misreading of Chapter 4?",
+      "choices": [
+        "Every public argument is propaganda",
+        "Audience-aware reasoning can still be sincere",
+        "Only private reasoning can be real"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter is strategic without saying all argument is fake.",
+        "direct": "Public reasoning can contain genuine thought while still being socially shaped.",
+        "competitive": "Strategy is real, but not every strategist is a fraud."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q07",
+      "prompt": "Ivy explains the same family decision as care to one relative and duty to another. What question does Chapter 4 want you to ask next?",
+      "choices": [
+        "Which framing served the audience and whether it stayed honest",
+        "Why Ivy should stop speaking to relatives entirely",
+        "Why families never use moral language"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter asks how audience adaptation and honesty interact.",
+        "direct": "The next step is testing the boundary between persuasion and rationalization.",
+        "competitive": "Ask whether the new language guided or laundered."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q08",
+      "prompt": "What is the chapter's hardest tension?",
+      "choices": [
+        "Whether audiences exist at all",
+        "Whether honest persuasion can be distinguished from rationalization or propaganda",
+        "Whether all arguments should sound identical"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter leaves readers asking how strategic argument can stay honest.",
+        "direct": "Its depth lies in the boundary between persuasion and laundering.",
+        "competitive": "The hard part is telling guidance from cover."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q09",
+      "prompt": "How does Chapter 4 build on Chapters 2 and 3?",
+      "choices": [
+        "It turns intuition-first reasoning into a public persuasion problem",
+        "It abandons the earlier account of intuition",
+        "It proves the rider is always strong in public"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The earlier chapters explain why reason is not first, and Chapter 4 shows what reason often does in front of others.",
+        "direct": "Public persuasion is the next step after intuition-first judgment and limited private control.",
+        "competitive": "The late rider becomes a public advocate."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch04-q10",
+      "prompt": "What question does Chapter 4 most directly hand to Part II?",
+      "choices": [
+        "Why different groups respond to different kinds of moral appeal",
+        "How many elections a speaker can win",
+        "Why private habits never matter"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "If public arguments shift with groups, the next question is what different groups are ready to hear.",
+        "direct": "Part II needs a wider map of moral triggers to explain these audience effects.",
+        "competitive": "Different crowds buy different pitches because they are tuned to different moral buttons."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

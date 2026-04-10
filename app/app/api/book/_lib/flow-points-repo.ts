@@ -485,6 +485,14 @@ export async function createReferralClaimFromCode(
   }
 }
 
+/**
+ * Reason an awardFlowPoints call did not grant points.
+ *  - "duplicate": the (sourceType, sourceId) grant already exists for this user.
+ *  - "invalid_input": the amount or sourceId was empty/zero.
+ *  - null: not applicable (the grant succeeded).
+ */
+export type AwardFlowPointsFailureReason = "duplicate" | "invalid_input" | null;
+
 export async function awardFlowPoints(
   tableName: string,
   params: {
@@ -496,12 +504,18 @@ export async function awardFlowPoints(
     metadata?: Record<string, unknown>;
     createdAt?: string;
   }
-): Promise<{ awarded: boolean; state: BookUserEngagementItem; transactionId?: string }> {
+): Promise<{
+  awarded: boolean;
+  reason: AwardFlowPointsFailureReason;
+  state: BookUserEngagementItem;
+  transactionId?: string;
+}> {
   const amount = Math.max(0, Math.floor(params.amount));
   const sourceId = params.sourceId.trim();
   if (!amount || !sourceId) {
     return {
       awarded: false,
+      reason: "invalid_input",
       state: await getUserFlowPointsState(tableName, params.userId),
     };
   }
@@ -577,6 +591,7 @@ export async function awardFlowPoints(
     if (isConditionalCheckFailed(error)) {
       return {
         awarded: false,
+        reason: "duplicate",
         state: await getUserFlowPointsState(tableName, params.userId),
       };
     }
@@ -585,6 +600,7 @@ export async function awardFlowPoints(
 
   return {
     awarded: true,
+    reason: null,
     state: await getUserFlowPointsState(tableName, params.userId),
     transactionId,
   };

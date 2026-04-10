@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch01-q01",
+      "prompt": "What is the main job of System 1 in Chapter 1?",
+      "choices": [
+        "Generate fast impressions and candidate answers",
+        "Store every memory permanently",
+        "Guarantee accurate decisions under pressure"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "System 1 is the quick source of impressions and default responses.",
+        "direct": "The chapter defines System 1 by speed, automaticity, and rapid suggestion.",
+        "competitive": "This is the fast engine that gets answers on the board before review arrives."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch01-q02",
+      "prompt": "What is the main job of System 2 in Chapter 1?",
+      "choices": [
+        "Monitor, calculate, and check slower judgments",
+        "Produce instant emotional reactions",
+        "Replace intuition in every situation"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "System 2 is the slower layer that can inspect what arrived first.",
+        "direct": "The chapter ties System 2 to deliberate reasoning, monitoring, and correction.",
+        "competitive": "This is the expensive reviewer that can stop a fast mistake from sticking."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch01-q03",
+      "prompt": "Why is the two-system sequence easy to miss from the inside?",
+      "choices": [
+        "Because the mind feels unified even when fast and slow processes differ",
+        "Because people never notice effort",
+        "Because only experts have System 2"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The experience feels like one stream, so the handoff stays hidden.",
+        "direct": "Subjective unity conceals the sequence of proposal and review.",
+        "competitive": "The first answer arrives wearing the mask of the verdict."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch01-q04",
+      "prompt": "What makes a fluent answer risky?",
+      "choices": [
+        "It can feel complete before it has been checked",
+        "It always takes too long",
+        "It proves the evidence is strong"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Ease can be helpful, but it is not proof.",
+        "direct": "Fluency often tracks ease of generation rather than adequacy of evidence.",
+        "competitive": "Cheap coherence can sound authoritative long before it is earned."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch01-q05",
+      "prompt": "Which response best fits the chapter's advice about intuition?",
+      "choices": [
+        "Use intuition, but check it selectively when stakes or uncertainty rise",
+        "Distrust every intuition immediately",
+        "Treat intuition as equal to proof"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter is balanced rather than suspicious.",
+        "direct": "Kahneman is not banning intuition. He is teaching selective review.",
+        "competitive": "The edge is calibration, not ritual hesitation."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch01-q06",
+      "prompt": "A team loves a candidate after the first five minutes of an interview. Which chapter concept best explains the risk?",
+      "choices": [
+        "A fast first impression may be outrunning the evidence",
+        "Long memory is distorting the payroll data",
+        "System 2 has already completed a full audit"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The danger is that the first read may be treated as final too soon.",
+        "direct": "The case fits the chapter's core sequence: quick suggestion, weak inspection, premature endorsement.",
+        "competitive": "Charisma wins early when the room mistakes momentum for proof."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch01-q07",
+      "prompt": "Why is System 2 not a complete solution to bias?",
+      "choices": [
+        "Because it is effortful and cannot supervise every judgment",
+        "Because it only works in classrooms",
+        "Because it always agrees with System 1"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The slower system helps, but it is limited.",
+        "direct": "Its cost structure means it cannot audit everything all the time.",
+        "competitive": "Review is selective, which is why governance matters."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch01-q08",
+      "prompt": "What is the chapter's most useful reframing of error?",
+      "choices": [
+        "Many mistakes are unreviewed first answers rather than random irrationality",
+        "All mistakes come from low intelligence",
+        "Errors disappear once people know the terms"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter frames error as a sequence problem.",
+        "direct": "Bias often means a fast suggestion passed with too little inspection.",
+        "competitive": "This is a governance leak, not a mystery failure."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch01-q09",
+      "prompt": "What is the main limit on the two-system model?",
+      "choices": [
+        "It is an explanatory framework, not a literal anatomical map",
+        "It only applies to financial decisions",
+        "It proves slow thinking is always superior"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The model is useful because it explains function.",
+        "direct": "Kahneman uses the systems as practical characters, not precise brain parts.",
+        "competitive": "Treating the model as literal biology kills its value and invites false certainty."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch01-q10",
+      "prompt": "Why does Chapter 1 lead naturally into Chapter 2?",
+      "choices": [
+        "Because once review matters, the next question is when attention is available for it",
+        "Because the next chapter abandons the two-system model",
+        "Because the first chapter fully solves the resource problem"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The bridge is about availability.",
+        "direct": "After defining the reviewer, Kahneman needs to explain its resource limits.",
+        "competitive": "The next leverage question is when the audit layer can actually afford to engage."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    }
+  ]
+}

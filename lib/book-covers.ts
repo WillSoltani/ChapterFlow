@@ -1,16 +1,29 @@
 const REAL_BOOK_COVER_PATHS: Record<string, string> = {
-  "atomic-habits": "/book-covers/atomic-habits-20260403-real.jpg",
-  "friends-and-influence": "/book-covers/friends-and-influence-20260328-real.jpg",
-  "laws-of-human-nature": "/book-covers/laws-of-human-nature-20260328-real.jpg",
-  "never-split-the-difference": "/book-covers/never-split-the-difference-20260403-real.jpg",
-  "the-48-laws-of-power": "/book-covers/the-48-laws-of-power-20260328-real.jpg",
-  "the-charisma-myth": "/book-covers/the-charisma-myth-20260403-real.jpg",
+  "crucial-conversations": "/book-covers/crucial-conversations.svg",
+  "the-power-of-habit": "/book-covers/the-power-of-habit.svg",
+  essentialism: "/book-covers/essentialism.svg",
+  "make-time": "/book-covers/make-time.svg",
+  "what-every-body-is-saying": "/book-covers/what-every-body-is-saying.svg",
+  "deep-work": "/book-covers/deep-work.svg",
+  "the-prince": "/book-covers/the-prince.svg",
+  "tiny-habits": "/book-covers/tiny-habits.svg",
+  "predictably-irrational": "/book-covers/predictably-irrational.svg",
+  "the-psychology-of-money": "/book-covers/the-psychology-of-money.svg",
+  "thinking-fast-and-slow": "/book-covers/thinking-fast-and-slow.svg",
+  "the-almanack-of-naval-ravikant": "/book-covers/the-almanack-of-naval-ravikant.svg",
+  "the-laws-of-human-nature": "/book-covers/laws-of-human-nature.svg",
+  "the-hard-thing-about-hard-things": "/book-covers/the-hard-thing-about-hard-things.svg",
+  "leaders-eat-last": "/book-covers/leaders-eat-last.svg",
+  "good-to-great": "/book-covers/good-to-great.svg",
+  "how-to-talk-to-anyone": "/book-covers/how-to-talk-to-anyone.svg",
+  indistractable: "/book-covers/indistractable.svg",
+  "never-split-the-difference": "/book-covers/never-split-the-difference.svg",
+  "pitch-anything": "/book-covers/pitch-anything.svg",
+  "you-can't-hurt-me": "/book-covers/you-can't-hurt-me.svg",
+  "extreme-ownership": "/book-covers/extreme-ownership.svg",
 };
 
-const BOOK_COVER_ALIASES: Record<string, string> = {
-  "48-laws-power": "the-48-laws-of-power",
-  "how-to-win-friends": "friends-and-influence",
-};
+const BOOK_COVER_ALIASES: Record<string, string> = {};
 
 function dedupe(values: Array<string | undefined>): string[] {
   return [...new Set(values.filter((value): value is string => Boolean(value)))];

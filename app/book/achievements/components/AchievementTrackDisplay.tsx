@@ -198,6 +198,18 @@ function TrackList({
                 <span className={cn("text-sm font-medium", isEarned ? "text-(--cf-text-1)" : "text-(--cf-text-2)")}>
                   {def.name}
                 </span>
+                {isEarned && earnedData && earnedData.ipAwarded > 0 && (
+                  <span
+                    className="ml-2 inline-flex items-center gap-1 text-[11px] font-bold px-2 py-0.5 rounded-full"
+                    style={{
+                      background: "rgba(34,211,238,0.12)",
+                      color: "var(--accent-teal)",
+                      border: "1px solid rgba(34,211,238,0.3)",
+                    }}
+                  >
+                    +{earnedData.ipAwarded} IP
+                  </span>
+                )}
               </div>
               <span
                 className="text-xs tabular-nums font-medium"

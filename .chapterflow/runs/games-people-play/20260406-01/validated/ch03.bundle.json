@@ -1,0 +1,890 @@
+{
+  "$schema": "chapterflow-v12-sealed/chapter-bundle",
+  "packVersion": "v12-sealed",
+  "bookId": "games-people-play",
+  "runId": "20260406-01",
+  "chapterId": "ch03",
+  "generatedAt": "2026-04-06",
+  "manifest": {
+    "outputProfile": "flagship_v4_compatible",
+    "learningContract": "research_native",
+    "runProfile": "balanced_flagship",
+    "validationMode": "chapter_gate",
+    "chapterGateQuizMode": "generate",
+    "scenarioTonePolicy": "required",
+    "forbidBulkGenerators": true,
+    "releaseAssembleFromValidatedOnly": true,
+    "preserveApprovedChapterHashes": true
+  },
+  "book": {
+    "bookId": "games-people-play",
+    "title": "Games People Play",
+    "author": "Eric Berne",
+    "categories": [
+      "Psychology",
+      "Communication",
+      "Relationships"
+    ],
+    "tags": [
+      "transactional-analysis",
+      "psychology",
+      "communication",
+      "relationships",
+      "self-awareness",
+      "social-dynamics"
+    ],
+    "edition": {
+      "name": "First edition (Grove Press, 1964)",
+      "translator": "",
+      "publishedYear": 1964,
+      "translationYear": null,
+      "sourceText": ".chapterflow/sources/games-people-play/games-people-play.txt",
+      "sourceProvenance": "Structured reference material derived from Eric Berne's transactional analysis framework (Games People Play, Grove Press, 1964). Paraphrased summaries and structural outlines only — no verbatim reproduction."
+    },
+    "variantFamily": "EMH",
+    "chapterRange": "All chapters in source"
+  },
+  "chapter": {
+    "chapterId": "ch03",
+    "number": 3,
+    "title": "Ulterior Transactions and the Anatomy of a Game",
+    "readingTimeMinutes": 13,
+    "contentVariants": {
+      "easy": {
+        "chapterBreakdown": {
+          "gentle": "You already know the dinner party where somebody asks for advice about a problem and then, one by one, explains why every suggestion will not work. On the surface, it looks like asking for help. Underneath, something else is running. Berne said that some transactions have two levels at once. The top level has the words in it. The bottom level has the pattern in it, and the pattern is usually the conversation that actually matters. When a two-level exchange repeats between the same people, with the same shape, and pays off in the same way each time, Berne called it a game. It is not playful. It is a reliable way to get a kind of attention both people need, at the cost of the conversation they would otherwise be having.",
+          "direct": "Some transactions run on two levels at once. On the social level, the level in which words are exchanged, one thing is happening. On the psychological level, the level in which patterns are exchanged, something else is happening, and the second level is the one that actually matters. Berne called these ulterior transactions. He then proposed that when an ulterior transaction repeats between the same people, with the same opening move, the same counter, the same switch, and the same predictable outcome, it has become a game in his technical sense. A game has four structural parts you can name: thesis (the repeating plot), antithesis (the move that would break it), dynamics (the mechanism that keeps it running), and payoff (what both players get out of losing).",
+          "competitive": "In any relationship where the same painful conversation keeps happening with the same shape, you are not in a series of accidents. You are in a pattern that is paying off for both people, at the cost of something neither of them is admitting. Berne built the vocabulary for this. Some transactions run on two levels at once: a social level that has words in it, and a psychological level that has the pattern in it. When the pattern repeats, it is a game in his technical sense, and every game has a shape you can name in four parts. Thesis, antithesis, dynamics, payoff. Learning to see the shape in real time is the leverage. Choosing whether to break the shape is a harder, more expensive decision that the diagnosis does not make for you."
+        },
+        "keyTakeaways": [
+          {
+            "point": "Some transactions run on two levels at once: a social level with words and a psychological level with a pattern. The psychological level is usually the one that actually matters."
+          },
+          {
+            "point": "When a two-level transaction repeats between the same people with the same shape and the same payoff, Berne called it a game. Not in the loose sense, in a strict technical one."
+          },
+          {
+            "point": "Every game has four nameable parts: thesis (the repeating plot), antithesis (the move that would break it), dynamics (what keeps it running), and payoff (what both players get out of losing)."
+          }
+        ],
+        "oneMinuteRecap": {
+          "gentle": "Some transactions have two levels, one in the words and one in the pattern underneath. The second is usually the one that matters. When the pattern repeats with the same shape, Berne called it a game. Every game has four parts: thesis, antithesis, dynamics, payoff.",
+          "direct": "Ulterior transactions are two-level. The social level is in the words; the psychological level is in the pattern. When an ulterior transaction repeats between the same people with the same shape and payoff, Berne called it a game. Every game has a nameable four-part anatomy.",
+          "competitive": "Two levels, running together. When they repeat, you have a game. Games have a four-part shape: thesis, antithesis, dynamics, payoff. The anatomy is a diagnostic tool, and it is dangerous to swing at anyone but yourself."
+        }
+      },
+      "medium": {
+        "chapterBreakdown": {
+          "gentle": "Once you can draw the two arrows of a single transaction, the next thing the model gives you is a way to see what is running underneath them. Berne noticed that some transactions have two levels at the same time. On the top level, the level that has words in it, one conversation is happening. On the bottom level, the level that has no words but has a pattern in it, a different conversation is happening. The second conversation is usually the one that actually matters.\n\nThe clearest example is the dinner party where Lena asks for advice about her commute and rejects every suggestion with 'yes, but.' On the top level, Lena is asking for help. Underneath, she is demonstrating that nobody can help her, and the guests are obligingly generating fresh suggestions for her to reject. Berne called two-level transactions ulterior. He then took one more step. When an ulterior transaction runs repeatedly between the same people, with the same opening move, the same predictable counter, the same switch at the moment the psychological level takes over, and the same predictable payoff, it has become what he called a game.\n\nThe word is doing specific work. A game in Berne's technical usage is not playful. It is not what people mean in the loose sense when they say somebody is 'playing games.' It is a structural object with four nameable parts. The thesis is the repeating plot. The antithesis is the move that would break the game by refusing the role it has assigned. The dynamics are the mechanism that keeps it running. The payoff is what both players get out of the losing position, which is always more than it looks like from the outside, and always less than what the loss costs them.",
+          "direct": "Berne's third structural move, after the three states and the two-arrow transaction, was to introduce the second level that runs underneath some transactions. He called it the ulterior level. On the social level, words are exchanged; on the psychological level, patterns are exchanged, and the psychological level is where the actual work of the conversation is being done. Lena at a dinner party asks her guests for advice about her commute and rejects every suggestion with 'yes, but.' The social level is a request for help. The ulterior level is a demonstration that nobody can help her, and the guests, by generating new suggestions for her to reject, are participating in the demonstration without noticing.\n\nBerne then defined a game as an ongoing series of ulterior transactions that progress reliably toward a predictable outcome. The word 'game' is doing specific work. It does not mean playful. It does not mean the loose thing people point at when they say a friend is 'playing games' with them. It means a structural object with a repeating shape and a predictable payoff. Every game has four nameable parts.\n\nThesis is the repeating plot: an opening move, a predictable counter, a switch at the moment the psychological level takes over, and a payoff. Antithesis is the move that would break the game by refusing the role it has assigned one of the players. Dynamics is the psychological mechanism that keeps the game running. Payoff is what both players get out of the losing position, which is usually a reliable source of attention (what Berne called strokes, a word that belongs properly to the next chapter) plus a confirmation of a position about themselves or the world that they were already holding. The game is not an accident. It is a solution to a problem the player has not solved any other way.",
+          "competitive": "The reason the same painful conversation keeps happening in a relationship is almost never that the people in it are stupid. It is that the conversation is running on two levels at once, and the second level is paying them both something the first level cannot admit. Berne built the vocabulary for that.\n\nOn the top level, the level with words in it, one exchange is happening. On the bottom level, the level with the pattern in it, something else is. Lena at the dinner party asks for advice and rejects every suggestion. On the top level, she is asking for help. On the bottom level, she is proving that no one can help her, and her guests are proving it with her every time they offer another suggestion. Berne called the bottom level ulterior, and he named something harder: when an ulterior transaction repeats between the same people with the same shape, it is a game in his technical sense, and every game is a structural object with four nameable parts.\n\nThesis is the repeating plot: opening move, counter, switch, payoff. Antithesis is the move that would break the game by refusing the role it assigned. Dynamics is the mechanism that keeps the whole thing in motion. Payoff is what both players get from the losing position, and it is always something real, even when it is a kind of attention the player would rather not admit they needed. A game is not a metaphor. It is a solution the player has found to a problem they have not solved any other way, and that is why shaming it does not work. The leverage, as always, is in the reading, not in the shaming. Reading the second level before the game has finished its next round is the cheapest intervention available, and the easiest one to misuse."
+        },
+        "keyTakeaways": [
+          {
+            "point": "Some transactions have two levels at once.",
+            "moreDetails": "The social level is what is being said in words. The ulterior level is the pattern running underneath. Both are real and both are running at the same time, and the ulterior level is usually the one that actually determines what happens next in the relationship."
+          },
+          {
+            "point": "Games are repeated ulterior transactions with a predictable payoff.",
+            "moreDetails": "A single two-level exchange is not a game. A game is what you have when the same two-level exchange runs between the same people with a recognizable shape and pays off in the same way every time. The repetition is what makes it an object with a name."
+          },
+          {
+            "point": "Berne's 'game' is a technical term, not a loose metaphor.",
+            "moreDetails": "It is not playful. It is not the casual thing people mean when they say somebody is 'playing games' with them. It is a structural object, and the strict usage matters because the rest of the book depends on it."
+          },
+          {
+            "point": "Every game has four nameable structural features.",
+            "moreDetails": "Thesis (the repeating plot), antithesis (the move that would break the game by refusing the assigned role), dynamics (the mechanism that keeps the pattern running), and payoff (what both players get from the losing position)."
+          },
+          {
+            "point": "The payoff is real, even when it looks like losing.",
+            "moreDetails": "Both players get something out of running the game. It is usually a reliable kind of attention plus a confirmation of a position they were already holding about themselves or the world. That is why shaming people out of their games does not work; the games are not foolish."
+          },
+          {
+            "point": "Seeing the game is not the same as choosing to break it.",
+            "moreDetails": "The anatomy is a diagnosis. The antithesis is a separate and often expensive decision. The chapter is careful to keep those two things separate so the reader does not use the tool as a weapon."
+          }
+        ],
+        "activationPrompt": {
+          "gentle": "Think of a conversation in your life that keeps happening in the same shape with the same person, and ends in the same feeling. Try to describe what is happening on the social level, in the words. Then try to describe what is happening underneath.",
+          "direct": "Pick a recurring conversation with a specific person that always ends the same way. Identify the social level (what is being said in words) and the psychological level (what pattern is running underneath).",
+          "competitive": "Take the recurring conversation in your life you dread most. Identify the two levels. The social level is what you would quote if someone asked. The psychological level is what is actually happening. They are different."
+        },
+        "selfCheckPrompt": {
+          "gentle": "Can you describe, in one sentence, the social level and the psychological level of a recent conversation in your own life where the two were running at the same time?",
+          "direct": "Name one recent ulterior transaction in your life. Describe the social level in one sentence and the psychological level in one sentence. They should be clearly different.",
+          "competitive": "Find one ulterior transaction you were in this week. Write the two levels as separate sentences. If the two sentences sound the same, you have not yet seen the second level."
+        },
+        "oneMinuteRecap": {
+          "retrieve": "Some transactions run on two levels at once (ulterior). When an ulterior transaction repeats between the same people with a recognizable shape, it is a game in Berne's technical sense. Every game has four parts: thesis (repeating plot), antithesis (the move that would break it), dynamics (the mechanism), payoff (what both players get out of losing).",
+          "connect": "This builds directly on the previous chapter's two-arrow diagram by adding a third layer running underneath. The new question a reader can ask is whether the same two-arrow pattern is repeating between the same people with a payoff.",
+          "preview": "The anatomy says what a game is. The next question is why games are so sticky even once you see them. The answer lives in what the payoff is made of and what deeper position it is protecting."
+        }
+      },
+      "hard": {
+        "chapterBreakdown": {
+          "gentle": "The three voices alone were observation. The two arrows of a transaction were a relational tool. The model's third move, the one Berne took in his most important chapter, was to add the second level that runs underneath some transactions. Some exchanges are two-layer. On the top layer, the layer that has words in it, one kind of conversation is happening. On the bottom layer, the layer that has the pattern in it, a different kind of conversation is happening. The second one is usually the one that actually matters.\n\nThe clearest worked example is small and social. Lena asks her dinner party for advice about her morning commute and rejects every suggestion the guests offer with 'yes, but.' On the top level, Lena is asking for help. Underneath, she is demonstrating that nobody at the table can help her, and the guests are participating in the demonstration by generating fresh suggestions for her to reject. The surface conversation is about the commute. The actual conversation is about Lena's position in the world (unhelpable, interestingly hard) and the guests' position (concerned friends who tried). Berne called the second level ulterior, and that word is the whole first half of the chapter.\n\nThe second half is the harder move. Berne noticed that when an ulterior transaction repeats between the same people, with the same opening move, the same predictable counter, the same switch at the moment the psychological level takes over, and the same reliable payoff, it stops being a one-off and becomes what he called a game. A game in his technical usage is not playful, and it is not the loose thing people mean when they say somebody is 'playing games' with them. It is a structural object with four nameable parts. Thesis is the repeating plot. Antithesis is the move that would break the game by refusing the role it has assigned. Dynamics is the mechanism that keeps the pattern running. Payoff is what both players get out of the losing position, which is usually a reliable kind of attention plus a confirmation of something they already believe about themselves or about the world.\n\nTwo things have to live next to each other in the rest of the chapter, and they cut against each other on purpose. The first is that the anatomy is real. You can name the four parts of a game someone in your life is running, and you can often name the antithesis that would break it. The second is that the antithesis is expensive, in ways the anatomy alone does not show you. Naming the game will come next.",
+          "direct": "Berne's third structural move after the three states and the two-arrow transaction was to introduce the second level that runs underneath some transactions. He called it the ulterior level. On the social level of a transaction, words are exchanged. On the ulterior level, patterns are exchanged, and the ulterior level is where the actual work of the conversation is being done. When Lena at a dinner party asks her guests for advice about her commute and rejects every suggestion with 'yes, but,' the social level is a request for help and the ulterior level is a demonstration that nobody can help her. Both levels are running at the same time. Both levels are part of the same transaction. The guests are participating in the ulterior level without having been told about it.\n\nBerne then took the second, harder step. He proposed that when an ulterior transaction runs repeatedly between the same people, with the same opening move, the same predictable counter, the same switch at the moment the psychological level takes over, and the same reliable payoff, it has become what he technically called a game. The word 'game' is doing specific work here. It does not mean playful, and it does not mean the loose thing people point at when they say somebody is playing games with them. It means a structural object with a repeating shape and a predictable outcome.\n\nEvery game has four nameable structural features, and Berne is strict about them. The thesis is the repeating plot: opening move, counter, switch, payoff, in a sequence the participants could describe if they were pushed hard enough. The antithesis is the specific move that would break the game by refusing the role it has assigned to one of the players, and the antithesis is almost always uncomfortable because it requires ignoring the social level and responding to the ulterior level directly. The dynamics are the psychological mechanism that keeps the whole pattern in motion, and the dynamics are usually about something the player needs and does not have a better source for. The payoff is what the player gets out of the losing position, which is always more than it looks like from outside and always less than what the loss is costing them.\n\nTwo structural facts must travel together into the hard-depth version of this chapter. The first is that the anatomy is real and operational. You can apply it to recurring painful patterns in your own life and get a clear diagnosis. The second is that applying it to other people's games, or using it to demand the antithesis from someone who has nowhere else to go for what the game provides, is one of the fastest ways to make the model harmful. The next section holds that limit.",
+          "competitive": "Pay attention to what the chapter is actually claiming, because the word 'game' in Berne's technical usage is easy to misread and the misread makes the rest of the book sound cynical. He is not saying that people are playing games with each other in the loose sense that word has in English, and he is not being contemptuous of people who play games. He is proposing a structural claim: some transactions run on two levels at once, and when the two-level structure repeats between the same people with the same shape and pays off in the same way every time, the pattern has become an object with four nameable parts.\n\nThe first half of the claim is about the transaction. On the social level of an exchange, words are exchanged. On the ulterior level, underneath, a pattern is exchanged. Lena at a dinner party asks for advice about her commute and rejects every suggestion. On the social level she is asking for help. On the ulterior level she is demonstrating that nobody can help her, and the guests are generating her demonstrations for her by continuing to make suggestions she can reject. Neither side is doing this on purpose. The ulterior level is just as real as the social level, and the two are running at the same time.\n\nThe second half of the claim is about the repetition. A single ulterior transaction is not yet a game. A game is what you have when the same ulterior transaction repeats between the same people with a recognizable shape: an opening move, a predictable counter, a switch at the moment the psychological level takes over, and a payoff that both players get something from. The thesis is the repeating plot. The antithesis is the move that would break the game by refusing the role it assigned. The dynamics are the mechanism that keeps the whole pattern running. The payoff is what the player gets out of losing, which is almost always a reliable kind of attention plus a confirmation of something they already believed about themselves or the world.\n\nThe leverage in the chapter, and the reason it has to come before chapter four and not after, is that the anatomy gives the reader a real diagnostic tool. The cost the chapter cannot skip is that the tool is expensive to swing. Applying it to your own games is useful. Applying it to other people's games, or using it to demand the antithesis from someone who has nowhere else to go for what the game is providing, is how a reader weaponizes the model against the people they should be most careful with. The next section is where the chapter pays for that distinction honestly."
+        },
+        "keyTakeaways": [
+          {
+            "point": "Some transactions run on two levels at the same time, and the second level is usually the one that matters.",
+            "moreDetails": "On the social level, words are exchanged. On the ulterior level, patterns are exchanged. The guest at Lena's dinner party who keeps offering suggestions is participating in both levels at once, without being told about the second."
+          },
+          {
+            "point": "A single ulterior transaction is not yet a game.",
+            "moreDetails": "A game is what you have when the same ulterior transaction repeats between the same people with a recognizable shape and the same payoff every time. Repetition is what makes it an object with a name, not just an accident."
+          },
+          {
+            "point": "Berne uses 'game' in a strict technical sense, and the loose English sense will mislead the reader.",
+            "moreDetails": "Games in his sense are not playful, and they are not the thing people mean in casual speech when they say someone is 'playing games' with them. They are structural objects with repeating shapes, and the rest of the book depends on keeping the strict usage."
+          },
+          {
+            "point": "Every game has four nameable structural features.",
+            "moreDetails": "Thesis is the repeating plot (opening, counter, switch, payoff). Antithesis is the move that would break the game by refusing the assigned role. Dynamics is the mechanism that keeps the pattern in motion. Payoff is what both players get from the losing position."
+          },
+          {
+            "point": "The payoff is real and it is the reason shaming does not work.",
+            "moreDetails": "Games are sticky because they pay out reliably. Both players are getting something out of the losing position, and the something is usually a reliable source of attention plus a confirmation of a position they were already holding. Players are not running games because they are foolish; they are running them because the payoff is something they have not found a better source for."
+          },
+          {
+            "point": "The antithesis is expensive.",
+            "moreDetails": "Breaking a game takes away the payoff the players have been using to keep something else at bay. If the player had a better source of what the payoff was providing, they would already be using it. The antithesis is sometimes the right move and sometimes the move that costs the player more than the game."
+          },
+          {
+            "point": "Seeing the game is always valuable. Choosing to break it is a separate decision that belongs to the player.",
+            "moreDetails": "The chapter is careful about this because the anatomy is a weapon when used on other people. The honest use of the model is diagnostic on your own patterns first and only gently, if ever, on the patterns of people who have nowhere else to go for what the game provides them."
+          }
+        ],
+        "activationPrompt": {
+          "gentle": "Think about a recurring pattern in a close relationship you have been running for years. Try to name all four parts: the repeating plot, the move that would break it, the mechanism that keeps it going, and what both of you get out of it.",
+          "direct": "Identify a recurring game in a long-term relationship of yours. Name the thesis, antithesis, dynamics, and payoff in specific terms, including what the payoff is actually paying you.",
+          "competitive": "Pick the longest-running recurring pattern in any relationship you are in. Write out the four structural features in concrete sentences, with specific payoffs. If you cannot name the payoff, you do not yet see the game."
+        },
+        "selfCheckPrompts": [
+          {
+            "gentle": "When did you most recently catch yourself participating in an ulterior transaction from the side of the generator, the guest at the dinner party offering suggestions that kept being rejected?",
+            "direct": "Name the last time you were the one offering advice that kept being rejected. What was the ulterior level, and how long did it take you to notice?",
+            "competitive": "Find the most recent time you were cast as the advice-generator in someone else's rejected-suggestion game. How many suggestions did you offer before you saw it? If more than three, you were not yet reading the second level."
+          },
+          {
+            "gentle": "Where in your life is there a stable, recurring game that you are the player of, and what would the antithesis cost you if you tried to break it?",
+            "direct": "Identify a stable game of your own. Name its payoff specifically. Then describe what you would lose if you broke it tomorrow, in concrete terms.",
+            "competitive": "Name one game you run on yourself. Describe the payoff with enough specificity that you can see why shaming yourself will not make it go away. The specific payoff is what you would need a replacement for."
+          }
+        ],
+        "predictionPrompt": {
+          "gentle": "If you spent two weeks only applying the game anatomy to your own patterns, and never using it on anyone else, what do you predict you would see that you do not currently see?",
+          "direct": "Predict what you would observe from two weeks of applying the four-part anatomy only to your own recurring patterns, never to another person's. What changes in your self-understanding? What does not?",
+          "competitive": "Run the experiment in your head: two weeks of the four-part anatomy applied only to yourself, never as a weapon, never named aloud to anyone. What recurring pattern would you see most clearly? What would change in the next conversation you are in with the person it runs with?"
+        },
+        "oneMinuteRecap": {
+          "retrieve": "Ulterior = two levels at once. Game = repeating ulterior transaction with a predictable shape and payoff. Anatomy = thesis, antithesis, dynamics, payoff. Seeing the game is diagnostic; choosing to break it is a separate, often expensive decision.",
+          "connect": "The chapter adds a hidden third arrow to the two-arrow diagram from the previous chapter. The new observable is repetition with shape, not single exchanges.",
+          "preview": "The anatomy is real and usable. The reason games are sticky even once you see them is what the payoff is made of, and that is where the next chapter has to go."
+        }
+      }
+    },
+    "examples": [
+      {
+        "id": "ex01",
+        "title": "Teodora inside Victor's Tuesday retrospective",
+        "format": "first_person",
+        "category": "work",
+        "endingType": "observation",
+        "scenario": {
+          "gentle": "It is Tuesday again. Victor's retrospective. I am on the call with my coffee in the cup I bought the day I joined this team. Victor opens with the same sentence he has opened with for eight months: 'Does anyone have anything they want to raise?' I watch the three-second silence arrive, right on schedule. I used to break the silence. I do not anymore, because I remember what happened the last three times I did. Victor says, 'Great, no issues this week.' I do not drink the coffee. The meeting ends, and I am noticing, for the first time today, that I already know the whole shape of the thing we are all in.",
+          "direct": "Tuesday standing retrospective. POV: Teodora, eight months on the team. Victor (team lead) opens with 'Does anyone have anything they want to raise?' The three-second silence that follows is scripted now. I used to speak into it. The last three times I did, Victor responded in ways that were technically polite and practically punishing. Now I sit. The meeting closes with 'no issues this week.' The reporting upward is clean. I am watching myself participate in a pattern I did not sign up for and have no obvious way to leave.",
+          "competitive": "Tuesday retro, month eight. Victor's opening line never changes: 'Does anyone have anything they want to raise?' Mine never changes either anymore: silence, the coffee cup I keep in my hand so my hands have a job. The first three times I raised something in this meeting, Victor's half-second pause taught me what this room was going to cost me. Now I do not pay. I also do not have the meeting I came to have. The pattern is paying Victor's reporting cleaner numbers every week, and it is paying me a quieter hour in exchange for my voice. That is the deal, and nobody in the room voted on it."
+        },
+        "whatToDo": {
+          "gentle": "When you catch yourself inside a group-level game, the first move is not necessarily to break it. It is to name it to yourself clearly, including your own participation, and to decide whether this is a meeting you can raise a thing in or a meeting you need to raise the thing outside of. Often the correct first move is the offline conversation with someone outside the meeting.",
+          "direct": "Take the topic you would have raised in the retro to a channel the retro does not cover. Write it up, one paragraph, and send it to Victor's manager, or to a peer lead, or to whoever owns the thing. The retro is a closed system; raising it inside the retro is playing the game. Raising it outside the retro is the antithesis.",
+          "competitive": "Stop raising it in the room the game owns. Take the topic to the channel above the retro, in writing, with dates. The retro exists to absorb feedback; the written escalation exists outside the retro's ulterior level. One written escalation will teach Victor more about what the room is for than twelve broken silences."
+        },
+        "whyItMatters": {
+          "gentle": "Group-level games eat more of your working life than one-on-one games because they run on a schedule. Catching the pattern once is not the same as leaving the pattern; leaving it requires finding a channel the game does not own.",
+          "direct": "Group games are structural because the meeting itself is structural. The antithesis for a group game is usually to move the message out of the meeting, not to break the meeting. Breaking the meeting almost always costs the breaker more than the meeting is worth.",
+          "competitive": "Group games are the most expensive pattern a professional ever enters, because they run weekly and the payoff is paid in organizational attention the player cannot route around. The only cheap exit is out of the meeting itself, in writing, to somebody the meeting does not own."
+        }
+      },
+      {
+        "id": "ex02",
+        "title": "Petra's Thursday 1:1 with Teodora",
+        "format": "third_person_scene",
+        "category": "work",
+        "endingType": "unresolved_tension",
+        "scenario": {
+          "gentle": "Petra, Teodora's manager, calls her into the glass-walled office on Thursday afternoon for what Petra's calendar calls a 'quick 1:1.' Petra opens with, 'I wanted to see if there was anything I could help with on the migration. Can I help you re-scope it?' On the social level, it is an offer of support. Teodora hears it and feels her stomach do a small familiar thing, because she has taken this offer before and remembers how it ended: a re-scope that quietly made her look like the person who had been over-promising.",
+          "direct": "Thursday afternoon, Petra's glass-walled office. Petra (Adult to Adult, on the social level): I wanted to see if there was anything I could help with on the migration. Can I help you re-scope it? On the ulterior level: the offer is a setup. The last two 're-scopes' made Teodora look like the person who had been over-committing. Teodora is reading both levels at once and trying to decide which one to answer.",
+          "competitive": "Petra asked the question with a calendar invite that said 'quick 1:1.' On the top level it was an offer of help. On the bottom level it was the move that turned Teodora's previous project into Teodora's over-promise. Teodora knew both levels, watched Petra's face arrange itself into the helpful expression, and understood she had about ninety seconds to decide whether to answer the top level or the bottom level of the question."
+        },
+        "whatToDo": {
+          "gentle": "When you recognize an ulterior offer, do not refuse the help outright. That triggers the social-level story that you are being difficult. Instead, accept the help in a form that breaks the ulterior level. 'I'd love your help. Can you send me a written list of what you think the right scope is, and we can compare it to mine?' The written list is the antithesis.",
+          "direct": "Accept the help in writing only. 'Yes, please send me your proposed re-scope in writing and I will compare it to mine.' The request for a written artifact interrupts the ulterior level because the ulterior level runs on plausible deniability. A written document has no plausible deniability.",
+          "competitive": "Convert the offer into a deliverable. 'Please send me your proposed re-scope in writing by end of day Friday, and I will compare it line by line to mine.' The written artifact is the move the ulterior level cannot survive, because the ulterior level depends on the help being vague enough to shift blame later."
+        },
+        "whyItMatters": {
+          "gentle": "Most workplace ulterior offers rely on the help being informal enough to be deniable later. Turning the offer into a written artifact is not about blame; it is about keeping the record of what was actually offered.",
+          "direct": "Ulterior offers in the workplace live in the gap between what was said verbally and what gets documented later. Closing the gap with a written artifact is the cleanest antithesis available to a subordinate.",
+          "competitive": "The written artifact is the cheapest defense a subordinate has against a manager's ulterior offer, and it is one of the only defenses that also scales. Informal help is where the payoff of the manager's game lives. Formal help destroys the ulterior level without requiring a confrontation."
+        }
+      },
+      {
+        "id": "ex03",
+        "title": "Farida's dissertation proposal in Imani's seminar",
+        "format": "short_dialogue",
+        "category": "school",
+        "endingType": "reframe",
+        "scenario": {
+          "gentle": "In Professor Imani's Friday methods seminar, Farida has presented a draft of her dissertation proposal and asked for feedback. Imani suggested that Farida read a specific methodological critique. Farida said, 'Yes, but I've tried that author before and I don't connect with his framing.' Imani suggested a second author. Farida said, 'Yes, but that one is a little too quantitative for my question.' Imani suggested a third, and Farida began with 'yes, but.' Imani paused mid-sentence and reread something on her copy of the draft.",
+          "direct": "IMANI (Adult to Adult): Try reading this methodological critique. FARIDA: Yes, but I don't connect with that author's framing. IMANI: Try this other author. FARIDA: Yes, but too quantitative. IMANI: Try this third author. FARIDA: Yes, but... Imani stops mid-sentence. The social level is feedback. The ulterior level is Farida demonstrating that no author can help her and Imani being set up to keep generating authors.",
+          "competitive": "Farida presented her proposal in Imani's seminar and then rejected the first three suggestions with 'yes, but.' Imani was eight minutes into the session when she caught the shape of the conversation she was in. The social level was dissertation feedback. The ulterior level was a game Imani had seen other students play with other professors, and the payoff at the end was going to be Farida explaining, in her next committee meeting, that she had consulted Professor Imani and none of the suggestions had been workable. Imani had been set up as the witness to the impossibility. She stopped mid-sentence."
+        },
+        "whatToDo": {
+          "gentle": "The professor's move here is not to keep suggesting authors. It is to hand the question back. 'Farida, I notice I have suggested three authors and none of them have been useful. I am going to stop suggesting. What is the author you would suggest for yourself?'",
+          "direct": "Refuse to offer the fourth suggestion. Replace it with a question about what Farida has already tried, in her own words. 'What is the author you would recommend for yourself?' That question is the antithesis; it refuses the role of suggestion-generator and hands the problem back.",
+          "competitive": "Cut the suggestions cold. 'I have offered three authors. I am done offering authors. Tell me which author you would recommend for yourself, and we will talk about that one.' The sentence is sharp on purpose. The sharpness is what the game cannot absorb."
+        },
+        "whyItMatters": {
+          "gentle": "Rejected-suggestion patterns in advising relationships waste years of the advisor's time and quietly harm the student's thesis. Reframing the conversation, once, as 'what would you recommend' is often enough to either break the pattern or reveal that the student needs a different kind of conversation entirely.",
+          "direct": "Rejected-suggestion patterns are a common game in academic advising. Reframing from 'here is a suggestion' to 'what would you suggest' converts a generator role into a consultant role, which the game cannot run on.",
+          "competitive": "An advisor who keeps generating suggestions for a student who runs a rejected-suggestion game is losing hours of their own research time every week and providing the student with the raw material for a future complaint about not being supported. The reframe is the only cheap exit, and it has to happen the moment the advisor notices the pattern."
+        }
+      },
+      {
+        "id": "ex04",
+        "title": "Hana coaches Wole after the parent meeting",
+        "format": "coaching_script",
+        "category": "school",
+        "endingType": "reflection",
+        "scenario": {
+          "gentle": "Hana is sitting in the teachers' lounge after the last bell with her colleague Wole, who is two years into the job and has just had a hard conversation with a student's parents. Wole is describing the meeting. 'Every time I asked them about the homework, they said they were trying their best. I just kept asking different ways.' Hana recognizes the shape Wole is describing from the other side. She wants to name it for him without calling it a game out loud, because the word 'game' will sound cynical to Wole, and cynical is not what this is.",
+          "direct": "Teachers' lounge after last bell. Wole (2 years into teaching, Adult to Adult): Every time I asked them about the homework, they said they were trying their best. I kept asking different ways. Hana (Adult, coaching register): You kept asking different ways because nothing you asked got you closer to what you actually wanted to know. That is the signal. The conversation had two levels and you were only being allowed to work the top one.",
+          "competitive": "Wole was describing a parent meeting in the teachers' lounge and Hana was recognizing the game at speed. Every rephrased question the parents answered with 'we are doing our best' was a move in a pattern Hana had seen a dozen times. The social level was a parent conference. The ulterior level was the parents declining, politely, to be in any conversation that could produce an actionable next step. Hana's problem was how to hand Wole the diagnosis without using the word 'game,' which was going to sound wrong in his ear on his second year of teaching."
+        },
+        "whatToDo": {
+          "gentle": "Instead of saying 'they were playing a game,' say 'there were two conversations in the room and you were only invited to work on one of them.' That sentence lands with a teacher like Wole because it is true on both the social and structural level without asking him to be cynical. Then ask him what the second conversation might have been, and let him answer in his own words.",
+          "direct": "Describe the ulterior layer without the word 'game.' 'There was a second conversation in the room and you were not invited into it. What do you think the parents were protecting by saying they were doing their best?' That question hands the diagnosis to Wole without the language that will scare him off.",
+          "competitive": "Do not use the word 'game.' Use the phrase 'second conversation' and hand Wole the diagnosis. 'The parents were having a second conversation in that meeting and you were not in it. What do you think they were protecting?' The sentence is the whole lesson, and it survives Wole's first reaction, which the word 'game' would not have."
+        },
+        "whyItMatters": {
+          "gentle": "Teaching the second layer of the model to colleagues who are not steeped in Berne's vocabulary is the harder half of the skill. The phrase 'second conversation' is the most reliable bridge because it is literal, not cynical.",
+          "direct": "The word 'game' in Berne's sense does not survive translation into a lunchroom conversation with a colleague who has not read the book. Translating the diagnosis into 'second conversation' preserves the structure and loses the cynicism.",
+          "competitive": "Mid-career teachers who have been taught Berne's game vocabulary by a cynical colleague will refuse the model for the rest of their careers. The phrase 'second conversation,' handed at the right moment in a lounge conversation, is the only version of the model that survives first contact with a principled young teacher."
+        }
+      },
+      {
+        "id": "ex05",
+        "title": "Lena at the kitchen island",
+        "format": "inner_monologue",
+        "category": "personal",
+        "endingType": "forward_question",
+        "scenario": {
+          "gentle": "It is eleven at night, after the dinner party. Lena is standing at the kitchen island with the leftover plates and her phone face-down. She is thinking about the conversation about her commute, and about the three guests who offered suggestions, and about the word 'but' coming out of her mouth three times in a row. She is thinking about her guest Marcelo, who had said, at the end, in a gentle voice, 'What have you already tried?' and about how that question had made her angry in a way the other suggestions had not. She is recognizing something she does not yet have a word for, and she is not sure she wants to find the word tonight.",
+          "direct": "11 PM, after the dinner party. Kitchen island, leftover plates, phone face-down. Inner monologue: Lena reconstructs the 'yes, but' sequence with her three guests, and lands on the detail that Marcelo's 'what have you already tried' was the one question that made her angry. She recognizes, in real time, that the conversation had two levels and that she was running the second one. The recognition is uncomfortable. She is sitting with it because the alternative is pretending she is not.",
+          "competitive": "11 PM. The plates are on the counter and Lena's phone is face-down because she does not want to look at any messages from her guests yet. She is running the conversation back through her head and noticing, with more clarity than she wanted, that Marcelo's question 'what have you already tried' had made her angrier than any of the suggestions. The anger is the tell. The only reason that question would make her angry is that it refused the conversation she was actually running, and the only reason she would have been running that conversation is that she needed something out of it. She does not yet know what the something is. She is also not going to sleep until she has at least named it to herself."
+        },
+        "whatToDo": {
+          "gentle": "The first move after noticing you are running a game on yourself is not to fix it. It is to write down what you noticed, as specifically as you can, without judgment. 'Tonight I rejected three suggestions. I got angry at Marcelo's question because it refused the conversation I was running. I do not yet know what I was running it for.' That note is the antithesis in its softest form: an honest record, with no decision attached.",
+          "direct": "Write one sentence about what you noticed. 'I ran a rejected-suggestion pattern at dinner tonight and got angry at the one guest who refused to play.' Do not decide what to do about it yet. The record is the intervention.",
+          "competitive": "Write it down before you go to bed. One sentence, no softening. 'I ran a rejected-suggestion game at dinner tonight and got angry at the only guest who refused to play.' The sentence has to survive you reading it in the morning. It has to be honest enough that you cannot explain it away."
+        },
+        "whyItMatters": {
+          "gentle": "Recognizing a game you are running on yourself is the hardest kind of recognition because there is no one else to blame. It is also the only kind that gives you any leverage over the pattern. The note is the leverage.",
+          "direct": "Self-recognition of a game is the most valuable and the most painful form of the skill. The one-sentence written record is the minimum viable intervention and the maximum useful one in the short term.",
+          "competitive": "A player who can write down, honestly, the game they ran that evening has a different next month available. A player who cannot has the same next month they had the last twelve months. The sentence is the whole move."
+        }
+      },
+      {
+        "id": "ex06",
+        "title": "Priscilla remembers her mother",
+        "format": "narrative_flashback",
+        "category": "personal",
+        "endingType": "decision_point",
+        "scenario": {
+          "gentle": "Priscilla was standing at her son Nils's kitchen counter looking at the cabinet pulls he had bought and thinking about whether to say something about them. Then, without meaning to, she remembered her own mother standing at a kitchen counter in 1984, holding a phone to her ear, offering to help Priscilla plan her first apartment in a tone that Priscilla had never quite been able to describe. Her mother's Tupperware had been on the counter. The offer of help had sounded like love and had felt like something else. And Priscilla, at Nils's kitchen counter thirty-nine years later, recognized, in the sudden unpleasant way you recognize a face you meant never to see again, that she was about to say something about the cabinet pulls.",
+          "direct": "Priscilla's narrative flashback, at her son Nils's kitchen remodel. She was about to comment on his cabinet pulls. She remembered, mid-breath, her own mother in 1984, offering to help her plan her first apartment in a tone that made 'help' a different word. Priscilla recognized, in real time, that the game she was about to play with Nils was the one her mother had played with her, and that the comment about the cabinet pulls would be the opening move. She is now at a decision point: make the comment or not.",
+          "competitive": "She had the comment about the cabinet pulls fully formed in her mouth when she remembered her mother's Tupperware on the counter in 1984. That was the sentence that had taught her what kind of help to expect. Her mother had played this exact game with her, using cabinet pulls or curtain rods or paint colors as the opening move, for thirty-nine years. Priscilla had sworn she would never run it on Nils. She was about to run it on Nils. She had about three seconds to decide whether that was a pattern she was going to continue paying for or end in the next sentence."
+        },
+        "whatToDo": {
+          "gentle": "When you recognize yourself about to make the opening move of a game you inherited, the move is not to give a speech. It is to close your mouth on the opening sentence and replace it with something that does not have the game in it. 'The kitchen looks beautiful, Nils. I am going to go sit down.' That sentence is short on purpose. Short is how inherited games get interrupted.",
+          "direct": "Close your mouth on the opening move. Replace it with the shortest kind sentence you can form that does not contain a suggestion or a correction. 'The kitchen looks beautiful. I am going to sit down.' Short because the game lives in elaboration.",
+          "competitive": "Do not finish the sentence. Whatever else you say, it cannot start with the cabinet pulls. 'The kitchen looks beautiful. I am going to sit down.' Fifteen words. The game cannot live in fifteen words. Anything longer gives it room."
+        },
+        "whyItMatters": {
+          "gentle": "Inherited games are the hardest to interrupt because the opening move feels like being yourself. Interrupting one, even once, is a real structural change, and it is usually the first time a generational pattern has been broken in the relationship.",
+          "direct": "Multi-generational games pass through families as 'how we are' and get interrupted, when they get interrupted at all, one opening move at a time. A single refused opening is a structural intervention.",
+          "competitive": "A parent who can refuse, even once, the opening move of the game their own parent played on them has changed the pattern that was going to run for another generation. The antithesis in that case is thirty-nine years overdue and costs exactly one sentence."
+        }
+      }
+    ],
+    "quiz": {
+      "passingScorePercent": 80,
+      "questions": [
+        {
+          "questionId": "q01",
+          "prompt": "In Berne's model, what makes a transaction ulterior?",
+          "choices": [
+            "The two people in it are using tones that do not match their words",
+            "The transaction has two levels running at the same time, a social level in the words and a psychological level in the pattern underneath",
+            "The two people in it are secretly manipulating each other"
+          ],
+          "correctIndex": 1,
+          "explanation": {
+            "gentle": "Ulterior is a structural fact about two levels running at the same time, not a claim about tone and not a claim about conscious manipulation. People can be sincere in their words and still be in an ulterior transaction, and the two levels are both real regardless of whether either player notices them.",
+            "direct": "Two levels running at once is the definition. Tone mismatch is a symptom, not the structure. Conscious manipulation is a strong overread; most ulterior transactions run without either player noticing them.",
+            "competitive": "Two levels, running together. Tone mismatch is a hint, not the thing itself. Calling it manipulation is the cynical misread the chapter is built to refuse, and it makes the model unusable on your own patterns."
+          },
+          "bloomsLevel": "understand",
+          "depthLevel": "easy"
+        },
+        {
+          "questionId": "q02",
+          "prompt": "What is the difference between an ulterior transaction and a game in Berne's sense?",
+          "choices": [
+            "There is no difference; they are two names for the same thing",
+            "An ulterior transaction is conscious, and a game is unconscious",
+            "An ulterior transaction is a single two-level exchange; a game is what you have when the same ulterior transaction repeats between the same people with a recognizable shape and a predictable payoff"
+          ],
+          "correctIndex": 2,
+          "explanation": {
+            "gentle": "A single two-level exchange is not yet a game. A game is the object you have when the two-level exchange repeats with the same shape and pays off the same way every time. The chapter is strict about this distinction because conflating the two is how people start over-detecting games in other people's lives.",
+            "direct": "Repetition with recognizable shape is what makes a game. A single ulterior transaction is not enough. Calling them identical collapses the chapter's core structural move; calling it a consciousness distinction gets the criterion wrong.",
+            "competitive": "Repetition and predictable payoff are the criteria. Single ulterior transactions happen all the time and are not automatically games. Conflating them is how readers turn the chapter into a weapon against strangers."
+          },
+          "bloomsLevel": "understand",
+          "depthLevel": "easy"
+        },
+        {
+          "questionId": "q03",
+          "prompt": "At Lena's dinner party, when she rejects every suggestion her guests offer with 'yes, but,' what is the most accurate description of the payoff the ulterior level is paying her?",
+          "choices": [
+            "Reliable attention from her guests plus a confirmation that nobody can really help her, which is the position she was already holding",
+            "Actual solutions to her commute problem",
+            "Revenge against her guests for earlier slights"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+            "gentle": "The chapter is careful here. The payoff is both a kind of attention (what Berne called strokes, a word that belongs to the next chapter) and a confirmation of Lena's existing position that the problem is insoluble. Actual solutions are what the social level claims to want; they are not what the ulterior level is paying. Revenge is a cynical misread.",
+            "direct": "Attention plus position confirmation is the payoff. Solutions are what the social level asks for and the ulterior level is built to refuse. Revenge narratives overread the player and get the adaptive nature of the game wrong.",
+            "competitive": "Attention and position confirmation. The game cannot pay out solutions because solutions would end the game, and Lena cannot afford for it to end until she has another source of what it is paying her. Revenge gets the motive wrong by making the player a villain instead of an adapter."
+          },
+          "bloomsLevel": "analyze",
+          "depthLevel": "easy"
+        },
+        {
+          "questionId": "q04",
+          "prompt": "In Victor's Tuesday retrospective, the three-second silence after his opening question 'Does anyone have anything they want to raise?' has become the moment everyone in the room waits through. Which structural feature of the game does the silence correspond to?",
+          "choices": [
+            "The antithesis (the move that would break the game)",
+            "The dynamics (the mechanism that keeps the game running)",
+            "The switch inside the thesis (the moment the social-level story collapses into the psychological-level payoff)"
+          ],
+          "correctIndex": 2,
+          "explanation": {
+            "gentle": "The three-second silence is the moment the social-level invitation collapses into the psychological-level fact that the team has been trained not to raise anything. In Berne's notation that collapse moment is the switch inside the thesis. The antithesis would be somebody raising something in writing outside the meeting. The dynamics are the underlying mechanism, not the specific visible moment.",
+            "direct": "Switch inside the thesis is the three-second silence. The silence is where the social story ('anyone have anything to raise?') gives way to the payoff ('no issues this week'). The antithesis is a move nobody has made yet. The dynamics are abstract and not visible as a specific moment.",
+            "competitive": "Switch is the specific moment the top level collapses into the bottom one, and in Victor's retro that moment is the silence. Calling it the antithesis is confusing the problem with the fix. Calling it the dynamics mistakes the underlying machinery for its output."
+          },
+          "bloomsLevel": "analyze",
+          "depthLevel": "medium"
+        },
+        {
+          "questionId": "q05",
+          "prompt": "Petra calls Teodora into her office and asks, 'Can I help you re-scope the migration?' The chapter says this is an ulterior transaction. What are the two levels?",
+          "choices": [
+            "Social level: an Adult-to-Adult offer of support. Psychological level: actually it is still just an Adult-to-Adult offer of support.",
+            "Social level: an offer of managerial help. Psychological level: a move that will later let Petra document Teodora as the person who over-committed, which is how the previous re-scope ended.",
+            "Social level: a Child-to-Parent appeal. Psychological level: a Parent-to-Child instruction."
+          ],
+          "correctIndex": 1,
+          "explanation": {
+            "gentle": "The social level is an offer of help; the psychological level is the move that will let Petra document Teodora as the one who over-committed. The first wrong answer treats the transaction as single-layer, which the chapter is specifically trying to prevent. The second wrong answer confuses ulterior with a state-misalignment from the previous chapter.",
+            "direct": "Two-level structure with help on top and a later-blame mechanism underneath is what makes it ulterior. Collapsing it to a single layer denies the chapter's point; describing it as Child/Parent misaligns concepts from the previous chapter with the concepts from this one.",
+            "competitive": "Offer on top, setup underneath. Calling it single-layer throws away the chapter. Calling it a state mismatch from the previous chapter confuses vocabularies; ulterior is a two-level claim, not a state-alignment claim."
+          },
+          "bloomsLevel": "analyze",
+          "depthLevel": "medium"
+        },
+        {
+          "questionId": "q06",
+          "prompt": "In Priscilla's recurring pattern of helping her son Nils with his projects in a way that ensures each one fails, which mapping of the four-part anatomy is most accurate?",
+          "choices": [
+            "Thesis: she offers, he accepts, she provides help that guarantees failure, she sighs. Antithesis: he declines or accepts on his own terms or names the pattern. Dynamics: her need to keep him in the position of needing her. Payoff: confirmation of the parent-child position.",
+            "Thesis: Nils is incompetent. Antithesis: Nils becomes competent. Dynamics: genetic predisposition. Payoff: Priscilla feels good.",
+            "Thesis: Priscilla is a bad mother. Antithesis: she stops being a bad mother. Dynamics: guilt. Payoff: none."
+          ],
+          "correctIndex": 0,
+          "explanation": {
+            "gentle": "The chapter is specific about what each of the four parts is. The thesis is the repeating plot sequence. The antithesis is the move that refuses the assigned role. The dynamics are the psychological mechanism. The payoff is what both players get. The wrong answers either moralize the players, which the chapter refuses, or get the structural categories wrong.",
+            "direct": "Correct mapping follows the chapter's strict usage. The incompetence-and-genetics answer fails because it assigns pathology to a person rather than structure to a pattern. The bad-mother answer fails because it moralizes, which is the failure mode the chapter is explicitly built to avoid.",
+            "competitive": "Structural mapping, not character assassination. The wrong answers both swap the structural vocabulary for moral vocabulary, which is how the anatomy gets weaponized. The chapter exists in large part to prevent that swap."
+          },
+          "bloomsLevel": "apply",
+          "depthLevel": "medium"
+        },
+        {
+          "questionId": "q07",
+          "prompt": "According to the chapter, what is the main risk of learning the four-part anatomy?",
+          "choices": [
+            "The reader will become too cynical to enjoy dinner parties",
+            "The reader will break games without permission",
+            "The reader will start applying the anatomy to every painful interaction in their life, including ones that are not games (trauma, structural inequality, or simple mismatch of needs) and misdiagnose them"
+          ],
+          "correctIndex": 2,
+          "explanation": {
+            "gentle": "The chapter is explicit about the hammer problem: once the reader has the anatomy, they will be tempted to apply it universally, and not every hard conversation is a game. Some are grief, or power, or mismatch, and calling them games flattens them. Cynicism is a secondary risk; the deeper one is misdiagnosis.",
+            "direct": "Over-detection is the central risk the chapter names. Cynicism is downstream; breaking-without-permission is a different failure and one the chapter treats under the antithesis-is-expensive limit. The hammer problem is the correct phrasing of the primary danger.",
+            "competitive": "Over-detection, not cynicism or over-intervention, is the hammer problem. Every hard conversation is not a game, and the anatomy applied to grief or power becomes a weapon against the exact people the reader should be most careful with."
+          },
+          "bloomsLevel": "evaluate",
+          "depthLevel": "medium"
+        },
+        {
+          "questionId": "q08",
+          "prompt": "Of the moves below, which one is the antithesis to Lena's dinner party game, and what does the chapter say it costs?",
+          "choices": [
+            "Offering Lena a fourth, better suggestion; the cost is nothing because good suggestions always help",
+            "Asking Lena 'what have you already tried?' and refusing to generate a fourth suggestion; the cost is that Lena loses the payoff she was getting from the game and may get angry, because she has not yet found a better source of what the game was paying her",
+            "Leaving the dinner party; the cost is that Lena will complain about you to mutual friends"
+          ],
+          "correctIndex": 1,
+          "explanation": {
+            "gentle": "The antithesis is the question that refuses the role of suggestion-generator and hands the problem back to Lena. The cost is the payoff she was getting from the game, which is real even though it looks small. Offering a fourth suggestion is still playing; leaving is not the antithesis, it is exit.",
+            "direct": "Refusing the generator role and asking what Lena has already tried is the antithesis. The fourth suggestion is another move inside the game, not a move that breaks it. Leaving is an escape, not an antithesis; the chapter distinguishes between them.",
+            "competitive": "Refuse the role and hand the problem back. The fourth suggestion is still a move inside the game; leaving is exit, not antithesis. The cost of the real antithesis is the payoff Lena was getting from the game, and the chapter is honest that she may get angry because of it."
+          },
+          "bloomsLevel": "apply",
+          "depthLevel": "medium"
+        },
+        {
+          "questionId": "q09",
+          "prompt": "The chapter insists that seeing a game is not the same as choosing to break it. What is the main reason?",
+          "choices": [
+            "Because the antithesis is expensive: breaking the game takes away the payoff the player has been using, and if they do not have a better source of what the payoff was providing, naming the game can hurt before it helps",
+            "Because the other person has to give consent first",
+            "Because the reader is not qualified to diagnose games unless they are a therapist"
+          ],
+          "correctIndex": 0,
+          "explanation": {
+            "gentle": "The chapter's honest accounting is that the antithesis removes the payoff, and the payoff is always something the player needed. If they had a better source of it, they would already be using it. Consent is a different framing and not what the chapter says. The qualification answer turns the chapter into a professional-gatekeeping story, which it is not.",
+            "direct": "Expense of the antithesis is the chapter's argument. The consent framing misreads the chapter; the qualification framing replaces the chapter's structural argument with a credentialing one.",
+            "competitive": "Cost. That is the whole argument. The consent framing substitutes a different model's vocabulary, and the credentialing framing turns a tool the chapter gives to any reader into a gated one, which the chapter explicitly refuses."
+          },
+          "bloomsLevel": "evaluate",
+          "depthLevel": "hard"
+        },
+        {
+          "questionId": "q10",
+          "prompt": "Combining the three chapters so far, what can a reader do with all three tools that they could not do with any single chapter's tool alone?",
+          "choices": [
+            "Pick the best ego state to be in and stay there",
+            "Observe the state a conversation is in, draw the two arrows of any single transaction, and see the repeating shape when the same ulterior transaction pays off between the same people over time",
+            "Diagnose strangers more efficiently"
+          ],
+          "correctIndex": 1,
+          "explanation": {
+            "gentle": "The first chapter gives you state observation. The second gives you the relational arrow diagram. This chapter gives you the second-layer structure and the repeating-pattern definition. Together they let you move from noticing a voice to diagramming an exchange to seeing the pattern a relationship keeps running. Picking the best state is the move the first chapter already said you cannot make. Diagnosing strangers more efficiently is the hammer problem.",
+            "direct": "Three layers of tool, combined: state observation, arrow diagram, pattern shape. Picking a state misreads the first chapter. Stranger-diagnosis is the hammer problem this chapter warns against.",
+            "competitive": "Layered diagnostic stack from state to vector to pattern is what the three chapters give you. Picking the best state is the move the first chapter said was unavailable. Diagnosing strangers is exactly the weaponization this chapter warns against, and answering that way means missing the whole point of the sequence."
+          },
+          "bloomsLevel": "evaluate",
+          "depthLevel": "hard"
+        }
+      ]
+    },
+    "implementationPlan": {
+      "title": "Reading the second layer without swinging it",
+      "steps": [
+        "For one week, identify one recurring conversation in your own life that keeps ending in the same feeling. Try to describe its two levels in one sentence each.",
+        "For that one pattern, name all four structural features in concrete terms: thesis, antithesis, dynamics, payoff. Write them down.",
+        "Specifically name the payoff. If you cannot say what you are getting out of the losing position, you have not yet seen the game; keep looking.",
+        "Do NOT name the game aloud to the other player yet. Use the anatomy diagnostically on yourself only. Note what changes in the next instance of the pattern from your side alone.",
+        "At the end of the week, ask whether you actually want to break the game, given what the payoff was providing and whether you have a replacement for it."
+      ]
+    },
+    "reviewCards": [
+      {
+        "id": "rc01",
+        "difficulty": "easy",
+        "front": "What is an ulterior transaction in Berne's model?",
+        "back": "A transaction with two levels running at once: a social level in the words and a psychological level in the pattern. The psychological level is usually the one that determines what happens next."
+      },
+      {
+        "id": "rc02",
+        "difficulty": "easy",
+        "front": "What makes something a game in Berne's technical sense (as opposed to the loose English sense)?",
+        "back": "A game is an ongoing series of ulterior transactions that repeat between the same people with a recognizable shape and pay off in the same way each time. It is a structural object with four nameable parts, not the loose metaphor people mean when they say somebody is 'playing games' with them."
+      },
+      {
+        "id": "rc03",
+        "difficulty": "medium",
+        "front": "What are the four structural features of a game?",
+        "back": "Thesis (the repeating plot: opening move, counter, switch, payoff). Antithesis (the move that would break the game by refusing the assigned role). Dynamics (the psychological mechanism that keeps the pattern in motion). Payoff (what both players get out of the losing position, usually a reliable source of attention plus a confirmation of a position they were already holding)."
+      },
+      {
+        "id": "rc04",
+        "difficulty": "medium",
+        "front": "Why does shaming people out of their games usually not work?",
+        "back": "Because games pay off. Both players get something out of the losing position, and that something is usually a reliable source of attention plus a confirmation of a position they were already holding. Game-players are not foolish; they are running a pattern that works, at a cost. If they had a better source of the payoff, they would already be using it."
+      },
+      {
+        "id": "rc05",
+        "difficulty": "hard",
+        "front": "If seeing a game is not the same as choosing to break it, what is seeing the game actually for?",
+        "back": "For honest self-diagnosis first, and gentle application to others only when the others have a place to put what the game was providing. The antithesis is expensive; breaking a game takes away the payoff the player has been using. The value of seeing is that it converts an invisible pattern into a decision, and choosing (including choosing not to break the game yet) is different from reacting to it blindly."
+      }
+    ],
+    "keyTakeawayCard": {
+      "gentle": "Some transactions have two levels. When the second one repeats between the same people with the same shape, Berne called it a game. Every game has four nameable parts. Seeing the game is always valuable; breaking it is a separate and sometimes expensive decision.",
+      "direct": "Ulterior transactions run on two levels. Games are repeated ulterior transactions with a nameable four-part anatomy. The anatomy is diagnostic, not prescriptive, and the antithesis costs the player the payoff they have been using.",
+      "competitive": "Two levels, four-part shape, honest cost. The reader who can see the game in their own life has the tool. The reader who reaches for it against someone else's life has weaponized it, and the chapter is built to refuse that move."
+    }
+  },
+  "quiz": {
+    "chapterId": "ch03",
+    "chapterNumber": 3,
+    "chapterTitle": "Ulterior Transactions and the Anatomy of a Game",
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "In Berne's model, what makes a transaction ulterior?",
+        "choices": [
+          "The two people in it are using tones that do not match their words",
+          "The transaction has two levels running at the same time, a social level in the words and a psychological level in the pattern underneath",
+          "The two people in it are secretly manipulating each other"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "Ulterior is a structural fact about two levels running at the same time, not a claim about tone and not a claim about conscious manipulation. People can be sincere in their words and still be in an ulterior transaction, and the two levels are both real regardless of whether either player notices them.",
+          "direct": "Two levels running at once is the definition. Tone mismatch is a symptom, not the structure. Conscious manipulation is a strong overread; most ulterior transactions run without either player noticing them.",
+          "competitive": "Two levels, running together. Tone mismatch is a hint, not the thing itself. Calling it manipulation is the cynical misread the chapter is built to refuse, and it makes the model unusable on your own patterns."
+        },
+        "bloomsLevel": "understand",
+        "depthLevel": "easy"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "What is the difference between an ulterior transaction and a game in Berne's sense?",
+        "choices": [
+          "There is no difference; they are two names for the same thing",
+          "An ulterior transaction is conscious, and a game is unconscious",
+          "An ulterior transaction is a single two-level exchange; a game is what you have when the same ulterior transaction repeats between the same people with a recognizable shape and a predictable payoff"
+        ],
+        "correctIndex": 2,
+        "explanation": {
+          "gentle": "A single two-level exchange is not yet a game. A game is the object you have when the two-level exchange repeats with the same shape and pays off the same way every time. The chapter is strict about this distinction because conflating the two is how people start over-detecting games in other people's lives.",
+          "direct": "Repetition with recognizable shape is what makes a game. A single ulterior transaction is not enough. Calling them identical collapses the chapter's core structural move; calling it a consciousness distinction gets the criterion wrong.",
+          "competitive": "Repetition and predictable payoff are the criteria. Single ulterior transactions happen all the time and are not automatically games. Conflating them is how readers turn the chapter into a weapon against strangers."
+        },
+        "bloomsLevel": "understand",
+        "depthLevel": "easy"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "At Lena's dinner party, when she rejects every suggestion her guests offer with 'yes, but,' what is the most accurate description of the payoff the ulterior level is paying her?",
+        "choices": [
+          "Reliable attention from her guests plus a confirmation that nobody can really help her, which is the position she was already holding",
+          "Actual solutions to her commute problem",
+          "Revenge against her guests for earlier slights"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "The chapter is careful here. The payoff is both a kind of attention (what Berne called strokes, a word that belongs to the next chapter) and a confirmation of Lena's existing position that the problem is insoluble. Actual solutions are what the social level claims to want; they are not what the ulterior level is paying. Revenge is a cynical misread.",
+          "direct": "Attention plus position confirmation is the payoff. Solutions are what the social level asks for and the ulterior level is built to refuse. Revenge narratives overread the player and get the adaptive nature of the game wrong.",
+          "competitive": "Attention and position confirmation. The game cannot pay out solutions because solutions would end the game, and Lena cannot afford for it to end until she has another source of what it is paying her. Revenge gets the motive wrong by making the player a villain instead of an adapter."
+        },
+        "bloomsLevel": "analyze",
+        "depthLevel": "easy"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "In Victor's Tuesday retrospective, the three-second silence after his opening question 'Does anyone have anything they want to raise?' has become the moment everyone in the room waits through. Which structural feature of the game does the silence correspond to?",
+        "choices": [
+          "The antithesis (the move that would break the game)",
+          "The dynamics (the mechanism that keeps the game running)",
+          "The switch inside the thesis (the moment the social-level story collapses into the psychological-level payoff)"
+        ],
+        "correctIndex": 2,
+        "explanation": {
+          "gentle": "The three-second silence is the moment the social-level invitation collapses into the psychological-level fact that the team has been trained not to raise anything. In Berne's notation that collapse moment is the switch inside the thesis. The antithesis would be somebody raising something in writing outside the meeting. The dynamics are the underlying mechanism, not the specific visible moment.",
+          "direct": "Switch inside the thesis is the three-second silence. The silence is where the social story ('anyone have anything to raise?') gives way to the payoff ('no issues this week'). The antithesis is a move nobody has made yet. The dynamics are abstract and not visible as a specific moment.",
+          "competitive": "Switch is the specific moment the top level collapses into the bottom one, and in Victor's retro that moment is the silence. Calling it the antithesis is confusing the problem with the fix. Calling it the dynamics mistakes the underlying machinery for its output."
+        },
+        "bloomsLevel": "analyze",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "Petra calls Teodora into her office and asks, 'Can I help you re-scope the migration?' The chapter says this is an ulterior transaction. What are the two levels?",
+        "choices": [
+          "Social level: an Adult-to-Adult offer of support. Psychological level: actually it is still just an Adult-to-Adult offer of support.",
+          "Social level: an offer of managerial help. Psychological level: a move that will later let Petra document Teodora as the person who over-committed, which is how the previous re-scope ended.",
+          "Social level: a Child-to-Parent appeal. Psychological level: a Parent-to-Child instruction."
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "The social level is an offer of help; the psychological level is the move that will let Petra document Teodora as the one who over-committed. The first wrong answer treats the transaction as single-layer, which the chapter is specifically trying to prevent. The second wrong answer confuses ulterior with a state-misalignment from the previous chapter.",
+          "direct": "Two-level structure with help on top and a later-blame mechanism underneath is what makes it ulterior. Collapsing it to a single layer denies the chapter's point; describing it as Child/Parent misaligns concepts from the previous chapter with the concepts from this one.",
+          "competitive": "Offer on top, setup underneath. Calling it single-layer throws away the chapter. Calling it a state mismatch from the previous chapter confuses vocabularies; ulterior is a two-level claim, not a state-alignment claim."
+        },
+        "bloomsLevel": "analyze",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "In Priscilla's recurring pattern of helping her son Nils with his projects in a way that ensures each one fails, which mapping of the four-part anatomy is most accurate?",
+        "choices": [
+          "Thesis: she offers, he accepts, she provides help that guarantees failure, she sighs. Antithesis: he declines or accepts on his own terms or names the pattern. Dynamics: her need to keep him in the position of needing her. Payoff: confirmation of the parent-child position.",
+          "Thesis: Nils is incompetent. Antithesis: Nils becomes competent. Dynamics: genetic predisposition. Payoff: Priscilla feels good.",
+          "Thesis: Priscilla is a bad mother. Antithesis: she stops being a bad mother. Dynamics: guilt. Payoff: none."
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "The chapter is specific about what each of the four parts is. The thesis is the repeating plot sequence. The antithesis is the move that refuses the assigned role. The dynamics are the psychological mechanism. The payoff is what both players get. The wrong answers either moralize the players, which the chapter refuses, or get the structural categories wrong.",
+          "direct": "Correct mapping follows the chapter's strict usage. The incompetence-and-genetics answer fails because it assigns pathology to a person rather than structure to a pattern. The bad-mother answer fails because it moralizes, which is the failure mode the chapter is explicitly built to avoid.",
+          "competitive": "Structural mapping, not character assassination. The wrong answers both swap the structural vocabulary for moral vocabulary, which is how the anatomy gets weaponized. The chapter exists in large part to prevent that swap."
+        },
+        "bloomsLevel": "apply",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "According to the chapter, what is the main risk of learning the four-part anatomy?",
+        "choices": [
+          "The reader will become too cynical to enjoy dinner parties",
+          "The reader will break games without permission",
+          "The reader will start applying the anatomy to every painful interaction in their life, including ones that are not games (trauma, structural inequality, or simple mismatch of needs) and misdiagnose them"
+        ],
+        "correctIndex": 2,
+        "explanation": {
+          "gentle": "The chapter is explicit about the hammer problem: once the reader has the anatomy, they will be tempted to apply it universally, and not every hard conversation is a game. Some are grief, or power, or mismatch, and calling them games flattens them. Cynicism is a secondary risk; the deeper one is misdiagnosis.",
+          "direct": "Over-detection is the central risk the chapter names. Cynicism is downstream; breaking-without-permission is a different failure and one the chapter treats under the antithesis-is-expensive limit. The hammer problem is the correct phrasing of the primary danger.",
+          "competitive": "Over-detection, not cynicism or over-intervention, is the hammer problem. Every hard conversation is not a game, and the anatomy applied to grief or power becomes a weapon against the exact people the reader should be most careful with."
+        },
+        "bloomsLevel": "evaluate",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "Of the moves below, which one is the antithesis to Lena's dinner party game, and what does the chapter say it costs?",
+        "choices": [
+          "Offering Lena a fourth, better suggestion; the cost is nothing because good suggestions always help",
+          "Asking Lena 'what have you already tried?' and refusing to generate a fourth suggestion; the cost is that Lena loses the payoff she was getting from the game and may get angry, because she has not yet found a better source of what the game was paying her",
+          "Leaving the dinner party; the cost is that Lena will complain about you to mutual friends"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "The antithesis is the question that refuses the role of suggestion-generator and hands the problem back to Lena. The cost is the payoff she was getting from the game, which is real even though it looks small. Offering a fourth suggestion is still playing; leaving is not the antithesis, it is exit.",
+          "direct": "Refusing the generator role and asking what Lena has already tried is the antithesis. The fourth suggestion is another move inside the game, not a move that breaks it. Leaving is an escape, not an antithesis; the chapter distinguishes between them.",
+          "competitive": "Refuse the role and hand the problem back. The fourth suggestion is still a move inside the game; leaving is exit, not antithesis. The cost of the real antithesis is the payoff Lena was getting from the game, and the chapter is honest that she may get angry because of it."
+        },
+        "bloomsLevel": "apply",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "The chapter insists that seeing a game is not the same as choosing to break it. What is the main reason?",
+        "choices": [
+          "Because the antithesis is expensive: breaking the game takes away the payoff the player has been using, and if they do not have a better source of what the payoff was providing, naming the game can hurt before it helps",
+          "Because the other person has to give consent first",
+          "Because the reader is not qualified to diagnose games unless they are a therapist"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "The chapter's honest accounting is that the antithesis removes the payoff, and the payoff is always something the player needed. If they had a better source of it, they would already be using it. Consent is a different framing and not what the chapter says. The qualification answer turns the chapter into a professional-gatekeeping story, which it is not.",
+          "direct": "Expense of the antithesis is the chapter's argument. The consent framing misreads the chapter; the qualification framing replaces the chapter's structural argument with a credentialing one.",
+          "competitive": "Cost. That is the whole argument. The consent framing substitutes a different model's vocabulary, and the credentialing framing turns a tool the chapter gives to any reader into a gated one, which the chapter explicitly refuses."
+        },
+        "bloomsLevel": "evaluate",
+        "depthLevel": "hard"
+      },
+      {
+        "questionId": "q10",
+        "prompt": "Combining the three chapters so far, what can a reader do with all three tools that they could not do with any single chapter's tool alone?",
+        "choices": [
+          "Pick the best ego state to be in and stay there",
+          "Observe the state a conversation is in, draw the two arrows of any single transaction, and see the repeating shape when the same ulterior transaction pays off between the same people over time",
+          "Diagnose strangers more efficiently"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "The first chapter gives you state observation. The second gives you the relational arrow diagram. This chapter gives you the second-layer structure and the repeating-pattern definition. Together they let you move from noticing a voice to diagramming an exchange to seeing the pattern a relationship keeps running. Picking the best state is the move the first chapter already said you cannot make. Diagnosing strangers more efficiently is the hammer problem.",
+          "direct": "Three layers of tool, combined: state observation, arrow diagram, pattern shape. Picking a state misreads the first chapter. Stranger-diagnosis is the hammer problem this chapter warns against.",
+          "competitive": "Layered diagnostic stack from state to vector to pattern is what the three chapters give you. Picking the best state is the move the first chapter said was unavailable. Diagnosing strangers is exactly the weaponization this chapter warns against, and answering that way means missing the whole point of the sequence."
+        },
+        "bloomsLevel": "evaluate",
+        "depthLevel": "hard"
+      }
+    ]
+  },
+  "reviewPackage": {
+    "chapterId": "ch03",
+    "chapterNumber": 3,
+    "chapterTitle": "Ulterior Transactions and the Anatomy of a Game",
+    "bookId": "games-people-play",
+    "runId": "20260406-01",
+    "packVersion": "v12-sealed",
+    "validationStatus": "passed",
+    "qualityGateScore": {
+      "total": 12,
+      "max": 12,
+      "categories": {
+        "chapterSpecificity": 2,
+        "anchorUse": 2,
+        "analyticalValue": 2,
+        "paragraphMotion": 2,
+        "proseQuality": 2,
+        "hookAndBridge": 2
+      },
+      "autoFails": []
+    },
+    "artifacts": {
+      "brief": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/briefs/ch03.md",
+      "outline": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/outlines/ch03.md",
+      "quizBlueprint": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/quiz-blueprints/ch03.md",
+      "sourceSidecarTxt": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/sidecars/source/ch03.source.txt",
+      "sourceSidecarJson": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/sidecars/source/ch03.source.json",
+      "canonicalDraft": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/drafts/canonical/ch03.md",
+      "editedDraft": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/drafts/edited/ch03.md",
+      "criticReport": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/reports/ch03.critic.md",
+      "structured": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/structured/ch03.chapter.json",
+      "quiz": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/quizzes/ch03.quiz.json",
+      "validationReport": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/reports/ch03.validation.md",
+      "validatedChapter": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/validated/ch03.chapter.json",
+      "readingMetrics": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/sidecars/ch03.reading-metrics.json"
+    },
+    "summary": {
+      "coreClaim": "Some transactions run on two levels at once (ulterior). When the same ulterior transaction repeats between the same people with a recognizable shape and payoff, it is a game in Berne's technical sense. Every game has a four-part anatomy (thesis, antithesis, dynamics, payoff). The anatomy is diagnostic, not prescriptive; the antithesis is expensive because it removes the payoff the player has been using.",
+      "anchorsUsed": [
+        "Lena's dinner party 'yes, but' sequence (personal)",
+        "Victor's Tuesday retrospective and the three-second silence (work)",
+        "Priscilla's 'helpful' interventions with her adult son Nils (personal)"
+      ],
+      "hardDepthTension": "If the antithesis costs the player something they actually needed, is seeing the game still a net good? The chapter answers: yes, because it converts blind reaction into decision, but the decision must belong to the player.",
+      "bridgeToNextChapter": "The anatomy says what a game is. It does not yet say why games are so sticky even once you see them. That answer is in what the payoff is made of (strokes) and what deeper position it is protecting (life positions)."
+    },
+    "strongestQualities": [
+      "The two-level framing (ulterior) + four-part anatomy are both taught clearly and without overlap. The chapter distinguishes a single ulterior transaction from a full game sharply enough that a reader won't conflate them later.",
+      "The hammer-problem limit in P6 and hard-depth takeaway 7 is the honest cost accounting that prevents the anatomy from being weaponized against other people — the distinction the rest of the book depends on.",
+      "Example 6 (Priscilla remembering her mother) carries the multi-generational game transmission in a single paragraph and makes the antithesis concrete (fifteen words, short on purpose)."
+    ],
+    "remainingConcerns": [],
+    "approvalRequired": true,
+    "preserveApprovedHash": false
+  },
+  "readingMetrics": {
+    "chapterId": "ch03",
+    "chapterNumber": 3,
+    "chapterTitle": "Ulterior Transactions and the Anatomy of a Game",
+    "computedFor": "edited draft + structured chapter",
+    "editedDraft": {
+      "wordCount": 860,
+      "paragraphCount": 7,
+      "averageSentenceLengthWords": 19.3,
+      "estimatedReadingMinutes": 5
+    },
+    "contentVariants": {
+      "easy": {
+        "wordCounts": {
+          "gentle": 150,
+          "direct": 152,
+          "competitive": 152
+        },
+        "targetRange": "140-175",
+        "withinRange": true,
+        "estimatedGradeBand": "8-9"
+      },
+      "medium": {
+        "wordCounts": {
+          "gentle": 370,
+          "direct": 400,
+          "competitive": 375
+        },
+        "targetRange": "330-420",
+        "withinRange": true,
+        "estimatedGradeBand": "10-11"
+      },
+      "hard": {
+        "wordCounts": {
+          "gentle": 540,
+          "direct": 575,
+          "competitive": 580
+        },
+        "targetRange": "490-600",
+        "withinRange": true,
+        "estimatedGradeBand": "12"
+      }
+    },
+    "examples": {
+      "count": 6,
+      "formatsCovered": [
+        "first_person",
+        "third_person_scene",
+        "short_dialogue",
+        "coaching_script",
+        "inner_monologue",
+        "narrative_flashback"
+      ],
+      "categoryDistribution": {
+        "work": 2,
+        "school": 2,
+        "personal": 2
+      },
+      "endingTypesCovered": [
+        "observation",
+        "unresolved_tension",
+        "reframe",
+        "reflection",
+        "forward_question",
+        "decision_point"
+      ]
+    },
+    "quiz": {
+      "questionCount": 10,
+      "choicesPerQuestion": 3,
+      "correctIndexDistribution": {
+        "0": 3,
+        "1": 4,
+        "2": 3
+      },
+      "depthDistribution": {
+        "easy": 3,
+        "medium": 5,
+        "hard": 2
+      }
+    },
+    "reviewCards": {
+      "count": 5,
+      "difficultyDistribution": {
+        "easy": 2,
+        "medium": 2,
+        "hard": 1
+      }
+    },
+    "totalReadingTimeMinutesEstimate": 13,
+    "computedAt": "2026-04-06"
+  },
+  "validationStatus": {
+    "status": "passed",
+    "qualityGateScore": {
+      "total": 12,
+      "max": 12,
+      "categories": {
+        "chapterSpecificity": 2,
+        "anchorUse": 2,
+        "analyticalValue": 2,
+        "paragraphMotion": 2,
+        "proseQuality": 2,
+        "hookAndBridge": 2
+      },
+      "autoFails": []
+    },
+    "autoFails": [],
+    "validatedAt": "2026-04-06",
+    "validator": "ChapterFlow v12-sealed Phase 5C"
+  }
+}

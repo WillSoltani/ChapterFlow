@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's main distinction?",
+      "choices": [
+        "Money skills are identical in every phase",
+        "Getting wealthy and staying wealthy are different games",
+        "Only wealthy people need discipline"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says building and preserving wealth do not reward exactly the same behavior.",
+        "direct": "Accumulation and preservation require different designs because the risk profile changes.",
+        "competitive": "The same style does not automatically survive both phases."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does survival matter so much in this chapter?",
+      "choices": [
+        "Because survival keeps time available for compounding",
+        "Because survival guarantees the highest return every year",
+        "Because survival eliminates uncertainty"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Compounding only helps if the plan stays alive long enough.",
+        "direct": "Remaining in the game matters more than capturing every possible upside.",
+        "competitive": "Ruin kills the future that compounding needs."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is room for error in this chapter?",
+      "choices": [
+        "A sign that a person lacks conviction",
+        "A design choice that helps a plan survive surprise",
+        "A rule that forbids all risk-taking"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Room for error gives a plan cushion when life does not go perfectly.",
+        "direct": "Margin exists so a mistake or shock does not end the process.",
+        "competitive": "Slack is anti-ruin architecture, not weakness."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Why can old winning habits become dangerous later?",
+      "choices": [
+        "Because past success can make builder instincts feel trustworthy even when the goal has changed",
+        "Because success removes all need for decision-making",
+        "Because preservation always requires no ambition at all"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "What helped before may become too risky when something valuable now needs protection.",
+        "direct": "Psychological carryover makes confidence and concentration harder to question after success.",
+        "competitive": "Yesterday's winning style can become today's hidden fragility."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why is Omar's founder-stock decision a Chapter 6 example?",
+      "choices": [
+        "Because it shows how the behavior that built wealth can become too concentrated to preserve it safely",
+        "Because it proves founders should never own stock",
+        "Because diversification always guarantees better returns"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Omar has to decide whether preservation now matters more than staying all-in.",
+        "direct": "The example shows phase change from builder logic to anti-ruin logic.",
+        "competitive": "He has to stop worshipping the move that made him rich."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What does Rina's investing-club postmortem reveal?",
+      "choices": [
+        "A short contest win does not automatically teach a durable long-term preservation strategy",
+        "Student contests are never useful",
+        "Concentrated bets always fail"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The club has to ask whether a winning move is also a safe long-run move.",
+        "direct": "What wins a tournament may not be what protects wealth over decades.",
+        "competitive": "A spike is not the same thing as a system."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why can margin look inefficient before stress arrives?",
+      "choices": [
+        "Because people compare it to a perfect forecast in calm conditions",
+        "Because margin always reduces survival",
+        "Because margin only matters for poor planning"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Cushion can look unnecessary until a hard surprise appears.",
+        "direct": "Margin seems inefficient only when the benchmark assumes reality will behave on schedule.",
+        "competitive": "Anti-ruin design looks wasteful to people fantasizing about perfect weather."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What does the chapter change about admiration?",
+      "choices": [
+        "It asks readers to admire durability and preservation, not only bold builders",
+        "It rejects ambition entirely",
+        "It says only invisible decisions matter"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter notices that quiet preservation can be a major skill.",
+        "direct": "Durability management deserves respect because it protects the compounding engine.",
+        "competitive": "The quiet winner may be the one still standing when others are gone."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the chapter's anti-ruin logic?",
+      "choices": [
+        "It is better to avoid any upside at all",
+        "It is better to leave some upside uncaptured than to risk losing the ability to continue",
+        "It is better to wait for certainty before acting"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants the reader to protect continuity, not maximize every moment.",
+        "direct": "Missing some upside is often cheaper than taking the kind of downside that ends the process.",
+        "competitive": "Leaving a little on the table beats dying for the extra slice."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why does this chapter lead into Tails, You Win?",
+      "choices": [
+        "Because once survival matters, long-run success can depend on staying around for a few outsized wins",
+        "Because the next chapter rejects preservation completely",
+        "Because tails remove the need for room for error"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Staying alive means a few big outcomes can still matter later.",
+        "direct": "If survival is central, then perfect consistency matters less than being available for outlier gains.",
+        "competitive": "You do not need to win every round if you survive for the fat-tail rounds."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    }
+  ]
+}

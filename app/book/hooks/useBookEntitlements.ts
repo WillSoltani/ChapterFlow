@@ -23,6 +23,7 @@ export type EntitlementsResponse = {
     unlockedBooksCount: number;
     remainingFreeStarts: number;
     currentPeriodEnd?: string;
+    cancelAtPeriodEnd?: boolean;
     licenseKey?: string;
     licenseExpiresAt?: string;
   };
@@ -62,11 +63,16 @@ async function openBillingDestination(
   );
   const target = kind === "upgrade" ? payload.checkoutUrl : payload.portalUrl;
   if (!target) throw new Error("Billing link unavailable.");
+  if (kind === "upgrade" && typeof window !== "undefined") {
+    // Mark that we are leaving for Stripe Checkout so that on return the
+    // entitlements refetch waits for the webhook to land.
+    sessionStorage.setItem(BILLING_UPGRADED_KEY, "1");
+  }
   window.location.href = target;
 }
 
 /** Key used to signal a fresh checkout so Settings can refetch entitlements. */
-const BILLING_UPGRADED_KEY = "cf:billing-upgraded";
+export const BILLING_UPGRADED_KEY = "cf:billing-upgraded";
 
 export function useBookEntitlements(enabled: boolean) {
   const [billingState, setBillingState] = useState<BillingState>({
@@ -103,8 +109,33 @@ export function useBookEntitlements(enabled: boolean) {
 
     if (justUpgraded) {
       sessionStorage.removeItem(BILLING_UPGRADED_KEY);
-      const timer = setTimeout(fetchEntitlements, 1500);
-      return () => clearTimeout(timer);
+      // Refetch a few times with backoff: webhook delivery is async and may
+      // take a couple seconds. Stop early once the user shows as PRO.
+      let cancelled = false;
+      const delays = [1500, 3000, 5000];
+      const timers: ReturnType<typeof setTimeout>[] = [];
+      const tryFetch = (attempt: number) => {
+        if (cancelled) return;
+        fetchBookJson<EntitlementsResponse>("/app/api/book/me/entitlements")
+          .then((payload) => {
+            if (cancelled) return;
+            setBillingState({ loading: false, payload, error: null });
+            if (payload.entitlement.plan !== "PRO" && attempt < delays.length) {
+              timers.push(setTimeout(() => tryFetch(attempt + 1), delays[attempt]));
+            }
+          })
+          .catch((error: unknown) => {
+            if (cancelled) return;
+            const message =
+              error instanceof Error ? error.message : "Unable to load plan details.";
+            setBillingState({ loading: false, payload: null, error: message });
+          });
+      };
+      timers.push(setTimeout(() => tryFetch(0), delays[0]));
+      return () => {
+        cancelled = true;
+        timers.forEach(clearTimeout);
+      };
     }
 
     fetchEntitlements();

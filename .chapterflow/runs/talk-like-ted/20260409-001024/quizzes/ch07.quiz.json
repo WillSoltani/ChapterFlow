@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch07-q01",
+      "prompt": "What is the chapter's main claim about the eighteen-minute rule?",
+      "choices": [
+        "It matters because a firm limit can force better prioritization and clearer choices.",
+        "It matters because all important talks should always be exactly eighteen minutes.",
+        "It matters because shorter talks never need strong structure."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter uses the rule as a constraint that helps the speaker decide what matters most.",
+        "direct": "Gallo treats the limit as a pressure that exposes weak priorities and can sharpen the talk.",
+        "competitive": "The clock matters because it makes excess harder to hide."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch07-q02",
+      "prompt": "How does Gallo mainly frame brevity in this chapter?",
+      "choices": [
+        "As audience service that protects attention and cognition",
+        "As a way to avoid all supporting explanation",
+        "As proof that speed is more important than clarity"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Brevity helps when it respects what the audience can actually absorb.",
+        "direct": "The chapter treats shorter length as cognitive respect rather than as speed performance.",
+        "competitive": "This is bandwidth protection, not stopwatch vanity."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch07-q03",
+      "prompt": "Iris has too many slides for her product update. Which choice best fits the chapter?",
+      "choices": [
+        "Keep every section and rush the ending so nothing gets lost",
+        "Cut the sections that add coverage without strengthening the core update",
+        "Add more summary slides so the room sees even more of the material"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Iris should remove the parts that weaken clarity and keep enough room for the main plan to stay clear.",
+        "direct": "The chapter favors prioritization over completeness when the extra material does not improve understanding.",
+        "competitive": "Cut whatever burns bandwidth without earning force."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch07-q04",
+      "prompt": "Ms. Holloway tells Grant that one claim beats sprawling coverage. What is the repair?",
+      "choices": [
+        "Talk faster so all the coverage still fits",
+        "Choose one central claim and make the rest of the talk support it",
+        "Keep every section because trimming would make the talk less serious"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Grant needs one central idea the class can actually carry away.",
+        "direct": "The chapter wants the speaker to rank material so the main claim gets real space and support.",
+        "competitive": "If everything stays, nothing gets enough contrast to survive memory."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch07-q05",
+      "prompt": "Which trap does Chapter 7 most clearly warn against?",
+      "choices": [
+        "Assuming shorter is automatically better even if meaning gets thin",
+        "Assuming audiences enjoy concise talks",
+        "Assuming examples can help retention"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns that a shorter talk still fails if it becomes vague or rushed.",
+        "direct": "Gallo's boundary is that compression must preserve the strongest version of the idea.",
+        "competitive": "A smaller failure is still failure if the cut kills clarity."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch07-q06",
+      "prompt": "What does the chapter mean by disciplined editing?",
+      "choices": [
+        "Removing all explanation so the talk sounds efficient",
+        "Cutting drift, redundancy, and overload while keeping the core idea understandable",
+        "Reducing the talk until it becomes only a slogan"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Disciplined editing keeps what the audience needs and removes what only creates clutter.",
+        "direct": "The chapter praises editing that preserves meaning while trimming excess, not editing that strips the talk thin.",
+        "competitive": "The win is retained strength under pressure, not an emptier outline."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch07-q07",
+      "prompt": "Zoe has a longer heartfelt version and a shorter one people will likely remember. Which choice fits the chapter?",
+      "choices": [
+        "Use the version that preserves the strongest message clearly even if some speaker-favored detail is lost",
+        "Use the longest version because emotional completeness always beats retention",
+        "Avoid choosing and combine both versions into one longer talk"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Zoe should keep the version that helps more of the real message survive the room.",
+        "direct": "The chapter values retained strength over completeness when completeness mostly protects speaker preference.",
+        "competitive": "Keep what the room can carry, not what the speaker cannot bear to cut."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch07-q08",
+      "prompt": "Why does Calvin's quarterly review fail even though it includes almost everything?",
+      "choices": [
+        "Because comprehensive talks are never useful",
+        "Because the room had to sort too much at once and left without a clear hierarchy",
+        "Because the review should have used more humor instead of structure"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Calvin gave the audience too much to sort through, so the main point lost clarity.",
+        "direct": "This is the chapter's overload problem in action. Coverage replaced prioritization and the room left with fragments instead of one clear takeaway.",
+        "competitive": "He buried the point under diligence and made the room carry his ranking problem."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch07-q09",
+      "prompt": "Nia tries to cram every fact into limited time. What does that reveal?",
+      "choices": [
+        "More information always creates more value if the speaker moves quickly enough",
+        "Completeness can damage clarity when the audience cannot hold the structure together",
+        "Students should avoid evidence so presentations stay shorter"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The extra facts do not help when they make the central claim harder to carry.",
+        "direct": "Nia's result shows that overload can weaken understanding while pretending to prove thoroughness.",
+        "competitive": "A fact pile is clutter with credentials when it outruns the room's bandwidth."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch07-q10",
+      "prompt": "Why does Chapter 7 naturally lead into Chapter 8 on multisensory vividness?",
+      "choices": [
+        "Because once the message is compressed, the next challenge is making it vivid enough to picture and feel",
+        "Because shorter talks should replace structure with sensory effects",
+        "Because vividness matters only after every idea has been cut down to a slogan"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "After the speaker learns how to make the message shorter and clearer, the next question is how to make it vivid.",
+        "direct": "Chapter 7 handles compression and prioritization. Chapter 8 turns toward imagery and sensory engagement.",
+        "competitive": "Once the message is lean, the next problem is making the lean message live in the room."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

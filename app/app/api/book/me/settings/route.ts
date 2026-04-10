@@ -25,6 +25,7 @@ const ALLOWED_SETTINGS_KEYS = new Set([
   "accessibility",
   "privacy",
   "extended",
+  "whatsNewSeenAt",
 ]);
 
 function isRecord(value: unknown): value is Record<string, unknown> {

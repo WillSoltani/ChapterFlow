@@ -96,3 +96,5 @@ export function buildChapterFlowAuthHref(path = "/"): string {
 export function getChapterFlowLaunchHref(): string {
   return "/book";
 }
+
+export const AUTH_LOGIN_BOOK_URL = "/auth/login?returnTo=%2Fbook";

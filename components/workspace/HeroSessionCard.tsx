@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { LearningLoopIndicator } from "./LearningLoopIndicator";
+import { BOOKS_CATALOG } from "@/app/book/data/booksCatalog";
 import { getBookCoverPath } from "@/lib/book-covers";
 
 type LoopStep = "summary" | "scenarios" | "quiz" | "unlock";
@@ -43,6 +44,13 @@ interface HeroSessionCardProps {
   firstName: string;
   starterShelfBooks?: StarterShelfBook[];
 }
+
+const DECORATIVE_FALLBACK_BOOKS = BOOKS_CATALOG.slice(0, 2).map((book, index) => ({
+  src: getBookCoverPath(book.id),
+  rot: index === 0 ? -8 : 8,
+  href: "/book/library",
+  alt: "",
+}));
 
 function getStatusBadge(userState: UserState): { label: string; color: string } {
   switch (userState) {
@@ -449,10 +457,7 @@ export function HeroSessionCard({
                     href: `/book/library/${book.id}`,
                     alt: `${book.title} by ${book.author}`,
                   }))
-                : [
-                    { src: getBookCoverPath("the-48-laws-of-power"), rot: -8, href: "/book/library", alt: "" },
-                    { src: getBookCoverPath("friends-and-influence"), rot: 8, href: "/book/library", alt: "" },
-                  ]
+                : DECORATIVE_FALLBACK_BOOKS
               ).map((item, i) => (
                 <Link key={i} href={item.href}>
                   <motion.div

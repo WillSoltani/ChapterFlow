@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "ch09-q01",
+      "prompt": "What problem is this chapter mainly trying to solve?",
+      "choices": [
+        "A shortage of formal hierarchy on fast-moving teams",
+        "The slowdown created when too many decisions must return to the top",
+        "The idea that junior leaders should never know the larger mission"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. The chapter says teams slow down when every decision has to travel upward first.",
+        "direct": "Correct. Centralized approval becomes the bottleneck this chapter is trying to fix.",
+        "competitive": "That is the hit. The mission is losing time to command traffic."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch09-q02",
+      "prompt": "What does decentralized command move closer to the front?",
+      "choices": [
+        "Responsibility without context",
+        "Decision authority shaped by mission intent",
+        "Chaos so teams can improvise freely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The chapter wants informed decisions happening nearer the work.",
+        "direct": "Exactly. Authority moves outward with context and intent, not as random freedom.",
+        "competitive": "That answer works because the edge gets judgment, not disorder."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch09-q03",
+      "prompt": "Why can top-only control fail under pressure?",
+      "choices": [
+        "Because the person closest to the work often sees the changing situation first",
+        "Because standards disappear whenever a leader stays involved",
+        "Because teams should always ignore hierarchy in urgent moments"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Correct. The front usually has fresher information than the distant approver.",
+        "direct": "That is the chapter's mechanism: distance from the work weakens timing and detail.",
+        "competitive": "The field changes faster than the chain can answer when control sits too high."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch09-q04",
+      "prompt": "In Talia's launch example, what best applies the chapter?",
+      "choices": [
+        "Keep every team lead waiting for her final approval so the launch stays consistent",
+        "Explain the launch intent and boundaries, then let team leads decide within that frame",
+        "Remove all limits so each team can do whatever seems fastest"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. The chapter ties speed to local judgment inside clear intent.",
+        "direct": "That choice fits because Talia is distributing authority with standards instead of hoarding it.",
+        "competitive": "She wins by sending the rules to the edge, not by standing in the middle of every call."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q05",
+      "prompt": "What has to travel with authority according to this chapter?",
+      "choices": [
+        "Less accountability",
+        "A guarantee that conditions will not change",
+        "Mission intent, priorities, and boundaries"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Yes. The chapter keeps stressing that people need the purpose behind the task.",
+        "direct": "Authority alone is not enough. Junior leaders need the mission logic that keeps their choices aligned.",
+        "competitive": "Permission without purpose is how drift starts."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q06",
+      "prompt": "Which misreading does the chapter explicitly reject?",
+      "choices": [
+        "That decentralized command still needs training and standards",
+        "That distributed authority can turn into confusion if the team is unprepared",
+        "That decentralization means everyone should simply improvise their own mission"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Correct. The chapter is not praising unstructured freedom.",
+        "direct": "The text keeps a hard limit visible: decentralization without alignment becomes chaos.",
+        "competitive": "That is the fake version the chapter tears apart."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q07",
+      "prompt": "What is the best transfer of this chapter to school or home life?",
+      "choices": [
+        "Clarify the goal and decision boundaries so others can adjust locally",
+        "Make sure every small change still comes back to one person",
+        "Avoid sharing the purpose because that creates too many opinions"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter transfers well anywhere local decisions keep escalating unnecessarily.",
+        "direct": "That answer matches the principle: shared purpose improves local judgment beyond formal organizations.",
+        "competitive": "Spread the logic, and the room stops standing in line."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q08",
+      "prompt": "What was the real reveal in Devin's ops example?",
+      "choices": [
+        "The queue improved once the top leader watched it more closely",
+        "The backlog shrank only after on-shift leads got clearer authority and intent",
+        "The team mainly needed more meetings before acting"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The chapter shows throughput improving when routine decisions stop bottlenecking at the top.",
+        "direct": "The reveal is structural: authority design changed execution speed more than effort alone.",
+        "competitive": "The queue moved when the edge got judgment instead of waiting for blessings."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch09-q09",
+      "prompt": "Which statement best captures the chapter's deeper synthesis?",
+      "choices": [
+        "Teams move fastest when authority stays concentrated in the most senior leader",
+        "Mission speed improves when trained junior leaders make local decisions inside shared intent",
+        "Alignment matters only after the pressure phase ends"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exactly. The chapter joins distributed authority with shared mission understanding.",
+        "direct": "That answer captures both sides: speed comes from the front, alignment comes from intent and preparation.",
+        "competitive": "The chapter is building aligned tempo, not freedom theater."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch09-q10",
+      "prompt": "How does this chapter lead into the next one?",
+      "choices": [
+        "By showing that local decision-making works only if the team was prepared clearly in advance",
+        "By proving that planning becomes unnecessary once authority is decentralized",
+        "By arguing that distributed teams should stop thinking about contingencies"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Correct. The next chapter is about building the shared structure that keeps fast local decisions aligned.",
+        "direct": "The bridge is preparation: authority at the edge still depends on planning, rehearsal, and contingencies.",
+        "competitive": "You cannot send judgment forward without giving it a map first."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

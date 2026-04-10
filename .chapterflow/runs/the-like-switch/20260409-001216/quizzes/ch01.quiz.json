@@ -1,0 +1,155 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "Which set of variables makes up the friendship formula in this chapter?",
+      "choices": [
+        "Proximity, frequency, duration, and intensity",
+        "Warmth, honesty, confidence, and humor",
+        "Interest, similarity, trust, and loyalty"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter's model uses four variables: proximity, frequency, duration, and intensity.",
+        "direct": "Schafer names four conditions, not four personality traits.",
+        "competitive": "The chapter is built on a four-lever model, and option A is the actual set."
+      }
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the chapter say proximity is not enough by itself?",
+      "choices": [
+        "Because nearness matters only when the setting feels nonthreatening and other variables support closeness",
+        "Because proximity works only in romantic relationships",
+        "Because physical distance never affects attachment"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nearness helps, but only when the atmosphere feels safe enough for openness and the relationship has more than simple access.",
+        "direct": "Proximity is necessary in many cases, but it does little if threat stays high or the other variables stay weak.",
+        "competitive": "Access is not attachment. If the conditions stay guarded, nearness does almost nothing."
+      }
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A teammate greets you every morning but never stays longer than ten seconds. Which variable is clearly present, and which one is clearly weak?",
+      "choices": [
+        "Duration is present, frequency is weak",
+        "Frequency is present, duration is weak",
+        "Intensity is present, proximity is weak"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Daily greetings create frequency, but the very short interaction keeps duration low.",
+        "direct": "Repeated contact is high here, while time length is minimal.",
+        "competitive": "You have repetition, not runway."
+      }
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Maya sees Elias every day at work, but their talks stay rushed and forgettable. What would best improve the relationship according to the formula?",
+      "choices": [
+        "Add more random interruptions so the frequency becomes overwhelming",
+        "Create slightly longer, warmer exchanges so duration and intensity improve",
+        "Stop talking altogether so the proximity becomes more noticeable"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Her main problem is not lack of access. It is that the interaction is too brief and too flat to build closeness.",
+        "direct": "The missing variables are duration and intensity, not raw proximity.",
+        "competitive": "More noise is the trap. Better-weighted contact is the move."
+      }
+    },
+    {
+      "questionId": "q05",
+      "prompt": "A study group meets four times a week but nobody feels close enough to ask real questions. Which reading fits the chapter best?",
+      "choices": [
+        "The group has enough frequency, but likely lacks duration, safety, or intensity",
+        "The group should meet even more often and the problem will solve itself",
+        "The problem proves the formula does not apply outside personal friendships"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Frequent meetings do not automatically create closeness if the time stays rushed or emotionally flat.",
+        "direct": "This is a classic case of one variable looking strong while others remain weak.",
+        "competitive": "Repetition without weight still produces a thin bond."
+      }
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which statement captures the chapter's warning about duration?",
+      "choices": [
+        "Longer relationships are always healthier than shorter ones",
+        "More duration can deepen the wrong bond as easily as the right one",
+        "Duration matters only after intensity disappears"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns that stronger attachment is not automatically good attachment.",
+        "direct": "Duration can strengthen unhealthy influence too, which is why the formula is not moral proof.",
+        "competitive": "More time is not automatically a gift. Sometimes it just digs the tie deeper."
+      }
+    },
+    {
+      "questionId": "q07",
+      "prompt": "A remote mentorship starts fading even though the monthly check-in still happens. Which shift most likely explains the decline?",
+      "choices": [
+        "Frequency stayed the same, but duration and intensity dropped",
+        "Proximity increased too much, which weakened the relationship",
+        "The formula stops working in remote settings"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A relationship can weaken when the meeting remains on the calendar but loses time and emotional weight.",
+        "direct": "The chapter applies across settings because it tracks conditions, not physical labels.",
+        "competitive": "The bond is not dying because it is remote. It is dying because the important variables shrank."
+      }
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Leah wants distance from a draining classmate without a big confrontation. What fits the chapter best?",
+      "choices": [
+        "Deliver a dramatic speech immediately, because lowering the variables never works",
+        "Quietly reduce proximity, frequency, duration, and intensity over time",
+        "Increase intensity first so the relationship ends on a stronger note"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The formula works in reverse too, which means relationships often cool when the variables weaken.",
+        "direct": "The chapter's practical insight is that attachment can lose momentum without theatrical rupture.",
+        "competitive": "Do not feed the bond you want to shrink."
+      }
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the strongest ethical caution built into the friendship formula?",
+      "choices": [
+        "Only extroverts can use it well",
+        "It explains how attachment grows, but not whether the bond is healthy or deserved",
+        "It works only when both people know the formula"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter leaves a real tension alive: growth conditions can be used well or badly.",
+        "direct": "Schafer's model is descriptive and strategic, but it does not certify moral quality.",
+        "competitive": "The map can show you how to deepen the tie. It cannot tell you the tie is worth deepening."
+      }
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why does the chapter naturally lead into a chapter about first impressions and friend signals?",
+      "choices": [
+        "Because the formula matters only after a relationship has lasted several years",
+        "Because before the variables can build over time, someone has to feel safe enough to keep engaging",
+        "Because intensity becomes irrelevant once first impressions are discussed"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The formula needs time and repeated contact, so the next question is what makes someone grant that early chance.",
+        "direct": "Chapter 2 follows by explaining the low-threat opening signals that let relationship growth begin.",
+        "competitive": "No formula can scale if the other person never gives you the first few safe seconds."
+      }
+    }
+  ]
+}

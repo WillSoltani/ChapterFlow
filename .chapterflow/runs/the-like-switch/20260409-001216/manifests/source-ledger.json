@@ -1,0 +1,98 @@
+{
+  "bookId": "the-like-switch",
+  "runId": "20260409-001216",
+  "createdAt": "2026-04-08T00:12:00-03:00",
+  "policy": "public_or_authorized_plus_secondary",
+  "sources": [
+    {
+      "sourceId": "src-01",
+      "title": "The Like Switch eBook page",
+      "url": "https://www.simonandschuster.com/books/The-Like-Switch/Jack-Schafer/The-Like-Switch-Series/9781476754505",
+      "type": "official_publisher",
+      "role": "edition metadata, positioning, official table of contents, authorized excerpt anchor",
+      "confidence": "high",
+      "notes": "Dominant publisher page for the 2015 Simon & Schuster / Touchstone edition."
+    },
+    {
+      "sourceId": "src-02",
+      "title": "Google Books metadata and contents page",
+      "url": "https://books.google.com/books/about/The_Like_Switch.html?id=KKoVBgAAQBAJ",
+      "type": "authorized_preview",
+      "role": "chapter map, page spans, bibliographic confirmation, common-terms support",
+      "confidence": "high",
+      "notes": "Confirms eight core chapters and 2015 publication metadata."
+    },
+    {
+      "sourceId": "src-03",
+      "title": "Making Friends is Easier Than You Think",
+      "url": "https://www.psychologytoday.com/us/blog/let-their-words-do-the-talking/201501/making-friends-is-easier-you-think",
+      "type": "author_secondary",
+      "role": "supports Chapter 3 concept framing around the Golden Rule of Friendship",
+      "confidence": "medium",
+      "notes": "Author-authored article aligned with book terminology."
+    },
+    {
+      "sourceId": "src-04",
+      "title": "Nonverbal Cues That Signal Rapport",
+      "url": "https://www.psychologytoday.com/gb/blog/let-their-words-do-the-talking/201611/nonverbal-cues-that-signal-rapport",
+      "type": "author_secondary",
+      "role": "supports Chapter 2 nonverbal signal framing",
+      "confidence": "medium",
+      "notes": "Useful for friend-signal concepts; secondary to the frozen chapter map."
+    },
+    {
+      "sourceId": "src-05",
+      "title": "The Art of Persuasion",
+      "url": "https://www.psychologytoday.com/us/blog/let-their-words-do-the-talking/201906/the-art-persuasion/amp",
+      "type": "author_secondary",
+      "role": "supports eyebrow flash, head tilt, smile, and third-party compliment concepts",
+      "confidence": "medium",
+      "notes": "Used as bounded support, not as a substitute for the book."
+    },
+    {
+      "sourceId": "src-06",
+      "title": "Making Friends in a Thumb Talking World",
+      "url": "https://www.psychologytoday.com/gb/blog/let-their-words-do-the-talking/201101/making-friends-in-thumb-talking-world",
+      "type": "author_secondary",
+      "role": "supports Chapter 5 empathic statements, conversation focus, and reflective listening language",
+      "confidence": "medium",
+      "notes": "Author-authored article aligned with Chapter 5 conversational rapport themes."
+    },
+    {
+      "sourceId": "src-07",
+      "title": "How to Build Rapport to Increase Sales",
+      "url": "https://www.psychologytoday.com/us/blog/let-their-words-do-the-talking/201712/how-to-build-rapport-to-increase-sales",
+      "type": "author_secondary",
+      "role": "supports Chapter 5 empathic statements as a rapport-building response pattern",
+      "confidence": "medium",
+      "notes": "Used for bounded empathy-statement mechanics, not sales framing."
+    },
+    {
+      "sourceId": "src-08",
+      "title": "Self-Disclosures Increase Attraction",
+      "url": "https://www.psychologytoday.com/us/blog/let-their-words-do-the-talking/201503/self-disclosures-increase-attraction",
+      "type": "author_secondary",
+      "role": "supports Chapter 6 self-disclosure pacing, reciprocity, and trust formation",
+      "confidence": "medium",
+      "notes": "Author-authored article aligned with building-closeness mechanisms."
+    },
+    {
+      "sourceId": "src-09",
+      "title": "You Me, Same Same",
+      "url": "https://www.psychologytoday.com/us/blog/let-their-words-do-the-talking/201109/you-me-same-same",
+      "type": "author_secondary",
+      "role": "supports Chapter 6 common-ground and similarity-based rapport framing",
+      "confidence": "medium",
+      "notes": "Provides bounded support for common-ground discovery methods."
+    },
+    {
+      "sourceId": "src-10",
+      "title": "Make Friends by Increasing Your Likability Quotient",
+      "url": "https://www.psychologytoday.com/us/blog/let-their-words-do-the-talking/202206/make-friends-increasing-your-likability-quotient",
+      "type": "author_secondary",
+      "role": "supports Chapter 6 similarity and self-disclosure synthesis",
+      "confidence": "medium",
+      "notes": "Used narrowly for later-chapter synthesis where the frozen preview is thin."
+    }
+  ]
+}

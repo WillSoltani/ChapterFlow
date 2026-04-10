@@ -1,0 +1,57 @@
+{
+  "packVersion": "v13-autonomous",
+  "bookId": "the-art-of-war",
+  "runId": "20260406-01",
+  "primarySource": {
+    "id": "pg-17405-giles",
+    "title": "The Art of War",
+    "author": "Sunzi",
+    "translator": "Lionel Giles",
+    "edition": "Project Gutenberg eBook #17405",
+    "publicationYear": 1910,
+    "accessedAt": "2026-04-06",
+    "rights": "public_domain",
+    "provenance": "Project Gutenberg eBook #17405, translated by Lionel Giles (1910), text-only edition. Released 2005-12-28, most recently updated 2021-10-30. Cross-referenced against PG #132 (annotated Lionel Giles edition).",
+    "localPath": "source-freeze/book-source.txt",
+    "sha256": "fc67d917c83ab58fce768b6b82052c7cdd0be28238284c0024b84f91248b1de7"
+  },
+  "secondarySources": [
+    {
+      "id": "chapter-map",
+      "title": "Research-based chapter map",
+      "localPath": "source-freeze/chapter-map.md",
+      "rights": "internal_research_summary",
+      "usage": "dossier_only"
+    },
+    {
+      "id": "historical-context",
+      "title": "Historical context research",
+      "localPath": "source-freeze/historical-context.md",
+      "rights": "internal_research_summary",
+      "usage": "dossier_only"
+    },
+    {
+      "id": "key-quotes",
+      "title": "Key quotes research",
+      "localPath": "source-freeze/key-quotes.md",
+      "rights": "internal_research_summary",
+      "usage": "quote_ledger"
+    },
+    {
+      "id": "modern-applications",
+      "title": "Modern applications research",
+      "localPath": "source-freeze/modern-applications.md",
+      "rights": "internal_research_summary",
+      "usage": "scenario_seeds"
+    },
+    {
+      "id": "criticism-and-limits",
+      "title": "Criticism and limits research",
+      "localPath": "source-freeze/criticism-and-limits.md",
+      "rights": "internal_research_summary",
+      "usage": "limits_only"
+    }
+  ],
+  "selectionRationale": "Lionel Giles 1910 translation selected as canonical English source because it is public domain, textually stable, widely cited, and available in two mutually validating Project Gutenberg editions (#17405 text-only and #132 annotated).",
+  "frozenAt": "2026-04-06T00:00:00Z"
+}

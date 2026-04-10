@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch02-q01",
+      "prompt": "What is Chapter 2 mainly trying to explain?",
+      "choices": [
+        "Why repayment pressure can move people after they receive something",
+        "Why people say yes mostly because they enjoy conflict",
+        "Why persuasion only works when a person already agrees with the request"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter focuses on reciprocation, the pressure to repay what has been given.",
+        "direct": "Its central lever is repayment pressure created by gifts, favors, and concessions, not conflict enjoyment or prior agreement.",
+        "competitive": "This chapter is about debt logic, not harmony or preexisting support."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch02-q02",
+      "prompt": "Why does the Christmas-card example appear at the start of the chapter?",
+      "choices": [
+        "To show that strangers can still feel pressure to return a gesture",
+        "To prove that holiday traditions matter more than social rules",
+        "To argue that people only reciprocate when they are emotionally close"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The story shows that repayment pressure can appear even without a real relationship.",
+        "direct": "The opening anchor demonstrates how quickly reciprocation can activate after an unsolicited gesture.",
+        "competitive": "The card story proves the account can open before closeness ever arrives."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch02-q03",
+      "prompt": "What does the chapter mean by uninvited debt?",
+      "choices": [
+        "A formal loan with written repayment terms",
+        "Pressure created by a gift or favor that was never requested",
+        "A debt that matters only when both sides discuss it openly"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exactly. A person can feel they owe something even when they never asked for the first move.",
+        "direct": "Uninvited debt is the obligation triggered by unsolicited gifts, favors, or samples.",
+        "competitive": "You did not sign up for the debt, but the pressure shows up anyway."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch02-q04",
+      "prompt": "A vendor sends Omar a small thank-you gift and then asks him to approve a pilot quickly. According to Chapter 2, what should Omar notice first?",
+      "choices": [
+        "That all business gifts are automatically unethical",
+        "That the gift may be changing how fair refusal feels",
+        "That the vendor's product must be better than the alternatives"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Good. The chapter asks Omar to notice the pressure before deciding what he really owes.",
+        "direct": "He should identify whether the gift is altering the emotional cost of saying no rather than treat it as proof of product quality.",
+        "competitive": "The first question is not product excellence. It is whether courtesy just got weaponized."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q05",
+      "prompt": "Why can a small favor lead to a much larger return in this chapter's logic?",
+      "choices": [
+        "Because people always measure value perfectly",
+        "Because people want to remove the discomfort of owing",
+        "Because every gift secretly contains a legal obligation"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The return is often driven by the wish to stop feeling indebted.",
+        "direct": "Unequal exchange becomes possible because repayment is aimed at relieving obligation, not matching value exactly.",
+        "competitive": "The markup comes from guilt pressure, not from honest price discovery."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q06",
+      "prompt": "Which response best fits the chapter's warning about free samples or small gifts?",
+      "choices": [
+        "Every free item is manipulative and should be rejected",
+        "A free item can create pressure even when it looks harmless",
+        "Free items matter only when they are financially valuable"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That is the key idea. The pressure can come from the social rule, not just from the item's size.",
+        "direct": "The chapter does not say all gifts are traps, but it does say even small ones can create obligation.",
+        "competitive": "Tiny gifts are enough when the real product is debt pressure."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q07",
+      "prompt": "What makes rejection-then-retreat effective according to Chapter 2?",
+      "choices": [
+        "The second request is always morally superior to the first",
+        "The smaller request feels reasonable and the retreat feels like a concession to answer",
+        "People forget the first request as soon as the second one appears"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Correct. The second ask benefits from both contrast and the feeling that the other side moved first.",
+        "direct": "The tactic works because the follow-up seems smaller and the persuader's retreat creates reciprocal pressure.",
+        "competitive": "You are reacting to two forces at once: a cheaper-looking ask and a concession invoice."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q08",
+      "prompt": "Priya takes a free brownie at a campus table and then gets asked for a donation. Which Chapter 2 response is strongest?",
+      "choices": [
+        "Donate immediately so the interaction feels balanced",
+        "Ask whether she would still donate if the brownie had never been offered",
+        "Assume the club is dishonest and argue with the table"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exactly. That question helps separate support for the cause from pressure created by the gift.",
+        "direct": "The chapter's defense is to reset the decision by removing the free item from the moral calculation.",
+        "competitive": "Run the ask without the brownie. If the yes disappears, the brownie was the closer."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q09",
+      "prompt": "Why does Chapter 2 refuse to treat all reciprocity as manipulation?",
+      "choices": [
+        "Because reciprocity is useful for cooperation even though it can be exploited",
+        "Because the author thinks persuasion is always harmless",
+        "Because real obligation only exists in formal negotiations"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter keeps the social value of reciprocity in view while warning about its abuse.",
+        "direct": "Healthy exchange depends on reciprocity, so the problem is strategic misuse, not the rule's existence.",
+        "competitive": "Kill the norm and you damage trust. Ignore the abuse and you become easy to collect from."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch02-q10",
+      "prompt": "What is the chapter's strongest practical defense against engineered obligation?",
+      "choices": [
+        "Never accept help from anyone again",
+        "Keep gratitude, pressure, and proportion separate before deciding what is owed",
+        "Return every favor immediately, no matter the cost"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. The chapter wants readers to stay fair without letting pressure make the decision for them.",
+        "direct": "Its defense is selective scrutiny: separate genuine gratitude from debt pressure and respond proportionally.",
+        "competitive": "Run separate ledgers or the tactic owns you. What was given, what is fair, and what pressure wants are not identical."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

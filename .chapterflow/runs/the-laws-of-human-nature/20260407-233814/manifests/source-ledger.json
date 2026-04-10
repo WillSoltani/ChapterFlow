@@ -1,0 +1,80 @@
+{
+  "bookId": "the-laws-of-human-nature",
+  "runId": "20260407-233814",
+  "generatedAt": "2026-04-07T23:38:14Z",
+  "sourcePolicy": "public_or_authorized_plus_secondary",
+  "sourceDiscoveryMode": "web_bundle",
+  "notes": "No lawful full-text manuscript was discovered. The frozen bundle uses the official Penguin Random House product page, the authorized Google Books preview page, Open Library work-level bibliographic evidence, a public library catalog record with the full chapter list, and the Ingram-supplied table of contents surfaced by Better World Books. Reader-facing output must stay paraphrase-first unless wording is visibly supported in the frozen bundle.",
+  "sources": [
+    {
+      "id": "src-prh-paperback",
+      "title": "The Laws of Human Nature",
+      "url": "https://www.penguinrandomhouse.com/books/317474/the-laws-of-human-nature-by-robert-greene/",
+      "type": "official_publisher_page",
+      "role": "edition family confirmation and official product metadata",
+      "confidence": "high",
+      "usedFor": [
+        "edition lock",
+        "publication metadata",
+        "same-work-family confirmation"
+      ],
+      "notes": "Official Penguin Random House page listing the 2019 Penguin Books paperback and the 2018 Viking hardcover together at 624 pages."
+    },
+    {
+      "id": "src-googlebooks-hardcover",
+      "title": "The Laws of Human Nature",
+      "url": "https://books.google.com/books/about/The_Laws_of_Human_Nature.html?id=uD9wDwAAQBAJ",
+      "type": "authorized_preview_page",
+      "role": "lawful preview metadata and partial table-of-contents support",
+      "confidence": "high",
+      "usedFor": [
+        "edition lock",
+        "source freeze preview",
+        "chapter-map cross-check"
+      ],
+      "notes": "Authorized Google Books listing for the 2018 Penguin / Viking work family."
+    },
+    {
+      "id": "src-openlibrary-work",
+      "title": "The Laws of Human Nature",
+      "url": "https://openlibrary.org/works/OL19761410W/The_Laws_of_Human_Nature",
+      "type": "bibliographic_record",
+      "role": "edition-family and identifier cross-check",
+      "confidence": "medium_high",
+      "usedFor": [
+        "edition lock",
+        "publication metadata",
+        "variant-family check"
+      ],
+      "notes": "Open Library work page confirming the 2018 Viking hardcover, the 2019 paperback, and the separate concise and translated editions inside the same work family."
+    },
+    {
+      "id": "src-freelibrary-catalog",
+      "title": "The laws of human nature",
+      "url": "https://catalog.freelibrary.org/Record/2426225",
+      "type": "library_catalog_record",
+      "role": "full chapter list and ISBN cross-check",
+      "confidence": "high",
+      "usedFor": [
+        "chapter map",
+        "edition lock",
+        "chapter order confirmation"
+      ],
+      "notes": "Public library catalog record for the 2018 Viking edition listing the full 19-entry reader-facing table of contents."
+    },
+    {
+      "id": "src-betterworldbooks-ingram",
+      "title": "The Laws of Human Nature",
+      "url": "https://www.betterworldbooks.com/product/detail/the-laws-of-human-nature-9780525428145/new",
+      "type": "bookseller_toc_feed",
+      "role": "chapter start pages and subheading support",
+      "confidence": "medium_high",
+      "usedFor": [
+        "chapter map",
+        "subheading support",
+        "chapter briefing"
+      ],
+      "notes": "Better World Books page surfacing the Ingram table of contents."
+    }
+  ]
+}

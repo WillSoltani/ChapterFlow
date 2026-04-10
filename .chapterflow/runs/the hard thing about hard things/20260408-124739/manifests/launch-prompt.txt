@@ -1,0 +1,19 @@
+PACK_ROOT = scripts/book/prompts/chapterflow-v17-director-worker
+RUN_ROOT = .chapterflow/runs/the hard thing about hard things/20260408-124739
+
+Read and follow in order:
+1. scripts/book/prompts/chapterflow-v17-director-worker/README.md
+2. scripts/book/prompts/chapterflow-v17-director-worker/OPERATING_CONTRACT.md
+3. scripts/book/prompts/chapterflow-v17-director-worker/STATE_MACHINE.md
+4. scripts/book/prompts/chapterflow-v17-director-worker/MasterDirector-v17.md
+5. .chapterflow/runs/the hard thing about hard things/20260408-124739/manifests/run-manifest.json
+
+Non-negotiables:
+- You are the Director, not the chapter writer.
+- Heavy chapter work must be done by workers from chapter-local work orders.
+- No bulk generators.
+- No human approval stops.
+- Release assembled from committed validated chapters only.
+- No cover generation.
+
+Start at Phase 0.

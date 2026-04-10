@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch17-q01",
+      "prompt": "What is aggression in this law?",
+      "choices": [
+        "Only loud anger or physical attack",
+        "A drive to pressure, punish, dominate, or control, often in disguised form",
+        "A refusal to show any emotion in conflict"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Greene treats aggression as broader than shouting or open attack.",
+        "direct": "The hostile drive can survive in indirect forms too.",
+        "competitive": "The costume changes, not the function."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch17-q02",
+      "prompt": "Why does Greene use John D. Rockefeller in this chapter?",
+      "choices": [
+        "To show controlled aggression that does not depend on theatrical rage",
+        "To prove that polite people are never hostile",
+        "To argue that all business leaders are passive aggressive"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The anchor shows aggression in disciplined form.",
+        "direct": "Rockefeller separates pressure from loud temper.",
+        "competitive": "Danger does not need noise."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch17-q03",
+      "prompt": "What makes passive aggression important in this chapter?",
+      "choices": [
+        "It proves the person feels no hostility at all",
+        "It lets hostility keep working while the surface still looks socially acceptable",
+        "It removes all need for control or punishment"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Indirect delivery can still serve an aggressive purpose.",
+        "direct": "The facade protects the person while the pressure still lands.",
+        "competitive": "Clean packaging can still carry the hit."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch17-q04",
+      "prompt": "A coworker keeps agreeing warmly in meetings, then repeatedly delays every next step after conflict. Which reading best fits the chapter?",
+      "choices": [
+        "The warmth proves there is no hostile pattern",
+        "The repeated delay may be covert aggression hiding behind a polite surface",
+        "The coworker is automatically evil and should be treated as an enemy at once"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter asks the reader to watch recurring effects, not just manners.",
+        "direct": "Repeated obstruction can carry a hostile function.",
+        "competitive": "The smile may just be protecting the sabotage."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "ch17-q05",
+      "prompt": "Which personal pattern best matches concealed aggression?",
+      "choices": [
+        "Someone names their anger plainly and works through it directly",
+        "Someone repeatedly uses silence, guilt, or confusion to punish without speaking the hostility openly",
+        "Someone asks for time to calm down once after an argument"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The recurring pattern matters more than one isolated pause.",
+        "direct": "Indirect punishment is central to the chapter's account of aggression.",
+        "competitive": "The quiet becomes the weapon."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "ch17-q06",
+      "prompt": "Why can polished committee language still fit the law of aggression?",
+      "choices": [
+        "Because procedure and civility can be used to exclude or control while preserving clean appearances",
+        "Because formal language automatically makes conflict harmless",
+        "Because aggression disappears when people use rules"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns that civilized presentation can hide pressure.",
+        "direct": "Procedure can become a delivery system for hostility.",
+        "competitive": "The glove can hide the blade."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch17-q07",
+      "prompt": "What is the chapter's distinction between irritation and concealed aggression?",
+      "choices": [
+        "Irritation is always fake, while aggression is always conscious",
+        "Irritation can be isolated, while concealed aggression shows up as recurring hostile pressure or control",
+        "There is no difference between them"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "One rough moment proves much less than a repeated pattern.",
+        "direct": "The law focuses on recurring function, not every imperfect interaction.",
+        "competitive": "Pattern beats scene."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "ch17-q08",
+      "prompt": "Why are distance and boundaries such important responses in this chapter?",
+      "choices": [
+        "Because they reduce leverage without requiring the aggressor to confess everything first",
+        "Because they guarantee that no conflict will ever return",
+        "Because they turn every relationship into open war"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter favors clearer limits over endless naive debate.",
+        "direct": "Once the pattern is visible, reduced leverage matters.",
+        "competitive": "Cut the opening before you chase the explanation."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "ch17-q09",
+      "prompt": "How does chapter 17 connect to chapter 16 on fickleness?",
+      "choices": [
+        "Chapter 17 shows how unstable loyalty can hide resentment before conflict becomes open",
+        "Chapter 17 argues that followership and aggression are unrelated",
+        "Chapter 17 replaces hidden resentment with pure historical analysis"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The bridge is hidden resentment moving from followership into covert hostility.",
+        "direct": "Chapter 16 sets up the concealed anger that chapter 17 examines directly.",
+        "competitive": "Fickleness stores the charge; aggression delivers it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "ch17-q10",
+      "prompt": "Which plan best fits the law of aggression?",
+      "choices": [
+        "Trust every pleasant surface until the person openly attacks you",
+        "Treat every awkward interaction as proof of malice immediately",
+        "Track repeated concealed pressure, reduce naivete, and respond with boundaries instead of cheap trust"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter rejects both naive trust and blanket paranoia.",
+        "direct": "The right move is pattern recognition plus firmer limits.",
+        "competitive": "Read the function and cut the leverage."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deep"
+    }
+  ]
+}

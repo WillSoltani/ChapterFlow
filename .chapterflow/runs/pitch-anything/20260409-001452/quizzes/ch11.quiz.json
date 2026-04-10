@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What does becoming one of the best mean in this chapter?",
+      "choices": [
+        "Becoming naturally charismatic in every room",
+        "Gaining repeatable control grounded in the method",
+        "Needing less preparation than everyone else"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter defines mastery as repeatable command, not magic charisma.",
+        "direct": "Correct. The closing claim is about durable capability built from the method.",
+        "competitive": "The edge is reliable control, not mystical talent."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the chapter value repeated control over one polished performance?",
+      "choices": [
+        "Because one performance proves universal dominance",
+        "Because repeated control shows the method is real rather than lucky",
+        "Because polished performances are always fake"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Doing it again matters more than doing it once.",
+        "direct": "Repeated control is harder to dismiss as luck or charm.",
+        "competitive": "One hit can be luck. Repeatable command is a weapon."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is the chapter's warning about mastery?",
+      "choices": [
+        "Mastery should become loud confidence theater",
+        "Mastery should remove all need for judgment",
+        "Mastery must not drift into swagger or ego theater"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter keeps mastery disciplined and bounded.",
+        "direct": "It warns against confusing command with vanity.",
+        "competitive": "Swagger is drift, not mastery."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A founder enters a major room with nerves. What does this chapter suggest is the stronger source of confidence?",
+      "choices": [
+        "Waiting for inspiration to appear",
+        "Relying on the repeatable sequence that has been trained",
+        "Talking louder than usual"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The method provides a process to lean on under pressure.",
+        "direct": "Confidence grounded in sequence is steadier than adrenaline.",
+        "competitive": "Trust the system, not the mood."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What is the trap in reading this chapter as status theater?",
+      "choices": [
+        "It inflates ego beyond actual discipline and judgment",
+        "It makes the chapter easier to remember",
+        "It removes the need for a close"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Mastery language can become empty if it outruns real discipline.",
+        "direct": "The chapter keeps the claim bounded by preparation and judgment.",
+        "competitive": "If ego outruns method, you are acting, not commanding."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "In a school panel setting, what shows that improvement is real rather than lucky?",
+      "choices": [
+        "The presenter can repeat control across rooms and outcomes",
+        "The presenter used more slides than before",
+        "The audience smiled more quickly"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Repeatability is the strongest proof of improvement.",
+        "direct": "A method is real when it changes rooms more than once.",
+        "competitive": "If you can repeat it, it is yours."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "How does reduced neediness change the reader's confidence?",
+      "choices": [
+        "It makes the reader rely more on approval",
+        "It grounds confidence in structure instead of reassurance",
+        "It removes all uncertainty from every room"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Confidence becomes steadier when it no longer depends on approval.",
+        "direct": "Structure-based confidence lands differently than reassurance-seeking.",
+        "competitive": "Cut the approval leak and confidence gets real."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What is likely to happen when a presenter trusts process rather than waiting for the perfect feeling?",
+      "choices": [
+        "Control becomes more repeatable under pressure",
+        "The room stops needing adaptation",
+        "Preparation becomes unnecessary"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A repeatable process lowers dependence on mood.",
+        "direct": "The chapter links process to steadier control in hard rooms.",
+        "competitive": "Methods travel better than moods."
+      },
+      "bloomsLevel": "predict",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the practical limit on the book's closing mastery claim?",
+      "choices": [
+        "The method guarantees victory in every room",
+        "The method still depends on judgment, preparation, and adaptation",
+        "The method only works for investors"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The closing benefit is real, but it is not unlimited.",
+        "direct": "The chapter keeps mastery bounded by judgment and preparation.",
+        "competitive": "No method replaces judgment. The best ones sharpen it."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What has changed most by the end of the book according to this chapter?",
+      "choices": [
+        "The reader has memorized more tactics than before",
+        "The reader now has a disciplined way to command attention and movement on purpose",
+        "The reader no longer needs to practice pitching"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The book ends on a real change in capability.",
+        "direct": "The reader leaves with a method for commanding the room more deliberately.",
+        "competitive": "The final shift is from hoping to controlling."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "deep"
+    }
+  ]
+}

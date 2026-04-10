@@ -618,15 +618,16 @@ export function BookOnboardingClient() {
 
   const step = Math.min(state.currentStep, TOTAL_STEPS - 1);
   const firstName = getFirstName(identity);
-  const previewBook =
-    getBookById("the-48-laws-of-power") ??
-    getBookById(state.selectedBookIds[0] || "") ??
-    BOOKS_CATALOG[0]!;
 
   const rankedBooks = useMemo(
     () => rankBooks(state.readingGoal, state.preferredExampleContext),
     [state.preferredExampleContext, state.readingGoal]
   );
+
+  const previewBook =
+    getBookById(state.selectedBookIds[0] || "") ??
+    rankedBooks[0] ??
+    BOOKS_CATALOG[0]!;
 
   useEffect(() => {
     setShelfOffset(0);

@@ -1,0 +1,100 @@
+{
+  "bookId": "the-almanack-of-naval-ravikant",
+  "runId": "20260408-022212",
+  "chapterNumber": 3,
+  "title": "Learning Happiness",
+  "normalizedTitle": "learning-happiness",
+  "type": "core_section",
+  "alias": [],
+  "printedPageRange": {
+    "start": 127,
+    "end": 156
+  },
+  "sourceIds": [
+    "official_2020_pdf",
+    "official_2020_epub",
+    "official_toc_page"
+  ],
+  "lockedEdition": {
+    "name": "The Almanack of Naval Ravikant: A Guide to Wealth and Happiness",
+    "family": "2020 Magrathea public-service PDF/EPUB family"
+  },
+  "sourceFiles": {
+    "pdf": "source-freeze/source-bundle/official-2020-edition.pdf",
+    "epub": "source-freeze/source-bundle/official-2020-edition.epub",
+    "epubDocument": "OEBPS/Eric-Jorgenson_The-Almanack-of-Naval-Ravikant_PRODUCTION_v102-12.xhtml",
+    "textFile": "sidecars/source/ch03.source.txt"
+  },
+  "headings": [
+    {
+      "level": "h1",
+      "title": "Happiness Is Learned",
+      "printedPage": 128,
+      "anchorId": "_idParaDest-34"
+    },
+    {
+      "level": "h1",
+      "title": "Happiness Is a Choice",
+      "printedPage": 133,
+      "anchorId": "_idParaDest-35"
+    },
+    {
+      "level": "h1",
+      "title": "Happiness Requires Presence",
+      "printedPage": 134,
+      "anchorId": "_idParaDest-36"
+    },
+    {
+      "level": "h1",
+      "title": "Happiness Requires Peace",
+      "printedPage": 135,
+      "anchorId": "_idParaDest-37"
+    },
+    {
+      "level": "h1",
+      "title": "Every Desire Is a Chosen Unhappiness",
+      "printedPage": 137,
+      "anchorId": "_idParaDest-38"
+    },
+    {
+      "level": "h1",
+      "title": "Success Does Not Earn Happiness",
+      "printedPage": 139,
+      "anchorId": "_idParaDest-39"
+    },
+    {
+      "level": "h1",
+      "title": "Envy Is the Enemy of Happiness",
+      "printedPage": 143,
+      "anchorId": "_idParaDest-40"
+    },
+    {
+      "level": "h1",
+      "title": "Happiness Is Built by Habits",
+      "printedPage": 145,
+      "anchorId": "_idParaDest-41"
+    },
+    {
+      "level": "h2",
+      "title": "Happiness Habits",
+      "printedPage": null,
+      "anchorId": null
+    },
+    {
+      "level": "h2",
+      "title": "Changing habits:",
+      "printedPage": null,
+      "anchorId": null
+    },
+    {
+      "level": "h1",
+      "title": "Find Happiness in Acceptance",
+      "printedPage": 151,
+      "anchorId": "_idParaDest-42"
+    }
+  ],
+  "notes": [
+    "Sidecar text was extracted from the frozen official EPUB because it preserves the locked 2020 edition structure in machine-readable XHTML.",
+    "Printed page boundaries remain anchored to the frozen official PDF table of contents."
+  ]
+}

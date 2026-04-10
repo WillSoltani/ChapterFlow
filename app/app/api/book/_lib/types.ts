@@ -20,7 +20,14 @@ export type ToneKeyed = {
   competitive: string;
 };
 
+export type OneMinuteRecapToneKeyed = ToneKeyed | {
+  retrieve: ToneKeyed;
+  connect: ToneKeyed;
+  preview: ToneKeyed;
+};
+
 export type ChapterVariantContent = {
+  importantSummary?: string;
   summaryBullets?: string[];
   summaryBlocks?: ChapterSummaryBlock[];
   takeaways?: string[];
@@ -28,9 +35,14 @@ export type ChapterVariantContent = {
   /** Modern format: tone-keyed chapter breakdown narrative */
   chapterBreakdown?: ToneKeyed;
   /** Modern format: tone-keyed takeaway objects */
-  keyTakeaways?: Array<{ point: ToneKeyed }>;
+  keyTakeaways?: Array<{ point: ToneKeyed; moreDetails?: ToneKeyed }>;
   /** Modern format: tone-keyed one-minute recap */
-  oneMinuteRecap?: ToneKeyed;
+  oneMinuteRecap?: OneMinuteRecapToneKeyed;
+  activationPrompt?: ToneKeyed;
+  selfCheckPrompt?: ToneKeyed;
+  selfCheckPrompts?: ToneKeyed[];
+  reflectionPrompts?: ToneKeyed[];
+  predictionPrompt?: ToneKeyed;
 };
 
 export type BookPackageQuizQuestion = {
@@ -42,6 +54,9 @@ export type BookPackageQuizQuestion = {
 };
 
 export type BookPackageQuiz = {
+  chapterId?: string;
+  chapterNumber?: number;
+  chapterTitle?: string;
   passingScorePercent: number;
   questions: BookPackageQuizQuestion[];
   retryQuestions?: BookPackageQuizQuestion[];
@@ -64,12 +79,18 @@ export type ReviewCard = {
   cardId: string;
   front: ToneKeyed;
   back: ToneKeyed;
+  difficulty?: "easy" | "medium" | "hard";
 };
 
 /** Tone-keyed implementation plan */
 export type ImplementationPlan = {
   coreSkill: ToneKeyed;
-  [key: string]: ToneKeyed | unknown;
+  ifThenPlans?: Array<{
+    context: string;
+    plan: ToneKeyed;
+  }>;
+  twentyFourHourChallenge?: ToneKeyed;
+  weeklyPractice?: ToneKeyed;
 };
 
 export type BookPackageChapter = {
@@ -85,6 +106,19 @@ export type BookPackageChapter = {
   keyTakeawayCard?: ToneKeyed;
 };
 
+export type BookPackageEdition = {
+  name: string;
+  publishedYear?: number | null;
+  publisher?: string;
+  publishedDate?: string;
+  isbn13?: string;
+  format?: string;
+  translator?: string;
+  translationYear?: number | null;
+  sourceText?: string;
+  sourceProvenance?: string;
+};
+
 export type BookPackageBook = {
   bookId: string;
   title: string;
@@ -95,9 +129,9 @@ export type BookPackageBook = {
     emoji?: string;
     color?: string;
   };
-  edition?: string;
+  edition?: string | BookPackageEdition;
   variantFamily: VariantFamily;
-  chapters: BookPackageChapter[];
+  chapterRange?: string;
 };
 
 export type BookPackage = {
@@ -107,6 +141,7 @@ export type BookPackage = {
   contentOwner: string;
   licenseNotes?: string;
   book: BookPackageBook;
+  chapters: BookPackageChapter[];
 };
 
 export type ChapterSummaryPayload = {
@@ -196,6 +231,8 @@ export type BookUserEntitlement = {
   stripeCustomerId?: string;
   stripeSubscriptionId?: string;
   currentPeriodEnd?: string;
+  /** True if the Stripe subscription is set to cancel at the end of the current period (no auto-renew) */
+  cancelAtPeriodEnd?: boolean;
   /** The license key code that granted PRO access (if proSource === "license") */
   licenseKey?: string;
   /** ISO date when the license-based PRO expires (if proSource === "license") */
@@ -285,6 +322,8 @@ export type BookUserQuizStateItem = {
   nextEligibleAttemptAt?: string | null;
   passedAt?: string;
   unlockedNextChapter: boolean;
+  /** ISO timestamp set when the loop pipeline (streak/tier/achievement/spark) finished cleanly. */
+  loopPipelineCompletedAt?: string;
   createdAt: string;
   updatedAt: string;
 };
@@ -356,25 +395,8 @@ export type BookUserEngagementItem = {
   updatedAt: string;
 };
 
-export type FlowPointsSourceType =
-  | "onboarding_complete"
-  | "first_book_started"
-  | "quiz_pass"
-  | "loop_complete"
-  | "book_complete"
-  | "badge_earned"
-  | "achievement_earned"
-  | "scenario_approved"
-  | "referral_activation_inviter"
-  | "referral_activation_invitee"
-  | "referral_pro_inviter"
-  | "reward_redemption"
-  | "admin_adjustment"
-  | "streak_day"
-  | "streak_milestone"
-  | "tier_advance"
-  | "insight_spark"
-  | "welcome_back";
+import type { FlowPointsSourceType } from "@/app/book/_lib/flow-points-economy";
+export type { FlowPointsSourceType };
 
 // ── Streak System (§10.1) ──────────────────────────────────────────────────
 

@@ -1,0 +1,43 @@
+{
+  "chapterId": "ch07",
+  "number": 7,
+  "title": "Concerning the Going Concern",
+  "part": "Main chapters",
+  "richness": "high",
+  "sourceRefs": [
+    "src-openlibrary-2014-first-ed",
+    "src-semantic-foundation-contents",
+    "src-supersummary-chapter-6",
+    "src-supersummary-overview"
+  ],
+  "canonicalEdition": {
+    "name": "First edition",
+    "publisher": "HarperBusiness",
+    "publishedDate": "2014-03-04",
+    "publishedYear": 2014,
+    "isbn13": "9780062273208",
+    "format": "Hardcover reference edition",
+    "sourceText": ".chapterflow/runs/the hard thing about hard things/20260408-124739/source-freeze/source-bundle.md",
+    "sourceProvenance": "Frozen web bundle only: bibliographic records, table-of-contents evidence, official publication metadata, and narrow secondary summary support. Paraphrase-first; no full text frozen."
+  },
+  "quotePosture": "paraphrase_first",
+  "anchorSummary": "This chapter focuses on the operating design of a real company at scale, where politics, executive selection, performance systems, and culture have to be managed intentionally instead of by founder instinct alone.",
+  "coreClaim": "A growing company survives only if its leaders intentionally design the organization instead of assuming early-stage habits will scale on their own.",
+  "distinctMechanism": "Horowitz treats the going concern as an organizational-design challenge: minimize politics, formalize the right systems, and match executives to the company's actual stage and needs.",
+  "requiredAnchors": [
+    "Politics and process: growth makes informal signals and incentives more dangerous.",
+    "Executive fit is contextual: there is no universally great executive independent of company stage and need.",
+    "Culture and operating cadence must be programmed deliberately as the company scales."
+  ],
+  "specificApplications": [
+    "Identify where informal startup habits are now creating political drift.",
+    "Evaluate executives for fit against stage, not prestige alone.",
+    "Use process to reduce ambiguity where growth has outpaced direct oversight."
+  ],
+  "commonMisreadings": [
+    "Treating the chapter as a call for bureaucracy rather than for intentional design.",
+    "Assuming culture programs itself if the founder's values are merely sincere."
+  ],
+  "hardEdgeRequirement": "Hard mode must show why refusing to formalize the right systems is not preserving startup agility but exporting confusion into a larger company.",
+  "thresholdQuestion": "Which small-company habit becomes dangerous once the company is too large for informal coordination alone?"
+}

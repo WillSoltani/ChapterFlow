@@ -59,5 +59,13 @@ export async function getAppBaseUrl(reqUrl: string): Promise<string> {
     (await getServerEnv("CHAPTERFLOW_APP_BASE_URL")) ||
     (await getServerEnv("NEXT_PUBLIC_CHAPTERFLOW_APP_URL"));
   if (chapterFlowExplicit) return chapterFlowExplicit.replace(/\/+$/, "");
+  // In production we MUST have an explicit base URL. Falling back to the
+  // request host can produce internal hostnames or http://localhost which
+  // Stripe rejects (or which redirect users to the wrong place).
+  if (process.env.NODE_ENV === "production") {
+    throw new Error(
+      "CHAPTERFLOW_APP_BASE_URL is not set. Refusing to fall back to the request host in production."
+    );
+  }
   return `${url.protocol}//${url.host}`;
 }

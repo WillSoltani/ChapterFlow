@@ -1,0 +1,53 @@
+{
+  "packVersion": "v12-sealed",
+  "bookId": "the-prince",
+  "runId": "20260406-01",
+  "packRoot": "scripts/book/prompts/chapterflow-v12-sealed",
+  "runRoot": ".chapterflow/runs/the-prince/20260406-01",
+  "sourceRoot": ".chapterflow/sources/the-prince",
+  "outputProfile": "flagship_v4_compatible",
+  "learningContract": "research_native",
+  "runProfile": "apex_flagship",
+  "validationMode": "chapter_gate",
+  "chapterGateQuizMode": "generate",
+  "scenarioTonePolicy": "required",
+  "rightsMode": "startup_light",
+  "waveSize": 2,
+  "generateChapterReviewWrapper": true,
+  "strictPackAudit": true,
+  "forbidBulkGenerators": true,
+  "releaseAssembleFromValidatedOnly": true,
+  "preserveApprovedChapterHashes": true,
+  "sourceSidecarsRequired": true,
+  "artifactGuardRequired": true,
+  "releaseGuardRequired": true,
+  "qualityDecayStopDelta": 1.5,
+  "book": {
+    "bookId": "the-prince",
+    "title": "The Prince",
+    "author": "Niccolo Machiavelli",
+    "categories": [
+      "Political Philosophy",
+      "Leadership",
+      "Strategy"
+    ],
+    "tags": [
+      "statecraft",
+      "power",
+      "leadership",
+      "politics",
+      "war",
+      "governance"
+    ],
+    "edition": {
+      "name": "Project Gutenberg / W. K. Marriott translation",
+      "translator": "W. K. Marriott",
+      "publishedYear": null,
+      "translationYear": null,
+      "sourceText": ".chapterflow/sources/the-prince/the-prince.txt",
+      "sourceProvenance": "Project Gutenberg eBook #1232, translated by W. K. Marriott, released February 11, 2006 and updated October 29, 2024."
+    },
+    "variantFamily": "EMH",
+    "chapterRange": "Chapters I-XXVI only"
+  }
+}

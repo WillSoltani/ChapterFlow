@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is Chapter 8's basic claim about behavior change?",
+      "choices": [
+        "It is purely private and should stay that way",
+        "Other people and shared environments can help shape it",
+        "It only works in workplace teams"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says change often happens with help from people and structures around us.",
+        "direct": "It widens behavior design beyond the solo individual.",
+        "competitive": "The system matters now."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What is a shared prompt in this chapter?",
+      "choices": [
+        "A cue created by a group routine or shared structure",
+        "A private thought that appears randomly",
+        "A reward that comes months later"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A team ritual, calendar, or shared checklist can act like a cue.",
+        "direct": "The chapter treats social structure as concrete prompt design.",
+        "competitive": "The room and the group can fire the loop."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why does the chapter care about coaching and shared practice?",
+      "choices": [
+        "Because they can change the practical conditions of repetition",
+        "Because they remove the need for agency",
+        "Because they only matter for school habits"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Good support changes what makes the habit easier to do.",
+        "direct": "Coaching and shared practice are practical design help, not just cheering.",
+        "competitive": "Support works when it edits the field."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Imani's habit becomes steadier when she ties it to the team stand-up. What does that show?",
+      "choices": [
+        "Solo memory is always enough",
+        "The group ritual can function as a social prompt",
+        "Teams should replace all individual planning"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The shared routine gives the habit a clear starting moment.",
+        "direct": "A team structure can provide the cue the person was missing alone.",
+        "competitive": "The system supplied ignition."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What changed Caleb's study group from noise into support?",
+      "choices": [
+        "Everyone became more emotional about studying",
+        "The group added a shared starting action",
+        "The group made the work harder"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A concrete shared routine made the next step easier to begin.",
+        "direct": "Structure turned company into useful support.",
+        "competitive": "The group started doing ignition work."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which statement misreads Chapter 8?",
+      "choices": [
+        "All social influence is automatically healthy",
+        "Support can help a behavior feel more repeatable",
+        "Agency still matters inside group change"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says groups can help or hurt depending on how they work.",
+        "direct": "It refuses to flatten all togetherness into something positive.",
+        "competitive": "Crowd power is not automatically an upgrade."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What is the chapter's warning about pressure?",
+      "choices": [
+        "Pressure always builds healthy habits faster",
+        "Pressure can look like support while weakening agency",
+        "Pressure matters only at home"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Support should help the person act, not make the person feel policed.",
+        "direct": "Surveillance and coercion can undermine healthy shared change.",
+        "competitive": "Traction is better than social drag."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Rosa wants help with her evening walk but not nagging. What chapter move fits best?",
+      "choices": [
+        "Add one shared cue without turning the partner into a monitor",
+        "Require constant reminders all evening",
+        "Drop the social element completely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A light shared structure can help without becoming pressure.",
+        "direct": "The chapter distinguishes support from surveillance.",
+        "competitive": "Use design plus respect."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What makes support healthy in Chapter 8?",
+      "choices": [
+        "It increases traction while preserving agency",
+        "It removes the person's responsibility completely",
+        "It depends on public pressure"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants support that helps without taking over.",
+        "direct": "Healthy shared design strengthens action without replacing ownership.",
+        "competitive": "The person should stay in the driver's seat."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What larger idea does Chapter 8 add to the book's ending?",
+      "choices": [
+        "That habits only matter in groups",
+        "That change can spread through people and small systems as well as through individuals",
+        "That individual design no longer matters"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The final chapter says small changes can travel through families, teams, and other shared settings.",
+        "direct": "It broadens behavior design from the person to the surrounding system.",
+        "competitive": "The network can carry the habit too."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

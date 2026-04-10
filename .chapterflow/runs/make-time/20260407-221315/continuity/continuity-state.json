@@ -1,0 +1,124 @@
+{
+  "bookId": "make-time",
+  "chapterOrder": [
+    {
+      "number": 1,
+      "chapterId": "ch01-introduction-how-make-time-works",
+      "title": "Introduction + How Make Time Works"
+    },
+    {
+      "number": 2,
+      "chapterId": "ch02-highlight",
+      "title": "Highlight"
+    },
+    {
+      "number": 3,
+      "chapterId": "ch03-laser",
+      "title": "Laser"
+    },
+    {
+      "number": 4,
+      "chapterId": "ch04-energize",
+      "title": "Energize"
+    },
+    {
+      "number": 5,
+      "chapterId": "ch05-reflect",
+      "title": "Reflect"
+    }
+  ],
+  "chapterFloorEstablishedBy": [
+    1,
+    2
+  ],
+  "recurringMotifs": [
+    "defaults",
+    "daily design",
+    "small experiments",
+    "energy before heroics",
+    "friendly but disciplined practice"
+  ],
+  "callbackLedger": {
+    "ch02": [
+      "Busy Bandwagon",
+      "Infinity Pools",
+      "the day needs a center"
+    ],
+    "ch03": [
+      "Highlight as the target of protection"
+    ],
+    "ch04": [
+      "Laser depends on bodily energy"
+    ],
+    "ch05": [
+      "the four-part loop closes on daily experimentation"
+    ]
+  },
+  "usedNames": [
+    "Amina",
+    "Ben",
+    "Carla",
+    "Darius",
+    "Elena",
+    "Farah",
+    "Gideon",
+    "Hana",
+    "Imani",
+    "Jules",
+    "Kai",
+    "Lena",
+    "Mara",
+    "Noah",
+    "Priya",
+    "Rory",
+    "Sofia",
+    "Tomas",
+    "Uma",
+    "Victor",
+    "Wes",
+    "Yara",
+    "Zane"
+  ],
+  "notes": [
+    "Five high-level chapter packaging is a run-level structure choice anchored to the public framework and Google Books contents.",
+    "Specific tactics remain nested source material inside Highlight, Laser, Energize, and Reflect.",
+    "Quotes were avoided except where public source support was explicit."
+  ],
+  "validatedChapters": [
+    {
+      "number": 1,
+      "chapterId": "ch01-introduction-how-make-time-works",
+      "title": "Introduction + How Make Time Works",
+      "status": "validated"
+    },
+    {
+      "number": 2,
+      "chapterId": "ch02-highlight",
+      "title": "Highlight",
+      "status": "validated"
+    },
+    {
+      "number": 3,
+      "chapterId": "ch03-laser",
+      "title": "Laser",
+      "status": "validated"
+    },
+    {
+      "number": 4,
+      "chapterId": "ch04-energize",
+      "title": "Energize",
+      "status": "validated"
+    },
+    {
+      "number": 5,
+      "chapterId": "ch05-reflect",
+      "title": "Reflect",
+      "status": "validated"
+    }
+  ],
+  "releasePackage": {
+    "path": ".chapterflow/runs/make-time/20260407-221315/release/make-time.modern.json",
+    "chapterCount": 5
+  },
+  "completedAt": "2026-04-08T01:25:00Z"
+}

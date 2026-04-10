@@ -1,10 +1,12 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { PhoneMockup } from "@/components/landing/PhoneMockup";
-import { PhoneScreenContent } from "@/components/landing/PhoneScreenContent";
+import { PhoneReaderShell } from "@/components/landing/reader-demo/PhoneReaderShell";
+import { PulseCTA } from "@/components/landing/PulseCTA";
+import { AUTH_LOGIN_BOOK_URL } from "@/app/_lib/chapterflow-brand";
+import { track } from "@/lib/analytics";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -17,47 +19,6 @@ const fadeUp = {
     },
   },
 };
-
-function PulseCTA({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: false });
-  const [shouldPulse, setShouldPulse] = useState(false);
-
-  useEffect(() => {
-    if (isInView) {
-      const timer = setTimeout(() => setShouldPulse(true), 3000);
-      return () => clearTimeout(timer);
-    } else {
-      setShouldPulse(false);
-    }
-  }, [isInView]);
-
-  return (
-    <motion.div
-      ref={ref}
-      className={className}
-      animate={
-        shouldPulse
-          ? {
-              boxShadow: [
-                "0 0 0 0 rgba(34, 211, 238, 0)",
-                "0 0 0 8px rgba(34, 211, 238, 0.15)",
-                "0 0 0 0 rgba(34, 211, 238, 0)",
-              ],
-            }
-          : {}
-      }
-      transition={
-        shouldPulse
-          ? { duration: 2.5, repeat: Infinity, repeatDelay: 1 }
-          : {}
-      }
-      style={{ borderRadius: 9999 }}
-    >
-      {children}
-    </motion.div>
-  );
-}
 
 export function Hero() {
   return (
@@ -75,7 +36,7 @@ export function Hero() {
       />
 
       <div className="relative mx-auto max-w-[1200px] px-5 md:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-[55%_45%] gap-12 lg:gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[60%_40%] gap-12 lg:gap-8 items-center">
           {/* Left column — text */}
           <motion.div
             initial="hidden"
@@ -99,7 +60,7 @@ export function Hero() {
                 }}
               >
                 <span className="text-[14px]">&#10022;</span>
-                Trusted by early readers worldwide
+                Built on spaced repetition science
               </span>
             </motion.div>
 
@@ -136,17 +97,18 @@ export function Hero() {
               }}
               variants={fadeUp}
             >
-              ChapterFlow turns every chapter into a 20-minute learning loop.
-              Read the key ideas, see them applied, prove you retained them
-              &mdash; then move on.
+              Most readers forget the majority of a book within weeks.
+              ChapterFlow turns every chapter into a structured loop that
+              actually makes ideas stick &mdash; for good.
             </motion.p>
 
             {/* Primary CTA */}
             <motion.div className="mt-6" variants={fadeUp}>
               <PulseCTA className="inline-block">
                 <Link
-                  href="/auth/login?returnTo=%2Fbook"
-                  className="cta-shine inline-flex items-center rounded-full px-8 py-4 font-semibold text-[16px] transition-transform hover:scale-[1.03] active:scale-[0.98]"
+                  href={AUTH_LOGIN_BOOK_URL}
+                  onClick={() => track("cta_click", { source: "hero_primary" })}
+                  className="cta-shine inline-flex items-center rounded-full px-8 py-4 font-semibold text-[16px] transition-transform hover:scale-[1.03] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 focus-visible:ring-offset-2"
                   style={{
                     backgroundColor: "var(--accent-teal)",
                     color: "var(--primary-foreground)",
@@ -163,7 +125,7 @@ export function Hero() {
               style={{ color: "var(--text-muted)" }}
               variants={fadeUp}
             >
-              No credit card &middot; 2 full books free &middot; Cancel anytime
+              No credit card &middot; 2 full books free
             </motion.p>
 
             {/* Micro testimonial */}
@@ -171,17 +133,23 @@ export function Hero() {
               className="mt-4 flex items-center gap-2.5"
               variants={fadeUp}
             >
-              {/* Avatar placeholder */}
               <div
-                className="w-6 h-6 rounded-full flex-shrink-0"
-                style={{ backgroundColor: "var(--bg-elevated)" }}
-              />
+                className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 text-[10px] font-bold"
+                style={{
+                  background: "linear-gradient(135deg, rgba(34,211,238,0.2), rgba(34,211,238,0.05))",
+                  border: "1.5px solid rgba(34,211,238,0.3)",
+                  color: "var(--accent-teal)",
+                }}
+                aria-hidden="true"
+              >
+                SK
+              </div>
               <p
                 className="text-[13px] italic"
                 style={{ color: "var(--text-muted)" }}
               >
                 &ldquo;I actually remember what I read now.&rdquo; &mdash;
-                Sarah&nbsp;K., early reader
+                Sarah&nbsp;K., senior product manager
               </p>
             </motion.div>
           </motion.div>
@@ -209,9 +177,14 @@ export function Hero() {
               }}
             />
 
-            <PhoneMockup>
-              <PhoneScreenContent />
-            </PhoneMockup>
+            <figure>
+              <figcaption className="sr-only">
+                Reader interface preview: a chapter summary, a Lite/Standard/Deeper depth selector, and a quiz step that unlocks the next chapter.
+              </figcaption>
+              <PhoneMockup>
+                <PhoneReaderShell />
+              </PhoneMockup>
+            </figure>
           </motion.div>
         </div>
       </div>

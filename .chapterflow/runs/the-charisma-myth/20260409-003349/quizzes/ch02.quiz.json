@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "A teammate says charisma is basically confidence with better posture. What correction does this chapter force?",
+      "choices": [
+        "Confidence is the whole story because presence and warmth mostly decorate power",
+        "Confidence matters only in public speaking, so charisma depends more on friendliness in daily life",
+        "The chapter replaces one broad label with three signals: presence, power, and warmth"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter keeps pushing readers away from one-word summaries. Its main move is to break charisma into three readable ingredients instead.",
+        "direct": "The chapter's correction is structural. Confidence alone cannot explain why someone feels strong but cold, or kind but easy to overlook.",
+        "competitive": "Calling charisma confidence is just a cleaner-sounding blur. The triad exists to stop that kind of lazy compression."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "When presence is strong, what is the room most likely to feel first?",
+      "choices": [
+        "That your attention is fully with them and the interaction is actually landing",
+        "That you outrank them and can change consequences whether they like it or not",
+        "That you are agreeable enough to avoid conflict in the moment"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Presence is the part that makes people feel seen and fully met. The other answers drift into power or into a softer version of warmth.",
+        "direct": "Presence is not rank or niceness. It is the felt experience of undivided attention, which is why the interaction seems more real when it is present.",
+        "competitive": "The room feels your attention before it starts analyzing your status. That first signal is presence, not hierarchy or politeness."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Power and warmth separate most clearly at which point?",
+      "choices": [
+        "When someone is friendly enough that people enjoy being around them",
+        "When the room asks both Can this person affect outcomes and Is that force safe to approach?",
+        "When eye contact stays steady during a difficult conversation"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Power answers whether your words carry weight. Warmth answers whether that weight feels trustworthy rather than threatening.",
+        "direct": "Power stays broader than friendliness because it is about consequence. Warmth handles the trust question that consequence alone cannot answer.",
+        "competitive": "This split is the chapter's knife edge. Force is one question. Safety is another. Treating them as the same thing blinds you fast."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Amina leaves her one-to-one saying, My manager is impressive, but I never relax around him. Which diagnosis fits the chapter?",
+      "choices": [
+        "Warmth is strong enough that power is probably the missing variable",
+        "Power is landing, but warmth is too thin to make that power feel safe",
+        "Presence is obviously the only issue because competent people usually seem colder"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Amina is noticing force without ease. That usually points to power being present while warmth is not reaching the room clearly enough.",
+        "direct": "Amina needs the trust lens here. The manager already reads as strong, so the colder feeling suggests insufficient warmth around the visible power.",
+        "competitive": "Impressive but tense is the classic power-without-warmth read. The wrong answers either invent missing power or pretend the whole thing is just presence."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Cole speaks thoughtfully in seminar and people like him, but his comments do not shift the room. What is the chapter most likely to say is missing?",
+      "choices": [
+        "Warmth, because people would follow him if they trusted his intentions more",
+        "Presence, because likable comments usually fail only when attention is split",
+        "Enough power, because warmth without consequence can feel pleasant but light"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Cole already seems to have goodwill in the room. The problem is that his contribution is not carrying enough weight to move people.",
+        "direct": "Cole's mistake is not kindness. It is under-read consequence. The chapter keeps warning that warmth without enough power can leave someone liked but not followed.",
+        "competitive": "People enjoying you is not the same as people recalculating because of you. Cole sounds warm. He does not yet sound consequential."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Hana is known as reassuring and easy to talk to, yet classmates rarely look to her when decisions turn serious. Which read tracks the chapter?",
+      "choices": [
+        "Warmth is visible, but power is not landing strongly enough",
+        "Presence is high enough that power and warmth no longer matter much",
+        "Power is obvious, so the real issue must be that her warmth feels unsafe"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Hana seems trusted and approachable already. The gap is that people are not feeling enough consequence behind her words when the stakes rise.",
+        "direct": "Hana is seeing the liked-but-light pattern. The chapter names that as warmth without enough power rather than as a total lack of charisma.",
+        "competitive": "This is the pleasant-but-negligible trap. The room relaxes around her and still does not hand her weight."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Lucia starts leading a student club. Members already trust her, but meetings still drift because her requests do not feel decisive. What should she strengthen first?",
+      "choices": [
+        "Warmth, because more goodwill is the only safe fix when people already like the leader",
+        "Presence, because drifting meetings always mean nobody feels attended to",
+        "Power, so the room feels clearer consequence behind her direction while keeping the existing trust"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Lucia does not need to rebuild trust from zero. She needs the room to feel more weight behind what she is asking them to do.",
+        "direct": "School leadership exposes the triad clearly. If trust is already there but follow-through is weak, the missing signal is often power rather than additional warmth.",
+        "competitive": "More likability will not rescue a low-consequence room. Lucia needs force that lands, not a second helping of nice."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Derek has to correct an employee after a mistake. Which approach stays closest to the chapter's model?",
+      "choices": [
+        "Lean only on warmth so the correction feels gentle, even if the standard becomes vague",
+        "Keep consequence clear while signaling goodwill, so power and warmth land together",
+        "Drop warmth entirely because authority works better when nobody can mistake it for softness"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter does not ask Derek to choose between strength and care. It asks him to let both signals land together so the room can trust the correction.",
+        "direct": "Balancing the triad matters most in hard moments. Clear standards supply power, and visible goodwill keeps that power from reading as unnecessary threat.",
+        "competitive": "Pure softness blurs consequence. Pure force makes people brace. Derek needs disciplined pressure that the room can still trust."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Chapter 1 says charisma is trainable rather than fixed. Why does Chapter 2 make that claim more usable?",
+      "choices": [
+        "It names the specific signals a person can diagnose and strengthen instead of leaving trainability abstract",
+        "It proves everyone should copy the same charismatic style once they know the triad",
+        "It narrows charisma down to warmth because that is the safest part to practice first"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Chapter 1 opens the door by saying charisma can change. Chapter 2 tells you what to inspect by naming presence, power, and warmth.",
+        "direct": "Chapter 1 removed the fate story, but it did not yet supply a diagnostic grid. This chapter makes training practical by separating the signals the room is reading.",
+        "competitive": "Trainable is cheap until you can name the levers. The triad turns hope into an operating model instead of a slogan."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "The chapter ends by asking what disappears or distorts under pressure. Why is that the right next question?",
+      "choices": [
+        "Because the triad matters only in high-stakes leadership settings, so ordinary rooms can be ignored",
+        "Because once the three signals are visible, the next challenge is understanding which one fractures first when stress hits",
+        "Because pressure mainly proves that warmth was never very important to begin with"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter has already defined the model. The next useful step is noticing which part of it fails when tension rises.",
+        "direct": "The next useful move is instability analysis. Pressure matters because it reveals whether presence, power, or warmth is the signal that breaks first.",
+        "competitive": "A clean model is only half the job. The real test starts when stress strips one variable out and the room changes with it."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

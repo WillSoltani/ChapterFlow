@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What main shift does Chapter 8 make?",
+      "choices": [
+        "From cue visibility to craving and attraction",
+        "From attraction to punishment",
+        "From habit loops to genetic talent"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter moves from simply noticing cues to asking why they feel attractive enough to follow.",
+        "direct": "Chapter 8 opens the second law by arguing that visibility alone is not enough; craving gives the cue force.",
+        "competitive": "The book stops asking only whether the cue is seen and starts asking whether it pulls."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does craving matter in the habit loop?",
+      "choices": [
+        "Because craving gives the cue motivational pull",
+        "Because craving replaces the cue entirely",
+        "Because craving makes structure unnecessary"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The cue introduces the possibility, but craving helps make the action feel worth taking.",
+        "direct": "Craving matters because it links the cue to a desired internal state rather than leaving the cue emotionally neutral.",
+        "competitive": "No pull, no movement. That is the chapter's hard edge."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "How does anticipation help a habit?",
+      "choices": [
+        "It can make the routine feel attractive before the action begins",
+        "It removes all later difficulty",
+        "It matters only after the reward arrives"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The expected feeling around the routine can help start it earlier.",
+        "direct": "Anticipation changes the front edge of the habit by making the person want the experience in advance.",
+        "competitive": "The forecast can move the first step before the payoff shows up."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Emma can already see the weekly report file, but she keeps postponing it. What best fits Chapter 8?",
+      "choices": [
+        "Hide the file until she feels more motivated",
+        "Pair the report block with a ritual she already enjoys so the start feels more attractive",
+        "Wait for the task to become urgent enough to create pressure"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Emma needs more pull, not less visibility.",
+        "direct": "The chapter would improve the opening condition by linking the needed task to something she already looks forward to.",
+        "competitive": "The file was already on the field. It just had no crowd behind it."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Diego keeps drifting into the cafeteria detour after class. What diagnosis fits Chapter 8 best?",
+      "choices": [
+        "The cue may promise food plus social energy, not only calories",
+        "The detour happens because cues never matter",
+        "The solution is to ignore desire completely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The attractive pull can come from the meaning around the cue, not just from the object itself.",
+        "direct": "Diego improves when he sees the detour as linked to a wanted state such as belonging or comfort, not only to hunger.",
+        "competitive": "The magnet was bigger than the snack."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Why does saving Lila's favorite podcast for walks fit the chapter so well?",
+      "choices": [
+        "Because it hides the walking cue",
+        "Because it bundles a wanted behavior with a needed one so the walk gains attraction",
+        "Because it proves rewards after the habit no longer matter"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The walk becomes more attractive because it now carries something she already wants.",
+        "direct": "This is temptation bundling: the wanted podcast changes the launch condition of the needed walk.",
+        "competitive": "She made the first step unlock a prize she already chases."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What does temptation bundling actually do?",
+      "choices": [
+        "It pairs a needed behavior with a wanted one so the routine borrows motivational pull",
+        "It removes all structure from the habit",
+        "It works only by giving rewards after the task ends"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Bundling helps the useful behavior feel more worth starting.",
+        "direct": "The chapter distinguishes bundling from after-the-fact bribery because bundling changes the routine itself at the front edge.",
+        "competitive": "It gives the good habit a stronger engine at takeoff."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What limit does Chapter 8 keep on its argument?",
+      "choices": [
+        "Attraction helps, but it does not replace structure, fatigue, or real constraints",
+        "Attraction can make any habit automatic forever",
+        "Craving is irrelevant once a cue is obvious"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps its claim narrow and practical.",
+        "direct": "It says attractive association can help a habit compete better without pretending that every other factor disappears.",
+        "competitive": "Pull matters, but it still has to play on a real field."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "How does Chapter 8 build on Chapter 7?",
+      "choices": [
+        "Chapter 7 reduced bad-cue exposure, and Chapter 8 strengthens good cues by increasing their attraction",
+        "Chapter 8 abandons cue logic completely",
+        "Chapter 8 repeats Chapter 7 without adding a new mechanism"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Chapter 7 weakened bad openings, while Chapter 8 explains how good openings gain pull.",
+        "direct": "The bridge is that reducing temptation is not the same as making the desired routine attractive enough to compete.",
+        "competitive": "First hide the wrong lure, then strengthen the right one."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why does Chapter 9 follow naturally after Chapter 8?",
+      "choices": [
+        "Because once attraction matters, the next question is how other people help shape what feels attractive",
+        "Because the book leaves motivation behind entirely",
+        "Because social influence only matters after the fourth law"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "If attraction drives habits, it makes sense to ask who helps shape attraction next.",
+        "direct": "Chapter 9 naturally widens the frame from personal desire and bundling to the social forces that influence what seems desirable.",
+        "competitive": "Once pull matters, the crowd around the pull matters too."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    }
+  ]
+}

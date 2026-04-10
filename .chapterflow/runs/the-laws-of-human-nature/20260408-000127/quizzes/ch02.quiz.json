@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch02-q01",
+      "prompt": "What does the affect heuristic cause your brain to do when you encounter a stressful situation?",
+      "choices": [
+        "A) It substitutes an emotional reaction for rational analysis",
+        "B) It shuts down all emotional processing to protect you",
+        "C) It delays your response until you have gathered enough information"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Your brain swaps in a quick emotional read before your slower, more accurate thinking even gets a chance to weigh in.",
+        "direct": "The affect heuristic replaces careful analysis with a fast emotional verdict, and the substitution happens so quickly you experience it as thinking.",
+        "competitive": "The affect heuristic fires an emotional response that masquerades as a conclusion, giving you false confidence before your analytical infrastructure has even opened the case file."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch02-q02",
+      "prompt": "Why did Pericles refuse to convene the Athenian assembly during the Spartan invasion?",
+      "choices": [
+        "A) He wanted to negotiate a secret peace deal with Sparta first",
+        "C) He recognized that collective rage would produce a catastrophic military decision",
+        "B) He feared the assembly would be attacked during the meeting"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Pericles understood that the crowd's fury was not a plan. Letting them vote while emotions ran that high would have sent soldiers into a massacre.",
+        "direct": "The assembly's emotional state would have produced a ground assault vote that played directly into Spartan strengths on open terrain.",
+        "competitive": "Pericles calculated that the crowd's emotional certainty was inversely correlated with decision quality, and he removed the voting process until the spike decayed."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch02-q03",
+      "prompt": "Which three inflaming factors does Greene identify as reliably collapsing the gap between emotion and action?",
+      "choices": [
+        "A) Hunger, fatigue, and boredom",
+        "C) Financial loss, romantic rejection, and public speaking",
+        "B) Sudden stress, group pressure, and narcissistic wounds"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "These three triggers hijack your rational network in slightly different ways, but each one pushes you to act before your clearer thinking can catch up.",
+        "direct": "Sudden stress overwhelms with urgency, group pressure converts collective emotion into false personal conviction, and narcissistic wounds activate ego-repair that overrides accurate assessment.",
+        "competitive": "Each inflaming factor exploits a different vulnerability in rational processing, and all three produce the same result: action that feels justified until the consequences land."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch02-q04",
+      "prompt": "Marcus, a product manager, receives harsh public criticism from a VP during an all-hands meeting. His face flushes and he immediately wants to defend his team's work in front of everyone. Using the approach from this chapter, what should Marcus do next?",
+      "choices": [
+        "B) Insert a deliberate pause, acknowledge the feedback, and schedule a follow-up conversation after the emotional spike passes",
+        "A) Stand up and present data that disproves the VP's criticism on the spot",
+        "C) Send a company-wide email after the meeting documenting why the VP was wrong"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The flush and the urge to defend are the emotional self grabbing the microphone. A pause gives Marcus's rational self time to arrive and assess what actually serves his team's interests.",
+        "direct": "The narcissistic wound from public criticism has activated Marcus's ego-repair response. A deliberate delay separates the reflex from the decision and lets him respond from analysis rather than defensiveness.",
+        "competitive": "Defending in the moment would be operating on the lowest-fidelity information available. The pause gives Marcus access to higher-quality data from his analytical organism, turning a reactive moment into a strategic one."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch02-q05",
+      "prompt": "Priya leads a startup team that just lost its biggest client. The room is panicking, and three team members are pushing to slash prices and chase any deal they can find. Priya feels the pull to agree. What relationship from this chapter is unfolding?",
+      "choices": [
+        "B) The team has correctly identified the fastest path to revenue recovery",
+        "A) The team is experiencing group pressure combined with sudden stress, converting collective anxiety into what feels like unanimous strategic clarity",
+        "C) Priya's hesitation shows she lacks the decisiveness needed for leadership"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The panic in the room is contagious, and when everyone around you agrees on a course of action during a crisis, it feels like your own clear thinking rather than a shared emotional reflex.",
+        "direct": "Two inflaming factors are stacking: sudden stress from the client loss and group pressure from three vocal team members. The urgency they feel is not analysis, and Priya's hesitation is actually the rational order trying to get a word in.",
+        "competitive": "This is a textbook convergence of sudden stress and group pressure. The team's confidence in the price-slashing plan is noise dressed up as strategy, and Priya's instinct to pause is the most valuable signal in the room."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch02-q06",
+      "prompt": "Diego, a college senior, discovers his roommate has been talking behind his back. He drafts a long, angry text and is about to hit send. He then remembers the concept of inflaming factors and pauses. Which factor is most likely driving his urge to send the message?",
+      "choices": [
+        "A) Group pressure from peers encouraging the confrontation",
+        "C) Sudden stress from an unexpected academic deadline",
+        "B) A narcissistic wound to his self-image and sense of trust"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Learning that someone you trusted has been talking about you behind your back stings at the level of self-image. That wound creates an urgent need to repair how you see yourself, and the angry text feels like the repair.",
+        "direct": "The betrayal strikes directly at Diego's self-image and sense of loyalty. His ego-repair protocol is generating the angry text as a way to restore his sense of standing, not as a strategic communication.",
+        "competitive": "This is a narcissistic wound in action. The text is not communication; it is ego triage. Diego's rational self would recognize that a rage text almost never improves a betrayal situation."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch02-q07",
+      "prompt": "Someone who regularly journals about their emotional reactions before making major decisions is practicing which core skill from this chapter?",
+      "choices": [
+        "B) Building a deliberate delay between emotional trigger and response",
+        "A) Suppressing emotions so they cannot interfere with logic",
+        "C) Eliminating the affect heuristic through repetition"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Writing about your feelings before deciding is a way of creating space between the emotion and the action, giving your calmer thinking time to show up.",
+        "direct": "Journaling inserts a structured pause between stimulus and response. The emotion is acknowledged, not suppressed, while the rational process runs its slower, more accurate process.",
+        "competitive": "The journal acts as an enforced delay mechanism. The affect heuristic still fires, but the writing creates a buffer that prevents the emotional verdict from reaching the action stage unchecked."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch02-q08",
+      "prompt": "A manager notices that every time quarterly reviews approach, she makes impulsive hiring decisions to fill gaps before the numbers come in. What does this recurring cycle reveal about her relationship to emotional triggers?",
+      "choices": [
+        "A) She is a naturally decisive leader who thrives under pressure",
+        "B) She has not yet identified the specific inflaming factor that quarterly deadlines activate in her",
+        "C) She is rationally responding to genuine business urgency each quarter"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The same trigger producing the same reactive behavior every quarter suggests she has not yet mapped this particular pressure point, which means it keeps catching her off guard.",
+        "direct": "Recurring impulsive responses to the same situational trigger indicate an unmapped inflaming factor. Until she names it, the cycle will repeat because the emotional override fires before conscious awareness can intervene.",
+        "competitive": "Predictable reactivity to the same trigger is the definition of an unidentified inflaming factor. Mapping it in advance would let her predict when her judgment is compromised and build a delay before the hiring impulse executes."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch02-q09",
+      "prompt": "Greene argues that Pericles did not eliminate his emotions but refused to let them drive Athens's military strategy. How does this distinction between feeling an emotion and acting on it challenge the common belief that rational people simply do not feel strong emotions?",
+      "choices": [
+        "B) The distinction reveals that emotional mastery is about managing the gap between stimulus and response, not about reducing emotional intensity",
+        "A) Rational behavior requires suppressing every emotional signal until only logic remains",
+        "C) Pericles was uniquely cold-blooded, which is why this approach worked for him but not for ordinary people"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Pericles felt everything the crowd felt. The difference was that he protected the space between feeling it and acting on it, which is something anyone can practice.",
+        "direct": "The misconception that rational people feel less is precisely what Greene is dismantling. Pericles experienced the same emotional pull as every Athenian. His advantage was a practiced gap, not a diminished signal.",
+        "competitive": "Suppression is a losing strategy because it builds pressure that eventually detonates. Pericles ran a delay protocol, not an elimination protocol, and that distinction is what made the approach sustainable under extreme conditions."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch02-q10",
+      "prompt": "A leader who has mastered the pause between emotional trigger and response now wants to understand why some team members remain impossible to read during conflicts. How does the emotional self-regulation skill from Chapter 2 serve as a prerequisite for the empathy skills explored in Chapter 3?",
+      "choices": [
+        "A) Empathy is simply a more advanced form of emotional suppression that builds on the same technique",
+        "C) The two skills are unrelated because self-regulation is internal and empathy is external",
+        "B) Without managing your own internal noise first, you lack the attentional bandwidth to accurately read what others are feeling"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "When your own emotions are running unchecked, all your attention goes to managing your internal state. Calming that noise frees up the bandwidth to notice what is happening in the person across from you.",
+        "direct": "Emotional self-regulation clears the channel. A person flooded with their own anxiety or resentment has no processing capacity left to read nonverbal signals or enter another person's perspective.",
+        "competitive": "Self-regulation is not just about your own decisions. It is the infrastructure that makes empathy operational. You cannot read the room when your own signal is drowning out everything else."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "bookId": "tiny-habits",
+  "title": "Tiny Habits",
+  "author": "BJ Fogg",
+  "selectionDate": "2026-04-06",
+  "editionSelectionMode": "ask_if_ambiguous",
+  "decision": "auto_lock",
+  "lockedEdition": {
+    "name": "Tiny Habits: The Small Changes That Change Everything",
+    "publisher": "HarperCollins / Houghton Mifflin Harcourt / Ebury Publishing",
+    "publishedDate": "2019",
+    "publishedYear": 2019,
+    "isbn13": "9780753553251",
+    "language": "English",
+    "translator": "",
+    "format": "print / ebook trade family",
+    "chapterCount": 8,
+    "sectionCount": 0
+  },
+  "rationale": [
+    "The English-original trade family is the clearly dominant working edition family for Tiny Habits in the official and authorized metadata trail.",
+    "The public metadata and retail TOC sources show the same eight-chapter structure with the same introduction and conclusion framing, so no user choice is required for chapter-level interpretation.",
+    "Translations and territory-specific trade variants exist, but the manifest requests the English-original work and available evidence shows no material chapter-order divergence within that family."
+  ],
+  "candidateEditionsReviewed": [
+    {
+      "label": "2019 English trade family",
+      "status": "selected",
+      "reason": "Canonical chapter map with the strongest combined official, authorized-preview, and contents support."
+    },
+    {
+      "label": "Later English paperback reprints",
+      "status": "not_selected_separately",
+      "reason": "No material chapter-order or chapter-scope change found; used only to cross-check the TOC."
+    },
+    {
+      "label": "Translations / non-English editions",
+      "status": "not_selected",
+      "reason": "No translated edition was requested, and chapter-level ambiguity for the English run was not material."
+    }
+  ],
+  "sourceIds": [
+    "google_books_uk_ebury",
+    "betterworldbooks_toc",
+    "tinyhabits_challenge",
+    "behaviormodel_home"
+  ],
+  "notes": [
+    "Treat the English trade family as one stable working text family for this run.",
+    "Use paraphrase-first because the frozen bundle is metadata-plus-preview-plus-secondary, not a full licensed text."
+  ]
+}

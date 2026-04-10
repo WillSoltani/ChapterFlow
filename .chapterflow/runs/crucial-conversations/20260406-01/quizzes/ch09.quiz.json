@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "According to Chapter 9, where do many crucial conversations fail?",
+      "choices": [
+        "In the follow-through after apparent agreement",
+        "In the first minute before trust exists",
+        "In the middle when emotion peaks"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says many conversations fail after the room feels done.",
+        "direct": "Correct. The problem is often the soft close, not only the hard middle.",
+        "competitive": "The meeting dies after the glow."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What does COMMAND mean in the chapter's decision framework?",
+      "choices": [
+        "The group decides by majority vote",
+        "One person with authority decides",
+        "Everyone must agree before moving"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Command means someone with authority decides.",
+        "direct": "Right. Command centralizes the decision in one authority holder.",
+        "competitive": "One decider, not a room-wide ballot."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What makes CONSULT different from command?",
+      "choices": [
+        "The room decides together after debate",
+        "The decision-maker gathers input before deciding",
+        "No final decision is made in the meeting"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Consult keeps one decider but adds real input first.",
+        "direct": "Correct. The decision-maker listens, then decides.",
+        "competitive": "One owner still closes it, but the room informs the call."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "When is VOTE most appropriate?",
+      "choices": [
+        "When every person must fully agree",
+        "When the decision is already fixed by authority",
+        "When several options are acceptable and the group needs closure"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Vote works when the group can live with several options and needs a close.",
+        "direct": "Right. Vote is a closure tool, not a universal fairness ritual.",
+        "competitive": "Use it when the room needs a winner, not unanimous love."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What is a major limit of CONSENSUS in Chapter 9?",
+      "choices": [
+        "It is often slower and more expensive than the decision requires",
+        "It hides who voted for which option",
+        "It prevents anyone from offering input"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Consensus can be necessary, but it is often overused.",
+        "direct": "Correct. The chapter warns that consensus is slow and expensive when universal buy-in is not needed.",
+        "competitive": "Consensus gets worshipped long after it stops fitting."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Why is fake consultation so damaging?",
+      "choices": [
+        "Because it makes command impossible later",
+        "Because it disguises a fixed decision as open participation",
+        "Because it requires too much preparation"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The room thinks it has influence that it never truly had.",
+        "direct": "Correct. The harm is dishonesty about process.",
+        "competitive": "The invitation is fake, and people feel handled."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What does the second W in WWWF stand for?",
+      "choices": [
+        "Why",
+        "Where",
+        "When"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "WWWF asks who, what, when, and follow-up.",
+        "direct": "Right. The chapter insists on a real date.",
+        "competitive": "No clock, no close."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "A team has surfaced the real problem, but nobody knows who decides the final plan. What should happen next?",
+      "choices": [
+        "The group should keep talking until the best option becomes obvious",
+        "The room should declare the decision mode before trying to close the substance",
+        "The team should skip the process question and go straight to follow-up dates"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The room needs process clarity before it can close cleanly.",
+        "direct": "Correct. Mode honesty comes before action assignment.",
+        "competitive": "Name the power map first."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Which closing statement best reflects WWWF?",
+      "choices": [
+        "We should improve this soon",
+        "The team will handle it",
+        "Nadia will draft the top-20 backlog categories by Friday, and the team will review them Monday"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "This option names an owner, a deliverable, a date, and a follow-up moment.",
+        "direct": "Correct. It turns intention into inspectable action.",
+        "competitive": "Specific owner, task, clock, and check. That is the whole point."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What question does Chapter 9 leave for Chapter 10?",
+      "choices": [
+        "How do you memorize all the decision modes faster?",
+        "What happens when the room is too difficult, unequal, or evasive for a clean close to feel easy?",
+        "Which decision mode is always fairest?"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The next chapter handles the hard rooms readers think are exceptions.",
+        "direct": "Right. Chapter 10 tests the framework against tough cases.",
+        "competitive": "The clean close meets the dirty room next."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    }
+  ]
+}

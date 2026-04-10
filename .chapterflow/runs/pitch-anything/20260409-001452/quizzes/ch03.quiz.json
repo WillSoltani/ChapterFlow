@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "Why does Klaff introduce STRONG right after explaining how audiences filter pitches?",
+      "choices": [
+        "Because diagnosis alone does not tell the presenter how to move a room toward decision",
+        "Because the audience model becomes irrelevant once the acronym appears",
+        "Because a named method matters only in fundraising and nowhere else"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The method answers the practical question left behind by the diagnosis. Once the reader knows why pitches fail, the next need is a usable sequence.",
+        "direct": "Correct. STRONG converts audience insight into procedure instead of leaving the reader with theory only.",
+        "competitive": "Diagnosis without a sequence is just smarter frustration."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Which list matches the STRONG sequence at a high level?",
+      "choices": [
+        "Set and own the frame, tell the story, reveal intrigue, offer the prize, nail the hookpoint, get a decision",
+        "Simplify the offer, track objections, reset urgency, overwhelm with proof, neutralize risk, go fast",
+        "Start with data, repeat the claim, ask for trust, build pressure, summarize, leave politely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Option A is the named sequence frozen by the lawful source bundle.",
+        "direct": "Correct. STRONG is a six-move operating order, not a generic list of persuasion habits.",
+        "competitive": "Those six moves are the system. The other lists are just noise dressed like method."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why does the order of the STRONG moves matter so much?",
+      "choices": [
+        "Because every move does exactly the same job and repetition creates comfort",
+        "Because later moves often depend on conditions created by earlier ones",
+        "Because audiences only trust pitches that use acronyms in order"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The sequence works because the room changes stage by stage. A later move can land badly if the earlier condition was never created.",
+        "direct": "Correct. Order matters because story, prize, hookpoint, and decision all depend on what the earlier moves established.",
+        "competitive": "Good moves still die when they arrive in a room that has not earned them yet."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A founder has strong slides but no clear path through the meeting. Based on this method, what is the strongest fix?",
+      "choices": [
+        "Keep polishing the slides so the room can infer the sequence on its own",
+        "Replace the content with a more energetic personality",
+        "Rebuild the pitch around the STRONG order before doing more cosmetic polish"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The issue is order, not decoration. The room should not have to assemble the sequence itself.",
+        "direct": "Option C fits the method. Fix sequence before surface polish.",
+        "competitive": "Do not ask the room to organize your pitch for you."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "A reader thinks that memorizing the six letters is basically the same as mastering the method. What is the best correction?",
+      "choices": [
+        "Wrong, because the method still depends on timing, judgment, and real execution under pressure",
+        "Correct, because a complete acronym always removes the need for adaptation",
+        "Partly right, but only in low-stakes conversations"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The letters help only when they support real judgment. Memorization is easier than mastery.",
+        "direct": "Option A is the right correction. STRONG organizes execution, but it does not replace timing or room reading.",
+        "competitive": "Owning the map is not the same thing as crossing the terrain."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "After a case-competition loss, a team says, We just needed more confidence. What question from this method is most useful first?",
+      "choices": [
+        "Which move in the sequence was missing, mistimed, or weak before we blame personality?",
+        "Would louder delivery alone have guaranteed the win?",
+        "Should we remove all structure so the pitch feels more natural?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The method improves postmortem quality by asking where the sequence broke first.",
+        "direct": "Correct. STRONG creates sharper diagnostics than generic confidence language.",
+        "competitive": "Stop flattering the loss and find the first stage where the system failed."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why is STRONG more useful than a vague command to be persuasive?",
+      "choices": [
+        "Because it breaks the room into distinct pressure problems instead of treating everything as one blur",
+        "Because it guarantees every audience will respond the same way",
+        "Because it proves content quality matters less than method branding"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The sequence respects the fact that meetings have stages and different needs at each stage.",
+        "direct": "Option A captures the practical advantage exactly. The method separates frame, attention, value, impact, and decision work.",
+        "competitive": "Different bottlenecks need different moves. That is why real method beats motivational fog."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What is the main risk if a presenter cherry-picks one STRONG move and ignores the rest of the sequence?",
+      "choices": [
+        "The chosen move may land inside weak conditions and underperform even if it is good by itself",
+        "The room will refuse to listen because the acronym was used incorrectly",
+        "The pitch will become too short to sound credible"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A strong move can still fail if the earlier conditions for it were never created.",
+        "direct": "Correct. Sequence failure is often the hidden reason a good tactic looks weak.",
+        "competitive": "A good move fired from the wrong stage becomes expensive dead weight."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does this method become weaker when a reader turns it into acronym worship instead of disciplined execution?",
+      "choices": [
+        "Because the letters only organize judgment; they do not replace timing, control, or offer quality",
+        "Because the acronym works only when kept secret from the audience",
+        "Because the method was designed only for classroom presentations"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The method stays useful when it helps the presenter read and guide the room better, not when it becomes a comfort badge.",
+        "direct": "Option A captures the limit. STRONG is disciplined order, not mechanical salvation.",
+        "competitive": "If the letters make you feel finished, they already made you weaker."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If frame stands first in STRONG, what is the most natural next question?",
+      "choices": [
+        "How to make the rest of the sequence work inside a room that has been defined well at the start",
+        "How to skip the opening and move straight to the decision ask",
+        "How to replace the method with more slides once interest appears"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The method now points straight toward the first move. The next need is to understand what it means to hold the frame before story or decision tries to land.",
+        "direct": "Correct. Once the sequence is named, the immediate procedural question is how frame control works in a live room.",
+        "competitive": "If frame is first for a reason, that is where the real fight begins next."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

@@ -1,0 +1,155 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch18-q01",
+      "prompt": "What is the chapter's main claim about online articles?",
+      "choices": [
+        "They become distracting when one chosen reading session expands into many browser paths",
+        "They are always bad for learning",
+        "They should always be read with as many tabs as possible"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter is about browser expansion, not about reading being bad.",
+        "direct": "Its core move is to contain article sessions before they turn into sprawl.",
+        "competitive": "One piece should not become a colony."
+      }
+    },
+    {
+      "questionId": "ch18-q02",
+      "prompt": "Why do online articles drift so easily?",
+      "choices": [
+        "Because links, sidebars, and recommendations keep offering plausible next moves before the current article is done",
+        "Because reading online is always fake",
+        "Because articles have no real purpose"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The page keeps suggesting new directions while you're still reading.",
+        "direct": "The browser architecture supplies adjacent paths too easily.",
+        "competitive": "The exits advertise during the article."
+      }
+    },
+    {
+      "questionId": "ch18-q03",
+      "prompt": "What is the chapter's stronger correction?",
+      "choices": [
+        "Read the chosen article and save later items instead of opening them all immediately",
+        "Never follow up on anything interesting again",
+        "Keep every useful-looking tab open during the same block"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants boundaries, not anti-curiosity rules.",
+        "direct": "Containment is stronger than real-time tab growth.",
+        "competitive": "Queue curiosity instead of electing it."
+      }
+    },
+    {
+      "questionId": "ch18-q04",
+      "prompt": "Why can article drift feel productive while it is happening?",
+      "choices": [
+        "Because the next clicks often look relevant enough to justify themselves",
+        "Because all browser wandering is automatically deep learning",
+        "Because recommendations always improve focus"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next step can look useful even when it breaks the original task.",
+        "direct": "Plausible relevance often disguises drift.",
+        "competitive": "The detour dresses up well."
+      }
+    },
+    {
+      "questionId": "ch18-q05",
+      "prompt": "What practical tool does the chapter recommend for later curiosity?",
+      "choices": [
+        "Saving interesting items for another session instead of opening them now",
+        "Forcing yourself to forget them completely",
+        "Opening them all so nothing gets missed"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Saved-later handling keeps curiosity without losing the current reading block.",
+        "direct": "The chapter uses containment rather than suppression.",
+        "competitive": "Give curiosity a waiting room."
+      }
+    },
+    {
+      "questionId": "ch18-q06",
+      "prompt": "A student keeps opening related readings before finishing the assigned article. What is the chapter's stronger correction?",
+      "choices": [
+        "Let the assigned piece remain the current task and move related reading to a separate session",
+        "Assume more tabs always mean deeper learning",
+        "Stop reading assigned material online altogether"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The original reading goal should keep its borders.",
+        "direct": "One active reading objective is stronger than many simultaneous ones.",
+        "competitive": "The assignment should not get overthrown by its cousins."
+      }
+    },
+    {
+      "questionId": "ch18-q07",
+      "prompt": "What mistake does the chapter avoid by refusing anti-reading language?",
+      "choices": [
+        "Treating learning and curiosity themselves as the problem instead of browser sprawl",
+        "Noticing that links exist",
+        "Admitting that some articles matter"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter still protects the value of reading.",
+        "direct": "The issue is browser expansion, not learning itself.",
+        "competitive": "Keep the reading. Fire the maze."
+      }
+    },
+    {
+      "questionId": "ch18-q08",
+      "prompt": "What limit does the chapter preserve?",
+      "choices": [
+        "Articles can still be valuable, so the goal is boundaries rather than suspicion of reading",
+        "Online reading should disappear completely",
+        "Only books can be read seriously"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps room for serious reading online.",
+        "direct": "Bounded reading is not anti-reading.",
+        "competitive": "Borders do not ban books."
+      }
+    },
+    {
+      "questionId": "ch18-q09",
+      "prompt": "How does this chapter connect to the desktop chapter before it?",
+      "choices": [
+        "It narrows the general browser and workspace logic into one specific drift path: online articles",
+        "It abandons the workspace framework entirely",
+        "It says browser reading is unrelated to desktop cues"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The browser reading path is one particular leak inside the larger workspace.",
+        "direct": "The book is narrowing from general workspace design to article-session drift.",
+        "competitive": "The market shrinks to one stall."
+      }
+    },
+    {
+      "questionId": "ch18-q10",
+      "prompt": "Why does the next chapter move into feeds?",
+      "choices": [
+        "Because feeds intensify the same drift pattern by reducing the friction of the next item even more",
+        "Because feeds are calmer than articles",
+        "Because articles and feeds have nothing in common"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Feeds make next-item drift even easier.",
+        "direct": "The next chapter strengthens the same expansion dynamic by removing more friction.",
+        "competitive": "The launchpad becomes a conveyor belt."
+      }
+    }
+  ]
+}

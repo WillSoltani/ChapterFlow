@@ -1,0 +1,87 @@
+{
+  "chapterId": "ch07",
+  "chapterNumber": 7,
+  "chapterTitle": "Party and Social Games",
+  "computedFor": "edited draft + structured chapter",
+  "editedDraft": {
+    "wordCount": 810,
+    "paragraphCount": 7,
+    "estimatedReadingMinutes": 5
+  },
+  "contentVariants": {
+    "easy": {
+      "wordCounts": {
+        "gentle": 150,
+        "direct": 149,
+        "competitive": 148
+      },
+      "targetRange": "140-175",
+      "withinRange": true
+    },
+    "medium": {
+      "wordCounts": {
+        "gentle": 375,
+        "direct": 390,
+        "competitive": 395
+      },
+      "targetRange": "330-420",
+      "withinRange": true
+    },
+    "hard": {
+      "wordCounts": {
+        "gentle": 545,
+        "direct": 560,
+        "competitive": 575
+      },
+      "targetRange": "490-600",
+      "withinRange": true
+    }
+  },
+  "examples": {
+    "count": 6,
+    "formatsCovered": [
+      "short_dialogue",
+      "first_person",
+      "third_person_scene",
+      "coaching_script",
+      "inner_monologue",
+      "narrative_flashback"
+    ],
+    "categoryDistribution": {
+      "work": 2,
+      "school": 2,
+      "personal": 2
+    },
+    "endingTypesCovered": [
+      "observation",
+      "reflection",
+      "unresolved_tension",
+      "reframe",
+      "forward_question",
+      "decision_point"
+    ]
+  },
+  "quiz": {
+    "questionCount": 10,
+    "choicesPerQuestion": 3,
+    "correctIndexDistribution": {
+      "0": 3,
+      "1": 4,
+      "2": 3
+    },
+    "depthDistribution": {
+      "easy": 3,
+      "medium": 4,
+      "hard": 3
+    }
+  },
+  "reviewCards": {
+    "count": 5,
+    "difficultyDistribution": {
+      "easy": 2,
+      "medium": 2,
+      "hard": 1
+    }
+  },
+  "computedAt": "2026-04-06"
+}

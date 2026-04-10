@@ -1,0 +1,55 @@
+{
+  "chapterId": "ch04",
+  "chapterNumber": 4,
+  "chapterTitle": "Why Games Feel So Hard to Stop",
+  "bookId": "games-people-play",
+  "runId": "20260406-01",
+  "packVersion": "v12-sealed",
+  "validationStatus": "passed",
+  "qualityGateScore": {
+    "total": 12,
+    "max": 12,
+    "categories": {
+      "chapterSpecificity": 2,
+      "anchorUse": 2,
+      "analyticalValue": 2,
+      "paragraphMotion": 2,
+      "proseQuality": 2,
+      "hookAndBridge": 2
+    },
+    "autoFails": []
+  },
+  "artifacts": {
+    "brief": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/briefs/ch04.md",
+    "outline": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/outlines/ch04.md",
+    "quizBlueprint": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/quiz-blueprints/ch04.md",
+    "sourceSidecarTxt": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/sidecars/source/ch04.source.txt",
+    "sourceSidecarJson": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/sidecars/source/ch04.source.json",
+    "canonicalDraft": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/drafts/canonical/ch04.md",
+    "editedDraft": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/drafts/edited/ch04.md",
+    "criticReport": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/reports/ch04.critic.md",
+    "structured": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/structured/ch04.chapter.json",
+    "quiz": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/quizzes/ch04.quiz.json",
+    "validationReport": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/reports/ch04.validation.md",
+    "validatedChapter": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/validated/ch04.chapter.json",
+    "readingMetrics": "/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/runs/games-people-play/20260406-01/sidecars/ch04.reading-metrics.json"
+  },
+  "summary": {
+    "coreClaim": "Games are sticky for two reasons that compound: they pay strokes (the basic unit of social acknowledgment; negative beats zero) and they confirm life positions (basic I'm OK / not OK stances formed early). Leaving requires replacing the stroke supply first, then updating the position. Without that sequence, stopping produces deprivation, not freedom.",
+    "anchorsUsed": [
+      "Maya and the monthly angry GitHub issue (work)",
+      "Inez and Coach Banerjee, the late-night call loop (personal)",
+      "Theo's Sunday parenting criticism at Ren's house (personal)"
+    ],
+    "hardDepthTension": "Order of operations: replacement first, update second. A player attempting to update their life position in a stroke vacuum returns to the old game. The supply plan is the actual work.",
+    "bridgeToNextChapter": "With strokes and life positions as the reader's vocabulary, every game in the catalog is asking the same two questions: what is the payoff made of, and which position is it confirming?"
+  },
+  "strongestQualities": [
+    "The negative-stroke-as-load-bearing argument is delivered mechanically, not morally: 'Maya's monthly angry issue is doing the work of a positive stroke she does not have a reliable source for. It is the wrong shape and it pays out anyway.'",
+    "The order-of-operations limit in P6 is the most practically useful piece of writing in the chapter: it converts 'stop playing' from a platitude into a diagnostic problem.",
+    "The Theo/Ren anchor carries the life position concept through a sustained concrete example (two years of Sunday visits, retirement, necessity) that makes the position visible as an organizing structure, not just a mood."
+  ],
+  "remainingConcerns": [],
+  "approvalRequired": true,
+  "preserveApprovedHash": false
+}
