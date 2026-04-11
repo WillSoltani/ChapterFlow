@@ -97,7 +97,7 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
       - name: CDK deploy
-        run: npm run cdk -- deploy $CDK_STACK_NAME --require-approval never
+        run: npm run cdk -- deploy $CDK_STACK_NAME --exclusively --require-approval never
 
   # ── Post-deploy: seed reference data ──────────────────────────────────────
   # Runs after every successful CDK deployment so any fresh/recreated DynamoDB
