@@ -326,6 +326,8 @@ class ChapterFlowFrontendStack extends cdk.Stack {
             destinationBucket: assetsBucket,
             destinationKeyPrefix: "_assets",
             prune: false,
+            memoryLimit: 1024,
+            ephemeralStorageSize: cdk.Size.mebibytes(1024),
         });
         // Deploy cache assets (ISR pre-rendered pages)
         new s3deploy.BucketDeployment(this, "DeployCache", {
@@ -333,6 +335,7 @@ class ChapterFlowFrontendStack extends cdk.Stack {
             destinationBucket: assetsBucket,
             destinationKeyPrefix: "_cache",
             prune: false,
+            memoryLimit: 512,
         });
         // -------------------------------------------------------------------
         // ACM Certificate

@@ -158,3 +158,72 @@ Phase 0 complete.
 - artifact guard: FAIL=0 WARN=0
 - review wrapper matches validated payload
 - continuity seal written for ch09
+
+2026-04-10 Chapter 10 chapter gate passed.
+- structured lint: FAIL=0 WARN=0
+- validated lint: FAIL=0 WARN=0
+- artifact guard: FAIL=0 WARN=0
+- review wrapper matches validated payload
+- continuity seal written for ch10
+
+2026-04-10 Wave 5 completed clean.
+- chapters 9 and 10 validated and sealed
+- repo artifact guard after wave: FAIL=0 WARN=0
+
+2026-04-10 Wave 6 started.
+- Chapter 11 brief written
+- Chapter 11 outline written
+- Chapter 11 quiz blueprint written
+- Chapter 11 source sidecars written
+- Chapter 12 brief written
+- Chapter 12 outline written
+- Chapter 12 quiz blueprint written
+- Chapter 12 source sidecars written
+
+2026-04-10 Chapter 11 chapter gate passed.
+- structured lint: FAIL=0 WARN=0
+- validated lint: FAIL=0 WARN=0
+- artifact guard: FAIL=0 WARN=0
+- review wrapper matches validated payload
+- continuity seal written for ch11
+
+2026-04-10 Chapter 12 chapter gate passed.
+- structured lint: FAIL=0 WARN=0
+- validated lint: FAIL=0 WARN=0
+- artifact guard: FAIL=0 WARN=0
+- review wrapper matches validated payload
+- continuity seal written for ch12
+
+2026-04-10 Wave 6 completed clean.
+- chapters 11 and 12 validated and sealed
+- repo artifact guard after wave: FAIL=0 WARN=0
+
+2026-04-10 Wave 7 started.
+- Chapter 13 brief written
+- Chapter 13 outline written
+- Chapter 13 quiz blueprint written
+- Chapter 13 source sidecars written
+- Chapter 14 brief written
+- Chapter 14 outline written
+- Chapter 14 quiz blueprint written
+- Chapter 14 source sidecars written
+
+2026-04-10 Chapter 13 chapter gate passed.
+- structured lint: FAIL=0 WARN=0
+- validated lint: FAIL=0 WARN=0
+- artifact guard: FAIL=0 WARN=0
+- review wrapper matches validated payload
+- continuity seal written for ch13
+
+2026-04-10 Chapter 14 chapter gate passed.
+- structured lint: FAIL=0 WARN=0
+- validated lint: FAIL=0 WARN=0
+- artifact guard: FAIL=0 WARN=0
+- review wrapper matches validated payload
+- continuity seal written for ch14
+
+2026-04-10 Wave 7 completed clean.
+- chapters 13 and 14 validated and sealed
+- repo artifact guard after wave: FAIL=0 WARN=0
+
+2026-04-10 Wave 8 started.

@@ -35,3 +35,19 @@
 - 2026-04-10T22:51:08Z Wave 5 repo artifact guard PASS after rollback-and-reopen repair for a premature Chapter 11 start.
 - 2026-04-10T22:51:08Z Wave 6 start. Chapter 11 pre-writer artifacts initiated.
 - 2026-04-10T22:51:08Z Chapter 11 writer and editor drafts written. Critic pass written. Awaiting structured conversion and validation.
+- 2026-04-10T22:51:08Z Chapter 11 writer, editor, critic, converter, quiz, validator, review wrapper, reading metrics, and continuity seal completed. chapterflow_v13_lint PASS after local repair. prose audit PASS. Chapter gate PASS.
+- 2026-04-10T22:51:08Z Chapter 12 pre-writer artifacts initiated.
+- 2026-04-10T22:51:08Z Chapter 12 writer, editor, critic, converter, quiz, validator, review wrapper, reading metrics, and continuity seal completed. chapterflow_v13_lint PASS after local repair. prose audit PASS. Chapter gate PASS.
+- 2026-04-10T22:51:08Z Wave 6 repo artifact guard PASS.
+- 2026-04-10T22:51:08Z Wave 7 start. Chapter 13 pre-writer artifacts initiated.
+- 2026-04-10T22:51:08Z Chapter 13 writer, editor, critic, converter, quiz, validator, review wrapper, reading metrics, and continuity seal completed. chapterflow_v13_lint PASS after local repair. prose audit PASS. Chapter gate PASS.
+- 2026-04-10T22:51:08Z Chapter 14 pre-writer artifacts initiated.
+- 2026-04-10T22:51:08Z Chapter 14 writer, editor, critic, converter, quiz, validator, review wrapper, reading metrics, and continuity seal completed. chapterflow_v13_lint PASS after local repair. prose audit PASS. Chapter gate PASS.
+- 2026-04-10T22:51:08Z Wave 7 repo artifact guard PASS.
+- 2026-04-10T22:51:08Z Wave 8 start. Chapter 15 pre-writer artifacts initiated.
+- 2026-04-10T22:51:08Z Chapter 15 writer, editor, critic, converter, quiz, validator, review wrapper, reading metrics, and continuity seal completed. chapterflow_v13_lint PASS after local repair. prose audit PASS. Chapter gate PASS.
+- 2026-04-10T22:51:08Z Wave 8 repo artifact guard PASS.
+- 2026-04-10T22:51:08Z Release assembled from validated chapters only to release/the-gift-of-fear.modern.json.
+- 2026-04-10T22:51:08Z Source guard PASS. Release guard PASS after continuity-hash repair to canonical object hashing. Release lint PASS in release_gate mode.
+- 2026-04-10T22:51:08Z Repo build PASS.
+- 2026-04-10T22:51:08Z Repo validator scripts/book/validate-book.mjs FAIL against stricter legacy package contract (non-empty categories, exact example distribution, and depth-word-count expectations not enforced by v13 chapter gate). Documented in release-gate report.

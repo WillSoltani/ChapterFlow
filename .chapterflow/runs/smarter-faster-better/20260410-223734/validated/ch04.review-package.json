@@ -322,7 +322,7 @@
           "title": "Nia's Running Goal Starts Driving Her Away From the Real Reason She Began",
           "category": "personal",
           "format": "dilemma",
-          "endingType": "broader_principle",
+          "endingType": "common_trap",
           "contexts": [
             "fitness",
             "metrics",
@@ -349,7 +349,7 @@
           "title": "Mateo Learns the Team Hit the Metric and Missed the Objective",
           "category": "work",
           "format": "postmortem",
-          "endingType": "surprise_reframe",
+          "endingType": "surprising_implication",
           "contexts": [
             "postmortem",
             "metrics",
@@ -376,7 +376,7 @@
           "title": "Owen Spots That the Class Chose the Flashy Goal Instead of the Useful One",
           "category": "school",
           "format": "predict_reveal",
-          "endingType": "surprise_reframe",
+          "endingType": "cross_domain",
           "contexts": [
             "school",
             "projects",
@@ -403,7 +403,7 @@
           "title": "Claire's Weekly Planning Shifts From Vague Wishes to Constrained Stretch",
           "category": "personal",
           "format": "before_after",
-          "endingType": "broader_principle",
+          "endingType": "perspective_reframe",
           "contexts": [
             "planning",
             "habits",

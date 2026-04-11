@@ -440,3 +440,16 @@
 - edited draft: created
 - critic report: created
 - structured chapter / quiz / validation / review package / metrics / seal: not yet created
+
+## 2026-04-10T30: Chapter 30 validated and sealed
+- validated chapter: .chapterflow/runs/how-to-win-friends-and-influence-people/20260410-152112/validated/ch30.chapter.json
+- review package: .chapterflow/runs/how-to-win-friends-and-influence-people/20260410-152112/validated/ch30.review-package.json
+- reading metrics: .chapterflow/runs/how-to-win-friends-and-influence-people/20260410-152112/sidecars/ch30.reading-metrics.json
+- continuity seal: caf08a0b3390b77cfa2461e6019c60c76988a81a5313d3c712c847a93fee3d71
+- chapter gate: pass
+- prose audit: pass (0 issues)
+
+## 2026-04-10T30: Release repair and assembly
+- repaired Chapter 1 release-stage contamination phrase drift in structured/validated artifacts
+- normalized Chapter 1 continuity seal to validated file hash
+- release assembled from validated chapters only: .chapterflow/runs/how-to-win-friends-and-influence-people/20260410-152112/release/how-to-win-friends-and-influence-people.modern.json

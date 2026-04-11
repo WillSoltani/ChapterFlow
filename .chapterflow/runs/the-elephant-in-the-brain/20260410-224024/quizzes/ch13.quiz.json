@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What basic claim does Chapter 13 make about schooling?",
+      "choices": [
+        "It is only about direct skill transfer",
+        "It can signal traits and serve broader institutional functions",
+        "It has no real learning value at all"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "understand",
+      "depthLevel": "easy",
+      "explanation": {
+        "gentle": "The chapter treats school as more than pure instruction.",
+        "direct": "Its main move is to widen schooling into signaling plus broader institutional roles.",
+        "competitive": "School teaches, filters, and manages."
+      }
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What traits may school signal according to the chapter?",
+      "choices": [
+        "Only creativity and kindness",
+        "Intelligence, conscientiousness, and conformity",
+        "Nothing beyond course content"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "remember",
+      "depthLevel": "easy",
+      "explanation": {
+        "gentle": "The chapter says school can make these traits socially legible.",
+        "direct": "Education may certify ability, discipline, and fit, not only learned facts.",
+        "competitive": "The credential can advertise brains, discipline, and compliance."
+      }
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why are babysitting and networking included in the chapter's model of education?",
+      "choices": [
+        "Because they widen school beyond pure instruction",
+        "Because they replace every teaching function",
+        "Because they happen only outside formal education"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "remember",
+      "depthLevel": "easy",
+      "explanation": {
+        "gentle": "The chapter says school can structure time and connect people as well as teach.",
+        "direct": "These functions help explain schooling's broader institutional role.",
+        "competitive": "School manages time and networks, not just lessons."
+      }
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A company values a degree mainly as a proxy for persistence and fit. Which chapter idea is most visible?",
+      "choices": [
+        "Schooling can function as a socially legible signal of traits",
+        "Only coursework knowledge matters in credentials",
+        "Degrees matter only because of networking"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "apply",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "The degree is being read for what it says about the student, not only the lessons.",
+        "direct": "The credential is working as trait certification in addition to any content marker.",
+        "competitive": "The stamp is filtering the person, not just the syllabus."
+      }
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why might a school advisory period matter in this chapter even when little academic content is taught?",
+      "choices": [
+        "Because school can shape conformity and domesticate behavior as well as instruct",
+        "Because non-academic periods are irrelevant to education",
+        "Because only networking matters there"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "apply",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "The chapter includes norm-shaping and routine-training in what school can do.",
+        "direct": "Advisory can matter because schooling also forms habits and institutional behavior.",
+        "competitive": "The period can train the script, not just the lesson."
+      }
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which misunderstanding does Chapter 13 reject?",
+      "choices": [
+        "School can teach real material",
+        "School may signal traits beyond content",
+        "School is only pure skill transfer with no other institutional roles"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "The chapter gives education a wider role than instruction alone.",
+        "direct": "It rejects a narrow model in which school exists only to transfer skills.",
+        "competitive": "Pure lesson delivery misses most of the institution."
+      }
+    },
+    {
+      "questionId": "q07",
+      "prompt": "How does Chapter 13 grow out of Chapter 12 on charity?",
+      "choices": [
+        "It moves from visible giving signaling the donor to visible schooling signaling the student",
+        "It abandons signaling and focuses only on knowledge",
+        "It treats education and charity as unrelated"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "After charity, the book turns to school as another socially legible investment.",
+        "direct": "Education continues the signaling story by shifting from moral display to trait certification.",
+        "competitive": "The visible investment moves from gift to credential."
+      }
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why might families value a school partly for the people a student will meet there?",
+      "choices": [
+        "Because networking is one of the chapter's widened functions of schooling",
+        "Because networking replaces all learning",
+        "Because only social life matters in school choice"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "apply",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "The chapter says schools can create socially valuable connections as well as teach.",
+        "direct": "Networking helps explain why education choices can matter beyond classroom content.",
+        "competitive": "The school can sell access along with lessons."
+      }
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does the chapter insist that school can teach while also serving signaling and social-management roles?",
+      "choices": [
+        "Because real learning and broader institutional functions can coexist in one system",
+        "Because signaling disappears whenever real learning occurs",
+        "Because education never shapes behavior"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard",
+      "explanation": {
+        "gentle": "The chapter's main tension is coexistence, not replacement.",
+        "direct": "Instruction can remain real even while schooling also certifies traits and manages people socially.",
+        "competitive": "Knowledge and filtering can stack."
+      }
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What is the strongest bridge from Chapter 13 into Chapter 14 on medicine?",
+      "choices": [
+        "If school can mix real function with visible signals, medicine may also mix healing with visible caring and sacrifice",
+        "Medicine matters only when education disappears",
+        "School and medicine belong to unrelated parts of the book"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard",
+      "explanation": {
+        "gentle": "The next chapter asks how visible care signals can ride alongside real treatment.",
+        "direct": "Medicine becomes the next mixed-motive domain where real function and visible signals coexist.",
+        "competitive": "After credentials signal the student, treatment signals care."
+      }
+    }
+  ]
+}

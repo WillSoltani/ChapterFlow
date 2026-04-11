@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch07-q01",
+      "prompt": "What is the core mistake in confirmation bias (Part 1)?",
+      "choices": [
+        "Letting an existing view filter what evidence gets noticed and trusted",
+        "Refusing to form any provisional beliefs",
+        "Believing that all evidence is equally strong"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The problem begins when the belief starts shaping the evidence intake.",
+        "direct": "Correct. A prior conclusion starts influencing what counts as relevant evidence in practice.",
+        "competitive": "That is the trap. The favorite verdict starts choosing the witnesses."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch07-q02",
+      "prompt": "Why can confirming evidence feel especially persuasive?",
+      "choices": [
+        "Because it is often easier to notice and welcome than conflicting evidence",
+        "Because confirming evidence is always stronger than conflicting evidence",
+        "Because prior beliefs automatically guarantee truth"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. Matching evidence often feels easier to see and trust.",
+        "direct": "Exactly. Confirming inputs usually arrive with less friction than disconfirming ones.",
+        "competitive": "Friendly facts get fast-tracked."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch07-q03",
+      "prompt": "What question best interrupts confirmation bias?",
+      "choices": [
+        "What evidence would count against my current view?",
+        "How can I gather more support quickly?",
+        "Why do I need a first impression at all?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That is the chapter discipline. Name what would count against the view.",
+        "direct": "Correct. Define disconfirming evidence before collecting more confirming material.",
+        "competitive": "Make the belief declare its losing condition."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch07-q04",
+      "prompt": "A manager keeps noticing strengths in a candidate they liked immediately while minimizing warning signs. What is the best diagnosis?",
+      "choices": [
+        "The manager's first impression is filtering the evidence intake",
+        "The candidate must actually be the best choice",
+        "First impressions cannot affect later evidence judgments"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The first impression may be shaping what gets noticed most.",
+        "direct": "Correct. The hiring view is tilting relevance and weighting before fair evaluation is complete.",
+        "competitive": "The candidate is getting a friendlier evidence stream."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q05",
+      "prompt": "Why can confirmation bias distort school judgments?",
+      "choices": [
+        "Because a preferred interpretation can shape which examples a student keeps gathering",
+        "Because study always requires having no assumptions at all",
+        "Because disagreement proves the interpretation is wrong"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. A theory can start attracting supportive examples more easily than challenging ones.",
+        "direct": "Exactly. A prior interpretation can tilt search and weighting before formal argument is finished.",
+        "competitive": "The theory starts feeding itself on selected proof."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q06",
+      "prompt": "What is the most faithful response to a belief that keeps feeling confirmed?",
+      "choices": [
+        "Inspect what contrary evidence would still matter",
+        "Keep collecting matching evidence until doubt disappears",
+        "Assume the belief is false because it feels strong"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That helps test the belief instead of only feeding it.",
+        "direct": "Correct. The right move is to define what would genuinely weaken the view.",
+        "competitive": "Make the belief face hostile facts."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q07",
+      "prompt": "When are prior beliefs still acceptable in this chapter?",
+      "choices": [
+        "When they do not control what gets admitted as serious evidence",
+        "Only when they never change",
+        "Only when they feel very confident"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Starting views are normal, but they should not filter reality unfairly.",
+        "direct": "Correct. The problem is not having priors but letting them gatekeep the evidence stream.",
+        "competitive": "Priors are normal. Gatekeeping priors are the problem."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q08",
+      "prompt": "What hidden pattern often makes confirmation bias hard to notice?",
+      "choices": [
+        "The filtering often happens through attention and weighting rather than obvious rejection",
+        "Only explicit lying can create the bias",
+        "People always know when they are selecting evidence unfairly"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The bias can work by quietly noticing some things more than others.",
+        "direct": "Right. Disconfirming evidence is often demoted rather than openly banned.",
+        "competitive": "The rigging is usually quiet, not theatrical."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q09",
+      "prompt": "What is the hard threshold in confirmation bias (Part 1)?",
+      "choices": [
+        "Whether you can name what evidence would matter if you wanted to prove yourself wrong",
+        "Whether the current view has many supporters",
+        "Whether the conclusion feels internally consistent"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That is the deeper test. A belief should face what could count against it.",
+        "direct": "Yes. The view needs a serious disconfirming-evidence standard before it deserves more support.",
+        "competitive": "If it cannot name what could beat it, it is collecting applause, not proof."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch07-q10",
+      "prompt": "What does better judgment protect most when it resists confirmation bias?",
+      "choices": [
+        "A fairer evidence stream before the conclusion claims victory",
+        "The rule that first impressions should always be trusted",
+        "The idea that all priors are useless"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The goal is to keep the belief from screening reality too early.",
+        "direct": "Correct. Better judgment inspects whether the evidence stream has been filtered before trusting the conclusion.",
+        "competitive": "It stops the verdict from choosing the witnesses."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

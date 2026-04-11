@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "chapterflow.v13.edition-lock",
+  "bookId": "the-33-strategies-of-war",
+  "runId": "20260411-021103",
+  "lockedAt": "2026-04-11T02:17:58Z",
+  "selectionMode": "auto_locked",
+  "requestedPreference": "ask_if_ambiguous",
+  "decision": {
+    "title": "The 33 Strategies of War",
+    "author": "Robert Greene",
+    "publisher": "Penguin",
+    "imprint": "Penguin Books / Joost Elffers Books",
+    "formatAnchor": "Paperback reprint / trade edition",
+    "publishedYear": 2007,
+    "isbn13": "9780143112785",
+    "language": "English",
+    "translator": "",
+    "chapterOrderMateriallyDifferent": false,
+    "revisionMateriallyDifferent": false
+  },
+  "rationale": [
+    "Google Books and Penguin Random House align on the 2007 Penguin paperback reprint, ISBN 9780143112785, with matching title, author, publisher family, and 512-page extent.",
+    "Penguin Random House describes this as the only authorized paperback edition in the US, making it the stable working edition for a modern strict-v13 run.",
+    "Current authorized US formats surfaced in discovery, including the 2025 hardcover, but no materially different chapter order, chapter count, or revised chapter-level content surfaced, so user confirmation is not required under the pack rules.",
+    "The frozen local paraphrase reference matches the same five-part, 33-strategy structure and gives enough secondary support to proceed without widening claims beyond the frozen bundle."
+  ],
+  "authorizedSources": [
+    "https://books.google.com/books/about/The_33_Strategies_of_War.html?id=GYSeURI4OQcC",
+    "https://www.penguinrandomhouseretail.com/book/?isbn=9780143112785",
+    "https://www.penguinrandomhouse.com/books/291190/the-33-strategies-of-war-by-robert-greene/"
+  ]
+}

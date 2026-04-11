@@ -45,3 +45,13 @@
 - 2026-04-10: ch11 lint passed after local opening, reinforcement, and duplicate-surface repairs; validated chapter, review package, metrics, validation report, and continuity seal created.
 
 - 2026-04-10: ch12 pre-writer package created and verified before writer stage.
+
+- 2026-04-10: ch12 lint passed after local duplicate-surface repairs; validated chapter, review package, metrics, validation report, and continuity seal created.
+
+- 2026-04-10: ch13 pre-writer package created and verified before writer stage.
+
+- 2026-04-10: ch13 lint passed after local duplicate-surface and recap-overlap repairs; validated chapter, review package, metrics, validation report, and continuity seal created.
+
+- 2026-04-10: release assembled from validated chapters only; source guard, release lint, and release guard all passed; release validation and audit reports written.
+
+- 2026-04-10: release wired to book-packages/getting-things-done.modern.json; repo release-gate lint passed; npm build passed; legacy v12 repo validator mismatch documented in release audit.

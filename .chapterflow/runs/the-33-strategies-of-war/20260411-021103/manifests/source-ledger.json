@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "chapterflow.v13.source-ledger",
+  "bookId": "the-33-strategies-of-war",
+  "runId": "20260411-021103",
+  "createdAt": "2026-04-11T02:17:58Z",
+  "entries": [
+    {
+      "sourceId": "google-books-primary",
+      "title": "The 33 Strategies of War - Google Books",
+      "url": "https://books.google.com/books/about/The_33_Strategies_of_War.html?id=GYSeURI4OQcC",
+      "type": "authorized_preview_metadata",
+      "role": "primary_bibliography_and_edition_anchor",
+      "confidence": 0.97,
+      "notes": "Authorized Google Books metadata for the 2007 Penguin reprint, ISBN 9780143112785, with page count and edition details."
+    },
+    {
+      "sourceId": "prh-retail-primary",
+      "title": "The 33 Strategies of War | Penguin Random House Retail",
+      "url": "https://www.penguinrandomhouseretail.com/book/?isbn=9780143112785",
+      "type": "official_publisher_page",
+      "role": "primary_publisher_confirmation",
+      "confidence": 0.97,
+      "notes": "Official PRH retail page confirming the 2007 Penguin paperback, on-sale date, page count, and the claim that it is the only authorized paperback edition in the US."
+    },
+    {
+      "sourceId": "prh-main-secondary",
+      "title": "The 33 Strategies of War by Robert Greene | Penguin Random House",
+      "url": "https://www.penguinrandomhouse.com/books/291190/the-33-strategies-of-war-by-robert-greene/",
+      "type": "official_publisher_page_multi_format",
+      "role": "secondary_format_crosscheck",
+      "confidence": 0.9,
+      "notes": "Main PRH title page cross-checks the 2025 hardcover, 2007 paperback, and 2007 ebook, supporting the judgment that the chapter-level content remains stable across current authorized US formats."
+    },
+    {
+      "sourceId": "internal-reference-secondary",
+      "title": "The 33 Strategies of War structured reference document",
+      "url": "local:/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/sources/the-33-strategies-of-war/the-33-strategies-of-war.txt",
+      "type": "internal_paraphrase_reference",
+      "role": "secondary_chapter_support",
+      "confidence": 0.92,
+      "notes": "Pre-existing ChapterFlow paraphrase-first reference derived for educational use. It captures the five-part structure, all 33 strategy titles, meta-lessons, and non-quoted chapter support. Frozen into this run as secondary support only."
+    },
+    {
+      "sourceId": "internal-chapter-map-secondary",
+      "title": "The 33 Strategies of War chapter map",
+      "url": "local:/Users/willsoltani/dev/chapterflow-siliconx/.chapterflow/sources/the-33-strategies-of-war/chapter-map.md",
+      "type": "internal_chapter_mapping_note",
+      "role": "secondary_structure_crosscheck",
+      "confidence": 0.84,
+      "notes": "Existing local ChapterFlow map of the earlier 10-chapter teaching consolidation. Used only as a cautionary contrast so the strict-v13 run targets the native 33-strategy structure instead."
+    }
+  ]
+}

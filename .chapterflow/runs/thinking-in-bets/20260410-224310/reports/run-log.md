@@ -9,3 +9,5 @@
 - 2026-04-10T23:50:00-03:00 Chapter 3 passed chapter gate, validated package written, and continuity hash sealed.
 - 2026-04-11T00:15:00-03:00 Chapter 4 passed chapter gate, validated package written, and continuity hash sealed.
 - 2026-04-11T00:30:00-03:00 Chapter 5 passed chapter gate, validated package written, and continuity hash sealed.
+- 2026-04-11T00:45:00-03:00 Chapter 6 passed chapter gate, validated package written, and continuity hash sealed.
+- 2026-04-11T01:00:00-03:00 Chapter 7 passed chapter gate, validated package written, and continuity hash sealed.

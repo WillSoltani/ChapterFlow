@@ -128,7 +128,7 @@
           "oneMinuteRecap": {
             "retrieve": {
               "gentle": "What three anchors frame this chapter on decision making?",
-              "direct": "State the chapter\u2019s central contrast about judgment.",
+              "direct": "State the chapter’s central contrast about judgment.",
               "competitive": "What beats certainty theater here?"
             },
             "connect": {
@@ -141,6 +141,16 @@
               "direct": "How does this chapter lead into innovation under pressure?",
               "competitive": "Once the read stays flexible, what gets better about testing new ideas?"
             }
+          },
+          "activationPrompt": {
+            "gentle": "Think of one decision you have been postponing and name the uncertainty you actually need to price in instead of pretending it is not there.",
+            "direct": "Choose one call on your list and separate the evidence you have from the certainty you wish you had.",
+            "competitive": "Pick one decision you keep dressing up as analysis and say what odds you are really refusing to face."
+          },
+          "selfCheckPrompt": {
+            "gentle": "When a decision goes sideways for you, is the weak point usually the forecast, the update, or the willingness to stay probabilistic?",
+            "direct": "Which part of judgment breaks first for you: estimating odds, revising on new data, or acting before certainty arrives?",
+            "competitive": "Where do you usually lose the hand: bad read, slow update, or ego pretending the table owes you clarity?"
           }
         },
         "hard": {
@@ -214,7 +224,7 @@
           "oneMinuteRecap": {
             "retrieve": {
               "gentle": "Without looking back, what three anchors organize this chapter on decision making?",
-              "direct": "Recall the chapter\u2019s central contrast in one line.",
+              "direct": "Recall the chapter’s central contrast in one line.",
               "competitive": "What beats certainty theater here?"
             },
             "connect": {
@@ -227,7 +237,29 @@
               "direct": "How does this chapter point toward innovation and creative testing?",
               "competitive": "Once the estimate can move, what gets easier about trying uncertain ideas?"
             }
-          }
+          },
+          "activationPrompt": {
+            "gentle": "Take one uncertain decision in front of you and write the range of outcomes you need to plan for instead of the single outcome you hope to force.",
+            "direct": "Pick one consequential call and state the odds, downside, and next update trigger before you let intuition call itself certainty.",
+            "competitive": "Choose one high-stakes bet and price the table honestly before your confidence starts bluffing for you."
+          },
+          "predictionPrompt": {
+            "gentle": "Predict what changes when the people around the decision are rewarded for sounding sure rather than updating well.",
+            "direct": "What happens to judgment once the room prizes certainty theater more than accurate revision?",
+            "competitive": "How does the game change when the table rewards swagger over clean updates?"
+          },
+          "selfCheckPrompts": [
+            {
+              "gentle": "Do you usually misread uncertainty by narrowing the range too early or by refusing to commit after the range is clear enough?",
+              "direct": "Which mistake costs you more: collapsing probability into a story too fast or never converting probability into action?",
+              "competitive": "Are you more likely to overplay a weak hand or fold because you want perfect cards?"
+            },
+            {
+              "gentle": "What would a calmer, more update-friendly decision process look like for one real choice this week?",
+              "direct": "How would you redesign one decision so revision is built in before ego locks the answer?",
+              "competitive": "What process would keep you from confusing nerve with edge on the next real bet?"
+            }
+          ]
         }
       },
       "examples": [
@@ -287,7 +319,7 @@
         },
         {
           "exampleId": "ch06-ex03-first-assumption",
-          "title": "Eli Stops Defending the First Story About a Friend\u2019s Silence",
+          "title": "Eli Stops Defending the First Story About a Friend’s Silence",
           "category": "personal",
           "format": "dilemma",
           "endingType": "misread_exposed",
@@ -314,7 +346,7 @@
         },
         {
           "exampleId": "ch06-ex04-postmortem-estimate",
-          "title": "Harper\u2019s Team Learns Why the Postmortem Hurt More Than the Delay",
+          "title": "Harper’s Team Learns Why the Postmortem Hurt More Than the Delay",
           "category": "work",
           "format": "postmortem",
           "endingType": "failure_mode",
@@ -341,7 +373,7 @@
         },
         {
           "exampleId": "ch06-ex05-odds-lesson",
-          "title": "Julian\u2019s Economics Group Learns That Odds Are Not Guarantees",
+          "title": "Julian’s Economics Group Learns That Odds Are Not Guarantees",
           "category": "school",
           "format": "predict_reveal",
           "endingType": "expectation_reset",
@@ -351,7 +383,7 @@
             "forecasting"
           ],
           "scenario": {
-            "gentle": "Julian\u2019s group predicts an outcome in economics class, then looks surprised when a likely result does not happen.",
+            "gentle": "Julian’s group predicts an outcome in economics class, then looks surprised when a likely result does not happen.",
             "direct": "The students confuse likely with certain and treat one miss as proof that the forecast was useless.",
             "competitive": "One unexpected result and the room wants to throw probability out the window."
           },
@@ -399,7 +431,7 @@
         "questions": [
           {
             "questionId": "q01",
-            "prompt": "What is the chapter\u2019s central claim about good decision making?",
+            "prompt": "What is the chapter’s central claim about good decision making?",
             "choices": [
               "Strong choices avoid uncertainty entirely",
               "Good judgment updates beliefs as evidence changes",
@@ -424,9 +456,9 @@
             ],
             "correctIndex": 2,
             "explanation": {
-              "gentle": "Those three anchors define the chapter\u2019s narrow focus on uncertain judgment.",
+              "gentle": "Those three anchors define the chapter’s narrow focus on uncertain judgment.",
               "direct": "The subtitle links forecasting, hidden information, and belief-updating.",
-              "competitive": "Those are the three pressure points that build the chapter\u2019s argument."
+              "competitive": "Those are the three pressure points that build the chapter’s argument."
             },
             "bloomsLevel": "remember-understand",
             "depthLevel": "easy"
@@ -450,7 +482,7 @@
           },
           {
             "questionId": "q04",
-            "prompt": "In Maya\u2019s scenario, what is the key mistake if the team keeps the old schedule story?",
+            "prompt": "In Maya’s scenario, what is the key mistake if the team keeps the old schedule story?",
             "choices": [
               "They are separating confidence from accuracy",
               "They are treating a stale forecast like a fact",
@@ -459,7 +491,7 @@
             "correctIndex": 1,
             "explanation": {
               "gentle": "The problem is defending an old estimate after the evidence has changed.",
-              "direct": "Maya\u2019s team fails when it protects the first forecast instead of updating it.",
+              "direct": "Maya’s team fails when it protects the first forecast instead of updating it.",
               "competitive": "The schedule stops being a read and starts becoming theater."
             },
             "bloomsLevel": "apply",
@@ -686,7 +718,7 @@
       ],
       "keyTakeawayCard": {
         "gentle": "Decision making improves when people treat choices as estimates that can still change. Forecasting makes uncertainty usable, poker shows why hidden information matters, and Bayesian psychology keeps beliefs revisable as evidence changes.",
-        "direct": "The chapter\u2019s core move is to separate certainty from judgment. Strong decisions act on the best available estimate, keep uncertainty visible, and revise when new evidence changes the field.",
+        "direct": "The chapter’s core move is to separate certainty from judgment. Strong decisions act on the best available estimate, keep uncertainty visible, and revise when new evidence changes the field.",
         "competitive": "The win is not sounding sure. It is reading the odds honestly enough to move now, update fast, and refuse loyalty to a stale story."
       }
     }

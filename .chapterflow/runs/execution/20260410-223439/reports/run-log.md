@@ -234,3 +234,18 @@
   - reports/ch10.validation.md written
   - sidecars/ch10.reading-metrics.json written
   - continuity seal recorded for ch10
+- Release assembly:
+  - release/execution.modern.json written from validated/ch01.chapter.json through validated/ch10.chapter.json only
+- Release gate:
+  - source guard clean
+  - release lint clean
+  - release guard clean
+  - reports/release.validation.md written
+  - reports/release.audit.md written
+- Repo wiring:
+  - book-packages/execution.modern.json written from release package
+  - app/book/data/bookPackages.ts updated to register execution
+- Repo-level checks:
+  - repo package lint clean
+  - npm run build passed
+  - node scripts/book/validate-book.mjs book-packages/execution.modern.json failed because the repo validator is explicitly v12-sealed-only and does not accept the v13 autonomous package contract

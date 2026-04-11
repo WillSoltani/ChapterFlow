@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What basic claim does Chapter 14 make about medicine?",
+      "choices": [
+        "It is only a technical system for health optimization",
+        "It can heal while also functioning as conspicuous caring",
+        "It never has real health effects"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "understand",
+      "depthLevel": "easy",
+      "explanation": {
+        "gentle": "The chapter widens medicine beyond pure health effect.",
+        "direct": "Its main move is to treat treatment as healing plus visible care signaling.",
+        "competitive": "Medicine can work on the body and the social read at once."
+      }
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What does the chapter mean by \"conspicuous caring\"?",
+      "choices": [
+        "Care that becomes visible through treatment effort, time, burden, or sacrifice",
+        "Care that matters only in private and never in public",
+        "Care that replaces all concern for health outcomes"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "remember",
+      "depthLevel": "easy",
+      "explanation": {
+        "gentle": "The idea is that treatment can make concern socially visible.",
+        "direct": "Medical effort can function as public evidence that someone is being looked after.",
+        "competitive": "The signal is care made readable."
+      }
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why does visible sacrifice matter in this chapter's model of medicine?",
+      "choices": [
+        "Because burden can signal seriousness of care",
+        "Because sacrifice automatically guarantees a better biological outcome",
+        "Because only pain matters in treatment"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "remember",
+      "depthLevel": "easy",
+      "explanation": {
+        "gentle": "Visible burden can make concern feel more real.",
+        "direct": "Cost, time, pain, or effort can act as signals that care is serious.",
+        "competitive": "The sacrifice can certify commitment."
+      }
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A clinic redesign emphasizes visible follow-up routines because families feel more reassured when care looks active. Which chapter idea is most visible?",
+      "choices": [
+        "Medicine can serve as a public signal of care as well as a treatment",
+        "Only hidden biological mechanisms matter in medicine",
+        "Reassurance proves the treatment must be fake"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "apply",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "The routine is reassuring partly because it makes care visible.",
+        "direct": "The clinic is relying on conspicuous caring alongside direct treatment logic.",
+        "competitive": "The process is signaling concern, not just delivering care."
+      }
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why might a school health office calm students once visible checks and calls begin?",
+      "choices": [
+        "Because active routines can function as public evidence that someone is being cared for",
+        "Because visible care routines erase every need for real treatment",
+        "Because school settings cannot show medical signals"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "apply",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "The chapter says visible concern can reassure people.",
+        "direct": "Care becomes socially legible when treatment routines are observable and active.",
+        "competitive": "The room settles when the signal of concern is clear."
+      }
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which misunderstanding does Chapter 14 reject?",
+      "choices": [
+        "Medicine can involve real healing",
+        "Visible care signals can matter alongside health claims",
+        "If signaling is present, medicine must be pure theater"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "The chapter keeps healing alive while adding social meaning.",
+        "direct": "It rejects the false choice between real treatment and visible concern.",
+        "competitive": "Signal value does not erase clinical value."
+      }
+    },
+    {
+      "questionId": "q07",
+      "prompt": "How does Chapter 14 grow out of Chapter 13 on education?",
+      "choices": [
+        "It moves from visible credentials signaling the student to visible treatment signaling care",
+        "It abandons signaling and focuses only on biology",
+        "It treats medicine and education as unrelated"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "After education, the book turns to medicine as another domain where visible social meaning matters.",
+        "direct": "Medicine continues the mixed-motive story by shifting from credential signals to care signals.",
+        "competitive": "The visible investment moves from school records to treatment effort."
+      }
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why might a person find an effortful treatment reassuring even before its full health effect is clear?",
+      "choices": [
+        "Because visible effort can signal that real concern is being invested",
+        "Because reassurance proves biology is irrelevant",
+        "Because only expensive treatments count as medicine"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "apply",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "The treatment can feel meaningful because the care is visibly active.",
+        "direct": "Visible sacrifice can reassure by showing that concern is serious and organized.",
+        "competitive": "The burden can make the care signal believable."
+      }
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does the chapter insist that medicine can heal while also signaling care?",
+      "choices": [
+        "Because real health benefit and conspicuous caring can coexist in one medical act",
+        "Because signaling disappears whenever treatment works",
+        "Because medicine is only about social display"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard",
+      "explanation": {
+        "gentle": "The chapter's hardest lesson is coexistence, not replacement.",
+        "direct": "Treatment can retain biological value while also functioning as public evidence of concern.",
+        "competitive": "Efficacy and signal value can stack."
+      }
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What is the strongest bridge from Chapter 14 into Chapter 15 on religion?",
+      "choices": [
+        "If treatment uses sacrifice to make care visible, religion may use sacrifice and ritual to make loyalty visible",
+        "Religion matters only when medicine stops helping",
+        "Medicine and religion are unrelated in the book's argument"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard",
+      "explanation": {
+        "gentle": "The next chapter asks how visible sacrifice can signal commitment and loyalty.",
+        "direct": "Religion extends the logic of public sacrifice from care into group allegiance and norm enforcement.",
+        "competitive": "After treatment signals concern, ritual sacrifice signals loyalty."
+      }
+    }
+  ]
+}

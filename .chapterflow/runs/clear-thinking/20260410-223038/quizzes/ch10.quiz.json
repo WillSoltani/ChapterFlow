@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What best defines self-confidence in this chapter?",
+      "choices": [
+        "Feeling sure of yourself no matter what evidence says",
+        "Grounded trust in a tested judgment under social pressure",
+        "Sounding certain enough that the room follows you"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter treats confidence as tested self-trust, not performance or ego.",
+        "direct": "Self-confidence means a sound judgment can keep its weight when the room starts leaning on it.",
+        "competitive": "Trust the proof, not the performance."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does self-confidence matter for decision quality here?",
+      "choices": [
+        "Because social pressure can weaken a good judgment even without disproving it",
+        "Because the chapter says disagreement is usually irrelevant",
+        "Because confident people should ignore everyone else completely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A person can know the stronger answer and still wobble once approval pressure rises.",
+        "direct": "Social force matters because it can distort action after judgment was already tested.",
+        "competitive": "The crowd can tax a read it never beat."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "How does the chapter distinguish grounded confidence from ego?",
+      "choices": [
+        "Grounded confidence stays revisable by truth instead of becoming loud or uncorrectable",
+        "Grounded confidence means never revising under any pressure",
+        "Grounded confidence means sounding more certain than everyone else"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps confidence steady without turning it into dominance or stubbornness.",
+        "direct": "Grounded confidence is firmness answerable to evidence, not ego theater.",
+        "competitive": "Spine is not swagger."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Taliah offers the stronger recommendation, but the room favors a flashier one and falls quiet after she speaks. What chapter principle is most visible?",
+      "choices": [
+        "Awkward silence proves the recommendation was weak",
+        "Room pressure is trying to lower the weight of a tested judgment without disproving it",
+        "The best move is to match the room's energy immediately"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter asks Taliah to treat social friction as pressure to manage, not proof to obey.",
+        "direct": "Her task is to keep the evidence authoritative even when the room makes it feel expensive.",
+        "competitive": "Do not let silence price the line down."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Gideon realizes he has been confusing self-confidence with sounding forceful in tense meetings. According to the chapter, what should follow?",
+      "choices": [
+        "Add more performance energy so the room never doubts him",
+        "State the tested judgment plainly and let evidence, not bluff, set the tone",
+        "Stop speaking unless he feels fully certain"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter values steadiness over volume.",
+        "direct": "Confidence should come from the tested judgment itself, not from louder performance around it.",
+        "competitive": "Do not rent certainty from noise."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Mina knows her seminar point is better supported, but the table favors a louder interpretation. What response best matches the chapter?",
+      "choices": [
+        "Assume the group's certainty outweighs the evidence",
+        "State the supported point clearly and let evidence keep its proper weight",
+        "Abandon the point because discomfort proves it is not strong enough"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter protects evidence from being downgraded by group mood.",
+        "direct": "Mina should separate disagreement from disproof before changing her position.",
+        "competitive": "Make the room answer the proof, not replace it."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What is the permission tax in this chapter's logic?",
+      "choices": [
+        "The emotional cost of speaking in public",
+        "The repeated cost of letting social pressure determine how much authority your tested judgment keeps",
+        "The need to ask more questions before every decision"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The cost is recurring distortion when approval matters more than tested evidence.",
+        "direct": "Permission tax means the room keeps repricing a judgment that was already sound.",
+        "competitive": "The crowd keeps charging rent on conviction."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why does grounded confidence differ from stubbornness?",
+      "choices": [
+        "Because grounded confidence stays open to truth while refusing to let resistance decide the case by itself",
+        "Because stubbornness only appears when a person speaks loudly",
+        "Because confidence should never change once it feels strong enough"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants steady judgment that can still learn.",
+        "direct": "A confident person can revise for evidence without folding for pressure.",
+        "competitive": "Update for proof, not for noise."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "How does this chapter lead into Strength in Action?",
+      "choices": [
+        "Once the line can hold under inner and outer pressure, the next issue is whether those strengths become visible in ordinary behavior",
+        "Once self-confidence appears, visible action matters less",
+        "There is no real connection between the chapters"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next chapter matters because inner strengths are incomplete until they show up in action.",
+        "direct": "Self-confidence steadies the line in public; Strength in Action tests whether that line becomes observable in habits and decisions.",
+        "competitive": "If the structure is real, daily life has to carry it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Which question best fits the chapter's threshold test?",
+      "choices": [
+        "Is this judgment weakening because new truth appeared, or because the room is making agreement feel more valuable than evidence?",
+        "How can I sound more confident before I decide?",
+        "What would make the group like my answer faster?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter tests whether change is coming from truth or from approval pressure.",
+        "direct": "The real split is evidence versus permission, not confidence versus caution.",
+        "competitive": "Truth or permission? That is the call."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "medium"
+    }
+  ]
+}

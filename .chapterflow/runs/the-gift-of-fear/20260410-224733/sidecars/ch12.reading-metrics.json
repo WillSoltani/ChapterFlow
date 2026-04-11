@@ -1,0 +1,91 @@
+{
+  "chapterId": "ch12",
+  "chapterNumber": 12,
+  "chapterTitle": "Fear of children (violent children)",
+  "computedFor": "edited draft + structured chapter",
+  "editedDraft": {
+    "wordCount": 406,
+    "paragraphCount": 7,
+    "averageSentenceLengthWords": 13.1,
+    "estimatedReadingMinutes": 3
+  },
+  "contentVariants": {
+    "easy": {
+      "wordCounts": {
+        "gentle": 80,
+        "direct": 72,
+        "competitive": 63
+      },
+      "targetRange": "140-175",
+      "withinRange": false,
+      "estimatedGradeBand": "8-9"
+    },
+    "medium": {
+      "wordCounts": {
+        "gentle": 507,
+        "direct": 461,
+        "competitive": 434
+      },
+      "targetRange": "330-420",
+      "withinRange": false,
+      "estimatedGradeBand": "12"
+    },
+    "hard": {
+      "wordCounts": {
+        "gentle": 616,
+        "direct": 604,
+        "competitive": 557
+      },
+      "targetRange": "490-600",
+      "withinRange": true,
+      "estimatedGradeBand": "12"
+    }
+  },
+  "examples": {
+    "count": 6,
+    "formatsCovered": [
+      "postmortem",
+      "dilemma",
+      "before_after",
+      "decision_point",
+      "predict_reveal",
+      "dialogue"
+    ],
+    "categoryDistribution": {
+      "school": 4,
+      "personal": 2
+    },
+    "endingTypesCovered": [
+      "retrospective_diagnosis",
+      "decision_reframe",
+      "behavior_shift",
+      "self_correction",
+      "prediction_flip",
+      "room_shift"
+    ]
+  },
+  "quiz": {
+    "questionCount": 10,
+    "choicesPerQuestion": 3,
+    "correctIndexDistribution": {
+      "0": 6,
+      "1": 3,
+      "2": 1
+    },
+    "depthDistribution": {
+      "easy": 3,
+      "medium": 5,
+      "hard": 2
+    }
+  },
+  "reviewCards": {
+    "count": 5,
+    "difficultyDistribution": {
+      "easy": 2,
+      "medium": 2,
+      "hard": 1
+    }
+  },
+  "totalReadingTimeMinutesEstimate": 8,
+  "computedAt": "2026-04-10"
+}

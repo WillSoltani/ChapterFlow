@@ -8,9 +8,6 @@ def canonical(obj):
 def sha(obj):
     return hashlib.sha256(canonical(obj).encode("utf-8")).hexdigest()
 
-def sha_file(path):
-    return hashlib.sha256(path.read_bytes()).hexdigest()
-
 def main():
     if len(sys.argv) != 3:
         print("Usage: chapterflow_v13_release_guard.py RUN_ROOT RELEASE_JSON")
@@ -55,11 +52,11 @@ def main():
         sealed_entry = sealed.get(code)
         if sealed_entry:
             if isinstance(sealed_entry, dict):
-                sealed_hash = sealed_entry.get("chapterSha256")
+                sealed_hash = sealed_entry.get("chapterSha256") or sealed_entry.get("sha256")
             else:
                 sealed_hash = sealed_entry
-            validated_file_hash = sha_file(p)
-            if sealed_hash and sealed_hash != validated_file_hash:
+            validated_hash = sha(ch)
+            if sealed_hash and sealed_hash != validated_hash:
                 fails.append(f"sealed hash mismatch for {code}")
 
     for f in fails:

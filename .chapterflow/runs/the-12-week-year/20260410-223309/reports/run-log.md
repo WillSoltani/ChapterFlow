@@ -54,3 +54,40 @@
 - 2026-04-10T22:33:09-03:00 - Chapter 8 final checks passed: chapter lint `FAIL=0 WARN=0`, review-package lint `FAIL=0 WARN=0`.
 - 2026-04-10T22:33:09-03:00 - Sealed Chapter 8 hash `edfe74765565ae45a3277cd03686a0c6b5a8e8fb315965d96997be043ab432b1` into `continuity/continuity-state.json`.
 - 2026-04-10T22:33:09-03:00 - Wave 4 guard checks passed after Chapters 7 and 8: source guard `FAIL=0 WARN=0`, artifact guard `FAIL=0 WARN=0`.
+
+- 2026-04-10T22:33:09-03:00 - Phase 9 pre-writer complete for Chapter 9. Wrote `briefs/ch09.md`, `outlines/ch09.md`, `quiz-blueprints/ch09.md`, `sidecars/source/ch09.source.txt`, and `sidecars/source/ch09.source.json`.
+- 2026-04-10T22:33:09-03:00 - Phase 9A/9B/9C complete for Chapter 9. Wrote canonical and edited drafts plus `reports/ch09.critic.md`.
+- 2026-04-10T22:33:09-03:00 - Strict-path repair for Chapter 9 structured conversion: removed thesis-first openings, repeated scaffold phrasing, duplicate package questions, and hard-versus-medium recap overlap at the converter layer, reran chapter lint to `FAIL=0 WARN=0`, and regenerated the validated bundle.
+- 2026-04-10T22:33:09-03:00 - Phase 9E/9F complete for Chapter 9. Wrote `structured/ch09.chapter.json`, `quizzes/ch09.quiz.json`, `reports/ch09.validation.md`, `validated/ch09.chapter.json`, `validated/ch09.review-package.json`, and `sidecars/ch09.reading-metrics.json`.
+- 2026-04-10T22:33:09-03:00 - Chapter 9 final checks passed: chapter lint `FAIL=0 WARN=0`, review-package lint `FAIL=0 WARN=0`.
+- 2026-04-10T22:33:09-03:00 - Sealed Chapter 9 hash `6a20b0bb8d3d3c2609ec5f54ebe7eee707cdc437958c8c38662a6e01bf8bab51` into `continuity/continuity-state.json`.
+
+- 2026-04-10T22:33:09-03:00 - Phase 10 pre-writer complete for Chapter 10. Wrote `briefs/ch10.md`, `outlines/ch10.md`, `quiz-blueprints/ch10.md`, `sidecars/source/ch10.source.txt`, and `sidecars/source/ch10.source.json`.
+- 2026-04-10T22:33:09-03:00 - Phase 10A/10B/10C complete for Chapter 10. Wrote canonical and edited drafts plus `reports/ch10.critic.md`.
+- 2026-04-10T22:33:09-03:00 - Strict-path repair for Chapter 10 structured conversion: removed a contamination phrase, repeated scaffold phrasing, a reinforcement echo, and a duplicate package sentence at the converter layer, reran chapter lint to `FAIL=0 WARN=0`, and regenerated the validated bundle.
+- 2026-04-10T22:33:09-03:00 - Phase 10E/10F complete for Chapter 10. Wrote `structured/ch10.chapter.json`, `quizzes/ch10.quiz.json`, `reports/ch10.validation.md`, `validated/ch10.chapter.json`, `validated/ch10.review-package.json`, and `sidecars/ch10.reading-metrics.json`.
+- 2026-04-10T22:33:09-03:00 - Chapter 10 final checks passed: chapter lint `FAIL=0 WARN=0`, review-package lint `FAIL=0 WARN=0`.
+- 2026-04-10T22:33:09-03:00 - Sealed Chapter 10 hash `ab840c2224c602fe507f0c21d134f6d1b14b2fc31d0c8af996b22a815878e398` into `continuity/continuity-state.json`.
+
+- 2026-04-10T22:33:09-03:00 - Wave 5 guard checks passed after Chapters 9 and 10: source guard `FAIL=0 WARN=0`, artifact guard `FAIL=0 WARN=0`.
+- 2026-04-10T22:33:09-03:00 - Phase 11 pre-writer complete for Chapters 11 and 12. Wrote `briefs/ch11.md`, `outlines/ch11.md`, `quiz-blueprints/ch11.md`, `sidecars/source/ch11.source.txt`, `sidecars/source/ch11.source.json`, `briefs/ch12.md`, `outlines/ch12.md`, `quiz-blueprints/ch12.md`, `sidecars/source/ch12.source.txt`, and `sidecars/source/ch12.source.json`.
+
+- 2026-04-10T22:33:09-03:00 - Phase 11A/11B/11C complete for Chapter 11. Wrote canonical and edited drafts plus `reports/ch11.critic.md`.
+- 2026-04-10T22:33:09-03:00 - Strict-path repair for Chapter 11 structured conversion: removed contamination phrasing and a reinforcement echo at the converter layer, reran chapter lint to `FAIL=0 WARN=0`, and regenerated the validated bundle.
+- 2026-04-10T22:33:09-03:00 - Phase 11E/11F complete for Chapter 11. Wrote `structured/ch11.chapter.json`, `quizzes/ch11.quiz.json`, `reports/ch11.validation.md`, `validated/ch11.chapter.json`, `validated/ch11.review-package.json`, and `sidecars/ch11.reading-metrics.json`.
+- 2026-04-10T22:33:09-03:00 - Chapter 11 final checks passed: chapter lint `FAIL=0 WARN=0`, review-package lint `FAIL=0 WARN=0`.
+- 2026-04-10T22:33:09-03:00 - Sealed Chapter 11 hash `ba327351263a1824bfcda6bf5d0b44740da47e4120566d6b21f61321eec03d1f` into `continuity/continuity-state.json`.
+
+- 2026-04-10T22:33:09-03:00 - Phase 12A/12B/12C complete for Chapter 12. Wrote canonical and edited drafts plus `reports/ch12.critic.md`.
+- 2026-04-10T22:33:09-03:00 - Phase 12E/12F complete for Chapter 12. Wrote `structured/ch12.chapter.json`, `quizzes/ch12.quiz.json`, `reports/ch12.validation.md`, `validated/ch12.chapter.json`, `validated/ch12.review-package.json`, and `sidecars/ch12.reading-metrics.json`.
+- 2026-04-10T22:33:09-03:00 - Chapter 12 final checks passed: chapter lint `FAIL=0 WARN=0`, review-package lint `FAIL=0 WARN=0`.
+- 2026-04-10T22:33:09-03:00 - Sealed Chapter 12 hash `1f8294d3293839407c014e41e09dc0fce5f1a77bb26ff1de4cc01004f74bb475` into `continuity/continuity-state.json`.
+
+- 2026-04-10T22:33:09-03:00 - Wave 6 guard checks passed after Chapters 11 and 12: source guard `FAIL=0 WARN=0`, artifact guard `FAIL=0 WARN=0`.
+- 2026-04-10T22:33:09-03:00 - Phase 13 pre-writer complete for Chapters 13 and 14. Wrote `briefs/ch13.md`, `outlines/ch13.md`, `quiz-blueprints/ch13.md`, `sidecars/source/ch13.source.txt`, `sidecars/source/ch13.source.json`, `briefs/ch14.md`, `outlines/ch14.md`, `quiz-blueprints/ch14.md`, `sidecars/source/ch14.source.txt`, and `sidecars/source/ch14.source.json`.
+
+- 2026-04-10T22:33:09-03:00 - Phase 13A/13B/13C complete for Chapter 13. Wrote canonical and edited drafts plus `reports/ch13.critic.md`.
+- 2026-04-10T22:33:09-03:00 - Strict-path repair for Chapter 13 structured conversion: removed duplicate package surfaces, duplicate warning phrasing, activation-prompt overlap, and recap overlap at the converter layer, reran chapter lint to `FAIL=0 WARN=0`, and regenerated the validated bundle.
+- 2026-04-10T22:33:09-03:00 - Phase 13E/13F complete for Chapter 13. Wrote `structured/ch13.chapter.json`, `quizzes/ch13.quiz.json`, `reports/ch13.validation.md`, `validated/ch13.chapter.json`, `validated/ch13.review-package.json`, and `sidecars/ch13.reading-metrics.json`.
+- 2026-04-10T22:33:09-03:00 - Chapter 13 final checks passed: chapter lint `FAIL=0 WARN=0`, review-package lint `FAIL=0 WARN=0`.
+- 2026-04-10T22:33:09-03:00 - Sealed Chapter 13 hash `a174a0a1b18f589d140f4af670807c1ebb126d61d1e3843f5477299149f2d254` into `continuity/continuity-state.json`.

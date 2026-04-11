@@ -2,7 +2,8 @@
   "nameUsage": {
     "Elena": [
       "ch01",
-      "ch05"
+      "ch05",
+      "ch10"
     ],
     "Devin": [
       "ch01",
@@ -38,7 +39,8 @@
       "ch03"
     ],
     "Mateo": [
-      "ch03"
+      "ch03",
+      "ch13"
     ],
     "Hugo": [
       "ch03"
@@ -93,6 +95,48 @@
     ],
     "Omar": [
       "ch09"
+    ],
+    "Parker": [
+      "ch10"
+    ],
+    "Jada": [
+      "ch10"
+    ],
+    "Simon": [
+      "ch10"
+    ],
+    "Maya": [
+      "ch11"
+    ],
+    "Colin": [
+      "ch11"
+    ],
+    "Talia": [
+      "ch11"
+    ],
+    "Ben": [
+      "ch11"
+    ],
+    "Iris": [
+      "ch12"
+    ],
+    "Nolan": [
+      "ch12"
+    ],
+    "Keisha": [
+      "ch12"
+    ],
+    "Drew": [
+      "ch12"
+    ],
+    "Rowan": [
+      "ch13"
+    ],
+    "Elise": [
+      "ch13"
+    ],
+    "June": [
+      "ch13"
     ]
   },
   "formatCategoryHistory": [],
@@ -160,6 +204,30 @@
       "Jordan",
       "Rina",
       "Omar"
+    ],
+    "ch10": [
+      "Parker",
+      "Elena",
+      "Jada",
+      "Simon"
+    ],
+    "ch11": [
+      "Maya",
+      "Colin",
+      "Talia",
+      "Ben"
+    ],
+    "ch12": [
+      "Iris",
+      "Nolan",
+      "Keisha",
+      "Drew"
+    ],
+    "ch13": [
+      "Rowan",
+      "Elise",
+      "Mateo",
+      "June"
     ]
   },
   "approvedChapterHashes": {
@@ -171,7 +239,11 @@
     "ch06": "611202a17e85c01218d981e94e22068ae3e23d1e249717877a02a8c0f2d092ed",
     "ch07": "2f0a545a0f9a2cb8c64e53697d29a02fa6f32d8d6d6965ad7a7b2d6ffb1aa8cf",
     "ch08": "4f8ecde19992883da0072aab57dfd77d4170bb1cca38af8a002378ec2c3861db",
-    "ch09": "b97d599a7e021f9e4bb3c7c24f607590cfc50262a1477a68edebfdd6afdfb58e"
+    "ch09": "b97d599a7e021f9e4bb3c7c24f607590cfc50262a1477a68edebfdd6afdfb58e",
+    "ch10": "962c9a54c46eed3909a6693e685101261b34760fada48051efbc9a2ec3bdd72f",
+    "ch11": "b35cbe1cc75c9712982a6378034003a9f76a08abbc4704dff10ec19136043ce6",
+    "ch12": "df391a00147114fe502df1eb2c16646e24f88b71851fa787c5339bfa1449dc36",
+    "ch13": "8c21aa55fce681a46ffe215ecade9cc4d24781fc848720a3b032461210b09401"
   },
   "baselineQuality": {
     "status": "established",

@@ -144,3 +144,33 @@ Phase 4 complete for Chapter 1.
 - Validated review wrapper written with full validated chapter payload only.
 - Reading metrics sidecar written.
 - Continuity hash sealed for ch05.
+
+## Phase 4 Status Continued
+
+- Chapter 6 pre-writer artifacts created and verified:
+  - brief
+  - outline
+  - quiz blueprint
+  - source sidecar text
+  - source sidecar json
+- Writer pass complete.
+- Editor pass complete.
+- Critic pass complete with 11/12 and local-caution approval.
+- Converter complete.
+- Existing structured artifact was treated as untrusted and repaired after strict verification found undersized breakdowns, prose-package overlap, and one malformed local timestamp in derived sealing state.
+- Quiz complete and resynced from the final structured chapter payload.
+- Validator pass complete after local mechanical repair on Chapter 6 breakdown lengths and review-card echo cleanup.
+- Validated chapter written.
+- Validated review wrapper written with full validated chapter payload only.
+- Reading metrics sidecar written.
+- Continuity hash sealed for ch06.
+- Wave 3 chapters are ready for artifact guard.
+
+## Phase 4 Status Continued
+
+- Chapter 7 pre-writer artifacts created and verified:
+  - brief
+  - outline
+  - quiz blueprint
+  - source sidecar text
+  - source sidecar json

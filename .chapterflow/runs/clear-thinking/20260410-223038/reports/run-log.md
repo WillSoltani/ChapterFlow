@@ -83,3 +83,35 @@
 - 2026-04-11T00:36:21Z Chapter 9 writer pass wrote `drafts/canonical/ch09.md`.
 - 2026-04-11T00:36:21Z Chapter 9 editor pass wrote `drafts/edited/ch09.md`.
 - 2026-04-11T00:36:21Z Chapter 9 critic gate wrote `reports/ch09.critic.md` with `Score: 11/12` and approved conversion with local-patch-only guidance.
+- 2026-04-11T01:56:27Z Chapter 9 converter wrote `structured/ch09.chapter.json` and passed chapter lint with `FAIL=0 WARN=0` after local repairs to recap overlap and reinforcement-surface duplication.
+- 2026-04-11T01:56:27Z Chapter 9 quiz and validator passes wrote `quizzes/ch09.quiz.json`, `validated/ch09.chapter.json`, `validated/ch09.review-package.json`, `sidecars/ch09.reading-metrics.json`, and `reports/ch09.validation.md`.
+- 2026-04-11T01:56:27Z Chapter 9 final checks passed: chapter lint `FAIL=0 WARN=0`, review-package lint `FAIL=0 WARN=0`, artifact guard `FAIL=0 WARN=0`.
+- 2026-04-11T01:56:27Z Chapter 9 hash sealed in `continuity/continuity-state.json` as `c993f7420b4d24f889494592551377298ff2f817757c1559b5a24cf7020ac64b`.
+- 2026-04-11T01:56:27Z Chapter 10 writer pass wrote `drafts/canonical/ch10.md`.
+- 2026-04-11T01:56:27Z Chapter 10 editor pass wrote `drafts/edited/ch10.md`.
+- 2026-04-11T01:56:27Z Chapter 10 critic gate wrote `reports/ch10.critic.md` with `Score: 11/12` and approved conversion with local-patch-only guidance.
+- 2026-04-11T02:07:02Z Chapter 10 converter wrote `structured/ch10.chapter.json` and passed chapter lint with `FAIL=0 WARN=0` after local repairs to reinforcement-surface duplication, reusable stems, and recap overlap.
+- 2026-04-11T02:07:02Z Chapter 10 quiz and validator passes wrote `quizzes/ch10.quiz.json`, `validated/ch10.chapter.json`, `validated/ch10.review-package.json`, `sidecars/ch10.reading-metrics.json`, and `reports/ch10.validation.md`.
+- 2026-04-11T02:07:02Z Chapter 10 final checks passed: chapter lint `FAIL=0 WARN=0`, review-package lint `FAIL=0 WARN=0`, artifact guard `FAIL=0 WARN=0`.
+- 2026-04-11T02:07:02Z Chapter 10 hash sealed in `continuity/continuity-state.json` as `9b5cf4095c699b073512578b56af2696c7aa4b6415b17551f476c4db58a1cfdc`.
+- 2026-04-11T02:07:02Z Wave 5 close check passed clean with Chapter 9 and Chapter 10 fully validated, sealed, and artifact-guarded.
+- 2026-04-11T02:07:02Z Wave 6 pre-writer package wrote `briefs/ch11.md`, `outlines/ch11.md`, `quiz-blueprints/ch11.md`, `sidecars/source/ch11.source.txt`, `sidecars/source/ch11.source.json`, `briefs/ch12.md`, `outlines/ch12.md`, `quiz-blueprints/ch12.md`, `sidecars/source/ch12.source.txt`, and `sidecars/source/ch12.source.json`.
+- 2026-04-11T02:07:02Z Chapter 11 writer pass wrote `drafts/canonical/ch11.md`.
+- 2026-04-11T02:07:02Z Chapter 11 editor pass wrote `drafts/edited/ch11.md`.
+- 2026-04-11T02:07:02Z Chapter 11 critic gate wrote `reports/ch11.critic.md` with `Score: 11/12` and approved conversion with local-patch-only guidance.
+- 2026-04-11T02:20:53Z Chapter 11 converter wrote `structured/ch11.chapter.json` and passed chapter lint with `FAIL=0 WARN=0` after local repairs to reinforcement-surface duplication, medium-hard overlap, and one recap syntax error.
+- 2026-04-11T02:20:53Z Chapter 11 quiz and validator passes wrote `quizzes/ch11.quiz.json`, `validated/ch11.chapter.json`, `validated/ch11.review-package.json`, `sidecars/ch11.reading-metrics.json`, and `reports/ch11.validation.md`.
+- 2026-04-11T02:22:23Z Chapter 11 final checks passed: chapter lint `FAIL=0 WARN=0`, review-package lint `FAIL=0 WARN=0`, artifact guard `FAIL=0 WARN=0`.
+- 2026-04-11T02:22:23Z Chapter 11 hash sealed in `continuity/continuity-state.json` as `ec13551744d8146c36a5df4253ef2a25496d43763de117d7fe28743a2f39de56`.
+- 2026-04-11T02:22:23Z Chapter 12 writer pass wrote `drafts/canonical/ch12.md`.
+- 2026-04-11T02:22:23Z Chapter 12 editor pass wrote `drafts/edited/ch12.md`.
+- 2026-04-11T02:22:23Z Chapter 12 critic gate wrote `reports/ch12.critic.md` with `Score: 11/12` and approved conversion with local-patch-only guidance.
+- 2026-04-11T02:24:30Z Chapter 12 converter wrote `structured/ch12.chapter.json` and passed chapter lint with `FAIL=0 WARN=0` after local repairs to a thesis-first hard opener, a review-card echo, and one repeated clause scaffold.
+- 2026-04-11T02:24:30Z Chapter 12 quiz and validator passes wrote `quizzes/ch12.quiz.json`, `validated/ch12.chapter.json`, `validated/ch12.review-package.json`, `sidecars/ch12.reading-metrics.json`, and `reports/ch12.validation.md`.
+- 2026-04-11T02:24:30Z Chapter 12 final checks passed: chapter lint `FAIL=0 WARN=0`, review-package lint `FAIL=0 WARN=0`, artifact guard `FAIL=0 WARN=0`.
+- 2026-04-11T02:24:30Z Chapter 12 hash sealed in `continuity/continuity-state.json` as `6fdadfac709cc875605352438a36ed432aaa56d2140502367adda16c9f0e18d6`.
+- 2026-04-11T02:24:30Z Wave 6 close check passed clean with Chapter 11 and Chapter 12 fully validated, sealed, and artifact-guarded.
+- 2026-04-11T02:24:30Z Wave 7 pre-writer package wrote `briefs/ch13.md`, `outlines/ch13.md`, `quiz-blueprints/ch13.md`, `sidecars/source/ch13.source.txt`, `sidecars/source/ch13.source.json`, `briefs/ch14.md`, `outlines/ch14.md`, `quiz-blueprints/ch14.md`, `sidecars/source/ch14.source.txt`, and `sidecars/source/ch14.source.json`.
+- 2026-04-11T02:31:40Z Chapter 13 writer pass wrote `drafts/canonical/ch13.md`.
+- 2026-04-11T02:31:40Z Chapter 13 editor pass wrote `drafts/edited/ch13.md`.
+- 2026-04-11T02:31:40Z Chapter 13 critic gate wrote `reports/ch13.critic.md` with `Score: 11/12` and approved conversion with local-patch-only guidance.

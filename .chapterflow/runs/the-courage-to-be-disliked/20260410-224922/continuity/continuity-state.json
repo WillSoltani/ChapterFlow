@@ -23,7 +23,13 @@
     "Sora": "ch04",
     "Felix": "ch04",
     "Mina": "ch04",
-    "Gabe": "ch04"
+    "Gabe": "ch04",
+    "Iris": "ch05",
+    "Malik": "ch05",
+    "June": "ch05",
+    "Rowan": "ch05",
+    "Keiko": "ch05",
+    "Ben": "ch05"
   },
   "formatCategoryHistory": [],
   "schoolSettingUsage": {
@@ -34,7 +40,9 @@
     "capstone presentation": "ch03",
     "lab partnership": "ch03",
     "club collaboration": "ch04",
-    "studio partnership": "ch04"
+    "studio partnership": "ch04",
+    "exam prep workshop": "ch05",
+    "thesis studio": "ch05"
   },
   "wordFrequency": {},
   "phraseFrequency": {},
@@ -77,13 +85,22 @@
       "Felix",
       "Mina",
       "Gabe"
+    ],
+    "ch05": [
+      "Iris",
+      "Malik",
+      "June",
+      "Rowan",
+      "Keiko",
+      "Ben"
     ]
   },
   "approvedChapterHashes": {
     "ch01": "d1d1d9c2acab7e8b4aec9fef705aecf3d3e106b64b3d8db5f409c35f9e1bb28a",
     "ch02": "285546554eddde947c9bfe663f203cb6aba121bbb575ac5ad57be4d6f748195b",
     "ch03": "b342706e03a4c5471ef30945c340998ce60dca7e112680d31f01c2ab02375f50",
-    "ch04": "2cc289ab47e39d993c30fa0f130f281abc70dfc523cf8a3989cf360994c289b0"
+    "ch04": "2cc289ab47e39d993c30fa0f130f281abc70dfc523cf8a3989cf360994c289b0",
+    "ch05": "407edfcb8b107088dce889fdb58724bd9ee1ebd9cbf75f0768ae3de4e2b96d82"
   },
   "baselineQuality": {
     "wave01": {

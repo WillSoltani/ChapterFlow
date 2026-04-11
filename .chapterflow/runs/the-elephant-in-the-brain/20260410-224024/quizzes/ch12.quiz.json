@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What basic claim does Chapter 12 make about charity?",
+      "choices": [
+        "It is only pure altruism",
+        "It often functions as a signal as well as a helping act",
+        "It never produces real benefit"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "understand",
+      "depthLevel": "easy",
+      "explanation": {
+        "gentle": "The chapter treats giving as help plus social signal.",
+        "direct": "Its main move is to add signaling to the standard picture of charity.",
+        "competitive": "Giving is not just impact math."
+      }
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What can charity signal according to the chapter?",
+      "choices": [
+        "Wealth, empathy, and prosocial orientation",
+        "Only private guilt",
+        "Nothing if the gift is small"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "remember",
+      "depthLevel": "easy",
+      "explanation": {
+        "gentle": "The chapter says giving can show resources, caring, and public-mindedness.",
+        "direct": "Charity can communicate both means and moral orientation.",
+        "competitive": "The gift can advertise surplus and virtue."
+      }
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What does prosocial orientation mean in this chapter?",
+      "choices": [
+        "A public signal of being the kind of person who helps others",
+        "A refusal to let anyone see the donation",
+        "A guarantee that the most effective option was chosen"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "remember",
+      "depthLevel": "easy",
+      "explanation": {
+        "gentle": "It means appearing publicly aligned with helping and cooperation.",
+        "direct": "The term points to visible evidence of being the sort of person who helps others.",
+        "competitive": "It is a public-mindedness signal."
+      }
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A company prefers the donation option with more public visibility even though both options help. Which chapter idea is most visible?",
+      "choices": [
+        "Giving patterns can fit social-display motives more than pure effectiveness motives",
+        "Visibility has no effect on charity",
+        "Only outcomes matter in real giving"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "apply",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "The visible shape of the act is helping drive the choice.",
+        "direct": "Recognition and social legibility can influence charitable preference beyond pure impact.",
+        "competitive": "The readable signal is steering the donation."
+      }
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why might students crowd a visible fundraiser table more than a less visible helping opportunity?",
+      "choices": [
+        "Because public helping can signal care and public-mindedness more clearly",
+        "Because invisible help never works",
+        "Because students do not care about outcomes at all"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "apply",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "The public setup makes the social meaning of helping easier to read.",
+        "direct": "Visibility can increase the signaling value of the charitable act.",
+        "competitive": "The stage makes the signal cleaner."
+      }
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which misunderstanding does Chapter 12 reject?",
+      "choices": [
+        "Charity can produce real benefits",
+        "Charity can involve signaling motives",
+        "If signaling is involved, charity must be fake or useless"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "The chapter keeps real help alive while adding social motives.",
+        "direct": "It rejects the idea that signaling automatically empties charity of value.",
+        "competitive": "Signal does not mean sham."
+      }
+    },
+    {
+      "questionId": "q07",
+      "prompt": "How does Chapter 12 grow out of Chapter 11 on art?",
+      "choices": [
+        "It moves from visible burden in art to visible sacrifice in giving",
+        "It abandons signaling and focuses only on morality",
+        "It treats charity and art as unrelated"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "After art, the book turns to giving as another place where visible burden can signal value.",
+        "direct": "Charity extends the signaling logic by shifting from artistic cost to socially legible sacrifice.",
+        "competitive": "The signal moves from burdened art to burdened giving."
+      }
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why can posting a donation receipt in a social channel fit the chapter's model?",
+      "choices": [
+        "Because the act can help others while also signaling empathy or virtue",
+        "Because public giving can never influence anyone else positively",
+        "Because visibility cancels the charitable effect"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "apply",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "The post can do some good and still communicate something about the giver.",
+        "direct": "A visible charitable act can combine benefit with moral display.",
+        "competitive": "The receipt can recruit help and brand the donor."
+      }
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does the chapter insist that charity can be genuinely beneficial while still being shaped by signaling motives?",
+      "choices": [
+        "Because real help and public moral signaling can coexist in the same act",
+        "Because signaling disappears whenever people care",
+        "Because effectiveness and visibility always point to the same choice"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard",
+      "explanation": {
+        "gentle": "The chapter's main tension is overlap rather than replacement.",
+        "direct": "Real impact does not automatically disappear when reputational motives are present.",
+        "competitive": "Impact and image can stack."
+      }
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What is the strongest bridge from Chapter 12 into Chapter 13 on education?",
+      "choices": [
+        "If visible giving can signal the giver, visible educational investment may also signal traits about the student",
+        "Education matters only when charity disappears",
+        "Charity and education belong to unrelated parts of the book"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard",
+      "explanation": {
+        "gentle": "The next chapter asks what socially visible schooling signals about the person behind it.",
+        "direct": "Education becomes the next domain where investment can do real work and also advertise traits.",
+        "competitive": "After giving signals the donor, schooling signals the student."
+      }
+    }
+  ]
+}

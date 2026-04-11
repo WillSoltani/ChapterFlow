@@ -257,7 +257,11 @@
       "category": "work",
       "format": "decision_point",
       "endingType": "broader_principle",
-      "contexts": ["management", "projects", "feedback"],
+      "contexts": [
+        "management",
+        "projects",
+        "feedback"
+      ],
       "scenario": {
         "gentle": "The project tracker glows on the conference-room screen, and Lena can feel the team hiding how far behind one piece really is.",
         "direct": "Lena sees the plan slipping, but the team is still speaking as if the schedule is intact.",
@@ -280,7 +284,11 @@
       "category": "school",
       "format": "dialogue",
       "endingType": "self_directed_question",
-      "contexts": ["school", "editing", "trust"],
+      "contexts": [
+        "school",
+        "editing",
+        "trust"
+      ],
       "scenario": {
         "gentle": "In the student paper office, Marcus hears that a key interview never got scheduled. Half-folded mockups cover the desk while everyone waits for his reaction.",
         "direct": "The staff is watching whether Marcus treats the missed update as useful truth or as a reason to punish the messenger.",
@@ -302,8 +310,12 @@
       "title": "Priya Realizes Her Family Plan Is So Controlled That Nobody Reports Problems",
       "category": "personal",
       "format": "dilemma",
-      "endingType": "broader_principle",
-      "contexts": ["family", "coordination", "control"],
+      "endingType": "common_trap",
+      "contexts": [
+        "family",
+        "coordination",
+        "control"
+      ],
       "scenario": {
         "gentle": "Priya runs every family plan tightly, but now relatives wait quietly for her instructions instead of telling her when something changes.",
         "direct": "Her control has produced compliance on the surface and silence underneath.",
@@ -325,8 +337,12 @@
       "title": "Damon Learns the Team Missed the Problem Because Nobody Wanted to Be First",
       "category": "work",
       "format": "postmortem",
-      "endingType": "surprise_reframe",
-      "contexts": ["postmortem", "fear", "execution"],
+      "endingType": "surprising_implication",
+      "contexts": [
+        "postmortem",
+        "fear",
+        "execution"
+      ],
       "scenario": {
         "gentle": "At the postmortem, Damon sees that several people noticed the issue early but kept waiting for someone else to say it first.",
         "direct": "The failure was not lack of awareness. It was a room where nobody felt safe surfacing the signal quickly.",
@@ -348,8 +364,12 @@
       "title": "Erica Learns That Trust Makes the Robotics Team Faster, Not Softer",
       "category": "school",
       "format": "predict_reveal",
-      "endingType": "surprise_reframe",
-      "contexts": ["school", "robotics", "adaptation"],
+      "endingType": "cross_domain",
+      "contexts": [
+        "school",
+        "robotics",
+        "adaptation"
+      ],
       "scenario": {
         "gentle": "The robotics bench is covered in loose screws and checklists while Erica's team keeps hiding small errors to avoid looking careless.",
         "direct": "The captain thinks pressure will sharpen the team, but the students are now protecting themselves instead of fixing the robot faster.",
@@ -371,8 +391,12 @@
       "title": "Joel Shifts From Command Bursts to Short Check-In Loops",
       "category": "personal",
       "format": "before_after",
-      "endingType": "broader_principle",
-      "contexts": ["leadership", "habits", "feedback"],
+      "endingType": "perspective_reframe",
+      "contexts": [
+        "leadership",
+        "habits",
+        "feedback"
+      ],
       "scenario": {
         "gentle": "Before, Joel managed by giving hard instructions and hoping the plan held. After repeated surprises, he starts building short check-ins where new information can revise the path.",
         "direct": "Joel moves from one-way command bursts to a system that can keep learning while the work moves.",

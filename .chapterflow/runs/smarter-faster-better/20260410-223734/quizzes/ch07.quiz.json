@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter\u2019s central claim about innovation?",
+      "choices": [
+        "Innovation mainly comes from isolated genius",
+        "Innovation improves when ideas move and get revised under pressure",
+        "Deadlines automatically create creativity"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter treats innovation as idea transfer plus revision under pressure.",
+        "direct": "Creativity here depends on moving patterns across boundaries and reshaping them hard enough to fit.",
+        "competitive": "The strong room steals, edits, and improves instead of waiting for magic."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Which subtitle anchors frame this chapter?",
+      "choices": [
+        "Forecasting, poker, and Bayesian psychology",
+        "Idea brokers, creative desperation, and Frozen",
+        "Information, knowledge, and public schools"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Those are the three anchors the chapter uses to frame innovation.",
+        "direct": "The subtitle links cross-boundary borrowing, revision pressure, and a visible creative case.",
+        "competitive": "Those are the chapter\u2019s three pressure points."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A team is stuck on the same weak concept. What fits the chapter best?",
+      "choices": [
+        "Protect the current draft to preserve originality",
+        "Import a useful pattern from another context and adapt it",
+        "Wait for more inspiration before touching anything"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter favors borrowing a useful pattern and reshaping it for the new problem.",
+        "direct": "Idea transfer widens the room\u2019s options when internal habits are not enough.",
+        "competitive": "Break the loop by dragging in better raw material."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "In Nora\u2019s scenario, what changes the project most?",
+      "choices": [
+        "A borrowed pattern adapted to the current constraint",
+        "A promise to be more original next time",
+        "A longer period without deadlines"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nora\u2019s team improves when it brings in and adapts a useful pattern.",
+        "direct": "The breakthrough comes from cross-team borrowing, not from purity.",
+        "competitive": "The room moves when it steals the right structure."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What distinction does the chapter draw between originality and borrowing?",
+      "choices": [
+        "Borrowing cancels creativity",
+        "Originality is stronger when no outside material is used",
+        "Borrowing can support innovation when the material is transformed"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter says recombination can still be genuinely creative.",
+        "direct": "Borrowed material does not weaken innovation if it is being reshaped to solve a new problem.",
+        "competitive": "A good remix can beat purity theater."
+      },
+      "bloomsLevel": "understand-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Why does the chapter include creative desperation?",
+      "choices": [
+        "To show that pressure can force serious revision without guaranteeing brilliance",
+        "To prove that pressure always improves ideas",
+        "To argue that deadlines should replace collaboration"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Pressure matters here because it can force the room to revise weak material.",
+        "direct": "The chapter treats urgency as a revision force, not as an automatic source of talent.",
+        "competitive": "The clock kills excuses, not the need to think."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Diego worries that using an outside idea ruins creativity. What chapter lesson fits best?",
+      "choices": [
+        "A transformed borrowed pattern can still be a creative solution",
+        "Real projects must avoid outside influence",
+        "Creativity works best when comparison is banned"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says recombination can produce a stronger new fit.",
+        "direct": "Borrowing becomes creative when the imported material is adapted to the new problem.",
+        "competitive": "Purity is weaker than a hard-working remix."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Omar is stuck because he refuses outside input. What should he do next?",
+      "choices": [
+        "Protect the draft until it feels more original",
+        "Import one outside pattern and test whether it improves the work",
+        "Ignore the block because pressure will fix it later"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Outside input can restart movement when the room is stuck inside one version.",
+        "direct": "The chapter recommends bringing in fresh material before originality pride hardens.",
+        "competitive": "Feed the draft something new before pride kills it."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Which statement best captures the chapter\u2019s view of pressure and innovation?",
+      "choices": [
+        "Pressure only helps when ideas can still move and revision stays possible",
+        "Pressure is enough by itself to create strong ideas",
+        "Pressure matters less than keeping every early draft intact"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says urgency helps only if the work can still change.",
+        "direct": "A flexible room under strain can get sharper, while a rigid room just gets louder.",
+        "competitive": "A loud clock without movement is dead weight."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How does this chapter prepare the way for absorbing data?",
+      "choices": [
+        "It shows that more ideas create a need to sort and interpret information well",
+        "It shows that innovation removes the need for data",
+        "It proves that only one idea should survive early"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Generating more possibilities creates a new need to interpret which ones matter.",
+        "direct": "Innovation expands the option set, and the next chapter asks how to absorb the information around those options.",
+        "competitive": "More options raise the signal problem."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

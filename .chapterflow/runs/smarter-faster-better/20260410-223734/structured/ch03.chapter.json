@@ -257,7 +257,11 @@
       "category": "work",
       "format": "decision_point",
       "endingType": "broader_principle",
-      "contexts": ["operations", "alerts", "risk"],
+      "contexts": [
+        "operations",
+        "alerts",
+        "risk"
+      ],
       "scenario": {
         "gentle": "Mira is in an operations room where one red alert box has started dominating every conversation. The dashboard glows in the dim light, and nobody is checking the surrounding numbers anymore.",
         "direct": "One metric is screaming, and the room has started treating it like the whole problem.",
@@ -280,7 +284,11 @@
       "category": "school",
       "format": "dialogue",
       "endingType": "self_directed_question",
-      "contexts": ["school", "lab", "attention"],
+      "contexts": [
+        "school",
+        "lab",
+        "attention"
+      ],
       "scenario": {
         "gentle": "In chemistry lab, Caleb keeps staring at the timer while Naomi notices that a second solution has changed color. Two clues are now competing for attention.",
         "direct": "Caleb is fixated on the timer, and Naomi realizes the color change may matter more than the countdown now.",
@@ -302,8 +310,12 @@
       "title": "Serena Realizes the Flashing Engine Light Is Not the Only Story",
       "category": "personal",
       "format": "dilemma",
-      "endingType": "broader_principle",
-      "contexts": ["driving", "stress", "interpretation"],
+      "endingType": "common_trap",
+      "contexts": [
+        "driving",
+        "stress",
+        "interpretation"
+      ],
       "scenario": {
         "gentle": "Driving through heavy rain, Serena sees an engine light flash and feels her attention collapse around it. She almost stops noticing the road, the sound of the car, and the traffic around her.",
         "direct": "The warning light grabs Serena's whole mind, and the rest of the situation starts fading.",
@@ -325,8 +337,12 @@
       "title": "Theo's Team Learns That One Boxed Number Hid the Real Failure",
       "category": "work",
       "format": "postmortem",
-      "endingType": "broader_principle",
-      "contexts": ["postmortem", "metrics", "analysis"],
+      "endingType": "surprising_implication",
+      "contexts": [
+        "postmortem",
+        "metrics",
+        "analysis"
+      ],
       "scenario": {
         "gentle": "At the project postmortem, one boxed number has been circled three times in the notes. Theo realizes the team built its whole explanation around that single metric.",
         "direct": "The postmortem keeps orbiting one number, even though the surrounding conditions tell a messier story.",
@@ -348,8 +364,12 @@
       "title": "Idris and Kira Catch the Bigger Argument Before the Round Starts",
       "category": "school",
       "format": "predict_reveal",
-      "endingType": "surprise_reframe",
-      "contexts": ["debate", "prep", "strategy"],
+      "endingType": "cross_domain",
+      "contexts": [
+        "debate",
+        "prep",
+        "strategy"
+      ],
       "scenario": {
         "gentle": "Idris keeps refining one clever rebuttal for debate practice while Kira notices the opposing team has built a much broader case. Their prep has become too narrow.",
         "direct": "One rebuttal has captured Idris's attention, but Kira can see that the bigger argument is moving elsewhere.",
@@ -371,8 +391,12 @@
       "title": "Naomi Changes Her Sunday Planning Ritual to Catch What Stress Hides",
       "category": "personal",
       "format": "before_after",
-      "endingType": "broader_principle",
-      "contexts": ["planning", "stress", "habits"],
+      "endingType": "perspective_reframe",
+      "contexts": [
+        "planning",
+        "stress",
+        "habits"
+      ],
       "scenario": {
         "gentle": "Before, Naomi planned her week by staring at the loudest problem until it felt solved. After a few bad weeks, she starts adding a short rescan before locking the plan.",
         "direct": "Naomi used to let the most urgent item own her planning session. Now she deliberately checks what else belongs in view.",

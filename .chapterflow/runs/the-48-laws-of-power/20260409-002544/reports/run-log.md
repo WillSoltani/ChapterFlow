@@ -651,6 +651,30 @@ Phase 5 complete.
 
 - Opened Chapter 37 at the prewriter boundary.
 - Created prewriter artifacts for ch37: brief, outline, quiz blueprint, source sidecar text, and source sidecar json.
+- Completed writer, editor, critic, converter, quiz, and validator steps for Chapter 37.
+- Validation result: PASS.
+- Continuity hash sealed for `ch37`: `6b75182a665aa49604b7f53dafd877546f046222c1c11e1b54fed47fb6e9abf1`
+
+### Drift repair
+
+- Detected deviation: the first Chapter 37 lint pass raced the builder output, and the initial quiz build was too skewed on `correctIndex`.
+- Repair: reran the Chapter 37 builder sequentially, rebalanced quiz answer indexes to `4/3/3`, reran chapter gate lint against the actual validated payload on disk, rechecked review-wrapper equality, and resealed continuity before opening Chapter 38.
+
+- Opened Chapter 38 at the prewriter boundary.
+- Created prewriter artifacts for ch38: brief, outline, quiz blueprint, source sidecar text, and source sidecar json.
+- Completed writer, editor, critic, converter, quiz, and validator steps for Chapter 38.
+- Validation result: PASS.
+- Continuity hash sealed for `ch38`: `ebe290f9c1bd3bcc0520fcd2ff05927265331622a385480de35e36b029e40a25`
+
+### Drift repair
+
+- Detected deviation: the first Chapter 38 gate found duplicated cross-depth takeaway wording, and the initial quiz build was too skewed on `correctIndex`.
+- Repair: patched the Chapter 38 builder to differentiate the duplicated takeaway sentence, rebalanced quiz answer indexes to `3/4/3`, rebuilt the chapter chain, reran chapter gate lint, rechecked review-wrapper equality, and resealed continuity before opening Chapter 39.
+
+- Wave `37-38` artifact guard result: `FAIL=0 WARN=0`
+
+- Opened Chapter 39 at the prewriter boundary.
+- Created prewriter artifacts for ch39: brief, outline, quiz blueprint, source sidecar text, and source sidecar json.
 
 - Completed writer, editor, critic, converter, quiz, and validator steps for Chapter 36.
 - Validation result: PASS.
@@ -663,3 +687,84 @@ Phase 5 complete.
 - Completed writer, editor, critic, converter, quiz, and validator steps for Chapter 36.
 - Validation result: PASS.
 - Continuity hash sealed for `ch36`: `5a1f8489ed18c654ffd1f374e159d0f64a6dd7530754b95be71219d69cdf5186`
+
+- Completed writer, editor, critic, converter, quiz, and validator steps for Chapter 37.
+- Validation result: PASS.
+- Continuity hash sealed for `ch37`: `536dcb04c466745f01321b3b1223d3f75bed3d6b0b6a522b5f98d3865c054e06`
+
+- Completed writer, editor, critic, converter, quiz, and validator steps for Chapter 37.
+- Validation result: PASS.
+- Continuity hash sealed for `ch37`: `6b75182a665aa49604b7f53dafd877546f046222c1c11e1b54fed47fb6e9abf1`
+
+- Completed writer, editor, critic, converter, quiz, and validator steps for Chapter 37.
+- Validation result: PASS.
+- Continuity hash sealed for `ch37`: `6b75182a665aa49604b7f53dafd877546f046222c1c11e1b54fed47fb6e9abf1`
+
+- Completed writer, editor, critic, converter, quiz, and validator steps for Chapter 38.
+- Validation result: PASS.
+- Continuity hash sealed for `ch38`: `cdeed3ea0442a6192e89e22318cd5d42ce9c6ec9f539d04192c03d87675bf8c5`
+
+- Completed writer, editor, critic, converter, quiz, and validator steps for Chapter 38.
+- Validation result: PASS.
+- Continuity hash sealed for `ch38`: `ef6450801f7bddd8c3fe23546dd0c26b7d82f650b23f20eadd6c119bd79bd693`
+
+- Completed writer, editor, critic, converter, quiz, and validator steps for Chapter 38.
+- Validation result: PASS.
+- Continuity hash sealed for `ch38`: `ef6450801f7bddd8c3fe23546dd0c26b7d82f650b23f20eadd6c119bd79bd693`
+
+- Completed writer, editor, critic, converter, quiz, and validator steps for Chapter 38.
+- Validation result: PASS.
+- Continuity hash sealed for `ch38`: `ebe290f9c1bd3bcc0520fcd2ff05927265331622a385480de35e36b029e40a25`
+
+- Completed writer, editor, critic, converter, quiz, and validator steps for Chapter 39.
+- Validation result: PASS.
+- Continuity hash sealed for `ch39`: `9dab2ceeeb76ff983fb99d7ababb6b05b6bba17cd643bd513f40dfac7e44afc8`
+
+- Completed writer, editor, critic, converter, quiz, and validator steps for Chapter 39.
+- Validation result: PASS.
+- Continuity hash sealed for `ch39`: `194cfc74ae3c6df67442a21716475d5da7ad54868f5ebe3b400801a4657bba92`
+
+### Drift repair
+
+- Detected deviation: the first Chapter 39 lint pass raced the builder output, and the initial quiz build was too skewed on `correctIndex`.
+- Repair: reran the Chapter 39 builder sequentially, rebalanced quiz answer indexes to `3/4/3`, reran chapter gate lint against the actual validated payload on disk, rechecked review-wrapper equality, and resealed continuity before opening Chapter 40.
+
+- Opened Chapter 40 at the prewriter boundary.
+- Created prewriter artifacts for ch40: brief, outline, quiz blueprint, source sidecar text, and source sidecar json.
+
+- Completed writer, editor, critic, converter, quiz, and validator steps for Chapter 40.
+- Validation result: PASS.
+- Continuity hash sealed for `ch40`: `35648a3fe62bde16c54f505a7cf56e374b15df2fec2ef43c29b24f5defabbb96`
+
+- Completed writer, editor, critic, converter, quiz, and validator steps for Chapter 40.
+- Validation result: PASS.
+- Continuity hash sealed for `ch40`: `bb90216ea30609c07f597f5f684e650e06b3f520ae4384b1c80938955e389c99`
+- Wave `39-40` artifact guard result: `FAIL=0 WARN=0`
+- Wrote Chapter 41 source sidecar, brief, outline, and quiz blueprint before drafting.
+
+- Completed writer, editor, critic, converter, quiz, and validator steps for Chapter 41.
+- Validation result: PASS.
+- Continuity hash sealed for `ch41`: `dc21314fd2add42cc0f6225da785c39352467aab5f24d76f4343ec7ee4d07ebf`
+
+- Completed writer, editor, critic, converter, quiz, and validator steps for Chapter 41.
+- Validation result: PASS.
+- Continuity hash sealed for `ch41`: `5d2b637f3381f6af0d1b78c78f6c5ae5a66884df99ca5496ec1b12299f537b01`
+
+- Completed writer, editor, critic, converter, quiz, and validator steps for Chapter 41.
+- Validation result: PASS.
+- Continuity hash sealed for `ch41`: `d1a666d1976849f327339d0b9dbfe3338d9c0b5d96355356a90170d4852efdfd`
+- Wrote Chapter 42 source sidecar, brief, outline, and quiz blueprint before drafting.
+
+- Completed writer, editor, critic, converter, quiz, and validator steps for Chapter 42.
+- Validation result: PASS.
+- Continuity hash sealed for `ch42`: `9b3c76c61cdc67506588fbda729d35c57487df997dd13d4e09d0584dd3a1d621`
+
+- Completed writer, editor, critic, converter, quiz, and validator steps for Chapter 42.
+- Validation result: PASS.
+- Continuity hash sealed for `ch42`: `40b3562ef36778a8d90744912cd8198e9d9d3ab99a3d0b9d1abfcbd9f71a3dcc`
+- Wave `41-42` artifact guard result: `FAIL=0 WARN=0`
+- Wrote Chapter 43 source sidecar, brief, outline, and quiz blueprint before drafting.
+
+- Completed writer, editor, critic, converter, quiz, and validator steps for Chapter 42.
+- Validation result: PASS.
+- Continuity hash sealed for `ch42`: `40b3562ef36778a8d90744912cd8198e9d9d3ab99a3d0b9d1abfcbd9f71a3dcc`

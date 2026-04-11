@@ -322,7 +322,7 @@
           "title": "Serena Realizes the Flashing Engine Light Is Not the Only Story",
           "category": "personal",
           "format": "dilemma",
-          "endingType": "broader_principle",
+          "endingType": "common_trap",
           "contexts": [
             "driving",
             "stress",
@@ -349,7 +349,7 @@
           "title": "Theo's Team Learns That One Boxed Number Hid the Real Failure",
           "category": "work",
           "format": "postmortem",
-          "endingType": "broader_principle",
+          "endingType": "surprising_implication",
           "contexts": [
             "postmortem",
             "metrics",
@@ -376,7 +376,7 @@
           "title": "Idris and Kira Catch the Bigger Argument Before the Round Starts",
           "category": "school",
           "format": "predict_reveal",
-          "endingType": "surprise_reframe",
+          "endingType": "cross_domain",
           "contexts": [
             "debate",
             "prep",
@@ -403,7 +403,7 @@
           "title": "Naomi Changes Her Sunday Planning Ritual to Catch What Stress Hides",
           "category": "personal",
           "format": "before_after",
-          "endingType": "broader_principle",
+          "endingType": "perspective_reframe",
           "contexts": [
             "planning",
             "stress",

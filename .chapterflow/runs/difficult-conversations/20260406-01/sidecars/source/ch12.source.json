@@ -1,0 +1,103 @@
+{
+  "bookId": "difficult-conversations",
+  "chapterNumber": 12,
+  "chapterTitle": "Putting It All Together",
+  "runId": "20260406-01",
+  "packVersion": "v12-sealed",
+  "thinChapterFlag": false,
+  "conceptBudget": 5,
+  "moralComplexityFlag": true,
+  "bloomCeiling": "evaluate",
+  "concepts": [
+    {
+      "id": "ch12-c1",
+      "name": "Full-conversation composition",
+      "summary": "The closing chapter integrates the whole conversation arc from decision-to-raise through preparation, opening, listening, expression, problem-solving, and close. The chapter is about composing earlier moves, not introducing one more narrow move.",
+      "allowedQuotes": [],
+      "forbiddenZones": [
+        "Do not turn the chapter into a checklist recap",
+        "Do not flatten earlier distinctions into a generic summary"
+      ],
+      "callbackConnections": [
+        { "chapterNumber": 1, "connection": "The three conversations still diagnose the problem at the start." },
+        { "chapterNumber": 11, "connection": "Problem-solving remains only one stage in the full arc." }
+      ]
+    },
+    {
+      "id": "ch12-c2",
+      "name": "The framework is not a script",
+      "summary": "The moves have to be recombined and resequenced to fit the live situation. Technical correctness without flexibility sounds rehearsed and can feel manipulative.",
+      "allowedQuotes": [
+        "the framework is not a script"
+      ],
+      "forbiddenZones": [
+        "Do not present one fixed order as the only valid performance",
+        "Do not reward rehearsed tone"
+      ],
+      "callbackConnections": []
+    },
+    {
+      "id": "ch12-c3",
+      "name": "Meta-skill: openness to being changed",
+      "summary": "The source's deepest claim is that the real skill is openness to being changed by what the other person says. The visible techniques are scaffolding around that stance. Without it, the conversation can look correct while feeling extractive.",
+      "allowedQuotes": [],
+      "forbiddenZones": [
+        "Do not reduce this to passive agreeability",
+        "Do not confuse openness with surrendering your perspective"
+      ],
+      "callbackConnections": [
+        { "chapterNumber": 2, "connection": "Learning over winning is the live version of the learning stance." },
+        { "chapterNumber": 10, "connection": "Clear expression must remain revisable rather than sacred." }
+      ]
+    },
+    {
+      "id": "ch12-c4",
+      "name": "Supplement extensions as real limits",
+      "summary": "Non-engagement, large power gaps, recurring old issues, illegitimate-feeling feelings, and written media are not side notes. They are real constraints that change what the framework can do and what success should mean.",
+      "allowedQuotes": [],
+      "forbiddenZones": [
+        "Do not relegate the supplement material to a detached appendix tone",
+        "Do not imply skill alone erases structural limits"
+      ],
+      "callbackConnections": []
+    },
+    {
+      "id": "ch12-c5",
+      "name": "Success as cleaner reality, not guaranteed agreement",
+      "summary": "The framework does not guarantee agreement, engagement, reconciliation, or safety. In some cases success is clearer reality, better boundaries, more accurate diagnosis, or a safer next move rather than the conversation the reader originally wanted.",
+      "allowedQuotes": [],
+      "forbiddenZones": [
+        "Do not promise mastery or reliable control",
+        "Do not turn the ending into a victory lap"
+      ],
+      "callbackConnections": []
+    }
+  ],
+  "scenarioAssets": {
+    "primaryNames": [
+      "Helena",
+      "Victor",
+      "Amina",
+      "Cole",
+      "Rhea",
+      "Mateo",
+      "Jun",
+      "Talia",
+      "Niko",
+      "Selene"
+    ],
+    "schoolSettings": [
+      "Recurring old-issue group or lab conversation (Amina/Cole)",
+      "Graduate power-gap conversation with faculty authority (Amina/Professor Abbas)"
+    ],
+    "workVariety": "full conversation walkthrough, mechanical use failure",
+    "formatEndingMatrix": {
+      "scenario1": { "format": "decision_point", "ending": "decision_reframe", "category": "work", "characters": "Helena, Victor" },
+      "scenario2": { "format": "postmortem", "ending": "hidden_cost", "category": "school", "characters": "Amina, Cole" },
+      "scenario3": { "format": "dialogue", "ending": "relationship_turn", "category": "personal", "characters": "Rhea, Mateo" },
+      "scenario4": { "format": "predict_reveal", "ending": "broader_principle", "category": "work", "characters": "Jun, Talia" },
+      "scenario5": { "format": "dilemma", "ending": "self_diagnosis", "category": "school", "characters": "Amina, Professor Abbas" },
+      "scenario6": { "format": "before_after", "ending": "behavior_shift", "category": "personal", "characters": "Niko, Selene" }
+    }
+  }
+}

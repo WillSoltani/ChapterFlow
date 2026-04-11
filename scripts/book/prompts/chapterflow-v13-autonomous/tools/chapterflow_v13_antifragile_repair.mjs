@@ -243,10 +243,31 @@ function normalizeBookMetadataForScope(bookMetadata, chapterRange) {
   };
 }
 
+function applyAntifragileReviewCardOverrides(chapter) {
+  if (!Array.isArray(chapter.reviewCards)) return;
+
+  if (chapter.number === 19 && chapter.reviewCards[1]) {
+    chapter.reviewCards[1].back = {
+      gentle: "Notice that opacity matters because it hides the turning point where help can quietly become harm.",
+      direct: "Opacity matters because it hides the turning point where a fix stops helping and starts mutating into damage.",
+      competitive: "The edge is simple: opacity blinds you to the bend where today's fix becomes tomorrow's bill.",
+    };
+  }
+
+  if (chapter.number === 22 && chapter.reviewCards[2]) {
+    chapter.reviewCards[2].back = {
+      gentle: "The practical point is that overengineering can make a system depend on extra controls that create fresh maintenance strain.",
+      direct: "Overengineering breeds fragility when extra controls create new dependencies and maintenance burdens faster than understanding improves.",
+      competitive: "The trap is simple: once the fix needs a support staff of fixes, fragility has already entered the room.",
+    };
+  }
+}
+
 function normalizeChapter(chapter) {
   chapter.book = normalizeChapterBook();
   normalizeIfThenPlans(chapter);
   normalizeReviewCards(chapter);
+  applyAntifragileReviewCardOverrides(chapter);
   if (chapter?.contentVariants?.medium?.oneMinuteRecap?.preview) {
     const preview = chapter.contentVariants.medium.oneMinuteRecap.preview;
     if (typeof preview === "object") {
@@ -299,6 +320,7 @@ function main() {
       chapters: [chapter],
     };
     writeJson(path.join(validatedDir, file.replace(".chapter.json", ".review-package.json")), reviewPackage);
+    writeJson(path.join(validatedDir, file.replace(".chapter.json", ".review.validated.json")), reviewPackage);
     chapters.push(chapter);
   });
 

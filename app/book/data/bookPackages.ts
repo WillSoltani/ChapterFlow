@@ -19,6 +19,7 @@ import theCharismaMythPackageJson from "@/book-packages/the-charisma-myth.modern
 import theLikeSwitchPackageJson from "@/book-packages/the-like-switch.modern.json";
 import goodToGreatPackageJson from "@/book-packages/good-to-great.modern.json";
 import howToTalkToAnyonePackageJson from "@/book-packages/how-to-talk-to-anyone.modern.json";
+import smarterFasterBetterPackageJson from "@/book-packages/smarter-faster-better.modern.json";
 import talkLikeTedPackageJson from "@/book-packages/talk-like-ted.modern.json";
 import neverSplitTheDifferencePackageJson from "@/book-packages/never-split-the-difference.modern.json";
 import pitchAnythingPackageJson from "@/book-packages/pitch-anything.modern.json";
@@ -31,6 +32,7 @@ import theArtOfWarPackageJson from "@/book-packages/the-art-of-war.modern.json";
 import atomicHabitsPackageJson from "@/book-packages/atomic-habits.modern.json";
 import theGreatMentalModelsVol1PackageJson from "@/book-packages/the-great-mental-models-vol-1.modern.json";
 import theLeanStartupPackageJson from "@/book-packages/the-lean-startup.modern.json";
+import executionPackageJson from "@/book-packages/execution.modern.json";
 import { getBookCoverPath } from "@/lib/book-covers";
 
 export type VariantFamily = "EMH" | "PBC";
@@ -602,6 +604,18 @@ export function getHowToTalkToAnyonePackageForTone(tone: ToneKey): BookPackage {
   return normalizeNstdPackage(howToTalkToAnyonePackageJson, tone);
 }
 
+export const SMARTER_FASTER_BETTER_PACKAGE = normalizeNstdPackage(
+  smarterFasterBetterPackageJson,
+  "direct"
+);
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const SMARTER_FASTER_BETTER_RAW_CHAPTERS = getRawChapters(smarterFasterBetterPackageJson);
+
+export function getSmarterFasterBetterPackageForTone(tone: ToneKey): BookPackage {
+  return normalizeNstdPackage(smarterFasterBetterPackageJson, tone);
+}
+
 export const TALK_LIKE_TED_PACKAGE = normalizeNstdPackage(talkLikeTedPackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -723,6 +737,15 @@ export function getTheLeanStartupPackageForTone(tone: ToneKey): BookPackage {
   return normalizeNstdPackage(theLeanStartupPackageJson, tone);
 }
 
+export const EXECUTION_PACKAGE = normalizeNstdPackage(executionPackageJson, "direct");
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const EXECUTION_RAW_CHAPTERS = getRawChapters(executionPackageJson);
+
+export function getExecutionPackageForTone(tone: ToneKey): BookPackage {
+  return normalizeNstdPackage(executionPackageJson, tone);
+}
+
 export const BOOK_PACKAGES: BookPackage[] = [
   THE_POWER_OF_HABIT_PACKAGE,
   MAKE_TIME_PACKAGE,
@@ -745,6 +768,7 @@ export const BOOK_PACKAGES: BookPackage[] = [
   THE_LIKE_SWITCH_PACKAGE,
   GOOD_TO_GREAT_PACKAGE,
   HOW_TO_TALK_TO_ANYONE_PACKAGE,
+  SMARTER_FASTER_BETTER_PACKAGE,
   TALK_LIKE_TED_PACKAGE,
   NEVER_SPLIT_THE_DIFFERENCE_PACKAGE,
   PITCH_ANYTHING_PACKAGE,
@@ -757,6 +781,7 @@ export const BOOK_PACKAGES: BookPackage[] = [
   ATOMIC_HABITS_PACKAGE,
   THE_GREAT_MENTAL_MODELS_VOL_1_PACKAGE,
   THE_LEAN_STARTUP_PACKAGE,
+  EXECUTION_PACKAGE,
 ];
 
 const BOOK_PACKAGE_TONE_GETTERS: Partial<Record<string, (tone: ToneKey) => BookPackage>> = {
@@ -781,6 +806,7 @@ const BOOK_PACKAGE_TONE_GETTERS: Partial<Record<string, (tone: ToneKey) => BookP
   "the-like-switch": getTheLikeSwitchPackageForTone,
   "good-to-great": getGoodToGreatPackageForTone,
   "how-to-talk-to-anyone": getHowToTalkToAnyonePackageForTone,
+  "smarter-faster-better": getSmarterFasterBetterPackageForTone,
   "talk-like-ted": getTalkLikeTedPackageForTone,
   "never-split-the-difference": getNeverSplitTheDifferencePackageForTone,
   "pitch-anything": getPitchAnythingPackageForTone,
@@ -793,6 +819,7 @@ const BOOK_PACKAGE_TONE_GETTERS: Partial<Record<string, (tone: ToneKey) => BookP
   "atomic-habits": getAtomicHabitsPackageForTone,
   "the-great-mental-models-vol-1": getTheGreatMentalModelsVol1PackageForTone,
   "the-lean-startup": getTheLeanStartupPackageForTone,
+  execution: getExecutionPackageForTone,
 };
 
 export const BOOK_PACKAGE_PRESENTATION: Record<string, BookPackagePresentation> = {
@@ -965,6 +992,14 @@ export const BOOK_PACKAGE_PRESENTATION: Record<string, BookPackagePresentation> 
       "A modern reading of Leil Lowndes's nine-part guide to first impressions, conversation flow, rapport, social tact, and practical relationship-building under real-world pressure.",
     pages: 368,
   },
+  "smarter-faster-better": {
+    icon: "📊",
+    coverImage: getBookCoverPath("smarter-faster-better"),
+    difficulty: "Medium",
+    synopsis:
+      "A modern reading of Charles Duhigg's eight chapters on motivation, team dynamics, focus, goals, decision making, innovation, and turning raw information into usable judgment.",
+    pages: 320,
+  },
   "talk-like-ted": {
     icon: "🎤",
     coverImage: getBookCoverPath("talk-like-ted"),
@@ -1050,6 +1085,14 @@ export const BOOK_PACKAGE_PRESENTATION: Record<string, BookPackagePresentation> 
     synopsis:
       "A modern reading of validated learning, MVPs, innovation accounting, pivots, growth engines, adaptive organizations, and anti-waste management under uncertainty.",
     pages: 336,
+  },
+  execution: {
+    icon: "⚙️",
+    coverImage: getBookCoverPath("execution"),
+    difficulty: "Medium",
+    synopsis:
+      "A modern reading of the discipline that links strategy to results through leadership, cultural realism, people processes, operating cadence, and follow-through.",
+    pages: 278,
   },
 };
 

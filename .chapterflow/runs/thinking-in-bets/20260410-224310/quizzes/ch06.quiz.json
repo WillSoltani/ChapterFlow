@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "ch06-q01",
+      "depthLevel": "easy",
+      "bloomsLevel": "remember",
+      "prompt": "What is the main role of dissent in this chapter?",
+      "choices": [
+        "To improve group decisions by testing the current view",
+        "To make meetings feel more intense",
+        "To prove who in the room is boldest"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Duke treats dissent as a way to improve judgment, not as drama or a contest.",
+        "direct": "The chapter defines dissent as a truth-seeking tool that helps test whether the group's confidence is deserved.",
+        "competitive": "The good dissenter makes the call work harder. They are not there to decorate the meeting with attitude."
+      }
+    },
+    {
+      "questionId": "ch06-q02",
+      "depthLevel": "easy",
+      "bloomsLevel": "understand",
+      "prompt": "Why can consensus weaken decisions according to Duke?",
+      "choices": [
+        "Because agreement always means people are lazy",
+        "Because harmony can hide weak assumptions and missing evidence",
+        "Because groups should never try to agree on anything"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns that a calm room can still be missing a major question or risk.",
+        "direct": "Consensus is risky when the group starts treating social ease as evidence quality.",
+        "competitive": "The nodding room can hide a lot of unpaid decision debt."
+      }
+    },
+    {
+      "questionId": "ch06-q03",
+      "depthLevel": "medium",
+      "bloomsLevel": "apply",
+      "prompt": "A teammate raises an unpopular launch concern just before the final vote. What response best fits the chapter?",
+      "choices": [
+        "Treat the concern as a threat to team loyalty",
+        "Hear the objection fully and test whether it changes the decision",
+        "Ignore it so the group can protect momentum"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says challenge should be part of the decision process, not treated as betrayal.",
+        "direct": "A serious group tests the objection before closing because dissent may surface what harmony was hiding.",
+        "competitive": "Let the hard question hit the launch while you can still do something with it."
+      }
+    },
+    {
+      "questionId": "ch06-q04",
+      "depthLevel": "medium",
+      "bloomsLevel": "apply",
+      "prompt": "A seminar grows quiet around a weak answer because nobody wants to break the mood. What problem is the chapter highlighting?",
+      "choices": [
+        "The group is using politeness as a substitute for accuracy",
+        "The group is correctly avoiding unnecessary analysis",
+        "The group is proving that harmony guarantees good reasoning"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns that silence can reflect social caution rather than strong thinking.",
+        "direct": "This is the consensus trap: the room mistakes lack of challenge for strength of argument.",
+        "competitive": "Quiet can be camouflage when the answer is still weak."
+      }
+    },
+    {
+      "questionId": "ch06-q05",
+      "depthLevel": "medium",
+      "bloomsLevel": "analyze",
+      "prompt": "What is the key difference between evidence conflict and ego conflict?",
+      "choices": [
+        "Evidence conflict is about the claim, while ego conflict is about status and personal threat",
+        "Evidence conflict is louder, while ego conflict is calmer",
+        "Evidence conflict happens only in formal meetings"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "One kind of disagreement tests the idea. The other turns into a fight about people.",
+        "direct": "Duke protects challenge about the forecast while warning against fights over face, rank, and identity.",
+        "competitive": "Attack the reasoning, not the pecking order."
+      }
+    },
+    {
+      "questionId": "ch06-q06",
+      "depthLevel": "medium",
+      "bloomsLevel": "understand",
+      "prompt": "Which statement misreads this chapter?",
+      "choices": [
+        "Groups should make space for counterarguments before decisions lock",
+        "Loud or abrasive disagreement is automatically good dissent",
+        "Harmony can create false confidence when challenge is costly"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter does not praise harshness by itself. It praises useful challenge tied to evidence.",
+        "direct": "Duke rejects performative contrarianism. More heat is not the same thing as better judgment.",
+        "competitive": "Noise is not rigor, even if it calls itself courage."
+      }
+    },
+    {
+      "questionId": "ch06-q07",
+      "depthLevel": "medium",
+      "bloomsLevel": "apply",
+      "prompt": "A debate team wants stronger preparation. Which change best fits the chapter?",
+      "choices": [
+        "Require one serious counterargument before treating a case as ready",
+        "Ban disagreement so practice stays cohesive",
+        "Reward the loudest skeptic on every round"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants challenge built into the process rather than left to chance.",
+        "direct": "A strong norm gives objections a legitimate place without turning practice into status theater.",
+        "competitive": "Give the case one honest hit before a judge does it for you."
+      }
+    },
+    {
+      "questionId": "ch06-q08",
+      "depthLevel": "hard",
+      "bloomsLevel": "analyze",
+      "prompt": "What does a postmortem reveal when a real concern had been raised earlier but ignored?",
+      "choices": [
+        "That the problem was only technical, not social",
+        "That the group's norms did not give dissent the standing it needed",
+        "That the earlier concern no longer mattered once the result arrived"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says ignored dissent can reveal a group problem, not just a missed fact.",
+        "direct": "When a warning existed but was socially bypassed, the room has to examine how it handles challenge, not just the outcome miss.",
+        "competitive": "If the warning got airtime and still got buried, the culture is part of the bug."
+      }
+    },
+    {
+      "questionId": "ch06-q09",
+      "depthLevel": "hard",
+      "bloomsLevel": "analyze",
+      "prompt": "Why do strong group norms matter so much in this chapter?",
+      "choices": [
+        "Because norms can make counterarguments a normal part of decision quality instead of a breach of loyalty",
+        "Because norms remove uncertainty from all future decisions",
+        "Because norms let groups avoid any emotional discomfort at all"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "People need to know that raising a concern is allowed and useful.",
+        "direct": "Duke's group logic depends on norms that protect evidence-based challenge without rewarding personal combat.",
+        "competitive": "If the objection has no standing, comfort will keep winning by default."
+      }
+    },
+    {
+      "questionId": "ch06-q10",
+      "depthLevel": "hard",
+      "bloomsLevel": "analyze",
+      "prompt": "How does this chapter prepare the next one?",
+      "choices": [
+        "It proves that group disagreement should replace all other thinking tools",
+        "It moves from present-group challenge toward a wider perspective that includes future-oriented thinking",
+        "It shows that once groups dissent well, time no longer matters"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The next chapter widens the frame beyond the people in the room right now.",
+        "direct": "After showing how disagreement improves present group judgment, the book moves toward mental time travel and future perspective.",
+        "competitive": "First the room stops lying to itself. Next the timeline gets involved."
+      }
+    }
+  ]
+}

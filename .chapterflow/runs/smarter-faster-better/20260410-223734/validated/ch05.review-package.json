@@ -322,7 +322,7 @@
           "title": "Priya Realizes Her Family Plan Is So Controlled That Nobody Reports Problems",
           "category": "personal",
           "format": "dilemma",
-          "endingType": "broader_principle",
+          "endingType": "common_trap",
           "contexts": [
             "family",
             "coordination",
@@ -349,7 +349,7 @@
           "title": "Damon Learns the Team Missed the Problem Because Nobody Wanted to Be First",
           "category": "work",
           "format": "postmortem",
-          "endingType": "surprise_reframe",
+          "endingType": "surprising_implication",
           "contexts": [
             "postmortem",
             "fear",
@@ -376,7 +376,7 @@
           "title": "Erica Learns That Trust Makes the Robotics Team Faster, Not Softer",
           "category": "school",
           "format": "predict_reveal",
-          "endingType": "surprise_reframe",
+          "endingType": "cross_domain",
           "contexts": [
             "school",
             "robotics",
@@ -403,7 +403,7 @@
           "title": "Joel Shifts From Command Bursts to Short Check-In Loops",
           "category": "personal",
           "format": "before_after",
-          "endingType": "broader_principle",
+          "endingType": "perspective_reframe",
           "contexts": [
             "leadership",
             "habits",
