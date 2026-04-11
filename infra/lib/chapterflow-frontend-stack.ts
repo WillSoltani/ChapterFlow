@@ -69,7 +69,6 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       enforceSSL: true,
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
       removalPolicy: cdk.RemovalPolicy.DESTROY,
-      autoDeleteObjects: true,
     });
 
     // -------------------------------------------------------------------

@@ -73,7 +73,6 @@ class ChapterFlowFrontendStack extends cdk.Stack {
             enforceSSL: true,
             blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
             removalPolicy: cdk.RemovalPolicy.DESTROY,
-            autoDeleteObjects: true,
         });
         // -------------------------------------------------------------------
         // DynamoDB — ISR tag cache (used by OpenNext for revalidateTags)
