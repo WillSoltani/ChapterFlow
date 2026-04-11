@@ -1,0 +1,174 @@
+{
+  "questions": [
+    {
+      "questionId": "ch12-q01",
+      "prompt": "What is the core mistake in the it'll-get-worse-before-it-gets-better fallacy?",
+      "choices": [
+        "Treating present deterioration like proof of future improvement",
+        "Rejecting every difficult transition automatically",
+        "Assuming comfort is always a sign of success"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The bad stretch is being treated like proof.",
+        "direct": "Correct. Temporary worsening is being mistaken for evidence of progress.",
+        "competitive": "That is the trap. Pain starts forging its own credentials."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch12-q02",
+      "prompt": "Why is this fallacy emotionally tempting?",
+      "choices": [
+        "Because struggle can feel meaningful and serious",
+        "Because all painful processes lead somewhere better",
+        "Because confusion is always evidence of deep learning"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. Difficulty can feel like it must mean something important.",
+        "direct": "Correct. Pain and disruption can look like signs of seriousness even when they prove nothing yet.",
+        "competitive": "Exactly. Once the bill arrives, people want a payoff story."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch12-q03",
+      "prompt": "Which example best fits this fallacy?",
+      "choices": [
+        "A team treats a chaotic rollout as proof that transformation is working",
+        "A team checks whether the rollout is producing better results before expanding it",
+        "A student leaves a confusing method after finding no progress data"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chaos is being used like evidence of improvement.",
+        "direct": "Correct. A worsening process is being granted authority without proof of mechanism.",
+        "competitive": "That is it. The mess is getting credit just for being loud."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch12-q04",
+      "prompt": "What makes this fallacy dangerous in work and school?",
+      "choices": [
+        "It lets pain and confusion replace evidence about whether progress is real",
+        "It prevents people from tolerating any challenge at all",
+        "It makes all hard tasks automatically useless"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. A hard stretch starts doing the work that evidence should do.",
+        "direct": "Correct. The mistake is letting discomfort validate a process by itself.",
+        "competitive": "Right. The grind starts grading its own performance."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch12-q05",
+      "prompt": "Why is pain alone weak evidence of progress?",
+      "choices": [
+        "Because something can hurt for reasons other than improvement",
+        "Because all discomfort is meaningless",
+        "Because progress should always feel easy"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. A process can feel bad because it is failing, not because it is working.",
+        "direct": "Correct. Difficulty can accompany progress, but it can also reflect waste, friction, or poor design.",
+        "competitive": "Exactly. Pain can be real and still be buying nothing."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch12-q06",
+      "prompt": "What is the practical correction in this chapter?",
+      "choices": [
+        "Ask what mechanism links the present cost to the promised gain",
+        "Trust every painful transition a little longer",
+        "Avoid all processes that feel difficult at first"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The correction is to ask what the pain is actually buying.",
+        "direct": "Correct. Mechanism and feedback should connect the current cost to a real later benefit.",
+        "competitive": "Exactly. Make the struggle show the receipt."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch12-q07",
+      "prompt": "What does this fallacy confuse?",
+      "choices": [
+        "Present suffering with evidence of future improvement",
+        "Comfort with laziness",
+        "Feedback with criticism"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The bad stretch starts looking more informative than it really is.",
+        "direct": "Correct. The fallacy mistakes the existence of cost for proof of productive causation.",
+        "competitive": "Yes. The pain starts trying to pass as the payoff."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch12-q08",
+      "prompt": "Why can a confusing class method still be a bad sign rather than a good one?",
+      "choices": [
+        "Because confusion needs evidence that it is turning into understanding",
+        "Because all difficult classes are poorly designed",
+        "Because challenge has no role in learning"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Confusion alone does not prove deeper learning.",
+        "direct": "Correct. Without feedback showing real competence, the confusion may simply be unproductive.",
+        "competitive": "Exactly. The fog has to turn into skill or it is just fog."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch12-q09",
+      "prompt": "What is the deepest practical correction in this fallacy?",
+      "choices": [
+        "Force the painful process to compete with mechanism, feedback, and alternative explanations",
+        "Assume every rough phase will eventually justify itself",
+        "Choose whatever feels easiest instead"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter asks you to test the story behind the struggle.",
+        "direct": "Correct. Better judgment rebuilds the causal bridge instead of trusting pain by itself.",
+        "competitive": "Right. Strip the hero story away and make the process prove itself."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch12-q10",
+      "prompt": "What is the chapter's threshold question?",
+      "choices": [
+        "What evidence shows that this worsening is actually connected to later improvement?",
+        "How much pain am I willing to tolerate?",
+        "Should I avoid all hard transitions?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. That question stops the bad stretch from proving itself too quickly.",
+        "direct": "Correct. It tests whether a real mechanism connects the present cost to a future gain.",
+        "competitive": "That is the test. Can the pain prove it is buying the future it keeps promising?"
+      },
+      "bloomsLevel": "evaluate-transfer",
+      "depthLevel": "hard"
+    }
+  ]
+}

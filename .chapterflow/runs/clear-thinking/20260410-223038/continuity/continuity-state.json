@@ -127,7 +127,8 @@
       "ch17"
     ],
     "Nolan": [
-      "ch07"
+      "ch07",
+      "ch20"
     ],
     "Alina": [
       "ch08"
@@ -166,10 +167,12 @@
       "ch09"
     ],
     "Taliah": [
-      "ch10"
+      "ch10",
+      "ch22"
     ],
     "Gideon": [
-      "ch10"
+      "ch10",
+      "ch22"
     ],
     "Mina": [
       "ch10"
@@ -202,7 +205,8 @@
       "ch12"
     ],
     "Imani": [
-      "ch12"
+      "ch12",
+      "ch20"
     ],
     "Felix": [
       "ch12",
@@ -327,6 +331,48 @@
     ],
     "Arlo": [
       "ch19"
+    ],
+    "Celeste": [
+      "ch20"
+    ],
+    "Beck": [
+      "ch20"
+    ],
+    "Rhea": [
+      "ch20"
+    ],
+    "Tomas": [
+      "ch20"
+    ],
+    "Nadiah": [
+      "ch21"
+    ],
+    "Connor": [
+      "ch21"
+    ],
+    "Eliseo": [
+      "ch21"
+    ],
+    "Marina": [
+      "ch21"
+    ],
+    "Kellan": [
+      "ch21"
+    ],
+    "Ayla": [
+      "ch21"
+    ],
+    "Omari": [
+      "ch22"
+    ],
+    "Linh": [
+      "ch22"
+    ],
+    "Maris": [
+      "ch22"
+    ],
+    "Dax": [
+      "ch22"
     ]
   },
   "formatCategoryHistory": [],
@@ -492,6 +538,30 @@
       "Colin",
       "Sabine",
       "Arlo"
+    ],
+    "ch20": [
+      "Celeste",
+      "Nolan",
+      "Imani",
+      "Beck",
+      "Rhea",
+      "Tomas"
+    ],
+    "ch21": [
+      "Nadiah",
+      "Connor",
+      "Eliseo",
+      "Marina",
+      "Kellan",
+      "Ayla"
+    ],
+    "ch22": [
+      "Taliah",
+      "Omari",
+      "Linh",
+      "Gideon",
+      "Maris",
+      "Dax"
     ]
   },
   "approvedChapterHashes": {
@@ -513,7 +583,10 @@
     "ch16": "0299e3e28c3c72503483fe367f6633f487b29177cd4244d94a9630ee2af9294c",
     "ch17": "a497ce44fcbcc590a1c48da6e5553f45f47e9eadaf9145a4ec6237333cb981fd",
     "ch18": "8526a15c87b858d5752e1263f1755a8fdb1e575ac65ac52c96903c260d3a8ebf",
-    "ch19": "e5f47066107e54ac050ee788f838054d5223334122977a7f223a9e2df53514e2"
+    "ch19": "e5f47066107e54ac050ee788f838054d5223334122977a7f223a9e2df53514e2",
+    "ch20": "402a4664503a84e3de92b530100fffd500322ad2e5f0662e33e3609b16c1f8ee",
+    "ch21": "8ba115862136fd8a64002acf489d5be0164b8354def9ce746f4ec3e79f94f2d3",
+    "ch22": "afff44babd715b08c29056ff22c1677f24da653ae8d208ab21df6e5e8aa23bb7"
   },
   "baselineQuality": {
     "ch01": {

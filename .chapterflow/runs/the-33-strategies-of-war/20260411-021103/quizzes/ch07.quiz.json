@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "How does Chapter 7 define morale?",
+      "choices": [
+        "A cause-based meaning that helps teams endure effort and strain",
+        "A reward system built around bonuses and recognition",
+        "A temporary surge of enthusiasm after a speech"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "simple",
+      "explanation": {
+        "gentle": "The chapter treats morale as meaningful commitment, not as mood.",
+        "direct": "Start with the definition: morale is sustained effort tied to cause.",
+        "competitive": "Morale is durable meaning under pressure, not a hype spike."
+      }
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Which set of elements creates a credible crusade frame in this chapter?",
+      "choices": [
+        "A strong slogan, a charismatic founder, and total loyalty",
+        "A named opposing problem, a named cause, and leader behavior that proves belief",
+        "A competitive rival, public praise, and aggressive deadlines"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "simple",
+      "explanation": {
+        "gentle": "The mechanics are concrete and observable.",
+        "direct": "Notice the three-part structure: problem, cause, and embodied belief.",
+        "competitive": "The banner works only when conflict, purpose, and proof line up."
+      }
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What reversal keeps this chapter from becoming manipulation advice?",
+      "choices": [
+        "Morale works only in school settings",
+        "A leader must always name a human opponent",
+        "Manufactured crusades are detected and breed cynicism"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "simple",
+      "explanation": {
+        "gentle": "The chapter warns that fake conviction damages trust.",
+        "direct": "Keep the safeguard in view: insincere mission talk curdles into cynicism.",
+        "competitive": "Fraud in the cause frame breaks the room faster than low energy does."
+      }
+    },
+    {
+      "questionId": "q04",
+      "prompt": "In Naima's case, what changed morale rather than just changing language?",
+      "choices": [
+        "She linked visible decisions to rider trust and cut work that served internal optics",
+        "She added a more memorable team slogan to standups",
+        "She asked squads to hide their frustration so the room would stay upbeat"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "applied",
+      "explanation": {
+        "gentle": "Naima mattered because her behavior made the cause readable.",
+        "direct": "Read the mechanism carefully: morale moved when conduct proved the mission.",
+        "competitive": "Naima won belief by paying for the banner in real tradeoffs."
+      }
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Julian wants a cause frame for the archive that can survive scrutiny. Which option fits best?",
+      "choices": [
+        "Call it a fun student project that will look great on resumes",
+        "Frame it as preserving neighborhood memory before records and stories disappear",
+        "Keep the purpose vague so every student can imagine something different"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "applied",
+      "explanation": {
+        "gentle": "Julian needs a cause tied to a real public value.",
+        "direct": "Choose the frame that names what the work protects in concrete terms.",
+        "competitive": "A real banner beats flattering packaging every time."
+      }
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Bianca is trying to raise morale, but the team still cannot say what problem it exists to defeat. What is missing?",
+      "choices": [
+        "More informal culture events",
+        "A clearer named opposing problem",
+        "A promise that the work will become easier"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "applied",
+      "explanation": {
+        "gentle": "Bianca cannot build force around a foggy conflict.",
+        "direct": "Check the first mechanic: the room still lacks conflict clarity.",
+        "competitive": "No target, no sharpened campaign."
+      }
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Cedric keeps repeating the mission slogan during outages, but the room sounds numb. What does the chapter imply?",
+      "choices": [
+        "The slogan is fine, and the team just needs more repetition",
+        "The team should avoid mission language entirely from now on",
+        "The gap between language and visible sacrifice is draining credibility"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "applied",
+      "explanation": {
+        "gentle": "Cedric's problem is not volume but proof.",
+        "direct": "See the failure clearly: the language has outrun the conduct behind it.",
+        "competitive": "The room is discounting words because nobody is paying for them."
+      }
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Alma's team feels inspired by its public exhibit, but the sourcing is weak. What is the right diagnosis?",
+      "choices": [
+        "The cause is working because passion matters more than rigor",
+        "The team has morale only if standards can soften under pressure",
+        "The mission is being undercut because discipline is part of serving the cause well"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "applied",
+      "explanation": {
+        "gentle": "Alma needs to tie care for the cause back to workmanship.",
+        "direct": "Do not separate rigor from mission here: weak standards make the cause less credible.",
+        "competitive": "Heat without discipline leaves the banner hanging over sloppy work."
+      }
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Which criticism best captures the ethical limit of this chapter?",
+      "choices": [
+        "It is too focused on public speaking skills",
+        "It fails when leaders use mission language to ask for sacrifice they do not share",
+        "It applies only when a team faces direct competition"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "evaluate_create",
+      "depthLevel": "challenging",
+      "explanation": {
+        "gentle": "The ethical line appears when meaning becomes cover for unequal sacrifice.",
+        "direct": "Judge the misuse by checking who pays when the cause becomes costly.",
+        "competitive": "A leader who keeps comfort while preaching sacrifice is training cynicism."
+      }
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why does Chapter 8 logically follow this chapter?",
+      "choices": [
+        "Because a motivated team still needs discipline about which fights deserve its energy",
+        "Because morale removes the need for selectivity",
+        "Because cause is enough to make every battle worthwhile"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "evaluate_create",
+      "depthLevel": "challenging",
+      "explanation": {
+        "gentle": "Strong commitment still needs restraint.",
+        "direct": "Place the bridge correctly: morale increases force, but strategy still decides where to spend it.",
+        "competitive": "A fired-up team still loses if it bleeds itself into the wrong fight."
+      }
+    }
+  ]
+}

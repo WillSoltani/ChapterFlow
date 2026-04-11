@@ -20,4 +20,7 @@
 - 2026-04-11T15:45:49Z: Chapter 5 validated under strict-v13. Review wrapper, metrics sidecar, quiz extract, and continuity updates written. SHA-256 ready for deferred seal: `a19b1b6982b89aa5eb3665aaa422dcf5fefc79687ae2311962b470a35cbc191e`.
 - 2026-04-11T15:47:20Z: Run-level artifact guard passed after Chapter 5 validation (`FAIL=0 WARN=0`).
 - 2026-04-11T15:49:10Z: Chapter 6 started. Source sidecars, brief, outline, quiz blueprint, canonical draft, and edited draft written for the controlled-chaos chapter.
-
+- 2026-04-11T16:03:18Z: Chapter 6 validated under strict-v13. Review wrapper, metrics sidecar, quiz extract, and continuity updates written. SHA-256 sealed: `0265d785abc9527ce9f6de147f088e22b1788ac0321250910daef8152ca5d683`.
+- 2026-04-11T16:03:18Z: Chapter 5 and Chapter 6 pair seal completed. `approvedChapterHashes` now includes `ch05` and `ch06`.
+- 2026-04-11T16:03:58Z: Run-level artifact guard passed after the Chapter 5 and Chapter 6 pair seal (`FAIL=0 WARN=0`).
+- 2026-04-11T16:05:49Z: Chapter 7 started. Source sidecars, brief, outline, quiz blueprint, canonical draft, and edited draft written for the morale chapter.

@@ -22,11 +22,11 @@
       "questionId": "q02",
       "prompt": "What makes controlled chaos different from simple disorder?",
       "choices": [
-        "It has smaller units working inside a shared purpose and frame",
         "It removes all standards so teams can move freely",
+        "It has smaller units working inside a shared purpose and frame",
         "It keeps every decision in one committee while teams do local tasks"
       ],
-      "correctIndex": 0,
+      "correctIndex": 1,
       "bloomsLevel": "remember_understand",
       "depthLevel": "simple",
       "explanation": {
@@ -73,11 +73,11 @@
       "questionId": "q05",
       "prompt": "Mateo wants site pods without letting the studio splinter apart. What fits the chapter best?",
       "choices": [
-        "Use pods with one common brief, one shared review standard, and explicit moments for recombination",
         "Let each pod invent its own success standard so creativity stays unconstrained",
+        "Use pods with one common brief, one shared review standard, and explicit moments for recombination",
         "Keep one giant sequence because segmentation always creates silos"
       ],
-      "correctIndex": 0,
+      "correctIndex": 1,
       "bloomsLevel": "apply_analyze",
       "depthLevel": "standard",
       "explanation": {
@@ -158,11 +158,11 @@
       "questionId": "q10",
       "prompt": "Why does Chapter 7 logically follow this chapter?",
       "choices": [
-        "Because once units are segmented, they still need a cause strong enough to feel like one campaign",
         "Because Chapter 7 argues that structure no longer matters",
-        "Because morale replaces the need for competence"
+        "Because morale replaces the need for competence",
+        "Because once units are segmented, they still need a cause strong enough to feel like one campaign"
       ],
-      "correctIndex": 0,
+      "correctIndex": 2,
       "bloomsLevel": "evaluate_create",
       "depthLevel": "deeper",
       "explanation": {

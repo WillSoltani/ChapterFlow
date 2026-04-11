@@ -1,0 +1,174 @@
+{
+  "questions": [
+    {
+      "questionId": "ch13-q01",
+      "prompt": "What is the core mistake in story bias?",
+      "choices": [
+        "Trusting a neat explanation more than the evidence supports",
+        "Avoiding every explanation because facts are messy",
+        "Assuming uncertainty can never be reduced"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The story is getting more trust than the facts earned.",
+        "direct": "Correct. Narrative coherence is being mistaken for strong support.",
+        "competitive": "That is the trap. The clean plot starts stealing proof."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch13-q02",
+      "prompt": "Why do coherent stories feel persuasive?",
+      "choices": [
+        "Because they reduce uncertainty and feel complete",
+        "Because tidy narratives are always accurate",
+        "Because messy evidence never matters"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. A clean account makes the mind relax.",
+        "direct": "Correct. Coherence reduces ambiguity, which makes the explanation feel strong.",
+        "competitive": "Exactly. The polished plot feels safe because the loose ends disappear."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch13-q03",
+      "prompt": "Which example best fits story bias?",
+      "choices": [
+        "A team prefers one elegant failure story over a messier evidence trail",
+        "A team lists multiple causes and marks what remains uncertain",
+        "A student revises a thesis after conflicting facts appear"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The neat account is outrunning the evidence.",
+        "direct": "Correct. Narrative satisfaction is replacing a fuller inspection of the facts.",
+        "competitive": "That is it. The smooth story is stealing the room."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch13-q04",
+      "prompt": "What makes story bias dangerous in work and school?",
+      "choices": [
+        "It lets polished explanations hide missing facts and competing causes",
+        "It prevents people from using examples at all",
+        "It makes every clear thesis automatically false"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. A neat explanation can cover up what is still missing.",
+        "direct": "Correct. The distortion appears when coherence starts outranking evidentiary support.",
+        "competitive": "Right. The polished plot buries the messy truth."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch13-q05",
+      "prompt": "Why is a satisfying explanation not enough by itself?",
+      "choices": [
+        "Because a story can sound complete while still omitting important evidence",
+        "Because all stories are manipulative",
+        "Because uncertainty should never be reduced"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. A useful story can still leave too much out.",
+        "direct": "Correct. Narrative quality does not guarantee evidence quality.",
+        "competitive": "Exactly. A sharp plot can still be carrying fake certainty."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch13-q06",
+      "prompt": "What is the practical correction in this chapter?",
+      "choices": [
+        "Ask what facts support the story and what uncertainty it hides",
+        "Ban all neat explanations immediately",
+        "Trust the account that sounds most complete"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The correction is to ask what the story leaves out.",
+        "direct": "Correct. Evidence and hidden uncertainty should be inspected before trusting the narrative.",
+        "competitive": "Exactly. Make the plot show the facts it trimmed away."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch13-q07",
+      "prompt": "What does story bias confuse?",
+      "choices": [
+        "Narrative coherence with evidentiary strength",
+        "Examples with data collection",
+        "Memory with imagination"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The story feels stronger than it has earned the right to feel.",
+        "direct": "Correct. Coherence is being overread as proof.",
+        "competitive": "Yes. The polished plot starts pretending it is the evidence."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch13-q08",
+      "prompt": "Why can one elegant thesis still be weak?",
+      "choices": [
+        "Because it may flatten competing causes and unresolved facts",
+        "Because strong writing is always misleading",
+        "Because simple explanations can never help understanding"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. A neat account can still hide too much.",
+        "direct": "Correct. An elegant explanation may owe its force to omitted complexity rather than to stronger support.",
+        "competitive": "Exactly. The cleaner the plot, the more you need to ask what got cut."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch13-q09",
+      "prompt": "What is the deepest practical correction in story bias?",
+      "choices": [
+        "Force the story to compete with omitted facts, competing causes, and unresolved uncertainty",
+        "Refuse to explain anything until every fact is known",
+        "Prefer the most complicated explanation available"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter asks you to bring the mess back into view.",
+        "direct": "Correct. Better judgment tests whether the story stays strong once its omissions are exposed.",
+        "competitive": "Right. Make the polished plot fight without its fake certainty."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch13-q10",
+      "prompt": "What is the chapter's threshold question?",
+      "choices": [
+        "What evidence supports this story, and what uncertainty has the story hidden?",
+        "Which story feels most finished to me?",
+        "Should I stop using stories altogether?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. That question stops the neat account from proving itself too quickly.",
+        "direct": "Correct. It tests whether the narrative still stands once hidden uncertainty returns to view.",
+        "competitive": "That is the test. Can the plot survive when the mess comes back onstage?"
+      },
+      "bloomsLevel": "evaluate-transfer",
+      "depthLevel": "hard"
+    }
+  ]
+}

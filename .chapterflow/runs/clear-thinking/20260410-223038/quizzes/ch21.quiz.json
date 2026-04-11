@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What best defines margin of safety in this chapter?",
+      "choices": [
+        "Room built into a plan so ordinary uncertainty does not break it",
+        "Avoiding all action until uncertainty disappears",
+        "Always choosing the safest-looking path"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Margin of safety means reserve that helps the plan survive normal disruption.",
+        "direct": "The chapter defines it as practical room against uncertainty, not timid avoidance or automatic safety-first choices.",
+        "competitive": "It is the armor, not the retreat."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does slack matter?",
+      "choices": [
+        "Because unused room can absorb delay or error without collapse",
+        "Because every plan should look larger than necessary",
+        "Because wasted resources prove caution"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Slack matters because it keeps one ordinary problem from breaking the whole plan.",
+        "direct": "The chapter treats reserve as protection when normal variance shows up.",
+        "competitive": "The cushion keeps the drive alive."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is resilience in this chapter?",
+      "choices": [
+        "Looking strong before anything goes wrong",
+        "Continuing to function when reality departs from the ideal case",
+        "Refusing to change no matter what happens"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Resilience means the plan keeps working when conditions are imperfect.",
+        "direct": "The chapter values continued function under variance, not surface elegance or rigidity.",
+        "competitive": "It keeps moving after the hit."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A work plan succeeds only if no meeting slips and every handoff lands perfectly. What is the stronger response?",
+      "choices": [
+        "Treat the tightness as proof of discipline",
+        "Add enough room that one ordinary delay does not collapse the plan",
+        "Assume the team will simply work harder if anything slips"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants the plan to survive normal variance instead of depending on perfection.",
+        "direct": "Missing slack is a design flaw when one ordinary delay can break the whole sequence.",
+        "competitive": "Give the move some armor before reality swings."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "In a meeting, extra capacity is called waste because it is not used in the best case. According to the chapter, what is missing?",
+      "choices": [
+        "Recognition that reserve protects the plan when reality stops cooperating",
+        "A stronger desire to optimize every resource completely",
+        "A rule that all buffers should be removed"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says reserve earns its value when ordinary disruption appears.",
+        "direct": "Buffer should be judged by what failure it prevents, not only by what the ideal case consumes.",
+        "competitive": "Price the first hit, not just the quiet before it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "A student project timeline has no reserve for revision or delay. What follows the chapter best?",
+      "choices": [
+        "Keep the perfect schedule because reserve signals weakness",
+        "Leave enough buffer that one ordinary disruption does not destroy the plan",
+        "Delay the whole project until uncertainty disappears"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants practical durability, not perfect-flow fantasy or timid paralysis.",
+        "direct": "Buffer matters because projects rarely unfold exactly as the ideal case predicts.",
+        "competitive": "Stop sprinting the plan on the edge."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What is ordinary variance in this chapter?",
+      "choices": [
+        "The normal delays, errors, or pressures that disturb the ideal case",
+        "Only catastrophic disasters",
+        "A sign that the decision should never have been made"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Ordinary variance means the everyday uncertainty that shows up even in sound plans.",
+        "direct": "The chapter prepares for normal disruption, not only for dramatic catastrophe.",
+        "competitive": "It is the regular bump, not just the wreck."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why can efficiency become fragility?",
+      "choices": [
+        "Because removing every reserve can make one normal disruption fatal",
+        "Because all efficient plans are always weak",
+        "Because lean designs never work in any condition"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns that a neat plan can still be brittle if it has no room for error.",
+        "direct": "Optimization becomes fragility when the plan only works under ideal conditions.",
+        "competitive": "Lean turns brittle when the first hit has nowhere safe to go."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "How does the chapter avoid overbuilding fear into a plan?",
+      "choices": [
+        "By demanding the largest reserve possible in every case",
+        "By aiming for enough room to survive normal uncertainty without hiding from action",
+        "By ignoring uncertainty once action begins"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants enough reserve to make action durable, not endless reserve that becomes timid excess.",
+        "direct": "Margin of safety means practical durability, not fear-based overprotection.",
+        "competitive": "Armor the move without burying it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "According to the chapter's threshold test, what should be asked of a plan?",
+      "choices": [
+        "Whether it looks efficient in the ideal case",
+        "Whether it can survive ordinary error and uncertainty",
+        "Whether it uses every available resource with no slack"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter asks whether the plan can survive normal disruption, not just whether it looks lean.",
+        "direct": "The real test is durability under ordinary variance rather than neatness under perfect conditions.",
+        "competitive": "Ask if the move can take a normal hit."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

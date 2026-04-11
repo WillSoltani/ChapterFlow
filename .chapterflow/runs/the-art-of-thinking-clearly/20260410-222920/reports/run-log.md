@@ -268,3 +268,13 @@ Phase 4 complete for Chapter 1.
 - Chapter 11 chapter gate validation: pass (FAIL=0 WARN=0).
 - Chapter 11 validated artifacts written; review-package payload matches validated chapter payload.
 - Chapter 11 continuity seal recorded with sha256 f029b0520b4eed4b219dd68e8afbf715b8982ff840d87381c4a9a6668727f6e1.
+
+- Chapter 12 converter output written and synced to quiz JSON.
+- Chapter 12 chapter gate validation: pass (FAIL=0 WARN=0).
+- Chapter 12 validated artifacts written; review-package payload matches validated chapter payload.
+- Chapter 12 continuity seal recorded with sha256 290791c9518609319ceaad194404eb1868e65a8bd5ab4a718c0e52c5914b0f39.
+
+- Chapter 13 converter output written and synced to quiz JSON.
+- Chapter 13 chapter gate validation: pass (FAIL=0 WARN=0).
+- Chapter 13 validated artifacts written; review-package payload matches validated chapter payload.
+- Chapter 13 continuity seal recorded with sha256 fe1dff268cddea20f2ea8e5ec65883351c79e36754d585ffbb042f8ffaf668af.

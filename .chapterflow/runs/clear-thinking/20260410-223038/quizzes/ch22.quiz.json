@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What best defines feedback in this chapter?",
+      "choices": [
+        "The information reality provides after a decision is carried out",
+        "Any emotional reaction to the outcome",
+        "A motivational speech after a result"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Feedback is what reality says back to the decision through the result.",
+        "direct": "The chapter uses feedback as information from the outcome, not as mood or encouragement.",
+        "competitive": "Feedback is the return, not the pep talk."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why is experience alone not enough?",
+      "choices": [
+        "Because every outcome teaches automatically without effort",
+        "Because results are noisy and still need review before they become lessons",
+        "Because the visible outcome always tells the full story already"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Experience can stay noisy until reflection turns it into a clearer lesson.",
+        "direct": "The chapter insists that outcomes need interpretation because process, result, and luck do not line up neatly on their own.",
+        "competitive": "The return stays messy until you read it."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What does a postmortem do in this chapter?",
+      "choices": [
+        "It turns every result into personal blame",
+        "It looks back in a structured way to understand what happened and why",
+        "It proves that the outcome alone was enough information"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A postmortem helps make the decision and outcome more legible.",
+        "direct": "The chapter uses postmortem thinking to separate process, assumptions, result, and noise.",
+        "competitive": "It reads the tape instead of just shouting at the score."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A team sees a disappointing result and immediately calls the entire decision bad. What is the stronger move?",
+      "choices": [
+        "Let the visible outcome decide the whole lesson",
+        "Review the process before turning the result into the entire judgment",
+        "Ignore the result completely because outcomes never matter"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants the process examined before the result becomes the whole story.",
+        "direct": "A visible loss can still come from a strong process, so reflection should reopen the sequence before the lesson is fixed.",
+        "competitive": "Read the tape before you worship the score."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "In a review meeting, feedback starts feeling like a personal attack. According to the chapter, what matters most?",
+      "choices": [
+        "Defending identity before discussing the process",
+        "Treating feedback as information that can improve the next move",
+        "Ignoring all criticism because it harms confidence"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter treats feedback as something to use, not as praise or blame theater.",
+        "direct": "Learning gets stronger when feedback clarifies the move instead of feeding self-protection.",
+        "competitive": "Use the return. Do not fight it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "A student receives a grade and wants to let the number settle the whole lesson. What follows the chapter best?",
+      "choices": [
+        "Use the grade as the complete truth of the process",
+        "Review what the process deserved, what the result showed, and what noise shaped it",
+        "Throw out the outcome because it could involve luck"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants the visible outcome to open the review, not replace it.",
+        "direct": "A stronger lesson comes from separating process, result, and luck rather than letting one number dominate everything.",
+        "competitive": "Check the tape behind the headline."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What are luck and noise in this chapter?",
+      "choices": [
+        "The parts of the outcome that are not fully explained by the quality of the decision process",
+        "Proof that decisions never matter",
+        "Reasons to ignore all results completely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Luck and noise are the parts of the result that do not map neatly onto process quality.",
+        "direct": "The chapter keeps room for variance because good calls can lose and weak ones can still get rescued.",
+        "competitive": "They are the bounce, not the call."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why is rumination not the same as reflection?",
+      "choices": [
+        "Because rumination stays emotional or self-punishing instead of making the process and outcome more legible",
+        "Because rumination is always a deeper form of learning",
+        "Because reflection should never revisit outcomes at all"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants clearer understanding, not endless emotional replay.",
+        "direct": "Reflection improves judgment by making the sequence legible, while rumination often feeds self-story without improving the next move.",
+        "competitive": "One reads the tape. The other just loops the pain."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "How does learning improve future judgment in this chapter?",
+      "choices": [
+        "By carrying a usable lesson from feedback into the next decision",
+        "By proving the outcome was always obvious",
+        "By eliminating luck from future results entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The lesson matters when it changes how the next decision gets made.",
+        "direct": "Improvement happens when the review alters later judgment or later action instead of staying trapped inside the debrief.",
+        "competitive": "Cash the tape into the next play."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "According to the chapter's threshold test, when has a real lesson been extracted?",
+      "choices": [
+        "When the visible result has been reacted to strongly enough",
+        "When the process and outcome are legible enough to carry a real change forward",
+        "When every bit of noise has been eliminated from the story"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A lesson is real when the review clarifies what should change next.",
+        "direct": "The chapter wants enough legibility to improve the next move, not emotional certainty or perfect knowledge.",
+        "competitive": "The lesson counts when the next play actually gets smarter."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}
