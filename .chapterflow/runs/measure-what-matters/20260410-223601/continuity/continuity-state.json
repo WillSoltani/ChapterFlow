@@ -27,7 +27,8 @@
     ],
     "Victor": [
       "ch02",
-      "ch05"
+      "ch05",
+      "ch15"
     ],
     "Elias": [
       "ch02"
@@ -52,13 +53,15 @@
       "ch04"
     ],
     "Priya": [
-      "ch05"
+      "ch05",
+      "ch14"
     ],
     "Leila": [
       "ch06"
     ],
     "Marcus": [
-      "ch06"
+      "ch06",
+      "ch14"
     ],
     "Quinn": [
       "ch07"
@@ -82,7 +85,8 @@
       "ch08"
     ],
     "Caleb": [
-      "ch08"
+      "ch08",
+      "ch15"
     ],
     "Avery": [
       "ch09"
@@ -137,6 +141,18 @@
     ],
     "June": [
       "ch13"
+    ],
+    "Sienna": [
+      "ch14"
+    ],
+    "Theo": [
+      "ch14"
+    ],
+    "Lena": [
+      "ch15"
+    ],
+    "Asha": [
+      "ch15"
     ]
   },
   "formatCategoryHistory": [],
@@ -228,6 +244,18 @@
       "Elise",
       "Mateo",
       "June"
+    ],
+    "ch14": [
+      "Sienna",
+      "Marcus",
+      "Priya",
+      "Theo"
+    ],
+    "ch15": [
+      "Lena",
+      "Victor",
+      "Asha",
+      "Caleb"
     ]
   },
   "approvedChapterHashes": {
@@ -243,7 +271,9 @@
     "ch10": "962c9a54c46eed3909a6693e685101261b34760fada48051efbc9a2ec3bdd72f",
     "ch11": "b35cbe1cc75c9712982a6378034003a9f76a08abbc4704dff10ec19136043ce6",
     "ch12": "df391a00147114fe502df1eb2c16646e24f88b71851fa787c5339bfa1449dc36",
-    "ch13": "8c21aa55fce681a46ffe215ecade9cc4d24781fc848720a3b032461210b09401"
+    "ch13": "8c21aa55fce681a46ffe215ecade9cc4d24781fc848720a3b032461210b09401",
+    "ch14": "2d0507a4fef04b2678f2ecb811a852cfbfcdf42888a5bbaee06d0bacf9a8b7bf",
+    "ch15": "a37e472eb5ae4cc706445fef9662700e5f4fe468412d9ca090b34866096b30ce"
   },
   "baselineQuality": {
     "status": "established",

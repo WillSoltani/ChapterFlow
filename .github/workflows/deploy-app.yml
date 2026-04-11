@@ -127,13 +127,11 @@ jobs:
 
       - name: Get CloudFront distribution ID
         id: cf
-        working-directory: infra
         run: |
-          DIST_ID=$(npx cdk metadata ${{ env.CDK_STACK_NAME }} 2>/dev/null || \
-            aws cloudformation describe-stacks \
-              --stack-name ${{ env.CDK_STACK_NAME }} \
-              --query "Stacks[0].Outputs[?OutputKey=='DistributionId'].OutputValue" \
-              --output text)
+          DIST_ID=$(aws cloudformation describe-stacks \
+            --stack-name ${{ env.CDK_STACK_NAME }} \
+            --query "Stacks[0].Outputs[?OutputKey=='DistributionId'].OutputValue" \
+            --output text)
           echo "distribution_id=${DIST_ID}" >> "$GITHUB_OUTPUT"
 
           DIST_DOMAIN=$(aws cloudformation describe-stacks \

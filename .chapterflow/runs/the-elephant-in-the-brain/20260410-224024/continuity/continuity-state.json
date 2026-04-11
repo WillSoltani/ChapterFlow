@@ -351,6 +351,33 @@
         "school",
         "school"
       ]
+    },
+    {
+      "chapterId": "ch15",
+      "formats": [
+        "dialogue",
+        "decision_memo",
+        "text_thread",
+        "scene",
+        "coach_talk",
+        "reflection"
+      ],
+      "endingTypes": [
+        "reveal",
+        "caution",
+        "question",
+        "reframe",
+        "tradeoff",
+        "checkpoint"
+      ],
+      "categories": [
+        "work",
+        "work",
+        "personal",
+        "personal",
+        "school",
+        "school"
+      ]
     }
   ],
   "schoolSettingUsage": {},
@@ -550,6 +577,7 @@
     "ch11": "fa5f8ebf8eb4f7d4411eaa6071ef24e5f1f41ec40e20f6aa0aa5fac83412afe5",
     "ch12": "a96e8d06610127614ee6bb013f2dd65636f26753063645ac6109d423d9b0954b",
     "ch13": "8d2a6d24e4ff731f041e7e9936a4d12858e88a36190eedb59007635d6397807b",
-    "ch14": "77560929d1508bdb6b927f14872fa65bc929cd077d198a31f4d79384fe1ce8eb"
+    "ch14": "77560929d1508bdb6b927f14872fa65bc929cd077d198a31f4d79384fe1ce8eb",
+    "ch15": "f4af09ced7dce700c6d00115c4bf4c957685e9334bd8b9af641f15b7d41afe88"
   }
 }

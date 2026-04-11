@@ -174,3 +174,27 @@ Phase 4 complete for Chapter 1.
   - quiz blueprint
   - source sidecar text
   - source sidecar json
+
+- Writer pass complete.
+- Editor pass complete.
+- Critic pass complete with 11/12 and local-caution approval.
+- Converter complete.
+- Existing structured artifact was treated as untrusted and repaired after strict verification found undersized breakdowns and transient structured-json cleanup defects during local patching.
+- Quiz complete and resynced from the final structured chapter payload.
+- Validator pass complete after local mechanical repair on Chapter 7 breakdown lengths.
+- Validated chapter written.
+- Validated review wrapper written with full validated chapter payload only.
+- Reading metrics sidecar written.
+- Continuity hash sealed for ch07.
+
+## Phase 4 Status Continued
+
+- Chapter 8 pre-writer artifacts created and verified:
+  - brief
+  - outline
+  - quiz blueprint
+  - source sidecar text
+  - source sidecar json
+- Writer pass complete.
+- Editor pass complete.
+- Critic pass complete with 11/12 and local-caution approval.

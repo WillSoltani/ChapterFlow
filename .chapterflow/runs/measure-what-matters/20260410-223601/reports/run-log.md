@@ -18,3 +18,5 @@
 - 2026-04-11 Chapter 11 validated, review-packaged, and hash-sealed.
 - 2026-04-11 Chapter 12 validated, review-packaged, and hash-sealed.
 - 2026-04-11 Chapter 13 validated, review-packaged, and hash-sealed.
+- 2026-04-11 Chapter 14 validated, review-packaged, and hash-sealed.
+- 2026-04-11 Chapter 15 validated, review-packaged, and hash-sealed.

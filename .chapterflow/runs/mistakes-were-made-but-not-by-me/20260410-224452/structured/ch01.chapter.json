@@ -263,7 +263,11 @@
       "category": "work",
       "format": "decision_point",
       "endingType": "broader_principle",
-      "contexts": ["office", "mistake", "email"],
+      "contexts": [
+        "office",
+        "mistake",
+        "email"
+      ],
       "scenario": {
         "gentle": "Naomi sent the wrong pricing sheet to a client. She stares at the draft update on her screen: \"An error was made in yesterday's attachment.\" Her cursor hovers over send.",
         "direct": "Naomi is about to report her own mistake with a sentence that names the problem and hides the person who caused it.",
@@ -286,7 +290,11 @@
       "category": "school",
       "format": "postmortem",
       "endingType": "self_directed_question",
-      "contexts": ["lab", "feedback", "ownership"],
+      "contexts": [
+        "lab",
+        "feedback",
+        "ownership"
+      ],
       "scenario": {
         "gentle": "After the lab report comes back covered in red comments, Nia tells her partner, \"There was some confusion about the instructions.\" She leaves out the fact that she ignored the rubric they had flagged the night before.",
         "direct": "Nia is already retelling the failure in a way that lowers her personal role in it.",
@@ -309,7 +317,11 @@
       "category": "personal",
       "format": "dialogue",
       "endingType": "surprising_implication",
-      "contexts": ["friends", "argument", "apology"],
+      "contexts": [
+        "friends",
+        "argument",
+        "apology"
+      ],
       "scenario": {
         "gentle": "Lena tells her roommate, \"I was only being honest,\" after a cutting remark that left the kitchen silent.",
         "direct": "She is reframing cruelty as courage so she can preserve a decent image of herself.",
@@ -332,7 +344,11 @@
       "category": "work",
       "format": "predict_reveal",
       "endingType": "cross_domain",
-      "contexts": ["retrospective", "project", "forecast"],
+      "contexts": [
+        "retrospective",
+        "project",
+        "forecast"
+      ],
       "scenario": {
         "gentle": "Victor listens as his team says the launch slip happened because \"timelines got compressed.\" Nobody mentions who approved the last-minute changes.",
         "direct": "The retrospective is naming pressure while erasing agency, which makes the lesson too weak to stick.",
@@ -355,7 +371,11 @@
       "category": "school",
       "format": "dilemma",
       "endingType": "common_trap",
-      "contexts": ["group project", "chat", "blame"],
+      "contexts": [
+        "group project",
+        "chat",
+        "blame"
+      ],
       "scenario": {
         "gentle": "A group project goes sideways, and the class chat fills with messages about how \"communication broke down.\" Omar knows he missed the draft deadline, but the vague language is making it easy to stay hidden.",
         "direct": "The group is drifting toward collective fog, which means no one will learn much and everyone will leave irritated.",
@@ -378,7 +398,11 @@
       "category": "personal",
       "format": "before_after",
       "endingType": "perspective_reframe",
-      "contexts": ["texting", "apology", "friendship"],
+      "contexts": [
+        "texting",
+        "apology",
+        "friendship"
+      ],
       "scenario": {
         "gentle": "Before: Mateo texts, \"Sorry if feelings got hurt.\" After: Mateo texts, \"I was harsh in our call, and I can see why it landed badly.\"",
         "direct": "The second version keeps the actor in the sentence and removes the protective haze.",

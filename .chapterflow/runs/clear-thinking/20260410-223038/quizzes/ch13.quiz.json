@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What best defines an exemplar in this chapter?",
+      "choices": [
+        "A famous person to admire in general",
+        "A useful model that shows what better judgment looks like in action",
+        "Anyone who gets impressive results quickly"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter treats exemplars as visible models rather than distant heroes.",
+        "direct": "An exemplar matters because it calibrates what the standard looks like in lived form.",
+        "competitive": "A model gives the line shape."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does practice matter after standards are defined?",
+      "choices": [
+        "Because repetition turns a good rule into something easier to retrieve under pressure",
+        "Because standards are not useful until they become perfect",
+        "Because practice automatically removes every weakness"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Practice helps the better move show up more easily in real moments.",
+        "direct": "Rehearsal matters because the live moment should not have to invent the response from zero.",
+        "competitive": "Drill gets the move there sooner."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why is measurement useful here when it is used well?",
+      "choices": [
+        "It proves you are more serious than other people",
+        "It helps calibrate whether practice is making the standard easier to use",
+        "It replaces the need for judgment"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter treats feedback as a way to check whether reinforcement is helping.",
+        "direct": "Measurement matters when it reveals progress honestly instead of feeding vanity.",
+        "competitive": "Use the score to steer, not preen."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Aria studies a clean example before a client call instead of trusting memory. What principle is most visible?",
+      "choices": [
+        "A visible model can make a fragile standard easier to retrieve",
+        "Memory is always unreliable and should be ignored",
+        "Only experts need examples"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Aria uses a model to make the better move clearer before pressure arrives.",
+        "direct": "The chapter values calibration because seeing the line in action makes it more usable.",
+        "competitive": "Watch the move before you need to run it."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Devin says admiration is not the same as learning. What is he pointing to?",
+      "choices": [
+        "Admiration should be avoided completely",
+        "A model matters only when praise becomes usable imitation and rehearsal",
+        "Only natural talent can close the gap"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter distinguishes hero worship from practical learning.",
+        "direct": "Admiration helps only if it becomes calibration and a repeatable move.",
+        "competitive": "Steal the skill, not the mythology."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Lena uses a practice timer before exam work instead of waiting to feel ready. Why does that fit the chapter?",
+      "choices": [
+        "Because rehearsal makes the standard easier to access when pressure rises",
+        "Because timers create confidence automatically",
+        "Because theory is never useful"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The practice block reduces how much the pressured moment must invent on its own.",
+        "direct": "Lena is shrinking the gap between endorsement and retrieval through rehearsal.",
+        "competitive": "The rep gets there before stress does."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What is calibration in this chapter?",
+      "choices": [
+        "Changing your personality to match a model",
+        "Adjusting your sense of good judgment by using models, practice, and feedback",
+        "Scoring yourself as strictly as possible"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Calibration means getting a clearer and more honest sense of what the better move really looks like.",
+        "direct": "The chapter uses calibration to connect exemplars, rehearsal, and feedback into more usable judgment.",
+        "competitive": "Calibration sharpens the line without handing it to ego."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why does the chapter reject both blind copying and vanity scoring?",
+      "choices": [
+        "Because models and numbers should support judgment rather than replace it",
+        "Because improvement should stay private and unmeasured",
+        "Because serious people should never compare themselves to examples"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps reinforcement useful by refusing distortion from worship or ego.",
+        "direct": "Models and metrics matter only when they sharpen independent judgment.",
+        "competitive": "Keep the wheel. Use the model and the score as tools."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "How does this chapter lead into knowing your weaknesses?",
+      "choices": [
+        "Once the standard is reinforced, the next issue is where it still breaks down",
+        "Once practice begins, weakness no longer matters",
+        "The chapters are only loosely connected"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Practice can strengthen a standard without erasing every vulnerable condition.",
+        "direct": "The next chapter matters because remaining failures reveal where exposure still exists.",
+        "competitive": "A sharper move still has fracture points."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Which question best fits the chapter's threshold test?",
+      "choices": [
+        "What would make this standard easier to use next time: a better model, a better rehearsal, or better feedback?",
+        "How can I admire skilled people more intensely?",
+        "What number would make me feel most disciplined right away?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter asks what kind of reinforcement would make the standard more reachable.",
+        "direct": "The real test is whether the line needs clearer modeling, more rehearsal, or more honest calibration.",
+        "competitive": "What would make the move arrive sooner?"
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "medium"
+    }
+  ]
+}

@@ -115,3 +115,7 @@
 - 2026-04-11T02:31:40Z Chapter 13 writer pass wrote `drafts/canonical/ch13.md`.
 - 2026-04-11T02:31:40Z Chapter 13 editor pass wrote `drafts/edited/ch13.md`.
 - 2026-04-11T02:31:40Z Chapter 13 critic gate wrote `reports/ch13.critic.md` with `Score: 11/12` and approved conversion with local-patch-only guidance.
+- 2026-04-11T02:36:40Z Chapter 13 converter wrote `structured/ch13.chapter.json` and passed chapter lint with `FAIL=0 WARN=0` after local repairs to a repeated clause scaffold, a duplicate preview prompt, and one review-card echo.
+- 2026-04-11T02:36:40Z Chapter 13 quiz and validator passes wrote `quizzes/ch13.quiz.json`, `validated/ch13.chapter.json`, `validated/ch13.review-package.json`, `sidecars/ch13.reading-metrics.json`, and `reports/ch13.validation.md`.
+- 2026-04-11T02:36:40Z Chapter 13 final checks passed: chapter lint `FAIL=0 WARN=0`, review-package lint `FAIL=0 WARN=0`, artifact guard `FAIL=0 WARN=0`.
+- 2026-04-11T02:36:40Z Chapter 13 hash sealed in `continuity/continuity-state.json` as `12b8abfbeeb0d903b3f54e265bc2d859db5d4f7865ed372d5babb2bab1d2dbb5`.

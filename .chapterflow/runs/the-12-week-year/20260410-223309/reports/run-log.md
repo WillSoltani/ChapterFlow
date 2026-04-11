@@ -91,3 +91,20 @@
 - 2026-04-10T22:33:09-03:00 - Phase 13E/13F complete for Chapter 13. Wrote `structured/ch13.chapter.json`, `quizzes/ch13.quiz.json`, `reports/ch13.validation.md`, `validated/ch13.chapter.json`, `validated/ch13.review-package.json`, and `sidecars/ch13.reading-metrics.json`.
 - 2026-04-10T22:33:09-03:00 - Chapter 13 final checks passed: chapter lint `FAIL=0 WARN=0`, review-package lint `FAIL=0 WARN=0`.
 - 2026-04-10T22:33:09-03:00 - Sealed Chapter 13 hash `a174a0a1b18f589d140f4af670807c1ebb126d61d1e3843f5477299149f2d254` into `continuity/continuity-state.json`.
+
+- 2026-04-10T22:33:09-03:00 - Phase 13A/13B/13C complete for Chapter 14. Wrote canonical and edited drafts plus `reports/ch14.critic.md`.
+- 2026-04-10T22:33:09-03:00 - Strict-path repair for Chapter 14 structured conversion: removed duplicate package surfaces, activation-prompt overlap, recap overlap, and hard-versus-medium competitive breakdown overlap at the converter layer, reran chapter lint to `FAIL=0 WARN=0`, and regenerated the validated bundle.
+- 2026-04-10T22:33:09-03:00 - Phase 13E/13F complete for Chapter 14. Wrote `structured/ch14.chapter.json`, `quizzes/ch14.quiz.json`, `reports/ch14.validation.md`, `validated/ch14.chapter.json`, `validated/ch14.review-package.json`, and `sidecars/ch14.reading-metrics.json`.
+- 2026-04-10T22:33:09-03:00 - Chapter 14 final checks passed: chapter lint `FAIL=0 WARN=0`, review-package lint `FAIL=0 WARN=0`.
+- 2026-04-10T22:33:09-03:00 - Sealed Chapter 14 hash `c8938a78dfd45ba71a27a56bdfa37a013cd63bd4b0b1ad13be031d57a4c7d4b3` into `continuity/continuity-state.json`.
+
+- 2026-04-10T22:33:09-03:00 - Wave 7 guard checks passed after Chapters 13 and 14: source guard `FAIL=0 WARN=0`, artifact guard `FAIL=0 WARN=0`.
+- 2026-04-10T22:33:09-03:00 - Phase 15 pre-writer complete for Chapters 15 and 16. Wrote `briefs/ch15.md`, `outlines/ch15.md`, `quiz-blueprints/ch15.md`, `sidecars/source/ch15.source.txt`, `sidecars/source/ch15.source.json`, `briefs/ch16.md`, `outlines/ch16.md`, `quiz-blueprints/ch16.md`, `sidecars/source/ch16.source.txt`, and `sidecars/source/ch16.source.json`.
+- 2026-04-10T22:33:09-03:00 - Phase 15A/15B/15C complete for Chapter 15. Wrote canonical and edited drafts plus `reports/ch15.critic.md`.
+- 2026-04-10T22:33:09-03:00 - Phase 16A/16B/16C complete for Chapter 16. Wrote canonical and edited drafts plus `reports/ch16.critic.md`.
+
+- 2026-04-10T22:33:09-03:00 - Phase 13A/13B/13C complete for Chapter 14. Wrote canonical and edited drafts plus `reports/ch14.critic.md`.
+- 2026-04-10T22:33:09-03:00 - Strict-path repair for Chapter 14 structured conversion: removed duplicate package surfaces, activation-prompt overlap, recap overlap, and hard-versus-medium competitive breakdown overlap at the converter layer, reran chapter lint to `FAIL=0 WARN=0`, and regenerated the validated bundle.
+- 2026-04-10T22:33:09-03:00 - Phase 13E/13F complete for Chapter 14. Wrote `structured/ch14.chapter.json`, `quizzes/ch14.quiz.json`, `reports/ch14.validation.md`, `validated/ch14.chapter.json`, `validated/ch14.review-package.json`, and `sidecars/ch14.reading-metrics.json`.
+- 2026-04-10T22:33:09-03:00 - Chapter 14 final checks passed: chapter lint `FAIL=0 WARN=0`, review-package lint `FAIL=0 WARN=0`.
+- 2026-04-10T22:33:09-03:00 - Sealed Chapter 14 hash `c8938a78dfd45ba71a27a56bdfa37a013cd63bd4b0b1ad13be031d57a4c7d4b3` into `continuity/continuity-state.json`.

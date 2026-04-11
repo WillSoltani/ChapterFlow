@@ -227,3 +227,24 @@ Phase 0 complete.
 - repo artifact guard after wave: FAIL=0 WARN=0
 
 2026-04-10 Wave 8 started.
+- Chapter 15 brief written
+- Chapter 15 outline written
+- Chapter 15 quiz blueprint written
+- Chapter 15 source sidecars written
+- Chapter 16 brief written
+- Chapter 16 outline written
+- Chapter 16 quiz blueprint written
+- Chapter 16 source sidecars written
+- Chapter 15 canonical draft written
+- Chapter 15 edited draft written
+- Chapter 15 critic report written
+
+2026-04-10 Chapter 15 chapter gate passed.
+- structured lint: FAIL=0 WARN=0
+- validated lint: FAIL=0 WARN=0
+- artifact guard: FAIL=0 WARN=0
+- review wrapper matches validated payload
+- continuity seal written for ch15
+- Chapter 16 canonical draft written
+- Chapter 16 edited draft written
+- Chapter 16 critic report written
