@@ -1,0 +1,155 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch11-q01",
+      "prompt": "What does Chapter 11 mainly focus on?",
+      "choices": [
+        "The collection habit",
+        "Project control",
+        "Outcome focusing"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "This chapter turns to the power of collection.",
+        "direct": "The chapter argues for capture as a foundational GTD principle.",
+        "competitive": "The spotlight is on trusted collection."
+      }
+    },
+    {
+      "questionId": "ch11-q02",
+      "prompt": "Why does collection reduce psychic drag?",
+      "choices": [
+        "Because it removes the need for review forever",
+        "Because it gets reminders out of the head and into a trusted place",
+        "Because it automatically finishes every task"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The burden drops when reminders stop living only in memory.",
+        "direct": "Capture lowers friction by externalizing open loops instead of keeping them mentally active.",
+        "competitive": "The tax falls when the load gets a real landing zone."
+      }
+    },
+    {
+      "questionId": "ch11-q03",
+      "prompt": "What is the key difference between internal remembering and external capture?",
+      "choices": [
+        "Capture gives reminders a stable place outside memory",
+        "Remembering is always more reliable than capture",
+        "They are identical in GTD"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Capture moves the reminder somewhere trusted.",
+        "direct": "The chapter contrasts mental storage with a dependable external holding place.",
+        "competitive": "One lives in your head; the other lands in the system."
+      }
+    },
+    {
+      "questionId": "ch11-q04",
+      "prompt": "Celia keeps work follow-ups in her head all day. What is the best Chapter 11 diagnosis?",
+      "choices": [
+        "She is proving commitment through strong memory",
+        "The uncollected reminders are creating extra friction",
+        "She should ignore capture until review day"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The problem includes the drag of carrying reminders mentally.",
+        "direct": "The chapter says uncollected input keeps tapping attention even before later decisions are made.",
+        "competitive": "Memory is adding tax to the workload."
+      }
+    },
+    {
+      "questionId": "ch11-q05",
+      "prompt": "What is wrong with treating collection as the entire workflow?",
+      "choices": [
+        "Collection removes early strain, but later clarification and review still matter",
+        "Collection always creates clutter by itself",
+        "Collection only works in school settings"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Capture helps first, but it does not finish the job.",
+        "direct": "The chapter keeps collection powerful yet bounded by later workflow stages.",
+        "competitive": "A bucket starts the process; it does not complete it."
+      }
+    },
+    {
+      "questionId": "ch11-q06",
+      "prompt": "A dorm inbox tray makes school reminders feel lighter before any sorting happens. What principle fits?",
+      "choices": [
+        "Collection can reduce drag before processing is complete",
+        "Sorting must happen first for any relief to occur",
+        "School inputs should stay in memory longer"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Relief can arrive once the reminders are captured.",
+        "direct": "The chapter links mental relief to external capture even before full clarification begins.",
+        "competitive": "The load can get lighter before the sorting gets smart."
+      }
+    },
+    {
+      "questionId": "ch11-q07",
+      "prompt": "Why might a personal capture sweep help before a long planning session?",
+      "choices": [
+        "Because collection can reduce strain before deeper thinking",
+        "Because capture replaces all planning permanently",
+        "Because planning becomes impossible after capture"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The first gain may come from getting reminders out of the head.",
+        "direct": "The chapter says some overload is uncollected input, not only lack of planning.",
+        "competitive": "Sometimes the first win is unloading, not brainstorming."
+      }
+    },
+    {
+      "questionId": "ch11-q08",
+      "prompt": "What failure mode does Chapter 11 warn about?",
+      "choices": [
+        "Keeping open loops in your head and wondering why drag stays high",
+        "Capturing too consistently",
+        "Reviewing too often after collection"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Internal storage keeps the pressure alive.",
+        "direct": "The chapter warns against treating mental remembering as if it were free.",
+        "competitive": "If the load stays upstairs, the tax keeps charging."
+      }
+    },
+    {
+      "questionId": "ch11-q09",
+      "prompt": "Why does the collection habit have principle-level power in GTD?",
+      "choices": [
+        "Because it reduces internal strain at the system's entry point",
+        "Because it eliminates the need for all later decisions",
+        "Because it proves motivation better than action"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The habit changes attention from the beginning.",
+        "direct": "Regular capture matters because it releases pressure before the rest of the workflow acts on the input.",
+        "competitive": "The front door of the system gets cleaner and cheaper."
+      }
+    },
+    {
+      "questionId": "ch11-q10",
+      "prompt": "After the power of collection, what principle does the book turn to next?",
+      "choices": [
+        "The power of the next-action decision",
+        "Another chapter on project control",
+        "Source freeze repair"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next chapter turns to the next-action decision.",
+        "direct": "Chapter 11 bridges into the principle of deciding the next action.",
+        "competitive": "After capture, the book turns to the decision move."
+      }
+    }
+  ]
+}

@@ -1,0 +1,253 @@
+{
+  "nameUsage": {
+    "Nina": [
+      "ch01"
+    ],
+    "Omar": [
+      "ch01"
+    ],
+    "Leah": [
+      "ch01"
+    ],
+    "Amir": [
+      "ch01"
+    ],
+    "Tessa": [
+      "ch01"
+    ],
+    "Marcus": [
+      "ch01",
+      "ch04"
+    ],
+    "Elena": [
+      "ch02"
+    ],
+    "Ravi": [
+      "ch02"
+    ],
+    "Maya": [
+      "ch02"
+    ],
+    "Jordan": [
+      "ch02"
+    ],
+    "Clara": [
+      "ch02"
+    ],
+    "Ben": [
+      "ch02"
+    ],
+    "Priya": [
+      "ch03"
+    ],
+    "Evan": [
+      "ch03"
+    ],
+    "Sofia": [
+      "ch03"
+    ],
+    "Malik": [
+      "ch03"
+    ],
+    "Dana": [
+      "ch03"
+    ],
+    "Lucas": [
+      "ch03"
+    ],
+    "Aisha": [
+      "ch04"
+    ],
+    "Noah": [
+      "ch04"
+    ],
+    "Carmen": [
+      "ch04"
+    ],
+    "Theo": [
+      "ch04"
+    ],
+    "Lila": [
+      "ch04"
+    ],
+    "Iris": [
+      "ch05"
+    ],
+    "Mateo": [
+      "ch05"
+    ],
+    "Keisha": [
+      "ch05"
+    ],
+    "Owen": [
+      "ch05"
+    ],
+    "Talia": [
+      "ch05"
+    ],
+    "Victor": [
+      "ch05"
+    ],
+    "Serena": [
+      "ch06"
+    ],
+    "Julian": [
+      "ch06"
+    ],
+    "Nia": [
+      "ch06"
+    ],
+    "Caleb": [
+      "ch06"
+    ],
+    "Hazel": [
+      "ch06"
+    ],
+    "Roman": [
+      "ch06"
+    ],
+    "Mara": [
+      "ch07"
+    ],
+    "Elias": [
+      "ch07"
+    ],
+    "Simone": [
+      "ch07"
+    ],
+    "Darius": [
+      "ch07"
+    ],
+    "Elise": [
+      "ch07"
+    ],
+    "Nolan": [
+      "ch07"
+    ],
+    "Alina": [
+      "ch08"
+    ],
+    "Rowan": [
+      "ch08"
+    ],
+    "Priyah": [
+      "ch08"
+    ],
+    "Micah": [
+      "ch08"
+    ],
+    "Daphne": [
+      "ch08"
+    ],
+    "Trevor": [
+      "ch08"
+    ]
+  },
+  "formatCategoryHistory": [],
+  "schoolSettingUsage": {},
+  "wordFrequency": {},
+  "phraseFrequency": {},
+  "openerRegistry": {
+    "gentle": {},
+    "direct": {},
+    "competitive": {}
+  },
+  "titleTemplateRegistry": {},
+  "endingPatternRegistry": {},
+  "withinChapterNames": {
+    "ch01": [
+      "Nina",
+      "Omar",
+      "Leah",
+      "Amir",
+      "Tessa",
+      "Marcus"
+    ],
+    "ch02": [
+      "Elena",
+      "Ravi",
+      "Maya",
+      "Jordan",
+      "Clara",
+      "Ben"
+    ],
+    "ch03": [
+      "Priya",
+      "Evan",
+      "Sofia",
+      "Malik",
+      "Dana",
+      "Lucas"
+    ],
+    "ch04": [
+      "Aisha",
+      "Noah",
+      "Carmen",
+      "Theo",
+      "Lila",
+      "Marcus"
+    ],
+    "ch05": [
+      "Iris",
+      "Mateo",
+      "Keisha",
+      "Owen",
+      "Talia",
+      "Victor"
+    ],
+    "ch06": [
+      "Serena",
+      "Julian",
+      "Nia",
+      "Caleb",
+      "Hazel",
+      "Roman"
+    ],
+    "ch07": [
+      "Mara",
+      "Elias",
+      "Simone",
+      "Darius",
+      "Elise",
+      "Nolan"
+    ],
+    "ch08": [
+      "Alina",
+      "Rowan",
+      "Priyah",
+      "Micah",
+      "Daphne",
+      "Trevor"
+    ]
+  },
+  "approvedChapterHashes": {
+    "ch01": "82d880b4ca42d0ffccd80e753ed4ae5cff6dab6eedbedef4fb4faeab6b7f645d",
+    "ch02": "c39046f6ff3c71c53a24f1299bc723271d83625f16f5a37165a9e5474ec7d14f",
+    "ch03": "1ef71863e20ed4e2d1322acf4b7b853b7547627ba176c4ec435d9f5aa19086bb",
+    "ch04": "74764e4b737ed5dbcfb3ab6e5482ebebd02ec8c05b1d81fe3a7857bdb5ea581f",
+    "ch05": "7aa093678db4158b9bd44381d8971d8d34a4ea70672b3a5c7517317b9370cdf8",
+    "ch06": "6e6e710583e132538a74277e5b40bcfa69617da0ea0f9a2121cf85e1351a47da",
+    "ch07": "47b2ab76cd84d098ea0bcd75a5f6899161bc66921f7886d7c7643df70477e0dd",
+    "ch08": "4676ce4b693e43e9051cf07c79ea4c341121f567f357e4ccd772818305f3b127"
+  },
+  "baselineQuality": {
+    "ch01": {
+      "criticScore": 11,
+      "validator": "pass",
+      "lint": {
+        "fail": 0,
+        "warn": 0
+      },
+      "validatedAt": "2026-04-10T22:59:31Z"
+    },
+    "ch02": {
+      "criticScore": 11,
+      "validator": "pass",
+      "lint": {
+        "fail": 0,
+        "warn": 0
+      },
+      "validatedAt": "2026-04-10T23:17:08.814296Z"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+Chapter 17 Source Sidecar
+
+Heading: Using Your Head
+Primary basis:
+- frozen TOC and chapter-title map from Google Books and library catalogs
+- frozen source-freeze title support for Chapter 17 as Using Your Head
+- skeleton support describing the chapter as disciplined thinking habits that improve diagnosis and policy selection
+- validated Chapter 16 bridge from strategic rigor to the kind of mind that can practice rigorous strategy
+
+Supported source notes:
+
+1. Chapter 17 asks what kind of thinking lets a strategist use rigorous strategy well.
+   - The title explicitly points toward disciplined thought.
+   - Supported use: move from strategic science to strategist mindset, attention, and judgment.
+
+2. Better thinking habits should be framed as practical judgment rather than generic inspiration.
+   - The title and skeleton support a close focused on active thought, skepticism, and resistance to easy stories.
+   - Supported use: emphasize analogy risk, wishful interpretation, and active judgment rather than self-help rhetoric.
+
+3. Chapter 17 completes Chapter 16 by showing what kind of mind can practice rigorous strategy well.
+   - Chapter 16 validated that rigorous strategy depends on diagnosis, causality, and challengeable consequence.
+   - Supported use: explain that these strategic standards depend on the quality of thought applying them.
+
+4. Narrow support caution.
+   - Do not invent named book anecdotes, experiments, psychologists, or exact quoted definitions not present in the frozen bundle.
+   - Keep the prose at the level of disciplined thinking, skepticism, analogy, interpretation, judgment, and pressure.
+
+Quote ledger:
+- all reader-facing prose use -> paraphrase_only except chapter title already supported
+
+Source references:
+- https://books.google.com/books/about/Good_Strategy_Bad_Strategy.html?id=0FWPDQAAQBAJ
+- https://penguinrandomhousehighereducation.com/book/?isbn=9780307886231
+- internal:source-freeze/book-source.md
+- internal:validated/ch16.chapter.json
+- internal:skeleton/book-skeleton.md

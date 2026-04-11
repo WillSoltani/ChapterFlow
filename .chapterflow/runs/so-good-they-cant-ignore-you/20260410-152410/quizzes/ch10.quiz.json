@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch10-q01",
+      "prompt": "What is the second control trap in this chapter?",
+      "choices": [
+        "A) Resistance from employers whenever freedom is requested",
+        "B) A move toward autonomy that fails because the support beneath it is too weak",
+        "C) The discovery that control is not worth pursuing"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter defines the second trap as fragility in the move itself rather than only opposition from others.",
+        "direct": "Newport introduces a failure mode where autonomy collapses because the structure under it is too thin.",
+        "competitive": "The move breaks because the build under it was weak."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch10-q02",
+      "prompt": "Why is desire for more control not enough in this chapter?",
+      "choices": [
+        "A) Because autonomy is always overrated",
+        "B) Because wanting freedom does not prove the move is durable or well-supported",
+        "C) Because risk should always be avoided"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says desire can be sincere while the structure under the move is still too weak.",
+        "direct": "Newport separates emotional appeal from the practical support required for durable autonomy.",
+        "competitive": "Craving the move does not prove the move can hold."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch10-q03",
+      "prompt": "What main distinction does the chapter make about control?",
+      "choices": [
+        "A) Control is either total or worthless",
+        "B) Attractive autonomy and durable autonomy are not the same thing",
+        "C) Outside resistance is the only real problem"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter keeps asking whether the move is strong enough to last, not only whether it looks appealing.",
+        "direct": "This is the core distinction: a freedom move can feel right while still lacking enough support to survive well.",
+        "competitive": "The dream can outrun the build."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch10-q04",
+      "prompt": "Elena wants a much freer role now, but the support plan under the move is thin. What is the strongest chapter-based move?",
+      "choices": [
+        "A) Push immediately because the desire for autonomy is already clear",
+        "B) Test the move for support and durability before treating the desire as enough reason to go now",
+        "C) Give up on autonomy entirely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says the appeal of freedom matters, but the support under the move still has to be strong enough to hold.",
+        "direct": "Elena should treat the move as a durability question rather than as a pure expression of desire.",
+        "competitive": "Do not buy the move until the scaffolding stops wobbling."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch10-q05",
+      "prompt": "Marcus says he feels ready for much more independence. What chapter-based response is strongest?",
+      "choices": [
+        "A) Ask what would make the move durable once the surrounding structure loosens",
+        "B) Assume feeling ready proves the move is ready",
+        "C) Tell him freedom should never be pursued in serious work"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter shifts the question from sincerity to support and stability.",
+        "direct": "Marcus needs to test what structure would let the autonomy hold, not just how strongly he wants it.",
+        "competitive": "Make the structure prove itself."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch10-q06",
+      "prompt": "Priya is choosing between a more immediately free path and a sturdier path with better support. According to the chapter, what should decide the choice?",
+      "choices": [
+        "A) Which option feels bolder in the moment",
+        "B) Which option offers the strongest chance of durable autonomy rather than just attractive autonomy",
+        "C) Which option avoids all risk"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter prefers the version of freedom that can hold up in practice.",
+        "direct": "Priya should judge the move by whether the autonomy is supported well enough to survive, not only by its emotional appeal.",
+        "competitive": "Take the version of freedom that can stay standing."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch10-q07",
+      "prompt": "Jonah's freedom move failed mainly because the structure under it was weak. What does this show?",
+      "choices": [
+        "A) Honest desire is enough if the idea is good",
+        "B) A move can be understandable and still be too fragile to hold",
+        "C) All autonomy moves are doomed"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter keeps fragility distinct from foolish desire. The move can make sense and still be underbuilt.",
+        "direct": "Jonah's postmortem illustrates the second trap: internal structural weakness can sink the move even when the goal is reasonable.",
+        "competitive": "The dream was not the problem. The build was."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch10-q08",
+      "prompt": "What makes a control move durable rather than merely exciting in this chapter?",
+      "choices": [
+        "A) Strong emotion about wanting freedom",
+        "B) Enough support, timing, and structure to let the autonomy hold under real conditions",
+        "C) A complete absence of all risk"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says durable autonomy depends on what can support the move after it becomes real.",
+        "direct": "Newport turns the second trap into a test of structure, timing, and support rather than of desire intensity.",
+        "competitive": "The build under the move decides whether the freedom survives."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch10-q09",
+      "prompt": "Why does the chapter avoid sounding anti-freedom?",
+      "choices": [
+        "A) Because it says all control moves are equally good",
+        "B) Because it is warning against fragility, not arguing that control is not worth wanting",
+        "C) Because it thinks risk should disappear from work decisions"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter keeps the value of control intact while asking that freedom moves be tested for durability.",
+        "direct": "Newport's target is weakly supported autonomy, not autonomy itself, which keeps the chapter strategic instead of timid.",
+        "competitive": "The problem is weak freedom, not freedom."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch10-q10",
+      "prompt": "What does this chapter set up next?",
+      "choices": [
+        "A) How to avoid the control traps rather than just map them",
+        "B) A decision to abandon autonomy as a goal",
+        "C) A return to the passion mindset"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "After mapping both traps, the next chapter can focus on how to seek control more wisely.",
+        "direct": "The chapter bridges to avoidance by showing that the reader now needs criteria for pursuing autonomy without stepping into the known failures.",
+        "competitive": "The traps are mapped. Next comes how to dodge them."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch08-q01",
+      "prompt": "What is probabilistic thinking?",
+      "choices": [
+        "Pretending one future is guaranteed",
+        "Reasoning in likelihoods instead of certainties",
+        "Avoiding all uncertain decisions"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Correct. The model works with weighted possibilities instead of absolute predictions.",
+        "direct": "Probabilistic thinking compares likely futures rather than acting as if one outcome is certain.",
+        "competitive": "It prices futures instead of bluffing certainty."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch08-q02",
+      "prompt": "Which statement best fits probabilistic language?",
+      "choices": [
+        "This outcome will definitely happen",
+        "This outcome seems more likely than that one given the current evidence",
+        "No estimate is possible under uncertainty"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. Likelihood language is more honest in uncertain situations.",
+        "direct": "The chapter prefers weighted estimates to certainty theater or helplessness.",
+        "competitive": "Strong judgment compares odds instead of hiding behind absolutes."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch08-q03",
+      "prompt": "What should happen when new evidence arrives?",
+      "choices": [
+        "The estimate should update",
+        "The original belief should be defended harder",
+        "The question should be treated as fully settled"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. A strong estimate changes when the evidence changes.",
+        "direct": "Bayesian-style updating means revision is a feature of good judgment, not a weakness.",
+        "competitive": "If the data moves, drag the estimate with it."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch08-q04",
+      "prompt": "In Maya's forecast scenario, what is the strongest next step?",
+      "choices": [
+        "Keep the single forecast number because confidence motivates teams",
+        "Rewrite the forecast as a range with downside and upside cases",
+        "Drop forecasting entirely because uncertainty exists"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exactly. A range makes the uncertainty visible instead of hiding it.",
+        "direct": "The model improves the launch discussion by replacing one heroic number with weighted scenarios.",
+        "competitive": "Kill the fake certainty before the room starts worshiping it."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch08-q05",
+      "prompt": "What does Priya learn from the mixed lab results?",
+      "choices": [
+        "One early positive result proves the whole hypothesis",
+        "New evidence should revise the estimate instead of freezing the first conclusion",
+        "Conflicting evidence means no judgment is possible"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Correct. The later trials should change how confident she feels.",
+        "direct": "The chapter treats revision as better judgment rather than as embarrassment.",
+        "competitive": "One good data point does not get a lifetime appointment."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch08-q06",
+      "prompt": "Why does asymmetry matter in a decision?",
+      "choices": [
+        "Because all outcomes should be treated evenly",
+        "Because upside and downside can be so uneven that payoff shape changes the decision",
+        "Because probability no longer matters once payoff is discussed"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. A bounded downside and meaningful upside can make a choice stronger than it first appears.",
+        "direct": "The chapter emphasizes that chance alone is incomplete without consequence shape.",
+        "competitive": "The bet changes when the loss is capped and the upside stays open."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch08-q07",
+      "prompt": "What changes Leah's work decision in the risk-matrix scenario?",
+      "choices": [
+        "She ignores the rare failure because it is unlikely",
+        "She notices that a low-probability but high-cost failure can dominate the decision",
+        "She assumes every rare event will happen"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. The average case looked fine, but the tail risk changed the real score.",
+        "direct": "Fat-tail awareness matters because rare outcomes can carry outsized consequence.",
+        "competitive": "The tail got a vote big enough to run the whole meeting."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch08-q08",
+      "prompt": "In Omar's dilemma, what is the common trap?",
+      "choices": [
+        "Choosing the louder upside story without respecting downside shape",
+        "Avoiding every uncertain option by default",
+        "Assuming only average outcomes matter"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Correct. The exciting best-case story can hide a worse overall bet.",
+        "direct": "The chapter warns against ignoring asymmetry when one option sounds more dramatic.",
+        "competitive": "The noisy upside can seduce you into signing a bad downside contract."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch08-q09",
+      "prompt": "Why are rough probability estimates still useful?",
+      "choices": [
+        "Because they eliminate uncertainty completely",
+        "Because honest roughness is better than false certainty when making decisions",
+        "Because exact precision is impossible so no numbers should be used"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. A rough but honest range can still guide better choices than a fake guarantee.",
+        "direct": "The model rejects fake precision without collapsing into no judgment at all.",
+        "competitive": "Imperfect ranges beat polished delusion."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch08-q10",
+      "prompt": "How does probabilistic thinking lead into causation versus correlation?",
+      "choices": [
+        "Once futures are weighted, the next question is whether the pattern behind the estimate reflects real causation or only co-movement",
+        "Probabilities remove the need to think about causes",
+        "Correlation becomes irrelevant once likelihoods are estimated"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. Weighted futures still depend on whether the underlying pattern is genuinely causal.",
+        "direct": "The next chapter asks whether the pattern being used in the estimate reflects a real mechanism or a misleading association.",
+        "competitive": "After pricing the future, you still need to know whether the signal is real or just traveling beside the real cause."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

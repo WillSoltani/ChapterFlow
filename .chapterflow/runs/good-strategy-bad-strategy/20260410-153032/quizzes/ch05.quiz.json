@@ -1,0 +1,155 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the kernel of good strategy in this chapter?",
+      "choices": [
+        "Diagnosis, guiding policy, and coherent action",
+        "Targets, values, and urgency",
+        "Growth, innovation, and morale"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter defines the kernel as those three parts working together.",
+        "direct": "Diagnosis, guiding policy, and coherent action form the core structure.",
+        "competitive": "Those three are the real load-bearing parts."
+      }
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What is diagnosis supposed to do inside the kernel?",
+      "choices": [
+        "Name the governing obstacle or challenge",
+        "List all the team's values",
+        "Create as many action items as possible"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Diagnosis explains the real pressure the strategy must face.",
+        "direct": "Its job is to identify the obstacle that gives the plan a center.",
+        "competitive": "Call the fight first."
+      }
+    },
+    {
+      "questionId": "q03",
+      "prompt": "How is guiding policy different from a slogan?",
+      "choices": [
+        "A guiding policy is the chosen directional response to the diagnosis",
+        "A guiding policy is always a list of values everyone likes",
+        "A guiding policy avoids excluding weaker options"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter treats policy as a chosen approach, not a mood statement.",
+        "direct": "Guiding policy narrows the field by deciding what kind of response fits.",
+        "competitive": "It picks the line instead of praising the mood."
+      }
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Jordan's student services team becomes more effective after naming one obstacle and aligning programs around it. Which kernel element is most visible in that shift?",
+      "choices": [
+        "Coherent action built around diagnosis and policy",
+        "A broader value statement",
+        "A larger number of programs"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter emphasizes reinforcing action rather than just more activity.",
+        "direct": "Jordan's team gains force when actions start serving one center together.",
+        "competitive": "The moves finally start stacking."
+      }
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why is a target by itself not enough to count as strategy?",
+      "choices": [
+        "Because a target does not provide diagnosis, guiding policy, and coherent action",
+        "Because targets should never be used in planning",
+        "Because strategy only matters in business settings"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A target can state where you want to go without supplying the kernel.",
+        "direct": "The chapter says targets are not substitutes for structure.",
+        "competitive": "Numbers are not the core."
+      }
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What happens when a plan has diagnosis and policy but no coherent action?",
+      "choices": [
+        "It remains rhetoric instead of strategy in motion",
+        "It becomes stronger because fewer actions mean more focus automatically",
+        "It no longer needs a governing obstacle"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Without coherent action, the policy stays mostly on paper.",
+        "direct": "One missing kernel part weakens the whole structure.",
+        "competitive": "The line exists, but nothing carries it."
+      }
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Talia's family agrees on values but has not chosen a policy tied to a specific obstacle. What does the chapter say is missing?",
+      "choices": [
+        "A real kernel, because agreement on values is not yet guiding policy",
+        "A larger activity list",
+        "A higher level of optimism"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The family still needs diagnosis, guiding policy, and aligned action.",
+        "direct": "Value agreement alone does not complete the kernel.",
+        "competitive": "They have the mood, not the line."
+      }
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Which description best captures coherent action?",
+      "choices": [
+        "Actions that reinforce one another because they serve the same policy toward the same obstacle",
+        "Any large set of activities completed quickly",
+        "Actions chosen before the obstacle is diagnosed"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter stresses reinforcement, not just volume.",
+        "direct": "Coherent action means coordinated moves around one center.",
+        "competitive": "The moves stack on the same line."
+      }
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does the chapter insist that the three parts of the kernel are mutually dependent?",
+      "choices": [
+        "Because partial kernels collapse back into analysis, rhetoric, or busy motion",
+        "Because each part should be written by a different team",
+        "Because strategy works only when every action is identical"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The parts stabilize one another and weaken quickly when one is absent.",
+        "direct": "The kernel is not a loose list of elements but an interlocking structure.",
+        "competitive": "Miss one piece and the fake version walks back in."
+      }
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What question naturally comes next once a strategy has a kernel?",
+      "choices": [
+        "Where the strategy's power will come from",
+        "How to add more slogans to support morale",
+        "Whether diagnosis should be removed to increase flexibility"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Once the form of strategy is clear, the next issue is what gives it force.",
+        "direct": "The chapter points forward to sources of power.",
+        "competitive": "Form first. Force next."
+      }
+    }
+  ]
+}

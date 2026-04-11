@@ -13,20 +13,24 @@
   "endingPatternRegistry": {},
   "withinChapterNames": {},
   "approvedChapterHashes": {
-    "ch01": "07056dc93f4e9a998328e63ed08a6346c0bbf4b0d2968b16f3a04f10e35ff472",
-    "ch02": "2b225e7816ceb601962ea65d3db8b3a65a4e9c56d85fdfdae48feb776eb8102f",
-    "ch03": "bf4348efa1cff3b7859a10624fa15e571ceeca7083cfd8a974fc9f615fb0bb1a",
-    "ch04": "5c99036590128918bb488d1f850355bce1ef00da89b0768ae5225b8c839d9086",
-    "ch05": "846d65cf79215fb84706a9b30cf999e231a9b8d649c5e23061882a3505dfc763",
-    "ch06": "fd2328b2972fddfa00f3359292f9192149d163e7b7554983e72dda38d75e4126",
-    "ch07": "1910dd3fcd2670032164d27fac772481279b539f80633482ea2580d57ace10ab",
-    "ch08": "39d5a9195cb43e196f4d96977ee0c3051b699993037f942682b01cb222d5b038",
-    "ch09": "56609c59ef1b3b6db8f4d5a67d864375169ce15cbcaf6c3382b9f98d7aeca6df",
-    "ch10": "03d70ab29216c26b2e26ddd30a96edc030dcb6b98445c5b1a3d551627526dda6",
-    "ch11": "dee00a4103dfd896b1995300ab897d7a13d9d367c3eb7eb0e225e180f34e9b88",
-    "ch12": "82e8c90f15b53536b6ab1603d6d7431565d609ef955a5f5bb9572925ea1eb540",
-    "ch13": "8c1ecb437efb92520c321b91cf5475a316de7f4f7d8dec7c1c20481bbe07def0",
-    "ch14": "30915e10355bcaf0ab820ba2212d8895986a589fbf690017f150ccfe48802f13"
+    "ch01": "ebd07e980258825802cb2fbab6c4aa55a0c86dc05febb0f32b169f1a535ef15d",
+    "ch02": "c0e8be15269a205ef022fc673fc032b16292befbd3e1cd8816efe5978ee8a991",
+    "ch03": "3dbd7bf59c884203434725322310e2c75785a5fb7b88e049016ef2291cc0b3d3",
+    "ch04": "ae27d055aacde8476cf1329c10765d825784fc9946f24004dfda9df404966a42",
+    "ch05": "5e20965a43be53268aeddb4fd4d14b65d418bc1999c494dc0d1463f04ab077b0",
+    "ch06": "bfb7dc7630231fb2c84d53780d2870b3c4bce869f5c26cca4279c6aeeca58b3b",
+    "ch07": "2cb7cc5effba0dfb2bea179923012a64693167385f7e55221f3b2129bfda6b40",
+    "ch08": "f80f9a632e6b85acdb7b9f62dcbd19f9871b703e9859a603fa4f06738d786941",
+    "ch09": "b1f13c8ad2bb26a3b93572db3a5c30c8554f387052c74bab88421024ff166822",
+    "ch10": "59af901679d74c350e9aff4cda263e62aa6e347282a1fee8b02f1410d502ddbf",
+    "ch11": "fca9d30d1859fa7a339aa2b6bc87bd0a699e68b5878a1b60c6daf48bed6ab566",
+    "ch12": "789134e80d87ddb2ce87d16421dbaa3fead162483710b31705e206714fbc5e2f",
+    "ch13": "7b9340aef8dc94fb67a778800a753193ef469dc2078a863e6835a42f27a6bc16",
+    "ch14": "ae9536f9ab89c671761035aaa2e5c0da3d30d03e9bb77858a6e8812892417cfb",
+    "ch15": "d11e42e3d2c73af66391c48b600d28935d6978aa475d36c1c94f1197f1e020cf",
+    "ch16": "547aa612fd1f918eccb4a587d40d1a52de62b5b3e017587020778b1d63e71907",
+    "ch17": "fd16dca062116e636370d0d18061976604d0b923a1b12b09ac27c90601ddb7f1",
+    "ch18": "a5611ed94f4f1f8f3f0d494c679cd3e849fea9043243663019304568fef4e6b1"
   },
   "baselineQuality": {
     "chapters": [
@@ -42,8 +46,8 @@
     "note": "Use Chapters 1 and 2 as the quality floor for later waves."
   },
   "qualitySentry": {
-    "checkedAt": "2026-04-09T15:24:58Z",
-    "wave": "13-14",
+    "checkedAt": "2026-04-10T17:12:00Z",
+    "wave": "17-18",
     "sourceLedgerPresent": true,
     "editionLockPresent": true,
     "sealedHashesVerified": [
@@ -59,11 +63,16 @@
       "ch10",
       "ch11",
       "ch12",
-      "ch13"
+      "ch13",
+      "ch14",
+      "ch15",
+      "ch16",
+      "ch17",
+      "ch18"
     ],
     "criticScores": {
-      "ch13": 10,
-      "ch14": 10
+      "ch17": 10,
+      "ch18": 10
     },
     "baselineMeanScore": 10,
     "qualityDecayStopDelta": 1.5,

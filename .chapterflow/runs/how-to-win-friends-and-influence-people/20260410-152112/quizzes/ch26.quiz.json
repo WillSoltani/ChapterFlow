@@ -1,0 +1,174 @@
+{
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the central move in Chapter 26?",
+      "choices": [
+        "Keeping correction real while letting the other person save face",
+        "Ignoring mistakes to protect feelings",
+        "Adding public shame to make consequences stronger"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter protects dignity without denying the problem.",
+        "direct": "Option A fits because face-saving is the core move.",
+        "competitive": "Keep the hit real, skip the disgrace."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does saving face matter according to the chapter?",
+      "choices": [
+        "Because humiliation can poison future cooperation",
+        "Because accountability should disappear",
+        "Because standards are usually unnecessary"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Humiliation can damage the relationship beyond the original mistake.",
+        "direct": "The chapter treats shame-heavy correction as a cooperation cost.",
+        "competitive": "The extra disgrace hit can wreck the aftermath."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What mechanism makes humiliation backfire?",
+      "choices": [
+        "It makes people more likely to hide, harden, or withdraw",
+        "It removes the need for repair",
+        "It guarantees deeper trust"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Shame often closes people off instead of helping them recover.",
+        "direct": "Humiliation can reduce openness and future cooperation.",
+        "competitive": "Disgrace can shut the person down."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A manager names a missed deadline clearly but saves the sharper correction for a private follow-up. What chapter move is this?",
+      "choices": [
+        "Face-saving accountability",
+        "Excuse-making",
+        "Avoiding standards"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The manager keeps the correction real while protecting dignity.",
+        "direct": "This matches the chapter's method of separating accountability from humiliation.",
+        "competitive": "That is a real hit without the public grind-down."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "A lab partner is corrected calmly and privately after a group mistake, then given a clearer process for next time. What changed?",
+      "choices": [
+        "Learning dignity was preserved while accountability stayed visible",
+        "The mistake stopped mattering",
+        "The group chose comfort over accuracy"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The correction still matters, but the person is not publicly reduced by it.",
+        "direct": "Option A fits because dignity and standards remain together.",
+        "competitive": "The standard stayed high and the shame theater stayed low."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What limit does Chapter 26 keep explicit?",
+      "choices": [
+        "Saving face is not the same as excusing failure or removing consequences",
+        "Saving face means never naming the problem",
+        "Saving face works only when nothing important is at stake"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter does not confuse dignity with denial.",
+        "direct": "Accountability stays real throughout the method.",
+        "competitive": "No free pass is hiding inside the move."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Which option misreads Chapter 26 as soft evasion?",
+      "choices": [
+        "Keeping the standard visible while correcting without humiliation",
+        "Avoiding any consequence so the person never feels embarrassed",
+        "Addressing the issue privately when public shame is unnecessary"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter rejects turning face-saving into excuse-making.",
+        "direct": "Option B removes accountability rather than preserving dignity alongside it.",
+        "competitive": "That is not face-saving. That is ducking the hit."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "advanced"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why would public humiliation often backfire even when the correction is deserved?",
+      "choices": [
+        "Because it can make the relationship absorb extra damage beyond the mistake itself",
+        "Because it always makes standards unclear",
+        "Because it prevents anyone from noticing the failure"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The shame can last longer than the original error and weaken future cooperation.",
+        "direct": "Humiliation creates secondary damage that does not improve the accountability itself.",
+        "competitive": "You add collateral damage without adding real leverage."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "advanced"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "How can accountability remain while dignity is preserved?",
+      "choices": [
+        "By naming the problem and consequence clearly while refusing needless degradation",
+        "By pretending the problem is minor",
+        "By shifting all responsibility to circumstance"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps the truth of the failure visible while removing extra shame.",
+        "direct": "Responsibility remains through clarity rather than humiliation.",
+        "competitive": "Keep the rule and cut the spectacle."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "advanced"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why does this chapter lead naturally into Chapter 27?",
+      "choices": [
+        "Because once dignity is protected after error, praise for small gains can help improvement continue",
+        "Because the next chapter abandons accountability",
+        "Because humiliation is the best foundation for motivation"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next chapter builds progress on the dignity protected here.",
+        "direct": "Option A fits because praise works better when shame has not poisoned recovery.",
+        "competitive": "Protect face first so momentum has somewhere to grow."
+      },
+      "bloomsLevel": "transfer",
+      "depthLevel": "advanced"
+    }
+  ]
+}

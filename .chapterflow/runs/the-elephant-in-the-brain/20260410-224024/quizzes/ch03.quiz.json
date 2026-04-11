@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What main problem is Chapter 3 trying to solve after the competition frame of Chapter 2?",
+      "choices": [
+        "How a competitive species keeps group life stable enough to function",
+        "How to replace every norm with formal law",
+        "How to remove self-interest from human behavior entirely"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "understand",
+      "depthLevel": "easy",
+      "explanation": {
+        "gentle": "The chapter asks how groups avoid falling apart under ongoing selfish pressure.",
+        "direct": "Its core puzzle is group stability under competition.",
+        "competitive": "The question is how the group survives the contest."
+      }
+    },
+    {
+      "questionId": "q02",
+      "prompt": "In the chapter's hunter-gatherer frame, what makes norm enforcement on stronger members more plausible?",
+      "choices": [
+        "Private meditation and reflection",
+        "Coalitions of weaker members, helped by weapons",
+        "A permanent formal police system"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "remember",
+      "depthLevel": "easy",
+      "explanation": {
+        "gentle": "The chapter ties enforcement to coalition action and power-leveling tools.",
+        "direct": "Weaker members can restrain stronger ones when they coordinate and the force gap narrows.",
+        "competitive": "Coalition plus credible pushback is the mechanism."
+      }
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why do gossip and reputation matter so much in this chapter?",
+      "choices": [
+        "They replace all other forms of enforcement",
+        "They entertain the group during conflict",
+        "They spread judgments that change trust, support, and inclusion"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "remember",
+      "depthLevel": "easy",
+      "explanation": {
+        "gentle": "The group remembers through talk, and that memory shapes future treatment.",
+        "direct": "Reputation works as discipline because it updates how others respond to you.",
+        "competitive": "Social memory changes the board around the player."
+      }
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A coworker keeps taking public credit in Slack, and teammates respond by thanking the whole group instead of praising the person. What chapter idea best explains that response?",
+      "choices": [
+        "Quiet norm enforcement against visible selfish display",
+        "A random shift in communication style",
+        "The disappearance of competition at work"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "apply",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "The team is correcting a boast without making the correction loud.",
+        "direct": "They are enforcing an anti-credit-grabbing norm through subtle social response.",
+        "competitive": "The room is cutting off the reward for the move."
+      }
+    },
+    {
+      "questionId": "q05",
+      "prompt": "During a team huddle, several players turn against a teammate who keeps forcing shots. Which mechanism is most visible?",
+      "choices": [
+        "Coalition discipline around behavior that threatens trust",
+        "A purely individual scoring preference",
+        "A rule that has nothing to do with norms"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "apply",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "The players are acting together to push back on selfish play.",
+        "direct": "Norm enforcement becomes real when group members align around a shared boundary.",
+        "competitive": "The room is forming a coalition against overreach."
+      }
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which misunderstanding does Chapter 3 reject?",
+      "choices": [
+        "Norms are only formal written rules",
+        "Gossip can affect trust",
+        "Groups sometimes punish bragging"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "The chapter says many important norms are unwritten but still enforced.",
+        "direct": "Its model includes quiet sanctions, reputational pressure, and subtle anti-selfishness rules.",
+        "competitive": "The rule can bite long before anyone writes it down."
+      }
+    },
+    {
+      "questionId": "q07",
+      "prompt": "How does Chapter 3 connect back to Chapter 2 on competition?",
+      "choices": [
+        "It says competition disappears once norms appear",
+        "It says norms help contain competitive pressures inside the group",
+        "It says only sexual competition remains relevant"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "Norms do not erase competition. They keep it from tearing the group apart.",
+        "direct": "The chapter treats norms as a containment system for ongoing rivalry.",
+        "competitive": "The game stays on, but the boundaries tighten."
+      }
+    },
+    {
+      "questionId": "q08",
+      "prompt": "A club rule against interrupting helps meetings run better, but it is enforced hardest against members who publicly challenge the officers. What does that example show?",
+      "choices": [
+        "Norms never protect cooperation",
+        "A norm can be both protective and controlling",
+        "Only gossip counts as enforcement"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "apply",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "The same rule can support order while also disciplining certain members more heavily.",
+        "direct": "The chapter's tension is that group welfare and political control can overlap inside one norm.",
+        "competitive": "One enforcement move can steady the room and protect the hierarchy."
+      }
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why do subtle anti-bragging and anti-favor-currying norms matter so much in the chapter's logic?",
+      "choices": [
+        "They prove ambition has vanished from the group",
+        "They regulate visible selfishness even while hidden self-interest remains",
+        "They only matter in large bureaucracies"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard",
+      "explanation": {
+        "gentle": "The chapter says groups react strongly when selfish motives become easy to see.",
+        "direct": "These norms control the appearance of ambition rather than erasing ambition itself.",
+        "competitive": "The room punishes exposed motive faster than motive kept under cover."
+      }
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What is the strongest bridge from Chapter 3 into Chapter 4 on cheating?",
+      "choices": [
+        "Once norms disappear, people stop wanting selfish gains",
+        "Once enforcement is strong, no one tries to get around it",
+        "People may still seek selfish benefits while trying not to trigger norm enforcement"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard",
+      "explanation": {
+        "gentle": "The next pressure is how people chase advantage without making the selfishness obvious.",
+        "direct": "Cheating becomes the logical next move when actors still want payoff under norm pressure.",
+        "competitive": "The game shifts toward getting the reward without wearing the target."
+      }
+    }
+  ]
+}

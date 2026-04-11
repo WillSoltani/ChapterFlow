@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What risk does the chapter put at the center of focus under pressure?",
+      "choices": [
+        "Cognitive tunneling",
+        "Lack of ambition",
+        "Too much teamwork"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says pressure can narrow attention until one signal takes over.",
+        "direct": "Cognitive tunneling is the main mechanism the chapter warns about.",
+        "competitive": "Tunnel vision is the real enemy here."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does Air France Flight 447 matter in this chapter?",
+      "choices": [
+        "It shows that pressure can make attention dangerously narrow",
+        "It proves that speed always beats caution",
+        "It demonstrates that technical knowledge never matters"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter uses the flight as a pressure-case anchor for attention failure.",
+        "direct": "Its role is to supply stakes for the claim that focus can collapse into tunneling.",
+        "competitive": "The case loads the warning with real pressure."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A manager stares at one red metric and ignores the surrounding conditions that explain it. What does the chapter call that kind of failure?",
+      "choices": [
+        "Healthy prioritization",
+        "Cognitive tunneling",
+        "Collaborative problem solving"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "One signal has crowded out the wider picture. That is the chapter's central risk.",
+        "direct": "The manager is treating one cue as the whole story, which is tunneling.",
+        "competitive": "One red box has hijacked the map."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Mira pauses an operations room and asks for two more checks before anyone commits to the first explanation. Why is that move strong in this chapter's logic?",
+      "choices": [
+        "It widens the scan before the room hardens around one signal",
+        "It wastes time that should be spent acting fast",
+        "It proves that metrics should usually be ignored"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter favors a wider picture before the first story becomes fixed.",
+        "direct": "The move interrupts premature closure and lowers the risk of tunneling.",
+        "competitive": "She breaks the first alarm's dictatorship."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What is the chapter's strongest warning about intense concentration?",
+      "choices": [
+        "It is always better than uncertainty",
+        "It can feel strong while hiding a shrinking frame",
+        "It works only in school settings"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A person can feel very focused and still be missing the wider situation.",
+        "direct": "Intensity is weaker than accuracy if attention has narrowed too far.",
+        "competitive": "A hard stare can still be blind."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "A student fixates on one sentence in an assignment prompt and ignores the rest of the task. What would help most according to this chapter?",
+      "choices": [
+        "Doubling down on that one sentence",
+        "Rescanning the full assignment with a better interpretive frame",
+        "Assuming the first clue is always the key clue"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says useful focus keeps scanning and interpreting instead of freezing on one clue.",
+        "direct": "A wider frame and better model reduce the risk of tunneling.",
+        "competitive": "Break the tunnel and rebuild the map."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why do mental models matter in this chapter?",
+      "choices": [
+        "They guarantee certainty before a situation becomes clear",
+        "They help attention interpret signals and keep moving under pressure",
+        "They remove the need to look at evidence"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A model helps the mind keep scanning instead of letting one signal take over.",
+        "direct": "The chapter presents models as structures for interpretation and rescan.",
+        "competitive": "A model stops one alarm from ruling the whole picture."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "A tense conversation narrows around one painful phrase, and everything else being communicated gets ignored. What is the chapter's best reading?",
+      "choices": [
+        "The people involved are finally being efficient",
+        "The conversation shows useful attention because it is emotionally intense",
+        "The people involved may be tunneling around one cue instead of reading the wider situation"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter applies beyond crises. One phrase can crowd out the wider context.",
+        "direct": "This is tunneling in a personal setting: one cue has taken over interpretation.",
+        "competitive": "One line has hijacked the whole map."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What separates useful focus from mere intensity in this chapter?",
+      "choices": [
+        "Useful focus keeps context, contradiction, and missing signals in view",
+        "Useful focus ignores uncertainty as fast as possible",
+        "Useful focus is mostly about emotional calm"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says real focus stays wide enough to remain accurate.",
+        "direct": "Accuracy comes from scanning, not just from forceful concentration.",
+        "competitive": "The true picture beats the hard stare."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If people get better at resisting cognitive tunneling, what problem does the chapter point toward next?",
+      "choices": [
+        "Whether goals will aim attention well or distort it",
+        "Whether teamwork no longer matters",
+        "Whether pressure should be avoided completely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter bridges into goal setting by asking where clearer attention should be aimed.",
+        "direct": "This is the next risk: targets can sharpen action or become the next blinder.",
+        "competitive": "Once panic stops choosing the frame, the aim might."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

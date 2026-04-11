@@ -1,0 +1,32 @@
+{
+  "chapterId": "ch16",
+  "title": "How to Get Cooperation",
+  "frozenSources": [
+    {
+      "type": "source-freeze-title",
+      "path": ".chapterflow/runs/how-to-win-friends-and-influence-people/20260410-152112/source-freeze/book-source.md",
+      "support": "16. How to Get Cooperation"
+    },
+    {
+      "type": "skeleton-intent",
+      "path": ".chapterflow/runs/how-to-win-friends-and-influence-people/20260410-152112/skeleton/book-skeleton.md",
+      "support": "Argue that cooperation rises when the other person feels ownership rather than compliance pressure."
+    }
+  ],
+  "conceptFocus": [
+    "cooperation grows from ownership",
+    "compliance pressure can weaken genuine participation",
+    "shared effort differs from coerced obedience",
+    "ownership must stay distinct from manipulation"
+  ],
+  "guardrails": [
+    "avoid generic teamwork rhetoric",
+    "keep ownership distinct from manipulation theater",
+    "do not confuse cooperation with submission",
+    "stay concept-first and anecdote-light"
+  ],
+  "bridges": {
+    "previousChapter": "Chapter 15 lowers grievance pressure so the room becomes workable.",
+    "nextChapter": "Chapter 17 will deepen the move by asking what the other person thinks they are protecting or pursuing."
+  }
+}

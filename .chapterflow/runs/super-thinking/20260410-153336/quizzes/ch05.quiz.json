@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the first correction Chapter 5 teaches through base rate fallacy?",
+      "choices": [
+        "Trust the most vivid case because it is easiest to remember",
+        "Ask what usually happens in the broader set before trusting the dramatic case",
+        "Treat all numbers as persuasive if they sound precise"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Correct. The chapter starts by asking for the broader frequency before a vivid case is allowed to drive the conclusion.",
+        "direct": "Base rate fallacy is the chapter's opening discipline: the wider pattern has to anchor interpretation first.",
+        "competitive": "Right. The flashy case does not get to rule before the baseline shows up."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why can a statistic still mislead even if the number itself is real?",
+      "choices": [
+        "Because real numbers are always too hard to interpret",
+        "Because the population, baseline, or comparison can still be missing",
+        "Because numbers should be replaced by anecdotes"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A number can be real and still be hard to read fairly if the missing context changes what it means.",
+        "direct": "The chapter treats this as a framing problem. Precision without context can still produce false confidence.",
+        "competitive": "Exactly. Real digits do not save a claim whose frame is hiding offstage."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What mistake does the chapter warn against when a story feels especially memorable?",
+      "choices": [
+        "Treating vivid evidence as if it automatically outweighs the broader pattern",
+        "Ignoring all stories even when they fit the wider pattern",
+        "Assuming memorable cases are always fabricated"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns that memorable evidence can feel bigger than it really is if the broader rate stays hidden.",
+        "direct": "Salience can overpower proportion unless the reader deliberately restores the wider pattern.",
+        "competitive": "Right. Drama keeps trying to outrank frequency."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A team sees one week of strong signups and wants to call it a lasting breakthrough immediately. Which chapter move fits best?",
+      "choices": [
+        "Ask for the broader baseline before interpreting the spike",
+        "Celebrate first because precise numbers need no context",
+        "Ignore the data and rely on instinct"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter would ask what usually happens across more weeks before treating one spike as decisive.",
+        "direct": "This is a base-rate and framing check. The number only becomes meaningful once the broader comparison is visible.",
+        "competitive": "Do not crown the spike before the baseline gets in the building."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What is the strongest Chapter 5 diagnosis when someone says, \"That percentage is obviously terrible,\" without naming any comparison?",
+      "choices": [
+        "They are missing the context needed to interpret the number",
+        "They have discovered a universal truth from one figure",
+        "They are using the number exactly as the chapter recommends"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A percentage by itself is not enough. The chapter asks what frame would tell you whether it is actually high or low.",
+        "direct": "The problem is decontextualized precision. Interpretation requires baseline and comparison, not just the figure.",
+        "competitive": "They are letting a naked number swagger without checking whether it deserves the attitude."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Why does the chapter reject blanket distrust of all statistics?",
+      "choices": [
+        "Because skepticism should improve judgment, not replace it with paralysis",
+        "Because every statistic is already trustworthy once it is quantified",
+        "Because vivid cases are safer than numbers"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants better interpretation, not total refusal to use evidence.",
+        "direct": "Blanket distrust is only another shortcut. The chapter argues for calibrated skepticism instead.",
+        "competitive": "Right. Sneering at every number is surrender, not strength."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "How can a real statistic still push someone toward a bad decision?",
+      "choices": [
+        "If it is interpreted without the broader rate and proper frame",
+        "Only if the number is invented from scratch",
+        "It cannot, because real numbers always lead to good action"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A real statistic can still be read badly if its proper context is missing.",
+        "direct": "The chapter links poor interpretation to poor action. Presentation strength can outrun evidentiary proportion.",
+        "competitive": "The number can be real and still send you straight into a bad move if scale never shows up."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Which response best follows the chapter's method when a frightening story starts dominating your attention?",
+      "choices": [
+        "Ask what usually happens before letting the story reset your whole sense of risk",
+        "Assume the story represents the average case because it feels vivid",
+        "Reject all evidence on the topic immediately"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter asks for the broader pattern before the emotional force of the story becomes belief.",
+        "direct": "This is the proportion check in action: restore base rate before letting salience run interpretation.",
+        "competitive": "Exactly. Do not let the scariest story sign the contract before scale arrives."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the chapter's deepest reason for pairing base rates with context questions and anti-cynicism warnings?",
+      "choices": [
+        "To teach calibration that resists both gullibility and blanket distrust",
+        "To prove that statistics should only be used by experts",
+        "To show that every vivid example is worthless"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter is strongest when these ideas stay together. One restores proportion, one restores frame, and one stops the reader from overcorrecting into cynicism.",
+        "direct": "The chapter's synthesis is calibrated interpretation. Base rate, context, and bounded skepticism all discipline how evidence is read.",
+        "competitive": "Exactly. The point is not worship or sneering. It is making evidence earn belief."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What practical rule does Chapter 5 leave the reader with?",
+      "choices": [
+        "Trust the sharpest number because precision is usually enough",
+        "Ask what usually happens and what context is missing before letting a claim sound decisive",
+        "Avoid all statistics and rely on narrative judgment alone"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That is the chapter's closing move. Widen the frame before giving the claim authority.",
+        "direct": "The chapter teaches context-first interpretation: broader rate first, then the missing frame, then the claim.",
+        "competitive": "Right. Make the loud number survive the baseline and context check before it gets power."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

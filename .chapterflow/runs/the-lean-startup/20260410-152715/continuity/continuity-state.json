@@ -1,0 +1,42 @@
+{
+  "nameUsage": {},
+  "formatCategoryHistory": [],
+  "schoolSettingUsage": {},
+  "wordFrequency": {},
+  "phraseFrequency": {},
+  "openerRegistry": {
+    "gentle": {},
+    "direct": {},
+    "competitive": {}
+  },
+  "titleTemplateRegistry": {},
+  "endingPatternRegistry": {},
+  "withinChapterNames": {},
+  "approvedChapterHashes": {
+    "ch01": "4858f7c6bd2ea595215c11906cbbb16d3ca3f6a072ef8dbb99aa47341702f752",
+    "ch02": "682788b2b108594732d74eb1b18a02ec11231cbabfd05fbe467cc6402af1de44",
+    "ch03": "951e2ed317828bea120719fa11f6557f32433f23a545e22728f4a16529287b49",
+    "ch04": "6b193d28f4ffb8aab89d6870f9b24d02ca34e10d33a9e73662cd221eab545af8",
+    "ch05": "fe6b2914a3dbfa496702b8ce713bd2c5b3edee9843bd595d417b59be47cefb4e",
+    "ch06": "2a03907fff60a4b1a256466d8aaef889585084a7e03b4e91ed6479e9dae33b3e",
+    "ch07": "f659b1bae510aac705ca1564303892c7813543a24c45eca5fa5d0d9ee21745f8",
+    "ch08": "7dc5c53c0c6fa89b3df236397133feb144da02c0760d895fb3cad39757aef067",
+    "ch09": "0a01178248e3ea0100f1ee4ea93965bc7e832b5cb07125a41874a82f041278d2",
+    "ch10": "c24b29c61d7f667a5059aa9caf4d3522676e400785a312d35901df3942ab6cff",
+    "ch11": "bc9616cf07779d1b7c71db73f2769205d2ce538d79982c2c67c3d47dbeba392b",
+    "ch12": "d3e394bc2bf025212223a9d61f1d375b541c14858bf9ed5d4b5e257bb42a37eb",
+    "ch13": "e19d81a7ce997b059f51c946e10f08a4bb6a1d0e081472f751852880565cfffc",
+    "ch14": "b420dde16e2b353940e69c077fb59103cdbc822ed43d3e708b0aa7759934901e"
+  },
+  "baselineQuality": {
+    "chapters": [
+      "ch01",
+      "ch02"
+    ],
+    "criticScores": {
+      "ch01": "11/12",
+      "ch02": "11/12"
+    },
+    "qualityFloor": "Chapter specificity, low contamination risk, chapter-specific scenarios, and hard-depth threshold preservation."
+  }
+}

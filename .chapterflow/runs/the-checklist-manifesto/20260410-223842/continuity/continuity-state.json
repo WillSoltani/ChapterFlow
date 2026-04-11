@@ -1,0 +1,37 @@
+{
+  "nameUsage": {},
+  "formatCategoryHistory": [],
+  "schoolSettingUsage": {},
+  "wordFrequency": {},
+  "phraseFrequency": {},
+  "openerRegistry": {
+    "gentle": {},
+    "direct": {},
+    "competitive": {}
+  },
+  "titleTemplateRegistry": {},
+  "endingPatternRegistry": {},
+  "withinChapterNames": {},
+  "approvedChapterHashes": {
+    "ch01": "230c71d27740123c4946d4addccdfa65ffe7844928c15ed6e4d9f74d89f9292e",
+    "ch02": "a75a5ccf0e7435235e7fa618bdbeb8cd6a9f08a2e1e37cca55100beb7a731970",
+    "ch03": "2cb42ff94216c1ceef977c6a153d73e8bcfd27d93cb60d8149f16a2aeeb0e58b",
+    "ch04": "2adf1485468b0660e76bb732574f34891bfb2f0dfd0ac013c01aa688fa7a3d8c",
+    "ch05": "84e726f023239af4bd872eea8ae1fdab0b8548f57902d5717735ae67a3cf5874"
+  },
+  "baselineQuality": {
+    "establishedThroughChapter": 2,
+    "chapters": {
+      "ch01": {
+        "criticScore": 11,
+        "validatedChapterSha256": "230c71d27740123c4946d4addccdfa65ffe7844928c15ed6e4d9f74d89f9292e"
+      },
+      "ch02": {
+        "criticScore": 11,
+        "validatedChapterSha256": "a75a5ccf0e7435235e7fa618bdbeb8cd6a9f08a2e1e37cca55100beb7a731970"
+      }
+    },
+    "qualityDecayStopDelta": 1.5,
+    "reportPath": ".chapterflow/runs/the-checklist-manifesto/20260410-223842/reports/baseline-quality.md"
+  }
+}

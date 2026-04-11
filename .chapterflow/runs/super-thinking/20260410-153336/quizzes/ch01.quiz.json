@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "In the chapter’s opening image, what makes a tennis mistake an unforced error?",
+      "choices": [
+        "The opponent used an advanced tactic you could not anticipate",
+        "The mistake came from your own judgment or execution on a playable ball",
+        "The match conditions made any clean return impossible"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter uses unforced error to name a self-created miss, not a loss caused by an overwhelming outside force. The other answers describe hard conditions, not the chapter’s core distinction.",
+        "direct": "An unforced error is damage produced from your side of the net. That is why the image works for judgment: it isolates avoidable mistakes before outside chaos takes over.",
+        "competitive": "The winning answer owns the loss. Nobody beat you there. You handed the point away."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What target does the chapter treat as more useful than trying to be right more often?",
+      "choices": [
+        "Making fewer avoidable mistakes",
+        "Winning more arguments with confidence",
+        "Finding a perfect model for every decision"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nice catch. The chapter narrows the goal to being wrong less because that gives you something concrete to inspect and improve. The other choices chase image or perfection instead of disciplined judgment.",
+        "direct": "The chapter replaces the glamour of constant correctness with error reduction. That shift creates leverage because assumptions, timing, and downside can actually be audited.",
+        "competitive": "Correct. The chapter does not reward looking brilliant. It rewards cutting self-inflicted losses."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is the practical function of first-principles reasoning in Chapter 1?",
+      "choices": [
+        "It helps you rebuild a conclusion from what is actually known",
+        "It gives you a more persuasive way to defend any instinct",
+        "It lets you avoid making decisions until certainty arrives"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter uses first principles as a way to check what a conclusion rests on. It does not exist to decorate intuition or delay every move forever.",
+        "direct": "First-principles reasoning works by exposing what is known, what is assumed, and which assumption is load-bearing. That is how it reduces fake certainty.",
+        "competitive": "Right answer. Strip the claim down, rebuild it, and see whether anything real is holding it up."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Mira wants to propose a complete marketing overhaul after one unusually enthusiastic customer interview. What response best fits the chapter?",
+      "choices": [
+        "Push the overhaul immediately before the momentum fades",
+        "Treat the interview as a hypothesis source and run a cheap test before scaling the idea",
+        "Wait until she feels completely certain and avoid any test that might create friction"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Mira should not let one vivid signal become a full commitment. The chapter favors a small test that checks the assumption before the cost grows.",
+        "direct": "The chapter’s discipline is de-risking. One strong anecdote can start inquiry, but it does not deserve roadmap authority until a bounded test challenges the underlying assumptions.",
+        "competitive": "This is the chapter in motion: shrink the bet, force the story through evidence, then scale only if it survives."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Dev keeps repeating a polished class summary, but he cannot explain the logic when the exam question shifts. Which diagnosis matches the chapter best?",
+      "choices": [
+        "He needs more confidence so he can trust the summary under pressure",
+        "He is relying on borrowed surface fluency instead of reasoning from foundations",
+        "He should stop studying details and memorize shorter phrases instead"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The issue is not courage. Dev has a smooth answer without the structure underneath it. The chapter would send him back to the basic facts and assumptions.",
+        "direct": "This is exactly the kind of borrowed certainty first-principles reasoning is meant to expose. The summary sounds solid, but it breaks when he has to rebuild the logic himself.",
+        "competitive": "He rented the answer instead of owning it. The exam exposes the unpaid debt."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which move best shows the chapter’s distinction between useful stress and destructive exposure?",
+      "choices": [
+        "Launching nationally because public pressure will force the team to improve fast",
+        "Running a limited pilot so weaknesses show up while correction is still cheap",
+        "Avoiding all friction because any failure means the plan was flawed from the start"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A limited pilot can sting, but it teaches at a manageable scale. The other options either make the lesson too expensive or remove the learning pressure completely.",
+        "direct": "Antifragility in this chapter means bounded pressure that reveals weakness early enough to fix. The pilot does that. Full exposure and total avoidance both miss the boundary.",
+        "competitive": "Correct. You want a hit that sharpens the system, not one that wrecks it or one you never take."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Nora is ready to lease a kitchen and quit her job for a baking business she has never tested. According to the chapter, what is the strongest next move?",
+      "choices": [
+        "Make the leap now so commitment creates discipline later",
+        "Run a smaller version that tests demand before the expensive commitment",
+        "Pause the idea entirely because uncertainty means it is too risky to touch"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter does not reward dramatic confidence or total retreat. It rewards a smaller test that turns uncertainty into information while keeping the downside manageable.",
+        "direct": "This is MVP logic applied personally. Nora should expose the demand assumption to reality before she wraps major cost and identity around it.",
+        "competitive": "Do not pay full price for a first-draft story. Make the idea earn scale."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Jasmine avoids answering questions in class until she feels nearly certain every time. Why does the chapter treat this as a trap?",
+      "choices": [
+        "Because frequent speaking matters more than accuracy",
+        "Because she is reducing embarrassment but also avoiding the bounded stress that would improve her reasoning",
+        "Because real learning only happens when the stakes are very high"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Jasmine is protecting herself from small discomfort, but she is also giving up the small corrections that could make her stronger. The chapter warns against turning caution into fragility.",
+        "direct": "Pure error avoidance becomes self-defeating when it blocks useful exposure. Jasmine is not just reducing mistakes; she is starving the process that would refine judgment under manageable pressure.",
+        "competitive": "She calls it discipline, but she is really hiding from the useful hit that would toughen the system."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the chapter’s deepest argument for combining first-principles reasoning with de-risking?",
+      "choices": [
+        "Good thinking needs both a stronger foundation and a safer way to meet reality",
+        "A strong argument is enough if you defend it with enough persistence",
+        "Downside only matters in business decisions, not in personal or school choices"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter works on two levels at once. First principles improve the quality of the claim. De-risking improves the cost of discovering whether the claim holds up.",
+        "direct": "This pairing is the hidden architecture of Chapter 1. Foundational reasoning reduces fake certainty, and downside design keeps correction survivable when reality pushes back.",
+        "competitive": "Exactly. One tool cleans the thinking. The other keeps a bad read from becoming an expensive defeat."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Suppose you have already cut many personal unforced errors. What unresolved problem does the chapter’s closing preview point toward next?",
+      "choices": [
+        "How to control every variable so nothing can go wrong again",
+        "How unintended consequences and wider systems can still create failure around careful choices",
+        "How to replace all experimentation with fixed rules once your judgment improves"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter closes by admitting that disciplined personal thinking is only the first layer. Wider systems can still produce side effects that careful choices must face.",
+        "direct": "The preview opens toward unintended consequences. Even after you reduce self-created error, the surrounding system can still generate outcomes you did not mean to trigger.",
+        "competitive": "You may stop handing away easy points and still get punished by the larger machinery. That is the next battlefield."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

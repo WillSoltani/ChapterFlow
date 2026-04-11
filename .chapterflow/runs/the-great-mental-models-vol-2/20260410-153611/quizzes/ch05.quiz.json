@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch05-q01",
+      "prompt": "What do friction and viscosity explain in practical systems?",
+      "choices": [
+        "Why some systems keep moving after a decision changes",
+        "Why movement can slow because the environment around it creates drag",
+        "Why every barrier in a process should be removed"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter uses friction and viscosity to explain drag from the path or medium around the work.",
+        "direct": "Progress can slow because the surrounding system is sticky or thick.",
+        "competitive": "The path is heavy, so the motion slows."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch05-q02",
+      "prompt": "Why is a buried book and an easy-to-reach phone a good Chapter 5 example?",
+      "choices": [
+        "Because it shows friction changing behavior by changing what is easy",
+        "Because it proves every distraction should be banned",
+        "Because it means motivation never matters"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The path design makes one action easier than the other.",
+        "direct": "Friction influences behavior by shaping the path of least resistance.",
+        "competitive": "The smoother option keeps winning."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch05-q03",
+      "prompt": "A task is simple, but approvals and handoffs make it take days. What is the strongest Chapter 5 reading?",
+      "choices": [
+        "The team mainly needs more urgency",
+        "The surrounding process is creating drag beyond the work itself",
+        "The task was never simple in the first place"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says the environment can generate delay even when the core task is small.",
+        "direct": "This is friction and viscosity in the workflow around the action.",
+        "competitive": "The task is light, but the path is sludge."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch05-q04",
+      "prompt": "Marcus's lab group loses time because the key, clipboard, and supply list all live in different places. Which chapter concept fits best?",
+      "choices": [
+        "Compound viscosity making the whole process heavy",
+        "Inertia keeping the group in the old direction",
+        "Velocity pushing the group too fast"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Several small obstacles combine into a thick environment.",
+        "direct": "This is viscosity as accumulated heaviness rather than one isolated barrier.",
+        "competitive": "The swamp is built from many small drags."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q05",
+      "prompt": "What is the difference between protective resistance and wasteful drag?",
+      "choices": [
+        "Protective resistance preserves something valuable, while wasteful drag mainly creates delay, confusion, or rework",
+        "Protective resistance is faster, while wasteful drag is slower",
+        "Protective resistance only appears in school settings"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter asks whether the slowdown buys quality, safety, or care.",
+        "direct": "Some barriers earn their cost while others only tax movement.",
+        "competitive": "A safeguard protects; sludge just charges rent."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q06",
+      "prompt": "Ben removes every pause from a tense conversation to make it easier, and the exchange becomes careless. What limit is the chapter highlighting?",
+      "choices": [
+        "Any resistance in a relationship should be cut",
+        "Some slowdown is useful because it protects care or quality",
+        "Fast conversations are always more honest"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter keeps a clear limit: some resistance earns its place.",
+        "direct": "This is protective resistance, not pointless drag.",
+        "competitive": "He cut the brake instead of the sludge."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q07",
+      "prompt": "Jordan's team keeps making version mistakes because the folder structure is confusing. According to the chapter, what should happen first?",
+      "choices": [
+        "Raise the quality standard and leave the path alone",
+        "Redesign the environment where confusion is being produced",
+        "Accept the mistakes because friction is unavoidable"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says path design should be inspected before blame gets moralized.",
+        "direct": "Confusing environments manufacture repeat errors and should be simplified.",
+        "competitive": "Fix the maze before scolding the traveler."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q08",
+      "prompt": "Priya's sign-up table makes each student answer the same questions twice without catching more errors. What is the strongest Chapter 5 judgment?",
+      "choices": [
+        "The line is long because students dislike forms",
+        "The duplicated step is wasteful drag rather than useful resistance",
+        "The duplicate step should stay because repetition always improves quality"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The repetition is slowing movement without protecting anything important.",
+        "direct": "This is duplicated drag rather than meaningful control.",
+        "competitive": "It is tax, not protection."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch05-q09",
+      "prompt": "Which statement best captures the chapter's design rule?",
+      "choices": [
+        "Remove every barrier you can find",
+        "Keep the barriers that protect something real and cut the ones that only waste effort",
+        "Treat slow systems as motivation problems first"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter rejects both speed worship and official-looking sludge.",
+        "direct": "Strong judgment preserves valuable resistance while eliminating waste.",
+        "competitive": "Keep the safeguard. Kill the tax."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch05-q10",
+      "prompt": "How does this chapter set up the move into velocity?",
+      "choices": [
+        "It shows why movement persists on its own and ends the physics section",
+        "It explains drag in the path, then points toward judging rate and direction of movement itself",
+        "It shifts away from motion and back to reciprocity"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The next step is to ask how to evaluate movement once resistance in the medium is understood.",
+        "direct": "Friction and viscosity describe drag, and velocity adds pace plus heading.",
+        "competitive": "After the path, the question becomes the speed and aim of the motion on it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

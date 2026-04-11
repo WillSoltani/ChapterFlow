@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "How does this chapter define intuition most clearly?",
+      "choices": [
+        "A mystical gift that resists explanation",
+        "Fast perception of meaningful cues before formal reasoning has finished organizing them",
+        "A feeling that should always override later judgment"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter keeps intuition practical. It is a quick read of real fragments, not a supernatural event.",
+        "direct": "Intuition is framed as rapid pattern recognition. That makes it usable without turning it mystical.",
+        "competitive": "This chapter demotes intuition from magic to process, and that is what makes it stronger."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What most often damages intuition in the chapter's logic?",
+      "choices": [
+        "Judgment demanding a polished explanation too early",
+        "Talking about safety with other people",
+        "Leaving the room before asking enough questions"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says early judgment can talk over perception before the signal has even been named.",
+        "direct": "Premature rationalization is the main interference. The cue gets buried before it becomes concrete.",
+        "competitive": "The signal usually dies under early cross-examination, not under honest later testing."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why does the chapter keep pushing the reader to name the cue?",
+      "choices": [
+        "Because a concrete cue gives the fast read an anchor in reality",
+        "Because every cue has only one possible meaning",
+        "Because naming the cue removes the need for any later reasoning"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Naming the cue turns a vague feeling into something steadier and easier to work with.",
+        "direct": "The cue does not solve the whole room, but it keeps intuition accountable to something observable.",
+        "competitive": "A named cue can carry weight. A vibe just keeps wobbling."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Maya is working reception and feels uneasy about a visitor. She notices that his badge request does not match the floor he claims he needs. What is the strongest move under this chapter's rules?",
+      "choices": [
+        "Ignore the read until she can explain exactly why the visitor feels wrong as a person",
+        "Name the mismatch, slow the process, and let verification test the cue",
+        "Confront him with a dramatic accusation about his motives"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter favors turning the fast read into a concrete cue and then testing that cue calmly.",
+        "direct": "Maya does not need a complete theory of the visitor. The mismatch is enough to justify procedural verification.",
+        "competitive": "Use the cue to control access, not to perform certainty."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Which reaction would the chapter reject as a misuse of intuition?",
+      "choices": [
+        "Treating every strong feeling as wisdom even when no cue can be named",
+        "Looking for the specific behavior that triggered the read",
+        "Letting reason help size the response after the cue is clear"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps intuition disciplined by insisting on a real cue.",
+        "direct": "Free-floating certainty is exactly what the chapter is trying to block. Without a cue, the read loses structure.",
+        "competitive": "No cue means no authority. Otherwise intensity starts cosplaying as insight."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Omar says, \"If intuition matters, reason must be the enemy.\" What is the best correction?",
+      "choices": [
+        "Reason should disappear once the first feeling arrives",
+        "Reason belongs later in the sequence, after perception has been anchored to a cue",
+        "Reason is useful only in situations that are not about safety"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter is not anti-reason. It objects to reason arriving too early and erasing perception.",
+        "direct": "Reason still matters, but its proper job is calibration after the cue has been named.",
+        "competitive": "Reason is a finisher here, not the assassin sent to kill the signal on arrival."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "At school, Priya has a fast uneasy read on a visitor but cannot yet explain it. Which question best matches this chapter's method?",
+      "choices": [
+        "Which concrete cue in the room triggered the read?",
+        "How can I stop feeling uneasy right now?",
+        "What would make everyone else agree with me immediately?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The method starts by looking for the cue, not by managing the discomfort or chasing public agreement.",
+        "direct": "The chapter's discipline is to move from sensation to signal. That question does exactly that.",
+        "competitive": "Find the break in the pattern before you start bargaining with the room."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Jonah feels rushed getting into a rideshare and notices the driver skipped the normal identity check. Which judgment best fits the chapter?",
+      "choices": [
+        "The urgency itself proves the driver is dangerous",
+        "The process break is a real cue that justifies pausing and verifying",
+        "Because intuition can be wrong, Jonah should get in and see what happens"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter does not need Jonah to prove the whole story. It needs him to respect the concrete cue he can already see.",
+        "direct": "A broken process is the cue. Verification is the disciplined response.",
+        "competitive": "Skipped checks plus urgency are enough to stop momentum and make the cue answer for itself."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does cue naming make it easier to trust fast perception without turning it into paranoia?",
+      "choices": [
+        "Because the cue removes all ambiguity from the situation",
+        "Because a present signal gives the read a narrow anchor instead of letting it spread across everything",
+        "Because the strongest intuition always comes with emotional intensity"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A named cue keeps the read specific, which helps the person respond without treating the whole world as dangerous.",
+        "direct": "The cue narrows the signal. That boundary is what protects the chapter from collapsing into generalized suspicion.",
+        "competitive": "Anchoring the read to one real break in the pattern keeps it sharp instead of turning it into weather."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What question does this chapter hand to the next one?",
+      "choices": [
+        "How to trust every first impression instantly",
+        "How disciplined pattern recognition grows into broader prediction over time",
+        "How to stop needing intuition once you become more rational"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "This chapter explains the fast read itself. The next step is understanding how pattern reading scales into prediction.",
+        "direct": "Once intuition is defined as cue-based perception, the next chapter can ask how those early reads extend into larger predictive judgment.",
+        "competitive": "Chapter 2 builds the engine. Chapter 3 asks what happens when that engine starts reading longer chains."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

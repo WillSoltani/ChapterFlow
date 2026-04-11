@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch04-q01",
+      "prompt": "What is inertia in the chapter's practical sense?",
+      "choices": [
+        "The idea that systems usually collapse without maintenance",
+        "The tendency of current direction to persist until force redirects it",
+        "The belief that motivation matters more than structure"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter defines inertia as persistence of current motion until something actually changes the path.",
+        "direct": "Inertia is directional persistence, not mere stubbornness.",
+        "competitive": "The old setup keeps rolling until force turns it."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch04-q02",
+      "prompt": "Why do many change efforts feel harder after the decision is made?",
+      "choices": [
+        "Because commitment language is usually dishonest",
+        "Because startup force is often larger than expected",
+        "Because momentum only matters in large institutions"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says real redirection costs more effort than people first budget.",
+        "direct": "Startup force is commonly underestimated once a pivot moves from talk to structure.",
+        "competitive": "The turn gets expensive right after the speech ends."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch04-q03",
+      "prompt": "Grace's team announces a new meeting process, but the old checklist and slide order recreate the former routine. What does this show?",
+      "choices": [
+        "Decision and redirection are not the same thing",
+        "Old routines disappear once people agree to change",
+        "Meeting problems mainly come from poor attitudes"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The team changed its words before it changed the cues guiding behavior.",
+        "direct": "This is inertia preserving the old path after a declared pivot.",
+        "competitive": "The memo changed faster than the rails did."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch04-q04",
+      "prompt": "Mina wants to wake earlier, but her alarm setup and nightly routine still support the old morning. According to the chapter, what is the strongest diagnosis?",
+      "choices": [
+        "She lacks the personality for disciplined habits",
+        "The startup force for the new direction has not been built into the environment",
+        "The goal is impossible without outside pressure"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter treats the problem as a weak launch setup rather than as a pure character flaw.",
+        "direct": "Her environment is still organized around the former routine, so the old motion keeps winning.",
+        "competitive": "She is trying to turn the day while the room still funds the old schedule."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q05",
+      "prompt": "Why is carryover important when a system is changing direction?",
+      "choices": [
+        "It proves the new direction is fake whenever the old pattern reappears",
+        "It shows that old momentum can keep affecting results for a while after the pivot",
+        "It means the system should never try to change quickly"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Carryover means the previous motion can linger during the transition.",
+        "direct": "Residual momentum can outlast the decision to change without disproving it.",
+        "competitive": "The wake keeps moving after the wheel starts turning."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q06",
+      "prompt": "Omar's study block becomes easier to start by the tenth night. What chapter idea does this illustrate?",
+      "choices": [
+        "Momentum can become useful once the direction is aligned",
+        "Any routine becomes wise once it feels automatic",
+        "Startup force matters only at the beginning and then disappears from judgment"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says persistence can help once the system is moving in the right direction.",
+        "direct": "Aligned momentum reduces future effort after the routine gains repetition.",
+        "competitive": "Yesterday's push has become today's leverage."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q07",
+      "prompt": "A team keeps using an old rushed build order because it once worked well, even though it now causes errors. What is the best Chapter 4 reading?",
+      "choices": [
+        "Established momentum can trap the wrong direction by feeling natural",
+        "The team should preserve the routine because speed always matters most",
+        "Past success makes a process correct by default"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns that familiar motion can keep going even when it no longer deserves support.",
+        "direct": "This is momentum hardening into lock-in.",
+        "competitive": "Fast and familiar are impersonating wisdom."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q08",
+      "prompt": "Ravi says the team is customer-first now, but the dashboard still centers internal utilization. What should happen next according to the chapter?",
+      "choices": [
+        "Wait to see whether motivation improves on its own",
+        "Redirect the metrics and weekly rhythm where behavior is actually reinforced",
+        "Ignore the dashboard because the intention already changed"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The visible reinforcements need to support the new direction.",
+        "direct": "Real force must be applied at the incentive and attention points shaping the system.",
+        "competitive": "Turn the metric spine if you want the body to turn."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch04-q09",
+      "prompt": "Which statement best captures the chapter's judgment about persistence?",
+      "choices": [
+        "Persistence is usually proof that the current direction is good",
+        "Persistence is neither good nor bad until you ask what direction it is serving",
+        "Persistence mainly matters when people lack discipline"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter keeps asking whether momentum is helping the right path or trapping the wrong one.",
+        "direct": "Continuation is evidence of motion, not of merit.",
+        "competitive": "Momentum is directional, not virtuous."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch04-q10",
+      "prompt": "How does this chapter set up the move into friction and viscosity?",
+      "choices": [
+        "It finishes the physics section by proving motion is easy once it begins",
+        "It shows persistence first, then points toward what happens when movement starts meeting drag",
+        "It leaves motion behind and returns to reciprocity"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The next step is to ask what slows movement once direction exists.",
+        "direct": "Inertia explains persistence, and the next chapter adds environmental resistance to that picture.",
+        "competitive": "First learn why motion keeps going, then learn what starts grinding against it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

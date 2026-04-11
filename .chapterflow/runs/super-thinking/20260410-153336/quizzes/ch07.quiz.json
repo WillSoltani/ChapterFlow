@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What first correction does Chapter 7 make about conflict?",
+      "choices": [
+        "Conflict is mainly private self-expression",
+        "Conflict is interactive because the other side can respond and change the exchange",
+        "Conflict is solved by using more force immediately"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Correct. The chapter starts by treating conflict as interaction rather than one-sided expression.",
+        "direct": "The first move is structural: another mind is in the system, so the exchange changes with each response.",
+        "competitive": "Right. If the other side can answer back, you are already in a game."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the chapter mention game theory?",
+      "choices": [
+        "To teach formal payoff matrices",
+        "To emphasize that moves invite responses and alter the structure of the exchange",
+        "To prove every conflict can be solved mathematically"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter uses game theory narrowly to stress responsive interaction.",
+        "direct": "Its role is structural, not formal: incentives and counter-moves matter once another person can answer back.",
+        "competitive": "Exactly. The point is not equations. The point is that the system answers."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What does authority change in a conflict?",
+      "choices": [
+        "Only the emotional tone, never the outcome",
+        "How the same move is received as legitimate, dismissible, or provocative",
+        "Whether facts remain true or false"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Authority changes how pressure and persuasion land.",
+        "direct": "The chapter treats legitimacy and credibility as part of the mechanism, not background noise.",
+        "competitive": "Right. Same words, different position, different impact."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A manager keeps escalating a dispute, but every stronger response makes the team more defensive. What chapter move fits best?",
+      "choices": [
+        "Inspect what response loop the escalation is feeding",
+        "Push even harder because strength always wins",
+        "Ignore the incentives and focus only on personal intention"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter would ask what pattern the escalation is reinforcing.",
+        "direct": "This is response-loop analysis: judge the move by the conflict it creates, not by the force it expresses.",
+        "competitive": "Stop confusing louder pressure with smarter conflict."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why might the same statement calm one conflict and inflame another?",
+      "choices": [
+        "Because truth changes from room to room",
+        "Because authority, legitimacy, and structure shape how the move lands",
+        "Because conflict is always random"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says the surrounding authority and response structure matter.",
+        "direct": "A move is filtered through legitimacy, status, and incentive context, not just content.",
+        "competitive": "Exactly. The sentence does not travel naked."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What mistake does Chapter 7 warn against when a conflict feels intense?",
+      "choices": [
+        "Assuming escalation is automatically strength",
+        "Assuming authority matters too much",
+        "Assuming the other side can respond"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Intensity can tempt the reader to treat more pressure as the obvious answer.",
+        "direct": "The chapter resists escalation worship by asking what game the added force would feed.",
+        "competitive": "Right. More force can still mean worse strategy."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "When does the chapter recommend redirecting or refusing a conflict?",
+      "choices": [
+        "When direct engagement strengthens the wrong game or harms the larger situation",
+        "Only when the reader is afraid",
+        "Never, because refusal is always weakness"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Some conflicts should be reframed or refused because the visible fight is the wrong battlefield.",
+        "direct": "Loss leader strategy becomes a lesson in protecting the larger situation instead of automatically winning the smaller clash.",
+        "competitive": "If the offered fight is a trap, refusal can be the strongest move in the room."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "A student can win a small argument in class leadership but would damage the larger project by doing so. Which chapter idea fits best?",
+      "choices": [
+        "Protect the larger position even if the smaller clash is left unresolved for now",
+        "Prove strength by winning every visible point immediately",
+        "Ignore the authority structure and hope for the best"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "This is the chapter's selective-engagement lesson.",
+        "direct": "The strategically relevant level of the conflict may be larger than the visible disagreement.",
+        "competitive": "Winning the petty round can still be the dumbest path available."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the chapter's deepest reason for pairing strategic awareness with a warning against manipulation?",
+      "choices": [
+        "To keep the reader aware of structure without turning the lesson into cynical control",
+        "To show that conflict should be avoided at all costs",
+        "To prove authority should always dominate"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants less naivete, not more exploitation.",
+        "direct": "Its synthesis is strategic awareness under moral constraint: read the game clearly without glamorizing domination.",
+        "competitive": "Exactly. See the board without becoming proud of using people as pieces."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What practical sequence does Chapter 7 leave the reader with?",
+      "choices": [
+        "Identify the game, inspect likely responses, notice authority, then decide whether to press, reframe, or refuse",
+        "State your position more loudly until the other side yields",
+        "Ignore structure and focus only on being right"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That is the chapter's usable rule for conflict judgment.",
+        "direct": "The method is procedural: read the interaction before choosing pressure, reframing, or refusal.",
+        "competitive": "Right. Strategy starts when you stop treating every fight like the same fight."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

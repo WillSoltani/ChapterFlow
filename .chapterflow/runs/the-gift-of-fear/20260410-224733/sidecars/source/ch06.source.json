@@ -1,0 +1,23 @@
+{
+  "chapterId": "ch06",
+  "title": "High-stakes predictions",
+  "heading": "High-stakes predictions",
+  "approxWords": 97,
+  "properNouns": ["Gavin de Becker", "Open Library", "IUCAT"],
+  "repeatedTerms": ["prediction", "pattern", "sequence", "escalation", "cost", "timing"],
+  "sourceReferences": [
+    "openlibrary_toc",
+    "iucat_toc",
+    "prior_chapters_03_05",
+    "book_skeleton_intent"
+  ],
+  "notes": {
+    "coreMechanism": "stronger forecasts rest on sequence, escalation, and downside cost rather than labels or isolated impressions",
+    "mainLimit": "protective action may come before certainty, but prediction must stay narrower than prophecy",
+    "guardrails": [
+      "no unsupported statistics",
+      "no invented case specifics",
+      "keep claims pattern-bound and modest"
+    ]
+  }
+}

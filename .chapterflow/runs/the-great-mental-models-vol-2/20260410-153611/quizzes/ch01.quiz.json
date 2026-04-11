@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch01-q01",
+      "prompt": "What is the chapter's main correction to a fast first impression?",
+      "choices": [
+        "Treat every perspective as equally sound",
+        "Check position, framing, and time horizon before settling on meaning",
+        "Ignore context so standards stay firm"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter teaches a widening move before judgment: compare seats, inspect framing, and stretch the timeline.",
+        "direct": "Relativity improves interpretation by checking viewpoint, frame, and clock before committing to a verdict.",
+        "competitive": "A hard first read is not enough. The model demands a better angle first."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q02",
+      "prompt": "Why can a partial perspective still be useful?",
+      "choices": [
+        "Because it holds some signal even if it does not hold the whole event",
+        "Because the earliest observer is usually the most objective",
+        "Because missing details rarely change interpretation"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A viewpoint can reveal something real while still leaving important constraints or evidence out of sight.",
+        "direct": "Partial does not mean false. It means incomplete.",
+        "competitive": "Your slice can matter without earning the right to rule the whole judgment."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q03",
+      "prompt": "A plan sounds weak until you learn the author is managing a deadline you had not seen. Which chapter idea explains the shift in your judgment?",
+      "choices": [
+        "The same move can change meaning when hidden constraints from another seat become visible",
+        "Clear plans should always be trusted more than cautious plans",
+        "Time pressure mainly matters after the decision is made"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Once the missing constraint appears, the plan is being read from a fuller position.",
+        "direct": "The change comes from reconstructing the other frame before assigning competence.",
+        "competitive": "The seat changed, so the verdict changed."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q04",
+      "prompt": "Maya recommends delaying a launch after supplier problems surface. Owen wants to call the plan timid. What is the strongest next move if you are applying relativity well?",
+      "choices": [
+        "Back Owen because confidence matters more than missing operational detail",
+        "Ask what risks, information, and deadlines Maya is carrying before judging the plan",
+        "Split the difference so neither side feels dismissed"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Before deciding whether Maya is cautious or weak, you need the constraints attached to her position.",
+        "direct": "Relativity first reconstructs the other seat rather than smoothing over disagreement.",
+        "competitive": "You earn the verdict by mapping the hidden burden, not by guessing from the cheap seats."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q05",
+      "prompt": "Which statement best preserves the chapter's distinction between understanding and agreeing?",
+      "choices": [
+        "If a frame makes sense from another person's position, it should usually be accepted",
+        "Understanding another frame expands evidence, but standards still decide whether the frame is sound",
+        "Agreement is the only proof that perspective-taking happened sincerely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter widens interpretation first, then returns to judgment rather than replacing it.",
+        "direct": "Perspective-taking is an evidence move, not automatic endorsement.",
+        "competitive": "Seeing the other seat does not mean handing it the win."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q06",
+      "prompt": "Elena keeps exploring why her partner missed a project deadline but never decides what to do next. What failure mode is showing up?",
+      "choices": [
+        "Perspective-taking has widened into hesitation instead of stronger commitment",
+        "She is using too long a timeline for a school problem",
+        "She is proving every perspective is equally valid"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns that a wider frame should improve decisions, not postpone them forever.",
+        "direct": "Relativity fails when complexity becomes a cover for indecision.",
+        "competitive": "She upgraded blame into analysis, then let analysis turn soft."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q07",
+      "prompt": "A dashboard highlights growth but omits churn. What is the chapter asking you to inspect first?",
+      "choices": [
+        "Whether the presenter believes the growth numbers personally",
+        "Which frame selected those metrics and what decision that frame is nudging",
+        "Whether the room prefers positive news to negative news"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The missing metric matters because framing changes what the room will treat as central.",
+        "direct": "This is a framing problem before it is a motivation problem.",
+        "competitive": "The real leverage is in the frame that tells the room what counts."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q08",
+      "prompt": "Luis's mother sees unopened college letters and reads apathy. Luis has been delaying because each letter feels like pressure about his future. What chapter move corrects the first judgment best?",
+      "choices": [
+        "Replace standards with sympathy so the conflict cools down",
+        "Treat the behavior as random because family situations are too emotional to read well",
+        "Surface the hidden meaning and timescale attached to the same visible behavior"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The visible action stays the same, but its meaning changes once fear and future pressure are included.",
+        "direct": "Relativity improves the read by adding the other interpretation and the longer timeline around choice.",
+        "competitive": "A better frame exposes the fear under the delay instead of flattening it into laziness."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q09",
+      "prompt": "Which response shows the strongest use of relativity in a high-stakes decision?",
+      "choices": [
+        "Keep widening the frame until every possible reading has been considered",
+        "Lock in the earliest interpretation so action is not slowed by uncertainty",
+        "Test the other seat, inspect the frame, extend the timeline, then commit with explicit standards"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter's strongest use of perspective is disciplined widening followed by a real decision.",
+        "direct": "Relativity is complete only when broader evidence leads back to commitment.",
+        "competitive": "The winning move is not endless nuance or blind speed. It is wider evidence plus a hard choice."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch01-q10",
+      "prompt": "If Chapter 1 teaches you to read events from more than one angle, what is the most likely pressure Chapter 2 adds?",
+      "choices": [
+        "How your own action changes the field and invites a response",
+        "How to replace perspective with a single stable rule",
+        "How to remove uncertainty from every social situation"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The preview points toward a new idea: once you see better, you still need to deal with the world's response to what you do.",
+        "direct": "Relativity focuses on interpretation, and the next chapter logically adds feedback from action.",
+        "competitive": "Reading the field is step one. Step two is surviving what the field sends back."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "bookId": "the-12-week-year",
+  "runId": "20260410-223309",
+  "createdAt": "2026-04-10T22:33:09-03:00",
+  "policy": "public_or_authorized_plus_secondary",
+  "sources": [
+    {
+      "sourceId": "src-01",
+      "title": "The 12 Week Year: Get More Done in 12 Weeks than Others Do in 12 Months - Google Books",
+      "url": "https://books.google.com/books/about/The_12_Week_Year.html?id=rFDxXq5sD5QC",
+      "type": "authorized_preview",
+      "role": "bibliographic confirmation for the 2013 Wiley edition family",
+      "confidence": "high",
+      "notes": "Confirms title, authors, publisher, publication year, and the general thesis that annualized thinking lowers execution effectiveness."
+    },
+    {
+      "sourceId": "src-02",
+      "title": "The 12 Week Year - O'Reilly online edition",
+      "url": "https://www.oreilly.com/library/view/the-12-week/9781118616420/",
+      "type": "authorized_preview",
+      "role": "chapter map, chapter subtitles, and opening preview text for early chapters",
+      "confidence": "high",
+      "notes": "Provides the full numbered chapter list, subheads for many chapters, Chapter 1 preview text, and Chapter 2 preview text."
+    },
+    {
+      "sourceId": "src-03",
+      "title": "The 12-week year - Open Library",
+      "url": "https://openlibrary.org/works/OL19968189W/The_12-week_year?edition=ia%3A12weekyeargetmor0000mora",
+      "type": "library_catalog",
+      "role": "edition corroboration and early contents support",
+      "confidence": "medium",
+      "notes": "Corroborates the 2013 English edition family and the opening contents sequence."
+    },
+    {
+      "sourceId": "src-04",
+      "title": "The System | 12 Week Year",
+      "url": "https://www.12weekyear.com/system",
+      "type": "official_author_business",
+      "role": "official support for the method's current framing around vision, 12 week goals, and weekly execution",
+      "confidence": "high",
+      "notes": "Useful as bounded secondary support for the system language, but not as a replacement for the locked chapter map."
+    }
+  ]
+}

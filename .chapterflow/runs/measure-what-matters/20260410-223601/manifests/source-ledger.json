@@ -1,0 +1,118 @@
+{
+  "bookId": "measure-what-matters",
+  "runId": "20260410-223601",
+  "lockedAt": "2026-04-10",
+  "selectionMode": "auto_locked_dominant_edition",
+  "sources": [
+    {
+      "id": "google_books_measure_what_matters",
+      "title": "Google Books metadata and preview page for Measure What Matters",
+      "url": "https://books.google.com/books/about/Measure_What_Matters.html?id=u2NDDwAAQBAJ",
+      "type": "authorized_metadata_preview",
+      "role": "primary edition metadata, official preview framing, and partial contents map",
+      "confidence": "high",
+      "accessedAt": "2026-04-10",
+      "notes": "Confirms John Doerr as author, Penguin publication on 2018-04-24, 320 pages, ISBN 9780525536239, and a visible contents listing spanning the OKR, CFR, culture, and future-goals sections."
+    },
+    {
+      "id": "openlibrary_measure_what_matters_2018",
+      "title": "Open Library 2018 Portfolio edition record for Measure What Matters",
+      "url": "https://openlibrary.org/books/OL27912272M/Measure_What_Matters_How_Google_Bono_and_the_Gates_Foundation_Rock_the_World_with_OKRs",
+      "type": "catalog_record",
+      "role": "edition-family confirmation",
+      "confidence": "high",
+      "accessedAt": "2026-04-10",
+      "notes": "Confirms the 2018 Portfolio edition family and the April 24, 2018 publication date."
+    },
+    {
+      "id": "openlibrary_measure_what_matters_work",
+      "title": "Open Library work page for Measure What Matters",
+      "url": "https://openlibrary.org/works/OL19746884W/Measure_what_matters",
+      "type": "catalog_record",
+      "role": "work-level metadata and dust-jacket summary support",
+      "confidence": "high",
+      "accessedAt": "2026-04-10",
+      "notes": "Confirms the 2018 hardcover family, 320 pages, Larry Page foreword, and the dust-jacket summary covering Google, Intel, transparency, and the benefits of OKRs."
+    },
+    {
+      "id": "whatmatters_operation_crush",
+      "title": "What Matters explainer on John Doerr's Operation Crush story",
+      "url": "https://www.whatmatters.com/okrs-explained/john-doerr-operation-crush",
+      "type": "official_authorized_resource",
+      "role": "authorized support for the Intel-origin material and Chapter 3 anchor set",
+      "confidence": "high",
+      "accessedAt": "2026-04-10",
+      "notes": "Provides authorized summary support for Andy Grove, Operation Crush, Intel's crisis response, bottom-up feedback, and the role of OKRs in the microprocessor battle."
+    },
+    {
+      "id": "whatmatters_okrs_course",
+      "title": "What Matters OKRs Explained course index",
+      "url": "https://www.whatmatters.com/okrs-explained/what-are-okrs",
+      "type": "official_authorized_resource",
+      "role": "authorized support for the OKR fundamentals and the book's superpower framing",
+      "confidence": "high",
+      "accessedAt": "2026-04-10",
+      "notes": "Confirms the active What Matters learning path, the Five Benefits of OKRs framing, and the continuity between the book and John Doerr's public OKR teaching."
+    },
+    {
+      "id": "whatmatters_origin_story",
+      "title": "What Matters The OKR Origin Story",
+      "url": "https://www.whatmatters.com/articles/the-origin-story",
+      "type": "official_authorized_resource",
+      "role": "authorized support for Andy Grove as the father of OKRs and for the execution-first origin logic",
+      "confidence": "high",
+      "accessedAt": "2026-04-10",
+      "notes": "Supports Grove as the father of OKRs, frames the method as a response to expertise without execution, and links Doerr to Grove's teaching."
+    },
+    {
+      "id": "whatmatters_okr_explanation_examples",
+      "title": "What Matters What are OKRs? Explanation and Examples",
+      "url": "https://www.whatmatters.com/faqs/okrs-objectives-key-results-explanation-examples",
+      "type": "official_authorized_resource",
+      "role": "authorized support for OKR definition, transparency, and Doerr as the Johnny Appleseed of OKRs",
+      "confidence": "high",
+      "accessedAt": "2026-04-10",
+      "notes": "Confirms that Andy Grove created the method at Intel, taught it to John Doerr, and that OKRs are used to maximize alignment and transparency."
+    },
+    {
+      "id": "whatmatters_stretch_benefits",
+      "title": "What Matters stretch goals and the Five Benefits of OKRs",
+      "url": "https://www.whatmatters.com/resources/okrs-stretch-goals-difference-between",
+      "type": "official_authorized_resource",
+      "role": "authorized support for the FACTS framing, especially focus and commitment",
+      "confidence": "high",
+      "accessedAt": "2026-04-10",
+      "notes": "Supports the Five Benefits of OKRs and defines focus as choosing what matters most and commitment as participation and buy-in from stakeholders."
+    },
+    {
+      "id": "millen_measure_what_matters_notes",
+      "title": "Measure What Matters notes by Gustavo Millen",
+      "url": "https://millengustavo.github.io/okr/",
+      "type": "secondary_summary",
+      "role": "chapter-level interpretive support for early OKR chapters",
+      "confidence": "medium",
+      "accessedAt": "2026-04-10",
+      "notes": "Supports the early-book chapter map and highlights for the Google opening, Andy Grove, and OKR operating rules."
+    },
+    {
+      "id": "codurance_measure_what_matters",
+      "title": "Codurance book-club writeup of Measure What Matters",
+      "url": "https://www.codurance.com/publications/measure-what-matters",
+      "type": "secondary_summary",
+      "role": "support for later CFR and culture chapters when public preview text is thin",
+      "confidence": "medium",
+      "accessedAt": "2026-04-10",
+      "notes": "Provides chapter-level support around continuous performance management, CFRs, and the cultural implications of OKRs."
+    },
+    {
+      "id": "perlego_speedyreads_toc",
+      "title": "Perlego table of contents for summary of Measure What Matters",
+      "url": "https://www.perlego.com/book/1948958/summary-of-measure-what-matters-pdf",
+      "type": "secondary_contents_map",
+      "role": "full 21-chapter table-of-contents confirmation",
+      "confidence": "medium",
+      "accessedAt": "2026-04-10",
+      "notes": "Used only to confirm the full chapter order and section split where the Google Books contents listing was partial."
+    }
+  ]
+}

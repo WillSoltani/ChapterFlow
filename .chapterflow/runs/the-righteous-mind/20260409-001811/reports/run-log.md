@@ -19,3 +19,25 @@
 - 2026-04-09: Chapter 9 passed chapter gate. Validator PASS, artifact guard PASS, review wrapper sealed, continuity hash recorded.
 - 2026-04-09: Chapter 10 passed chapter gate. Validator PASS, artifact guard PASS, review wrapper sealed, continuity hash recorded.
 - 2026-04-09: Wave 9-10 verified clean. Repo artifact guard PASS. Ready to continue into the next wave.
+- 2026-04-10: Chapter 11 passed chapter gate. Validator PASS, artifact guard PASS, review wrapper sealed, continuity hash recorded.
+- 2026-04-10: Chapter 12 passed chapter gate. Validator PASS, artifact guard PASS, review wrapper sealed, continuity hash recorded.
+- 2026-04-10: Wave 11-12 verified clean. Repo artifact guard PASS. Ready for release assembly from validated chapter JSON only.
+- 2026-04-10: Release package assembled from validated chapter JSON only and wired to book-packages/the-righteous-mind.modern.json.
+- 2026-04-10: Release guard PASS after repairing the guard's sealed-hash comparison to use validated chapter file hashes.
+- 2026-04-10: Repo build PASS for the wired release package.
+- 2026-04-10: Release gate blocked. Repo validator and v13 lint fail on cross-chapter prose findings embedded in the sealed validated chapter set; see reports/release-gate.md.
+- 2026-04-10: Chapter 1 repaired for release-gate prose audit findings, revalidated PASS, and resealed in continuity.
+- 2026-04-10: Chapter 2 repaired for release-gate prose audit findings, revalidated PASS, and resealed in continuity.
+- 2026-04-10: Chapter 3 repaired for release-gate prose audit findings, revalidated PASS, and resealed in continuity.
+- 2026-04-10: Chapter 4 repaired for release-gate prose audit findings, revalidated PASS, and resealed in continuity.
+- 2026-04-10: Chapter 5 repaired for release-gate prose audit findings, revalidated PASS, and resealed in continuity.
+- 2026-04-10: Chapter 6 repaired for release-gate prose audit findings, revalidated PASS, and resealed in continuity.
+- 2026-04-10: Chapter 7 repaired for release-gate prose audit findings, revalidated PASS, and resealed in continuity.
+- 2026-04-10: Chapter 8 repaired for release-gate prose audit findings, revalidated PASS, and resealed in continuity.
+- 2026-04-10: Chapter 9 repaired for release-gate prose audit findings, revalidated PASS, and resealed in continuity.
+- 2026-04-10: Chapter 10 repaired for release-gate prose audit findings, revalidated PASS, and resealed in continuity.
+- 2026-04-10: Chapter 11 repaired for release-gate prose audit findings, revalidated PASS, and resealed in continuity.
+- 2026-04-10: Chapter 12 repaired for release-gate prose audit findings, revalidated PASS, and resealed in continuity.
+
+- 2026-04-10: Chapter 5 repaired for release validator word-count minima, revalidated PASS, and resealed in continuity.
+- 2026-04-10: Final release gates PASS. Release guard, repo validator, v13 release lint, and repo build all passed for `the-righteous-mind.modern.json`.

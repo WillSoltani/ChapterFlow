@@ -1,0 +1,174 @@
+{
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the central move in Chapter 27?",
+      "choices": [
+        "Praising real small gains so improvement feels possible",
+        "Using broad flattery to keep morale high",
+        "Ignoring partial progress until the result is perfect"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter uses praise as reinforcement of real progress.",
+        "direct": "Option A fits because specific praise is the central move.",
+        "competitive": "Spot the real win and feed it."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why do small gains matter in this chapter?",
+      "choices": [
+        "Because visible progress can make continued effort feel reachable",
+        "Because partial progress is enough by itself",
+        "Because praise should replace standards"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says noticed gains can lower discouragement.",
+        "direct": "Small wins matter because they make progress feel real instead of distant.",
+        "competitive": "A visible win keeps the grind from feeling useless."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What momentum mechanism does the chapter emphasize?",
+      "choices": [
+        "One noticed gain can make the next gain seem more reachable",
+        "Praise removes the need for further effort",
+        "Small gains matter only when they are public"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A real gain can become proof that more progress is possible.",
+        "direct": "Visible progress changes how the next step is experienced.",
+        "competitive": "One win can drag the next one closer."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A manager points to clearer client notes as evidence that a new employee is improving. What chapter move is this?",
+      "choices": [
+        "Specific reinforcement of a small gain",
+        "Empty flattery",
+        "Premature celebration without evidence"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The manager is praising a concrete improvement.",
+        "direct": "This is the method because the praise is tied to evidence.",
+        "competitive": "That is a real win marked in public."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "A student is praised for making one sharper connection in seminar even though the overall performance is still developing. What changed?",
+      "choices": [
+        "A visible gain was turned into usable momentum",
+        "The class decided standards no longer matter",
+        "The praise replaced the need for preparation"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The praise helps the student feel that progress is happening.",
+        "direct": "Option A fits because one real gain becomes evidence for continued effort.",
+        "competitive": "The next rep got pulled closer by the last one."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What main limit does Chapter 27 keep clear?",
+      "choices": [
+        "Praise has to stay tied to real progress rather than generic positivity",
+        "Praise should be used even when nothing has improved",
+        "Praise matters more than accuracy or standards"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter rejects empty encouragement detached from evidence.",
+        "direct": "Credibility depends on praise pointing to something real.",
+        "competitive": "No fake wins allowed."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Which option misreads Chapter 27 as flattery?",
+      "choices": [
+        "Naming one actual gain and linking it to the next step",
+        "Offering broad praise with no visible evidence just to keep spirits up",
+        "Using specific reinforcement after a small real improvement"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter rejects praise that has no real gain behind it.",
+        "direct": "Option B is flattery rather than evidence-based reinforcement.",
+        "competitive": "That is mood spray, not signal."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "advanced"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why can early noticed progress change effort?",
+      "choices": [
+        "Because it makes improvement feel less invisible and more attainable",
+        "Because it guarantees success regardless of work",
+        "Because it removes the need for future correction"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Visible progress reduces the feeling that effort is going nowhere.",
+        "direct": "A noticed gain changes the psychological forecast for the next step.",
+        "competitive": "The board finally moves, so the grind feels worth it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "advanced"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "How can praise encourage improvement while preserving credibility?",
+      "choices": [
+        "By naming a specific gain without pretending the whole problem is solved",
+        "By exaggerating small wins into total success",
+        "By praising effort even when the evidence points backward"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps praise honest and specific.",
+        "direct": "Credibility remains when the reinforcement matches the actual progress.",
+        "competitive": "Keep the praise tight to the board."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "advanced"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why does this chapter lead naturally into Chapter 28?",
+      "choices": [
+        "Because once progress is visible, the book can turn to a good reputation that reinforces it",
+        "Because the next chapter abandons praise entirely",
+        "Because small gains make identity irrelevant"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next chapter extends progress reinforcement into reputation.",
+        "direct": "Option A fits because identity can build on the movement Chapter 27 makes visible.",
+        "competitive": "First the win, then the name."
+      },
+      "bloomsLevel": "transfer",
+      "depthLevel": "advanced"
+    }
+  ]
+}

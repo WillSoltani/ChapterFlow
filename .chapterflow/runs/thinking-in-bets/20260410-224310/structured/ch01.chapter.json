@@ -1,0 +1,694 @@
+{
+  "chapterId": "ch01",
+  "number": 1,
+  "title": "Introduction: Why this isn't a poker book",
+  "readingTimeMinutes": 7,
+  "contentVariants": {
+    "easy": {
+      "chapterBreakdown": {
+        "gentle": "When people talk about Annie Duke's book, they often start with poker. Duke starts somewhere sharper: a football play that looked obviously foolish once it failed. Pete Carroll called a pass near the goal line, the ball was intercepted, and the public rushed to judge the decision by the ending alone. Duke uses that moment to show how fast we confuse a bad result with a bad choice. Real life rarely gives us the full board the way chess does. We choose with missing information, changing odds, and luck still moving around. That is why poker is the better model. In poker, a smart player can lose one hand and a weak player can win one. The lesson is not to stop caring about results. It is to judge decisions by the process and information available when they were made.",
+        "direct": "This introduction says the book is not really about poker tactics. It is about decision quality in a world where information is incomplete and luck still matters. Duke opens with Pete Carroll's failed pass call because it exposes resulting, the habit of treating the final outcome as if it proves everything about the choice. That shortcut feels efficient, but it ignores what the decision-maker knew at the time. Chess invites the fantasy that the whole position is visible. Poker does not. Some cards are hidden, some events are noisy, and even good choices can lose on a given turn. Duke wants the reader to carry that structure into ordinary life. Hiring, investing, arguing, and choosing a direction all happen before the full deck appears. The practical shift is simple but hard: stop demanding certainty where only calibrated confidence is available.",
+        "competitive": "The opening challenge is brutal because it attacks a lazy habit most people mistake for judgment. A play fails, a project misses, a relationship cracks, and they call the original decision stupid as if the scoreboard were the whole story. Duke rejects that shortcut immediately. Life is not chess, where every piece is visible and the right move can be inspected in full daylight. Life is poker. Information is hidden. Luck interferes. A disciplined decision can still lose on this round. That does not excuse bad process. It removes the cheap comfort of hindsight certainty. The real test is whether the choice made sense under the information available at the time. Once you accept that, false confidence starts to look weak. Stronger thinking sounds more like probabilities, ranges, and updated beliefs than like courtroom certainty after the fact. That is the book's opening discipline."
+      },
+      "keyTakeaways": [
+        {
+          "point": {
+            "gentle": "Outcomes are not clean verdicts on decisions.",
+            "direct": "A result alone cannot fully judge a choice.",
+            "competitive": "The scoreboard is not the whole case."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Hidden information makes real life feel more like poker than chess.",
+            "direct": "Real decisions happen under incomplete information.",
+            "competitive": "You choose before the full deck turns over."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Honest uncertainty is stronger than fake certainty.",
+            "direct": "Calibrated confidence beats performative certainty.",
+            "competitive": "Certainty theater is weaker than honest odds language."
+          }
+        }
+      ],
+      "oneMinuteRecap": {
+        "gentle": {
+          "retrieve": "What famous failed play does Duke use to expose the difference between a result and a decision?",
+          "connect": "How does hidden information change the way you should judge a choice?",
+          "preview": "If every choice lives inside uncertainty, what changes when you start calling decisions bets?"
+        },
+        "direct": {
+          "retrieve": "Which opening example shows why outcomes cannot do all the judging?",
+          "connect": "Why does the poker model fit ordinary decisions better than the chess model?",
+          "preview": "What becomes visible once beliefs and choices are treated explicitly as bets?"
+        },
+        "competitive": {
+          "retrieve": "What opening case crushes the lazy habit of outcome-first judgment?",
+          "connect": "Why does hidden information make hindsight certainty unreliable?",
+          "preview": "What new discipline starts when every belief has to face a wager?"
+        }
+      }
+    },
+    "medium": {
+      "chapterBreakdown": {
+        "gentle": "The introduction opens with a football play because sports give people a fast, confident language for blame. Pete Carroll threw from the one-yard line, the pass was intercepted, and the loss made the decision look ridiculous. Duke uses that public certainty as a diagnostic tool. Once the ending arrives, most people stop thinking. They act as if the failure proves the choice was foolish from the start.\n\nHer pushback is narrower and more demanding. Carroll had to decide before the interception existed. He chose under pressure, with incomplete information, and inside a game where luck still matters. That means the result is relevant, but not sufficient. You still have to ask what was knowable, what alternatives were live, and what process produced the call.\n\nThat is where poker enters. Chess tempts us to imagine a world where the whole position can be inspected and the right answer is fully visible. Poker trains a different realism. Cards stay hidden. Odds matter. A good player can lose a hand without becoming a bad player, and a bad player can win one without suddenly becoming skilled.\n\nThe comparison matters because it protects two truths at once. Skill still matters, so the chapter is not asking the reader to shrug at every outcome. But luck still moves, which means even a disciplined choice can meet a painful result. That is why Duke treats the final score as evidence instead of as a complete verdict. One ending cannot carry every branch that was still alive before the decision landed.\n\nDuke turns that structure into a way of thinking about work and life. Decisions are made before the uncertainty clears. The disciplined response is not fake certainty. It is calibrated confidence: state what you believe, how strongly you believe it, and what might still update the view. That posture preserves humility without surrendering responsibility. It also prepares the reader for the next chapter, where beliefs and choices stop sounding like fixed truths and start sounding like explicit bets.",
+        "direct": "Duke begins by attacking resulting, the habit of grading a decision entirely by how it turned out. Pete Carroll's goal-line pass works because the case feels settled to almost everyone the moment the interception happens. The public sees failure and then backfills a story of obvious stupidity. Duke wants the reader to notice how quickly hindsight edits uncertainty out of the scene.\n\nThe critical correction is that the decision occurred before the ending was known. Carroll chose under severe time pressure, with partial information, and with probabilities rather than certainties. That does not make the call automatically good. It does make outcome-first judgment too weak. A serious evaluation asks what information was available, what tradeoffs were in play, and whether the process was defensible at the moment of choice.\n\nThis leads to the book's governing contrast. Chess models near-complete visibility. Poker models hidden information plus luck. Duke argues that ordinary life follows the poker structure far more often than the chess structure. Hiring, investing, apologizing, launching, and changing direction all happen before the full board is visible.\n\nThe comparison also changes the meaning of confidence. In a chess fantasy, certainty can sound like mastery because the board appears fully inspectable. In a poker reality, certainty often means the speaker has stopped describing the situation accurately. Calibrated confidence is stronger because it preserves contact with missing information, unstable odds, and later revision. It also creates a better public conversation because people can challenge or refine a claim without treating disagreement as an attack on identity. That makes belief revision easier instead of more humiliating.\n\nThe practical consequence is a new standard for judgment. If the world is structurally uncertain, then false certainty is not strength. It is misdescription. Better judgment sounds probabilistic. It distinguishes confidence from certainty and keeps room for revision. The book starts here because every later tool depends on this shift from verdict-thinking to bet-thinking. Without that shift, the rest of the system would collapse back into hindsight storytelling.",
+        "competitive": "Duke chooses an opening example that leaves no room for comfortable hindsight. Carroll throws, Butler intercepts, Seattle loses, and the crowd treats the ending like a confession. That reflex is the chapter's first target. People love outcomes because outcomes let them stop reasoning. A failure feels like proof. A win feels like absolution. Both shortcuts are cheap.\n\nWhat matters is the conditions of choice. Carroll did not choose with the replay already running. He chose under clock pressure, incomplete information, and a distribution of possible outcomes. That means the result counts, but it cannot carry the full judgment load. If you grade decisions by endings alone, you are not evaluating process. You are worshipping hindsight.\n\nPoker becomes the useful model because poker refuses that fantasy. Hidden cards stay hidden. Luck keeps moving. Strong play can lose on a single hand. Weak play can get paid anyway. Chess flatters the dream that a visible board guarantees a knowable best move. Life rarely offers that luxury. Most important choices arrive before certainty, not after it.\n\nThat structure forces a harder kind of self-report. If the world runs on hidden cards and noisy turns, then people who sound absolutely sure are usually hiding something from themselves or from the room. Odds language sounds less heroic, but it holds up better under pressure because it leaves space for updating instead of betting your identity on a single declaration. It also makes challenge useful, because a claim with stated confidence can be tested, revised, or priced more honestly.\n\nSo Duke's first demand is not confidence. It is honesty. Say what you think. Name how sure you are. Admit what you do not know. That is harder than sounding certain, because it exposes range, doubt, and revision risk. It is also the only posture strong enough for a world where luck and hidden information never leave the table. The rest of the book only works if the reader accepts that discipline up front. Without it, every later chapter would just become a prettier way to rationalize hindsight."
+      },
+      "keyTakeaways": [
+        {
+          "point": {
+            "gentle": "Resulting turns an ending into more proof than it can honestly provide.",
+            "direct": "Resulting overweights outcomes and underweights decision conditions.",
+            "competitive": "Resulting lets hindsight impersonate judgment."
+          },
+          "moreDetails": {
+            "gentle": "A single result tells you something, but it also hides the road not taken and the uncertainty present at the moment of choice.",
+            "direct": "Outcome data matters, yet it arrives stripped of the unrealized alternatives that gave the decision its real shape.",
+            "competitive": "One ending erases the other live branches, then people pretend the surviving branch was inevitable."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Incomplete information changes what fair judgment looks like.",
+            "direct": "Hidden information is the reason process must be judged separately from result.",
+            "competitive": "You cannot grade a move honestly if you pretend the chooser saw the whole board."
+          },
+          "moreDetails": {
+            "gentle": "A fair evaluation asks what was visible then, not what became visible later.",
+            "direct": "Decision quality depends on the information set available at choice time, not on hindsight's expanded file.",
+            "competitive": "Judging with after-the-fact knowledge is not rigor. It is cheating."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Poker is a better guide than chess for most real decisions.",
+            "direct": "The poker model fits life because luck and hidden variables stay active.",
+            "competitive": "Real life deals hidden cards more often than open boards."
+          },
+          "moreDetails": {
+            "gentle": "Poker keeps skill visible without pretending that skill controls every single turn.",
+            "direct": "The analogy preserves both competence and noise, which is exactly the combination most decisions contain.",
+            "competitive": "Poker teaches the hard truth without theatrics: skill matters, yet variance still punches the outcome around."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Calibrated confidence is a more honest form of strength.",
+            "direct": "Confidence should track degrees of belief rather than perform certainty.",
+            "competitive": "Odds language beats certainty theater."
+          },
+          "moreDetails": {
+            "gentle": "When you admit range and uncertainty, you leave room for learning instead of defending a brittle position.",
+            "direct": "Probability-based belief makes revision possible because it avoids turning disagreement into a total identity threat.",
+            "competitive": "If you can only sound strong by sounding sure, your thinking is already cornered."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Uncertainty should make judgment fairer, not softer.",
+            "direct": "Noise complicates accountability, but it does not erase it.",
+            "competitive": "Uncertainty is not a hiding place for bad process."
+          },
+          "moreDetails": {
+            "gentle": "The chapter asks for better standards, not weaker ones, because serious judgment still has to examine preparation and reasoning.",
+            "direct": "Once outcomes stop doing all the work, evaluators have to inspect process, tradeoffs, and information quality more carefully.",
+            "competitive": "If luck is in the game, your bar for process should rise, not disappear."
+          }
+        }
+      ],
+      "activationPrompt": {
+        "gentle": "Think of one recent decision that ended badly. List what you knew before you acted, then list what only became clear afterward.",
+        "direct": "Choose one disappointing outcome and separate the pre-decision information set from the post-outcome story you now tell about it.",
+        "competitive": "Take one loss you keep replaying and audit the difference between the live odds then and the clean certainty you claim now."
+      },
+      "selfCheckPrompt": {
+        "gentle": "Can you explain why this chapter treats uncertainty as a condition for better judgment rather than as an excuse?",
+        "direct": "Why does Duke separate process quality from outcome quality without letting process off the hook?",
+        "competitive": "If results are noisy, what keeps this chapter from becoming a defense of sloppy decisions?"
+      },
+      "oneMinuteRecap": {
+        "retrieve": {
+          "gentle": "What opening example does Duke use to expose resulting?",
+          "direct": "Which case shows why a result cannot fully evaluate a decision?",
+          "competitive": "What failed call becomes the chapter's first attack on hindsight worship?"
+        },
+        "connect": {
+          "gentle": "How does hidden information link the football example to the poker-versus-chess contrast?",
+          "direct": "Why does incomplete information force a split between process judgment and result judgment?",
+          "competitive": "Why does the presence of hidden cards make outcome-only judgment unserious?"
+        },
+        "preview": {
+          "gentle": "What might change once beliefs themselves are treated as bets rather than fixed truths?",
+          "direct": "How does this chapter set up the next move toward explicit betting language for beliefs and decisions?",
+          "competitive": "If uncertainty is the table, what happens when Duke makes you put your confidence on the line?"
+        }
+      }
+    },
+    "hard": {
+      "chapterBreakdown": {
+        "gentle": "The opening football example matters because it catches people in a moral reflex before they have time to analyze it. Pete Carroll called a pass at the goal line, it failed, and the public treated the interception as if it retroactively purified the whole event into a simple lesson. Duke uses that certainty against the reader. The play did not just reveal a bad result. It revealed how desperate people are for clean stories after uncertainty has already closed.\n\nThat desperation creates resulting. Resulting is not just a casual bias. It is a structural temptation to swap the hard work of process evaluation for the easier comfort of an ending. Once the score is final, the unrealized alternatives disappear from view. The branches that might have justified the decision are gone, so the surviving branch starts to feel inevitable. That feeling is powerful, but it is not the same as truth.\n\nDuke's poker-versus-chess contrast matters because it changes the standard of seriousness. Chess encourages the fantasy that enough intelligence can eliminate uncertainty. The board is open, the pieces are visible, and the ideal judge imagines a best move that can be proven. Poker teaches a harsher discipline. Hidden information remains hidden at decision time. Luck does not erase skill, but it does prevent any single outcome from serving as a full report card.\n\nThe contrast also explains why some bad conversations about decisions feel unfair even when they sound tough-minded. They smuggle in information that only became available later, then punish the chooser for not acting on facts that did not yet exist. Duke wants the reader to notice that move because it appears disciplined while actually flattening the decision into a cleaner object than it ever was in real time.\n\nThat is why calibrated confidence becomes an ethical demand, not merely a style preference. Saying \"I'm not sure\" in the right way is not retreat. It is a refusal to fake knowledge you do not possess. Duke wants readers to stop treating confidence as a performance of certainty and start treating it as a measured description of belief under uncertainty.\n\nThe hard edge is that this humility can be abused if it is misunderstood. A person can hide behind variance, luck, and incomplete information to avoid admitting that their process was weak. Duke's introduction does not allow that move. Uncertainty complicates judgment, but it makes process inspection more important, not less. Once outcomes stop carrying all the weight, you have to look harder at preparation, tradeoffs, missing evidence, and whether the chooser updated honestly. The challenge this chapter leaves alive is severe: how do you stay modest about outcomes without becoming slippery about responsibility?\n\nThat final pressure matters because the book is not trying to make the reader detached. It is trying to make the reader more accurate. Accuracy here means refusing both easy verdicts and easy self-forgiveness. You cannot control every ending, but you can become more serious about the quality of the call you made before the ending arrived.",
+        "direct": "Duke opens with Pete Carroll because the play exposes a flaw in ordinary judgment at full speed. The pass is intercepted, Seattle loses, and the public instantly treats the outcome as a complete evaluation of the decision. That reflex is attractive because it replaces uncertainty with closure. The event ends, so people act as if the reasoning should end too.\n\nResulting is the name for that shortcut, but the shortcut runs deeper than bad sports commentary. Once an outcome arrives, the unrealized alternatives vanish from emotional view. The branch that happened becomes the only branch people can feel, which makes it seem retrospectively obvious. Hindsight then masquerades as evaluation. Duke's opening correction is that a serious judgment has to reconstruct the decision from the information available at the time, not from the comfort of the final score.\n\nThis is why the book chooses poker rather than chess as its controlling analogy. Chess is a model of visible positions and analyzable certainty. Poker keeps the missing information in frame. Cards remain hidden. Luck can shape the hand. Strong play and strong outcome do not always coincide on a single trial. Duke's point is not that skill becomes irrelevant. Her point is that skill operates inside a probabilistic environment, which means outcome quality and decision quality can diverge.\n\nThat divergence changes the burden on any evaluator. Once the ending loses its monopoly on judgment, the evaluator has to inspect the live decision environment more carefully: what evidence existed, what evidence was absent, what options carried which costs, and what confidence level was justified. This is harder than outcome worship because it requires reconstruction rather than reaction. It also exposes where people are tempted to smuggle later knowledge backward and call that rigor.\n\nThat divergence also creates a practical obligation for the chooser. Confidence must become calibrated rather than theatrical. If a belief is expressed as absolute certainty in a world of hidden information, the expression is often less honest than it sounds. Duke wants readers to speak in degrees, ranges, and revisable estimates because those forms preserve contact with reality. The speaker who does this is not dodging commitment. They are describing the decision environment more faithfully.\n\nThe limit condition is equally important. Uncertainty is not an amnesty program for bad thinking. A reckless process cannot claim innocence just because luck exists. Once outcome-first judgment is rejected, accountability has to move upstream into process quality: what the chooser knew, what they ignored, what tradeoffs they faced, and whether the reasoning remained disciplined under pressure. The chapter's unresolved challenge is the book's real entrance exam: can you hold both truths at once, that outcomes are noisy and that responsibility still survives the noise?\n\nIf the answer is yes, later chapters can build on something solid. If the answer is no, every later lesson will be bent either into harsh hindsight or into self-protective excuse-making. Duke is trying to block both distortions before the book really begins.",
+        "competitive": "The Carroll example is a trap for lazy judges, and most people walk straight into it. The pass gets picked, Seattle loses, and they treat the ending like sworn testimony. Case closed. Duke starts there because outcome worship is the cheapest way to feel smart after uncertainty has already been settled for you.\n\nResulting feeds on that cheapness. It converts the final branch into the only branch that seems real, then uses that narrowed memory to bully the original decision. Once the interception exists, the public no longer feels the clock, the missing information, or the alternate futures that were live when the call was made. Hindsight strips the situation down and then pretends the stripped version is rigorous analysis.\n\nPoker matters because poker does not let you forget what was hidden. Some cards stay face down. Luck can hit hard enough to bury strong play for a hand. Weak play can get rewarded on the same table. Chess flatters people who want a world where enough intelligence turns every move into a proof. Duke is telling you that most of life refuses that arrangement. Careers, negotiations, hires, apologies, and strategic bets happen before certainty, not after it.\n\nThat is why honest odds language is tougher than certainty theater. The strong move is not to sound final. It is to name what you think, how sure you are, and what evidence would change the estimate. Anyone can sound decisive after the branch resolves. Discipline shows up earlier, when uncertainty is still active and ego wants to hide behind certainty.\n\nThe hard part is that once you reject scoreboard worship, you lose a convenient shortcut. Now you have to inspect the process for real. Did the chooser ignore evidence? Did they misprice the odds? Did they confuse confidence with competence? Outcome worship is lazy partly because it hides how much work real judgment requires. It also flatters the judge, because reaction feels easier than reconstruction. It feels decisive while doing less thinking than the situation actually demands. Serious judgment costs more effort than hot-take certainty, which is one reason so many people avoid it.\n\nStill, Duke does not hand out absolution. Variance is real, but so is bad process. Hidden information is real, but so are ignored warning signs, sloppy tradeoffs, and self-serving stories. If you use uncertainty to dodge responsibility, you have missed the chapter entirely. Rejecting outcome worship raises the standard because now you have to inspect the process with more honesty than hindsight ever demanded. The lasting challenge is severe: can you abandon the false comfort of final answers without becoming evasive about how you think?\n\nThat question matters because most people fail on one side or the other. They either turn every painful result into proof they were foolish, or they use luck as a solvent that dissolves responsibility. Duke is forcing a tougher stance than both. Keep the uncertainty. Keep the standards. Drop the cheap verdicts."
+      },
+      "keyTakeaways": [
+        {
+          "point": {
+            "gentle": "Resulting mistakes the ending for the whole decision.",
+            "direct": "Resulting confuses final outcome with total decision quality.",
+            "competitive": "Resulting lets the last frame pretend it was the whole film."
+          },
+          "moreDetails": {
+            "gentle": "It feels persuasive because once a future branch becomes real, the unseen alternatives lose emotional weight even if they were live when the choice was made.",
+            "direct": "The error is structural: hindsight deletes unrealized alternatives, making the surviving path seem more predictable than it was.",
+            "competitive": "The branch that happened bullies the branches that could have happened, then hindsight calls the bullying analysis."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Hidden information changes the standard for fair evaluation.",
+            "direct": "Incomplete information requires judgment based on the chooser's actual information set.",
+            "competitive": "If you judge with knowledge the chooser did not have, you are grading fiction."
+          },
+          "moreDetails": {
+            "gentle": "A fair judgment asks what evidence was visible, what pressure existed, and what tradeoffs were active before the future collapsed into one outcome.",
+            "direct": "Process evaluation must reconstruct the live decision environment rather than import hindsight's extra facts.",
+            "competitive": "After-the-fact clarity is a luxury added later, not a right you get to smuggle into the original call."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Poker is the right analogy because it protects both skill and uncertainty.",
+            "direct": "The poker model holds competence and variance together without flattening either one.",
+            "competitive": "Poker keeps the game honest by refusing to erase noise."
+          },
+          "moreDetails": {
+            "gentle": "That matters because many real decisions contain enough structure for skill to matter and enough randomness to stop any one outcome from being a perfect report card.",
+            "direct": "The analogy works because strong reasoning can improve odds while still failing on a single trial, which matches ordinary decision life better than a perfect-information model.",
+            "competitive": "You can play the hand well and still lose money tonight. That is not surrender. That is the price of living in a probabilistic arena."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Calibrated confidence is a disciplined way to stay honest.",
+            "direct": "Degrees of belief track reality better than absolute declarations.",
+            "competitive": "Honest odds are stronger than fake certainty."
+          },
+          "moreDetails": {
+            "gentle": "When you state confidence in ranges instead of verdicts, you leave room for updating rather than defending an identity claim.",
+            "direct": "Calibrated confidence reduces the pressure to protect belief as selfhood because revision becomes part of the format.",
+            "competitive": "Certainty locks you into a performance. Probabilities leave you room to think."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Uncertainty makes accountability more demanding, not less.",
+            "direct": "Once outcomes lose veto power, process scrutiny has to become sharper.",
+            "competitive": "If luck is in the game, your process audit needs more teeth."
+          },
+          "moreDetails": {
+            "gentle": "You still have to inspect preparation, missing evidence, reasoning quality, and whether a person updated honestly when new facts arrived.",
+            "direct": "Noise removes simplistic verdicts, but it raises the burden to evaluate evidence handling, tradeoff quality, and revision discipline.",
+            "competitive": "Variance is real. So is self-deception. Serious judgment has to catch both."
+          }
+        }
+      ],
+      "activationPrompt": {
+        "gentle": "Pick a decision you still judge harshly. Write two short lists: what was visible when you chose, and what became visible only after the outcome landed.",
+        "direct": "Take one outcome-heavy memory and rebuild the live decision environment: information set, tradeoffs, confidence level, and the facts hindsight added later.",
+        "competitive": "Choose one loss you turned into a self-indictment and strip hindsight out of it. What did you actually know when you pulled the trigger?"
+      },
+      "selfCheckPrompts": [
+        {
+          "gentle": "Can you explain why uncertainty changes the standard of judgment without changing the need for standards?",
+          "direct": "Why does rejecting resulting require a stronger process audit rather than a softer one?",
+          "competitive": "If outcomes cannot carry the verdict alone, what replaces them as the real test?"
+        },
+        {
+          "gentle": "Can you describe the difference between honest humility and excuse-making in this chapter's terms?",
+          "direct": "Where is the line between calibrated confidence and evasive self-protection?",
+          "competitive": "How do you avoid turning luck into a cover story for weak reasoning?"
+        }
+      ],
+      "predictionPrompt": {
+        "gentle": "If this chapter is right, what kind of language should the next chapter add when it turns beliefs into bets?",
+        "direct": "Given this introduction, what new discipline should appear once beliefs are treated explicitly as wagers on uncertain futures?",
+        "competitive": "If certainty has been broken here, what pressure should the next chapter apply to your beliefs?"
+      },
+      "oneMinuteRecap": {
+        "retrieve": {
+          "gentle": "What opening event makes hindsight judgment look too easy?",
+          "direct": "Which case demonstrates resulting before the term is even fully explained?",
+          "competitive": "What failed play becomes the chapter's trap for lazy judges?"
+        },
+        "connect": {
+          "gentle": "How do hidden information and luck work together to separate process from outcome?",
+          "direct": "Why does the poker model preserve both skill and noise better than the chess model?",
+          "competitive": "Why is outcome worship a bad fit for a world built like poker?"
+        },
+        "preview": {
+          "gentle": "What changes when a belief is no longer just defended, but exposed to a bet?",
+          "direct": "How does this chapter prepare the move from uncertainty posture to explicit confidence testing in the next chapter?",
+          "competitive": "If the intro broke your certainty habit, how will the next chapter make you price your convictions?"
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "exampleId": "ch01-ex01",
+      "title": "Nina Reviews a Product Launch That Missed Its Number",
+      "category": "work",
+      "format": "decision_point",
+      "endingType": "broader_principle",
+      "contexts": ["launch review", "product metrics", "process audit"],
+      "scenario": {
+        "gentle": "Nina leads a product team at a software company. Monday's dashboard shows that a launch she approved missed its sign-up target by 18 percent. In the postmortem room, the projector light is bouncing off glass walls while executives keep circling the same sentence: 'The launch failed.' Nina knows some inputs were solid and some were not. She has to decide whether to let the meeting collapse into blame or rebuild the discussion around what the team knew when it made the call.",
+        "direct": "Nina's launch underperformed by 18 percent, and the executive postmortem is already drifting toward the idea that the original decision was obviously wrong. She knows the team had partial market data, one late competitor surprise, and a reasonable test result before launch. Her move now will decide whether the room judges the choice by the dashboard alone or by the process that produced it.",
+        "competitive": "Nina walks into a Monday postmortem with one red metric on the screen and a room full of people ready to use it as proof that her call was weak. The launch missed. That part is real. The question is whether she lets the room worship the outcome or forces it to inspect the process."
+      },
+      "whatToDo": {
+        "gentle": "Have Nina separate the discussion into two columns: what the team knew before launch and what only became visible after launch. Then ask which parts of the process were strong, which assumptions were thin, and what should change next time.",
+        "direct": "Rebuild the postmortem around the live information set, the tradeoffs at decision time, and the process quality. Outcome review stays in the room, but it no longer acts as the only judge.",
+        "competitive": "Force the meeting off the scoreboard. Reconstruct the actual decision environment, expose the weak assumptions honestly, and refuse the lazy story that the ending alone settled the case."
+      },
+      "whyItMatters": {
+        "gentle": "Teams learn faster when they can distinguish a weak process from a bad bounce. If Nina skips that distinction, the next launch will be judged by fear instead of by better reasoning.",
+        "direct": "Outcome-only postmortems train hindsight, not judgment. Process-based review makes the next decision better instead of making the last decision look simpler than it was.",
+        "competitive": "If Nina lets the room grade by outcome alone, she trains her team to optimize for blame avoidance instead of decision quality."
+      }
+    },
+    {
+      "exampleId": "ch01-ex02",
+      "title": "Omar's Debate Team Loses on a Question They Did Prepare For",
+      "category": "school",
+      "format": "postmortem",
+      "endingType": "self_directed_question",
+      "contexts": ["debate team", "competition loss", "feedback"],
+      "scenario": {
+        "gentle": "Omar and his debate-team partners are sitting around a classroom table with half-empty water bottles and folded ballots after losing a semifinal round. One judge's note says they mishandled a question about public trust. Omar's teammate says the strategy was terrible from the start. Omar remembers that they practiced that line twice and expected the panel to care more about cost than trust. He needs to decide how they talk about the loss if they want to learn from it.",
+        "direct": "After a semifinal loss, Omar's team reads the ballots and starts rewriting history. One teammate claims their whole strategy was obviously flawed. Omar knows they had a reasoned case plan, a plausible read on the panel, and one badly timed stumble during cross-examination. The team has to choose between an emotionally clean verdict and a fairer process review.",
+        "competitive": "Omar's team loses a close debate round and instantly starts pretending the strategy was doomed all along. The ballots say otherwise. The prep had logic, the read on the judges was defensible, and the round still slipped. Now the team has to decide whether it wants truth or emotional cleanup."
+      },
+      "whatToDo": {
+        "gentle": "Map the round in sequence: what the team predicted, what actually happened, and where luck, execution, and judgment each played a part.",
+        "direct": "Break the postmortem into forecast, process, and outcome. Judge the plan on the information available before the round, then judge the execution separately.",
+        "competitive": "Stop the rewrite. Audit the prep, the live adjustments, and the bounce of the round as separate layers instead of stuffing everything into one losing story."
+      },
+      "whyItMatters": {
+        "gentle": "Students become stronger competitors when they stop turning every loss into a story about being foolish. The cleaner review asks what deserves repair and what merely turned out badly.",
+        "direct": "A team that cannot separate process from result will either get arrogant after lucky wins or crushed after reasonable losses. Both patterns slow improvement.",
+        "competitive": "If Omar's team only learns from the scoreboard, it will misdiagnose half its losses and overrate half its wins."
+      }
+    },
+    {
+      "exampleId": "ch01-ex03",
+      "title": "Leah and Victor Argue About a Breakup Decision",
+      "category": "personal",
+      "format": "dialogue",
+      "endingType": "surprising_implication",
+      "contexts": ["friendship", "breakup", "belief revision"],
+      "scenario": {
+        "gentle": "Leah tells her friend Victor that ending her relationship now feels like a mistake because she has been miserable for two weeks. They are texting late at night, and Victor keeps replying that pain does not prove the decision was wrong. Leah had good reasons, but the sadness is making the old certainty feel attractive again.",
+        "direct": "Two weeks after a breakup, Leah tells Victor the decision must have been wrong because she feels awful. Victor knows her reasons were serious and that the relief she expected was never guaranteed to arrive immediately. The conversation turns into a fight over whether emotional pain is evidence of a bad choice or just one possible cost of a necessary one.",
+        "competitive": "Leah wants the hurt to settle the argument. If she feels terrible, then leaving must have been foolish. Victor pushes back because he knows a painful outcome can still come from a disciplined decision."
+      },
+      "whatToDo": {
+        "gentle": "Victor should ask Leah to name what she knew before the breakup, what she hoped would happen, and what she never could have guaranteed.",
+        "direct": "Move the conversation away from current emotion as a total verdict. Reconstruct the reasons, the uncertainties, and the possible costs Leah accepted when she chose.",
+        "competitive": "Do not let the present pain hijack the whole case. Rebuild the live odds from before the breakup and test the process, not the ache alone."
+      },
+      "whyItMatters": {
+        "gentle": "People can trap themselves in bad situations if they demand immediate emotional relief as proof that a difficult decision was right.",
+        "direct": "A short-run painful result may still belong to a sound long-run choice. Without that distinction, people confuse discomfort with error.",
+        "competitive": "If Leah treats pain as a final judge, she will keep rewarding familiar misery over uncertain improvement."
+      }
+    },
+    {
+      "exampleId": "ch01-ex04",
+      "title": "A Hiring Choice Looks Smart on Friday and Shaky by Tuesday",
+      "category": "work",
+      "format": "predict_reveal",
+      "endingType": "cross_domain",
+      "contexts": ["hiring", "uncertainty", "early signals"],
+      "scenario": {
+        "gentle": "Elena hires a candidate after strong interviews, clear references, and a thoughtful work sample. By Tuesday morning, the new hire seems overwhelmed and misses two basic details. Elena feels a wave of panic and starts wondering if the original decision was careless.",
+        "direct": "Elena made a defensible hiring decision with the evidence she had. Four days later, early performance signals are mixed and she is already rewriting the choice as a mistake. She has to decide whether those first signals are enough to condemn the process or whether they are still just noisy data.",
+        "competitive": "Friday's hire looked sharp. Tuesday's onboarding looks rough. Elena is seconds away from calling the original decision weak because the early sample stung her confidence."
+      },
+      "whatToDo": {
+        "gentle": "Treat the first week as new information, not retroactive proof. Review the original evidence honestly and then decide what updated response the new evidence requires.",
+        "direct": "Separate two questions: Was the hiring process reasonable when the choice was made, and what should the manager do now that new evidence has appeared?",
+        "competitive": "Do not let early turbulence rewrite the past. Audit the original process cleanly, then update the present plan with the new signal."
+      },
+      "whyItMatters": {
+        "gentle": "Good decision-makers update when new facts arrive, but they do not let every new fact falsify the entire earlier process.",
+        "direct": "This distinction protects both accountability and learning. It prevents stubbornness on one side and hindsight panic on the other.",
+        "competitive": "If Elena cannot separate reevaluation from self-indictment, every noisy week will wreck her judgment."
+      }
+    },
+    {
+      "exampleId": "ch01-ex05",
+      "title": "Priya Has to Admit She Is Only Seventy Percent Sure",
+      "category": "school",
+      "format": "dilemma",
+      "endingType": "common_trap",
+      "contexts": ["statistics seminar", "confidence statement", "prediction"],
+      "scenario": {
+        "gentle": "In a statistics seminar, Priya is presenting a project forecast. Her professor asks how confident she is that enrollment will rise next term. Priya knows the class rewards confident speech, but she also knows the data is incomplete and the range is wide.",
+        "direct": "Priya can either give the room a crisp, fake answer or describe her estimate honestly with uncertainty built in. She worries that sounding less certain will make her look weaker than students who talk in absolutes.",
+        "competitive": "Priya sees the trap. The room rewards certainty theater, but the data only supports a range. She has to choose whether to protect her image or protect the truth."
+      },
+      "whatToDo": {
+        "gentle": "State the estimate with a range, explain the missing data, and name what would make the forecast stronger.",
+        "direct": "Give a calibrated answer: present the probability, the evidence base, and the main uncertainty still unresolved.",
+        "competitive": "Price the belief honestly. Name the odds, name the gap, and refuse to fake a cleaner picture than the data allows."
+      },
+      "whyItMatters": {
+        "gentle": "Learning to sound honest under uncertainty is part of becoming a serious thinker. It replaces brittle certainty with revision-ready judgment.",
+        "direct": "The chapter's model only works if confidence becomes measurable instead of theatrical. Priya is practicing that shift in public.",
+        "competitive": "If Priya confuses certainty with strength, she will keep choosing image over accuracy."
+      }
+    },
+    {
+      "exampleId": "ch01-ex06",
+      "title": "Before and After Omar Stops Calling Every Choice Right or Wrong",
+      "category": "personal",
+      "format": "before_after",
+      "endingType": "perspective_reframe",
+      "contexts": ["self-talk", "decision journal", "reflection"],
+      "scenario": {
+        "gentle": "Before reading Duke, Omar reviewed his week by asking whether each choice proved he was smart or foolish. After adopting a bet mindset, he starts writing what he knew, how sure he was, and what later information changed the picture.",
+        "direct": "Omar's old reflection style was binary: right or wrong, success or failure. His new method tracks confidence, alternatives, and later updates. The events have not become easier, but the quality of the review has changed.",
+        "competitive": "Old Omar wanted verdicts. New Omar wants a process record. Same messy life, different standard of judgment."
+      },
+      "whatToDo": {
+        "gentle": "Keep a short decision journal with three lines: what I believed, how sure I was, and what I learned later.",
+        "direct": "Replace identity verdicts with decision records that preserve the original information set and later updates.",
+        "competitive": "Stop grading yourself like a headline. Log the odds, log the call, and log the update."
+      },
+      "whyItMatters": {
+        "gentle": "The new habit makes learning easier because it preserves uncertainty instead of rewriting it away.",
+        "direct": "A better record weakens hindsight bias and gives later chapters a real place to operate.",
+        "competitive": "If Omar wants sharper judgment, he needs receipts from the moment of choice, not polished stories after the dust settles."
+      }
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "ch01-q01",
+        "prompt": "What is the introduction really trying to teach?",
+        "choices": [
+          "How poker strategy works at a professional level",
+          "How to judge decisions in a world with uncertainty and hidden information",
+          "How to ignore outcomes because luck controls everything"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "The introduction uses poker as a model, but its real subject is decision quality under uncertainty. It does not teach card tactics, and it does not say outcomes stop mattering.",
+          "direct": "The book's opening frame is decision-making, not gambling technique. Poker matters because it captures hidden information and luck better than a perfect-information model does.",
+          "competitive": "The trap is treating the poker language as branding. Duke is opening a decision book, not running a masterclass in card play."
+        },
+        "bloomsLevel": "remember",
+        "depthLevel": "easy"
+      },
+      {
+        "questionId": "ch01-q02",
+        "prompt": "Why does Duke start with Pete Carroll's failed pass call?",
+        "choices": [
+          "Because it shows how quickly people judge a decision by its outcome",
+          "Because football is a better model than poker for decision-making",
+          "Because sports examples are easier to remember than business examples"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "The play is useful because the public reacted as if the bad result proved the decision was foolish. Duke uses that reflex to expose resulting.",
+          "direct": "The example dramatizes the chapter's core error: outcome-first judgment. The other choices talk about convenience, not mechanism.",
+          "competitive": "Carroll's play is bait. It pulls readers into hindsight certainty, then Duke shows them they took the bait."
+        },
+        "bloomsLevel": "understand",
+        "depthLevel": "easy"
+      },
+      {
+        "questionId": "ch01-q03",
+        "prompt": "A project succeeds even though the team skipped important evidence review. What does this chapter suggest?",
+        "choices": [
+          "The strong result proves the decision process was strong",
+          "The outcome is useful data, but the process still needs separate scrutiny",
+          "The team should celebrate and stop overthinking the win"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "A good outcome can still come from a weak process. The chapter asks you to inspect both instead of letting one lucky ending settle everything.",
+          "direct": "This is the reverse side of resulting. A win does not automatically validate the reasoning that produced it.",
+          "competitive": "A green metric can flatter a reckless process. If you stop at the win, you miss the rot under it."
+        },
+        "bloomsLevel": "apply",
+        "depthLevel": "easy"
+      },
+      {
+        "questionId": "ch01-q04",
+        "prompt": "Nina's launch misses its target, and the executive room starts saying the decision was obviously bad. What response best fits the chapter?",
+        "choices": [
+          "Accept the verdict, because a failed launch is the clearest proof that the original call was wrong",
+          "Ask what information the team had before launch and judge the process from that live context",
+          "Avoid the postmortem entirely until the emotions cool down"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "This chapter keeps bringing judgment back to the information available at decision time. Nina still has to review the miss, but not through hindsight alone.",
+          "direct": "Option B is the only choice that separates process evaluation from outcome shock. Option A collapses into resulting, and option C delays learning.",
+          "competitive": "The disciplined move is to reconstruct the live decision environment, not bow to the room's instant blame story."
+        },
+        "bloomsLevel": "apply",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "ch01-q05",
+        "prompt": "Which setting is most like Duke's poker model?",
+        "choices": [
+          "A situation where all relevant information is visible before the choice",
+          "A situation where some key variables stay hidden and luck can influence the outcome",
+          "A situation where rules are simple enough that emotions disappear"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "Poker matters because it keeps hidden information and luck in view. That is why Duke uses it instead of chess as the main comparison.",
+          "direct": "The correct answer identifies the structural feature the chapter cares about: incomplete information plus variance. Visibility alone would point back toward chess.",
+          "competitive": "If the cards are all face up, you are not in Duke's core environment anymore."
+        },
+        "bloomsLevel": "understand",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "ch01-q06",
+        "prompt": "A manager says, 'Because luck affects outcomes, no one can really judge whether my decision process was weak.' What does the chapter say about that claim?",
+        "choices": [
+          "It is mostly right because uncertainty makes accountability unfair",
+          "It is wrong because uncertainty raises the importance of process review",
+          "It is right only when the manager feels highly confident"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "The chapter never turns uncertainty into a free pass. It asks for a better standard of judgment, not for judgment to disappear.",
+          "direct": "Duke's move is sharper accountability, not softer accountability. Once results stop doing all the work, process review has to get stronger.",
+          "competitive": "Variance is not a hiding place. If luck is in the game, your process audit needs more teeth, not less."
+        },
+        "bloomsLevel": "analyze",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "ch01-q07",
+        "prompt": "After a debate-team loss, Omar's teammates insist the original strategy must have been foolish because they lost the round. What is the best next step?",
+        "choices": [
+          "Reconstruct what the team predicted before the round and separate that from the final ballot",
+          "Accept that competition outcomes always reveal the true quality of preparation",
+          "Ignore the ballots because outcomes are too noisy to teach anything"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "The chapter wants a fairer review, not a softer one. Omar's team should preserve the pre-round reasoning and then inspect where process, execution, and luck each mattered.",
+          "direct": "Option A avoids both extremes: scoreboard worship and outcome nihilism. The chapter teaches structured judgment, not indifference.",
+          "competitive": "Keep the live odds on the table. If the team only studies the ballot, it learns a flatter lesson than the round actually offers."
+        },
+        "bloomsLevel": "apply",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "ch01-q08",
+        "prompt": "Priya's data only supports a range, but the room rewards confident-sounding forecasts. Which answer best matches the chapter's standard?",
+        "choices": [
+          "Give the cleanest certain answer possible so the audience trusts her",
+          "State the estimate as a probability and explain what information is still missing",
+          "Refuse to answer because certainty is impossible"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "Duke is not asking Priya to go silent. She is asking her to sound honestly calibrated instead of theatrically certain.",
+          "direct": "Probability language fits the chapter because it preserves commitment while acknowledging incomplete information. Option A performs confidence; option C abandons judgment.",
+          "competitive": "The strong move is to price the belief honestly, not to bluff certainty or retreat from the call."
+        },
+        "bloomsLevel": "apply",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "ch01-q09",
+        "prompt": "What is the hardest balance this introduction asks the reader to hold?",
+        "choices": [
+          "Be humble about outcomes while staying strict about process quality",
+          "Ignore process and trust long-run luck to even everything out",
+          "Replace all decisions with formulas that remove uncertainty"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "The chapter lowers the power of hindsight, but it never lowers the demand for disciplined reasoning. That balance is the real threshold.",
+          "direct": "Duke's opening position is two-sided: outcomes are noisy, and accountability still survives the noise. The wrong answers break one side of that structure.",
+          "competitive": "If you keep humility but lose standards, you get excuses. If you keep standards but worship outcomes, you get hindsight theater. The chapter demands both honesty and rigor."
+        },
+        "bloomsLevel": "evaluate",
+        "depthLevel": "hard"
+      },
+      {
+        "questionId": "ch01-q10",
+        "prompt": "If the introduction succeeds, what should the next chapter naturally add?",
+        "choices": [
+          "A defense of never making decisions until certainty arrives",
+          "A way to treat beliefs and choices as bets with explicit levels of confidence",
+          "A longer argument that poker is morally superior to chess"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "The opening chapter prepares the reader to think probabilistically. The next move is to make that posture more explicit by linking beliefs and decisions to bets.",
+          "direct": "Option B follows the bridge exactly: once certainty is weakened, confidence has to become visible and testable.",
+          "competitive": "The introduction clears the table. The next chapter should make you price your convictions instead of merely announcing them."
+        },
+        "bloomsLevel": "analyze",
+        "depthLevel": "hard"
+      }
+    ]
+  },
+  "implementationPlan": {
+    "coreSkill": {
+      "gentle": "The core skill is judging choices by the information and reasoning available when they were made, not by the ending alone.",
+      "direct": "Core skill: separate process quality from outcome quality while keeping both in view.",
+      "competitive": "Core skill: stop worshipping the scoreboard and audit the call."
+    },
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": {
+          "gentle": "If a work decision ends badly, then I will list what was known before the choice and what became visible only later.",
+          "direct": "If a project misses, then I will review the live information set before I label the decision weak.",
+          "competitive": "If a work bet blows up, I reconstruct the call before I condemn it."
+        }
+      },
+      {
+        "context": "school",
+        "plan": {
+          "gentle": "If a school result disappoints me, then I will separate preparation, execution, and luck in my review.",
+          "direct": "If a class or competition outcome hurts, then I will split process audit from scoreboard reaction.",
+          "competitive": "If school pressure ends in a loss, I refuse the lazy rewrite and inspect the actual decision path."
+        }
+      },
+      {
+        "context": "personal",
+        "plan": {
+          "gentle": "If a personal choice leaves me upset, then I will ask what I knew then before I call the decision foolish.",
+          "direct": "If emotion spikes after a personal outcome, then I will review the original reasons and uncertainties before issuing a verdict.",
+          "competitive": "If a personal decision hurts, I audit the odds I had, not just the pain I feel now."
+        }
+      }
+    ],
+    "twentyFourHourChallenge": {
+      "gentle": "Within 24 hours, write down one recent decision, what you knew at the time, and one thing you learned only afterward.",
+      "direct": "In the next day, run one short process review on a recent outcome-heavy decision: information, confidence, tradeoff, update.",
+      "competitive": "Today, rescue one decision from hindsight by rebuilding the live call in writing."
+    },
+    "weeklyPractice": {
+      "gentle": "For one week, notice when you describe a choice as simply right or wrong and replace that sentence with a more careful judgment.",
+      "direct": "Track one decision review per day this week and note whether your first instinct was outcome worship or process analysis.",
+      "competitive": "For seven days, catch every scoreboard verdict you make and force a real process audit behind it."
+    }
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch01-rc01",
+      "front": {
+        "gentle": "What opening example does Duke use to challenge hindsight judgment?",
+        "direct": "Which case launches the chapter's attack on resulting?",
+        "competitive": "What failed play becomes the first trap for lazy judges?"
+      },
+      "back": {
+        "gentle": "Pete Carroll's intercepted goal-line pass in Super Bowl XLIX.",
+        "direct": "The chapter opens with Pete Carroll's failed pass call.",
+        "competitive": "Carroll's intercepted pass is the chapter's first stress test."
+      },
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch01-rc02",
+      "front": {
+        "gentle": "What is resulting in simple terms?",
+        "direct": "Define resulting.",
+        "competitive": "What shortcut lets hindsight pretend to be judgment?"
+      },
+      "back": {
+        "gentle": "It is judging a decision mainly by how it turned out.",
+        "direct": "Resulting means treating the final outcome as if it fully proves decision quality.",
+        "competitive": "It is the move where the ending bullies the process out of the room."
+      },
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch01-rc03",
+      "front": {
+        "gentle": "Why does Duke compare life to poker rather than chess?",
+        "direct": "What makes poker the stronger model for ordinary decisions?",
+        "competitive": "Why is chess too clean for the world Duke is describing?"
+      },
+      "back": {
+        "gentle": "Poker keeps hidden information and luck in view.",
+        "direct": "Poker fits because many real choices happen with incomplete information and variance still active.",
+        "competitive": "Poker honors skill without pretending the board is fully visible."
+      },
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch01-rc04",
+      "front": {
+        "gentle": "What kind of confidence does the chapter recommend?",
+        "direct": "How should belief be expressed in this chapter's framework?",
+        "competitive": "What replaces certainty theater here?"
+      },
+      "back": {
+        "gentle": "Calibrated confidence that admits uncertainty.",
+        "direct": "Belief should be stated in degrees of confidence, not as total certainty.",
+        "competitive": "Honest odds language replaces fake finality."
+      },
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch01-rc05",
+      "front": {
+        "gentle": "What hard balance must the reader keep after rejecting resulting?",
+        "direct": "What tension does the chapter leave unresolved on purpose?",
+        "competitive": "What standard survives once the scoreboard loses its throne?"
+      },
+      "back": {
+        "gentle": "Be humble about outcomes while still judging process carefully.",
+        "direct": "The chapter preserves both uncertainty and accountability.",
+        "competitive": "Noise stays in the game, and process still gets audited hard."
+      },
+      "difficulty": "hard"
+    }
+  ],
+  "keyTakeawayCard": {
+    "gentle": "A result can teach you something, but it cannot carry the whole judgment alone. Real decisions happen under hidden information, which is why this book asks for calibrated confidence and fairer process review.",
+    "direct": "The introduction's main move is simple: separate outcome quality from decision quality. Life works more like poker than chess, so serious judgment has to respect hidden information, luck, and disciplined process.",
+    "competitive": "Stop worshipping endings. The world deals hidden cards, so the real test is the quality of the call under uncertainty, not the false clarity of the final score."
+  }
+}

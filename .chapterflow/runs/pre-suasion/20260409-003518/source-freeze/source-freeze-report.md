@@ -23,7 +23,8 @@
 - Chapter 10 support: moderate from the official Simon & Schuster page plus TOC support
 - Chapter 11 support: moderate from the official Simon & Schuster page plus TOC support
 - Chapter 12 support: moderate from the official Simon & Schuster page plus TOC support
-- Later chapters beyond 12: TOC-level support only until further chapter-specific authorized or reputable secondary support is frozen
+- Chapter 13 support: moderate from the official Simon & Schuster page plus TOC support
+- Chapter 14 support: moderate from the official Simon & Schuster page plus TOC support
 - Exact-quote support: partial only, so paraphrase-first remains mandatory
 
 ## Risks

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What closing problem defines Chapter 11?",
+      "choices": [
+        "Blue oceans fail only when budgets are cut",
+        "Organizations can relapse into red-ocean thinking when competition defines strategy again",
+        "Competitors should never be watched at all"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns about slipping back into red-ocean logic.",
+        "direct": "The core danger is competitor-led relapse.",
+        "competitive": "The old game retakes control when rivals write the agenda."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "How does the chapter define red-ocean strategy?",
+      "choices": [
+        "Competing for existing demand in known market space",
+        "Inventing new demand outside existing industry boundaries",
+        "Ignoring buyers in order to focus on technology"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That is the chapter's red-ocean definition.",
+        "direct": "Red oceans are the known, crowded market space.",
+        "competitive": "It is the familiar fight for the same pool."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why does trying to beat competitors become a trap?",
+      "choices": [
+        "It guarantees short-term failure",
+        "It usually pushes strategy toward imitation rather than innovation",
+        "It makes pricing impossible"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says competitor-first thinking narrows originality.",
+        "direct": "Beating rivals on their terms tends to reproduce their terms.",
+        "competitive": "If rivals set the target, you start becoming their echo."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "What is dangerous about benchmarking when it dominates strategy?",
+      "choices": [
+        "It prevents any use of data",
+        "It forces companies to stop serving customers",
+        "It trains the team to optimize inside the existing game"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Benchmarking can narrow attention to the current market.",
+        "direct": "It can improve the old game while weakening market creation.",
+        "competitive": "The deck gets sharper while the future gets smaller."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "A manager opens every review with rival dashboards and feature comparisons. What trap is strongest?",
+      "choices": [
+        "Competition-first thinking is setting the strategic agenda",
+        "The team is overinvesting in pioneers",
+        "The portfolio lacks enough settlers"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Rivals have become the starting point for strategy.",
+        "direct": "This is the benchmarking trap in action.",
+        "competitive": "The scoreboard is running the room."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "applied"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "A student team copies the strongest rival project because it looks safer. Which warning fits best?",
+      "choices": [
+        "The project is avoiding demand creation by imitating the field",
+        "The project has too much buyer utility",
+        "The project is using too much fair process"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The team has drifted toward imitation.",
+        "direct": "Copying the field can look disciplined while shrinking originality.",
+        "competitive": "Safe copying is still surrender to the old game."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "applied"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What does fixation on existing demand usually do to blue-ocean logic?",
+      "choices": [
+        "It widens the search for noncustomers",
+        "It narrows strategic imagination to the current pool",
+        "It guarantees stronger renewal"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns that the search horizon gets smaller.",
+        "direct": "Current-customer fixation can crowd out new-demand discovery.",
+        "competitive": "The same pool starts acting like the whole world."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "applied"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Which team is most trapped in red-ocean logic?",
+      "choices": [
+        "A team that studies rivals briefly, then redesigns around unmet value",
+        "A team that treats competitor best practices as the main blueprint for its move",
+        "A team that explores people outside the current market"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That team is letting rivals define the move.",
+        "direct": "Best-practice copying is the trap, not limited market awareness.",
+        "competitive": "The blueprint belongs to the old game."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "applied"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why can a company understand blue-ocean tools and still relapse?",
+      "choices": [
+        "Because the tools automatically expire",
+        "Because attention can shift back toward rivals and current demand even after learning the concepts",
+        "Because red oceans disappear once a company innovates"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Learning the ideas does not stop later drift.",
+        "direct": "Relapse begins when strategic attention is reorganized around the old game again.",
+        "competitive": "You can know the map and still march back into the trap."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What closing discipline best fits Chapter 11?",
+      "choices": [
+        "Ignore competitors completely",
+        "Keep buyer value and new demand ahead of benchmarking and imitation",
+        "Focus only on current customers because they are proven"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That is how the chapter says to avoid relapse.",
+        "direct": "The ending discipline is attention anchored to buyers and new demand.",
+        "competitive": "Creation has to outrank comparison."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    }
+  ]
+}

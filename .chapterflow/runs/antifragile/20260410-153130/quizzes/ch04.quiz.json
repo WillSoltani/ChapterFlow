@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's central claim about stress?",
+      "choices": [
+        "Stress is always helpful for adaptive systems",
+        "The value of a stressor depends on dose",
+        "Only severe challenges produce real growth"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says a low dose can help while a higher dose can harm.",
+        "direct": "Taleb's key point is nonlinear response: the same stressor changes meaning as dose changes.",
+        "competitive": "The winning answer keeps the curve intact instead of turning stress into a virtue."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What does hormesis describe in this chapter?",
+      "choices": [
+        "Small harm provoking a strengthening response",
+        "Any pain leading to growth",
+        "A system becoming immune to all future stress"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Hormesis is the chapter's model of low-dose stress producing adaptive gain.",
+        "direct": "The concept applies when the system can answer a bounded disturbance with more than repair.",
+        "competitive": "Hormesis is not pain worship. It is a specific range where the hit makes the system come back stronger."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why does the chapter reject the idea that more challenge is always better?",
+      "choices": [
+        "Because all challenge should be removed",
+        "Because a benefit at one dose does not guarantee benefit at a higher dose",
+        "Because adaptation is mostly a myth"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says the response changes when the dose rises past the strengthening range.",
+        "direct": "This is the nonlinear part of the argument: the same stressor can move from adaptive to damaging.",
+        "competitive": "A bigger hit can be a different event, not a bigger win."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Nora wants to test a new team process. Which plan best matches Chapter 4?",
+      "choices": [
+        "Run the harshest simulation possible so the team proves it is serious",
+        "Run a bounded stress test that reveals weakness without overwhelming the team",
+        "Skip testing because all stress is risky"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter favors the dose that still produces learning rather than collapse.",
+        "direct": "A stress test is useful only when the system remains able to adapt after the challenge.",
+        "competitive": "If the simulation crushes capacity, it has already crossed the line from signal to damage."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What mistake does overprotection make in this chapter?",
+      "choices": [
+        "It removes mild challenges and loses useful signal with them",
+        "It creates too much recovery",
+        "It proves that comfort is impossible"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Overprotection strips away the low-dose challenges that could have helped the system adapt.",
+        "direct": "The problem is not comfort itself. The problem is eliminating the useful stressors along with the harmful ones.",
+        "competitive": "The soft mistake starves the system of the feedback it needed."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which statement would the chapter reject most strongly?",
+      "choices": [
+        "Some low-dose stress can help a system adapt",
+        "Recovery and threshold matter when judging a challenge",
+        "If one mock exam helped, five more in a row must help more"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter keeps warning against scaling a benefit upward without checking whether the dose has changed categories.",
+        "direct": "A useful response at one level does not justify unlimited repetition or intensity.",
+        "competitive": "That answer takes a curve and pretends it is a straight staircase upward."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Graham first removes all deadlines from his team, then later imposes constant fire drills. How would Chapter 4 judge these moves?",
+      "choices": [
+        "The first is wrong but the second is right because high pressure builds capacity",
+        "Both are failures because one removes signal and the other overwhelms the system",
+        "Both are equally good because they balance each other over time"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter rejects both extremes because the useful range sits between them.",
+        "direct": "Overprotection and overreach are opposite errors created by ignoring threshold.",
+        "competitive": "One side starves the team. The other bludgeons it. Neither reads the dose."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why can Mina's first mock exam help while the next five in two days harm?",
+      "choices": [
+        "Because the tool changes from exam to exam",
+        "Because the same stressor can help in one dose and damage in another",
+        "Because students adapt only when they are confused"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The first mock may provide useful information, while the pileup afterward can push the system into fatigue instead of learning.",
+        "direct": "The chapter's logic is dose-dependent response, not blanket praise of a method.",
+        "competitive": "The first test bought signal. The pileup bought damage."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the deepest practical discipline Chapter 4 asks from the reader?",
+      "choices": [
+        "To admire difficult experiences more than easy ones",
+        "To judge challenges by observed adaptation, recovery, and harm rather than by rhetoric about toughness",
+        "To assume every system has the same strengthening range"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter asks for sharper observation of what the challenge is doing to the system.",
+        "direct": "Threshold discipline means reading response pattern instead of trusting dramatic language about stress.",
+        "competitive": "The real standard is outcome under dose, not how heroic the routine sounds."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How does this chapter set up the next move in the book?",
+      "choices": [
+        "It shows that modern life always gets dose exactly right",
+        "It points toward environments that remove useful mild variability and replace it with heavier, blunter pressures",
+        "It finishes the argument about randomness completely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Once the reader sees that dose matters, it becomes natural to ask which environments remove the helpful small challenges and deliver harsher ones later.",
+        "direct": "The next step is to study how modern systems distort the stress landscape by deleting useful signals and amplifying the wrong burdens.",
+        "competitive": "After threshold comes the harder question: who is stripping out the right pressure and then billing you with the wrong one?"
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

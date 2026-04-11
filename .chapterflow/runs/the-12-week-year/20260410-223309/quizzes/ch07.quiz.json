@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What main problem does Chapter 7 solve after scorekeeping?",
+      "choices": [
+        "How to protect important work so the next week does not get crowded out again",
+        "How to replace blocked time with more scorekeeping",
+        "How to turn every request into a quick yes"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says truth alone still does not protect the next week if the important work stays exposed.",
+        "direct": "Chapter 7 adds intentional protection through yes/no discipline and blocked time.",
+        "competitive": "It stops the exposed week from getting raided again."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why do yes and no matter so much in this chapter?",
+      "choices": [
+        "Because every yes gives something access to limited time and attention",
+        "Because no should be used as often as possible regardless of context",
+        "Because saying yes proves commitment better than time blocking"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter treats yes and no as execution choices because capacity is limited.",
+        "direct": "A careless yes can take space that should have belonged to a higher priority.",
+        "competitive": "Every unearned yes opens the gate to the wrong thing."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is blocked time doing in Chapter 7?",
+      "choices": [
+        "Giving important work defended space in the week",
+        "Decorating the calendar so the week feels more serious",
+        "Replacing the need to make priority decisions"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says important work needs time claimed for it in advance if it is going to survive.",
+        "direct": "A block matters because it gives the priority real access to the calendar before interruptions arrive.",
+        "competitive": "The block is supposed to guard territory, not look pretty."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Nora has a priority block on the calendar, but small requests are already pushing against it. What Chapter 7 move is strongest?",
+      "choices": [
+        "Let the requests replace the block because the week should stay flexible",
+        "Protect the block unless something truly more important displaces it",
+        "Delete the block and rely on motivation later"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says blocked time only helps if it actually protects the important work.",
+        "direct": "Nora needs intentional boundaries, not a decorative block that disappears immediately.",
+        "competitive": "If the block caves on contact, the calendar never belonged to the priority."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What distinction does the chapter make between knowing the priority and protecting the priority?",
+      "choices": [
+        "Knowing is enough if the scorecard is accurate",
+        "Protecting means changing what gets access to time and attention",
+        "Protecting means making the week completely inflexible"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says important work stays exposed until the week is shaped around it deliberately.",
+        "direct": "Priorities become protected priorities only when yes/no choices and time access actually change.",
+        "competitive": "A known priority is still weak if the gates stay open."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which misreading does Chapter 7 warn against?",
+      "choices": [
+        "Treating intentionality as either rigid theater or decorative blocking without real protection",
+        "Using no as part of execution discipline",
+        "Claiming time for important work in advance"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says intentionality is selective protection, not performance or empty scheduling style.",
+        "direct": "Blocked time and boundaries lose value when they look disciplined but fail to alter the week's real access pattern.",
+        "competitive": "Fake boundaries still leave the week wide open."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Devin kept saying yes to extra obligations and lost the study week. What diagnosis fits Chapter 7 best?",
+      "choices": [
+        "He lacked a scorecard",
+        "He needed more awareness of the goal's importance",
+        "He left the week unprotected by giving away time that the priority needed"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter says yes and no are execution choices because every commitment uses real capacity.",
+        "direct": "Devin's issue was unprotected access to his time, not simply weak awareness.",
+        "competitive": "The goal stayed clear. The gates stayed open."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why does Chapter 7 emphasize selective protection instead of rigid control?",
+      "choices": [
+        "Because the point is to stop giving equal status to every demand, not to become mechanically unavailable",
+        "Because blocked time should always be easy to discard",
+        "Because every request deserves equal access once the score is known"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says intentionality protects what matters without turning boundaries into theater.",
+        "direct": "The issue is selective access, not severe schedule performance for its own sake.",
+        "competitive": "Good boundaries serve the work instead of trying to look impressive."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What hard test sits underneath the chapter's protection warning?",
+      "choices": [
+        "Whether yes/no discipline and blocked time actually change what the week allows",
+        "Whether the calendar contains enough blocks",
+        "Whether saying no feels comfortable enough socially"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps asking whether protection becomes real in practice instead of staying verbal.",
+        "direct": "The threshold is operational: do boundaries materially alter access to time and attention or not?",
+        "competitive": "If the calendar still gets raided, the language was fake."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If Chapter 7 is right, what naturally comes next once the work is better protected?",
+      "choices": [
+        "A question of who owns the follow-through when the work is still difficult",
+        "A return to scorekeeping as the whole system",
+        "A decision to stop using boundaries because the week is now safe"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter points toward accountability once the work has protection but still requires follow-through.",
+        "direct": "After protection, the next issue is ownership of execution when resistance remains.",
+        "competitive": "Once the gates are up, the next question is who still has to fight inside them."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

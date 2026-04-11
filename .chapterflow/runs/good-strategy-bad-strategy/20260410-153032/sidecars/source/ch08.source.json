@@ -1,0 +1,48 @@
+{
+  "chapterId": "ch08",
+  "title": "Proximate Objectives",
+  "heading": "Proximate Objectives",
+  "approxWords": 377,
+  "properNouns": [
+    "Google Books",
+    "Penguin Random House",
+    "Chapter 7",
+    "Chapter 8"
+  ],
+  "repeatedTerms": [
+    "objective",
+    "strategy",
+    "action",
+    "uncertainty",
+    "focus",
+    "direction",
+    "next"
+  ],
+  "sourceReferences": [
+    {
+      "url": "https://books.google.com/books/about/Good_Strategy_Bad_Strategy.html?id=0FWPDQAAQBAJ",
+      "role": "chapter_title_and_toc",
+      "confidence": 0.97
+    },
+    {
+      "url": "https://penguinrandomhousehighereducation.com/book/?isbn=9780307886231",
+      "role": "official_preview_support_for_real_obstacle_and_coherent_action_bridge",
+      "confidence": 0.9
+    },
+    {
+      "url": "internal:source-freeze/book-source.md",
+      "role": "frozen_title_support_for_chapter_8",
+      "confidence": 0.9
+    },
+    {
+      "url": "internal:validated/ch07.chapter.json",
+      "role": "bridge_support_for_leverage_then_guided_next_step",
+      "confidence": 0.87
+    },
+    {
+      "url": "internal:skeleton/book-skeleton.md",
+      "role": "chapter_intent_support_for_near_enough_objectives_under_uncertainty",
+      "confidence": 0.85
+    }
+  ]
+}

@@ -1,0 +1,174 @@
+{
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What does Chapter 15 say many complaints carry besides content?",
+      "choices": [
+        "Pressure",
+        "Certainty",
+        "Agreement"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says complaints often carry heat or pressure.",
+        "direct": "Option A fits. Pressure is the extra factor the chapter highlights.",
+        "competitive": "Heat is in the room before the argument gets handled."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What is the job of the safety valve in this chapter?",
+      "choices": [
+        "To release pressure before correction",
+        "To prove the complaint true",
+        "To avoid responding at all"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The valve is about letting some heat out first.",
+        "direct": "Option A fits because airing the complaint can de-escalate the exchange.",
+        "competitive": "The valve vents heat before the real answer lands."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why can interrupting a complaint too early make things worse?",
+      "choices": [
+        "It can make the person feel unheard and intensify the complaint",
+        "It always solves the issue too fast",
+        "It turns every complaint into agreement"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Cutting someone off can make the grievance come back stronger.",
+        "direct": "Option A matches the chapter's warning about premature defense.",
+        "competitive": "The fast cutoff adds fuel."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A manager lets an employee finish a complaint before explaining the decision. What chapter move is this?",
+      "choices": [
+        "Safety-valve de-escalation",
+        "Automatic surrender",
+        "Topic avoidance"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The manager is letting pressure drop before responding.",
+        "direct": "This is the safety-valve move, not surrender.",
+        "competitive": "That is controlled release before rebuttal."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "A student interrupts a complaint in a club meeting and the grievance comes back louder. What happened?",
+      "choices": [
+        "Premature correction intensified the complaint",
+        "The complaint disappeared",
+        "The meeting became cooperative instantly"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says cutting complaints off can harden them.",
+        "direct": "Option A fits because the interruption raised pressure instead of lowering it.",
+        "competitive": "The quick defense made the room hotter."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What limit does the chapter place on hearing a complaint?",
+      "choices": [
+        "Hearing is not the same as endorsing",
+        "Hearing means the complaint is fully correct",
+        "Hearing replaces the need for judgment"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps hearing separate from agreement.",
+        "direct": "Hearing is not surrender or endorsement.",
+        "competitive": "Open the valve without handing over the verdict."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Which option misreads the chapter as passive appeasement?",
+      "choices": [
+        "Letting the grievance air before answering",
+        "Assuming every aired complaint must be accepted as true",
+        "Separating de-escalation from endorsement"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter does not say every complaint becomes correct when heard.",
+        "direct": "Option B confuses hearing with surrender.",
+        "competitive": "That is appeasement, not pressure management."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "advanced"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What is the main structural job of pressure release here?",
+      "choices": [
+        "To make the room workable again",
+        "To end all disagreement forever",
+        "To remove the need for later explanation"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The room becomes easier to work in once some heat is gone.",
+        "direct": "Option A fits because de-escalation prepares the exchange for later reasoning.",
+        "competitive": "Pressure release makes the room usable."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "advanced"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does Carnegie think later correction can work better after the complaint is aired?",
+      "choices": [
+        "Because pressure has dropped enough for reasoning to land",
+        "Because truth stops mattering",
+        "Because complaints always disappear on their own"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says lower pressure gives the conversation a better chance.",
+        "direct": "Controlled release creates conditions where later reasoning can be heard.",
+        "competitive": "Once the heat falls, the answer has somewhere to land."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "advanced"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why does this chapter lead naturally into Chapter 16 on cooperation?",
+      "choices": [
+        "Because a less pressurized room is more ready for shared effort",
+        "Because complaints eliminate the need for cooperation",
+        "Because the next chapter ignores pressure completely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next chapter builds on a room that is less reactive.",
+        "direct": "Option A fits because de-escalation prepares the way for cooperation.",
+        "competitive": "When the heat drops, teamwork becomes possible."
+      },
+      "bloomsLevel": "transfer",
+      "depthLevel": "advanced"
+    }
+  ]
+}

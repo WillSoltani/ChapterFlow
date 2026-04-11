@@ -723,13 +723,14 @@ export function WorkspacePage() {
 
   const searchRef = useRef<HTMLInputElement | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
-  const [showProBanner, setShowProBanner] = useState(false);
+  const [showProBanner, setShowProBanner] = useState(
+    () => searchParams.get("billing") === "success",
+  );
 
   // Show a success banner when Stripe redirects back after payment, then
   // clean the URL so a refresh doesn't re-show it.
   useEffect(() => {
     if (searchParams.get("billing") === "success") {
-      setShowProBanner(true);
       sessionStorage.setItem("cf:billing-upgraded", "1");
       router.replace("/dashboard");
     }

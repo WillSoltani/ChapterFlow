@@ -26,20 +26,40 @@ import {
   THE_ALMANACK_OF_NAVAL_RAVIKANT_RAW_CHAPTERS,
   getTheHardThingAboutHardThingsPackageForTone,
   THE_HARD_THING_ABOUT_HARD_THINGS_RAW_CHAPTERS,
+  getInfluencePackageForTone,
+  INFLUENCE_RAW_CHAPTERS,
   getLeadersEatLastPackageForTone,
   LEADERS_EAT_LAST_RAW_CHAPTERS,
+  getTheOneThingPackageForTone,
+  THE_ONE_THING_RAW_CHAPTERS,
+  getTheCharismaMythPackageForTone,
+  THE_CHARISMA_MYTH_RAW_CHAPTERS,
+  getTheLikeSwitchPackageForTone,
+  THE_LIKE_SWITCH_RAW_CHAPTERS,
   getGoodToGreatPackageForTone,
   GOOD_TO_GREAT_RAW_CHAPTERS,
   getHowToTalkToAnyonePackageForTone,
   HOW_TO_TALK_TO_ANYONE_RAW_CHAPTERS,
+  getTalkLikeTedPackageForTone,
+  TALK_LIKE_TED_RAW_CHAPTERS,
   getNeverSplitTheDifferencePackageForTone,
   NEVER_SPLIT_THE_DIFFERENCE_RAW_CHAPTERS,
+  getPreSuasionPackageForTone,
+  PRE_SUASION_RAW_CHAPTERS,
+  getSuperThinkingPackageForTone,
+  SUPER_THINKING_RAW_CHAPTERS,
   getYouCantHurtMePackageForTone,
   YOU_CANT_HURT_ME_RAW_CHAPTERS,
   getIndistractablePackageForTone,
   INDISTRACTABLE_RAW_CHAPTERS,
   getExtremeOwnershipPackageForTone,
   EXTREME_OWNERSHIP_RAW_CHAPTERS,
+  getTheArtOfWarPackageForTone,
+  THE_ART_OF_WAR_RAW_CHAPTERS,
+  getAtomicHabitsPackageForTone,
+  ATOMIC_HABITS_RAW_CHAPTERS,
+  getTheGreatMentalModelsVol1PackageForTone,
+  THE_GREAT_MENTAL_MODELS_VOL_1_RAW_CHAPTERS,
   isV12BookPackage,
   resolveTone,
   type BookPackage,
@@ -995,9 +1015,25 @@ const TONE_BUNDLE_GETTERS: Record<string, { getPackage: ToneBundleGetter; getRaw
     getPackage: getTheHardThingAboutHardThingsPackageForTone,
     getRaw: () => THE_HARD_THING_ABOUT_HARD_THINGS_RAW_CHAPTERS,
   },
+  influence: {
+    getPackage: getInfluencePackageForTone,
+    getRaw: () => INFLUENCE_RAW_CHAPTERS,
+  },
   "leaders-eat-last": {
     getPackage: getLeadersEatLastPackageForTone,
     getRaw: () => LEADERS_EAT_LAST_RAW_CHAPTERS,
+  },
+  "the-one-thing": {
+    getPackage: getTheOneThingPackageForTone,
+    getRaw: () => THE_ONE_THING_RAW_CHAPTERS,
+  },
+  "the-charisma-myth": {
+    getPackage: getTheCharismaMythPackageForTone,
+    getRaw: () => THE_CHARISMA_MYTH_RAW_CHAPTERS,
+  },
+  "the-like-switch": {
+    getPackage: getTheLikeSwitchPackageForTone,
+    getRaw: () => THE_LIKE_SWITCH_RAW_CHAPTERS,
   },
   "good-to-great": {
     getPackage: getGoodToGreatPackageForTone,
@@ -1007,9 +1043,21 @@ const TONE_BUNDLE_GETTERS: Record<string, { getPackage: ToneBundleGetter; getRaw
     getPackage: getHowToTalkToAnyonePackageForTone,
     getRaw: () => HOW_TO_TALK_TO_ANYONE_RAW_CHAPTERS,
   },
+  "talk-like-ted": {
+    getPackage: getTalkLikeTedPackageForTone,
+    getRaw: () => TALK_LIKE_TED_RAW_CHAPTERS,
+  },
   "never-split-the-difference": {
     getPackage: getNeverSplitTheDifferencePackageForTone,
     getRaw: () => NEVER_SPLIT_THE_DIFFERENCE_RAW_CHAPTERS,
+  },
+  "pre-suasion": {
+    getPackage: getPreSuasionPackageForTone,
+    getRaw: () => PRE_SUASION_RAW_CHAPTERS,
+  },
+  "super-thinking": {
+    getPackage: getSuperThinkingPackageForTone,
+    getRaw: () => SUPER_THINKING_RAW_CHAPTERS,
   },
   indistractable: {
     getPackage: getIndistractablePackageForTone,
@@ -1022,6 +1070,18 @@ const TONE_BUNDLE_GETTERS: Record<string, { getPackage: ToneBundleGetter; getRaw
   "extreme-ownership": {
     getPackage: getExtremeOwnershipPackageForTone,
     getRaw: () => EXTREME_OWNERSHIP_RAW_CHAPTERS,
+  },
+  "the-art-of-war": {
+    getPackage: getTheArtOfWarPackageForTone,
+    getRaw: () => THE_ART_OF_WAR_RAW_CHAPTERS,
+  },
+  "atomic-habits": {
+    getPackage: getAtomicHabitsPackageForTone,
+    getRaw: () => ATOMIC_HABITS_RAW_CHAPTERS,
+  },
+  "the-great-mental-models-vol-1": {
+    getPackage: getTheGreatMentalModelsVol1PackageForTone,
+    getRaw: () => THE_GREAT_MENTAL_MODELS_VOL_1_RAW_CHAPTERS,
   },
 };
 

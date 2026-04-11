@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch02-q01",
+      "prompt": "Why does Duke compare life to poker rather than chess?",
+      "choices": [
+        "Because life involves hidden information and luck more often than perfect visibility",
+        "Because poker rewards bold personalities more than chess does",
+        "Because poker is more entertaining than chess"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter uses poker because some important information stays hidden and outcomes can still move after the choice is made. It is a structural comparison, not a style preference.",
+        "direct": "Poker fits the environment Duke is describing: incomplete information plus variance. The wrong answers confuse the chapter's mechanism with personality or entertainment.",
+        "competitive": "The point is not that poker feels cooler. The point is that it tells the truth about hidden cards."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch02-q02",
+      "prompt": "What does the chapter say about luck and skill?",
+      "choices": [
+        "Luck cancels skill, so judging process is mostly pointless",
+        "Skill matters, but luck can still change a single outcome",
+        "Skill guarantees the right outcome if the thinker is disciplined enough"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Duke keeps both truths in view. Skill matters, yet one result can still move for reasons beyond process quality alone.",
+        "direct": "The chapter rejects both fatalism and certainty worship. Probabilistic environments allow divergence between process and outcome without erasing skill.",
+        "competitive": "A strong player can lose one hand. A weak player can steal one. That does not flatten the difference between them."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch02-q03",
+      "prompt": "A manager makes a thoughtful choice and gets a bad result. What does this chapter suggest first?",
+      "choices": [
+        "The outcome alone proves the process was flawed",
+        "A bad result means luck did all the work",
+        "Review the process separately from the result because one ending is incomplete evidence"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter says a single ending cannot report on the whole decision by itself. The result matters, but it is not the whole case.",
+        "direct": "Option C fits the poker model: process and outcome can diverge in the short run. Options A and B each flatten the environment in opposite ways.",
+        "competitive": "One bad hand is not a full audit. Serious review has to inspect the call, not just the pain."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch02-q04",
+      "prompt": "Maya has partial market data and a launch decision due before lunch. Which response best matches the chapter?",
+      "choices": [
+        "Wait until all uncertainty disappears before making any recommendation",
+        "Give a recommendation with the main unknowns and the reasoning behind acting now",
+        "Speak with total certainty so the room trusts her leadership"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Maya does not need to solve uncertainty before acting. She needs to describe it honestly and still make the best move available.",
+        "direct": "The chapter favors accurate commitment over either delay or confidence theater. Option B is the only answer that keeps both action and realism together.",
+        "competitive": "Price the hidden cards and move. Waiting for a solved board or bluffing certainty both miss the standard."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q05",
+      "prompt": "Why is resulting especially weak in a poker-like environment?",
+      "choices": [
+        "Because poker makes outcomes irrelevant",
+        "Because it treats incomplete evidence as a full verdict",
+        "Because poker players dislike accountability"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Resulting is weak here because one outcome arrives with hidden information and luck still in the background. That makes it incomplete evidence.",
+        "direct": "The error is structural. Resulting applies a full-verdict standard to an environment where the necessary information was never fully visible.",
+        "competitive": "It acts like the last card explained the whole hand. It did not."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q06",
+      "prompt": "A reader says, 'If life is poker, then nobody should judge process too strongly because luck is everywhere.' What is the chapter's best reply?",
+      "choices": [
+        "Correct, because uncertainty lowers the value of process review",
+        "Wrong, because uncertainty makes process review more important",
+        "Correct, but only for high-pressure decisions"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter does not soften standards. It says the scoreboard can no longer do all the judging, which means process review has to get better.",
+        "direct": "Uncertainty raises the need to inspect evidence, tradeoffs, and discipline. It does not erase accountability.",
+        "competitive": "Once the scoreboard loses its throne, the process audit has to grow sharper, not weaker."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q07",
+      "prompt": "Marco is presenting a forecast to a seminar that rewards certainty theater. What should he do according to the chapter?",
+      "choices": [
+        "Give a crisp fake answer because strong delivery matters more than precise belief format",
+        "Refuse to answer until he has a perfect forecast",
+        "Present the probability honestly and explain what still remains unresolved"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter treats honest confidence as stronger than fake precision. Marco should make the uncertainty legible instead of hiding it.",
+        "direct": "Option C fits calibrated confidence. Option A performs certainty, and option B confuses uncertainty with paralysis.",
+        "competitive": "Do not counterfeit precision just because the room likes it. Price the estimate honestly and keep moving."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q08",
+      "prompt": "Daniel's investment club makes money on a weak thesis after a lucky market bounce. What is the best interpretation?",
+      "choices": [
+        "The profit proves the club's reasoning was strong",
+        "The gain is useful data, but the process still needs independent review",
+        "The outcome should be ignored completely because luck was involved"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns against outcome worship in both directions. A lucky win can teach the wrong lesson if no one inspects the reasoning beneath it.",
+        "direct": "Option B is correct because it preserves both signal and scrutiny. The chapter rejects both easy validation and total dismissal.",
+        "competitive": "Do not let profit launder bad thinking. Break the win open and audit the process."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q09",
+      "prompt": "What is the hardest skill this chapter demands?",
+      "choices": [
+        "Act with commitment while describing uncertainty honestly",
+        "Replace all judgment with long-run averages",
+        "Avoid commitment until confidence reaches one hundred percent"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Duke keeps action and humility together. The challenge is to commit without pretending the board is complete.",
+        "direct": "The chapter's hardest edge is accurate commitment: decisiveness without false certainty and accountability without outcome worship.",
+        "competitive": "Most people either bluff certainty or hide behind delay. The chapter demands something tougher than both."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch02-q10",
+      "prompt": "If this chapter succeeds, what should the next chapter add naturally?",
+      "choices": [
+        "A way to make confidence explicit by treating beliefs and decisions more openly as bets",
+        "A longer defense of why chess is emotionally unrealistic",
+        "A rule that all uncertain choices should be delayed"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter prepares the reader to think in probabilities. The next move is to make that confidence structure more explicit through bet language.",
+        "direct": "Option A follows the bridge. Once the reader accepts a poker-like world, the next step is to expose belief strength in a measurable way.",
+        "competitive": "If the board is incomplete, the next chapter should make you put a price on your conviction."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

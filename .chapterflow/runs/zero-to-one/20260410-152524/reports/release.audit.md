@@ -1,0 +1,32 @@
+# Release Audit — zero-to-one
+
+## Strict-path summary
+- Chapters `1-14` were sealed before release assembly.
+- Release was assembled from `validated/*.chapter.json` only.
+- Source and release guards both passed cleanly.
+- No validated chapter artifact was regenerated during release assembly.
+
+## Final continuity hashes
+- ch01: `0aa82ee953ff8e93593d5fa80cc9040bfe7f32226bfd44ce3cdeb809715c18d6`
+- ch02: `5cae9fb36964ec8dbec0b2fd26b8a2954fd88f632ff2f67051642efd8819aa88`
+- ch03: `cd55ebe2b3173ce340c486541b1ec5b55324a1185093250796d247c30e9e53a7`
+- ch04: `dba861817e47adf599addd2986baa136cab36a0e567cc8bb49677272287f139a`
+- ch05: `0cfc4ffe37f30ff36cf8483a344f47cd2a11a4eb1ab4e57af5477a8930b9a344`
+- ch06: `7f1ff31dc8f114548e791d3211dc4a89ba4445d00061113224292357b0fcd623`
+- ch07: `f4878248e730695c01ca1776e98a7509ce296599bfa05fff70020e61f10c6abe`
+- ch08: `f6cf74574d8cf88647eb3a351a1d3d2af644bf7e6f39087dca03070ef78dae85`
+- ch09: `bb4c84fe136a24a4b2a3c30a3e18ec94cb7e025b2190edab65c776e90899214f`
+- ch10: `d18b3561e65534e88ccf88ace9e1f4df8609613ac9dc2fab828d6d5dcfacdb0a`
+- ch11: `ff54b5849b2aaf4828874fffe7853e5454fb57bd0b2646b3f1b854974b327abd`
+- ch12: `b9fab9364a5b59e8680dd1edc17e89b4744c699f6465d4e5dfe134fce7a0e11e`
+- ch13: `0dd8294ce82508ab32e0a3974eb27a8ea9fe3a1bd72ce97dfe32f13ddeb9facb`
+- ch14: `f49ffdaa54ae84bd6794f60e593f6f68a57f74ec5b927ff1e279ae8e90ed3d22`
+
+## Final release status
+- run-local release package written: `yes`
+- wired repo package written: `yes`
+- release guard drift: `none`
+- unresolved issues: `repo validator contract mismatch`, `concurrent next build lock`
+
+## Audit conclusion
+The ChapterFlow v13 autonomous run completed through sealed release assembly and release guard on the strict path. The remaining failure is outside the chapter pipeline itself: the repo validator and build environment are not currently aligned with the v13 release artifact.

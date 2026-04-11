@@ -1,0 +1,174 @@
+{
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What does Chapter 14 say can shape a conversation before the main disagreement is fully active?",
+      "choices": [
+        "Early agreement",
+        "Longer speeches",
+        "Stronger pressure"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says the first yes-moments can already change direction.",
+        "direct": "Option A fits. Early agreement shapes momentum before the harder point fully opens.",
+        "competitive": "The first real yes starts steering."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why can a truthful early yes help?",
+      "choices": [
+        "It creates momentum from shared ground",
+        "It guarantees the outcome",
+        "It removes the need for honesty"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Real agreement helps the conversation keep moving cooperatively.",
+        "direct": "Option A fits because honest alignment lowers drag early.",
+        "competitive": "It gets the room moving cleanly."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What can early contradiction do?",
+      "choices": [
+        "Harden resistance quickly",
+        "Solve the conflict faster",
+        "Make agreement unnecessary"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns that contradiction can make people brace early.",
+        "direct": "Option A matches the main danger in the chapter.",
+        "competitive": "It locks drag in fast."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A manager begins feedback from one shared goal before naming the harder issue. What chapter move is this?",
+      "choices": [
+        "Truthful early alignment",
+        "Fake reassurance",
+        "Avoiding the issue entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The manager is using a real point of agreement before the disagreement sharpens.",
+        "direct": "This is truthful early alignment, not evasion.",
+        "competitive": "That is a real first yes steering the room."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "A club discussion turns defensive because someone opens with opposition before naming any shared ground. What happened?",
+      "choices": [
+        "Early contradiction hardened resistance",
+        "The topic became irrelevant",
+        "Agreement worked too well"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says starting in contradiction can make people brace too soon.",
+        "direct": "Option A fits because resistance formed before the deeper issue had room.",
+        "competitive": "The bad open locked the room early."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What does the chapter require from an early yes?",
+      "choices": [
+        "It must be something the other person can honestly mean",
+        "It should be repeated several times no matter what",
+        "It should hide the real disagreement"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Agreement must stay truthful to work.",
+        "direct": "The yes has to be real, not staged.",
+        "competitive": "If they cannot truly mean it, it is rotten."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Which option turns the chapter's method into manipulation?",
+      "choices": [
+        "Finding real shared ground",
+        "Stacking fake yeses to push compliance",
+        "Using agreement to keep the frame workable"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter rejects fake consensus.",
+        "direct": "Option B extracts agreement instead of discovering it honestly.",
+        "competitive": "That is manufactured rhythm, not skill."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "advanced"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What is the main job of early agreement in this chapter?",
+      "choices": [
+        "To replace the harder point",
+        "To shape direction and lower drag",
+        "To avoid all disagreement forever"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Agreement helps guide the conversation before the hard part fully opens.",
+        "direct": "Option B fits because early yes creates momentum, not total resolution.",
+        "competitive": "It steers; it does not finish the job."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "advanced"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does Carnegie connect truthful early agreement with momentum?",
+      "choices": [
+        "Because conversations harden quickly once direction is set",
+        "Because facts stop mattering after the first yes",
+        "Because contradiction is always unethical"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says direction forms early and can be hard to reverse.",
+        "direct": "Momentum matters because resistance and cooperation both build fast.",
+        "competitive": "Once the room starts moving, drag or flow hardens quickly."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "advanced"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why does this chapter lead naturally into Chapter 15?",
+      "choices": [
+        "Because complaints may need room before momentum can work",
+        "Because early agreement removes all complaints",
+        "Because the next chapter stops caring about direction"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next chapter asks what happens when complaints are already present.",
+        "direct": "Option A fits because momentum may need a safety valve when grievances are in the room.",
+        "competitive": "If complaints are loaded already, the room may need release before steering works."
+      },
+      "bloomsLevel": "transfer",
+      "depthLevel": "advanced"
+    }
+  ]
+}

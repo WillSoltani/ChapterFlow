@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What new claim does Chapter 11 add to the influence map?",
+      "choices": [
+        "That unity should be treated as a seventh influence principle",
+        "That the original six principles no longer matter",
+        "That identity always overrides evidence"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Chapter 11 adds unity as another major road of influence.",
+        "direct": "The chapter expands the map by treating unity as a seventh universal principle.",
+        "competitive": "A new road gets added: unity."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What kind of relationship is central to Chapter 11?",
+      "choices": [
+        "A We relationship based on identity",
+        "A purely rational exchange",
+        "A short burst of surprise"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter centers on a shared We identity.",
+        "direct": "Unity matters here because it creates a We relationship grounded in identity.",
+        "competitive": "The leverage comes from We, not from a random tactic."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Which cues does Chapter 11 identify as the first route into unity?",
+      "choices": [
+        "Family and place cues",
+        "Scarcity and urgency cues",
+        "Status and novelty cues"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The frozen support says the first route uses family and place.",
+        "direct": "Chapter 11 ties the earliest unity route to family and place markers.",
+        "competitive": "The first bridge into We is family and place."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Taryn is deciding whether to open a proposal by mentioning that she and the client grew up in the same town. What is she testing?",
+      "choices": [
+        "Whether a place cue truthfully raises a shared We identity",
+        "Whether novelty will distract the client",
+        "Whether authority will replace the need for reasons"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A shared hometown is a place cue that may raise unity if it genuinely fits.",
+        "direct": "Taryn is testing whether a place-based marker can create a legitimate We frame before the request.",
+        "competitive": "She is checking whether the town cue really opens the We road."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "In a school postmortem, Luis notices that the room softened after alumni ties were mentioned. What likely changed first?",
+      "choices": [
+        "A shared identity frame became more active",
+        "The evidence suddenly became stronger",
+        "The request stopped needing evaluation"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The alumni cue likely raised a feeling of belonging first.",
+        "direct": "A shared-identity frame became more available, which can change receptivity before the merits are finished.",
+        "competitive": "The We cue hit before the proof did."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Nia tells a friend that a request felt warmer because it came from someone with the same family roots. What chapter idea is she describing?",
+      "choices": [
+        "Unity through identity-based togetherness",
+        "Scarcity pressure",
+        "Pure logical persuasion"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "She is describing unity created by a shared identity cue.",
+        "direct": "The warmth is coming from a We relationship tied to family, not from urgency or pure argument.",
+        "competitive": "The bond changed the feel of the ask."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "If Graham opens with a truthful hometown connection before a request, what does Chapter 11 predict?",
+      "choices": [
+        "The later request may feel easier to trust because unity has been raised",
+        "The request becomes automatically correct",
+        "The audience will stop noticing identity cues"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A shared-place cue can make trust and support come more easily.",
+        "direct": "Raising a We identity can increase receptivity, but it still does not prove the request deserves assent.",
+        "competitive": "The bond can open trust fast, but it is still not proof."
+      },
+      "bloomsLevel": "predict",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What trap does Chapter 11 warn against?",
+      "choices": [
+        "Treating belonging as if it proves the request is good",
+        "Using any identity cue at all",
+        "Not naming a shared place"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The warning is against confusing togetherness with proof.",
+        "direct": "Unity can raise receptivity, but it cannot replace judgment about the request itself.",
+        "competitive": "A We cue is not evidence."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "When does unity help rather than overclaim togetherness in this chapter?",
+      "choices": [
+        "When the shared identity is real and the request still remains open to audit",
+        "Whenever the audience feels warmer",
+        "Only when the request is urgent"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Unity helps when it reflects a real bond without replacing judgment.",
+        "direct": "The chapter favors truthful belonging cues that increase openness while leaving the merits exposed to review.",
+        "competitive": "Real We can guide. Fake We tries to steal the verdict."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why does Chapter 11 point to acting together next?",
+      "choices": [
+        "Because the book next asks how unity deepens through shared action",
+        "Because identity-based unity has been rejected",
+        "Because family and place stop mattering entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next chapter asks how people become a We by acting together.",
+        "direct": "Chapter 11 handles being together in identity, and Chapter 12 extends unity into shared action.",
+        "competitive": "The map now moves from We by identity to We by motion."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "deep"
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch03-q01",
+      "prompt": "What is the basic trap behind a blind spot in this material?",
+      "choices": [
+        "Your own perspective feels like clear reality from the inside",
+        "You lack enough information to make any judgment",
+        "You always know you are being biased but ignore it"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The danger is that your own viewpoint feels like simple sight, not like one interpretation.",
+        "direct": "Correct. Blind spots persist because personal perspective often feels objective.",
+        "competitive": "Right. The lens hides by calling itself vision."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch03-q02",
+      "prompt": "Why does naive realism matter so much here?",
+      "choices": [
+        "It proves people with strong opinions are always irrational",
+        "It shows how your own view can feel neutral while rival views feel distorted",
+        "It explains why people should avoid all disagreements"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That is the key move. Your own perspective feels like the facts, so the other side looks biased first.",
+        "direct": "Exactly. Naive realism makes your interpretation feel like reality and competing interpretations feel defective.",
+        "competitive": "Yes. Your angle gets to wear the truth costume."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch03-q03",
+      "prompt": "A team lead says a hiring decision was just common sense, even though the same type of candidate keeps getting filtered out. What is the strongest reading?",
+      "choices": [
+        "The team lead is wisely relying on professional instinct",
+        "The team lead is avoiding unfairness by trusting fit over evidence",
+        "The team lead may be treating a selective filter as neutral judgment"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Nice catch. A judgment can feel professional and still be screening evidence unevenly.",
+        "direct": "Correct. This is the pattern where a biased filter presents itself as ordinary standards.",
+        "competitive": "Right. The filter is hiding under the word fit."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch03-q04",
+      "prompt": "Carmen notices that the same students are repeatedly called difficult during a funding vote, but the room keeps describing the process as fair. Which idea best fits?",
+      "choices": [
+        "A blind spot inside a procedure that feels neutral to the people using it",
+        "Proof that group decisions are always biased beyond repair",
+        "Evidence that standards should be ignored in school settings"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That matches the chapter. A process can feel balanced while still protecting a selective pattern.",
+        "direct": "Correct. Neutrality can be experienced sincerely even while it distributes burdens unevenly.",
+        "competitive": "The room feels clean, but the lens is still bent."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q05",
+      "prompt": "What is the cleanest difference between spotting bias in others and spotting it in yourself?",
+      "choices": [
+        "Bias in yourself is always weaker and less important",
+        "Bias in others is easier to notice because your own standards are tied to your self-image",
+        "Bias in yourself disappears once you care about fairness"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That is the sharp distinction. Your own fairness story can make your lens harder to inspect.",
+        "direct": "Correct. Self-image helps create the bias blind spot by making your own selectivity feel principled.",
+        "competitive": "Yes. Your conscience can help defend the filter."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q06",
+      "prompt": "Which misreading does this material reject?",
+      "choices": [
+        "Prejudice only exists when someone feels explicit hatred",
+        "Blind spots can survive inside sincere fairness",
+        "Conflict can harden when both sides feel objective"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The problem is broader than open malice. Selective judgment can do harm while still feeling decent.",
+        "direct": "Correct. Explicit hatred is not required for prejudice to persist through self-justifying interpretation.",
+        "competitive": "Right. The bad lens does not need a villain's voice."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q07",
+      "prompt": "Why do conflicts become harder to unwind once both sides feel they are simply seeing the facts?",
+      "choices": [
+        "Because facts stop mattering once a conflict starts",
+        "Because only one side can ever be sincere in a conflict",
+        "Because each new disagreement can be treated as more proof that the other side is biased"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "That is the lesson. The clash itself becomes more evidence against the other person rather than a reason to recheck yourself.",
+        "direct": "Correct. Mutual certainty turns conflict into a fight over who counts as realistic and fair.",
+        "competitive": "Yes. Every round writes another exhibit for the same case."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q08",
+      "prompt": "Micah asks whether his own rule would still sound fair if it came from the person he distrusts. Why is that move useful?",
+      "choices": [
+        "It guarantees the disagreement will end immediately",
+        "It tests whether his objectivity claim is doing defensive work",
+        "It proves both sides are equally wrong"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That fits the pattern. Reversing the roles helps reveal whether fairness was being assumed instead of tested.",
+        "direct": "Correct. Role reversal can loosen naive realism by making your standard visible as a perspective.",
+        "competitive": "Right. The rule stops sounding sacred once the other side gets to speak it."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q09",
+      "prompt": "Why can accusing someone of bias deepen the problem instead of fixing it?",
+      "choices": [
+        "Because people never respond well to criticism of any kind",
+        "Because the accusation can threaten a defended identity of being fair and objective",
+        "Because calling out bias automatically makes both sides equally biased"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exactly. The criticism may be heard as an attack on fairness itself, which can trigger stronger defense.",
+        "direct": "Correct. The accusation hits the protected self-image of objectivity, so it can rebound.",
+        "competitive": "Yes. Strike the innocence, and the armor locks tighter."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch03-q10",
+      "prompt": "If people can defend present perception so strongly, what is the strongest reason the next unit would turn toward memory?",
+      "choices": [
+        "Because memory is usually more objective than perception",
+        "Because memory matters only when conflict is already resolved",
+        "Because once the self protects its current viewpoint, it may also reshape the remembered past"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "That is the bridge. The pressure to stay innocent does not end when the event ends.",
+        "direct": "Correct. If perception can be defended, recollection is likely to be shaped by the same self-protective force.",
+        "competitive": "Right. Today's defended sight is tomorrow's edited memory."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

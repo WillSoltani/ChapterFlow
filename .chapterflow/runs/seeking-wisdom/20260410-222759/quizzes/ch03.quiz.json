@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch03-q01",
+      "prompt": "What distinction does this chapter insist on first?",
+      "choices": [
+        "Confidence and probability are the same if the story is clear",
+        "Confidence and probability need to be separated",
+        "Probability matters only when the downside is small"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exactly. The chapter starts by separating how sure something feels from how likely it really is.",
+        "direct": "Correct. Overconfidence begins when psychological conviction gets mistaken for actual odds.",
+        "competitive": "That is the opening cut. A strong inner voice can still be carrying weak math."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch03-q02",
+      "prompt": "Why are base rates so important in this chapter?",
+      "choices": [
+        "They keep one vivid case from replacing the broader frequency of outcomes",
+        "They remove the need to think about any new information",
+        "They prove that recent examples are usually useless"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Base rates matter because they anchor the fresh case inside what usually happens.",
+        "direct": "The chapter uses prior probability to stop a memorable example from becoming more representative than it is.",
+        "competitive": "The base rate makes the hot anecdote earn its authority."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch03-q03",
+      "prompt": "A forecast feels persuasive because the upside is easy to picture and one recent example ended well. What chapter move fits best?",
+      "choices": [
+        "Ask what the broader frequency of similar outcomes looks like before trusting the feeling",
+        "Trust the confidence because desire usually tracks the right outcome",
+        "Ignore uncertainty until stronger data appears"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter wants you to check the broader distribution before letting a vivid story run the judgment.",
+        "direct": "The correct move is a base-rate review. Persuasiveness alone does not settle the odds.",
+        "competitive": "Do not let story heat outrank the field."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch03-q04",
+      "prompt": "Ben hears one startup success story and starts treating the risky pivot as highly likely to work. What is the strongest correction from this chapter?",
+      "choices": [
+        "A survivor story is enough evidence if the result is dramatic enough",
+        "The success case may be real, but it still has to compete with the wider failure set",
+        "Probability should be ignored because entrepreneurship is always unusual"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Nice catch. The chapter says a vivid success case can still mislead if the missing comparison class stays hidden.",
+        "direct": "Ben needs the broader distribution, not only the winner's story. Without it he is overweighting a survivor.",
+        "competitive": "The miracle case does not get to fire the forecast by itself. It has to answer to the graveyard."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q05",
+      "prompt": "What makes small samples and streaks dangerous for judgment?",
+      "choices": [
+        "They can make chance look like control or proof",
+        "They always contain false information",
+        "They matter only in games, not real decisions"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Correct. Thin evidence becomes dangerous when people borrow more certainty from it than it can support.",
+        "direct": "A few wins or a short streak can feel like signal even when chance is still doing much of the work.",
+        "competitive": "This is where people start hallucinating control off a tiny sample."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q06",
+      "prompt": "Why is margin of safety central to this chapter?",
+      "choices": [
+        "It guarantees you will not be wrong",
+        "It is how uncertainty changes exposure and protection when error is costly",
+        "It works only when the forecast is already very accurate"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. Margin of safety means structuring the decision so a miss does not become ruinous.",
+        "direct": "The chapter turns probability into action by linking uncertainty to slack, downside protection, and survivable error.",
+        "competitive": "If the downside matters, margin is what keeps your confidence from getting billed at full price."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q07",
+      "prompt": "Noor wants to make an expensive purchase based on the best income scenario she can picture. Which response fits the chapter?",
+      "choices": [
+        "Proceed if the optimistic case feels emotionally right",
+        "Model the average and weak scenarios, then see whether the decision survives them",
+        "Avoid all major purchases whenever uncertainty exists"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exactly. The chapter is not asking for paralysis. It is asking Noor to act with the range and the downside visible.",
+        "direct": "The strongest move is a margin-of-safety check using more than the upside case.",
+        "competitive": "Do not finance the purchase with certainty you have not earned."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q08",
+      "prompt": "Helen pays a little extra for a more flexible travel plan after writing down a range of possible schedule outcomes. What chapter principle is she applying?",
+      "choices": [
+        "Probability should stop action until perfect certainty arrives",
+        "A vivid best case should set the plan unless disaster is guaranteed",
+        "Uncertainty should change exposure and flexibility, not forbid movement"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Right. Helen is still acting, but she is designing the action around a range instead of a guarantee.",
+        "direct": "This is probability translated into conduct: same decision category, better downside protection.",
+        "competitive": "Helen stopped subsidizing bravado with fragility and bought margin instead."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q09",
+      "prompt": "What is the chapter's strongest warning about acting under uncertainty?",
+      "choices": [
+        "You should wait until the odds are certain before you move",
+        "You should act, but without speaking to yourself in the language of guarantees",
+        "You should trust strong conviction when a downside plan is hard to build"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The chapter wants action with humility, not action with fantasy certainty.",
+        "direct": "That is the boundary condition. Probability disciplines commitment; it does not erase the need to commit.",
+        "competitive": "Serious decisiveness moves before certainty arrives and still refuses to fake the math."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch03-q10",
+      "prompt": "If the odds look reasonable now, why does the next chapter still need to examine second-order consequences and systems?",
+      "choices": [
+        "Because the first visible outcome may not be the most important one over time",
+        "Because systems matter only when probability has already failed",
+        "Because base rates become irrelevant once you think in ranges"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nice catch. The chapter naturally points forward because later effects and system behavior can change what a smart forecast means.",
+        "direct": "Current odds are not the whole story if delayed consequences and system responses keep unfolding after the first result.",
+        "competitive": "The first outcome can flatter a bad decision if the real cost shows up later in the system."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

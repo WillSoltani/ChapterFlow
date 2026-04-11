@@ -1,0 +1,39 @@
+{
+  "bookId": "how-to-win-friends-and-influence-people",
+  "runId": "20260410-152112",
+  "lockedAt": "2026-04-10",
+  "decisionMode": "auto_lock",
+  "ambiguityAssessment": {
+    "askUserRequired": false,
+    "materialAmbiguityDetected": true,
+    "reason": "Commercial lines for this title do not all present the same chapter-level package: some cataloged editions include later supplemental sections, while the current Simon and Schuster revised line and the user instruction both constrain this run to the core 30-chapter four-part structure."
+  },
+  "lockedEdition": {
+    "editionId": "how-to-win-friends-and-influence-people-2022-simon-schuster-revised",
+    "title": "How to Win Friends and Influence People: Updated For the Next Generation of Leaders",
+    "author": "Dale Carnegie",
+    "publisher": "Simon and Schuster",
+    "publishedDate": "2022-05-17",
+    "isbn13": "9781982171476",
+    "isbn10": "1982171472",
+    "pageCount": 320,
+    "language": "English",
+    "sourceText": ".chapterflow/runs/how-to-win-friends-and-influence-people/20260410-152112/source-freeze/book-source.md",
+    "sourceProvenance": "Authorized Google Books preview plus official Dale Carnegie Chapter 1 preview"
+  },
+  "rejectedCandidates": [
+    {
+      "editionId": "how-to-win-friends-and-influence-people-1981-revised-line",
+      "reasonRejected": "Still structurally close, but not the latest dominant official trade line and not the cleanest authority for a fresh 2026 run."
+    },
+    {
+      "editionId": "how-to-win-friends-and-influence-people-expanded-six-part-lines",
+      "reasonRejected": "Materially conflicts with the manifest and user instruction because those lines include supplemental sections beyond the required 30-chapter run."
+    }
+  ],
+  "decisionRationale": [
+    "The authorized Google Books preview exposes complete bibliographic data for the May 17, 2022 Simon and Schuster revised edition and shows the usable four-part chapter map.",
+    "The official Dale Carnegie Chapter 1 preview frames the same updated edition as the active current line and confirms the chapter-opening wording for the first chapter.",
+    "Locking the 2022 Simon and Schuster line honors the user's explicit 30-chapter constraint while minimizing edition drift inside current official commercial distribution."
+  ]
+}

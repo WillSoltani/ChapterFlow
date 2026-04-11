@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "ch15-q01",
+      "prompt": "What does this chapter say missions require after support and discovery?",
+      "choices": [
+        "A) Marketing",
+        "B) Less visibility",
+        "C) Perfect certainty"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says mission needs visibility to gain wider force.",
+        "direct": "Newport adds marketing as the final requirement of Rule 4.",
+        "competitive": "Mission needs reach, not just private clarity."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch15-q02",
+      "prompt": "Why does Newport connect mission to marketing?",
+      "choices": [
+        "A) Because visibility helps a clarified mission matter beyond private conviction",
+        "B) Because marketing can replace weak substance",
+        "C) Because private meaning is irrelevant"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter treats reach as part of how meaning becomes consequential.",
+        "direct": "Marketing gives a supported and clarified mission public force rather than leaving it hidden.",
+        "competitive": "Reach lets the mission push beyond the private zone."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch15-q03",
+      "prompt": "What limit does the chapter place on marketing?",
+      "choices": [
+        "A) Marketing should come before mission is clear",
+        "B) Marketing amplifies substance but does not replace it",
+        "C) Marketing is mostly manipulative"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter keeps visibility downstream of support and discovery.",
+        "direct": "Marketing matters only when there is already something real to amplify.",
+        "competitive": "A megaphone cannot do the job of substance."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch15-q04",
+      "prompt": "Elena's project has substance but almost no visibility. What does the chapter say is missing?",
+      "choices": [
+        "A) More private reflection",
+        "B) Public reach that lets the mission be encountered",
+        "C) Less support"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says hidden meaning has limited consequence.",
+        "direct": "Elena needs reach so the mission can move beyond private understanding.",
+        "competitive": "The target needs a lane into public view."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch15-q05",
+      "prompt": "What does Jonah learn from the audience arrows at the symposium board?",
+      "choices": [
+        "A) That clarity automatically creates public effect",
+        "B) That a mission can stay clear in private and still weak in public force",
+        "C) That visibility makes substance unnecessary"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Jonah learns that private clarity and public consequence are not the same thing.",
+        "direct": "The chapter distinguishes knowing the mission from giving it reach.",
+        "competitive": "A clear target can still push very little if nobody meets it."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch15-q06",
+      "prompt": "What does Nina's dilemma about private meaning and visibility show?",
+      "choices": [
+        "A) That visibility always cheapens the mission",
+        "B) That amplification can serve substance rather than replace it",
+        "C) That private conviction is enough by itself"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says visibility can help meaning matter more widely when something real already exists.",
+        "direct": "Nina learns to separate amplification from shallow self-promotion.",
+        "competitive": "Reach can strengthen a real mission without faking one."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch15-q07",
+      "prompt": "Why does the chapter place marketing after capital and little bets?",
+      "choices": [
+        "A) Because visibility is meant to amplify a mission that already has support and shape",
+        "B) Because marketing creates the mission from nothing",
+        "C) Because support and discovery no longer matter"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps the order clear so reach stays connected to substance.",
+        "direct": "Marketing comes last because it is supposed to widen the effect of something already made more real.",
+        "competitive": "Reach comes after base and signal, not before them."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch15-q08",
+      "prompt": "Which sentence best captures the chapter's marketing claim?",
+      "choices": [
+        "A) Marketing can fix a weak mission",
+        "B) Visibility gives a clarified mission public force",
+        "C) Meaning works best when kept private"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says meaningful direction needs encounter and reach to create wider consequence.",
+        "direct": "Marketing gives a supported and clarified mission force in the world rather than leaving it private.",
+        "competitive": "Reach is what turns private clarity into public effect."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch15-q09",
+      "prompt": "How does this chapter complete Rule 4?",
+      "choices": [
+        "A) By replacing support and discovery with visibility",
+        "B) By adding marketing after capital and little bets to complete the mission sequence",
+        "C) By returning to the passion mindset"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter closes the rule by adding visibility to support and discovery.",
+        "direct": "Capital supports mission, little bets clarify it, and marketing amplifies it.",
+        "competitive": "Base, signal, and reach finish the rule."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch15-q10",
+      "prompt": "What bridge does this chapter create for the next chapter?",
+      "choices": [
+        "A) It sets up the book's conclusion and overall synthesis",
+        "B) It starts Rule 5",
+        "C) It repeats only the argument about capital"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "With Rule 4 complete, the book can now gather its full argument in the conclusion.",
+        "direct": "This chapter hands the book toward a synthesis of skill, control, and mission.",
+        "competitive": "The sequence is built, and the conclusion can assemble the whole model."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "hard"
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch02-q01",
+      "prompt": "What matters more in this chapter than the size of your circle of competence?",
+      "choices": [
+        "How publicly respected your field is",
+        "How confidently you talk about it",
+        "How clearly you know where the boundary is"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Yes. The chapter cares most about seeing the edge accurately, because that is where mistakes start forming.",
+        "direct": "The model prioritizes perimeter awareness over broad self-description. A visible edge can be managed.",
+        "competitive": "Big talk is cheap. Boundary control is what keeps your edge real."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch02-q02",
+      "prompt": "Why is Rose Blumkin such an important anchor for this chapter?",
+      "choices": [
+        "She proved that narrow, real expertise can be more powerful than pretending to know everything",
+        "She showed that successful people should avoid all new fields forever",
+        "She demonstrated that money matters more than judgment"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. Her example shows the strength of focused competence, not the virtue of staying small forever.",
+        "direct": "She matters because her depth was usable and aligned with real judgment, rather than with broad prestige.",
+        "competitive": "She won by playing a game she could actually read instead of chasing status outside her range."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch02-q03",
+      "prompt": "What is the chapter warning about when confidence stays high near the perimeter?",
+      "choices": [
+        "That competence can fade before confidence does",
+        "That people should stop trusting all intuition",
+        "That experts are usually insecure"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The feeling of capability is not a reliable alarm when your edge is thinning.",
+        "direct": "This is the perimeter problem: the internal confidence signal often lags the actual drop in competence.",
+        "competitive": "Your ego may still feel rich after your real edge has already gone bankrupt."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch02-q04",
+      "prompt": "Adrian is strong in brand strategy and gets asked to lead a pricing-model overhaul he has never actually done. What choice best fits the chapter?",
+      "choices": [
+        "Accept sole ownership because adjacent business fluency is close enough",
+        "Define which parts are inside his competence and bring in deeper pricing support",
+        "Reject the project entirely because growth is too risky"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Good catch. The chapter is not anti-growth. It is against pretending the edge is already wider than it is.",
+        "direct": "He should mark the boundary honestly, keep what he can do reliably, and pair up where his depth is weak.",
+        "competitive": "Take the parts you can price. Do not let prestige push you into blind ownership."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q05",
+      "prompt": "Why does the chess-grandmaster example matter?",
+      "choices": [
+        "It shows that intelligence is mostly fixed",
+        "It shows that elite performance in one system does not automatically transfer into another",
+        "It shows that cooking is harder than chess"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The example is there to break the fantasy that one kind of excellence travels untouched.",
+        "direct": "Different domains use different cues and feedback loops, so proven skill stays more local than ego prefers.",
+        "competitive": "Prestige from one arena does not buy you an edge in every arena."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q06",
+      "prompt": "A friend asks Omar for advice on a situation he has never lived through. Which response best follows the model?",
+      "choices": [
+        "Offer a strong answer anyway so he does not look weak",
+        "Stay useful while admitting he has not earned judgment there",
+        "Refuse to help in any form because he lacks expertise"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. Honest limits can still leave room for care, listening, and support.",
+        "direct": "The model prefers accurate self-location over confident performance. He can help without faking mastery.",
+        "competitive": "Support is valuable. Bluffing wisdom is not."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q07",
+      "prompt": "What is the difference between real expansion of competence and mere pretense?",
+      "choices": [
+        "Real expansion comes through testing and correction, while pretense claims mastery early",
+        "Real expansion feels comfortable from the start, while pretense feels awkward",
+        "Real expansion depends on impressing people in new fields quickly"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. Growth is encouraged here, but the chapter insists that it has to be earned under contact with the field.",
+        "direct": "Expansion means apprenticeship, feedback, and gradual reliability. Pretense skips those costs and jumps to identity.",
+        "competitive": "One path pays tuition. The other path counterfeits the diploma."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q08",
+      "prompt": "Ben must choose between a flashy competition outside his current range and a smaller one that fits his real edge. Which option matches the chapter's logic best?",
+      "choices": [
+        "Choose the flashy stage because ambition matters more than positioning",
+        "Stay with the grounded arena now and treat the bigger jump as a later apprenticeship move",
+        "Avoid both options until he feels perfectly confident"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The chapter wants ambition tied to honest footing rather than to labels.",
+        "direct": "Positioning comes first: build from real competence, then expand deliberately instead of taking a vanity leap.",
+        "competitive": "Bigger stage does not equal better bet if the edge is missing."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q09",
+      "prompt": "Which statement best captures the chapter's hard tension?",
+      "choices": [
+        "You should stay inside your present strengths forever to avoid embarrassment",
+        "You should ignore current limits because serious growth requires bold confidence",
+        "You should protect current judgment accuracy while expanding the boundary through honest learning"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "That is the balanced reading. The chapter rejects both timidity and self-deception.",
+        "direct": "Its answer is staged growth: respect the current edge, then push beyond it without pretending the push is already mastery.",
+        "competitive": "Real ambition earns new range; vanity claims it before the field agrees."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch02-q10",
+      "prompt": "If you become better at marking the edge of your competence, what question naturally comes next?",
+      "choices": [
+        "How can I protect every belief I already hold from criticism?",
+        "What kind of test could actually prove one of my claims wrong?",
+        "How can I make my current strengths look broader than they are?"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Nicely done. Once the edge matters, testability matters too. Strong claims should stay open to disconfirmation.",
+        "direct": "The bridge to the next chapter is falsifiability: a serious belief should face evidence that could break it.",
+        "competitive": "Boundary discipline leads straight to break-tests. If a claim cannot be challenged, it is asking for trust it did not earn."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "hard"
+    }
+  ]
+}

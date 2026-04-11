@@ -1,0 +1,33 @@
+{
+  "nameUsage": {},
+  "formatCategoryHistory": [],
+  "schoolSettingUsage": {},
+  "wordFrequency": {},
+  "phraseFrequency": {},
+  "openerRegistry": {
+    "gentle": {},
+    "direct": {},
+    "competitive": {}
+  },
+  "titleTemplateRegistry": {},
+  "endingPatternRegistry": {},
+  "withinChapterNames": {},
+  "approvedChapterHashes": {
+    "ch01": "58be1ea5731292513ed5dd7f208638a9e83a8fde47d072683e0abcd4c43e6b70",
+    "ch02": "297402f9dc12c87a1538fecd32bf24c58d802d78c9b45a7be06dbbbcacace309",
+    "ch03": "1837a096d31170e9d7bfb95eab7c2d06d186ea8ea139e5cadfc990715111dcbc",
+    "ch04": "c70f2affaaa9f61d43082b561f50e4b2e69251403a6305072b760df931ec5c86",
+    "ch05": "51be7ef7fef504ba2ca31b54363d7c0ec36a3f4d6faab979fd448af6be7ca231",
+    "ch06": "673fa61db320ace2dc12c6d19c1890e0f29ba0b3d70ea0fb70ac8e3ce1a2cbd9"
+  },
+  "baselineQuality": {
+    "ch01": {
+      "criticScore": "11/12",
+      "status": "passed"
+    },
+    "ch02": {
+      "criticScore": "11/12",
+      "status": "passed"
+    }
+  }
+}

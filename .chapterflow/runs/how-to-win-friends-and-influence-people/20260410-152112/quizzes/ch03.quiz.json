@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the first shift Chapter 3 asks the reader to make when making a request?",
+      "choices": [
+        "Start by making your own urgency unmistakable",
+        "Begin from what the other person can want, not only from what you want",
+        "Hide your goal until the very end of the conversation"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter asks the reader to move from self-centered asking to other-person motive awareness.",
+        "direct": "Option B fits the chapter. Influence improves when the request touches the listener's motive instead of resting only on the speaker's need.",
+        "competitive": "Your pressure is not the doorway. Their motive is."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why do self-centered appeals often produce weak cooperation under Carnegie's logic?",
+      "choices": [
+        "Because people secretly dislike every request",
+        "Because the listener is still asking why the action should matter on the listener's side",
+        "Because requests fail whenever they mention deadlines"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The request can be sincere and still sound weak if it never answers the other person's quiet question: why should this matter to me?",
+        "direct": "Correct. Chapter 3 treats self-interest as the ordinary filter through which requests are heard.",
+        "competitive": "If the ask never crosses into their world, expect borrowed effort at best."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What does motive translation mean in this chapter?",
+      "choices": [
+        "Changing your real goal so the other person never has to adjust",
+        "Reframing the action in terms of what the other person wants to gain, protect, avoid, or feel proud of",
+        "Making the request sound more emotional than it really is"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Motive translation means rebuilding the ask through the other person's side of the situation.",
+        "direct": "Option B is the practical move. The chapter is not about melodrama. It is about framing through the listener's motive.",
+        "competitive": "You do not soften the ask. You relocate it into the other person's incentives and pride."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Priya needs a teammate to finish a mockup deck tonight. Which opening fits Chapter 3 best?",
+      "choices": [
+        "I need this done because my night is already ruined",
+        "If we finish this cleanly tonight, your section is what the client will remember tomorrow",
+        "Forget it, I will just do the whole thing myself"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The stronger opening gives the teammate a reason on the teammate's side of the situation, not only Priya's frustration.",
+        "direct": "Option B turns the ask toward the other person's pride and visible outcome.",
+        "competitive": "The first line dumps your mood on them. The better line gives them something worth stepping up for."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "A case competition team realizes its pitch kept describing how much work they had done. Why did the framing fail?",
+      "choices": [
+        "Because judges only care about confidence, not content",
+        "Because the pitch stayed on the team's effort instead of the judge's problem, outcome, or criteria",
+        "Because any detailed pitch automatically sounds self-centered"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The team centered its own labor, but the listener was still listening for why the proposal mattered to the listener.",
+        "direct": "Correct. Chapter 3 says self-centered framing is structurally weak because it does not answer the other side's motive.",
+        "competitive": "Effort is your story. Relevance is theirs."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "At home, what changes when a request stops sounding like another person's irritation and starts sounding like shared relief or shared benefit?",
+      "choices": [
+        "The other person is more likely to see a reason to cooperate willingly",
+        "The request becomes manipulative by definition",
+        "The speaker no longer has to be honest about what is needed"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Shared benefit gives the other person a reason to move that feels more personal and less imposed.",
+        "direct": "Option A fits the chapter. Cooperation grows when the action feels worthwhile on both sides instead of carried from one side only.",
+        "competitive": "People move faster toward relief they can claim than toward resentment they are borrowing from you."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Which response keeps Chapter 3 from collapsing into people-pleasing?",
+      "choices": [
+        "You still keep your own aim, but you frame it through a real motive the other person can share or understand",
+        "You abandon your own priorities whenever someone resists",
+        "You tell the other person whatever they most want to hear"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter does not ask for surrender. It asks for perspective-taking that keeps the request intelligent and honest.",
+        "direct": "Option A preserves the limit. Other-person framing is not the same as abandoning your own objective.",
+        "competitive": "This is strategy, not self-erasure."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "A proposal says approve this because our team worked very hard. What is the stronger Chapter 3 revision?",
+      "choices": [
+        "Approve this because refusing would be unfair to us",
+        "Approve this because it solves the delay and risk you said mattered most this quarter",
+        "Approve this because we believe in the idea more than anyone else does"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The revised line moves the center of gravity from the team's feelings to the listener's concern.",
+        "direct": "Option B is the chapter in miniature. Translate the ask into the listener's priorities.",
+        "competitive": "Hard work is not the buyer's motive. Reduced risk might be."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "When does other-person framing begin to slide into manipulation in this chapter?",
+      "choices": [
+        "When the speaker studies the listener carefully",
+        "When the appeal stops being honest about mutual reality and becomes fake packaging for control",
+        "When the listener responds quickly"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The danger appears when perspective-taking stops being real and becomes a costume for using the other person.",
+        "direct": "Correct. The chapter stays defensible only if the framing remains sincere and tied to real value or shared benefit.",
+        "competitive": "Once the empathy is theatrical, the strategy starts to rot."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why does Chapter 3 lead naturally into Chapter 4?",
+      "choices": [
+        "Because once you enter the other person's side of the situation, genuine interest in other people becomes the next wider move",
+        "Because once requests improve, no more social skills are needed",
+        "Because motive translation works only in close relationships and not in public life"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Chapter 3 teaches the doorway into the other person's world. Chapter 4 widens that doorway into genuine social interest.",
+        "direct": "Option A fits the bridge. Perspective-taking on a request naturally expands into interest in people themselves.",
+        "competitive": "Once you stop leading with yourself, the next chapter asks whether you can actually care about the world you just entered."
+      },
+      "bloomsLevel": "transfer",
+      "depthLevel": "deeper"
+    }
+  ]
+}

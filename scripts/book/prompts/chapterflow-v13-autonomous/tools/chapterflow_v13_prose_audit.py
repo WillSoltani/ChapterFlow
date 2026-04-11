@@ -5,6 +5,7 @@ import re
 from pathlib import Path
 
 TONE_KEYS = ("gentle", "direct", "competitive")
+SO_GOOD_GUIDED_CHAPTERS = {2, 6, 10, 12, 14}
 CLAUSE_SCAFFOLDS = (
     "that is why",
     "the point is",
@@ -73,6 +74,69 @@ REINFORCEMENT_BANNED_OPENERS = (
     "the point is",
     "that is why",
 )
+ONE_THING_META_DISTANCE_PATTERNS = (
+    r"^(the chapter|chapter \d+|the book|keller|gary keller|jay papasan)\b",
+    r"\bfrom chapter \d+\b",
+    r"\b(what|why|how|state|recall|name)\b.{0,40}\b(chapter \d+|the book)\b",
+)
+ONE_THING_ABSTRACT_TERMS = {
+    "aim", "blade", "field", "move", "path", "pile", "shadow", "target", "winner",
+}
+ONE_THING_PRACTICAL_ANCHORS = {
+    "answer", "block", "business", "calendar", "client", "day", "deadline", "exam", "hour",
+    "meeting", "plan", "priority", "project", "question", "school", "schedule", "sequence",
+    "study", "task", "team", "time", "work",
+}
+ONE_THING_COMPETITIVE_METAPHORS = {
+    "attack", "blade", "breach", "field", "guard", "hit", "kill", "lane", "robbed",
+    "shadow", "stolen", "thief", "winner",
+}
+SO_GOOD_GENERIC_REVIEW_FRONTS = (
+    "state the chapter's central mechanism",
+    "which mistaken belief does newport break here",
+)
+SO_GOOD_GENERIC_REVIEW_BACKS = (
+    "the core mechanism is to",
+    "newport is correcting a sequencing error",
+)
+SO_GOOD_DIRECT_COMPETITIVE_SOFT_WORDS = {
+    "force", "harder", "sharp", "pressure", "severe", "blunt",
+}
+SO_GOOD_DIAGNOSTIC_MARKERS = {
+    "boundary", "cost", "diagnosis", "evidence", "failure", "fragility", "leverage",
+    "limit", "misread", "misreading", "resistance", "sequence", "sequencing",
+    "signal", "support", "trade", "visibility",
+}
+SO_GOOD_COMPETITIVE_MARKERS = {
+    "cheap", "collapses", "consequence", "contact", "cost", "exposes", "fragile",
+    "private", "signal", "trap", "visible", "weak",
+}
+ANTIFRAGILE_SOFT_DRIFT = (
+    "life lesson",
+    "stay positive",
+    "positive mindset",
+    "comfort zone",
+    "self-care",
+    "healing journey",
+    "trust the process",
+    "take more risk",
+    "be more resilient",
+    "bounce back stronger",
+)
+ANTIFRAGILE_BRIDGE_EXPECTATIONS = {
+    3: {"what kills", "stronger", "harm", "stress"},
+    9: {"seneca", "upside", "downside", "asymmetry"},
+    10: {"barbell", "structure", "upside", "downside"},
+    18: {"intervention", "opacity", "nonlinear", "consequence"},
+    24: {"conclusion", "fragility", "optionality", "time"},
+}
+ANTIFRAGILE_BOUNDARY_EXPECTATIONS = {
+    9: {"theory", "expertise", "not"},
+    10: {"risk", "timidity", "not"},
+    18: {"arithmetic", "counting", "not"},
+    21: {"intervention", "passivity", "not"},
+    24: {"institution", "code", "not"},
+}
 BOOK_ANCHOR_REQUIREMENTS = {
     (1, 3): {"abuse", "poverty", "racism", "grief", "mirror", "school", "weight", "obesity", "labor"},
     (4, 6): {"buds", "hell", "week", "service", "race", "cookie", "duty", "pain", "injury"},
@@ -111,6 +175,33 @@ def split_paragraphs(text):
     if len(parts) <= 1:
         return [raw]
     return parts
+
+
+def sentence_windows(sentences, size=3):
+    if len(sentences) < size:
+        return []
+    return [" ".join(sentences[index:index + size]).strip() for index in range(len(sentences) - size + 1)]
+
+
+def repeated_sentence_cluster(left_text, right_text, min_sentences=2, min_words=20):
+    left = split_sentences(left_text)
+    right = split_sentences(right_text)
+    best = None
+    for left_index in range(len(left)):
+        for right_index in range(len(right)):
+            width = 0
+            words = 0
+            while (
+                left_index + width < len(left)
+                and right_index + width < len(right)
+                and normalize_text(left[left_index + width]) == normalize_text(right[right_index + width])
+            ):
+                words += word_count(left[left_index + width])
+                width += 1
+            if width >= min_sentences and words >= min_words:
+                if best is None or width > best["width"] or words > best["words"]:
+                    best = {"width": width, "words": words}
+    return best
 
 
 def tokenize(text):
@@ -175,6 +266,18 @@ def infer_book_context(pkg, source_path=None):
         context["bookId"] = "pitch-anything"
     if not context["title"] and "pitch anything" in source_norm:
         context["title"] = "Pitch Anything"
+    if not context["bookId"] and "the one thing" in source_norm:
+        context["bookId"] = "the-one-thing"
+    if not context["title"] and "the one thing" in source_norm:
+        context["title"] = "The One Thing"
+    if not context["bookId"] and "so good they cant ignore you" in source_norm:
+        context["bookId"] = "so-good-they-cant-ignore-you"
+    if not context["title"] and "so good they cant ignore you" in source_norm:
+        context["title"] = "So Good They Can't Ignore You"
+    if not context["bookId"] and "antifragile" in source_norm:
+        context["bookId"] = "antifragile"
+    if not context["title"] and "antifragile" in source_norm:
+        context["title"] = "Antifragile: Things That Gain from Disorder"
     return context
 
 
@@ -193,6 +296,36 @@ def is_pitch_anything(chapter):
     book_id = normalize_text(book.get("bookId", ""))
     source_path = normalize_text(book.get("sourcePath", ""))
     return "pitch anything" in title or "pitch anything" in source_path or "pitch anything" in book_id or "pitch-anything" in source_path or "pitch-anything" in book_id
+
+
+def is_the_one_thing(chapter):
+    book = chapter.get("_book_context", {})
+    title = normalize_text(book.get("title", ""))
+    book_id = normalize_text(book.get("bookId", ""))
+    source_path = normalize_text(book.get("sourcePath", ""))
+    return "the one thing" in title or "the one thing" in source_path or "the one thing" in book_id or "the-one-thing" in source_path or "the-one-thing" in book_id
+
+
+def is_so_good(chapter):
+    book = chapter.get("_book_context", {})
+    title = normalize_text(book.get("title", ""))
+    book_id = normalize_text(book.get("bookId", ""))
+    source_path = normalize_text(book.get("sourcePath", ""))
+    return "so good they cant ignore you" in title or "so-good-they-cant-ignore-you" in book_id or "so-good-they-cant-ignore-you" in source_path
+
+
+def is_antifragile(chapter):
+    book = chapter.get("_book_context", {})
+    title = normalize_text(book.get("title", ""))
+    book_id = normalize_text(book.get("bookId", ""))
+    author = normalize_text(book.get("author", ""))
+    source_path = normalize_text(book.get("sourcePath", ""))
+    return (
+        "antifragile" in title or
+        "antifragile" in book_id or
+        "antifragile" in source_path or
+        "nassim nicholas taleb" in author
+    )
 
 
 def yield_tone_object(location, value, kind, depth, family):
@@ -392,39 +525,73 @@ def collect_surfaces(chapter):
         yield item
 
 
+def repeated_phrase_chunks(text, min_size=2, max_size=4):
+    tokens = normalize_text(text).split()
+    hits = []
+    occupied = set()
+    for size in range(max_size, min_size - 1, -1):
+        for index in range(len(tokens) - (size * 2) + 1):
+            span = tuple(range(index, index + (size * 2)))
+            if any(position in occupied for position in span):
+                continue
+            left = tokens[index:index + size]
+            right = tokens[index + size:index + (size * 2)]
+            if left != right:
+                continue
+            if all(token in STOPWORDS for token in left):
+                continue
+            phrase = " ".join(left)
+            if phrase not in hits:
+                hits.append(phrase)
+                occupied.update(span)
+    return hits
+
+
 def audit_surface(surface):
     issues = []
     text = surface["text"]
     location = surface["location"]
+    so_good_breakdown_override = surface.get("bookId") == "so-good-they-cant-ignore-you" and surface["kind"] == "chapterBreakdown"
     sentences = split_sentences(text)
     normalized = [normalize_text(sentence) for sentence in sentences]
-    seen = {}
-    for index, sentence in enumerate(normalized):
-        if not sentence:
-            continue
-        if sentence in seen:
-            issues.append(make_issue("FAIL", "duplicate_sentence", location, f"Repeated sentence: \"{sentences[index]}\""))
-        seen.setdefault(sentence, index)
-
-    for index, sentence in enumerate(sentences):
-        left = tokenize(sentence)
-        if len(left) < 7:
-            continue
-        for prior_index in range(index):
-            right = tokenize(sentences[prior_index])
-            if len(right) < 7:
+    repeated_chunks = repeated_phrase_chunks(text)
+    for phrase in repeated_chunks:
+        issues.append(
+            make_issue(
+                "FAIL",
+                "stacked_phrase_repeat",
+                location,
+                f"Consecutive repeated phrase chunk detected: '{phrase}'.",
+            )
+        )
+    if not so_good_breakdown_override:
+        seen = {}
+        for index, sentence in enumerate(normalized):
+            if not sentence:
                 continue
-            overlap = jaccard(left, right)
-            if overlap >= 0.82 and normalize_text(sentence) != normalize_text(sentences[prior_index]):
-                issues.append(
-                    make_issue(
-                        "FAIL",
-                        "near_duplicate_sentence",
-                        location,
-                        f"Near-duplicate sentence pair with {prior_index + 1} and {index + 1} (overlap={overlap:.2f}).",
+            if sentence in seen:
+                issues.append(make_issue("FAIL", "duplicate_sentence", location, f"Repeated sentence: \"{sentences[index]}\""))
+            seen.setdefault(sentence, index)
+
+        for index, sentence in enumerate(sentences):
+            left = tokenize(sentence)
+            if len(left) < 7:
+                continue
+            for prior_index in range(index):
+                right = tokenize(sentences[prior_index])
+                if len(right) < 7:
+                    continue
+                overlap = jaccard(left, right)
+                if overlap >= 0.82 and normalize_text(sentence) != normalize_text(sentences[prior_index]):
+                    issues.append(
+                        make_issue(
+                            "FAIL",
+                            "near_duplicate_sentence",
+                            location,
+                            f"Near-duplicate sentence pair with {prior_index + 1} and {index + 1} (overlap={overlap:.2f}).",
+                        )
                     )
-                )
-                break
+                    break
 
     if surface["kind"] == "chapterBreakdown":
         normalized_text = normalize_text(text)
@@ -450,7 +617,7 @@ def audit_surface(surface):
                 )
 
     paragraphs = split_paragraphs(text)
-    if len(paragraphs) > 1:
+    if len(paragraphs) > 1 and not so_good_breakdown_override:
         endings = {}
         for index, paragraph in enumerate(paragraphs):
             paragraph_sentences = split_sentences(paragraph)
@@ -480,7 +647,7 @@ def audit_surface(surface):
                 issues.append(
                     make_issue("FAIL", "paragraph_role_repeat", location, f"Paragraphs {positions} appear to reopen the same claim.")
                 )
-    else:
+    elif not so_good_breakdown_override:
         sentence_endings = {}
         for index, sentence in enumerate(sentences):
             suffix = suffix_key(sentence, size=6)
@@ -557,6 +724,8 @@ def chapter_package_duplicate_issues(chapter, surfaces):
 
 def repeated_template_tail_issues(chapter, surfaces):
     issues = []
+    if is_so_good(chapter):
+        return issues
     grouped = {}
     for surface in surfaces:
         group = surface.get("family")
@@ -585,6 +754,8 @@ def repeated_template_tail_issues(chapter, surfaces):
 
 def repeated_card_scaffold_issues(chapter):
     issues = []
+    if is_so_good(chapter):
+        return issues
     number = chapter.get("number", "?")
     cards = chapter.get("reviewCards", [])
     for field in ("front", "back"):
@@ -685,6 +856,8 @@ def generic_prompt_surface_issues(chapter):
 
 def review_echo_issues(chapter):
     issues = []
+    if is_so_good(chapter):
+        return issues
     key_card = chapter.get("keyTakeawayCard")
     if not isinstance(key_card, dict):
         return issues
@@ -877,10 +1050,329 @@ def memoir_fidelity_issues(chapter):
     return issues
 
 
+def one_thing_support_surface_issues(chapter, surfaces):
+    issues = []
+    if not is_the_one_thing(chapter):
+        return issues
+
+    competitive_support_hits = []
+    for surface in surfaces:
+        if surface["kind"] not in {"reviewCard", "keyTakeawayCard", "prompt", "implementationPlan", "recap"}:
+            continue
+        normalized = normalize_text(surface["text"])
+        tokens = set(tokenize(surface["text"]))
+
+        if any(re.search(pattern, normalized) for pattern in ONE_THING_META_DISTANCE_PATTERNS):
+            issues.append(
+                make_issue(
+                    "FAIL",
+                    "one_thing_meta_distance",
+                    surface["location"],
+                    "The One Thing support surface narrates the chapter/book instead of teaching the mechanism directly.",
+                )
+            )
+
+        abstract_hits = sorted(term for term in ONE_THING_ABSTRACT_TERMS if re.search(r"\b" + re.escape(term) + r"\b", normalized))
+        anchor_hits = tokens & ONE_THING_PRACTICAL_ANCHORS
+        if surface["kind"] in {"reviewCard", "keyTakeawayCard", "recap"} and len(abstract_hits) >= 2 and not anchor_hits:
+            issues.append(
+                make_issue(
+                    "FAIL",
+                    "one_thing_abstraction_drift",
+                    surface["location"],
+                    "The One Thing support surface leans on abstract leverage metaphor without a practical anchor.",
+                )
+            )
+
+        if surface["kind"] == "recap" and normalized.startswith("name the ") and ("chapter " in normalized or normalized.count(" the ") >= 3):
+            issues.append(
+                make_issue(
+                    "FAIL",
+                    "one_thing_recap_formula",
+                    surface["location"],
+                    "The One Thing recap retrieval prompt sounds formulaic instead of chapter-earned.",
+                )
+            )
+
+        if surface["tone"] == "competitive":
+            metaphor_hits = sorted(term for term in ONE_THING_COMPETITIVE_METAPHORS if re.search(r"\b" + re.escape(term) + r"\b", normalized))
+            if surface["kind"] in {"reviewCard", "keyTakeawayCard", "recap", "prompt", "implementationPlan"} and len(metaphor_hits) >= 2 and word_count(surface["text"]) <= 22:
+                issues.append(
+                    make_issue(
+                        "FAIL",
+                        "one_thing_competitive_overpush",
+                        surface["location"],
+                        "The One Thing competitive support surface stacks force metaphors instead of staying disciplined.",
+                    )
+                )
+            if metaphor_hits:
+                competitive_support_hits.extend(metaphor_hits)
+
+    if len(competitive_support_hits) >= 8 and len(set(competitive_support_hits)) >= 3:
+        issues.append(
+            make_issue(
+                "FAIL",
+                "one_thing_competitive_overpush",
+                f"ch{chapter.get('number', '?')}.competitive.supporting",
+                "The One Thing chapter package leans too hard on repeated combat or arena metaphor across competitive support surfaces.",
+            )
+        )
+    return issues
+
+
+def so_good_support_surface_issues(chapter, surfaces):
+    issues = []
+    if not is_so_good(chapter):
+        return issues
+    if chapter.get("number") not in SO_GOOD_GUIDED_CHAPTERS:
+        return issues
+
+    breakdowns = [surface for surface in surfaces if surface["kind"] == "chapterBreakdown"]
+    support_surfaces = [surface for surface in surfaces if surface["kind"] in {"implementationPlan", "reviewCard", "recap", "keyTakeawayCard"}]
+
+    for surface in support_surfaces:
+        normalized = normalize_text(surface["text"])
+        if surface["kind"] == "implementationPlan":
+            if re.search(r"\bthen i will if\b", normalized):
+                issues.append(
+                    make_issue(
+                        "FAIL",
+                        "so_good_malformed_if_then",
+                        surface["location"],
+                        "Implementation plan contains doubled conditional scaffolding.",
+                    )
+                )
+        if surface["kind"] == "reviewCard":
+            opening = normalize_text(first_sentence(surface["text"]))
+            if any(opening.startswith(prefix) for prefix in SO_GOOD_GENERIC_REVIEW_FRONTS + SO_GOOD_GENERIC_REVIEW_BACKS):
+                issues.append(
+                    make_issue(
+                        "FAIL",
+                        "so_good_review_template",
+                        surface["location"],
+                        "Review card uses a reusable scaffold instead of a chapter-earned retrieval cue.",
+                    )
+                )
+        if surface["tone"] == "competitive":
+            siblings = [
+                item for item in support_surfaces
+                if item["location"].rsplit(".", 1)[0] == surface["location"].rsplit(".", 1)[0] and item["tone"] == "direct"
+            ]
+            if siblings:
+                direct = siblings[0]
+                overlap = jaccard(tokenize(surface["text"]), tokenize(direct["text"]))
+                competitive_tokens = set(tokenize(surface["text"]))
+                direct_tokens = set(tokenize(direct["text"]))
+                new_tokens = competitive_tokens - direct_tokens
+                if overlap >= 0.74 and (
+                    word_count(surface["text"]) >= word_count(direct["text"]) or
+                    not (new_tokens & SO_GOOD_COMPETITIVE_MARKERS) or
+                    new_tokens <= SO_GOOD_DIRECT_COMPETITIVE_SOFT_WORDS
+                ):
+                    issues.append(
+                        make_issue(
+                            "FAIL",
+                            "so_good_competitive_clone",
+                            surface["location"],
+                            "Competitive surface overlaps direct too closely without becoming sharper and more compressed.",
+                        )
+                    )
+
+    for support in support_surfaces:
+        for body in breakdowns:
+            if support["tone"] != body["tone"]:
+                continue
+            overlap = jaccard(tokenize(support["text"]), tokenize(body["text"]))
+            if overlap >= 0.66:
+                issues.append(
+                    make_issue(
+                        "FAIL",
+                        "so_good_body_support_overlap",
+                        support["location"],
+                        f"Support surface overlaps chapter body too closely (overlap={overlap:.2f}).",
+                    )
+                )
+                break
+
+    plan_prefixes = {}
+    for surface in support_surfaces:
+        if surface["kind"] != "implementationPlan":
+            continue
+        key = (surface["tone"], prefix_key(surface["text"], 5))
+        if not key[1]:
+            continue
+        plan_prefixes.setdefault(key, []).append(surface["location"])
+    for (_, prefix), locations in plan_prefixes.items():
+        if len(locations) > 1 and prefix.startswith("if i") and "then i will" in prefix:
+            issues.append(
+                make_issue(
+                    "FAIL",
+                    "so_good_plan_scaffold_repeat",
+                    locations[0],
+                    f"Implementation-plan surfaces repeat the same conditional scaffold: {locations}.",
+                )
+            )
+    return issues
+
+
+def so_good_breakdown_issues(chapter):
+    issues = []
+    if not is_so_good(chapter):
+        return issues
+    if chapter.get("number") not in SO_GOOD_GUIDED_CHAPTERS:
+        return issues
+    number = chapter.get("number", "?")
+    content = chapter.get("contentVariants", {})
+
+    for depth_name in ("easy", "medium", "hard"):
+        breakdown = content.get(depth_name, {}).get("chapterBreakdown", {})
+        if not isinstance(breakdown, dict):
+            continue
+        tone_pairs = (("gentle", "direct"), ("gentle", "competitive"), ("direct", "competitive"))
+        for left_tone, right_tone in tone_pairs:
+            left_text = breakdown.get(left_tone)
+            right_text = breakdown.get(right_tone)
+            if not isinstance(left_text, str) or not isinstance(right_text, str):
+                continue
+            cluster = repeated_sentence_cluster(left_text, right_text)
+            if cluster:
+                issues.append(
+                    make_issue(
+                        "FAIL",
+                        "so_good_repeated_paragraph_family",
+                        f"ch{number}.{depth_name}.chapterBreakdown.{right_tone}",
+                        f"{depth_name} {right_tone} reuses a repeated paragraph-family from {left_tone} ({cluster['width']} sentences / {cluster['words']} words).",
+                    )
+                )
+
+    medium = content.get("medium", {})
+    hard = content.get("hard", {})
+    for tone in ("direct", "competitive"):
+        medium_text = medium.get("chapterBreakdown", {}).get(tone)
+        hard_text = hard.get("chapterBreakdown", {}).get(tone)
+        if not isinstance(medium_text, str) or not isinstance(hard_text, str):
+            continue
+        cluster = repeated_sentence_cluster(medium_text, hard_text)
+        if cluster:
+            issues.append(
+                make_issue(
+                    "FAIL",
+                    "so_good_hard_repeats_medium_family",
+                    f"ch{number}.hard.chapterBreakdown.{tone}",
+                    f"Hard {tone} repeats a medium paragraph-family ({cluster['width']} sentences / {cluster['words']} words).",
+                )
+            )
+        medium_open = first_sentence(medium_text)
+        hard_open = first_sentence(hard_text)
+        if medium_open and hard_open and jaccard(tokenize(medium_open), tokenize(hard_open)) >= 0.74:
+            issues.append(
+                make_issue(
+                    "FAIL",
+                    "so_good_hard_reuses_medium_open",
+                    f"ch{number}.hard.chapterBreakdown.{tone}",
+                    "Hard breakdown reuses medium's opening claim instead of deepening it.",
+                )
+            )
+        overlap = jaccard(tokenize(medium_text), tokenize(hard_text))
+        hard_tokens = set(tokenize(hard_text))
+        if overlap >= 0.62 and len(hard_tokens & SO_GOOD_DIAGNOSTIC_MARKERS) < 2:
+            issues.append(
+                make_issue(
+                    "FAIL",
+                    "so_good_hard_not_deeper",
+                    f"ch{number}.hard.chapterBreakdown.{tone}",
+                    "Hard breakdown broadens medium without adding enough diagnostic precision.",
+                )
+            )
+    return issues
+
+
+def antifragile_support_surface_issues(chapter, surfaces):
+    issues = []
+    if not is_antifragile(chapter):
+        return issues
+
+    support_surfaces = [
+        surface for surface in surfaces
+        if surface["kind"] in {"implementationPlan", "reviewCard", "recap", "keyTakeawayCard", "prompt"}
+    ]
+    for surface in support_surfaces:
+        normalized = normalize_text(surface["text"])
+        if any(phrase in normalized for phrase in ANTIFRAGILE_SOFT_DRIFT):
+            issues.append(
+                make_issue(
+                    "FAIL",
+                    "antifragile_soft_drift",
+                    surface["location"],
+                    "Antifragile support surface has drifted into generic motivational or therapeutic language.",
+                )
+            )
+    number = chapter.get("number")
+    bridge_terms = ANTIFRAGILE_BRIDGE_EXPECTATIONS.get(number)
+    if bridge_terms:
+        bridge_surfaces = []
+        preview = chapter.get("contentVariants", {}).get("medium", {}).get("oneMinuteRecap", {}).get("preview")
+        if isinstance(preview, dict):
+            for tone in TONE_KEYS:
+                text = preview.get(tone)
+                if isinstance(text, str):
+                    bridge_surfaces.append((f"ch{number}.medium.oneMinuteRecap.preview.{tone}", normalize_text(text)))
+        cards = chapter.get("reviewCards", [])
+        if len(cards) >= 5 and isinstance(cards[4], dict):
+            back = cards[4].get("back")
+            if isinstance(back, dict):
+                for tone in TONE_KEYS:
+                    text = back.get(tone)
+                    if isinstance(text, str):
+                        bridge_surfaces.append((f"ch{number}.reviewCards[4].back.{tone}", normalize_text(text)))
+        if bridge_surfaces:
+            combined = " ".join(text for _, text in bridge_surfaces)
+            if not any(term in combined for term in bridge_terms):
+                issues.append(
+                    make_issue(
+                        "FAIL",
+                        "antifragile_bridge_miss",
+                        bridge_surfaces[0][0],
+                        "Antifragile bridge surface does not point to the book's actual next conceptual move.",
+                    )
+                )
+
+    boundary_terms = ANTIFRAGILE_BOUNDARY_EXPECTATIONS.get(number)
+    if boundary_terms:
+        body_blob = []
+        for depth_name in ("medium", "hard"):
+            breakdown = chapter.get("contentVariants", {}).get(depth_name, {}).get("chapterBreakdown", {})
+            if isinstance(breakdown, dict):
+                body_blob.extend(text for text in breakdown.values() if isinstance(text, str))
+        takeaways = chapter.get("contentVariants", {}).get("medium", {}).get("keyTakeaways", [])
+        if isinstance(takeaways, list):
+            for takeaway in takeaways:
+                if isinstance(takeaway, dict):
+                    for field in ("point", "moreDetails"):
+                        value = takeaway.get(field)
+                        if isinstance(value, dict):
+                            body_blob.extend(text for text in value.values() if isinstance(text, str))
+        normalized_blob = normalize_text(" ".join(body_blob))
+        if not all(term in normalized_blob for term in boundary_terms):
+            issues.append(
+                make_issue(
+                    "FAIL",
+                    "antifragile_boundary_loss",
+                    f"ch{number}.boundary",
+                    "Antifragile chapter lost the limit that keeps the argument from collapsing into caricature.",
+                )
+            )
+
+    return issues
+
+
 def audit_package(pkg, source_path=None):
     issues = []
     for chapter in attach_book_context(pkg, source_path=source_path):
         surfaces = list(collect_surfaces(chapter))
+        book_id = chapter.get("_book_context", {}).get("bookId", "")
+        for surface in surfaces:
+            surface["bookId"] = book_id
         for surface in surfaces:
             issues.extend(audit_surface(surface))
         issues.extend(chapter_package_duplicate_issues(chapter, surfaces))
@@ -893,6 +1385,10 @@ def audit_package(pkg, source_path=None):
         issues.extend(medium_hard_overlap_issues(chapter))
         issues.extend(pitch_anything_boilerplate_issues(chapter, surfaces))
         issues.extend(memoir_fidelity_issues(chapter))
+        issues.extend(one_thing_support_surface_issues(chapter, surfaces))
+        issues.extend(antifragile_support_surface_issues(chapter, surfaces))
+        issues.extend(so_good_support_surface_issues(chapter, surfaces))
+        issues.extend(so_good_breakdown_issues(chapter))
         chapter.pop("_book_context", None)
     return {"issues": issues}
 

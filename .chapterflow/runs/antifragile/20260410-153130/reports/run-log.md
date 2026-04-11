@@ -1,0 +1,45 @@
+# Run Log
+
+- 2026-04-10T15:34:50Z Phase 0 complete. Manifest locked for `antifragile` / `20260410-153130`.
+- 2026-04-10T15:34:50Z Phase 1 complete. Source bundle frozen from authorized preview, official publisher metadata, library catalog contents, and bounded secondary summaries. Edition auto-locked to the 2012 English Random House family.
+- 2026-04-10T15:34:50Z Phase 2 complete. Memory cards written for style, quality, and role behavior.
+- 2026-04-10T15:34:50Z Phase 3 complete. Whole-book skeleton written with chapter order, density flags, and routing notes.
+- 2026-04-10T15:34:50Z Phase 4 pre-writer gate for Chapter 1 complete. Brief, outline, quiz blueprint, and chapter source sidecars are on disk.
+- 2026-04-10T15:34:50Z Chapter 1 passed lint, prose audit, chapter gate validation, review wrapper validation, and continuity seal.
+- 2026-04-10T15:34:50Z Phase 5 pre-writer gate for Chapter 2 started. Brief, outline, quiz blueprint, and chapter source sidecars written.
+- 2026-04-10T15:34:50Z Chapter 2 passed lint, prose audit, chapter gate validation, review wrapper validation, continuity seal, and baseline-quality floor creation.
+- 2026-04-10T15:34:50Z Wave 2 opened. Pre-writer artifacts for Chapters 3 and 4 written.
+- 2026-04-10T15:34:50Z Chapter 3 passed lint, prose audit, chapter gate validation, review wrapper validation, and continuity seal.
+- 2026-04-10T15:34:50Z Chapter 4 passed lint, prose audit, chapter gate validation, review wrapper validation, and continuity seal.
+- 2026-04-10T15:34:50Z Wave 3 opened. Pre-writer artifacts for Chapters 5 and 6 written.
+- 2026-04-10T15:34:50Z Chapter 5 repaired malformed structured JSON, then passed lint, prose audit, chapter gate validation, review wrapper validation, and continuity seal.
+- 2026-04-10T15:34:50Z Chapter 6 passed lint, prose audit, chapter gate validation, review wrapper validation, and continuity seal after one opener repair.
+- 2026-04-10T15:34:50Z Wave 4 opened. Pre-writer artifacts for Chapters 7 and 8 written.
+- 2026-04-10T15:34:50Z Chapter 7 passed lint, prose audit, chapter gate validation, review wrapper validation, and continuity seal after one duplicate-surface repair.
+- 2026-04-10T15:34:50Z Chapter 8 passed lint, prose audit, chapter gate validation, review wrapper validation, and continuity seal after one recap-overlap repair.
+- 2026-04-10T15:34:50Z Wave 5 opened. Pre-writer artifacts for Chapters 9 and 10 written.
+- 2026-04-10T15:34:50Z Chapter 9 passed lint, prose audit, chapter gate validation, review wrapper validation, and continuity seal after one duplicate-surface repair.
+- 2026-04-10T15:34:50Z Chapter 10 passed lint, prose audit, chapter gate validation, review wrapper validation, and continuity seal after local reinforcement-surface repairs.
+- 2026-04-10T15:34:50Z Chapter 11 passed lint, prose audit, chapter gate validation, review wrapper validation, and continuity seal after local schema and repetition repairs.
+- 2026-04-10T15:34:50Z Chapter 12 passed lint, prose audit, chapter gate validation, review wrapper validation, and continuity seal after local prose-surface repairs.
+- 2026-04-10T15:34:50Z Wave 7 opened. Pre-writer artifacts for Chapters 13 and 14 written.
+- 2026-04-10T15:34:50Z Chapter 13 passed lint, prose audit, chapter gate validation, review wrapper validation, and continuity seal.
+- 2026-04-10T15:34:50Z Chapter 14 passed lint, prose audit, chapter gate validation, review wrapper validation, and continuity seal after one duplicate-prompt repair.
+- 2026-04-10T15:34:50Z Wave 8 opened. Pre-writer artifacts for Chapters 15 and 16 written.
+- 2026-04-10T15:34:50Z Chapter 15 passed lint, prose audit, chapter gate validation, review wrapper validation, and continuity seal after local prose-surface repairs.
+- 2026-04-10T15:34:50Z Chapter 16 passed lint, prose audit, chapter gate validation, review wrapper validation, and continuity seal after quiz-embedding and duplicate-clause-scaffold repairs.
+- 2026-04-10T15:34:50Z Wave 9 opened. Pre-writer artifacts for Chapters 17 and 18 written after correcting one initial wrong-root patch path before run-log update.
+- 2026-04-10T15:34:50Z Chapter 17 passed lint, prose audit, chapter gate validation, review wrapper validation, and continuity seal after duplicate-clause-scaffold repairs.
+- 2026-04-10T15:34:50Z Chapter 18 passed lint, prose audit, chapter gate validation, review wrapper validation, and continuity seal after recap-duplication and overlap repairs.
+- 2026-04-10T15:34:50Z Wave 10 opened. Pre-writer artifacts for Chapters 19 and 20 written.
+- 2026-04-10T15:34:50Z Chapter 19 passed lint, prose audit, chapter gate validation, review wrapper validation, and continuity seal after competitive clause-scaffold and gentle more-details repairs.
+- 2026-04-10T15:34:50Z Chapter 20 passed lint, prose audit, chapter gate validation, review wrapper validation, and continuity seal after clause-scaffold and cross-takeaway duplication repairs.
+- 2026-04-10T15:34:50Z Wave 11 opened. Pre-writer artifacts for Chapters 21 and 22 written.
+- 2026-04-10T15:34:50Z Chapter 21 passed lint, prose audit, chapter gate validation, review wrapper validation, and continuity seal after gentle more-details differentiation repairs.
+- 2026-04-10T15:34:50Z Chapter 22 passed lint, prose audit, chapter gate validation, review wrapper validation, and continuity seal without local repair.
+- 2026-04-10T15:34:50Z Wave 12 opened. Pre-writer artifacts for Chapters 23 and 24 written.
+- 2026-04-10T15:34:50Z Chapter 23 passed lint, prose audit, chapter gate validation, review wrapper validation, and continuity seal without local repair.
+- 2026-04-10T15:34:50Z Chapter 24 passed lint, prose audit, chapter gate validation, review wrapper validation, and continuity seal after local competitive-surface deduplication repairs.
+- 2026-04-10T15:34:50Z Final chapter pre-writer gate for Chapter 25 complete. Brief, outline, quiz blueprint, and chapter source sidecars are on disk.
+- 2026-04-10T15:34:50Z Chapter 25 passed lint, prose audit, chapter gate validation, review wrapper validation, and continuity seal without local repair.
+- 2026-04-10T15:34:50Z Release-gate repair: corrected competitive phrase-repeat surfaces in Chapters 3 and 6, regenerated their validated artifacts, and resealed continuity using validated file hashes for all chapters.

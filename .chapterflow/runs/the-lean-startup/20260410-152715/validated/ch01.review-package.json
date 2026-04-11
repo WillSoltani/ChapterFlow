@@ -1,0 +1,742 @@
+{
+  "schemaVersion": "1.1.0",
+  "packageId": "the-lean-startup-20260410-152715-ch01-review",
+  "createdAt": "2026-04-10T15:30:13Z",
+  "contentOwner": "ChapterFlow",
+  "book": {
+    "bookId": "the-lean-startup",
+    "title": "The Lean Startup",
+    "author": "Eric Ries",
+    "categories": [
+      "Entrepreneurship",
+      "Product",
+      "Innovation",
+      "Startups"
+    ],
+    "tags": [
+      "startup",
+      "lean startup",
+      "validated learning",
+      "product",
+      "innovation"
+    ],
+    "edition": {
+      "name": "2011 English Crown Business / Portfolio Penguin trade family",
+      "translator": "",
+      "publishedYear": 2011,
+      "translationYear": null,
+      "sourceText": ".chapterflow/runs/the-lean-startup/20260410-152715/source-freeze/book-source.md",
+      "sourceProvenance": "Frozen web bundle only: Open Library chapter map and edition metadata, Google Books bibliographic confirmation, and paraphrase-first secondary chapter summaries."
+    },
+    "variantFamily": "EMH",
+    "chapterRange": "1-14"
+  },
+  "chapters": [
+    {
+      "chapterId": "ch01-start",
+      "number": 1,
+      "title": "Start",
+      "readingTimeMinutes": 7,
+      "contentVariants": {
+        "easy": {
+          "chapterBreakdown": {
+            "gentle": "A startup can look busy and still be lost. Features ship, tasks close, and the team feels like it is moving. But if no one knows whether customers truly want the product or whether a real business can grow around it, the motion may be hiding waste. Eric Ries starts by changing the job description. A startup is not just a small company trying to build fast. It is a group of people trying to create something new while many basics are still uncertain. That means progress cannot be measured by output alone. The work counts when it teaches the team something real about customers, demand, and the business they are trying to build. That is why lean startup thinking matters. It pushes the team to connect building, feedback, and learning instead of treating speed as proof.",
+            "direct": "Busy startups often mistake visible output for real progress. Ries resets that assumption. He defines a startup as a human institution creating something new under extreme uncertainty, which means ordinary execution metrics are too weak on their own. Shipping features is not enough if the team still does not know what customers value or what kind of business can survive. The lean startup method changes the standard. Progress means reducing uncertainty through learning, not simply increasing activity. Build-measure-learn matters because it turns work into a steering loop instead of a pile of hopeful output.",
+            "competitive": "A startup can move fast and still be wasting itself. Shipping every week does not matter if the team is only getting better at producing features no one will keep using or paying for. Ries attacks that illusion immediately. A startup is not defined by vibe or size. It is defined by uncertainty. That changes the scorecard. Motion is cheap. Learning is expensive and rare. The team needs proof that its work is teaching something about customers and about a business that can last. Lean startup discipline exists to stop speed from turning into polished waste."
+          },
+          "keyTakeaways": [
+            {
+              "point": {
+                "gentle": "A startup's job is to learn how to build a real business, not just to stay busy.",
+                "direct": "Startups are judged by learning under uncertainty, not output alone.",
+                "competitive": "Activity is cheap. Evidence is the real scoreboard."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Extreme uncertainty changes what management has to do.",
+                "direct": "Ordinary planning is too weak when the product and business model are still unclear.",
+                "competitive": "Uncertainty changes the rules before execution even begins."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Build-measure-learn helps a team turn work into feedback instead of guesswork.",
+                "direct": "The loop matters because it connects action to evidence and course correction.",
+                "competitive": "Without a feedback loop, speed just extends the life of a guess."
+              }
+            }
+          ],
+          "oneMinuteRecap": {
+            "gentle": "Ries says a startup is a team working under uncertainty, so visible output is not enough. Progress means learning what customers value and what kind of business can last. Build-measure-learn gives the team a way to connect action to truth.",
+            "direct": "The reset is simple: startups do not win by looking busy. They win by reducing uncertainty through evidence. Build-measure-learn is the steering habit that makes that possible.",
+            "competitive": "Fast work is meaningless if it teaches nothing. Startups need proof, not just motion."
+          }
+        },
+        "medium": {
+          "chapterBreakdown": {
+            "gentle": "A startup can feel full of momentum long before it becomes clear whether the team is moving in a useful direction. Tasks close, prototypes multiply, and meetings fill with energy. Yet Eric Ries begins by forcing a harder question: what if all that visible effort is not proving progress at all? What if the team is simply getting better at building without learning?\n\nThat is why he defines a startup so carefully. For him, it is a human institution trying to create something new under extreme uncertainty. The uncertainty is not decorative. It changes what counts as good management. In a stable business, efficiency around known work can be enough. In a startup, too much remains unknown. The team may not fully understand the customer, the demand, the channel, or the business model that would make the product sustainable.\n\nOnce that condition is clear, the scorecard changes. Shipping features, polishing a product, or keeping a team busy may look like forward motion, but none of it matters if the effort is not reducing uncertainty. Ries is not saying output is useless. He is saying output is incomplete until it produces learning about customers and about the business the team is actually trying to build.\n\nThat is where lean thinking enters. It is not cheapness for its own sake. Instead, the job is to cut the kind of waste that grows when effort loses contact with feedback. In startup work, waste often looks respectable because it comes wrapped in productivity. Lean startup discipline asks a sharper question: what did this round of work teach us that changes our next decision?\n\nBuild-measure-learn gives the answer structure. You build something aimed at an assumption. You measure what happens in the world. Then you learn whether the assumption held up. Used this way, the loop is not a slogan about speed. It is a steering method that keeps action tied to evidence and keeps evidence close enough to the work that the team can still change course.",
+            "direct": "Ries opens by separating startup activity from startup progress. A team can release features, expand a roadmap, and look fully engaged while still failing to answer the central question: is it learning how to build a sustainable business? That is the first reset. Visible output is not the same thing as progress.\n\nHis definition of a startup explains why. A startup is a human institution creating something new under extreme uncertainty. Once uncertainty becomes the operating condition, ordinary management habits stop being sufficient. Efficiency around known tasks still matters, but the harder problem is that the core facts are not settled yet. The team may still be guessing about customer behavior, product value, or the shape of the business itself.\n\nThat is why shipping alone is too weak as a metric. Output can hide confusion. A polished release may still be attached to a false assumption. Real progress appears only when the work reduces uncertainty and teaches something reliable about customers, demand, or business viability. Learning is not a side benefit. It is the point of the early effort.\n\nLean manufacturing provides the carrying analogy because it treats detached effort as waste. Ries imports that logic into startup work. Waste is not limited to extra features or overbuilt systems. Waste also includes time spent building with confidence the team has not yet earned. A fast team that is learning nothing is still running in the wrong direction.\n\nBuild-measure-learn turns that critique into a method. Build to expose an assumption. Measure the response with evidence rather than enthusiasm. Learn what the result means for the next move. That loop matters because it keeps speed subordinate to truth instead of letting speed become its own argument.",
+            "competitive": "Most startups lose themselves by confusing motion with progress. Roadmaps grow, releases stack up, and the team starts using effort as proof that the business is getting stronger. Ries cuts straight through that comfort. If the work is not teaching the team how to build a sustainable business, the speed may be dressing up waste.\n\nHis definition of a startup is the blade behind that argument. A startup is a human institution trying to create something new under extreme uncertainty. Once you accept that, the old scorecard breaks. The hard problem is not only execution. The hard problem is that the product, the customer response, and the business logic are still unsettled. You can execute cleanly against a bad assumption and still march toward failure.\n\nThat is why visible output gets demoted. Shipping matters only when it reduces uncertainty. A feature launch, a prototype, or a polished product update is not automatically progress. It becomes progress when it teaches something reliable about value, demand, or business survival. Until then, the team may simply be getting more efficient at guessing.\n\nLean thinking matters because it attacks that kind of respectable waste. Startups do not bleed only through overbuilding. They bleed through confidence unconnected to feedback. The dangerous version of waste is the kind that feels productive from the inside. It lets a team stay proud while reality stays far away.\n\nBuild-measure-learn is the discipline that closes that gap. Build to test, not to decorate. Measure reality, not internal excitement. Learn fast enough that the next move is different because the truth got closer. The loop is not there to glorify speed. It is there to stop speed from becoming camouflage."
+          },
+          "keyTakeaways": [
+            {
+              "point": {
+                "gentle": "Extreme uncertainty changes the meaning of good management in a startup.",
+                "direct": "Startups need management built for unsettled facts, not only for known execution.",
+                "competitive": "The old scorecard breaks when the ground is still moving."
+              },
+              "moreDetails": {
+                "gentle": "When the product, customer, and business model are still being discovered, efficiency alone cannot guide the work. The team needs evidence that clarifies what is real.",
+                "direct": "Known-task optimization is insufficient when the core assumptions are still uncertain. Management has to organize learning as well as delivery.",
+                "competitive": "Clean execution on a bad assumption is still a loss. The system has to surface truth, not just output."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Output becomes progress only when it teaches something about customers and the business.",
+                "direct": "Shipping is incomplete until it reduces uncertainty.",
+                "competitive": "A release is not a win if it leaves the real question untouched."
+              },
+              "moreDetails": {
+                "gentle": "A team can look productive while staying confused. Learning matters because it changes the next decision instead of only filling the backlog.",
+                "direct": "Visible activity can mask false assumptions. Evidence-based learning is what converts work into progress.",
+                "competitive": "Busy teams can still be blind. Progress starts when the work forces reality to answer back."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Lean thinking matters because it treats detached effort as waste.",
+                "direct": "The lean analogy focuses on work that loses contact with feedback.",
+                "competitive": "Waste grows fastest when confidence outruns evidence."
+              },
+              "moreDetails": {
+                "gentle": "In startup work, waste is not only extra features. It is also time spent building before the team has earned conviction about what matters.",
+                "direct": "Ries adapts lean logic by asking which effort is producing usable learning and which effort only creates the appearance of motion.",
+                "competitive": "The dangerous waste is the kind that still looks respectable on the sprint board."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Build-measure-learn is a steering loop, not a catchy phrase.",
+                "direct": "The loop gives action, evidence, and course correction a usable order.",
+                "competitive": "The sequence exists to keep speed under control."
+              },
+              "moreDetails": {
+                "gentle": "Building exposes an assumption, measurement shows what happened, and learning tells the team what to do next. The loop matters because it keeps the next move tied to what reality revealed.",
+                "direct": "Each step has a different function: expose, test, interpret. The loop fails when any one of those jobs is replaced by enthusiasm or habit.",
+                "competitive": "If the team only builds and talks, the loop collapses into theater. Measurement is what makes speed answerable."
+              }
+            },
+            {
+              "point": {
+                "gentle": "A sustainable business is the target behind the product work.",
+                "direct": "The startup is learning how a lasting business can exist around the product.",
+                "competitive": "Products are not the finish line. Viability is."
+              },
+              "moreDetails": {
+                "gentle": "This keeps the chapter from shrinking into product advice alone. The team is not only asking whether people like a feature. It is asking whether demand can support a real business.",
+                "direct": "Learning has to reach beyond feature preference into business viability, or the team may optimize the wrong success signal.",
+                "competitive": "Winning user attention is not enough if nothing durable can be built around it."
+              }
+            }
+          ],
+          "activationPrompt": {
+            "gentle": "Think of one project that looked active but taught very little. What signal would have shown whether the work was really reducing uncertainty?",
+            "direct": "Pick one current product effort and identify which assumption it is supposed to test. If you cannot name it, the work may be drifting into output without learning.",
+            "competitive": "Audit one sprint right now: what truth was it built to force, and what proof would show the team is not just moving faster in the dark?"
+          },
+          "selfCheckPrompt": {
+            "gentle": "Can you explain why a startup can be highly productive and still fail this chapter's definition of progress?",
+            "direct": "Why does Ries treat learning, not shipping, as the real unit of startup progress?",
+            "competitive": "How can a team move fast, ship often, and still be wasting itself?"
+          },
+          "oneMinuteRecap": {
+            "retrieve": {
+              "gentle": "What is Ries trying to teach a startup to build besides the product itself?",
+              "direct": "Recall the difference between output and progress in this chapter.",
+              "competitive": "What does the startup actually need to earn, not just display?"
+            },
+            "connect": {
+              "gentle": "How does uncertainty change the kind of management a startup needs?",
+              "direct": "Why does extreme uncertainty make visible activity too weak as a scorecard?",
+              "competitive": "How does uncertainty turn speed into a risky metric unless evidence is attached?"
+            },
+            "preview": {
+              "gentle": "If uncertainty defines the work more than company size does, where else might startup logic belong?",
+              "direct": "What does this reset suggest about who counts as an entrepreneur in the next section?",
+              "competitive": "If size is not the real line, what boundary is about to replace it?"
+            }
+          }
+        },
+        "hard": {
+          "chapterBreakdown": {
+            "gentle": "The easiest way to misunderstand early startup work is to confuse visible motion with reduced uncertainty. Teams ship features, polish interfaces, and complete sprint goals, then feel relief because the work now looks solid from the inside. Eric Ries begins by challenging that comfort. A startup may be producing output at full speed while still having no grounded answer to the harder question: is this effort teaching us how to build a business that can actually last?\n\nThat question becomes unavoidable once he defines a startup as a human institution trying to create something new under extreme uncertainty. The uncertainty is not only about product taste. It reaches into customer behavior, value, timing, and the business model itself. That changes the management problem. In a stable company, execution quality often dominates. In a startup, execution can remain excellent while the team is still executing against assumptions it has not earned.\n\nThat is why output has to be demoted from final scorecard to provisional signal. Shipping can matter. Building can matter. Momentum can matter. But none of them count as durable progress until the work changes what the team knows about customers and about the business it is trying to make real. This is the hidden structure underneath the chapter. Ries is not insulting action. He is separating action that reduces uncertainty from action that merely covers it.\n\nThe lean-manufacturing analogy sharpens the distinction because it treats detached effort as waste. In startup form, waste is not limited to extra features or overbuilt systems. Waste also appears when the team keeps building before feedback has had a chance to correct the direction. That makes this chapter harsher than a generic call to move quickly. Speed is not innocent. Speed can multiply learning, but it can also multiply the cost of a bad assumption. The same velocity that helps one team learn faster can help another team bury itself more efficiently.\n\nBuild-measure-learn matters because it governs that risk. Each part does a different job. Building exposes an assumption in a form the world can answer. Measuring turns the world's response into something more reliable than team enthusiasm. Learning interprets the result and changes what the team does next. If any step weakens, the loop becomes fake. Building without meaningful measurement is theater. Measuring without a decision consequence is reporting. Learning without a changed next move is self-congratulation wearing analytical language.\n\nThat leaves a live question this section has to hold open: when does rapid building become a disciplined path to truth, and when does it become disguised waste? The answer is not speed versus slowness. The answer is whether the work is shortening the path between assumption and evidence. A team can move quickly and stay rigorous if each round forces a claim into contact with reality. A team can also move quickly and stay lost if its releases are too detached, too broad, or too unloved to teach anything decisive.\n\nThis is also why Ries treats entrepreneurship as management rather than romantic improvisation. Someone has to choose which assumption is riskiest, what measurement would count as evidence, and what result should trigger a change in direction. Those are not vibe questions. They are management questions under uncertainty. The contradiction is that startup culture often celebrates energy, confidence, and boldness, while the method here rewards discipline, exposure to feedback, and willingness to admit that a polished release may still be a bad answer.\n\nThe payoff is larger than product technique. Once progress is defined as validated learning, the team stops asking only whether it shipped and starts asking whether the business became clearer. That wider target keeps the chapter from shrinking into feature strategy. It is not merely about making better products faster. The harder task is learning whether a sustainable business can exist around the product at all. If that is the real task, then the next question becomes sharper: where should this logic apply, and how many people have been doing startup work without naming it correctly?",
+            "direct": "Ries opens by attacking a comfortable startup illusion: that visible output is strong evidence of progress. Teams ship features, hit sprint goals, and expand roadmaps, then use that motion as proof that the business is moving forward. His reset is more severe. A startup can produce disciplined output and still be failing at the real job if it is not learning how to build a sustainable business.\n\nHis definition explains why. A startup is a human institution creating something new under extreme uncertainty. Once uncertainty becomes the operating condition, ordinary execution metrics lose authority. The product may still be immature, the customer response still ambiguous, the demand still unproven, and the business model still fragile. Execution quality remains important, but it is no longer sufficient. A team can execute cleanly against assumptions that have not survived contact with reality.\n\nThat is the hidden contradiction at the center of the chapter. Action is necessary, but action alone is unreliable. Shipping is not the enemy. Shipping is simply too weak to serve as the final scorecard. Output becomes progress only when it reduces uncertainty about value, demand, or business viability. Until that happens, the same release that looks like momentum may be little more than disciplined guessing.\n\nThe lean-manufacturing analogy makes the chapter sharper because it reframes waste. Waste is not only extra features or bloated systems. Waste also includes time spent building with conviction the team has not earned. That makes speed a boundary condition rather than an automatic virtue. Fast cycles can accelerate learning when they compress the path between assumption and evidence. Fast cycles can also accelerate waste when the work reaches the market without producing a clean signal. Speed helps only when it is answerable to feedback.\n\nBuild-measure-learn is the method that keeps speed under that discipline. Build exposes an assumption. Measure captures what reality does with that assumption. Learn changes the next decision based on the result. Each step has a distinct function, and the loop breaks in different ways when one function is missing. Building without serious measurement becomes output theater. Measurement without a decision consequence becomes analytics vanity. Learning that does not alter the next move becomes interpretation with no operational courage.\n\nThat leaves a harder diagnostic in place: how do you know whether a fast-moving startup is learning or just getting better at hiding uncertainty behind activity? The answer is structural. Look at the connection between the work and the next decision. If the release produced evidence that changed a priority, exposed a false belief, or narrowed the business question, the cycle was useful. If it mainly produced confidence, optics, or more backlog, the team may have sped up the wrong thing.\n\nThis is why Ries insists that entrepreneurship is a management discipline. Someone has to decide which assumption deserves testing, what evidence is credible, and what result is strong enough to force a change in direction. Those choices cannot be outsourced to startup mythology. The deeper contradiction is that founder culture often celebrates certainty and charisma, while this method rewards disciplined exposure to disconfirming feedback.\n\nThe chapter therefore does more than introduce a loop. It replaces the startup scorecard. The real target is not a shipped product in isolation but a clearer answer to whether a sustainable business can exist around that product. Once that target is visible, the next move in the book becomes necessary: if uncertainty is the defining condition, then entrepreneurship may be wider than the usual startup image allows.",
+            "competitive": "The chapter starts by stripping away the easiest startup lie to believe: that motion proves progress. Roadmaps grow, features ship, and the team starts treating output like evidence. Ries forces a harder reading. A startup can execute cleanly, move fast, and still be wasting itself if the work is not teaching the team how to build a business that survives contact with reality.\n\nThat verdict comes from his definition of a startup. It is a human institution creating something new under extreme uncertainty. Once you accept that, the old scorecard becomes dangerous. Shipping is no longer enough. Productivity is no longer enough. The team may still be wrong about customer value, demand, timing, or the business model holding everything together. Clean execution on unsettled assumptions is still exposure.\n\nThat creates the chapter's central contradiction. Startups need action because waiting for certainty kills them. Startups also need discipline because action without evidence can scale a mistake. The enemy is not building. The enemy is output that looks strong while uncertainty stays mostly untouched. A team can feel proud, busy, and coordinated while getting better at the wrong thing.\n\nLean thinking sharpens that argument by redefining waste. Waste is not only bloated features or needless process. Waste is also confidence that outruns feedback. That is the real danger behind startup speed worship. Velocity can tighten the path between assumption and truth, which is the good version. Velocity can also let a team hide inside constant releases, which is the bad version. Speed is not a virtue by itself. It only earns status when it makes reality arrive faster.\n\nBuild-measure-learn is the discipline that decides which version you are living in. Build to force an assumption into the open. Measure so the world, not the room, answers back. Learn by letting the result change the next move. Break any one of those jobs and the loop turns fake. Build without measurement and you get theater. Measure without consequences and you get analytics vanity. Talk about learning without changing direction and you get intellectual camouflage.\n\nThat is why this diagnostic matters so much: when is rapid building a weapon for truth, and when is it just disguised waste? The answer is brutal and practical. If the cycle changed a decision, narrowed the uncertainty, or exposed a bad belief, it earned its speed. If the cycle mostly produced morale, optics, or a longer backlog, the team probably accelerated the wrong thing.\n\nRies therefore treats entrepreneurship as management, not founder mythology. Someone has to decide which assumption is most dangerous, what evidence is real, and what result is serious enough to force a turn. Those are management choices under uncertainty. The sting is that startup culture often rewards confidence display, while this method rewards disciplined contact with disconfirming evidence.\n\nThat is the scorecard replacement this opening delivers. Products matter, but the deeper target is whether a sustainable business is becoming clearer. If that is the job, then startup logic does not belong only to companies that look like startups. It belongs anywhere people are building under uncertainty and need a harsher definition of progress."
+          },
+          "keyTakeaways": [
+            {
+              "point": {
+                "gentle": "Extreme uncertainty changes the startup's real management problem.",
+                "direct": "A startup's core difficulty is unsettled reality, not only demanding execution.",
+                "competitive": "You are not just running hard. You are running without earned certainty."
+              },
+              "moreDetails": {
+                "gentle": "When the product, customer response, and business model are all still open, the team needs a way to learn while it acts. Efficient delivery alone cannot settle those unknowns.",
+                "direct": "Management has to organize discovery and decision quality at the same time. That is why old success signals become insufficient early on.",
+                "competitive": "Execution is still required, but it cannot rescue a team that is sprinting on untested beliefs."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Output can look strong while uncertainty stays mostly untouched.",
+                "direct": "Shipping is a provisional signal, not the final scorecard.",
+                "competitive": "A polished release can still be disciplined guessing."
+              },
+              "moreDetails": {
+                "gentle": "This is the chapter's first hard distinction. Work becomes progress only when it changes what the team knows about customers or business viability.",
+                "direct": "Feature delivery has to be tied to a learning consequence. Otherwise the backlog grows while the business question stays blurry.",
+                "competitive": "Teams love motion because it feels like proof. Ries uses learning to break that false comfort."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Lean thinking matters because it exposes respectful-looking waste.",
+                "direct": "Waste includes effort that stays detached from feedback, not just bloated output.",
+                "competitive": "The most dangerous waste is the kind that still looks productive."
+              },
+              "moreDetails": {
+                "gentle": "A startup can waste time by building too much, but it can also waste time by building confidently before reality has answered back.",
+                "direct": "The lean analogy adds a boundary condition: speed helps only if feedback arrives quickly enough to shape the next decision.",
+                "competitive": "Velocity without signal is not lean. It is a faster route to an expensive blind spot."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Build-measure-learn works because each part has a different job.",
+                "direct": "The loop fails whenever exposure, evidence, or decision change goes missing.",
+                "competitive": "A fake loop is easy to spot once you ask what each step actually changed."
+              },
+              "moreDetails": {
+                "gentle": "Building exposes an assumption, measurement gathers the world's answer, and learning tells the team how to move differently. The sequence matters because it keeps pride from becoming strategy.",
+                "direct": "The loop is structural, not inspirational. Its value comes from forcing claims into contact with evidence and then demanding an operational response.",
+                "competitive": "Build without measurement is theater. Measurement without a decision consequence is vanity. Learning without change is camouflage."
+              }
+            },
+            {
+              "point": {
+                "gentle": "The deeper target is a sustainable business, not a product launch in isolation.",
+                "direct": "Startup learning has to reach business viability, not only feature preference.",
+                "competitive": "Products matter, but viability is the thing that decides whether the product has a future."
+              },
+              "moreDetails": {
+                "gentle": "That wider target is what keeps the chapter from turning into ordinary product advice. Customer interest matters only in relation to a business that can hold it.",
+                "direct": "The chapter widens the lens from making something to proving that something can support a durable business logic.",
+                "competitive": "A product can attract attention and still fail the real test if nothing sustainable can form around it."
+              }
+            }
+          ],
+          "activationPrompt": {
+            "gentle": "Look at one active project and name the assumption it is supposed to expose. If the assumption is hard to state, the work may be asking for trust instead of evidence.",
+            "direct": "Take one fast-moving initiative and trace the full loop: what was built, what was measured, what changed. Where the chain breaks is where waste starts.",
+            "competitive": "Pick your busiest stream of work and force a verdict: did it narrow uncertainty, or did it just produce motion that felt good in the room?"
+          },
+          "selfCheckPrompts": [
+            {
+              "gentle": "Why can a disciplined team still be wasting effort if it is shipping without reducing uncertainty?",
+              "direct": "How does clean execution fail when the assumptions under it have not been earned?",
+              "competitive": "Why is polished activity still dangerous when the business question stays blurry?"
+            },
+            {
+              "gentle": "How can speed help a startup in one case and deepen waste in another?",
+              "direct": "What separates fast learning from fast camouflage in Ries's opening method?",
+              "competitive": "When does velocity become leverage, and when does it become cover?"
+            }
+          ],
+          "predictionPrompt": {
+            "gentle": "If uncertainty, not company size, defines the startup problem, what kinds of teams should this method apply to next?",
+            "direct": "Given this new scorecard, what broader definition of entrepreneurship would logically follow?",
+            "competitive": "If startup logic belongs wherever uncertainty rules, who is about to qualify that most people ignore?"
+          },
+          "oneMinuteRecap": {
+            "retrieve": {
+              "gentle": "What is the difference between visible output and real progress here?",
+              "direct": "Which condition makes ordinary execution metrics too weak in this chapter?",
+              "competitive": "What has to shrink before speed counts as a win?"
+            },
+            "connect": {
+              "gentle": "How does lean thinking change the meaning of waste for a startup team?",
+              "direct": "Why does the chapter treat feedback-detached effort as the real danger behind startup productivity?",
+              "competitive": "How can one fast cycle tighten learning while another fast cycle only buries the mistake faster?"
+            },
+            "preview": {
+              "gentle": "If uncertainty is the defining condition, where might entrepreneurship show up beyond the usual startup image?",
+              "direct": "What broader boundary is the next section likely to redraw after this definition of progress?",
+              "competitive": "If size is the wrong filter, what larger map of entrepreneurship is about to open?"
+            }
+          }
+        }
+      },
+      "examples": [
+        {
+          "exampleId": "ch01-ex01-sprint-board-decision",
+          "title": "Maya Has a Full Sprint Board and No Real Signal",
+          "category": "work",
+          "format": "decision_point",
+          "endingType": "broader_principle",
+          "contexts": [
+            "product team",
+            "feedback loop",
+            "startup execution"
+          ],
+          "scenario": {
+            "gentle": "On Friday night, Maya is still in the office with stale pizza boxes beside the sprint board. Her team shipped four new onboarding features in two weeks, and the board looks beautiful. But the only customer signal they have is a handful of sign-ups and no clear pattern of retention. Monday's planning meeting is coming. Maya can either celebrate the shipping pace or pause the roadmap and ask what the team has actually learned.",
+            "direct": "Maya's team shipped four onboarding features in two weeks, but retention is still unclear and the customer signal is thin. Monday forces a choice: reward velocity or reset the next sprint around what the team still does not know.",
+            "competitive": "The board says victory. The data says almost nothing. Maya has to decide whether to protect momentum theater or force the team back to the question it has been outrunning."
+          },
+          "whatToDo": {
+            "gentle": "Open the meeting by asking which assumption each feature was supposed to test, then cut any next task that does not produce clearer evidence. Keep the tone calm, but make learning the reason the sprint exists.",
+            "direct": "Reframe the sprint review around assumptions, signals, and next decisions. If a feature does not tighten the learning loop, it loses priority.",
+            "competitive": "Take the spotlight off the board and put it on the unanswered question. Ship less next week if that is what it takes to get a real signal."
+          },
+          "whyItMatters": {
+            "gentle": "The broader principle is that visible activity can comfort a team right when it most needs a harder scorecard.",
+            "direct": "This example separates output from progress. Shipping pace means little if uncertainty stays untouched.",
+            "competitive": "A full sprint board is dangerous when it starts pretending to be evidence."
+          }
+        },
+        {
+          "exampleId": "ch01-ex02-robotics-lab-dialogue",
+          "title": "Luis Stops the Robotics Lab From Overbuilding",
+          "category": "school",
+          "format": "dialogue",
+          "endingType": "self_directed_question",
+          "contexts": [
+            "student team",
+            "prototype testing",
+            "engineering class"
+          ],
+          "scenario": {
+            "gentle": "In the robotics lab, the whiteboard is covered in half-erased feature sketches for the team's demo robot. Priya wants to add three more behaviors before testing with students on campus. Luis looks at the list and asks, \"Which one would actually tell us whether students understand what the robot is for?\" The room goes quiet because no one has asked that question yet.",
+            "direct": "During a late lab meeting, Priya pushes for more features before testing. Luis interrupts with a sharper question: which feature is supposed to expose the team's biggest assumption about user understanding?",
+            "competitive": "The team is one meeting away from building a smarter robot and learning nothing useful. Luis cuts through the feature fever with one demand: what exactly are we trying to find out?"
+          },
+          "whatToDo": {
+            "gentle": "Turn the discussion from feature count to test design. Choose the smallest prototype change that would produce a clearer answer about student behavior.",
+            "direct": "Name the assumption first, then pick the least work needed to expose it in the real environment.",
+            "competitive": "Stop adding intelligence for its own sake. Build only the move that forces the room to answer your biggest unknown."
+          },
+          "whyItMatters": {
+            "gentle": "Ask yourself whether your next build step reveals anything new or only makes the project feel more complete.",
+            "direct": "The self-check here is simple: are you building to learn, or building to avoid facing uncertainty?",
+            "competitive": "If your next feature cannot change the verdict, why are you spending time on it?"
+          }
+        },
+        {
+          "exampleId": "ch01-ex03-side-project-dilemma",
+          "title": "Evan's Weekend App Keeps Growing Before It Learns",
+          "category": "personal",
+          "format": "dilemma",
+          "endingType": "surprising_implication",
+          "contexts": [
+            "side project",
+            "personal experiment",
+            "customer validation"
+          ],
+          "scenario": {
+            "gentle": "Evan has spent six weekends refining a budgeting app for freelancers. The design is cleaner now, and the feature list keeps growing. But only three people have tried it, and none of them have stayed active for more than a few days. Evan feels proud of the product and uneasy about the silence around it.",
+            "direct": "Evan's side project looks better every week, yet real usage remains weak and short-lived. He can keep polishing or run a rough test focused on why people leave so quickly.",
+            "competitive": "Evan keeps upgrading the app because improvement feels safer than finding out whether anyone really cares. The product is getting sharper while the truth stays distant."
+          },
+          "whatToDo": {
+            "gentle": "Pause the polish cycle and run one simple test aimed at the drop-off point. Treat the next version as a question, not as proof of craft.",
+            "direct": "Shift from refinement to exposure. Design the next iteration to learn why usage dies instead of making the app look more finished.",
+            "competitive": "Stop chasing elegance. Build the rough test that tells you why users vanish."
+          },
+          "whyItMatters": {
+            "gentle": "The surprising implication is that pride in the product can become a quiet reason to avoid evidence.",
+            "direct": "This shows how output can protect the ego while blocking learning.",
+            "competitive": "A better product can still be a better hiding place."
+          }
+        },
+        {
+          "exampleId": "ch01-ex04-investor-deck-postmortem",
+          "title": "Jordan's Investor Deck Looked Stronger Than the Business",
+          "category": "work",
+          "format": "postmortem",
+          "endingType": "cross_domain",
+          "contexts": [
+            "investor update",
+            "metrics review",
+            "startup leadership"
+          ],
+          "scenario": {
+            "gentle": "After the investor meeting, Jordan sits with the deck glowing on a late-night laptop screen. The slides looked confident. The roadmap looked full. But the questions all came back to the same gap: what had the team actually learned from recent launches about user demand and business viability? Jordan realizes the deck showcased activity more clearly than evidence.",
+            "direct": "The investor update succeeded rhetorically and failed analytically. Jordan's slides were rich on shipping velocity and thin on what recent releases proved about customer behavior or durable demand.",
+            "competitive": "The deck sold motion and got caught on substance. Investors did not want prettier activity. They wanted to know whether the business was getting less uncertain."
+          },
+          "whatToDo": {
+            "gentle": "Rebuild the next update around assumptions tested, signals observed, and decisions changed. Let activity appear only as support for what the team learned.",
+            "direct": "Organize the review by evidence gained and uncertainty reduced, not by feature volume or busyness.",
+            "competitive": "Lead with what reality taught the company. Everything else is decoration."
+          },
+          "whyItMatters": {
+            "gentle": "Across startup and school teams, people can be impressed by work volume right up until they ask what it actually proved.",
+            "direct": "The cross-domain lesson is that credibility rises when evidence, not motion, frames the story.",
+            "competitive": "Whether the audience is investors or teachers, the room eventually demands the signal behind the effort."
+          }
+        },
+        {
+          "exampleId": "ch01-ex05-demo-day-predict-reveal",
+          "title": "Tessa Predicts the Demo Table Will Not Teach Enough",
+          "category": "school",
+          "format": "predict_reveal",
+          "endingType": "common_trap",
+          "contexts": [
+            "campus incubator",
+            "demo day",
+            "student founders"
+          ],
+          "scenario": {
+            "gentle": "Before demo day starts, Tessa watches her team's campus table fill with flyers and polished screenshots. She predicts that the setup will attract polite curiosity but reveal almost nothing about whether students would return to the product. By the end of the afternoon, dozens stopped briefly, only a few signed up, and no one on the team knows why.",
+            "direct": "Tessa predicts the demo will generate attention without usable learning because the team designed it for impressions, not for a clean behavior signal. The reveal proves her right.",
+            "competitive": "The table wins glances and loses truth. Tessa called it early: the team built for optics, so the day ends with noise instead of evidence."
+          },
+          "whatToDo": {
+            "gentle": "Next time, choose one behavior to track and shape the table around it, even if the display becomes less polished. Make the event answer one real question.",
+            "direct": "Replace broad awareness goals with a single measurable action tied to the team's biggest assumption.",
+            "competitive": "Stop treating attention like insight. Force the setup to produce one hard signal or admit that the event is mostly theater."
+          },
+          "whyItMatters": {
+            "gentle": "The common trap is believing that a busy table or a crowded room automatically counts as progress.",
+            "direct": "Attention without a learning design often creates vanity metrics instead of better decisions.",
+            "competitive": "A crowd can flatter the team while teaching it almost nothing."
+          }
+        },
+        {
+          "exampleId": "ch01-ex06-before-after-side-hustle",
+          "title": "Before and After Claire Changed How She Built Her Side Hustle",
+          "category": "personal",
+          "format": "before_after",
+          "endingType": "perspective_reframe",
+          "contexts": [
+            "personal project",
+            "habit change",
+            "entrepreneurial learning"
+          ],
+          "scenario": {
+            "gentle": "Before changing course, Claire treated every weekend as a chance to add something new to her tutoring marketplace idea. Afterward, she used each weekend to test one uncertain belief, talk to real users, and decide what to drop. The project got less shiny but more honest.",
+            "direct": "Before, Claire measured progress by features added. After, she measured progress by uncertainty reduced and decisions changed.",
+            "competitive": "Before, Claire built to feel productive. After, she built to get cornered by the truth faster."
+          },
+          "whatToDo": {
+            "gentle": "Set a simple rhythm: name one assumption, build the smallest test, gather the signal, and let the next week depend on the result.",
+            "direct": "Run your project as a loop, not as a feature pile. Every round should expose an assumption and alter the next move.",
+            "competitive": "Trade the backlog fantasy for one ruthless cycle at a time: test, read the signal, cut what the signal kills."
+          },
+          "whyItMatters": {
+            "gentle": "The perspective shift is that progress feels smaller at first when it becomes more honest.",
+            "direct": "Validated learning often looks less glamorous than feature growth, but it improves decision quality.",
+            "competitive": "Real progress may look slower because it stops paying for illusions."
+          }
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "q01",
+            "prompt": "What job does Ries assign to a startup in this opening section?",
+            "choices": [
+              "Maximize feature output before competitors react",
+              "Learn how to build a sustainable business under uncertainty",
+              "Project confidence strongly enough to attract early support"
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "Ries treats a startup as a team trying to learn what kind of business can really work, not as a team chasing activity for its own sake.",
+              "direct": "The opening reset is that startup progress means learning toward a sustainable business, not merely shipping more work.",
+              "competitive": "Output and confidence can look strong while the business stays blurry. Learning is the real assignment."
+            },
+            "bloomsLevel": "remember-understand",
+            "depthLevel": "easy"
+          },
+          {
+            "questionId": "q02",
+            "prompt": "Which condition changes what good management looks like in a startup?",
+            "choices": [
+              "Heavy regulation",
+              "Extreme uncertainty",
+              "Small team size"
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "The book's definition turns on uncertainty. That is why ordinary execution habits are not enough on their own.",
+              "direct": "Extreme uncertainty is the operating condition that makes learning a management task instead of a side benefit.",
+              "competitive": "Size is a surface trait. Uncertainty is the thing that breaks the old scorecard."
+            },
+            "bloomsLevel": "remember-understand",
+            "depthLevel": "easy"
+          },
+          {
+            "questionId": "q03",
+            "prompt": "A team ships three new features but still cannot tell whether users care about them. According to Ries, what is the best reading of that situation?",
+            "choices": [
+              "The team has activity, but not yet real progress",
+              "The team should count the releases as proof of traction",
+              "The team has measured enough because output itself is evidence"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Visible work can still leave the real business question unanswered. Progress starts when the work teaches something reliable.",
+              "direct": "Feature delivery without uncertainty reduction is incomplete. The releases may matter later, but they do not yet prove progress.",
+              "competitive": "Shipping alone is weak evidence. If the releases taught nothing decisive, the team is still mostly guessing."
+            },
+            "bloomsLevel": "remember-understand",
+            "depthLevel": "easy"
+          },
+          {
+            "questionId": "q04",
+            "prompt": "Maya's product team wants to celebrate a fast sprint even though retention is still unclear. What move best fits this chapter's logic?",
+            "choices": [
+              "Double the next sprint so the team keeps its momentum",
+              "Ask which assumption the sprint actually tested and reorder work around the missing evidence",
+              "Ignore retention until the feature set feels complete"
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "That move turns the conversation from busyness to learning. It asks what the work proved rather than how full the sprint looked.",
+              "direct": "The chapter pushes managers to reconnect action with uncertainty reduction. Naming the tested assumption is the cleanest way to do that.",
+              "competitive": "Momentum is not the asset if it is outrunning the truth. Force the sprint to answer the real question."
+            },
+            "bloomsLevel": "apply-analyze",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "q05",
+            "prompt": "Why does Ries borrow from lean manufacturing in this opening argument?",
+            "choices": [
+              "To praise cheap products regardless of quality",
+              "To show that detached effort becomes waste when feedback is missing",
+              "To argue that startups should copy factories exactly"
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "The lean idea matters because it highlights waste created by work that never meets feedback in time to help the next decision.",
+              "direct": "Ries adapts lean logic to startup conditions by treating feedback-detached effort as a costly form of waste.",
+              "competitive": "The point is not factory worship. The point is exposing respectable-looking waste before it gets expensive."
+            },
+            "bloomsLevel": "apply-analyze",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "q06",
+            "prompt": "Luis stops his robotics team and asks what their next feature is supposed to reveal. What mistake is he trying to prevent?",
+            "choices": [
+              "Treating more features as automatic progress",
+              "Moving too slowly because of too much testing",
+              "Letting users influence the design too early"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "He is trying to stop the team from adding work that feels impressive but does not produce a clearer answer.",
+              "direct": "Luis is blocking output-first thinking. The chapter says a feature matters only when it exposes an assumption or reduces uncertainty.",
+              "competitive": "Feature fever is the trap. He wants the team to build for signal, not for pride."
+            },
+            "bloomsLevel": "apply-analyze",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "q07",
+            "prompt": "A student incubator team has strong booth traffic at demo day but no clear evidence about return use. How should they interpret that result?",
+            "choices": [
+              "As enough proof to keep scaling the same plan",
+              "As vanity attention unless it is tied to a behavior that sharpens the next decision",
+              "As a sign that learning can wait until after more marketing"
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "Attention can feel exciting while still teaching very little. The team needs a signal that changes what it knows or what it does next.",
+              "direct": "The chapter treats broad attention as too weak unless it connects to a measurable behavior that reduces uncertainty.",
+              "competitive": "Crowds flatter the room. They do not count for much if the business question is still foggy."
+            },
+            "bloomsLevel": "apply-analyze",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "q08",
+            "prompt": "Which statement best captures build-measure-learn as Ries uses it here?",
+            "choices": [
+              "A motivational phrase for moving quickly",
+              "A way to skip planning by trusting instinct",
+              "A steering loop that ties action to evidence and the next change in direction"
+            ],
+            "correctIndex": 2,
+            "explanation": {
+              "gentle": "The loop matters because each step has a job. It helps the team build, observe, and respond instead of just pushing ahead.",
+              "direct": "Build-measure-learn is structural, not decorative. Its purpose is to connect work with evidence and then force a better next move.",
+              "competitive": "Used properly, the loop makes speed answerable. Used badly, it collapses into slogan talk."
+            },
+            "bloomsLevel": "apply-analyze",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "q09",
+            "prompt": "Two founders are moving equally fast. One changes direction after each clear signal; the other keeps shipping without narrowing the business question. Which founder is closer to Ries's standard, and why?",
+            "choices": [
+              "The first, because speed becomes progress only when it shortens the path between assumption and evidence",
+              "The second, because consistency of output matters more than uncertainty reduction",
+              "Neither, because startups should slow down until the market is certain"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "The first founder is using speed to learn. That is the difference between momentum that helps and momentum that merely feels energetic.",
+              "direct": "Ries's standard favors cycles that alter decisions through evidence. Fast output that leaves the business question untouched does not earn the same status.",
+              "competitive": "Velocity is only leverage when it corners the truth faster. Otherwise it is a sharper form of drift."
+            },
+            "bloomsLevel": "evaluate-create",
+            "depthLevel": "hard"
+          },
+          {
+            "questionId": "q10",
+            "prompt": "If uncertainty rather than company size defines the startup problem, what idea is the next chapter most likely to expand?",
+            "choices": [
+              "That entrepreneurship belongs only to venture-backed founders",
+              "That entrepreneurship can appear in more settings than the usual startup image suggests",
+              "That uncertainty disappears once a team adopts build-measure-learn"
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "This opening chapter shifts the definition away from startup image and toward startup conditions, which naturally widens who may fit the frame.",
+              "direct": "Once uncertainty becomes the real boundary, the next logical move is to broaden where entrepreneurship can happen.",
+              "competitive": "Size was the decoy. If uncertainty is the real filter, a lot more people are about to qualify."
+            },
+            "bloomsLevel": "evaluate-create",
+            "depthLevel": "hard"
+          }
+        ]
+      },
+      "implementationPlan": {
+        "coreSkill": {
+          "gentle": "The core skill is turning busy work into learning by asking what uncertainty each round of effort is supposed to reduce.",
+          "direct": "Core skill: run work as a loop that exposes assumptions, gathers evidence, and changes the next decision.",
+          "competitive": "Core skill: stop paying for motion that does not corner the truth."
+        },
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": {
+              "gentle": "If my team finishes a sprint, then I will ask what assumption the sprint tested before I call it progress.",
+              "direct": "If a product cycle ends, then I will tie the review to evidence gained and decisions changed rather than output volume.",
+              "competitive": "If the board looks full, I will still demand the signal before I celebrate."
+            }
+          },
+          {
+            "context": "school",
+            "plan": {
+              "gentle": "If our project team wants to add more features, then we will first name the unknown we are trying to reduce.",
+              "direct": "If a student build discussion expands too quickly, then I will force the team to state the assumption behind the next piece of work.",
+              "competitive": "If feature fever starts, I will cut the list until one real question is left."
+            }
+          },
+          {
+            "context": "personal",
+            "plan": {
+              "gentle": "If I keep polishing a side project, then I will pause and ask what the next version is meant to teach me.",
+              "direct": "If personal work is getting more refined but not more informative, then I will redesign the next step as a test.",
+              "competitive": "If I am upgrading the project without new truth, I will stop decorating the guess."
+            }
+          }
+        ],
+        "twentyFourHourChallenge": {
+          "gentle": "Within the next day, choose one active project and write the biggest assumption behind it. Then note what evidence would count as a real answer.",
+          "direct": "In 24 hours, take one workstream and map the loop: assumption, build, measure, next decision. Fix the weakest link.",
+          "competitive": "Today, pick one busy effort and force a verdict on whether it is teaching anything that matters."
+        },
+        "weeklyPractice": {
+          "gentle": "For one week, notice when progress is being described with activity words only. Add one learning question before the conversation ends.",
+          "direct": "For seven days, track one example per day where output was treated as proof, then rewrite the scorecard in terms of uncertainty reduced.",
+          "competitive": "Spend the week catching motion theater early and replacing it with evidence talk."
+        }
+      },
+      "reviewCards": [
+        {
+          "cardId": "ch01-rc01",
+          "front": {
+            "gentle": "What is a startup trying to learn in this opening reset?",
+            "direct": "What does Ries say the startup is really trying to build?",
+            "competitive": "What is the real target behind the product?"
+          },
+          "back": {
+            "gentle": "It is trying to learn how to build a sustainable business under uncertainty.",
+            "direct": "The team is learning toward a sustainable business, not simply shipping more output.",
+            "competitive": "The product is only part of it. Viability is the real target."
+          },
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "ch01-rc02",
+          "front": {
+            "gentle": "Why is visible activity too weak as a scorecard here?",
+            "direct": "What can output fail to tell a startup team?",
+            "competitive": "Why can a busy team still be lost?"
+          },
+          "back": {
+            "gentle": "Because activity may look strong while uncertainty about customers or the business is still unresolved.",
+            "direct": "Output can hide whether the team has learned anything reliable about value or viability.",
+            "competitive": "Motion can be loud while the truth stays far away."
+          },
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "ch01-rc03",
+          "front": {
+            "gentle": "How does lean thinking sharpen this chapter's argument?",
+            "direct": "What kind of waste is Ries warning about?",
+            "competitive": "What respectable-looking waste does the chapter attack?"
+          },
+          "back": {
+            "gentle": "It warns against effort that gets separated from feedback before it can teach the team anything useful.",
+            "direct": "Ries treats feedback-detached work as waste, even when the work looks efficient.",
+            "competitive": "The dangerous waste is productive-looking effort with no real signal attached."
+          },
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch01-rc04",
+          "front": {
+            "gentle": "What does build-measure-learn protect a team from?",
+            "direct": "Why is the loop more than a speed slogan?",
+            "competitive": "What does the loop stop speed from becoming?"
+          },
+          "back": {
+            "gentle": "It protects the team from staying busy without tying work to evidence and a better next move.",
+            "direct": "The loop matters because it forces exposure, evidence, and course correction into one sequence.",
+            "competitive": "It stops velocity from turning into camouflage."
+          },
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch01-rc05",
+          "front": {
+            "gentle": "When does speed help, and when does it hurt?",
+            "direct": "What boundary condition does the chapter place on moving fast?",
+            "competitive": "When is fast learning, and when is fast waste?"
+          },
+          "back": {
+            "gentle": "Speed helps when it brings feedback and changes the next decision. It hurts when it only multiplies work around an untested belief.",
+            "direct": "Fast cycles are useful only if they shorten the path between assumption and evidence.",
+            "competitive": "Speed earns its place when truth arrives faster. Otherwise it just scales the guess."
+          },
+          "difficulty": "hard"
+        }
+      ],
+      "keyTakeawayCard": {
+        "gentle": "The opening reset is that startup progress means learning toward a sustainable business, not just producing more visible work.",
+        "direct": "Ries replaces output with validated learning as the startup's real scorecard under uncertainty.",
+        "competitive": "A startup wins by cornering truth, not by stacking motion."
+      }
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch04-q01",
+      "prompt": "What question best captures the craftsman mindset in this chapter?",
+      "choices": [
+        "A) What is this job giving me emotionally today?",
+        "B) What valuable thing am I getting better at building here?",
+        "C) How quickly can I know whether this is my one true calling?"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The craftsman mindset turns attention toward skill, value, and output. It does not begin with asking for emotional confirmation.",
+        "direct": "This chapter defines the craftsman mindset through outward construction rather than inward fit-monitoring.",
+        "competitive": "The new scoreboard is about value built, not reassurance received."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch04-q02",
+      "prompt": "Why does Jordan Tice matter as an anchor for this chapter?",
+      "choices": [
+        "A) He shows patient craft organized around the work itself rather than around self-display",
+        "B) He proves that modest people never care about recognition",
+        "C) He shows that every career should start in music"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Tice gives the chapter a concrete example of attention disciplined by craft rather than by image.",
+        "direct": "The example matters because it embodies the chapter's alternative: output-centered ambition instead of identity performance.",
+        "competitive": "He matters because the work is at the center, not the self-story."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch04-q03",
+      "prompt": "What changes when someone shifts from the passion mindset to the craftsman mindset?",
+      "choices": [
+        "A) Work becomes painless",
+        "B) Difficulty disappears once the right field is found",
+        "C) Rough patches are more likely to be interpreted through skill and value rather than immediate mismatch"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter does not promise easy work. It promises a steadier way to read difficulty by asking what it is building or revealing.",
+        "direct": "The craftsman lens changes interpretation, not the existence of friction. Difficulty becomes easier to sort and use.",
+        "competitive": "Pain stays. Automatic verdicts lose authority."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch04-q04",
+      "prompt": "Maya is in a hard sprint and starts asking whether the project proves the role is wrong for her. Which chapter-based move is strongest?",
+      "choices": [
+        "A) Ignore the project entirely and wait for a more inspiring one",
+        "B) Ask what valuable capability the sprint is helping her build before deciding what the discomfort means",
+        "C) Assume the project is good because all hard work is meaningful"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The craftsman mindset redirects the evaluation. Maya should first ask what skill, output, or leverage the sprint is building.",
+        "direct": "This matches the chapter's core move from fit anxiety to contribution analysis.",
+        "competitive": "Make the sprint pay rent in skill before you let it vote on your future."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q05",
+      "prompt": "Which statement best preserves the chapter's limit around bad environments?",
+      "choices": [
+        "A) The craftsman mindset means staying in any job if you can work hard enough",
+        "B) Contribution focus is useful only when the environment still offers a path for craft, skill, or value to deepen",
+        "C) If you leave a bad setting, you were never using the craftsman mindset correctly"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter keeps a real boundary. Outward focus is strategic, not blind, and it fails in dead or exploitative environments.",
+        "direct": "That answer captures the growth-path condition the chapter insists on preserving.",
+        "competitive": "No compounding, no mandate. Bad systems can still fail the test."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q06",
+      "prompt": "A professor hears Elise interpret repetitive practice as proof that music may not be for her. What chapter-based response is strongest?",
+      "choices": [
+        "A) Reframe the repetition around the specific control or technical gain it is building",
+        "B) Tell Elise that repetition never matters in serious craft",
+        "C) Tell Elise that all doubts are signs she should switch fields"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter asks Elise to interpret repetition through craft rather than through identity panic.",
+        "direct": "A craftsman lens names the technical gain instead of letting repetition become evidence of mismatch by default.",
+        "competitive": "Make the drill identify its leverage before it gets treated like betrayal."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q07",
+      "prompt": "Carter keeps asking whether drawing is his true thing and feels worse after every imperfect page. What shift best fits the chapter?",
+      "choices": [
+        "A) Turn the session into a craft review focused on one technical standard rather than on identity proof",
+        "B) Stop drawing until the identity question feels settled",
+        "C) Judge every page by whether it confirms long-term destiny"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter suggests lowering self-absorption by making the standard more technical and concrete.",
+        "direct": "Carter should replace existential evaluation with craft evaluation. That is the attentional shift the chapter argues for.",
+        "competitive": "Stop asking the sketchbook to certify the self. Raise the standard on the page instead."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q08",
+      "prompt": "Jonah reviews an old role and realizes he spent most of the year asking whether it matched his identity. According to the chapter, what should he examine now?",
+      "choices": [
+        "A) Whether the role made him feel inspired every morning",
+        "B) Whether the role helped him improve output, standards, or portable capability even if it felt imperfect",
+        "C) Whether everyone else admired the role more than he did"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The craftsman lens asks what the role was helping him build, not whether it delivered constant emotional confirmation.",
+        "direct": "This is the right postmortem question because it reveals whether the role was generating future leverage through skill and output.",
+        "competitive": "Audit what stacked, not what flattered."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q09",
+      "prompt": "Why does the craftsman mindset often make work feel clearer even when the work is still hard?",
+      "choices": [
+        "A) Because it removes all ambiguity from careers",
+        "B) Because it gives difficulty a steadier interpretation through standards, skill, and value creation",
+        "C) Because it guarantees external recognition will arrive quickly"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says clarity comes from a better lens, not from easier work. Difficulty becomes easier to read when contribution is the focus.",
+        "direct": "The craftsman mindset lowers interpretive noise by sorting friction through craft and value rather than through unstable identity questions.",
+        "competitive": "A stronger scoreboard makes the same pain easier to diagnose."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch04-q10",
+      "prompt": "What pressure does this chapter create for the next one?",
+      "choices": [
+        "A) To explain what resource accumulates when better output keeps compounding",
+        "B) To prove that emotional fit never matters again",
+        "C) To rank different kinds of modesty"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Once the craftsman mindset shifts attention to value and output, the next question is what that improvement becomes over time.",
+        "direct": "The chapter points directly toward the resource generated by craft-focused effort. The next chapter names it as career capital.",
+        "competitive": "The gains are stacking now. The next move is to define the currency."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

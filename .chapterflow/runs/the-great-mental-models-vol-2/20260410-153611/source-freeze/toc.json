@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "chapterflow.v13.toc",
+  "bookId": "the-great-mental-models-vol-2",
+  "runId": "20260410-153611",
+  "source": "Ingram Syndetics via Better World Books cross-checked against Google Books partial contents",
+  "sections": [
+    {
+      "name": "Introduction",
+      "pageStart": 1
+    },
+    {
+      "name": "Physics",
+      "chapters": [
+        { "number": 1, "slug": "relativity", "title": "Relativity", "pageStart": 9 },
+        { "number": 2, "slug": "reciprocity", "title": "Reciprocity", "pageStart": 27 },
+        { "number": 3, "slug": "thermodynamics", "title": "Thermodynamics", "pageStart": 49 },
+        { "number": 4, "slug": "inertia", "title": "Inertia", "pageStart": 71 },
+        { "number": 5, "slug": "friction-and-viscosity", "title": "Friction and Viscosity", "pageStart": 89 },
+        { "number": 6, "slug": "velocity", "title": "Velocity", "pageStart": 105 },
+        { "number": 7, "slug": "leverage", "title": "Leverage", "pageStart": 117 }
+      ]
+    },
+    {
+      "name": "Chemistry",
+      "pageStart": 135,
+      "chapters": [
+        { "number": 8, "slug": "activation-energy", "title": "Activation Energy", "pageStart": 137 },
+        { "number": 9, "slug": "catalysts", "title": "Catalysts", "pageStart": 153 },
+        { "number": 10, "slug": "alloying", "title": "Alloying", "pageStart": 167 }
+      ]
+    },
+    {
+      "name": "Biology",
+      "pageStart": 181,
+      "chapters": [
+        { "number": 11, "slug": "natural-selection-and-extinction", "title": "Evolution Part One: Natural Selection and Extinction", "pageStart": 183 },
+        { "number": 12, "slug": "adaptation-rate-and-the-red-queen-effect", "title": "Evolution Part Two: Adaptation Rate and the Red Queen Effect", "pageStart": 201 },
+        { "number": 13, "slug": "ecosystem", "title": "Ecosystem", "pageStart": 229 },
+        { "number": 14, "slug": "niches", "title": "Niches", "pageStart": 249 },
+        { "number": 15, "slug": "self-preservation", "title": "Self-Preservation", "pageStart": 267 },
+        { "number": 16, "slug": "replication", "title": "Replication", "pageStart": 287 },
+        { "number": 17, "slug": "cooperation", "title": "Cooperation", "pageStart": 303 },
+        { "number": 18, "slug": "hierarchical-organization", "title": "Hierarchical Organization", "pageStart": 319 },
+        { "number": 19, "slug": "incentives", "title": "Incentives", "pageStart": 337 },
+        { "number": 20, "slug": "tendency-to-minimize-energy-output", "title": "Tendency to Minimize Energy Output", "pageStart": 353 }
+      ],
+      "supportingIdeas": [
+        { "betweenChapters": [12, 13], "title": "Competition", "pageStart": 226 },
+        { "betweenChapters": [17, 18], "title": "Dunbar's Number", "pageStart": 316 }
+      ]
+    },
+    {
+      "name": "Afterthoughts",
+      "pageStart": 367
+    }
+  ]
+}

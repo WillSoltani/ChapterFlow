@@ -54,6 +54,7 @@ const EDITION_KEYS = new Set([
   "sourceProvenance",
 ]);
 const CHAPTER_KEYS = new Set([
+  "book",
   "chapterId",
   "number",
   "title",
@@ -71,6 +72,7 @@ const QUIZ_KEYS = new Set([
   "chapterId",
   "chapterNumber",
   "chapterTitle",
+  "title",
   "passingScorePercent",
   "questions",
   "retryQuestions",
@@ -245,7 +247,7 @@ function parseEdition(
   }
 
   hasOnlyKeys(value, EDITION_KEYS, path, issues);
-  const name = readString(value.name, `${path}.name`, issues, { max: 80 });
+  const name = readString(value.name, `${path}.name`, issues, { max: 160 });
   const publishedYear =
     value.publishedYear == null
       ? undefined
@@ -428,6 +430,11 @@ function parseChapter(chapterRaw: unknown, path: string, issues: ValidationIssue
 
   hasOnlyKeys(chapterRaw, CHAPTER_KEYS, path, issues);
 
+  const chapterBookRaw = isRecord(chapterRaw.book) ? chapterRaw.book : undefined;
+  if (chapterRaw.book != null && !chapterBookRaw) {
+    issues.push({ path: `${path}.book`, message: "book must be an object." });
+  }
+
   const contentVariantsRaw = isRecord(chapterRaw.contentVariants) ? chapterRaw.contentVariants : {};
   if (!isRecord(chapterRaw.contentVariants)) {
     issues.push({ path: `${path}.contentVariants`, message: "contentVariants must be an object." });
@@ -595,6 +602,34 @@ function parseChapter(chapterRaw: unknown, path: string, issues: ValidationIssue
   const keyTakeawayCard = parseToneKeyed(chapterRaw.keyTakeawayCard, `${path}.keyTakeawayCard`, issues) ?? undefined;
 
   return {
+    book: chapterBookRaw
+      ? {
+          bookId:
+            typeof chapterBookRaw.bookId === "string"
+              ? readString(chapterBookRaw.bookId, `${path}.book.bookId`, issues, {
+                  optional: true,
+                  min: 1,
+                  max: 120,
+                })
+              : undefined,
+          title:
+            typeof chapterBookRaw.title === "string"
+              ? readString(chapterBookRaw.title, `${path}.book.title`, issues, {
+                  optional: true,
+                  min: 1,
+                  max: 240,
+                })
+              : undefined,
+          author:
+            typeof chapterBookRaw.author === "string"
+              ? readString(chapterBookRaw.author, `${path}.book.author`, issues, {
+                  optional: true,
+                  min: 1,
+                  max: 240,
+                })
+              : undefined,
+        }
+      : undefined,
     chapterId: readString(chapterRaw.chapterId, `${path}.chapterId`, issues, { max: 120 }),
     number: readInteger(chapterRaw.number, `${path}.number`, issues, { min: 1, max: 5000 }),
     title: readString(chapterRaw.title, `${path}.title`, issues, { max: 200 }),
@@ -747,6 +782,12 @@ function parseQuiz(quizRaw: unknown, path: string, issues: ValidationIssue[]) {
             min: 1,
             max: 200,
           })
+        : typeof quizRaw.title === "string"
+          ? readString(quizRaw.title, `${path}.title`, issues, {
+              optional: true,
+              min: 1,
+              max: 200,
+            })
         : undefined,
     passingScorePercent: readInteger(quizRaw.passingScorePercent, `${path}.passingScorePercent`, issues, {
       min: 50,

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "ch04-q01",
+      "depthLevel": "easy",
+      "bloomsLevel": "remember",
+      "prompt": "What phrase does Duke use to describe how feedback arrives over time?",
+      "choices": [
+        "Fielding the unfolding future",
+        "Winning the final hand",
+        "Trusting the process blindly"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter's key phrase is \"fielding the unfolding future.\" The other choices do not describe staged evidence arriving over time.",
+        "direct": "Duke's language emphasizes receiving evidence in pieces. The wrong answers either overfocus on endings or turn the chapter into a cliche.",
+        "competitive": "The chapter is about sorting incoming evidence, not about worshipping the finish line or repeating slogans."
+      }
+    },
+    {
+      "questionId": "ch04-q02",
+      "depthLevel": "easy",
+      "bloomsLevel": "understand",
+      "prompt": "Why can one early result be too weak to settle the whole decision?",
+      "choices": [
+        "Because early results never matter",
+        "Because early results can mix signal with noise",
+        "Because decisions should never be reviewed until the very end"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Early outcomes can contain useful information, but they can also be noisy. The chapter rejects both total dismissal and total delay.",
+        "direct": "The issue is evidence quality. A first result may matter without being decisive enough to carry the entire review.",
+        "competitive": "Fresh data can hit hard without earning the right to run the whole trial."
+      }
+    },
+    {
+      "questionId": "ch04-q03",
+      "depthLevel": "medium",
+      "bloomsLevel": "apply",
+      "prompt": "A rollout shows one strong metric and one weak metric after only a few days. According to the chapter, what is the best response?",
+      "choices": [
+        "Treat the launch as already proven successful",
+        "Treat the mixed result as staged evidence and weight each signal carefully",
+        "Ignore the data entirely until the project is over"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says mixed feedback should be sorted, not turned into a fast verdict or completely ignored.",
+        "direct": "A staged evidence stream requires proportional interpretation. One metric alone does not deserve full control of the judgment.",
+        "competitive": "Do not let one green line or one red line steal the whole case."
+      }
+    },
+    {
+      "questionId": "ch04-q04",
+      "depthLevel": "medium",
+      "bloomsLevel": "apply",
+      "prompt": "Mateo has one bad week and wants to call his whole plan a failure. Which move fits Duke's method best?",
+      "choices": [
+        "Treat the week as proof that the plan never had value",
+        "Ask what the week actually reveals and how much it should move confidence",
+        "Refuse to review the week because outcomes are too emotional to matter"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter teaches steadier review. Mateo should ask what the setback truly shows instead of turning it into a total verdict.",
+        "direct": "This is proportional updating: give the result the weight it earned, no more and no less.",
+        "competitive": "Move the estimate by the signal, not by the sting."
+      }
+    },
+    {
+      "questionId": "ch04-q05",
+      "depthLevel": "medium",
+      "bloomsLevel": "analyze",
+      "prompt": "What is the key difference between updating and wobbling in this chapter?",
+      "choices": [
+        "Updating changes beliefs proportionally, while wobbling gives each new result too much authority",
+        "Updating avoids all emotional response, while wobbling accepts emotion",
+        "Updating waits for perfect evidence, while wobbling acts quickly"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Updating is disciplined revision. Wobbling means getting pushed around by each fresh outcome.",
+        "direct": "The chapter's distinction is about evidence weight, not about becoming emotionless or waiting forever.",
+        "competitive": "One is measured learning. The other is recency grabbing the wheel."
+      }
+    },
+    {
+      "questionId": "ch04-q06",
+      "depthLevel": "medium",
+      "bloomsLevel": "understand",
+      "prompt": "Which statement is a misreading of this chapter?",
+      "choices": [
+        "Results should be used as staged feedback",
+        "Outcomes barely matter because the future unfolds slowly",
+        "Evidence should move confidence in proportion to its strength"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter never says outcomes barely matter. It says they must be weighted honestly.",
+        "direct": "Duke is rejecting premature verdicts, not downgrading evidence into irrelevance.",
+        "competitive": "Turning the chapter into outcome-minimizing fog misses the whole method."
+      }
+    },
+    {
+      "questionId": "ch04-q07",
+      "depthLevel": "medium",
+      "bloomsLevel": "apply",
+      "prompt": "A finance-class team sees one alarming early indicator. What would most improve their response?",
+      "choices": [
+        "Immediately rewrite the full forecast around that indicator",
+        "Ask whether the indicator is a monitoring signal or a decision-grade signal",
+        "Hide the indicator so no one overreacts to it"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The class should sort what the indicator truly shows before giving it too much weight.",
+        "direct": "The chapter's method depends on evidence weighting, not instant surrender or denial.",
+        "competitive": "Make the signal earn its authority before it gets to touch the whole model."
+      }
+    },
+    {
+      "questionId": "ch04-q08",
+      "depthLevel": "hard",
+      "bloomsLevel": "analyze",
+      "prompt": "Why does Duke keep process review active while the future is still unfolding?",
+      "choices": [
+        "Because new evidence should matter, but it should not erase what was knowable at decision time",
+        "Because process review matters only when outcomes are fully complete",
+        "Because process is always more important than outcomes"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps both timelines alive: what was known then and what is known now.",
+        "direct": "Serious learning requires comparing new evidence with the original decision frame rather than letting one replace the other.",
+        "competitive": "Do not let the latest result mug the earlier file."
+      }
+    },
+    {
+      "questionId": "ch04-q09",
+      "depthLevel": "hard",
+      "bloomsLevel": "analyze",
+      "prompt": "Why is proportional updating harder but more honest than instant verdicts?",
+      "choices": [
+        "Because it requires weighing evidence quality instead of reacting to vividness alone",
+        "Because it guarantees the learner will never be wrong again",
+        "Because it removes all uncertainty from future decisions"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Proportional updating asks the learner to judge how much the evidence really shows, not just how strong it feels.",
+        "direct": "The method is harder because it requires weighting and comparison rather than emotional closure.",
+        "competitive": "A hot verdict is easier. A weighted update is real work."
+      }
+    },
+    {
+      "questionId": "ch04-q10",
+      "depthLevel": "hard",
+      "bloomsLevel": "analyze",
+      "prompt": "How does this chapter prepare the next one?",
+      "choices": [
+        "It shows that once feedback is updated honestly, outside people can help audit those updates",
+        "It proves that solo judgment is enough once beliefs are priced",
+        "It argues that social disagreement should replace personal reflection entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next chapter adds other people to the learning process after this chapter teaches how to update more honestly.",
+        "direct": "Duke moves from private revision toward social correction, but only after building a disciplined feedback loop.",
+        "competitive": "Once your own update is on the table, the next chapter brings in other minds to check whether you are playing it straight."
+      }
+    }
+  ]
+}

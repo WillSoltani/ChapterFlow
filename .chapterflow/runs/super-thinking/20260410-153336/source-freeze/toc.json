@@ -1,0 +1,52 @@
+{
+  "title": "Super Thinking",
+  "confidence": "medium",
+  "sourceBasis": [
+    "Penguin Random House product metadata",
+    "Super Thinking official reference-site chapter labels"
+  ],
+  "chapters": [
+    {
+      "number": 1,
+      "title": "Being Wrong Less",
+      "sourceRichness": "high",
+      "notes": "Multiple authorized excerpt pages frozen."
+    },
+    {
+      "number": 2,
+      "title": "Anything That Can Go Wrong, Will",
+      "sourceRichness": "medium",
+      "notes": "Confirmed by Murphy's Law excerpt page."
+    },
+    {
+      "number": 3,
+      "title": "Spend Your Time Wisely",
+      "sourceRichness": "medium",
+      "notes": "Confirmed by Compound Interest excerpt page."
+    },
+    {
+      "number": 4,
+      "title": "Becoming One with Nature",
+      "sourceRichness": "medium",
+      "notes": "Confirmed by Natural Selection and Network Effects excerpt pages."
+    },
+    {
+      "number": 5,
+      "title": "Lies, Damned Lies, and Statistics",
+      "sourceRichness": "medium",
+      "notes": "Confirmed by Base Rate Fallacy excerpt page."
+    },
+    {
+      "number": 6,
+      "title": "Decisions, Decisions",
+      "sourceRichness": "medium",
+      "notes": "Confirmed by Decision Tree excerpt page."
+    },
+    {
+      "number": 7,
+      "title": "Dealing With Conflict",
+      "sourceRichness": "medium",
+      "notes": "Confirmed by multiple excerpt pages; later internal section/chapter segmentation remains medium-confidence."
+    }
+  ]
+}

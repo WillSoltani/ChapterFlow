@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch09-q01",
+      "prompt": "What makes the Intuit chapter a connection company case?",
+      "choices": [
+        "It shows connection as a company story about linked execution across adjacent work",
+        "It proves every team should merge into one stream",
+        "It replaces coordination with more meetings"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter takes connection out of theory and into a company case.",
+        "direct": "Its main job is to show how linked execution keeps adjacent work from splitting apart.",
+        "competitive": "This case is about real linkage, not louder collaboration."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch09-q02",
+      "prompt": "How does the chapter distinguish connection from parallel streams?",
+      "choices": [
+        "Connection begins when dependency handoffs and linked priorities become visible",
+        "Connection means each team protects its own flow without adjustment",
+        "Connection requires one centralized stream for all work"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The company becomes more connected when teams can see how work passes between them.",
+        "direct": "The chapter says visible handoffs are the difference, not just adjacent effort.",
+        "competitive": "Hidden breaks mean separate streams, not connection."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch09-q03",
+      "prompt": "Why is communication volume a weak substitute for connection in this chapter?",
+      "choices": [
+        "Because more talk can still leave operational linkage weak",
+        "Because the chapter rejects all discussion",
+        "Because connection means no handoffs are needed"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter separates talking more from linking work better.",
+        "direct": "Discussion is weaker than visible handoffs and linked priorities.",
+        "competitive": "Chatter is not a stream map."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch09-q04",
+      "prompt": "Avery sees adjacent teams with strong local plans but unclear handoffs. What best fits the chapter?",
+      "choices": [
+        "The company is connected because both teams are serious",
+        "The company needs visible handoffs and linked priorities before calling the work connected",
+        "The company should hide the handoff issues until later"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Serious local plans are weaker than visible linkage between adjacent work.",
+        "direct": "The missing piece is operational connection, not more parallel effort.",
+        "competitive": "Parallel streams are not linked execution."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q05",
+      "prompt": "A theater production board worked hard but kept discovering breaks between subgroups late. What chapter failure does this show?",
+      "choices": [
+        "Healthy specialization with no downside",
+        "Fragmented streams caused by weak visible handoffs",
+        "Too much visible linkage"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The problem is weak linkage, not weak effort.",
+        "direct": "The board let adjacent streams stay poorly connected.",
+        "competitive": "They had one production and several private flow lines."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q06",
+      "prompt": "Which misreading does the chapter reject?",
+      "choices": [
+        "Connection means more communication alone",
+        "Connection depends on visible handoffs",
+        "Connection links adjacent work across dependencies"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says more discussion is weaker than operational linkage.",
+        "direct": "Communication volume is a substitute, not the mechanism.",
+        "competitive": "If more chatter is your answer, you missed the company lesson."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q07",
+      "prompt": "What is happening when teams work hard but the streams between them remain weakly linked?",
+      "choices": [
+        "Real connection is already complete",
+        "Fragmented flow is weakening the whole effort",
+        "The chapter says handoffs no longer matter"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Weak handoffs let execution split even when teams mean well.",
+        "direct": "The chapter treats fragmented streams as the key company failure pattern.",
+        "competitive": "Broken flow still wins under coordination language."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q08",
+      "prompt": "A mentoring network wants stronger connection without forcing one centralized stream. Which judgment best fits the chapter?",
+      "choices": [
+        "The network should reject visible handoffs",
+        "The network should keep distinct work but make the handoffs visibly concrete",
+        "The network should flatten every group into one flow"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Connection can link distinct work without erasing it.",
+        "direct": "The chapter favors visible handoffs over centralization theater.",
+        "competitive": "The map matters more than one giant pipe."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q09",
+      "prompt": "What deeper point does the chapter make about visible handoffs in a company?",
+      "choices": [
+        "They matter only after work has already broken",
+        "They turn coordination into something operational before fragmented flow becomes costly",
+        "They belong only to communication style and not to execution"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Visible handoffs help teams repair breaks before the cost rises.",
+        "direct": "The chapter makes linkage part of execution rather than just of tone.",
+        "competitive": "See the break early or pay for it later."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch09-q10",
+      "prompt": "Why does Chapter 9 naturally lead into tracking and accountability next?",
+      "choices": [
+        "Because once work is linked, the next issue is whether the connected movement is visible and owned",
+        "Because connection removes the need for measurement",
+        "Because company stories end after connection"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The bridge asks how teams track the movement of connected work.",
+        "direct": "After linkage comes the question of owned visible progress.",
+        "competitive": "Once the streams connect, the next fight is proof of motion."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

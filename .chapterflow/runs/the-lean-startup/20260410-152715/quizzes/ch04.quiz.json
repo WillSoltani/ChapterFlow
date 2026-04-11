@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What does an experiment test in this chapter?",
+      "choices": [
+        "A business hypothesis",
+        "A team's internal enthusiasm",
+        "A list of general user preferences"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Ries treats experiments as tests of business assumptions, not as broad idea sessions.",
+        "direct": "The chapter makes experiments answerable to business hypotheses, especially value and growth.",
+        "competitive": "The question on trial is business viability, not the room's excitement."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What does the value hypothesis ask?",
+      "choices": [
+        "Whether users care enough that the product truly matters",
+        "Whether the company's office culture is strong",
+        "Whether the roadmap can be delivered on schedule"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The value hypothesis asks whether the product creates real user value, not just internal enthusiasm.",
+        "direct": "Value is about meaningful user care and pull, not about team efficiency or cultural quality.",
+        "competitive": "It asks whether anyone cares enough for the business to matter."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What does the growth hypothesis add to the chapter's logic?",
+      "choices": [
+        "It asks how value could spread through a real business path",
+        "It proves that every useful product will naturally scale",
+        "It replaces the need to test user value directly"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Growth matters because user value alone is not enough if the business has no workable path to spread.",
+        "direct": "The growth hypothesis expands the chapter from product usefulness into business viability.",
+        "competitive": "A good idea that cannot travel is still a weak business."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Naomi's team has many interviews but still no real test of customer commitment. What move best fits this chapter?",
+      "choices": [
+        "Run more interviews until the room feels completely informed",
+        "Use the interview clues to design a test that exposes the business assumption directly",
+        "Ignore all research because interviews never matter"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Interviews can guide the next step, but the chapter asks teams to move from clues toward exposed tests.",
+        "direct": "Ries's standard is not anti-research. It is anti-research standing in for the experiment that could actually settle the question.",
+        "competitive": "Take the clues, but stop letting them protect the assumption from trial."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why can market research be weaker than actionable feedback in startup conditions?",
+      "choices": [
+        "Because research is always inaccurate",
+        "Because it may offer clues without forcing the business to change its next move",
+        "Because startups should never ask users any questions"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Research can still help, but the chapter says it is weaker when it informs without exposing the business assumption to a result that matters.",
+        "direct": "Actionable feedback is stronger because it can steer what the team builds, tests, or abandons next.",
+        "competitive": "A clue is softer than a result that can shove the roadmap sideways."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Omar notices his student team keeps collecting positive reactions instead of testing whether people will actually use the product. What trap is he naming?",
+      "choices": [
+        "Treating interest as equivalent to the value hypothesis being proven",
+        "Testing too many hypotheses at once",
+        "Letting real behavior matter too early"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns that positive reaction can still be weaker than proof of real user value.",
+        "direct": "Omar is separating surface approval from the stronger evidence needed to answer the value hypothesis.",
+        "competitive": "Likability is cheap. The business question is harder."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "A nonprofit team gets encouraging survey data but no strong evidence that people will take the next step the model depends on. What should they conclude?",
+      "choices": [
+        "The survey has fully validated the new program",
+        "The survey is useful direction, but the key assumption still needs a stronger test",
+        "The team should stop all research immediately"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter treats informative research as a clue when it has not yet forced the business question into the open.",
+        "direct": "Survey direction can matter, but it is weaker than an exposed test that settles the next business decision.",
+        "competitive": "Good clues do not excuse the team from running the test that could still hurt."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Samir's roadmap delayed the one experiment most likely to settle demand. How would Ries likely judge that choice?",
+      "choices": [
+        "As harmless because the team stayed productive",
+        "As a risk because the project protected the assumption that mattered most",
+        "As smart because painful tests should always wait"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says postponing the most important test can let a project stay busy while the key risk remains untouched.",
+        "direct": "Ries treats this as business avoidance: the team delayed the experiment whose answer mattered most to viability.",
+        "competitive": "The roadmap was protecting the story instead of testing the business."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Which experiment is often most valuable under this chapter's logic?",
+      "choices": [
+        "The experiment that flatters the current roadmap",
+        "The experiment with the cleanest presentation value",
+        "The experiment whose answer could most sharply threaten a key business assumption"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter says the most important test is often the one that the team finds hardest to face because the answer matters so much.",
+        "direct": "High-value experiments are the ones that can meaningfully confirm or disconfirm a key assumption the business depends on.",
+        "competitive": "The best test is often the one the roadmap least wants reality to touch."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If a startup is a set of experiments, what question does the next chapter logically need to answer?",
+      "choices": [
+        "Which assumptions are leap-of-faith assumptions and deserve testing first",
+        "Which office rituals make experimentation feel more creative",
+        "Why growth matters less than value in all cases"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Once experiments are defined, the next step is deciding which unknowns matter enough to test first.",
+        "direct": "The chapter points naturally toward prioritizing leap-of-faith assumptions by consequence.",
+        "competitive": "If the business cannot test everything at once, the next move is ranking the assumptions worth risking first."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

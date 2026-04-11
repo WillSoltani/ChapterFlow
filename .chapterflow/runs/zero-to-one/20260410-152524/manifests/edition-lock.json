@@ -1,0 +1,35 @@
+{
+  "bookId": "zero-to-one",
+  "runId": "20260410-152524",
+  "status": "locked_without_user_question",
+  "selectionReason": "One dominant English first-edition chapter map appears across the official Google Books metadata and the Open Library first-edition page. No competing translation or revised-edition chapter structure materially changes chapter-level scope for this run.",
+  "chosenEdition": {
+    "title": "Zero to One: Notes on Startups, or How to Build the Future",
+    "authors": [
+      "Peter Thiel",
+      "Blake Masters"
+    ],
+    "language": "English",
+    "publisher": "Crown Business / Crown Publishing Group",
+    "publishedYear": 2014,
+    "isbn13": "9780804139298",
+    "isbn10": "0804139296",
+    "chapterRange": "1-14",
+    "sourceText": ".chapterflow/runs/zero-to-one/20260410-152524/source-freeze/book-source.md",
+    "sourceProvenance": "Frozen from Google Books official metadata and description, Open Library first-edition table of contents and identifiers, and secondary chapter-summary support recorded in manifests/source-ledger.json."
+  },
+  "rejectedAlternatives": [
+    {
+      "title": "Zero to One: Notes on Startups, Or how to Build the Future",
+      "publisher": "Virgin Books",
+      "publishedYear": 2014,
+      "reason": "Same chapter family and substance for package purposes; treated as non-material regional metadata variation."
+    },
+    {
+      "title": "Zero to one: wie Innovation unsere Gesellschaft rettet",
+      "publisher": "ABOD Verlag",
+      "publishedYear": 2014,
+      "reason": "German translation; translation choice would matter only if the user requested a translated run."
+    }
+  ]
+}

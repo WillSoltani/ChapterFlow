@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "chapterflow.v13.source-ledger",
+  "bookId": "thinking-in-bets",
+  "runId": "20260410-224310",
+  "createdAt": "2026-04-10T22:55:00-03:00",
+  "sourcePolicy": "public_or_authorized_plus_secondary",
+  "sources": [
+    {
+      "sourceId": "src-prh-book-page",
+      "title": "Thinking in Bets by Annie Duke",
+      "url": "https://www.penguinrandomhouse.com/books/552885/thinking-in-bets-by-annie-duke/9780735216365/",
+      "type": "official_book_page",
+      "role": "edition_anchor_and_official_description",
+      "confidence": "high",
+      "notes": "Publisher page for the Portfolio/Penguin edition. Confirms title, subtitle, author, publication date, publisher, and the book's official framing."
+    },
+    {
+      "sourceId": "src-openlibrary-edition",
+      "title": "Thinking in bets by Annie Duke",
+      "url": "https://openlibrary.org/books/OL26949376M/Thinking_in_bets",
+      "type": "library_catalog",
+      "role": "table_of_contents_and_bibliographic_cross_check",
+      "confidence": "high",
+      "notes": "Catalog record with table of contents, 2018 publication data, and edition identifiers. Used to freeze chapter order."
+    },
+    {
+      "sourceId": "src-openlibrary-paperback",
+      "title": "Thinking in Bets by Annie Duke",
+      "url": "https://openlibrary.org/books/OL27328231M/Thinking_in_Bets",
+      "type": "library_catalog",
+      "role": "edition_stability_cross_check",
+      "confidence": "medium",
+      "notes": "Cross-check for the 2019 paperback. Supports that the chapter map remains stable across the main English trade editions."
+    },
+    {
+      "sourceId": "src-tedneward-summary",
+      "title": "Thinking in Bets",
+      "url": "https://research.tedneward.com/thinking/thinking-in-bets/index.html",
+      "type": "secondary_chapter_notes",
+      "role": "chapter_level_interpretation_bundle",
+      "confidence": "medium",
+      "notes": "Detailed chapter-by-chapter notes covering the introduction and Chapters 1-6. Used to support chapter briefs and sidecars where the official preview is thin."
+    },
+    {
+      "sourceId": "src-gq-interview",
+      "title": "How to Be Better at Being Wrong",
+      "url": "https://www.gq.com/story/annie-duke-thinking-in-bets-how-to-be-wrong-interview",
+      "type": "author_interview",
+      "role": "authorial_framing_cross_check",
+      "confidence": "medium",
+      "notes": "Interview published near release. Useful for the book's core framing around uncertainty, resulting, and separating decision quality from outcome quality."
+    }
+  ]
+}

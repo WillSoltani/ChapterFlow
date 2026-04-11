@@ -1,0 +1,80 @@
+{
+  "schemaVersion": "chapterflow.v13.source-ledger",
+  "bookId": "clear-thinking",
+  "runId": "20260410-223038",
+  "createdAt": "2026-04-10T22:34:25Z",
+  "entries": [
+    {
+      "sourceId": "src-01",
+      "title": "Clear Thinking",
+      "url": "https://fs.blog/clear/",
+      "type": "official_author_book_page",
+      "role": "primary_positioning_and_official_summary",
+      "confidence": 0.97,
+      "notes": "Official Farnam Street landing page for the book. Confirms title, subtitle, author ownership, and the book-level framing around positioning, defaults, and practical decision-making."
+    },
+    {
+      "sourceId": "src-02",
+      "title": "Clear Thinking: Turning Ordinary Moments into Extraordinary Results",
+      "url": "https://books.google.com/books/about/Clear_Thinking.html?id=NEqlEAAAQBAJ",
+      "type": "authorized_preview_metadata",
+      "role": "primary_bibliography_and_part_toc",
+      "confidence": 0.96,
+      "notes": "Authorized Google Books listing. Confirms author, publisher family, 2023 publication year, page extent, and visible part-level contents."
+    },
+    {
+      "sourceId": "src-03",
+      "title": "Clear Thinking : Turning Ordinary Moments into Extraordinary Results",
+      "url": "https://www.betterworldbooks.com/product/detail/clear-thinking-turning-ordinary-moments-into-extraordinary-results-9780593086117",
+      "type": "retail_metadata_with_syndetics_toc",
+      "role": "primary_numbered_chapter_map",
+      "confidence": 0.9,
+      "notes": "Retail metadata page carrying an Ingram Syndetics table of contents with numbered chapter titles and page starts for the 2023 hardcover family."
+    },
+    {
+      "sourceId": "src-04",
+      "title": "Clear Thinking | Penguin Random House Higher Education",
+      "url": "https://penguinrandomhousehighereducation.com/book/?isbn=9780593086117",
+      "type": "official_publisher_page_with_excerpt",
+      "role": "primary_preview_excerpt",
+      "confidence": 0.97,
+      "notes": "Official publisher page with the opening excerpt for Chapter 1 and the start of Chapter 2. This is the strongest lawful chapter-level source in the frozen bundle."
+    },
+    {
+      "sourceId": "src-05",
+      "title": "Shane Parrish: A Glimpse into Clear Thinking [The Knowledge Project Ep. #177]",
+      "url": "https://fs.blog/knowledge-project-podcast/shane-parrish/",
+      "type": "official_author_podcast_page",
+      "role": "official_concept_support",
+      "confidence": 0.9,
+      "notes": "Official episode page surfacing five book insights: positioning, environment, social pressure, self-accountability, and autopilot. Used as lawful official support for early-chapter concept framing."
+    },
+    {
+      "sourceId": "src-06",
+      "title": "Clear Thinking by Shane Parrish - Summary and Notes",
+      "url": "https://sameerbajaj.com/clearthink/",
+      "type": "secondary_reader_notes",
+      "role": "chapter_level_interpretation_support",
+      "confidence": 0.67,
+      "notes": "Detailed secondary notes with part-by-part and chapter-by-chapter takeaways. Used only as secondary interpretation support and kept paraphrase-first."
+    },
+    {
+      "sourceId": "src-07",
+      "title": "Clear Thinking Summary – Shane Parrish’s Guide to Better Decisions",
+      "url": "https://ericsandroni.com/clear-thinking-summary/",
+      "type": "secondary_summary",
+      "role": "chapter_map_crosscheck",
+      "confidence": 0.64,
+      "notes": "Secondary summary that corroborates the numbered chapter sequence and high-level intent of each section."
+    },
+    {
+      "sourceId": "src-08",
+      "title": "Clear Thinking by Shane Parrish | Summary, Audio, Quotes, FAQ",
+      "url": "https://sobrief.com/books/clear-thinking",
+      "type": "secondary_summary",
+      "role": "concept_crosscheck",
+      "confidence": 0.6,
+      "notes": "Secondary summary used as a lightweight cross-check for the defaults, strengths, and late-book fulfillment themes."
+    }
+  ]
+}

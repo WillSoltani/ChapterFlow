@@ -1,0 +1,939 @@
+import json
+from pathlib import Path
+
+RUN = Path(".chapterflow/runs/blue-ocean-strategy/20260410-152840")
+
+
+def write_json(path: Path, data: dict) -> None:
+    path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n")
+
+
+chapter = {
+    "chapterId": "ch11",
+    "number": 11,
+    "title": "Avoid Red Ocean Traps",
+    "readingTimeMinutes": 8,
+    "contentVariants": {
+        "easy": {
+            "chapterBreakdown": {
+                "gentle": (
+                    "A team can learn blue ocean strategy and still slip back into old habits. "
+                    "Chapter 11 warns that the relapse starts when competition becomes the main reference point again. "
+                    "Red ocean strategy means fighting inside known market space for existing demand. "
+                    "When leaders keep staring at rivals and current customers alone, they narrow their own imagination.\n\n"
+                    "The chapter therefore warns against benchmarking and imitation. "
+                    "Watching rivals is not the deepest risk. "
+                    "Trouble starts when rivals decide what strategy should chase. "
+                    "Once that happens, the organization starts improving the existing game instead of creating a different one. "
+                    "Avoiding red ocean traps means keeping buyer value and new demand ahead of competition-first thinking. "
+                    "That closing discipline asks leaders to notice comparison drift before it starts sounding normal. "
+                    "It also asks them to widen attention before the room settles around the same old demand."
+                ),
+                "direct": (
+                    "Blue ocean logic can be learned and still be lost. "
+                    "Chapter 11 says organizations drift back into red oceans when strategy starts being defined by competitors again. "
+                    "Red ocean strategy is competition for existing demand in known market space. "
+                    "Once rivals become the main reference point, teams stop asking how to create new demand and start asking how to win the familiar game better.\n\n"
+                    "That is why benchmarking becomes dangerous when it governs strategy. "
+                    "Rival comparisons can sharpen execution inside an existing market, but they often push moves toward imitation rather than innovation. "
+                    "The chapter ends the book by warning that blue ocean strategy lasts only when buyer value and new demand stay more important than beating competitors. "
+                    "Once that ranking flips, the strategy starts shrinking to the size of the current game. "
+                    "What looks practical then becomes a quieter form of drift."
+                ),
+                "competitive": (
+                    "A company can talk blue ocean all day and still crawl back into red water. "
+                    "Chapter 11 warns that the slide begins when leaders start building strategy around rivals again. "
+                    "Red ocean strategy is the fight for existing demand in known market space. "
+                    "Once the team is obsessed with beating competitors, it starts copying the game instead of changing it.\n\n"
+                    "Benchmarking, rival dashboards, and current-customer obsession can all look disciplined while they quietly shrink strategic ambition. "
+                    "The trap is not market awareness. "
+                    "The trap is obedience to competition. "
+                    "The chapter closes the book by insisting that strategy stays blue only when buyer value and new demand keep outranking imitation and the scramble for the same crowded demand. "
+                    "If comparison keeps leading, the room starts serving the market it claimed to escape. "
+                    "That is how caution starts pretending to be strategy."
+                ),
+            },
+            "keyTakeaways": [
+                {
+                    "point": {
+                        "gentle": "Red-ocean relapse begins when competition defines strategy again.",
+                        "direct": "Blue ocean logic weakens when rivals become the main reference point.",
+                        "competitive": "The drift starts when competitors get to write the agenda.",
+                    }
+                },
+                {
+                    "point": {
+                        "gentle": "Benchmarking can lead toward imitation instead of innovation.",
+                        "direct": "Trying to beat rivals often narrows strategy to familiar terms.",
+                        "competitive": "A rival-led strategy slowly starts dressing like its rivals.",
+                    }
+                },
+                {
+                    "point": {
+                        "gentle": "Avoiding the trap means protecting buyer value and new demand.",
+                        "direct": "Blue ocean discipline keeps attention on unmet value, not only on existing demand.",
+                        "competitive": "The escape route is to stop worshipping the current game.",
+                    }
+                },
+            ],
+            "oneMinuteRecap": {
+                "gentle": "The chapter warns that blue-ocean thinking fails when competition-first habits return.",
+                "direct": "Chapter 11 closes the book by naming benchmarking, imitation, and existing-demand fixation as relapse patterns.",
+                "competitive": "Blue oceans disappear when the organization starts chasing rivals instead of reshaping demand.",
+            },
+        },
+        "medium": {
+            "chapterBreakdown": {
+                "gentle": (
+                    "Blue ocean strategy can be understood and still be abandoned in practice. "
+                    "Chapter 11 closes the book by warning that organizations often relapse into red oceans even after they know the language of market creation. "
+                    "The drift begins when competition starts defining strategy again. "
+                    "Red ocean strategy means competing in known market space for existing demand. "
+                    "Once leaders rebuild their attention around rivals and the same crowded buyer pool, their range of strategic questions shrinks.\n\n"
+                    "For that reason, the chapter treats competition-first thinking as a trap. "
+                    "The issue is not that rivals exist or that managers notice them. "
+                    "The issue is that rivals become the starting point for strategic judgment. "
+                    "Instead of asking what new value could make competition less relevant, teams ask how to outperform competitors on the terms competitors already established. "
+                    "The more often that happens, the more strategy drifts back toward ordinary competition.\n\n"
+                    "Benchmarking deepens the trap because it quietly tells the organization where to look. "
+                    "Competitor features, pricing, segments, and moves become the main lens. "
+                    "That can improve performance inside the existing game, but it rarely helps create a different game. "
+                    "The chapter matters because it warns that benchmarking can make imitation feel like discipline. "
+                    "A team may still sound ambitious while copying the logic of the market it claims to escape.\n\n"
+                    "A parallel relapse appears when firms fight too hard over existing customers. "
+                    "Existing demand matters, but blue ocean strategy widens the search beyond it. "
+                    "If leaders stay locked on the same buyer pool, they narrow their ability to discover noncustomers and unmet value. "
+                    "The organization becomes stronger at optimization and weaker at creation. "
+                    "What looks like focus can slowly become confinement. "
+                    "The move grows tighter while the strategic horizon grows smaller.\n\n"
+                    "That is why the final chapter closes on vigilance. "
+                    "Avoiding red ocean traps means keeping buyer value, new demand, and strategic imagination ahead of the pull to compare, imitate, and compete for the same demand again. "
+                    "That is the closing test of strategic attention."
+                ),
+                "direct": (
+                    "Blue ocean strategy is easier to understand than to sustain. "
+                    "Organizations drift back into red oceans when strategy starts taking its bearings from competitors again. "
+                    "Red ocean strategy is competition for existing demand in known market space. "
+                    "Once rivals become the main reference point, leaders stop asking how to create a different market reality and start asking how to win the current one more efficiently.\n\n"
+                    "That shift is the heart of the trap. "
+                    "Competition itself is not the issue. "
+                    "The trap is competition-first thinking. "
+                    "When strategy is built around beating rivals, the likely result is imitation rather than innovation. "
+                    "The market's existing boundaries stay in control, and the organization begins improving inside them instead of moving beyond them. "
+                    "Chapter 11 matters because it names that relapse clearly rather than treating it as harmless discipline.\n\n"
+                    "Benchmarking is one of the cleanest ways the relapse hides. "
+                    "Rival dashboards, feature comparisons, price tables, and segment battles all look analytical. "
+                    "Yet they often train the organization to start with competitors instead of buyer value. "
+                    "That may sharpen execution inside a familiar contest, but it usually weakens the search for new demand. "
+                    "The team becomes more fluent in the current game while becoming less capable of changing the game. "
+                    "Its language gets tighter while its imagination gets narrower.\n\n"
+                    "The same danger appears when leaders focus too narrowly on existing customers. "
+                    "Blue ocean strategy does not ignore current demand, but it does refuse to stop there. "
+                    "Once firms fight mainly over the same pool, they narrow their field of vision and begin optimizing what already exists. "
+                    "That makes strategy safer in the short run and thinner in the long run. "
+                    "The surface may look sharper even while the future gets smaller. "
+                    "What seems like focus can become strategic tunnel vision.\n\n"
+                    "The chapter therefore closes the book with a discipline test. "
+                    "Observe competitors without obeying them. "
+                    "Notice current customers without being trapped by them. "
+                    "Blue ocean strategy lasts only when buyer value and new demand keep outranking the pull of benchmarking, imitation, and crowded-market competition. "
+                    "Without that reset, the team keeps polishing a market it should be trying to outgrow."
+                ),
+                "competitive": (
+                    "A lot of organizations relapse into red oceans while still talking like blue-ocean believers. "
+                    "Chapter 11 exists to expose that hypocrisy. "
+                    "Red ocean strategy is the fight for existing demand in known market space, and the slide back begins when leaders let competitors set the agenda again. "
+                    "Once the strategy room is built around rival comparisons, the organization is already thinking inside the old game.\n\n"
+                    "This is why competition-first thinking is a trap. "
+                    "It feels hard-headed. "
+                    "Benchmark decks look professional. "
+                    "Rival scorecards look strategic. "
+                    "Yet the official warning is brutal: focusing on beating competitors pulls strategy toward imitation rather than innovation. "
+                    "The more leaders define success against rivals, the more their moves start resembling those rivals. "
+                    "What sounds like discipline can be strategic surrender in a smarter suit.\n\n"
+                    "Benchmarking makes the surrender feel respectable. "
+                    "Instead of starting with buyer value or unmet demand, the team starts with competitor features, competitor pricing, competitor segments, and competitor moves. "
+                    "That can make the organization sharper inside the existing fight, but it almost never creates a new fight on better terms. "
+                    "The company becomes excellent at running the race everyone else already chose. "
+                    "Its execution may improve while its strategic freedom quietly contracts. "
+                    "The score rises while the room shrinks further.\n\n"
+                    "Existing-demand fixation finishes the job. "
+                    "Once leaders are obsessed with the same customer pool, they keep improving inside the current market while forgetting how to widen demand beyond it. "
+                    "The organization looks busy, informed, and competitive, yet its strategic imagination is shrinking. "
+                    "It is defending the known instead of creating the new.\n\n"
+                    "That is why the book ends with vigilance rather than celebration. "
+                    "Blue ocean strategy survives only when leaders refuse to let comparison, imitation, and crowded-demand competition quietly retake control. "
+                    "The trap is not seeing rivals. "
+                    "The trap is kneeling to them. "
+                    "Once that posture sets in, every move gets judged by the old contest. "
+                    "The company may sound bold while it keeps asking permission from the market it should be escaping."
+                ),
+            },
+            "keyTakeaways": [
+                {
+                    "point": {
+                        "gentle": "The closing danger is relapse into red-ocean thinking.",
+                        "direct": "Knowing blue-ocean tools does not stop a team from slipping back into competition-first strategy.",
+                        "competitive": "You can talk market creation while secretly rebuilding the old cage.",
+                    },
+                    "moreDetails": {
+                        "gentle": "The chapter is about drift after understanding, not first exposure to the idea.",
+                        "direct": "Relapse starts when strategic attention moves back toward rivals and existing demand.",
+                        "competitive": "The retreat begins in what the team keeps measuring.",
+                    },
+                },
+                {
+                    "point": {
+                        "gentle": "Competition-first thinking narrows strategy.",
+                        "direct": "When rivals define the agenda, the likely outcome is imitation rather than innovation.",
+                        "competitive": "If competitors write the questions, they own the game before it starts.",
+                    },
+                    "moreDetails": {
+                        "gentle": "The warning is about strategy being organized around rivals, not about pretending rivals do not exist.",
+                        "direct": "Observing competition is different from building the whole move around beating it.",
+                        "competitive": "Watching is not the trap; obedience is.",
+                    },
+                },
+                {
+                    "point": {
+                        "gentle": "Benchmarking can make imitation look disciplined.",
+                        "direct": "Rival comparison tools often train teams to optimize inside an existing market.",
+                        "competitive": "A polished benchmark deck can be camouflage for strategic sameness.",
+                    },
+                    "moreDetails": {
+                        "gentle": "The chapter keeps asking where the organization looks first when it decides what to do.",
+                        "direct": "Starting with competitor features and pricing usually narrows the search for new value.",
+                        "competitive": "Benchmarking can make the old game feel smarter without making it new.",
+                    },
+                },
+                {
+                    "point": {
+                        "gentle": "Fighting over existing demand weakens blue-ocean logic.",
+                        "direct": "A narrow fixation on current customers shrinks the search for new demand.",
+                        "competitive": "If all the energy goes to the same pool, the future gets smaller.",
+                    },
+                    "moreDetails": {
+                        "gentle": "Current customers matter, but the chapter warns against treating them as the only horizon.",
+                        "direct": "Optimization inside present demand can crowd out the search for unmet value elsewhere.",
+                        "competitive": "The company gets better at defending the known while forgetting how to widen the field.",
+                    },
+                },
+                {
+                    "point": {
+                        "gentle": "Trap avoidance is an ongoing discipline.",
+                        "direct": "Blue ocean strategy lasts only when buyer value and new demand stay ahead of comparison habits.",
+                        "competitive": "The ending test is simple: who rules the room, buyers or rivals?",
+                    },
+                    "moreDetails": {
+                        "gentle": "The book closes by treating vigilance as part of strategy, not as an optional reminder.",
+                        "direct": "The chapter resolves the book by turning trap avoidance into a recurring attention check.",
+                        "competitive": "If the room bends back toward rivals, the slide has already started.",
+                    },
+                },
+            ],
+            "activationPrompt": {
+                "gentle": "Think of one strategy review. Does it begin with buyer value or with rival comparison?",
+                "direct": "Choose one current move and ask whether competitors are setting the agenda more than buyers are.",
+                "competitive": "Put one strategy meeting on trial. Who had more authority in the room, rivals or unmet demand?",
+            },
+            "selfCheckPrompt": {
+                "gentle": "Why is competition-first thinking a red-ocean trap?",
+                "direct": "How does benchmarking turn into imitation pressure?",
+                "competitive": "Why can a rival-led strategy still look smart while getting weaker?",
+            },
+            "oneMinuteRecap": {
+                "retrieve": {
+                    "gentle": "Recall the chain: red ocean, competition-first drift, benchmarking, existing demand, vigilance.",
+                    "direct": "Rebuild the chapter from relapse into competitor-led thinking to trap avoidance through buyer value and new demand.",
+                    "competitive": "Say it cleanly: rivals, imitation, crowded demand, drift, discipline.",
+                },
+                "connect": {
+                    "gentle": "Where have you seen comparison take over a decision that should have started with value?",
+                    "direct": "What move in your world is being shaped too much by rival dashboards?",
+                    "competitive": "Where is the team calling imitation strategy?",
+                },
+                "preview": {
+                    "gentle": "As the book closes, what ongoing habit protects blue-ocean thinking from relapse?",
+                    "direct": "How does the chapter turn the ending into a discipline of attention rather than a slogan?",
+                    "competitive": "What keeps the old game from quietly retaking the room?",
+                },
+            },
+        },
+        "hard": {
+            "chapterBreakdown": {
+                "gentle": (
+                    "Blue ocean strategy can be learned sincerely and still be lost gradually. "
+                    "Chapter 11 closes the book by warning that organizations relapse into red oceans when competition starts defining strategy again. "
+                    "The danger is subtle because it rarely announces itself as surrender. "
+                    "It usually arrives disguised as discipline, realism, or prudent market awareness. "
+                    "Teams still talk about growth, innovation, and value, yet their actual attention turns back toward rivals and the same crowded demand.\n\n"
+                    "The chapter therefore re-establishes what red ocean strategy means. "
+                    "It is competition in known market space for existing demand. "
+                    "The issue is not simply that competitors exist. "
+                    "The issue is that competitors begin governing the strategic imagination. "
+                    "Instead of asking what new value could make competition less relevant, leaders ask how to beat rivals inside the boundaries rivals already accept. "
+                    "Once those boundaries regain authority, the drift back toward ordinary competition has already begun.\n\n"
+                    "For that reason, competition-first thinking becomes the chapter's main trap. "
+                    "It feels responsible because managers are taught to watch the market closely, compare performance, and protect position. "
+                    "But the official warning is sharper than that managerial instinct. "
+                    "A strategy focused on beating the competition moves toward imitation rather than innovation. "
+                    "The more rivals define success, the more the organization tends to borrow their terms, their assumptions, and their categories. "
+                    "What looks analytical can become deeply imitative.\n\n"
+                    "Benchmarking is one of the clearest vehicles for that relapse. "
+                    "Rival scorecards, feature comparisons, price ladders, and segment charts all promise clarity. "
+                    "They may indeed improve execution inside an existing game. "
+                    "Yet they also train the organization to begin with competitors rather than with buyer value, noncustomers, or unmet demand. "
+                    "The team gets better at reading the current contest and worse at asking whether a different contest should exist at all. "
+                    "The chapter matters because it names that narrowing effect without pretending that market awareness itself is foolish.\n\n"
+                    "The same narrowing happens when leaders fight too hard over existing demand. "
+                    "Blue ocean strategy does not deny the importance of current customers, but it refuses to let them become the only strategic horizon. "
+                    "Once all the energy goes toward the same buyer pool, the organization optimizes within familiar demand instead of widening demand beyond it. "
+                    "That makes the strategy look more precise in the short run while making it less generative in the long run. "
+                    "The company becomes stronger at defense and weaker at creation.\n\n"
+                    "Placed after renewal, the logic tightens further. "
+                    "Chapter 10 asked whether the portfolio still carried enough future-growth strength. "
+                    "Chapter 11 explains how that future starts collapsing. "
+                    "It collapses first in attention: comparison grows louder, imitation feels safer, existing demand becomes the only trusted terrain, and buyer value outside the known market gets less oxygen. "
+                    "By the time results expose the full weakness, the strategic mindset may already be heavily resettled.\n\n"
+                    "The book therefore ends with vigilance as a discipline. "
+                    "Avoiding red ocean traps means observing competitors without letting them govern strategy, serving current customers without becoming trapped by them, and keeping buyer value plus new demand ahead of rival imitation. "
+                    "The final warning is narrow but demanding. "
+                    "Blue ocean strategy lasts only when leaders keep refusing the habits that quietly rebuild the old game from inside their own decision process."
+                ),
+                "direct": (
+                    "Blue ocean strategy is easier to admire than to sustain. "
+                    "Organizations slip back into red oceans when strategy starts taking its bearings from competitors again. "
+                    "That relapse rarely looks like surrender. "
+                    "It usually looks like rigor. "
+                    "Rival dashboards multiply. "
+                    "Benchmark tables dominate meetings. "
+                    "Managers talk as if they are being more grounded, when in fact they are slowly letting the existing market regain control over what strategy is allowed to imagine.\n\n"
+                    "The chapter's definition keeps the warning precise. "
+                    "Red ocean strategy is competition for existing demand in known market space. "
+                    "The problem is not operational awareness of rivals. "
+                    "The problem is that rivals become the governing reference point for strategy itself. "
+                    "Instead of asking what buyers might value beyond the current industry pattern, leaders ask how to outperform competitors on the same pattern. "
+                    "The organization still moves, but it moves inside inherited boundaries.\n\n"
+                    "Competition-first thinking is therefore a trap instead of a neutral habit. "
+                    "Once strategy is built around beating rivals, the likely result is imitation rather than innovation. "
+                    "Rival moves become the questions. "
+                    "Rival categories become the categories. "
+                    "Rival priorities quietly become the priorities. "
+                    "The company may still describe the result as differentiated, but the structure of thought has already narrowed. "
+                    "The chapter matters because it catches that narrowing early.\n\n"
+                    "Benchmarking intensifies the trap by making it appear professional. "
+                    "Competitor features, competitor prices, competitor segments, and competitor best practices offer a seductive kind of order. "
+                    "They can sharpen execution within the current market, but they rarely help create a market beyond it. "
+                    "The team becomes excellent at calibrating itself against the present field while becoming weaker at imagining what could make the field less relevant. "
+                    "This is why the chapter distinguishes between noticing competitors and obeying them.\n\n"
+                    "The same danger appears with existing-demand fixation. "
+                    "A team can become so committed to winning the current customer fight that it stops searching for noncustomers, adjacent value, or unmet demand. "
+                    "Blue ocean strategy weakens when today's buyer pool becomes the full boundary of strategic thought. "
+                    "Optimization keeps improving. "
+                    "Market creation stalls. "
+                    "The organization becomes more efficient inside the known space and less capable of opening new space.\n\n"
+                    "Placed after the renewal chapter, this logic completes the book. "
+                    "Renewal fails not only because portfolios settle, but because attention settles. "
+                    "Comparison starts crowding out imagination. "
+                    "Existing demand starts crowding out new demand. "
+                    "Competition starts crowding out buyer value. "
+                    "The relapse is therefore cognitive before it is financial.\n\n"
+                    "Chapter 11 therefore closes on discipline rather than drama. "
+                    "Observe competitors without letting them rule the room. "
+                    "Learn from current customers without shrinking strategy to them. "
+                    "Keep buyer value and new demand in command. "
+                    "Blue ocean strategy survives only when leaders resist the return of benchmarking, imitation, and crowded-demand thinking before those habits harden into common sense. "
+                    "That resistance has to happen before the room starts calling old instincts realism. "
+                    "Otherwise the strategy keeps sounding alive while its range quietly closes. "
+                    "That narrowing is how blue-ocean language survives after blue-ocean logic is gone."
+                ),
+                "competitive": (
+                    "The final insult in Chapter 11 is that organizations can betray blue ocean strategy while still sounding loyal to it. "
+                    "They keep the language, keep the decks, keep the slogans, and still walk straight back into red oceans because competitors have quietly taken over the strategy room again. "
+                    "That is the relapse the chapter targets. "
+                    "It does not begin with obvious panic. "
+                    "It begins with respectable habits: more benchmark tables, more rival tracking, more pressure to beat the market on the market's own terms.\n\n"
+                    "The book's red-ocean definition makes the accusation clear. "
+                    "Red ocean strategy is the fight for existing demand in known market space. "
+                    "Once strategy starts taking orders from that fight again, the future narrows. "
+                    "Leaders stop asking what new value could make the competition less relevant. "
+                    "They start asking how to win the crowded game more efficiently. "
+                    "It feels responsible. "
+                    "It is usually surrender with better formatting.\n\n"
+                    "This is why competition-first thinking is not a harmless bias but a strategic trap. "
+                    "The official warning says that trying to beat the competition leads toward imitation rather than innovation. "
+                    "That is not a motivational slogan. "
+                    "It is a mechanism. "
+                    "If rivals define the target, their logic defines the move. "
+                    "Their categories decide the conversation. "
+                    "Their strengths and weaknesses become the rails the team now runs on. "
+                    "The company can still call itself different while becoming more and more derivative.\n\n"
+                    "Benchmarking makes the derivative move look intelligent. "
+                    "Rival price ladders, feature stacks, segment maps, and best-practice comparisons all promise rigor. "
+                    "What they usually deliver is tighter obedience to the existing game. "
+                    "The organization becomes better at copying the field elegantly. "
+                    "It mistakes calibration for creation. "
+                    "Chapter 11 matters because it tears away that professional disguise and says the obvious thing managers often refuse to say: benchmarking can train a team to think inside the cage it claims to escape.\n\n"
+                    "Existing-demand fixation closes the cage. "
+                    "When all the energy goes to the same customer pool, the organization gets sharper at fighting for the known and duller at creating the new. "
+                    "It wins arguments about current buyers while losing contact with unmet value beyond them. "
+                    "That is how a company can look active, informed, and competitive while its strategic imagination quietly collapses. "
+                    "It is not asleep. "
+                    "It is trapped in the wrong contest.\n\n"
+                    "Placed after renewal, the warning gets harsher. "
+                    "Portfolios do not only settle because old moves age. "
+                    "They settle because leaders start trusting comparison more than imagination, rival behavior more than buyer value, and current demand more than future demand. "
+                    "The relapse begins in attention long before it becomes a public outcome. "
+                    "By the time the weakness is obvious, the strategy room may already be speaking fluent red-ocean again.\n\n"
+                    "That is why the book ends with vigilance. "
+                    "Do not let rivals set the agenda. "
+                    "Do not let current demand become the whole map. "
+                    "Do not confuse polished imitation with strategy. "
+                    "Blue ocean logic survives only when leaders keep refusing the habits that make the old game feel natural, necessary, and smart all over again."
+                ),
+            },
+            "keyTakeaways": [
+                {
+                    "point": {
+                        "gentle": "The final risk is relapse into red-ocean logic after the tools are already known.",
+                        "direct": "A team can understand blue-ocean strategy and still drift back into competitor-led thinking.",
+                        "competitive": "You can memorize the escape route and still walk back into the cage.",
+                    },
+                    "moreDetails": {
+                        "gentle": "The chapter focuses on what happens after understanding, when attention starts sliding backward.",
+                        "direct": "Relapse appears when strategic questions start being organized by rivals and current demand again.",
+                        "competitive": "The retreat begins in what the room treats as authoritative.",
+                    },
+                },
+                {
+                    "point": {
+                        "gentle": "Competition-first thinking turns rivals into the authors of strategy.",
+                        "direct": "Trying to beat competitors makes imitation more likely than innovation.",
+                        "competitive": "If rivals set the terms, the future starts shrinking to their size.",
+                    },
+                    "moreDetails": {
+                        "gentle": "The chapter distinguishes healthy awareness from letting competition govern imagination.",
+                        "direct": "Observation becomes a trap when it turns into the default design logic.",
+                        "competitive": "Seeing rivals is not surrender; copying their gravity is.",
+                    },
+                },
+                {
+                    "point": {
+                        "gentle": "Benchmarking often narrows strategy to the existing game.",
+                        "direct": "Rival comparison tools can improve execution while weakening market creation.",
+                        "competitive": "A benchmark deck can be a beautiful prison.",
+                    },
+                    "moreDetails": {
+                        "gentle": "The starting point matters because strategy follows whatever the room studies first.",
+                        "direct": "Beginning with competitor features and prices usually narrows the search for new value.",
+                        "competitive": "Calibration feels smart right up until it kills originality.",
+                    },
+                },
+                {
+                    "point": {
+                        "gentle": "Existing-demand fixation weakens the search for new demand.",
+                        "direct": "A strategy trapped by current customers becomes less able to create fresh market space.",
+                        "competitive": "The more the team worships the current pool, the smaller the future gets.",
+                    },
+                    "moreDetails": {
+                        "gentle": "Current customers matter, but the chapter refuses to make them the whole horizon.",
+                        "direct": "Optimization inside present demand can crowd out noncustomers and unmet-value discovery.",
+                        "competitive": "The company sharpens its defense while its creation muscles fade.",
+                    },
+                },
+                {
+                    "point": {
+                        "gentle": "Trap avoidance is the book's closing discipline of attention.",
+                        "direct": "Blue ocean strategy lasts only when buyer value and new demand stay in command.",
+                        "competitive": "The ending test is whether the room still bows to buyers instead of rivals.",
+                    },
+                    "moreDetails": {
+                        "gentle": "The final warning is practical: keep returning strategy to what creates value beyond the crowded market.",
+                        "direct": "The chapter resolves the book by turning vigilance against relapse into a recurring strategic check.",
+                        "competitive": "If comparison retakes the room, the old game is already rebuilding itself.",
+                    },
+                },
+            ],
+            "activationPrompt": {
+                "gentle": "Think of one strategy meeting. What got more airtime there: buyer value or rival comparison?",
+                "direct": "Choose one current initiative and ask whether its design starts with competitors, current customers, or unmet value.",
+                "competitive": "Name one team that says it wants blue oceans. Who really owns the room there, rivals or buyers?",
+            },
+            "selfCheckPrompts": [
+                {
+                    "gentle": "Why can a team know blue-ocean strategy and still relapse into red-ocean behavior?",
+                    "direct": "How does competition-first thinking pull strategy toward imitation?",
+                    "competitive": "Why does a rival-led room eventually start producing secondhand strategy?",
+                },
+                {
+                    "gentle": "What makes benchmarking and existing-demand focus dangerous when they become dominant?",
+                    "direct": "Why does the chapter separate observing competition from letting competition define strategy?",
+                    "competitive": "How does polished market discipline quietly turn into obedience to the old game?",
+                },
+            ],
+            "predictionPrompt": {
+                "gentle": "If leaders stop guarding against red-ocean traps, what part of strategy weakens first?",
+                "direct": "When rivals and current demand retake the agenda, what happens to buyer value and new-demand thinking?",
+                "competitive": "If the old game takes the room back, what dies first, the language or the imagination?",
+            },
+            "oneMinuteRecap": {
+                "retrieve": {
+                    "gentle": "Recall the arc: relapse, red ocean, competitors, benchmarking, existing demand, vigilance.",
+                    "direct": "Reconstruct the chapter from competitor-led thinking to imitation pressure to the discipline of returning strategy to buyers and new demand.",
+                    "competitive": "Call it clearly: rivals, copying, crowded demand, drift, discipline.",
+                },
+                "connect": {
+                    "gentle": "Where have you seen a team become more comparative and less creative at the same time?",
+                    "direct": "What strategy in your world is being narrowed by benchmark thinking or current-customer fixation?",
+                    "competitive": "Where is a polished process quietly rebuilding the old game?",
+                },
+                "preview": {
+                    "gentle": "As the book ends, what daily habit helps keep blue-ocean logic alive?",
+                    "direct": "How does the ending turn trap avoidance into an ongoing attention discipline?",
+                    "competitive": "What stops the old game from feeling obvious and natural again?",
+                },
+            },
+        },
+    },
+    "examples": [
+        {
+            "exampleId": "ch11-ex01-nora-work-decision-point",
+            "title": "Nora Stops a Strategy Review From Becoming a Rival Scorecard",
+            "category": "work",
+            "format": "decision_point",
+            "endingType": "broader_principle",
+            "contexts": ["strategy_review", "competition"],
+            "scenario": {
+                "gentle": "Nora notices that every slide in the review compares the team to rivals. She pauses the meeting and asks what buyer value the group is creating that the comparison deck cannot even see.",
+                "direct": "The issue is whether competitor columns are replacing strategic thinking.",
+                "competitive": "Nora refuses to let rivals chair the meeting.",
+            },
+            "whatToDo": {
+                "gentle": "Shift the discussion from rival comparison to unmet value and demand creation.",
+                "direct": "Use competitors as context, not as the blueprint for the move.",
+                "competitive": "Take the steering wheel away from the scoreboard.",
+            },
+            "whyItMatters": {
+                "gentle": "A strategy can slip back into red-ocean logic when rivals become the main reference point.",
+                "direct": "Benchmarking becomes a trap when it starts defining the agenda.",
+                "competitive": "If the room serves comparison, originality loses power.",
+            },
+        },
+        {
+            "exampleId": "ch11-ex02-caleb-school-postmortem",
+            "title": "Caleb Realizes the Team Copied the Market It Wanted to Escape",
+            "category": "school",
+            "format": "postmortem",
+            "endingType": "self_directed_question",
+            "contexts": ["class_project", "benchmarking"],
+            "scenario": {
+                "gentle": "After presenting, Caleb sees that the project mostly improved on rival offers instead of creating new value. The group had researched competitors so closely that its final idea stayed inside their boundaries.",
+                "direct": "The project sounded polished but copied the field it was meant to outgrow.",
+                "competitive": "Caleb discovers the team benchmarked its way into sameness.",
+            },
+            "whatToDo": {
+                "gentle": "Ask where rival assumptions took over the design before new value was explored.",
+                "direct": "Separate useful market awareness from competitor-led design logic.",
+                "competitive": "Find the moment comparison started writing the idea.",
+            },
+            "whyItMatters": {
+                "gentle": "Benchmarking can make imitation feel like discipline.",
+                "direct": "The trap is not research itself but letting research narrow imagination.",
+                "competitive": "A smarter copy is still a copy.",
+            },
+        },
+        {
+            "exampleId": "ch11-ex03-talia-personal-dialogue",
+            "title": "Talia Questions Whether Chasing the Same Audience Is Shrinking the Plan",
+            "category": "personal",
+            "format": "dialogue",
+            "endingType": "surprising_implication",
+            "contexts": ["side_project", "audience"],
+            "scenario": {
+                "gentle": "Talia tells a friend that all their effort goes to winning the same small audience everyone else is chasing. She wonders whether they are getting better at the current game while missing a larger opportunity.",
+                "direct": "The discussion turns on whether existing-demand focus is narrowing the project.",
+                "competitive": "Talia suspects the project is fighting for crumbs instead of widening the table.",
+            },
+            "whatToDo": {
+                "gentle": "Name what unmet value or overlooked demand sits outside the current pool.",
+                "direct": "Test whether the project is optimizing for present customers at the expense of new demand.",
+                "competitive": "Stop treating the crowded audience as the whole map.",
+            },
+            "whyItMatters": {
+                "gentle": "Existing-demand fixation can weaken the search for new demand.",
+                "direct": "Blue-ocean logic shrinks when current customers become the only horizon.",
+                "competitive": "The future gets smaller when the same pool becomes sacred.",
+            },
+        },
+        {
+            "exampleId": "ch11-ex04-caleb-work-predict-reveal",
+            "title": "Caleb Thinks Benchmarking Will Sharpen the Strategy Until It Reveals Imitation Drift",
+            "category": "work",
+            "format": "predict_reveal",
+            "endingType": "cross_domain",
+            "contexts": ["product_review", "benchmarking"],
+            "scenario": {
+                "gentle": "Caleb expects a benchmark session to make the next move clearer. By the end, the team has a tighter comparison deck but no stronger sense of what new value it wants to create.",
+                "direct": "The reveal is that more benchmark detail produced less strategic originality.",
+                "competitive": "Caleb watches analysis get sharper while strategy gets smaller.",
+            },
+            "whatToDo": {
+                "gentle": "Use the benchmark only to identify what not to copy, then return to buyer value.",
+                "direct": "Treat rival data as background information rather than the design center.",
+                "competitive": "Do not let the benchmark deck become the move.",
+            },
+            "whyItMatters": {
+                "gentle": "Competitor knowledge is useful only if it does not become obedience.",
+                "direct": "A team can improve its comparison discipline while losing its creative edge.",
+                "competitive": "Perfect calibration can still kill the future.",
+            },
+        },
+        {
+            "exampleId": "ch11-ex05-nora-school-dilemma",
+            "title": "Nora Must Choose Between Winning the Current Segment and Widening Demand",
+            "category": "school",
+            "format": "dilemma",
+            "endingType": "common_trap",
+            "contexts": ["strategy_seminar", "demand"],
+            "scenario": {
+                "gentle": "Nora's seminar team can either refine its idea for the same customer segment everyone else serves or redesign it for people currently outside the market. The safer option looks stronger on the rubric at first glance.",
+                "direct": "The dilemma is whether current-demand optimization is crowding out new-demand exploration.",
+                "competitive": "Nora has to choose between the crowded game and the wider field.",
+            },
+            "whatToDo": {
+                "gentle": "Compare what each option does for buyer value and demand creation, not just short-run certainty.",
+                "direct": "Refuse to treat the present segment as the only legitimate strategic horizon.",
+                "competitive": "Do not mistake the familiar customer pool for the whole battlefield.",
+            },
+            "whyItMatters": {
+                "gentle": "Blue-ocean logic weakens when the same existing demand becomes the only target.",
+                "direct": "Trap avoidance requires widening attention before optimization takes over.",
+                "competitive": "The common trap is polishing the old contest because it feels safer.",
+            },
+        },
+        {
+            "exampleId": "ch11-ex06-hugo-personal-before_after",
+            "title": "Hugo Stops Tracking Rivals and Starts Designing for Unmet Value",
+            "category": "personal",
+            "format": "before_after",
+            "endingType": "perspective_reframe",
+            "contexts": ["creative_project", "planning"],
+            "scenario": {
+                "gentle": "Before, Hugo tracked rivals constantly and kept revising his plan to match them. After stepping back, he starts designing around what people still are not getting and his project becomes easier to differentiate.",
+                "direct": "The shift is from comparison-led planning to value-led planning.",
+                "competitive": "Hugo quits shadowboxing and starts building something the shadows cannot define.",
+            },
+            "whatToDo": {
+                "gentle": "Replace rival obsession with a clearer search for unmet value.",
+                "direct": "Move the planning lens from competitor reaction to buyer relevance.",
+                "competitive": "Stop feeding the old game with your attention.",
+            },
+            "whyItMatters": {
+                "gentle": "Trap avoidance is an attention discipline, not a one-time insight.",
+                "direct": "Blue-ocean thinking survives when strategy keeps returning to buyers and new demand.",
+                "competitive": "The room changes when rivals stop being the first voice heard.",
+            },
+        },
+    ],
+    "implementationPlan": {
+        "coreSkill": {
+            "gentle": "The core skill is spotting when strategy has become competitor-led instead of buyer-led.",
+            "direct": "This chapter teaches vigilance against benchmarking, imitation, and existing-demand traps.",
+            "competitive": "The skill is catching the old game before it quietly retakes the room.",
+        },
+        "ifThenPlans": [
+            {
+                "context": "work",
+                "plan": {
+                    "gentle": "If a strategy review starts with rivals, then ask what unmet buyer value is missing from the discussion.",
+                    "direct": "If competitor slides dominate the room, then reset the agenda around value and demand creation.",
+                    "competitive": "If the scoreboard takes over, yank the room back to buyers.",
+                },
+            },
+            {
+                "context": "school",
+                "plan": {
+                    "gentle": "If a project team keeps improving against benchmarks, then ask whether it is also widening demand.",
+                    "direct": "If the group is copying best practices, then test whether originality has been replaced by imitation.",
+                    "competitive": "If the deck looks smarter than the idea, stop and recheck the game.",
+                },
+            },
+            {
+                "context": "personal",
+                "plan": {
+                    "gentle": "If planning becomes comparison-heavy, then name one unmet value outside the current crowd.",
+                    "direct": "If current customers or rivals become the whole horizon, then widen the search for new demand.",
+                    "competitive": "If the old game owns your attention, break its hold immediately.",
+                },
+            },
+        ],
+        "twentyFourHourChallenge": {
+            "gentle": "Within the next day, review one decision and notice whether it started with buyer value or with a rival comparison.",
+            "direct": "In 24 hours, audit one strategy conversation for benchmarking drift and existing-demand fixation.",
+            "competitive": "Next day: catch one place where rivals are secretly running the room.",
+        },
+        "weeklyPractice": {
+            "gentle": "Once this week, ask whether one live strategy is widening demand or just competing harder for the same pool.",
+            "direct": "Run a weekly trap check by separating market awareness from competitor-led design.",
+            "competitive": "Every week, test whether the future is being built or merely benchmarked.",
+        },
+    },
+    "reviewCards": [
+        {
+            "cardId": "ch11-rc01",
+            "difficulty": "easy",
+            "front": {
+                "gentle": "What danger opens the final chapter?",
+                "direct": "How does blue-ocean thinking get lost?",
+                "competitive": "When does the old game start creeping back?",
+            },
+            "back": {
+                "gentle": "The danger is relapse into red-ocean thinking after the tools are already known.",
+                "direct": "The slide begins when competitors start defining strategy again.",
+                "competitive": "The old game returns when rivals reclaim the agenda.",
+            },
+        },
+        {
+            "cardId": "ch11-rc02",
+            "difficulty": "easy",
+            "front": {
+                "gentle": "What is red-ocean strategy here?",
+                "direct": "How does the chapter define the red ocean?",
+                "competitive": "What game is the chapter telling you to stop obeying?",
+            },
+            "back": {
+                "gentle": "It is competition in known market space for existing demand.",
+                "direct": "Red-ocean logic fights inside familiar boundaries for the same demand.",
+                "competitive": "It is the crowded contest everyone already understands.",
+            },
+        },
+        {
+            "cardId": "ch11-rc03",
+            "difficulty": "medium",
+            "front": {
+                "gentle": "Why does benchmarking become dangerous?",
+                "direct": "How can rival comparison turn into a trap?",
+                "competitive": "What makes the benchmark deck so dangerous?",
+            },
+            "back": {
+                "gentle": "It becomes dangerous when it tells the team what strategy should chase.",
+                "direct": "Benchmarking trains the room to optimize within the existing game.",
+                "competitive": "It can make obedience look intelligent.",
+            },
+        },
+        {
+            "cardId": "ch11-rc04",
+            "difficulty": "medium",
+            "front": {
+                "gentle": "What is the trap around existing demand?",
+                "direct": "Why is current-customer fixation risky?",
+                "competitive": "How does the same buyer pool shrink the future?",
+            },
+            "back": {
+                "gentle": "The trap is letting current demand become the whole strategic horizon.",
+                "direct": "A narrow fixation on existing customers crowds out the search for new demand.",
+                "competitive": "The company keeps fighting for the same pool while the future gets smaller.",
+            },
+        },
+        {
+            "cardId": "ch11-rc05",
+            "difficulty": "hard",
+            "front": {
+                "gentle": "What discipline closes the book?",
+                "direct": "How do leaders avoid red-ocean traps over time?",
+                "competitive": "What keeps the old game from taking the room back?",
+            },
+            "back": {
+                "gentle": "Keep returning strategy to buyer value and demand creation rather than rival imitation.",
+                "direct": "Observe competitors without letting them govern the move.",
+                "competitive": "Refuse to let comparison outrank creation.",
+            },
+        },
+    ],
+    "keyTakeawayCard": {
+        "gentle": "Blue ocean strategy survives only when strategy keeps returning to buyers and new demand instead of drifting back toward rivals.",
+        "direct": "The closing discipline is to notice competitors without letting them define the strategic move.",
+        "competitive": "If rivals own the room, the old game is already rebuilding itself.",
+    },
+    "quiz": {
+        "passingScorePercent": 70,
+        "questions": [
+            {
+                "questionId": "q01",
+                "prompt": "What closing problem defines Chapter 11?",
+                "choices": [
+                    "Blue oceans fail only when budgets are cut",
+                    "Organizations can relapse into red-ocean thinking when competition defines strategy again",
+                    "Competitors should never be watched at all",
+                ],
+                "correctIndex": 1,
+                "explanation": {
+                    "gentle": "The chapter warns about slipping back into red-ocean logic.",
+                    "direct": "The core danger is competitor-led relapse.",
+                    "competitive": "The old game retakes control when rivals write the agenda.",
+                },
+                "bloomsLevel": "remember",
+                "depthLevel": "simple",
+            },
+            {
+                "questionId": "q02",
+                "prompt": "How does the chapter define red-ocean strategy?",
+                "choices": [
+                    "Competing for existing demand in known market space",
+                    "Inventing new demand outside existing industry boundaries",
+                    "Ignoring buyers in order to focus on technology",
+                ],
+                "correctIndex": 0,
+                "explanation": {
+                    "gentle": "That is the chapter's red-ocean definition.",
+                    "direct": "Red oceans are the known, crowded market space.",
+                    "competitive": "It is the familiar fight for the same pool.",
+                },
+                "bloomsLevel": "understand",
+                "depthLevel": "simple",
+            },
+            {
+                "questionId": "q03",
+                "prompt": "Why does trying to beat competitors become a trap?",
+                "choices": [
+                    "It guarantees short-term failure",
+                    "It usually pushes strategy toward imitation rather than innovation",
+                    "It makes pricing impossible",
+                ],
+                "correctIndex": 1,
+                "explanation": {
+                    "gentle": "The chapter says competitor-first thinking narrows originality.",
+                    "direct": "Beating rivals on their terms tends to reproduce their terms.",
+                    "competitive": "If rivals set the target, you start becoming their echo.",
+                },
+                "bloomsLevel": "understand",
+                "depthLevel": "simple",
+            },
+            {
+                "questionId": "q04",
+                "prompt": "What is dangerous about benchmarking when it dominates strategy?",
+                "choices": [
+                    "It prevents any use of data",
+                    "It forces companies to stop serving customers",
+                    "It trains the team to optimize inside the existing game",
+                ],
+                "correctIndex": 2,
+                "explanation": {
+                    "gentle": "Benchmarking can narrow attention to the current market.",
+                    "direct": "It can improve the old game while weakening market creation.",
+                    "competitive": "The deck gets sharper while the future gets smaller.",
+                },
+                "bloomsLevel": "understand",
+                "depthLevel": "simple",
+            },
+            {
+                "questionId": "q05",
+                "prompt": "A manager opens every review with rival dashboards and feature comparisons. What trap is strongest?",
+                "choices": [
+                    "Competition-first thinking is setting the strategic agenda",
+                    "The team is overinvesting in pioneers",
+                    "The portfolio lacks enough settlers",
+                ],
+                "correctIndex": 0,
+                "explanation": {
+                    "gentle": "Rivals have become the starting point for strategy.",
+                    "direct": "This is the benchmarking trap in action.",
+                    "competitive": "The scoreboard is running the room.",
+                },
+                "bloomsLevel": "apply",
+                "depthLevel": "applied",
+            },
+            {
+                "questionId": "q06",
+                "prompt": "A student team copies the strongest rival project because it looks safer. Which warning fits best?",
+                "choices": [
+                    "The project is avoiding demand creation by imitating the field",
+                    "The project has too much buyer utility",
+                    "The project is using too much fair process",
+                ],
+                "correctIndex": 0,
+                "explanation": {
+                    "gentle": "The team has drifted toward imitation.",
+                    "direct": "Copying the field can look disciplined while shrinking originality.",
+                    "competitive": "Safe copying is still surrender to the old game.",
+                },
+                "bloomsLevel": "apply",
+                "depthLevel": "applied",
+            },
+            {
+                "questionId": "q07",
+                "prompt": "What does fixation on existing demand usually do to blue-ocean logic?",
+                "choices": [
+                    "It widens the search for noncustomers",
+                    "It narrows strategic imagination to the current pool",
+                    "It guarantees stronger renewal",
+                ],
+                "correctIndex": 1,
+                "explanation": {
+                    "gentle": "The chapter warns that the search horizon gets smaller.",
+                    "direct": "Current-customer fixation can crowd out new-demand discovery.",
+                    "competitive": "The same pool starts acting like the whole world.",
+                },
+                "bloomsLevel": "understand",
+                "depthLevel": "applied",
+            },
+            {
+                "questionId": "q08",
+                "prompt": "Which team is most trapped in red-ocean logic?",
+                "choices": [
+                    "A team that studies rivals briefly, then redesigns around unmet value",
+                    "A team that treats competitor best practices as the main blueprint for its move",
+                    "A team that explores people outside the current market",
+                ],
+                "correctIndex": 1,
+                "explanation": {
+                    "gentle": "That team is letting rivals define the move.",
+                    "direct": "Best-practice copying is the trap, not limited market awareness.",
+                    "competitive": "The blueprint belongs to the old game.",
+                },
+                "bloomsLevel": "analyze",
+                "depthLevel": "applied",
+            },
+            {
+                "questionId": "q09",
+                "prompt": "Why can a company understand blue-ocean tools and still relapse?",
+                "choices": [
+                    "Because the tools automatically expire",
+                    "Because attention can shift back toward rivals and current demand even after learning the concepts",
+                    "Because red oceans disappear once a company innovates",
+                ],
+                "correctIndex": 1,
+                "explanation": {
+                    "gentle": "Learning the ideas does not stop later drift.",
+                    "direct": "Relapse begins when strategic attention is reorganized around the old game again.",
+                    "competitive": "You can know the map and still march back into the trap.",
+                },
+                "bloomsLevel": "analyze",
+                "depthLevel": "deep",
+            },
+            {
+                "questionId": "q10",
+                "prompt": "What closing discipline best fits Chapter 11?",
+                "choices": [
+                    "Ignore competitors completely",
+                    "Keep buyer value and new demand ahead of benchmarking and imitation",
+                    "Focus only on current customers because they are proven",
+                ],
+                "correctIndex": 1,
+                "explanation": {
+                    "gentle": "That is how the chapter says to avoid relapse.",
+                    "direct": "The ending discipline is attention anchored to buyers and new demand.",
+                    "competitive": "Creation has to outrank comparison.",
+                },
+                "bloomsLevel": "analyze",
+                "depthLevel": "deep",
+            },
+        ],
+    },
+}
+
+write_json(RUN / "structured/ch11.chapter.json", chapter)
+write_json(RUN / "quizzes/ch11.quiz.json", chapter["quiz"])
+for depth in ["easy", "medium", "hard"]:
+    counts = [len(chapter["contentVariants"][depth]["chapterBreakdown"][tone].split()) for tone in ["gentle", "direct", "competitive"]]
+    print(depth, counts)

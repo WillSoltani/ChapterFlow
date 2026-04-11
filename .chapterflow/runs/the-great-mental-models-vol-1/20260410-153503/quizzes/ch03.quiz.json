@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch03-q01",
+      "prompt": "What does falsifiability require from a serious claim?",
+      "choices": [
+        "It must gather many confirming examples",
+        "It must be vulnerable to a possible disconfirming result",
+        "It must sound broad enough to cover many cases"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The key is that some outcome could actually count against the claim.",
+        "direct": "Falsifiability means the theory is exposed to a possible loss, not merely supported by cases it likes.",
+        "competitive": "A claim gets serious only when reality has a real chance to hand it a hit."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch03-q02",
+      "prompt": "Why does Popper distrust theories that can explain every possible result?",
+      "choices": [
+        "Because they are usually too technical for most people",
+        "Because unlimited flexibility can protect the theory from real testing",
+        "Because they are always morally dangerous"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. A theory that absorbs everything too easily may not be risking enough to teach you much.",
+        "direct": "If every outcome fits, then the claim has made itself hard to challenge and therefore less informative.",
+        "competitive": "The theory looks tough because it never takes a clean hit, not because it has earned the right."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch03-q03",
+      "prompt": "What makes a risky prediction more valuable than a neat explanation after the fact?",
+      "choices": [
+        "It commits the theory before the outcome is known",
+        "It sounds more confident to the audience",
+        "It avoids using any prior evidence"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The prediction matters because the theory exposed itself before the answer arrived.",
+        "direct": "Precommitment gives the evidence a real chance to confirm or damage the claim.",
+        "competitive": "The theory spends credibility early instead of buying invulnerability later."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch03-q04",
+      "prompt": "Elena proposes a growth strategy and says any weak month will just mean the market needed more time. What is the chapter's best criticism?",
+      "choices": [
+        "The strategy may now be too flexible to fail honestly",
+        "The strategy is probably wrong because markets are random",
+        "The team should trust her because she sounds experienced"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Good catch. The issue is not whether the strategy is wrong yet. The issue is that it has not exposed itself to a clear loss condition.",
+        "direct": "By redefining any setback as delay, the plan protects itself from meaningful disconfirmation.",
+        "competitive": "She just padded the theory so it can dodge the hit it ought to take."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q05",
+      "prompt": "What does Wason add to the chapter's argument?",
+      "choices": [
+        "He shows that people naturally prefer confirming evidence over disconfirming tests",
+        "He proves that all human reasoning is irrational",
+        "He argues that predictions are unnecessary in most fields"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Wason matters because he shows why people keep feeding weak theories the kind of evidence those theories like best.",
+        "direct": "His work reveals the confirmation-seeking habit that makes falsifiability emotionally and cognitively hard.",
+        "competitive": "The mind loves applause for its favorite ideas, which is why bad theories can feel well supported."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q06",
+      "prompt": "A student keeps revising the meaning of a thesis every time new evidence appears. What problem is forming?",
+      "choices": [
+        "The student is improving the theory through healthy refinement",
+        "The student is probably too creative for standard methods",
+        "The thesis may be surviving through ad hoc rescue rather than honest testing"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Right. Some revision is fair, but endless rescue can make the claim harder and harder to evaluate honestly.",
+        "direct": "The warning here is that repeated reinterpretation may preserve confidence while reducing real testability.",
+        "competitive": "Patch enough losses and the theory turns into a moving target reality cannot corner."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q07",
+      "prompt": "Sora asks her brother, \"What result would actually change your mind?\" Why is that question so strong?",
+      "choices": [
+        "It changes the conversation from endless example trading to testability",
+        "It proves that one side is more intelligent than the other",
+        "It avoids the need for any further evidence"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The question introduces a possible loss condition, which gives the discussion a chance to become informative.",
+        "direct": "Without that question, both sides can keep collecting support forever without exposing the claim to real challenge.",
+        "competitive": "She forces the argument to risk something. That is when a belief stops hiding behind examples."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q08",
+      "prompt": "Caleb can choose a broad thesis that no data can really hurt or a narrower one with a clear failure condition. Which option fits the chapter?",
+      "choices": [
+        "Choose the broad thesis because harder-to-break theories are stronger",
+        "Choose the narrower thesis because exposed claims teach more",
+        "Choose whichever thesis sounds more impressive to readers"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The chapter prefers the claim that gives evidence a real chance to count against it.",
+        "direct": "A vulnerable thesis is more informative than one protected by ambiguity and scope.",
+        "competitive": "Take the theory that can bleed. The untouchable one is buying fake prestige."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q09",
+      "prompt": "Why do elastic theories often feel stronger than testable ones even when they are weaker as knowledge?",
+      "choices": [
+        "Because people value ambiguity more than evidence",
+        "Because they are safer from embarrassment and easier to keep alive",
+        "Because they usually make more accurate predictions"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That is the trap. The theory feels safe because almost nothing can count as a real loss.",
+        "direct": "Elasticity lowers the risk of visible failure, which makes the claim feel robust even as its informational value falls.",
+        "competitive": "The theory looks tough because it is padded, not because it stands up better under honest fire."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch03-q10",
+      "prompt": "If you start making beliefs answerable to break-tests, what question naturally leads into the next model?",
+      "choices": [
+        "How can I keep all my assumptions intact while refining the wording?",
+        "What basic truths remain after I strip away inherited framing and rebuild from the ground up?",
+        "How can I avoid reduction and stay with complexity forever?"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Nicely done. Once a claim is exposed to testing, the next useful move is to ask what fundamentals remain when you strip the problem down.",
+        "direct": "The bridge leads to first principles: remove the inherited frame and rebuild from what still holds.",
+        "competitive": "After the theory faces the break-test, the next move is to rip away the decoration and see what hard truth survives."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "hard"
+    }
+  ]
+}

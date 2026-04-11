@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch12-q01",
+      "prompt": "What does adaptation rate ask in the chapter's practical sense?",
+      "choices": [
+        "Whether a system changed at all",
+        "Whether a system changed quickly enough for changing conditions",
+        "Whether a system felt more productive than before"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter compares the system's pace to the pace of the environment.",
+        "direct": "Adaptation rate is about speed relative to changing conditions, not motion by itself.",
+        "competitive": "The field's speed matters as much as yours."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch12-q02",
+      "prompt": "Which detail best shows a moving baseline?",
+      "choices": [
+        "A benchmark on a projector rising between review periods",
+        "A student feeling proud after practice",
+        "A planner page with more boxes filled in"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A moving baseline is a standard that changes while the system is adjusting.",
+        "direct": "The rising benchmark shows the environment itself changing.",
+        "competitive": "The bar moved while the player was still training for the old bar."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch12-q03",
+      "prompt": "Grace's routine used to work, but a longer commute and caregiving demands now make it fail. What is the best reading?",
+      "choices": [
+        "The routine lost fit because conditions changed faster than the routine did",
+        "The chapter would treat this as proof that routines never matter",
+        "Grace should keep the same plan because any change creates churn"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The old plan no longer matches the shape of the day.",
+        "direct": "The issue is pace mismatch between the routine and the new constraints.",
+        "competitive": "Her system was built for yesterday's clock."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch12-q04",
+      "prompt": "Lila's team improves retention and fixes bugs, yet Omar says the team is still in danger. Why?",
+      "choices": [
+        "Because the team's effort does not matter if competitors exist",
+        "Because internal gains can still lag a benchmark that is rising faster",
+        "Because the chapter says all dashboards should be ignored"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The team improved, but the field improved faster.",
+        "direct": "Relative improvement is stricter than simple progress against the last quarter.",
+        "competitive": "They polished the product while the benchmark escaped."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch12-q05",
+      "prompt": "How does the chapter distinguish adaptation from churn?",
+      "choices": [
+        "Adaptation is any rapid change, while churn is slow change",
+        "Adaptation improves fit to real pressure, while churn multiplies motion without solving the mismatch",
+        "Adaptation belongs only to biology, while churn belongs only to work"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter counts change only when it improves fit to the environment.",
+        "direct": "Visible activity becomes churn when it leaves the live demand unanswered.",
+        "competitive": "Motion without a tighter fit is just theater."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch12-q06",
+      "prompt": "Hannah keeps redesigning her study plan every few days but never checks which standard is rising. What limit does the chapter emphasize?",
+      "choices": [
+        "Any change is better than no change",
+        "Fast movement in the wrong direction can widen the gap",
+        "The only wise response is to freeze the routine completely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says pace without direction can make things worse.",
+        "direct": "Changing fast does not help when the adjustment misses the real demand.",
+        "competitive": "She is accelerating confusion."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch12-q07",
+      "prompt": "Which action best applies the Red Queen effect?",
+      "choices": [
+        "Assume a current lead will hold unless someone clearly takes it away",
+        "Keep checking how rivals, standards, or conditions are moving while you adapt",
+        "Ignore outside movement and measure success only against your past"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The Red Queen effect keeps attention on a landscape that is still moving.",
+        "direct": "The model assumes rivals and conditions continue changing while you respond.",
+        "competitive": "The field keeps training, so you keep scanning."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch12-q08",
+      "prompt": "Mr. Flores raises the coding club benchmark between checkpoints. What should Caleb do according to the chapter?",
+      "choices": [
+        "Keep practicing only against the previous cutoff",
+        "Treat the new benchmark as the live standard and adjust prep to match it",
+        "Assume the benchmark change makes the system unfair and unreadable"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter asks him to adapt to the current threshold, not the expired one.",
+        "direct": "A moving baseline changes what counts as enough preparation.",
+        "competitive": "Train for the bar that exists now."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch12-q09",
+      "prompt": "Which statement best captures the chapter's practical rule?",
+      "choices": [
+        "Track what is changing, how quickly it is changing, and whether your response improves fit at that speed",
+        "Move faster whenever you feel pressure, because speed itself is adaptation",
+        "Judge progress by internal improvement alone so the signal stays simple"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter combines changing conditions, pace, and fit into one test.",
+        "direct": "Adaptation rate becomes practical when you compare your adjustment to the speed and direction of environmental change.",
+        "competitive": "Measure the field, the gap, and whether your move actually closes it."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch12-q10",
+      "prompt": "How does this chapter point toward ecosystems and interdependence?",
+      "choices": [
+        "It shows that adaptation is relative to changing conditions, then asks what happens when those conditions are shaped by connected systems",
+        "It finishes the biology section by settling how adaptation works in every case",
+        "It returns to chemistry by comparing alloying rates again"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next question is what happens when the environment is partly made by other connected systems.",
+        "direct": "Chapter 12 establishes pace under moving conditions, which opens into ecosystems where systems reshape one another.",
+        "competitive": "First the field moves, then you ask who inside the field is moving it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

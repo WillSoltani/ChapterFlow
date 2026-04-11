@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch01-q01",
+      "prompt": "A manager says, \"The dashboard covers everything important, so we don't need to look at individual cases.\" What confusion is the chapter warning about?",
+      "choices": [
+        "Mistaking a representation for the full reality",
+        "Collecting too much data before acting",
+        "Giving customers too much influence over operations"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The dashboard may still be useful, but it is still a map. The danger is acting as if the reduced picture contains the whole terrain.",
+        "direct": "That statement collapses map into territory. The chapter argues that summaries help only while their omissions remain visible.",
+        "competitive": "The trap is giving a proxy the status of reality itself. That is how clean signals start making expensive calls."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q02",
+      "prompt": "Why does the Bezos customer-service story matter so much in this chapter?",
+      "choices": [
+        "It proves anecdotes should always replace data",
+        "It shows a direct territory check exposing a misleading metric",
+        "It argues that customer service is the most important department"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. The point is not to reject metrics. It is to compare the metric with what the metric claims to represent.",
+        "direct": "The story matters because a live check against the ground revealed that the dashboard's picture was incomplete.",
+        "competitive": "The metric lost authority the moment real contact broke it. That is the chapter's mechanism in miniature."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q03",
+      "prompt": "What is the strongest reason Newton and Einstein appear in the chapter together?",
+      "choices": [
+        "To show that newer models always erase older ones completely",
+        "To show that science is mostly a contest of personalities",
+        "To show that a model can stay useful within a range even after its limits become clear"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Exactly. The chapter is teaching bounded trust, not all-or-nothing trust.",
+        "direct": "Newton remained useful while Einstein defined conditions the older map could not cover well enough.",
+        "competitive": "The win is range control. A strong model is still not a universal passport."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q04",
+      "prompt": "Jordan runs a warehouse where the \"orders processed\" metric keeps improving, but damaged shipments are rising. What move best matches the chapter?",
+      "choices": [
+        "Keep the metric and add a direct check on what customers receive",
+        "Ignore all metrics for the next month and rely on intuition",
+        "Assume the damage reports are emotional noise compared with hard numbers"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Good call. The chapter does not ask Jordan to throw away maps. It asks for a better test against the territory.",
+        "direct": "Orders processed is a proxy. The right move is to compare it with the actual outcome that matters rather than trusting the proxy alone.",
+        "competitive": "Keep the scorecard, but strip it of undeserved authority until it survives contact with the ground."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q05",
+      "prompt": "A dean says a ranking system is fair because it uses the same formula for every department. What important question is still missing?",
+      "choices": [
+        "Whether the formula was expensive to build",
+        "Who designed the ranking and what it was built to reward",
+        "Whether faculty members like the published results"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. Equal treatment inside a formula does not make the formula neutral.",
+        "direct": "The cartographer question matters because the builder decided what counted and what stayed invisible.",
+        "competitive": "A neutral-looking instrument still carries priorities. The builder's incentives are part of the map."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q06",
+      "prompt": "Why is \"maps can influence territories\" a stronger warning than \"maps can be wrong\"?",
+      "choices": [
+        "Because it shows the model can start shaping behavior and outcomes",
+        "Because it means people should avoid planning entirely",
+        "Because it says descriptions are more dangerous than commands"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. Once rewards or attention attach to a representation, people begin adapting to it.",
+        "direct": "The chapter moves from descriptive error to causal distortion: the proxy can start steering the world around itself.",
+        "competitive": "Wrong maps mislead. Powerful maps train the game to flatter the map."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q07",
+      "prompt": "Leah reads a cold text from a friend and instantly decides the friendship is in trouble. Which response best applies the model?",
+      "choices": [
+        "Trust the feeling because first reactions are usually honest",
+        "Check directly before treating the small signal as the whole relationship",
+        "Ignore the text completely because all interpretation is unreliable"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exactly. A short message can matter, but it is still a thin map of a much larger territory.",
+        "direct": "The model points toward direct contact when a narrow cue is getting more authority than it deserves.",
+        "competitive": "Break the proxy's monopoly before four words take over the entire story."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q08",
+      "prompt": "A product team notices that its planning board rewards easy ticket closure, so hard infrastructure work keeps slipping. What does this reveal?",
+      "choices": [
+        "The board is tracking real progress more accurately than the engineers admit",
+        "The team needs more optimism during sprint planning",
+        "The representation is changing behavior in ways that distort the underlying work"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Yes. The board is no longer just describing progress. It is reshaping what people choose to do.",
+        "direct": "This is the chapter's third rule in action: the map has become a behavioral force.",
+        "competitive": "The scorecard has started rewriting the game, which means the proxy now needs redesign."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q09",
+      "prompt": "Which position best captures the chapter's hard boundary condition around maps?",
+      "choices": [
+        "All abstractions should be treated with suspicion because direct experience is always superior",
+        "Useful abstractions are necessary, but their authority should stay provisional and range-limited",
+        "A good model eventually becomes more reliable than the reality it summarizes"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That is the balanced reading. You need maps, but you also need a way to keep them answerable to the world.",
+        "direct": "The chapter rejects both map worship and map rejection. It argues for bounded trust under feedback.",
+        "competitive": "The mature move is disciplined use, not romantic anti-model posturing and not blind faith."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch01-q10",
+      "prompt": "If this chapter makes you more cautious about borrowed maps, what question naturally sets up the next chapter?",
+      "choices": [
+        "How can I tell where my own judgment is dependable and where it is not?",
+        "How can I stop using all models and rely only on firsthand experience?",
+        "How can I build a single perfect model that avoids revision?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nicely done. Once borrowed pictures look partial, the next useful question is where your own understanding is solid enough to trust.",
+        "direct": "The bridge is competence. After map-versus-territory, the next issue is the range of your own reliable judgment.",
+        "competitive": "This model strips away borrowed certainty. The next chapter asks where your own range actually ends."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "hard"
+    }
+  ]
+}

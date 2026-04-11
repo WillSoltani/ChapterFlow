@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch09-q01",
+      "prompt": "What is defended innocence in this chapter?",
+      "choices": [
+        "A flattering self-story that makes fault hard to admit",
+        "A fair process for hearing both sides of a conflict",
+        "A decision to forget past harm entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Defended innocence protects dignity and belonging by making admission feel too costly.",
+        "direct": "Correct. It is the self-protective story that keeps fault psychologically unaffordable.",
+        "competitive": "Right. It is the alibi carrying identity."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch09-q02",
+      "prompt": "What most clearly separates a non-apology from ownership?",
+      "choices": [
+        "A non-apology sounds calm while ownership sounds emotional",
+        "A non-apology mentions harm but blurs agency, while ownership names responsibility directly",
+        "A non-apology happens in public while ownership happens in private"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That is the core distinction. Ownership says what was done instead of only sounding regretful.",
+        "direct": "Exactly. The divide is explicit agency, not tone or setting.",
+        "competitive": "Yes. The real split is whether the responsible verbs finally appear."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch09-q03",
+      "prompt": "Lena's team apologizes for 'confusion' but never states who made the damaging choice. What is the strongest reading?",
+      "choices": [
+        "The team is practicing ownership because harm was mentioned",
+        "The team is wisely avoiding blame language",
+        "The team is using remorse language while still protecting innocence"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Nice catch. Mentioning harm is not enough when agency still stays blurry.",
+        "direct": "Correct. This is image management rather than full ownership because the responsible action remains hidden.",
+        "competitive": "Right. The email sounds sorry and keeps the driver off the record."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch09-q04",
+      "prompt": "Why can honest admission feel socially dangerous for Omar in the seminar example?",
+      "choices": [
+        "Because truth only matters when everyone already agrees on it",
+        "Because group conflict becomes irrelevant once someone feels regret",
+        "Because accountability can threaten the status story that helps him feel admirable"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "That is the point. Admission can feel costly because it threatens dignity and status, not because the facts are missing.",
+        "direct": "Correct. The ownership threshold is psychological and social before it is verbal.",
+        "competitive": "Truth is blocked when acquittal still feels like honor."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q05",
+      "prompt": "What does accepted agency add that polished remorse alone does not?",
+      "choices": [
+        "It makes the speaker sound more emotionally expressive",
+        "It states action, choice, omission, and cost clearly enough to carry responsibility",
+        "It guarantees immediate forgiveness from the harmed person"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That is the sharper standard. Ownership carries the truth of what was done, not just the feeling around it.",
+        "direct": "Correct. Repair begins when responsibility is explicit enough to bear consequence.",
+        "competitive": "Yes. The truth has to include the bill."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q06",
+      "prompt": "Which misreading does this chapter reject about letting go?",
+      "choices": [
+        "Letting go can preserve memory while ending permanent prosecution",
+        "Letting go is harder when grievance has become identity",
+        "Letting go means excusing the harm or pretending the wound was unreal"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Yes. The chapter does not ask anyone to forget or excuse the harm.",
+        "direct": "Correct. It separates release of grievance identity from denial of injury.",
+        "competitive": "Right. Closing the courtroom is not shredding the record."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q07",
+      "prompt": "Why does consequence matter in a repair attempt?",
+      "choices": [
+        "Because trust shifts when responsibility is strong enough to bear cost",
+        "Because apology only counts when it creates embarrassment",
+        "Because visible punishment automatically restores the relationship"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That is the lesson. Consequence shows that responsibility is no longer being negotiated away.",
+        "direct": "Correct. Cost-bearing accountability changes trust more than polished language alone.",
+        "competitive": "Yes. The room trusts the bill more than the performance."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q08",
+      "prompt": "Rina keeps the memory of the harm but stops using it to prosecute every future interaction. What has changed?",
+      "choices": [
+        "She has decided the original harm no longer matters",
+        "She has separated memory of the wound from grievance as permanent identity",
+        "She has guaranteed that trust will return quickly"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That fits the chapter. The wound stays real, but it no longer runs the entire future.",
+        "direct": "Correct. Letting go means ending permanent prosecution without denying the injury.",
+        "competitive": "Right. She kept the record and retired the trial."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q09",
+      "prompt": "Why does the chapter redefine dignity at the end?",
+      "choices": [
+        "Because accountability becomes possible only when honor no longer depends on staying innocent",
+        "Because dignity means never revisiting painful memories",
+        "Because public image is more important than truth in repair"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. People can own up only when fault no longer feels like total collapse of self-worth.",
+        "direct": "Correct. As long as dignity means acquittal, truth remains too dangerous.",
+        "competitive": "Yes. Honor has to stop working for the alibi."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch09-q10",
+      "prompt": "Why does the book end with letting go and owning up rather than with another example of self-justification?",
+      "choices": [
+        "Because once self-justification is understood, repair becomes automatic",
+        "Because the final chapter is mainly about forgetting old conflicts",
+        "Because the book's real closure is showing what could make truth outrank self-protection"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "That is the book's closing move. The final question is what can interrupt defended innocence at all.",
+        "direct": "Correct. The ending turns from diagnosis to the rare conditions for accountability and repair.",
+        "competitive": "Right. The book closes by asking what can finally beat the acquittal reflex."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

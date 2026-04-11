@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What pressure does Chapter 4 say norms create for selfish actors?",
+      "choices": [
+        "They create pressure to get the benefit of cheating without paying the full cost of open violation",
+        "They remove selfish incentives entirely",
+        "They make every violation impossible to hide"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "understand",
+      "depthLevel": "easy",
+      "explanation": {
+        "gentle": "The chapter says rules change how selfishness is pursued, not whether the motive disappears.",
+        "direct": "Norms make actors search for gain under cover.",
+        "competitive": "The game becomes payoff plus deniability."
+      }
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What makes the chapter's most interesting cases of cheating distinctive?",
+      "choices": [
+        "They happen only in perfect secrecy",
+        "They occur in broad daylight with thin cover",
+        "They depend on formal court rulings"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "remember",
+      "depthLevel": "easy",
+      "explanation": {
+        "gentle": "The chapter emphasizes violations people can often see but struggle to punish.",
+        "direct": "Its central cases are public cheating under ambiguity.",
+        "competitive": "Seen move, weak case."
+      }
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is a thin fig leaf doing in the chapter's framework?",
+      "choices": [
+        "It makes the violation harder to prosecute by raising the cost of confrontation",
+        "It proves nobody noticed the violation",
+        "It turns a norm into a formal law"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "remember",
+      "depthLevel": "easy",
+      "explanation": {
+        "gentle": "The cover does not need to be strong if it makes pushing the case harder.",
+        "direct": "Its function is burden-shifting, not perfect persuasion.",
+        "competitive": "The excuse works by making the hit costly."
+      }
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A coworker bends a policy in public and immediately offers a flimsy explanation that makes everyone hesitate to object. Which chapter idea best explains the hesitation?",
+      "choices": [
+        "The norm has disappeared completely",
+        "A thin fig leaf has made escalation socially costly",
+        "People no longer care about proof"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "apply",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "The excuse is buying hesitation more than belief.",
+        "direct": "The cover protects the violation by making accusation awkward and effortful.",
+        "competitive": "The room stalls because the case just got more expensive."
+      }
+    },
+    {
+      "questionId": "q05",
+      "prompt": "A team sees a player break a rule, but no one speaks first because nobody knows who will back them. What concept is most visible?",
+      "choices": [
+        "The common knowledge problem",
+        "The disappearance of competition",
+        "A failure of all norms everywhere"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "apply",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "The problem is not that people failed to notice. It is that they could not coordinate their certainty.",
+        "direct": "Common knowledge matters when enforcement requires visible backing.",
+        "competitive": "The room saw it and still could not line up."
+      }
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which misunderstanding does Chapter 4 reject?",
+      "choices": [
+        "Cheating only matters when it is completely secret",
+        "Excuses can shape enforcement",
+        "Groups may avoid confrontation"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "The chapter says public cheating under cover is one of the most important cases.",
+        "direct": "Its target is the hidden-only picture of norm violation.",
+        "competitive": "The public cheat is part of the main story, not a side case."
+      }
+    },
+    {
+      "questionId": "q07",
+      "prompt": "How does Chapter 4 grow out of Chapter 3 on norms?",
+      "choices": [
+        "Norms create incentives to seek selfish gains under ambiguous cover",
+        "Norms make all selfish motives vanish",
+        "Norms matter only when formal punishments are certain"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "Once rules exist, people may try to keep the gain while avoiding the social penalty.",
+        "direct": "Cheating becomes the next move under norm pressure.",
+        "competitive": "The contest shifts into deniability."
+      }
+    },
+    {
+      "questionId": "q08",
+      "prompt": "A committee dislikes a violation but avoids gathering evidence or confronting the violator because the process would be exhausting and awkward. What chapter mechanism is that?",
+      "choices": [
+        "Perfect enforcement",
+        "Enforcement laziness and cost avoidance",
+        "Proof that the rule has no supporters"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "apply",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "The chapter says rules can fail because enforcement takes effort people would rather avoid.",
+        "direct": "Private disapproval is easier than proof work and escalation.",
+        "competitive": "The room hates the hassle more than it hates the move."
+      }
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why can cheating survive even when many observers are not fooled by the excuse?",
+      "choices": [
+        "Because only full belief can support cheating",
+        "Because ambiguity can still block shared proof and coordinated action",
+        "Because broad support for the rule is impossible"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard",
+      "explanation": {
+        "gentle": "The cover does not need believers if it keeps the case from becoming clean and public.",
+        "direct": "The chapter's mechanism is hesitation under evidential and social friction, not universal deception.",
+        "competitive": "The lie can lose the argument and still win the round."
+      }
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What is the strongest bridge from Chapter 4 into Chapter 5 on self-deception?",
+      "choices": [
+        "Once public cover stops working, people stop cheating",
+        "If excuses can hide motives from others, the mind may help hide them inwardly too",
+        "Self-deception matters only when norms disappear"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard",
+      "explanation": {
+        "gentle": "The next step is concealment moving from social cover into the actor's own mind.",
+        "direct": "Self-deception extends the cheating logic inward.",
+        "competitive": "The next fig leaf grows inside the player."
+      }
+    }
+  ]
+}

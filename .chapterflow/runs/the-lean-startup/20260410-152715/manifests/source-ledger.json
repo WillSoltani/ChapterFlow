@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "1.0.0",
+  "bookId": "the-lean-startup",
+  "runId": "20260410-152715",
+  "createdAt": "2026-04-10T15:30:13Z",
+  "sourcePolicy": "public_or_authorized_plus_secondary",
+  "sources": [
+    {
+      "sourceId": "openlibrary-ol27876905m",
+      "title": "The Lean Startup",
+      "type": "bibliographic_toc",
+      "role": "edition anchor and chapter map",
+      "url": "https://openlibrary.org/books/OL27876905M/The_Lean_Startup",
+      "confidence": "high",
+      "notes": "Open Library edition record provides the 2011 English trade metadata, ISBN 9780670921607, and a full table of contents with chapter titles and starting pages."
+    },
+    {
+      "sourceId": "google-books-iu5ptqeacaaj",
+      "title": "The Lean Startup: How Today's Entrepreneurs Use Continuous Innovation to Create Radically Successful Businesses",
+      "type": "authorized_bibliographic_preview",
+      "role": "publisher-family and metadata confirmation",
+      "url": "https://books.google.com/books/about/The_Lean_Startup.html?id=Iu5PtQEACAAJ",
+      "confidence": "medium",
+      "notes": "Google Books confirms author, title, Crown Business 2011 publication family, and the book-level description used for high-level framing."
+    },
+    {
+      "sourceId": "ai-book-summary-lean-startup",
+      "title": "The Lean Startup - Summary with Notes and Highlights",
+      "type": "secondary_summary",
+      "role": "chapter-level interpretation bundle",
+      "url": "https://aibooksummary.com/the-lean-startup-book-summary/",
+      "confidence": "medium",
+      "notes": "Provides chapter-by-chapter summaries aligned to the Open Library table of contents. Used paraphrase-first for chapter briefs and sidecars, never for exact quotation."
+    },
+    {
+      "sourceId": "1hourguide-lean-startup",
+      "title": "The Lean Startup: Advice on How To Start A Business By Eric Ries",
+      "type": "secondary_summary",
+      "role": "cross-check on chapter order and part structure",
+      "url": "https://www.1hourguide.co.za/the-lean-startup/",
+      "confidence": "medium",
+      "notes": "Confirms the same three-part structure and chapter sequence as Open Library."
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the final chapter mainly asking the reader to do?",
+      "choices": [
+        "Practice the method rather than only admire it",
+        "Memorize the vocabulary more carefully",
+        "Limit the method to one startup context"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says the method should move into action, not remain shelf-level agreement.",
+        "direct": "Ries turns the close into an invitation to use disciplined learning in real work.",
+        "competitive": "The book is asking for changed behavior, not better applause."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the chapter widen the method beyond one startup setting?",
+      "choices": [
+        "Because the management problem of uncertainty appears in many kinds of organizations",
+        "Because startup language is no longer useful",
+        "Because only universities can innovate well"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says the method travels because uncertainty and learning problems travel.",
+        "direct": "Ries broadens the scope because schools, labs, nonprofits, and established firms can face the same management challenge.",
+        "competitive": "The method follows the wound, not one startup costume."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A team praises experimentation but keeps the same plan-first workflow. What would Chapter 14 say?",
+      "choices": [
+        "The team has accepted the invitation fully",
+        "The team may admire the method without practicing it",
+        "The team should avoid using the method outside startups"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns that agreement without changed behavior means little.",
+        "direct": "If the workflow stays the same, the method is still being admired more than used.",
+        "competitive": "They installed the language but not the operating system."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "In Omar's student founder network scenario, what mattered most?",
+      "choices": [
+        "Keeping the method inside one club",
+        "Turning shared enthusiasm into a specific new setting for practice",
+        "Avoiding use outside venture-backed projects"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The scenario showed that broader adoption starts when the method enters a real new context.",
+        "direct": "Omar pushed the group from discussion toward concrete extension into another setting.",
+        "competitive": "He forced the method to earn a passport instead of a compliment."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What distinction does Chapter 14 insist on about the movement?",
+      "choices": [
+        "It is mainly about identity and belonging",
+        "It is about concrete practice rather than rhetoric or labels",
+        "It only applies after a company is large"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says joining the movement means using the method, not wearing a label.",
+        "direct": "Ries keeps the movement grounded in application rather than belonging language.",
+        "competitive": "No badge counts if the workflow stays untouched."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Why is practice harder than admiration in this chapter?",
+      "choices": [
+        "Because practice requires visible uncertainty, earlier testing, and changed habits",
+        "Because admiration always produces better results",
+        "Because practice matters only to founders"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says admiration is cheap, but use exposes routines and pride to evidence.",
+        "direct": "Practice is harder because it asks people to let testing and learning interrupt comfortable plans.",
+        "competitive": "Agreement flatters the ego. Practice makes it give something up."
+      },
+      "bloomsLevel": "understand-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "How could a nonprofit, lab, school, or firm apply the final chapter well?",
+      "choices": [
+        "By identifying one uncertainty-heavy workflow and changing it through disciplined learning",
+        "By repeating movement language without changing routines",
+        "By assuming the method belongs only to startups"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says the method spreads through real use in settings beyond a narrow startup image.",
+        "direct": "Any organization can accept the invitation by making one concrete workflow change where uncertainty matters.",
+        "competitive": "Take the method where the uncertainty lives and make the calendar obey it."
+      },
+      "bloomsLevel": "transfer",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What should you suspect when leaders or teams use lean startup vocabulary but keep old routines intact?",
+      "choices": [
+        "That broader adoption is still rhetorical rather than practical",
+        "That the movement has fully succeeded",
+        "That labels matter more than behavior"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter is suspicious of agreement that does not reach practice.",
+        "direct": "Movement language without changed behavior means the method has not really been adopted.",
+        "competitive": "The vocabulary migrated, but the workflow kept its old passport."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why do methods often stall at admiration instead of becoming practice?",
+      "choices": [
+        "Because application is exposing and forces earlier uncertainty and correction",
+        "Because agreement always changes behavior automatically",
+        "Because broader adoption makes no practical difference"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says practice costs pride and habit in ways that admiration does not.",
+        "direct": "Readers often stop at approval because using the method requires visible uncertainty and changed routines.",
+        "competitive": "Methods die in praise because praise is cheaper than letting them threaten the schedule."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How does the book choose to end in Chapter 14?",
+      "choices": [
+        "With an invitation to carry disciplined learning into broader practice",
+        "With a final new doctrine that replaces earlier chapters",
+        "With a warning that the method should stay inside one niche"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The book ends by widening the lesson into application rather than more theory.",
+        "direct": "Ries closes with an operational invitation: practice and spread the method through real use.",
+        "competitive": "The last page is a work order, not a shrine."
+      },
+      "bloomsLevel": "connect-transfer",
+      "depthLevel": "hard"
+    }
+  ]
+}

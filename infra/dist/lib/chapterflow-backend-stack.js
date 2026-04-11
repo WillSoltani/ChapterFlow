@@ -61,6 +61,10 @@ function resolveAllowedWebOrigins() {
         "https://www.siliconx.ca",
         "https://chapterflow.siliconx.ca",
         "https://auth.siliconx.ca",
+        "https://chapterflow.ca",
+        "https://www.chapterflow.ca",
+        "https://app.chapterflow.ca",
+        "https://auth.chapterflow.ca",
     ];
     const envCandidates = [
         process.env.WEB_ALLOWED_ORIGINS || "",
@@ -197,7 +201,12 @@ class ChapterFlowBackendStack extends cdk.Stack {
             removalPolicy: cdk.RemovalPolicy.RETAIN,
         });
         this.contentBucket = new s3.Bucket(this, "ChapterFlowContentBucket", {
-            blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
+            blockPublicAccess: new s3.BlockPublicAccess({
+                blockPublicAcls: true,
+                ignorePublicAcls: true,
+                blockPublicPolicy: false,
+                restrictPublicBuckets: false,
+            }),
             encryption: s3.BucketEncryption.S3_MANAGED,
             enforceSSL: true,
             versioned: true,
@@ -210,6 +219,13 @@ class ChapterFlowBackendStack extends cdk.Stack {
             ],
             removalPolicy: cdk.RemovalPolicy.RETAIN,
         });
+        this.contentBucket.addToResourcePolicy(new iam.PolicyStatement({
+            sid: "PublicReadLibraryCovers",
+            effect: iam.Effect.ALLOW,
+            principals: [new iam.AnyPrincipal()],
+            actions: ["s3:GetObject"],
+            resources: [`${this.contentBucket.bucketArn}/book-content/library/covers/*`],
+        }));
         this.appRunnerRuntimeRole = new iam.Role(this, "ChapterFlowAppRuntimeRole", {
             roleName: process.env.CHAPTERFLOW_APP_RUNNER_ROLE_NAME || "ChapterFlowAppRuntimeRole",
             assumedBy: new iam.ServicePrincipal("tasks.apprunner.amazonaws.com"),

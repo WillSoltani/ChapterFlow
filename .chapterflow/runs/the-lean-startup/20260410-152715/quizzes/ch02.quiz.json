@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What does Ries use to define startup work in this chapter?",
+      "choices": [
+        "How new and uncertain the work is",
+        "How small the company is",
+        "How early the funding stage is"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter shifts away from image and toward condition. The important test is whether the work is still deeply uncertain.",
+        "direct": "Ries replaces the usual startup stereotype with a condition-based definition centered on uncertainty.",
+        "competitive": "Company costume does not decide it. Unsettled facts do."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Which stereotype is this chapter trying to break first?",
+      "choices": [
+        "That startups always use new technology",
+        "That startups are mainly founder-led small companies",
+        "That startups should avoid management"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Ries wants readers to stop treating the common startup image as the definition itself.",
+        "direct": "The chapter attacks the visual stereotype of startup as a small founder venture and replaces it with a condition-based test.",
+        "competitive": "The usual founder image is treated like a distraction, not a reliable boundary."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A large institution is launching a new service and still does not know what users will value most. How would Ries classify that work?",
+      "choices": [
+        "As routine management because the institution is established",
+        "As startup work because the core facts are still uncertain",
+        "As non-entrepreneurial because the project has a formal budget"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The building and budget do not settle the key question. If the important facts are still open, startup logic still applies.",
+        "direct": "Ries's definition turns on uncertainty, so established context does not remove startup conditions when assumptions remain unresolved.",
+        "competitive": "Polish does not cancel guesswork. Uncertainty still rules the classification."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Naomi's corporate innovation team is being graded mainly on predictable delivery even though customer demand is still unclear. What is the best diagnosis?",
+      "choices": [
+        "The team is being managed with stable-work habits too early",
+        "The team should stop measuring anything until demand is certain",
+        "The team is safe because big-company processes always reduce uncertainty"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns that stable systems can misread uncertain work when they reward smooth delivery before the facts are earned.",
+        "direct": "This is exactly the management misfit Ries highlights: certainty-shaped evaluation applied to unsettled work.",
+        "competitive": "The process looks disciplined, but it is grading the team by the wrong game."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why does size become a weak shortcut once this chapter's definition is in place?",
+      "choices": [
+        "Because all small teams are routine and all large teams are innovative",
+        "Because a small team can do settled work while a large institution can still face uncertainty",
+        "Because organization size has no effect on any management decision"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Ries is not saying size never matters. He is saying size does not decide whether startup logic applies.",
+        "direct": "The chapter makes size secondary because the real issue is whether the work's central facts are known or still being discovered.",
+        "competitive": "Small can be routine. Large can be guessing. That is why size is too weak as a filter."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Omar asks whether a campus redesign project is stable work or uncertain work. What mistake is he trying to prevent?",
+      "choices": [
+        "Assuming every student project must be founder-style entrepreneurship",
+        "Managing discovery work as if the main answers were already known",
+        "Letting learning matter more than presentation quality"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "He is trying to stop the team from using the wrong management style before the facts are clear.",
+        "direct": "The chapter's warning is that stable-management habits can distort uncertain work when applied too early.",
+        "competitive": "He is blocking a bad classification before the system turns uncertainty into a performance problem."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "A nonprofit launches a new program with unclear user demand. Which scorecard fits this chapter best?",
+      "choices": [
+        "Learning what reduces the key uncertainties",
+        "How polished the first quarterly report looks",
+        "How closely the rollout matches the original plan"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "When the basic facts are still moving, the team needs evidence that teaches it something about what works.",
+        "direct": "Validated learning remains the chapter's best metric because it matches the unsettled condition of the work.",
+        "competitive": "A clean report is weak comfort if the main unknowns are still untouched."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Samir's dashboard shows deadlines met and budget on track, but it says almost nothing about whether the new program is solving a real user problem. What is the chapter's judgment?",
+      "choices": [
+        "The dashboard proves the work is no longer entrepreneurial",
+        "The dashboard may be rewarding optics while uncertainty stays hidden",
+        "The dashboard is enough because execution quality always comes first"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Neat metrics can still leave the most important question unanswered when the work is uncertain.",
+        "direct": "Ries's framework would treat this as a stable-style report that misses whether the team is actually learning.",
+        "competitive": "The dashboard is polished, but polish is not proof when the assumptions underneath are still weak."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Which choice best captures the deeper risk of using stable-management habits on uncertain work?",
+      "choices": [
+        "The team may start protecting neat output instead of exposing unclear assumptions",
+        "The team will automatically become more innovative over time",
+        "The team will stop needing management at all"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The danger is not only slower progress. It is that people learn to hide uncertainty because the system rewards looking settled.",
+        "direct": "A stable-work scorecard can distort behavior by making optics safer than discovery.",
+        "competitive": "When polish pays better than truth, people start performing certainty instead of earning it."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Once this chapter broadens entrepreneurship beyond the stereotype, what question does the next chapter logically need to answer?",
+      "choices": [
+        "Which founder personality type succeeds fastest",
+        "What kind of learning is valid enough to count as progress",
+        "Why small offices create better culture than large organizations"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "If more teams now qualify as doing startup work, the reader needs a clearer standard for the kind of learning that really matters.",
+        "direct": "The widened map points directly into a stricter definition of validated learning as the next step.",
+        "competitive": "More teams may qualify, so the proof standard for real learning has to get sharper next."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

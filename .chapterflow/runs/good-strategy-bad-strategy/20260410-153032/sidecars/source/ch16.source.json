@@ -1,0 +1,48 @@
+{
+  "chapterId": "ch16",
+  "title": "The Science of Strategy",
+  "heading": "The Science of Strategy",
+  "approxWords": 410,
+  "properNouns": [
+    "Google Books",
+    "Penguin Random House",
+    "Chapter 15",
+    "Chapter 16"
+  ],
+  "repeatedTerms": [
+    "science",
+    "diagnosis",
+    "cause",
+    "consequence",
+    "evidence",
+    "test",
+    "reasoning"
+  ],
+  "sourceReferences": [
+    {
+      "url": "https://books.google.com/books/about/Good_Strategy_Bad_Strategy.html?id=0FWPDQAAQBAJ",
+      "role": "chapter_title_and_toc",
+      "confidence": 0.97
+    },
+    {
+      "url": "https://penguinrandomhousehighereducation.com/book/?isbn=9780307886231",
+      "role": "official_preview_support_for_coherent_action_bridge",
+      "confidence": 0.9
+    },
+    {
+      "url": "internal:source-freeze/book-source.md",
+      "role": "frozen_title_support_for_chapter_16",
+      "confidence": 0.9
+    },
+    {
+      "url": "internal:validated/ch15.chapter.json",
+      "role": "bridge_support_for_synthesis_then_rigor",
+      "confidence": 0.87
+    },
+    {
+      "url": "internal:skeleton/book-skeleton.md",
+      "role": "secondary_intent_context_for_strategic_judgment_rigor_despite_title_conflict",
+      "confidence": 0.68
+    }
+  ]
+}

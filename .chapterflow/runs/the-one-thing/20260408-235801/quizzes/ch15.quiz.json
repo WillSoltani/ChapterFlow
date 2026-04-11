@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What does Chapter 15 mean by productivity?",
+      "choices": [
+        "Carrying the chosen priority forward through concentrated execution",
+        "Keeping as many worthwhile tasks moving as possible",
+        "Clearing visible work so the day feels full"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter defines productivity as carrying the chosen first claim forward.",
+        "direct": "Productivity means execution shaped by priority.",
+        "competitive": "The winner has to keep the field."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why can a clear priority still fail in practice?",
+      "choices": [
+        "Because the day can still scatter force across noise and side tasks",
+        "Because priority only matters after commitment is complete",
+        "Because productivity is unrelated to execution"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Priority can stay abstract if the day keeps feeding noise.",
+        "direct": "A named priority still fails if action does not gather around it.",
+        "competitive": "The winner can still starve if the field scatters."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Which situation best matches Chapter 15's idea of productivity?",
+      "choices": [
+        "Answering many messages before starting the real work",
+        "Keeping multiple small tasks alive so momentum feels high",
+        "Giving the next serious work block to the priority that already has first claim"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter wants the right thing to keep the real block of effort.",
+        "direct": "Productivity means concentrated execution on the chosen priority.",
+        "competitive": "The winner has to get the block, not applause."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "In the school examples, what makes a study block productive?",
+      "choices": [
+        "Switching often so more checklist items move",
+        "Spending equal time on every open subject",
+        "Letting the most important exam or paper keep the timer block long enough to deepen"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "A productive study block stays with the work that matters most.",
+        "direct": "The key is concentrated execution on the highest-priority subject.",
+        "competitive": "The winner keeps the clock."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What does the chapter reject as output theater?",
+      "choices": [
+        "Deep work on the main initiative",
+        "Visible motion that leaves the first claim mostly untouched",
+        "Protecting a block from side-task drift"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns that visible activity can still avoid the main work.",
+        "direct": "Output theater is scattered motion that looks productive.",
+        "competitive": "Busy noise is not a win."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "How does Chapter 15 build on Chapter 14?",
+      "choices": [
+        "It replaces priority with a looser idea of effort",
+        "It asks whether the chosen first claim now governs execution",
+        "It delays action until all commitments are named"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Chapter 14 names first claim, and Chapter 15 asks whether action follows it.",
+        "direct": "The move is from priority to concentrated execution.",
+        "competitive": "The winner now has to take the field."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What is the personal-life version of productivity in this chapter?",
+      "choices": [
+        "Giving the evening hour to the personal move that matters most",
+        "Finishing as many chores as possible before resting",
+        "Keeping every good intention active at once"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Personal productivity means the right move receives the hour.",
+        "direct": "The evening should reflect the first claim, not just stay busy.",
+        "competitive": "The winner has to own the hour."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What harder standard does the chapter use to judge a day?",
+      "choices": [
+        "Whether the calendar looked full",
+        "Whether the chosen priority kept receiving the best force",
+        "Whether many small tasks were completed"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter judges the day by whether the right priority kept the force.",
+        "direct": "A productive day is one where first claim stays in charge of action.",
+        "competitive": "The field only counts if the winner kept control."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why can a day with fewer completions still be more productive?",
+      "choices": [
+        "Because unfinished work is always a better signal",
+        "Because deep movement on the right priority can matter more than broad motion",
+        "Because visible output should never matter at all"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Fewer completions can still be better if the right thing advanced.",
+        "direct": "Concentrated progress on first claim outweighs scattered motion.",
+        "competitive": "A smaller board can still win if the winner moved."
+      },
+      "bloomsLevel": "evaluate-transfer",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What question does Chapter 15 leave for Chapter 16?",
+      "choices": [
+        "How can more tasks be kept active at the same time?",
+        "How can productivity be measured by volume alone?",
+        "What commitments are required to protect concentrated execution?"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter points toward the commitments needed to protect concentration.",
+        "direct": "It leaves the reader asking how first-claim execution can be defended under pressure.",
+        "competitive": "The winner needs protection if it is going to stay on the field."
+      },
+      "bloomsLevel": "evaluate-transfer",
+      "depthLevel": "hard"
+    }
+  ]
+}

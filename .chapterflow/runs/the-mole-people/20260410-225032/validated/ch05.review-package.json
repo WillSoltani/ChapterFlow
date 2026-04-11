@@ -1,0 +1,719 @@
+{
+  "schemaVersion": "1.1.0",
+  "packageId": "3117266a-9a8e-4780-91af-b848cd1a62be",
+  "createdAt": "2026-04-11T00:06:12Z",
+  "contentOwner": "ChapterFlow",
+  "book": {
+    "bookId": "the-mole-people",
+    "title": "The Mole People",
+    "author": "Jennifer Toth",
+    "categories": [],
+    "tags": [],
+    "edition": {
+      "name": "The mole people: life in the tunnels beneath New York City",
+      "translator": "",
+      "publishedYear": 1993,
+      "translationYear": null,
+      "sourceText": ".chapterflow/runs/the-mole-people/20260410-225032/source-freeze/book-source.md",
+      "sourceProvenance": "Frozen from the 1993 first-edition Open Library record, the Google Books work-family page, the Chicago Review Press product page, the CCLS Syndetics table of contents and professional reviews, later reporting recorded in manifests/source-ledger.json, and publisher-permitted listing excerpts used for narrow Chapter 1-5 support."
+    },
+    "variantFamily": "EMH",
+    "chapterRange": "1-26"
+  },
+  "chapters": [
+    {
+      "chapterId": "ch05-the-underground-population",
+      "number": 5,
+      "title": "The Underground Population",
+      "readingTimeMinutes": 6,
+      "contentVariants": {
+        "easy": {
+          "chapterBreakdown": {
+            "gentle": "After the early portrait chapters, the book widens to a broader map. The underground population is mixed, not uniform, and the chapter keeps variety and caution together.",
+            "direct": "The chapter rejects a simple stereotype. Underground residents are not all loners, and they are not all members of one organized culture.",
+            "competitive": "The right move is broader than a portrait and narrower than a myth."
+          },
+          "keyTakeaways": [
+            {
+              "point": {
+                "gentle": "One label can hide many different underground lives.",
+                "direct": "The population is mixed rather than uniform.",
+                "competitive": "One type will not cover the map."
+              }
+            },
+            {
+              "point": {
+                "gentle": "People move below ground for more than one reason.",
+                "direct": "There is no single motive that explains tunnel life.",
+                "competitive": "Multiple pressure routes feed the same hidden space."
+              }
+            },
+            {
+              "point": {
+                "gentle": "The chapter stays cautious because uncertainty is part of the truth.",
+                "direct": "Honest systems description requires restraint.",
+                "competitive": "If the evidence is thin, confidence becomes distortion."
+              }
+            }
+          ],
+          "oneMinuteRecap": {
+            "gentle": "The underground population includes loners and communities, multiple motives, and more variety than one stereotype can hold.",
+            "direct": "Chapter 5 maps a mixed hidden population and argues that caution is part of telling the truth about it.",
+            "competitive": "The right scale is wider than a portrait and tighter than a legend."
+          }
+        },
+        "medium": {
+          "chapterBreakdown": {
+            "gentle": "The chapter opens by refusing the idea that tunnel dwellers are one social type. The frozen summaries support loners and communities together.",
+            "direct": "That flattening problem also affects motive. People move below ground for different reasons, and the chapter keeps those pressure routes plural.",
+            "competitive": "Once variety and motive are visible, invisibility looks less mysterious and more distorting. The chapter gains credibility by keeping uncertainty attached to its claims."
+          },
+          "keyTakeaways": [
+            {
+              "point": {
+                "gentle": "The underground population is socially mixed.",
+                "direct": "One category hides several forms of life below ground.",
+                "competitive": "The label is larger than any single type."
+              },
+              "moreDetails": {
+                "gentle": "People below ground can be alone or in communities, which changes how the whole subject should be described.",
+                "direct": "The chapter gets stronger the moment it stops treating underground residents as one kind of person.",
+                "competitive": "If you start with one type, the map is already lying."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Motive is plural, not singular.",
+                "direct": "Different pressures can lead people to the same hidden setting.",
+                "competitive": "Many roads feed the same tunnel."
+              },
+              "moreDetails": {
+                "gentle": "Street danger, institutional failure, and the search for order can all matter without collapsing into one story.",
+                "direct": "A responsible explanation tracks multiple routes into tunnel life instead of forcing one cause to do all the work.",
+                "competitive": "One master cause is usually the outsider's shortcut."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Invisibility makes myth easier.",
+                "direct": "Fragmentary visibility encourages overclaiming.",
+                "competitive": "When the room is dark, every flashlight beam wants to become the whole map."
+              },
+              "moreDetails": {
+                "gentle": "Observers who only see one part of a hidden population often turn that part into the entire population by mistake.",
+                "direct": "Mixed evidence should produce measured description, not louder certainty.",
+                "competitive": "Thin access plus big appetite creates myth fast."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Community does not equal safety.",
+                "direct": "Belonging and danger can coexist below ground.",
+                "competitive": "Rule and risk travel together here."
+              },
+              "moreDetails": {
+                "gentle": "Communities may offer identity or predictability without turning the underground into a stable refuge.",
+                "direct": "The chapter refuses both romantic community talk and total-chaos stereotypes.",
+                "competitive": "Do not confuse social structure with safety."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Restraint is part of honesty.",
+                "direct": "The sources support description, not census confidence.",
+                "competitive": "If you count harder than the evidence allows, you are decorating the dark."
+              },
+              "moreDetails": {
+                "gentle": "Not every real social pattern can be stated with exact numbers from the available support.",
+                "direct": "The chapter stays trustworthy by marking what can be mapped and what cannot be fixed precisely.",
+                "competitive": "Better a narrow truth than a loud fake census."
+              }
+            }
+          ],
+          "activationPrompt": {
+            "gentle": "Think of one group you once described too quickly from a single vivid example.",
+            "direct": "Find one hidden or unfamiliar population where you may have mistaken fragments for a full map.",
+            "competitive": "Name one case where your appetite for a clean category outran the evidence."
+          },
+          "selfCheckPrompt": {
+            "gentle": "Why does the chapter need both loners and communities in the same frame?",
+            "direct": "Explain why multiple pressure routes matter more than one master cause here.",
+            "competitive": "Can you widen the map without turning it into fog or myth?"
+          },
+          "oneMinuteRecap": {
+            "gentle": "The chapter maps a mixed underground population, multiple motives, and the distortions created by invisibility.",
+            "direct": "Chapter 5 argues that honest description must keep variety and caution together.",
+            "competitive": "Do not force a census where the evidence only supports a careful map."
+          }
+        },
+        "hard": {
+          "chapterBreakdown": {
+            "gentle": "The population chapter has a harder job than a portrait chapter because it must widen the frame without pretending that wider means clearer. Mixture changes how every later claim must be made.",
+            "direct": "Invisibility becomes a distortion engine rather than a source of mystery. Fragmentary access invites overclaiming unless the writer stays restrained.",
+            "competitive": "The chapter does its best work when it widens scale while preserving singularity. Hidden populations become mythic when observers want one answer faster than the evidence can bear."
+          },
+          "keyTakeaways": [
+            {
+              "point": {
+                "gentle": "Mixture changes the whole chapter method.",
+                "direct": "A mixed population requires differently scaled claims from the start.",
+                "competitive": "If the group is plural, single-type claims are already broken."
+              },
+              "moreDetails": {
+                "gentle": "Loners and communities in the same frame force the chapter to describe differences instead of one dominant image.",
+                "direct": "Internal variety becomes a structural constraint on every later conclusion.",
+                "competitive": "Plural reality punishes lazy categories."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Multiple pressure routes matter more than one neat explanation.",
+                "direct": "Plural motive is the honest answer to why people move below ground.",
+                "competitive": "Several pressures can end in the same tunnel without becoming the same story."
+              },
+              "moreDetails": {
+                "gentle": "Different people can arrive underground through different combinations of danger, instability, rejection, and belonging.",
+                "direct": "The chapter gains discipline by mapping routes instead of hunting for one master cause.",
+                "competitive": "The craving for a single answer usually belongs to the outsider."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Invisibility magnifies simplification.",
+                "direct": "Fragmentary access invites overclaiming unless the writer stays restrained.",
+                "competitive": "Darkness plus appetite produces myth."
+              },
+              "moreDetails": {
+                "gentle": "When evidence arrives in pieces, observers often promote one piece into a full theory too quickly.",
+                "direct": "Hiddenness changes what kind of certainty is honest.",
+                "competitive": "If you only have flashlights, stop talking like you own the sun."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Community and safety are not synonyms.",
+                "direct": "Rule, identity, and belonging can coexist with danger and exclusion.",
+                "competitive": "Structure is not sanctuary."
+              },
+              "moreDetails": {
+                "gentle": "Communities below ground may help organize life without removing the harms around that life.",
+                "direct": "The chapter avoids both romantic community narratives and chaotic-collapse stereotypes.",
+                "competitive": "Do not confuse a social form with a safe one."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Population chapters should protect singular lives from false census logic.",
+                "direct": "Portraits inform the map, but they cannot become the map.",
+                "competitive": "Use one vivid figure as the whole underground and you have already lied."
+              },
+              "moreDetails": {
+                "gentle": "Seville and Mac matter because they reveal real pressures, not because they authorize total generalization.",
+                "direct": "The chapter widens scale responsibly by keeping portraits in view while refusing to let them dominate the category.",
+                "competitive": "The map stays honest only if the stars do not pretend to be the sky."
+              }
+            }
+          ],
+          "activationPrompt": {
+            "gentle": "Notice one category in your own thinking that may be hiding too much internal variety.",
+            "direct": "Find a topic where hiddenness has made you overconfident from fragmentary evidence.",
+            "competitive": "Identify one population you summarize faster than you can actually support."
+          },
+          "selfCheckPrompts": [
+            {
+              "gentle": "Why is restraint part of truth in this chapter rather than a failure of confidence?",
+              "direct": "Explain why the chapter cannot turn summary-level support into census-level certainty.",
+              "competitive": "What kind of lie appears when confidence outruns access?"
+            },
+            {
+              "gentle": "How do community and danger stay linked here?",
+              "direct": "Why does the chapter insist that belonging below ground does not equal safety?",
+              "competitive": "How can structure still leave the whole field unstable?"
+            }
+          ],
+          "predictionPrompt": {
+            "gentle": "If later chapters move from population to place, what new support would they still need?",
+            "direct": "What evidence gap remains even after this wider map?",
+            "competitive": "What would make the next space-focused chapter honest instead of title-driven?"
+          },
+          "oneMinuteRecap": {
+            "retrieve": {
+              "gentle": "Rebuild the chain: mixed population, plural motives, invisibility, caution, community with risk, portraits protected from false census logic.",
+              "direct": "State the progression from social variety to motive plurality to overclaiming risk to disciplined restraint.",
+              "competitive": "Can you restate the map without turning it into one type, one cause, or one myth?"
+            },
+            "connect": {
+              "gentle": "Why do hiddenness and variety make each other harder to describe?",
+              "direct": "Connect fragmentary access to the pressure for simplified certainty.",
+              "competitive": "How does darkness manufacture bad confidence?"
+            },
+            "preview": {
+              "gentle": "A later chapter on underground spaces would need more than this map. What would it need?",
+              "direct": "What support is still missing before the book can responsibly generalize about specific underground environments?",
+              "competitive": "Why is this map not yet a geography?"
+            }
+          }
+        }
+      },
+      "examples": [
+        {
+          "exampleId": "ch05-ex01-sonia-folder-stack",
+          "title": "Sonia Stops Treating One Case as the Whole Group",
+          "category": "work",
+          "format": "decision_point",
+          "endingType": "broader_principle",
+          "contexts": [
+            "outreach",
+            "analysis",
+            "casework"
+          ],
+          "scenario": {
+            "gentle": "Sonia is sorting intake folders and notices she keeps describing a hidden group using the habits of one memorable client.",
+            "direct": "An outreach worker catches herself turning one vivid resident into the template for an entire underground population.",
+            "competitive": "Sonia can keep the easy legend or do the harder work of letting the map stay mixed."
+          },
+          "whatToDo": {
+            "gentle": "Separate the memorable case from the broader category and ask what variation remains.",
+            "direct": "Use the example as evidence, not as totality.",
+            "competitive": "Do not let one flashlight beam become the whole tunnel system."
+          },
+          "whyItMatters": {
+            "gentle": "Hidden populations are often flattened because only fragments are visible.",
+            "direct": "The chapter teaches that mixed groups require mixed descriptions.",
+            "competitive": "Shortcut categories are how myths start sounding like analysis."
+          }
+        },
+        {
+          "exampleId": "ch05-ex02-victor-seminar-board",
+          "title": "Victor Revises a Social-Problems Presentation",
+          "category": "school",
+          "format": "postmortem",
+          "endingType": "self_directed_question",
+          "contexts": [
+            "seminar",
+            "research",
+            "revision"
+          ],
+          "scenario": {
+            "gentle": "During a seminar, Victor realizes the dry-erase board on his presentation turns a hidden population into one neat social type.",
+            "direct": "A student presentation collapses a mixed underground population into one stereotype, and Victor has to fix the category error.",
+            "competitive": "Victor built a clean slide deck out of dirty evidence and now has to undo it."
+          },
+          "whatToDo": {
+            "gentle": "Rewrite the frame so it includes multiple social forms and leaves uncertain claims narrow.",
+            "direct": "Change the presentation from one-type confidence to mixed-population discipline.",
+            "competitive": "Trade the smooth story for the honest map."
+          },
+          "whyItMatters": {
+            "gentle": "School language can flatten reality when it prefers clean categories over mixed truth.",
+            "direct": "Chapter 5 warns against overclaiming from thin or summary-level support.",
+            "competitive": "If the board looks cleaner than the evidence, the board is probably lying."
+          }
+        },
+        {
+          "exampleId": "ch05-ex03-mae-city-map",
+          "title": "Mae Pushes Back on a Friend's Single Story",
+          "category": "personal",
+          "format": "dialogue",
+          "endingType": "surprising_implication",
+          "contexts": [
+            "conversation",
+            "beliefs",
+            "judgment"
+          ],
+          "scenario": {
+            "gentle": "Mae is talking with a friend over a folded city map who insists all people living underground must be loners who hate society.",
+            "direct": "A friend offers one clean theory of why people go underground, and Mae has to complicate it without becoming vague.",
+            "competitive": "Mae is asked for one answer and has to refuse the trap."
+          },
+          "whatToDo": {
+            "gentle": "Name at least two different forms or motives supported by the evidence and keep the explanation narrow.",
+            "direct": "Replace the single story with a mixed map: loners, communities, pressure, and caution.",
+            "competitive": "Answer the demand for one reason with disciplined plurality."
+          },
+          "whyItMatters": {
+            "gentle": "People often mistake a simple explanation for a strong explanation.",
+            "direct": "The chapter trains the reader to prefer proportional truth over satisfying simplification.",
+            "competitive": "One answer feels powerful and often says less."
+          }
+        },
+        {
+          "exampleId": "ch05-ex04-daniel-copier-glow",
+          "title": "Daniel Predicts the Myth Before It Spreads",
+          "category": "work",
+          "format": "predict_reveal",
+          "endingType": "cross_domain",
+          "contexts": [
+            "reporting",
+            "communications",
+            "risk"
+          ],
+          "scenario": {
+            "gentle": "Daniel sees a draft memo forming under a flickering copier light that uses one dramatic anecdote to describe an entire hidden population.",
+            "direct": "A communications lead spots mythmaking in real time when one striking case is being turned into group-level certainty.",
+            "competitive": "Daniel can stop a legend before it gets a logo."
+          },
+          "whatToDo": {
+            "gentle": "Slow the claim down, widen the evidence, and mark what remains uncertain.",
+            "direct": "Replace anecdotal certainty with category limits and mixed descriptions.",
+            "competitive": "Kill the fake census before it leaves the room."
+          },
+          "whyItMatters": {
+            "gentle": "Institutional simplification can make hidden groups harder to understand and easier to control poorly.",
+            "direct": "The chapter argues that invisibility invites overclaiming unless someone enforces restraint.",
+            "competitive": "When access is thin, certainty sells and truth shrinks."
+          }
+        },
+        {
+          "exampleId": "ch05-ex05-kiara-headline-draft",
+          "title": "Kiara Chooses Whether to Print a Number She Cannot Defend",
+          "category": "school",
+          "format": "dilemma",
+          "endingType": "common_trap",
+          "contexts": [
+            "student journalism",
+            "ethics",
+            "editing"
+          ],
+          "scenario": {
+            "gentle": "In a high-school newspaper room, Kiara is staring at a headline mockup that includes a dramatic population number she cannot trace cleanly.",
+            "direct": "A student editor must decide whether to publish a strong claim about a hidden population without support strong enough to defend it.",
+            "competitive": "Kiara can print the dark fantasy or force the story back under evidence."
+          },
+          "whatToDo": {
+            "gentle": "Cut the unsupported number and write the story around what the sources actually justify.",
+            "direct": "Choose narrower truth over louder certainty.",
+            "competitive": "If you cannot defend the count, do not brandish it."
+          },
+          "whyItMatters": {
+            "gentle": "The chapter treats restraint as a form of honesty, not timidity.",
+            "direct": "Chapter 5 insists that thin access does not license dramatic overclaiming.",
+            "competitive": "False precision is still fiction even when it sounds urgent."
+          }
+        },
+        {
+          "exampleId": "ch05-ex06-luke-rain-jacket",
+          "title": "Luke Relearns What a Category Can Hide",
+          "category": "personal",
+          "format": "before_after",
+          "endingType": "perspective_reframe",
+          "contexts": [
+            "reflection",
+            "bias",
+            "growth"
+          ],
+          "scenario": {
+            "gentle": "Before, Luke thought a label like homeless underground meant one obvious kind of life. After a longer conversation, he sees the category holds loners, communities, danger, belonging, and uncertainty at once.",
+            "direct": "Luke moves from stereotype to mixed-map thinking once he stops asking for one clean social image.",
+            "competitive": "He learns that the label was doing more hiding than describing."
+          },
+          "whatToDo": {
+            "gentle": "When a category feels too clean, ask what internal variation it may be covering over.",
+            "direct": "Replace stereotype thinking with questions about social form, motive, and evidentiary limit.",
+            "competitive": "If the label feels smooth, cut into it."
+          },
+          "whyItMatters": {
+            "gentle": "Broad categories often erase the pressures and differences that make good judgment possible.",
+            "direct": "The chapter gives a way to think more accurately about hidden populations without pretending uncertainty means silence.",
+            "competitive": "A rougher map can be more truthful than a polished myth."
+          }
+        }
+      ],
+      "implementationPlan": {
+        "coreSkill": {
+          "gentle": "The core skill is learning to describe a mixed hidden population without flattening it into one type or one myth.",
+          "direct": "The core skill is proportional mapping: keeping variety, motive, and uncertainty attached to one another.",
+          "competitive": "The edge is refusing fake clarity when the evidence is fragmentary."
+        },
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": {
+              "gentle": "If one vivid case starts standing in for a whole group, then widen the map before making the claim.",
+              "direct": "If you are describing a hidden population from fragments, then mark internal variation and evidentiary limits clearly.",
+              "competitive": "If one story starts behaving like a census, stop the sentence."
+            }
+          },
+          {
+            "context": "school",
+            "plan": {
+              "gentle": "If a class discussion keeps asking for one explanation, then offer multiple pressure routes instead of one master cause.",
+              "direct": "If the presentation looks cleaner than the evidence, then complicate the category before you simplify the slide.",
+              "competitive": "If the room wants one answer, make it earn plurality."
+            }
+          },
+          {
+            "context": "personal",
+            "plan": {
+              "gentle": "If a label feels too neat, then ask what kinds of people and motives may be hiding inside it.",
+              "direct": "If you catch yourself using one example as the whole map, then separate the case from the category.",
+              "competitive": "If the category feels smooth, assume it is covering something rough."
+            }
+          }
+        ],
+        "twentyFourHourChallenge": {
+          "gentle": "In the next day, pick one group label you use easily and list two differences inside it that you usually ignore.",
+          "direct": "Within 24 hours, revisit one social category you describe from fragments and rewrite it with more proportional caution.",
+          "competitive": "Before tomorrow ends, catch one myth forming from thin evidence and cut it back to size."
+        },
+        "weeklyPractice": {
+          "gentle": "Once this week, practice speaking about one hidden or unfamiliar group with more variation and less confidence.",
+          "direct": "Weekly practice: attach an uncertainty clause to one population claim you would normally state too cleanly.",
+          "competitive": "Every week, refuse one fake certainty about a group you only partly see."
+        }
+      },
+      "keyTakeawayCard": {
+        "gentle": "The underground population is mixed in form and motive, so honest description has to stay broader than a portrait and narrower than a myth.",
+        "direct": "Chapter 5 teaches that variety, hiddenness, and thin evidence require disciplined restraint.",
+        "competitive": "If one label does all the work, the map is already lying."
+      },
+      "reviewCards": [
+        {
+          "cardId": "ch05-rc01",
+          "front": {
+            "gentle": "What basic stereotype does Chapter 5 reject?",
+            "direct": "Why can't the underground be described as one type of person?",
+            "competitive": "What breaks first when one type tries to own the whole map?"
+          },
+          "back": {
+            "gentle": "The population includes loners and communities, not one social form.",
+            "direct": "The lawful support points to a mixed population from the start.",
+            "competitive": "Plural reality wrecks the single-type shortcut."
+          },
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "ch05-rc02",
+          "front": {
+            "gentle": "Why are motives described in the plural?",
+            "direct": "Why does the chapter reject one master explanation for going underground?",
+            "competitive": "Why won't one cause carry the tunnel population?"
+          },
+          "back": {
+            "gentle": "Different pressures can lead people below ground.",
+            "direct": "Street danger, failed institutions, and the search for order can all matter.",
+            "competitive": "Many routes feed the same hidden space."
+          },
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "ch05-rc03",
+          "front": {
+            "gentle": "How does invisibility distort understanding?",
+            "direct": "Why do hidden populations attract overclaiming?",
+            "competitive": "What does darkness do to bad confidence?"
+          },
+          "back": {
+            "gentle": "People see fragments and mistake them for the whole.",
+            "direct": "Thin access encourages simple stories unless the writer stays restrained.",
+            "competitive": "Darkness invites myth whenever appetite outruns evidence."
+          },
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch05-rc04",
+          "front": {
+            "gentle": "Why is restraint important here?",
+            "direct": "What is the difference between a careful map and a false census?",
+            "competitive": "When does confidence become decoration?"
+          },
+          "back": {
+            "gentle": "The source support allows description, not exact certainty.",
+            "direct": "Restraint keeps the chapter honest about what the evidence can and cannot fix.",
+            "competitive": "If certainty outruns access, you are decorating the dark."
+          },
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch05-rc05",
+          "front": {
+            "gentle": "How should this chapter treat portraits like Mac and Seville?",
+            "direct": "Why can't one vivid figure become the whole population?",
+            "competitive": "What happens when the star pretends to be the sky?"
+          },
+          "back": {
+            "gentle": "Portraits inform the map but cannot become the map.",
+            "direct": "Singular lives reveal real pressures without authorizing total generalization.",
+            "competitive": "Use one figure as the whole underground and the category collapses."
+          },
+          "difficulty": "hard"
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 70,
+        "questions": [
+          {
+            "questionId": "ch05-q01",
+            "prompt": "What is the chapter's first corrective move?",
+            "choices": [
+              "To argue that all underground residents belong to one culture",
+              "To show the underground population is socially mixed",
+              "To provide a precise census"
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "The chapter begins by rejecting the one-type stereotype.",
+              "direct": "Loners and communities both appear in the lawful support.",
+              "competitive": "Plurality is the first fact."
+            },
+            "bloomsLevel": "remember-understand",
+            "depthLevel": "easy"
+          },
+          {
+            "questionId": "ch05-q02",
+            "prompt": "Why are motives for going underground kept plural?",
+            "choices": [
+              "Because the sources support several pressure routes",
+              "Because no reasons can be discussed at all",
+              "Because the book is only about geography"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Different pressures can lead people below ground.",
+              "direct": "The chapter avoids a single-cause explanation because the support is broader than that.",
+              "competitive": "One cause is the outsider's shortcut."
+            },
+            "bloomsLevel": "understand",
+            "depthLevel": "easy"
+          },
+          {
+            "questionId": "ch05-q03",
+            "prompt": "A reporter uses one dramatic resident as the model for everyone underground. Which idea from Chapter 5 does that violate?",
+            "choices": [
+              "Population flattening is a risk under hiddenness",
+              "Every strong example should become the whole category",
+              "Communities below ground are always safe"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "One example should not become the whole map.",
+              "direct": "The chapter warns that hidden populations get distorted when fragments become totality.",
+              "competitive": "One flashlight beam is not the tunnel system."
+            },
+            "bloomsLevel": "apply",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "ch05-q04",
+            "prompt": "What does the chapter say about communities below ground?",
+            "choices": [
+              "They prove the underground is fully stable",
+              "They can offer order without canceling danger",
+              "They matter less than loners"
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "Community and risk can coexist.",
+              "direct": "Belonging does not automatically mean safety in this chapter.",
+              "competitive": "Structure is not sanctuary."
+            },
+            "bloomsLevel": "understand",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "ch05-q05",
+            "prompt": "Which response best fits the chapter's view of uncertain numbers?",
+            "choices": [
+              "Use the biggest available estimate for impact",
+              "Avoid all discussion of the population entirely",
+              "Stay with narrower claims the evidence can support"
+            ],
+            "correctIndex": 2,
+            "explanation": {
+              "gentle": "Restraint is part of honest description.",
+              "direct": "The chapter prefers a careful map over false precision.",
+              "competitive": "Do not print confidence the evidence did not earn."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "ch05-q06",
+            "prompt": "Why does invisibility make myth more likely?",
+            "choices": [
+              "Because hiddenness makes people stop thinking",
+              "Because observers overgeneralize from fragments",
+              "Because all hidden groups are fictional"
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "People often see only pieces and then mistake them for the whole.",
+              "direct": "Thin access invites overclaiming unless the writer stays disciplined.",
+              "competitive": "Darkness is fuel for bad certainty."
+            },
+            "bloomsLevel": "understand",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "ch05-q07",
+            "prompt": "A teacher wants one neat explanation for why students in a hidden population disengage. What would Chapter 5 recommend?",
+            "choices": [
+              "Offer multiple pressure routes instead of one master cause",
+              "Pick the most emotional cause and build around it",
+              "Avoid explanation because all group analysis is wrong"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "The chapter supports plural motive, not one clean answer.",
+              "direct": "A proportional explanation tracks multiple pressures where the evidence warrants them.",
+              "competitive": "Do not feed the room a fake single key."
+            },
+            "bloomsLevel": "apply",
+            "depthLevel": "hard"
+          },
+          {
+            "questionId": "ch05-q08",
+            "prompt": "Which sentence best captures the chapter's scale discipline?",
+            "choices": [
+              "It is broader than a portrait but narrower than a myth",
+              "It is mainly a census with a few anecdotes",
+              "It turns uncertainty into total silence"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "The chapter widens carefully without overclaiming.",
+              "direct": "It maps mixed forms and motives while staying under the evidence ceiling.",
+              "competitive": "Wide enough to orient, narrow enough to stay honest."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "hard"
+          },
+          {
+            "questionId": "ch05-q09",
+            "prompt": "Why must Mac or Seville not become the whole underground population?",
+            "choices": [
+              "Because vivid portraits reveal pressures without authorizing total generalization",
+              "Because portrait chapters are always irrelevant to systems chapters",
+              "Because population chapters should ignore people"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "One life can matter deeply without becoming the whole map.",
+              "direct": "The chapter protects singular figures from false census logic.",
+              "competitive": "Stars are not the sky."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "hard"
+          },
+          {
+            "questionId": "ch05-q10",
+            "prompt": "What would a later chapter on underground spaces still need before it could proceed honestly?",
+            "choices": [
+              "Only a more dramatic title",
+              "Stronger chapter-local support about specific spaces",
+              "No further evidence because this chapter already covers geography"
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "This chapter maps population, not detailed underground geography.",
+              "direct": "A spaces chapter would still need its own lawful support beyond summary-level population description.",
+              "competitive": "The map is social, not yet spatial."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "hard"
+          }
+        ]
+      }
+    }
+  ]
+}

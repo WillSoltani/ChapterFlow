@@ -1,0 +1,129 @@
+{
+  "nameUsage": {
+    "Priya": "ch02",
+    "Malik": "ch02",
+    "Nia": "ch02",
+    "Leon": "ch02",
+    "Tessa": "ch02",
+    "Omar": "ch02",
+    "Ava": "ch03",
+    "Jon": "ch03",
+    "Mina": "ch03",
+    "Rafael": "ch03",
+    "Lena": "ch05",
+    "Eli": "ch03",
+    "Mara": "ch04",
+    "Noah": "ch04",
+    "Ivy": "ch04",
+    "Jonah": "ch04",
+    "Talia": "ch04",
+    "Evan": "ch04",
+    "Maya": "ch05",
+    "Owen": "ch05",
+    "Nadia": "ch05",
+    "Theo": "ch05",
+    "Iris": "ch05",
+    "Clara": "ch06",
+    "Devin": "ch06",
+    "Simone": "ch06",
+    "Hugo": "ch06",
+    "Keira": "ch06",
+    "Mateo": "ch06",
+    "Alicia": "ch07",
+    "Marcus": "ch07",
+    "Nina": "ch07",
+    "Ethan": "ch07",
+    "Jules": "ch07",
+    "Rosa": "ch07"
+  },
+  "formatCategoryHistory": [],
+  "schoolSettingUsage": {},
+  "wordFrequency": {},
+  "phraseFrequency": {},
+  "openerRegistry": {
+    "gentle": {},
+    "direct": {},
+    "competitive": {}
+  },
+  "titleTemplateRegistry": {},
+  "endingPatternRegistry": {},
+  "withinChapterNames": {
+    "ch02": [
+      "Priya",
+      "Malik",
+      "Nia",
+      "Leon",
+      "Tessa",
+      "Omar"
+    ],
+    "ch03": [
+      "Ava",
+      "Jon",
+      "Mina",
+      "Rafael",
+      "Lena",
+      "Eli"
+    ],
+    "ch04": [
+      "Mara",
+      "Noah",
+      "Ivy",
+      "Jonah",
+      "Talia",
+      "Evan"
+    ],
+    "ch05": [
+      "Maya",
+      "Owen",
+      "Lena",
+      "Nadia",
+      "Theo",
+      "Iris"
+    ],
+    "ch06": [
+      "Clara",
+      "Devin",
+      "Simone",
+      "Hugo",
+      "Keira",
+      "Mateo"
+    ],
+    "ch07": [
+      "Alicia",
+      "Marcus",
+      "Nina",
+      "Ethan",
+      "Jules",
+      "Rosa"
+    ]
+  },
+  "approvedChapterHashes": {
+    "ch01": "c96f16cb848e17801f785f426e782027b461cda75cd3479988742c9d5986878c",
+    "ch02": "f6bd28ce6110ba093fe0b9b371aefa141e2b8f6f6bc4b1c2296f365a1b11526c",
+    "ch03": "8ebb2d08157549e6da5e74b9e92d532a484cb6a4fe7e13e4db1db82ed2202961",
+    "ch04": "6c9a4632d5e46bf228e840cacbd261e4ab0c555066c31f5e9cd27b4267b84df6",
+    "ch05": "78f22d4cbc1b8137fc71750522df3d685a043f9be48932d551d365469d3e4dd9",
+    "ch06": "150287f59e61d92b045fd4eca5bf82f385dbc09a32f5d5b79203cf0f2eb10a08",
+    "ch07": "455bdd8718be820810cf0e539defb0fb86dbf54f2ebbf1ddabbc1c5a34078c57"
+  },
+  "baselineQuality": {
+    "ch01": {
+      "criticScore": 11,
+      "validator": "pass",
+      "lint": {
+        "fail": 0,
+        "warn": 0
+      },
+      "validatedAt": "2026-04-10T00:00:00Z"
+    },
+    "ch02": {
+      "criticScore": 11,
+      "validator": "pass",
+      "lint": {
+        "fail": 0,
+        "warn": 0
+      },
+      "validatedAt": "2026-04-10T00:00:00Z"
+    }
+  }
+}

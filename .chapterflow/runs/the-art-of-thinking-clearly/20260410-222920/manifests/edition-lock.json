@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "chapterflow-v13-edition-lock",
+  "bookId": "the-art-of-thinking-clearly",
+  "runId": "20260410-222920",
+  "lockedAt": "2026-04-10T00:00:00-03:00",
+  "selectionMode": "auto_locked",
+  "reason": "One dominant modern English trade edition family is clearly canonical for chapter-level work. The 2013 Sceptre and 2014 HarperCollins editions preserve the same 99 short-chapter structure and chapter-heading sequence, so no user clarification is required.",
+  "edition": {
+    "language": "English",
+    "title": "The Art of Thinking Clearly",
+    "author": "Rolf Dobelli",
+    "workingEditionName": "HarperCollins ebook / Hodder Sceptre English trade edition family",
+    "publisher": "HarperCollins / Hodder & Stoughton (Sceptre)",
+    "publishedYear": 2014,
+    "alternateYear": 2013,
+    "translator": "",
+    "translationYear": null,
+    "chapterCount": 99,
+    "chapterMapStable": true
+  },
+  "evidence": [
+    {
+      "sourceId": "google-books-2014-harpercollins",
+      "supports": [
+        "title",
+        "author",
+        "publisher",
+        "page_count",
+        "contents_listing"
+      ]
+    },
+    {
+      "sourceId": "hodder-title-page",
+      "supports": [
+        "imprint",
+        "english_trade_edition",
+        "publication_date"
+      ]
+    },
+    {
+      "sourceId": "hodder-note-on-sources-pdf",
+      "supports": [
+        "chapter_heading_order",
+        "chapter_topics"
+      ]
+    }
+  ]
+}

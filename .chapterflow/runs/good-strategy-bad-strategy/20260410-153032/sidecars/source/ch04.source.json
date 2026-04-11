@@ -1,0 +1,43 @@
+{
+  "chapterId": "ch04",
+  "title": "Why So Much Bad Strategy?",
+  "heading": "Why So Much Bad Strategy?",
+  "approxWords": 340,
+  "properNouns": [
+    "Google Books",
+    "Penguin Random House",
+    "Chapter 1",
+    "Chapter 3"
+  ],
+  "repeatedTerms": [
+    "strategy",
+    "ambiguity",
+    "diagnosis",
+    "choice",
+    "institution",
+    "consensus",
+    "clarity"
+  ],
+  "sourceReferences": [
+    {
+      "url": "https://books.google.com/books/about/Good_Strategy_Bad_Strategy.html?id=0FWPDQAAQBAJ",
+      "role": "chapter_title_and_toc",
+      "confidence": 0.97
+    },
+    {
+      "url": "https://penguinrandomhousehighereducation.com/book/?isbn=9780307886231",
+      "role": "official_preview_contrast_support",
+      "confidence": 0.92
+    },
+    {
+      "url": "internal:validated/ch01.chapter.json",
+      "role": "bridge_support_for_coherent_action_vs_activity",
+      "confidence": 0.84
+    },
+    {
+      "url": "internal:validated/ch03.chapter.json",
+      "role": "bridge_support_for_recurring_bad_strategy_patterns",
+      "confidence": 0.84
+    }
+  ]
+}

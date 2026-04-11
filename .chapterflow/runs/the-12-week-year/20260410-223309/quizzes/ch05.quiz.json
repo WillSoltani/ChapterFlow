@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What main problem does Chapter 5 solve?",
+      "choices": [
+        "How to translate a 12 week plan into the current week",
+        "How to make annual plans longer",
+        "How to replace planning with scorekeeping"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says the larger plan still needs a weekly bridge before it can guide real action.",
+        "direct": "Chapter 5 makes the week the operational bridge between cycle priorities and current behavior.",
+        "competitive": "It fixes the moment where the quarter plan never actually enters the week."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why is the weekly plan necessary if a 12 week plan already exists?",
+      "choices": [
+        "Because the 12 week plan is too distant to govern the current week by itself",
+        "Because weekly plans remove the need for priorities",
+        "Because the weekly plan is mainly a scorekeeping tool"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A 12 week goal can still be too far away to shape what happens this week unless it is translated into it.",
+        "direct": "The weekly plan is necessary because execution pressure shows up at the weekly level, not only at the cycle level.",
+        "competitive": "The quarter plan still loses if the week never takes orders from it."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What makes a weekly plan different from a broad weekly list?",
+      "choices": [
+        "A weekly plan contains every possible task",
+        "A weekly plan selects the actions that keep the larger priorities alive now",
+        "A weekly plan matters only after results are measured"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says weekly planning is about shaping the week around priorities, not writing down everything.",
+        "direct": "Governance is the difference. A weekly plan directs the week instead of merely describing it.",
+        "competitive": "A big list proves activity. A real weekly plan proves control."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Carmen has a clear quarter priority but nothing specific has entered the current week yet. What Chapter 5 move is strongest?",
+      "choices": [
+        "Assume the quarter goal will shape the week on its own",
+        "Translate the priority into current-week commitments before other demands take over",
+        "Wait for scorekeeping to reveal the problem later"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says the plan has to enter the week directly if it is going to stay alive.",
+        "direct": "Carmen needs the weekly bridge now, not later measurement or passive hope.",
+        "competitive": "If she does not claim the week first, the week will get claimed for her."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What does Chapter 5 mean by weekly translation?",
+      "choices": [
+        "Breaking a larger priority into the current week's active commitments",
+        "Copying every unfinished task into a smaller list",
+        "Moving directly from weekly tasks to annual goals"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Weekly translation means giving the larger goal a real place inside the present week.",
+        "direct": "The chapter uses translation to mean making a cycle priority current enough to govern behavior now.",
+        "competitive": "It is how the quarter stops being background scenery and starts issuing orders."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which misreading does the chapter warn against?",
+      "choices": [
+        "Treating the weekly plan as another crowded task dump",
+        "Letting the week answer to a few priorities",
+        "Linking the week to the 12 week plan"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns that weekly planning can become weak if it turns into a list that never governs the week.",
+        "direct": "A crowded weekly list often shows accumulation rather than focused execution control.",
+        "competitive": "A bag of tasks is not a bridge. It is clutter with bullet points."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Eli's milestone stayed visible on the semester board but never entered any current week. What diagnosis fits Chapter 5 best?",
+      "choices": [
+        "He needed more semester-level detail",
+        "He missed the weekly bridge that would have made the priority current",
+        "He should have skipped weekly planning entirely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says a larger priority stays weak until it is translated into the lived week.",
+        "direct": "Eli's problem was not simply clarity. It was the absence of weekly governance.",
+        "competitive": "The milestone stayed too far above the week to command anything."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why does Chapter 5 emphasize the week so strongly?",
+      "choices": [
+        "Because weekly plans remove all reactive pressure",
+        "Because the week is where meetings, requests, and lower-value demands actually compete with priorities",
+        "Because long-term goals no longer matter once the week begins"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says execution pressure becomes real inside live weeks, not just in larger planning documents.",
+        "direct": "The week matters because that is where reactive work tries to rearrange attention and effort.",
+        "competitive": "That is the arena where noise starts bargaining for control."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What hard test does the chapter leave behind for weekly planning?",
+      "choices": [
+        "Whether the weekly plan governs the week or merely sits beside it as another list",
+        "Whether the week contains enough variety of tasks",
+        "Whether the weekly page looks complete enough to review later"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps asking whether the weekly plan actually shapes choices under real pressure.",
+        "direct": "The threshold is governance. A weekly plan is only real if it changes what the week protects.",
+        "competitive": "The question is not whether the page exists. It is whether the week obeys it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If Chapter 5 is right, what naturally comes next after the week has been shaped around the right priorities?",
+      "choices": [
+        "A measurement step that confronts whether the week is actually producing results",
+        "A return to annual planning so the week stays flexible",
+        "A decision to stop separating planning from proof"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter points forward to the truth-telling problem of whether the focused week actually moved the result.",
+        "direct": "Once the plan is active in the week, the next step is measurement rather than more planning.",
+        "competitive": "After control comes proof."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

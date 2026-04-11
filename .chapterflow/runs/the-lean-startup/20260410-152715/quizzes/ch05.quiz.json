@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is a leap-of-faith assumption in this chapter?",
+      "choices": [
+        "A belief the business depends on before evidence has earned it",
+        "A feature request from current users",
+        "A financial forecast that has already been confirmed"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Ries uses the term for an unproven belief the venture is already leaning on.",
+        "direct": "A leap-of-faith assumption is business-critical belief without enough proof yet.",
+        "competitive": "It is the bet the company is already standing on before reality approves it."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does Ries say not all assumptions deserve equal attention?",
+      "choices": [
+        "Because some assumptions are easier to test than others",
+        "Because some assumptions have much bigger business consequences if they are wrong",
+        "Because investors usually choose the testing order"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter ranks assumptions by how much damage they could do if false.",
+        "direct": "Consequence, not equality, determines which assumption deserves priority.",
+        "competitive": "Some beliefs can wound the venture. Others barely scratch it."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A team can either test button color or test whether users care enough to return weekly. Which choice fits the chapter's logic?",
+      "choices": [
+        "Test button color because it is faster",
+        "Test both at the same time so no assumption feels ignored",
+        "Test weekly return because it has higher business consequence"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter says the next test should target the assumption whose failure would hurt most.",
+        "direct": "Return behavior is tied to value, which is more consequential than a cosmetic detail.",
+        "competitive": "Go where being wrong is expensive, not where measurement is cute."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "In Evan's demo-day scenario, what is the main problem?",
+      "choices": [
+        "The prototype is too polished",
+        "The team is preparing presentation quality without testing the key value assumption",
+        "The school setting makes business learning impossible"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The danger is that the team looks prepared while the important belief still lacks proof.",
+        "direct": "Demo readiness is masking an untested value leap.",
+        "competitive": "The slides are sharp, but the business story is still on credit."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What is the difference between a safe test and a consequential test in this chapter?",
+      "choices": [
+        "A safe test is cheaper, while a consequential test targets a belief the business depends on",
+        "A safe test uses surveys, while a consequential test always uses software",
+        "A safe test happens early, while a consequential test happens after launch"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter cares about what is being tested, not just the method being used.",
+        "direct": "Consequential tests expose high-impact assumptions rather than low-stakes questions.",
+        "competitive": "The real difference is whether the test can hurt the story that holds up the business."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "How do value and growth differ in this chapter?",
+      "choices": [
+        "Value asks whether users care, while growth asks whether that value can spread",
+        "Value is about revenue, while growth is about product design",
+        "Value matters before launch, while growth matters only after profit"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter uses value for real user importance and growth for the path that spreads that importance.",
+        "direct": "Value tests meaningful user care; growth tests whether that care can move through a viable path.",
+        "competitive": "First ask whether anyone really cares. Then ask whether that care can travel."
+      },
+      "bloomsLevel": "understand-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "How could a school or nonprofit project apply the chapter's lesson?",
+      "choices": [
+        "By listing every uncertainty and addressing them alphabetically",
+        "By identifying which assumption most threatens the effort if false and testing that first",
+        "By waiting until the project is fully built before looking at assumptions"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter's logic works anywhere people depend on an important unproven belief.",
+        "direct": "The setting changes, but the ranking rule stays the same: test the highest-consequence assumption first.",
+        "competitive": "Mission does not excuse drift. The dangerous belief still deserves the first hit from reality."
+      },
+      "bloomsLevel": "transfer",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What does a roadmap full of low-risk tests usually signal in this chapter?",
+      "choices": [
+        "That the team has mastered disciplined steering",
+        "That the central business risk may still be protected",
+        "That value and growth have already been proven"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Many safe tasks can still leave the most important belief untouched.",
+        "direct": "A full roadmap can be a sign of avoidance when the critical leap remains untested.",
+        "competitive": "A busy sprint board can be camouflage."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why might teams postpone the assumption that matters most?",
+      "choices": [
+        "Because the assumption is usually impossible to test at all",
+        "Because the answer could threaten identity, sunk effort, or a favored story",
+        "Because business-critical assumptions are less useful than minor ones"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter highlights emotional protection, not just technical difficulty.",
+        "direct": "Teams delay dangerous assumptions because a negative result can force a painful rethink.",
+        "competitive": "The room calls it sequencing when it is really protecting its own story."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How does Chapter 5 connect to Chapter 6?",
+      "choices": [
+        "Chapter 6 leaves assumptions behind and focuses only on motivation",
+        "Chapter 6 introduces minimum viable products as a way to test the highest-risk leap cheaply",
+        "Chapter 6 argues that growth matters more than value"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "After ranking the key assumptions, the next step is to test them with a small product or experiment.",
+        "direct": "The chapter points toward minimum viable products as practical tests of the highest-risk assumption.",
+        "competitive": "Once the dangerous leap is named, the next move is a cheap build that can stop it from hiding."
+      },
+      "bloomsLevel": "connect-transfer",
+      "depthLevel": "hard"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "chapterNumber": 5,
+  "title": "Thought Experiment",
+  "heading": "Thought Experiment",
+  "approxWords": 2900,
+  "properNouns": [
+    "Albert Einstein",
+    "Ernst Mach",
+    "Galileo",
+    "Plato",
+    "Wittgenstein",
+    "Judith Jarvis Thomson",
+    "Philippa Foot",
+    "Zeno"
+  ],
+  "repeatedTerms": [
+    "thought experiment",
+    "imagine",
+    "implications",
+    "assumptions",
+    "consequences",
+    "simulation"
+  ],
+  "sourceReferences": [
+    {
+      "sourceId": "src-fs-thought-experiment",
+      "title": "Thought Experiment: How Einstein Solved Difficult Problems",
+      "url": "https://fs.blog/thought-experiment/",
+      "role": "primary_chapter_support"
+    },
+    {
+      "sourceId": "src-fs-mental-models",
+      "title": "Mental Models: The Best Way to Make Intelligent Decisions (~100 Models Explained)",
+      "url": "https://fs.blog/mental-models/",
+      "role": "secondary_chapter_support"
+    },
+    {
+      "sourceId": "src-fs-trolley-experiment",
+      "title": "The Trolley Experiment",
+      "url": "https://fs.blog/trolley-experiment/",
+      "role": "secondary_chapter_support"
+    }
+  ]
+}

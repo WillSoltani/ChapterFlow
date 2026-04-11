@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What does the chapter name as the central opening problem?",
+      "choices": [
+        "A shortage of highly trained specialists",
+        "Extreme complexity inside expert work",
+        "The spread of rigid rules across medicine"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter starts by naming extreme complexity as the pressure that makes avoidable failure possible even in expert settings.",
+        "direct": "Gawande's opening diagnosis is not weak training. It is a system dense enough to outrun memory and coordination.",
+        "competitive": "Miss this and the chapter turns into a cheap complaint about incompetence, which is exactly what it is trying to avoid."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the Austrian drowning rescue matter in the chapter's logic?",
+      "choices": [
+        "It proves one genius doctor can save a patient without system support",
+        "It shows how success can depend on many precise actions linking together under pressure",
+        "It mainly introduces the later debate about investing checklists"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The rescue scene matters because it makes coordinated reliability visible. Many correct moves had to connect cleanly for the save to happen.",
+        "direct": "The example shifts attention from lone brilliance to a chain of skilled actions that cannot afford omission.",
+        "competitive": "The point is the chain, not the legend. One broken link would have beaten a room full of talent."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "How does the chapter treat superspecialization?",
+      "choices": [
+        "As fake progress that weakens medicine",
+        "As a benefit that solves complexity completely",
+        "As real progress that also increases dependence on coordination"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter respects superspecialization because it created remarkable skill, but it also shows that narrower roles create more handoffs and dependencies.",
+        "direct": "Gawande is not anti-expertise. He argues that deeper expertise and heavier coordination burdens arrive together.",
+        "competitive": "Specialization sharpened the blades and lengthened the chain. Both facts matter."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "During a simulation, Ana's team can explain the procedure correctly, but they fail to confirm one role change and the case goes sideways. Which reading best fits Chapter 1?",
+      "choices": [
+        "The team mainly proved they did not study enough facts",
+        "The team showed how crowded execution can fail at the seam between experts",
+        "The team showed that technical knowledge is never useful under pressure"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "This matches the chapter's execution gap. The team may know the content, but complexity still punishes a missed transition.",
+        "direct": "Chapter 1 keeps pointing to handoffs and coordination loss, not just missing facts, as a major source of avoidable failure.",
+        "competitive": "The break happened at the seam. Smart people still lose when nobody owns the join."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Marcus says, \"If professionals really cared, they would not miss basic steps.\" What is the strongest reply from the chapter?",
+      "choices": [
+        "Care matters, but complex systems can still outrun memory and coordination",
+        "Care does not matter because everything is already procedural",
+        "Basic steps are unimportant compared with advanced technique"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter does not excuse indifference. It says care alone cannot guarantee reliable execution when the system is crowded with critical moves.",
+        "direct": "Gawande's point is that complex work can generate omission even among serious professionals, so the diagnosis has to go beyond attitude.",
+        "competitive": "Moralizing about care feels strong, but it leaves the overload problem untouched."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Priya argues that the answer to Chapter 1 is to replace expert judgment with strict scripts for every situation. Why is that too simple?",
+      "choices": [
+        "Because the chapter insists uncertainty and judgment still remain part of expert work",
+        "Because the chapter rejects all routine support as insulting",
+        "Because the chapter thinks only family settings need routines"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants support beside judgment, not instead of judgment. Complex work still includes variation that requires thinking.",
+        "direct": "Blind procedure would miss the chapter's boundary condition. The system needs help with basics without flattening expertise.",
+        "competitive": "Rules alone would make the room rigid and stupid, which is just a different failure."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "A student engineering team has one brilliant designer who keeps the whole plan in their head. Which concern from the chapter best transfers here?",
+      "choices": [
+        "High skill can still leave the system exposed if nobody secures the handoffs",
+        "The team should remove specialization entirely",
+        "The project will succeed as long as the best person stays confident"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The transfer works because the chapter is about distributed work that depends on seams, not only about hospitals.",
+        "direct": "A strong specialist does not solve the larger coordination problem when the rest of the chain remains vulnerable.",
+        "competitive": "Star power cannot rescue a system that nobody else can reliably carry."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "In a busy clinic, Ben hears two people say, \"I thought someone else already checked that.\" What lesson from Chapter 1 fits best?",
+      "choices": [
+        "That statement signals a classic omission hazard in a dense chain of responsibility",
+        "That statement proves the task was never important enough to check",
+        "That statement shows experts should avoid teamwork whenever possible"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps warning that crowded systems lose basic but crucial actions when ownership blurs.",
+        "direct": "This is the execution problem in one sentence: the chain failed because the step lived in assumption instead of reliable confirmation.",
+        "competitive": "Nothing exposes system weakness faster than a room built on somebody-else-covered-it thinking."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the deepest design test Chapter 1 sets for any later safeguard?",
+      "choices": [
+        "It must preserve expert judgment while protecting routine essentials from omission",
+        "It must remove the need for specialization",
+        "It must make teams slower so they think harder"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps two truths together: expertise matters, and basics still need protection. Any serious safeguard has to honor both.",
+        "direct": "This is the chapter's boundary condition. A good support catches repeatable misses without pretending professionals can be reduced to scripts.",
+        "competitive": "If the safeguard kills judgment, it fails. If it leaves basics exposed, it also fails."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Given Chapter 1 alone, which next move would best follow its logic into the rest of the book?",
+      "choices": [
+        "Find a short routine that catches predictable omissions without trying to replace expertise",
+        "Demand perfect recall from every specialist before allowing teamwork",
+        "Stop dividing work across roles so one expert can own the whole process again"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter points toward a modest but disciplined aid, because the problem it names is predictable omission inside complex expert work.",
+        "direct": "Its logic prepares the ground for a tool that reinforces reliable execution while leaving room for judgment and adaptation.",
+        "competitive": "Once mastery leaks basics, the serious move is a tight safeguard, not nostalgia for impossible total command."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

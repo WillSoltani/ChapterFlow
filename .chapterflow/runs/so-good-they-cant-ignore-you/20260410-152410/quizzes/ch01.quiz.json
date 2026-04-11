@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch01-q01",
+      "prompt": "Which belief is the chapter trying to weaken at the start of the book?",
+      "choices": [
+        "A) Good careers usually begin when people first identify a preexisting passion and then follow it",
+        "B) People should never admire successful founders",
+        "C) Career decisions should ignore emotion completely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The opener is aimed at the passion hypothesis itself. Newport is not banning admiration or emotion. He is questioning the idea that a clearly named passion must appear first and then direct the rest of the path.",
+        "direct": "The chapter targets the claim that occupational happiness starts with identifying a preexisting passion. The other two options overstate the argument in directions the chapter does not take.",
+        "competitive": "This is the myth under attack. The chapter does not outlaw founders or feelings. It rejects the rule that passion has to show up first and act like your opening map."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q02",
+      "prompt": "Why is Steve Jobs such a powerful opening example for this chapter?",
+      "choices": [
+        "A) Because his biography proves that passion always appears early",
+        "B) Because his public advice became a cultural symbol for passion-first career thinking",
+        "C) Because Newport wants to show that entrepreneurship is a bad career path"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Jobs matters here because people treat his story and advice as if they settle the argument. The chapter uses that symbolic power to show why a vivid example can carry more authority than it deserves.",
+        "direct": "Jobs functions as the best-known cultural mascot for the passion hypothesis. That symbolic role makes him an efficient way to challenge the claim's proof source.",
+        "competitive": "Jobs is the myth in premium packaging. Newport starts there because if the strongest mascot is shaky evidence, the rule behind him is in trouble."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q03",
+      "prompt": "A founder story leaves you motivated after a podcast. According to the chapter, what should you ask next before using it as guidance?",
+      "choices": [
+        "A) Whether the speaker sounded sincere enough",
+        "B) Whether the story gives evidence that applies to your current stage and decision",
+        "C) Whether the speaker is more famous than the people around you"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Motivation is not the same thing as guidance. The chapter asks you to separate what inspires you from what actually helps you decide well right now.",
+        "direct": "That is the core distinction: emotional lift versus usable evidence. Sincerity and fame do not solve the planning problem.",
+        "competitive": "The right question is not 'Did this move me?' It is 'Does this actually instruct my stage, constraints, and evidence set?'"
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q04",
+      "prompt": "Leah is one year into consulting and feels ordinary frustration with client work. After watching a famous founder interview, she concludes the frustration proves consulting is not her calling and drafts a resignation email that night. Which response best fits the chapter?",
+      "choices": [
+        "A) Quit now because real callings do not produce this much friction",
+        "B) Stay only if the founder also worked in consulting before leaving",
+        "C) Pause the verdict and ask whether she has enough evidence to distinguish beginner friction from true mismatch"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Leah may still decide to leave later, but the chapter warns against turning early discomfort into a final identity verdict too quickly. She needs better evidence first.",
+        "direct": "The chapter's timing critique applies here. One year of frustration does not automatically reveal mismatch, especially when a founder myth is shaping the interpretation.",
+        "competitive": "Leah is letting a polished story bully thin evidence into a verdict. The disciplined move is to gather stronger signal before detonating the path."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q05",
+      "prompt": "What is the cleanest way to admire Jobs without making the inferential mistake the chapter warns about?",
+      "choices": [
+        "A) Treat his story as motivating while refusing to treat it as a universal starting algorithm",
+        "B) Ignore the story completely because all biographies are useless",
+        "C) Copy his early detours as closely as possible"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter leaves room for admiration. The warning is about confusing inspiration with a rule everyone else should follow from day one.",
+        "direct": "That answer preserves the chapter's distinction. Biography can motivate without earning universal methodological authority.",
+        "competitive": "Respect the story if you want. Do not let the story draft your strategy just because the ending was famous."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q06",
+      "prompt": "Which statement would the chapter reject as a misreading of its argument?",
+      "choices": [
+        "A) Strong interest can matter later even if it is weak evidence at the beginning",
+        "B) Because the passion myth is shaky, feelings should never matter in work decisions",
+        "C) A nonlinear path can still become meaningful without proving that passion was clear from the start"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter does not flatten work into emotionless optimization. It only rejects passion as a required starting condition.",
+        "direct": "Option B overshoots the claim. Newport narrows the sequencing rule; he does not ban attachment, interest, or later meaning.",
+        "competitive": "This is the lazy overcorrection. Killing the myth does not require pretending good work should feel dead."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q07",
+      "prompt": "During advising, a student says, 'I cannot choose an internship until I know my true passion.' Which chapter-based reply is strongest?",
+      "choices": [
+        "A) 'Then keep waiting until certainty arrives on its own'",
+        "B) 'Choose the internship that gives you the strongest evidence about skill, friction, and sustained interest'",
+        "C) 'Pick the most prestigious option because prestige creates passion'"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter favors better evidence over premature identity declarations. A well-chosen internship can clarify more than abstract waiting can.",
+        "direct": "That reply fits the chapter's sequence. Early-stage workers usually need richer exposure, not more pressure to invent certainty.",
+        "competitive": "Signal beats fantasy here. Waiting for destiny is just delay if no new evidence is being collected."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q08",
+      "prompt": "Jonah realizes he copied a founder biography into his own career plan. What should his next step be according to the chapter's logic?",
+      "choices": [
+        "A) Audit which decisions had real evidence behind them and which were driven mainly by admiration",
+        "B) Search for an even more successful biography to replace the first one",
+        "C) Conclude that planning is impossible and act only on impulse"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The useful repair is not cynicism. It is to separate moves supported by feedback from moves justified mostly by a borrowed story.",
+        "direct": "The chapter points Jonah back toward evidence quality. More mythology and pure impulse would both repeat the original mistake in different forms.",
+        "competitive": "He needs a forensic review, not a new idol. Strip out admiration where it substituted for actual signal."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q09",
+      "prompt": "Why are retrospective career stories so seductive even when they are weak planning tools?",
+      "choices": [
+        "A) Because they remove all uncertainty from real work",
+        "B) Because they turn messy experience into a coherent sequence that feels easier to imitate than it actually was to live",
+        "C) Because they guarantee the storyteller understood every step at the time"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Retold stories compress confusion into meaning. That makes them easier to believe and harder to evaluate carefully.",
+        "direct": "Coherent narratives feel actionable because the ending reorganizes the middle. The listener then mistakes cleaned-up sequence for original method.",
+        "competitive": "This is the seduction. The winner narrates with spoiler access, and the listener forgets the path was once lived without that advantage."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch01-q10",
+      "prompt": "The chapter ends with a live question instead of a replacement slogan. What is that question pushing the reader toward next?",
+      "choices": [
+        "A) Whether preexisting passion is common enough to deserve authority in career planning",
+        "B) Whether all founders secretly hated their work at first",
+        "C) Whether career advice should come only from professors"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Once Jobs stops acting like proof, the next reasonable step is to ask how often preexisting passion shows up in the first place.",
+        "direct": "The bridge points toward frequency. Chapter 2 has to test whether the supposed starting asset is common enough to guide planning seriously.",
+        "competitive": "After the icon loses the argument, the claim has to face the data question. That is the next room."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

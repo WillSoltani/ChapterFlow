@@ -1,0 +1,731 @@
+{
+  "schemaVersion": "1.1.0",
+  "packageId": "cf-zero-to-one-ch07-20260410-152524",
+  "createdAt": "2026-04-10T22:30:00Z",
+  "contentOwner": "ChapterFlow",
+  "book": {
+    "bookId": "zero-to-one",
+    "title": "Zero to One",
+    "author": "Peter Thiel",
+    "categories": [],
+    "tags": [],
+    "edition": {
+      "name": "Zero to One: Notes on Startups, or How to Build the Future",
+      "translator": "",
+      "publishedYear": 2014,
+      "translationYear": null,
+      "sourceText": ".chapterflow/runs/zero-to-one/20260410-152524/source-freeze/book-source.md",
+      "sourceProvenance": "Frozen from Google Books official metadata and description, Open Library first-edition table of contents, and secondary chapter-summary support recorded in manifests/source-ledger.json."
+    },
+    "variantFamily": "EMH",
+    "chapterRange": "1-14"
+  },
+  "chapters": [
+    {
+      "chapterId": "ch07-follow-the-money",
+      "number": 7,
+      "title": "Follow the Money",
+      "readingTimeMinutes": 5,
+      "contentVariants": {
+        "easy": {
+          "chapterBreakdown": {
+            "gentle": "People often think about success as if value is spread fairly across many outcomes. This chapter says that instinct is too smooth. In a power-law world, a small number of outcomes matter far more than the rest. Money follows that concentration. One unusually strong result can outweigh many modest ones, which means average-looking thinking can miss what really drives the economics. The chapter is not saying small outcomes never matter. It is saying they do not matter equally. That is why readers are asked to follow the money toward where returns gather instead of assuming value is spread evenly. The limit stays important too. This is not a chapter about reckless gambling or random moonshots. Power-law logic is a way of seeing asymmetry clearly, not a license to make careless bets. The bridge then turns toward secrets, where unusual upside may come from truths other people still miss.",
+            "direct": "Average-case thinking looks reasonable until the money starts piling up in just a few places. This chapter says returns are not spread evenly across many outcomes. They are concentrated. In a power-law world, a few results dominate the economics while many smaller results contribute far less than people expect. One strong winner can outweigh many modest outcomes. The chapter wants readers to stop evaluating options as if each matters in roughly the same proportion. Money follows asymmetry, not fairness. That changes how strategy should look, because ordinary averaging can hide what matters most. The chapter keeps one clear limit in place: this is not an excuse for reckless gambling. Uneven returns do not justify careless selection. They justify seeing the distribution accurately. Once that lands, the next question becomes where those rare dominant outcomes come from at all. Concentration changes what deserves real attention.",
+            "competitive": "The chapter humiliates one of the safest mistakes in business thinking: pretending returns spread out politely across the field. They do not. A few outcomes dominate. The rest often matter much less than average-case logic wants to admit. That is why money follows outliers. One strong result can outweigh a pile of modest ones and rewrite the whole picture. If you keep scoring everything as if it contributes evenly, you miss the shape of the game. Chapter 7 wants the reader to stop thinking in smooth distributions and start thinking in concentration. The limit is sharp. This is not casino logic and it is not permission for stupid bets. Power-law thinking means seeing asymmetry clearly enough to know that ordinary averages can lie. Once that lands, the next question is obvious: what creates the rare upside that dominates everything else?"
+          },
+          "keyTakeaways": [
+            {
+              "point": {
+                "gentle": "Returns are concentrated rather than evenly spread.",
+                "direct": "The chapter replaces average-case thinking with asymmetry.",
+                "competitive": "Money does not spread itself politely."
+              }
+            },
+            {
+              "point": {
+                "gentle": "One unusually strong outcome can outweigh many smaller ones.",
+                "direct": "A single outlier can dominate the economics of the whole set.",
+                "competitive": "One winner can crush the math of the rest."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Power-law logic is not the same as reckless gambling.",
+                "direct": "The lesson is distribution shape, not careless risk-taking.",
+                "competitive": "Seeing asymmetry clearly is not the same as chasing jackpots."
+              }
+            }
+          ],
+          "oneMinuteRecap": {
+            "gentle": "Chapter 7 argues that returns are lopsided enough for a few outliers to matter far more than average-case thinking suggests.",
+            "direct": "The chapter shifts the money lens toward concentration, where one dominant outcome can distort the whole set.",
+            "competitive": "The lesson is brutal: averages can hide where the real money actually goes."
+          }
+        },
+        "medium": {
+          "chapterBreakdown": {
+            "gentle": "Average-case thinking feels sensible because it treats outcomes as if value were spread across them in a roughly even way. Chapter 7 says that instinct becomes misleading once returns are actually concentrated. In a power-law world, a few outcomes matter far more than the rest, so money follows asymmetry rather than smooth balance.\n\nThe chapter explains that one unusually strong result can outweigh many modest ones. A portfolio, a company path, or a set of bets can look diverse on the surface and still be governed economically by a very small number of outcomes. The smaller results are real, but they do not contribute equally.\n\nThat is why ordinary averaging can hide what matters most. If every option is evaluated as if it matters in roughly the same proportion, the analysis misses the shape of the distribution. The chapter asks readers to follow the money toward where returns actually gather instead of assuming value is spread smoothly across many middling cases.\n\nThis shift changes strategic judgment. If outliers dominate, then people have to think differently about what deserves attention, what kind of upside is unusual, and what kinds of choices could matter disproportionately. The chapter is not trying to make readers love volatility. It is trying to make them see uneven economics accurately.\n\nThe limit matters. Power-law thinking is not reckless gambling, random moonshot worship, or careless selection. It does not say every extreme bet is wise. It says the distribution is uneven enough that average-case comfort becomes misleading. That prepares the bridge to secrets, where the book asks what hidden truths can produce the rare upside that dominates everything else. It teaches the reader to respect lopsided reality without turning lopsided reality into an excuse for sloppy appetite. It also forces readers to stop mistaking a crowded field for an equally weighted one, because the crowded field may still be ruled by only a few meaningful outcomes. The field stays broad. The weight does not. That is the asymmetry.",
+            "direct": "The chapter's target is average-case intuition, the habit of thinking about returns as if they were spread somewhat evenly across many outcomes. Chapter 7 argues that this intuition breaks down once the distribution is actually concentrated. In a power-law world, a few results dominate while many others matter far less than the average suggests.\n\nThat is the central mechanism: one outlier can outweigh many modest outcomes. A portfolio or strategy can look broad, but its economics may still be driven by a very small number of winners. The chapter is not denying that the smaller outcomes exist. It is saying their weight is radically unequal.\n\nThis is why money becomes the right lens. If readers follow the money instead of the headcount of outcomes, they can see where the real concentration lives. Average-looking analysis can miss the dominant driver because it assumes each case contributes in comparable proportion. The chapter wants the reader to replace smooth distribution thinking with asymmetry.\n\nThat change affects strategy. If returns are uneven, then disciplined judgment has to ask where the rare upside could come from and why certain choices matter disproportionately. The point is not to become more reckless. It is to stop letting average-case reasoning conceal what the economics are actually doing.\n\nThe limit preserves realism. Power-law logic is not casino logic, and it does not justify random giant bets. It means the distribution is skewed enough that accuracy requires noticing concentration. Once that lands, the next question becomes where those dominant outcomes originate, which opens naturally into the chapter on secrets. That also means disciplined readers stop asking only how many outcomes exist and start asking which few results can dominate the total economics. It also means a disciplined thinker has to notice how a few dominant results can carry more of the total than the calmer average ever reveals. That is the chapter's demand: stop letting balanced descriptions overrule concentrated reality. The economics stay uneven anyway. Follow the weight. More clearly.",
+            "competitive": "The chapter goes after one of the easiest lies in business thinking: the idea that returns spread out in a mostly fair and orderly way. They do not. Chapter 7 says the distribution is concentrated enough that a few outcomes dominate while many others matter much less than average-case language pretends.\n\nThat is why one strong winner can outweigh a stack of modest results. A portfolio can look full, a strategy can look diversified, and the whole thing can still be economically driven by a tiny number of outcomes. Counting cases is not the same thing as tracking value. The money clusters harder than the summary table suggests.\n\nAverage-case thinking fails because it smooths away the real shape of the game. If each option is treated as if it contributes in similar proportion, the analysis misses where the actual power sits. The chapter wants readers to follow the money toward concentration, not hide inside comfortable averages that make the field look more balanced than it is.\n\nThat matters strategically. Once returns are seen as uneven, people have to stop asking only how many outcomes exist and start asking which few outcomes could dominate everything else. The point is not to glamorize recklessness. It is to stop mistaking a misleading distribution model for realism.\n\nThe limit stays sharp because power-law logic can be abused by people who want an excuse for sloppy gambling. The chapter rejects that move. Uneven returns do not make every extreme bet smart. They make disciplined asymmetry-awareness necessary. The bridge to secrets follows cleanly: if rare upside dominates, where does rare upside actually come from? The chapter is trying to make readers harder to fool with tidy summaries that flatten concentrated value into a polite mean. In other words, the chapter wants readers to track weight, not comfort, and to see how a broad field can still be economically ruled by only a few decisive wins. The table can look fair while the money refuses fairness. That is the real map."
+          },
+          "keyTakeaways": [
+            {
+              "point": {
+                "gentle": "Average-case thinking is too smooth for this chapter's world.",
+                "direct": "The chapter says returns are not evenly distributed.",
+                "competitive": "The average is hiding the real fight."
+              },
+              "moreDetails": {
+                "gentle": "The problem is not arithmetic itself. The problem is assuming that many outcomes contribute in roughly equal proportion when they do not.",
+                "direct": "Average-case intuition misleads because the distribution is concentrated rather than balanced.",
+                "competitive": "A neat average can make a brutally uneven field look tame."
+              }
+            },
+            {
+              "point": {
+                "gentle": "A small number of outcomes hold most of the weight.",
+                "direct": "Power-law shape means a few results dominate the economics.",
+                "competitive": "Most of the money can sit inside very few wins."
+              },
+              "moreDetails": {
+                "gentle": "A portfolio or path can look broad while still depending heavily on a tiny number of results.",
+                "direct": "The chapter's mechanism is concentration, not equality across cases.",
+                "competitive": "The scorecard can be crowded while the value is still clustered."
+              }
+            },
+            {
+              "point": {
+                "gentle": "One outlier can outweigh many smaller outcomes.",
+                "direct": "A single dominant winner can reshape the entire result set.",
+                "competitive": "One monster win can rewrite the whole math."
+              },
+              "moreDetails": {
+                "gentle": "This is why the chapter cares about unusual upside rather than treating each result as similarly important.",
+                "direct": "The economics can be driven by one case even when many lesser cases also exist.",
+                "competitive": "The rest of the field may stay busy while one outcome does the real paying."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Strategy has to follow asymmetry.",
+                "direct": "Readers have to ask where returns concentrate rather than where cases accumulate.",
+                "competitive": "Count value, not just bodies."
+              },
+              "moreDetails": {
+                "gentle": "Once the distribution is known to be uneven, people need a different lens for what matters most.",
+                "direct": "The chapter shifts attention from case volume to concentrated economic weight.",
+                "competitive": "If you watch the crowd instead of the money, you miss the point."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Power-law logic does not excuse careless betting.",
+                "direct": "The chapter rejects the abuse of asymmetry as an excuse for sloppy bets.",
+                "competitive": "Uneven returns do not make stupidity deep."
+              },
+              "moreDetails": {
+                "gentle": "The lesson is to see concentration clearly, not to celebrate any extreme gamble.",
+                "direct": "The limit protects the chapter from collapsing into casino rhetoric.",
+                "competitive": "The distribution is skewed. That does not mean every wild swing is smart."
+              }
+            }
+          ],
+          "activationPrompt": {
+            "gentle": "Think of one set of outcomes you usually judge by averages. What if one result inside it mattered much more than the rest?",
+            "direct": "Audit one project set, portfolio, or decision field you know. Where might the real concentration of value actually be?",
+            "competitive": "Pick one area where you keep talking in averages and ask where the money is actually clustering."
+          },
+          "selfCheckPrompt": {
+            "gentle": "Can you explain why the chapter criticizes average-case thinking without saying every extreme bet is wise?",
+            "direct": "State the chapter's two main moves: returns are concentrated, and that does not justify reckless gambling.",
+            "competitive": "Can you defend asymmetry without sounding like a casino addict?"
+          },
+          "oneMinuteRecap": {
+            "retrieve": {
+              "gentle": "From memory, restate the critique of average-case thinking, the concentration of returns, the outlier logic, and the anti-gambling limit.",
+              "direct": "Can you reconstruct the chain: smooth average, power law, dominant winner, strategic asymmetry, limit?",
+              "competitive": "Recall the full test: average, cluster, outlier, money, discipline."
+            },
+            "connect": {
+              "gentle": "Why does the chapter say following the money shows something averages can miss?",
+              "direct": "How does the chapter connect power-law shape to strategic judgment?",
+              "competitive": "Why does the average keep lying about where the real force sits?"
+            },
+            "preview": {
+              "gentle": "If rare upside dominates returns, what hidden truths might create those rare outcomes in the first place?",
+              "direct": "The next chapter leaves distribution shape and asks what hidden truth creates unusual upside before the market agrees with it.",
+              "competitive": "If outliers dominate, what hidden truth is manufacturing the outlier before the crowd sees it?"
+            }
+          }
+        },
+        "hard": {
+          "chapterBreakdown": {
+            "gentle": "The chapter begins by attacking an intuition that feels fair and orderly: that outcomes should be understood by averaging across many cases. Chapter 7 says that instinct becomes misleading when returns are actually concentrated. In a power-law world, a few outcomes matter far more than the rest, so the money does not distribute itself evenly across the field.\n\nThe chapter then sharpens the mechanism. One unusually strong result can outweigh many modest ones. A portfolio, a company path, or a set of strategic bets can look broad and still be governed economically by a very small number of outcomes. The smaller cases are real, but they do not contribute equal weight to the final picture.\n\nAverage-case reasoning fails here for a structural reason. If every case is treated as if it matters in roughly similar proportion, the analysis smooths away the shape of the distribution. The chapter asks readers to follow the money toward where returns actually gather. Once they do that, they can see that counting outcomes and measuring economic force are not the same activity.\n\nThis changes how strategy should look. If outliers dominate total results, then people have to ask where rare upside could emerge, how a small number of wins can matter more than a long list of middling results, and why apparently diversified fields may still be ruled by concentration. The chapter is not trying to make unevenness feel glamorous. It is trying to make it visible.\n\nThe limit matters because power-law language can be abused by people who want to sound bold without being disciplined. The chapter is not endorsing random moonshots, reckless portfolios, or thoughtless extremity. It is saying the distribution is skewed enough that average-case comfort becomes inaccurate. Seeing asymmetry clearly is a demand for better judgment, not an excuse to abandon it.\n\nThe bridge to secrets matters for exactly that reason. Once the reader sees that rare outcomes dominate the economics, the next question is where those rare outcomes come from and what kinds of hidden truths make them possible before consensus catches up. The chapter therefore turns money into a diagnostic tool. It reveals that the field is ruled less by fairness of spread than by concentration of force. That is what makes the chapter analytical rather than merely dramatic: the unevenness changes what disciplined people should actually pay attention to. It keeps pushing the reader away from tidy fairness and toward actual weight. A field can look broad, busy, and responsibly diversified while still being dominated by a handful of outcomes that account for most of the economic result. That is the structural surprise the chapter wants to make unavoidable. The chapter keeps making the same correction: value is not obligated to honor the visual fairness of the table. That is why concentration has to become part of judgment rather than just a surprising afterthought. For that reason, the chapter keeps asking readers to separate visibility from weight and count from force. A great many things can happen in the field while only a very small number of them determine the final economics.",
+            "direct": "The chapter's target is average-case intuition, the habit of analyzing returns as if many outcomes contribute in roughly similar proportion. Chapter 7 argues that this intuition breaks down in a power-law distribution, where a small number of results dominate while many others contribute far less than the average implies.\n\nThat is the central mechanism. One outlier can outweigh many modest results. A portfolio or strategy can look diversified on the surface and still be governed economically by a very small set of winners. The chapter is not denying the existence of the lesser outcomes. It is insisting that their weight is radically unequal.\n\nThis is why following the money matters. If readers track headcount of outcomes instead of concentration of value, they will misunderstand what the economics are doing. Average-case analysis smooths the distribution into something more balanced than it really is. The chapter wants the reader to replace that false balance with an asymmetry lens that reveals where the dominant returns actually live.\n\nThat adjustment has strategic consequences. Once returns are seen as concentrated, judgment has to focus on where dominant upside might come from, why a few cases can matter disproportionately, and how ordinary analytical comfort can conceal the drivers of the total result. The point is not to romanticize volatility. It is to stop letting a weak model of distribution distort decisions.\n\nThe limit is crucial because power-law thinking is easy to abuse. Uneven returns do not justify careless giant bets, random gambling, or macho talk about swinging big. The chapter rejects that corruption directly. Accuracy about concentration should produce better discipline, not sloppier selection. A skewed field requires sharper filters, not weaker ones.\n\nThis leads naturally into secrets. If rare upside dominates the economics, then the next issue is what produces rare upside before it becomes obvious to everyone else. Chapter 7 therefore does more than describe uneven returns. It clears away the average-case illusion so the reader can start asking where hidden sources of outlier value actually originate. It also means that a reader who keeps trusting balanced summaries will keep missing how much of the total can be carried by a tiny number of outcomes. It therefore forces a more severe kind of realism. The question is not whether many outcomes exist. The question is how unevenly they matter once money is counted honestly. That is why average-case comfort becomes analytically expensive in this chapter rather than merely simplistic. The chapter is therefore less about appetite than about accuracy. If a few outcomes dominate the economics, then any strategy that keeps looking at the field as if weight were evenly shared is already distorting what matters most. That is also why the money lens matters so much here. It is the fastest way to see that diversity of cases does not imply equality of importance. Once the weight concentrates, the strategy has to answer to concentration instead of to the comforting symmetry of averages.",
+            "competitive": "The chapter goes after one of the safest lies in business thinking: the idea that returns spread out in a mostly fair and orderly way. They do not. Chapter 7 says the field is concentrated enough that a few outcomes dominate while many others matter much less than average-case language pretends.\n\nOne strong winner can outweigh a stack of modest results. A portfolio can look busy, a strategy can look broad, and the economics can still be ruled by a tiny number of outcomes. Counting cases is not the same thing as tracking value. The money clusters harder than the summary table wants to admit.\n\nAverage-case reasoning fails because it smooths away the real shape of the game. If every option is scored as if it contributes in similar proportion, the analysis misses where the actual force lives. The chapter wants the reader to follow the money toward concentration and stop hiding inside averages that make the field look more democratic than it is.\n\nThat matters because strategy changes once asymmetry is seen clearly. The hard question becomes which few outcomes could dominate everything else, not how to narrate the field as if every case deserves equal attention. The point is not to glamorize chaos. It is to stop using a false model of balance as if it were realism.\n\nThe limit keeps the chapter honest. Power-law logic is not casino logic, and it is not permission for sloppy gambling dressed up as courage. Uneven returns do not make every extreme bet intelligent. They make disciplined asymmetry-awareness necessary. If the money clusters brutally, then judgment has to become more selective, not less.\n\nThe bridge to secrets lands so cleanly because once the reader accepts that rare upside dominates the economics, the next question is what hidden truth creates that upside before everyone else sees it. Chapter 7 refuses average-case comfort so that the next chapter can ask where the outlier is actually born. The money is concentrated. The interesting question is why. That final turn matters because concentration alone is descriptive; the next chapter asks what discovery produces the concentration before the crowd can price it in. The chapter keeps pressing on the same wound: a field can look populated, sensible, and well spread while the money remains concentrated in a tiny corner of it. If you do not see that, you are not reading the economics. You are reading a story that averages invented to make the field feel less brutal than it is. That is why the chapter sounds harsher than ordinary advice about ambition. It is correcting a false picture of the field itself. Once the picture becomes accurate, the reader can no longer pretend that evenly weighted thinking was neutral or prudent. The chapter keeps dragging the reader back to the same hard fact: broad participation is not the same thing as broad contribution. A hundred minor outcomes can create movement, but a very small number of winners can still own the economics they all pretend to share."
+          },
+          "keyTakeaways": [
+            {
+              "point": {
+                "gentle": "Average-case thinking misreads a concentrated world.",
+                "direct": "The chapter treats smooth distribution intuition as economically misleading.",
+                "competitive": "The average is making the field look fairer than it is."
+              },
+              "moreDetails": {
+                "gentle": "The problem is not calculation itself. It is assuming that many outcomes contribute in roughly equal proportion when the distribution is actually uneven.",
+                "direct": "Average-case intuition fails because returns are clustered rather than balanced across cases.",
+                "competitive": "A neat average can hide a brutally lopsided game."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Returns are concentrated in a small number of outcomes.",
+                "direct": "Power-law shape means a few results dominate the total economics.",
+                "competitive": "Most of the value can live inside very few wins."
+              },
+              "moreDetails": {
+                "gentle": "A portfolio or strategy can look broad while still depending heavily on a tiny number of dominant results.",
+                "direct": "The chapter treats concentration as a structural dominance problem, where a few winners carry an outsized share of the total result.",
+                "competitive": "The scoreboard can be crowded while the money is still clustered."
+              }
+            },
+            {
+              "point": {
+                "gentle": "One outlier can outweigh many modest results.",
+                "direct": "A dominant winner can reshape the whole result set.",
+                "competitive": "One monster outcome can rewrite the math for everything else."
+              },
+              "moreDetails": {
+                "gentle": "This is why the chapter asks readers to care about disproportionate upside rather than treating all cases as similarly important.",
+                "direct": "The economics may be governed by one case even when many lesser cases also exist.",
+                "competitive": "The rest can stay busy while one result does the real paying."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Strategy has to follow concentration rather than averages.",
+                "direct": "Judgment should track where value clusters, not just where cases accumulate.",
+                "competitive": "Follow the money, not the crowding of the table."
+              },
+              "moreDetails": {
+                "gentle": "Once returns are known to be uneven, readers need a different lens for what matters most.",
+                "direct": "The chapter shifts attention from case volume to concentrated economic force.",
+                "competitive": "If you watch the headcount instead of the value, you miss the game."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Power-law logic is not permission for reckless gambling.",
+                "direct": "The chapter rejects the abuse of asymmetry as an excuse for sloppy selection.",
+                "competitive": "Uneven returns do not make stupidity profound."
+              },
+              "moreDetails": {
+                "gentle": "The lesson is to see concentration clearly, not to celebrate every extreme gamble.",
+                "direct": "The limit keeps the chapter from collapsing into casino rhetoric.",
+                "competitive": "The field is skewed. That does not mean every wild swing deserves respect."
+              }
+            }
+          ],
+          "activationPrompt": {
+            "gentle": "Choose one set of outcomes you usually summarize with averages. Which few cases might actually be carrying most of the value?",
+            "direct": "Name one portfolio, project set, or decision field you know. Where does the economic concentration really seem to live?",
+            "competitive": "Pick one area where you talk in averages and force yourself to ask where the money is actually clustering."
+          },
+          "selfCheckPrompts": [
+            {
+              "gentle": "Why does the chapter get stronger when it rejects smooth averages without glorifying reckless bets?",
+              "direct": "Explain why concentrated returns require a different analytical lens without justifying sloppy selection.",
+              "competitive": "Why is asymmetry-awareness tougher than casino swagger?"
+            },
+            {
+              "gentle": "How does one dominant outcome change what matters in the whole set?",
+              "direct": "Describe the link between outlier dominance, strategy, and the failure of average-case intuition.",
+              "competitive": "Why does one big winner make the average look almost dishonest?"
+            }
+          ],
+          "predictionPrompt": {
+            "gentle": "If a team keeps judging returns as if they were evenly spread, what kinds of strategic mistakes become more likely?",
+            "direct": "Based on this chapter, what happens when people use average-case logic in a power-law environment?",
+            "competitive": "If the room keeps worshipping averages, which dominant outcomes will it keep misunderstanding or missing?"
+          },
+          "oneMinuteRecap": {
+            "retrieve": {
+              "gentle": "From memory, restate the critique of average-case thinking, the concentration of returns, the outlier logic, the strategic shift, and the anti-gambling limit.",
+              "direct": "Can you reconstruct the argument from smooth averages to power-law concentration, dominant winners, disciplined asymmetry, and the secrets bridge?",
+              "competitive": "Recall the whole chain: average, cluster, outlier, money, filter, secret."
+            },
+            "connect": {
+              "gentle": "Why does following the money reveal something that counting outcomes can miss?",
+              "direct": "How does the chapter connect distribution shape to strategic judgment?",
+              "competitive": "Why does the average keep lying about where the real force lives?"
+            },
+            "preview": {
+              "gentle": "If outliers dominate returns, what hidden truth might create those outliers before they become obvious?",
+              "direct": "The next chapter turns from concentrated returns to secrets. Where does unusual upside come from before consensus sees it?",
+              "competitive": "If one rare upside dominates, what hidden truth is manufacturing it before the crowd wakes up?"
+            }
+          }
+        }
+      },
+      "examples": [
+        {
+          "exampleId": "ch07-ex01-priya-account-compare",
+          "title": "Priya Sees One Account Distort the Whole Quarter",
+          "category": "work",
+          "format": "contrast",
+          "endingType": "realization",
+          "contexts": [
+            "portfolio grid",
+            "return curve",
+            "account review"
+          ],
+          "scenario": {
+            "gentle": "Priya compares several modest client accounts against one unusually strong account whose growth curve towers over the rest. The spreadsheet looks balanced until the revenue column makes the asymmetry impossible to ignore.",
+            "direct": "Many accounts are present, but one account is doing most of the economic work.",
+            "competitive": "Priya is watching one winner bully the whole quarter's math."
+          },
+          "whatToDo": {
+            "gentle": "Judge the set by where the returns actually concentrate, not by how evenly the rows are arranged.",
+            "direct": "Follow the money instead of assuming each account matters in similar proportion.",
+            "competitive": "Track the account that is carrying the economics instead of pretending the table is democratic."
+          },
+          "whyItMatters": {
+            "gentle": "The chapter says concentrated returns can hide inside a broad-looking set.",
+            "direct": "This is the power-law lens in concrete form: one outlier can dominate many smaller cases.",
+            "competitive": "The spreadsheet looks plural. The money looks concentrated."
+          }
+        },
+        {
+          "exampleId": "ch07-ex02-owen-seminar-argument",
+          "title": "Owen Challenges the Venture Seminar Average",
+          "category": "school",
+          "format": "dialogue",
+          "endingType": "consequence",
+          "contexts": [
+            "venture seminar",
+            "whiteboard bars",
+            "return model"
+          ],
+          "scenario": {
+            "gentle": "In a venture seminar, Owen points to whiteboard bars showing that one investment can dwarf the rest of a portfolio. A classmate keeps describing the set by its average result.",
+            "direct": "Owen is arguing that averages smooth away the real driver.",
+            "competitive": "The seminar wants a neat average. Owen keeps pointing at the one bar that matters."
+          },
+          "whatToDo": {
+            "gentle": "Ask which model tracks concentration rather than comfort.",
+            "direct": "Prefer the return model that explains why one winner can dominate the economics.",
+            "competitive": "Make the class answer to the outlier instead of hiding behind the mean."
+          },
+          "whyItMatters": {
+            "gentle": "The chapter says average-case reasoning fails when returns are uneven.",
+            "direct": "This is the chapter's distribution-shape argument in a classroom setting.",
+            "competitive": "The mean looks civilized. The outlier is doing the real talking."
+          }
+        },
+        {
+          "exampleId": "ch07-ex03-lena-steady-path",
+          "title": "Lena Chooses Between Smoothness and Upside",
+          "category": "personal",
+          "format": "dilemma",
+          "endingType": "reversal",
+          "contexts": [
+            "career options",
+            "upside sketch",
+            "risk notes"
+          ],
+          "scenario": {
+            "gentle": "Lena is choosing between a path with predictable modest gains and one with harder selection but much higher upside if it works. She keeps reaching for the smoother average because it feels more legible.",
+            "direct": "Her decision is shaped by whether she understands asymmetry or only comfort.",
+            "competitive": "Lena is tempted to pick the clean average over the path with real upside concentration."
+          },
+          "whatToDo": {
+            "gentle": "Compare the distributions rather than only the emotional smoothness of the options.",
+            "direct": "Ask what kind of upside concentration each path makes possible.",
+            "competitive": "Stop scoring the options like equal rows and ask where the real upside can cluster."
+          },
+          "whyItMatters": {
+            "gentle": "The chapter says asymmetry changes what should matter in judgment.",
+            "direct": "This is the strategic implication of concentrated returns made personal.",
+            "competitive": "Smooth is not automatically smarter if the economics are lopsided."
+          }
+        },
+        {
+          "exampleId": "ch07-ex04-cam-memo-average",
+          "title": "Cam Misreads the Memo by Averaging It",
+          "category": "work",
+          "format": "vignette",
+          "endingType": "open_question",
+          "contexts": [
+            "investor memo",
+            "margin notes",
+            "portfolio summary"
+          ],
+          "scenario": {
+            "gentle": "Cam writes an investor memo that summarizes a portfolio by its average account performance. In the margin, one note keeps bothering him: one position is driving nearly all the upside.",
+            "direct": "The memo looks tidy because it hides the concentration.",
+            "competitive": "Cam is polishing an average that the money itself does not respect."
+          },
+          "whatToDo": {
+            "gentle": "Rewrite the judgment around where the portfolio's real weight sits.",
+            "direct": "Replace the smooth summary with the concentrated economic story.",
+            "competitive": "Force the memo to answer to the one position that is actually carrying it."
+          },
+          "whyItMatters": {
+            "gentle": "The chapter says following averages can conceal the real shape of returns.",
+            "direct": "This shows how average-case reporting can distort strategic understanding.",
+            "competitive": "The memo is neat. The economics are not."
+          }
+        },
+        {
+          "exampleId": "ch07-ex05-noor-workshop-model",
+          "title": "Noor Picks the Better Return Model",
+          "category": "school",
+          "format": "decision_point",
+          "endingType": "decision",
+          "contexts": [
+            "finance workshop",
+            "distribution slide",
+            "model choice"
+          ],
+          "scenario": {
+            "gentle": "In a finance workshop, Noor has to choose between a model that assumes smooth averages and one that allows for heavily concentrated outcomes. The slide deck makes the first model look calmer.",
+            "direct": "The real question is which model matches the chapter's world.",
+            "competitive": "Noor has to decide whether she wants comfort or the actual shape of the money."
+          },
+          "whatToDo": {
+            "gentle": "Choose the model that can account for dominant outliers rather than forcing false balance.",
+            "direct": "Select the framework that treats concentration as structural rather than accidental.",
+            "competitive": "Take the model that can survive contact with a monster winner."
+          },
+          "whyItMatters": {
+            "gentle": "The chapter says strategy has to follow asymmetry instead of smoothing it away.",
+            "direct": "This is the chapter's model-choice consequence in a classroom setting.",
+            "competitive": "A calm model is useless if the distribution is violent."
+          }
+        },
+        {
+          "exampleId": "ch07-ex06-dax-equal-options",
+          "title": "Dax Realizes the Options Are Not Economically Equal",
+          "category": "personal",
+          "format": "inner_monologue",
+          "endingType": "bridge",
+          "contexts": [
+            "notebook bars",
+            "choice list",
+            "upside comparison"
+          ],
+          "scenario": {
+            "gentle": "Dax stares at several options that looked equally respectable when listed side by side. Once he sketches the upside as bars in a notebook, one option stops looking like just another line item.",
+            "direct": "He is discovering that equal presentation can hide unequal economics.",
+            "competitive": "Dax is watching one option break out of the fake democracy of the list."
+          },
+          "whatToDo": {
+            "gentle": "Ask which option changes the distribution rather than which option looks most evenly reasonable.",
+            "direct": "Shift from list-thinking to asymmetry-thinking before choosing.",
+            "competitive": "Stop pretending the options are peers if one of them carries the rare upside."
+          },
+          "whyItMatters": {
+            "gentle": "The chapter says concentrated returns require a different way of seeing what matters.",
+            "direct": "This is the chapter's asymmetry lens turning into a personal judgment tool.",
+            "competitive": "The list was equal. The upside never was."
+          }
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "q01",
+            "prompt": "What main claim does Chapter 7 make about returns?",
+            "choices": [
+              "They are mostly evenly spread across many outcomes",
+              "They are concentrated enough that a few outcomes dominate",
+              "They always reward the safest option"
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "The chapter says returns are concentrated rather than evenly spread.",
+              "direct": "Its main claim is power-law concentration, not average-case balance.",
+              "competitive": "A few outcomes do most of the economic work."
+            },
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q02",
+            "prompt": "Why does the chapter criticize average-case thinking?",
+            "choices": [
+              "Because it smooths away concentrated returns",
+              "Because it only works in public markets",
+              "Because averages are mathematically invalid"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "The chapter says averages can hide where the real concentration lives.",
+              "direct": "Average-case reasoning misleads when the distribution is heavily uneven.",
+              "competitive": "The average makes a lopsided field look tame."
+            },
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q03",
+            "prompt": "What does a power law mean in this chapter?",
+            "choices": [
+              "Every outcome contributes about the same amount",
+              "Returns are dominated by a small number of outcomes",
+              "Only risky outcomes matter"
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "Power-law shape means a few results matter much more than the rest.",
+              "direct": "The chapter uses power law to describe concentrated returns.",
+              "competitive": "The money clusters into very few wins."
+            },
+            "bloomsLevel": "understand",
+            "depthLevel": "simple"
+          },
+          {
+            "questionId": "q04",
+            "prompt": "Priya sees one account driving most of the quarter's economics. Which chapter lesson fits best?",
+            "choices": [
+              "Every account should still be treated as equally important",
+              "One strong outlier can dominate many smaller outcomes",
+              "Concentration proves the team should gamble more randomly"
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "The chapter says one dominant result can outweigh many modest ones.",
+              "direct": "Priya is seeing concentrated returns rather than smooth balance.",
+              "competitive": "The table looks plural, but one account is doing the real paying."
+            },
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q05",
+            "prompt": "In Noor's workshop, which model better fits the chapter?",
+            "choices": [
+              "The model that assumes smooth average returns",
+              "The model that treats concentration as structural",
+              "The model that ignores outliers as noise"
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "The chapter wants a model that can account for dominant outliers.",
+              "direct": "Concentration has to be built into the framework, not treated as an exception.",
+              "competitive": "A calm average model fails if the money is violent."
+            },
+            "bloomsLevel": "apply",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q06",
+            "prompt": "What strategic change follows from seeing returns as uneven?",
+            "choices": [
+              "Judgment should track where value clusters",
+              "Every option should be weighted the same",
+              "The safest average should always win"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "The chapter says strategy has to follow where returns actually concentrate.",
+              "direct": "Asymmetry changes what deserves attention and weight.",
+              "competitive": "Follow the money, not the headcount."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q07",
+            "prompt": "Why can one outlier matter so much in this chapter?",
+            "choices": [
+              "Because the chapter ignores smaller outcomes entirely",
+              "Because one dominant result can outweigh many modest ones",
+              "Because every outlier is automatically wise"
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "The chapter says one strong winner can reshape the whole result set.",
+              "direct": "Outlier dominance is the mechanism that breaks average-case thinking.",
+              "competitive": "One monster outcome can rewrite the math."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q08",
+            "prompt": "Lena is choosing between a smooth path and one with concentrated upside. What would Chapter 7 ask her to examine?",
+            "choices": [
+              "Which path feels emotionally calmer",
+              "Whether the options have the same distribution of upside",
+              "Whether the smoother path guarantees greatness"
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "The chapter asks readers to compare distributions, not just comfort.",
+              "direct": "Lena should examine where upside can concentrate.",
+              "competitive": "The real question is where the economics can break out."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "standard"
+          },
+          {
+            "questionId": "q09",
+            "prompt": "How does Chapter 7 connect accuracy and discipline?",
+            "choices": [
+              "Accurate asymmetry thinking justifies reckless bets",
+              "Seeing concentration clearly should improve filters, not weaken them",
+              "Discipline matters only when returns are evenly spread"
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "The chapter says power-law logic is not permission for careless gambling.",
+              "direct": "Its realism requires sharper selection, not looser judgment.",
+              "competitive": "A skewed field demands better filters, not casino swagger."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "deeper"
+          },
+          {
+            "questionId": "q10",
+            "prompt": "How does Chapter 7 prepare Chapter 8?",
+            "choices": [
+              "It asks where outlier upside comes from before it becomes obvious",
+              "It concludes that money alone explains all startup success",
+              "It replaces discovery with pure finance math"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Once outliers dominate returns, the next step is asking what hidden truth creates them.",
+              "direct": "The bridge is from concentrated returns to secrets as a source of rare upside.",
+              "competitive": "After following the money, the book asks what secretly made the winner rare."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "deeper"
+          }
+        ]
+      },
+      "implementationPlan": {
+        "coreSkill": {
+          "gentle": "The core skill is noticing concentrated returns instead of assuming outcomes matter in roughly equal proportion.",
+          "direct": "The core skill is replacing average-case intuition with asymmetry-aware judgment.",
+          "competitive": "The edge is seeing where the money clusters before the average hides it."
+        },
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": {
+              "gentle": "If a set of results looks balanced, then check whether one outcome is carrying most of the economics.",
+              "direct": "If a review uses averages, then map where the actual concentration of value sits.",
+              "competitive": "If the table looks democratic, make it answer where the money is bullying the math."
+            }
+          },
+          {
+            "context": "school",
+            "plan": {
+              "gentle": "If a model assumes smooth returns, then test whether a concentrated-outcome model fits better.",
+              "direct": "If a class discussion treats cases as equal, then ask which few outcomes dominate the result.",
+              "competitive": "If the seminar worships the mean, force it to explain the outlier."
+            }
+          },
+          {
+            "context": "personal",
+            "plan": {
+              "gentle": "If two options look equally respectable, then compare where their upside is actually concentrated.",
+              "direct": "If you are choosing by comfort alone, then inspect the distribution of possible upside first.",
+              "competitive": "If the list looks even, ask which option actually has the rare payoff."
+            }
+          }
+        ],
+        "twentyFourHourChallenge": {
+          "gentle": "Within the next day, choose one set of outcomes you usually summarize with averages and identify which result seems to carry the most real weight.",
+          "direct": "In the next 24 hours, audit one project set or portfolio by replacing the average view with a concentration view.",
+          "competitive": "Before tomorrow ends, pick one area where you hide in averages and name where the money is actually clustering."
+        },
+        "weeklyPractice": {
+          "gentle": "Once this week, revisit one decision and ask whether you are weighting outcomes by headcount instead of by economic force.",
+          "direct": "Weekly practice: for one judgment, map which few results dominate the upside and which many results mostly create noise.",
+          "competitive": "Every week, catch one fake average and replace it with the brutal distribution underneath."
+        }
+      },
+      "reviewCards": [
+        {
+          "cardId": "ch07-rc01",
+          "front": {
+            "gentle": "What does Chapter 7 replace average-case thinking with?",
+            "direct": "How does the chapter re-rank return logic?",
+            "competitive": "What is smoother than the average but more honest than it?"
+          },
+          "back": {
+            "gentle": "It replaces average-case intuition with concentrated return logic.",
+            "direct": "The chapter says returns are asymmetrical rather than evenly spread.",
+            "competitive": "The real shape is lopsided, not polite."
+          },
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "ch07-rc02",
+          "front": {
+            "gentle": "Why can one result matter so much?",
+            "direct": "What does outlier dominance mean here?",
+            "competitive": "How can one winner bully the whole set?"
+          },
+          "back": {
+            "gentle": "Because a single unusually strong result can carry more economic weight than many modest ones combined.",
+            "direct": "A dominant outlier can drive most of the economics by itself.",
+            "competitive": "One monster result can rewrite the math for everything else."
+          },
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "ch07-rc03",
+          "front": {
+            "gentle": "Why does following averages become risky in this chapter?",
+            "direct": "How can average-case thinking mislead strategy?",
+            "competitive": "What is the average hiding?"
+          },
+          "back": {
+            "gentle": "It can hide where returns are actually concentrated.",
+            "direct": "Average-case analysis smooths away the distribution shape that strategy needs to see.",
+            "competitive": "It hides where the real force is clustering."
+          },
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch07-rc04",
+          "front": {
+            "gentle": "What limit keeps this chapter from becoming gambling rhetoric?",
+            "direct": "Why is power-law logic not casino logic?",
+            "competitive": "Why does asymmetry not make stupidity deep?"
+          },
+          "back": {
+            "gentle": "The chapter is about accurate concentration, not careless betting.",
+            "direct": "Seeing uneven returns should sharpen filters rather than justify reckless bets.",
+            "competitive": "A skewed field demands better judgment, not louder swagger."
+          },
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch07-rc05",
+          "front": {
+            "gentle": "What question opens once rare upside dominates returns?",
+            "direct": "Why does this chapter lead into secrets?",
+            "competitive": "If the outlier rules, what creates the outlier?"
+          },
+          "back": {
+            "gentle": "The next step is asking what hidden truth produces unusual upside before it becomes obvious.",
+            "direct": "The chapter bridges to secrets by asking where dominant outcomes originate.",
+            "competitive": "After the money clusters, the real hunt is for the truth that made it cluster."
+          },
+          "difficulty": "hard"
+        }
+      ],
+      "keyTakeawayCard": {
+        "gentle": "Chapter 7 says the economics are concentrated, so readers have to look past smooth averages to the few outcomes carrying the real weight.",
+        "direct": "The chapter treats money as clustered force: a dominant outcome can bend the whole picture more than many smaller ones combined.",
+        "competitive": "The average looks calm. The money is not."
+      }
+    }
+  ]
+}

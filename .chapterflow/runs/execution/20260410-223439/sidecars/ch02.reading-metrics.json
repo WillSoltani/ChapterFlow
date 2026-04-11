@@ -1,0 +1,36 @@
+{
+  "chapterId": "ch02",
+  "title": "The Execution Difference",
+  "readingTimeMinutes": 9,
+  "chapterBreakdownWordCounts": {
+    "easy": {
+      "gentle": 155,
+      "direct": 147,
+      "competitive": 140
+    },
+    "medium": {
+      "gentle": 356,
+      "direct": 364,
+      "competitive": 339
+    },
+    "hard": {
+      "gentle": 564,
+      "direct": 490,
+      "competitive": 490
+    }
+  },
+  "takeawayCounts": {
+    "easy": 3,
+    "medium": 5,
+    "hard": 5
+  },
+  "exampleCount": 0,
+  "quizQuestionCount": 10,
+  "reviewCardCount": 5,
+  "criticScore": 11,
+  "lint": {
+    "fail": 0,
+    "warn": 0
+  },
+  "validatedHash": "a2db8a6569ad3d42b424e73ee9d59a6737e6c2fc65e276a50961e4b80e089409"
+}

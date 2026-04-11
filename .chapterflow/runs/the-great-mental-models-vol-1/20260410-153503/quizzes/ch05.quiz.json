@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch05-q01",
+      "prompt": "What makes a thought experiment useful in this chapter?",
+      "choices": [
+        "It replaces evidence with imagination",
+        "It is a structured mental simulation that explores implications under constrained conditions",
+        "It encourages people to dream more boldly than their environment allows"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The method matters because it is disciplined enough to reveal consequences, not because it is imaginative in the abstract.",
+        "direct": "A thought experiment is valuable when the setup is constrained and the implication can be inspected clearly.",
+        "competitive": "The edge comes from pressure, not from fantasy."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch05-q02",
+      "prompt": "Why is Einstein an important anchor for this model?",
+      "choices": [
+        "Because he proved mental simulation is always enough on its own",
+        "Because his imagined case pressured an existing theory through a narrow, structured setup",
+        "Because he avoided simplification and kept all variables in play"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. The point is not that he imagined wildly. The point is that he imagined precisely enough to expose a tension.",
+        "direct": "His beam-of-light case shows the power of constrained simulation rather than broad speculative thinking.",
+        "competitive": "He trapped the theory in a tight scene and made it show what it implied."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch05-q03",
+      "prompt": "What is the main purpose of simplification in a thought experiment?",
+      "choices": [
+        "To remove all difficulty from the problem",
+        "To make the thinker feel more certain",
+        "To strip away noise so a key implication becomes visible"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Exactly. Simplification helps because it makes the important relationship easier to inspect.",
+        "direct": "The setup removes distraction so the theory, rule, or decision has to reveal what it would force.",
+        "competitive": "The scene gets tighter so the implication cannot hide."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch05-q04",
+      "prompt": "Elena wants to announce a reorg. What move best fits the chapter?",
+      "choices": [
+        "Announce it quickly so resistance does not grow",
+        "Mentally run the new structure forward to see how incentives and bottlenecks change before announcing it",
+        "Wait for complete certainty before thinking through any consequences"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Good catch. The thought experiment gives Elena a cheaper way to inspect consequences before the organization has to live inside them.",
+        "direct": "Simulating the reorg first makes hidden second-order effects visible while the design is still easy to change.",
+        "competitive": "Catch the choke point in rehearsal, not in the live rollout."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q05",
+      "prompt": "What do ethical thought experiments like the trolley problem contribute here?",
+      "choices": [
+        "They prove that simplified cases can settle every moral question completely",
+        "They strip away background comfort so a principle's implications become harder to evade",
+        "They show that imagination is more reliable than lived moral experience"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The value is that the simplified case makes a rule's consequences more visible, not that it solves every moral issue forever.",
+        "direct": "The trolley setup exposes what a principle would require once surrounding distractions are removed.",
+        "competitive": "It corners the rule until the rule has to show what it would actually demand."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q06",
+      "prompt": "When does a thought experiment begin to mislead?",
+      "choices": [
+        "When the setup removes the friction that actually governs the real problem",
+        "When the thinker takes more than a few minutes to run it",
+        "When the imagined case feels emotionally uncomfortable"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The danger is not simplification itself. The danger is stripping away the wrong thing.",
+        "direct": "If the setup amputates the load-bearing variable, the clean answer may be clarity purchased through distortion.",
+        "competitive": "The simulation lies when it gets clean by deleting the cost-bearing friction."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q07",
+      "prompt": "Leah rehearses a hard conversation and notices that the most satisfying opening line would probably create worse consequences two moves later. What did the thought experiment add?",
+      "choices": [
+        "It replaced the need to have the conversation at all",
+        "It made downstream relational cost visible before the words were spoken",
+        "It proved that emotional honesty is always a mistake"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exactly. The rehearsal helps because it lets Leah see second-order effects before action hardens them.",
+        "direct": "The simulation turned consequence into something inspectable while she could still choose a different opening.",
+        "competitive": "She saw the hidden bill before she signed it with her mouth."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q08",
+      "prompt": "Ben has one proposal that sounds polished and another that has survived a disciplined mental rehearsal. Which option best fits the chapter?",
+      "choices": [
+        "Choose the pressure-tested proposal because it has already faced implication rather than only presentation",
+        "Choose the polished proposal because first impressions matter most in competitive settings",
+        "Avoid both proposals because thought experiments make action unnecessary"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter values ideas that have already been run through consequence rather than only through presentation.",
+        "direct": "A disciplined simulation exposes weaknesses while they are still cheap to repair, which makes the proposal sturdier.",
+        "competitive": "Take the idea that already lived through a cheap war game."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q09",
+      "prompt": "What is the chapter's hard tension around thought experiments?",
+      "choices": [
+        "They are powerful because they simplify reality, but that same simplification can distort if the wrong variables are removed",
+        "They matter only in science and philosophy, not in ordinary life",
+        "They work best when they replace later evidence entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That is the balanced reading. The method gains power and risk from the same act of reduction.",
+        "direct": "Thought experiments clarify by simplifying, but they mislead when the simplification erases the very friction that governs the real case.",
+        "competitive": "The tool wins by cutting noise and fails by cutting load-bearing reality."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch05-q10",
+      "prompt": "If you can now see consequences more clearly through simulation, what question naturally comes next?",
+      "choices": [
+        "Which conditions merely need to be present, and which ones are enough to produce the outcome?",
+        "How can I avoid all real-world testing from this point forward?",
+        "How can I make my simulations as complicated as the world itself?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nicely done. Once the consequence chain is clearer, the next useful distinction is between required conditions and outcome-producing sufficiency.",
+        "direct": "The bridge moves from simulated implication to necessity and sufficiency: what has to be there, and what is enough to make the result happen.",
+        "competitive": "After the rehearsal, you want the trigger map: background requirement versus actual cause-maker."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "hard"
+    }
+  ]
+}

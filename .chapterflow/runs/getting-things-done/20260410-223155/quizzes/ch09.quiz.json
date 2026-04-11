@@ -1,0 +1,155 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch09-q01",
+      "prompt": "What is doing mainly trying to accomplish in Chapter 9?",
+      "choices": [
+        "Choose the best available action from a trusted current system",
+        "Replace review with urgency-based improvisation",
+        "Ignore the current moment and follow only the biggest goal"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter is about grounded next-action choice.",
+        "direct": "Doing means selecting from a current GTD system through live filters rather than reacting blindly.",
+        "competitive": "It picks the live move from the live map."
+      }
+    },
+    {
+      "questionId": "ch09-q02",
+      "prompt": "Why does a trusted current system matter before action choice?",
+      "choices": [
+        "Because stale options distort even good decision filters",
+        "Because action choice should happen without any system at all",
+        "Because only current systems eliminate the need for choice"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The menu has to be believable before the choice can be sharp.",
+        "direct": "The chapter assumes trustworthy current lists because outdated options make even good filters less reliable.",
+        "competitive": "Bad data breaks the cut."
+      }
+    },
+    {
+      "questionId": "ch09-q03",
+      "prompt": "What four filters shape action choice here?",
+      "choices": [
+        "Purpose, vision, brainstorming, and organizing",
+        "Context, time, energy, and priority",
+        "Urgency, emotion, memory, and habit"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter keeps returning to the same practical filter stack.",
+        "direct": "Allen frames the next move through context, time, energy, and priority.",
+        "competitive": "Room, clock, battery, then importance."
+      }
+    },
+    {
+      "questionId": "ch09-q04",
+      "prompt": "Iris has a phone call, a laptop task, and an errand on her list. What Chapter 9 move matters first?",
+      "choices": [
+        "Check which action fits the current context before ranking the options",
+        "Always choose the biggest project regardless of setting",
+        "Wait until all three can be done at once"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The room helps determine which options are really live.",
+        "direct": "Context narrows the menu to actions that are actually available in the current environment.",
+        "competitive": "The room gets the first vote."
+      }
+    },
+    {
+      "questionId": "ch09-q05",
+      "prompt": "What is the trap in choosing by abstract importance alone?",
+      "choices": [
+        "It may ignore context, time, and energy and lead to a poor fit now",
+        "It automatically improves all action choices",
+        "It removes the need for a trusted system"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The most important item in theory may still be the wrong move now.",
+        "direct": "The chapter warns that importance becomes less useful when it tries to overrule the real limits of the current moment.",
+        "competitive": "Theory can still lose to the room."
+      }
+    },
+    {
+      "questionId": "ch09-q06",
+      "prompt": "Owena has only a ten-minute class break. What Chapter 9 principle applies most directly?",
+      "choices": [
+        "Time changes which action is the smart fit now",
+        "The shortest window should be ignored",
+        "Only long tasks deserve attention"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Different windows support different next actions.",
+        "direct": "The chapter treats time as a real filter because the best move shifts with the size of the opening available.",
+        "competitive": "The clock cuts the field."
+      }
+    },
+    {
+      "questionId": "ch09-q07",
+      "prompt": "Malikah has several home actions available, but her energy is low. What does the chapter suggest?",
+      "choices": [
+        "Choose the most demanding task to prove discipline",
+        "Let the current energy level shape which action fits now",
+        "Ignore the system and do whatever feels random"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Energy is part of the real decision environment.",
+        "direct": "The chapter treats energy as a live constraint that helps determine which action is honestly workable now.",
+        "competitive": "Make the battery vote."
+      }
+    },
+    {
+      "questionId": "ch09-q08",
+      "prompt": "What is wrong with ignoring present conditions when choosing the next action?",
+      "choices": [
+        "It makes the system more objective",
+        "It turns the choice into a mismatch between theory and the moment",
+        "It guarantees better use of the higher horizons"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The action may matter, but still not fit now.",
+        "direct": "Ignoring context, time, or energy leads to choices that look noble on paper but stall in practice.",
+        "competitive": "You choose for theory and pay in reality."
+      }
+    },
+    {
+      "questionId": "ch09-q09",
+      "prompt": "How do the filters support practical engagement?",
+      "choices": [
+        "They narrow the menu so the best available move becomes clearer",
+        "They replace the need for judgment completely",
+        "They guarantee that every action feels easy"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter uses filters to make the choice more grounded.",
+        "direct": "Context, time, energy, and priority reduce randomness by cutting the field down to actions that genuinely fit the moment.",
+        "competitive": "A good cut makes the move clearer."
+      }
+    },
+    {
+      "questionId": "ch09-q10",
+      "prompt": "If the daily ground game of doing is now working, what question naturally comes next?",
+      "choices": [
+        "How do projects stay under control across time?",
+        "How can context be ignored from now on?",
+        "Why should every choice become a Weekly Review?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next chapter lifts back up toward project control.",
+        "direct": "Chapter 9 sets up a return to project-level control once real-time action choice is functioning well.",
+        "competitive": "Once the move is grounded, the project question comes back."
+      }
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "Which choice best matches the chapter's difference between 1 to n and 0 to 1?",
+      "choices": [
+        "1 to n creates a new capability, while 0 to 1 spreads it across many users",
+        "1 to n means extending what already works, while 0 to 1 means creating something new",
+        "Both terms describe scale, but 0 to 1 simply happens faster"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter's first distinction is creation versus extension. 1 to n spreads or multiplies what is known, while 0 to 1 introduces something new.",
+        "direct": "This is the core category split. The chapter treats 1 to n as repetition or scale and 0 to 1 as invention.",
+        "competitive": "If you miss this, the whole chapter collapses. Scale is not the same move as creation."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "A company brings an established payment product into a new country without changing the product itself. Which label fits the chapter best?",
+      "choices": [
+        "Mainly globalization because it is spreading a known model",
+        "Mainly 0 to 1 because new geography always creates a new industry",
+        "Neither, because the chapter only applies to software"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says spreading a known model across places is globalization-style progress, even when it still takes real work.",
+        "direct": "Geographic expansion matters, but it remains a spread move unless the company creates a new capability.",
+        "competitive": "New territory does not automatically mean new invention. You still might just be copying across borders."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What makes definite optimism different from indefinite optimism in this chapter?",
+      "choices": [
+        "Definite optimism assumes no risk, while indefinite optimism studies risk carefully",
+        "Definite optimism ties belief in a better future to a plan, while indefinite optimism expects improvement without one",
+        "Definite optimism rejects technology, while indefinite optimism depends on it"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter does not define definite optimism as certainty. It defines it as hope connected to design and direction.",
+        "direct": "The real difference is planning. Indefinite optimism expects better outcomes somehow; definite optimism organizes action toward them.",
+        "competitive": "One posture chooses a target. The other mostly waits and calls the waiting hope."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Elias can either clone a rival feature or build a new workflow nobody has solved well. Which question reflects the chapter's logic best?",
+      "choices": [
+        "Which option sounds more innovative in the pitch deck?",
+        "Which option is easier to explain to investors who fear uncertainty?",
+        "Which option extends a known answer, and which one creates a new answer?"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter would first sort Elias's options by category before judging them. Clone and wedge are different strategic moves.",
+        "direct": "This chapter demands analytical precision: replication and invention solve different problems and should not be scored as if they were the same.",
+        "competitive": "Fancy language is useless here. Elias has to decide whether he is copying or creating."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "In seminar, Nora hears that bringing an existing service to a new place is basically invention because it still takes effort. Which response fits the chapter best?",
+      "choices": [
+        "Effort matters, but the chapter still separates spread from origin",
+        "Any hard task counts as 0 to 1 if smart people are doing it",
+        "The chapter ignores this case because it only values manufacturing"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter respects hard work without collapsing categories. Effort can be real even when the move is still replication.",
+        "direct": "Difficulty does not erase the distinction between a new method and a spread of an old one.",
+        "competitive": "Hard copy work is still copy work. The chapter refuses to let effort fake novelty."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Victor says planning is pointless because uncertainty means nobody can really know the future. What is the chapter's strongest reply?",
+      "choices": [
+        "Uncertainty disappears once a founder is sufficiently contrarian",
+        "Planning still matters because uncertainty limits control without removing the need for direction",
+        "The best answer is to avoid choosing a future until everyone agrees on the evidence"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter keeps uncertainty in view, but it does not let uncertainty turn into an excuse for drift.",
+        "direct": "Planning is not a claim of total control. It is a refusal to leave the future undefined.",
+        "competitive": "Victor is hiding in vagueness. Risk is real, but it does not excuse having no direction."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "A research lab can either refine a common tool or pursue an overlooked problem with a harder path but a novel payoff. Which chapter principle is most relevant?",
+      "choices": [
+        "The future is shaped by choosing whether to extend the known or create the new",
+        "The safest improvement is always the most valuable one",
+        "Globalization matters only after a company becomes a monopoly"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter would ask what kind of progress each option represents before judging convenience or popularity.",
+        "direct": "This is a 1-to-n versus 0-to-1 choice. The principle matters because the lab is deciding whether to optimize an existing answer or attempt a new one.",
+        "competitive": "If the lab only worships safety, it may keep extending the present and never produce a real wedge."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Which statement would the chapter treat as an example of false progress language?",
+      "choices": [
+        "We scaled faster, so we must have invented something new",
+        "We found a truth others ignored, so our opportunity might be early",
+        "We need a plan even though our forecasts will stay incomplete"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns that scale can be real without being original. Fast spread does not prove 0 to 1 work happened.",
+        "direct": "This statement confuses growth with invention, which is exactly the chapter's opening category error.",
+        "competitive": "Speed is not a substitute for novelty. Calling scale creation is the lazy move the chapter attacks."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does the chapter care so much about keeping copying and creation separate?",
+      "choices": [
+        "Because copying is immoral and should disappear from business entirely",
+        "Because the distinction changes how people judge opportunity, planning, and what kind of future they are actually building",
+        "Because every successful company must begin with the same contrarian opinion"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter is not condemning all replication. It is protecting clarity about what kind of work changes the set of possibilities.",
+        "direct": "The distinction matters because strategy, ambition, and future posture all shift once invention is separated from spread.",
+        "competitive": "If you blur the categories, you start praising repetition like discovery and planning around the wrong game."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If a post-crash startup culture becomes suspicious of bold plans, what does this chapter suggest might happen next?",
+      "choices": [
+        "Builders may overcorrect toward caution and miss some 0-to-1 opportunities",
+        "True invention becomes easier because nobody will want to compete anymore",
+        "The distinction between creation and copying stops mattering in mature markets"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter points forward by implying that fear can shrink the willingness to choose definite futures.",
+        "direct": "A culture that mistakes caution for wisdom may reward extension while overlooking more original bets.",
+        "competitive": "When backlash canonizes smallness, some of the strongest creation moves never even get attempted."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

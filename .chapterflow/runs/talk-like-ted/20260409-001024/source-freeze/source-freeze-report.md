@@ -31,6 +31,7 @@
   - Chapter 6 lightness and humor boundary narrowed locally from the same frozen Part II source before Chapter 6 pre-writer artifacts were opened
   - Chapter 7 eighteen-minute-rule and audience-cognition boundary narrowed locally from the frozen Part III support before Chapter 7 pre-writer artifacts were opened
   - Chapter 8 multisensory-imagery boundary narrowed locally from the same frozen Part III support before Chapter 8 pre-writer artifacts were opened
+  - Chapter 9 authenticity-and-originality boundary narrowed locally from the same frozen Part III support before Chapter 9 pre-writer artifacts were opened
 - Thin support:
   - exact wording outside the authorized Chapter 1 excerpt
 

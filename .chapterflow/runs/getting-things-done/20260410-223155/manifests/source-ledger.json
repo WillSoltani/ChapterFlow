@@ -1,0 +1,83 @@
+{
+  "bookId": "getting-things-done",
+  "runId": "20260410-223155",
+  "lockedEdition": {
+    "publisher": "Penguin Books",
+    "publishedYear": 2015,
+    "label": "Revised and updated edition"
+  },
+  "sources": [
+    {
+      "id": "prh-product-page",
+      "title": "Getting Things Done by David Allen",
+      "url": "https://www.penguinrandomhouse.com/books/316489/getting-things-done-by-david-allen/9780698161863/",
+      "type": "official_publisher_page",
+      "role": "edition_authority",
+      "confidence": 0.99,
+      "notes": "Official current in-print publisher page for the 2015 revised Penguin edition. Confirms subtitle, author, foreword credit, publisher family, publication date, page count, and revised-edition positioning."
+    },
+    {
+      "id": "google-books-preview",
+      "title": "Getting Things Done: The Art of Stress-Free Productivity",
+      "url": "https://books.google.com/books/about/Getting_Things_Done.html?id=ebNDDwAAQBAJ",
+      "type": "authorized_preview",
+      "role": "preview_metadata",
+      "confidence": 0.96,
+      "notes": "Authorized Google Books preview page for the 2015 Penguin edition. Confirms limited preview availability, publication date, page count, and the existence of a table of contents preview."
+    },
+    {
+      "id": "open-library-revised",
+      "title": "Getting Things Done",
+      "url": "https://openlibrary.org/works/OL271504W/Getting_Things_Done?edition=gettingthingsdon0000alle_g8s9",
+      "type": "library_catalog_preview",
+      "role": "chapter_map",
+      "confidence": 0.93,
+      "notes": "Open Library revised-edition page with preview metadata and explicit table of contents, including the welcome section, 3-part structure, 13 chapters, conclusion, and index."
+    },
+    {
+      "id": "supersummary-part-1",
+      "title": "Getting Things Done Part 1, Chapters 1-3 Summary & Analysis",
+      "url": "https://www.supersummary.com/getting-things-done/part-1-chapters-1-3-summary/",
+      "type": "secondary_analysis",
+      "role": "chapter_interpretation",
+      "confidence": 0.72,
+      "notes": "Secondary summary source useful only as supporting interpretation after claims are anchored to the frozen edition metadata and chapter map."
+    },
+    {
+      "id": "supersummary-part-2a",
+      "title": "Getting Things Done Part 2, Chapters 4-6 Summary & Analysis",
+      "url": "https://www.supersummary.com/getting-things-done/part-2-chapters-4-6-summary/",
+      "type": "secondary_analysis",
+      "role": "chapter_interpretation",
+      "confidence": 0.71,
+      "notes": "Secondary support for the implementation chapters covering setup, capture, and clarify."
+    },
+    {
+      "id": "supersummary-part-2b",
+      "title": "Getting Things Done Part 2, Chapters 7-10 Summary & Analysis",
+      "url": "https://www.supersummary.com/getting-things-done/part-2-chapters-7-10-summary/",
+      "type": "secondary_analysis",
+      "role": "chapter_interpretation",
+      "confidence": 0.71,
+      "notes": "Secondary support for organize, reflect, engage, and project-control chapters."
+    },
+    {
+      "id": "supersummary-part-3a",
+      "title": "Getting Things Done Part 3, Chapters 11-12 Summary & Analysis",
+      "url": "https://www.supersummary.com/getting-things-done/part-3-chapters-11-12-summary/",
+      "type": "secondary_analysis",
+      "role": "chapter_interpretation",
+      "confidence": 0.69,
+      "notes": "Secondary support for the psychological payoff chapters in Part 3."
+    },
+    {
+      "id": "supersummary-part-3b",
+      "title": "Getting Things Done Part 3, Chapters 13-15 Summary & Analysis",
+      "url": "https://www.supersummary.com/getting-things-done/part-3-chapters-13-15-summary/",
+      "type": "secondary_analysis",
+      "role": "chapter_interpretation",
+      "confidence": 0.69,
+      "notes": "Secondary support for the final outcome-focusing material and conclusion."
+    }
+  ]
+}

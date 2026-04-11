@@ -1,0 +1,37 @@
+# Run Log
+
+- 2026-04-10T22:51:08Z Phase 0 start. Read pack README, schema notes, MasterGenerator, run manifest, mandatory style files, mandatory rule files, templates, and v13 local guard tools.
+- 2026-04-10T22:51:08Z Manifest lock: title=“The-Gift-of-Fear“; author=“Gavin-de-Becker”; editionPreference=ask_if_ambiguous; bookId=the-gift-of-fear; runId=20260410-224733; outputProfile=flagship_v4_compatible; learningContract=research_native; runProfile=balanced_flagship; validationMode=chapter_gate; chapterGateMode=automatic_continue; chapterGateQuizMode=generate; scenarioTonePolicy=required; sourceDiscoveryMode=web_bundle; editionSelectionMode=ask_if_ambiguous; sourcePolicy=public_or_authorized_plus_secondary; forbidBulkGenerators=true; releaseAssembleFromValidatedOnly=true; preserveApprovedChapterHashes=true.
+- 2026-04-10T22:51:08Z Phase 0 complete.
+- 2026-04-10T22:51:08Z Phase 1 start. Source discovery initiated from lawful web bundle.
+- 2026-04-10T22:51:08Z Phase 1 complete. Source ledger, edition lock, freeze bundle, TOC, and source heading index written. Source guard PASS.
+- 2026-04-10T22:51:08Z Phase 2 complete. Memory files and role cards written.
+- 2026-04-10T22:51:08Z Phase 3 complete. Whole-book skeleton written.
+- 2026-04-10T22:51:08Z Phase 4 start. Chapter 1 pre-writer artifacts written.
+- 2026-04-10T22:51:08Z Chapter 1 writer, editor, critic, converter, quiz, validator, review wrapper, reading metrics, and continuity seal completed. chapterflow_v13_lint PASS. prose audit PASS. Chapter gate PASS.
+- 2026-04-10T22:51:08Z Phase 5 start. Chapter 2 pre-writer artifacts written.
+- 2026-04-10T22:51:08Z Chapter 2 writer and editor drafts written. Critic pass written. Awaiting structured conversion and validation.
+- 2026-04-10T22:51:08Z Chapter 2 converter, quiz, validator, review wrapper, reading metrics, and continuity seal completed. chapterflow_v13_lint PASS after local repair. prose audit PASS. Chapter gate PASS.
+- 2026-04-10T22:51:08Z Baseline quality written for Chapters 1 and 2. Wave 1 repo artifact guard PASS.
+- 2026-04-10T22:51:08Z Wave 2 start. Chapter 3 pre-writer artifacts initiated.
+- 2026-04-10T22:51:08Z Chapter 3 writer, editor, critic, converter, quiz, validator, review wrapper, reading metrics, and continuity seal completed. chapterflow_v13_lint PASS after local repair. prose audit PASS. Chapter gate PASS.
+- 2026-04-10T22:51:08Z Chapter 4 pre-writer artifacts initiated.
+- 2026-04-10T22:51:08Z Chapter 4 writer, editor, critic, converter, quiz, validator, review wrapper, reading metrics, and continuity seal completed. chapterflow_v13_lint PASS after local repair. prose audit PASS. Chapter gate PASS.
+- 2026-04-10T22:51:08Z Wave 2 repo artifact guard PASS.
+- 2026-04-10T22:51:08Z Wave 3 start. Chapter 5 pre-writer artifacts initiated.
+- 2026-04-10T22:51:08Z Chapter 5 writer, editor, critic, converter, quiz, validator, review wrapper, reading metrics, and continuity seal completed. chapterflow_v13_lint PASS after local repair. prose audit PASS. Chapter gate PASS.
+- 2026-04-10T22:51:08Z Chapter 6 pre-writer artifacts initiated.
+- 2026-04-10T22:51:08Z Chapter 6 writer, editor, critic, converter, quiz, validator, review wrapper, reading metrics, and continuity seal completed. chapterflow_v13_lint PASS after local repair. prose audit PASS. Chapter gate PASS.
+- 2026-04-10T22:51:08Z Wave 3 repo artifact guard PASS.
+- 2026-04-10T22:51:08Z Wave 4 start. Chapter 7 pre-writer artifacts initiated.
+- 2026-04-10T22:51:08Z Chapter 7 writer, editor, critic, converter, quiz, validator, review wrapper, reading metrics, and continuity seal completed. chapterflow_v13_lint PASS after local repair. prose audit PASS. Chapter gate PASS.
+- 2026-04-10T22:51:08Z Chapter 8 pre-writer artifacts initiated.
+- 2026-04-10T22:51:08Z Chapter 8 writer, editor, critic, converter, quiz, validator, review wrapper, reading metrics, and continuity seal completed. chapterflow_v13_lint PASS after local repair. prose audit PASS. Chapter gate PASS.
+- 2026-04-10T22:51:08Z Wave 4 repo artifact guard PASS.
+- 2026-04-10T22:51:08Z Wave 5 start. Chapter 9 pre-writer artifacts initiated.
+- 2026-04-10T22:51:08Z Chapter 9 writer, editor, critic, converter, quiz, validator, review wrapper, reading metrics, and continuity seal completed. chapterflow_v13_lint PASS after local repair. prose audit PASS. Chapter gate PASS.
+- 2026-04-10T22:51:08Z Chapter 10 pre-writer artifacts initiated.
+- 2026-04-10T22:51:08Z Chapter 10 writer, editor, critic, converter, quiz, validator, review wrapper, reading metrics, and continuity seal completed. chapterflow_v13_lint PASS after local repair. prose audit PASS. Chapter gate PASS.
+- 2026-04-10T22:51:08Z Wave 5 repo artifact guard PASS after rollback-and-reopen repair for a premature Chapter 11 start.
+- 2026-04-10T22:51:08Z Wave 6 start. Chapter 11 pre-writer artifacts initiated.
+- 2026-04-10T22:51:08Z Chapter 11 writer and editor drafts written. Critic pass written. Awaiting structured conversion and validation.

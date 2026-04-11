@@ -1,0 +1,36 @@
+Chapter 16 Source Sidecar
+
+Heading: The Science of Strategy
+Primary basis:
+- frozen TOC and chapter-title map from Google Books and library catalogs
+- frozen source-freeze title support for Chapter 16 as The Science of Strategy
+- corrected run-state lock preferring frozen source title over conflicting skeleton title
+- validated Chapter 15 bridge from integrated strategic discipline to the question of rigor, diagnosis, and disciplined reasoning
+
+Supported source notes:
+
+1. Chapter 16 asks what makes strategic thinking rigorous rather than slogan-driven.
+   - The title explicitly names the science of strategy.
+   - Supported use: move from integrated method to disciplined reasoning about diagnosis, cause, and consequence.
+
+2. Strategic science should be framed as disciplined inquiry rather than formula certainty.
+   - The corrected run-state and supporting skeleton intent justify a move from integrated discipline toward the rigor of good strategic judgment.
+   - Supported use: emphasize diagnosis, challenge, consequence, and refinement rather than mechanical certainty.
+
+3. Chapter 16 extends Chapter 15 by asking what makes integrated strategy intellectually rigorous.
+   - Chapter 15 validated that the major strategic ideas become stronger when used as one reinforcing chain.
+   - Supported use: explain that integration becomes more powerful when it is explicit, challengeable, and causally grounded.
+
+4. Narrow support caution.
+   - Do not invent named book anecdotes, equations, or exact quoted definitions not present in the frozen bundle.
+   - Keep the prose at the level of disciplined reasoning, diagnosis, causality, consequence, challenge, and refinement.
+
+Quote ledger:
+- all reader-facing prose use -> paraphrase_only except chapter title and near-quote ledger terms already supported
+
+Source references:
+- https://books.google.com/books/about/Good_Strategy_Bad_Strategy.html?id=0FWPDQAAQBAJ
+- https://penguinrandomhousehighereducation.com/book/?isbn=9780307886231
+- internal:source-freeze/book-source.md
+- internal:validated/ch15.chapter.json
+- internal:skeleton/book-skeleton.md

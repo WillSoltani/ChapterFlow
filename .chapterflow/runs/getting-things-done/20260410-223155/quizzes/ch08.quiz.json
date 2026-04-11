@@ -1,0 +1,155 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch08-q01",
+      "prompt": "What is review mainly trying to do in Chapter 8?",
+      "choices": [
+        "Keep the system current and functional over time",
+        "Replace organizing with intuition",
+        "Collect more loose material every day"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter treats review as upkeep for the system.",
+        "direct": "Review exists to refresh lists and buckets so the GTD structure stays trustworthy and usable.",
+        "competitive": "It keeps the machine live instead of letting it age in place."
+      }
+    },
+    {
+      "questionId": "ch08-q02",
+      "prompt": "Why can a well-organized system still stop feeling trustworthy?",
+      "choices": [
+        "Because good structure automatically disappears over time",
+        "Because the system can go stale if it is not refreshed",
+        "Because review should happen only when things break badly"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Organized does not always mean current.",
+        "direct": "The chapter's failure mode is staleness: the structure remains, but the lists and buckets no longer feel current enough to trust.",
+        "competitive": "The machine can still be standing on old truth."
+      }
+    },
+    {
+      "questionId": "ch08-q03",
+      "prompt": "What practice does the chapter make load-bearing?",
+      "choices": [
+        "A random daily glance at urgent items",
+        "Weekly Review",
+        "A one-time organization sprint"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Weekly Review is the central refresh practice here.",
+        "direct": "Allen treats Weekly Review as the broad upkeep pass that keeps the full system current.",
+        "competitive": "That is the service interval that keeps the engine honest."
+      }
+    },
+    {
+      "questionId": "ch08-q04",
+      "prompt": "Zoe still has her action list, but several follow-ups are old enough that she no longer trusts it fully. What is the best Chapter 8 diagnosis?",
+      "choices": [
+        "The list is missing because the structure collapsed",
+        "The problem is staleness from missed review rather than missing architecture",
+        "She should delete the list and start over every day"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The list can still exist while becoming stale.",
+        "direct": "The chapter treats this as a freshness problem: review failed to keep the structure current enough to be believed.",
+        "competitive": "The dashboard is present, but the data is old."
+      }
+    },
+    {
+      "questionId": "ch08-q05",
+      "prompt": "Why is spot-checking weaker than real review?",
+      "choices": [
+        "Because it follows urgency and can leave quiet drift untouched",
+        "Because it updates every part of the system equally",
+        "Because it always removes the need for Weekly Review"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Spot-checking usually follows whatever feels loudest.",
+        "direct": "The chapter distinguishes reactive checking from a review pass that refreshes the broader system before distrust spreads.",
+        "competitive": "It chases the fire and misses the aging engine."
+      }
+    },
+    {
+      "questionId": "ch08-q06",
+      "prompt": "Nolan's student planner looks organized, but only the most urgent parts get checked each week. What Chapter 8 move matters most?",
+      "choices": [
+        "Refresh the broader planner system on a real weekly review pass",
+        "Ignore quiet sections because they are probably fine",
+        "Merge every school list into one emergency page"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The quieter parts also need refresh.",
+        "direct": "Weekly Review matters because it restores current visibility across the full school system, not only the loudest parts.",
+        "competitive": "Review the whole field, not just the siren."
+      }
+    },
+    {
+      "questionId": "ch08-q07",
+      "prompt": "What is the main risk of reviewing home admin only in scattered fragments?",
+      "choices": [
+        "The system may remain technically intact while drift builds in the untouched parts",
+        "The system will immediately delete old commitments",
+        "The buckets will automatically organize themselves later"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Fragments of review can leave the rest aging quietly.",
+        "direct": "The chapter warns that partial checking often misses background drift, which weakens trust across the whole structure.",
+        "competitive": "You can service the noise and still leave the machine stale."
+      }
+    },
+    {
+      "questionId": "ch08-q08",
+      "prompt": "What is wrong with skipping review because the system was organized well once?",
+      "choices": [
+        "Nothing, because good structure stays current indefinitely",
+        "It assumes architecture can replace ongoing refresh",
+        "It proves Weekly Review is only for beginners"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says good structure still needs upkeep.",
+        "direct": "Organizing builds the system, but review keeps it aligned with current reality instead of letting it grow stale.",
+        "competitive": "A strong build still ages if nobody services it."
+      }
+    },
+    {
+      "questionId": "ch08-q09",
+      "prompt": "How does freshness support trust in the system?",
+      "choices": [
+        "By making the lists decorative enough to enjoy",
+        "By keeping the system current enough to be believed again",
+        "By ensuring every obligation is already finished"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The system feels more believable when it is recent enough to match reality.",
+        "direct": "Freshness matters because current lists and buckets allow the external system to carry the work without constant suspicion.",
+        "competitive": "Live data beats tidy doubt."
+      }
+    },
+    {
+      "questionId": "ch08-q10",
+      "prompt": "If the system is current again after review, what question naturally comes next?",
+      "choices": [
+        "How should action choices be made from this trusted system?",
+        "How can review be skipped from now on?",
+        "Why should the buckets be collapsed back together?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A current system prepares the ground for choosing what to do.",
+        "direct": "Chapter 8 sets up the next stage by making the system fresh enough to support later engagement and action choice.",
+        "competitive": "Once the picture is live, the move question takes over."
+      }
+    }
+  ]
+}

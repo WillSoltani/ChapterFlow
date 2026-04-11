@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the conclusion's main claim?",
+      "choices": [
+        "The final task is to distinguish what breaks under variation from what can gain from it",
+        "All disorder should be welcomed",
+        "The book ends by introducing a completely new doctrine"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The conclusion says the key is sorting systems by how they respond to variation.",
+        "direct": "Taleb closes by returning to the difference between fragility and antifragility rather than by praising disorder in general.",
+        "competitive": "The ending is about classification, not chaos worship."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the conclusion reconnect time and optionality?",
+      "choices": [
+        "Because they act as filters for what survives and where favorable asymmetry exists",
+        "Because they prove every old system is automatically wise",
+        "Because they make ethics irrelevant"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Time and optionality help reveal which systems are robust or exposed to ruin.",
+        "direct": "Taleb uses survival and favorable asymmetry as practical filters for judgment in the ending.",
+        "competitive": "Time tests the system, and optionality keeps upside alive without betting the house."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What limit keeps the conclusion from becoming a randomness slogan?",
+      "choices": [
+        "Taleb says all shocks are beneficial if they are surprising",
+        "Taleb distinguishes what should be protected from what can benefit from bounded variation",
+        "Taleb claims fragility no longer matters at the end"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The conclusion is not saying every kind of disorder helps.",
+        "direct": "Taleb insists that some systems need shelter while others can gain from variation, so flattening them together is a mistake.",
+        "competitive": "The smart move is sorting the target, not chanting for turbulence."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Elena realizes she has been treating every project as if stress would affect them the same way. Which response best fits the conclusion?",
+      "choices": [
+        "Sort which projects are fragile and which can learn from bounded variation",
+        "Expose everything to more volatility to see what survives",
+        "Ignore asymmetry and focus only on confidence"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The conclusion says the first task is sorting systems by response type.",
+        "direct": "Elena should classify what needs protection and what can benefit from variation before deciding how much stress to allow.",
+        "competitive": "Stop spraying the same stress recipe across targets with different tails."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Which statement would the conclusion reject most strongly?",
+      "choices": [
+        "Time can carry information through survival",
+        "Antifragility means loving chaos everywhere",
+        "Skin in the game remains part of the book's asymmetry logic"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The conclusion rejects treating all disorder as beneficial.",
+        "direct": "Taleb does not end by celebrating chaos in the abstract; he keeps the focus on different response profiles.",
+        "competitive": "That answer turns nuance into chaos merch."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "How do via negativa and skin in the game fit into the conclusion?",
+      "choices": [
+        "They both ask where downside lands and how hidden harm can be reduced",
+        "They replace fragility and antifragility with a new framework",
+        "They matter only in the middle chapters, not in the ending"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The conclusion treats subtraction and exposure as part of the same discipline.",
+        "direct": "Taleb reconnects both ideas through asymmetry, hidden downside, and consequence-bearing.",
+        "competitive": "Cleanup and accountability are still running the same tail audit."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Priya asks whether a plan would learn from stress or break under it. What pattern is she applying?",
+      "choices": [
+        "The concluding diagnostic of sorting systems by response to variation",
+        "A belief that every plan needs more pressure",
+        "A rejection of optionality and time"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "She is using the final question of the book: what kind of system is this?",
+        "direct": "Priya is applying the conclusion's rule that judgment begins with classifying response to volatility rather than praising stress in the abstract.",
+        "competitive": "She refuses to romanticize pressure before the target earns it."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why does the conclusion keep returning to asymmetry?",
+      "choices": [
+        "Because asymmetry connects upside, downside, exposure, and response to variation across the book's themes",
+        "Because asymmetry means every system wants more disorder",
+        "Because asymmetry makes classification unnecessary"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The conclusion uses asymmetry to tie the book's ideas together.",
+        "direct": "Asymmetry is the connecting thread because it shows where consequence lands, where upside is preserved, and where ruin risk is concentrated.",
+        "competitive": "The whole book keeps asking where the tail goes and who absorbs it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What deeper shift does the conclusion ask from the reader?",
+      "choices": [
+        "Move from slogans about randomness to a disciplined way of sorting systems by fragility, exposure, and asymmetry",
+        "Treat every stressor as educational",
+        "Replace judgment with admiration for time-tested things alone"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The conclusion changes the reader's habit of judgment.",
+        "direct": "Taleb wants the reader to classify systems by how they meet variation rather than rely on blanket attitudes toward volatility.",
+        "competitive": "Stop cheering for disorder and start diagnosing targets."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What is the final practical orientation the book leaves behind?",
+      "choices": [
+        "Map what should be protected, what can be stress-tested, and where hidden downside is still being ignored",
+        "Embrace all chaos equally",
+        "Assume every surviving system is automatically admirable"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The book ends with a practical sorting habit.",
+        "direct": "The final orientation is diagnostic: shield what is fragile, test what can benefit from variation, and keep hidden downside visible.",
+        "competitive": "Last instruction: protect what cracks and train what learns."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

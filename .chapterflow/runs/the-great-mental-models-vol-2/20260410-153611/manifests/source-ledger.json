@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "chapterflow.v13.source-ledger",
+  "bookId": "the-great-mental-models-vol-2",
+  "runId": "20260410-153611",
+  "createdAt": "2026-04-10T15:39:19Z",
+  "policy": {
+    "sourceDiscoveryMode": "web_bundle",
+    "sourcePolicy": "public_or_authorized_plus_secondary",
+    "rightsMode": "startup_light",
+    "notes": [
+      "No public-domain full text was found.",
+      "Authorized preview access is partial, so all downstream writing must stay paraphrase-first and narrower than unsupported detail."
+    ]
+  },
+  "sources": [
+    {
+      "id": "prh-book-page",
+      "title": "The Great Mental Models, Volume 2 by Shane Parrish, Rhiannon Beaubien",
+      "url": "https://www.penguinrandomhouse.com/books/755612/the-great-mental-models-volume-2-by-shane-parrish-and-rhiannon-beaubien/",
+      "type": "official_publisher_metadata",
+      "role": "official metadata and current publisher positioning",
+      "confidence": "high",
+      "authorized": true,
+      "notes": "Current publisher page for the 2024 Penguin edition. Confirms subtitle, series position, authorship credit, and authorized sales context."
+    },
+    {
+      "id": "google-books-2024",
+      "title": "The Great Mental Models, Volume 2: Physics, Chemistry, and Biology",
+      "url": "https://books.google.com/books/about/The_Great_Mental_Models_Volume_2.html?id=Y0nuEAAAQBAJ",
+      "type": "authorized_preview_metadata",
+      "role": "authorized preview metadata, partial table of contents, page anchors",
+      "confidence": "high",
+      "authorized": true,
+      "notes": "Provides publisher, ISBN 9780593720028, 384 pages, selected page anchors, partial contents, and official description."
+    },
+    {
+      "id": "betterworld-ingram",
+      "title": "The Great Mental Models, Volume 2 : Physics, Chemistry, and Biology",
+      "url": "https://www.betterworldbooks.com/product/detail/the-great-mental-models-volume-2-physics-chemistry-and-biology-9780593719985",
+      "type": "bibliographic_toc_syndication",
+      "role": "complete chapter map and page starts",
+      "confidence": "high",
+      "authorized": false,
+      "notes": "Carries Ingram Syndetics table of contents for the current edition. Used to complete chapter order and page starts."
+    },
+    {
+      "id": "openlibrary-2020",
+      "title": "The Great Mental Models, Volume 2",
+      "url": "https://openlibrary.org/books/OL28177048M/The_Great_Mental_Models_Volume_2",
+      "type": "library_bibliographic_record",
+      "role": "edition history and original-publication cross-check",
+      "confidence": "medium",
+      "authorized": false,
+      "notes": "Used to confirm the 2020 Latticework Publishing hardcover lineage and ISBN 9781999449032."
+    },
+    {
+      "id": "vejdani-notes",
+      "title": "The Great Mental Models, Volume 2: Physics, Chemistry, and Biology",
+      "url": "https://vejdani.org/books/gmm2/",
+      "type": "secondary_chapter_notes",
+      "role": "narrow chapter-level support when the authorized preview does not expose enough interior text",
+      "confidence": "medium",
+      "authorized": false,
+      "notes": "Used only as secondary support. Claims from this source must remain high-level unless also supported by the frozen publisher bundle."
+    }
+  ]
+}

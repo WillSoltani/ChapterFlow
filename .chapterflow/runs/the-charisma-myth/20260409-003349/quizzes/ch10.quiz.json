@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What false shortcut does this chapter reject first?",
+      "choices": [
+        "That charisma disappears online or reduces only to tech polish and etiquette",
+        "That digital channels reduce some nonverbal evidence",
+        "That timing affects how online contact feels"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter starts by rejecting the idea that online charisma is gone or purely technical.",
+        "direct": "Its opening correction is against treating digital contact as outside the triad.",
+        "competitive": "It kills the idea that the signal died with the room."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does digital presence matter so much here?",
+      "choices": [
+        "Because presence online depends only on keeping the camera on",
+        "Because reduced channels make visible attention and timing more important",
+        "Because written messages no longer need warmth or consequence"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Digital presence matters because fewer cues remain to prove attention.",
+        "direct": "The chapter treats online presence as legible attention under reduced bandwidth.",
+        "competitive": "When the screen gets thin, split attention gets louder."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "How does digital power carry weight well in this chapter?",
+      "choices": [
+        "By preserving consequence through clear framing instead of blunt compression",
+        "By using the coldest possible tone to keep authority high",
+        "By replying faster than everyone else"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says digital power works when the point keeps shape online.",
+        "direct": "Consequence survives compression through framing, not hardness alone.",
+        "competitive": "Clean shape beats cold speed."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Harper changes a remote seminar by closing side tabs and responding directly to the discussion. What does that show?",
+      "choices": [
+        "Digital presence becomes stronger when attention is made legible through timing and focus",
+        "Remote seminars reward multitasking if the comment sounds polished",
+        "Online charisma depends mostly on camera quality"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Harper shows that visible attention can change the room before the content changes much.",
+        "direct": "The example treats digital presence as signal, not background assumption.",
+        "competitive": "Once the split focus drops, the room starts reading real contact."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Ian realizes his email is becoming efficient but cold. What is the better diagnosis?",
+      "choices": [
+        "More compression always creates stronger digital power",
+        "The message is preserving speed while losing enough warmth to stay human",
+        "Email tone has no effect if the instructions are clear"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Ian learns that concise writing can still lose the human signal.",
+        "direct": "The chapter would call this cold compression, not full online strength.",
+        "competitive": "Speed is starting to sound like distance."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Why do Zoe's fast text replies still feel emptier in one version of the exchange?",
+      "choices": [
+        "Because personal digital exchange should avoid warmth entirely",
+        "Because digital presence depends only on long messages",
+        "Because speed can answer the content without providing enough acknowledgment to feel like contact"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Zoe shows that fast response is weaker than real digital contact.",
+        "direct": "The chapter says digital warmth is acknowledgment, not just activity.",
+        "competitive": "Throughput is not the same thing as human signal."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why is tech polish alone not enough for digital charisma?",
+      "choices": [
+        "Because nonverbal cues never matter online",
+        "Because better gear can slightly help but cannot replace presence, clarity, and acknowledgment",
+        "Because digital charisma depends only on response speed"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter treats polish as marginal help, not as the whole signal.",
+        "direct": "Better setup cannot rescue a weak reduced-channel exchange.",
+        "competitive": "Pretty gear cannot save a dead signal."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What does the chapter suggest about delay and camera habits in online exchange?",
+      "choices": [
+        "They can distort presence and power when the channel already has fewer cues",
+        "They matter only in formal presentations",
+        "They are mostly irrelevant if the message is correct"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says timing and visible attention matter more when the channel is thin.",
+        "direct": "Delay and camera habits can distort the triad online.",
+        "competitive": "If the channel gets pushed around, the signal gets smaller."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the chapter deeper claim about digital charisma?",
+      "choices": [
+        "Online contact creates a separate charisma model unrelated to the rest of the book",
+        "Warmth matters online, but presence and power do not",
+        "Digital charisma is the same triad adapting to a thinner and more distortion-prone channel"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter keeps digital contact tied to the same triad under reduced evidence.",
+        "direct": "Its deeper claim is adaptation, not replacement.",
+        "competitive": "The signal lost bandwidth, not stakes."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why does this chapter lead directly into difficult situations?",
+      "choices": [
+        "Because digital charisma becomes irrelevant once disagreement starts",
+        "Because conflict works best through the fastest possible channel",
+        "Because thin channels force conflict and pressure to travel through already-reduced cues"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The bridge is that ordinary digital strain gets sharper when disagreement adds more weight.",
+        "direct": "Chapter 11 follows because conflict amplifies reduced-channel distortion.",
+        "competitive": "Once stakes rise, every digital miss costs more."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

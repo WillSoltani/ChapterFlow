@@ -164,3 +164,53 @@ Wave 3 complete. Awaiting user approval before starting Wave 4 (Chapters 8 and 9
 
 User approved Wave 3 (Ch6+Ch7). Hashes `272fc62fc02ffcb5154231227bf09dca6feaf8d8d2f7f491f3b045ea9e73ae86` (Ch6) and `eb5965db250f362089e8b8f9aa62d2ebf6cf3affb0aa39119c63cfb911ebe699` (Ch7) locked into `continuity/continuity-state.json` under `approvedChapterHashes.ch06` and `approvedChapterHashes.ch07`. Wave 4 unlocked. Handoff prompt written for next session.
 
+## Phase 7 Wave 4 — Chapters 8 and 9 (2026-04-10)
+
+### Chapter 8 — Negotiated Outcomes and Clean Exits
+- Source: Strategies 21 (Diplomatic-War: Negotiate While Advancing), 22 (Exit Strategy), Part IV Offensive Warfare closing pair, lines 579-623.
+- Dossier: brief, outline, quiz blueprint, source sidecars (txt + json) written.
+- Prose loop: canonical (~1100 words) → edited → critic 12/12 → no patches required.
+- Bridge corrected mid-pipeline: original bridge referenced "counter-force, escalation, chaos" but chapter-map Ch9 is "The Line of Least Expectation" (unconventional/asymmetric moves). Fixed bridge, preview fields, and predictionPrompt in structured JSON; hash recomputed.
+- Structure loop: structured/ch08.chapter.json with all 6 examples (Noor, Jude, Lila, Eamon, Celia, Tess), all 6 formats, all 6 endings, 2/2/2 categories. Multiple word count repairs across all depths. Quiz: 10 questions, correctIndex {0:3, 1:4, 2:3}.
+- Validated: hash `3b5051bafdf21fa7054cad944c06cc75f62e152ba934641d85d1620e829857ba`. Wrapper, reading metrics written.
+- School settings: undergraduate-business-negotiation, high-school-student-newspaper.
+- Moral flag: medium-high (ethical line: sincere vs. fake exit; credibility as structural infrastructure).
+
+### Chapter 9 — The Line of Least Expectation
+- Source: Strategies 23 (Misperception), 24 (Ordinary-Extraordinary), 26 (Void), 27 (Alliance), 29 (Fait Accompli), Part V Unconventional Warfare, lines 636-735.
+- Dossier: brief, outline, quiz blueprint, source sidecars (txt + json) written.
+- Prose loop: canonical (~1080 words) → edited → critic 12/12 → no patches required.
+- Structure loop: structured/ch09.chapter.json with all 6 examples (Ingrid, Tobias, Maren, Dante, Sylvie, Koa), all 6 formats, all 6 endings, 2/2/2 categories. Multiple word count repairs across medium and hard depths. Quiz: 10 questions, correctIndex {0:3, 1:4, 2:3}.
+- Validated: hash `aafe75478017068f251b67f80d16232d2761792a8e4b33cf851a7b6f181f781e`. Wrapper, reading metrics written.
+- School settings: graduate-public-policy, high-school-literary-magazine.
+- Moral flag: high (five strategies with explicit legitimate/manipulative forms; structural argument for legitimate forms mirroring Ch7 and Ch8).
+
+### Continuity & guard
+- Continuity state updated with Ch8 names (Hana, Vaughn, Noor, Jude, Lila, Eamon, Celia, Tess) and Ch9 names (Margot, Ravi, Ingrid, Tobias, Maren, Dante, Sylvie, Koa). Total reserved names: 80. Total school settings: 18.
+- Ch8+Ch9 hashes are pending approval -- they will be locked into `approvedChapterHashes` only after user approves Wave 4.
+- Artifact guard: FAIL=0 WARN=0 across all 14 required artifact types for each chapter (28/28 files present and non-empty).
+
+Wave 4 complete. Awaiting user approval before starting Wave 5 (Chapter 10).
+
+## Phase 6 — Wave 4 approved (2026-04-10)
+
+User approved Wave 4 (Ch8+Ch9). Hashes `3b5051bafdf21fa7054cad944c06cc75f62e152ba934641d85d1620e829857ba` (Ch8) and `aafe75478017068f251b67f80d16232d2761792a8e4b33cf851a7b6f181f781e` (Ch9) locked into `continuity/continuity-state.json` under `approvedChapterHashes.ch08` and `approvedChapterHashes.ch09`. Wave 5 unlocked. Handoff prompt written for next session.
+
+
+## Phase 7 Wave 5 -- Chapter 10 (2026-04-10)
+
+### Chapter 10 -- The Edge Cases and When to Put the Framework Down
+- Source: Strategy 19 edge case, Strategies 25/28/30/31/32/33, and Part VI meta-lessons; lines 550-560, 663-791, 793-835.
+- Dossier: brief, outline, quiz blueprint, source sidecars (txt + json) written.
+- Prose loop: canonical (~1098 words) -> edited (~1084 words) -> critic 12/12 -> no patches required after editorial pass.
+- Structure loop: structured/ch10.chapter.json with all 6 examples (Sabine, Otis, Keira, Navid, Pilar, Romy), all 6 formats, all 6 endings, 2/2/2 categories. Multiple word count repairs applied across easy, medium, and hard direct/competitive surfaces. Quiz: 10 questions, correctIndex {0:3, 1:4, 2:3}.
+- Validated: hash `6e0adea19b2a3331a3d4eb5489a45bc6d4d298f2a537e9f3938d3afaff4b356e`. Wrapper, reading metrics written.
+- School settings: undergraduate-architecture-studio, high-school-environmental-club.
+- Moral flag: highest (explicit legitimate vs illegitimate forms, plus named no-framework zones for intimacy, grief, collaboration, and non-opponent contexts).
+
+### Continuity & guard
+- Continuity state updated with Ch10 names (Leona, Elias, Sabine, Otis, Keira, Navid, Pilar, Romy). Total reserved names: 88. Total school settings: 20.
+- Ch10 hash is pending approval -- it will be locked into `approvedChapterHashes` only after user approves Wave 5.
+- Artifact guard: manual check (v12-sealed tool unavailable in repo) -> FAIL=0 WARN=0 across all 14 required artifact types for Chapter 10.
+
+Wave 5 complete. Awaiting user approval before Phase 8 release gate.

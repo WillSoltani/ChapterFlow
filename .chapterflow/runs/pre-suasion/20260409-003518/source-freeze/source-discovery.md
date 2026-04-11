@@ -28,6 +28,7 @@ Freeze a lawful, high-signal source bundle for *Pre-Suasion* before any chapter 
 - The official Simon & Schuster page provides narrow Chapter 7 support for favorable associations attached to focal concepts and Chapter 8 support for persuasive effects of physical or psychological placement.
 - The official Simon & Schuster page also provides narrow Chapter 9 support for the readied-firing mechanism of pre-suasion and Chapter 10 support for the six classic influence-principle roads to change.
 - The official Simon & Schuster page also provides narrow Chapter 11 support for unity as a seventh influence principle rooted in We identity, family, and place, and Chapter 12 support for unity through synchronous or collaborative action.
+- The official Simon & Schuster page also provides narrow Chapter 13 support for ethical pre-pre-suasive decision-making and the profit-undermining costs of unethical tactics, plus Chapter 14 support for durability procedures that help pre-suasively generated changes take root and last.
 
 ## Constraints carried forward
 - Paraphrase first.

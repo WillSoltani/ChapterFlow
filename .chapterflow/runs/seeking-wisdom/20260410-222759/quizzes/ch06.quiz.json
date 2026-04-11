@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch06-q01",
+      "prompt": "Why can a person still make a bad choice after already learning the better principle?",
+      "choices": [
+        "Because emotional pressure can overpower access to the better judgment in the live moment",
+        "Because principles matter only in calm situations",
+        "Because learning usually disappears once pressure starts"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter starts by separating knowing the lesson from being able to use it under pressure.",
+        "direct": "Correct. Emotional execution can fail even when the idea is already understood.",
+        "competitive": "That is the closing weakness. The model can be right and still get locked out."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch06-q02",
+      "prompt": "What makes fear and ego especially dangerous in this chapter?",
+      "choices": [
+        "They remove all emotion from the decision",
+        "They create false urgency and make reaction feel justified",
+        "They matter only in public situations"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. Fear and ego can make a fast reaction feel necessary even when it is not the better move.",
+        "direct": "The chapter treats them as forces that counterfeit judgment by manufacturing urgency or defense.",
+        "competitive": "Pride and panic are experts at selling bad moves as necessary."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch06-q03",
+      "prompt": "Nadia feels publicly challenged in a meeting and wants to answer sharply. What chapter move fits best?",
+      "choices": [
+        "Reply immediately so the feeling does not fade",
+        "Treat the first defensive surge as pressure data and pause before responding",
+        "Ignore the meeting because all status threats are meaningless"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exactly. The chapter asks Nadia to keep the emotional surge from becoming the whole decision.",
+        "direct": "The better move is to create room for judgment before ego finishes framing the response.",
+        "competitive": "Do not let wounded pride draft the official statement."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch06-q04",
+      "prompt": "Leo's team writes a flattering postmortem that leaves out how pride and urgency distorted the original choice. Why is that a problem here?",
+      "choices": [
+        "Because memory drift and self-serving revision weaken real learning",
+        "Because postmortems should focus only on schedules and logistics",
+        "Because emotions belong only in personal decisions"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. If the emotional driver gets cleaned out of the story, the team loses the chance to learn from the real cause.",
+        "direct": "The chapter warns that a flattering replay preserves the failure path instead of diagnosing it.",
+        "competitive": "A polished autopsy can still leave the killer alive."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q05",
+      "prompt": "What does the chapter mean by memory drift after a mistake?",
+      "choices": [
+        "Forgetting every detail of the event completely",
+        "The mind revising motives and details in ways that protect self-image",
+        "Remembering the event more accurately over time"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Correct. The chapter is talking about how the mind can clean up the story afterward.",
+        "direct": "Memory drift matters here because self-serving revision makes honest learning harder.",
+        "competitive": "If the replay becomes flattering, the lesson gets buried under makeup."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q06",
+      "prompt": "What is temperament mainly doing in this chapter?",
+      "choices": [
+        "Removing emotion from human life",
+        "Keeping good judgment usable when pressure rises",
+        "Proving that calm people are always wiser"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. Temperament is not about having no feeling. It is about staying steady enough to use what you know.",
+        "direct": "The chapter defines steadiness as cognitive access under live pressure, not as numbness.",
+        "competitive": "The win is not no emotion. It is no hijack."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q07",
+      "prompt": "Malik prepares a pause and a few notes before a stressful seminar. What chapter principle is he applying?",
+      "choices": [
+        "He is trying to eliminate all stress forever",
+        "He is using a small stabilizing move to keep recall and judgment available under pressure",
+        "He is proving that preparation matters only in school"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exactly. Malik is protecting access to what he already knows before stress spikes.",
+        "direct": "The example shows steadiness as practical preparation rather than personality magic.",
+        "competitive": "He built the gap before the panic tried to erase it."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q08",
+      "prompt": "Why is Sophie's fast reply to an upsetting message risky in this chapter's logic?",
+      "choices": [
+        "Because personal situations never deserve a quick response",
+        "Because emotional relief can be mistaken for the better judgment",
+        "Because messages should always be ignored until the next day"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The chapter warns that hurt can make a fast reaction feel wiser than it is.",
+        "direct": "The main risk is confusing emotional intensity with clarity.",
+        "competitive": "Pain loves to sign its own name as judgment."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q09",
+      "prompt": "What balance does the chapter demand about emotion?",
+      "choices": [
+        "Emotion should disappear completely before any serious decision",
+        "Emotion is always wiser than detached thought",
+        "Emotion is human, but it should not be allowed to seize the whole decision unchecked"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Yes. The chapter does not shame emotion, but it also does not let emotion run unchallenged.",
+        "direct": "Its balance is steadiness without denial: feeling remains real while judgment stays involved.",
+        "competitive": "Do not worship numbness, and do not hand the keys to the surge."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch06-q10",
+      "prompt": "What is the book's final practical standard according to this chapter?",
+      "choices": [
+        "Eliminate all error through perfect self-control",
+        "Reduce preventable mistakes by staying steady enough to use better judgment",
+        "Trust instinct once enough models have been learned"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Nice catch. The book closes on a realistic aim: fewer self-inflicted errors, not perfection.",
+        "direct": "The chapter ends by defining wisdom as practical reduction of preventable mistakes under ordinary human pressure.",
+        "competitive": "The serious finish is less avoidable damage, not invincibility."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

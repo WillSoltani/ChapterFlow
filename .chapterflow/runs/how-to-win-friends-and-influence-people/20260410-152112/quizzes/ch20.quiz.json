@@ -1,0 +1,174 @@
+{
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What gap does Chapter 20 focus on?",
+      "choices": [
+        "The gap between understanding words and feeling force",
+        "The gap between day and night",
+        "The gap between two unrelated topics"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says an idea can be understood without being felt strongly.",
+        "direct": "Option A fits because comprehension and impact are not identical.",
+        "competitive": "The room can get it and still not feel it."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why can a clear explanation still fail?",
+      "choices": [
+        "Because the point may stay abstract and thin",
+        "Because clarity always confuses people",
+        "Because facts stop mattering entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says correct words can still leave the idea weak in experience.",
+        "direct": "A clear statement can remain too flat to move action.",
+        "competitive": "Clean wording can still land soft."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What does dramatization do in this chapter?",
+      "choices": [
+        "It makes the idea more vivid and perceptible",
+        "It replaces truth with theater",
+        "It removes the need for explanation"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Dramatization helps the point register more fully.",
+        "direct": "The chapter uses vivid presentation to increase felt contact.",
+        "competitive": "It makes the claim hit the room."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A manager stops repeating a warning and instead shows how one missed handoff delays several teams. What chapter move is this?",
+      "choices": [
+        "Honest dramatization",
+        "Random distraction",
+        "Agreement by flattery"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The manager is making the consequence more vivid without inventing it.",
+        "direct": "This is dramatization grounded in the real chain of impact.",
+        "competitive": "That is staging the cost, not changing the facts."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "A school organizer replaces bland reminders with a concrete view of the mess the next class inherits. What changed?",
+      "choices": [
+        "The issue became more perceptible",
+        "The facts vanished",
+        "The message became less honest"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The consequence became easier for others to notice and feel.",
+        "direct": "Option A fits because the organizer increased vividness, not distortion.",
+        "competitive": "The room finally had to face the cost."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What honesty limit does Chapter 20 place on dramatization?",
+      "choices": [
+        "It must not exaggerate or fabricate",
+        "It should always become theatrical",
+        "It should ignore the real point"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter protects vividness by requiring truthfulness.",
+        "direct": "Force is allowed; distortion is not.",
+        "competitive": "Fake heat breaks the move."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Which option misreads Chapter 20 as hype?",
+      "choices": [
+        "Showing the real consequence clearly",
+        "Inflating the presentation beyond what is true",
+        "Making an abstract point concrete"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter rejects false drama and inflated claims.",
+        "direct": "Option B crosses the line from vividness into distortion.",
+        "competitive": "That is cheap heat, not honest force."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "advanced"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why do movies and advertisers appear in this chapter?",
+      "choices": [
+        "Because they understand how to make ideas perceptible",
+        "Because every conversation should become a commercial",
+        "Because truth matters less than attention"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "They are examples of vivid presentation, not invitations to become dishonest.",
+        "direct": "Carnegie borrows a delivery principle from forms that know how to make points felt.",
+        "competitive": "He is borrowing staging craft, not selling out the truth."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "advanced"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What makes dramatization persuasive rather than manipulative?",
+      "choices": [
+        "It stays faithful to the real point while making it vivid",
+        "It adds intensity whether or not it is true",
+        "It replaces substance with performance"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The method works when vividness clarifies reality instead of bending it.",
+        "direct": "Truthful fit is what keeps the move legitimate.",
+        "competitive": "Real voltage persuades; fake voltage burns trust."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "advanced"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why does this chapter lead naturally into Chapter 21?",
+      "choices": [
+        "Because challenge comes later if vivid presentation still does not move the room",
+        "Because the next chapter abandons persuasion completely",
+        "Because dramatization and challenge are the same move"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter suggests challenge only after honest vividness has been tried.",
+        "direct": "Option A fits the escalation from representation to pressure.",
+        "competitive": "First make it undeniable. Then, if needed, dare the room."
+      },
+      "bloomsLevel": "transfer",
+      "depthLevel": "advanced"
+    }
+  ]
+}

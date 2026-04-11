@@ -1,0 +1,32 @@
+{
+  "chapterId": "ch20",
+  "title": "The Movies Do It Advertisers Do It Why Don't You Do It?",
+  "frozenSources": [
+    {
+      "type": "source-freeze-title",
+      "path": ".chapterflow/runs/how-to-win-friends-and-influence-people/20260410-152112/source-freeze/book-source.md",
+      "support": "20. The Movies Do It Advertisers Do It Why Don't You Do It?"
+    },
+    {
+      "type": "skeleton-intent",
+      "path": ".chapterflow/runs/how-to-win-friends-and-influence-people/20260410-152112/skeleton/book-skeleton.md",
+      "support": "Teach that dramatizing an idea makes it felt rather than merely explained."
+    }
+  ],
+  "conceptFocus": [
+    "dramatizing an idea",
+    "felt versus merely explained",
+    "vivid framing",
+    "no hype or dishonesty"
+  ],
+  "guardrails": [
+    "avoid hype",
+    "avoid dishonesty",
+    "distinguish vividness from deception",
+    "stay concept-first and anecdote-light"
+  ],
+  "bridges": {
+    "previousChapter": "Chapter 19 provided a better self-story for the choice.",
+    "nextChapter": "Chapter 21 will introduce challenge as a last-resort move when softer methods fail."
+  }
+}

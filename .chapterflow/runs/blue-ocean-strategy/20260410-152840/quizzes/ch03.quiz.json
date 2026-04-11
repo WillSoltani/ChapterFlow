@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What does 'reconstruct market boundaries' mean in this chapter?",
+      "choices": [
+        "Accepting the current category and improving within it",
+        "Changing the field of search instead of treating current borders as fixed",
+        "Copying the most successful rival before others do"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter is about widening the search field, not polishing the same market box.",
+        "direct": "Boundary reconstruction challenges inherited borders before ideas harden inside them.",
+        "competitive": "It attacks the cage, not the furniture inside it."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why can disciplined rival analysis still leave strategy trapped?",
+      "choices": [
+        "Because it often keeps the market's accepted borders intact",
+        "Because it discourages all use of data",
+        "Because it proves new demand is impossible"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Hard work can still stay narrow if the box itself never gets questioned.",
+        "direct": "Rival analysis alone inherits the category frame instead of reconstructing it.",
+        "competitive": "Smart prison maps still point to prison."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is the main purpose of the six paths framework?",
+      "choices": [
+        "To make workshops feel more imaginative",
+        "To give six disciplined directions for boundary reconstruction",
+        "To prove that every industry needs exactly six new products"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The framework matters because it gives a systematic search surface.",
+        "direct": "Its job is disciplined widening of the search, not creativity theater.",
+        "competitive": "It tells the hunt where to go."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Naomi's team has only benchmarked direct competitors so far. What should happen next according to Chapter 3?",
+      "choices": [
+        "Rank the same competitors more carefully",
+        "Test whether buyers compare across alternative industries or other boundary lines",
+        "Pause strategy work until the market settles down"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The next move is to widen the search beyond the official rival set.",
+        "direct": "Boundary reconstruction starts when the team questions the field, not just the ranking inside it.",
+        "competitive": "Stop studying the cage and start testing the border."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "A school team optimized for the purchaser and ignored the user. Which six-path issue did they miss?",
+      "choices": [
+        "Buyer groups",
+        "Time",
+        "Strategic groups"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The team chose the wrong buyer definition from the start.",
+        "direct": "This is a buyer-group boundary problem, not a presentation problem.",
+        "competitive": "Wrong chooser, dead search."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which behavior most clearly misuses the six paths framework?",
+      "choices": [
+        "Using it to question who the real buyer is",
+        "Treating it like a checklist that generates many ideas without leaving the same frame",
+        "Testing whether complementary hassles hide value"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The framework fails when it creates activity without changing the search field.",
+        "direct": "Checklist behavior turns disciplined search into ideation theater.",
+        "competitive": "A louder wall is not a freer strategy."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Victor discovers that the main pain happens before and after the service rather than in the service itself. Which path is he using?",
+      "choices": [
+        "Complementary products and services",
+        "Across time",
+        "Alternative industries"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "He is widening the search to the experience around the core offer.",
+        "direct": "This is the complements path: value around use, not only in the product.",
+        "competitive": "The hidden battlefield is surrounding hassle."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Naomi's founders notice that the category sells mostly emotional identity, while users respond to practical relief. What does Chapter 3 suggest?",
+      "choices": [
+        "Stay with the category's tone because buyers dislike change",
+        "Test a functional-emotional shift in the value promise",
+        "Ignore the difference because tone is not strategic"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says the market may be organized around the wrong promise.",
+        "direct": "This is exactly what the functional-emotional path is designed to test.",
+        "competitive": "Wrong promise, wrong crowd."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does the chapter insist on systematic search before the book moves to big-picture visualization?",
+      "choices": [
+        "Because the team needs real boundary-shifting options before it can compare the strategic picture",
+        "Because visualization replaces judgment once enough options exist",
+        "Because Chapter 4 is mostly about spreadsheet templates"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The team has to find serious options before it can step back and compare them.",
+        "direct": "Boundary reconstruction prepares the option set that big-picture visualization must later assess.",
+        "competitive": "First break the box, then judge the openings."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What is the hardest sign that a six-path search actually succeeded?",
+      "choices": [
+        "The room felt inventive and generated many notes",
+        "The resulting options alter the old competitive frame enough to deserve strategic choice",
+        "Every path produced at least one attractive idea"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Success means the options really widen value possibilities, not just energy.",
+        "direct": "The framework succeeds when it creates strategically different options rather than better-decorated sameness.",
+        "competitive": "If the cage still owns the options, the hunt failed."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deep"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "nameUsage": {},
+  "formatCategoryHistory": [],
+  "schoolSettingUsage": {},
+  "wordFrequency": {},
+  "phraseFrequency": {},
+  "openerRegistry": {
+    "gentle": {},
+    "direct": {},
+    "competitive": {}
+  },
+  "titleTemplateRegistry": {},
+  "endingPatternRegistry": {},
+  "withinChapterNames": {},
+  "approvedChapterHashes": {
+    "ch01": {
+      "sha256": "4aa605477a05a0cd486849062633e8ac127bfa9c647e00257e19dc5aa8bc11b5",
+      "validatedPath": ".chapterflow/runs/the-art-of-thinking-clearly/20260410-222920/validated/ch01.chapter.json",
+      "sealedAt": "2026-04-10T23:17:34.778-03:00"
+    },
+    "ch02": {
+      "sha256": "4d9acc69ce6472b922852e0ddf0071c4b45769557f19c601c7c37c22100bbd36",
+      "validatedPath": ".chapterflow/runs/the-art-of-thinking-clearly/20260410-222920/validated/ch02.chapter.json",
+      "sealedAt": "2026-04-10T23:36:55.475-03:00"
+    },
+    "ch03": {
+      "sha256": "3b0891c864ec23ce78272b3bf7f9ce49064b175772a2742d99d5dedadf6bc8e8",
+      "validatedPath": ".chapterflow/runs/the-art-of-thinking-clearly/20260410-222920/validated/ch03.chapter.json",
+      "sealedAt": "2026-04-10T23:54:25.427-03:00"
+    },
+    "ch04": {
+      "sha256": "2da81653d5e60ccf4fd6c2335911e5bf9991c9abc916d5bbb294d8bd084a6eab",
+      "validatedPath": ".chapterflow/runs/the-art-of-thinking-clearly/20260410-222920/validated/ch04.chapter.json",
+      "sealedAt": "2026-04-11T00:21:15.699-03:00"
+    },
+    "ch05": {
+      "sha256": "d6cfbc155d6f7ae8746b14516e3d7c260aaa0e357f86e8b806ae0dc746ed7b3e",
+      "validatedPath": ".chapterflow/runs/the-art-of-thinking-clearly/20260410-222920/validated/ch05.chapter.json",
+      "sealedAt": "2026-04-11T00:41:10.913-03:00"
+    }
+  },
+  "baselineQuality": {}
+}

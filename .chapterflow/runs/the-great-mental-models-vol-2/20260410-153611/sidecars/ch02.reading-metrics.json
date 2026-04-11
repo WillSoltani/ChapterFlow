@@ -1,0 +1,67 @@
+{
+  "chapterId": "ch02-reciprocity",
+  "number": 2,
+  "title": "Reciprocity",
+  "generatedAt": "2026-04-10T15:39:19Z",
+  "canonicalDraftWords": 1001,
+  "editedDraftWords": 922,
+  "readingTimeMinutes": 7,
+  "breakdownWordCounts": {
+    "easy": {
+      "gentle": 147,
+      "direct": 137,
+      "competitive": 128
+    },
+    "medium": {
+      "gentle": 335,
+      "direct": 341,
+      "competitive": 331
+    },
+    "hard": {
+      "gentle": 623,
+      "direct": 470,
+      "competitive": 429
+    }
+  },
+  "takeawayCounts": {
+    "easy": 3,
+    "medium": 5,
+    "hard": 5
+  },
+  "exampleCount": 6,
+  "exampleCategoryCounts": {
+    "work": 2,
+    "school": 2,
+    "personal": 2
+  },
+  "exampleFormats": [
+    "decision_point",
+    "dialogue",
+    "postmortem",
+    "predict_reveal",
+    "dilemma",
+    "before_after"
+  ],
+  "exampleEndingTypes": [
+    "broader_principle",
+    "surprising_implication",
+    "self_directed_question",
+    "cross_domain",
+    "common_trap",
+    "perspective_reframe"
+  ],
+  "quizQuestionCount": 10,
+  "quizCorrectIndexCounts": {
+    "0": 5,
+    "1": 5,
+    "2": 0
+  },
+  "reviewCardCount": 5,
+  "reviewCardDifficultyCounts": {
+    "easy": 2,
+    "medium": 2,
+    "hard": 1
+  },
+  "criticScoreOutOf12": 10,
+  "status": "validated"
+}

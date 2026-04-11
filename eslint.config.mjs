@@ -17,10 +17,12 @@ const eslintConfig = defineConfig([
     // Default ignores of eslint-config-next:
     ".next/**",
     ".next-chapterflow/**",
+    ".next-chapterflow-bookcheck/**",
     "out/**",
     "build/**",
     "next-env.d.ts",
     // Generated artifacts (not source).
+    ".chapterflow/runs/**",
     "cdk.out/**",
     "infra/cdk.out/**",
     "infra/dist/**",

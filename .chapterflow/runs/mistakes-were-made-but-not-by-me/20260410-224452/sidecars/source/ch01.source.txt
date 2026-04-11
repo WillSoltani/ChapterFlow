@@ -1,0 +1,34 @@
+Chapter 1 source sidecar
+
+Heading:
+Knaves, Fools, Villains, and Hypocrites: How Do They Live with Themselves?
+
+Frozen support:
+- The title and position come from the frozen TOC.
+- The authorized preview frames the book around self-justification and the problem of people preserving a positive image of themselves after mistakes or harm.
+- The secondary summary states that the book opens with public apologies built around the phrase "mistakes were made" without personal responsibility.
+- The secondary summary also supports the distinction between self-justification, cognitive dissonance, and the broader pattern of protecting beliefs and self-esteem.
+- The phrase-context article supports treating "mistakes were made" as a canonical non-apology frame.
+
+Allowed chapter-local claims:
+- The opening chapter starts from the puzzle of wrongdoing without ownership.
+- The chapter frames self-justification as more interesting and more dangerous than simple lying.
+- People can protect a morally acceptable self-story while still doing harm.
+- The next chapter names cognitive dissonance as the mechanism behind that protection.
+
+Supported paraphrase anchors:
+1. Public non-apology:
+   People often name damage in passive language that removes the actor from the sentence. The result is rhetorical acknowledgment without real ownership.
+2. Living with oneself:
+   The opening question is how people who act badly can still experience themselves as decent, sensible, or morally right.
+3. Self-justification versus lying:
+   A liar knows the truth and hides it. A self-justifying person often edits the story enough to feel sincere while staying wrong.
+
+Quote ledger:
+- "mistakes were made" -> near_quote_allowed
+- all other wording -> paraphrase_only
+
+Unsupported:
+- named scandals not frozen in the source bundle
+- direct quotations beyond the approved phrase
+- detailed scene reconstruction from the introduction

@@ -1,0 +1,155 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch02-q01",
+      "prompt": "Which sequence matches the chapter's five stages of workflow mastery?",
+      "choices": [
+        "Capture, clarify, organize, reflect, engage",
+        "Clarify, capture, prioritize, engage, review",
+        "Collect, decide, finish, archive, relax"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter gives a clear five-stage order, and the review stage sits before action choice.",
+        "direct": "Allen's workflow sequence is capture, clarify, organize, reflect, then engage.",
+        "competitive": "If you forgot review before doing, you already broke the chain."
+      }
+    },
+    {
+      "questionId": "ch02-q02",
+      "prompt": "What is the main difference between capture and clarify in this chapter?",
+      "choices": [
+        "Capture stores input; clarify decides what the input means",
+        "Capture handles only work items; clarify handles personal items",
+        "Capture is optional; clarify is mandatory"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Capture gathers the material, while clarify asks what each item actually is.",
+        "direct": "The workflow separates intake from interpretation so action choice does not happen too early.",
+        "competitive": "Capture catches the ball. Clarify decides what game it belongs to."
+      }
+    },
+    {
+      "questionId": "ch02-q03",
+      "prompt": "A task can be finished in ninety seconds and requires no extra setup. Which action path fits the chapter best?",
+      "choices": [
+        "Defer it to next week",
+        "Do it now",
+        "Move it into reference"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter includes a quick-action rule for very short tasks.",
+        "direct": "The two-minute logic favors immediate completion over needless reprocessing.",
+        "competitive": "Do not build a storage career around a ninety-second move."
+      }
+    },
+    {
+      "questionId": "ch02-q04",
+      "prompt": "Elise has one request she can answer fast, one update her teammate should handle, and one report to tackle tomorrow. What chapter logic should guide her?",
+      "choices": [
+        "Treat them all as urgent and keep them together until later",
+        "Use the actionable split: do, delegate, and defer",
+        "Archive all three until the Weekly Review"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter teaches that actionable items do not all belong in the same bucket.",
+        "direct": "Allen's processing step differentiates immediate action, delegation, and deferral.",
+        "competitive": "One inbox item can still deserve three different rulings."
+      }
+    },
+    {
+      "questionId": "ch02-q05",
+      "prompt": "Which move best reflects the chapter's treatment of non-actionable input?",
+      "choices": [
+        "Leave it in the inbox so it stays visible",
+        "Store every non-actionable item on the next-actions list",
+        "Sort it into trash, reference, or incubation"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Non-actionable does not mean mentally ignored. It still needs the right category.",
+        "direct": "The chapter gives a separate routing logic for items that do not require immediate action.",
+        "competitive": "If no action is needed, stop making the item dress up as current work."
+      }
+    },
+    {
+      "questionId": "ch02-q06",
+      "prompt": "Aaron's system still exists, but he has skipped his Weekly Review for two weeks and no longer trusts the lists. What failure mode is Chapter 2 pointing to?",
+      "choices": [
+        "Reflection has been skipped, so the system has gone stale",
+        "Capture was a mistake from the start",
+        "The engage stage should come before organization"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter treats review as the step that keeps the system believable over time.",
+        "direct": "When reflection stops, deferred items and project states go stale, which damages trust.",
+        "competitive": "The lists did not disappear. They just stopped telling the truth."
+      }
+    },
+    {
+      "questionId": "ch02-q07",
+      "prompt": "A student receives one advising email containing a deadline, a brochure for later reading, and an optional workshop. What is the strongest Chapter 2 response?",
+      "choices": [
+        "Treat the whole email as one school task",
+        "Split the contents into action, reference, and possible-later categories",
+        "Delete the message after memorizing the deadline"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants bundled input broken into real categories before any action choice happens.",
+        "direct": "Clarification works item by item, even when the input arrives as one message.",
+        "competitive": "One email can still be three different rulings."
+      }
+    },
+    {
+      "questionId": "ch02-q08",
+      "prompt": "What is the clearest sign that category buckets in a system are too blurry?",
+      "choices": [
+        "You have to keep reinterpreting what each list means whenever you look at it",
+        "You sometimes finish tasks quickly",
+        "You have only one calendar"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter values clean edges because they reduce fresh sorting work.",
+        "direct": "A bucket has failed when it still demands interpretation every time the system is reviewed.",
+        "competitive": "If the list keeps making you renegotiate meaning, the list is still billing you."
+      }
+    },
+    {
+      "questionId": "ch02-q09",
+      "prompt": "Why does the chapter place engage after reflect rather than treating action choice as the obvious first step?",
+      "choices": [
+        "Because action choice works better when the system has been refreshed and the options are current",
+        "Because reflection is mainly a reward for finishing work",
+        "Because no one should act until every project is complete"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants real-time choices made from current, defined options rather than stale material.",
+        "direct": "Reflect protects engage by updating deferred items, waiting-fors, and project next actions before present-time choice.",
+        "competitive": "You choose cleaner when the field was already cleaned."
+      }
+    },
+    {
+      "questionId": "ch02-q10",
+      "prompt": "If Chapter 2 makes workflow control reliable, what question naturally opens next?",
+      "choices": [
+        "How should bigger multi-step projects be planned once the intake system is stable?",
+        "Which app creates the best number of collection points?",
+        "Why should all reference material be deleted every month?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Once daily inputs are flowing cleanly, the next challenge is planning larger projects well.",
+        "direct": "The chapter sets up a move from workflow control toward project planning.",
+        "competitive": "Once the ground game works, the next question is how to run bigger operations without falling back into fog."
+      }
+    }
+  ]
+}

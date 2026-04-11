@@ -1,0 +1,38 @@
+{
+  "title": "Inertia",
+  "heading": "Inertia",
+  "section": "Physics",
+  "pageStart": 71,
+  "approxWords": 160,
+  "properNouns": [
+    "Google Books",
+    "Scott Vejdani"
+  ],
+  "repeatedTerms": [
+    "inertia",
+    "momentum",
+    "resistance",
+    "change",
+    "direction"
+  ],
+  "sourceReferences": [
+    {
+      "sourceId": "google-books-2024",
+      "use": "chapter title and page start"
+    },
+    {
+      "sourceId": "vejdani-notes",
+      "use": "narrow chapter-level paraphrase support"
+    }
+  ],
+  "supportSummary": [
+    "Current direction keeps persisting unless a meaningful force intervenes.",
+    "Starting change usually costs more than imagined.",
+    "Momentum can be an asset or a trap depending on the direction already underway."
+  ],
+  "unsupportedZones": [
+    "named historical case studies not present in the frozen support",
+    "formal physics exposition",
+    "exact quotations from the chapter interior"
+  ]
+}

@@ -54,6 +54,10 @@ Prose checks:
 - raw source text is spliced into reader-facing prose without quote support
 - exact or near-exact tone collapse appears
 - Pitch Anything boilerplate tails or pseudo-alpha filler appear when the brief says `bookId: pitch-anything`
+- The One Thing support surfaces narrate `the chapter` or `the book` instead of teaching directly
+- The One Thing support surfaces lean on abstract leverage metaphors without practical anchors
+- The One Thing competitive surfaces stack combat or arena metaphors instead of staying disciplined
+- malformed repeated lead-ins or repeated clause chunks appear in cards, recap, prompts, or takeaways
 - validation report claims do not match real artifact state
 
 If a chapter has:
@@ -65,4 +69,5 @@ If a chapter has:
 - prose-audit failures for duplicate_sentence, ending_echo, paragraph_role_repeat, review_card_echo, or hard_medium_overlap
 - prose-audit failures for chapter_package_duplicate_sentence, repeated_template_tail, repeated_card_scaffold, generic_more_details, generic_prompt_surface, or pitch_anything_boilerplate
 - prose-audit failures for thesis_first_open, reinforcement_echo, more_details_restate, competitive_slogan_lead, memoir_anchor_gap, or generic_implementation_plan
+- prose-audit failures for stacked_phrase_repeat, one_thing_meta_distance, one_thing_abstraction_drift, one_thing_recap_formula, or one_thing_competitive_overpush
 that chapter fails immediately.

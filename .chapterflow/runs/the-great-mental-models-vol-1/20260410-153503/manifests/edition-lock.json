@@ -1,0 +1,28 @@
+{
+  "bookId": "the-great-mental-models-vol-1",
+  "runId": "20260410-153503",
+  "lockedAt": "2026-04-10T18:35:03Z",
+  "decision": "auto_locked",
+  "editionSelectionMode": "ask_if_ambiguous",
+  "selectedEdition": {
+    "name": "Portfolio hardcover / ebook reference edition",
+    "publisher": "Portfolio, Penguin Random House",
+    "publishedYear": 2024,
+    "translator": "",
+    "isbn": "9780593719978",
+    "pages": 208
+  },
+  "whyThisEdition": [
+    "The official publisher page is current, authoritative, and directly names Volume 1 as General Thinking Concepts.",
+    "The official Farnam Street series page aligns with the same volume identity and series structure.",
+    "Google Books metadata matches the 2024 Penguin release and exposes consistent partial contents.",
+    "No material translation fork exists for the requested English-language run.",
+    "The 2019 / Farnam Street issue appears to be the earlier publication path for the same Volume 1 core content rather than a different chapter-level work."
+  ],
+  "ambiguityAssessment": {
+    "materialAmbiguity": false,
+    "notes": "There are multiple publication records, but the chapter-level identity of Volume 1 remains aligned enough to auto-lock without user intervention."
+  },
+  "sourceText": ".chapterflow/runs/the-great-mental-models-vol-1/20260410-153503/source-freeze/book-source.md",
+  "sourceProvenance": "Web bundle frozen from official Farnam Street and Penguin Random House pages, supported by Google Books preview metadata and library TOC evidence. Paraphrase-first policy remains active."
+}

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch01-q01",
+      "prompt": "When Doerr first brings OKRs into Google, what operating problem is he solving before anything else?",
+      "choices": [
+        "A shortage of ambition inside the company",
+        "A lack of visible priorities and measurable progress as the company scales",
+        "An unwillingness to hire enough people quickly"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The opening pressure is not small ambition. Google already has big goals. The missing piece is a clear way to choose priorities and see whether progress is real.",
+        "direct": "The chapter frames OKRs as a response to scaling confusion. Their first job is to create visible priorities and measurable movement, not to manufacture desire.",
+        "competitive": "Google was not starving for vision. It was starving for selection and proof."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q02",
+      "prompt": "Which option captures the chapter's distinction between an objective and a key result?",
+      "choices": [
+        "An objective names the outcome, while a key result shows the evidence that the outcome is moving",
+        "An objective is private to leadership, while a key result is public to the team",
+        "An objective is quarterly, while a key result is yearly"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nice catch. The chapter keeps the jobs separate: the objective tells the team where it is going, and the key result shows how people will recognize progress.",
+        "direct": "The system works because direction and evidence are not treated as the same thing. The key result forces the team to define proof.",
+        "competitive": "Aspiration is only half the system. The proof line is the other half."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q03",
+      "prompt": "Why does the chapter care that Doerr learned OKRs at Intel under Andy Grove before bringing them to Google?",
+      "choices": [
+        "It proves Google copied every part of Intel's culture",
+        "It shows the method came from a pressure-tested execution discipline rather than a startup mood",
+        "It means key results work only in engineering companies"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The Intel origin makes the method feel sturdier. It arrived as a tested discipline for action, not as a clever slogan for ambitious founders.",
+        "direct": "The source matters because it frames OKRs as an execution tool. The chapter wants the reader to see operating rigor, not startup mythology.",
+        "competitive": "Intel is there to tell you this system was forged under pressure, not invented for presentation value."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q04",
+      "prompt": "Elena's startup says it has nine quarter priorities. Every team defends its own project as essential. What move best matches the chapter's logic?",
+      "choices": [
+        "Keep all nine priorities but ask teams to report more often",
+        "Choose one primary objective and publish a small set of key results that reveal whether the quarter is moving",
+        "Replace the priorities with a more inspiring mission statement"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter would keep the ambition but narrow the focus. The missing move is selection plus proof, not more status updates or stronger phrasing.",
+        "direct": "Option B is the right intervention because it forces prioritization and measurable progress. The other choices leave the core confusion intact.",
+        "competitive": "Nine priorities is drift with better branding. Cut the list and expose the score line."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q05",
+      "prompt": "Nora's robotics team wants to 'perform at a higher level' this season. Which problem from the chapter is showing up most clearly?",
+      "choices": [
+        "The team lacks a bold enough objective",
+        "The team has an objective without a defined proof line for progress",
+        "The team is sharing too much information across members"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The goal sounds serious, but the team never defined what improvement would look like in measurable terms.",
+        "direct": "The chapter warns against exactly this mistake: treating an inspiring direction as sufficient when no key results reveal movement.",
+        "competitive": "A slogan can energize a room and still leave the work completely unjudged."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q06",
+      "prompt": "Someone argues that measurable key results ruin ambition because they make goals feel small. Which response fits the chapter best?",
+      "choices": [
+        "Measurement replaces ambition so the team stops overreaching",
+        "Measurement is optional as long as the objective sounds clear",
+        "Key results do not shrink ambition; they stop ambition from hiding inside vague effort"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter treats measurement as a guardrail for ambition, not a reduction of it. The objective can stay bold while the proof becomes clearer.",
+        "direct": "Key results matter because they make aspiration answerable. They do not cancel the objective. They keep it from drifting into self-flattery.",
+        "competitive": "Ambition only feels threatened when it was depending on vagueness for cover."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q07",
+      "prompt": "Devin finds that product, marketing, and customer-success teams all say the objective is retention, but each team is chasing a different signal. What does the chapter say is missing?",
+      "choices": [
+        "A public set of key results that lets the teams inspect whether their interpretations match",
+        "More freedom for each team to define success privately",
+        "A stronger objective statement with more emotional language"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Shared words are not enough. The chapter says visible proof lines are what let a company discover whether alignment is real.",
+        "direct": "The missing piece is transparent key results. Without them, similar language can hide separate scorekeeping.",
+        "competitive": "Alignment dies in private interpretation. Publish the score line and see who is really moving together."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q08",
+      "prompt": "Malik's venture-lab team wants to spend its final prep night rewriting the goal statement so it sounds bigger, even though no one has agreed on the traction markers. What is the stronger move?",
+      "choices": [
+        "Leave the proof line fuzzy so the team can stay creative",
+        "Keep polishing the objective until everyone feels more inspired",
+        "Hold the objective steady and force agreement on the few signs that would prove the product is moving"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter would keep the aspiration and sharpen the evidence. A clearer proof line helps more than a louder promise.",
+        "direct": "Option C fits the chapter's mechanism. The real weakness is not bland wording. It is the absence of shared measures for traction.",
+        "competitive": "When a team wants slogan upgrades more than proof upgrades, theater is winning."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q09",
+      "prompt": "Two companies both publish elegant OKR dashboards. One forces painful cuts and exposes missed progress quickly. The other keeps every priority alive and reports only easy numbers. What separates them according to the chapter?",
+      "choices": [
+        "Only the first company is using the goal system as a real discipline rather than as reporting theater",
+        "Only the second company is ambitious enough to keep all its options open",
+        "There is no meaningful difference as long as both companies publish metrics"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps this boundary visible. A goal system becomes real when it forces tradeoffs and lets evidence challenge the story the team prefers.",
+        "direct": "Polished dashboards do not prove discipline. The difference is whether the system narrows attention and makes progress answerable to uncomfortable evidence.",
+        "competitive": "If nothing loses and the safe numbers stay in charge, the company bought theater, not clarity."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch01-q10",
+      "prompt": "The chapter ends by asking what kind of manager built a system that makes ambition answerable to proof. Why is that a natural next question?",
+      "choices": [
+        "Because the opening chapter shows that the method reflects a demanding management posture, not just a template",
+        "Because the next chapter stops caring about goals and focuses only on personality",
+        "Because Google's founders immediately replaced OKRs with a new system"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The bridge works because systems carry the values of the people who built them. Once the reader sees how demanding OKRs are, it is natural to ask about the manager behind that discipline.",
+        "direct": "Chapter 1 frames OKRs as a management logic. The next step is to examine the leadership mind that shaped that logic at Intel.",
+        "competitive": "A system this sharp did not appear by accident. The opening chapter makes the builder impossible to ignore."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

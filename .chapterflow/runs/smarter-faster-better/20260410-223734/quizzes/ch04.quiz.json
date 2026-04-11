@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's basic claim about goals?",
+      "choices": [
+        "Goals are mostly motivational decoration",
+        "Goals direct attention and effort",
+        "Goals matter only when teams are already failing"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter treats goals as steering devices, not just inspiring language.",
+        "direct": "Targets shape what people pursue and how they judge progress.",
+        "competitive": "Goals choose the field."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why do SMART goals matter in this chapter?",
+      "choices": [
+        "They remove the need for judgment",
+        "They give effort enough definition to guide action",
+        "They always outperform ambitious goals"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "SMART goals help because vague aims often leave the next move unclear.",
+        "direct": "Specificity makes action easier to organize.",
+        "competitive": "Clarity gives the work teeth."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What problem do stretch goals address?",
+      "choices": [
+        "Safe targets can preserve the current baseline",
+        "Specific targets are always too detailed",
+        "People never need ambition when a plan is clear"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Stretch goals matter because some aims are too comfortable to change much.",
+        "direct": "They push effort beyond timid baseline behavior.",
+        "competitive": "Small aims defend small results."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Benji's student council wants a goal that is guaranteed to be easy. Which response best fits the chapter?",
+      "choices": [
+        "Keep the goal small so morale stays protected",
+        "Choose a stretch goal with no concrete route",
+        "Find a target that expands effort while still giving the group a usable path"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter wants both ambition and guidance, not comfort alone or hype alone.",
+        "direct": "A useful goal stretches the group without losing operational grip.",
+        "competitive": "Reach matters, but so does traction."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What is the chapter's strongest warning about specific targets?",
+      "choices": [
+        "They can become so narrow that the metric replaces the mission",
+        "They usually eliminate the need for ambition",
+        "They work only in personal habits"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Specificity helps until the target becomes more important than the larger purpose.",
+        "direct": "A metric can start competing with the mission it was supposed to support.",
+        "competitive": "The number can steal the mission."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "A team hits the dashboard number but misses the real objective. What does the chapter say happened?",
+      "choices": [
+        "The goal probably became disconnected from the mission",
+        "The team needed a less specific target",
+        "The metric proves the project still succeeded"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns that a visible measure can replace the larger reason it exists.",
+        "direct": "The team optimized the proxy instead of the purpose.",
+        "competitive": "They won the number and lost the point."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why does the Yom Kippur War belong in a chapter about goals?",
+      "choices": [
+        "It keeps the chapter tied to the strategic stakes of plans and assumptions",
+        "It proves that military examples automatically improve management advice",
+        "It shows that detailed historical retelling is necessary for good planning"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The anchor keeps the lesson strategic: targets and plans shape what people prepare for.",
+        "direct": "The chapter uses it to show that goals influence assumptions and judgment, not just effort.",
+        "competitive": "The frame can misdirect disciplined effort."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Nia's pace metric starts overshadowing the larger reason she began running. What is the best move according to this chapter?",
+      "choices": [
+        "Drop all measurement forever",
+        "Reconnect the metric to the mission and see whether it still serves the larger purpose",
+        "Push the metric even harder so commitment looks stronger"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter does not reject targets. It asks whether they still support the bigger purpose.",
+        "direct": "A useful metric stays subordinate to the mission it was meant to guide.",
+        "competitive": "Put the scoreboard back under the mission."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What balance does the chapter say strong goals must hold?",
+      "choices": [
+        "Enough clarity to guide action, enough stretch to expand effort, and enough reality contact to avoid distortion",
+        "Maximum ambition with minimum structure",
+        "One clean metric that overrides all competing signals"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter argues that goals work when they combine direction, reach, and reality.",
+        "direct": "A target needs clarity, ambition, and mission contact together.",
+        "competitive": "Sharp, stretching, and answerable to reality."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If a goal is well set, what problem does the chapter point toward next?",
+      "choices": [
+        "How leaders help other people execute the goal without crushing trust or judgment",
+        "Why goals should replace teamwork entirely",
+        "How to remove all flexibility from execution"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter bridges into managing others because goals still have to be carried by people.",
+        "direct": "The next issue is leadership: converting direction into execution without blind obedience.",
+        "competitive": "The next fight is getting people to carry the target without serving the metric's ego."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

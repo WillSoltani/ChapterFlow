@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "Which set best matches Chapter 3's core structure?",
+      "choices": [
+        "Seven linked leader behaviors that make execution concrete",
+        "Three strategy processes and a budgeting checklist",
+        "A contrast among companies that won and lost execution"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Chapter 3 organizes itself around the seven behaviors.",
+        "direct": "The chapter turns execution into a linked behavior standard for leaders.",
+        "competitive": "This is the behavior playbook chapter, not the case-study chapter."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the chapter begin with knowing your people and your business?",
+      "choices": [
+        "Because leaders should be friendly with everyone",
+        "Because judgment fails when leaders are too distant from the real work",
+        "Because leaders need to review every tiny task personally"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The point is grounded judgment, not warmth or micromanagement.",
+        "direct": "Distance weakens realism because leaders start relying on filtered summaries.",
+        "competitive": "If you do not know the ground, you cannot tell when the story is fake."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A manager keeps receiving polished updates and rarely hears friction early. Which Chapter 3 behavior is failing first?",
+      "choices": [
+        "Insisting on realism",
+        "Rewarding the doers",
+        "Humility only"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "When truth gets cleaned up, realism is already weak.",
+        "direct": "Filtered reporting means the leader is not keeping reality close enough to decision-making.",
+        "competitive": "The warning light is realism failure before anything else."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "What does Chapter 3 mean by clear goals and priorities?",
+      "choices": [
+        "Leaders should announce as many goals as possible so nobody misses anything",
+        "Priorities matter only if they change sequence, time use, and what gets inspected",
+        "A goal is clear once it sounds motivating in the meeting"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Priority becomes real only when it changes action and attention.",
+        "direct": "The chapter rejects decorative priorities that never alter review or consequence.",
+        "competitive": "If the calendar and inspection do not change, the priority is fake."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Which example best fits rewarding the doers?",
+      "choices": [
+        "Praising the smoothest presenter regardless of results",
+        "Recognizing the person who quietly carried the hard follow-through work",
+        "Rotating praise equally so everyone feels included"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter cares about carried-through contribution, not polish or equal applause.",
+        "direct": "Reward signals tell the organization what actually counts.",
+        "competitive": "Status should go to the closer, not the talker."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "How does coaching support execution in this chapter?",
+      "choices": [
+        "It lowers standards so people stay encouraged",
+        "It builds capability so harder work can be carried without abandoning accountability",
+        "It replaces the need for follow-through"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Coaching helps people meet standards, not escape them.",
+        "direct": "The chapter ties coaching to stronger capability and cleaner accountability.",
+        "competitive": "Real coaching upgrades capacity; it does not excuse misses."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "A student team keeps adding new priorities and then wonders why nothing finishes. What Chapter 3 idea transfers most directly?",
+      "choices": [
+        "Clear priorities reduce drift only when they narrow attention and follow-through",
+        "Humility means letting everyone pick their own deadline",
+        "Realism is less important in school settings"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter works outside business because drift grows anywhere priorities stay vague.",
+        "direct": "School teams also need fewer, clearer priorities that remain alive after the meeting.",
+        "competitive": "Too many priorities is just drift with better manners."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why is emotional fortitude part of an execution chapter instead of a soft side note?",
+      "choices": [
+        "Because leaders need private reflection time",
+        "Because realism creates discomfort, and weak inner steadiness makes leaders train others to hide truth",
+        "Because strong leaders should avoid all emotional reactions"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Leaders need enough steadiness to hear hard truth without punishing it.",
+        "direct": "Inner discipline matters because the leader sets the truth environment around the work.",
+        "competitive": "If your ego cannot take friction, the whole system starts editing reality for you."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does the chapter treat the seven behaviors as linked rather than separate tips?",
+      "choices": [
+        "Because each behavior protects the others from turning hollow or performative",
+        "Because seven is easier to remember than five",
+        "Because any one behavior is sufficient on its own"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Knowledge, realism, priorities, follow-through, coaching, and self-knowledge support one another.",
+        "direct": "The chapter warns that isolated traits collapse into weakness when the rest of the chain is absent.",
+        "competitive": "Break one link and the whole standard starts faking itself."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What is the best bridge from Chapter 3 into Chapter 4?",
+      "choices": [
+        "Culture matters once these leader behaviors start showing up as repeated signals inside the organization",
+        "The next step is to return to company case studies only",
+        "Chapter 4 leaves leader behavior behind and focuses only on values statements"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next chapter asks how leader behavior becomes a broader culture pattern.",
+        "direct": "Repeated rewards, dialogue, and tolerated conduct extend Chapter 3 into Chapter 4.",
+        "competitive": "Once the leader standard is clear, the culture question becomes unavoidable."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "hard"
+    }
+  ]
+}

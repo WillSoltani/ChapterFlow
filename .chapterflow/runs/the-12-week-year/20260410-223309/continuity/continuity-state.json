@@ -1,0 +1,33 @@
+{
+  "nameUsage": {},
+  "formatCategoryHistory": [],
+  "schoolSettingUsage": {},
+  "wordFrequency": {},
+  "phraseFrequency": {},
+  "openerRegistry": {
+    "gentle": {},
+    "direct": {},
+    "competitive": {}
+  },
+  "titleTemplateRegistry": {},
+  "endingPatternRegistry": {},
+  "withinChapterNames": {},
+  "approvedChapterHashes": {
+    "ch01": "a2b2a57331e1cb43212408fa10238f2bdb051efea6b90c619b9ccde0f946160a",
+    "ch02": "a9d9f24c19a9b3c1ce9f99ab7320b739f30f2ed23cb24783d6c4aff856b8f870",
+    "ch03": "20a9040c2957546886a1defef6ced90c89a9395f05db91fd613eb9924be16f82",
+    "ch04": "d74ac6f197827cedd07ec9652e7cdacd77480bd512c0be067267097599937ab3",
+    "ch05": "8b947e0f024b02b02e95c8c87dd7009b831b53406686169fe7b7b518939c32f9",
+    "ch06": "ad95731b99ea35e6e10d805e40fbbe852a0a2115ebaaa1542e35550a197875b9",
+    "ch07": "e4ce6f0ef7fc00cb171094ebe3a17e815aa987d92ee1b94e90975a338f519028",
+    "ch08": "edfe74765565ae45a3277cd03686a0c6b5a8e8fb315965d96997be043ab432b1"
+  },
+  "baselineQuality": {
+    "floorChapters": [
+      "ch01",
+      "ch02"
+    ],
+    "status": "set",
+    "notes": "Chapters 1 and 2 passed chapter gate and define the initial quality floor for later waves."
+  }
+}

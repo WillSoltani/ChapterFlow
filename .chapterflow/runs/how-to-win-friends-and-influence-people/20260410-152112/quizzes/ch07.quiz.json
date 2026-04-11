@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What problem does Chapter 7 identify before it focuses on listening?",
+      "choices": [
+        "People never ask enough questions",
+        "Conversations thin out when both people keep trying to perform",
+        "Silence is always the main danger"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter begins with performance pressure inside conversation.",
+        "direct": "Option B fits. Carnegie is trying to solve a room crowded by self-display.",
+        "competitive": "A talk gets thin when everyone keeps auditioning."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does listening help conversation continue under Carnegie's logic?",
+      "choices": [
+        "Because it gives the other person room to keep unfolding what matters",
+        "Because silence is automatically interesting",
+        "Because it prevents the listener from ever responding"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Listening helps because the other person feels more received and keeps going.",
+        "direct": "Correct. Attention creates conversational room and lowers strain.",
+        "competitive": "Listening gives the talk more oxygen."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What makes a follow-up question strong in this chapter?",
+      "choices": [
+        "It comes from what the other person just said",
+        "It sounds clever and surprising",
+        "It avoids personal topics completely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter treats real follow-up as something that grows from the answer that just arrived.",
+        "direct": "Option A is the key. Active listening produces stronger questions than scripts do.",
+        "competitive": "A live follow-up proves the last turn landed."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Priya is in a meeting and feels herself preparing a smart point while a teammate is still explaining a blocker. Which move best fits Chapter 7?",
+      "choices": [
+        "Hold the point and follow the blocker until the next question grows from it",
+        "Interrupt quickly so the room sees she is engaged",
+        "Stay silent for the rest of the meeting"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Chapter 7 asks Priya to let listening shape the next turn rather than rushing to perform.",
+        "direct": "Option A fits. The conversation improves when the response grows from the live thread.",
+        "competitive": "Track the thread before you chase the spotlight."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why might a study-group conversation feel unusually alive under this chapter's logic?",
+      "choices": [
+        "Because one person keeps changing topics so nobody gets stuck",
+        "Because someone listens closely enough that the follow-ups come from the answers",
+        "Because nobody shares any opinions"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says conversations stay alive when answers shape the next turn.",
+        "direct": "Correct. Thread-tracking matters more than constant topic changes.",
+        "competitive": "The room breathes when reception outruns performance."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "In a personal conversation, what often changes when someone follows the other person's thread instead of reclaiming the floor with a matching story?",
+      "choices": [
+        "The talk usually gains room and feels less competitive",
+        "The conversation becomes one-sided and unusable",
+        "The other person stops talking because there is less entertainment"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Listening can make the other person feel more fully received, so the talk opens up.",
+        "direct": "Option A matches the chapter. Following the thread reduces strain and keeps the exchange real.",
+        "competitive": "Less floor-grabbing creates more oxygen."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What keeps question-asking from becoming fake in this chapter?",
+      "choices": [
+        "Using as many questions as possible",
+        "Letting the answer genuinely shape the next turn",
+        "Keeping all questions emotionally neutral"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A question stays real when the answer actually lands and changes the conversation.",
+        "direct": "Option B preserves the chapter's boundary. Reception matters more than question volume.",
+        "competitive": "If the answer changes nothing, the question was theater."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What weak reading of Chapter 7 does the prose reject?",
+      "choices": [
+        "That good conversation is mostly about passive silence or canned prompts",
+        "That people enjoy being listened to",
+        "That follow-up questions can matter"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps its focus on active listening rather than on quietness alone or stock questions.",
+        "direct": "Option A is the misreading. Carnegie is not teaching blank silence or script maintenance.",
+        "competitive": "Silence alone and question theater both miss the point."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Which statement best captures the difference between real listening and question theater?",
+      "choices": [
+        "Real listening receives the answer; question theater keeps the form of conversation without the reception",
+        "Question theater is stronger because it keeps things moving",
+        "There is no real difference if the questions are polite"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter trusts actual reception more than conversational motion by itself.",
+        "direct": "Correct. The form of conversation can survive after its reality drains out.",
+        "competitive": "One creates room. The other only preserves the shell."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What is the most accurate high-level summary of Chapter 7?",
+      "choices": [
+        "Good conversation comes mainly from having better stories",
+        "Good conversation grows when listening gives the other person room to keep unfolding what matters",
+        "Good conversation is safest when you avoid follow-up entirely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter makes listening the engine of conversational room.",
+        "direct": "Option B is the chapter in one line. Real attention creates better conversation than self-display does.",
+        "competitive": "The talk gets better when reception wins more turns than ego."
+      },
+      "bloomsLevel": "transfer",
+      "depthLevel": "deeper"
+    }
+  ]
+}

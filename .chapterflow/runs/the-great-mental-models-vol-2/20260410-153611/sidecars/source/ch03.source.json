@@ -1,0 +1,38 @@
+{
+  "title": "Thermodynamics",
+  "heading": "Thermodynamics",
+  "section": "Physics",
+  "pageStart": 49,
+  "approxWords": 170,
+  "properNouns": [
+    "Google Books",
+    "Scott Vejdani"
+  ],
+  "repeatedTerms": [
+    "order",
+    "energy",
+    "maintenance",
+    "drift",
+    "entropy"
+  ],
+  "sourceReferences": [
+    {
+      "sourceId": "google-books-2024",
+      "use": "chapter title and page start"
+    },
+    {
+      "sourceId": "vejdani-notes",
+      "use": "narrow chapter-level paraphrase support"
+    }
+  ],
+  "supportSummary": [
+    "Order requires ongoing energy and maintenance.",
+    "Systems drift toward disorder when maintenance is deferred.",
+    "Visible order can hide displaced costs elsewhere in the system."
+  ],
+  "unsupportedZones": [
+    "formal thermodynamics equations or scientific claims not in the frozen bundle",
+    "named scientific case studies not present in the frozen support",
+    "exact quotations from the chapter interior"
+  ]
+}

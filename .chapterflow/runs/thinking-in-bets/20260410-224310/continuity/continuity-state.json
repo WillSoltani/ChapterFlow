@@ -1,0 +1,57 @@
+{
+  "nameUsage": {},
+  "formatCategoryHistory": [],
+  "schoolSettingUsage": {},
+  "wordFrequency": {},
+  "phraseFrequency": {},
+  "openerRegistry": {
+    "gentle": {},
+    "direct": {},
+    "competitive": {}
+  },
+  "titleTemplateRegistry": {},
+  "endingPatternRegistry": {},
+  "withinChapterNames": {},
+  "approvedChapterHashes": {
+    "ch01": {
+      "sha256": "0d49d0b0df812683bf5191fd7a84ee4f5e15f9e4c1ec2c9e681d62bac31546cb",
+      "validatedPath": ".chapterflow/runs/thinking-in-bets/20260410-224310/validated/ch01.chapter.json",
+      "sealedAt": "2026-04-10T23:26:00-03:00"
+    },
+    "ch02": {
+      "sha256": "a36b3bbbb9323cc12ab39f8c55d06762ed9f5ca75ad107635e311da7bae33cd6",
+      "validatedPath": ".chapterflow/runs/thinking-in-bets/20260410-224310/validated/ch02.chapter.json",
+      "sealedAt": "2026-04-10T23:35:00-03:00"
+    },
+    "ch03": {
+      "sha256": "74546c7d7cc9ca2c62d4e225b5cfc4fe3fee4d7874e492184345a367eec5b0cb",
+      "validatedPath": ".chapterflow/runs/thinking-in-bets/20260410-224310/validated/ch03.chapter.json",
+      "sealedAt": "2026-04-10T23:50:00-03:00"
+    },
+    "ch04": {
+      "sha256": "22e9245754952b6169399f6bdd869f454a799e0631d25d42335ae3b991e0cb5b",
+      "validatedPath": ".chapterflow/runs/thinking-in-bets/20260410-224310/validated/ch04.chapter.json",
+      "sealedAt": "2026-04-11T00:15:00-03:00"
+    },
+    "ch05": {
+      "sha256": "6d255fc38aebd66139ca6e573cf417de016c24196f4b483b5422f694c65960d8",
+      "validatedPath": ".chapterflow/runs/thinking-in-bets/20260410-224310/validated/ch05.chapter.json",
+      "sealedAt": "2026-04-11T00:30:00-03:00"
+    }
+  },
+  "baselineQuality": {
+    "establishedThroughChapter": 2,
+    "chapters": {
+      "ch01": {
+        "criticScore": 11,
+        "validatedChapterSha256": "0d49d0b0df812683bf5191fd7a84ee4f5e15f9e4c1ec2c9e681d62bac31546cb"
+      },
+      "ch02": {
+        "criticScore": 11,
+        "validatedChapterSha256": "a36b3bbbb9323cc12ab39f8c55d06762ed9f5ca75ad107635e311da7bae33cd6"
+      }
+    },
+    "qualityDecayStopDelta": 1.5,
+    "reportPath": ".chapterflow/runs/thinking-in-bets/20260410-224310/reports/baseline-quality.md"
+  }
+}

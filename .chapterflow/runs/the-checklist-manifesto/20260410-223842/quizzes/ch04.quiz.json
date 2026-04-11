@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's main design idea?",
+      "choices": [
+        "Centralize every important decision more tightly",
+        "Decentralize action while tightening communication",
+        "Remove structure so local teams can improvise freely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter's core claim is that good checklists push action outward while making communication tighter.",
+        "direct": "Gawande is defending decentralized execution with disciplined signal, not more central scripting or loose improvisation.",
+        "competitive": "The idea is outward action with tighter alignment."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does Katrina matter in Chapter 4?",
+      "choices": [
+        "It shows how trapped central response can fail under changing field conditions",
+        "It proves all disaster plans are useless",
+        "It mainly exists to compare weather patterns with retail logistics"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Katrina is the chapter's negative case for slow, trapped central control.",
+        "direct": "The chapter uses Katrina to show what happens when authority and signal cannot move where action is needed fast enough.",
+        "competitive": "It is the picture of a center losing to reality while still pretending to supervise it."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is Wal-Mart doing in the chapter's argument?",
+      "choices": [
+        "Showing a structure where people closer to the facts could act more quickly",
+        "Proving corporations are always morally superior to public agencies",
+        "Showing that communication matters less when speed is high"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Wal-Mart is the contrast case where local action moved faster.",
+        "direct": "The example shows why authority sometimes has to shift outward in a live system.",
+        "competitive": "It proves the edge can move faster when it is allowed to act."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A field team keeps waiting for central approval even though conditions are changing minute by minute. Which Chapter 4 lesson applies best?",
+      "choices": [
+        "The team should add more layers of central review",
+        "The system may need more local authority tied to clearer communication checks",
+        "The team should stop sharing updates and just act independently"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says local action can move faster if shared communication stays tight.",
+        "direct": "This is the chapter in practice: shift authority outward, but connect it to clear common signal.",
+        "competitive": "Break the bottleneck, not the alignment."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why is it wrong to read Chapter 4 as simple praise of decentralization?",
+      "choices": [
+        "Because the chapter says local action without disciplined communication can still fail",
+        "Because the chapter wants every local decision routed back to the center",
+        "Because the chapter only applies to retail companies"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps communication and shared checks tightly tied to local action.",
+        "direct": "Decentralization is not the opposite of structure here. It depends on stronger coordination.",
+        "competitive": "Freedom without signal is just drift with better branding."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What kind of checklist is the chapter defending?",
+      "choices": [
+        "A giant command script that replaces local judgment",
+        "A short coordination device with shared pause points and common language",
+        "A private reminder list that only one leader sees"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter's checklist is short and shared.",
+        "direct": "It coordinates distributed action through common checks rather than trying to think for everyone from above.",
+        "competitive": "The tool aligns the field without strangling it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "A family emergency plan gives everyone freedom to act but no shared update rule. What Chapter 4 problem does that show?",
+      "choices": [
+        "The plan is too centralized",
+        "The plan risks decentralized drift because communication is too loose",
+        "The plan is already exactly what the chapter wants"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says local action needs tighter communication, not weaker communication.",
+        "direct": "Without common updates, distributed action can still become confusion.",
+        "competitive": "The edge is moving, but the system is not staying legible."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why does the chapter care so much about shared pause points and common language?",
+      "choices": [
+        "They help many local actors stay aligned while acting quickly",
+        "They slow the field down so the center can think longer",
+        "They replace the need for expertise"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Shared checks help people stay coordinated under pressure.",
+        "direct": "Pause points and common language are how communication tightens while action decentralizes.",
+        "competitive": "They keep the field on one signal while the edge moves."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the deepest organizational move Chapter 4 makes with the checklist idea?",
+      "choices": [
+        "It turns the checklist into a design tool for distributed execution",
+        "It narrows the checklist back into a private reminder aid",
+        "It claims the checklist should replace all leadership"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter broadens the checklist into a way to coordinate many people in motion.",
+        "direct": "The tool now functions as a structure for aligning distributed judgment and action across a whole system.",
+        "competitive": "The checklist becomes operating design, not just memory support."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What live question does the chapter hand to the next chapter?",
+      "choices": [
+        "How to return decision power to one central controller",
+        "What happens when people actually try to build and use the first real version of this idea",
+        "Why retail logistics should replace medical judgment"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The next chapter asks what happens when the idea meets real professional practice.",
+        "direct": "Once the design is clear, the book moves from theory to first implementation and resistance.",
+        "competitive": "The clean principle now has to survive a real room."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

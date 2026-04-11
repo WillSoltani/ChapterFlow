@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch07-q01",
+      "prompt": "What asymmetry starts the self-justifying loop in this chapter?",
+      "choices": [
+        "Partners explain their own behavior through circumstance and the partner's through character",
+        "Partners value the same evidence equally but express it differently",
+        "Partners always remember conflict in exactly opposite ways"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The self gets mercy through context, while the partner gets a verdict.",
+        "direct": "Correct. The loop starts when self and partner are judged by different explanatory standards.",
+        "competitive": "Right. I keep my context and remove yours."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch07-q02",
+      "prompt": "Why do repeated marital conflicts start feeling larger than the current issue?",
+      "choices": [
+        "Because small conflicts are always signs of hidden betrayal",
+        "Because couples naturally prefer dramatic explanations",
+        "Because memory stores the verdict along with the event"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "That is the key move. The archive keeps old accusations ready for new fights.",
+        "direct": "Exactly. Grievance grows because recollection preserves moral meaning as well as facts.",
+        "competitive": "Yes. The present shows up carrying the old case file."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch07-q03",
+      "prompt": "Omar and Nia both leave the same kitchen exchange feeling obviously provoked. What is the strongest reading?",
+      "choices": [
+        "The disagreement must be too minor to matter",
+        "Only one of them can sincerely feel wronged",
+        "They are both likely using different standards to explain self and partner"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Nice catch. Both people can feel sincere while still deepening the same self-justifying loop.",
+        "direct": "Correct. The chapter explains this through situational mercy for self and character blame for partner.",
+        "competitive": "Right. Two innocent stories can still build one toxic fight."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch07-q04",
+      "prompt": "Mateo notices that every shared-living complaint now arrives with older insults and older proofs. Which idea best fits?",
+      "choices": [
+        "Healthy memory for recurring issues",
+        "Grievance accumulation turning the present issue into part of a larger indictment",
+        "A sign that the roommates should avoid conflict entirely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That matches the chapter. The current conflict is being read through a stored moral archive.",
+        "direct": "Correct. Later disputes become heavier when old verdicts are carried into them.",
+        "competitive": "The room is arguing with the archive, not just the moment."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q05",
+      "prompt": "What is the cleanest difference between pain and prosecution in this chapter?",
+      "choices": [
+        "Pain is private, while prosecution is always public",
+        "Prosecution means the pain was never real to begin with",
+        "Pain refers to the hurt itself, while prosecution uses the hurt to prove a lasting moral case against the partner"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "That is the sharp distinction. The hurt can be real even when the relationship starts using it as evidence in a larger case.",
+        "direct": "Correct. Prosecution begins when pain is organized around proving justified anger and permanent blame.",
+        "competitive": "Yes. The wound is real, and the rig still recruits it."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q06",
+      "prompt": "Which misreading does this chapter reject?",
+      "choices": [
+        "Apology fails only because the words are clumsy",
+        "Grievance can make later arguments carry old meanings",
+        "Situational mercy and character blame can coexist in one relationship"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter says apology often fails because it enters a defended archive, not only because the phrasing is weak.",
+        "direct": "Correct. Words alone cannot repair a relationship while innocence and accusation remain protected first.",
+        "competitive": "Right. The sentence is too small for the case file."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q07",
+      "prompt": "Why can a kind act lose force in an unhappy relationship?",
+      "choices": [
+        "Because unhappy partners stop noticing kindness at all",
+        "Because good behavior can be dismissed as a fluke while bad behavior is treated as character proof",
+        "Because kindness matters less than memory in all relationships"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That is the lesson. Hope gets discounted while grievance is preserved.",
+        "direct": "Correct. Self-justification can make good acts look accidental and bad acts look essential.",
+        "competitive": "Yes. The archive protects the indictment and distrusts the exception."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q08",
+      "prompt": "One partner replaces a character verdict with a direct statement of pain. Why might that matter?",
+      "choices": [
+        "It guarantees the relationship will repair quickly",
+        "It shifts the exchange away from prosecution and creates a small opening for empathy",
+        "It proves the earlier grievance was exaggerated"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That fits the chapter. Less accusation can make the underlying hurt easier to hear.",
+        "direct": "Correct. Repair begins when the archive loosens enough for pain to matter differently than verdict.",
+        "competitive": "Right. One less exhibit can give the bond room to breathe."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q09",
+      "prompt": "Why does dropping accusation feel so costly in intimate conflict?",
+      "choices": [
+        "Because all strong relationships require ongoing blame to stay honest",
+        "Because apology is usually more humiliating than accusation",
+        "Because it can feel like losing dignity, innocence, or the proof that the hurt was real"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Exactly. Grievance and innocence can start feeling like parts of identity, which makes loosening them expensive.",
+        "direct": "Correct. The chapter treats repair as costly because the defended story often protects dignity and self-concept.",
+        "competitive": "Yes. Dropping the case can feel like dropping yourself."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch07-q10",
+      "prompt": "If grievance becomes identity inside a couple, what is the strongest reason the next chapter turns toward groups and wars?",
+      "choices": [
+        "Because intimate conflict and collective conflict share the same basic machinery of defended injury and innocence",
+        "Because group conflict is mainly just a larger version of poor communication",
+        "Because relationships stop mattering once institutions disappear"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That is the bridge. The scale changes, but grievance, innocence, and prosecution keep the same logic.",
+        "direct": "Correct. The next chapter shows the same self-justifying pattern expanding into factions and collective retaliation.",
+        "competitive": "Right. The house gets larger, but the rig stays."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

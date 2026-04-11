@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "ch19-q01",
+      "prompt": "Why do one-size-fits-all tactics fail in this chapter?",
+      "choices": [
+        "Because people react differently to the same move",
+        "Because every tactic is always wrong",
+        "Because all people hide the same danger"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Correct. The chapter says consequence changes when the person changes.",
+        "direct": "Different recipients convert the same act into different reactions.",
+        "competitive": "Right. The script is not universal because the people are not."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch19-q02",
+      "prompt": "What makes offense strategically expensive here?",
+      "choices": [
+        "It always leads to immediate open conflict",
+        "The wrong person can turn a small move into a durable problem",
+        "Any discomfort automatically ruins strategy"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The chapter warns about uneven reaction profiles.",
+        "direct": "A small move can become costly when the recipient stores or magnifies it.",
+        "competitive": "Right. The price rises when the wrong memory receives it."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch19-q03",
+      "prompt": "Why is this chapter not generic paranoia advice?",
+      "choices": [
+        "Because it says no person is ever risky",
+        "Because offense is always harmless if you stay calm",
+        "Because it asks for concrete reading instead of fear of everyone equally"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Correct. The law calls for discrimination, not universal fear.",
+        "direct": "Reading means noticing differences instead of flattening people.",
+        "competitive": "Right. Person-reading separates; paranoia blurs."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch19-q04",
+      "prompt": "In Leena's work scenario, what best fits the chapter?",
+      "choices": [
+        "Use the same public sharpness on every colleague",
+        "Change the approach once she sees this recipient will price it differently",
+        "Avoid all feedback forever"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The recipient changes the cost of the move.",
+        "direct": "She should read the person before replaying the tactic.",
+        "competitive": "Right. Same script, wrong pride, bigger price."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch19-q05",
+      "prompt": "Why did Corin's editorial board get into trouble?",
+      "choices": [
+        "Because every board member was equally fragile",
+        "Because sarcasm is always forbidden",
+        "Because it misread the one member who stored humiliation differently"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Correct. The board failed by treating uneven people as interchangeable.",
+        "direct": "The issue was not joking in the abstract but misreading the recipient.",
+        "competitive": "Right. The wrong memory turned a casual move expensive."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch19-q06",
+      "prompt": "What is the strongest reading of Saira's dilemma?",
+      "choices": [
+        "The same blunt honesty always lands the same way",
+        "Person-specific timing matters because grievance changes how truth is heard",
+        "The safest move is to say nothing to anyone"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The chapter says the recipient changes the meaning of the same act.",
+        "direct": "Old grievance can reprice a familiar tone.",
+        "competitive": "Right. What is said matters, but who hears it matters more."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch19-q07",
+      "prompt": "How does person-reading change strategic choice?",
+      "choices": [
+        "It replaces concrete judgment with rigid stereotypes",
+        "It helps you price consequence by the recipient rather than by habit alone",
+        "It guarantees perfect control over every reaction"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Correct. The chapter pushes you to read the person before trusting the script.",
+        "direct": "Consequence is priced by the recipient as well as the act.",
+        "competitive": "Yes. Better reading changes which moves are actually cheap."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch19-q08",
+      "prompt": "When does confidence in your own read become risky?",
+      "choices": [
+        "When it hardens into certainty and stops revising itself",
+        "When it notices difference between people",
+        "When it avoids universal scripts"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The chapter allows reading, but not omniscience.",
+        "direct": "A confident map can become another lazy script if it stops updating.",
+        "competitive": "Right. Insight goes bad when it thinks it is final."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch19-q09",
+      "prompt": "How does Chapter 18 lead into Chapter 19?",
+      "choices": [
+        "Restored awareness has to be directed onto the specific person in front of you",
+        "Isolation makes all people identical",
+        "Chapter 19 rejects the need for live awareness"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Correct. Chapter 18 restored the map, and Chapter 19 spends it on the person in play.",
+        "direct": "Fresh awareness matters only if you use it on the actual recipient.",
+        "competitive": "Right. First recover the field, then read the person."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch19-q10",
+      "prompt": "What bridge carries Chapter 19 into Chapter 20?",
+      "choices": [
+        "The next chapter says commitment always solves the problem",
+        "Person-reading removes all need for leverage",
+        "Once you know people differ, the next issue is how they try to bind your commitment"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Correct. The next chapter shifts from reading reactions to refusing binding commitments.",
+        "direct": "Different people will try to recruit or trap you differently.",
+        "competitive": "Right. First read who they are, then resist the allegiance they want."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What larger problem does the epilogue say the lean startup method is trying to reduce?",
+      "choices": [
+        "Waste under uncertainty",
+        "All risk in business",
+        "Only financial accounting complexity"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The epilogue says the book is really about reducing waste when uncertainty is high.",
+        "direct": "Ries reframes the method as anti-waste management under uncertainty.",
+        "competitive": "The target is expensive ignorance, not risk-free fantasy."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What kind of waste does this epilogue include besides wasted money?",
+      "choices": [
+        "Only wasted office space",
+        "Wasted learning and wasted opportunity",
+        "Only wasted marketing spend"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says waste includes late insight and possibilities buried too early.",
+        "direct": "Ries broadens waste beyond finance to include learning and opportunity lost through bad timing.",
+        "competitive": "Truth that shows up late and futures killed early both count."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A team spends months building before testing its riskiest assumption. What would the epilogue say?",
+      "choices": [
+        "The team may be wasting effort by buying crucial learning too late",
+        "The team is proving commitment in the best possible way",
+        "The team should avoid experiments until the product is complete"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The epilogue warns against learning after too much effort has already been spent.",
+        "direct": "A risky assumption should be tested earlier so correction is cheaper and waste is smaller.",
+        "competitive": "They are paying premium prices for a truth they should have bought sooner."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "In Jordan's student venture debrief, what became the real lesson?",
+      "choices": [
+        "That the semester failed only because the team did not work hard enough",
+        "That the key learning arrived too late to protect most of the semester's effort",
+        "That postmortems should be avoided in school projects"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The debrief showed that the timing of the learning mattered as much as the amount of effort.",
+        "direct": "Jordan reframed the semester as a late-learning waste problem rather than only an execution problem.",
+        "competitive": "The team paid tuition for truth after most of the course bill was already due."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What distinction does the epilogue insist on about serious-looking work?",
+      "choices": [
+        "It is always wise because it looks disciplined",
+        "It only matters if it uses a large budget",
+        "It can still be wasteful if the learning arrives too late"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter says visible seriousness does not guarantee useful timing of learning.",
+        "direct": "Work can look disciplined and still waste effort if truth comes only after costly commitments harden.",
+        "competitive": "Professional-looking motion can still be ignorance in a suit."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "How do old management habits create waste under uncertainty?",
+      "choices": [
+        "By helping learning arrive earlier than needed",
+        "By encouraging commitment and confidence before enough evidence exists",
+        "By making every experiment free of consequence"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns that old habits spend effort before earning clarity.",
+        "direct": "Long cycles, strong assumptions, and confidence theater make organizations learn too late.",
+        "competitive": "They spend first and ask reality for the receipt later."
+      },
+      "bloomsLevel": "understand-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "How could a nonprofit, lab, or student team apply the epilogue well?",
+      "choices": [
+        "By using small tests to get important learning earlier and waste less effort",
+        "By avoiding uncertainty until all conditions are stable",
+        "By focusing only on financial efficiency reports"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The anti-waste logic works anywhere a group can learn too late and waste effort.",
+        "direct": "Any organization under uncertainty can use earlier experiments to protect time and attention.",
+        "competitive": "Mission does not excuse buying truth too late."
+      },
+      "bloomsLevel": "transfer",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What should you suspect when a project receives its most important evidence only after major commitments are sunk?",
+      "choices": [
+        "That the timing of learning has become part of the waste problem",
+        "That late evidence is always a sign of strength",
+        "That experimentation would have made the project less responsible"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter treats late insight as one of the clearest forms of waste.",
+        "direct": "A project that learns too late may be spending effort irresponsibly under uncertainty.",
+        "competitive": "The truth arrived, but the bill had already metastasized."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why do organizations keep wasting effort and insight even when uncertainty should have taught them humility?",
+      "choices": [
+        "Because large plans and confidence often feel safer and more respectable than exposed experiments",
+        "Because uncertainty automatically disappears with enough meetings",
+        "Because late learning is always cheaper than early tests"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps the emotional attraction of certainty and serious-looking work in view.",
+        "direct": "Ries suggests that old habits survive because confidence theater still feels strong and disciplined even when it wastes learning.",
+        "competitive": "The room keeps choosing the costume of certainty over the humility that would save it money."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How does the epilogue connect to the final chapter?",
+      "choices": [
+        "It leads into an invitation to carry the method into broader practice",
+        "It abandons the method and offers a different framework",
+        "It argues that the book should end with no further application"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "After naming the anti-waste lesson, the book asks the reader to carry it outward.",
+        "direct": "The epilogue sets up the final chapter's invitation to apply and spread the method.",
+        "competitive": "Once the waste is named, the book refuses to let the lesson stay on the page."
+      },
+      "bloomsLevel": "connect-transfer",
+      "depthLevel": "hard"
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What does the journey mean in Chapter 18?",
+      "choices": [
+        "The one thing must be lived as an ongoing path",
+        "The reader has reached a final finish line",
+        "The book should now be remembered more than practiced"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter defines the journey as continued practice of the one thing.",
+        "direct": "The path has to keep being lived after the book ends.",
+        "competitive": "The walk continues."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the book reject neat closure in the ending?",
+      "choices": [
+        "Because the one thing weakens when it becomes a completed insight",
+        "Because endings should always feel unresolved",
+        "Because the earlier chapters did not matter much"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The ending rejects closure because the discipline must keep being practiced.",
+        "direct": "A finished-feeling insight can stop being alive.",
+        "competitive": "A trophy ending kills the walk."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What keeps the journey real?",
+      "choices": [
+        "Another lived step of practice",
+        "A stronger memory of the book",
+        "A more dramatic feeling about the lesson"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The journey stays real through continued practice.",
+        "direct": "The next lived step matters more than a strong memory of clarity.",
+        "competitive": "The path breathes through practice."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "In the work examples, what shows the journey is real?",
+      "choices": [
+        "Letting the next roadmap still answer to the same path",
+        "Treating the first win as proof the work is done",
+        "Saving the framework for a future crisis"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants the path to keep shaping later work choices.",
+        "direct": "The journey shows up when the next roadmap still obeys the one thing.",
+        "competitive": "The next quarter has to keep walking."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Which statement is false according to Chapter 18?",
+      "choices": [
+        "The journey can become vague inspiration if it no longer directs practice",
+        "Understanding the one thing once completes the work",
+        "The ending points toward continued responsibility"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter rejects the idea that clarity alone completes the work.",
+        "direct": "The ending demands continued practice, not one-time mastery.",
+        "competitive": "Knowing the map does not finish the walk."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What school pattern fits the chapter's idea of the journey?",
+      "choices": [
+        "Turning a strong sprint into a longer path across the semester",
+        "Letting the insight stay tied to one exam only",
+        "Remembering the lesson but not changing the next study step"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The journey in school means carrying focus beyond one short sprint.",
+        "direct": "The path stays alive when it shapes later study choices too.",
+        "competitive": "The semester has to keep walking."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What limit does Chapter 18 place on the journey language?",
+      "choices": [
+        "It must still direct the next step rather than become vague uplift",
+        "It should make the reader feel finished",
+        "It should add a new closing system"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter insists that journey language remain practical.",
+        "direct": "The ending fails if it becomes inspiration without another act of practice.",
+        "competitive": "A real journey still points to the next move."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What is the personal-life version of the journey here?",
+      "choices": [
+        "Letting the one thing keep shaping ordinary daily choices",
+        "Keeping a strong memory of the breakthrough moment",
+        "Waiting for another dramatic insight"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Personal life tests whether the one thing keeps directing ordinary choices.",
+        "direct": "The path stays alive when it keeps shaping daily life after the excitement fades.",
+        "competitive": "The next day proves the walk."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "How does Chapter 18 build on the earlier chapters?",
+      "choices": [
+        "It turns their discipline into a lived ongoing path",
+        "It replaces them with a looser closing message",
+        "It says the earlier structure no longer matters"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The final chapter gathers the earlier discipline into continued practice.",
+        "direct": "Purpose, priority, productivity, commitment, and defense all feed into the lived path.",
+        "competitive": "The journey carries the whole method forward."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What transfer lesson does the ending leave with the reader?",
+      "choices": [
+        "Strong insights can now be archived safely",
+        "The last page matters most because it ends the work",
+        "A real ending sends the reader back into another lived step of alignment"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter ends by pointing to continued practice.",
+        "direct": "The one thing stays real only when the next step still obeys it.",
+        "competitive": "The path survives by being lived again."
+      },
+      "bloomsLevel": "evaluate-transfer",
+      "depthLevel": "hard"
+    }
+  ]
+}

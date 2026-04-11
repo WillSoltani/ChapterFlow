@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's main distinction about randomness?",
+      "choices": [
+        "All randomness should be welcomed because order blocks growth",
+        "Some randomness is useful when downside is clipped and upside stays open",
+        "Randomness matters only when planning disappears completely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter defends selective variation, not chaos in general.",
+        "direct": "Taleb's point is bounded randomness under favorable payoff shape, not disorder by itself.",
+        "competitive": "The win comes from capped downside with open upside, not from worshipping noise."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does clipped downside matter so much here?",
+      "choices": [
+        "It keeps failed attempts survivable so variation can teach",
+        "It guarantees that every experiment will succeed",
+        "It removes the need to compare different options"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps failure small enough that the system can keep learning.",
+        "direct": "Bounded downside matters because experimentation stops being useful once one mistake can badly damage the system.",
+        "competitive": "Cheap losses keep discovery alive. Uncapped losses end the game."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What makes variation valuable instead of just messy?",
+      "choices": [
+        "Variation always looks more creative",
+        "Variation reveals options and information a single smooth plan may miss",
+        "Variation removes all need for judgment"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Different tries can uncover possibilities that one protected plan would never see.",
+        "direct": "The chapter values variation because it produces discovery under bounded risk.",
+        "competitive": "Several cheap attempts can find upside that one polished script never gives itself a chance to meet."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Daria's design team can either test three rough prototypes with a small user group or spend the whole budget polishing one concept before anyone tries it. Which choice best fits the chapter?",
+      "choices": [
+        "Polish one concept because visible order matters most",
+        "Delay both options until the team can remove uncertainty entirely",
+        "Run the bounded prototype set so the team can discover upside without risking everything"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter favors several affordable tries when failure stays limited.",
+        "direct": "Bounded experiments fit the chapter because they preserve discovery while clipping downside.",
+        "competitive": "Spend small to learn big instead of betting the whole round on one elegant guess."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Which statement would the chapter reject most strongly?",
+      "choices": [
+        "Any randomness is automatically helpful because it disrupts control",
+        "Some variation helps only when downside is bounded",
+        "Open upside gives small experiments a reason to exist"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter is not a blanket defense of randomness.",
+        "direct": "Taleb separates productive variation from reckless exposure by keeping payoff shape central.",
+        "competitive": "That answer confuses optionality with chaos worship."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What is the chapter's limit on experimentation?",
+      "choices": [
+        "Planning must disappear before experimentation can work",
+        "Experiments are useful only if they can fail cheaply enough for the system to survive and keep learning",
+        "Every risky move counts as antifragile as long as it feels bold"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The system has to stay intact enough to benefit from the attempt.",
+        "direct": "The limit is bounded downside. Without it, randomness is just unpriced exposure.",
+        "competitive": "If one miss can break the system, you are not experimenting. You are gambling with the structure."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "A science club keeps one official project path and bans side experiments so meetings stay orderly. Which chapter pattern does this illustrate?",
+      "choices": [
+        "Suppression of variation can weaken discovery",
+        "Bounded randomness is already doing its job",
+        "Open upside is being maximized"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The club may be removing the small variations that could have taught it something new.",
+        "direct": "This matches the chapter's warning that smooth control can starve a system of affordable discovery.",
+        "competitive": "The room looks tidy because it cut away the path by which better options might have appeared."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why can one small experiment with big possible upside be smarter than one protected master plan?",
+      "choices": [
+        "Because the chapter prefers inconvenience",
+        "Because experimentation makes planning obsolete",
+        "Because a bounded attempt can lose little while still exposing a large gain"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The experiment can stay affordable while still uncovering something valuable.",
+        "direct": "This is the chapter's asymmetry logic: small downside, potentially large upside.",
+        "competitive": "Lose a little, maybe gain a lot. That payoff shape beats one overprotected guess."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What deeper practical shift does the chapter ask from the reader?",
+      "choices": [
+        "Judge randomness by payoff shape and survivability rather than by whether it looks disorderly",
+        "Admire only the system with the most visible variety",
+        "Assume controlled systems cannot discover anything"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter changes the question from appearance to bounded payoff structure.",
+        "direct": "Taleb wants the reader to ask where downside is capped, where upside is open, and whether attempts remain survivable.",
+        "competitive": "Do not grade variation by vibes. Grade it by what it can lose and what it might uncover."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How does this chapter set up the move into intervention?",
+      "choices": [
+        "It argues that any outside intervention increases discovery",
+        "It suggests that systems may lose useful information when someone keeps smoothing away bounded fluctuations",
+        "It proves that randomness and coordination can never coexist"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The next question is what happens when useful small variation gets ironed out.",
+        "direct": "The chapter prepares the intervention critique by showing that some bounded fluctuations carry discovery and should not be flattened automatically.",
+        "competitive": "Once variation can teach, the real danger is the helper who keeps sanding the signal off the system."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

@@ -44,6 +44,9 @@ jobs:
       - name: Build app
         run: npm run build
 
+      - name: Build OpenNext
+        run: npx open-next build
+
       - name: Type-check
         run: npm run typecheck
 
@@ -71,5 +74,5 @@ jobs:
       - name: Build infra TypeScript
         run: npm run build
 
-      - name: CDK synth
-        run: npm run cdk -- synth
+      - name: CDK synth (backend only — frontend requires OpenNext build artifacts)
+        run: npm run cdk -- synth ChapterFlowBackend

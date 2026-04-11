@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's main claim?",
+      "choices": [
+        "Equal totals can produce different effects when systems respond nonlinearly to concentration and dose",
+        "Arithmetic no longer matters in serious decisions",
+        "Small impacts never accumulate into meaningful consequences"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says one large hit and many small hits can behave differently.",
+        "direct": "Taleb argues that total quantity is not enough because response to scale and concentration often bends.",
+        "competitive": "The same number can hide a very different kind of damage."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the chapter care about concentration?",
+      "choices": [
+        "Because concentrated exposure can produce different consequences from distributed exposure",
+        "Because any large number is automatically dangerous",
+        "Because totals should be ignored entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says distribution changes what happens.",
+        "direct": "Concentration matters because one large dose can overwhelm what many smaller doses would leave manageable.",
+        "competitive": "How bunched the hit is can matter more than the polite total."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What limit keeps the chapter from becoming anti-arithmetic?",
+      "choices": [
+        "Taleb says totals still matter but become incomplete guides under nonlinear response",
+        "Taleb rejects counting in every domain",
+        "Taleb argues that only concentration matters and totals never do"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter is not throwing out numbers.",
+        "direct": "Taleb is criticizing naive aggregation, not counting itself; totals stay relevant but stop being decisive alone.",
+        "competitive": "Arithmetic survives. It just loses its monopoly."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Leah compares one overwhelming deadline with the same total amount of work spread across several smaller intervals. Which response best fits the chapter?",
+      "choices": [
+        "Treat the two workloads as identical because the total amount matches",
+        "Ask how the burden is distributed and whether concentration changes the strain",
+        "Ignore the comparison because work cannot reveal nonlinear effects"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants the reader to examine distribution, not just total amount.",
+        "direct": "The better fit is to treat timing and concentration as part of the workload rather than trusting the sum alone.",
+        "competitive": "Audit how brutally the work lands, not just how much it adds up to."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Which statement would the chapter reject most strongly?",
+      "choices": [
+        "Equal totals always guarantee equal effects",
+        "Distributed exposure may be tolerable where concentrated exposure is not",
+        "Response shape matters when effects are nonlinear"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter rejects the idea that totals settle everything.",
+        "direct": "Taleb attacks the assumption that arithmetic equality alone is enough to predict consequence.",
+        "competitive": "That answer gives the clean sum a power the chapter takes away."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What is the chapter's mechanism?",
+      "choices": [
+        "Hidden moral intention behind large numbers",
+        "Nonlinear response to dose, speed, and concentration",
+        "The impossibility of comparing burdens at all"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says systems often respond differently as exposure changes shape.",
+        "direct": "The key mechanism is that consequence bends with concentration and scale rather than staying proportional to the raw sum.",
+        "competitive": "The system answers to the spike, not just the spreadsheet."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Omar asks whether two equal totals are delivered in concentrated or distributed form before treating them as equivalent. What pattern is he applying?",
+      "choices": [
+        "A rejection of all measurement",
+        "Naive addition without system response",
+        "A concentration-aware judgment about nonlinear consequence"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "He is checking how the total lands, not only what it is.",
+        "direct": "Omar is applying the chapter's idea that equal totals can conceal unequal effects when response depends on dose and clustering.",
+        "competitive": "He is making the neat number answer to the way the hit arrives."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why can many small exposures be tolerable while one large exposure becomes ruinous?",
+      "choices": [
+        "Because the large exposure changes the system's response once concentration crosses a threshold",
+        "Because small exposures never matter",
+        "Because arithmetic totals become false at higher scales"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says the system may react differently once the hit is concentrated.",
+        "direct": "A concentrated exposure can overwhelm adaptation or tolerance even when the same total distributed across many small hits would not.",
+        "competitive": "The spike can crack what the drizzle would never break."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What deeper shift does the chapter ask from the reader?",
+      "choices": [
+        "Move from trusting total quantity alone to asking how exposure is distributed and how the system responds",
+        "Treat every large number as a catastrophe",
+        "Assume that any distributed exposure is safe"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter changes what should count as a complete comparison.",
+        "direct": "Taleb wants the reader to judge burden and intervention through distribution and response shape, not through totals alone.",
+        "competitive": "Stop worshipping the sum and start interrogating the spike."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How does this chapter lead into the next one?",
+      "choices": [
+        "It suggests that once response depends on hidden structure, intervention and opacity become harder to judge cleanly",
+        "It proves that every intervention should be avoided forever",
+        "It replaces consequence with abstract mathematics"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next chapter asks what nonlinear response means for intervention and opacity.",
+        "direct": "The bridge is from concentration effects to the harder problem of acting in systems whose response is less transparent than totals suggest.",
+        "competitive": "If the sum already lied, the confident fixer is in trouble next."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

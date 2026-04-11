@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "A manager says people will move once I explain what I need clearly enough. Which Chapter 2 correction is strongest?",
+      "choices": [
+        "People usually move fastest when the action serves something they already want",
+        "Most people act mainly to avoid being judged incompetent",
+        "Clear instructions matter more than motive in nearly every case"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Carnegie shifts the focus away from our wishes alone. Willing action grows when the other person sees something in it that matters to them.",
+        "direct": "Option A fits the chapter. The durable lever is not simply stating your need harder. It is connecting the action to the other person's motive.",
+        "competitive": "Need is not leverage by itself. Movement gets real when the other person has a reason that feels like his own."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does Carnegie spend time on the desire to feel important instead of treating it as a small vanity issue?",
+      "choices": [
+        "Because he thinks only famous people care about recognition",
+        "Because he sees importance as a deep motive behind a wide range of human effort",
+        "Because he wants readers to ignore practical incentives completely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter treats importance as a common human hunger, not a decorative extra. People often work harder when they feel their value is seen.",
+        "direct": "Correct. Carnegie uses the idea to explain why recognition can move people more strongly than pressure alone.",
+        "competitive": "Importance is not a vanity side quest here. It is one of the engines underneath ambition, loyalty, and effort."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What does the Charles Schwab example contribute to the chapter?",
+      "choices": [
+        "It shows that sincere praise can strengthen performance more effectively than fault-finding as a first move",
+        "It proves that managers should never mention mistakes",
+        "It argues that money matters less than recognition in every job without exception"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Schwab gives the chapter a practical anchor. He preferred drawing out effort through appreciation rather than beginning with criticism.",
+        "direct": "Option A is the fit. Carnegie uses Schwab to make honest appreciation feel operational, not merely sentimental.",
+        "competitive": "Schwab is the management proof point. He gets output by enlarging effort, not by opening with the lash."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Lena needs Omar to take ownership of a late client revision. Which opening best matches the chapter?",
+      "choices": [
+        "Tell him the delay proves he is not serious enough for the project",
+        "Start by naming the gap he closed well last week, then connect the next revision to the trust he can build with the client",
+        "Do the revision herself so she does not have to motivate anyone"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter does not recommend fake praise or avoidance. It recommends appealing to a real motive the other person can own willingly.",
+        "direct": "Option B links recognition to the next action. That keeps accountability present while giving Omar a reason that is larger than Lena's frustration.",
+        "competitive": "A personal attack shrinks him. A specific recognition tied to trust gives him something worth stepping up for."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Which statement best preserves Carnegie's line between appreciation and flattery?",
+      "choices": [
+        "Flattery is stronger because it makes people feel good faster",
+        "Appreciation and flattery are basically the same if the result is useful",
+        "Honest appreciation is anchored to something true, while flattery mainly serves the speaker"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter keeps sincerity central. Real appreciation notices something specific and true instead of spraying compliments for advantage.",
+        "direct": "Option C is the boundary. Once praise detaches from reality and becomes self-serving, the chapter says it has crossed into flattery.",
+        "competitive": "Flattery sounds sweet because it is trying to buy something. Honest appreciation can survive scrutiny because it is earned."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "A student leader keeps thanking the whole club in generic language, but effort is still flat. What does Chapter 2 suggest is missing?",
+      "choices": [
+        "Recognition has to become concrete enough that people feel their actual contribution was seen",
+        "The leader should switch from praise to warnings about consequences",
+        "The problem proves recognition never matters in group settings"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "People rarely feel deeply appreciated by vague positivity. Specific recognition gives the praise weight and credibility.",
+        "direct": "Correct. Carnegie's idea is not generic encouragement. It is sincere appreciation connected to real effort or value.",
+        "competitive": "If the praise could fit anybody, nobody fully believes it belongs to them."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "In a relationship, what changes when someone says they noticed how much care you put into holding the week together?",
+      "choices": [
+        "The conversation can shift from feeling unseen to feeling recognized in a specific way",
+        "The speaker has automatically solved every conflict in the relationship",
+        "The statement works only if it is followed by a demand"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Specific appreciation can soften the feeling of invisibility. It names a real contribution that had been passing without recognition.",
+        "direct": "Option A fits the chapter. Honest appreciation changes the emotional climate because it makes value visible.",
+        "competitive": "Feeling unseen drains effort fast. Specific recognition can reverse that without a speech about sacrifice."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "A rep says buy this because I need to hit quota. Why is that framing so weak under Carnegie's logic?",
+      "choices": [
+        "Because customers only respond to discounts, never to motive",
+        "Because it centers the speaker's need instead of the other person's interest or gain",
+        "Because direct language is always worse than indirect language"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter keeps asking the reader to stop leading with personal wants. Influence improves when the appeal begins from the other person's side.",
+        "direct": "Option B is right. A self-centered request gives the listener almost nothing to want on their own.",
+        "competitive": "Quota is your motive, not theirs. If the frame stays there, do not expect eager movement."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "When does appreciation start sliding into manipulation in this chapter?",
+      "choices": [
+        "When recognition is offered without any personal warmth at all",
+        "When the praise is detached from truth and used mainly to control the other person",
+        "When the other person enjoys being recognized"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The danger appears when praise stops being a truthful notice of value and becomes a lever with no honest center.",
+        "direct": "Correct. Carnegie's line holds as long as appreciation stays reality-based rather than becoming false sweetness for gain.",
+        "competitive": "The move turns manipulative the moment the compliment is bait instead of recognition."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What is the clearest bridge from Chapter 2 into Chapter 3?",
+      "choices": [
+        "Once appreciation is established, the next question is how to begin from what the other person wants",
+        "Once appreciation works, the book no longer needs to discuss motives",
+        "Once people feel important, criticism becomes the best way to keep them moving"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Chapter 2 identifies the positive lever. The next step is learning to think from the other person's desire instead of our own wishes.",
+        "direct": "Option A fits the bridge. Appreciation opens the door to a broader discipline of motive-awareness.",
+        "competitive": "Recognition is not the endpoint. It sets up the harder skill of entering the deal from the other side of the table."
+      },
+      "bloomsLevel": "transfer",
+      "depthLevel": "deeper"
+    }
+  ]
+}

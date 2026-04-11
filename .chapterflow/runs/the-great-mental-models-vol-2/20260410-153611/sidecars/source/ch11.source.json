@@ -1,0 +1,38 @@
+{
+  "title": "Evolution Part One: Natural Selection and Extinction",
+  "heading": "Evolution Part One: Natural Selection and Extinction",
+  "section": "Biology",
+  "pageStart": 183,
+  "approxWords": 170,
+  "properNouns": [
+    "Google Books",
+    "Scott Vejdani"
+  ],
+  "repeatedTerms": [
+    "selection",
+    "extinction",
+    "environment",
+    "fit",
+    "survival"
+  ],
+  "sourceReferences": [
+    {
+      "sourceId": "google-books-2024",
+      "use": "chapter title and page start"
+    },
+    {
+      "sourceId": "vejdani-notes",
+      "use": "narrow chapter-level paraphrase support"
+    }
+  ],
+  "supportSummary": [
+    "Natural selection explains why some variants persist under environmental pressure while others disappear.",
+    "Extinction is part of the same logic because systems that cannot fit changing conditions fail to survive.",
+    "Strong judgment pays attention to environmental fit rather than assuming strength in the abstract is enough."
+  ],
+  "unsupportedZones": [
+    "population genetics detail or evolutionary math not in the frozen bundle",
+    "named species case studies not present in the frozen support",
+    "exact quotations from the chapter interior"
+  ]
+}

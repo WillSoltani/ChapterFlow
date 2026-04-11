@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What does Chapter 9 say the operations process links together?",
+      "choices": [
+        "Strategy and people through coordinated execution",
+        "Only budgets and spreadsheets",
+        "Culture and branding only"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter treats operations as the link that makes strategy and people move together.",
+        "direct": "Bossidy and Charan define operations as a coordinating execution process, not as clerical administration.",
+        "competitive": "Operations is where the plan and its carriers finally have to lock in."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does synchronization matter so much in this chapter?",
+      "choices": [
+        "Because parallel activity is not the same as aligned execution",
+        "Because budgets make timing irrelevant",
+        "Because trade-offs eliminate coordination needs"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says teams can work hard and still fail to move together.",
+        "direct": "Synchronization matters because activity alone does not guarantee shared timing or shared priorities.",
+        "competitive": "Busy teams can still miss together if the clocks never line up."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A plan looks neat, but its timeline depends on assumptions no one has tested. What weakness from Chapter 9 does that reveal?",
+      "choices": [
+        "That the goals may inherit weak premises and become less credible",
+        "That contingencies no longer matter",
+        "That synchronization is optional"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter treats assumption quality as central because goals inherit the strength of their premises.",
+        "direct": "Untested assumptions can make an orderly operating plan structurally weak.",
+        "competitive": "Neat timelines built on fantasy still crack fast."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A student team cannot fully fund every idea and every event this quarter. What would Chapter 9 most likely say next?",
+      "choices": [
+        "That making explicit trade-offs is part of serious operating work",
+        "That the team should keep every priority equally strong",
+        "That trade-offs prove the plan was a mistake"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says serious plans have to choose under constraint.",
+        "direct": "Trade-offs are treated as evidence of realism rather than of planning failure.",
+        "competitive": "If nothing gets cut, the plan is probably bluffing."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "How does Chapter 9 distinguish being busy from being synchronized?",
+      "choices": [
+        "Synchronization means the moving parts share timing, priorities, and operating assumptions",
+        "Being busy always means the plan is coordinated",
+        "Synchronization matters only after quarterly review"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants aligned movement, not just high activity.",
+        "direct": "Synchronized execution requires shared clocks and shared premises, not just effort.",
+        "competitive": "Motion without alignment is still organized confusion."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Why do contingencies and quarterly reviews belong inside the operations process?",
+      "choices": [
+        "Because plans need disciplined correction as conditions change",
+        "Because revision shows the plan was weak from the start",
+        "Because goals replace the need for review"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter expects change and wants the plan ready to adjust without drifting.",
+        "direct": "Contingencies and review rhythm help the organization revise honestly while keeping structure.",
+        "competitive": "If the plan never checks itself, time will check it harder."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "How could Chapter 9 transfer to personal planning?",
+      "choices": [
+        "By making assumptions explicit, choosing trade-offs, and using goals to guide follow-through",
+        "By avoiding contingencies because personal plans should stay simple",
+        "By treating budgets as irrelevant outside business"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The same operations logic helps personal plans stay realistic and carried over time.",
+        "direct": "Personal planning gets stronger when it tests assumptions, accepts limits, and keeps review rhythm alive.",
+        "competitive": "Your own plan can still split apart if the premises and cuts stay hidden."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "A budget discussion stays vague because nobody wants to name the real resource limits. What is Chapter 9 exposing?",
+      "choices": [
+        "That budgeting is supposed to force clarity about commitments and capacity",
+        "That budgets are only for accountants",
+        "That assumptions no longer matter once goals are set"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter treats budgeting as a pressure tool for clarity rather than as a side ritual.",
+        "direct": "Resource truth matters because the plan cannot stay honest if commitments stay vague.",
+        "competitive": "Soft budget talk usually means the plan is hiding from its own limits."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does the chapter connect goals, follow-through, and contingencies?",
+      "choices": [
+        "Because durable execution needs stable direction plus disciplined adjustment under pressure",
+        "Because contingencies replace the need for goals",
+        "Because follow-through matters only when nothing changes"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants goals strong enough to anchor the work while the plan still adapts honestly.",
+        "direct": "Follow-through and contingencies work together so the plan can stay alive without becoming rigid or drifting.",
+        "competitive": "A live plan needs both an anchor and a way to absorb the hit."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What is the best bridge from Chapter 9 into Chapter 10?",
+      "choices": [
+        "After showing how people, strategy, and operations must be held together, the book can compress that discipline into direct leader counsel",
+        "The next step is to drop process thinking entirely",
+        "Chapter 10 focuses only on reviewing operations data"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The final chapter can speak directly because the book has already built the operating logic underneath it.",
+        "direct": "Chapter 10 compresses the linked discipline of people, strategy, and operations into leader-facing guidance.",
+        "competitive": "Once the machinery is clear, the book can tell the leader what must be held together."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

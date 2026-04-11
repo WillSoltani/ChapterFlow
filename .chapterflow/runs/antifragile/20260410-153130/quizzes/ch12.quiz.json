@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's main claim about optionality?",
+      "choices": [
+        "Optionality lets a person benefit from favorable outcomes without precise prediction",
+        "Optionality means prediction no longer matters anywhere",
+        "Optionality means never commit to anything"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says upside can be captured without perfect foresight.",
+        "direct": "Taleb values structures where favorable outcomes can help even when prediction is imperfect.",
+        "competitive": "The point is not prophecy. It is positioned upside."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the chapter value freedom without obligation?",
+      "choices": [
+        "Because it removes every downside from life",
+        "Because it preserves access to upside without forcing equal commitment to downside",
+        "Because it makes all forecasts unnecessary"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Freedom matters because a person can stay open to gains without taking on equal risk.",
+        "direct": "Non-obligation is valuable when it keeps participation in upside while limiting forced downside exposure.",
+        "competitive": "Stay close enough to collect the win without signing up for equal pain."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What common misreading does the chapter reject?",
+      "choices": [
+        "Optionality means keeping every door open forever",
+        "Optionality can reduce dependence on exact prediction",
+        "Optionality involves asymmetry"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter is not praising endless delay or indecision.",
+        "direct": "Taleb rejects the idea that all open doors are valuable; optionality must preserve real asymmetric gain.",
+        "competitive": "A hallway full of dead doors is not a strategy."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Nina can take a path that pays only if one exact forecast comes true or a path that leaves several favorable outcomes able to help her while keeping commitment bounded. Which choice fits the chapter best?",
+      "choices": [
+        "Take the path that depends on one exact forecast",
+        "Choose the structure with live upside from several favorable paths",
+        "Avoid both because uncertainty is the problem"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter prefers setups where more than one good outcome can still help.",
+        "direct": "The better fit is the option with favorable exposure and bounded obligation rather than one prediction-dependent path.",
+        "competitive": "Take the setup that can still get paid without a hero call."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Which statement would the chapter reject most strongly?",
+      "choices": [
+        "Prediction confidence is the only real edge under uncertainty",
+        "Optionality can matter when several good paths remain live",
+        "Open options help only when meaningful upside stays accessible"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says arrangement can matter more than forecast confidence.",
+        "direct": "Taleb argues that favorable exposure can outperform structures that depend completely on exact foresight.",
+        "competitive": "That answer crowns prophecy and misses the smarter payoff shape."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "When does keeping options open stop being real optionality?",
+      "choices": [
+        "When it preserves live asymmetric gain",
+        "When it delays commitment but no longer preserves meaningful upside",
+        "When it keeps non-obligation in place"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Open doors stop helping when they no longer lead to real benefit.",
+        "direct": "Optionality disappears when postponement removes access to favorable gain or preserves no asymmetry.",
+        "competitive": "If the open door cannot still pay, you are just drifting."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "An innovation lab keeps several project paths alive so that any one of them could create useful gains without forcing the team into one narrow commitment too early. What pattern does this show?",
+      "choices": [
+        "Real optionality",
+        "Avoidance of all commitment",
+        "Prediction becoming useless"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The lab is preserving live upside while keeping obligation limited.",
+        "direct": "This matches the chapter's structure of favorable exposure with bounded commitment.",
+        "competitive": "They are keeping the gain routes live instead of kneeling to one forecast."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why can optionality reduce the importance of precise prediction?",
+      "choices": [
+        "Because no judgment is needed once options exist",
+        "Because a structure can gain from several favorable paths instead of one exact path",
+        "Because flexibility always produces upside automatically"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A person does not need the one exact path if several good outcomes can still help.",
+        "direct": "Arrangement matters because benefit can come from whichever favorable path materializes, reducing dependence on one narrow forecast.",
+        "competitive": "If multiple good roads still pay you, the forecast loses some of its throne."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What deeper shift does the chapter ask from the reader?",
+      "choices": [
+        "Move from valuing only forecast accuracy to valuing payoff structures that can capture upside",
+        "Treat all commitment as a mistake",
+        "Assume uncertainty disappears once options exist"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter shifts attention from prediction alone to positioned benefit.",
+        "direct": "Taleb wants the reader to see favorable exposure and bounded obligation as a stronger edge than confidence in one forecast.",
+        "competitive": "Stop worshipping the forecast and start respecting the payoff shape."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How does this chapter lead into the next one?",
+      "choices": [
+        "It shows that practice matters less once optionality exists",
+        "It argues that once positioned benefit matters, action can generate knowledge before theory catches up",
+        "It claims theory should replace experimentation"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The next chapter asks how doing can teach before explanation fully arrives.",
+        "direct": "The bridge is from optionality as favorable exposure to practice as a source of discovery before theory explains it.",
+        "competitive": "Once the setup beats the prophecy, reality-testing becomes the next teacher."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

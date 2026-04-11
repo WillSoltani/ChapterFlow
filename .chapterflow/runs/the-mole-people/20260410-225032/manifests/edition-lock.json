@@ -1,0 +1,78 @@
+{
+  "bookId": "the-mole-people",
+  "runId": "20260410-225032",
+  "lockedAt": "2026-04-10T22:53:57Z",
+  "selectionMode": "auto_locked_after_discovery",
+  "materialAmbiguity": false,
+  "title": "The Mole People",
+  "author": "Jennifer Toth",
+  "chosenEdition": {
+    "name": "First English edition",
+    "fullTitle": "The mole people: life in the tunnels beneath New York City",
+    "publisher": "Chicago Review Press",
+    "publishedDate": "1993-01-01",
+    "publishedYear": 1993,
+    "language": "English",
+    "isbn13": "",
+    "isbn10": "1556521901",
+    "format": "Print reference edition for chapter-map stability",
+    "sourceOfTruth": "https://openlibrary.org/books/OL1414520M/The_mole_people",
+    "chapterStructure": [
+      "Introduction",
+      "Finding a Home",
+      "Seville's Story",
+      "Mac's War",
+      "The Underground Population",
+      "Underground Spaces",
+      "The Bowery",
+      "Living with the Law",
+      "Hell's Kitchen",
+      "Children",
+      "Roots",
+      "Bernard's Tunnel",
+      "Tunnel Art",
+      "Graffiti",
+      "Runaways",
+      "Tunnel Outreach",
+      "Dark Angel",
+      "The Underground in History, Literature, and Culture",
+      "Wanderers",
+      "Harlem Gang",
+      "J.C.'s Community",
+      "\"City of Friends\"",
+      "Women",
+      "Jamall's Story",
+      "Blade's Piece",
+      "Epilogue"
+    ]
+  },
+  "alternativesConsidered": [
+    {
+      "name": "1995 Chicago Review Press trade-paper reissue",
+      "publishedDate": "1995-10-01",
+      "isbn13": "9781556522413",
+      "url": "https://www.chicagoreviewpress.com/the-mole-people-products-9781556522413.php",
+      "status": "same_work_family_non_material_variant",
+      "notes": "Official current product page for the same core work family. Useful for metadata and summary support, but the 1993 first edition is the cleaner chapter-map lock."
+    },
+    {
+      "name": "Google Books work-family page",
+      "publishedDate": "1993-01-01",
+      "isbn13": "9781556522413",
+      "url": "https://books.google.com/books/about/The_Mole_People.html?id=PkkljqEiL-4C",
+      "status": "authorized_metadata_cross_check",
+      "notes": "Authorized preview page confirms the same title family and table of contents but is not as stable as the first-edition bibliographic record for edition lock purposes."
+    }
+  ],
+  "decisionRationale": [
+    "Open Library exposes the 1993 Chicago Review Press first-edition identifiers, pagination, and one visible excerpt, which makes it the strongest edition lock in the lawful bundle.",
+    "Google Books and the CCLS Syndetics table of contents match the same chapter order from Introduction through Epilogue.",
+    "The 1995 Chicago Review Press product page reflects a later reissue of the same work family, not a materially different chapter structure.",
+    "No translation or materially different chapter order was found that would change chapter-level scope or interpretation."
+  ],
+  "operatingRules": {
+    "quotePolicy": "paraphrase_first",
+    "exactQuotePolicy": "allowed_only_if_verified_in_frozen_bundle",
+    "translationQuestionRequired": false
+  }
+}

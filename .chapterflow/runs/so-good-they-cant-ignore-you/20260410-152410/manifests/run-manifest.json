@@ -1,0 +1,51 @@
+{
+  "packVersion": "v13-autonomous",
+  "bookId": "so-good-they-cant-ignore-you",
+  "runId": "20260410-152410",
+  "packRoot": "scripts/book/prompts/chapterflow-v13-autonomous",
+  "runRoot": ".chapterflow/runs/so-good-they-cant-ignore-you/20260410-152410",
+  "outputProfile": "flagship_v4_compatible",
+  "learningContract": "research_native",
+  "runProfile": "balanced_flagship",
+  "validationMode": "chapter_gate",
+  "chapterGateMode": "automatic_continue",
+  "chapterGateQuizMode": "generate",
+  "scenarioTonePolicy": "required",
+  "rightsMode": "startup_light",
+  "waveSize": 2,
+  "generateChapterReviewWrapper": true,
+  "strictPackAudit": true,
+  "forbidBulkGenerators": true,
+  "releaseAssembleFromValidatedOnly": true,
+  "preserveApprovedChapterHashes": true,
+  "sourceFreezeRequired": true,
+  "artifactGuardRequired": true,
+  "releaseGuardRequired": true,
+  "qualitySentryRequired": true,
+  "qualityDecayStopDelta": 1.5,
+  "sourceDiscoveryMode": "web_bundle",
+  "editionSelectionMode": "ask_if_ambiguous",
+  "sourcePolicy": "public_or_authorized_plus_secondary",
+  "bookRequest": {
+    "title": "“So-Good-They-Cant-Ignore-You“",
+    "author": "“Cal-Newport”",
+    "editionPreference": "ask_if_ambiguous"
+  },
+  "book": {
+    "bookId": "so-good-they-cant-ignore-you",
+    "title": "“So-Good-They-Cant-Ignore-You“",
+    "author": "“Cal-Newport”",
+    "categories": [],
+    "tags": [],
+    "edition": {
+      "name": "",
+      "translator": "",
+      "publishedYear": null,
+      "translationYear": null,
+      "sourceText": ".chapterflow/runs/so-good-they-cant-ignore-you/20260410-152410/source-freeze/book-source.txt",
+      "sourceProvenance": ""
+    },
+    "variantFamily": "EMH",
+    "chapterRange": ""
+  }
+}

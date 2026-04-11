@@ -1,0 +1,38 @@
+{
+  "title": "Cooperation",
+  "heading": "Cooperation",
+  "section": "Biology",
+  "pageStart": 303,
+  "approxWords": 145,
+  "properNouns": [
+    "Google Books",
+    "Ingram Syndetics"
+  ],
+  "repeatedTerms": [
+    "cooperation",
+    "coordination",
+    "shared",
+    "mutual",
+    "system"
+  ],
+  "sourceReferences": [
+    {
+      "sourceId": "google-books-2024",
+      "use": "chapter title and page start"
+    },
+    {
+      "sourceId": "ingram-syndetics-toc",
+      "use": "chapter sequence after replication"
+    }
+  ],
+  "supportSummary": [
+    "The chapter title supports a focus on coordinated action among multiple actors.",
+    "Following Replication, the narrow support allows discussion of patterns that persist across people and now require alignment.",
+    "Conservative paraphrase can emphasize coordination, mutual gain, and shared cost without inventing biology detail."
+  ],
+  "unsupportedZones": [
+    "species cooperation stories or game-theory detail not present in the frozen bundle",
+    "technical biology explanations of cooperative evolution",
+    "exact quotations from the chapter interior"
+  ]
+}

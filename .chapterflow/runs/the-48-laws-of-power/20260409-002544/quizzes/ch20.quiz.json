@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "ch20-q01",
+      "prompt": "Why can early commitment reduce leverage in this chapter?",
+      "choices": [
+        "Because all loyalty is always weak",
+        "Because visible alignment makes you easier to count and use",
+        "Because uncertainty is always morally superior"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Correct. The chapter says public allegiance can make your position easier to predict and spend.",
+        "direct": "Early alignment narrows options and lowers bargaining force.",
+        "competitive": "Right. Once they can count you, they can work around you."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch20-q02",
+      "prompt": "What can noncommitment preserve here?",
+      "choices": [
+        "Timing, options, and bargaining power",
+        "Permanent moral purity",
+        "Guaranteed safety from all pressure"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter values noncommitment because it can keep leverage alive.",
+        "direct": "Uncertain alignment may preserve option space and negotiating room.",
+        "competitive": "Right. If the yes is still open, it still has price."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch20-q03",
+      "prompt": "Why is this chapter not generic anti-loyalty advice?",
+      "choices": [
+        "Because it says no commitment is ever worthwhile",
+        "Because neutrality always wins",
+        "Because it allows commitment once the cost is justified"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Correct. Greene warns against premature allegiance, not every allegiance.",
+        "direct": "The issue is timing and leverage, not loyalty as such.",
+        "competitive": "Right. Commit when the return justifies losing the option."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch20-q04",
+      "prompt": "In Miraan's work scenario, what best fits the chapter?",
+      "choices": [
+        "Join fast so the team stops pressuring him",
+        "Delay visible alignment until the terms are clearer",
+        "Promise loyalty to both sides at once"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. He preserves leverage by not making his side too cheap too early.",
+        "direct": "The chapter favors timed commitment over pressured capture.",
+        "competitive": "Right. Keep the yes expensive until the terms sharpen."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch20-q05",
+      "prompt": "Why did Seline's policy council lose bargaining power?",
+      "choices": [
+        "Because endorsement came before terms were extracted",
+        "Because councils should never endorse anything",
+        "Because all public votes are weak"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Correct. Early allegiance spent the uncertainty that had bargaining value.",
+        "direct": "The council became easier to count before it got enough in return.",
+        "competitive": "Yes. It sold clarity too cheaply."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch20-q06",
+      "prompt": "What is the strongest reading of Oren's dilemma?",
+      "choices": [
+        "Loyalty is always a trap",
+        "Immediate allegiance proves seriousness better than judgment",
+        "Care for someone can coexist with delaying capture by their conflict"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Yes. The chapter separates care from surrendering independence too early.",
+        "direct": "He can value the person without letting urgency dictate commitment timing.",
+        "competitive": "Right. Loyalty is not the same as volunteering to be used."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch20-q07",
+      "prompt": "How does visible alignment make you easier to use?",
+      "choices": [
+        "It lets others assume access to your loyalty and plan around it",
+        "It makes every future choice impossible",
+        "It removes all uncertainty from the world"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Correct. Visible allegiance reduces uncertainty for others in a way that helps them.",
+        "direct": "Once your side is known, others can reorganize around your reduced independence.",
+        "competitive": "Yes. Your certainty becomes their convenience."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch20-q08",
+      "prompt": "When does noncommitment become empty drift instead of strategy?",
+      "choices": [
+        "When it preserves no leverage, timing, or purpose",
+        "When it keeps options alive",
+        "When it delays a side until terms are clearer"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. Distance matters only if it protects something concrete.",
+        "direct": "The chapter rejects fence-sitting that preserves nothing worth using.",
+        "competitive": "Right. Delay without leverage is just fog."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch20-q09",
+      "prompt": "How does Chapter 19 lead into Chapter 20?",
+      "choices": [
+        "Person-reading becomes irrelevant once pressure starts",
+        "After reading the person, the next issue is resisting being bound by their agenda",
+        "Chapter 20 rejects all need to judge people"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Correct. Chapter 19 reads the person; Chapter 20 manages what that person wants from your alignment.",
+        "direct": "The sequence moves from pressure-reading to commitment control.",
+        "competitive": "Right. First read who they are, then guard what they want to bind."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch20-q10",
+      "prompt": "What bridge carries Chapter 20 into Chapter 21?",
+      "choices": [
+        "Chapter 21 says public certainty is always strongest",
+        "Noncommitment removes the need for misdirection",
+        "Keeping your allegiance expensive prepares the next edge of being underestimated"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Correct. The next chapter turns from withheld alignment to the usefulness of being sized up wrongly.",
+        "direct": "After resisting capture, the next advantage is mismeasurement.",
+        "competitive": "Right. First stay unclaimed, then let them read you too simply."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

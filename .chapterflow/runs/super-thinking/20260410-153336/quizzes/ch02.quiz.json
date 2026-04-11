@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "How does Chapter 2 use Murphy's Law?",
+      "choices": [
+        "As proof that every plan is doomed to fail",
+        "As a defensive rule to prepare for plausible failure paths",
+        "As a reason to avoid systems and incentives entirely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Correct. The chapter does not use Murphy's Law as a message of hopelessness. It uses it as a reminder to prepare for how a plan could break before the damage arrives.",
+        "direct": "Murphy's Law is framed as preparedness, not fatalism. The chapter treats failure paths as part of planning rather than as rude surprises.",
+        "competitive": "Right answer. Murphy is there to kill naive optimism, not action itself."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What is the chapter's clearest sign that a metric has become dangerous?",
+      "choices": [
+        "It is difficult to measure precisely",
+        "It starts changing behavior away from the mission it was meant to serve",
+        "It requires several people to track at once"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns about metric capture. A number becomes dangerous when people start serving the number instead of the real goal behind it.",
+        "direct": "Perverse incentives appear when the metric stops acting like a report and starts acting like a reward structure that distorts behavior.",
+        "competitive": "Exactly. The number becomes the boss, and the mission gets demoted to decoration."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Which situation best fits cobra effect?",
+      "choices": [
+        "A rule slightly improves the problem but costs more than expected",
+        "An attempted solution changes incentives so the original problem gets worse",
+        "A system produces mixed results because people disagree on the goal"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Cobra effect is the sharper kind of backfire. The fix does not merely fall short. It helps create a worse version of the problem.",
+        "direct": "The chapter uses cobra effect for the case where the intervention intensifies the harm because the environment adapts to the rule in the wrong direction.",
+        "competitive": "Right. The rule becomes fuel for the enemy instead of a weapon against it."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A principal rewards teachers almost entirely on standardized test growth, and teachers start narrowing lessons to likely test items. According to the chapter, what is happening?",
+      "choices": [
+        "A perverse incentive is replacing the broader mission with metric service",
+        "Murphy's Law has been disproven because the score improved",
+        "The system is healthy because measurable progress is always preferable"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "This is the chapter's central metric warning. The target is shifting behavior toward the score rather than toward the larger purpose of learning.",
+        "direct": "The metric has become a behavioral magnet. The visible result may improve while the underlying mission gets thinner or more distorted.",
+        "competitive": "The scoreboard took over. The teachers are now serving the number more than the students."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Rina bans her own shopping apps to stop impulse spending, but she starts making rushed purchases on her laptop and hiding them from herself in other budget categories. What does the chapter say this shows?",
+      "choices": [
+        "Her original solution may be feeding the problem through a new path",
+        "The only issue is that she needs a stricter punishment",
+        "Personal habits cannot be analyzed with system thinking"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter would treat this as a backfire risk. The response changed the surface of the habit, but it may have strengthened the deeper problem elsewhere.",
+        "direct": "This is cobra-effect logic in a personal setting. The intervention ignored adaptation, so the behavior found a different route.",
+        "competitive": "She did not kill the problem. She trained it to move sideways."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which choice best shows short-termism?",
+      "choices": [
+        "Cutting team training to improve this quarter's margin while weakening future capability",
+        "Reducing one unnecessary meeting to create more focused work time",
+        "Pausing a project after new evidence changes the assumptions"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Short-termism is the trap of winning visibly now while quietly draining the future. The training cut looks efficient immediately but weakens later performance.",
+        "direct": "The move improves the reporting window by borrowing from a longer durability window. That is exactly the delayed-cost structure the chapter warns about.",
+        "competitive": "This is the fake win: pretty quarter, weaker team."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why does the chapter connect short-termism to incentives rather than treating it as simple impatience?",
+      "choices": [
+        "Because delayed costs often stay hidden during the same window that rewards the decision",
+        "Because long-term thinking always produces better immediate results too",
+        "Because future costs are easier to measure than present gains"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter's point is that the wrong time window can reward harmful choices. People get praised before the deeper cost becomes visible.",
+        "direct": "Short-termism survives structurally because accountability and measurement are often narrower than the system's real durability cycle.",
+        "competitive": "The trap works because the applause lands before the bill does."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What is the most chapter-aligned response when a system seems to be producing bad outcomes even though no single person looks obviously reckless?",
+      "choices": [
+        "Assume the problem is probably just bad luck",
+        "Check whether the structure itself is producing suboptimal behavior",
+        "Ignore the system and focus only on individual intention"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter broadens the diagnosis beyond one actor. Sometimes the structure keeps creating the outcome, which is why system-level thinking matters.",
+        "direct": "This is where market-failure logic enters. The setup itself may be misaligned even when individuals can each defend their local choices.",
+        "competitive": "Do not hunt for a single villain when the board itself may be rigged to leak."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the chapter's deepest reason for pairing Murphy's Law with perverse incentives, cobra effect, short-termism, and market failure?",
+      "choices": [
+        "To argue that every system eventually collapses",
+        "To show that unintended consequences follow recognizable paths that can be anticipated in design",
+        "To prove that metrics and planning should be abandoned"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter is not claiming that failure is random or unavoidable. It is showing that systems often go wrong along patterns you can inspect before acting.",
+        "direct": "Murphy's Law becomes practical by connecting to mechanisms. Incentives, adaptation, delayed cost, and structural mismatch give failure shape instead of leaving it as vague doom.",
+        "competitive": "Exactly. The point is not that disaster is magical. The point is that you were supposed to read the trap lines early."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If Chapter 1 taught you to reduce self-created errors, what new demand does Chapter 2 add?",
+      "choices": [
+        "Trust your improved judgment enough to ignore system-level risks",
+        "Stop acting whenever incentives look messy",
+        "Examine how incentives, adaptation, and delayed costs can still distort careful action"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Chapter 2 adds the system layer. Even after you improve your own judgment, the surrounding structure can still bend your effort into unintended outcomes.",
+        "direct": "The bridge from Chapter 1 is clear: reducing unforced errors is necessary, but not sufficient. Careful action still needs failure-path thinking once it enters a system.",
+        "competitive": "You stopped handing away easy points in Chapter 1. Chapter 2 tells you the game can still punish you through the machinery around the play."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

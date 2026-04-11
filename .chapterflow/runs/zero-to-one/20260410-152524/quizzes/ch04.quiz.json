@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's main mechanism for explaining why competition becomes a problem?",
+      "choices": [
+        "Competition captures attention and turns strategy reactive",
+        "Competition proves all markets are morally corrupt",
+        "Competition always removes the need for long-term planning"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says rivalry becomes dangerous when it starts directing what people notice and how they choose.",
+        "direct": "Attention capture is the core mechanism: competition narrows focus until strategy becomes reactive.",
+        "competitive": "The contest starts doing the thinking for the company."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "How does the chapter define competition beyond market structure?",
+      "choices": [
+        "As an ideology or mindset that makes contest feel inherently virtuous",
+        "As a legal term that applies only to monopolies",
+        "As a temporary problem caused only by bad managers"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter is saying competition can become a habitual way of seeing, not just an outside fact.",
+        "direct": "Competition matters here as ideology because it shapes attention and status, not only prices.",
+        "competitive": "The rivalry becomes a belief system, not just a condition."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is the chapter's concern about constant competitive comparison?",
+      "choices": [
+        "It makes strategy more borrowed and imitative",
+        "It guarantees more original products",
+        "It removes all need to know the market"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns that people start copying more easily when rivals become the center of attention.",
+        "direct": "Reactive comparison turns borrowed moves into a substitute for independent judgment.",
+        "competitive": "If rivals are your starting point, you are already thinking secondhand."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Soren keeps reopening a rival's launch dashboard before every roadmap meeting. Which chapter lesson fits best?",
+      "choices": [
+        "He is showing healthy realism because rivals should always define priorities",
+        "He may be letting competitive fixation write the agenda",
+        "He has solved the problem by paying close attention to the market"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says noticing rivals is different from letting them decide what matters.",
+        "direct": "This is strategic captivity: awareness has slipped into agenda-setting obsession.",
+        "competitive": "The dashboard has become the boss."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "A student team copies the leading pitch deck because it feels safer than defining a different frame. What would the chapter say?",
+      "choices": [
+        "The team is practicing necessary originality",
+        "The team is confusing competitive legibility with strong strategy",
+        "The team should copy even more closely to stay realistic"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns that comparison can make copying feel wiser than it really is.",
+        "direct": "Rivalry pressure often rewards imitation because it looks defensible, not because it is strategically strong.",
+        "competitive": "They are borrowing legitimacy instead of building position."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Why does the chapter say competition keeps its prestige?",
+      "choices": [
+        "Because intense contest is often mistaken for importance or merit",
+        "Because all difficult work must come from rivalry",
+        "Because markets always reward the most reactive company"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says people admire intensity and confuse it with valuable work.",
+        "direct": "Competitive intensity gets moral prestige even when it is making judgment thinner.",
+        "competitive": "The fight looks noble even when it is making everyone dumber."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What distinction keeps the chapter from collapsing into \"ignore rivals\" advice?",
+      "choices": [
+        "The difference between awareness and obsession",
+        "The difference between product and sales",
+        "The difference between planning and luck"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter still allows awareness. It rejects captivity, not perception.",
+        "direct": "Knowing the field is compatible with strategy; letting the field write strategy is the problem.",
+        "competitive": "See the rival, but do not hand over the steering wheel."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Rhea feels proud that her week was consumed by answering competitors. What chapter warning applies?",
+      "choices": [
+        "Busyness inside a contest can be mistaken for meaningful strategic work",
+        "Reactive work is always the fastest route to monopoly",
+        "Pride in rivalry proves her team is focused on customers"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says the contest itself can become the object of admiration.",
+        "direct": "This is the prestige trap: intensity is being rewarded even though it may be narrowing strategy.",
+        "competitive": "The fight is getting applause while the roadmap gets weaker."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why is competition described as ideological rather than merely practical in this chapter?",
+      "choices": [
+        "Because it shapes identity and judgment, not only market behavior",
+        "Because it can be solved only by changing laws",
+        "Because it disappears whenever firms stop talking about rivals"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter cares about mindset because mindset changes what people praise, notice, and copy.",
+        "direct": "Competition becomes ideological when it acquires prestige and starts governing attention from the inside.",
+        "competitive": "The crowd moves from outside pressure to internal religion."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How does Chapter 4 set up Chapter 5?",
+      "choices": [
+        "It moves from rivalry as trap to the question of what kind of advantage actually lasts",
+        "It proves all strategy should be abandoned in favor of speed",
+        "It replaces market thinking with pure psychology"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Chapter 4 explains why rivalry is narrowing, and Chapter 5 asks what stronger, longer-lasting positioning looks like instead.",
+        "direct": "The bridge is from reactive competition to durable advantage over time.",
+        "competitive": "First the book exposes the trap. Next it asks what survives beyond the trap."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

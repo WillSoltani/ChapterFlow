@@ -20,3 +20,7 @@
 2026-04-08T23:05:22-0300 Chapter 5 chapter-gate validation passed after strict chapter-breakdown band repair; validated chapter, review package, reading metrics, and continuity seal written.
 2026-04-08T23:27:49-0300 Chapter 6 chapter-gate validation passed after strict support-structure and chapter-breakdown band repair; validated chapter, review package, reading metrics, and continuity seal written.
 2026-04-09T12:22:16-0300 Chapter 7 chapter-gate validation passed after strict chapter-breakdown band repair; validated chapter, review package, reading metrics, and continuity seal written.
+2026-04-10T15:45:24Z Chapter 8 chapter-gate validation passed after strict prose-overlap, quiz-embed, and chapter-breakdown repairs; validated chapter, review package, reading metrics, validation report, and continuity seal written.
+2026-04-10T15:45:24Z Chapter 8 final checks passed: chapter lint `FAIL=0 WARN=0`, review-package lint `FAIL=0 WARN=0`, artifact guard `FAIL=0 WARN=0`. Wave 4 clean.
+2026-04-10T15:50:30Z Release-gate repair: rewrote flagged reinforcement surfaces and breakdown openers across validated Chapters 1-7, rebuilt validated review packages from corrected structured payloads, and refreshed continuity seals for the repaired chapters.
+2026-04-10T15:50:30Z Final release checks passed: artifact guard `FAIL=0 WARN=0`, release guard `FAIL=0 WARN=0`, release-gate lint `FAIL=0 WARN=0`, package validator `PASS`, and `npm run build` completed successfully.

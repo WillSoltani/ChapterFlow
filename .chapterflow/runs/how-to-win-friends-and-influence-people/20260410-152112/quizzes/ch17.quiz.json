@@ -1,0 +1,174 @@
+{
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What practical formula does Chapter 17 offer?",
+      "choices": [
+        "Ask what the person thinks they are protecting or pursuing",
+        "Agree with the other person immediately",
+        "Ignore the motive completely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter begins with the protection-or-pursuit question.",
+        "direct": "Option A fits. That is the chapter's central formula.",
+        "competitive": "That is the engine-read the chapter wants."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the chapter go below the surface argument?",
+      "choices": [
+        "Because a deeper motive may be driving it",
+        "Because surface words never matter",
+        "Because judgment should disappear"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says the visible position can be serving a hidden stake.",
+        "direct": "Option A matches the motive-reading logic of the chapter.",
+        "competitive": "The claim can be guarding something else."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What are the two core motive questions in the chapter?",
+      "choices": [
+        "What is the person protecting or pursuing?",
+        "Who is older and who is louder?",
+        "What time is it and who is present?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The formula asks what the person believes they are protecting or pursuing.",
+        "direct": "Option A states the chapter's two motive directions.",
+        "competitive": "Guarding or chasing is the read."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A manager asks what an employee feels is at stake before answering a defensive objection. What chapter move is this?",
+      "choices": [
+        "Motive-reading",
+        "Topic avoidance",
+        "Automatic surrender"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The manager is trying to read what is being protected or pursued.",
+        "direct": "This is motive-reading, not avoidance.",
+        "competitive": "That is reading the engine before swinging."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "A club argument about policy is really protecting status. What does the chapter suggest?",
+      "choices": [
+        "The surface claim is covering a deeper stake",
+        "The policy details no longer exist",
+        "Judgment should stop completely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says visible arguments can ride on hidden motives.",
+        "direct": "Option A fits because the policy claim is serving a status concern.",
+        "competitive": "The speech was covering the rank fight."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What limit does the chapter place on understanding motives?",
+      "choices": [
+        "Understanding is not the same as approval",
+        "Understanding erases judgment",
+        "Understanding means always agreeing"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps legibility separate from endorsement.",
+        "direct": "Understanding the motive does not require surrendering judgment.",
+        "competitive": "Read the engine without handing over the verdict."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Which option misreads the chapter as sentimental empathy?",
+      "choices": [
+        "Asking what the person thinks they are protecting",
+        "Responding with vague warmth instead of reading the stake",
+        "Making the motive more legible"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter rejects blurry warmth as a substitute for the formula.",
+        "direct": "Option B is sentimental empathy, not strategic legibility.",
+        "competitive": "That is mood, not a read."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "advanced"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What does motive legibility give the conversation?",
+      "choices": [
+        "More traction and precision",
+        "Less need to think",
+        "Automatic agreement"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says a clearer motive makes the position easier to work with.",
+        "direct": "Option A fits because legibility strengthens the handle you have on the exchange.",
+        "competitive": "Once the engine shows, the room gets workable."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "advanced"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why is concrete empathy stronger than sentimental empathy here?",
+      "choices": [
+        "Because it asks a specific motive question",
+        "Because it avoids all judgment forever",
+        "Because it makes everyone immediately happy"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter is strong because it asks a sharp question about the person's stake.",
+        "direct": "Specific motive-reading is more useful than vague warmth.",
+        "competitive": "A sharp read beats a soft glow."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "advanced"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why does this chapter lead naturally into Chapter 18?",
+      "choices": [
+        "Because clearer motives make sympathy more precise",
+        "Because sympathy replaces judgment entirely",
+        "Because the next chapter ignores ideas and desires"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next chapter can use sympathy more precisely because the motives underneath are clearer.",
+        "direct": "Option A fits because legibility helps sympathy avoid vagueness.",
+        "competitive": "Once the engine is visible, sympathy can aim better."
+      },
+      "bloomsLevel": "transfer",
+      "depthLevel": "advanced"
+    }
+  ]
+}

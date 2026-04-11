@@ -4,12 +4,16 @@ Read:
 - PACK_ROOT/style/voice.md
 - PACK_ROOT/style/constraints.md
 - PACK_ROOT/style/memoir-fidelity.md
+- PACK_ROOT/style/books/{bookId}.md when that file exists for the brief's `bookId`
+- PACK_ROOT/style/books/the-one-thing.md when the brief says `bookId: the-one-thing`
+- PACK_ROOT/style/books/the-art-of-war.md when the brief says `bookId: the-art-of-war`
 - PACK_ROOT/style/grade-bands.md
 - PACK_ROOT/style/bad-patterns.md
 - PACK_ROOT/style/gold-patterns.md
 - PACK_ROOT/style/gold-prose.md
 - PACK_ROOT/rules/chapter-quality-gate.md
 - PACK_ROOT/rules/prose-audit-rules.md
+- PACK_ROOT/rules/the-one-thing-polish-pass.md when the brief says `bookId: the-one-thing`
 - PACK_ROOT/rules/evidence-anchor-rules.md
 - the chapter brief
 - the chapter outline

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What does an adaptive organization do in Chapter 11?",
+      "choices": [
+        "It improves process and quality through feedback loops without stopping learning",
+        "It removes all process so teams can move faster",
+        "It focuses only on customer feedback and ignores internal failures"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says adaptation improves process and quality while keeping learning alive.",
+        "direct": "Ries defines adaptive organizations through feedback loops that do not turn into bureaucratic slowdown.",
+        "competitive": "Adaptive companies add intelligence, not just drag."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does Chapter 11 use the Five Whys?",
+      "choices": [
+        "To assign blame more precisely after a failure",
+        "To move below the surface incident toward deeper causes",
+        "To replace all other forms of quality work"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The Five Whys helps the team keep asking what made the failure likely.",
+        "direct": "The method matters because it shifts diagnosis from the immediate defect to the conditions behind it.",
+        "competitive": "It keeps the room from hiding behind the last visible bug."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A bug has reappeared for the third time. What does Chapter 11 suggest the team should suspect?",
+      "choices": [
+        "That recurring failure may point to a human-system problem as well as a technical one",
+        "That repetition proves the bug is impossible to understand",
+        "That the team should avoid discussing process until the product is larger"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says repeated technical problems often signal deeper organizational causes.",
+        "direct": "A recurring defect should raise questions about ownership, handoffs, review, or incentives rather than only about the code itself.",
+        "competitive": "If the failure keeps coming back, the org chart may be helping write it."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "In Jordan's campus ops scenario, what did the Five Whys reveal?",
+      "choices": [
+        "That one volunteer should be removed from the team",
+        "That the missed handoff pointed toward scheduling and ownership flaws",
+        "That student groups should avoid postmortems"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The repeated questions exposed process problems rather than only an individual's mistake.",
+        "direct": "Jordan used the Five Whys to trace the missed handoff toward organizational design flaws.",
+        "competitive": "The whiteboard moved the blame target from a volunteer to the system."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What false choice does Chapter 11 reject?",
+      "choices": [
+        "That teams must choose either quality or speed with no balance possible",
+        "That teams must choose either hiring or training",
+        "That teams must choose either customers or revenue"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says process should improve quality without freezing learning.",
+        "direct": "Ries rejects the idea that quality discipline and learning speed are natural enemies.",
+        "competitive": "The goal is not chaos or sludge. It is disciplined motion."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Why can a team stay busy and still fail to adapt?",
+      "choices": [
+        "Because fixing symptoms can leave the system that creates them untouched",
+        "Because adaptation requires avoiding all repairs",
+        "Because only founders can change process"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns that visible effort can hide repeated shallow diagnosis.",
+        "direct": "A team may patch each incident while preserving the human-system conditions that make similar incidents likely.",
+        "competitive": "Busy hands can keep the symptom alive if the system never gets questioned."
+      },
+      "bloomsLevel": "understand-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "How could a nonprofit, campus group, or small team apply Chapter 11 well?",
+      "choices": [
+        "By treating recurring errors as feedback about how the group is organized",
+        "By assuming only software companies need root-cause learning",
+        "By avoiding process changes until failure becomes severe"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter's logic works anywhere repeated mistakes can reveal a weak process.",
+        "direct": "Adaptation is transferable because any organization can use recurring failure to inspect ownership, handoffs, and incentives.",
+        "competitive": "Mission does not exempt the system from blame."
+      },
+      "bloomsLevel": "transfer",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What is wrong with a postmortem that patches only the technical trigger and stops there?",
+      "choices": [
+        "It is always too expensive to run",
+        "It may miss the human-system causes that keep similar incidents recurring",
+        "It proves the incident was not serious"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says recurring technical failures often point deeper than the immediate trigger.",
+        "direct": "Stopping at code can leave ownership, escalation, communication, or review failures untouched.",
+        "competitive": "Fix the spark only and the dry forest stays on duty."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why do organizations keep misdiagnosing recurring failure as isolated technical trouble?",
+      "choices": [
+        "Because deeper human-system diagnoses are often socially and politically harder",
+        "Because recurring failure always has a random cause",
+        "Because process questions are unrelated to learning"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The deeper diagnosis can be uncomfortable because it may challenge how the group works.",
+        "direct": "A local technical explanation is easier to discuss and close than a diagnosis that implicates leadership or organizational design.",
+        "competitive": "The room prefers the bug explanation because the bug cannot embarrass the org."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How does Chapter 11 connect to Chapter 12?",
+      "choices": [
+        "Chapter 12 asks how established companies can protect innovation once adaptation and internal learning matter",
+        "Chapter 12 abandons organizational learning and returns only to customer interviews",
+        "Chapter 12 argues that established companies should stop innovating"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "After adaptation inside the company, the next question is how bigger firms keep innovation alive.",
+        "direct": "Chapter 11 leads into the problem of preserving room for learning and innovation in established organizations.",
+        "competitive": "Once the org can diagnose itself, the next threat is the core business crushing new learning."
+      },
+      "bloomsLevel": "connect-transfer",
+      "depthLevel": "hard"
+    }
+  ]
+}

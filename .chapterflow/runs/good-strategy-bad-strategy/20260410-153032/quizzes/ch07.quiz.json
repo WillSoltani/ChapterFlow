@@ -1,0 +1,115 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch07-q01",
+      "prompt": "After sources of power are identified, what question does Chapter 7 add?",
+      "choices": [
+        "How to apply force through leverage",
+        "How to write more policies",
+        "How to protect every front equally"
+      ],
+      "correctIndex": 0,
+      "explanation": "Chapter 7 moves from found power to the problem of concentrated application."
+    },
+    {
+      "questionId": "ch07-q02",
+      "prompt": "What best distinguishes leverage from broad effort?",
+      "choices": [
+        "Leverage spreads force evenly",
+        "Leverage concentrates force where it changes outcomes most",
+        "Leverage avoids tradeoffs"
+      ],
+      "correctIndex": 1,
+      "explanation": "Leverage is concentrated force at the point of highest effect, not broad coverage."
+    },
+    {
+      "questionId": "ch07-q03",
+      "prompt": "Why can a team with plenty of activity still have little leverage?",
+      "choices": [
+        "Because activity can be spread across too many fronts",
+        "Because leverage always requires fewer people",
+        "Because leverage rejects all measurement"
+      ],
+      "correctIndex": 0,
+      "explanation": "High activity can coexist with low leverage when force is diffused instead of concentrated."
+    },
+    {
+      "questionId": "ch07-q04",
+      "prompt": "In the school examples, what should leaders identify before concentrating force?",
+      "choices": [
+        "The largest department",
+        "The pivot point that changes the rest",
+        "The most popular initiative"
+      ],
+      "correctIndex": 1,
+      "explanation": "A pivot point deserves concentration because it alters the payoff of later moves."
+    },
+    {
+      "questionId": "ch07-q05",
+      "prompt": "Which pattern most strongly signals diffusion rather than leverage?",
+      "choices": [
+        "One point gets enough force to unlock later gains",
+        "Every line gets a little attention and none changes much",
+        "A smaller move reshapes the rest of the system"
+      ],
+      "correctIndex": 1,
+      "explanation": "Diffusion spreads strength so widely that no point receives enough force to matter."
+    },
+    {
+      "questionId": "ch07-q06",
+      "prompt": "How does Chapter 7 extend Chapter 6?",
+      "choices": [
+        "It replaces power with balance",
+        "It applies force to the power source that was previously identified",
+        "It says power and leverage are unrelated"
+      ],
+      "correctIndex": 1,
+      "explanation": "Chapter 6 finds power; Chapter 7 shows how force should be concentrated on it."
+    },
+    {
+      "questionId": "ch07-q07",
+      "prompt": "A household plan has one job that unlocks several others. What would leverage suggest?",
+      "choices": [
+        "Spread effort equally across all tasks",
+        "Concentrate effort on the unlocking job first",
+        "Add more chores to keep momentum high"
+      ],
+      "correctIndex": 1,
+      "explanation": "Leverage favors concentrated force on the action that changes the rest of the system."
+    },
+    {
+      "questionId": "ch07-q08",
+      "prompt": "What is the strongest sign that leverage is real?",
+      "choices": [
+        "The plan looks balanced across teams",
+        "Force is concentrated at a point that changes the outcome disproportionately",
+        "The activity dashboard is full"
+      ],
+      "correctIndex": 1,
+      "explanation": "Real leverage shows up when force lands at the pivot point rather than being spread broadly."
+    },
+    {
+      "questionId": "ch07-q09",
+      "prompt": "Why can broad coverage become weakness disguised as discipline?",
+      "choices": [
+        "Because it removes all accountability",
+        "Because it thins force below the level needed to matter",
+        "Because it always costs more money"
+      ],
+      "correctIndex": 1,
+      "explanation": "Coverage can preserve motion while starving the crucial point of enough concentrated force."
+    },
+    {
+      "questionId": "ch07-q10",
+      "prompt": "What chapter move naturally follows a clear understanding of leverage?",
+      "choices": [
+        "Turning toward proximate objectives",
+        "Returning to generic effort language",
+        "Expanding every front at once"
+      ],
+      "correctIndex": 0,
+      "explanation": "Once leverage is clear, the next question is how to keep action focused step by step through proximate objectives."
+    }
+  ]
+}

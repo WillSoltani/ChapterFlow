@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What does Chapter 5 say no leader should delegate?",
+      "choices": [
+        "Getting the right people in the right jobs",
+        "Running every weekly meeting personally",
+        "Writing all performance reviews alone"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter treats people placement as core leader work.",
+        "direct": "Right-role staffing is framed as non-delegable because it shapes execution directly.",
+        "competitive": "You can outsource paperwork, not role-fit judgment."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why do the wrong people often stay in the wrong jobs according to the chapter?",
+      "choices": [
+        "Because leaders lack knowledge, courage, or both",
+        "Because job descriptions are always unclear",
+        "Because strong teams never notice fit problems"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter points to missing knowledge and missing courage early in its diagnosis.",
+        "direct": "Leaders often avoid facing fit problems even when the signal is visible.",
+        "competitive": "The truth is usually blocked by ignorance, fear, or both."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A well-liked team member keeps slowing a critical handoff, and the leader keeps calling it a development issue. What is the chapter most likely to ask next?",
+      "choices": [
+        "Whether loyalty or comfort is hiding a role-fit problem",
+        "Whether the team should lower its standards",
+        "Whether the issue can be ignored until morale improves"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter asks whether comfort is masking the real fit judgment.",
+        "direct": "Likability does not remove the need to judge what the role truly requires.",
+        "competitive": "The question is whether the leader is protecting the person or protecting comfort."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "In a school team choosing a captain, what Chapter 5 standard matters most?",
+      "choices": [
+        "Pick the most popular candidate",
+        "Choose the person whose role fit strengthens execution for the group",
+        "Let everyone rotate through the role equally"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter prioritizes fit with the work over social comfort or popularity.",
+        "direct": "Role placement should reflect what the job needs, not what feels easiest politically.",
+        "competitive": "Do not hand the role to the favorite if the work needs a finisher."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What is the psychological comfort factor in this chapter?",
+      "choices": [
+        "The leader's tendency to protect ease and familiarity over clear judgment",
+        "The team's need for a supportive workplace",
+        "A method for helping people adapt to change"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Comfort becomes a bias when it protects the leader from hard truth.",
+        "direct": "The chapter treats comfort as a distortion in people judgment, not as harmless kindness.",
+        "competitive": "Comfort is what makes a leader call avoidance patience."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which qualities does the chapter explicitly value in the right people?",
+      "choices": [
+        "They energize others, decide tough issues, get things done through others, and follow through",
+        "They speak well, stay agreeable, and avoid conflict",
+        "They look impressive even when results are mixed"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The heading map makes the role-fit qualities concrete and execution-centered.",
+        "direct": "The chapter values people who increase the group's ability to decide and carry work.",
+        "competitive": "This is not charisma hiring. It is execution hiring."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "How could Chapter 5 transfer to a personal or volunteer context?",
+      "choices": [
+        "Role-fit judgment matters wherever responsibilities affect other people's work",
+        "People placement only matters in corporations",
+        "The chapter applies only to formal employees"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The same fit problem appears in school teams, clubs, and volunteer groups.",
+        "direct": "Any shared work suffers when role assignment follows comfort instead of real need.",
+        "competitive": "Wrong seat, same crash, no matter the setting."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What does the chapter mean by the unvarnished truth?",
+      "choices": [
+        "Telling the fit truth clearly enough to make real action possible",
+        "Using harsh language to prove seriousness",
+        "Assuming development is impossible once problems appear"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The unvarnished truth is about clarity, not cruelty.",
+        "direct": "Leaders need to name the real fit issue so development, reassignment, or harder action can become genuine options.",
+        "competitive": "If you sugarcoat the mismatch, you kill every real option after it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "How does the chapter distinguish development from mismatch denial?",
+      "choices": [
+        "Development stays real only after the leader tells the truth about current fit",
+        "Development means leaving everyone in place as long as possible",
+        "Mismatch always requires immediate removal"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter allows development, but not as a cover story for avoiding fit judgment.",
+        "direct": "Truth about what the role needs now has to come before any honest development plan.",
+        "competitive": "Development without truth is just comfort with better branding."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What is the best bridge from Chapter 5 into Chapter 6?",
+      "choices": [
+        "The next step is to stop thinking about people and move to strategy",
+        "If people judgment matters this much, the organization needs a disciplined people process",
+        "Chapter 6 drops role placement and focuses only on motivation"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The next chapter scales individual judgment into a broader people process.",
+        "direct": "Chapter 6 formalizes the people decisions that Chapter 5 makes morally and operationally urgent.",
+        "competitive": "If one leader call matters this much, the whole system needs a process."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "hard"
+    }
+  ]
+}

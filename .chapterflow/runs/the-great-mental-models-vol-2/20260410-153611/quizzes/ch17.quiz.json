@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch17-q01",
+      "prompt": "What does cooperation mean in the chapter's practical sense?",
+      "choices": [
+        "Several people agreeing that the outcome matters",
+        "Coordinated action that creates shared gain",
+        "Any situation where nobody openly argues"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter defines cooperation as aligned effort that produces a shared result.",
+        "direct": "Cooperation is coordinated action toward shared gain, not just agreement or calm behavior.",
+        "competitive": "It is about fit that creates value, not polite group vibes."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch17-q02",
+      "prompt": "Which detail best shows shared gain?",
+      "choices": [
+        "Three people each doing the same task separately",
+        "A group repeating the same goal statement together",
+        "Different contributors handling distinct parts that improve one overall result"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Shared gain appears when the parts reinforce one another inside one result.",
+        "direct": "The chapter looks for coordinated contributions that make the whole stronger than isolated efforts would have made it.",
+        "competitive": "The win shows up when the parts lock together."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch17-q03",
+      "prompt": "Why can a group with the same goal still fail to cooperate?",
+      "choices": [
+        "Because shared goals remove the need for role clarity",
+        "Because trust, handoffs, or incentives can still be weak",
+        "Because cooperation only works in very small groups"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says goals alone do not make alignment stable.",
+        "direct": "A group can still fail when trust is weak, roles are unclear, or incentives pull people away from the joint effort.",
+        "competitive": "The banner can stay shared while the deal underneath it falls apart."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch17-q04",
+      "prompt": "Isaac's two teams improve their launch timeline mainly because they:",
+      "choices": [
+        "Make handoffs and expectations explicit",
+        "Stop depending on one another entirely",
+        "Avoid role definition so nobody feels constrained"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The teams improve when each side knows what the other will deliver and when.",
+        "direct": "The gain comes from structure that makes dependence reliable rather than guess-based.",
+        "competitive": "They tighten the fit instead of hoping alignment appears on its own."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch17-q05",
+      "prompt": "How does the chapter distinguish cooperation from vague harmony talk?",
+      "choices": [
+        "Cooperation depends on shared gain, trust, and structure rather than on feelings alone",
+        "Harmony and cooperation are interchangeable if the group is sincere",
+        "Cooperation means avoiding all tension between contributors"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter asks what conditions make joint effort work, not just whether people feel positive.",
+        "direct": "Cooperation is structured alignment toward a real gain, not a mood of togetherness.",
+        "competitive": "Nice feelings are not the same thing as a field that actually fits."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch17-q06",
+      "prompt": "What is the best reading of a household plan that weakens once each person starts tracking only whether the other is doing less?",
+      "choices": [
+        "The chapter would say temporary imbalance never matters",
+        "The chapter would say cooperation is impossible in personal settings",
+        "Defection pressure is replacing focus on shared gain"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The shared arrangement weakens once self-protection becomes the main concern.",
+        "direct": "The chapter uses this case to show how cooperation erodes when people stop believing the joint deal is worth the exposure.",
+        "competitive": "The scoreboard is beating the gain."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch17-q07",
+      "prompt": "Which action best applies cooperation thinking?",
+      "choices": [
+        "Name the shared gain, clarify the roles, and inspect the main trust and timing risks",
+        "Assume shared goals will remove the need for follow-through",
+        "Reduce all joint efforts to solo work whenever friction appears"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter asks you to judge what keeps joint effort aligned and worthwhile.",
+        "direct": "Cooperation becomes practical when it is treated as a design problem about gain, roles, trust, and cost.",
+        "competitive": "Name the gain and the drag before you trust the group."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch17-q08",
+      "prompt": "A student group keeps missing its practice slot because nobody owns the equipment queue. Which response fits the chapter?",
+      "choices": [
+        "Assume the problem is lack of care and avoid changing the structure",
+        "Treat the failure as a coordination problem caused by weak role clarity",
+        "Conclude that cooperation is mostly luck"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter would look for the missing coordination role.",
+        "direct": "The failure comes from weak structure around timing and handoff, not necessarily from bad motives.",
+        "competitive": "The group had energy, but the field had a gap."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch17-q09",
+      "prompt": "Which statement best captures the chapter's practical rule?",
+      "choices": [
+        "Cooperation works best when nobody notices the costs",
+        "Shared goals are usually enough if people are sincere",
+        "Judge cooperation by the gain it creates, the structure it requires, and whether the arrangement is still worth its cost"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter counts both the value of joint effort and the conditions needed to keep it stable.",
+        "direct": "Wise judgment weighs gain, role clarity, trust load, defection pressure, and coordination cost together.",
+        "competitive": "A good deal creates upside and still pays after the drag is counted."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch17-q10",
+      "prompt": "How does this chapter set up hierarchical organization?",
+      "choices": [
+        "It asks how cooperation can scale across larger systems and levels",
+        "It finishes the coordination problem completely so no structural question remains",
+        "It returns to replication by focusing only on transfer fidelity again"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next question is how larger cooperative systems organize roles and control across levels.",
+        "direct": "Cooperation creates the need for a model of layered coordination once the system grows in scale.",
+        "competitive": "Once the field gets bigger, somebody has to decide how the levels fit."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

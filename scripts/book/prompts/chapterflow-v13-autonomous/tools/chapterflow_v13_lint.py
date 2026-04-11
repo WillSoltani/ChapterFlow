@@ -19,6 +19,8 @@ CONTAMINATION = [
     "sourceanchorpriority",
     "internal concept budget",
 ]
+ANTIFRAGILE_TITLE = "Antifragile: Things That Gain from Disorder"
+ANTIFRAGILE_AUTHOR = "Nassim Nicholas Taleb"
 
 def load_json(path):
     with open(path, "r", encoding="utf-8") as f:
@@ -44,6 +46,52 @@ def tone_objects(obj):
 
 def norm(s):
     return re.sub(r"\s+", " ", s.strip().lower())
+
+def meta_text(value):
+    return str(value or "").replace("“", '"').replace("”", '"').replace("‘", "'").replace("’", "'").strip()
+
+def is_antifragile(data):
+    book = data.get("book", {}) if isinstance(data, dict) else {}
+    title = norm(meta_text(book.get("title", "")))
+    author = norm(meta_text(book.get("author", "")))
+    book_id = norm(meta_text(book.get("bookId", "")))
+    return book_id == "antifragile" or "antifragile" in title or "nassim nicholas taleb" in author
+
+def antifragile_metadata_checks(data, fail_msgs):
+    if not isinstance(data, dict) or not is_antifragile(data):
+        return
+    book = data.get("book", {})
+    if meta_text(book.get("title")) != ANTIFRAGILE_TITLE:
+        fail_msgs.append("antifragile metadata title must be normalized exactly")
+    if meta_text(book.get("author")) != ANTIFRAGILE_AUTHOR:
+        fail_msgs.append("antifragile metadata author must be normalized exactly")
+    if re.search(r"[“”‘’]", str(book.get("title", "")) + str(book.get("author", ""))):
+        fail_msgs.append("antifragile metadata contains curly quote corruption")
+    if "chapters" in data and isinstance(data["chapters"], list):
+        edition = book.get("edition", {})
+        if not data.get("packageId"):
+            fail_msgs.append("antifragile packageId missing")
+        if not data.get("createdAt"):
+            fail_msgs.append("antifragile createdAt missing")
+        if not data.get("contentOwner"):
+            fail_msgs.append("antifragile contentOwner missing")
+        if not isinstance(book.get("categories"), list) or not book.get("categories"):
+            fail_msgs.append("antifragile categories missing")
+        if book.get("variantFamily") != "EMH":
+            fail_msgs.append("antifragile variantFamily must equal EMH")
+        if not meta_text(book.get("chapterRange")):
+            fail_msgs.append("antifragile chapterRange missing")
+        if not isinstance(edition, dict) or not meta_text(edition.get("name")):
+            fail_msgs.append("antifragile edition.name missing")
+        if not meta_text(edition.get("sourceText")):
+            fail_msgs.append("antifragile edition.sourceText missing")
+        if not meta_text(edition.get("sourceProvenance")):
+            fail_msgs.append("antifragile edition.sourceProvenance missing")
+        if not edition.get("publishedYear"):
+            fail_msgs.append("antifragile edition.publishedYear missing")
+    else:
+        if meta_text(book.get("title")) != ANTIFRAGILE_TITLE or meta_text(book.get("author")) != ANTIFRAGILE_AUTHOR:
+            fail_msgs.append("antifragile chapter-level book object is not normalized")
 
 def tone_similarity_fail(t):
     vals = [norm(v) for v in t.values()]
@@ -90,12 +138,13 @@ def main():
     data = load_json(path)
     fails = []
     warns = []
+    antifragile_metadata_checks(data, fails)
     for ch in package_chapters(data):
         quiz_checks(ch, mode, fails)
         scenario_checks(ch, fails)
         tone_checks(ch, fails)
         contamination_checks(ch, fails)
-    audit = audit_package(data, source_path=path)
+    audit = audit_package(data, source_path=path.resolve())
     for issue in audit["issues"]:
         line = f"{issue['issue_type']} at {issue['location']}: {issue['message']}"
         if issue["severity"] == "FAIL":

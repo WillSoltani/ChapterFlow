@@ -1,0 +1,54 @@
+{
+  "nameUsage": {},
+  "formatCategoryHistory": [],
+  "schoolSettingUsage": {},
+  "wordFrequency": {},
+  "phraseFrequency": {},
+  "openerRegistry": {
+    "gentle": {},
+    "direct": {},
+    "competitive": {}
+  },
+  "titleTemplateRegistry": {},
+  "endingPatternRegistry": {},
+  "withinChapterNames": {},
+  "approvedChapterHashes": {
+    "ch01": {
+      "chapterId": "ch01-motivation",
+      "sha256": "a5d316a54a336c689d338c6a78d1026a7bf5efd0711019450c91f5d930bb82af",
+      "validatedPath": ".chapterflow/runs/smarter-faster-better/20260410-223734/validated/ch01.chapter.json",
+      "sealedAt": "2026-04-10T23:41:00Z"
+    },
+    "ch02": {
+      "chapterId": "ch02-teams",
+      "sha256": "fe4949ba082ccb87a25fca7dc7f82586723e0c7724ac9ead7fc080e518f8d17f",
+      "validatedPath": ".chapterflow/runs/smarter-faster-better/20260410-223734/validated/ch02.chapter.json",
+      "sealedAt": "2026-04-11T02:06:00Z"
+    },
+    "ch03": {
+      "chapterId": "ch03-focus",
+      "sha256": "09b3315c3b4580871ccfcf6a7a24d9c5fe3382a2dc4293f198c6e78155fba232",
+      "validatedPath": ".chapterflow/runs/smarter-faster-better/20260410-223734/validated/ch03.chapter.json",
+      "sealedAt": "2026-04-11T02:18:00Z"
+    },
+    "ch04": {
+      "chapterId": "ch04-goal-setting",
+      "sha256": "7781cc6bf9c7080ceab8e73623262dae767ec46dd42a12458329a85a784c9f30",
+      "validatedPath": ".chapterflow/runs/smarter-faster-better/20260410-223734/validated/ch04.chapter.json",
+      "sealedAt": "2026-04-11T02:48:00Z"
+    },
+    "ch05": {
+      "chapterId": "ch05-managing-others",
+      "sha256": "6bd2ba25a7cf745b0329629c1b62658036502f8f7bd46a27a0a5efc66bf48d4a",
+      "validatedPath": ".chapterflow/runs/smarter-faster-better/20260410-223734/validated/ch05.chapter.json",
+      "sealedAt": "2026-04-11T03:05:00Z"
+    },
+    "ch06": {
+      "chapterId": "ch06-decision-making",
+      "sha256": "fac28287720b554dcb94958c742351691933649bba4559c482a5075a31e32a20",
+      "validatedPath": ".chapterflow/runs/smarter-faster-better/20260410-223734/validated/ch06.chapter.json",
+      "sealedAt": "2026-04-11T03:24:00Z"
+    }
+  },
+  "baselineQuality": {}
+}

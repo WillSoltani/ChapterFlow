@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What central tool does Chapter 6 use to tame a complex decision?",
+      "choices": [
+        "Decision tree that splits the choice into branches and consequences",
+        "A rule to trust your strongest first feeling",
+        "A formula that removes uncertainty completely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Correct. The chapter uses decision tree to turn one messy choice into visible paths.",
+        "direct": "Decision tree is the chapter's anchor because it decomposes one blurred choice into inspectable structure.",
+        "competitive": "Right. The first move is to cut the fog into branches."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why can a hard choice feel heavier than it should?",
+      "choices": [
+        "Because several possible futures are being carried together as one blur",
+        "Because every difficult choice already has one obvious answer",
+        "Because structure always makes judgment worse"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says complexity often feels overwhelming when multiple futures stay bundled together.",
+        "direct": "Bundled uncertainty is the underlying problem. The decision feels larger because the branches are not yet separated.",
+        "competitive": "Exactly. The fog gets power when several futures hide in one lump."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What changes once branches and consequences become visible?",
+      "choices": [
+        "Judgment can compare paths instead of reacting to one global feeling",
+        "The future becomes fully certain",
+        "The decision no longer has any tradeoffs"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Visible branches let the reader compare paths more calmly and clearly.",
+        "direct": "The method improves comparison by attaching consequences to specific routes instead of one overall mood.",
+        "competitive": "Right. Once the paths are visible, the mood loses its monopoly."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A manager says a staffing choice feels impossible because too many issues are mixed together. What chapter move fits best?",
+      "choices": [
+        "Split the decision into options, branches, and likely consequences",
+        "Wait for intuition to get louder",
+        "Pretend all branches are equally known"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter would begin by separating the bundled issues into visible paths.",
+        "direct": "This is decomposition in action: make the options and consequences inspectable before judging.",
+        "competitive": "Cut the pile apart before you let one stressed feeling call itself wisdom."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "A student draws a decision tree, but each branch still hides several different outcomes. What should happen next?",
+      "choices": [
+        "Refine the branches until the consequences are clearer",
+        "Stop there because boxes automatically create insight",
+        "Abandon the structure and trust mood instead"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter treats decomposition as iterative. If the path is still vague, split it further.",
+        "direct": "A branch must become concrete enough to support comparison. Otherwise the tree is only repackaging confusion.",
+        "competitive": "Keep cutting. Cleaner boxes are worthless if the hidden futures are still smuggled inside them."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What boundary does the chapter place on decision-tree thinking?",
+      "choices": [
+        "It should clarify uncertainty without pretending uncertainty disappears",
+        "It should make every consequence exactly measurable",
+        "It should replace all judgment with mechanical certainty"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter values structure, but it keeps unresolved uncertainty visible.",
+        "direct": "Chapter 6 rejects fake precision. Organization helps only when it stays honest about what remains unknown.",
+        "competitive": "Exactly. The boxes are not a permit to counterfeit certainty."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why does the chapter prefer visible uncertainty to bundled uncertainty?",
+      "choices": [
+        "Because visible uncertainty can be located and reasoned through path by path",
+        "Because visible uncertainty is always pleasant",
+        "Because bundled uncertainty means the decision is already solved"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Visible uncertainty is easier to examine because each concern belongs to a specific path.",
+        "direct": "The chapter makes uncertainty discussable by locating it within branches and consequences.",
+        "competitive": "Fog is weaker when the unknowns have addresses."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Which response best fits the chapter when a personal decision feels overwhelmingly emotional?",
+      "choices": [
+        "Separate the main paths and inspect what consequence belongs to each one",
+        "Treat the intensity of the mood as the final verdict",
+        "Assume structure is only for business decisions"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter applies to emotional choices too by making their internal structure visible.",
+        "direct": "Even personal decisions improve when branches and consequences are separated instead of merged into one feeling.",
+        "competitive": "Do not let one mood run the whole hearing. Make each path testify."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the deepest Chapter 6 payoff of marking unknowns on the tree instead of hiding them?",
+      "choices": [
+        "The decision becomes structured without slipping into fake precision",
+        "The unknowns disappear once they are written down",
+        "The reader no longer needs judgment at all"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "This keeps the method honest. The tree helps by locating ambiguity rather than denying it.",
+        "direct": "The synthesis is visible reasoning under acknowledged uncertainty. Structure and candor have to stay together.",
+        "competitive": "Right. The serious version of the tree corners ambiguity instead of bluffing past it."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What practical sequence does the chapter leave the reader with?",
+      "choices": [
+        "Name options, trace branches, compare consequences, and keep unknowns visible",
+        "Trust the first feeling, then justify it later",
+        "Wait until every branch becomes certain before deciding"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That is the chapter's usable routine for hard choices.",
+        "direct": "The method is procedural: decompose first, compare second, and keep unresolved uncertainty on the page while judging.",
+        "competitive": "Exactly. Split the choice, expose the paths, and do not paint over the unknowns."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

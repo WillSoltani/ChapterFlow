@@ -1,0 +1,115 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch08-q01",
+      "prompt": "After leverage is chosen, what question does Chapter 8 add?",
+      "choices": [
+        "How to define the next credible objective",
+        "How to make the roadmap longer",
+        "How to avoid uncertainty entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": "Chapter 8 asks what proximate objective should now guide concentrated force."
+    },
+    {
+      "questionId": "ch08-q02",
+      "prompt": "Which option best describes a proximate objective in this chapter?",
+      "choices": [
+        "A concrete near-term objective under uncertainty",
+        "A motivational slogan for the whole team",
+        "A complete map of every later move"
+      ],
+      "correctIndex": 0,
+      "explanation": "A proximate objective is close enough and concrete enough to guide action without claiming total foresight."
+    },
+    {
+      "questionId": "ch08-q03",
+      "prompt": "Why does the chapter reject false precision?",
+      "choices": [
+        "Because detailed language is always wrong",
+        "Because it claims certainty the situation has not earned",
+        "Because strategy should avoid making any choices"
+      ],
+      "correctIndex": 1,
+      "explanation": "False precision is weak because it pretends the full route is already known."
+    },
+    {
+      "questionId": "ch08-q04",
+      "prompt": "In the school examples, what should the team name before asking for more work?",
+      "choices": [
+        "The next objective that can guide immediate choices",
+        "Every task for the rest of the year",
+        "A broader mission statement"
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter pushes teams to identify a concrete next objective rather than hide inside broad aspiration."
+    },
+    {
+      "questionId": "ch08-q05",
+      "prompt": "What is the main weakness of vague ambition in this chapter?",
+      "choices": [
+        "It sounds too pessimistic",
+        "It gives force no usable destination",
+        "It makes work happen too quickly"
+      ],
+      "correctIndex": 1,
+      "explanation": "Vague ambition cannot guide tradeoffs because it does not identify the next objective clearly enough."
+    },
+    {
+      "questionId": "ch08-q06",
+      "prompt": "How does Chapter 8 relate to Chapter 7?",
+      "choices": [
+        "It replaces leverage with task management",
+        "It explains what near-term objective should receive concentrated force",
+        "It argues that concentration is unnecessary"
+      ],
+      "correctIndex": 1,
+      "explanation": "Chapter 7 chose where force should matter; Chapter 8 chooses the next objective that should now guide that force."
+    },
+    {
+      "questionId": "ch08-q07",
+      "prompt": "A household plan has a giant wish list but no clear next move. What would this chapter ask for?",
+      "choices": [
+        "A bigger list with more details",
+        "A proximate objective that can be pursued now",
+        "A longer delay until certainty arrives"
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter favors a near-term objective that is concrete enough to guide action right now."
+    },
+    {
+      "questionId": "ch08-q08",
+      "prompt": "What is the strongest sign that a proximate objective is real?",
+      "choices": [
+        "It is close enough to guide current tradeoffs and action",
+        "It covers every later move already",
+        "It makes the strategy sound more inspiring"
+      ],
+      "correctIndex": 0,
+      "explanation": "A real proximate objective is concrete, near-term, and strategically meaningful enough to discipline choices."
+    },
+    {
+      "questionId": "ch08-q09",
+      "prompt": "Why can a plan with many tasks still drift?",
+      "choices": [
+        "Because tasks are always useless",
+        "Because detail automatically creates confusion",
+        "Because tasks do not replace a strategic near-term objective"
+      ],
+      "correctIndex": 2,
+      "explanation": "The chapter distinguishes a strategic proximate objective from mere task churn."
+    },
+    {
+      "questionId": "ch08-q10",
+      "prompt": "What chapter move naturally follows proximate objectives?",
+      "choices": [
+        "Turning toward design and coordinated action",
+        "Returning to vague ambition",
+        "Waiting until uncertainty disappears"
+      ],
+      "correctIndex": 0,
+      "explanation": "Once the next objective is clear, later chapters can ask how design and coordinated moves preserve coherence beyond it."
+    }
+  ]
+}

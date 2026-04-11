@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch08-q01",
+      "prompt": "What is the chapter's main claim about vivid mental pictures?",
+      "choices": [
+        "They matter because they can make an idea easier to imagine and remember",
+        "They matter because all good talks should sound literary",
+        "They matter only when a speaker uses many sensory adjectives in every sentence"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says imagery helps when it makes the idea easier for the audience to picture and hold.",
+        "direct": "Gallo treats vividness as a tool for understanding and memory, not as decorative style.",
+        "competitive": "The point is pictureability, not prettier language."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch08-q02",
+      "prompt": "How does Gallo mainly frame sensory detail in this chapter?",
+      "choices": [
+        "As a substitute for structure",
+        "As a communication tool that gives the idea shape",
+        "As a way to impress the audience with description"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Sensory detail matters because it helps the audience imagine what the speaker means.",
+        "direct": "The chapter treats imagery as a way of giving abstract ideas more shape and tangibility.",
+        "competitive": "The detail earns its place when it carries the concept, not when it shows off style."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "ch08-q03",
+      "prompt": "Maya's strategy slide feels too abstract. Which choice best fits the chapter?",
+      "choices": [
+        "Keep the abstract bullets and trust the audience to imagine the rest",
+        "Use one aligned concrete image that helps the team picture the problem more clearly",
+        "Add several decorative descriptions so the slide sounds more vivid"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Maya should add one image that makes the idea easier to picture without distracting from the strategy point.",
+        "direct": "The chapter favors aligned concreteness over either bare abstraction or decorative excess.",
+        "competitive": "Give the room one picture that carries the concept instead of more words that leave it floating."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch08-q04",
+      "prompt": "Ms. Carver tells Colin that the class still cannot see the concept. What is the repair?",
+      "choices": [
+        "Use one concrete image or moment that gives the concept shape",
+        "Add more definitions so the concept sounds more precise",
+        "Avoid imagery because school talks should stay fully abstract"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Colin needs one image the class can picture instead of only another definition.",
+        "direct": "The chapter wants the speaker to make the concept pictureable so understanding becomes easier to hold.",
+        "competitive": "Stop defending invisible language and build one visible point."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch08-q05",
+      "prompt": "Which trap does Chapter 8 most clearly warn against?",
+      "choices": [
+        "Assuming imagery becomes useless in serious talks",
+        "Assuming vivid detail is always helpful even when it decorates the talk instead of clarifying it",
+        "Assuming audiences prefer concrete examples to abstract terms"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns that imagery can still fail if it distracts from the point.",
+        "direct": "Gallo's limit is that vividness should clarify the message rather than compete with it.",
+        "competitive": "If the scenery wins and the meaning loses, the image became expensive clutter."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch08-q06",
+      "prompt": "What makes imagery chapter-faithful rather than ornamental?",
+      "choices": [
+        "It adds the greatest possible amount of sensory detail",
+        "It makes the idea easier to imagine while staying aligned to the point",
+        "It sounds more impressive than plain language"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The best image is the one that helps the audience picture the meaning more clearly.",
+        "direct": "The chapter praises aligned image-making, not verbal lushness or decorative volume.",
+        "competitive": "The image is faithful when it tightens understanding instead of expanding scenery."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch08-q07",
+      "prompt": "June is choosing between ornate description and one concrete scene. Which choice fits the chapter?",
+      "choices": [
+        "Use the cleaner scene that makes the point easiest to picture and understand",
+        "Use the more dramatic description because richer language always creates stronger memory",
+        "Avoid imagery entirely because it weakens serious community appeals"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "June should choose the image that carries the message most clearly.",
+        "direct": "The chapter values aligned concreteness over ornamental vividness that draws attention to itself.",
+        "competitive": "Take the image that makes the point visible, not the language that makes the speaker sound impressive."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "ch08-q08",
+      "prompt": "Why does Peter's polished presentation still underperform?",
+      "choices": [
+        "Because polished language is always less memorable than casual language",
+        "Because the room heard abstract concepts and got too little concrete imagery to hold onto",
+        "Because work presentations should focus only on emotional stories"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Peter's talk stayed too abstract for the audience to picture the main idea clearly.",
+        "direct": "This is the chapter's tangibility problem in action. Organization was present, but pictureability was too weak.",
+        "competitive": "The concept stayed invisible, so memory had little to grip."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch08-q09",
+      "prompt": "Alisa adds lots of decorative detail that points only loosely at the argument. What does that reveal?",
+      "choices": [
+        "More vivid language always improves memory no matter what it describes",
+        "Decorative imagery can damage clarity when it stops carrying the point",
+        "School speeches should never use any image or scene at all"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The detail does not help when it makes the image more memorable than the idea.",
+        "direct": "Alisa's result shows that imagery must stay aligned or it starts competing with the argument.",
+        "competitive": "Scenery without message fit is clutter with better lighting."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "ch08-q10",
+      "prompt": "Why does Chapter 8 naturally lead into Chapter 9 on originality?",
+      "choices": [
+        "Because once a speaker can make ideas vivid, the next question is how to do that without sounding borrowed or imitative",
+        "Because vividness should replace authenticity whenever the audience needs stronger memory",
+        "Because originality matters only after every talk becomes highly descriptive"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "After the speaker learns how to make ideas vivid, the next challenge is staying authentic and original.",
+        "direct": "Chapter 8 handles pictureability. Chapter 9 turns toward staying in your own lane instead of imitating others.",
+        "competitive": "Once the message is vivid, the next problem is whether it still sounds like you."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

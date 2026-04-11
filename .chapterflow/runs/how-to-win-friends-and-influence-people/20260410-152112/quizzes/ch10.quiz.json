@@ -1,0 +1,174 @@
+{
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What does Chapter 10 say an argument often fails to do?",
+      "choices": [
+        "Prove who is correct",
+        "Change the other person effectively",
+        "Produce any strong feelings"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter focuses on influence, not just correctness.",
+        "direct": "Option B fits. Arguments often fail as vehicles for movement.",
+        "competitive": "A strong point does not guarantee traction."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why do arguments often harden resistance?",
+      "choices": [
+        "Because defeat usually makes people protect pride",
+        "Because facts stop mattering completely",
+        "Because every disagreement is trivial"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Public defeat often makes people defensive.",
+        "direct": "Option A fits because pride protection increases resistance.",
+        "competitive": "A bruised ego reaches for armor."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is relational defeat in this chapter?",
+      "choices": [
+        "Losing all future friendships",
+        "Damaging openness or cooperation while winning the point",
+        "Forgetting part of your evidence"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The hidden loss is in the relationship channel.",
+        "direct": "Option B matches the chapter's main cost.",
+        "competitive": "You can win the claim and wound the link."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A teammate stops pushing once the meeting becomes rigid. What chapter move is this?",
+      "choices": [
+        "Strategic restraint",
+        "Factual surrender",
+        "Avoiding all standards"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The teammate is protecting openness instead of chasing victory.",
+        "direct": "This is restraint, not surrender.",
+        "competitive": "The duel ends before leverage burns."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "A student proves a classmate wrong and the room shuts down. What happened?",
+      "choices": [
+        "The chapter worked perfectly",
+        "The point-win created relational defeat",
+        "The facts were too weak"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The problem is not just correctness but the cost to openness.",
+        "direct": "Option B fits because the room became less reachable.",
+        "competitive": "He took the point and lost the channel."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "In a personal disagreement, what does the chapter favor?",
+      "choices": [
+        "Winning the last word",
+        "Protecting enough openness for movement",
+        "Pretending there is no issue"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter prefers preserving the channel over winning the score.",
+        "direct": "Movement needs openness more than triumph.",
+        "competitive": "Save leverage, not the last word."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Which option mistakes restraint for surrender?",
+      "choices": [
+        "Changing methods while keeping the issue intact",
+        "Refusing the duel but protecting the standard",
+        "Acting as if the issue no longer matters at all"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter rejects passivity just as much as combat.",
+        "direct": "Option C abandons the issue instead of changing the method.",
+        "competitive": "Dropping the standard is not strategic restraint."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "advanced"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What limit does the chapter place on its advice?",
+      "choices": [
+        "Every disagreement should be abandoned immediately",
+        "Standards and truth still matter even if argument is a poor vehicle",
+        "Only quiet people can use this principle"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter refuses argument, not judgment.",
+        "direct": "Option B fits because restraint is not surrender.",
+        "competitive": "You keep standards while dropping the duel."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "advanced"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What deeper mechanism makes argument self-defeating here?",
+      "choices": [
+        "Public defeat activates identity defense and reduces persuadability",
+        "The other person forgets the topic",
+        "Arguments always lack evidence"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter explains that pride protection can overpower reconsideration.",
+        "direct": "Identity defense is why strong cases can still fail to move people.",
+        "competitive": "Armor beats facts if you trigger it first."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "advanced"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why does this chapter lead naturally into Chapter 11?",
+      "choices": [
+        "Because certainty and superiority can turn disagreement into enmity",
+        "Because arguments make everyone instantly agree",
+        "Because being liked no longer matters at all"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next chapter asks how blunt certainty makes resistance even worse.",
+        "direct": "Option A fits because superiority intensifies the damage Chapter 10 identifies.",
+        "competitive": "If argument hardens people, superiority can make them enemies."
+      },
+      "bloomsLevel": "transfer",
+      "depthLevel": "advanced"
+    }
+  ]
+}

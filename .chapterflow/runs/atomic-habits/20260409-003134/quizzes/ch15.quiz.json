@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What main shift does Chapter 15 make after Chapter 14?",
+      "choices": [
+        "From availability alone to immediate satisfaction and reinforcement",
+        "From satisfaction back to environment only",
+        "From reward to identity labels only"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter asks what makes a completed habit feel worth repeating.",
+        "direct": "Chapter 15 turns from setup to the immediate payoff that strengthens repetition.",
+        "competitive": "The question changes from can it happen to will it pay enough to return."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What is the cardinal rule of behavior change in this chapter?",
+      "choices": [
+        "Rewarded behavior gets repeated",
+        "Visible behavior is always correct",
+        "Delayed rewards are the only ones that matter"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says satisfying behavior is more likely to come back.",
+        "direct": "Immediate reinforcement makes repetition easier to explain.",
+        "competitive": "What pays back now usually earns another round."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why do immediate outcomes often matter more than delayed ones in daily behavior?",
+      "choices": [
+        "Because people respond strongly to what feels rewarding or complete now",
+        "Because future benefits are never real",
+        "Because discipline disappears once reward appears"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Present feelings often guide repeated behavior more than distant promises do.",
+        "direct": "Immediate feedback sits closer to the action than delayed rewards do.",
+        "competitive": "The present self listens hardest to what pays in the present tense."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Liv wants the work block to repeat more reliably. What best fits Chapter 15?",
+      "choices": [
+        "Mark the block complete right after finishing it",
+        "Hide all signs of completion",
+        "Wait for the quarterly review to provide the only reward"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A visible completion mark gives the habit immediate reinforcement.",
+        "direct": "Liv should pair the routine with present-tense closure.",
+        "competitive": "Give the effort a receipt before she walks away."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why did Rowan's practice routine strengthen once each session ended with a stamped card?",
+      "choices": [
+        "Because the session finally had a visible immediate payoff",
+        "Because delayed rewards stopped mattering",
+        "Because practice became shorter than before"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The stamp let the effort feel real now.",
+        "direct": "Rowan gained immediate reinforcement instead of relying only on future improvement.",
+        "competitive": "The habit started paying a little cash at the end of each session."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What does Nadia learn about the phone habit?",
+      "choices": [
+        "It keeps winning because it rewards immediately",
+        "It wins because long-term costs are stronger than short-term rewards",
+        "It proves all satisfaction is bad"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The bad habit gives relief right away.",
+        "direct": "Nadia sees that immediate payoff is driving repetition.",
+        "competitive": "The bad loop is fast at paying out."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What does immediate reinforcement change most directly for a good habit?",
+      "choices": [
+        "Whether the routine feels like pure sacrifice in the present",
+        "Whether the long-term goal matters at all",
+        "Whether environment still matters"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Immediate reinforcement helps the effort feel worth doing now.",
+        "direct": "It stops the routine from ending as cost with no present feedback.",
+        "competitive": "It gives the present self a reason to come back."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What limit does Chapter 15 keep on its argument?",
+      "choices": [
+        "Immediate satisfaction matters strongly, but it is not the only factor in behavior",
+        "Only instant pleasure controls every action",
+        "Delayed rewards never matter"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps its claim narrow and avoids overstatement.",
+        "direct": "It says reinforcement matters without reducing all behavior to shallow pleasure-seeking.",
+        "competitive": "Present payoff is powerful, not sovereign over everything."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "How does Chapter 15 build on Chapter 14?",
+      "choices": [
+        "Chapter 14 made the habit more available, and Chapter 15 makes repetition more likely by adding immediate satisfaction",
+        "Chapter 15 rejects setup and begins a new book",
+        "Chapter 15 only repeats the environment argument"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "First the habit is easier to encounter, then it becomes more rewarding to repeat.",
+        "direct": "Setup changes occurrence, and satisfaction helps the loop recur.",
+        "competitive": "Availability gets it started; payoff gets it back tomorrow."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why does Chapter 16 follow naturally after Chapter 15?",
+      "choices": [
+        "Because tracking can preserve immediate satisfaction by making progress visible over time",
+        "Because Chapter 15 finishes the whole reward problem forever",
+        "Because tracking removes the need for any reinforcement"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Tracking gives the immediate reward a visible form that can continue.",
+        "direct": "Chapter 16 extends reinforcement into ongoing evidence and progress.",
+        "competitive": "The next move is to make the payoff visible enough to last."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    }
+  ]
+}

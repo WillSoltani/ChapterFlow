@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "ch29-q01",
+      "prompt": "Why is short-range planning risky in this chapter?",
+      "choices": [
+        "Because later reactions and consequences can reverse an opening that looked strong",
+        "Because openings never matter",
+        "Because planning should replace action"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Correct. The chapter says first-round wins can hide downstream traps.",
+        "direct": "A move may look strong only until the rest of the sequence arrives.",
+        "competitive": "Right. If you stop at the opening, the later chain may undo you."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch29-q02",
+      "prompt": "What does planning through the end protect here?",
+      "choices": [
+        "Freedom from all surprise",
+        "The need to adapt",
+        "The whole downstream chain and ending of the move"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Yes. Greene values end-state thinking because it forces later consequences into the present decision.",
+        "direct": "Planning through the end helps protect the full route, not just the launch.",
+        "competitive": "Right. The ending should help judge whether the opening is worth taking."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch29-q03",
+      "prompt": "Why is this chapter not generic rigid-control advice?",
+      "choices": [
+        "Because no planning is ever useful",
+        "Because it distinguishes useful foresight from fantasy prediction that reality must obey",
+        "Because uncertainty can always be eliminated"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Correct. The issue is consequence-aware planning with revision, not frozen control dreams.",
+        "direct": "Greene is tracking likely chains while keeping adaptation alive.",
+        "competitive": "Yes. This is about planning with humility, not pretending the future can be locked down."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch29-q04",
+      "prompt": "In Oskar's work scenario, what best fits the chapter?",
+      "choices": [
+        "Take the fast visible win first and improvise the rest later without mapping it",
+        "Trace later reactions, dependencies, and bottlenecks before deciding whether the opening is actually strong",
+        "Ignore downstream costs if the first round looks impressive"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The chapter favors letting the ending discipline the opening.",
+        "direct": "He maps the route before trusting the first-round appeal.",
+        "competitive": "Right. A move's quality changes when the downstream chain gets a vote."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch29-q05",
+      "prompt": "Why did the capstone board example matter for Linh?",
+      "choices": [
+        "Because first approvals always guarantee success",
+        "Because later sequence never matters in school settings",
+        "Because the approved opening later trapped the team through unplanned dependencies"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Correct. The early win hid a later route the team had not truly priced.",
+        "direct": "The chapter shows how downstream sequence can reveal a first-round success as weak.",
+        "competitive": "Yes. The board approved a beginning whose later chain was structurally worse than it looked."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch29-q06",
+      "prompt": "What is the strongest reading of Petrah's dilemma?",
+      "choices": [
+        "She should treat the immediate gain as enough proof",
+        "Useful planning means tracing the later chain without pretending every variable is fixed",
+        "Adaptation always cancels the value of foresight"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The chapter's limit is that foresight must stay responsive while still shaping the present choice.",
+        "direct": "She needs consequence range, not rigid fantasy control.",
+        "competitive": "Right. The move changes once later costs are taken seriously without freezing reality into a script."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch29-q07",
+      "prompt": "How does end-state thinking change present action?",
+      "choices": [
+        "It removes the need for reaction mapping",
+        "It makes later consequences part of the first decision instead of an afterthought",
+        "It guarantees the field will not change"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Correct. The chapter treats the ending as something that should reshape the opening now.",
+        "direct": "Later sequence changes what counts as a good present move.",
+        "competitive": "Yes. The future chain is useful because it disciplines the first step."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch29-q08",
+      "prompt": "When does planning become brittle fantasy control instead of useful foresight?",
+      "choices": [
+        "When it anticipates likely reactions and keeps updating",
+        "When it mistakes the map for reality and stops adapting to changing conditions",
+        "When it prices second-order effects"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exactly. The tactic fails when the script becomes too rigid to survive the living field.",
+        "direct": "Planning turns brittle once it confuses elegance of design with control of reality.",
+        "competitive": "Right. A map that cannot bend may help create the reversal it meant to prevent."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch29-q09",
+      "prompt": "How does Chapter 28 lead into Chapter 29?",
+      "choices": [
+        "Bold entry creates momentum, and the next question is whether that momentum can survive the full route to the end",
+        "Boldness makes long-range planning unnecessary",
+        "Chapter 29 rejects momentum as a factor"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Correct. Chapter 28 won the opening; Chapter 29 asks whether the rest of the chain still works.",
+        "direct": "The sequence moves from decisive entry to consequence-aware route design.",
+        "competitive": "Right. A strong beginning still needs a survivable route after it."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch29-q10",
+      "prompt": "What bridge carries Chapter 29 into Chapter 30?",
+      "choices": [
+        "Once the route is planned deeply, the next question is how the accomplishment can appear effortless",
+        "Planning to the end makes appearances irrelevant",
+        "Chapter 30 rejects hidden labor and design"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Correct. The next law turns from deep sequence planning to effortless appearance.",
+        "direct": "Chapter 30 asks how hidden labor can disappear behind the finished result.",
+        "competitive": "Right. After designing the route, power grows when the outcome looks easy."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

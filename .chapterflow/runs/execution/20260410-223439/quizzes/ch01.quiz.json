@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What gap does Chapter 1 say leaders often miss?",
+      "choices": [
+        "The distance between aspiration and result",
+        "The gap between marketing and finance",
+        "The difference between long-term and short-term incentives"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps returning to the break between what is promised and what the organization is actually prepared to deliver.",
+        "direct": "Its central diagnosis is the execution gap between declared ambition and realized outcomes.",
+        "competitive": "The hidden leak is not desire. It is the distance from promise to carried-through result."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the chapter call execution a discipline?",
+      "choices": [
+        "Because it belongs only to operations teams",
+        "Because it tests whether a plan can survive reality",
+        "Because it rewards people who work the longest hours"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter treats execution as a set of reality checks, not as effort added after the fact.",
+        "direct": "Execution is a discipline because it pressures the plan through ownership, realism, and follow-through tests.",
+        "competitive": "A discipline cross-examines the plan before the company bets on it."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A project team agrees on the goal but has not named owners for the hardest tasks. Which chapter idea best applies?",
+      "choices": [
+        "Alignment language can hide weak execution readiness",
+        "Strong morale is usually enough to carry the plan",
+        "Ownership can wait until after the kickoff"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Agreement can feel like progress even when the work path is still loose.",
+        "direct": "The chapter warns that aspiration outruns execution when accountability remains vague.",
+        "competitive": "The room sounds ready, but the ownerless handoff gives the lie away."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Maya is asked to approve a launch deck that lists departments instead of names beside key dependencies. What response best fits the chapter?",
+      "choices": [
+        "Approve it and revisit ownership later to preserve momentum",
+        "Ask for named owners, tested assumptions, and a follow-through check before approval",
+        "Keep the deadline and remove the risky dependencies from the slides"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Maya needs to turn team-level language into real accountability before the date earns trust.",
+        "direct": "The disciplined move is to make ownership and assumptions explicit before accepting the timeline.",
+        "competitive": "Speed without ownership is fake momentum. Force the plan to prove itself now."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Which statement captures the chapter's distinction between strategy and execution?",
+      "choices": [
+        "Strategy matters first, and execution mostly matters once the plan is fixed",
+        "Execution is the separate implementation phase after the real thinking ends",
+        "Execution is part of what makes strategy real rather than a chore that follows it"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter refuses to split good thinking from the work of making that thinking hold in reality.",
+        "direct": "Bossidy and Charan place execution inside strategy's reality test, not after it.",
+        "competitive": "If strategy has not survived execution pressure, it has not earned the title."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "A leader says, \"Our team just needs to work harder,\" even though the plan still rests on unverified assumptions. What misreading is showing up?",
+      "choices": [
+        "The leader is confusing execution with sheer effort",
+        "The leader is focusing too much on culture",
+        "The leader is overusing delegation"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says execution is more than effort. It includes realism, ownership, and tested assumptions.",
+        "direct": "Hard work does not substitute for disciplined contact with reality.",
+        "competitive": "Grinding faster on a weak premise is still a weak move."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "A student club loves announcing ambitious projects but rarely finishes them. According to Chapter 1, what should change first?",
+      "choices": [
+        "The club should pick bigger goals so energy stays high",
+        "The club should focus on named ownership and realistic sequence after each announcement",
+        "The club should avoid discussing obstacles to keep morale intact"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter points to execution conditions, not louder ambition, as the real fix.",
+        "direct": "What the club lacks is operating structure after the goal is declared.",
+        "competitive": "More hype will not save a club that still cannot carry the work."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Which cultural signal most clearly supports execution in the chapter's terms?",
+      "choices": [
+        "People who raise weak assumptions early are treated as useful, not disloyal",
+        "Leaders celebrate kickoff meetings more than follow-through reviews",
+        "The team avoids naming owners so everyone feels included"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A culture of execution makes realism safe before failure makes it unavoidable.",
+        "direct": "The chapter ties execution culture to rewarding honest pressure-testing and follow-through.",
+        "competitive": "When truth earns status, the plan gets stronger before the market punishes it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Leon discovers that his rollout date depends on two assumptions that were never realistic. What is the strongest Chapter 1 response?",
+      "choices": [
+        "Defend the date anyway so the team learns commitment",
+        "Reset the plan around what reality can support and explain why the assumptions failed",
+        "Keep the date but stop discussing assumptions to avoid confusion"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter's limit is clear: execution includes revising a plan when realism breaks it.",
+        "direct": "Strong execution means correcting the target once the evidence shows the premise was weak.",
+        "competitive": "Real discipline protects the company, not the vanity of the original date."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If Chapter 1 names the execution gap, what would Chapter 2 most logically need to show next?",
+      "choices": [
+        "How different organizations widen or close that gap in practice",
+        "Why leaders should stop using strategy language entirely",
+        "Why culture matters less than raw individual effort"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Once the diagnosis is clear, the next useful move is to compare what strong and weak execution look like in live settings.",
+        "direct": "The chapter sets up a contrast between organizations that face the gap and those that keep paying for it.",
+        "competitive": "Diagnosis is step one. The next chapter should show who closes the gap and who lives inside it."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "hard"
+    }
+  ]
+}

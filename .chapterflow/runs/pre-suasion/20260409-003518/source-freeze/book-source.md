@@ -57,6 +57,15 @@ Source:
 - The official publisher page supports the narrow idea that We relationships can also result from acting together synchronously or collaboratively.
 - The official publisher page supports the narrow idea that unitary activity, arranged pre-suasively, can increase mutual liking and support.
 
+### Chapter 13 and Chapter 14 official support
+- The official publisher page identifies Chapter 13 as *Ethical Use: A Pre-Pre-Suasive Consideration*.
+- The official publisher page supports the narrow idea that pre-suaders face an even earlier decision than what to present before a message: whether to employ a pre-suasive approach on ethical grounds.
+- The official publisher page supports the narrow idea that commercial communicators often place profit above ethics, creating reason to worry about unethical use of pre-suasive tactics.
+- The official publisher page supports the narrow idea that Chapter 13 argues against unethical use by citing studies indicating such tactics undermine organizational profits in three potent ways.
+- The official publisher page identifies Chapter 14 as *Post-Suasion: Aftereffects*.
+- The official publisher page supports the narrow idea that pre-suaders want changes to become durable rather than merely temporary momentary shifts.
+- The official publisher page supports the narrow idea that Chapter 14 presents behavioral-science evidence for two kinds of procedures that increase the likelihood that initially generated changes take root and last beyond pre-suasive moments.
+
 ## Quote policy note
 - Exact quotations may be used only if they are directly traceable to the Simon & Schuster excerpt frozen above.
 - Everything else must remain paraphrase-first.

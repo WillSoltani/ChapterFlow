@@ -1,0 +1,27 @@
+{
+  "bookId": "seeking-wisdom",
+  "runId": "20260410-222759",
+  "title": "Seeking Wisdom: From Darwin to Munger",
+  "author": "Peter Bevelin",
+  "selectedEdition": {
+    "name": "3rd Edition",
+    "publisher": "PCA Publications",
+    "publishedYear": 2007,
+    "language": "English",
+    "isbn10": "1578644283",
+    "isbn13": "9781578644285",
+    "sourceText": ".chapterflow/runs/seeking-wisdom/20260410-222759/source-freeze/book-source.md",
+    "sourceProvenance": "Google Books bibliographic page cross-checked with retailer metadata"
+  },
+  "selectionMode": "auto_lock",
+  "reasoning": [
+    "The 3rd edition is the dominant currently discoverable print edition in the frozen web bundle.",
+    "Google Books exposes authoritative bibliographic metadata for the 2007 PCA Publications edition.",
+    "No evidence in the frozen bundle shows chapter-level restructuring that would materially change ChapterFlow packaging relative to earlier editions.",
+    "Edition ambiguity does not currently appear material enough to require a user interrupt."
+  ],
+  "risks": [
+    "Authorized preview access is thin, so reader-facing prose must remain paraphrase-first and narrower than unsupported chapter-level certainty would justify.",
+    "Exact quotes remain disallowed unless a later frozen authorized preview surface verifies them directly."
+  ]
+}

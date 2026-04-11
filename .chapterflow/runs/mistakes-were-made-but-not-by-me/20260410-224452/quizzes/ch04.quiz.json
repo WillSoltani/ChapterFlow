@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch04-q01",
+      "prompt": "What is the main claim about memory in this unit?",
+      "choices": [
+        "Memory is reconstruction rather than neutral replay",
+        "Memory becomes accurate only after enough time passes",
+        "Memory errors happen only in dramatic situations"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Memory is treated here as something rebuilt in the present, not simply replayed from storage.",
+        "direct": "Correct. The central claim is that recall is reconstructive rather than neutral retrieval.",
+        "competitive": "Right. The past comes back edited."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch04-q02",
+      "prompt": "Why can two sincere people remember the same conflict differently?",
+      "choices": [
+        "Because one of them must be intentionally lying",
+        "Because memory can be rebuilt under pressure from identity and innocence",
+        "Because conflict automatically erases the original event"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That is the key. Different recollections do not require deliberate lying when memory is reconstructive.",
+        "direct": "Exactly. The present self can shape recall in ways that preserve competing moral versions of the event.",
+        "competitive": "Yes. Two people can mean it because both archives were edited from the inside."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch04-q03",
+      "prompt": "Iris feels sure she warned the team early, but the notes show the warning came later and softer than she remembered. What is the strongest reading?",
+      "choices": [
+        "Her confidence proves the notes are incomplete",
+        "The notes matter less because memory captures emotional truth better",
+        "Her memory may have become sharper than the event because it protected competence"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Nice catch. A confident recollection can still outrun the record when identity is being protected.",
+        "direct": "Correct. This is the pattern where memory serves the present self more strongly than the documented event.",
+        "competitive": "Right. The memory sounded decisive because the ego had polished it."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch04-q04",
+      "prompt": "Mateo's group vividly remembers other people's delays but not its own missed handoffs. Which mechanism fits best?",
+      "choices": [
+        "Shared self-protective reconstruction of the project history",
+        "Proof that group projects always destroy memory",
+        "A harmless preference for remembering the most emotional details"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That matches the unit. Groups can reconstruct the past in ways that preserve collective innocence.",
+        "direct": "Correct. The team memory is weighting blame unevenly to protect competence.",
+        "competitive": "The postmortem became an ego repair session."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q05",
+      "prompt": "What is the cleanest difference between sincerity and accuracy in recollection?",
+      "choices": [
+        "Sincere memories are usually more vivid than accurate ones",
+        "Sincerity means the person is reporting what they currently remember, while accuracy concerns whether the memory matches the event",
+        "Accuracy matters only when written records exist"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That is the sharp distinction. A person can be honest about a memory that still does not match the event well.",
+        "direct": "Correct. Sincerity describes the speaker's stance, while accuracy describes the relation between recollection and reality.",
+        "competitive": "Yes. Honest reporting is not the same thing as an unedited archive."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q06",
+      "prompt": "Which misreading does this material reject?",
+      "choices": [
+        "If a memory feels vivid, it is probably accurate",
+        "Records can sometimes challenge a cherished recollection",
+        "Memory disputes matter for blame and repair"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Vividness can come from retelling, reinforcement, or revision, not only from accuracy.",
+        "direct": "Correct. A sharp feeling of recall is weaker evidence than people often assume.",
+        "competitive": "Right. Bright does not mean true."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q07",
+      "prompt": "What does the totalitarian ego metaphor add to the argument?",
+      "choices": [
+        "It proves memory is always politically motivated in the public sense",
+        "It means memory becomes useless once conflict begins",
+        "It shows how the self can censor memory by favoring flattering evidence and suppressing threatening details"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "That is the lesson. The metaphor highlights the self's role in curating what stays bright and what fades.",
+        "direct": "Correct. It sharpens the point that recollection can be selectively organized to protect legitimacy.",
+        "competitive": "Yes. The ego edits the archive like it owns the press."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q08",
+      "prompt": "A student sees the old email proving the warning really happened. What has to happen for correction to work?",
+      "choices": [
+        "The student has to let the record revise the self-protective memory instead of reinterpreting the record away",
+        "The student only has to admit the email exists, not change the story",
+        "The student should ignore the emotional cost of revising the memory"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That fits the unit. Evidence helps only if the protected version of the memory is allowed to loosen.",
+        "direct": "Correct. Outside proof must change the recollection rather than be absorbed as a technicality.",
+        "competitive": "Right. The fact has to get in before the ego renames it."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q09",
+      "prompt": "Why is confidence about a memory treated as ambiguous evidence?",
+      "choices": [
+        "Because confident people usually exaggerate without realizing it",
+        "Because vivid certainty can reflect either accuracy or a well-reinforced self-protective revision",
+        "Because memories should never be trusted in any personal conflict"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exactly. Confidence can come from truth, but it can also come from repetition and successful editing.",
+        "direct": "Correct. Certainty does not tell you by itself whether the memory tracks the event or the current self.",
+        "competitive": "Yes. Polish and proof can sound alike."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch04-q10",
+      "prompt": "If defended memory can feel this authoritative, why does the next unit move toward clinical judgment?",
+      "choices": [
+        "Because memory becomes irrelevant once experts are involved",
+        "Because clinical settings avoid the identity pressures found in personal life",
+        "Because professional systems can also build judgments on defended recollection and interpretation"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "That is the bridge. The mechanism does not stay private when institutions rely on recall and confidence too.",
+        "direct": "Correct. The next step is to show how defended interpretation can harden inside expert systems.",
+        "competitive": "Right. Once edited memory sounds authoritative, systems can inherit the defect."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

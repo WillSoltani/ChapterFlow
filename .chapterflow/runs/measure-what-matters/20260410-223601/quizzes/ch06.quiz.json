@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch06-q01",
+      "prompt": "What makes the Nuna chapter a commitment case in this book?",
+      "choices": [
+        "It shows commitment as a company story about staying bound to chosen priorities",
+        "It argues that priorities matter only when they are easy",
+        "It replaces buy-in with silence and obedience"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter moves commitment out of theory and into a company case.",
+        "direct": "Its main job is to show how chosen priorities gain force only when people stay bound to them.",
+        "competitive": "This case is about carrying the choice, not just admiring it."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch06-q02",
+      "prompt": "How does the chapter distinguish commitment from awareness?",
+      "choices": [
+        "Awareness is costly while commitment is effortless",
+        "Commitment begins when chosen priorities govern calendars, tradeoffs, and effort",
+        "Awareness means the priority was badly chosen"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "People can agree with a priority before they actually carry it.",
+        "direct": "The chapter says commitment starts when behavior answers to the priority.",
+        "competitive": "Reciting the priority is cheap; obeying it in the calendar is not."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch06-q03",
+      "prompt": "Why is forced compliance a weak substitute for commitment in this chapter?",
+      "choices": [
+        "Because the chapter rejects any form of structure",
+        "Because pressure can imitate order without creating real buy-in",
+        "Because commitment requires zero tradeoffs"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter keeps buy-in separate from pressured obedience.",
+        "direct": "Coercion can copy the surface pattern without the inner transfer of burden.",
+        "competitive": "Fear can stage commitment and still fail to make it real."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch06-q04",
+      "prompt": "Leila sees a lab leadership team praise a new priority while the old reporting work still owns the week. What best fits the chapter?",
+      "choices": [
+        "The team is committed because everyone agreed in the meeting",
+        "The team is wisely keeping all options open",
+        "The team has not yet shown commitment because the old obligations still govern behavior"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Agreement is weaker than the behavioral change the chapter demands.",
+        "direct": "If the calendar still serves the old stack, the chosen priority lacks real authority.",
+        "competitive": "A meeting win means nothing if the old regime still runs the week."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q05",
+      "prompt": "A student nonprofit board keeps talking about one main initiative but never removes older projects from its calendar. What chapter failure does this show?",
+      "choices": [
+        "Decorative commitment created by agreement without carried burden",
+        "Healthy backup planning",
+        "Proof that the board is committed to every priority equally"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The board kept the language of commitment without the cost that proves it.",
+        "direct": "Old projects kept their privileges, so the new initiative never truly governed.",
+        "competitive": "They wanted the credit for commitment without paying the price."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q06",
+      "prompt": "Which reading does the chapter reject as a misreading of commitment?",
+      "choices": [
+        "Commitment means obedience alone",
+        "Commitment changes what a team postpones and protects",
+        "Commitment makes priorities govern action"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says commitment is more than outward submission.",
+        "direct": "Obedience theater can look disciplined while still lacking buy-in.",
+        "competitive": "If pressure is your whole explanation, you missed the chapter."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q07",
+      "prompt": "What is happening when old obligations still control the calendar after a new priority is announced?",
+      "choices": [
+        "Hedging is draining force from the chosen work",
+        "The team has already proven durable commitment",
+        "The chapter says calendars do not matter"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Hedging lets the old stack stay alive under the new words.",
+        "direct": "The chapter uses this mismatch to explain decorative OKRs.",
+        "competitive": "If the leftovers still rule the calendar, the new priority is mostly branded intent."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q08",
+      "prompt": "A team sounds symbolically united but cannot name what work lost protection for the new priority. Which judgment best fits the chapter?",
+      "choices": [
+        "The team has strong buy-in because nobody objected",
+        "The team may have symbolic agreement but not real carried commitment",
+        "The team should avoid asking what changed"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Real commitment normally leaves some visible displacement behind it.",
+        "direct": "If nothing lost status, the unity may be symbolic instead of operational.",
+        "competitive": "Harmony without sacrifice is usually a warning sign here."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q09",
+      "prompt": "What deeper point does the chapter make about decorative OKRs?",
+      "choices": [
+        "They are priorities that remain visible in language while lacking governing power in behavior",
+        "They are useful backups for when teams get tired",
+        "They disappear because the company stopped talking about priorities"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The problem is not absence of priorities but weakness of control.",
+        "direct": "Decorative OKRs stay present on the slide while the older stack still governs action.",
+        "competitive": "They look official because they were never meant to win real authority."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch06-q10",
+      "prompt": "Why does Chapter 6 naturally lead into an alignment chapter next?",
+      "choices": [
+        "Because commitment removes the need for coordination",
+        "Because once one team is truly bound to priorities, the next challenge is how multiple committed teams connect",
+        "Because company cases end after commitment"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The bridge asks how committed teams move together.",
+        "direct": "After commitment makes priorities real inside one team, alignment becomes the next issue.",
+        "competitive": "Once the load is real, coordination becomes the fight."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

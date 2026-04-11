@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What distinction does Chapter 1 train first?",
+      "choices": [
+        "The gap between surface function and hidden social payoff",
+        "The difference between mammals and birds",
+        "The split between private and public law"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "understand",
+      "depthLevel": "easy",
+      "explanation": {
+        "gentle": "The chapter teaches you to ask what a behavior does visibly and what else it may buy socially.",
+        "direct": "Its first move is separating outward function from group-level payoff.",
+        "competitive": "Chapter 1 trains two-layer reading, not animal taxonomy."
+      }
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why is primate grooming important in the chapter?",
+      "choices": [
+        "It proves all animal touch is deceptive",
+        "It shows that hygiene can be real while alliance management is also at work",
+        "It argues cleaning has no practical value"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "understand",
+      "depthLevel": "easy",
+      "explanation": {
+        "gentle": "Grooming still cleans, but the chapter says that is not the whole explanation.",
+        "direct": "The anchor works because practical function and political function coexist.",
+        "competitive": "Cleaning stays real. Group politics still drives the pattern."
+      }
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What does competitive altruism mean in the babbler example?",
+      "choices": [
+        "Visible helping can also raise the helper's standing",
+        "Birds stop helping once status appears",
+        "Only dominant birds are allowed to help"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "remember",
+      "depthLevel": "easy",
+      "explanation": {
+        "gentle": "The help can benefit the group and still function as a prestige signal.",
+        "direct": "The chapter uses the term to join prosocial value and rank payoff in one act.",
+        "competitive": "The favor lands on the group while the credit can lift the actor."
+      }
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Maya handles the public thank-you speech and also solves the real problem afterward. Which Chapter 1 reading fits best?",
+      "choices": [
+        "Her action must be fake because it was visible",
+        "Her action can help the team while also carrying a status payoff",
+        "Her action should be ignored because motives are impossible to read"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "apply",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "The chapter's method allows real benefit and social reward to sit inside the same act.",
+        "direct": "Chapter 1 rejects the false choice between pure service and pure manipulation.",
+        "competitive": "Useful and strategic can share one move."
+      }
+    },
+    {
+      "questionId": "q05",
+      "prompt": "In student council, Ava grabs the most visible fundraiser role while hidden tasks stay open. What clue from Chapter 1 deserves attention?",
+      "choices": [
+        "Audience visibility may be increasing the role's appeal",
+        "Public roles are always more important than hidden work",
+        "Mixed motives can appear only in adult institutions"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "apply",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "Audience value is one of the clues that a social payoff may be present.",
+        "direct": "Visibility helps explain why one useful act may also be attractive as a signal.",
+        "competitive": "When the crowd matters, the motive mix usually shifts."
+      }
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which misreading does Chapter 1 warn against?",
+      "choices": [
+        "That hidden payoff should replace every visible benefit in the story",
+        "That mixed motives are common",
+        "That the animal cases prepare later human chapters"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "The chapter does not license total cynicism.",
+        "direct": "Its limit is clear: add hidden payoff, do not erase every real benefit.",
+        "competitive": "If the lens turns into a sneer, the method has broken."
+      }
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why does the book start with animals before moving to human behavior?",
+      "choices": [
+        "Animal chapters are easier to write than human ones",
+        "Animal cases lower reader defensiveness and make the explanatory move easier to see",
+        "Animal behavior is morally simpler than human behavior in every case"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "The distance makes the hidden-motive idea easier to inspect first.",
+        "direct": "Animal examples help train the method before human pride starts resisting it.",
+        "competitive": "The lens lands on monkeys first so readers cannot dodge it with ego."
+      }
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Jordan helps in the kitchen only while relatives are still watching. Which Chapter 1 judgment is strongest?",
+      "choices": [
+        "The audience timing suggests social payoff is part of the explanation",
+        "The act means Jordan does not care about the family at all",
+        "The timing is irrelevant because the dishes still got washed"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "apply",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "Timing around witnesses is a clue, not final proof, that visibility matters.",
+        "direct": "Chapter 1 treats audience-sensitive timing as evidence that the social layer deserves weight.",
+        "competitive": "Watch when the work happens. That is where the second game shows up."
+      }
+    },
+    {
+      "questionId": "q09",
+      "prompt": "A classmate says, \"If status is involved, then nothing good is really happening.\" What response best fits the chapter?",
+      "choices": [
+        "That is right, because mixed motives cancel the benefit",
+        "That is too narrow, because one act can help others and reward the actor together",
+        "That question cannot be answered without a laboratory study"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard",
+      "explanation": {
+        "gentle": "The chapter's hardest point is that mixed motives do not erase real benefit.",
+        "direct": "Its framework keeps group welfare and self-advantage in the same explanation.",
+        "competitive": "Status in the act does not delete the help inside the act."
+      }
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What is the best bridge from Chapter 1 into Chapter 2 on competition?",
+      "choices": [
+        "Move from animal examples of mixed motives to the human social games that make signaling central",
+        "Drop the motive question and focus only on biology facts",
+        "Treat the animal cases as unrelated curiosities before starting over"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard",
+      "explanation": {
+        "gentle": "Chapter 1 trains the lens, and Chapter 2 applies it to human competition more directly.",
+        "direct": "The next step is shifting from animal analogies to the social games that structure human signaling.",
+        "competitive": "The drill is over. Chapter 2 names the human arena."
+      }
+    }
+  ]
+}

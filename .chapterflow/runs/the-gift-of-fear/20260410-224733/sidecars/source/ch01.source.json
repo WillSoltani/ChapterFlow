@@ -1,0 +1,22 @@
+{
+  "chapterId": "ch01",
+  "title": "In the presence of danger",
+  "heading": "In the presence of danger",
+  "approxWords": 180,
+  "properNouns": ["Kelly", "Gavin de Becker", "Open Library", "IUCAT"],
+  "repeatedTerms": ["fear", "signal", "worry", "politeness", "danger", "refusal"],
+  "sourceReferences": [
+    "openlibrary_toc",
+    "iucat_toc",
+    "gdba_child_safety",
+    "aibrary_summary"
+  ],
+  "notes": {
+    "anchorCase": "Kelly assault setup with unwanted help and social override",
+    "coreDistinction": "true fear versus manufactured worry",
+    "guardrails": [
+      "paraphrase only for book-body details",
+      "keep claims narrow to frozen support"
+    ]
+  }
+}

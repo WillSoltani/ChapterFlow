@@ -1,0 +1,44 @@
+# Run Log
+
+- 2026-04-10 12:27:22 ADT - Phase 0 preflight started.
+- 2026-04-10 12:27:22 ADT - Manifest confirmed: title=So Good They Can't Ignore You, author=Cal Newport, editionPreference=ask_if_ambiguous, bookId=so-good-they-cant-ignore-you, runId=20260410-152410, outputProfile=flagship_v4_compatible, learningContract=research_native, runProfile=balanced_flagship, validationMode=chapter_gate, chapterGateMode=automatic_continue, chapterGateQuizMode=generate, scenarioTonePolicy=required, sourceDiscoveryMode=web_bundle, editionSelectionMode=ask_if_ambiguous, sourcePolicy=public_or_authorized_plus_secondary, forbidBulkGenerators=true, releaseAssembleFromValidatedOnly=true, preserveApprovedChapterHashes=true.
+- 2026-04-10 12:27:22 ADT - Phase 0 complete.
+- 2026-04-10 12:27:22 ADT - Phase 1 source discovery started.
+- 2026-04-10 12:27:22 ADT - Phase 1 source freeze updated with official Stanford Jobs transcript for Chapter 1 anchor support.
+- 2026-04-10 12:27:22 ADT - Phase 1 complete.
+- 2026-04-10 12:27:22 ADT - Phase 2 memory files complete.
+- 2026-04-10 12:27:22 ADT - Phase 3 whole-book skeleton complete.
+- 2026-04-10 12:27:22 ADT - Phase 4 Chapter 1 package started.
+- 2026-04-10 12:27:22 ADT - Chapter 1 passed lint after two local structured-package fixes: one contamination phrase removed and one repeated clause scaffold removed.
+- 2026-04-10 12:27:22 ADT - Chapter 1 chapter gate passed and hash sealed.
+- 2026-04-10 12:27:22 ADT - Phase 5 Chapter 2 source additions frozen for Roadtrip Nation and passion-rarity support.
+- 2026-04-10 12:27:22 ADT - Chapter 2 pre-writer package complete.
+- 2026-04-10 12:27:22 ADT - Chapter 2 passed lint after local structured-package fixes to thesis-first openings and one reinforcement stem.
+- 2026-04-10 12:27:22 ADT - Chapter 2 chapter gate passed and hash sealed.
+- 2026-04-10 12:27:22 ADT - Baseline quality report written for Chapters 1 and 2.
+- 2026-04-10 12:27:22 ADT - Wave 1 clean. Artifact guard re-run passed after Chapters 1 and 2.
+- 2026-04-10 12:27:22 ADT - Chapter 3 source addition frozen and pre-writer package complete.
+- 2026-04-10 12:27:22 ADT - Chapter 3 passed lint after local structured-package fixes to contamination, thesis-first openings, and one reinforcement stem.
+- 2026-04-10 12:27:22 ADT - Chapter 3 chapter gate passed and hash sealed.
+- 2026-04-10 12:27:22 ADT - Chapter 4 source addition frozen and pre-writer package complete.
+- 2026-04-10 12:27:22 ADT - Chapter 4 passed lint after local fixes to malformed JSON, thesis-first openings, repeated scaffold, reinforcement stem, and one duplicate sentence.
+- 2026-04-10 12:27:22 ADT - Chapter 4 chapter gate passed and hash sealed.
+- 2026-04-10 12:27:22 ADT - Chapter 5 source addition frozen and pre-writer package complete.
+- 2026-04-10 14:12:29 ADT - Chapter 5 passed lint after one local structured-package fix to a thesis-first opening and then passed chapter gate with hash sealed.
+- 2026-04-10 14:20:00 ADT - Chapter 6 pre-writer package, prose chain, structured package, and chapter gate completed cleanly on the first lint pass; hash sealed.
+- 2026-04-10 14:28:04 ADT - Chapter 7 passed lint after two local structured-package fixes to one thesis-first opening and one banned reinforcement stem; chapter gate passed and hash sealed.
+- 2026-04-10 14:35:42 ADT - Chapter 8 passed lint after four local structured-package fixes: two banned reinforcement stems removed, one duplicated takeaway sentence rewritten, and one hard recap overlap reduced; chapter gate passed and hash sealed.
+- 2026-04-10 14:45:49 ADT - Chapter 9 passed lint after six local structured-package fixes: three repeated clause scaffolds removed, one banned reinforcement stem removed, one duplicated takeaway sentence rewritten, and one remaining scaffold repaired on rerun; chapter gate passed and hash sealed.
+- 2026-04-10 14:58:41 ADT - Chapter 10 passed lint after ten local structured-package fixes: two repeated comparison phrase chunks removed, two banned reinforcement stems removed, five duplicated medium/hard competitive takeaway surfaces rewritten, and one hard recap overlap reduced; chapter gate passed and hash sealed.
+- 2026-04-10 15:07:32 ADT - Chapter 11 pre-writer package, prose chain, structured package, and chapter gate completed; one duplicate single-word sentence was removed from the hard competitive breakdown on the first repair pass before hash sealing.
+- 2026-04-10 15:12:00 ADT - Chapter 12 pre-writer package opened for Rule 4 with narrow title-bounded source constraints preserved; no prose-stage artifacts started yet.
+- 2026-04-10 15:15:46 ADT - Chapter 12 passed lint after four local structured-package fixes: one repeated clause scaffold removed and three banned reinforcement openings rewritten; chapter gate passed and hash sealed.
+- 2026-04-10 15:26:43 ADT - Chapter 13 passed lint after five local structured-package fixes: one repeated clause scaffold removed, one banned reinforcement opening rewritten, two duplicate recap surfaces rewritten, and one hard gentle recap overlap reduced; chapter gate passed and hash sealed.
+- 2026-04-10 15:33:37 ADT - Chapter 14 passed lint after three local structured-package fixes: one repeated phrase chunk removed, one duplicated gentle takeaway point rewritten, and one hard gentle recap overlap reduced; chapter gate passed and hash sealed.
+- 2026-04-10 15:44:03 ADT - Chapter 15 passed lint after eight local structured-package fixes: one repeated phrase chunk removed, two banned reinforcement openings rewritten, four duplicate takeaway/recap surfaces rewritten, and one hard competitive moreDetails restatement repaired; chapter gate passed and hash sealed.
+- 2026-04-10 15:52:18 ADT - Chapter 16 pre-writer package, prose chain, structured package, quiz, and reading metrics completed; conclusion remained title-bounded and integrated prior rules without introducing a new framework.
+- 2026-04-10 15:55:51 ADT - Chapter 16 passed lint after a two-pass structured-package repair: duplicate recap retrievals rewritten, medium/hard recap surfaces separated, duplicated competitive takeaway points rewritten, mission/model moreDetails differentiated, one mission mechanism repair added, and one final hard competitive recap overlap reduced; chapter gate passed and hash sealed.
+- 2026-04-10 15:55:51 ADT - Final release assembled from validated chapters only and copied to book-packages/so-good-they-cant-ignore-you.modern.json.
+- 2026-04-10 15:57:10 ADT - Release guard exposed continuity drift: sealed hashes for Chapters 1-4 no longer matched validated file bytes. Continuity state was repaired from validated/chXX.chapter.json and release validation was restarted on the corrected state.
+- 2026-04-10 19:39:51 ADT - Repo validator exposed downstream ChapterFlow v13 structure drift in Chapters 5-16. Validated and structured chapter JSONs, review-package wrappers, continuity seals, and release artifacts were rebuilt from the validated chapter set via a repair pass that restored missing support structures, corrected recap shapes, repaired Chapter 15 depth floors, and removed reusable recap stems. Final state: validate-book PASS, release_gate FAIL=0 WARN=0, release_guard FAIL=0 WARN=0, artifact_guard FAIL=0 WARN=0, source_guard FAIL=0 WARN=0.
+- 2026-04-10 20:45:03 ADT - Book-scoped So Good generator repair landed in the pack. Added a binding style contract, generic book-contract loading for writer/editor/converter/validator, So Good-specific prose-audit and validate-book gates, a canonical So Good repair tool, and rebuilt the current run from that repair path. Final state after rebuild: validate-book PASS, release_gate FAIL=0 WARN=0, release_guard FAIL=0 WARN=0, artifact_guard FAIL=0 WARN=0, source_guard FAIL=0 WARN=0.

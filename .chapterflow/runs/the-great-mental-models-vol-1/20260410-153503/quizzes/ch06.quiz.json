@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch06-q01",
+      "prompt": "What is a necessary condition?",
+      "choices": [
+        "A factor that guarantees the result",
+        "A factor the outcome cannot happen without",
+        "A factor that is the only possible path"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Correct. Necessary means the outcome depends on the factor being present.",
+        "direct": "A necessary condition is required, though its presence still may not be enough to produce the result.",
+        "competitive": "It is the gatekeeper, not the full engine."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch06-q02",
+      "prompt": "Which statement best describes a sufficient condition?",
+      "choices": [
+        "It is enough to produce the outcome in the relevant setup",
+        "It must be present in every possible version of the outcome",
+        "It always proves other factors are irrelevant"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Sufficient means enough to bring the result about.",
+        "direct": "A sufficient condition produces the outcome in the relevant case; it does not have to be the only route.",
+        "competitive": "If it gets the job done, it counts as enough without owning the whole field."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch06-q03",
+      "prompt": "What is the chapter warning against when it discusses legal approval for a launch?",
+      "choices": [
+        "Treating a required condition like a complete guarantee",
+        "Ignoring all required conditions",
+        "Assuming that no factors matter before launch day"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The model warns against turning a prerequisite into the whole success story.",
+        "direct": "Approval may be necessary, but that alone does not make it sufficient for readiness.",
+        "competitive": "The mistake is crowning the gatekeeper as the entire machine."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch06-q04",
+      "prompt": "In Nora's launch scenario, what is the best next step?",
+      "choices": [
+        "Assume approval will automatically solve launch readiness",
+        "Separate blocked prerequisites from the full set of launch-ready conditions",
+        "Ignore the approval issue and focus only on team morale"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exactly. The team needs to classify what approval does and what it does not do.",
+        "direct": "The right move is to distinguish a required condition from the larger set that would actually be enough.",
+        "competitive": "Do not let one green light impersonate total readiness."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q05",
+      "prompt": "Why is Caleb's study-habit postmortem useful for this model?",
+      "choices": [
+        "It shows that no study habits matter",
+        "It shows that one helpful habit may still fall short of being enough",
+        "It proves grades are purely random"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Correct. A habit can help without being sufficient for the whole result.",
+        "direct": "The example separates contribution from completion, which is the chapter's key move.",
+        "competitive": "The grade exposed a supporting factor that had been overpromoted into a full formula."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q06",
+      "prompt": "What mistake does Tessa almost make with the successful tactic in her forecast review?",
+      "choices": [
+        "She ignores the tactic even though it worked",
+        "She assumes one sufficient route is the only possible route",
+        "She concludes no tactics can ever be evaluated"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. Enough does not automatically mean exclusive.",
+        "direct": "The tactic may have been sufficient in that case without proving other routes could not work too.",
+        "competitive": "One win does not buy monopoly status."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q07",
+      "prompt": "In Mina and Jordan's repair conversation, what distinction helps the discussion improve?",
+      "choices": [
+        "Whether apology is a required part of repair versus enough to fully restore trust",
+        "Whether arguments should always be avoided",
+        "Whether trust is impossible to evaluate"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The conversation gets clearer when one gesture is not asked to do every job.",
+        "direct": "They separate a potentially necessary repair step from the broader question of what would actually be sufficient.",
+        "competitive": "Apology stops pretending it is a one-step total fix."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch06-q08",
+      "prompt": "What is the common trap in Omar's admissions dilemma?",
+      "choices": [
+        "Assuming one visible badge is enough to carry the whole outcome",
+        "Ignoring all credentials completely",
+        "Treating every school as identical"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Correct. One factor can matter without being sufficient for the entire result.",
+        "direct": "The trap is overinvesting in one signal before classifying what role it actually plays.",
+        "competitive": "It is the comforting myth that one shiny symbol unlocks the whole door."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch06-q09",
+      "prompt": "Why does the necessity-and-sufficiency distinction improve diagnosis after success or failure?",
+      "choices": [
+        "Because it replaces all uncertainty with certainty",
+        "Because it separates missing prerequisites from factors that were never enough and separates one working path from exclusive explanations",
+        "Because it removes the need to consider context"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The model helps you ask better questions about what the result depended on.",
+        "direct": "It improves diagnosis by labeling what the factor actually did instead of letting one ingredient explain too much.",
+        "competitive": "It stops causal overclaim and forces the postmortem to earn its confidence."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch06-q10",
+      "prompt": "How does this chapter set up second-order thinking?",
+      "choices": [
+        "By proving all outcomes depend on one dominant condition",
+        "By clarifying what conditions matter before asking what follows once those conditions operate",
+        "By replacing consequence analysis with definition work"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exactly. Once the conditions are clearer, the next step is to follow what happens after the first effect.",
+        "direct": "Condition logic cleans up the setup so consequence-chain reasoning can begin on firmer ground.",
+        "competitive": "First sort the gatekeepers and finishers, then chase what happens next."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

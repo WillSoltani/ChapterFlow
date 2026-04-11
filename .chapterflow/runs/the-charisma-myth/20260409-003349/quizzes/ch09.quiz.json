@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What false shortcut does this chapter reject first?",
+      "choices": [
+        "That body language is only a list of posture tricks or visual decoration",
+        "That the body continues sending signals between words",
+        "That posture and gaze can affect credibility"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter begins by rejecting body language as a simple trick list.",
+        "direct": "Its opening correction is against treating nonverbal behavior as surface technique alone.",
+        "competitive": "It kills pose theater immediately."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does internal state matter so much in this chapter?",
+      "choices": [
+        "Because posture can fully hide how someone feels",
+        "Because the body reveals whether attention and calm are actually settled",
+        "Because body language works only when words disappear completely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Internal state matters because tension and groundedness show up physically.",
+        "direct": "The chapter treats the body as evidence of congruence or contradiction.",
+        "competitive": "If the state is unstable, the body leaks it fast."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "How does presence show up physically in this chapter?",
+      "choices": [
+        "By becoming motionless no matter the situation",
+        "By using the biggest gestures available",
+        "By showing steadier gaze, chosen stillness, and less scattered movement"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Presence looks more grounded and less fragmented here.",
+        "direct": "The chapter links bodily presence to steadier attention, not to stiffness.",
+        "competitive": "Grounded stillness beats frozen control."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Noa becomes more believable in a mock interview when she slows her hands and lets her gaze land. What does that show?",
+      "choices": [
+        "Physical steadiness can make presence and credibility more visible before the answer itself changes much",
+        "Mock interviews are mostly about memorizing stronger wording",
+        "Interview charisma depends only on smiling more often"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Noa shows how a steadier body can change the room before content improves.",
+        "direct": "The example treats body language as signal support, not decoration.",
+        "competitive": "Once the leak slows down, the room trusts more."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Caleb notices his foot bouncing through a team update. What is the better diagnosis?",
+      "choices": [
+        "Restless movement can thin the weight of a solid point by making the body look unsettled",
+        "Fidgeting adds useful energy to every work conversation",
+        "The body never affects authority if the content is correct"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Caleb learns that the body can weaken power even when the words are decent.",
+        "direct": "The chapter would call this a congruence failure, not a content failure alone.",
+        "competitive": "If the body is shaky, the point gets lighter."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Why do Mina's kind words feel colder when her body stays guarded?",
+      "choices": [
+        "Because warm language always weakens authority",
+        "Because guarded posture can contradict a warm sentence and raise relational distance",
+        "Because personal conversations should avoid body-language awareness"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Mina shows that bodily warmth is more than a facial expression or a nice phrase.",
+        "direct": "The chapter says a guarded body can cool a warm message.",
+        "competitive": "If the body stays armored, the warmth leaks out."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why can overmanaging posture and gesture backfire?",
+      "choices": [
+        "Because nonverbal improvement is impossible",
+        "Because more control always lowers warmth",
+        "Because excessive monitoring can make the body look staged, tense, or self-conscious"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter treats overcontrol as a source of fresh tension.",
+        "direct": "Trying to manage every cue can create more contradiction than it removes.",
+        "competitive": "Pose control can turn into visible strain."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What does the chapter suggest about bodily power and warmth?",
+      "choices": [
+        "They need to stay balanced so weight does not become pressure and softness does not become collapse",
+        "Warmth matters only after power is fully established",
+        "Power is best shown by taking the most space possible"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps bodily confidence and bodily safety tied together.",
+        "direct": "Triad balance matters physically just as it does elsewhere in the book.",
+        "competitive": "Too much force and too much softness both lose."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the chapter deeper claim about body language and charisma?",
+      "choices": [
+        "Nonverbal behavior is separate from internal state once someone learns enough techniques",
+        "Body language is ongoing evidence of whether presence, power, and warmth are aligned",
+        "Presence matters physically, but warmth and power are mostly verbal"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter keeps body language tied to the triad and to congruence.",
+        "direct": "Its deeper claim is that the body is visible evidence about alignment, not surface polish.",
+        "competitive": "The body keeps proving whether the signal is real."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why does this chapter lead directly into digital charisma?",
+      "choices": [
+        "Because digital settings remove the charisma problem entirely",
+        "Because online contact works better when body language is ignored",
+        "Because many bodily cues get reduced or distorted by screens, delay, and framing"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The bridge is that the signal gets thinner online, not irrelevant.",
+        "direct": "Chapter 10 follows because the same charisma problem survives reduced bodily bandwidth.",
+        "competitive": "When the body gets cropped, the signal gets harder to carry."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's basic claim about managing others?",
+      "choices": [
+        "Leadership is mainly about stronger command",
+        "Management quality shapes how teams report and adapt under uncertainty",
+        "Teams usually perform best when leaders stay distant"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter treats leadership as a system for signal, feedback, and adaptation.",
+        "direct": "Managing others is framed here as designing better reporting and revision loops.",
+        "competitive": "The manager builds the loop, not just the order."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why do lean and agile thinking matter in this chapter?",
+      "choices": [
+        "They keep work learnable through shorter feedback and revision loops",
+        "They remove the need for structure",
+        "They prove that long plans are always useless"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter uses lean and agile thinking to keep work adjustable under uncertainty.",
+        "direct": "Short loops help teams revise while the work is still movable.",
+        "competitive": "Fast learning beats stale planning."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What happens when a team expects punishment for bad news?",
+      "choices": [
+        "Reporting becomes more honest and more useful",
+        "The manager receives a cleaner but weaker version of reality",
+        "Standards automatically improve"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "People start editing reality when honesty feels costly.",
+        "direct": "Fear weakens the reporting channel by filtering or delaying signal.",
+        "competitive": "The boss gets polish instead of truth."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Marcus hears that a key update was missed late in production. Which response best fits the chapter?",
+      "choices": [
+        "Punish the messenger first so future misses become rarer",
+        "Reward the honest report and rebuild the plan with the new information",
+        "Ignore the update so the team does not lose confidence"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter favors protecting the signal so the work can improve.",
+        "direct": "The leader should make useful reporting survivable and operational.",
+        "competitive": "Protect the truth before protecting authority."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What is the chapter's strongest warning about control alone?",
+      "choices": [
+        "It can create visible order while making the team less adaptive",
+        "It always makes people happier",
+        "It usually removes the need for trust"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns that quiet teams may simply be hiding reality.",
+        "direct": "Control can suppress the very signals a leader needs for correction.",
+        "competitive": "Clean surfaces can hide broken execution."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "A postmortem shows that several people noticed a problem early but nobody wanted to speak first. What failed most according to this chapter?",
+      "choices": [
+        "The team needed more rules and fewer conversations",
+        "The reporting system and trust conditions were too weak",
+        "The team lacked enough raw talent"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The issue is not just awareness. It is whether the room makes early reporting usable.",
+        "direct": "The team had signal, but management conditions made surfacing it too costly.",
+        "competitive": "The truth existed and still could not travel."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why does trust matter in a robotics or school-team setting according to this chapter?",
+      "choices": [
+        "Because trust lowers standards and makes students feel comfortable",
+        "Because trust makes mistakes and correction surface faster",
+        "Because trust replaces the need for structure"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Trust helps because students report problems sooner when fear is lower.",
+        "direct": "The chapter treats trust as an execution condition, not a softness slogan.",
+        "competitive": "Trust keeps the machine learnable."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Priya controls every family plan so tightly that others stop reporting changes. What would improve the situation most?",
+      "choices": [
+        "Adding more instructions so nobody can make a mistake",
+        "Creating a check-in where other people report changes before the next step is fixed",
+        "Assuming silence means the plan is working"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter favors reopening the reporting channel before the plan hardens.",
+        "direct": "The system needs more signal flow, not more one-way command.",
+        "competitive": "Reality needs more than one legal speaker."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What balance does the chapter say strong management must hold?",
+      "choices": [
+        "Trust, structure, and learning speed together",
+        "Trust without standards",
+        "Control without revision"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says strong leadership needs standards, signal, and adaptation together.",
+        "direct": "Good management binds accountability to learning instead of choosing one against the other.",
+        "competitive": "Standards, signal, and revision have to travel together."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If a team gets better at surfacing reality, what problem does the chapter point toward next?",
+      "choices": [
+        "How to make better decisions with uncertain information",
+        "How to remove all adaptation from the plan",
+        "How to replace leaders with metrics entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter bridges into decision making because signal alone is not enough. Teams still have to judge what it means.",
+        "direct": "This is the next problem: better reporting has to feed better belief-updating and choice.",
+        "competitive": "The room can get the truth faster and still read it badly."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

@@ -1,0 +1,682 @@
+{
+  "chapterId": "ch19-incentives",
+  "number": 19,
+  "title": "Incentives",
+  "readingTimeMinutes": 7,
+  "contentVariants": {
+    "easy": {
+      "chapterBreakdown": {
+        "gentle": "Incentives are about the rewards, penalties, and consequences that steer behavior. The chapter matters because systems often get more of what they reward in practice than what they praise in words. The practical lesson is to ask what behavior the structure is truly encouraging.",
+        "direct": "Incentives mean behavior-shaping consequences. The chapter matters because actual rewards often matter more than stated values.",
+        "competitive": "People follow the signal that pays, not the slogan that flatters."
+      },
+      "keyTakeaways": [
+        {
+          "point": {
+            "gentle": "Incentives steer behavior.",
+            "direct": "The model asks what actions the system is rewarding or penalizing.",
+            "competitive": "Behavior moves toward the payoff."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Stated goals and real signals can differ.",
+            "direct": "A system can say it wants one thing while rewarding another.",
+            "competitive": "The words can point one way while the payoff points another."
+          }
+        },
+        {
+          "point": {
+            "gentle": "People adapt to the actual consequence structure.",
+            "direct": "Responses often make sense once the real reward signal is visible.",
+            "competitive": "The field learns the pattern that keeps getting rewarded."
+          }
+        }
+      ],
+      "oneMinuteRecap": {
+        "gentle": "The chapter teaches that incentives shape behavior through practical consequences, that systems often reward something narrower than they say, and that people adapt to the real signal they face.",
+        "direct": "Incentives widen judgment from structure to behavior. The warning is that actual reward patterns often reveal more than official goals do.",
+        "competitive": "Do not trust the speech. Inspect the payoff."
+      }
+    },
+    "medium": {
+      "chapterBreakdown": {
+        "gentle": "Priya sees her team finish many visible tasks while deeper maintenance work keeps waiting. The dashboard rewards quantity, the check-in praises throughput, and the bonus conversation leans toward whatever can be counted quickly. The chapter opens there to show that behavior follows practical consequences more reliably than stated ideals.\n\nIncentives are the model for how systems steer behavior through reward, penalty, and consequence. The chapter matters because people rarely respond only to official values. They respond to the signals built into the environment. A system can announce one goal and still produce another if the rewards point elsewhere.\n\nLucy sees the same pattern in school when participation points meant to reward engagement start rewarding speed of response more than depth of thought. Students adapt to the real signal. The system may say it cares about understanding, yet the rewarded behavior is fast visible contribution.\n\nThe chapter becomes more useful when it names signal mismatch directly. Mateo may be told to focus on quality, but if his review is driven mainly by volume, the structure quietly rewards output over care. Hannah may want balanced discussion, but if points go to whoever speaks most often, the system favors airtime over substance.\n\nAdaptive response is not the same as bad character. Victor may choose the metric that keeps him safe because he understands the consequences built into the structure. People often respond rationally to what the system pays for even when the outcome looks disappointing from the outside.\n\nThe chapter also resists a narrow reading of incentives as money alone. Praise, grades, visibility, convenience, and avoided penalties can all steer behavior. The issue is not the form of the reward. It is the behavior the structure makes easier, safer, or more worthwhile.\n\nThe practical rule is to ask what behavior is being rewarded, what stated goal that reward is supposed to serve, where the signal is mismatched, and how people will adapt if the structure stays the same. Incentives sharpen judgment because they force attention onto what a system is selecting in practice.",
+        "direct": "Incentives begin where a system's consequences start steering behavior more strongly than its official language. Priya's team keeps clearing small visible tasks while deeper maintenance work waits because the dashboard, praise, and review process reward what can be counted quickly. The chapter matters because systems often get more of what they pay for than what they praise.\n\nThat is the practical meaning of incentives. They are the rewards, penalties, and consequences that shape action. A system can state one aim and still teach another if the real payoff structure points in a different direction.\n\nLucy sees the same logic in participation grading. What looks like engagement on paper becomes speed of response in practice because that is what the structure rewards visibly. Students adapt to the real consequence pattern rather than to the official description of the goal.\n\nSignal mismatch makes the chapter sharper. Mateo hears quality language while volume drives review. Hannah wants balanced discussion while the points system rewards frequency of speaking. The system's stated value is not what matters most. The operative question is what behavior earns the reward.\n\nThe model stays fair by treating adaptation as intelligible. Victor may choose the metric that protects him not because he missed the goal but because he sees the costs and rewards clearly. Incentives shape behavior by changing which move feels safer, more profitable, or more visible.\n\nThe chapter also broadens the idea of reward. Money matters sometimes, but so do praise, grades, convenience, time savings, and avoided penalties. Incentives matter whenever consequences tilt behavior in one direction over another.\n\nThe practical rule is direct. Name the behavior being rewarded, compare it to the stated aim, inspect the mismatch, and predict how rational adaptation will unfold if nothing changes. Incentives matter because they reveal what the system is actually training people to do.",
+        "competitive": "Incentives kill the fantasy that people mainly follow the values printed on the wall. Priya's team keeps chasing the visible wins because the dashboard, the praise, and the bonus conversation all point there. Nobody ordered them to ignore the deeper work. The payoff structure did that job quietly.\n\nThat is the first discipline. Stop listening only to the official story. Incentives are the rewards, penalties, and consequences that steer behavior in the real field. A system says what it wants with words and shows what it wants with payoffs. The second one usually wins.\n\nLucy sees it in class when participation points turn engagement into fast visible response. Students are not betraying the goal. They are reading the signal accurately and adapting to it.\n\nSignal mismatch is where the chapter bites harder. Mateo hears quality language and gets judged by volume. Hannah wants thoughtful discussion and rewards airtime. The structure keeps paying for a narrow slice of the result and then acts surprised when the field narrows around it.\n\nVictor's adaptation is not a moral mystery. He follows the metric that protects him because the consequences make that the smart move. Incentives work by changing which choice feels costly and which one feels safe.\n\nThe chapter also keeps the category wide. Money is only one tool. Praise, visibility, grades, convenience, and avoided pain can all steer behavior. What matters is the direction of the signal.\n\nSo the rule is sharp. Find the payoff, compare it to the stated goal, watch how the field adapts, and redesign the structure before you blame the response. Incentives matter because systems train the behavior they keep rewarding."
+      },
+      "keyTakeaways": [
+        {
+          "point": {
+            "gentle": "Incentives steer behavior through practical consequences.",
+            "direct": "The model asks what the system is rewarding, penalizing, or making easier.",
+            "competitive": "Behavior bends toward the payoff."
+          },
+          "moreDetails": {
+            "gentle": "The chapter treats incentives as the signals built into a structure that pull action in one direction over another.",
+            "direct": "Incentives matter because systems often shape conduct more through consequence than through declared principle.",
+            "competitive": "The field follows the reward geometry more than the speech."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Real reward structures matter more than stated values.",
+            "direct": "A system can announce one aim while rewarding another behavior entirely.",
+            "competitive": "The slogan can lie while the payoff tells the truth."
+          },
+          "moreDetails": {
+            "gentle": "What matters most is the behavior that earns praise, grades, safety, or advantage in practice.",
+            "direct": "The chapter becomes practical when it compares official goals with the actual consequence pattern people face.",
+            "competitive": "If the reward points one way, the field eventually leans that way."
+          }
+        },
+        {
+          "point": {
+            "gentle": "People adapt to the actual signal they receive.",
+            "direct": "Behavior often makes more sense once the operative incentive is visible.",
+            "competitive": "The structure keeps schooling people toward the paid move."
+          },
+          "moreDetails": {
+            "gentle": "Responses that look disappointing from the outside may be rational once the reward and penalty pattern is understood.",
+            "direct": "The chapter stays fair by treating adaptation as intelligible instead of assuming bad motives first.",
+            "competitive": "If the safe move pays, do not act shocked when people keep taking it."
+          }
+        },
+        {
+          "point": {
+            "gentle": "A narrow reward can bend a larger goal out of shape.",
+            "direct": "Rewarding a thin metric can weaken the larger outcome the system claims to want.",
+            "competitive": "The field narrows around whatever slice keeps paying."
+          },
+          "moreDetails": {
+            "gentle": "A grading rule, metric, or point system may steer action toward a simplified proxy rather than the richer result it was meant to support.",
+            "direct": "The chapter stays rigorous by showing how signal mismatch can produce predictable distortion rather than accidental error.",
+            "competitive": "Pay for the proxy too hard and the proxy starts replacing the goal."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Wise judgment reads the consequence structure before judging the response.",
+            "direct": "Strong design aligns the reward signal with the goal it claims to serve.",
+            "competitive": "Fix the payoff before you blame the field."
+          },
+          "moreDetails": {
+            "gentle": "The model becomes useful when it asks what behavior the system is selecting and whether that selection matches the intended aim.",
+            "direct": "Incentives sharpen judgment by turning behavior into a design question about consequence, adaptation, and signal alignment.",
+            "competitive": "If you want a different field, redesign what keeps getting paid for."
+          }
+        }
+      ],
+      "activationPrompt": {
+        "gentle": "Choose one system you are part of, then write what behavior it says it wants, what behavior it actually rewards, and how people are likely to adapt to that difference.",
+        "direct": "Run an incentive audit on one live setting: stated aim, actual payoff structure, rewarded proxy, predictable adaptation, and the change that would better align the signal with the goal.",
+        "competitive": "Pick one field and force the truth out of it: what gets praised, what gets paid, what gets dodged, and what behavior the structure is really training."
+      },
+      "selfCheckPrompt": {
+        "gentle": "Can you explain why actual consequences matter more than official language?",
+        "direct": "Why can a system get behavior it never openly asked for?",
+        "competitive": "Why does the payoff beat the poster?"
+      },
+      "oneMinuteRecap": {
+        "retrieve": {
+          "gentle": "What is an incentive in the chapter's practical sense?",
+          "direct": "What in a system is doing the real behavior-shaping work?",
+          "competitive": "What signal is the field really reading?"
+        },
+        "connect": {
+          "gentle": "How do rewards, mismatch, and adaptation fit together?",
+          "direct": "Why can the stated goal survive while the behavior drifts elsewhere?",
+          "competitive": "How can the speech stay the same while the field keeps bending another way?"
+        },
+        "preview": {
+          "gentle": "Once behavior is being steered, why do systems so often choose the lower-effort path?",
+          "direct": "What question comes next about energy minimization after incentives?",
+          "competitive": "If the signal is set, why does the field still drift toward the easier move?"
+        }
+      }
+    },
+    "hard": {
+      "chapterBreakdown": {
+        "gentle": "Incentives matter because systems usually get more of what they reward than what they merely praise. Priya's team clears visible tasks while deeper maintenance work waits because the dashboard, praise, and bonus conversation all point toward what can be counted quickly. The chapter begins there to show that behavior follows practical consequence more faithfully than official language.\n\nThat is why incentives are defined as the rewards, penalties, and consequences that steer behavior. The chapter is not limited to money. It includes grades, praise, safety, convenience, visibility, and avoided cost. What matters is not the form of the signal but the direction of action it makes easier or more worthwhile.\n\nLucy sees the same structure in participation grading. The stated aim is engagement or understanding, yet the rewarded behavior becomes fast visible response. Students adapt to the signal built into the system rather than to the verbal description of the goal. Incentives therefore reveal what a system is actually selecting.\n\nSignal mismatch makes the model sharper. Mateo hears quality language while volume drives review. Hannah wants balanced discussion while points reward airtime. A system can claim one objective and still train people toward a narrower proxy if that proxy is what earns the payoff.\n\nThe chapter also keeps adaptation morally clear. Victor may choose the metric that protects him not because he lacks principle, but because he understands the consequence structure. Behavior that looks disappointing from outside often becomes intelligible once the system's rewards and penalties are visible.\n\nThe model refuses to collapse into crude cynicism. Incentives do not explain every part of human conduct, and they still matter enough that ignoring them distorts judgment. Wise action asks what the system is paying for in practice, what side behavior that payment invites, and whether the reward signal actually serves the stated goal.\n\nStrong judgment therefore asks exact questions. What behavior is rewarded? What behavior is penalized or made costly? What goal is the structure supposed to serve? Where is the signal mismatched? And how will rational adaptation unfold if the system remains unchanged? Incentives sharpen judgment because they force attention onto consequence patterns rather than official stories.\n\nThat frame leads directly into energy minimization. Once behavior is being steered, the next question is why systems often keep sliding toward the move that costs the least effort unless the environment is changed.",
+        "direct": "Incentives are the model for how systems steer behavior through actual consequences. Priya's team keeps prioritizing visible throughput over deeper maintenance because the dashboard, praise pattern, and bonus logic all reward what can be counted quickly. The chapter matters because real systems often teach one behavior while talking about another.\n\nThat makes the distinction exact. Incentives are not only financial rewards. They include grades, praise, visibility, convenience, avoided penalties, and any other consequence pattern that tilts behavior in one direction. A system's real values become clearer when you examine its payoff structure instead of its language.\n\nLucy's participation grading shows the same logic. The class says it values understanding, yet the visible reward goes to fast response. Students adapt to the operative signal because that is the structure actually guiding their choices.\n\nSignal mismatch creates the chapter's hard edge. Mateo is told to care about quality while review rewards volume. Hannah says she wants balanced discussion while the points system rewards frequency. In each case the reward structure pulls behavior toward a proxy that is narrower than the stated aim.\n\nAdaptation is what makes the chapter practical. Victor may optimize for the metric that keeps him safe because the system has made that the intelligent move. The response may look disappointing morally, yet it still follows logically from the consequence pattern in front of him.\n\nThe chapter stays balanced by avoiding reductionism. Incentives do not explain everything, but they explain too much to ignore. Strong judgment therefore begins by asking what behavior is being selected in practice and what side effects that selection is generating.\n\nThe practical rule is strict. Identify the real payoff, compare it to the declared goal, inspect the mismatch, and predict the adaptive behavior that the structure will keep producing until the signal changes. Incentives matter because they turn behavior into evidence about what the system is truly training.",
+        "competitive": "Incentives destroy the lazy habit of believing the official mission statement. Priya's team is not betraying the deeper work by accident. The dashboard, the praise, and the bonus talk keep paying for the visible wins, so the field keeps running there. The system is training the move it rewards.\n\nThat is the first hard discipline. Stop treating incentives as money alone. Grades, praise, visibility, convenience, and avoided pain can all pay. What matters is the consequence pattern, because that pattern tells people what the smart move is.\n\nLucy sees it in class when fast visible participation beats slower thoughtful understanding. Students are not misreading the goal. They are reading the field correctly.\n\nSignal mismatch is where the chapter gets sharp. Mateo hears quality talk and gets judged by volume. Hannah says she wants balanced discussion and keeps rewarding airtime. The system pays for the proxy and then acts surprised when the proxy starts replacing the goal.\n\nVictor's response is not mysterious. He follows the metric that protects him because the consequences make that the intelligent choice. Incentives work by changing which move feels safe, profitable, or visible enough to matter.\n\nThe chapter refuses both naivete and cynicism. Incentives are not everything, but they are too strong to ignore. If you want to understand the field, stop listening only to what it says and start tracing what it keeps paying for.\n\nSo the rule is ruthless and practical. Find the payoff, compare it to the stated aim, watch how the field adapts, and redesign the structure before you start moralizing the response. Incentives matter because systems train the behavior they reward."
+      },
+      "keyTakeaways": [
+        {
+          "point": {
+            "gentle": "Incentives steer behavior through real consequence patterns.",
+            "direct": "The model asks what the system is actually paying for or penalizing.",
+            "competitive": "The field bends toward the payoff map."
+          },
+          "moreDetails": {
+            "gentle": "The chapter treats incentives as practical signals built into the environment that make some moves easier, safer, or more rewarding than others.",
+            "direct": "Incentives matter because consequence structures often shape conduct more reliably than ideals or instruction alone.",
+            "competitive": "Once the payout settles, the field starts arranging itself around it."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Actual rewards matter more than official values.",
+            "direct": "A system can speak one goal and still train another behavior.",
+            "competitive": "The mission can point left while the payoff points right."
+          },
+          "moreDetails": {
+            "gentle": "What people experience as rewarded, punished, or protected often tells them more than what the system claims to admire.",
+            "direct": "The chapter becomes useful when it compares the declared aim with the behavior that truly earns advantage inside the structure.",
+            "competitive": "If the field keeps paying one move, do not be surprised when the field keeps choosing it."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Adaptive response often makes sense once the signal is visible.",
+            "direct": "People usually adjust intelligently to the operative incentive pattern.",
+            "competitive": "The system teaches the move it keeps making smart."
+          },
+          "moreDetails": {
+            "gentle": "Behavior that looks disappointing from the outside can become intelligible when the real costs and rewards are examined.",
+            "direct": "The chapter stays fair by reading response through structure first instead of assuming weak character or confusion.",
+            "competitive": "If the safe metric pays, the field will keep hugging it."
+          }
+        },
+        {
+          "point": {
+            "gentle": "A narrow incentive can twist a larger goal away from its intended shape.",
+            "direct": "Rewarding a proxy too aggressively can make the proxy replace the intended outcome.",
+            "competitive": "Pay for the slice and the slice starts swallowing the whole."
+          },
+          "moreDetails": {
+            "gentle": "Grades, metrics, or point systems may pull action toward a simplified target that is easier to reward than the richer goal behind it.",
+            "direct": "The chapter becomes rigorous when it shows distortion as a predictable response to signal mismatch rather than as random failure.",
+            "competitive": "The field narrows around whatever keeps paying the rent."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Wise judgment studies what the system is selecting.",
+            "direct": "Strong design aligns the consequence structure with the goal it claims to serve.",
+            "competitive": "Fix the payoff if you want a different field."
+          },
+          "moreDetails": {
+            "gentle": "The model becomes useful when it asks what behavior the current structure produces and whether that behavior matches the intended result.",
+            "direct": "Incentives sharpen judgment by turning behavior into evidence about reward design, adaptation, and side effects.",
+            "competitive": "If you want the field to move differently, stop paying for the wrong move."
+          }
+        }
+      ],
+      "activationPrompt": {
+        "gentle": "Choose one system around you and map the stated goal, the actual reward signal, the behavior being selected, and the response people are learning from that signal.",
+        "direct": "Run a full incentive audit today: declared aim, operative payoff structure, rewarded proxy, predictable adaptation, distortion risk, and the redesign that would better align consequence with goal.",
+        "competitive": "Take one field and force the truth out of it. Name the speech, the payoff, the proxy, the survival move, and what you would change if you wanted the field to stop bending the wrong way."
+      },
+      "selfCheckPrompts": [
+        {
+          "gentle": "Can you explain why real consequences often matter more than official values?",
+          "direct": "Why can a system reliably produce behavior it never openly asked for?",
+          "competitive": "Why does the payoff keep beating the poster?"
+        },
+        {
+          "gentle": "Can you explain how adaptive response differs from moral approval?",
+          "direct": "Why can a disappointing response still be intelligible inside the system?",
+          "competitive": "When is the field just reading the signal correctly?"
+        }
+      ],
+      "predictionPrompt": {
+        "gentle": "If incentives steer behavior, why do systems still drift toward easier paths?",
+        "direct": "How might the next chapter move from incentives into energy minimization?",
+        "competitive": "Once the signal is set, why does the field still keep chasing the easier move?"
+      },
+      "oneMinuteRecap": {
+        "retrieve": {
+          "gentle": "What is an incentive in practical terms?",
+          "direct": "What part of the system is actually steering behavior?",
+          "competitive": "What payoff pattern is the field really reading?"
+        },
+        "connect": {
+          "gentle": "How do real rewards, mismatch, and adaptation belong together?",
+          "direct": "Why can the declared goal stay constant while the behavior shifts elsewhere?",
+          "competitive": "How can the speech stay fixed while the field keeps bending to the proxy?"
+        },
+        "preview": {
+          "gentle": "Once the signal is in place, why does the lower-effort path so often keep winning?",
+          "direct": "Why does incentives thinking lead into energy minimization?",
+          "competitive": "If the payoff is there, why does the field still slide toward the easier route?"
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "exampleId": "ch19-ex01-priya-dashboard",
+      "title": "Priya Reads the Dashboard",
+      "category": "work",
+      "format": "dialogue",
+      "endingType": "broader_principle",
+      "contexts": ["dashboard", "weekly metric report", "bonus review"],
+      "scenario": {
+        "gentle": "Priya's team keeps prioritizing visible throughput because that is what the dashboard and bonus conversation emphasize.",
+        "direct": "The reward structure teaches the team to chase what can be counted quickly.",
+        "competitive": "The field runs where the scoreboard pays."
+      },
+      "whatToDo": {
+        "gentle": "Compare the rewarded metric with the deeper outcome the team actually cares about.",
+        "direct": "Redesign the signal so the measured reward better matches the work the system truly needs.",
+        "competitive": "Fix the scoreboard before blaming the field."
+      },
+      "whyItMatters": {
+        "gentle": "The example shows incentives steering behavior without anyone needing to say so directly.",
+        "direct": "The system gets more of what it rewards in practice than of what it praises abstractly.",
+        "competitive": "The payoff beats the speech."
+      }
+    },
+    {
+      "exampleId": "ch19-ex02-habit-tracker",
+      "title": "Evan Changes the Consequence",
+      "category": "personal",
+      "format": "before_after",
+      "endingType": "perspective_reframe",
+      "contexts": ["habit tracker", "streak board", "phone reminder"],
+      "scenario": {
+        "gentle": "Evan follows through more steadily once his habit system rewards showing up daily instead of waiting for perfect performance.",
+        "direct": "A small consequence change shifts behavior more than repeated self-lectures did.",
+        "competitive": "The field moves when the payoff changes."
+      },
+      "whatToDo": {
+        "gentle": "Change the reward pattern so the desired behavior becomes the behavior that feels worth repeating.",
+        "direct": "Treat personal habits as incentive systems by adjusting the consequence structure instead of relying on intention alone.",
+        "competitive": "Pay for the right move if you want the field to keep taking it."
+      },
+      "whyItMatters": {
+        "gentle": "The example shows that incentives are broader than money.",
+        "direct": "Convenience, visibility, and small rewards can still steer behavior strongly.",
+        "competitive": "A small signal can still reshape the field."
+      }
+    },
+    {
+      "exampleId": "ch19-ex03-lucy-participation",
+      "title": "Lucy's Participation Points",
+      "category": "school",
+      "format": "predict_reveal",
+      "endingType": "surprising_implication",
+      "contexts": ["rubric", "raised hands", "point sheet"],
+      "scenario": {
+        "gentle": "A participation system meant to reward engagement ends up rewarding fast visible response more than thoughtful understanding.",
+        "direct": "Students adapt to the visible point signal rather than to the official goal language.",
+        "competitive": "The field learns to chase the point, not the deeper aim."
+      },
+      "whatToDo": {
+        "gentle": "Inspect whether the rewarded behavior is a good proxy for the outcome the teacher actually wants.",
+        "direct": "Redesign the reward structure so the visible signal matches the richer goal more closely.",
+        "competitive": "Stop paying the proxy so hard if you do not want it swallowing the goal."
+      },
+      "whyItMatters": {
+        "gentle": "The example shows signal mismatch in a school setting.",
+        "direct": "A stated value can remain intact while the reward structure trains something narrower.",
+        "competitive": "The payoff can quietly rewrite the field."
+      }
+    },
+    {
+      "exampleId": "ch19-ex04-mateo-review-system",
+      "title": "Mateo Redesigns the Review",
+      "category": "work",
+      "format": "decision_point",
+      "endingType": "cross_domain",
+      "contexts": ["review sheet", "output chart", "quality checklist"],
+      "scenario": {
+        "gentle": "Mateo must decide whether his team's review system should keep rewarding volume when quality is the stated priority.",
+        "direct": "The real choice is whether the structure will keep training the proxy instead of the goal.",
+        "competitive": "He can keep paying for the wrong move or change the field."
+      },
+      "whatToDo": {
+        "gentle": "Align the review signal with the outcome the team genuinely wants to strengthen.",
+        "direct": "Treat reward design as a structural choice that will shape future behavior long before another speech about values does.",
+        "competitive": "Fix the payout if you want a different pattern."
+      },
+      "whyItMatters": {
+        "gentle": "The example shows incentives as something to design, not merely observe.",
+        "direct": "Behavior changes when the consequence pattern changes, especially when the old pattern was teaching a narrow proxy.",
+        "competitive": "The field keeps becoming what the system pays for."
+      }
+    },
+    {
+      "exampleId": "ch19-ex05-hannah-club-points",
+      "title": "Hannah's Club Points",
+      "category": "personal",
+      "format": "dilemma",
+      "endingType": "common_trap",
+      "contexts": ["club leaderboard", "speaker tally", "meeting notes"],
+      "scenario": {
+        "gentle": "Hannah wants richer discussion, but her point system keeps rewarding whoever speaks most often.",
+        "direct": "The incentive favors airtime even though the stated goal is thoughtful balance.",
+        "competitive": "The field is paying for noise while claiming it wants substance."
+      },
+      "whatToDo": {
+        "gentle": "Ask whether the point system is rewarding the right behavior or just the easiest visible proxy.",
+        "direct": "Reduce mismatch by rewarding the fuller outcome rather than the most countable surface behavior.",
+        "competitive": "Stop paying the loudest move if you want the smarter one."
+      },
+      "whyItMatters": {
+        "gentle": "The example shows how narrow incentives distort broader goals.",
+        "direct": "A system can unintentionally train the wrong behavior simply by rewarding what is easiest to count.",
+        "competitive": "The proxy starts eating the goal when the payoff stays narrow."
+      }
+    },
+    {
+      "exampleId": "ch19-ex06-victor-postmortem",
+      "title": "Victor Reviews the Signal",
+      "category": "school",
+      "format": "postmortem",
+      "endingType": "self_directed_question",
+      "contexts": ["grade report", "assignment comments", "after-class notes"],
+      "scenario": {
+        "gentle": "Victor reviews a disappointing pattern and realizes the system kept rewarding the safest visible response rather than the deeper effort teachers claimed to value.",
+        "direct": "The postmortem reveals that the field was reading the signal correctly all along.",
+        "competitive": "The students were not confused. The payoff was."
+      },
+      "whatToDo": {
+        "gentle": "Ask what behavior the structure selected in practice before blaming the response it produced.",
+        "direct": "Use the review to separate moral frustration from the consequence pattern that was actually steering action.",
+        "competitive": "Read the payoff before judging the field."
+      },
+      "whyItMatters": {
+        "gentle": "The example shows incentives improving explanation after failure.",
+        "direct": "The model becomes practical when it turns behavior into evidence about what the system truly rewarded.",
+        "competitive": "The field makes more sense when you trace the payout."
+      }
+    }
+  ],
+  "reviewCards": [
+    {
+      "cardId": "ch19-rc01",
+      "front": {
+        "gentle": "What is an incentive in practical terms?",
+        "direct": "Which signal inside a system is really directing action?",
+        "competitive": "What payoff pattern is the field reading?"
+      },
+      "back": {
+        "gentle": "An incentive is any reward, penalty, or consequence that nudges behavior in one direction.",
+        "direct": "The part steering behavior is the actual consequence structure, not only the official language.",
+        "competitive": "The field reads the payoff map, not just the speech."
+      },
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch19-rc02",
+      "front": {
+        "gentle": "Why can stated goals and real behavior differ?",
+        "direct": "What creates signal mismatch?",
+        "competitive": "How can the speech point one way while the field bends another?"
+      },
+      "back": {
+        "gentle": "They differ when the system rewards a narrower behavior than the one it claims to want.",
+        "direct": "Signal mismatch appears when actual payoffs pull behavior in a different direction from the declared goal.",
+        "competitive": "The speech loses when the payoff keeps paying the proxy."
+      },
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch19-rc03",
+      "front": {
+        "gentle": "Why does adaptation matter in incentives?",
+        "direct": "How do people respond to the operative signal?",
+        "competitive": "Why does the field keep taking the smart safe move?"
+      },
+      "back": {
+        "gentle": "Adaptation matters because people usually adjust to the real consequences they face.",
+        "direct": "People respond to the operative signal by choosing the move the structure makes safer or more rewarding.",
+        "competitive": "The field keeps taking the move the payoff makes intelligent."
+      },
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch19-rc04",
+      "front": {
+        "gentle": "How can a narrow incentive distort a bigger goal?",
+        "direct": "Why can rewarding a proxy create worse outcomes?",
+        "competitive": "When does the slice start swallowing the whole?"
+      },
+      "back": {
+        "gentle": "A narrow incentive can distort the goal by pulling attention toward what is easy to reward instead of what truly matters.",
+        "direct": "Rewarding a proxy too strongly can train people toward the measurable slice rather than the richer outcome the proxy was supposed to support.",
+        "competitive": "The slice swallows the whole when the payoff keeps paying the proxy."
+      },
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "ch19-rc05",
+      "front": {
+        "gentle": "What practical rule does the chapter leave you with?",
+        "direct": "How should you judge an incentive structure?",
+        "competitive": "What do you inspect before blaming the field?"
+      },
+      "back": {
+        "gentle": "Identify the behavior being rewarded, compare it to the intended goal, and ask how people are likely to adapt.",
+        "direct": "Judge an incentive structure by its real payoff pattern, its mismatch with the stated aim, and the predictable adaptation it will keep producing.",
+        "competitive": "Inspect the payout, the proxy, and the smart survival move before you moralize the response."
+      },
+      "difficulty": "hard"
+    }
+  ],
+  "keyTakeawayCard": {
+    "gentle": "Incentives teach that systems steer behavior through practical consequences, that real rewards often matter more than official values, and that people adapt to the signal a structure truly sends.",
+    "direct": "Strong judgment reads incentives through payoff structure, signal mismatch, adaptive response, and the test of whether the rewarded behavior actually serves the stated goal.",
+    "competitive": "Find the payoff, trace the proxy, watch the field adapt, and remember that systems train the behavior they reward."
+  },
+  "implementationPlan": {
+    "coreSkill": {
+      "gentle": "The core skill is seeing what behavior a system is truly rewarding before judging the behavior it produces.",
+      "direct": "Core skill: identify the operative payoff structure, compare it with the stated goal, predict adaptation, and redesign the signal if the proxy is distorting the outcome.",
+      "competitive": "Core skill: read the payout before you read the field as broken."
+    },
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": {
+          "gentle": "If a team keeps producing the wrong result, then I will ask what the system is actually rewarding.",
+          "direct": "If a metric is narrowing behavior, then I will compare the rewarded proxy to the real objective before asking for more effort.",
+          "competitive": "If the field keeps bending wrong, I will trace the payout first."
+        }
+      },
+      {
+        "context": "school",
+        "plan": {
+          "gentle": "If students keep responding in shallow ways, then I will ask whether the grading signal is rewarding the surface instead of the depth.",
+          "direct": "If a points system produces distorted behavior, then I will inspect the proxy it is paying for and the adaptation it invites.",
+          "competitive": "If the class keeps gaming the field, I will read the signal before blaming the players."
+        }
+      },
+      {
+        "context": "personal",
+        "plan": {
+          "gentle": "If I keep missing a habit, then I will change the consequence structure instead of repeating the same promise.",
+          "direct": "If my behavior ignores my stated values, then I will inspect what my environment is actually rewarding or making easier.",
+          "competitive": "If my field keeps drifting, I will fix the payoff, not the speech."
+        }
+      }
+    ],
+    "twentyFourHourChallenge": {
+      "gentle": "Within 24 hours, choose one system and write the stated goal, the actual reward signal, the behavior being selected, and one change that would better align the signal with the goal.",
+      "direct": "Run one incentive audit today: declared aim, payoff structure, rewarded proxy, adaptive response, distortion risk, and the redesign that would make the system teach the right move.",
+      "competitive": "Today, test one field by naming the speech, the payout, the proxy, the smart response, and the fix that would stop paying the wrong behavior."
+    },
+    "weeklyPractice": {
+      "gentle": "For one week, notice one system each day and ask what it says it wants, what it actually rewards, and how people are adapting to that difference.",
+      "direct": "Track daily examples of incentives by watching consequence patterns, rewarded proxies, and predictable adaptation.",
+      "competitive": "Spend seven days catching where the field is obeying the payout more than the story."
+    }
+  },
+  "quiz": {
+    "passingScorePercent": 80,
+    "questions": [
+      {
+        "questionId": "ch19-q01",
+        "prompt": "What does an incentive mean in the chapter's practical sense?",
+        "choices": [
+          "Only a financial reward",
+          "Any reward, penalty, or consequence that steers behavior",
+          "A statement about what the system values"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "The chapter treats incentives as the consequences that nudge behavior in one direction.",
+          "direct": "An incentive is any payoff or cost pattern that shapes action, not only money.",
+          "competitive": "It is the payout map, not just the paycheck."
+        },
+        "bloomsLevel": "understand",
+        "depthLevel": "easy"
+      },
+      {
+        "questionId": "ch19-q02",
+        "prompt": "Which detail best shows what a system is actually rewarding?",
+        "choices": [
+          "The official value statement on the wall",
+          "The behavior that earns praise, safety, grades, or advantage in practice",
+          "The broad mission described during onboarding"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "What matters most is the behavior that gets rewarded in real situations.",
+          "direct": "The chapter reads the actual signal by watching which actions earn visible advantage or avoid cost.",
+          "competitive": "The field tells the truth through the payout, not the poster."
+        },
+        "bloomsLevel": "understand",
+        "depthLevel": "easy"
+      },
+      {
+        "questionId": "ch19-q03",
+        "prompt": "Why can a system get behavior it never openly asked for?",
+        "choices": [
+          "Because stated goals automatically control behavior",
+          "Because people ignore all value language by nature",
+          "Because the reward structure may point toward a different behavior than the stated aim"
+        ],
+        "correctIndex": 2,
+        "explanation": {
+          "gentle": "The chapter says behavior follows the operative signal more than the official wording.",
+          "direct": "A system can teach a different move when its real payoff pattern rewards something narrower than its stated goal.",
+          "competitive": "The field goes where the payoff points."
+        },
+        "bloomsLevel": "apply",
+        "depthLevel": "easy"
+      },
+      {
+        "questionId": "ch19-q04",
+        "prompt": "Priya's team keeps prioritizing visible throughput over maintenance work mainly because:",
+        "choices": [
+          "The system's dashboard and praise pattern reward what can be counted quickly",
+          "The chapter assumes maintenance work never matters",
+          "Incentives only affect people who are paid poorly"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "The visible reward signal keeps steering behavior toward quick countable wins.",
+          "direct": "The team's response follows the operative payoff structure more than the broader stated priority.",
+          "competitive": "The field chases the scoreboard it keeps getting paid by."
+        },
+        "bloomsLevel": "apply",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "ch19-q05",
+        "prompt": "How does the chapter distinguish stated values from real signals?",
+        "choices": [
+          "Real signals are the consequences built into the system, while stated values are the declared aim",
+          "There is no meaningful difference if the leadership is sincere",
+          "Stated values always outweigh the actual reward pattern"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "The chapter compares what the system says with what it actually pays for.",
+          "direct": "Stated values express the official goal, while real signals are the practical rewards and penalties steering action.",
+          "competitive": "The speech declares the aim; the payout trains the move."
+        },
+        "bloomsLevel": "analyze",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "ch19-q06",
+        "prompt": "What is the best reading of a club point system that rewards who speaks most often even though the leader wants balanced discussion?",
+        "choices": [
+          "The incentive is rewarding a narrow proxy that can distort the broader goal",
+          "The chapter would say the leader's stated goal matters more than the points",
+          "The system is too small for incentives to matter"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "The points system is paying for airtime rather than the fuller result the leader wants.",
+          "direct": "This is signal mismatch: the rewarded proxy is narrower than the stated aim and will predictably distort behavior.",
+          "competitive": "The payoff is feeding the slice until it starts replacing the whole."
+        },
+        "bloomsLevel": "analyze",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "ch19-q07",
+        "prompt": "Which action best applies incentive thinking?",
+        "choices": [
+          "Identify the real payoff, compare it to the goal, and predict how people will adapt",
+          "Assume disappointing behavior always reflects weak character first",
+          "Trust the official mission statement more than the reward pattern"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "The chapter asks you to read the consequence structure before judging the response.",
+          "direct": "Incentive thinking becomes practical when it inspects the actual signal, the mismatch, and the likely adaptation.",
+          "competitive": "Trace the payout before blaming the field."
+        },
+        "bloomsLevel": "apply",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "ch19-q08",
+        "prompt": "A grading system rewards fast visible participation more than thoughtful understanding. Which response fits the chapter?",
+        "choices": [
+          "Assume students are missing the teacher's true goal",
+          "Treat the behavior as a rational adaptation to the operative signal",
+          "Conclude that incentives only matter in workplaces"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "The chapter would read the response through the reward structure first.",
+          "direct": "Students are adapting to the visible consequence pattern, which is rewarding speed of response more than depth.",
+          "competitive": "The field is reading the payout correctly."
+        },
+        "bloomsLevel": "analyze",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "ch19-q09",
+        "prompt": "Which statement best captures the chapter's practical rule?",
+        "choices": [
+          "Judge a system by the behavior it rewards in practice and whether that aligns with the goal it claims to serve",
+          "Assume good values will eventually override bad incentives",
+          "Treat incentives as mostly financial so most settings can ignore them"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "The chapter ties judgment to the real reward pattern and the behavior it keeps selecting.",
+          "direct": "Wise judgment studies the payoff structure, the mismatch it may contain, and the adaptation it will predictably keep producing.",
+          "competitive": "Read what the field keeps paying for if you want to know what it is training."
+        },
+        "bloomsLevel": "evaluate",
+        "depthLevel": "hard"
+      },
+      {
+        "questionId": "ch19-q10",
+        "prompt": "How does this chapter set up tendency to minimize energy output?",
+        "choices": [
+          "It finishes the behavior question completely so effort no longer matters",
+          "It asks why systems still drift toward easier paths even after incentives are in place",
+          "It returns to hierarchy by focusing only on level ownership again"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "The next question is why the easier move often keeps winning inside a structured reward system.",
+          "direct": "After incentives explain direction of behavior, the next chapter asks how effort cost and easy paths shape that behavior further.",
+          "competitive": "Once the signal is set, the field still has to answer to the easier route."
+        },
+        "bloomsLevel": "analyze",
+        "depthLevel": "hard"
+      }
+    ]
+  }
+}

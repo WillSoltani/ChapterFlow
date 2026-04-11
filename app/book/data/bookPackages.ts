@@ -12,15 +12,25 @@ import thePsychologyOfMoneyPackageJson from "@/book-packages/the-psychology-of-m
 import theLawsOfHumanNaturePackageJson from "@/book-packages/the-laws-of-human-nature.modern.json";
 import theAlmanackOfNavalRavikantPackageJson from "@/book-packages/the-almanack-of-naval-ravikant.modern.json";
 import theHardThingAboutHardThingsPackageJson from "@/book-packages/the-hard-thing-about-hard-things.modern.json";
+import influencePackageJson from "@/book-packages/influence.modern.json";
 import leadersEatLastPackageJson from "@/book-packages/leaders-eat-last.modern.json";
+import theOneThingPackageJson from "@/book-packages/the-one-thing.modern.json";
+import theCharismaMythPackageJson from "@/book-packages/the-charisma-myth.modern.json";
+import theLikeSwitchPackageJson from "@/book-packages/the-like-switch.modern.json";
 import goodToGreatPackageJson from "@/book-packages/good-to-great.modern.json";
 import howToTalkToAnyonePackageJson from "@/book-packages/how-to-talk-to-anyone.modern.json";
+import talkLikeTedPackageJson from "@/book-packages/talk-like-ted.modern.json";
 import neverSplitTheDifferencePackageJson from "@/book-packages/never-split-the-difference.modern.json";
 import pitchAnythingPackageJson from "@/book-packages/pitch-anything.modern.json";
+import preSuasionPackageJson from "@/book-packages/pre-suasion.modern.json";
+import superThinkingPackageJson from "@/book-packages/super-thinking.modern.json";
 import youCantHurtMePackageJson from "@/book-packages/you-can't-hurt-me.modern.json";
 import indistractablePackageJson from "@/book-packages/indistractable.modern.json";
 import extremeOwnershipPackageJson from "@/book-packages/extreme-ownership.modern.json";
 import theArtOfWarPackageJson from "@/book-packages/the-art-of-war.modern.json";
+import atomicHabitsPackageJson from "@/book-packages/atomic-habits.modern.json";
+import theGreatMentalModelsVol1PackageJson from "@/book-packages/the-great-mental-models-vol-1.modern.json";
+import theLeanStartupPackageJson from "@/book-packages/the-lean-startup.modern.json";
 import { getBookCoverPath } from "@/lib/book-covers";
 
 export type VariantFamily = "EMH" | "PBC";
@@ -520,6 +530,15 @@ export function getTheHardThingAboutHardThingsPackageForTone(tone: ToneKey): Boo
   return normalizeNstdPackage(theHardThingAboutHardThingsPackageJson, tone);
 }
 
+export const INFLUENCE_PACKAGE = normalizeNstdPackage(influencePackageJson, "direct");
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const INFLUENCE_RAW_CHAPTERS = getRawChapters(influencePackageJson);
+
+export function getInfluencePackageForTone(tone: ToneKey): BookPackage {
+  return normalizeNstdPackage(influencePackageJson, tone);
+}
+
 export const LEADERS_EAT_LAST_PACKAGE = normalizeNstdPackage(
   leadersEatLastPackageJson,
   "direct"
@@ -530,6 +549,36 @@ export const LEADERS_EAT_LAST_RAW_CHAPTERS = getRawChapters(leadersEatLastPackag
 
 export function getLeadersEatLastPackageForTone(tone: ToneKey): BookPackage {
   return normalizeNstdPackage(leadersEatLastPackageJson, tone);
+}
+
+export const THE_ONE_THING_PACKAGE = normalizeNstdPackage(theOneThingPackageJson, "direct");
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const THE_ONE_THING_RAW_CHAPTERS = getRawChapters(theOneThingPackageJson);
+
+export function getTheOneThingPackageForTone(tone: ToneKey): BookPackage {
+  return normalizeNstdPackage(theOneThingPackageJson, tone);
+}
+
+export const THE_CHARISMA_MYTH_PACKAGE = normalizeNstdPackage(
+  theCharismaMythPackageJson,
+  "direct"
+);
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const THE_CHARISMA_MYTH_RAW_CHAPTERS = getRawChapters(theCharismaMythPackageJson);
+
+export function getTheCharismaMythPackageForTone(tone: ToneKey): BookPackage {
+  return normalizeNstdPackage(theCharismaMythPackageJson, tone);
+}
+
+export const THE_LIKE_SWITCH_PACKAGE = normalizeNstdPackage(theLikeSwitchPackageJson, "direct");
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const THE_LIKE_SWITCH_RAW_CHAPTERS = getRawChapters(theLikeSwitchPackageJson);
+
+export function getTheLikeSwitchPackageForTone(tone: ToneKey): BookPackage {
+  return normalizeNstdPackage(theLikeSwitchPackageJson, tone);
 }
 
 export const GOOD_TO_GREAT_PACKAGE = normalizeNstdPackage(goodToGreatPackageJson, "direct");
@@ -553,6 +602,15 @@ export function getHowToTalkToAnyonePackageForTone(tone: ToneKey): BookPackage {
   return normalizeNstdPackage(howToTalkToAnyonePackageJson, tone);
 }
 
+export const TALK_LIKE_TED_PACKAGE = normalizeNstdPackage(talkLikeTedPackageJson, "direct");
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const TALK_LIKE_TED_RAW_CHAPTERS = getRawChapters(talkLikeTedPackageJson);
+
+export function getTalkLikeTedPackageForTone(tone: ToneKey): BookPackage {
+  return normalizeNstdPackage(talkLikeTedPackageJson, tone);
+}
+
 export const NEVER_SPLIT_THE_DIFFERENCE_PACKAGE = normalizeNstdPackage(
   neverSplitTheDifferencePackageJson,
   "direct"
@@ -574,6 +632,24 @@ export const PITCH_ANYTHING_RAW_CHAPTERS = getRawChapters(pitchAnythingPackageJs
 
 export function getPitchAnythingPackageForTone(tone: ToneKey): BookPackage {
   return normalizeNstdPackage(pitchAnythingPackageJson, tone);
+}
+
+export const PRE_SUASION_PACKAGE = normalizeNstdPackage(preSuasionPackageJson, "direct");
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const PRE_SUASION_RAW_CHAPTERS = getRawChapters(preSuasionPackageJson);
+
+export function getPreSuasionPackageForTone(tone: ToneKey): BookPackage {
+  return normalizeNstdPackage(preSuasionPackageJson, tone);
+}
+
+export const SUPER_THINKING_PACKAGE = normalizeNstdPackage(superThinkingPackageJson, "direct");
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const SUPER_THINKING_RAW_CHAPTERS = getRawChapters(superThinkingPackageJson);
+
+export function getSuperThinkingPackageForTone(tone: ToneKey): BookPackage {
+  return normalizeNstdPackage(superThinkingPackageJson, tone);
 }
 
 export const YOU_CANT_HURT_ME_PACKAGE = normalizeNstdPackage(youCantHurtMePackageJson, "direct");
@@ -615,6 +691,38 @@ export function getTheArtOfWarPackageForTone(tone: ToneKey): BookPackage {
   return normalizeNstdPackage(theArtOfWarPackageJson, tone);
 }
 
+export const ATOMIC_HABITS_PACKAGE = normalizeNstdPackage(atomicHabitsPackageJson, "direct");
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const ATOMIC_HABITS_RAW_CHAPTERS = getRawChapters(atomicHabitsPackageJson);
+
+export function getAtomicHabitsPackageForTone(tone: ToneKey): BookPackage {
+  return normalizeNstdPackage(atomicHabitsPackageJson, tone);
+}
+
+export const THE_GREAT_MENTAL_MODELS_VOL_1_PACKAGE = normalizeNstdPackage(
+  theGreatMentalModelsVol1PackageJson,
+  "direct"
+);
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const THE_GREAT_MENTAL_MODELS_VOL_1_RAW_CHAPTERS = getRawChapters(
+  theGreatMentalModelsVol1PackageJson
+);
+
+export function getTheGreatMentalModelsVol1PackageForTone(tone: ToneKey): BookPackage {
+  return normalizeNstdPackage(theGreatMentalModelsVol1PackageJson, tone);
+}
+
+export const THE_LEAN_STARTUP_PACKAGE = normalizeNstdPackage(theLeanStartupPackageJson, "direct");
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const THE_LEAN_STARTUP_RAW_CHAPTERS = getRawChapters(theLeanStartupPackageJson);
+
+export function getTheLeanStartupPackageForTone(tone: ToneKey): BookPackage {
+  return normalizeNstdPackage(theLeanStartupPackageJson, tone);
+}
+
 export const BOOK_PACKAGES: BookPackage[] = [
   THE_POWER_OF_HABIT_PACKAGE,
   MAKE_TIME_PACKAGE,
@@ -630,15 +738,25 @@ export const BOOK_PACKAGES: BookPackage[] = [
   THE_LAWS_OF_HUMAN_NATURE_PACKAGE,
   THE_ALMANACK_OF_NAVAL_RAVIKANT_PACKAGE,
   THE_HARD_THING_ABOUT_HARD_THINGS_PACKAGE,
+  INFLUENCE_PACKAGE,
   LEADERS_EAT_LAST_PACKAGE,
+  THE_ONE_THING_PACKAGE,
+  THE_CHARISMA_MYTH_PACKAGE,
+  THE_LIKE_SWITCH_PACKAGE,
   GOOD_TO_GREAT_PACKAGE,
   HOW_TO_TALK_TO_ANYONE_PACKAGE,
+  TALK_LIKE_TED_PACKAGE,
   NEVER_SPLIT_THE_DIFFERENCE_PACKAGE,
   PITCH_ANYTHING_PACKAGE,
+  PRE_SUASION_PACKAGE,
+  SUPER_THINKING_PACKAGE,
   YOU_CANT_HURT_ME_PACKAGE,
   INDISTRACTABLE_PACKAGE,
   EXTREME_OWNERSHIP_PACKAGE,
   THE_ART_OF_WAR_PACKAGE,
+  ATOMIC_HABITS_PACKAGE,
+  THE_GREAT_MENTAL_MODELS_VOL_1_PACKAGE,
+  THE_LEAN_STARTUP_PACKAGE,
 ];
 
 const BOOK_PACKAGE_TONE_GETTERS: Partial<Record<string, (tone: ToneKey) => BookPackage>> = {
@@ -656,15 +774,25 @@ const BOOK_PACKAGE_TONE_GETTERS: Partial<Record<string, (tone: ToneKey) => BookP
   "the-laws-of-human-nature": getTheLawsOfHumanNaturePackageForTone,
   "the-almanack-of-naval-ravikant": getTheAlmanackOfNavalRavikantPackageForTone,
   "the-hard-thing-about-hard-things": getTheHardThingAboutHardThingsPackageForTone,
+  influence: getInfluencePackageForTone,
   "leaders-eat-last": getLeadersEatLastPackageForTone,
+  "the-one-thing": getTheOneThingPackageForTone,
+  "the-charisma-myth": getTheCharismaMythPackageForTone,
+  "the-like-switch": getTheLikeSwitchPackageForTone,
   "good-to-great": getGoodToGreatPackageForTone,
   "how-to-talk-to-anyone": getHowToTalkToAnyonePackageForTone,
+  "talk-like-ted": getTalkLikeTedPackageForTone,
   "never-split-the-difference": getNeverSplitTheDifferencePackageForTone,
   "pitch-anything": getPitchAnythingPackageForTone,
+  "pre-suasion": getPreSuasionPackageForTone,
+  "super-thinking": getSuperThinkingPackageForTone,
   "you-can't-hurt-me": getYouCantHurtMePackageForTone,
   indistractable: getIndistractablePackageForTone,
   "extreme-ownership": getExtremeOwnershipPackageForTone,
   "the-art-of-war": getTheArtOfWarPackageForTone,
+  "atomic-habits": getAtomicHabitsPackageForTone,
+  "the-great-mental-models-vol-1": getTheGreatMentalModelsVol1PackageForTone,
+  "the-lean-startup": getTheLeanStartupPackageForTone,
 };
 
 export const BOOK_PACKAGE_PRESENTATION: Record<string, BookPackagePresentation> = {
@@ -775,12 +903,43 @@ export const BOOK_PACKAGE_PRESENTATION: Record<string, BookPackagePresentation> 
     synopsis:
       "A modern reading of Ben Horowitz's ten chapters on CEO struggle, layoffs, executive hiring, wartime leadership, culture, and building through crisis.",
   },
+  influence: {
+    icon: "🧠",
+    coverImage: getBookCoverPath("influence"),
+    difficulty: "Medium",
+    synopsis:
+      "A modern reading of Robert Cialdini's nine chapters on automatic judgment, reciprocity, liking, social proof, authority, scarcity, commitment, unity, and the cue stacks that shape consent.",
+  },
   "leaders-eat-last": {
     icon: "🛡️",
     coverImage: getBookCoverPath("leaders-eat-last"),
     difficulty: "Medium",
     synopsis:
       "A modern reading of Simon Sinek's twenty-seven chapters on trust, leadership, cortisol, culture, sacrifice, and building circles of safety inside groups.",
+  },
+  "the-one-thing": {
+    icon: "🎯",
+    coverImage: getBookCoverPath("the-one-thing"),
+    difficulty: "Medium",
+    synopsis:
+      "A modern reading of Gary Keller and Jay Papasan's eighteen chapters on leverage, priority, sequencing, and giving your most important work first claim on time and attention.",
+    pages: 240,
+  },
+  "the-charisma-myth": {
+    icon: "✨",
+    coverImage: getBookCoverPath("the-charisma-myth"),
+    difficulty: "Medium",
+    synopsis:
+      "A modern reading of Olivia Fox Cabane's thirteen chapters on presence, power, warmth, first impressions, conversation, body language, digital charisma, and carrying signal under pressure.",
+    pages: 272,
+  },
+  "the-like-switch": {
+    icon: "🕵️",
+    coverImage: getBookCoverPath("the-like-switch"),
+    difficulty: "Medium",
+    synopsis:
+      "A modern reading of Jack Schafer and Marvin Karlins's eight chapters on first impressions, rapport, attraction, conversation, closeness, maintenance, and the promise and peril of trust.",
+    pages: 270,
   },
   "good-to-great": {
     icon: "📈",
@@ -806,6 +965,14 @@ export const BOOK_PACKAGE_PRESENTATION: Record<string, BookPackagePresentation> 
       "A modern reading of Leil Lowndes's nine-part guide to first impressions, conversation flow, rapport, social tact, and practical relationship-building under real-world pressure.",
     pages: 368,
   },
+  "talk-like-ted": {
+    icon: "🎤",
+    coverImage: getBookCoverPath("talk-like-ted"),
+    difficulty: "Medium",
+    synopsis:
+      "A modern reading of Carmine Gallo's nine public-speaking chapters on passion, story, delivery, novelty, memorable moments, warmth, compression, vividness, and rehearsal under real audience pressure.",
+    pages: 288,
+  },
   "never-split-the-difference": {
     icon: "🤝",
     coverImage: getBookCoverPath("never-split-the-difference"),
@@ -821,6 +988,21 @@ export const BOOK_PACKAGE_PRESENTATION: Record<string, BookPackagePresentation> 
     synopsis:
       "A modern reading of Oren Klaff's eleven chapters on frame control, attention, story, intrigue, prizing, hookpoints, and turning high-stakes pitches into repeatable room command.",
     pages: 240,
+  },
+  "pre-suasion": {
+    icon: "🎯",
+    coverImage: getBookCoverPath("pre-suasion"),
+    difficulty: "Medium",
+    synopsis:
+      "A modern reading of Robert Cialdini's fourteen chapters on frontloaded attention, association, unity, ethical screening, and the aftereffects that determine whether influence actually lasts.",
+    pages: 432,
+  },
+  "super-thinking": {
+    icon: "🧠",
+    coverImage: getBookCoverPath("super-thinking"),
+    difficulty: "Medium",
+    synopsis:
+      "A modern reading of mental models for clearer judgment: reducing avoidable error, tracing unintended consequences, protecting future time, reading systems, and updating decisions with sharper feedback.",
   },
   "you-can't-hurt-me": {
     icon: "🏃",
@@ -844,6 +1026,30 @@ export const BOOK_PACKAGE_PRESENTATION: Record<string, BookPackagePresentation> 
     synopsis:
       "A modern reading of Sun Tzu's thirteen chapters on strategy, deception, terrain, intelligence, and the conditions that produce victory before battle begins.",
     pages: 68,
+  },
+  "atomic-habits": {
+    icon: "⚛️",
+    coverImage: getBookCoverPath("atomic-habits"),
+    difficulty: "Medium",
+    synopsis:
+      "A modern reading of James Clear's twenty chapters on tiny gains, identity change, environment design, repetition, and the conditions that make habits stick long enough to compound.",
+    pages: 320,
+  },
+  "the-great-mental-models-vol-1": {
+    icon: "🧩",
+    coverImage: getBookCoverPath("the-great-mental-models-vol-1"),
+    difficulty: "Medium",
+    synopsis:
+      "A modern reading of core mental models: abstraction and reality, circles of competence, first principles, second-order effects, probabilistic thinking, inversion, and the disciplined limits of judgment.",
+    pages: 304,
+  },
+  "the-lean-startup": {
+    icon: "🚀",
+    coverImage: getBookCoverPath("the-lean-startup"),
+    difficulty: "Medium",
+    synopsis:
+      "A modern reading of validated learning, MVPs, innovation accounting, pivots, growth engines, adaptive organizations, and anti-waste management under uncertainty.",
+    pages: 336,
   },
 };
 

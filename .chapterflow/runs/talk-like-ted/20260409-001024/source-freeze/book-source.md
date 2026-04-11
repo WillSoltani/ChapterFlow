@@ -93,6 +93,12 @@ Part 3 support also adds the following narrow Chapter 8 anchors:
 - The chapter treats sensory language and concrete picture-making as tools that help ideas feel easier to imagine and remember.
 - The main chapter boundary is vividness that serves the point, not decorative description for its own sake.
 
+Part 3 support also adds the following narrow Chapter 9 anchors:
+
+- Chapter 9 closes on authenticity and originality rather than imitation.
+- The chapter treats enthusiasm and authentic commitment as forces that change audience response more than borrowed performance tricks do.
+- The chapter's practical boundary is to stay inside your own lane, own experience, and real voice rather than copying another speaker's style.
+
 ## Frozen Usage Boundary
 
 The bundle is strong enough to start the run and to execute Chapter 1 with confidence. Later chapters should still be written from chapter-local sidecars and stay within the evidence actually frozen for those chapters.

@@ -1,0 +1,115 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch11-q01",
+      "prompt": "After Chapter 10 designs a coherent whole, what does Chapter 11 add?",
+      "choices": [
+        "How to concentrate effort where it matters most",
+        "How to support every priority equally",
+        "How to avoid strategic tradeoffs"
+      ],
+      "correctIndex": 0,
+      "explanation": "Chapter 11 moves from coherence to concentration, asking where effort should be placed most heavily."
+    },
+    {
+      "questionId": "ch11-q02",
+      "prompt": "What does focus mean in this chapter?",
+      "choices": [
+        "Personal motivation and steady willpower",
+        "Concentrating effort where it can create the strongest effect",
+        "Giving identical support to all worthwhile priorities"
+      ],
+      "correctIndex": 1,
+      "explanation": "Focus is strategic concentration under limits, not generic discipline or equal distribution."
+    },
+    {
+      "questionId": "ch11-q03",
+      "prompt": "Which mistake does Chapter 11 criticize?",
+      "choices": [
+        "Accepting uneven emphasis where it matters",
+        "Assuming broad but thin support is strong enough",
+        "Choosing a few priorities for heavier backing"
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter warns that diffusion can leave a coherent strategy too weak on every front."
+    },
+    {
+      "questionId": "ch11-q04",
+      "prompt": "A school team spreads equal attention across many projects and none of them improves much. What is the Chapter 11 diagnosis?",
+      "choices": [
+        "The plan needs more worthy priorities",
+        "The effort is diffusing too broadly",
+        "The team should avoid concentration"
+      ],
+      "correctIndex": 1,
+      "explanation": "Diffusion spreads support across too many priorities so none gets enough force to matter."
+    },
+    {
+      "questionId": "ch11-q05",
+      "prompt": "Why do constraints make focus necessary?",
+      "choices": [
+        "Because finite attention and resources punish broad spread",
+        "Because constraints remove the need for choice",
+        "Because all priorities become equally important"
+      ],
+      "correctIndex": 0,
+      "explanation": "Real limits mean extra effort has to be concentrated where it will create the strongest result."
+    },
+    {
+      "questionId": "ch11-q06",
+      "prompt": "How does Chapter 11 extend Chapter 10?",
+      "choices": [
+        "By replacing design with generic discipline",
+        "By deciding where the designed whole should concentrate force",
+        "By treating coherence as enough on its own"
+      ],
+      "correctIndex": 1,
+      "explanation": "Chapter 10 builds a coherent whole; Chapter 11 asks where that whole should place its heaviest emphasis."
+    },
+    {
+      "questionId": "ch11-q07",
+      "prompt": "A home project only starts moving after one goal receives most of the available effort. What concept is this showing?",
+      "choices": [
+        "Selective intensity",
+        "Average coverage",
+        "Avoidance of tradeoffs"
+      ],
+      "correctIndex": 0,
+      "explanation": "The project improves because effort is concentrated where it can have the biggest effect."
+    },
+    {
+      "questionId": "ch11-q08",
+      "prompt": "What is the best sign that a strategy is diffusing effort too widely?",
+      "choices": [
+        "Several priorities stay alive but none gains enough force to matter",
+        "One priority carries clearly heavier backing",
+        "The plan accepts uneven emphasis"
+      ],
+      "correctIndex": 0,
+      "explanation": "Diffusion keeps many priorities active while leaving each one strategically underpowered."
+    },
+    {
+      "questionId": "ch11-q09",
+      "prompt": "Why can equal support weaken a strategy?",
+      "choices": [
+        "Because fairness is always wrong",
+        "Because spreading force evenly can leave every priority too weak",
+        "Because only one priority should ever exist"
+      ],
+      "correctIndex": 1,
+      "explanation": "The chapter argues that equal support can thin the whole strategy until no aim gets enough emphasis to matter."
+    },
+    {
+      "questionId": "ch11-q10",
+      "prompt": "Why does Chapter 11 naturally lead into later growth questions?",
+      "choices": [
+        "Because concentrated force changes how expansion should be judged",
+        "Because growth removes the need for focus",
+        "Because every expansion preserves force automatically"
+      ],
+      "correctIndex": 0,
+      "explanation": "Once force is concentrated, later strategy has to ask whether expansion will preserve that strength or dilute it."
+    }
+  ]
+}

@@ -1,0 +1,174 @@
+{
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the central move in Chapter 29?",
+      "choices": [
+        "Making a fault feel workable enough to correct",
+        "Pretending every fault is easy",
+        "Using shame to force faster repair"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter focuses on workable correction rather than crushing framing.",
+        "direct": "Option A fits because repairability is the core move.",
+        "competitive": "Make the fix beatable."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does manageable framing matter?",
+      "choices": [
+        "Because hope can keep people engaged in repair",
+        "Because effort and cost do not matter",
+        "Because correction should always feel painless"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says hope can preserve willingness to keep trying.",
+        "direct": "Manageable framing reduces early collapse under discouragement.",
+        "competitive": "A live path keeps the reps coming."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What discouragement mechanism does the chapter emphasize?",
+      "choices": [
+        "Crushing framing can become a second barrier on top of the fault",
+        "Discouragement helps people improve faster",
+        "Only the objective difficulty matters"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A problem can feel impossible even when it is still repairable.",
+        "direct": "The emotional frame can worsen the repair problem beyond the fault itself.",
+        "competitive": "The doom story can hit as hard as the miss."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A manager breaks a serious performance issue into concrete next steps so the employee can start improving. What chapter move is this?",
+      "choices": [
+        "Workable repair framing",
+        "False comfort",
+        "Avoiding accountability"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The manager is keeping the challenge real while making the path more workable.",
+        "direct": "This is the chapter method because the correction is actionable rather than crushing.",
+        "competitive": "That is cutting the fix into beatable reps."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "A student is given one or two specific prep habits to fix instead of being told they are hopelessly behind. What changed?",
+      "choices": [
+        "The repair was framed as manageable enough to attempt",
+        "The standards disappeared",
+        "The mistake no longer mattered"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The correction became more workable without becoming fake-easy.",
+        "direct": "Option A fits because the next steps are now attainable enough to try.",
+        "competitive": "The next rep got smaller and more live."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What main limit does Chapter 29 keep clear?",
+      "choices": [
+        "Workable framing must not erase the real effort or cost of change",
+        "Every correction should be described as easy",
+        "Hope matters more than truth"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter rejects false ease and denial.",
+        "direct": "Credible hope keeps difficulty visible.",
+        "competitive": "No fake softness allowed."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Which option misreads Chapter 29 as false minimization?",
+      "choices": [
+        "Keeping a hard correction honest while making the next step workable",
+        "Telling someone a difficult change will be easy just to calm them down",
+        "Reducing hopelessness without reducing standards"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter rejects calling hard change easy when it is not.",
+        "direct": "Option B is fake comfort rather than credible hope.",
+        "competitive": "That is selling softness that reality cannot hold."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "advanced"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why can crushing framing stall repair?",
+      "choices": [
+        "Because it can make the person feel doomed before improvement has a chance to happen",
+        "Because it removes all standards",
+        "Because it makes the task objectively harder every time"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The person may stop trying because the problem feels impossible.",
+        "direct": "Crushing framing can create paralysis beyond the objective difficulty of the task.",
+        "competitive": "The frame can break effort before the first real rep lands."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "advanced"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "How can hope coexist with effort and cost?",
+      "choices": [
+        "By making the path feel repairable while keeping the burden visible",
+        "By hiding the real strain involved",
+        "By replacing work with encouragement"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants credible hope, not denial.",
+        "direct": "Hope stays honest when it lowers hopelessness without lowering reality.",
+        "competitive": "Keep the work real and the path live."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "advanced"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why does this chapter lead naturally into Chapter 30?",
+      "choices": [
+        "Because once action feels possible, the book can ask how to make it feel welcome",
+        "Because the next chapter abandons correction entirely",
+        "Because repairability makes motivation irrelevant"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The final chapter builds from possible action to willing action.",
+        "direct": "Option A fits because repairability prepares the ground for glad participation.",
+        "competitive": "First beatable, then wanted."
+      },
+      "bloomsLevel": "transfer",
+      "depthLevel": "advanced"
+    }
+  ]
+}

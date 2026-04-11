@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch09-q01",
+      "prompt": "What is correlation?",
+      "choices": [
+        "A proven mechanism of influence",
+        "A pattern in which two things move together",
+        "A guarantee that one variable drives the other"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Correct. Correlation means co-movement, not yet causal proof.",
+        "direct": "The chapter defines correlation as association without automatically granting mechanism.",
+        "competitive": "It is a clue, not a crown."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch09-q02",
+      "prompt": "What is causation?",
+      "choices": [
+        "A repeated coincidence only",
+        "A relationship in which one thing actually helps produce another",
+        "Any pattern that appears persuasive"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. Causation is the stronger claim that a real influence exists.",
+        "direct": "A causal statement says more than a pattern statement because it claims producing force, not just co-movement.",
+        "competitive": "Cause earns the title by doing real work."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch09-q03",
+      "prompt": "Why does the chapter warn against fast explanations of patterns?",
+      "choices": [
+        "Because all patterns are useless",
+        "Because a visible association can be real without proving the first causal story people tell",
+        "Because evidence should always be ignored at first"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. Patterns matter, but they do not explain themselves automatically.",
+        "direct": "The chapter warns that association often gets promoted into mechanism before the explanation has earned it.",
+        "competitive": "The chart can be real while the story is still cheap."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch09-q04",
+      "prompt": "In Nora's dashboard scenario, what is the strongest next step?",
+      "choices": [
+        "Treat one metric as the obvious driver because the pattern repeated",
+        "Ask what mechanism or shared driver could explain the pair before acting",
+        "Ignore the metrics because correlations never matter"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exactly. The visible pair should be treated as a clue first.",
+        "direct": "The model improves the decision by separating the dashboard association from the stronger causal story.",
+        "competitive": "Keep the chart and interrogate the story."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q05",
+      "prompt": "What does Marcus learn from the notebook trend?",
+      "choices": [
+        "The pattern ended the question",
+        "A repeated classroom pattern still does not settle the mechanism by itself",
+        "Any repeated pattern should be thrown away"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Correct. The trend mattered, but the explanation arrived too fast.",
+        "direct": "The pattern remained useful as a clue even though it did not justify a completed causal story.",
+        "competitive": "The arrow was real, but the overclaim was extra."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q06",
+      "prompt": "What does Devin discover in the shared-driver scenario?",
+      "choices": [
+        "That the visible pair had no pattern at all",
+        "That a third change could explain why both observed lines moved together",
+        "That every correlation is meaningless"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The pattern was real, but the first causal story was not the right one.",
+        "direct": "The example shows how a shared driver can mimic a direct causal relationship.",
+        "competitive": "The third factor was pulling both strings."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q07",
+      "prompt": "How does Priya improve Leah's habit explanation?",
+      "choices": [
+        "By dismissing the pattern entirely",
+        "By asking whether the routine is the driver, one contributor, or simply nearby in time",
+        "By insisting that timing always proves cause"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. The pattern can still matter without settling the whole explanation.",
+        "direct": "The conversation improves when the routine is treated as a possible influence instead of an instantly proven cause.",
+        "competitive": "Timing stops doing all the explanatory labor by itself."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q08",
+      "prompt": "In Omar's school-paper dilemma, what is the common trap?",
+      "choices": [
+        "Choosing the tidier causal story before the mechanism has done enough work",
+        "Refusing to write about any pattern at all",
+        "Assuming all explanations are equally weak"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Correct. The flashy explanation sounds stronger than the evidence actually supports.",
+        "direct": "The chapter warns against letting rhetorical neatness outrun explanatory support.",
+        "competitive": "The story looks finished before the mechanism has paid for it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch09-q09",
+      "prompt": "Why are patterns both useful and dangerous?",
+      "choices": [
+        "Because they never tell you anything",
+        "Because they can point toward something real while still inviting explanations that are too fast or too simple",
+        "Because the strongest thinker ignores them entirely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. A pattern is often a good clue, but it is not automatically a completed mechanism.",
+        "direct": "The chapter holds two ideas together: patterns deserve attention, and causal stories deserve restraint.",
+        "competitive": "The clue is valuable; the instant certainty is the scam."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch09-q10",
+      "prompt": "How does this chapter lead into inversion?",
+      "choices": [
+        "By proving every forward explanation is worthless",
+        "By making the thinker more careful about forward stories before asking what reliably produces failure from the backward direction",
+        "By replacing mechanism questions with guesswork"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exactly. Once forward stories are handled more carefully, working backward becomes more useful.",
+        "direct": "The bridge to inversion comes from becoming stricter about explanation before analyzing outcomes from the opposite direction.",
+        "competitive": "First stop trusting cheap forward stories, then ask what reliably makes the mess."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

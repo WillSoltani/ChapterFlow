@@ -1,0 +1,116 @@
+{
+  "bookId": "so-good-they-cant-ignore-you",
+  "runId": "20260410-152410",
+  "createdAt": "2026-04-10T15:27:22Z",
+  "sourcePolicy": "public_or_authorized_plus_secondary",
+  "entries": [
+    {
+      "id": "google-books-metadata",
+      "title": "So Good They Can't Ignore You: Why Skills Trump Passion in the Quest for Work You Love",
+      "url": "https://books.google.com/books/about/So_Good_They_Can_t_Ignore_You.html?id=ZW_coFi_h1QC",
+      "type": "authorized_preview_metadata",
+      "role": "primary_preview_metadata",
+      "confidence": "high",
+      "notes": "Authorized Google Books metadata page with publisher, date, ISBN, page count, high-level book description, and partial contents headings."
+    },
+    {
+      "id": "google-play-books",
+      "title": "So Good They Can't Ignore You: Why Skills Trump Passion in the Quest for Work You Love",
+      "url": "https://play.google.com/store/books/details/So_Good_They_Can_t_Ignore_You_Why_Skills_Trump_Pas?hl=en-US&id=HTs5AQAAQBAJ",
+      "type": "authorized_store_listing",
+      "role": "primary_bibliographic_confirmation",
+      "confidence": "high",
+      "notes": "Authorized commercial listing confirming subtitle, author, ebook length, and the four rule headings."
+    },
+    {
+      "id": "greenville-library-toc",
+      "title": "So good they can't ignore you: why skills trump passion in the quest for work you love",
+      "url": "https://aspen.greenvillelibrary.org/GroupedWork/84118402-c1af-9e08-7644-0dabf81043f7-eng/Home",
+      "type": "library_catalog_toc",
+      "role": "chapter_map",
+      "confidence": "high",
+      "notes": "Library catalog snippet exposing the first-edition table of contents used to lock chapter order."
+    },
+    {
+      "id": "open-library-edition",
+      "title": "So Good They Can't Ignore You",
+      "url": "https://openlibrary.org/works/OL16283407W/So_Good_They_Can%27t_Ignore_You",
+      "type": "library_metadata",
+      "role": "edition_crosscheck",
+      "confidence": "medium",
+      "notes": "Cross-check that the work is a 2012 first-edition business/careers title with preview-only availability."
+    },
+    {
+      "id": "stanford-jobs-2005",
+      "title": "You've got to find what you love, Jobs says",
+      "url": "https://news.stanford.edu/stories/2005/06/youve-got-find-love-jobs-says",
+      "type": "official_transcript",
+      "role": "chapter_specific_anchor",
+      "confidence": "high",
+      "notes": "Official Stanford transcript of the 2005 commencement speech used as narrow support for the Steve Jobs opening chapter."
+    },
+    {
+      "id": "rethink-studying-summary",
+      "title": "Actuarial Career Advice - So Good They Can't Ignore You",
+      "url": "https://www.rethinkstudying.com/actuarial-career-advice-so-good-they-cant-ignore-you/",
+      "type": "secondary_summary",
+      "role": "secondary_interpretation",
+      "confidence": "medium",
+      "notes": "Secondary summary used only to triangulate chapter-level claims when the authorized preview is thin."
+    },
+    {
+      "id": "roadtrip-nation-about",
+      "title": "About | Roadtrip Nation",
+      "url": "https://roadtripnation.com/about",
+      "type": "official_site",
+      "role": "chapter_specific_anchor",
+      "confidence": "high",
+      "notes": "Official description of Roadtrip Nation and its archive of career stories, used as narrow support for Chapter 2."
+    },
+    {
+      "id": "roadtrip-nation-ira-glass",
+      "title": "Ira Glass | Roadtrip Nation",
+      "url": "https://roadtripnation.com/interviews/ira-glass",
+      "type": "official_profile",
+      "role": "chapter_specific_anchor",
+      "confidence": "high",
+      "notes": "Official profile showing a nonlinear skill-building path and explicit statements about being bad at the work before getting good."
+    },
+    {
+      "id": "lifeclub-passion-is-rare",
+      "title": "So Good They Can't Ignore You Summary, Review PDF",
+      "url": "https://lifeclub.org/books/so-good-they-cant-ignore-you-cal-newport-review-summary",
+      "type": "secondary_summary",
+      "role": "chapter_specific_secondary",
+      "confidence": "medium",
+      "notes": "Secondary summary capturing the Canadian-student rarity statistic used for Chapter 2, plus the chapter's anti-passion argument."
+    },
+    {
+      "id": "cal-student-passion-problem",
+      "title": "The Student Passion Problem",
+      "url": "https://calnewport.com/blog/2014/03/02/the-student-passion-problem/",
+      "type": "author_site_post",
+      "role": "chapter_specific_anchor",
+      "confidence": "high",
+      "notes": "Cal Newport post reinforcing the harmful effects of the passion mindset on students and the idea that passions are often developed rather than preexisting."
+    },
+    {
+      "id": "cal-bluegrass-frat-house",
+      "title": "Dispatch: Rethinking Meaningful Work at the Bluegrass Frat House",
+      "url": "https://calnewport.com/blog/2011/04/19/dispatch-rethinking-meaningful-work-at-the-bluegrass-frat-house/",
+      "type": "author_site_post",
+      "role": "chapter_specific_anchor",
+      "confidence": "high",
+      "notes": "Cal Newport post articulating the craftsman mindset as an alternative to the passion mindset, used for Chapter 4 support."
+    },
+    {
+      "id": "cal-career-capitalists",
+      "title": "The Career Capitalists",
+      "url": "https://calnewport.com/blog/2011/05/12/the-career-capitalists/",
+      "type": "author_site_post",
+      "role": "chapter_specific_anchor",
+      "confidence": "high",
+      "notes": "Cal Newport post reinforcing the career capital idea and the distinction between building rare and valuable skills versus demanding rewards too early."
+    }
+  ]
+}

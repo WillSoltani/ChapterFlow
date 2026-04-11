@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch05-q01",
+      "prompt": "What is the core mistake in sunk cost fallacy?",
+      "choices": [
+        "Treating past unrecoverable cost as a reason for more investment",
+        "Ignoring all past experience",
+        "Believing hard things are never worth finishing"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The mistake is letting what is already gone steer what happens next.",
+        "direct": "Correct. Previous cost gets overcredited as forward evidence.",
+        "competitive": "That is the trap. The old bill starts ordering new sacrifice."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch05-q02",
+      "prompt": "Why is it emotionally hard to stop after investing a lot?",
+      "choices": [
+        "Because stopping can make the earlier cost feel wasted",
+        "Because all persistence is irrational",
+        "Because sunk costs can still be recovered later"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. Stopping can feel like admitting the earlier effort did not pay off.",
+        "direct": "Exactly. The pain of waste makes continuation feel easier than acceptance.",
+        "competitive": "People keep paying because they do not want the first hit to stand there alone."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch05-q03",
+      "prompt": "What question best interrupts sunk-cost thinking?",
+      "choices": [
+        "What would I choose if I were deciding from here today?",
+        "How can I justify the earlier spend?",
+        "How do I avoid ever changing direction?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That is the chapter discipline. Restart the choice from the present.",
+        "direct": "Correct. The decision should be reframed without giving sunk cost a vote.",
+        "competitive": "Make the path win a fresh hearing."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch05-q04",
+      "prompt": "A manager keeps funding a failing rollout mainly because the team already spent months on it. What is the best diagnosis?",
+      "choices": [
+        "The manager is letting prior investment outrank current value",
+        "The manager is wisely honoring sunk cost",
+        "The manager has proven the rollout will succeed"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The earlier spend may be real, but it does not justify more spend by itself.",
+        "direct": "Correct. Historical effort is being used as if it improved the next phase's merit.",
+        "competitive": "The rollout is living off an old bill instead of present proof."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q05",
+      "prompt": "Why can sunk cost distort school decisions?",
+      "choices": [
+        "Because earlier effort can make a bad-fit path feel too expensive to leave",
+        "Because switching is always a mistake",
+        "Because study time automatically guarantees future value"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. Past effort can make students feel trapped even when the fit has changed.",
+        "direct": "Exactly. Old study cost can overpower current evidence about fit and value.",
+        "competitive": "Hours already burned can start bullying the next semester."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q06",
+      "prompt": "What is the most faithful response to a purchase you no longer want but already paid for?",
+      "choices": [
+        "Ask whether the next step still makes sense now",
+        "Keep paying so the first payment looks better",
+        "Ignore all practical consequences because the money is gone"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That keeps attention on current value instead of past pain.",
+        "direct": "Correct. The paid cost is historical fact, not a command for more cost.",
+        "competitive": "Use the old bill as history, not as an order."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q07",
+      "prompt": "When can persistence still be rational in this chapter?",
+      "choices": [
+        "When the next investment still has real value from here",
+        "Whenever the previous cost was large enough",
+        "Whenever quitting would feel embarrassing"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Continuing can still be wise, but only for live reasons.",
+        "direct": "Correct. Past cost does not make continuation rational; current merit does.",
+        "competitive": "Grit stays honest only when the next slice earns itself."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q08",
+      "prompt": "What hidden pattern often makes sunk-cost problems worse over time?",
+      "choices": [
+        "Each extra investment becomes another sunk cost to defend",
+        "All losses automatically disappear with patience",
+        "Only money, not time or pride, can trap decisions"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. New effort can make the next exit feel even harder.",
+        "direct": "Right. Defensive continuation creates another past cost that pressures future choices.",
+        "competitive": "Feed the trap once more and you have built tomorrow's excuse."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q09",
+      "prompt": "What is the hard threshold in sunk cost fallacy?",
+      "choices": [
+        "Whether you would still choose the path if you were not already invested",
+        "Whether the earlier decision was made with confidence",
+        "Whether the commitment has become emotionally important"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That is the chapter's deeper test. The present choice must stand on its own.",
+        "direct": "Yes. Remove sunk cost from the argument and see whether the case survives.",
+        "competitive": "If the path cannot win fresh, old damage does not get to rig the vote."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch05-q10",
+      "prompt": "What does better judgment protect most when it resists sunk-cost logic?",
+      "choices": [
+        "What is still available to choose wisely from here",
+        "The appearance that the original decision was flawless",
+        "The rule that every investment must be defended"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The goal is to protect the future instead of bargaining with the past.",
+        "direct": "Correct. Better judgment refuses to spend more just to make old loss feel cleaner.",
+        "competitive": "It saves the living resources instead of sending them into a rescue mission for dead spending."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch20-q01",
+      "prompt": "What does the path of least resistance mean in the chapter's practical sense?",
+      "choices": [
+        "The route that costs the least effort or friction in the current setup",
+        "The route that looks morally easiest to defend",
+        "The route that always produces the best result"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter treats it as the move the environment makes easiest to take.",
+        "direct": "The path of least resistance is the option carrying the lowest effort or friction cost right now.",
+        "competitive": "It is the cheap route the field keeps finding."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch20-q02",
+      "prompt": "Which detail best shows why a weaker route keeps winning?",
+      "choices": [
+        "The stronger route is easier to start than the weaker one",
+        "The weaker route stays open and costs less effort in the moment",
+        "The chapter assumes people dislike good results"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A weaker route can keep winning simply because it is cheaper to take right now.",
+        "direct": "The chapter looks first at friction and effort cost when explaining repeated low-quality behavior.",
+        "competitive": "The field keeps sliding into what stays cheap."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch20-q03",
+      "prompt": "Why is low effort not automatically a bad thing?",
+      "choices": [
+        "Because conserving energy can be useful when the easy route still serves the goal",
+        "Because harder effort is always a sign of weak planning",
+        "Because the model says all easy routes are equally good"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says easy can be intelligent when it removes waste without hurting the objective.",
+        "direct": "Low effort is not bad by itself; what matters is whether the easier route still supports the result you need.",
+        "competitive": "The cheap move is fine when it keeps the field strong."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch20-q04",
+      "prompt": "Why does Sofia keep returning to the weaker workflow?",
+      "choices": [
+        "Because the old shortcut remains easier in the moment even though it causes later cleanup",
+        "Because the chapter assumes all teams avoid quality work",
+        "Because stronger systems never need defaults"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The weaker path stays easier to take, so it keeps repeating.",
+        "direct": "The setup leaves the low-effort route open, and repeated behavior follows that lower friction cost.",
+        "competitive": "The field obeys the cheap route and sends the bill later."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch20-q05",
+      "prompt": "How does the chapter distinguish intelligent conservation from a conservation trap?",
+      "choices": [
+        "Intelligent conservation protects the goal, while a conservation trap saves effort now but weakens the outcome later",
+        "There is no real distinction once effort goes down",
+        "Conservation traps only happen in school settings"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter asks whether the easier move still serves the goal or quietly damages it.",
+        "direct": "Intelligent conservation removes waste, while a trap avoids the work that was actually protecting later performance.",
+        "competitive": "One cheap move is clean efficiency; the other buys hidden drag."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch20-q06",
+      "prompt": "What is the best reading of Noah taking the shortest route through an assignment and ending up with thinner understanding?",
+      "choices": [
+        "The chapter would call this a conservation trap",
+        "The chapter would say short routes are always wise",
+        "The chapter would treat the weaker result as unrelated to effort cost"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The easy move saved effort now and weakened the deeper outcome later.",
+        "direct": "This is a conservation trap because short-run ease displaced the work that actually built stronger understanding.",
+        "competitive": "The field took the cheap route and paid with a thinner result."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch20-q07",
+      "prompt": "Which action best applies the chapter's practical rule?",
+      "choices": [
+        "Identify the easiest route, judge whether it serves the goal, and redesign friction around the choice",
+        "Assume more willpower will solve the problem without changing the setup",
+        "Make every desirable action harder so it feels more valuable"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter asks you to study the path and the setup before demanding more discipline.",
+        "direct": "Energy-minimization thinking becomes practical when it treats friction and defaults as design variables.",
+        "competitive": "Fix the path before preaching harder effort."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch20-q08",
+      "prompt": "A student studies more consistently after notes are made visible and the phone is moved away. Which response fits the chapter?",
+      "choices": [
+        "The change worked because the environment redirected the path of least resistance",
+        "The chapter would say the environment does not matter once motivation is present",
+        "The improvement proves low effort is always harmful"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The better behavior became easier to repeat once the setup changed.",
+        "direct": "The chapter treats this as friction redesign: the stronger route became simpler to begin and sustain.",
+        "competitive": "The field moved because the cheap path changed direction."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch20-q09",
+      "prompt": "Which statement best captures the chapter's practical rule?",
+      "choices": [
+        "Judge the easy route by whether it serves the real goal and change friction so the better route becomes easier to repeat",
+        "Treat all low-effort behavior as a character failure",
+        "Assume higher effort is always the sign of a better system"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter weighs easy routes by the goal they serve and the environment that keeps producing them.",
+        "direct": "Wise judgment studies effort cost, friction, and long-run outcome together, then redesigns the setup rather than relying on sheer willpower.",
+        "competitive": "Read the cheap route, the hidden bill, and the field around it."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch20-q10",
+      "prompt": "What does this final chapter add to the biology arc as a whole?",
+      "choices": [
+        "It shows that behavior also depends on effort cost and environmental friction, not only on goals or signals",
+        "It removes the need to think about structure, cooperation, or incentives anymore",
+        "It replaces the earlier models with one single explanation for everything"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter adds the idea that environments make some moves easier than others.",
+        "direct": "This final model completes the arc by showing how survival, coordination, incentives, and behavior unfold inside friction-shaped environments.",
+        "competitive": "It adds the field itself: the setup that keeps making one route cheap."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

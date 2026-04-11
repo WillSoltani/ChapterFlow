@@ -1,0 +1,737 @@
+{
+  "schemaVersion": "chapterflow.v13.chapter-review-package",
+  "packageId": "the-art-of-thinking-clearly-20260410-222920-ch01",
+  "createdAt": "2026-04-10T23:17:34.778-03:00",
+  "contentOwner": "ChapterFlow",
+  "book": {
+    "bookId": "the-art-of-thinking-clearly",
+    "title": "“The-Art-of-Thinking-Clearly“",
+    "author": "“Rolf-Dobelli”",
+    "categories": [],
+    "tags": [],
+    "edition": {
+      "name": "",
+      "translator": "",
+      "publishedYear": null,
+      "translationYear": null,
+      "sourceText": ".chapterflow/runs/the-art-of-thinking-clearly/20260410-222920/source-freeze/book-source.txt",
+      "sourceProvenance": ""
+    },
+    "variantFamily": "EMH",
+    "chapterRange": ""
+  },
+  "chapters": [
+    {
+      "chapterId": "ch01-survivorship-bias",
+      "number": 1,
+      "title": "Survivorship Bias",
+      "readingTimeMinutes": 7,
+      "book": {
+        "bookId": "the-art-of-thinking-clearly",
+        "title": "The Art of Thinking Clearly",
+        "author": "Rolf Dobelli"
+      },
+      "contentVariants": {
+        "easy": {
+          "chapterBreakdown": {
+            "gentle": "An airport bookstore can make success look ordinary. You see founders on glossy covers, investors with perfect timing, and athletes explaining the routine that changed everything. The people who worked just as hard and got nowhere are missing. That missing pile matters more than it first appears, because it changes the meaning of the whole shelf.\n\nSurvivorship bias happens when visible winners stand in for the full field. The mind sees what lasted and quietly forgets what disappeared. That makes success look more common and more teachable than it really is. A winner can show you what is possible, but the hidden failures are what tell you how likely it is. Without them, confidence rises on incomplete evidence.\n\nThe practical fix is simple. When a success story starts selling you a clean rule, ask what never survived long enough to be featured. Look for abandoned projects, quiet losses, and ordinary attempts that never became stories. The graveyard may be silent, but it is still part of the evidence.",
+            "direct": "A shelf full of success stories feels like data, but it is only the visible remainder. You can see the founders who broke through, the investors who were right, and the creators whose habits now look wise in retrospect. You cannot easily see the larger group that tried similar moves and failed before anyone cared. The sample has already been cleaned up for you.\n\nThat is survivorship bias. The sample is prefiltered for what survived, so the odds start looking kinder than they are. People then mistake visibility for frequency and copy routines that may have belonged to the winners without causing the win. The story becomes more persuasive than the field it came from.\n\nThe correction is to restore the missing denominator. Whenever a survivor looks persuasive, ask which failures would change the meaning of the story if they were sitting beside it. Search for the dead comparisons before promoting one visible case into a rule. Inspiration can stay. Blind confidence has to go.",
+            "competitive": "Success looks cheap when you only count the people still standing. The cover story, the polished track record, the famous routine, all of it benefits from one advantage: the losers are out of frame. That missing frame is where the real odds live, and its absence makes the winner look cleaner than reality.\n\nSurvivorship bias is what happens when a winner gets treated like proof. The lesson sounds sharp because the wreckage is absent. Hard work may be real. Timing may be real. Skill may be real. But once the failures vanish, one visible path starts pretending it was the normal path. The survivor gets to borrow authority from everyone who disappeared.\n\nThe disciplined move is to stop letting survivors sell certainty by themselves. Before you borrow the rule, look for the graveyard. Ask what failed quietly, what looked similar, and what never earned a spotlight. Possibility without probability is how people talk themselves into bad bets."
+          },
+          "keyTakeaways": [
+            {
+              "point": {
+                "gentle": "Visible winners are only part of the story.",
+                "direct": "A survivor is not the whole sample.",
+                "competitive": "If the losers are missing, the evidence is already bent."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Success can look common when failure is hard to see.",
+                "direct": "Missing failures make the odds look friendlier than they are.",
+                "competitive": "A clean success story often hides a dirty denominator."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Look for the graveyard before you copy the winner.",
+                "direct": "Restore the hidden comparison set before drawing a rule.",
+                "competitive": "Possibility is cheap; probability needs the missing bodies."
+              }
+            }
+          ],
+          "oneMinuteRecap": {
+            "gentle": "Success stories feel strong because the failed attempts are hard to see. Better judgment starts when you ask what disappeared before the story reached you.",
+            "direct": "Survivorship bias is denominator blindness. Winners stay visible, failures drop out, and the odds get distorted.",
+            "competitive": "A survivor can tempt you. The graveyard tells you whether the temptation deserves trust."
+          }
+        },
+        "medium": {
+          "chapterBreakdown": {
+            "gentle": "A success story arrives prepackaged for belief. It has a face, a sequence, and a satisfying ending. That is why the airport-bookstore shelf is such a strong opening image for survivorship bias. You can scan row after row of visible winners and start to feel that success is not only possible but practically mapped. The trouble is that the shelf is missing the people who copied similar moves and never became interesting enough to print. Their silence makes the visible cases feel wiser than they are.\n\nThe mechanism is simple but costly. Human beings reason more easily from what is present than from what is absent. A visible founder, athlete, or fund manager feels like evidence. The failures that would soften the lesson are harder to collect because they vanished from public view. Once the missing cases drop out, the surviving case begins carrying too much explanatory weight. A habit, tactic, or personality trait that may have been one ingredient starts masquerading as the whole recipe. The missing denominator quietly turns one case into an exaggerated rule.\n\nThat distortion changes ordinary decisions. Someone picks a career path because they have heard only from the few people who made it glamorous. An investor trusts a surviving track record without asking how many similar funds disappeared first. A team copies the style of a winning company while ignoring the broader field of companies that used the same style and still lost. None of these moves requires stupidity. They only require an incomplete sample dressed up as clear evidence. The winner is real, but the implied odds are inflated.\n\nThe useful correction is not to sneer at every winner. Survivors still show what can happen under real conditions. But their visibility is not enough by itself. The better question is: what failed quietly while this case stayed visible? Which missing attempts would make the lesson feel smaller, slower, or less certain? Once that question becomes normal, admiration stops turning into statistical self-deception. You still get to learn from the bright case. You just stop letting brightness pretend to be a full count.",
+            "direct": "Survivorship bias starts when visibility gets mistaken for representativeness. A winner is easier to notice, easier to interview, and easier to remember than the larger set of people who tried something similar and failed before anyone recorded their path. That is why success stories so often feel more authoritative than they deserve. They arrive with built-in narrative advantages before the evidence has been weighed.\n\nThe underlying error is denominator blindness. People see the surviving cases and treat them as if they were the full field. A founder's routine, a manager's strategy, or a fund's performance then begins to look causally stronger than it is because the comparison set has already been stripped of the dead cases. The sample is not neutral. It is the remainder left after failure has already done its sorting. That invisible sorting process is doing real work inside the lesson.\n\nThis matters in investing, career planning, and everyday imitation. A surviving fund can advertise its results because it survived long enough to do so. The funds that failed are no longer beside it making the odds look harsher. A visible career path can seem sensible because the people for whom it went badly rarely become public examples. Even personal development advice gets distorted this way. By the time a winner explains the rule that worked, the countless people who used the same rule without the same result are gone from view. The story then feels cleaner than the field that produced it.\n\nThe chapter does not require cynicism about every successful person. It requires a more complete sample. A survivor can teach possibility. Probability appears only when the hidden failures come back into the frame. That distinction keeps a true example from being promoted into a false estimate, and it is what protects inspiration from turning into bad judgment. It also explains why visible confidence so often outruns reliable odds in winner-heavy domains. In practice, the fix is to ask what vanished before the visible case became persuasive.",
+            "competitive": "Success stories punch above their weight because they arrive with built-in authority. They survived. They are visible. They look like proof. That combination is enough to make people stop asking how many similar attempts died before reaching the microphone. The winner gets belief before the sample gets inspected.\n\nSurvivorship bias is the cost of treating the visible remainder like the full field. Once the losers disappear, the surviving winner starts selling a lesson that sounds cleaner than reality. The habit looks decisive. The strategy looks repeatable. The personality trait looks causal. In truth, the sample was filtered long before you saw it. Failure removed the clutter, and the survivor now benefits from that cleanup. The resulting story sounds sharper than the field ever was.\n\nThat is why the bias is dangerous in ambition-heavy domains. Entrepreneurship, investing, careers, even fitness advice all produce public winners and hidden wreckage. A person sees the winner's routine and thinks the routine explains the outcome. Maybe it mattered. Maybe it did not matter enough to deserve that level of confidence. Without the graveyard, the mind cannot tell the difference. One public case starts wearing the costume of a general law.\n\nThe disciplined move is not to stop learning from success. It is to interrogate the silence around it. Which similar attempts collapsed? Which conditions failed to repeat? Which apparent rule survives only because nobody archived the dead cases with equal care? Once those questions appear, the survivor loses the power to masquerade as the average path, and your confidence has to answer to the full field. Until then, ambition keeps drinking from a winner-filtered cup and calling the taste objective. Real discipline begins when the dead cases get equal voting rights. When that happens, the winner stops sounding like destiny and starts sounding like one filtered case. That is when the lesson starts acting like evidence instead of advertising. Serious ambition has to earn the right to copy success by paying attention to the attempts that looked similar and still failed. If it refuses that price, it is not studying winners. It is worshipping visibility."
+          },
+          "keyTakeaways": [
+            {
+              "point": {
+                "gentle": "A success story feels stronger than it is because it is easy to see and easy to remember.",
+                "direct": "Visibility gives survivors more authority than their sample share deserves.",
+                "competitive": "The winner sounds conclusive partly because the losers are missing from the room."
+              },
+              "moreDetails": {
+                "gentle": "A visible case carries emotional weight. It has a name, a plot, and a result. The failed cases often have none of those advantages, so they influence judgment less even when they matter more statistically.",
+                "direct": "Availability and memory work in the survivor's favor. The case you can recall quickly starts competing with the full base rate and often wins.",
+                "competitive": "A survivor has branding. Failure usually leaves a file cabinet. Guess which one captures attention first."
+              }
+            },
+            {
+              "point": {
+                "gentle": "The hidden denominator is what changes a winner from possibility into probability.",
+                "direct": "You cannot estimate real odds without the failed comparison set.",
+                "competitive": "Probability lives in the graveyard, not in the victory speech."
+              },
+              "moreDetails": {
+                "gentle": "One winning example can show that an outcome can happen. It cannot show how often it happens unless the unseen attempts are restored to view.",
+                "direct": "The core error is not admiring a winner. It is using one surviving case as if it already contains the rate of success.",
+                "competitive": "Possibility is a headline. Probability is the count that headlines usually bury."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Imitation gets risky when a survivor's habit is treated like the whole cause.",
+                "direct": "A visible routine can be one ingredient without being the decisive mechanism.",
+                "competitive": "People love copying the visible move because it feels cheaper than studying the hidden conditions."
+              },
+              "moreDetails": {
+                "gentle": "A winner's morning routine or strategy may matter, but it usually sits inside timing, skill, luck, and environment. Copying the visible layer alone can create confidence without transfer.",
+                "direct": "Selection effects inflate the apparent power of survivor habits because the same habits among failures are rarely collected with equal care.",
+                "competitive": "The copied routine often gets the credit because it is visible, not because it carried the whole outcome."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Survivorship bias can distort ordinary decisions, not just big financial bets.",
+                "direct": "The bias appears anywhere public winners are easier to see than quiet failures.",
+                "competitive": "You do not need a trading floor to get fooled by survivors."
+              },
+              "moreDetails": {
+                "gentle": "Career choices, product decisions, study strategies, and fitness plans can all get bent when a few visible wins overpower the unseen field.",
+                "direct": "Any domain with public success and private attrition creates the conditions for this mistake.",
+                "competitive": "Wherever winners advertise and losers vanish, the trap is already built."
+              }
+            },
+            {
+              "point": {
+                "gentle": "The best correction is to ask what disappeared before the story reached you.",
+                "direct": "Bring the failed cases back into the sample before drawing a rule.",
+                "competitive": "If you want cleaner judgment, interrogate the silence around the winner."
+              },
+              "moreDetails": {
+                "gentle": "That question does not kill motivation. It makes motivation less naive by attaching it to a fuller picture of the field.",
+                "direct": "The repair move is active: seek attrition, abandoned attempts, and dead comparisons before converting admiration into belief.",
+                "competitive": "The graveyard does not make success meaningless. It stops success from lying about the odds."
+              }
+            }
+          ],
+          "activationPrompt": {
+            "gentle": "Think of one success story you find persuasive. What unseen failures would change how you interpret it?",
+            "direct": "Name one visible winner you admire and identify the missing comparison set.",
+            "competitive": "Pick one success story that sells you confidence and force the graveyard back into the frame."
+          },
+          "selfCheckPrompt": {
+            "gentle": "Can you tell the difference between something being possible and something being likely?",
+            "direct": "Are you using a survivor as an example of possibility or as evidence of odds?",
+            "competitive": "Do you actually know the field, or are you borrowing conviction from the last winner you saw?"
+          },
+          "oneMinuteRecap": {
+            "retrieve": {
+              "gentle": "What part of the sample goes missing when survivorship bias takes over?",
+              "direct": "Recall the hidden piece that makes the odds look falsely generous.",
+              "competitive": "Retrieve the denominator that winners keep out of sight."
+            },
+            "connect": {
+              "gentle": "Why can a true success story still create a false lesson?",
+              "direct": "How does visibility turn one surviving case into exaggerated evidence?",
+              "competitive": "Why does a real win still become a bad teacher when the wreckage disappears?"
+            },
+            "preview": {
+              "gentle": "If people can see patterns in a biased sample, what happens when they start seeing patterns in randomness itself?",
+              "direct": "Why would a chapter on random pattern-detection fit immediately after this one?",
+              "competitive": "What if the mind not only misreads samples, but also hallucinates structure once the sample is noisy?"
+            }
+          }
+        },
+        "hard": {
+          "chapterBreakdown": {
+            "gentle": "Survivorship bias is easy to explain in a single sentence and much harder to respect in practice. The sentence is familiar: you see the winners and miss the failures. The harder part is admitting how often visibility itself feels like proof. A surviving case arrives with a story, a face, and a sequence that the mind can hold. The failed cases are scattered, unglamorous, and often undocumented. That asymmetry gives the survivor more persuasive force than the underlying evidence deserves.\n\nThis is why the bias cannot be reduced to simple optimism. It changes the structure of explanation. A winner's routine, strategy, or worldview starts looking decisive because the mind is evaluating it against a thinned field. The hidden denominator has already been removed, so the survivor's traits expand to fill the empty space. The reader then begins attributing too much causal weight to visible habits and too little to luck, timing, environment, or silent attrition. Selection is quietly editing the lesson before the lesson reaches you.\n\nThat creates a real boundary question. Success stories are not worthless. They often do contain real information about skill, discipline, or opportunity. The problem begins when they are promoted from evidence of possibility to evidence of likelihood. A winner can show that a path exists. Only the broader field can show how often that path pays off, how often it fails, and what conditions had to line up for the visible case to survive. Without that broader field, admiration becomes overconfident inference.\n\nThe cost shows up most clearly where ambition is high and documentation is uneven. In entrepreneurship, visible founders can make extreme risk look ordinary. In investing, surviving funds can make strategy look more reliable than it was. In careers, public outliers can make a narrow path feel broadly repeatable. In each case, the same trap is active: the public sample is not the neutral sample. It is the residue left after many quiet eliminations, and that residue flatters the eye.\n\nThat is why the graveyard question matters so much. What failed before this story reached me? What looked similar but ended without attention? What conditions would have to repeat before this visible rule deserves trust? Which missing attempts would make the lesson feel slower, narrower, or less glamorous? Those questions do not weaken useful ambition. They sharpen it by turning a survivor from a seductive script into one data point inside a harsher, more honest field. They also stop one polished case from stealing the authority that belongs to the broader field. They force the visible story to sit beside the missing field instead of above it. That shift matters because the mind keeps confusing what is easiest to inspect with what is safest to infer from. Gentle-looking evidence can still be structurally harsh once the absent cases return. The missing field is not a side note. It is what keeps the visible case from becoming a false promise. Once it returns, the winner has to settle for being a case rather than a verdict.",
+            "direct": "Survivorship bias is not merely a cheerful mistake. It is a selection problem that alters what appears explainable. Once only the winners remain visible, their traits begin to look stronger, cleaner, and more transferable than they really are. A visible survivor therefore gains persuasive authority from two sources at once: whatever skill or luck the case actually contains, and the silent removal of competing failures that would have diluted the lesson.\n\nThat distortion matters because human beings reason badly from absence. A founder who succeeded can be interviewed. A fund that survived can market its record. A strategy that produced a famous winner gets archived and retold. The dead cases are harder to find, so they stop disciplining the explanation. What remains is not just an incomplete sample. It is a sample whose incompleteness pushes the mind toward causal overreach. The more polished the survivor, the easier that overreach becomes.\n\nThe important boundary is this: survivor evidence can still be useful. It can reveal what success sometimes requires. It cannot, by itself, reveal what success usually requires or how often the same inputs end badly. That is the threshold most people miss. They move from \"this worked once\" to \"this is how winning works\" without restoring the unseen cases that would make the leap less flattering. One visible case starts carrying a frequency claim it never earned.\n\nOnce you see that threshold, several common errors look less innocent. Heroic founder stories begin to read as filtered evidence rather than clean instruction. Track records begin to look partially shaped by which records remained available. Self-improvement rules begin to look less universal when you remember how many people followed similar scripts without becoming examples. The visible winner may still matter, but it no longer gets to stand in for the field, and it no longer gets to define the odds by itself.\n\nThe hard discipline in this chapter is not cynicism. It is evidentiary humility. Before converting a survivor into a rule, ask what attrition has already done to the sample, what dead comparisons are missing, and whether the story in front of you speaks to possibility or to probability. Ask what would make the rule shrink if the hidden field became visible. Add one more test: ask which invisible failures would most damage your current confidence. That distinction is the line between learning from success and being fooled by it. It keeps a vivid case from hijacking your estimate of the whole field. It also forces the explanation to answer to the missing cases instead of only to the polished remainder. That is how a survivor becomes informative without being allowed to impersonate the base rate. The moment the dead comparisons reappear, the visible lesson has to re-earn every confident claim. If it still holds, it finally starts behaving like real evidence. The standard is simple: do not let a surviving example answer a rate question unless the missing failures have been made explicit enough to resist fantasy. Otherwise the lesson is still operating inside a flattering blind spot.",
+            "competitive": "Survivorship bias is what lets a winner sound like a law. The survivor is visible, quotable, and emotionally persuasive. The failures that would shrink the lesson are either gone or too boring to collect. That imbalance gives the surviving case a false aura of inevitability, and the polished case starts borrowing authority from the wreckage that disappeared.\n\nThe mistake is deeper than optimism. It is causal inflation under selection. Once the field is filtered, the winner's habits, timing, and style start absorbing more explanatory power than they earned. The reader sees the polished remainder and forgets that failure has already removed countless similar attempts from view. That cleanup operation is doing silent work for the survivor, but the survivor gets the credit. The result is a lesson that sounds tougher and cleaner than the real field ever was.\n\nThe boundary condition matters. A winner is still useful when you ask, \"What can happen?\" A winner becomes dangerous when you start using the same case to answer, \"How likely is this path?\" Those are different questions, and survivorship bias thrives when people pretend they are the same. Possibility feels inspiring. Probability needs the dead cases back in the room. Without them, a success story quietly upgrades itself into a sales pitch about the odds.\n\nAmbition-heavy environments are built to exploit this weakness. Surviving funds advertise. Outlier founders get profiled. Visible careers become templates. Public winners make the field look cleaner than it is because the wreckage is not standing beside them with equal polish. That is how smart people end up copying a visible move while remaining blind to the attrition that gave the move its glamour. The winner looks like a standard when it is often only a residue.\n\nThe corrective discipline is brutal but simple. Interrogate the silence. Ask which similar attempts vanished, what conditions failed to repeat, and how much of the visible lesson survives once the graveyard is restored. Ask what would make the rule look smaller if the dead cases were easy to inspect. Ask what confidence survives when the winner loses its monopoly on attention. Until you do that, the winner is not just teaching you. The winner is selling you a cleaned-up fiction about the odds. The only antidote is to make the invisible field expensive to ignore. When the dead cases finally count, the rule gets narrower, harsher, and more trustworthy. That is the price of converting a winner from propaganda back into evidence. Anything less is just polished selection bias with a better microphone. The graveyard is where fake inevitability finally loses the argument. Serious competitors understand this because copied surface habits are cheap, while understanding the filtered field is expensive. If you will not inspect the casualties, you have not earned the confidence to imitate the champion. The winner's polish is never the whole signal; attrition is speaking through it whether you acknowledge that or not. Strong judgment means pricing that hidden attrition into your confidence before you call the lesson repeatable."
+          },
+          "keyTakeaways": [
+            {
+              "point": {
+                "gentle": "Visibility adds persuasive force even when it does not add statistical reliability.",
+                "direct": "A survivor gains authority from being seen, remembered, and retold.",
+                "competitive": "Public survival gets mistaken for deep proof."
+              },
+              "moreDetails": {
+                "gentle": "The visible case has narrative advantages that the failed cases usually lack. That makes the mind treat it like stronger evidence than it is.",
+                "direct": "Attention bias and selection effects stack together. The case is easier to notice and already filtered by who remained available.",
+                "competitive": "The survivor gets a double edge: spotlight plus cleanup."
+              }
+            },
+            {
+              "point": {
+                "gentle": "The real threshold is possibility versus probability.",
+                "direct": "A winner can show that a path exists without showing how often it pays off.",
+                "competitive": "A visible win answers can-it-happen. It does not answer should-you-bet-on-it."
+              },
+              "moreDetails": {
+                "gentle": "People cross that threshold too quickly because the story feels complete. It is complete only as a narrative, not as a rate estimate.",
+                "direct": "The leap from existence proof to odds estimate is where the chapter's main error hardens into bad judgment.",
+                "competitive": "One survivor can justify hope. It cannot justify your confidence level."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Selection makes visible traits look more causal than they may be.",
+                "direct": "Once the dead cases disappear, survivor habits begin absorbing excess explanatory weight.",
+                "competitive": "Filtered fields make visible routines look like laws."
+              },
+              "moreDetails": {
+                "gentle": "Traits such as persistence or boldness may matter, but they appear stronger when matching failures are no longer in the comparison set.",
+                "direct": "Selection does not merely remove data. It distorts causal ranking by leaving some traits overrepresented in the remembered set.",
+                "competitive": "The trait gets promoted because the bodies that would demote it are gone."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Public examples are especially risky in domains with high attrition and uneven records.",
+                "direct": "Entrepreneurship, investing, and outlier careers are prime habitats for this bias.",
+                "competitive": "The louder the winners and the quieter the wreckage, the worse the trap."
+              },
+              "moreDetails": {
+                "gentle": "Those domains generate glamorous survivors and poor archives of ordinary failure, which means the visible lesson often arrives pre-distorted.",
+                "direct": "High attrition plus poor failure visibility creates exactly the field in which survivor evidence becomes overtrusted.",
+                "competitive": "Where the winners brand themselves and the losers evaporate, selection is already writing the sales copy."
+              }
+            },
+            {
+              "point": {
+                "gentle": "The graveyard question is not negativity. It is evidence repair.",
+                "direct": "Looking for attrition restores the sample instead of poisoning motivation.",
+                "competitive": "The graveyard does not kill ambition. It stops ambition from buying lies."
+              },
+              "moreDetails": {
+                "gentle": "A fuller sample can still support bold action, but the action will be based on harsher odds and better preparation.",
+                "direct": "Restoring failed cases narrows overconfidence while preserving whatever the survivor genuinely teaches.",
+                "competitive": "Once the dead cases reappear, the rule gets smaller, tougher, and more worth trusting."
+              }
+            }
+          ],
+          "activationPrompt": {
+            "gentle": "Choose one field you admire and list three failed or forgotten cases you would need to understand before copying a visible winner.",
+            "direct": "Pick an appealing success path and identify the attrition data missing from your current view of it.",
+            "competitive": "Take one winner-driven ambition and force yourself to find the wreckage that the story hides."
+          },
+          "selfCheckPrompts": [
+            {
+              "gentle": "Where in your life do visible winners currently feel more convincing than the missing field behind them?",
+              "direct": "Which admired success case are you overusing as evidence of odds?",
+              "competitive": "What survivor is currently borrowing your confidence without earning it?"
+            },
+            {
+              "gentle": "What would change in your decision if the failed comparisons were sitting beside the successful one?",
+              "direct": "How would your rule change if the dead cases were equally easy to inspect?",
+              "competitive": "Would you still love the bet if the graveyard had front-row seating?"
+            }
+          ],
+          "predictionPrompt": {
+            "gentle": "If you started asking for missing cases before every big decision, where would your confidence shrink first?",
+            "direct": "What kind of plan in your life would look less certain once attrition became visible?",
+            "competitive": "Which confidence story would crack first if the losers stopped being invisible?"
+          },
+          "oneMinuteRecap": {
+            "retrieve": {
+              "gentle": "What distinction does the chapter insist on between possibility and probability?",
+              "direct": "Retrieve the threshold that survivors cannot cross by themselves.",
+              "competitive": "What question can a winner answer, and which one still belongs to the graveyard?"
+            },
+            "connect": {
+              "gentle": "Why does visibility make survivor traits look more decisive than they may be?",
+              "direct": "How does selection inflate the apparent power of winner habits and strategies?",
+              "competitive": "Why does filtered success turn ordinary traits into fake laws?"
+            },
+            "preview": {
+              "gentle": "If hidden cases distort judgment, what happens when the mind starts seeing patterns in noise itself?",
+              "direct": "How does this chapter prepare you for a bias about mistaking randomness for meaningful structure?",
+              "competitive": "If a biased sample can fool you, what can raw randomness do once the mind starts drawing shapes?"
+            }
+          }
+        }
+      },
+      "examples": [
+        {
+          "exampleId": "ch01-ex01-startup-deck",
+          "title": "Noah Builds a Startup Strategy from Only the Winners",
+          "category": "work",
+          "format": "decision_point",
+          "endingType": "broader_principle",
+          "contexts": [
+            "startup",
+            "fundraising",
+            "career risk"
+          ],
+          "scenario": {
+            "gentle": "Noah has spent a week reading founder interviews before leaving his product job. Every story highlights conviction, speed, and refusing to quit. He has not looked at the larger field of startups that used the same language and still shut down within two years.",
+            "direct": "Noah is treating founder profiles like a neutral sample. The visible winners are supplying a playbook, but the failed firms that followed similar instincts are outside his view.",
+            "competitive": "Noah is about to bet his salary on a winner-filtered sample and call it research."
+          },
+          "whatToDo": {
+            "gentle": "Before quitting, gather failure-rate evidence and a few dead-case postmortems from similar startups.",
+            "direct": "Restore the attrition data before turning founder stories into a personal strategy.",
+            "competitive": "Go find the startup graveyard before mistaking survivor interviews for odds."
+          },
+          "whyItMatters": {
+            "gentle": "The winner stories can still teach Noah something, but they stop pretending to be the whole field.",
+            "direct": "This turns inspiration back into one data source instead of a distorted probability estimate.",
+            "competitive": "He may still take the bet, but at least it will be a real bet instead of a cleaned-up fantasy."
+          }
+        },
+        {
+          "exampleId": "ch01-ex02-scholarship-dialogue",
+          "title": "Lena Copies the Valedictorian's Routine",
+          "category": "school",
+          "format": "dialogue",
+          "endingType": "self_directed_question",
+          "contexts": [
+            "study habits",
+            "grades",
+            "selection"
+          ],
+          "scenario": {
+            "gentle": "Lena tells her friend, \"I found a video about how last year's valedictorian studied. I think I should copy the whole routine.\" Her friend asks, \"Do you know how many students used similar methods and still did average?\" Lena pauses. She does not.",
+            "direct": "Lena is ready to imitate a top student's schedule because the top student is visible. She has no view of the broader cohort that used similar habits with weaker results.",
+            "competitive": "Lena is one YouTube study-tour away from calling a survivor's routine a law."
+          },
+          "whatToDo": {
+            "gentle": "Use the valedictorian's routine as one idea, then compare it with broader evidence about what helped students across the class.",
+            "direct": "Treat the visible top student as a case, not as the full sample.",
+            "competitive": "Borrow the tactic if you want, but stop pretending one winner speaks for the whole grade."
+          },
+          "whyItMatters": {
+            "gentle": "The routine may still help, but Lena needs to know whether it is a real signal or just a memorable survivor detail.",
+            "direct": "This protects her from giving one visible student's habits more causal weight than they earned.",
+            "competitive": "Otherwise she is not studying evidence. She is copying charisma with stationery."
+          }
+        },
+        {
+          "exampleId": "ch01-ex03-fitness-dilemma",
+          "title": "Aiden Judges a Program by the Transformations Only",
+          "category": "personal",
+          "format": "dilemma",
+          "endingType": "surprising_implication",
+          "contexts": [
+            "fitness",
+            "marketing",
+            "selection"
+          ],
+          "scenario": {
+            "gentle": "Aiden is deciding whether to buy a twelve-week fitness program. The website is full of dramatic before-and-after photos from people who succeeded. There is no information about how many buyers did not finish or saw little change.",
+            "direct": "Aiden is being shown transformation survivors without any denominator. The persuasive material is real, but it is structurally incomplete.",
+            "competitive": "Aiden is staring at curated winners and being asked to call it proof."
+          },
+          "whatToDo": {
+            "gentle": "Look for completion rates, average outcomes, refunds, or independent reviews before treating the transformations as typical.",
+            "direct": "Ask for the missing denominator before using the success stories as evidence.",
+            "competitive": "Do not let a few visible bodies stand in for the whole customer base."
+          },
+          "whyItMatters": {
+            "gentle": "Without the broader field, Aiden is buying a story about possibility and mistaking it for a forecast.",
+            "direct": "This moves him from curated inspiration toward a more honest estimate of likely results.",
+            "competitive": "The program may still work, but the ad has not yet earned the right to tell him the odds."
+          }
+        },
+        {
+          "exampleId": "ch01-ex04-team-review",
+          "title": "Priya Changes How Her Team Reviews Wins",
+          "category": "work",
+          "format": "before_after",
+          "endingType": "cross_domain",
+          "contexts": [
+            "team process",
+            "product launches",
+            "retrospectives"
+          ],
+          "scenario": {
+            "gentle": "Before: Priya's team studies only the launches that went well and asks what to repeat. After: she adds a second review lane for launches that looked promising but failed quietly, then compares the two sets before setting new rules.",
+            "direct": "Priya shifts her team from winner-only learning to paired analysis of successes and dead attempts.",
+            "competitive": "Priya stops letting surviving launches write the whole doctrine."
+          },
+          "whatToDo": {
+            "gentle": "Build a review process that includes both visible wins and the attempts that disappeared.",
+            "direct": "Make failure cases part of the sample before standardizing a team rule.",
+            "competitive": "If you codify only the winners, you are institutionalizing selection bias."
+          },
+          "whyItMatters": {
+            "gentle": "The team gets a harsher but more useful picture of what actually transfers.",
+            "direct": "This reduces the chance that one visible success becomes a false company law.",
+            "competitive": "The broader sample protects the team from worshipping polished luck."
+          }
+        },
+        {
+          "exampleId": "ch01-ex05-college-postmortem",
+          "title": "The Essay Advice That Survived Selection",
+          "category": "school",
+          "format": "postmortem",
+          "endingType": "common_trap",
+          "contexts": [
+            "applications",
+            "admissions",
+            "storytelling"
+          ],
+          "scenario": {
+            "gentle": "After admissions season, a school counselor notices students passing around personal essays from the few seniors who got into elite colleges. The essays are being studied like blueprints even though the rejected essays using similar styles are absent from the discussion.",
+            "direct": "The postmortem reveals a winner-only archive. Accepted essays are visible and reusable; rejected essays with overlapping features disappear.",
+            "competitive": "The counselor realizes the school has built an admissions mythology out of survivors."
+          },
+          "whatToDo": {
+            "gentle": "Teach students to use successful essays as examples of possibility while reminding them how incomplete the archive is.",
+            "direct": "Separate illustrative examples from claims about admissions odds or causal certainty.",
+            "competitive": "Stop selling accepted essays as if they were a formula instead of a filtered residue."
+          },
+          "whyItMatters": {
+            "gentle": "Students can still learn from strong writing, but they stop confusing a visible archive with a true map.",
+            "direct": "This blocks a classic selection mistake in a high-anxiety setting.",
+            "competitive": "Otherwise the school keeps turning a biased sample into a false admissions religion."
+          }
+        },
+        {
+          "exampleId": "ch01-ex06-family-prediction",
+          "title": "Mira's Family Business Rule Starts to Crumble",
+          "category": "personal",
+          "format": "predict_reveal",
+          "endingType": "perspective_reframe",
+          "contexts": [
+            "family advice",
+            "career decisions",
+            "selection"
+          ],
+          "scenario": {
+            "gentle": "Mira grows up hearing that everyone who joined the family sales business became financially secure. She predicts the path is reliably safe. Then she learns several relatives left early, earned little, and are simply never mentioned at family dinners.",
+            "direct": "Mira's forecast is built from the survivors who remained visible inside family memory. The hidden leavers change the apparent reliability of the path.",
+            "competitive": "Mira thought she had a safe family rule. She actually had survivor-curated folklore."
+          },
+          "whatToDo": {
+            "gentle": "Ask for the quiet cases before treating family success stories as a forecast.",
+            "direct": "Expand the sample to include the relatives who did not remain visible in the winning story.",
+            "competitive": "Drag the forgotten cases into daylight before you inherit their edited odds."
+          },
+          "whyItMatters": {
+            "gentle": "This does not make the business path bad. It makes Mira's estimate of it more honest.",
+            "direct": "Once the hidden attrition appears, her confidence can rest on a fuller sample.",
+            "competitive": "The path may still be worth taking, but it no longer gets to pretend it was automatic."
+          }
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch01-q01",
+            "prompt": "A video series profiles five founders who became wealthy after leaving secure jobs. What key piece of evidence is still missing if you want to judge the real odds of following the same path?",
+            "choices": [
+              "How many similar founders failed or earned little",
+              "Whether the founders felt confident at the start",
+              "Which city each founder lived in"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "That missing field is the whole point. The visible founders show that success can happen, but the unseen failures are what change the probability.",
+              "direct": "Correct. Survivorship bias comes from treating the survivors as the sample while the failed cases vanish from view.",
+              "competitive": "That is the denominator the glossy profile hides. Without it, the story sells hope as odds."
+            },
+            "bloomsLevel": "remember-understand",
+            "depthLevel": "easy"
+          },
+          {
+            "questionId": "ch01-q02",
+            "prompt": "Why can a true success story still mislead you?",
+            "choices": [
+              "Because successful people usually invent their memories",
+              "Because one visible case can show possibility without showing likelihood",
+              "Because every winner was mostly lucky"
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "A winner may be honest and still leave you with a distorted picture. The story proves the path exists, not how often it pays off.",
+              "direct": "Right. The chapter's threshold is possibility versus probability. One surviving case cannot supply both answers by itself.",
+              "competitive": "That is the trap line. Existence proof is not a rate estimate."
+            },
+            "bloomsLevel": "remember-understand",
+            "depthLevel": "easy"
+          },
+          {
+            "questionId": "ch01-q03",
+            "prompt": "Which phrase best captures the chapter's practical correction?",
+            "choices": [
+              "Ignore winners and trust your instincts",
+              "Copy the visible routine but lower your expectations",
+              "Look for the graveyard before drawing the rule"
+            ],
+            "correctIndex": 2,
+            "explanation": {
+              "gentle": "Yes. The chapter does not ask you to hate success. It asks you to restore the missing failures before you treat a winner like a map.",
+              "direct": "Exactly. Better judgment requires bringing attrition and dead cases back into the sample.",
+              "competitive": "That is the disciplined move. Winners can stay in frame, but the graveyard has to join them."
+            },
+            "bloomsLevel": "remember-understand",
+            "depthLevel": "easy"
+          },
+          {
+            "questionId": "ch01-q04",
+            "prompt": "Nadia wants to become a full-time creator after watching a set of channels about people who grew fast in their first year. What action best matches the chapter's logic?",
+            "choices": [
+              "Study how many comparable creators stalled, quit, or earned very little before treating the visible paths as typical",
+              "Match the exact upload schedule of the fastest-growing creator",
+              "Wait until she feels more inspired by the stories before deciding"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "That answer restores the missing field. The creator stories can still help Nadia, but they stop pretending to be the whole sample.",
+              "direct": "Correct. She needs attrition data and dead comparisons, not just the routines of surviving channels.",
+              "competitive": "The visible creators are selling a filtered reality. She needs the bodies behind the branding."
+            },
+            "bloomsLevel": "apply-analyze",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "ch01-q05",
+            "prompt": "Marcus hears that the top three students in a class all used flash cards and concludes flash cards are the reason they ranked highest. Which answer best diagnoses the mistake?",
+            "choices": [
+              "He is assuming one visible habit carries more causal weight than the sample can justify",
+              "He is making a math error about the size of the class",
+              "He is wrong because study tools never matter"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Nice catch. The habit may matter, but Marcus has not looked at how many other students used it without the same result.",
+              "direct": "Right. Selection has inflated the apparent power of the visible habit by removing matching weaker outcomes from view.",
+              "competitive": "He promoted a survivor detail into a law without checking who else used it and still lost."
+            },
+            "bloomsLevel": "apply-analyze",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "ch01-q06",
+            "prompt": "A manager wants to copy a rival company's aggressive expansion plan because that rival became a breakout success. What question is most faithful to the chapter?",
+            "choices": [
+              "How confident did the rival executives sound while expanding",
+              "Which similar companies expanded that way and failed quietly",
+              "Whether the rival's headquarters looked impressive to investors"
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "That question brings the hidden comparison set back. Without it, the visible winner keeps too much authority.",
+              "direct": "Correct. The chapter trains you to ask for the dead comparisons before promoting one success case into a strategy rule.",
+              "competitive": "That is where the truth is hiding. The winner already has the spotlight."
+            },
+            "bloomsLevel": "apply-analyze",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "ch01-q07",
+            "prompt": "When does learning from a survivor become especially dangerous?",
+            "choices": [
+              "When the survivor is articulate and easy to remember",
+              "When the survivor's case is used to estimate odds without restoring the failed cases",
+              "When the survivor mentions hard work more than once"
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "That is the threshold the chapter keeps guarding. A visible case can teach possibility, but it misleads once it starts standing in for probability.",
+              "direct": "Yes. The danger spikes when one surviving path is used as if it already includes the missing denominator.",
+              "competitive": "That is where inspiration mutates into bad betting."
+            },
+            "bloomsLevel": "apply-analyze",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "ch01-q08",
+            "prompt": "Why are ambition-heavy fields such fertile ground for survivorship bias?",
+            "choices": [
+              "Because ambitious people always ignore evidence",
+              "Because those fields produce public winners and poorly archived failures",
+              "Because success in those fields depends only on luck"
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "Exactly. The public sample gets crowded with visible winners while the failed attempts become harder to inspect.",
+              "direct": "Correct. High attrition plus weak failure visibility creates the perfect environment for survivor evidence to become overtrusted.",
+              "competitive": "Winners get branding. Wreckage gets silence. That imbalance is the trap."
+            },
+            "bloomsLevel": "apply-analyze",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "ch01-q09",
+            "prompt": "A founder says, \"This company proves the strategy works.\" Which response best respects the chapter's hard boundary?",
+            "choices": [
+              "One company can prove the strategy exists, but not how often it works across the broader field",
+              "Any successful company automatically proves the strategy is likely to work for others",
+              "No company can ever teach anything useful about strategy"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "That answer keeps the distinction intact. The visible success still matters, but it cannot carry the whole probability claim alone.",
+              "direct": "Right. The chapter's hard line is possibility versus likelihood. A survivor can support the first claim much more easily than the second.",
+              "competitive": "That is the adult answer. Respect the win, then deny it the right to impersonate the odds."
+            },
+            "bloomsLevel": "evaluate-create",
+            "depthLevel": "hard"
+          },
+          {
+            "questionId": "ch01-q10",
+            "prompt": "If you began asking for missing cases before every major decision, what would most likely change first?",
+            "choices": [
+              "Your confidence would become more selective because some clean stories would lose their statistical force",
+              "You would stop admiring every successful person entirely",
+              "You would never act until every outcome was certain"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "That is the intended shift. The chapter does not kill ambition. It trims confidence where the evidence was thinner than it looked.",
+              "direct": "Correct. Restoring attrition narrows overconfidence and makes the surviving stories work harder before they become rules.",
+              "competitive": "That is the payoff. Some shiny stories stop owning your conviction once the graveyard shows up."
+            },
+            "bloomsLevel": "evaluate-create",
+            "depthLevel": "hard"
+          }
+        ]
+      },
+      "implementationPlan": {
+        "coreSkill": {
+          "gentle": "Learn to separate a visible winner from the full field behind the winner.",
+          "direct": "Train yourself to ask for the missing denominator before trusting a success story.",
+          "competitive": "Stop borrowing certainty from survivors without checking the graveyard."
+        },
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": {
+              "gentle": "If a work success story starts shaping a decision, then I will look for comparable failures before copying the move.",
+              "direct": "If a public win is driving a work plan, then I will restore attrition data before treating it as a rule.",
+              "competitive": "If a winner starts selling me a strategy at work, then I will hunt the missing wreckage first."
+            }
+          },
+          {
+            "context": "school",
+            "plan": {
+              "gentle": "If a top student's routine looks persuasive, then I will ask how many similar students used it without the same result.",
+              "direct": "If a visible academic outlier becomes my model, then I will check the broader sample before copying the habit.",
+              "competitive": "If one academic winner starts sounding like law, then I will demand the dead comparisons."
+            }
+          },
+          {
+            "context": "personal",
+            "plan": {
+              "gentle": "If a personal transformation story pulls me in, then I will look for average outcomes, dropouts, or hidden failures.",
+              "direct": "If a lifestyle success story tempts me, then I will ask what disappeared before the story reached me.",
+              "competitive": "If a personal win tries to sell me confidence, then I will force the graveyard into view."
+            }
+          }
+        ],
+        "twentyFourHourChallenge": {
+          "gentle": "Within the next day, pick one success story you admire and list the missing cases you still need to understand.",
+          "direct": "In the next 24 hours, audit one winner-driven belief for missing attrition data.",
+          "competitive": "By tomorrow, expose one confidence story that survives only because the losers are invisible."
+        },
+        "weeklyPractice": {
+          "gentle": "Once this week, review a decision and ask whether a visible winner got more weight than the full sample deserved.",
+          "direct": "Use one weekly review block to separate possibility evidence from probability evidence.",
+          "competitive": "Each week, catch one place where a survivor tried to pose as the whole field."
+        }
+      },
+      "reviewCards": [
+        {
+          "cardId": "ch01-rc01",
+          "difficulty": "easy",
+          "front": {
+            "gentle": "What is missing when survivorship bias takes hold?",
+            "direct": "Which part of the sample disappears in survivorship bias?",
+            "competitive": "What does the winner keep out of sight?"
+          },
+          "back": {
+            "gentle": "The failed or vanished cases drop out of view.",
+            "direct": "The hidden denominator, especially the failed comparisons, goes missing.",
+            "competitive": "The dead cases vanish, and the odds get cleaned up."
+          }
+        },
+        {
+          "cardId": "ch01-rc02",
+          "difficulty": "easy",
+          "front": {
+            "gentle": "A winner proves what, and not what?",
+            "direct": "What can a survivor show more easily than it can estimate?",
+            "competitive": "What does the survivor teach, and what does it fake?"
+          },
+          "back": {
+            "gentle": "A winner can show possibility more easily than probability.",
+            "direct": "A surviving case is stronger as evidence that a path exists than as evidence of its odds.",
+            "competitive": "It can prove the path is real, not that the bet is favorable."
+          }
+        },
+        {
+          "cardId": "ch01-rc03",
+          "difficulty": "medium",
+          "front": {
+            "gentle": "Why do visible routines from successful people often get overcredited?",
+            "direct": "Why can a survivor's habit look more causal than it is?",
+            "competitive": "Why does the winner's routine start sounding like a law?"
+          },
+          "back": {
+            "gentle": "Because matching failures are often missing from view, so the visible habit absorbs too much credit.",
+            "direct": "Selection strips out dead comparisons, which inflates the apparent power of the visible trait or routine.",
+            "competitive": "Failure cleared the field, and the routine got promoted by the silence."
+          }
+        },
+        {
+          "cardId": "ch01-rc04",
+          "difficulty": "medium",
+          "front": {
+            "gentle": "When a success story feels persuasive, what question repairs the evidence?",
+            "direct": "What is the chapter's graveyard question?",
+            "competitive": "How do you punch a hole in winner-only certainty?"
+          },
+          "back": {
+            "gentle": "Ask what failed quietly before this story became visible.",
+            "direct": "Ask which comparable cases disappeared and how they would change the rule.",
+            "competitive": "Force the missing wreckage back beside the polished win."
+          }
+        },
+        {
+          "cardId": "ch01-rc05",
+          "difficulty": "hard",
+          "front": {
+            "gentle": "What boundary separates learning from a survivor from being fooled by one?",
+            "direct": "Where is the hard threshold in this chapter?",
+            "competitive": "When does useful admiration become a bad bet?"
+          },
+          "back": {
+            "gentle": "The threshold is moving from possibility to probability without restoring the failed field.",
+            "direct": "You cross the line when one surviving case starts standing in for real odds.",
+            "competitive": "The mistake begins when a visible win gets to impersonate the whole sample."
+          }
+        }
+      ],
+      "keyTakeawayCard": {
+        "gentle": "Success stories matter, but they are only the visible remainder. Better judgment starts when you bring the hidden failures back into the sample before treating a winner like a rule.",
+        "direct": "Survivorship bias is denominator blindness. A survivor can show possibility, but probability appears only when the failed comparisons return to view.",
+        "competitive": "Winners are persuasive because the losers are missing. Look for the graveyard before you let a survivor sell you the odds."
+      }
+    }
+  ],
+  "artifacts": null
+}

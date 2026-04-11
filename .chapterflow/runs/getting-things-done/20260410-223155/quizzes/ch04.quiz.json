@@ -1,0 +1,155 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch04-q01",
+      "prompt": "What three setup conditions anchor this chapter?",
+      "choices": [
+        "Time, space, and tools",
+        "Goals, values, and habits",
+        "Priority, speed, and focus"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps returning to the same practical setup triad.",
+        "direct": "Allen's setup conditions here are time, space, and tools.",
+        "competitive": "Those are the three gates the environment has to clear."
+      }
+    },
+    {
+      "questionId": "ch04-q02",
+      "prompt": "Why does the chapter argue that intention alone is not enough?",
+      "choices": [
+        "Because the system works only for highly motivated people",
+        "Because good methods still fail when the environment makes correct use awkward",
+        "Because tools matter more than thinking"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter is practical about this: agreement with the method is not the same as a usable setup.",
+        "direct": "Environmental friction can overpower intention even when the person likes the system.",
+        "competitive": "Belief loses when use keeps getting taxed."
+      }
+    },
+    {
+      "questionId": "ch04-q03",
+      "prompt": "A capture tool is elegant but hidden behind several steps. How would the chapter judge it?",
+      "choices": [
+        "It is still ideal because sophistication matters most",
+        "It is fine as long as the user has enough willpower",
+        "It is weaker than a simpler tool that is ready at the moment of need"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter prefers practical readiness over theoretical perfection.",
+        "direct": "Tool quality here is measured by availability and low friction, not prestige.",
+        "competitive": "Buried perfection still loses the race."
+      }
+    },
+    {
+      "questionId": "ch04-q04",
+      "prompt": "Paula likes GTD but keeps her notebook buried in a drawer and rarely captures live thoughts. What is the best Chapter 4 response?",
+      "choices": [
+        "Ask her to memorize more carefully",
+        "Move the capture tool into the path of actual use",
+        "Add more categories to the notebook"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants the setup to support the right move in real time.",
+        "direct": "Relocating the tool reduces friction more effectively than demanding stronger memory.",
+        "competitive": "Put the notebook where pressure can reach it."
+      }
+    },
+    {
+      "questionId": "ch04-q05",
+      "prompt": "Which option best avoids the chapter's tool trap?",
+      "choices": [
+        "Buying the most advanced productivity hardware available",
+        "Reducing the steps between the thought and the capture tool",
+        "Switching tools every week to stay interested"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter is not about gear admiration. It is about ease of use.",
+        "direct": "Setup quality improves when the path from need to tool becomes shorter and simpler.",
+        "competitive": "Lower the toll, not the product brochure."
+      }
+    },
+    {
+      "questionId": "ch04-q06",
+      "prompt": "Dana thinks she lacks motivation for review, but the desk has no room to spread materials out. What is the chapter suggesting she test first?",
+      "choices": [
+        "Whether spatial friction is the real bottleneck",
+        "Whether review should be abandoned entirely",
+        "Whether reference material should be kept in her head"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says setup conditions can create resistance that looks like a motivation problem.",
+        "direct": "A cramped review environment can raise the starting cost enough to suppress the habit.",
+        "competitive": "Give review a work surface before blaming character."
+      }
+    },
+    {
+      "questionId": "ch04-q07",
+      "prompt": "A student keeps losing useful ideas in a dorm room because there is no obvious place to capture them. What principle from the chapter applies most directly?",
+      "choices": [
+        "Space and tool readiness have to meet the moment of need",
+        "The student should wait until the weekly review to remember everything",
+        "The ideas probably were not important"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants capture to be easier than mental carrying in live moments.",
+        "direct": "Missing capture points in the actual use location create preventable loss.",
+        "competitive": "No landing zone means the thought pays the price."
+      }
+    },
+    {
+      "questionId": "ch04-q08",
+      "prompt": "Imani keeps waiting for life to calm down before setting up GTD. What does the chapter say she should do instead?",
+      "choices": [
+        "Rely on inspiration when stress peaks",
+        "Reserve real setup time before expecting the system to perform",
+        "Skip setup and begin directly with full collection"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter frames setup as something that has to be built, not wished into existence.",
+        "direct": "Installation time is part of the method's practicality, not a luxury.",
+        "competitive": "Build the machine before demanding output from it."
+      }
+    },
+    {
+      "questionId": "ch04-q09",
+      "prompt": "Why does the chapter say a trusted system becomes trusted through the environment?",
+      "choices": [
+        "Because repeated ease of capture, sorting, and retrieval teaches the mind to let go",
+        "Because trust depends on buying the same tools as experts",
+        "Because trust is mostly a personality trait"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Trust grows when the setup keeps proving it can hold the work without drama.",
+        "direct": "Environmental reliability is what turns a method from admired idea into external system the mind believes.",
+        "competitive": "Each friction-light win teaches the head it can release the load."
+      }
+    },
+    {
+      "questionId": "ch04-q10",
+      "prompt": "If the environment is now ready, what question naturally comes next?",
+      "choices": [
+        "What exactly should be gathered into the system once setup is in place?",
+        "Which setup color scheme improves performance most?",
+        "Why should project planning be skipped from now on?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter prepares the system to receive the material that has still been living loose.",
+        "direct": "Once setup friction is reduced, the next logical step is full collection.",
+        "competitive": "If the workbench is ready, the loose inventory is next."
+      }
+    }
+  ]
+}

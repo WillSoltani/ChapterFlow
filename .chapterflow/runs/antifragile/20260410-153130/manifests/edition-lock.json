@@ -1,0 +1,30 @@
+{
+  "bookId": "antifragile",
+  "runId": "20260410-153130",
+  "lockedAt": "2026-04-10T15:34:50Z",
+  "editionSelectionMode": "ask_if_ambiguous",
+  "decision": "auto_locked",
+  "selectedEdition": {
+    "title": "Antifragile: Things That Gain from Disorder",
+    "author": "Nassim Nicholas Taleb",
+    "language": "English",
+    "publisher": "Random House",
+    "publishedYear": 2012,
+    "formatAnchor": "First edition hardcover / ebook family",
+    "isbn13": "9781400067824",
+    "sourceText": ".chapterflow/runs/antifragile/20260410-153130/source-freeze/book-source.md"
+  },
+  "alternatesReviewed": [
+    {
+      "label": "2014 Random House Publishing Group paperback/reprint",
+      "status": "same_chapter_structure",
+      "reason": "Google Books and publisher metadata show the same chapter order and seven-book structure."
+    }
+  ],
+  "whyThisEdition": [
+    "The 2012 English Random House edition is the dominant canonical edition surfaced by the official publisher page and multiple library catalogs.",
+    "No translation ambiguity applies.",
+    "The 2014 paperback/reprint preserves the same chapter structure, so edition differences do not materially affect chapter-level content."
+  ],
+  "userQuestionNeeded": false
+}

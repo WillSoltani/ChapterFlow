@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch11-q01",
+      "prompt": "What does natural selection mean in the chapter's practical sense?",
+      "choices": [
+        "The strongest form always survives in every setting",
+        "Traits persist when they fit current environmental pressure",
+        "Success is mostly a moral reward for discipline"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter defines survival as a result of fit to conditions.",
+        "direct": "Natural selection is about matching the current environment, not abstract superiority.",
+        "competitive": "The room keeps what fits it."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch11-q02",
+      "prompt": "Which detail best represents selection pressure?",
+      "choices": [
+        "A dashboard metric that no longer matches what customers reward",
+        "A team member feeling confident about old wins",
+        "A leader speaking more loudly in meetings"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Selection pressure is the environmental force deciding what traits are rewarded.",
+        "direct": "The changed customer demand acts as the selector in that situation.",
+        "competitive": "The metric mismatch reveals a new pressure in the room."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch11-q03",
+      "prompt": "Jordan's routine worked in summer and breaks once commuting changes the day. What is the best reading?",
+      "choices": [
+        "The routine lost fit because the environment changed",
+        "The routine proves Jordan never cared enough",
+        "The chapter would call this a sign that routines never matter"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The surrounding conditions shifted and changed what the routine needed to fit.",
+        "direct": "Lost fit is the chapter's first diagnosis before moral blame.",
+        "competitive": "The terrain moved and the form did not."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch11-q04",
+      "prompt": "Talia's team still looks strong by an old metric after the market changes. Why does the chapter say that is dangerous?",
+      "choices": [
+        "Because visible old success can hide that the environment now selects for different traits",
+        "Because every market shift means the old team was always weak",
+        "Because the only useful response is to copy the newest rival immediately"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The selector has changed, so the old proof of fitness may no longer be valid.",
+        "direct": "Natural selection forces a check on whether current conditions still reward the same form.",
+        "competitive": "Yesterday's scoreboard can flatter a dead strategy."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch11-q05",
+      "prompt": "How does the chapter distinguish survival from superiority?",
+      "choices": [
+        "Survival proves the winning form is morally better",
+        "Survival shows local fit to current conditions, not best everywhere",
+        "There is no distinction because winners define the standard"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter keeps the lesson narrow by tying survival to context.",
+        "direct": "Local fitness is safer than universal superiority as a conclusion.",
+        "competitive": "A winner here can still die elsewhere."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch11-q06",
+      "prompt": "A school format changes and Noah's once-effective approach can no longer survive. What does the chapter emphasize?",
+      "choices": [
+        "The new result is immediate proof of moral weakness",
+        "Extinction can follow because the environment no longer selects for the old form",
+        "Preparation never mattered in the first place"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The harsh outcome can be explained by changed fit under new conditions.",
+        "direct": "The chapter frames disappearance as an environmental result before a character verdict.",
+        "competitive": "The selector moved and the old form got cut."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch11-q07",
+      "prompt": "Which action best applies natural selection to strategy?",
+      "choices": [
+        "Study what the environment rewards before copying a visible winner",
+        "Assume any current survivor has found the best universal model",
+        "Ignore changing conditions and protect the old method longer"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter asks for environmental reading before imitation.",
+        "direct": "Selection pressure matters more than admiration for the survivor.",
+        "competitive": "Read the selector before you steal the form."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch11-q08",
+      "prompt": "Elena's club election rules change so turnout matters more than charisma. Which response fits the chapter?",
+      "choices": [
+        "Keep optimizing charisma because it won before",
+        "Treat the rules as a new selection pressure and redesign accordingly",
+        "Assume the election is now random and impossible to read"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The new rule set is selecting for a different trait.",
+        "direct": "The chapter values redesign around the current selector rather than nostalgia for the old one.",
+        "competitive": "Play to the new pressure or get left behind."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch11-q09",
+      "prompt": "Which statement best captures the chapter's practical rule?",
+      "choices": [
+        "Admire the survivor, because persistence usually proves universal superiority",
+        "Read the environment, identify the selection pressure, and treat success as evidence of local fit",
+        "Ignore failures because extinction is too harsh to teach from"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The model turns survival into a contextual clue about fit and pressure.",
+        "direct": "Natural selection becomes useful when it narrows the lesson to the environment that produced the result.",
+        "competitive": "Study the selector, not the myth around the winner."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch11-q10",
+      "prompt": "How does this chapter set up adaptation rate and the Red Queen effect?",
+      "choices": [
+        "It explains what the environment selects for, then points toward how fast systems must adapt when that pressure keeps moving",
+        "It finishes the biology section by settling survival questions completely",
+        "It returns from biology to chemistry and alloying"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next question is how quickly a form must adapt once selection pressure keeps shifting.",
+        "direct": "Natural selection establishes the selector, and the next chapter asks about pace of adaptation under moving pressure.",
+        "competitive": "First learn what the room selects, then ask how fast the survivor has to change."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

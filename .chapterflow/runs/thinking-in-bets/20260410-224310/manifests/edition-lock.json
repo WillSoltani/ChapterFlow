@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "chapterflow.v13.edition-lock",
+  "bookId": "thinking-in-bets",
+  "runId": "20260410-224310",
+  "lockedAt": "2026-04-10T22:56:00-03:00",
+  "title": "Thinking in Bets",
+  "subtitle": "Making Smarter Decisions When You Don't Have All the Facts",
+  "author": "Annie Duke",
+  "language": "English",
+  "selectedEdition": {
+    "publisher": "Portfolio/Penguin",
+    "publishedYear": 2018,
+    "format": "hardcover_or_ebook_canonical_text",
+    "isbn13": "9780735216358",
+    "openLibraryEditionId": "OL26949376M"
+  },
+  "dominantChapterMap": {
+    "count": 7,
+    "entries": [
+      "Introduction: Why this isn't a poker book",
+      "Life is poker, not chess",
+      "Wanna bet?",
+      "Bet to learn: fielding the unfolding future",
+      "The buddy system",
+      "Dissent to win",
+      "Adventures in mental time travel"
+    ]
+  },
+  "decision": "auto_locked",
+  "ambiguityAssessment": {
+    "materialEditionAmbiguity": false,
+    "reason": "The main English trade editions point back to the same 2018 Portfolio/Penguin text and share the same table of contents. The 2019 paperback is a packaging change, not a chapter-map change."
+  },
+  "quotePolicy": {
+    "exactQuotesAllowedOnlyWhenFrozenSupportExists": true,
+    "defaultMode": "paraphrase_first"
+  }
+}

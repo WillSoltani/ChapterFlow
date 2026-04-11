@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch04-q01",
+      "prompt": "What makes focus the first OKR superpower in this chapter?",
+      "choices": [
+        "It helps teams choose what matters most instead of keeping every worthy goal active",
+        "It proves that smaller goals are always better than bigger ones",
+        "It removes the need for stakeholder buy-in"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter presents focus as hard selection, not as generic reduction.",
+        "direct": "Focus matters because it tells the team what truly leads and what no longer does.",
+        "competitive": "The superpower starts when worthy alternatives start losing."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch04-q02",
+      "prompt": "How does the chapter distinguish commitment from awareness?",
+      "choices": [
+        "Awareness is enough if the goal sounds important",
+        "Commitment means participation and buy-in that change behavior",
+        "Commitment means forcing compliance without discussion"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Hearing the goal is not the same as carrying it.",
+        "direct": "The chapter defines commitment through buy-in and changed effort allocation.",
+        "competitive": "A repeated slogan is not a commitment. A reorganized week is."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch04-q03",
+      "prompt": "Why do too many priorities weaken execution according to the chapter?",
+      "choices": [
+        "Because teams lose the ability to guide action around what matters most",
+        "Because worthy goals are usually incorrect",
+        "Because fewer priorities always mean lower ambition"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The problem is overload, not ambition itself.",
+        "direct": "Too many active priorities borrow force from one another until the system turns noisy.",
+        "competitive": "If everything wants first place, nothing really leads."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch04-q04",
+      "prompt": "Sonia roadmap still has six items marked top priority. What move best fits the chapter?",
+      "choices": [
+        "Keep all six to avoid disappointing sponsors",
+        "Cut the list to the few items that can truly lead this quarter",
+        "Add two more so the roadmap feels balanced"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter would force a smaller real priority stack.",
+        "direct": "Focus requires visible sacrifice, not a broader top tier.",
+        "competitive": "A roadmap with six leaders is hiding the lack of a leader."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q05",
+      "prompt": "Claire capstone team kept every workstream active until deadline week. What chapter failure does this show?",
+      "choices": [
+        "A healthy version of broad ambition",
+        "Overload created by failing to rank worthy goals",
+        "Too much commitment to the chosen priorities"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The postmortem problem is not laziness. It is weak selection.",
+        "direct": "The chapter treats overload as the failure mode where every worthy stream keeps asking to lead.",
+        "competitive": "Hard work cannot rescue a team that never ranked the work honestly."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q06",
+      "prompt": "Why is it a weak reading to say commitment means compliance alone?",
+      "choices": [
+        "Because the chapter ignores behavior entirely",
+        "Because the chapter defines commitment as earned participation and buy-in, not just obedience",
+        "Because compliance always produces stronger focus"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter keeps commitment tied to participation and real carry, not passive submission.",
+        "direct": "Buy-in matters because the chosen goal must govern behavior, not just language.",
+        "competitive": "Forced agreement can clean up the meeting without changing the work."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q07",
+      "prompt": "A team keeps every worthy idea alive because nobody wants to disappoint stakeholders. What does the chapter say is happening?",
+      "choices": [
+        "The team is protecting ambition in the best possible way",
+        "The team is preserving overload and weakening execution",
+        "The team has already shown strong commitment"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says worthiness is not enough. Priority requires ranking and loss.",
+        "direct": "Keeping every good idea active usually means overload has survived the planning meeting.",
+        "competitive": "When no worthy option loses, the system stays soft and noisy."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q08",
+      "prompt": "Devin team agreed with a new objective, but calendars and sprint lines still protect the old work. Which judgment fits the chapter best?",
+      "choices": [
+        "The team has symbolic alignment instead of real commitment",
+        "The team is wisely avoiding sacrifice",
+        "The team has too much focus already"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter separates public agreement from behavioral buy-in.",
+        "direct": "If the old work still owns the week, the new commitment is mostly language.",
+        "competitive": "A nodding room can still be a hedging room."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q09",
+      "prompt": "What severe truth about focus does the chapter keep alive?",
+      "choices": [
+        "Focus works only when leaders are willing to disappoint attractive alternatives",
+        "Focus means reducing ambition until nobody feels pressure",
+        "Focus removes the need to explain tradeoffs to stakeholders"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Sacrifice is built into focus. That is part of the discipline.",
+        "direct": "The chapter refuses the fantasy of priority without exclusion.",
+        "competitive": "If nothing attractive loses, focus is still cosmetic."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch04-q10",
+      "prompt": "Why does Chapter 4 naturally lead into a company story next?",
+      "choices": [
+        "Because the book now wants to leave operating logic behind",
+        "Because the reader should now see what focus and commitment look like inside a real case",
+        "Because general principles are no longer relevant after this chapter"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The bridge asks what this superpower looks like once a company has to live inside it.",
+        "direct": "After the rule layer, the next useful move is a concrete company story.",
+        "competitive": "Theory has set the standard. The next chapter has to make it real."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

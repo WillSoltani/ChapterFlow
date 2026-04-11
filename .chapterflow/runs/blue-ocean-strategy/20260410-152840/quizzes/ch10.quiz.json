@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What central problem defines Chapter 10?",
+      "choices": [
+        "Blue oceans never settle once they are created",
+        "Blue oceans have to be renewed because a successful move is not permanently safe",
+        "Every portfolio should abandon all settled business immediately"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says blue oceans need renewal over time.",
+        "direct": "A successful move can settle, so renewal becomes necessary.",
+        "competitive": "One win does not protect the future forever."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What are settlers in the chapter's public vocabulary?",
+      "choices": [
+        "The strongest source of future growth",
+        "Stable portfolio positions closer to the current industry shape",
+        "Businesses that should always be removed"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Settlers are more stable but limited for future growth.",
+        "direct": "They sit closest to the current industry shape.",
+        "competitive": "They help explain present comfort, not future strength."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What are migrators doing in the PMS map?",
+      "choices": [
+        "They move the portfolio toward stronger future-growth potential",
+        "They eliminate the need for pioneers",
+        "They mean the same thing as settlers"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Migrators move farther toward stronger growth potential.",
+        "direct": "They sit between settled stability and pioneer-level future growth.",
+        "competitive": "They are movement toward the future, not settled comfort."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "What do pioneers represent here?",
+      "choices": [
+        "The weakest part of the portfolio",
+        "The strongest source of future growth in the map's public logic",
+        "Only businesses that are already dominant"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Pioneers lead on future growth in the chapter's public frame.",
+        "direct": "They represent the strongest source of future growth in the PMS map.",
+        "competitive": "They carry the future more than the settled present."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "A work portfolio feels comfortable now but is dominated by settled business. What is the chapter's warning?",
+      "choices": [
+        "Current comfort proves future growth is strong",
+        "The portfolio may still be weak on future growth",
+        "Settlers automatically create renewal"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns that comfort can hide future weakness.",
+        "direct": "Too much settler weight can make the present look stronger than the future really is.",
+        "competitive": "Stability can be flattering and still strategically weak."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "A team celebrates one strong current offering but never checks the rest of the mix. What does the chapter say is missing?",
+      "choices": [
+        "A portfolio view for future growth",
+        "A rejection of all settlers",
+        "A refusal to renew anything"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter asks leaders to read the full portfolio, not just one success.",
+        "direct": "Renewal depends on judging the whole mix through the PMS map.",
+        "competitive": "One winner cannot speak for a weak future."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What is the PMS map for in this chapter?",
+      "choices": [
+        "Decorating businesses with fashionable labels",
+        "Judging where future growth is likely to come from across the portfolio",
+        "Replacing all other strategic judgment"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The map is a portfolio lens for future growth.",
+        "direct": "It helps leaders judge whether the mix is positioned strongly enough for renewal.",
+        "competitive": "It forces the future-growth question into view."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Which portfolio mix is weakest on future growth?",
+      "choices": [
+        "A mix heavily weighted toward settlers with thin pioneer movement",
+        "A mix with some settlers and stronger migrator and pioneer positions",
+        "A mix judged through the PMS map before decisions are made"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Too much settler weight can weaken renewal.",
+        "direct": "A settled portfolio can feel stable while still being thin on future growth.",
+        "competitive": "If the future is underweight, the portfolio is weaker than it looks."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does renewal require portfolio judgment rather than one-move celebration?",
+      "choices": [
+        "Because one strong initiative can always stand in for the whole future",
+        "Because future growth depends on the balance of settlers, migrators, and pioneers across the mix",
+        "Because the chapter rejects any current stability at all"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter looks across the full mix for future growth.",
+        "direct": "One move cannot answer whether the whole portfolio is positioned for renewal.",
+        "competitive": "The future lives in the mix, not in one favorite story."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How does Chapter 10 connect to the next chapter?",
+      "choices": [
+        "It removes the need to think about traps entirely",
+        "It shows that weak renewal makes it easier to slip back toward red-ocean traps",
+        "It says every settler is itself a red-ocean trap"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter prepares the trap warning by showing what happens when renewal weakens.",
+        "direct": "Settled portfolios become more vulnerable to sliding back into ordinary competition.",
+        "competitive": "When the future thins out, red-ocean gravity gets stronger."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    }
+  ]
+}

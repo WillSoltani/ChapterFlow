@@ -2,6 +2,15 @@
 
 import { readFileSync } from "fs";
 import { resolve } from "path";
+import {
+  ANTIFRAGILE_AUTHOR,
+  ANTIFRAGILE_BOUNDARY_EXPECTATIONS,
+  ANTIFRAGILE_BRIDGE_EXPECTATIONS,
+  ANTIFRAGILE_DEPTH_RULES,
+  ANTIFRAGILE_SOFT_DRIFT_PHRASES,
+  ANTIFRAGILE_TITLE,
+  matchesAntifragilePackage,
+} from "./antifragile-book-contract.mjs";
 
 const CATEGORY_LABELS = {
   A: "package shape",
@@ -23,6 +32,7 @@ const SEVERITY_ORDER = {
 
 const FAILURE_SEVERITIES = new Set(["CRITICAL", "HIGH", "MEDIUM", "LOW"]);
 const TONE_KEYS = ["gentle", "direct", "competitive"];
+const SO_GOOD_GUIDED_CHAPTERS = new Set([2, 6, 10, 12, 14]);
 const DEPTHS = ["easy", "medium", "hard"];
 const CLAUSE_SCAFFOLDS = [
   "that is why",
@@ -94,6 +104,23 @@ const COMPETITIVE_SLOGAN_LEADS = [
   "dominate the room",
   "become the machine",
 ];
+const SO_GOOD_GENERIC_REVIEW_FRONTS = [
+  "state the chapter's central mechanism",
+  "which mistaken belief does newport break here",
+];
+const SO_GOOD_GENERIC_REVIEW_BACKS = [
+  "the core mechanism is to",
+  "newport is correcting a sequencing error",
+];
+const SO_GOOD_DIAGNOSTIC_MARKERS = new Set([
+  "boundary", "cost", "evidence", "failure", "fragility", "leverage", "limit",
+  "misread", "misreading", "resistance", "sequence", "sequencing", "signal",
+  "support", "trade", "visibility",
+]);
+const SO_GOOD_COMPETITIVE_MARKERS = new Set([
+  "cheap", "collapses", "consequence", "contact", "cost", "exposes", "fragile",
+  "private", "signal", "trap", "visible", "weak",
+]);
 
 const DEPTH_RULES = {
   easy: {
@@ -182,6 +209,45 @@ function splitSentences(value) {
     .filter(Boolean);
 }
 
+function sentenceWindows(sentences, size = 3) {
+  if (sentences.length < size) return [];
+  const windows = [];
+  for (let index = 0; index <= sentences.length - size; index += 1) {
+    windows.push(sentences.slice(index, index + size).join(" ").trim());
+  }
+  return windows;
+}
+
+function normalizeSentence(value) {
+  return normalizeText(value).replace(/['’]/g, "").replace(/[^a-z0-9%\s]/g, " ").replace(/\s+/g, " ").trim();
+}
+
+function repeatedSentenceCluster(leftText, rightText, minSentences = 2, minWords = 20) {
+  const left = splitSentences(leftText);
+  const right = splitSentences(rightText);
+  let best = null;
+  for (let leftIndex = 0; leftIndex < left.length; leftIndex += 1) {
+    for (let rightIndex = 0; rightIndex < right.length; rightIndex += 1) {
+      let width = 0;
+      let words = 0;
+      while (
+        leftIndex + width < left.length &&
+        rightIndex + width < right.length &&
+        normalizeSentence(left[leftIndex + width]) === normalizeSentence(right[rightIndex + width])
+      ) {
+        words += wordCount(left[leftIndex + width]);
+        width += 1;
+      }
+      if (width >= minSentences && words >= minWords) {
+        if (!best || width > best.width || words > best.words) {
+          best = { width, words };
+        }
+      }
+    }
+  }
+  return best;
+}
+
 function tokens(value) {
   return normalizeText(value)
     .replace(/[^a-z0-9%\s]/g, " ")
@@ -228,6 +294,13 @@ function isPitchAnythingPackage(pkg, inputPath = "") {
   const title = normalizeText(pkg?.book?.title ?? "");
   const pathText = normalizeText(inputPath);
   return bookId.includes("pitch anything") || bookId.includes("pitch-anything") || title.includes("pitch anything") || pathText.includes("pitch anything") || pathText.includes("pitch-anything");
+}
+
+function isSoGoodPackage(pkg, inputPath = "") {
+  const bookId = normalizeText(pkg?.book?.bookId ?? "");
+  const title = normalizeText(pkg?.book?.title ?? "");
+  const pathText = normalizeText(inputPath);
+  return bookId.includes("so-good-they-cant-ignore-you") || title.includes("so good they cant ignore you") || pathText.includes("so-good-they-cant-ignore-you");
 }
 
 function walkToneObjects(value, path, callback) {
@@ -497,6 +570,174 @@ function pushPitchAnythingIssues(pkg, surfaces, issues, inputPath) {
   });
 }
 
+function isArtOfWarPackage(pkg, inputPath = "") {
+  const bookId = normalizeText(pkg?.book?.bookId ?? "");
+  const title = normalizeText(pkg?.book?.title ?? "");
+  const pathText = normalizeText(inputPath);
+  return bookId.includes("art-of-war") || title.includes("art of war") || pathText.includes("art-of-war");
+}
+
+function pushArtOfWarIssues(pkg, chapter, issues, inputPath) {
+  if (!isArtOfWarPackage(pkg, inputPath)) return;
+  const chapterRoot = `ch${chapter.number ?? chapter.chapterId ?? "?"}`;
+  const cv = chapter.contentVariants;
+  if (!isRecord(cv)) return;
+
+  // Check breakdown paragraph density
+  ["easy", "medium", "hard"].forEach((depth) => {
+    const breakdown = cv[depth]?.chapterBreakdown;
+    if (!isRecord(breakdown)) return;
+    TONE_KEYS.forEach((tone) => {
+      const text = breakdown[tone];
+      if (!isNonEmptyString(text)) return;
+      const paragraphs = text.split(/\n\s*\n/).filter(Boolean);
+      // Wall-of-text: only 1 paragraph in medium or hard
+      if (paragraphs.length <= 1 && (depth === "medium" || depth === "hard") && wordCount(text) > 200) {
+        pushIssue(issues, "HIGH", "G", `${chapterRoot}.contentVariants.${depth}.chapterBreakdown.${tone}`, `Art of War: wall-of-text breakdown (${paragraphs.length} paragraph, ${wordCount(text)} words). Must have 4-6 paragraphs.`);
+      }
+      // Over-dense paragraphs
+      paragraphs.forEach((para, idx) => {
+        const wc = wordCount(para);
+        if (wc > 140) {
+          pushIssue(issues, "WARN", "G", `${chapterRoot}.contentVariants.${depth}.chapterBreakdown.${tone}`, `Art of War: paragraph ${idx + 1} is ${wc} words (max 120 recommended). Consider splitting.`);
+        }
+      });
+    });
+  });
+
+  // Check keyTakeawayCard word count
+  if (isRecord(chapter.keyTakeawayCard)) {
+    TONE_KEYS.forEach((tone) => {
+      const text = chapter.keyTakeawayCard[tone];
+      if (isNonEmptyString(text)) {
+        const wc = wordCount(text);
+        if (wc > 100) {
+          pushIssue(issues, "HIGH", "G", `${chapterRoot}.keyTakeawayCard.${tone}`, `Art of War: keyTakeawayCard is ${wc} words (max 80 recommended). Must be a distilled thesis, not a compressed essay.`);
+        }
+      }
+    });
+  }
+
+  // Check review card back length
+  if (Array.isArray(chapter.reviewCards)) {
+    chapter.reviewCards.forEach((card, idx) => {
+      if (!isRecord(card) || !isRecord(card.back)) return;
+      TONE_KEYS.forEach((tone) => {
+        const text = card.back[tone];
+        if (isNonEmptyString(text)) {
+          const wc = wordCount(text);
+          if (wc > 65) {
+            pushIssue(issues, "WARN", "G", `${chapterRoot}.reviewCards[${idx}].back.${tone}`, `Art of War: review card back is ${wc} words (max 50 recommended). Tighten for crisp retrieval.`);
+          }
+        }
+      });
+    });
+  }
+
+  // Check hard-variant meta-framework language
+  const hardBreakdown = cv.hard?.chapterBreakdown;
+  if (isRecord(hardBreakdown)) {
+    const metaPatterns = [
+      "the competence the chapter assumes",
+      "the sequential structure has a confidence trap",
+      "the argument has a live tension",
+      "the framework does not resolve",
+      "the classification error is not correctable",
+      "the competence required",
+    ];
+    TONE_KEYS.forEach((tone) => {
+      const text = hardBreakdown[tone];
+      if (!isNonEmptyString(text)) return;
+      const normalized = normalizeText(text);
+      metaPatterns.forEach((pattern) => {
+        if (normalized.includes(pattern)) {
+          pushIssue(issues, "WARN", "G", `${chapterRoot}.contentVariants.hard.chapterBreakdown.${tone}`, `Art of War: hard variant contains meta-framework language: "${pattern}". Consider rewriting to teach directly.`);
+        }
+      });
+    });
+  }
+}
+
+function pushSoGoodIssues(pkg, chapter, surfaces, issues, inputPath) {
+  if (!isSoGoodPackage(pkg, inputPath)) return;
+  if (!SO_GOOD_GUIDED_CHAPTERS.has(chapter.number)) return;
+  const chapterRoot = `ch${chapter.number}`;
+  const supportSurfaces = surfaces.filter((surface) => ["implementationPlan", "reviewCard", "recap", "keyTakeawayCard"].includes(surface.kind));
+  const breakdowns = surfaces.filter((surface) => surface.kind === "chapterBreakdown");
+
+  supportSurfaces.forEach((surface) => {
+    const normalized = normalizeText(surface.text);
+    if (surface.kind === "implementationPlan" && /\bthen i will if\b/.test(normalized)) {
+      pushIssue(issues, "HIGH", "G", surface.location, "So Good: implementation plan contains doubled conditional scaffolding.");
+    }
+    if (surface.kind === "reviewCard") {
+      const opening = normalizeText(firstSentence(surface.text));
+      if (SO_GOOD_GENERIC_REVIEW_FRONTS.some((prefix) => opening.startsWith(prefix)) || SO_GOOD_GENERIC_REVIEW_BACKS.some((prefix) => opening.startsWith(prefix))) {
+        pushIssue(issues, "HIGH", "G", surface.location, "So Good: review card uses a reusable scaffold instead of a chapter-earned retrieval cue.");
+      }
+    }
+    if (surface.tone === "competitive") {
+      const directSibling = supportSurfaces.find((item) => item.location.replace(/\.competitive$/, ".direct") === surface.location.replace(/\.competitive$/, ".direct") && item.tone === "direct");
+      if (directSibling) {
+        const overlap = jaccard(tokens(surface.text), tokens(directSibling.text));
+        const newTokens = new Set(tokens(surface.text).filter((token) => !new Set(tokens(directSibling.text)).has(token)));
+        const sharpEnough = [...newTokens].some((token) => SO_GOOD_COMPETITIVE_MARKERS.has(token));
+        if (overlap >= 0.74 && (wordCount(surface.text) >= wordCount(directSibling.text) || !sharpEnough)) {
+          pushIssue(issues, "HIGH", "G", surface.location, "So Good: competitive surface is too close to direct without becoming sharper.");
+        }
+      }
+    }
+    const bodyMatch = breakdowns.find((item) => item.tone === surface.tone);
+    if (bodyMatch) {
+      const overlap = jaccard(tokens(surface.text), tokens(bodyMatch.text));
+      if (overlap >= 0.66) {
+        pushIssue(issues, "HIGH", "G", surface.location, `So Good: support surface overlaps chapter body too closely (overlap=${overlap.toFixed(2)}).`);
+      }
+    }
+  });
+
+  const medium = chapter.contentVariants?.medium?.chapterBreakdown;
+  const hard = chapter.contentVariants?.hard?.chapterBreakdown;
+  ["easy", "medium", "hard"].forEach((depthName) => {
+    const breakdown = chapter.contentVariants?.[depthName]?.chapterBreakdown;
+    if (!isToneObject(breakdown)) return;
+    const tonePairs = [["gentle", "direct"], ["gentle", "competitive"], ["direct", "competitive"]];
+    tonePairs.forEach(([leftTone, rightTone]) => {
+      const cluster = repeatedSentenceCluster(breakdown[leftTone], breakdown[rightTone]);
+      if (cluster) {
+        pushIssue(
+          issues,
+          "HIGH",
+          "G",
+          `${chapterRoot}.contentVariants.${depthName}.chapterBreakdown.${rightTone}`,
+          `So Good: ${depthName} ${rightTone} reuses a repeated paragraph-family from ${leftTone} (${cluster.width} sentences / ${cluster.words} words).`
+        );
+      }
+    });
+  });
+  if (isToneObject(medium) && isToneObject(hard)) {
+    ["direct", "competitive"].forEach((tone) => {
+      const mediumText = medium[tone];
+      const hardText = hard[tone];
+      const repeatedCluster = repeatedSentenceCluster(mediumText, hardText);
+      if (repeatedCluster) {
+        pushIssue(issues, "HIGH", "G", `${chapterRoot}.hard.chapterBreakdown.${tone}`, `So Good: hard ${tone} repeats a medium paragraph-family (${repeatedCluster.width} sentences / ${repeatedCluster.words} words).`);
+      }
+      const overlap = jaccard(tokens(mediumText), tokens(hardText));
+      if (overlap >= 0.62) {
+        const hardTokens = new Set(tokens(hardText));
+        const markerHits = [...hardTokens].filter((token) => SO_GOOD_DIAGNOSTIC_MARKERS.has(token)).length;
+        if (markerHits < 2) {
+          pushIssue(issues, "HIGH", "G", `${chapterRoot}.hard.chapterBreakdown.${tone}`, "So Good: hard variant broadens medium without enough diagnostic precision.");
+        }
+      }
+      if (jaccard(tokens(firstSentence(mediumText)), tokens(firstSentence(hardText))) >= 0.74) {
+        pushIssue(issues, "HIGH", "G", `${chapterRoot}.hard.chapterBreakdown.${tone}`, "So Good: hard breakdown reuses medium's opening claim.");
+      }
+    });
+  }
+}
+
 function pushHardMediumSupportOverlapIssues(chapter, issues) {
   const medium = chapter.contentVariants?.medium;
   const hard = chapter.contentVariants?.hard;
@@ -580,7 +821,7 @@ function validateToneField(issues, category, value, location, label, severity = 
 }
 
 function validateTakeaways(chapter, depthName, depth, issues) {
-  const rules = DEPTH_RULES[depthName];
+  const rules = arguments[4][depthName];
   const takeaways = depth?.keyTakeaways;
   const location = `ch${chapter.number}.${depthName}.keyTakeaways`;
 
@@ -618,7 +859,7 @@ function validateTakeaways(chapter, depthName, depth, issues) {
 
 function validateOneMinuteRecap(chapter, depthName, depth, issues) {
   const location = `ch${chapter.number}.${depthName}.oneMinuteRecap`;
-  const rules = DEPTH_RULES[depthName];
+  const rules = arguments[4][depthName];
 
   if (rules.recapShape === "flat") {
     validateToneField(issues, "B", depth?.oneMinuteRecap, location, "oneMinuteRecap");
@@ -636,7 +877,7 @@ function validateOneMinuteRecap(chapter, depthName, depth, issues) {
 }
 
 function validateWordCounts(chapter, depthName, depth, issues, summaries) {
-  const rules = DEPTH_RULES[depthName];
+  const rules = arguments[5][depthName];
   const counts = {};
 
   if (!isToneObject(depth?.chapterBreakdown)) {
@@ -671,7 +912,7 @@ function validateWordCounts(chapter, depthName, depth, issues, summaries) {
 
 function validateDepth(chapter, depthName, depth, issues, summaries) {
   const location = `ch${chapter.number}.${depthName}`;
-  const rules = DEPTH_RULES[depthName];
+  const rules = arguments[5][depthName];
 
   if (!isRecord(depth)) {
     pushIssue(issues, "CRITICAL", "A", location, `${depthName} contentVariant must be an object.`);
@@ -684,7 +925,7 @@ function validateDepth(chapter, depthName, depth, issues, summaries) {
   }
 
   validateToneField(issues, "B", depth.chapterBreakdown, `${location}.chapterBreakdown`, "chapterBreakdown");
-  validateTakeaways(chapter, depthName, depth, issues);
+  validateTakeaways(chapter, depthName, depth, issues, arguments[5]);
 
   if (rules.requireActivationPrompt) {
     validateToneField(issues, "B", depth.activationPrompt, `${location}.activationPrompt`, "activationPrompt");
@@ -728,8 +969,119 @@ function validateDepth(chapter, depthName, depth, issues, summaries) {
     pushIssue(issues, "HIGH", "B", `${location}.predictionPrompt`, `${depthName} must not include predictionPrompt.`);
   }
 
-  validateOneMinuteRecap(chapter, depthName, depth, issues);
-  validateWordCounts(chapter, depthName, depth, issues, summaries);
+  validateOneMinuteRecap(chapter, depthName, depth, issues, arguments[5]);
+  validateWordCounts(chapter, depthName, depth, issues, summaries, arguments[5]);
+}
+
+function getDepthRulesForPackage(pkg, inputPath = "") {
+  return matchesAntifragilePackage(pkg, inputPath) ? ANTIFRAGILE_DEPTH_RULES : DEPTH_RULES;
+}
+
+function validateAntifragileMetadata(pkg, issues) {
+  if (!matchesAntifragilePackage(pkg)) return;
+  if (!isRecord(pkg.book)) return;
+
+  if (pkg.book.title !== ANTIFRAGILE_TITLE) {
+    pushIssue(issues, "CRITICAL", "A", "book.title", `Antifragile title must normalize exactly to "${ANTIFRAGILE_TITLE}".`);
+  }
+  if (pkg.book.author !== ANTIFRAGILE_AUTHOR) {
+    pushIssue(issues, "CRITICAL", "A", "book.author", `Antifragile author must normalize exactly to "${ANTIFRAGILE_AUTHOR}".`);
+  }
+  if (/[“”‘’]/.test(`${pkg.book.title ?? ""}${pkg.book.author ?? ""}`)) {
+    pushIssue(issues, "CRITICAL", "A", "book", "Antifragile metadata contains curly-quote corruption.");
+  }
+  if (!isRecord(pkg.book.edition)) {
+    pushIssue(issues, "CRITICAL", "A", "book.edition", "Antifragile book.edition must be an object.");
+  } else {
+    validateRequiredString(issues, "A", pkg.book.edition.name, "book.edition.name", "edition.name");
+    validateRequiredString(issues, "A", pkg.book.edition.sourceText, "book.edition.sourceText", "edition.sourceText");
+    validateRequiredString(issues, "A", pkg.book.edition.sourceProvenance, "book.edition.sourceProvenance", "edition.sourceProvenance");
+    if (!Number.isInteger(pkg.book.edition.publishedYear)) {
+      pushIssue(issues, "CRITICAL", "A", "book.edition.publishedYear", "Antifragile edition.publishedYear must be an integer when source support exists.");
+    }
+  }
+  validateRequiredString(issues, "A", pkg.book.chapterRange, "book.chapterRange", "chapterRange");
+}
+
+function validateAntifragileChapterContract(chapter, issues) {
+  if (!matchesAntifragilePackage(chapter)) return;
+  const chapterRoot = `ch${chapter.number}`;
+  if (!isRecord(chapter.book)) {
+    pushIssue(issues, "CRITICAL", "A", `${chapterRoot}.book`, "Antifragile chapter must include a nested book object.");
+  } else {
+    if (chapter.book.bookId !== "antifragile" || chapter.book.title !== ANTIFRAGILE_TITLE || chapter.book.author !== ANTIFRAGILE_AUTHOR) {
+      pushIssue(issues, "CRITICAL", "A", `${chapterRoot}.book`, "Antifragile nested chapter book metadata must match the canonical book object.");
+    }
+  }
+
+  const supportSurfaces = collectChapterToneSurfaces(chapter).filter((surface) =>
+    ["implementationPlan", "reviewCard", "recap", "keyTakeawayCard", "prompt"].includes(surface.kind)
+  );
+  supportSurfaces.forEach((surface) => {
+    const normalized = normalizeText(surface.text);
+    ANTIFRAGILE_SOFT_DRIFT_PHRASES.forEach((phrase) => {
+      if (normalized.includes(phrase)) {
+        pushIssue(
+          issues,
+          "HIGH",
+          "G",
+          surface.location,
+          `Antifragile surface drifted into generic or softened language: "${phrase}".`
+        );
+      }
+    });
+  });
+
+  const bridgeTerms = ANTIFRAGILE_BRIDGE_EXPECTATIONS[chapter.number];
+  if (bridgeTerms) {
+    const bridgeTexts = [];
+    const preview = chapter.contentVariants?.medium?.oneMinuteRecap?.preview;
+    if (isToneObject(preview)) {
+      bridgeTexts.push(...TONE_KEYS.map((tone) => preview[tone]));
+    }
+    const reviewBack = chapter.reviewCards?.[4]?.back;
+    if (isToneObject(reviewBack)) {
+      bridgeTexts.push(...TONE_KEYS.map((tone) => reviewBack[tone]));
+    }
+    const normalizedBridge = normalizeText(bridgeTexts.join(" "));
+    if (!bridgeTerms.some((term) => normalizedBridge.includes(term))) {
+      pushIssue(
+        issues,
+        "HIGH",
+        "G",
+        `${chapterRoot}.bridge`,
+        "Antifragile bridge does not point to the book's actual next conceptual move."
+      );
+    }
+  }
+
+  const boundaryTerms = ANTIFRAGILE_BOUNDARY_EXPECTATIONS[chapter.number];
+  if (boundaryTerms) {
+    const bodyBits = [];
+    ["medium", "hard"].forEach((depthName) => {
+      const breakdown = chapter.contentVariants?.[depthName]?.chapterBreakdown;
+      if (isToneObject(breakdown)) {
+        bodyBits.push(...TONE_KEYS.map((tone) => breakdown[tone]));
+      }
+      const takeaways = chapter.contentVariants?.[depthName]?.keyTakeaways;
+      if (Array.isArray(takeaways)) {
+        takeaways.forEach((takeaway) => {
+          if (isToneObject(takeaway?.point)) bodyBits.push(...TONE_KEYS.map((tone) => takeaway.point[tone]));
+          if (isToneObject(takeaway?.moreDetails)) bodyBits.push(...TONE_KEYS.map((tone) => takeaway.moreDetails[tone]));
+        });
+      }
+    });
+    const normalizedBody = normalizeText(bodyBits.join(" "));
+    if (![...boundaryTerms].every((term) => normalizedBody.includes(term))) {
+      pushIssue(
+        issues,
+        "HIGH",
+        "G",
+        `${chapterRoot}.boundary`,
+        "Antifragile chapter is missing the boundary that keeps this argument from turning into caricature."
+      );
+    }
+  }
 }
 
 function validateExamples(chapter, issues, summaries) {
@@ -1097,12 +1449,16 @@ function validateSealedIntegrity(pkg, chapter, issues, inputPath) {
   pushGenericImplementationWarnings(surfaces, issues);
   pushReinforcementEchoWarnings(surfaces, issues);
 
-  pushChapterPackageDuplicateIssues(chapter, surfaces, issues);
-  pushRepeatedTemplateTailIssues(surfaces, issues);
-  pushRepeatedCardScaffoldIssues(chapter, issues);
+  if (!isSoGoodPackage(pkg, inputPath)) {
+    pushChapterPackageDuplicateIssues(chapter, surfaces, issues);
+    pushRepeatedTemplateTailIssues(surfaces, issues);
+    pushRepeatedCardScaffoldIssues(chapter, issues);
+  }
   pushGenericMoreDetailsIssues(chapter, issues);
   pushGenericPromptIssues(surfaces, issues);
   pushPitchAnythingIssues(pkg, surfaces, issues, inputPath);
+  pushArtOfWarIssues(pkg, chapter, issues, inputPath);
+  pushSoGoodIssues(pkg, chapter, surfaces, issues, inputPath);
   pushHardMediumSupportOverlapIssues(chapter, issues);
 }
 
@@ -1112,6 +1468,7 @@ function validatePackage(pkg, inputPath = "") {
     wordCounts: [],
     exampleSummaries: [],
   };
+  const depthRules = getDepthRulesForPackage(pkg, inputPath);
 
   validateRequiredString(issues, "A", pkg.packageId, "root.packageId", "packageId");
 
@@ -1136,6 +1493,7 @@ function validatePackage(pkg, inputPath = "") {
       pushIssue(issues, "CRITICAL", "A", "book.variantFamily", 'variantFamily must equal "EMH".');
     }
   }
+  validateAntifragileMetadata(pkg, issues);
 
   if (!Array.isArray(pkg.chapters) || pkg.chapters.length === 0) {
     pushIssue(issues, "CRITICAL", "A", "root.chapters", "chapters must be a non-empty array.");
@@ -1192,13 +1550,14 @@ function validatePackage(pkg, inputPath = "") {
       });
     } else {
       DEPTHS.forEach((depthName) => {
-        validateDepth(chapter, depthName, chapter.contentVariants[depthName], issues, summaries);
+        validateDepth(chapter, depthName, chapter.contentVariants[depthName], issues, summaries, depthRules);
       });
     }
 
     validateExamples(chapter, issues, summaries);
     validateQuizAndSupporting(chapter, issues);
     validateSealedIntegrity(pkg, chapter, issues, inputPath);
+    validateAntifragileChapterContract(chapter, issues);
   });
 
   return { issues, summaries };

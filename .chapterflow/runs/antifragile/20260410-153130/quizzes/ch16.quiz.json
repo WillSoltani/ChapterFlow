@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's main claim?",
+      "choices": [
+        "Some kinds of bounded disorder can teach more than overcontrolled planning",
+        "Planning is pointless in every domain",
+        "Disorder is always better than order"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says bounded mess can be informative and rigorous.",
+        "direct": "Taleb argues that rough trials with limited downside can reveal fit and hidden constraints better than excessive control can.",
+        "competitive": "The point is not chaos for its own sake. It is that messy contact can produce real evidence."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the chapter value informative disorder?",
+      "choices": [
+        "Because any rough process is automatically wise",
+        "Because it can expose fit, weakness, and hidden constraints through contact with reality",
+        "Because failure is more exciting than success"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The rough process matters when it reveals something useful.",
+        "direct": "The chapter values disorder only when it generates information that a cleaner process might suppress.",
+        "competitive": "Mess earns respect here by producing signals, not by looking rebellious."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What important limit keeps the chapter from praising chaos?",
+      "choices": [
+        "Mistakes must stay survivable enough to teach",
+        "Every disorderly process eventually becomes efficient",
+        "Planning should be eliminated before learning starts"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps pointing to bounded downside.",
+        "direct": "Productive disorder depends on failure staying absorbable; unbounded damage is not the lesson.",
+        "competitive": "No bounds, no honest defense of the mess."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Maya's team has a polished roadmap, but a rough prototype exposes a hidden user problem the plan missed. Which response best fits the chapter?",
+      "choices": [
+        "Ignore the prototype because rough work is less rigorous",
+        "Use the prototype's feedback to update the plan while keeping the trial bounded",
+        "Abandon all planning forever"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants rough trials to be used as information sources.",
+        "direct": "The right move is to let the bounded experiment reveal what cleaner planning failed to uncover.",
+        "competitive": "The scrappy test just taught the roadmap a lesson; use it."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Which statement would the chapter reject most strongly?",
+      "choices": [
+        "Disorder can sometimes be informative under limits",
+        "Rough prototypes can reveal hidden constraints",
+        "Any disorderly process is good regardless of downside"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter is not defending chaos without limits.",
+        "direct": "Taleb distinguishes productive bounded mess from uncontrolled damage.",
+        "competitive": "That answer turns a disciplined claim into a lazy slogan."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Why are trial and self-discovery linked in this chapter?",
+      "choices": [
+        "Because people often discover fit through bounded exposure rather than through complete prior theory",
+        "Because self-knowledge is impossible without confusion",
+        "Because abstract reasoning has no value anywhere"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says some answers appear through trying.",
+        "direct": "In uncertain domains, local knowledge often comes from attempts that reality confirms or rejects.",
+        "competitive": "You often find the right fit by taking survivable hits, not by admiring a cleaner theory."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Colin asks what a wall of failed workshop attempts taught the class instead of treating it as proof of incompetence. What pattern is he applying?",
+      "choices": [
+        "Informative disorder under bounds",
+        "Proof that standards no longer matter",
+        "Evidence that failure should replace evaluation"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "He is looking for the lesson inside the rough sequence.",
+        "direct": "Colin treats the failed attempts as data about friction, misunderstanding, and fit rather than as mere embarrassment.",
+        "competitive": "He is making the bad drafts pay rent by exposing what they taught."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "When does disorder stop being productive in this chapter?",
+      "choices": [
+        "When the process becomes visible to others",
+        "When failure stops being survivable and turns into uncontained damage",
+        "When planning documents still exist beside it"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The line is crossed when the downside is no longer bounded.",
+        "direct": "Once losses are uncontained, the process ceases to function as a disciplined environment for learning.",
+        "competitive": "When the hits stop being survivable, the experiment becomes an excuse."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What deeper shift does the chapter ask from the reader?",
+      "choices": [
+        "Move from demanding surface neatness to asking whether a process is generating reality-tested information",
+        "Treat all clean processes as fraudulent",
+        "Assume that every failure contains equal wisdom"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter changes what counts as rigor.",
+        "direct": "Taleb wants the reader to judge processes by whether bounded exposure is revealing useful knowledge.",
+        "competitive": "Stop worshipping neatness and start asking whether anything is actually being learned."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How does this chapter lead into the next one?",
+      "choices": [
+        "It argues that verbal polish is enough once disorder has taught the lesson",
+        "It suggests that if learning comes from exposure and consequence, stronger reasoning may come from payoff rather than elegance alone",
+        "It replaces practical judgment with workshop experiments forever"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The next chapter asks who argues more honestly from exposure and payoff.",
+        "direct": "The bridge is from informative disorder to reasoning judged by consequence rather than by smooth language alone.",
+        "competitive": "If mess earns truth through contact, the smooth talker has a problem next."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

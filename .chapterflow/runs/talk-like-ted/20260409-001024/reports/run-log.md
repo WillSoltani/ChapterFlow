@@ -299,3 +299,93 @@ Writer -> editor -> critic completed:
 Current state:
 - Chapter 8 prose approved for conversion
 - structured, quiz, validation, and seal still pending
+
+## Phase 8 Chapter 8 Complete
+
+Validation notes:
+- structured chapter met EMH word-floor and ceiling compliance after local repair before validation
+- chapter-gate lint passed
+- quiz, validated chapter, review package, reading metrics, and continuity artifacts generated from the gated structured source
+- review-package wrapper match confirmed
+- Chapter 8 continuity hash sealed: `1c12083b0f9212c12dc917b1a382e26ba0e816463a298e5bdb30e59e0e37832f`
+
+Wave status:
+- Chapter 8 is clean inside Wave 4
+- Wave 4 (Chapters 7-8) passed the repo artifact guard
+
+## Phase 9 Chapter 9 Opened
+
+Source-boundary notes:
+- frozen Part III support narrowed for Chapter 9 from the already-authorized Chapter 9 source anchors in `book-source.md`
+- Chapter 9 local source sidecars created before any writer artifact
+
+Pre-writer artifacts created:
+- briefs/ch09.md
+- outlines/ch09.md
+- quiz-blueprints/ch09.md
+- sidecars/source/ch09.source.txt
+- sidecars/source/ch09.source.json
+
+Current state:
+- Chapter 9 is open on the strict path
+- writer, editor, critic, conversion, quiz, validation, and seal still pending
+
+## Phase 9 Chapter 9 In Progress
+
+Writer -> editor -> critic completed:
+- drafts/canonical/ch09.md
+- drafts/edited/ch09.md
+- reports/ch09.critic.md
+
+Current state:
+- Chapter 9 prose approved for conversion
+- structured, quiz, validation, and seal still pending
+
+## Phase 9 Chapter 9 Complete
+
+Validation notes:
+- structured chapter met EMH word-floor and ceiling compliance after local repair before validation
+- chapter-gate lint passed
+- quiz, validated chapter, review package, reading metrics, and continuity artifacts generated from the gated structured source
+- review-package wrapper match confirmed
+- Chapter 9 continuity hash sealed: `fb5e6bea54116478490008585fed70a0519dc495c212f9cb1a99c67642148c7e`
+
+Wave status:
+- Chapter 9 is clean
+- All numbered chapters are now validated on the chapter gate
+
+## Final Release Gate
+
+Release notes:
+- release assembled from `validated/ch*.chapter.json` only at `release/talk-like-ted.modern.json`
+- source guard passed
+- release guard passed
+- repo artifact guard passed
+
+Blocking status:
+- strict `release_gate` lint failed on earlier validated chapters (`ch01`-`ch07`) with thesis-first, clause-scaffold, duplicate recap, and overlap failures
+- run stopped at the release gate pending repair of those earlier validated chapters on the strict path
+
+## Final Release Gate Repaired
+
+Repair notes:
+- earlier validated chapters `ch01`-`ch07` were repaired locally on the strict path, then synced through `structured/`, `validated/`, `validated/*.review-package.json`, `sidecars/*.reading-metrics.json`, `continuity/continuity-state.json`, and `release/talk-like-ted.modern.json`
+- repaired release-gate surfaces included thesis-first openings, repeated clause scaffolds, duplicate recap/review-card sentences, and one hard/medium overlap surface
+- chapter-gate lint rerun passed for `ch01` through `ch07`
+- strict `release_gate` lint passed
+- release guard passed
+- repo artifact guard passed
+
+Re-sealed chapter hashes:
+- `ch01`: `f7e1186f6b805b59f9b7652809ba7590ed836e446f8182f61fac10ff048c4021`
+- `ch02`: `85061ea5a23922d70ca2f71d1fba1d301c1928af27fa4f5c1768e0ab8a61fa5a`
+- `ch03`: `ea23fab0d535d739e5250ea50a5c292c1f1dce403b166c5e4897b39e74fda8b5`
+- `ch04`: `0f06c793fa46a59f61ebfa78de9e9fca5c9f5c992cc5615d2a35c7e0b88a75d7`
+- `ch05`: `be193bd278754f56100a7a8241d0bafa32d21988585b9bd36db5b860399df857`
+- `ch06`: `50c6747ec0459143425f0c74d086dcc5dda99bcf7c8abba96e66f4f05d450281`
+- `ch07`: `aa4162a91627a796bee09d539a7ab3e84af7d2eb3f56a4f783072291b2721144`
+
+Current state:
+- final release gate is clean
+- release artifact remains assembled from `validated/ch*.chapter.json` only
+- run is fully clean through release

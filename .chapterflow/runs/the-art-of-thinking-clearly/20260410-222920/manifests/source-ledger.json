@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "chapterflow-v13-source-ledger",
+  "bookId": "the-art-of-thinking-clearly",
+  "runId": "20260410-222920",
+  "createdAt": "2026-04-10T00:00:00-03:00",
+  "sources": [
+    {
+      "sourceId": "google-books-2014-harpercollins",
+      "title": "The Art of Thinking Clearly",
+      "type": "authorized_preview",
+      "role": "primary_preview_and_contents",
+      "confidence": "high",
+      "url": "https://books.google.com/books/about/The_Art_of_Thinking_Clearly.html?id=5VYAAwAAQBAJ",
+      "notes": "Authorized Google Books listing for the HarperCollins edition. Used for title metadata, page count, publisher metadata, and the visible contents listing."
+    },
+    {
+      "sourceId": "hodder-title-page",
+      "title": "The Art of Thinking Clearly by Rolf Dobelli | Hachette UK",
+      "type": "official_publisher_page",
+      "role": "edition_confirmation",
+      "confidence": "high",
+      "url": "https://www.hodder.co.uk/titles/rolf-dobelli/the-art-of-thinking-clearly/9781444752052/",
+      "notes": "Official Hodder & Stoughton page confirming the English trade edition, imprint, and on-sale date."
+    },
+    {
+      "sourceId": "hodder-note-on-sources-pdf",
+      "title": "A Note on Sources for The Art of Thinking Clearly",
+      "type": "official_publisher_pdf",
+      "role": "authorized_heading_index",
+      "confidence": "high",
+      "url": "https://www.hodder.co.uk/wp-content/uploads/2019/04/The-Art-of-Thinking-Clearly-577h-Sources-final.pdf",
+      "notes": "Official Hachette PDF listing the chapter headings with source notes. Used to verify chapter-heading order and chapter-topic naming."
+    },
+    {
+      "sourceId": "graham-mann-summary",
+      "title": "The Art of Thinking Clearly by Rolf Dobelli: Summary & Notes",
+      "type": "reputable_secondary",
+      "role": "secondary_crosscheck",
+      "confidence": "medium",
+      "url": "https://www.grahammann.net/book-notes/the-art-of-thinking-clearly-rolf-dobelli",
+      "notes": "Used only as a secondary cross-check that the book is a 99-chapter bias catalogue and to sanity-check late-chapter title continuity where preview text is thin."
+    },
+    {
+      "sourceId": "supersummary-index",
+      "title": "The Art Of Thinking Clearly",
+      "type": "reputable_secondary",
+      "role": "chapter_range_crosscheck",
+      "confidence": "medium",
+      "url": "https://www.supersummary.com/the-art-of-thinking-clearly/group-discussion-questions/",
+      "notes": "Used only to confirm the chapter count and that secondary literature groups the book through Chapter 91 to the epilogue."
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's main claim?",
+      "choices": [
+        "In opaque intervention domains, hidden downside and convexity can make action require stronger proof than restraint",
+        "All medicine is harmful and should be rejected",
+        "Good intentions are enough to justify intervention"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says hidden downside can make action riskier than it appears.",
+        "direct": "Taleb argues that in opaque systems with asymmetric harm, intervention should face a higher burden of proof.",
+        "competitive": "If you cannot see the tail clearly, confidence is not evidence."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the chapter care about opacity?",
+      "choices": [
+        "Because what is hidden may matter less than what is visible",
+        "Because hidden downside can dominate visible benefit in intervention decisions",
+        "Because opacity makes all judgment impossible"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says unseen harm can matter more than the visible gain.",
+        "direct": "Opacity matters because a system may conceal harms that intention and short-run benefit fail to reveal.",
+        "competitive": "The unseen bill can be larger than the visible win."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What limit keeps the chapter from becoming anti-medicine?",
+      "choices": [
+        "Taleb raises the proof standard for intervention rather than rejecting care itself",
+        "Taleb says only natural processes should ever be trusted",
+        "Taleb claims all restraint is wiser than all action"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter is not rejecting care itself.",
+        "direct": "Taleb is criticizing overconfident intervention under opacity, not treatment as such.",
+        "competitive": "The target is blind swagger, not care."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Nia sees a proposal that promises visible improvement but notices the hidden downside is poorly understood. Which response best fits the chapter?",
+      "choices": [
+        "Approve it because visible upside cancels hidden uncertainty",
+        "Ignore the upside because all intervention is suspect",
+        "Raise the burden of proof because the harm structure is not visible enough"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter wants hidden downside treated as central.",
+        "direct": "The better fit is to demand stronger justification when the intervention's hidden harm is hard to map.",
+        "competitive": "Make the fix explain its tail before letting it act important."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Which statement would the chapter reject most strongly?",
+      "choices": [
+        "A visible benefit settles the case even if hidden downside is unclear",
+        "Convex harm can make additional intervention disproportionately risky",
+        "Restraint may sometimes avoid harms that action would create"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter rejects the idea that visible upside alone is enough.",
+        "direct": "Taleb argues that visible benefit cannot overrule serious uncertainty about hidden downside in opaque systems.",
+        "competitive": "That answer lets one shiny gain launder a hidden tail."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What is the chapter's mechanism?",
+      "choices": [
+        "Convex downside under opacity and asymmetry",
+        "The impossibility of treating any system responsibly",
+        "The moral weakness of intervention itself"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says harm can accelerate faster than expected when systems are opaque.",
+        "direct": "The mechanism is hidden downside that steepens under intervention, making extra action riskier than linear intuition predicts.",
+        "competitive": "The curve can punish your care faster than your care can help."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Omar asks what harms may be hidden or delayed before approving a helpful-looking intervention. What pattern is he applying?",
+      "choices": [
+        "A burden-of-proof approach under opacity",
+        "A rejection of all treatment",
+        "A respect-for-intention rule"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "He is raising the standard for action because unseen harm matters.",
+        "direct": "Omar is applying the chapter's rule that opaque systems require stronger evidence before intervention earns trust.",
+        "competitive": "He is forcing the hidden tail to testify before the fix gets promoted."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why can restraint be more rational than intervention in this chapter?",
+      "choices": [
+        "Because restraint never has downside",
+        "Because action may open hidden harm channels that restraint would never create",
+        "Because visible benefit should always be ignored"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says action can create harms that nonaction never would have opened.",
+        "direct": "Restraint may carry the better asymmetry when intervention introduces hidden downside into an opaque system.",
+        "competitive": "Sometimes doing less wins because it opens fewer traps."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What deeper shift does the chapter ask from the reader?",
+      "choices": [
+        "Move from trusting motive and visible gain to asking whether hidden downside and convex harm justify restraint",
+        "Treat all medicine as equally harmful",
+        "Assume opacity means nothing useful can be known"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter changes how intervention should be judged under uncertainty.",
+        "direct": "Taleb wants the reader to weigh hidden asymmetry and burden of proof rather than granting action automatic prestige.",
+        "competitive": "Stop rewarding action for being active and ask whether the tail makes restraint smarter."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How does this chapter lead into the next one?",
+      "choices": [
+        "It suggests that if added intervention can hide harm, long life may depend more on subtraction than on piling on more fixes",
+        "It proves that longevity comes only from avoiding all care",
+        "It replaces health judgment with passive waiting"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next chapter asks what should be removed rather than added.",
+        "direct": "The bridge is from opaque intervention risk to long life through harm avoidance and subtractive logic.",
+        "competitive": "If extra fixes can smuggle damage, subtraction is about to get promoted."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

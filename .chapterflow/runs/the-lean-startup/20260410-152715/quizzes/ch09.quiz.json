@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What does a small batch change in this chapter?",
+      "choices": [
+        "It shortens the distance between action and feedback",
+        "It guarantees more total features",
+        "It removes the need for testing"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Ries values small batches because they make learning arrive sooner.",
+        "direct": "The chapter treats batch size as a control over feedback timing.",
+        "competitive": "A smaller batch gets truth into the room faster."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why are large batches risky?",
+      "choices": [
+        "Because they always reduce morale",
+        "Because they hide problems longer and delay correction",
+        "Because they prevent any release at all"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says larger batches can carry errors forward before reality gets a chance to answer.",
+        "direct": "Large batches delay feedback and make repair more expensive when problems finally appear.",
+        "competitive": "They let mistakes travel farther before anyone stops them."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A team can ship one big release next month or several smaller ones starting this week. What fits Chapter 9 best?",
+      "choices": [
+        "Choose the option that brings feedback sooner",
+        "Always prefer the larger release because it looks more complete",
+        "Avoid releasing until every feature is finished"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says the better choice is the one that shortens the wait to learning.",
+        "direct": "Batch size should be judged by feedback speed and correction cost, not by release grandeur.",
+        "competitive": "Pick the path that forces reality to answer before pride gets too comfortable."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "In Jordan's student-team scenario, why is the smaller iteration cadence better?",
+      "choices": [
+        "Because it guarantees a higher grade",
+        "Because it lets campus feedback arrive while there is still time to respond",
+        "Because it removes the need for planning"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The smaller batch matters because the learning window in a semester is limited.",
+        "direct": "Shorter iterations keep feedback useful instead of letting it arrive after the correction window has closed.",
+        "competitive": "The campus cannot interrupt the team in time if the batch stays too large."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What is the key difference between throughput pride and learning speed in this chapter?",
+      "choices": [
+        "Throughput pride cares about how substantial the delivery looks, while learning speed cares about how soon reality answers",
+        "Throughput pride requires code, while learning speed does not",
+        "Throughput pride is only found in schools"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns that large releases can feel impressive even when they weaken learning.",
+        "direct": "Visible output is not the same thing as fast exposure to truth.",
+        "competitive": "A bigger reveal is weak if truth still has to wait outside."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Why does the chapter mention continuous deployment?",
+      "choices": [
+        "Because tooling prestige is the main goal",
+        "Because it shortens the gap between building and learning",
+        "Because it removes all defects"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The practice matters here because it keeps reality closer to the work.",
+        "direct": "Continuous deployment fits the chapter only when it improves feedback timing and correction speed.",
+        "competitive": "The tool matters if it makes truth interrupt sooner."
+      },
+      "bloomsLevel": "understand-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "How could a campus or nonprofit team apply Chapter 9 well?",
+      "choices": [
+        "By choosing batch sizes that let feedback arrive before the decision window closes",
+        "By making every release as large as possible",
+        "By avoiding user feedback until the final version"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter's logic works anywhere the timing of feedback affects what the team can still change.",
+        "direct": "Smaller batches matter in any setting where late learning becomes less useful.",
+        "competitive": "Mission does not excuse keeping truth on a long delay."
+      },
+      "bloomsLevel": "transfer",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What should you suspect when a team is proud of large-batch efficiency but still learns very late?",
+      "choices": [
+        "That the team is optimizing for substantial-looking delivery rather than for fast correction",
+        "That the startup has already mastered operations",
+        "That batch size no longer matters"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says large-batch pride can hide the cost of delayed feedback.",
+        "direct": "A workflow may look efficient while actually stretching the time to learning beyond what is useful.",
+        "competitive": "The room is admiring the reveal while the repair bill is getting ready."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why do teams keep preferring large batches even when those batches delay correction?",
+      "choices": [
+        "Because large releases can feel more important and emotionally satisfying",
+        "Because small batches always fail to ship real work",
+        "Because feedback timing does not matter under uncertainty"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps the emotional reward of a substantial release alive as part of the problem.",
+        "direct": "Large batches can look cleaner and more impressive, which makes them attractive despite slower learning.",
+        "competitive": "The ego of delivery is one reason truth keeps getting forced to wait."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How does Chapter 9 connect to Chapter 10?",
+      "choices": [
+        "Chapter 10 asks what kind of growth engine the faster-learning startup should understand next",
+        "Chapter 10 leaves growth aside and returns to batch size only",
+        "Chapter 10 argues that large batches are best for virality"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "After learning speed improves, the next question is what growth mechanism can sustain expansion.",
+        "direct": "The chapter points toward engines of growth once the startup can correct quickly enough to tune them.",
+        "competitive": "Once truth arrives faster, the business still has to ask what machine is supposed to make growth repeat."
+      },
+      "bloomsLevel": "connect-transfer",
+      "depthLevel": "hard"
+    }
+  ]
+}

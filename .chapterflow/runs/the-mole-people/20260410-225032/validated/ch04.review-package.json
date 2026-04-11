@@ -1,0 +1,719 @@
+{
+  "schemaVersion": "1.1.0",
+  "packageId": "8567bf09-c808-47b3-bc1d-7f7549900700",
+  "createdAt": "2026-04-10T23:59:40Z",
+  "contentOwner": "ChapterFlow",
+  "book": {
+    "bookId": "the-mole-people",
+    "title": "The Mole People",
+    "author": "Jennifer Toth",
+    "categories": [],
+    "tags": [],
+    "edition": {
+      "name": "The mole people: life in the tunnels beneath New York City",
+      "translator": "",
+      "publishedYear": 1993,
+      "translationYear": null,
+      "sourceText": ".chapterflow/runs/the-mole-people/20260410-225032/source-freeze/book-source.md",
+      "sourceProvenance": "Frozen from the 1993 first-edition Open Library record, the Google Books work-family page, the Chicago Review Press product page, the CCLS Syndetics table of contents and professional reviews, later reporting recorded in manifests/source-ledger.json, and publisher-permitted listing excerpts used for narrow Chapter 1-5 support."
+    },
+    "variantFamily": "EMH",
+    "chapterRange": "1-26"
+  },
+  "chapters": [
+    {
+      "chapterId": "ch04-macs-war",
+      "number": 4,
+      "title": "Mac's War",
+      "readingTimeMinutes": 6,
+      "contentVariants": {
+        "easy": {
+          "chapterBreakdown": {
+            "gentle": "Mac survives through harsh routine, naming, and discipline. The point is not spectacle. It is that scarcity has become organized enough to feel like a code.",
+            "direct": "Mac is read through method. Hunting rats, renaming them, and cooking them show survival becoming system rather than one desperate act.",
+            "competitive": "His code is built to beat hunger one day at a time, and the chapter refuses to call that code noble."
+          },
+          "keyTakeaways": [
+            {
+              "point": {
+                "gentle": "Mac turns survival into routine so scarcity does not fully own him.",
+                "direct": "The portrait treats harsh method as dignity defense.",
+                "competitive": "His code is survival discipline, not spectacle."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Naming helps make humiliation more manageable.",
+                "direct": "Track rabbits shows language doing survival work.",
+                "competitive": "The rename is pressure control, not cute irony."
+              }
+            },
+            {
+              "point": {
+                "gentle": "The chapter keeps competence and damage together.",
+                "direct": "Mac is neither a freak show nor a secret hero.",
+                "competitive": "Respect the toughness without glamorizing the cage."
+              }
+            }
+          ],
+          "oneMinuteRecap": {
+            "gentle": "Mac survives through hard routine, but the chapter never lets that routine look clean or noble.",
+            "direct": "Chapter 4 argues that competence under deprivation protects dignity while hardening into identity armor.",
+            "competitive": "Mac wins small battles against hunger and may lose more of life to the siege."
+          }
+        },
+        "medium": {
+          "chapterBreakdown": {
+            "gentle": "Mac enters through routine rather than confession. The lawful bundle gives an older man whose life is organized around hard competence, and that competence becomes the portrait spine.",
+            "direct": "Calling rats track rabbits matters because language helps Mac endure humiliation without denying reality. Naming is part of the survival mechanism, not a side detail.",
+            "competitive": "The Thoreau detail blocks lazy sorting. Mac cannot be reduced to grime, but the chapter also refuses to turn contrast into uplift."
+          },
+          "keyTakeaways": [
+            {
+              "point": {
+                "gentle": "Routine reveals pressure.",
+                "direct": "Method shows what scarcity has made necessary.",
+                "competitive": "The code tells the story before biography does."
+              },
+              "moreDetails": {
+                "gentle": "The chapter starts with practice because routine reveals pressure honestly.",
+                "direct": "Method is the portrait spine because it shows deprivation answered with ritual.",
+                "competitive": "Do not chase legend first. The code is already the dossier."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Language helps manage disgust.",
+                "direct": "Track rabbits is a survival phrase.",
+                "competitive": "The rename is armor against humiliation."
+              },
+              "moreDetails": {
+                "gentle": "Usable words can help a person stay intact during harsh necessity.",
+                "direct": "The phrase creates psychological distance without denying what must be done.",
+                "competitive": "Miss the naming move and you miss half the discipline."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Thoreau complicates the portrait.",
+                "direct": "The quotation detail blocks crude sorting.",
+                "competitive": "Culture enters to destroy lazy categories, not to rescue the scene."
+              },
+              "moreDetails": {
+                "gentle": "Mac can be materially deprived and mentally companioned at the same time.",
+                "direct": "Reflective life can remain active inside deprivation without cleansing it.",
+                "competitive": "Keep the rats in frame or the portrait goes soft."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Competence protects dignity.",
+                "direct": "Hard routine keeps Mac from total passivity before scarcity.",
+                "competitive": "Action is how he resists humiliation."
+              },
+              "moreDetails": {
+                "gentle": "Doing difficult things well can preserve a sense of self in a narrowed life.",
+                "direct": "The chapter recognizes skill while refusing to call the condition free.",
+                "competitive": "He is not powerless, but that does not mean he is winning."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Siege logic can become identity armor.",
+                "direct": "What preserves the self can also trap the self in war mode.",
+                "competitive": "The code that saves him may become the cage he cannot set down."
+              },
+              "moreDetails": {
+                "gentle": "A survival routine can harden until letting go feels like losing the self it defended.",
+                "direct": "This is the deeper contradiction: defensive competence carries cost once it becomes the only acceptable self-respect.",
+                "competitive": "If war becomes the identity, peace starts to feel like exposure."
+              }
+            }
+          ],
+          "activationPrompt": {
+            "gentle": "Think of one person whose harsh competence you once praised without asking what pressure built it.",
+            "direct": "Identify one routine that looks impressive from outside but may actually be a defense against scarcity.",
+            "competitive": "Find one case where toughness earned respect while hiding the bad world that made toughness necessary."
+          },
+          "selfCheckPrompt": {
+            "gentle": "Why does the chapter start with routine rather than biography?",
+            "direct": "Explain why the track rabbits phrase matters to the portrait.",
+            "competitive": "Can you hold discipline and damage in the same frame without glamorizing either?"
+          },
+          "oneMinuteRecap": {
+            "gentle": "Mac survives through method, language, and hard competence, but the chapter ties that competence to deprivation rather than heroism.",
+            "direct": "The chapter teaches that naming, routine, and quotation all matter because survival here is practical and identity-forming.",
+            "competitive": "Mac has edge, but the siege that forged it never stops charging interest."
+          }
+        },
+        "hard": {
+          "chapterBreakdown": {
+            "gentle": "Mac's portrait is built from method because method shows what pressure has done to a life without pretending a full biography is available. Routine becomes moral posture as well as practical necessity.",
+            "direct": "Language is not decorative here. The rename reorganizes what survival feels like, which means Mac is managing meaning as well as hunger.",
+            "competitive": "The strongest reading rejects both gawking and cheap admiration. The chapter keeps dignity, scarcity, language, and cost live at the same time."
+          },
+          "keyTakeaways": [
+            {
+              "point": {
+                "gentle": "Method reveals pressure without a full biography.",
+                "direct": "Routine is primary evidence of what scarcity has made necessary.",
+                "competitive": "The code is the dossier."
+              },
+              "moreDetails": {
+                "gentle": "Repeated practice carries more truth than invented backstory could.",
+                "direct": "Centering routine stays faithful to source limits while still making pressure visible.",
+                "competitive": "You do not need a war memoir when the rituals already show the front line."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Naming changes what survival feels like.",
+                "direct": "Language helps Mac endure humiliation without denying reality.",
+                "competitive": "Track rabbits is emotional engineering under duress."
+              },
+              "moreDetails": {
+                "gentle": "Words can help make unbearable facts barely manageable.",
+                "direct": "The phrase controls meaning as well as mood.",
+                "competitive": "Lose the naming move and necessity starts reading like collapse."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Thoreau complicates rather than elevates the scene.",
+                "direct": "Cultural memory stays active inside deprivation without redeeming it.",
+                "competitive": "Quotation breaks the category and rescues nothing."
+              },
+              "moreDetails": {
+                "gentle": "The contrast keeps Mac from being flattened into one trait.",
+                "direct": "Reflective life and severe hardship are not mutually exclusive.",
+                "competitive": "One literary note does not turn the tunnel into transcendence."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Competence can be both dignity and confinement.",
+                "direct": "Agency under siege preserves self-respect while narrowing self-respect.",
+                "competitive": "The skill keeps him alive and keeps him enlisted."
+              },
+              "moreDetails": {
+                "gentle": "Mac's routines prove he is not passive, but they also show how survival can become the dominant shape of life.",
+                "direct": "This is the central contradiction: the code defeats humiliation locally while extending the war globally.",
+                "competitive": "What wins today's battle may recruit tomorrow's identity."
+              }
+            },
+            {
+              "point": {
+                "gentle": "The honest response is disciplined respect.",
+                "direct": "Neither gawking nor uplift can hold the portrait truthfully.",
+                "competitive": "If you turn him into spectacle or myth, you lose the man."
+              },
+              "moreDetails": {
+                "gentle": "The chapter asks the reader to hold intelligence, damage, pride, and deprivation together.",
+                "direct": "Respect here means complexity without moral inflation or voyeurism.",
+                "competitive": "The portrait survives only if you refuse both disgust theater and noble-survivor branding."
+              }
+            }
+          ],
+          "activationPrompt": {
+            "gentle": "Notice one hard routine around you this week and ask whether it signals excellence, pressure, or both.",
+            "direct": "Find a case where language or ritual helps someone stay intact inside a degrading task.",
+            "competitive": "Identify one admired toughness that may actually be a siege identity in disguise."
+          },
+          "selfCheckPrompts": [
+            {
+              "gentle": "Why does the chapter need both rats and Thoreau in the same frame?",
+              "direct": "Explain how the naming practice and the quotation detail perform different jobs in the portrait.",
+              "competitive": "What collapses if you keep only the grime or only the intelligence?"
+            },
+            {
+              "gentle": "How does competence protect dignity without becoming a happy ending?",
+              "direct": "Why is agency under scarcity not the same as liberation from scarcity?",
+              "competitive": "How can the code be shield and cage at once?"
+            }
+          ],
+          "predictionPrompt": {
+            "gentle": "If later chapters widen from Mac, what must they preserve about restraint and anti-romantic reading?",
+            "direct": "What should a population chapter avoid after this portrait?",
+            "competitive": "What is the first mistake a later chapter makes if it turns Mac into the model of everyone below ground?"
+          },
+          "oneMinuteRecap": {
+            "retrieve": {
+              "gentle": "Rebuild the chain: method, naming, rats, Thoreau, siege logic, identity armor.",
+              "direct": "State the progression from routine to language to contrast to code to trap.",
+              "competitive": "Can you restate the portrait without dropping either dignity or deprivation?"
+            },
+            "connect": {
+              "gentle": "Why do language and routine belong in the same survival mechanism?",
+              "direct": "Connect practical competence to the formation of a defended self.",
+              "competitive": "How does pressure turn skill into doctrine?"
+            },
+            "preview": {
+              "gentle": "The next chapter widens to the underground population. What must it not borrow too quickly from Mac?",
+              "direct": "What guardrail should govern the move from portrait to pattern after this chapter?",
+              "competitive": "Why would using Mac as a census template be a category error?"
+            }
+          }
+        }
+      },
+      "examples": [
+        {
+          "exampleId": "ch04-ex01-iris-floor-route",
+          "title": "Iris Decides Whether Hard Competence Is the Whole Story",
+          "category": "work",
+          "format": "decision_point",
+          "endingType": "broader_principle",
+          "contexts": [
+            "casework",
+            "field support",
+            "triage"
+          ],
+          "scenario": {
+            "gentle": "Iris sees a client fixing a torn bag with perfect speed while a dented thermos rolls under the chair. She has to decide whether to praise the toughness or ask what pressure made it necessary.",
+            "direct": "A caseworker sees impressive self-sufficiency in a harsh setting and must decide whether to celebrate the skill or investigate the scarcity behind it.",
+            "competitive": "Iris can admire the edge and miss the wound, or read the edge as evidence of the war still running."
+          },
+          "whatToDo": {
+            "gentle": "Respect the competence, but ask what deprivation the routine may be defending against.",
+            "direct": "Treat the skill as real while refusing to confuse adaptation with a healthy environment.",
+            "competitive": "Do not hand out medals for survival code before you name the siege."
+          },
+          "whyItMatters": {
+            "gentle": "People often build impressive routines because their margin is gone.",
+            "direct": "The chapter teaches that competence can hide the pressure that produced it.",
+            "competitive": "If you glorify the armor, you strengthen the war."
+          }
+        },
+        {
+          "exampleId": "ch04-ex02-mateo-shop-light",
+          "title": "Mateo Reviews a Student Who Mistook Toughness for Stability",
+          "category": "school",
+          "format": "postmortem",
+          "endingType": "self_directed_question",
+          "contexts": [
+            "advising",
+            "school support",
+            "reflection"
+          ],
+          "scenario": {
+            "gentle": "In a vocational workshop lit by a humming fluorescent strip, Mateo realizes he praised a student's grit all semester without noticing the student was living out of a car.",
+            "direct": "An advisor reviews a case and sees that what looked like mature discipline was partly emergency adaptation.",
+            "competitive": "Mateo confused siege performance for stable character and now has to ask what his praise concealed."
+          },
+          "whatToDo": {
+            "gentle": "Re-read the behavior with the pressure context included and adjust support accordingly.",
+            "direct": "Separate genuine capability from the deprivation that made the capability necessary.",
+            "competitive": "Stop rewarding war mode as if it were ordinary thriving."
+          },
+          "whyItMatters": {
+            "gentle": "Harsh competence can win respect while hiding cost.",
+            "direct": "The chapter warns against mistaking emergency discipline for proof that conditions are manageable.",
+            "competitive": "If institutions love toughness too much, they become collaborators with the pressure."
+          }
+        },
+        {
+          "exampleId": "ch04-ex03-june-kitchen-table",
+          "title": "June Learns Why Pride Can Sound Hard",
+          "category": "personal",
+          "format": "dialogue",
+          "endingType": "surprising_implication",
+          "contexts": [
+            "family",
+            "conflict",
+            "respect"
+          ],
+          "scenario": {
+            "gentle": "June talks with her uncle at a kitchen table where work gloves still smell of oil. He speaks proudly about getting by on almost nothing.",
+            "direct": "A family conversation reveals pride built around surviving with very little. The challenge is respecting the pride without romanticizing the scarcity.",
+            "competitive": "June must resist two traps at once: pity that insults him and admiration that excuses the bad situation."
+          },
+          "whatToDo": {
+            "gentle": "Acknowledge the skill and pride, then keep the conversation tied to cost.",
+            "direct": "Honor self-respect without turning endurance into a lifestyle ideal.",
+            "competitive": "Respect the fighter, not the battlefield."
+          },
+          "whyItMatters": {
+            "gentle": "People may defend dignity through hardness when softer identities feel unsafe.",
+            "direct": "Mac's chapter helps explain why some forms of pride are built inside deprivation.",
+            "competitive": "If you call the war noble, you make exit feel like betrayal."
+          }
+        },
+        {
+          "exampleId": "ch04-ex04-evan-shift-board",
+          "title": "Evan Predicts the Hidden Cost of a Perfect Routine",
+          "category": "work",
+          "format": "predict_reveal",
+          "endingType": "cross_domain",
+          "contexts": [
+            "management",
+            "operations",
+            "coaching"
+          ],
+          "scenario": {
+            "gentle": "Evan keeps noticing that one employee never misses a task and keeps a grease-marked notebook. The reveal is that the routine is covering unstable housing.",
+            "direct": "A manager sees flawless execution and later learns it is built on constant scarcity management outside work.",
+            "competitive": "The strongest performer on the board is running siege logistics off the clock."
+          },
+          "whatToDo": {
+            "gentle": "Read the routine as a clue and create room for support before the system crashes.",
+            "direct": "Do not assume high performance means low pressure; ask what hidden conditions are feeding the rigidity.",
+            "competitive": "Perfect discipline can be an alarm, not a victory lap."
+          },
+          "whyItMatters": {
+            "gentle": "Hard routines often grow where people cannot afford mistakes.",
+            "direct": "The portrait teaches that methodical performance may be identity armor under pressure.",
+            "competitive": "If you only reward the code, you help weld it shut."
+          }
+        },
+        {
+          "exampleId": "ch04-ex05-leila-advising-file",
+          "title": "Leila Chooses Whether to Praise Toughness or Name Scarcity",
+          "category": "school",
+          "format": "dilemma",
+          "endingType": "common_trap",
+          "contexts": [
+            "school",
+            "counseling",
+            "ethics"
+          ],
+          "scenario": {
+            "gentle": "Leila is writing an advising note while a bus-transfer stub falls out of a folder. The student frames every setback as a test of toughness.",
+            "direct": "An advisor has to decide if praising resilience will help or if it will hide the material pressure shaping the case.",
+            "competitive": "Leila can endorse the armor or tell the truth about why the armor exists."
+          },
+          "whatToDo": {
+            "gentle": "Document the pressure clearly and avoid language that turns hardship into character training.",
+            "direct": "Name the scarcity, then support capability without glamorizing emergency.",
+            "competitive": "Do not let toughness become paperwork that launders deprivation."
+          },
+          "whyItMatters": {
+            "gentle": "Institutions often flatten hardship into grit when precision would be more honest.",
+            "direct": "The chapter warns that respect becomes distortion once it stops naming conditions.",
+            "competitive": "If you praise the war and omit the siege, you are not helping."
+          }
+        },
+        {
+          "exampleId": "ch04-ex06-grant-sink-tile",
+          "title": "Grant Reframes What He Thought Strength Meant",
+          "category": "personal",
+          "format": "before_after",
+          "endingType": "perspective_reframe",
+          "contexts": [
+            "friendship",
+            "reflection",
+            "growth"
+          ],
+          "scenario": {
+            "gentle": "Before, Grant thought strength meant never needing anything. After watching a friend improvise dinner in an apartment with cracked tile by the sink and almost no food, he sees the skill differently.",
+            "direct": "A friend's severe self-reliance stops looking admirable in the abstract once the scarcity behind it becomes visible.",
+            "competitive": "Grant learns that what he called strength was partly a life cornered into precision."
+          },
+          "whatToDo": {
+            "gentle": "Keep the respect, but attach it to the person rather than to the deprivation.",
+            "direct": "Revise your definition of strength so it includes cost, not just execution.",
+            "competitive": "Stop worshipping the armor and start seeing the pressure that forged it."
+          },
+          "whyItMatters": {
+            "gentle": "The chapter changes how hard competence should be read in ordinary life.",
+            "direct": "Mac's portrait teaches that disciplined survival deserves clarity, not romance.",
+            "competitive": "A better reading keeps the edge visible without calling the cage freedom."
+          }
+        }
+      ],
+      "implementationPlan": {
+        "coreSkill": {
+          "gentle": "The core skill is learning to read harsh competence as both dignity and evidence of pressure.",
+          "direct": "The core skill is disciplined interpretation: seeing routine, naming, and pride without glamorizing scarcity.",
+          "competitive": "The edge is refusing to mistake war skill for a healthy life."
+        },
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": {
+              "gentle": "If someone shows extreme self-sufficiency, then ask what pressure may have made that precision necessary.",
+              "direct": "If a routine looks unusually hardened, then investigate scarcity before rewarding it as pure excellence.",
+              "competitive": "If the code is flawless, check whether siege conditions built it."
+            }
+          },
+          {
+            "context": "school",
+            "plan": {
+              "gentle": "If a student is praised mainly for grit, then document the material pressure around the grit as well.",
+              "direct": "If resilience language is taking over the case, then name the deprivation that resilience is organizing around.",
+              "competitive": "If the institution loves toughness, force it to see the war feeding that toughness."
+            }
+          },
+          {
+            "context": "personal",
+            "plan": {
+              "gentle": "If a loved one takes pride in getting by on very little, then respect the pride while staying honest about cost.",
+              "direct": "If survival pride appears, then avoid both pity and romantic admiration.",
+              "competitive": "If the armor speaks first, do not bow to it or mock it. Read the siege."
+            }
+          }
+        ],
+        "twentyFourHourChallenge": {
+          "gentle": "In the next day, notice one hard routine and ask whether it signals healthy stability or survival pressure.",
+          "direct": "Within 24 hours, pick one admired competence and identify the hidden condition that may be producing it.",
+          "competitive": "Before tomorrow ends, catch yourself praising toughness and ask what war you may be overlooking."
+        },
+        "weeklyPractice": {
+          "gentle": "Once this week, practice describing someone's capability together with the cost it may be carrying.",
+          "direct": "Weekly practice: when you see rigid self-sufficiency, add a pressure question before drawing a character conclusion.",
+          "competitive": "Each week, refuse one opportunity to glamorize armor."
+        }
+      },
+      "keyTakeawayCard": {
+        "gentle": "Mac survives by turning scarcity into hard routine, but the chapter never lets that routine become noble mythology.",
+        "direct": "Chapter 4 teaches that competence under deprivation protects dignity while hardening into siege identity.",
+        "competitive": "If you admire the code without naming the cage, you misread the whole war."
+      },
+      "reviewCards": [
+        {
+          "cardId": "ch04-rc01",
+          "front": {
+            "gentle": "What comes first in Mac's portrait?",
+            "direct": "Why does the chapter open with method instead of biography?",
+            "competitive": "What tells you the war before any backstory does?"
+          },
+          "back": {
+            "gentle": "His routine comes first.",
+            "direct": "Method reveals the pressure more safely than invented biography would.",
+            "competitive": "The code arrives before the legend."
+          },
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "ch04-rc02",
+          "front": {
+            "gentle": "Why does track rabbits matter?",
+            "direct": "What job does Mac's naming practice perform?",
+            "competitive": "Why rename the rats at all?"
+          },
+          "back": {
+            "gentle": "It makes a humiliating necessity more bearable.",
+            "direct": "The phrase helps manage disgust and preserve dignity.",
+            "competitive": "The rename is armor against collapse."
+          },
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "ch04-rc03",
+          "front": {
+            "gentle": "What does the Thoreau detail change?",
+            "direct": "Why is the quotation detail important without being uplifting?",
+            "competitive": "How does Thoreau wreck the lazy reading?"
+          },
+          "back": {
+            "gentle": "It complicates Mac without cleaning up the conditions.",
+            "direct": "The detail blocks crude sorting but does not redeem deprivation.",
+            "competitive": "The quotation cracks the crude sorting and leaves the hardship fully exposed."
+          },
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch04-rc04",
+          "front": {
+            "gentle": "How can competence become risky?",
+            "direct": "What does identity armor mean in this chapter?",
+            "competitive": "How does the code become a cage?"
+          },
+          "back": {
+            "gentle": "The routine that protects dignity can become the self a person cannot safely set down.",
+            "direct": "Competence under siege preserves self-respect while hardening into permanent war mode.",
+            "competitive": "What keeps him enlisted is also what keeps him alive."
+          },
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch04-rc05",
+          "front": {
+            "gentle": "What reading mistake must the chapter avoid?",
+            "direct": "What happens if the portrait becomes either spectacle or uplift?",
+            "competitive": "What do you lose when you gawk or glorify?"
+          },
+          "back": {
+            "gentle": "You lose the real person.",
+            "direct": "Either mistake erases the mix of dignity, scarcity, and cost that defines the portrait.",
+            "competitive": "Myth and disgust are both ways of refusing the man."
+          },
+          "difficulty": "hard"
+        }
+      ],
+      "quiz": {
+        "passingScorePercent": 70,
+        "questions": [
+          {
+            "questionId": "ch04-q01",
+            "prompt": "What is the safest way to read Mac's hunting routine in this chapter?",
+            "choices": [
+              "As proof that deprivation becomes noble",
+              "As organized survival practice under pressure",
+              "As comic tunnel folklore"
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "The routine matters because it shows survival becoming method.",
+              "direct": "The chapter reads hunting as disciplined response to scarcity, not heroism or spectacle.",
+              "competitive": "Method, not myth, is the point."
+            },
+            "bloomsLevel": "understand",
+            "depthLevel": "easy"
+          },
+          {
+            "questionId": "ch04-q02",
+            "prompt": "Why does the phrase track rabbits matter?",
+            "choices": [
+              "It turns disgust into something more manageable",
+              "It proves Mac is joking for entertainment",
+              "It shows the rats are actually harmless"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "The name helps Mac bear what he must do.",
+              "direct": "Language is part of the survival mechanism here.",
+              "competitive": "The rename is pressure control."
+            },
+            "bloomsLevel": "understand",
+            "depthLevel": "easy"
+          },
+          {
+            "questionId": "ch04-q03",
+            "prompt": "A manager sees flawless routine from an employee under housing stress. Which reading best fits this chapter?",
+            "choices": [
+              "The employee is naturally superior at discipline",
+              "The routine is irrelevant to the employee's condition",
+              "The routine may be competence shaped by siege pressure"
+            ],
+            "correctIndex": 2,
+            "explanation": {
+              "gentle": "Hard competence can grow where mistakes are too costly.",
+              "direct": "Mac's chapter trains the reader to ask what pressure produced the precision.",
+              "competitive": "The clean routine may be war logistics in office clothes."
+            },
+            "bloomsLevel": "apply",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "ch04-q04",
+            "prompt": "What mistake does the Thoreau detail help prevent?",
+            "choices": [
+              "Assuming Mac has no inner life beyond scarcity",
+              "Assuming the chapter is mainly about school policy",
+              "Assuming the tunnels are physically safe"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "The quotation detail shows Mac cannot be reduced to one trait.",
+              "direct": "It complicates the portrait without redeeming deprivation.",
+              "competitive": "It breaks the lazy category and nothing more."
+            },
+            "bloomsLevel": "understand",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "ch04-q05",
+            "prompt": "Which response would this chapter treat as a trap?",
+            "choices": [
+              "Respecting Mac's competence while naming cost",
+              "Turning Mac into a noble philosopher of deprivation",
+              "Keeping dignity and damage in the same frame"
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "The portrait rejects romantic admiration.",
+              "direct": "Glamorizing deprivation distorts the chapter's whole tension.",
+              "competitive": "Uplift is just cleaner misreading."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "ch04-q06",
+            "prompt": "What does identity armor mean here?",
+            "choices": [
+              "A survival code that becomes part of the self",
+              "A literal protective outfit worn underground",
+              "A public-relations strategy"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Mac's routines help him defend self-respect.",
+              "direct": "The code protects dignity and can become hard to set down.",
+              "competitive": "The shield starts wearing the wearer."
+            },
+            "bloomsLevel": "understand",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "ch04-q07",
+            "prompt": "A school advisor keeps praising a student's grit without naming deprivation. What would Chapter 4 say?",
+            "choices": [
+              "The advisor is correct because toughness is always enough",
+              "The advisor is risking distortion by admiring armor without naming siege",
+              "The advisor should ignore the student's competence completely"
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "Capability should be respected, but the pressure behind it should not vanish.",
+              "direct": "Mac's chapter warns against praising emergency discipline as if it were ordinary flourishing.",
+              "competitive": "If you love the armor and omit the war, you misread the case."
+            },
+            "bloomsLevel": "apply",
+            "depthLevel": "hard"
+          },
+          {
+            "questionId": "ch04-q08",
+            "prompt": "Which sentence best captures the chapter's view of competence?",
+            "choices": [
+              "Competence automatically frees a person from bad conditions",
+              "Competence proves the conditions were not severe",
+              "Competence can preserve dignity while deepening siege identity"
+            ],
+            "correctIndex": 2,
+            "explanation": {
+              "gentle": "The chapter keeps dignity and cost together.",
+              "direct": "Skill under pressure matters, but it does not turn the world good.",
+              "competitive": "The edge wins battles and extends the war."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "hard"
+          },
+          {
+            "questionId": "ch04-q09",
+            "prompt": "Why must the chapter avoid both gawking and admiration?",
+            "choices": [
+              "Because either move erases part of Mac's truth",
+              "Because the book bans emotional reactions",
+              "Because the tunnels are only a metaphor"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Mac is neither spectacle nor clean inspiration.",
+              "direct": "Only disciplined respect can hold dignity, scarcity, and cost together.",
+              "competitive": "Disgust and myth are twin ways of refusing reality."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "hard"
+          },
+          {
+            "questionId": "ch04-q10",
+            "prompt": "What must the next population-level chapter avoid after Mac?",
+            "choices": [
+              "Using Mac as the model for everyone below ground",
+              "Mentioning communities at all",
+              "Discussing motive or social variety"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "One portrait cannot stand in for the full underground population.",
+              "direct": "The move from portrait to pattern requires restraint after a strong singular figure.",
+              "competitive": "Turn Mac into a census template and the map is already broken."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "hard"
+          }
+        ]
+      }
+    }
+  ]
+}

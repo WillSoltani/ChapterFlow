@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch10-q01",
+      "prompt": "What does alloying mean in the chapter's practical sense?",
+      "choices": [
+        "Removing weaker elements until only the strongest trait remains",
+        "Combining elements so the whole gains better properties than the parts alone",
+        "Adding as many different traits as possible to increase variety"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter treats alloying as deliberate combination that improves the whole system.",
+        "direct": "The key is changed properties in the whole, not purity or random variety.",
+        "competitive": "The mix earns its place by making better material."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch10-q02",
+      "prompt": "Which situation best fits the chapter's idea of complementary strength?",
+      "choices": [
+        "Adding another fast ideator to a team that already has only fast ideators",
+        "Pairing an organizer with an improviser so the presentation gains both flow and structure",
+        "Choosing uniform roles because they look cleaner"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Complementary strength covers a weakness the current system keeps exposing.",
+        "direct": "The organizer plus improviser mix creates a property the pure lineup lacks.",
+        "competitive": "The whole toughens when the gap gets covered."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch10-q03",
+      "prompt": "Kayla adds a recovery block to a week built only around output. How would the chapter read that change?",
+      "choices": [
+        "As wasted time that weakens purity",
+        "As a complementary element that makes the routine stronger",
+        "As proof that intense systems should always be abandoned"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The added element improves the routine's overall resilience.",
+        "direct": "Alloying values the property created in the whole week, not only the dominant trait.",
+        "competitive": "Recovery hardened the schedule instead of softening it."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch10-q04",
+      "prompt": "Victor can assign three confident speakers or mix one organizer with one strong improviser. Why does the chapter favor the mixed option?",
+      "choices": [
+        "Because any variety is automatically stronger than uniformity",
+        "Because the mixed roles create a better property in the whole presentation",
+        "Because uniform talent always signals weak commitment"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants the combination that improves the whole performance.",
+        "direct": "Complementary roles beat repeated strength when the repeated strength leaves the same gap exposed.",
+        "competitive": "The better mix holds where the pure lineup cracks."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch10-q05",
+      "prompt": "What is the purity trap in this chapter?",
+      "choices": [
+        "Assuming uniform strength is always more robust than a designed combination",
+        "Refusing to let any one role dominate a group conversation",
+        "Believing teams should avoid specialized talent altogether"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Purity becomes a trap when elegance hides repeated weakness.",
+        "direct": "The chapter criticizes the belief that clean uniformity must outperform complement.",
+        "competitive": "The polished pure setup can still snap under pressure."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch10-q06",
+      "prompt": "Paige keeps adding tools to her process, but the whole thing gets slower and more confusing. What does the chapter call that?",
+      "choices": [
+        "A stronger alloy because the system is more varied",
+        "A bad combination that adds complexity without better properties",
+        "A necessary stage before every system improves"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Not every mixture improves the whole.",
+        "direct": "The chapter separates useful complement from cluttered addition.",
+        "competitive": "More ingredients can still make weaker material."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch10-q07",
+      "prompt": "Which action best applies alloying to a work or school system?",
+      "choices": [
+        "Find the repeated weakness and add the balancing strength that would change the whole",
+        "Protect the current setup because adding any new element risks impurity",
+        "Choose the most impressive single trait and build everything around it"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter asks what complementary property the system is missing.",
+        "direct": "Useful alloying begins with the exposed weakness, not with admiration for the strongest pure trait.",
+        "competitive": "Cover the crack instead of polishing the same strength again."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch10-q08",
+      "prompt": "A school group chooses only the strongest speakers and then fails because nobody owns structure or finish. What does that show?",
+      "choices": [
+        "The group lacked enough effort from its strongest members",
+        "Purity repeated the same weakness across the whole system",
+        "Structure is less important than confidence in this model"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Uniform strength left the same gap exposed everywhere.",
+        "direct": "The failure shows why purity can look strong and still perform badly under real conditions.",
+        "competitive": "The pure roster cracked in the same place every time."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch10-q09",
+      "prompt": "Which statement best captures the chapter's practical rule?",
+      "choices": [
+        "Protect purity unless the system completely fails",
+        "Add whatever increases variety because more difference means more strength",
+        "Identify the repeated weakness, add the complementary element, and judge the mix by the better property it creates"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The model measures the stronger whole created by deliberate complement.",
+        "direct": "Alloying asks for fit, not purity worship or random addition.",
+        "competitive": "Engineer the tougher material and cut the decorative clutter."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch10-q10",
+      "prompt": "How does Alloying set up the next chapter in biology?",
+      "choices": [
+        "It asks how improved combinations exist, then points toward which variants survive when environments select among them",
+        "It proves chemistry and biology use the same model without any change",
+        "It returns to catalysts by asking how fast combinations form"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next move is to ask which forms endure once environments begin selecting among options.",
+        "direct": "Alloying ends the chemistry section by pointing toward selection and extinction in the biology section.",
+        "competitive": "First you engineer the material, then reality starts deciding what survives."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

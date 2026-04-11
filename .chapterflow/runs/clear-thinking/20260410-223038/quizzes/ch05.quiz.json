@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What best defines the inertia default in this chapter?",
+      "choices": [
+        "Wanting more rest after a busy week",
+        "Letting the familiar path continue because changing it feels costly",
+        "Reacting emotionally before you have time to think"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter is not mainly about rest or emotion. It is about familiar continuation gaining automatic authority.",
+        "direct": "Inertia appears when a known pattern keeps deciding because interruption feels too expensive.",
+        "competitive": "The old path keeps the seat."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why can the familiar path feel safer than it really is?",
+      "choices": [
+        "Because familiarity can get mistaken for evidence that the pattern is wise",
+        "Because anything familiar is usually the best option",
+        "Because the chapter says change is always reckless"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Knowing a pattern well can make it feel more justified than it truly is.",
+        "direct": "Familiarity can borrow credibility it has not earned.",
+        "competitive": "Known starts posing as right."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is the chapter's clearest warning about weak pattern carryover?",
+      "choices": [
+        "It only matters when people are visibly unmotivated",
+        "It can keep wasting time and shrinking options while still feeling stable",
+        "It proves that routine is usually harmful"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The danger is quiet drift, not only obvious failure.",
+        "direct": "A bad pattern can survive in respectable form while still reducing flexibility and quality.",
+        "competitive": "Drift can look tidy while it closes the field."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Iris keeps an outdated workflow because rebuilding it would disrupt the week. What chapter principle is most visible?",
+      "choices": [
+        "Reset friction is protecting a weak process",
+        "All structure should be abandoned immediately",
+        "The problem is mainly social pressure from the group"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The current process survives because the interruption cost feels too vivid.",
+        "direct": "Iris is overvaluing the front-loaded reset pain and undervaluing ongoing drift.",
+        "competitive": "The restart fee is keeping the bad system employed."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Mateo's team knows its handoff system is weak but delays the migration again. According to the chapter, what is happening?",
+      "choices": [
+        "The team is wisely respecting any long-standing system",
+        "Familiarity is making the bad process feel safer than the concentrated pain of change",
+        "The team is mostly reacting from ego and status defense"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The known system feels easier to preserve than to interrupt, even though it keeps costing them.",
+        "direct": "Inertia is active because reset pain is winning against the accumulated drift bill.",
+        "competitive": "The migration hurts first, so the weak tool keeps its badge."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Keisha keeps the same study routine even though it is not helping much. What response best matches the chapter?",
+      "choices": [
+        "Keep the whole routine because consistency always beats change",
+        "Scrap every routine because familiarity is always dangerous",
+        "Keep the useful parts but deliberately test a change in the weak segment"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter preserves useful stability while challenging what survives only as habit.",
+        "direct": "The right move is not blind loyalty or total disruption, but examined redesign.",
+        "competitive": "Do not worship the whole system. Replace the dead part."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Which statement best captures the chapter's difference between stability and stagnation?",
+      "choices": [
+        "Stability avoids all change, while stagnation welcomes it",
+        "Stability can still serve the outcome, while stagnation survives mainly because it is familiar",
+        "They are basically the same once a routine lasts long enough"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A useful routine can still deserve loyalty. A stagnant one depends on unexamined continuation.",
+        "direct": "The test is whether the pattern still works, not whether it has history.",
+        "competitive": "Steady earns it. Stuck coasts."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why does reset friction matter so much in the inertia default?",
+      "choices": [
+        "Because the immediate hassle of change can hide the larger long-term cost of staying put",
+        "Because any discomfort is proof that the current routine is best",
+        "Because the chapter says people should never interrupt a running system"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The short-term cost of change can feel bigger than the slower cost of drift.",
+        "direct": "Front-loaded pain distorts judgment if it makes continuation look cheaper than it is.",
+        "competitive": "The visible restart fee can hide months of quiet loss."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "How does Chapter 5 prepare the move into Chapter 6?",
+      "choices": [
+        "By showing that once inertia is named, weak patterns disappear on their own",
+        "By showing that better judgment requires building a stronger default, not only criticizing the old one",
+        "By arguing that clarity depends on removing all routines from life"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The next chapter matters because noticing inertia is not enough to replace it.",
+        "direct": "Chapter 6 turns diagnosis into design by making clearer thinking more deliberate and repeatable.",
+        "competitive": "You do not beat drift with complaint. You install a better system."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Which question best tests whether staying the course is discipline or comfort in disguise?",
+      "choices": [
+        "Would I choose this same pattern again if it were not already underway?",
+        "How long has this routine existed?",
+        "Does this pattern feel easier than trying something else?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter restores the routine to a choice by asking whether it still deserves renewal.",
+        "direct": "Current usefulness matters more than age or ease.",
+        "competitive": "Rebuild it or stop pretending it is earned."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "medium"
+    }
+  ]
+}

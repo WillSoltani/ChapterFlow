@@ -2,12 +2,70 @@
 import "source-map-support/register";
 import * as cdk from "aws-cdk-lib";
 import { ChapterFlowBackendStack } from "../lib/chapterflow-backend-stack";
+import { ChapterFlowFrontendStack } from "../lib/chapterflow-frontend-stack";
 
 const app = new cdk.App();
 
-new ChapterFlowBackendStack(app, "ChapterFlowBackend", {
-  env: {
-    account: process.env.CDK_DEFAULT_ACCOUNT,
-    region: "us-east-1",
+const env = {
+  account: process.env.CDK_DEFAULT_ACCOUNT,
+  region: "us-east-1",
+};
+
+const backend = new ChapterFlowBackendStack(app, "ChapterFlowBackend", { env });
+
+new ChapterFlowFrontendStack(app, "ChapterFlowFrontend", {
+  env,
+  backendStack: backend,
+  domainName: process.env.CHAPTERFLOW_DOMAIN_NAME || "chapterflow.ca",
+  serverEnv: {
+    // These are populated from GitHub Secrets in CI/CD.
+    // For local synth/deploy, set them as env vars or omit for dry-run.
+    ...(process.env.CHAPTERFLOW_APP_BASE_URL && {
+      CHAPTERFLOW_APP_BASE_URL: process.env.CHAPTERFLOW_APP_BASE_URL,
+    }),
+    ...(process.env.COGNITO_DOMAIN && {
+      COGNITO_DOMAIN: process.env.COGNITO_DOMAIN,
+    }),
+    ...(process.env.COGNITO_CLIENT_ID && {
+      COGNITO_CLIENT_ID: process.env.COGNITO_CLIENT_ID,
+    }),
+    ...(process.env.COGNITO_REGION && {
+      COGNITO_REGION: process.env.COGNITO_REGION,
+    }),
+    ...(process.env.COGNITO_USER_POOL_ID && {
+      COGNITO_USER_POOL_ID: process.env.COGNITO_USER_POOL_ID,
+    }),
+    ...(process.env.COGNITO_REDIRECT_URI && {
+      COGNITO_REDIRECT_URI: process.env.COGNITO_REDIRECT_URI,
+    }),
+    ...(process.env.COGNITO_LOGOUT_REDIRECT_URI && {
+      COGNITO_LOGOUT_REDIRECT_URI: process.env.COGNITO_LOGOUT_REDIRECT_URI,
+    }),
+    ...(process.env.AUTH_STATE_SECRET && {
+      AUTH_STATE_SECRET: process.env.AUTH_STATE_SECRET,
+    }),
+    ...(process.env.AUTH_COOKIE_DOMAIN && {
+      AUTH_COOKIE_DOMAIN: process.env.AUTH_COOKIE_DOMAIN,
+    }),
+    ...(process.env.BOOK_STRIPE_SECRET_KEY && {
+      BOOK_STRIPE_SECRET_KEY: process.env.BOOK_STRIPE_SECRET_KEY,
+    }),
+    ...(process.env.BOOK_STRIPE_WEBHOOK_SECRET && {
+      BOOK_STRIPE_WEBHOOK_SECRET: process.env.BOOK_STRIPE_WEBHOOK_SECRET,
+    }),
+    ...(process.env.BOOK_STRIPE_PRICE_ID && {
+      BOOK_STRIPE_PRICE_ID: process.env.BOOK_STRIPE_PRICE_ID,
+    }),
+    ...(process.env.BOOK_STRIPE_PRICE_ID_ANNUAL && {
+      BOOK_STRIPE_PRICE_ID_ANNUAL: process.env.BOOK_STRIPE_PRICE_ID_ANNUAL,
+    }),
+    ...(process.env.BOOK_STRIPE_PRICE_ID_ANNUAL_UPFRONT && {
+      BOOK_STRIPE_PRICE_ID_ANNUAL_UPFRONT:
+        process.env.BOOK_STRIPE_PRICE_ID_ANNUAL_UPFRONT,
+    }),
+    ...(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY && {
+      NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY:
+        process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
+    }),
   },
 });

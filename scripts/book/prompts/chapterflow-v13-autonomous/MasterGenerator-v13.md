@@ -83,7 +83,9 @@ Unless the run manifest overrides it:
 - style/gold-examples.md
 - style/gold-quiz.md
 - if a matching file exists at `style/books/{bookId}.md`, read it before writer, editor, converter, and validator work begins
+- if `bookId === "antifragile"`, the supported repair tool at `tools/chapterflow_v13_antifragile_repair.mjs` is part of the canonical repair path
 - if `bookId === "you-can't-hurt-me"`, the supported repair tool at `tools/chapterflow_v13_you_cant_hurt_me_repair.mjs` is part of the canonical repair path
+- if `bookId === "so-good-they-cant-ignore-you"`, the supported repair tool at `tools/chapterflow_v13_so_good_they_cant_ignore_you_repair.mjs` is part of the canonical repair path
 
 ### Rules
 - rules/learning-loop.md

@@ -1,0 +1,34 @@
+{
+  "bookId": "the-checklist-manifesto",
+  "runId": "20260410-223842",
+  "status": "locked_without_user_question",
+  "selectionReason": "One dominant English chapter family appears across the Macmillan publisher page, Google Books preview, Open Library first-edition records, and catalog metadata. The visible variations are regional or format branches rather than materially different chapter structures, so no user question was required.",
+  "chosenEdition": {
+    "title": "The Checklist Manifesto: How to Get Things Right",
+    "authors": [
+      "Atul Gawande"
+    ],
+    "language": "English",
+    "publisher": "Metropolitan Books / Henry Holt and Company / Macmillan",
+    "publishedYear": 2010,
+    "isbn13": "9780805091748",
+    "isbn10": "0805091742",
+    "chapterRange": "1-9",
+    "sourceText": ".chapterflow/runs/the-checklist-manifesto/20260410-223842/source-freeze/book-source.md",
+    "sourceProvenance": "Frozen from Macmillan official metadata and description, Google Books authorized preview contents, Open Library first-edition identifiers, CCLS/Syndetics contents and excerpt support, and the secondary chapter-summary bundle recorded in manifests/source-ledger.json."
+  },
+  "rejectedAlternatives": [
+    {
+      "title": "The Checklist Manifesto: How To Get Things Right",
+      "publisher": "Penguin Books India",
+      "publishedYear": 2014,
+      "reason": "Regional reissue of the same English chapter family for package purposes."
+    },
+    {
+      "title": "The Checklist Manifesto",
+      "publisher": "Macmillan Audio",
+      "publishedYear": 2010,
+      "reason": "Audio format branch, not a distinct chapter-level text edition for this run."
+    }
+  ]
+}

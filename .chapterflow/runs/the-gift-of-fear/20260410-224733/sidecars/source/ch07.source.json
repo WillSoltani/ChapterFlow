@@ -1,0 +1,23 @@
+{
+  "chapterId": "ch07",
+  "title": "Promises to kill (understanding threats)",
+  "heading": "Promises to kill (understanding threats)",
+  "approxWords": 95,
+  "properNouns": ["Gavin de Becker", "Open Library", "IUCAT"],
+  "repeatedTerms": ["threat", "context", "pattern", "sequence", "motive", "escalation"],
+  "sourceReferences": [
+    "openlibrary_toc",
+    "iucat_toc",
+    "prior_chapters_03_06",
+    "book_skeleton_intent"
+  ],
+  "notes": {
+    "coreMechanism": "threatening language becomes more meaningful when read with function, sequence, escalation, and surrounding behavior",
+    "mainLimit": "words matter as data, but they do not settle the whole forecast by themselves",
+    "guardrails": [
+      "no unsupported statistics",
+      "no invented threat taxonomies",
+      "keep claims context-bound and modest"
+    ]
+  }
+}

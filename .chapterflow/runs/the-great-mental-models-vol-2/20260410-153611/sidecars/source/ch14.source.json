@@ -1,0 +1,38 @@
+{
+  "title": "Niches",
+  "heading": "Niches",
+  "section": "Biology",
+  "pageStart": 249,
+  "approxWords": 145,
+  "properNouns": [
+    "Google Books",
+    "Ingram Syndetics"
+  ],
+  "repeatedTerms": [
+    "niche",
+    "role",
+    "fit",
+    "specialization",
+    "environment"
+  ],
+  "sourceReferences": [
+    {
+      "sourceId": "google-books-2024",
+      "use": "chapter title and page start"
+    },
+    {
+      "sourceId": "ingram-syndetics-toc",
+      "use": "chapter sequence after ecosystem"
+    }
+  ],
+  "supportSummary": [
+    "The chapter title supports a focus on roles or positions within a broader environment.",
+    "Following Ecosystem, the narrow support allows discussion of differentiated fit inside a shared system.",
+    "Specialization, reduced overlap, and role clarity are supportable as conservative paraphrase directions."
+  ],
+  "unsupportedZones": [
+    "technical ecology detail not present in the frozen bundle",
+    "named species adaptation stories or habitat case studies",
+    "exact quotations from the chapter interior"
+  ]
+}

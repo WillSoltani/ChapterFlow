@@ -1,0 +1,174 @@
+{
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the central delivery move in Chapter 23?",
+      "choices": [
+        "Using indirect criticism to preserve dignity",
+        "Avoiding criticism entirely",
+        "Starting with public humiliation"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter uses indirect criticism to reduce offense without deleting the problem.",
+        "direct": "Option A fits because tactful delivery is the central move.",
+        "competitive": "Lower the sting, keep the point."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why can indirect criticism work?",
+      "choices": [
+        "Because it can preserve dignity and reduce resentment",
+        "Because it makes the fault disappear",
+        "Because vagueness always helps"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says dignity protection can keep the person more open.",
+        "direct": "Indirect delivery lowers some of the pride cost of correction.",
+        "competitive": "Less ego sting can keep the room in play."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What dignity-preservation mechanism does the chapter emphasize?",
+      "choices": [
+        "Reducing the feeling of being directly struck",
+        "Removing all standards",
+        "Hiding the issue behind compliments"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Indirect delivery softens the feeling of being hit head-on.",
+        "direct": "The person gets more room to adjust without a frontal blow to pride.",
+        "competitive": "The room feels less pinned down."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A manager delivers a correction tactfully but still keeps the needed change unmistakable. What chapter move is this?",
+      "choices": [
+        "Indirect criticism with clarity",
+        "Cowardly hinting",
+        "Pure flattery"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The manager is using tact without deleting meaning.",
+        "direct": "This is the chapter method, not vagueness or flattery.",
+        "competitive": "That is finesse with aim."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "A classmate responds better once the criticism no longer feels like a direct strike but the issue still stays visible. What changed?",
+      "choices": [
+        "Dignity was preserved without losing clarity",
+        "The criticism disappeared",
+        "The standard was removed"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The person stayed more open because the delivery softened offense without hiding the issue.",
+        "direct": "Option A fits because tact and clarity stayed together.",
+        "competitive": "Less sting, same target."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What is the chapter's main limit on indirect criticism?",
+      "choices": [
+        "It must not become vague or evasive",
+        "It should hide the issue completely",
+        "It should always be softer than necessary"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter rejects indirectness that erases the problem.",
+        "direct": "Clarity is the limit of the method.",
+        "competitive": "Fog kills the move."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Which option misreads Chapter 23 as cowardice?",
+      "choices": [
+        "Using tact while keeping the fault legible",
+        "Hinting so vaguely that no one knows what should change",
+        "Reducing unnecessary offense without removing the standard"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter rejects vague hinting and evasive politeness.",
+        "direct": "Option B turns indirectness into avoidance.",
+        "competitive": "That is fog, not finesse."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "advanced"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why would cowardly hinting fail?",
+      "choices": [
+        "Because the listener is left without a clear problem to change",
+        "Because it preserves too much dignity",
+        "Because it makes criticism too direct"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The correction stops helping once the issue is too blurry to act on.",
+        "direct": "Avoidance leaves politeness without usable guidance.",
+        "competitive": "No clear target, no real correction."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "advanced"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "How can indirectness stay clear?",
+      "choices": [
+        "By softening delivery while keeping the needed change legible",
+        "By replacing the fault with vague atmosphere",
+        "By avoiding standards altogether"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The method changes form of delivery, not the existence of the problem.",
+        "direct": "Tact works only when the listener can still tell what needs changing.",
+        "competitive": "Ease the sting, not the signal."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "advanced"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why does this chapter lead naturally into Chapter 24?",
+      "choices": [
+        "Because after reducing accusation through tact, the book adds humility by admitting your own mistakes first",
+        "Because the next chapter abandons criticism",
+        "Because indirectness removes the need for any further method"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next chapter continues lower-accusation correction through self-implication.",
+        "direct": "Option A fits because Chapter 24 adds shared fallibility to preserved dignity.",
+        "competitive": "First use tact, then show you are not above the standard either."
+      },
+      "bloomsLevel": "transfer",
+      "depthLevel": "advanced"
+    }
+  ]
+}

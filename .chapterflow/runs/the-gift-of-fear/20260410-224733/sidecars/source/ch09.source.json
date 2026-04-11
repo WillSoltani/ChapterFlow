@@ -1,0 +1,23 @@
+{
+  "chapterId": "ch09",
+  "title": "Occupational hazards (violence in the workplace)",
+  "heading": "Occupational hazards (violence in the workplace)",
+  "approxWords": 92,
+  "properNouns": ["Gavin de Becker", "Open Library", "IUCAT"],
+  "repeatedTerms": ["workplace", "grievance", "access", "pressure", "repeat", "process"],
+  "sourceReferences": [
+    "openlibrary_toc",
+    "iucat_toc",
+    "prior_chapters_04_08",
+    "book_skeleton_intent"
+  ],
+  "notes": {
+    "coreMechanism": "institutional routine can blur repeated pressure patterns, but grievance, access conflict, and escalation still deserve behavioral reading",
+    "mainLimit": "not every grievance pattern predicts the same danger, but workplaces often underread repeated warning signals through normalization and delay",
+    "guardrails": [
+      "no unsupported statistics",
+      "no invented case specifics",
+      "keep claims behavior-bound and modest"
+    ]
+  }
+}

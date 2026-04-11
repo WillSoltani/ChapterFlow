@@ -1,0 +1,62 @@
+{
+  "bookId": "zero-to-one",
+  "runId": "20260410-152524",
+  "frozenAt": "2026-04-10T15:37:00-03:00",
+  "sourcePolicy": "public_or_authorized_plus_secondary",
+  "sources": [
+    {
+      "sourceId": "google-books-metadata",
+      "title": "Zero to One - Google Books metadata page",
+      "type": "official_metadata",
+      "role": "edition metadata and official publisher description",
+      "url": "https://books.google.com/books/about/Zero_to_One.html?id=gdHQBwAAQBAJ",
+      "confidence": "high",
+      "notes": "Confirms Crown Publishing Group, Sep 16 2014, and official jacket-style description."
+    },
+    {
+      "sourceId": "open-library-edition-page",
+      "title": "Zero to One - Open Library edition page",
+      "type": "preview_index",
+      "role": "table of contents and edition identifiers",
+      "url": "https://openlibrary.org/works/OL17078706W/Zero_to_One?edition=key:/books/OL25648567M",
+      "confidence": "high",
+      "notes": "Provides chapter list, page starts, ISBN-13 9780804139298, and hardcover first-edition metadata."
+    },
+    {
+      "sourceId": "supersummary-preface-ch4",
+      "title": "Zero to One - SuperSummary preface to chapter 4",
+      "type": "secondary_summary",
+      "role": "chapter-level interpretation support for chapters 1-4",
+      "url": "https://www.supersummary.com/zero-to-one/",
+      "confidence": "medium",
+      "notes": "Used only as secondary support to sharpen chapter scope where direct preview access is thin."
+    },
+    {
+      "sourceId": "supersummary-ch5-11",
+      "title": "Zero to One Chapters 5-11 Summary & Analysis",
+      "type": "secondary_summary",
+      "role": "chapter-level interpretation support for chapters 5-11",
+      "url": "https://www.supersummary.com/zero-to-one/chapters-5-11-summary/",
+      "confidence": "medium",
+      "notes": "Useful for chapter-level mechanism, examples, and ordering; not used for exact quotes."
+    },
+    {
+      "sourceId": "supersummary-ch12-conclusion",
+      "title": "Zero to One - SuperSummary chapters 12 to conclusion",
+      "type": "secondary_summary",
+      "role": "chapter-level interpretation support for chapters 12-14 and conclusion",
+      "url": "https://www.supersummary.com/zero-to-one/",
+      "confidence": "medium",
+      "notes": "Referenced through the study-guide chapter navigation noted on the public summary hub."
+    },
+    {
+      "sourceId": "open-library-preview-blurb",
+      "title": "Zero to One - Open Library preview blurb",
+      "type": "preview_excerpt",
+      "role": "book-level framing and verified short excerpt support",
+      "url": "https://openlibrary.org/works/OL17078706W/Zero_to_One?edition=key:/books/OL25648567M",
+      "confidence": "medium_high",
+      "notes": "Supplies the opening premise around 0-to-1 innovation, escape from competition, and untapped frontiers."
+    }
+  ]
+}

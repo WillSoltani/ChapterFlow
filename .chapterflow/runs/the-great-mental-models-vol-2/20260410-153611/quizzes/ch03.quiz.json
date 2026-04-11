@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch03-q01",
+      "prompt": "What is the chapter's main claim about order?",
+      "choices": [
+        "Order usually holds unless someone actively disrupts it",
+        "Order requires ongoing energy and maintenance to stay reliable",
+        "Order matters mainly because it looks professional"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter argues that order has to be preserved through upkeep rather than trusted by default.",
+        "direct": "Thermodynamics treats stable order as something sustained by maintenance, not as something that persists on its own.",
+        "competitive": "If nobody is paying for the structure, the structure is already decaying."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch03-q02",
+      "prompt": "Why is deferred maintenance dangerous in this chapter?",
+      "choices": [
+        "Because it usually makes failure obvious immediately",
+        "Because it creates quiet drift before breakdown becomes visible",
+        "Because it only matters in large organizations"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The danger is that small skipped upkeep can stack quietly before the system visibly fails.",
+        "direct": "Deferred maintenance matters because disorder compounds under a surface that can still appear usable.",
+        "competitive": "The debt grows long before the system finally admits it."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch03-q03",
+      "prompt": "A workflow looks smooth only because one person keeps doing invisible cleanup work every week. Which chapter idea explains this best?",
+      "choices": [
+        "Visible order can rest on underpriced hidden maintenance",
+        "Every system should be controlled by one reliable person",
+        "If the output looks clean, the process is probably healthy enough"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns that smooth output often depends on effort observers are not pricing.",
+        "direct": "This is hidden maintenance sustaining visible order.",
+        "competitive": "The neat surface is standing on labor nobody is counting."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch03-q04",
+      "prompt": "Lena's dashboard looks clean on Friday and unreliable on Monday because the source spreadsheet has drifted. What is the strongest Chapter 3 reading?",
+      "choices": [
+        "The team mainly needs a stronger attitude about accuracy",
+        "The visible order outlasted the maintenance that was making the signals trustworthy",
+        "The dashboard failed because clean systems are always fragile"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter focuses on the gap between the clean surface and the weakened upkeep beneath it.",
+        "direct": "The board looked ordered longer than the underlying maintenance deserved.",
+        "competitive": "Appearance kept performing after the structure stopped earning trust."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q05",
+      "prompt": "What is the difference between true cleanup and disorder displacement?",
+      "choices": [
+        "True cleanup removes burden, while displacement makes one area look better by moving the cost elsewhere",
+        "True cleanup is faster, while displacement is slower",
+        "True cleanup happens in teams, while displacement happens only in households"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Displacement changes where the mess is carried without necessarily reducing it.",
+        "direct": "The chapter distinguishes real reduction of disorder from burden transfer to another part of the system.",
+        "competitive": "A better-looking room is not a cleaner system if the mess just changed addresses."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q06",
+      "prompt": "Mr. Alvarez's exam tracker becomes so elaborate that students spend more time maintaining it than studying. What limit is the chapter highlighting?",
+      "choices": [
+        "Any disorder in a system means the structure should be made tighter",
+        "Useful order has to justify the energy required to maintain it",
+        "Detailed tracking only fails when students are not disciplined enough"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says some order becomes too expensive to preserve relative to what it helps.",
+        "direct": "This is the overcontrol limit: maintenance cost can exceed practical value.",
+        "competitive": "The structure is now eating the mission it was supposed to support."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q07",
+      "prompt": "A friendship feels stable only because one person keeps handling small repairs early. What chapter transfer fits best?",
+      "choices": [
+        "Relationships usually stay steady on their own unless a major conflict arrives",
+        "Reliability can depend on quiet upkeep that becomes visible only when it stops",
+        "Emotional maintenance matters less than process maintenance"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter extends maintenance logic to relationships by treating small repair as part of stability.",
+        "direct": "This is hidden upkeep preserving trust before disorder turns visible.",
+        "competitive": "The calm is being maintained, not magically produced."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q08",
+      "prompt": "The robotics team looks ready until missing screws, unlabeled bins, and unclear ownership appear right before competition. What caused the failure according to the chapter?",
+      "choices": [
+        "A sudden burst of chaos that could not have been seen earlier",
+        "Too much focus on visible readiness instead of ongoing upkeep",
+        "A lack of confidence during the final week"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says readiness failed because maintenance debt accumulated under the appearance of preparation.",
+        "direct": "Visible order hid deferred upkeep until the event forced the debt into view.",
+        "competitive": "They loved the look of readiness more than the labor that would have made it real."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q09",
+      "prompt": "Which response best applies Thermodynamics to a system that looks unusually smooth?",
+      "choices": [
+        "Trust the smooth output unless breakdown is already visible",
+        "Ask what maintenance is sustaining the order, what upkeep is slipping, and whether the burden has been moved elsewhere",
+        "Assume the system is overcontrolled whenever it looks especially tidy"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants you to inspect both the maintenance bill and the possibility of hidden displacement.",
+        "direct": "Strong judgment checks sustaining energy, deferred repairs, and exported disorder before trusting the surface.",
+        "competitive": "Price the order honestly before you salute it."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch03-q10",
+      "prompt": "If Chapter 3 explains what it costs to keep order stable, what new pressure is the next chapter most likely to add?",
+      "choices": [
+        "Why systems keep moving in their current direction even after people decide to change them",
+        "Why all well-maintained systems automatically adapt quickly",
+        "Why maintenance matters less once momentum appears"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The preview points from maintenance cost toward persistence of existing direction.",
+        "direct": "The next chapter logically moves from upkeep and drift into inertia and resistance to change.",
+        "competitive": "After the order bill comes the question of why the old motion keeps dragging the system along."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

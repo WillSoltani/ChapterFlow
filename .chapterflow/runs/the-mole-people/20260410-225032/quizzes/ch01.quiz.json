@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch01-q01",
+      "prompt": "At the start of the introduction, what is the first discipline the reader is being asked to adopt?",
+      "choices": [
+        "Treat life in the tunnels as a real social fact before reacting to it as rumor or spectacle",
+        "Assume the tunnels are mostly symbolic and wait for later chapters to explain them",
+        "Focus first on the most dramatic underground stories because they reveal the truth fastest"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter begins by stabilizing reality. It has to make the tunnels real before the reader turns them into gossip or atmosphere.",
+        "direct": "The opening task is distortion control. Underground life must be treated as fact before the chapter can say anything serious about it.",
+        "competitive": "The first win is refusing both denial and thrill-seeking. Without that, the whole chapter gets misread."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q02",
+      "prompt": "Why does Toth's decision to go below the city matter to the chapter's logic?",
+      "choices": [
+        "It proves she is personally fearless",
+        "It turns a hidden subject from hearsay into witnessed reality",
+        "It allows the chapter to avoid all later questions about verification"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Her descent matters because it reduces distance. A hidden world looks different once it is observed instead of merely imagined.",
+        "direct": "Method is the point. Going below shifts the subject from rumor circulation to direct reporting.",
+        "competitive": "This is not about heroic vibes. It is about cutting fantasy out of the evidentiary chain."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q03",
+      "prompt": "A city hears that families are sleeping in a service tunnel beneath a transit hub. Officials call the report exaggerated because it sounds too strange. Which chapter idea does that reaction illustrate most clearly?",
+      "choices": [
+        "Hidden suffering often gets dismissed because public invisibility makes it sound unreal",
+        "Underground spaces naturally create stronger communities than surface institutions",
+        "Once a problem moves below ground, it stops belonging to the city above"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns that strange hidden facts are easy to wave away before anyone investigates them seriously.",
+        "direct": "This is the disbelief side of the opening distortion. Invisibility makes the crisis sound implausible even when it is real.",
+        "competitive": "The weirdness becomes cover. If the fact feels unreal enough, responsibility gets delayed."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q04",
+      "prompt": "Nina is editing a feature about workers sleeping in a maintenance corridor. Her writer wants to open with, \"Beneath the building lies a shadow kingdom of the forgotten.\" What revision best fits the introduction's standard?",
+      "choices": [
+        "Keep the line because dramatic language helps readers care",
+        "Replace it with concrete conditions and show how visible failures made the corridor usable",
+        "Cut all sensory detail so the story cannot be accused of spectacle"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The stronger move is to keep the hardship visible without coating it in myth. Concrete pressure does more honest work than dark grandeur.",
+        "direct": "Option B fits the chapter because it trades atmosphere for evidence and reconnects the hidden space to the system that produced it.",
+        "competitive": "Mythic wording flatters the writer more than it clarifies the crisis. The chapter wants disciplined witness, not gothic branding."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q05",
+      "prompt": "Marcus says, \"What fascinates me is how eerie and secret tunnel life feels.\" According to the chapter, what is the strongest concern with that response?",
+      "choices": [
+        "It ignores the possibility that hidden suffering can be turned into spectacle",
+        "It proves Marcus lacks enough empathy to discuss the issue at all",
+        "It shows he should focus only on community and avoid danger entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The problem is not having interest. It is letting secrecy and darkness become more important than the people and pressures involved.",
+        "direct": "The chapter's warning is precise: curiosity can drift into consumption when atmosphere outruns evidence and lived cost.",
+        "competitive": "Marcus is close to feeding on the setting instead of understanding the crisis. That is exactly the trap the introduction flags."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q06",
+      "prompt": "A classmate argues that the tunnels should be read mainly as a separate hidden civilization with its own rules and mythology. What does the introduction push back on in that claim?",
+      "choices": [
+        "It underestimates how interesting the underground can be to outsiders",
+        "It treats hiddenness as separation instead of seeing the tunnels as shaped by the same city above",
+        "It pays too much attention to leaders and not enough to loners"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter insists that what happens below is tied to visible failures above. Hidden does not mean socially separate.",
+        "direct": "That reading confuses location with origin. The introduction keeps tracing the underground back to the city's own conditions.",
+        "competitive": "Calling it another civilization is a clean way to stop the city from owning the crisis it helped make."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q07",
+      "prompt": "A university quietly lets students sleep in labs after housing shortages worsen. Most people on campus treat it as an odd side story rather than as evidence about the school. Which chapter transfer is strongest here?",
+      "choices": [
+        "Out-of-sight hardship usually becomes more solvable because fewer people interfere",
+        "Hidden problems are easiest to romanticize when institutions respond quickly",
+        "A hidden arrangement can still be a direct product of visible system failure"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter keeps making this move: hidden locations do not erase public causes. The labs are part of the same campus system that failed students above ground.",
+        "direct": "Option C transfers the introduction accurately. Invisibility changes perception, not where the pressure came from.",
+        "competitive": "The campus would love to treat the labs as a weird side pocket. The chapter says the pocket is still the institution's output."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q08",
+      "prompt": "Jae is documenting a hidden neighborhood aid network. Which move most clearly violates the chapter's standard?",
+      "choices": [
+        "Explaining the policy pressures that made the network necessary",
+        "Using the network's secrecy as the main thrill while leaving the causes vague",
+        "Showing how danger and mutual help can coexist in the same setting"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter rejects attention that feeds on hiddenness while neglecting evidence and cause.",
+        "direct": "Option B fails because it converts secrecy into mood instead of using reporting to clarify what produced the network.",
+        "competitive": "If Jae sells the secret and blurs the pressure, the work has slid from witness into packaging."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q09",
+      "prompt": "Why does later uncertainty around some of the book's broader claims make the introduction's ethics more demanding rather than less relevant?",
+      "choices": [
+        "Because disputed details mean readers should abandon the underground world as a subject entirely",
+        "Because verification limits force attention to stay disciplined instead of letting shock outrun support",
+        "Because uncertainty proves dramatic storytelling is the only way to keep the issue visible"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The caveat does not erase the hidden world. It raises the standard for how carefully readers and writers should hold what is supported.",
+        "direct": "Verification limits intensify the chapter's warning about spectacle. Reality still matters, but unsupported inflation becomes harder to justify.",
+        "competitive": "Weak evidence is not a license for bigger legend. It is a demand for tighter discipline."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch01-q10",
+      "prompt": "The introduction ends by making one later question unavoidable. Which question best carries the chapter forward?",
+      "choices": [
+        "Which hidden subcultures in other cities are most visually striking?",
+        "How can the city market underground tours without exploiting residents?",
+        "What kinds of fear, exposure, or failed protection make the tunnels feel enterable at all?"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The next step is not more mystery. It is pressure. The reader has to ask what makes a place like the tunnels seem possible to enter.",
+        "direct": "The chapter narrows from hidden world to entry logic. It points forward to the conditions that make going below intelligible.",
+        "competitive": "Once rumor and spectacle are stripped away, only one serious question remains: what surface pressure was bad enough to drive someone there?"
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

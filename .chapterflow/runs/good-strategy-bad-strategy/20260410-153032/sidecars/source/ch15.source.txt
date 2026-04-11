@@ -1,0 +1,36 @@
+Chapter 15 Source Sidecar
+
+Heading: Putting It Together
+Primary basis:
+- frozen TOC and chapter-title map from Google Books and library catalogs
+- frozen source-freeze title support for Chapter 15 as Putting It Together
+- whole-book skeleton intent for Chapter 15 as synthesizing the book's strategic logic into an integrated way of diagnosing and acting
+- validated Chapter 14 bridge from structural diagnosis and counterforce to integrated strategic practice
+
+Supported source notes:
+
+1. Chapter 15 asks how the book's ideas work together as one strategic discipline.
+   - The title explicitly names putting it together.
+   - Supported use: move from separate concepts to integrated diagnosis and action.
+
+2. Synthesis should be framed as joining concepts rather than summarizing them.
+   - The skeleton identifies this chapter as synthesizing the book's strategic logic into an integrated way of diagnosing and acting.
+   - Supported use: emphasize reinforcement, coherence, and linked strategic judgment.
+
+3. Chapter 15 extends Chapter 14 by turning structural diagnosis into integrated practice.
+   - Chapter 14 validated that resistance and decay must be diagnosed structurally and countered realistically.
+   - Supported use: explain that strategy becomes stronger when diagnosis, force, timing, and structure are used together.
+
+4. Narrow support caution.
+   - Do not invent named book anecdotes, final-framework templates, or exact quoted definitions not present in the frozen bundle.
+   - Keep the prose at the level of synthesis, diagnosis, action, force, timing, structure, and reinforcement.
+
+Quote ledger:
+- all reader-facing prose use -> paraphrase_only except chapter title and near-quote ledger terms already supported
+
+Source references:
+- https://books.google.com/books/about/Good_Strategy_Bad_Strategy.html?id=0FWPDQAAQBAJ
+- https://penguinrandomhousehighereducation.com/book/?isbn=9780307886231
+- internal:source-freeze/book-source.md
+- internal:validated/ch14.chapter.json
+- internal:skeleton/book-skeleton.md

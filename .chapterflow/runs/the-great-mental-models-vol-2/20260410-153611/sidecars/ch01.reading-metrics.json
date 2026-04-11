@@ -1,0 +1,67 @@
+{
+  "chapterId": "ch01-relativity",
+  "number": 1,
+  "title": "Relativity",
+  "generatedAt": "2026-04-10T15:39:19Z",
+  "canonicalDraftWords": 883,
+  "editedDraftWords": 776,
+  "readingTimeMinutes": 7,
+  "breakdownWordCounts": {
+    "easy": {
+      "gentle": 145,
+      "direct": 142,
+      "competitive": 143
+    },
+    "medium": {
+      "gentle": 344,
+      "direct": 337,
+      "competitive": 331
+    },
+    "hard": {
+      "gentle": 600,
+      "direct": 500,
+      "competitive": 497
+    }
+  },
+  "takeawayCounts": {
+    "easy": 3,
+    "medium": 5,
+    "hard": 5
+  },
+  "exampleCount": 6,
+  "exampleCategoryCounts": {
+    "work": 2,
+    "school": 2,
+    "personal": 2
+  },
+  "exampleFormats": [
+    "decision_point",
+    "postmortem",
+    "dialogue",
+    "predict_reveal",
+    "dilemma",
+    "before_after"
+  ],
+  "exampleEndingTypes": [
+    "broader_principle",
+    "self_directed_question",
+    "surprising_implication",
+    "cross_domain",
+    "common_trap",
+    "perspective_reframe"
+  ],
+  "quizQuestionCount": 10,
+  "quizCorrectIndexCounts": {
+    "0": 4,
+    "1": 4,
+    "2": 2
+  },
+  "reviewCardCount": 5,
+  "reviewCardDifficultyCounts": {
+    "easy": 2,
+    "medium": 2,
+    "hard": 1
+  },
+  "criticScoreOutOf12": 10,
+  "status": "validated"
+}

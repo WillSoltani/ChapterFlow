@@ -1,0 +1,28 @@
+{
+  "bookId": "so-good-they-cant-ignore-you",
+  "runId": "20260410-152410",
+  "source": "greenville-library-toc",
+  "edition": "2012 English first edition",
+  "chapters": [
+    { "chapterId": "ch01", "number": 1, "title": "The Passion of Steve Jobs", "kind": "rule_intro", "rule": 1 },
+    { "chapterId": "ch02", "number": 2, "title": "Passion Is Rare", "kind": "chapter", "rule": 1 },
+    { "chapterId": "ch03", "number": 3, "title": "Passion Is Dangerous", "kind": "chapter", "rule": 1 },
+    { "chapterId": "ch04", "number": 4, "title": "The Clarity of the Craftsman", "kind": "rule_intro", "rule": 2 },
+    { "chapterId": "ch05", "number": 5, "title": "The Power of Career Capital", "kind": "chapter", "rule": 2 },
+    { "chapterId": "ch06", "number": 6, "title": "The Career Capitalists", "kind": "chapter", "rule": 2 },
+    { "chapterId": "ch07", "number": 7, "title": "Becoming a Craftsman", "kind": "chapter", "rule": 2 },
+    { "chapterId": "ch08", "number": 8, "title": "The Dream-Job Elixir", "kind": "rule_intro", "rule": 3 },
+    { "chapterId": "ch09", "number": 9, "title": "The First Control Trap", "kind": "chapter", "rule": 3 },
+    { "chapterId": "ch10", "number": 10, "title": "The Second Control Trap", "kind": "chapter", "rule": 3 },
+    { "chapterId": "ch11", "number": 11, "title": "Avoiding the Control Traps", "kind": "chapter", "rule": 3 },
+    { "chapterId": "ch12", "number": 12, "title": "The Meaningful Life of Pardis Sabeti", "kind": "rule_intro", "rule": 4 },
+    { "chapterId": "ch13", "number": 13, "title": "Missions Require Capital", "kind": "chapter", "rule": 4 },
+    { "chapterId": "ch14", "number": 14, "title": "Missions Require Little Bets", "kind": "chapter", "rule": 4 },
+    { "chapterId": "ch15", "number": 15, "title": "Missions Require Marketing", "kind": "chapter", "rule": 4 },
+    { "chapterId": "ch16", "number": 16, "title": "Conclusion", "kind": "conclusion", "rule": null }
+  ],
+  "excludedBackMatter": [
+    "Career Profile Summaries",
+    "Glossary"
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What main shift does Chapter 14 make?",
+      "choices": [
+        "From easier starts to environment setups that make the good habit hard to ignore",
+        "From environment to satisfaction only",
+        "From setup to social conformity only"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter widens ease into stronger setup and inevitability.",
+        "direct": "Chapter 14 moves from tiny starts to rooms and systems that keep presenting the good habit.",
+        "competitive": "The focus shifts from beginning smaller to making the whole setup work harder."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does availability matter so much in this chapter?",
+      "choices": [
+        "Because people often repeat what is visible, ready, and nearby",
+        "Because availability guarantees perfect behavior",
+        "Because setup replaces all future choice"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says available options gain a strong repetition advantage.",
+        "direct": "Availability matters because what is ready and visible often becomes the next action.",
+        "competitive": "What the room offers first often gets repeated first."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is the difference between stronger setup and stronger barriers?",
+      "choices": [
+        "Stronger setup favors the good habit, while stronger barriers block the bad one",
+        "They are exactly the same thing",
+        "Stronger barriers only matter for good habits"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "One keeps the good move available and one blocks the bad move.",
+        "direct": "The chapter uses both sides: readiness for the good action and obstruction for the bad one.",
+        "competitive": "Help one path and choke off the other."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Mara wants the right project habit to repeat more reliably. What best fits Chapter 14?",
+      "choices": [
+        "Keep the key file and tool already open so the next move is waiting",
+        "Leave every option equally available and rely on willpower",
+        "Hide the good materials and hope motivation compensates"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The good habit becomes easier to obey when it is already waiting.",
+        "direct": "Mara should pre-stage the right next move so it stays available at the point of use.",
+        "competitive": "Make the right action greet her first."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why did Elias's studio room routine improve once the materials stayed laid out?",
+      "choices": [
+        "Because the room kept the good habit ready and visible",
+        "Because environment became irrelevant",
+        "Because the bad habit was rewarded more"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Laid-out materials kept the habit available.",
+        "direct": "Elias repeated the routine more because the room stopped making him start from zero.",
+        "competitive": "The setup carried part of the load."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Tori wants to weaken the bedtime distraction route. What best matches Chapter 14?",
+      "choices": [
+        "Remove the device from the room and keep the reading setup ready",
+        "Keep both options equally available and expect the book to win",
+        "Assume barriers make no difference"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter combines stronger barriers with stronger setup.",
+        "direct": "Tori should block the bad path and keep the good path visibly ready.",
+        "competitive": "Make the bedroom offer the right move first."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What does environment inevitability change most directly?",
+      "choices": [
+        "The baseline odds of what action keeps showing up as normal",
+        "Whether human choice exists at all",
+        "Whether rewards matter later"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter shifts the baseline by changing what is available and blocked.",
+        "direct": "Inevitability changes the odds of repetition before willpower enters.",
+        "competitive": "It changes the field, not reality itself."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What limit does Chapter 14 keep on its argument?",
+      "choices": [
+        "Strong setup changes odds dramatically, but it does not create total control",
+        "Environment guarantees flawless behavior forever",
+        "Self-control becomes unnecessary from now on"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps a boundary against perfection claims.",
+        "direct": "It says setup is powerful without pretending choice and failure disappear.",
+        "competitive": "Inevitability is strong leverage, not omnipotence."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "How does Chapter 14 build on Chapter 13?",
+      "choices": [
+        "Chapter 13 made the opening move smaller, and Chapter 14 makes the whole setup harder to ignore",
+        "Chapter 14 abandons easy starts and returns only to attraction",
+        "Chapter 14 repeats the two-minute rule without adding anything new"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Chapter 13 reduced the threshold of starting, while Chapter 14 changes the room around the start.",
+        "direct": "The bridge is from tiny entry actions to full environment inevitability.",
+        "competitive": "First make the gate smaller, then make the room support the gate."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why does Chapter 15 follow naturally after Chapter 14?",
+      "choices": [
+        "Because once the behavior is easier and more available, the next question is what makes it immediately satisfying",
+        "Because setup finishes the whole book",
+        "Because reward matters only before environment is designed"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Chapter 15 adds immediate satisfaction to the now-easier path.",
+        "direct": "The next chapter asks how reward reinforces the behavior that setup already makes more likely.",
+        "competitive": "First make it available, then make it feel worth repeating right away."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is Chapter 14's main claim about founders?",
+      "choices": [
+        "Founders are mostly unstable and should be distrusted",
+        "Founder intensity can create both startup upside and company risk",
+        "Exceptional founders should be judged outside normal standards"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says founder power and founder risk belong in the same frame.",
+        "direct": "Its main claim is that unusual founder intensity creates upside and instability at once.",
+        "competitive": "The founder's edge and the founder's danger are part of the same force."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the chapter reject simple founder myths?",
+      "choices": [
+        "Because both worship and suspicion flatten the paradox",
+        "Because founders should not be evaluated at all",
+        "Because all founder behavior is unpredictable"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says neither the hero story nor the danger story is enough by itself.",
+        "direct": "Simple myths fail because they erase either the upside or the risk.",
+        "competitive": "Hero-only and hazard-only stories both miss the company."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is one way founder intensity can help a fragile venture?",
+      "choices": [
+        "It can hold direction and commitment before the company feels safe",
+        "It can remove the need for company design",
+        "It can guarantee that judgment stays balanced"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says strong founder force can keep the venture moving early on.",
+        "direct": "Founder intensity can preserve mission and standards before external proof arrives.",
+        "competitive": "That pressure can keep the company from getting bargained down too early."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Soren's team feels that his drive keeps the company focused but also makes execution harder. What lesson fits best?",
+      "choices": [
+        "Founder intensity must be either good or bad, not both",
+        "The same founder force can create momentum and instability together",
+        "The team should ignore the founder's effect on culture"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says the same force can help and strain the company at once.",
+        "direct": "Soren's team is seeing the founder paradox in practical form.",
+        "competitive": "The edge and the drag can come from the same founder pressure."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why does Ava's student venture need structure around her intensity?",
+      "choices": [
+        "Because founder force should always be suppressed",
+        "Because the venture has to capture the upside without letting it destabilize the team",
+        "Because intensity has no useful role in a startup"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says company design has to hold both the founder's strength and the founder's risk.",
+        "direct": "The real task is to absorb founder force without letting it corrode the venture.",
+        "competitive": "The team needs a frame strong enough to contain the engine."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What is the chapter's main point about founder instability?",
+      "choices": [
+        "Instability proves founders should be removed from serious ventures",
+        "Instability matters because the same founder force can distort judgment and organization",
+        "Instability matters only when the founder lacks talent"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter keeps instability beside upside as part of the same paradox.",
+        "direct": "Founder risk matters because strong force can crowd out correction and strain the company.",
+        "competitive": "The same power source can twist the machine."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why does company design matter so much in Chapter 14?",
+      "choices": [
+        "Because the venture has to translate founder force into durable execution",
+        "Because founders should be judged only by personality",
+        "Because strong founders eliminate the need for organizational structure"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says the company has to absorb unusual founder energy well.",
+        "direct": "Company design matters because founder upside is only useful if the venture can contain its risks.",
+        "competitive": "The structure has to hold the force it depends on."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Clara notices that her drive helps her push forward but makes it harder to hear correction. What is she learning?",
+      "choices": [
+        "That intensity is purely harmful",
+        "That her edge and her blind spot may be linked",
+        "That the chapter is really about generic leadership style"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Clara is seeing how the same strong drive can help and distort at once.",
+        "direct": "She is noticing the paradox inside judgment before it spreads through the company.",
+        "competitive": "Her advantage and her vulnerability may be the same engine."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "How should a founder-led venture be evaluated according to Chapter 14?",
+      "choices": [
+        "By asking whether the founder is charismatic enough to inspire the team",
+        "By asking whether the venture can hold the founder's upside without letting it corrode execution",
+        "By treating all intense founders as organizational dangers"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter evaluates whether the company can absorb founder force responsibly.",
+        "direct": "Its standard is organizational absorption of founder upside and risk, not myth or stereotype.",
+        "competitive": "The test is whether the company can contain the founder without losing the edge."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How does Chapter 14 prepare the conclusion?",
+      "choices": [
+        "It shifts from founder paradox back to the larger question of building the future",
+        "It concludes that future-building depends only on personality type",
+        "It leaves the book inside founder psychology instead of widening the lens"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter ends by turning back to the book's larger future question.",
+        "direct": "The bridge moves from founder tension to the broader question of what bold creation is for.",
+        "competitive": "The founder paradox hands the book back to the future question."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    }
+  ]
+}

@@ -1,0 +1,174 @@
+{
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the central correction move in Chapter 24?",
+      "choices": [
+        "Admitting your own mistakes first",
+        "Avoiding correction entirely",
+        "Giving orders more directly"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter begins correction with the speaker admitting their own mistakes first.",
+        "direct": "Option A fits because self-admission is the chapter’s main move.",
+        "competitive": "Own your miss before you land theirs."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why can admitting your own mistakes first work?",
+      "choices": [
+        "Because it lowers accusation and defensiveness",
+        "Because it removes the need for standards",
+        "Because confession is always persuasive"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says shared fallibility can make the correction easier to hear.",
+        "direct": "Self-admission reduces the superiority pressure around feedback.",
+        "competitive": "Less pedestal, less pushback."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What shared-fallibility mechanism does the chapter emphasize?",
+      "choices": [
+        "The speaker is no longer correcting from outside error",
+        "The speaker hides the issue in vulnerability",
+        "The listener is asked to ignore the problem"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The speaker includes themselves inside human failure instead of speaking from above it.",
+        "direct": "The conversation stops feeling like perfect-versus-faulty.",
+        "competitive": "The pedestal comes down."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A manager names a similar mistake of her own before correcting a team issue. What chapter move is this?",
+      "choices": [
+        "Self-admission before correction",
+        "Confessional filler",
+        "Indirect criticism only"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The manager is using her own failure to lower accusation before the feedback.",
+        "direct": "This is the chapter method when it stays relevant and brief.",
+        "competitive": "That is stepping off the pedestal first."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "A classmate hears feedback better once the speaker first admits a similar failure of their own. What changed?",
+      "choices": [
+        "The correction felt less like attack from above",
+        "The standard disappeared",
+        "The issue was replaced by a story"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The speaker sounded more human and less superior.",
+        "direct": "Option A fits because shared fallibility lowered defensiveness.",
+        "competitive": "Less pedestal, cleaner opening."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What is the chapter's main limit on self-disclosure?",
+      "choices": [
+        "It must stay brief, relevant, and functional",
+        "It should become a long confession",
+        "It should replace the actual correction"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter rejects confessional filler and attention-seeking.",
+        "direct": "Relevance and brevity are the limit of the move.",
+        "competitive": "No memoirs."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Which option misreads Chapter 24 as confessional filler?",
+      "choices": [
+        "Using one relevant mistake to frame correction",
+        "Turning the feedback into a long personal story",
+        "Admitting fault and then returning to the issue"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter rejects autobiography that steals focus from the real issue.",
+        "direct": "Option B turns humility into distraction.",
+        "competitive": "That is spotlight theft, not useful humility."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "advanced"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why could self-disclosure fail if misused?",
+      "choices": [
+        "Because it can shift attention away from the needed change",
+        "Because it always makes the correction clearer",
+        "Because it removes all emotion from feedback"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The speaker can become the center of the conversation instead of the issue.",
+        "direct": "Performance and autobiography dilute the corrective point.",
+        "competitive": "Make yourself the story and the target leaves the room."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "advanced"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "How can correction stay clear after self-admission?",
+      "choices": [
+        "By using one relevant admission and then naming the issue directly",
+        "By keeping the conversation on your own mistakes",
+        "By removing the standard from view"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The move should lower accusation and then return to the actual issue.",
+        "direct": "Shared fallibility should frame the correction, not replace it.",
+        "competitive": "Open human, then keep the target visible."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "advanced"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why does this chapter lead naturally into Chapter 25?",
+      "choices": [
+        "Because after lowering superiority in correction, the book turns to questions instead of orders",
+        "Because the next chapter stops caring about dignity",
+        "Because self-admission replaces all future guidance"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next chapter extends dignity by giving the other person more agency through questions.",
+        "direct": "Option A fits because Chapter 25 continues the anti-superiority logic in command style.",
+        "competitive": "First step off the pedestal, then stop barking from it."
+      },
+      "bloomsLevel": "transfer",
+      "depthLevel": "advanced"
+    }
+  ]
+}

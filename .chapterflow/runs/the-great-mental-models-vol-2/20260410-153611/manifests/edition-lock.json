@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "chapterflow.v13.edition-lock",
+  "bookId": "the-great-mental-models-vol-2",
+  "runId": "20260410-153611",
+  "createdAt": "2026-04-10T15:39:19Z",
+  "decision": "auto_locked",
+  "selectedEdition": {
+    "name": "Penguin Publishing Group edition",
+    "subtitle": "Physics, Chemistry, and Biology",
+    "authors": [
+      "Shane Parrish",
+      "Rhiannon Beaubien"
+    ],
+    "publisher": "Penguin",
+    "publishedDate": "2024-10-15",
+    "language": "English",
+    "isbn13": "9780593720028",
+    "isbn10": "0593720024",
+    "pageCount": 384,
+    "series": "The Great Mental Models Series",
+    "seriesNumber": 2
+  },
+  "alternatesConsidered": [
+    {
+      "name": "Latticework Publishing Inc. hardcover",
+      "publishedDate": "2020-03-27",
+      "isbn13": "9781999449032",
+      "reasonNotSelected": "Earlier lineage confirmed, but the 2024 Penguin edition is the dominant currently available edition with accessible official publisher metadata and authorized preview support."
+    }
+  ],
+  "reasoning": [
+    "No evidence in the frozen bundle shows a material chapter-order or chapter-title difference between the 2020 and 2024 English editions.",
+    "The 2024 Penguin edition is the strongest working lock for this run because it has current official metadata and accessible authorized preview support.",
+    "Edition ambiguity did not materially affect chapter scope, so no user question was required under the pack rules."
+  ],
+  "chapterStructureAssumption": "Use the 20-chapter sequence plus supporting ideas shown in the frozen table of contents.",
+  "lockedBy": "orchestrator"
+}

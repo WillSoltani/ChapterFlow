@@ -1,20 +1,20 @@
 name: Deploy App (Dev)
 
-# Deploys the Next.js application to AWS App Runner on every push to main.
-# Infrastructure (CDK) and book data are handled by their own workflows.
+# Deploys the Next.js application via OpenNext to Lambda + CloudFront.
+# Infrastructure (CDK backend) and book data are handled by their own workflows.
 #
-# Flow: CI passes → build verified → describe current service → render
-# updated config with latest env vars → update App Runner service →
-# wait for deployment → verify health.
+# Flow: CI passes → build Next.js → build OpenNext → CDK deploy frontend
+# stack → invalidate CloudFront cache → verify health.
 
 on:
   push:
     branches:
       - main
     paths-ignore:
-      # Skip deploy when ONLY infra or book-data scripts changed —
-      # those have their own workflows.
-      - 'infra/**'
+      # Skip deploy when ONLY backend infra or book-data scripts changed —
+      # those have their own workflows. Frontend infra changes (the CDK
+      # stack this workflow deploys) SHOULD trigger a deploy.
+      - 'infra/lib/chapterflow-backend-stack.ts'
       - 'scripts/book/**'
       - 'docs/**'
       - '*.md'
@@ -37,14 +37,10 @@ concurrency:
 
 env:
   AWS_REGION: us-east-1
-  BOOK_TABLE_NAME: ChapterFlowApp
-  BOOK_ANALYTICS_TABLE_NAME: ChapterFlowInsights
-  BOOK_INGEST_BUCKET: chapterflowbackend-chapterflowingestbucketdb5de03f-3yot64zeyaq7
-  BOOK_CONTENT_BUCKET: chapterflowbackend-chapterflowcontentbucket2ed1848-qo8kewolurc0
-  SSM_PARAMETER_PREFIX: /chapterflow/prod
+  CDK_STACK_NAME: ChapterFlowFrontend
 
 jobs:
-  # ── Gate: ensure CI has passed ──────────────────────────────────────────
+  # ── Gate: ensure the app builds cleanly ──────────────────────────────────
   verify-build:
     name: Verify Build
     runs-on: ubuntu-latest
@@ -66,15 +62,15 @@ jobs:
       - name: Typecheck
         run: npm run typecheck
 
-      - name: Build
+      - name: Build Next.js
         run: npm run build
 
-  # ── Deploy: update App Runner service ───────────────────────────────────
+  # ── Deploy: OpenNext → Lambda + CloudFront via CDK ──────────────────────
   deploy-app:
-    name: Deploy to App Runner
+    name: Deploy to Lambda/CloudFront
     runs-on: ubuntu-latest
     needs: [verify-build]
-    timeout-minutes: 20
+    timeout-minutes: 30
     permissions:
       id-token: write
       contents: read
@@ -89,125 +85,85 @@ jobs:
           node-version: 20
           cache: npm
 
+      - name: Install app dependencies
+        run: npm ci
+
+      - name: Install infra dependencies
+        run: npm ci --prefix infra
+
       - name: Configure AWS credentials (OIDC)
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME_DEV }}
           aws-region: ${{ env.AWS_REGION }}
 
-      # Wait for any in-progress operation to finish before updating
-      - name: Wait for service to be ready
-        run: |
-          SERVICE_ARN="${{ secrets.APP_RUNNER_SERVICE_ARN }}"
-          echo "Checking if service is ready for update..."
+      - name: Build OpenNext (includes Next.js build)
+        run: npx open-next build
 
-          for i in $(seq 1 30); do
-            STATUS=$(aws apprunner describe-service \
-              --service-arn "${SERVICE_ARN}" \
-              --query 'Service.Status' \
-              --output text)
-
-            echo "  Attempt ${i}/30 — status: ${STATUS}"
-
-            if [ "${STATUS}" = "RUNNING" ] || [ "${STATUS}" = "CREATE_FAILED" ] || [ "${STATUS}" = "UPDATE_FAILED" ]; then
-              echo "Service is ready (status: ${STATUS})"
-              break
-            fi
-
-            if [ "${i}" -eq 30 ]; then
-              echo "Timed out waiting for service to become ready"
-              exit 1
-            fi
-
-            sleep 30
-          done
-
-      # Describe the existing App Runner service to get current config
-      - name: Describe App Runner service
-        id: describe
-        run: |
-          aws apprunner describe-service \
-            --service-arn "${{ secrets.APP_RUNNER_SERVICE_ARN }}" \
-            > /tmp/service-description.json
-
-          SERVICE_URL=$(jq -r '.Service.ServiceUrl' /tmp/service-description.json)
-          SERVICE_STATUS=$(jq -r '.Service.Status' /tmp/service-description.json)
-          echo "service_url=${SERVICE_URL}" >> "$GITHUB_OUTPUT"
-          echo "service_status=${SERVICE_STATUS}" >> "$GITHUB_OUTPUT"
-          echo "Current service status: ${SERVICE_STATUS}"
-          echo "Current service URL: https://${SERVICE_URL}"
-
-      # Render updated config using the existing helper script
-      - name: Render update payload
-        run: |
-          node scripts/book/render-apprunner-update.mjs /tmp/service-description.json \
-            > /tmp/update-payload.json
-          echo "Update payload rendered successfully"
+      - name: CDK deploy frontend stack
+        working-directory: infra
+        run: npx cdk deploy ${{ env.CDK_STACK_NAME }} --require-approval never
         env:
-          BOOK_TABLE_NAME: ${{ env.BOOK_TABLE_NAME }}
-          BOOK_ANALYTICS_TABLE_NAME: ${{ env.BOOK_ANALYTICS_TABLE_NAME }}
-          BOOK_INGEST_BUCKET: ${{ env.BOOK_INGEST_BUCKET }}
-          BOOK_CONTENT_BUCKET: ${{ env.BOOK_CONTENT_BUCKET }}
-          SSM_PARAMETER_PREFIX: ${{ env.SSM_PARAMETER_PREFIX }}
-          APP_RUNNER_INSTANCE_ROLE_ARN: ${{ secrets.APP_RUNNER_INSTANCE_ROLE_ARN }}
-          APP_RUNNER_CONNECTION_ARN: ${{ secrets.APP_RUNNER_CONNECTION_ARN }}
+          CDK_DEFAULT_ACCOUNT: ${{ secrets.AWS_ACCOUNT_ID }}
+          # App config
+          CHAPTERFLOW_APP_BASE_URL: ${{ secrets.CHAPTERFLOW_APP_BASE_URL }}
+          CHAPTERFLOW_DOMAIN_NAME: ${{ secrets.CHAPTERFLOW_DOMAIN_NAME }}
+          # Cognito
+          COGNITO_DOMAIN: ${{ secrets.COGNITO_DOMAIN }}
+          COGNITO_CLIENT_ID: ${{ secrets.COGNITO_CLIENT_ID }}
+          COGNITO_REGION: ${{ secrets.COGNITO_REGION }}
+          COGNITO_USER_POOL_ID: ${{ secrets.COGNITO_USER_POOL_ID }}
+          COGNITO_REDIRECT_URI: ${{ secrets.COGNITO_REDIRECT_URI }}
+          COGNITO_LOGOUT_REDIRECT_URI: ${{ secrets.COGNITO_LOGOUT_REDIRECT_URI }}
+          AUTH_STATE_SECRET: ${{ secrets.AUTH_STATE_SECRET }}
+          AUTH_COOKIE_DOMAIN: ${{ secrets.AUTH_COOKIE_DOMAIN }}
+          # Stripe
+          BOOK_STRIPE_SECRET_KEY: ${{ secrets.BOOK_STRIPE_SECRET_KEY }}
+          BOOK_STRIPE_WEBHOOK_SECRET: ${{ secrets.BOOK_STRIPE_WEBHOOK_SECRET }}
+          BOOK_STRIPE_PRICE_ID: ${{ secrets.BOOK_STRIPE_PRICE_ID }}
+          BOOK_STRIPE_PRICE_ID_ANNUAL: ${{ secrets.BOOK_STRIPE_PRICE_ID_ANNUAL }}
+          BOOK_STRIPE_PRICE_ID_ANNUAL_UPFRONT: ${{ secrets.BOOK_STRIPE_PRICE_ID_ANNUAL_UPFRONT }}
+          NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY }}
 
-      # Trigger the deployment
-      - name: Update App Runner service
-        id: update
+      - name: Get CloudFront distribution ID
+        id: cf
+        working-directory: infra
         run: |
-          OPERATION_ID=$(aws apprunner update-service \
-            --cli-input-json file:///tmp/update-payload.json \
-            --query 'OperationId' \
-            --output text)
-          echo "operation_id=${OPERATION_ID}" >> "$GITHUB_OUTPUT"
-          echo "Deployment started: operation ${OPERATION_ID}"
-
-      # Wait for deployment to complete (polls every 30s, up to 15 min)
-      - name: Wait for deployment
-        run: |
-          SERVICE_ARN="${{ secrets.APP_RUNNER_SERVICE_ARN }}"
-          echo "Waiting for App Runner deployment to complete..."
-
-          for i in $(seq 1 30); do
-            STATUS=$(aws apprunner describe-service \
-              --service-arn "${SERVICE_ARN}" \
-              --query 'Service.Status' \
+          DIST_ID=$(npx cdk metadata ${{ env.CDK_STACK_NAME }} 2>/dev/null || \
+            aws cloudformation describe-stacks \
+              --stack-name ${{ env.CDK_STACK_NAME }} \
+              --query "Stacks[0].Outputs[?OutputKey=='DistributionId'].OutputValue" \
               --output text)
+          echo "distribution_id=${DIST_ID}" >> "$GITHUB_OUTPUT"
 
-            echo "  Attempt ${i}/30 — status: ${STATUS}"
+          DIST_DOMAIN=$(aws cloudformation describe-stacks \
+            --stack-name ${{ env.CDK_STACK_NAME }} \
+            --query "Stacks[0].Outputs[?OutputKey=='DistributionDomain'].OutputValue" \
+            --output text)
+          echo "distribution_domain=${DIST_DOMAIN}" >> "$GITHUB_OUTPUT"
 
-            if [ "${STATUS}" = "RUNNING" ]; then
-              echo "Deployment complete — service is RUNNING"
-              exit 0
-            fi
+      - name: Invalidate CloudFront cache
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id "${{ steps.cf.outputs.distribution_id }}" \
+            --paths "/*"
+          echo "CloudFront cache invalidation triggered"
 
-            if [ "${STATUS}" = "CREATE_FAILED" ] || [ "${STATUS}" = "DELETE_FAILED" ] || [ "${STATUS}" = "UPDATE_FAILED" ]; then
-              echo "Deployment FAILED with status: ${STATUS}"
-              exit 1
-            fi
-
-            sleep 30
-          done
-
-          echo "Timed out waiting for deployment (15 min)"
-          exit 1
-
-      # Verify the deployment is healthy
       - name: Health check
         run: |
-          SERVICE_URL=$(aws apprunner describe-service \
-            --service-arn "${{ secrets.APP_RUNNER_SERVICE_ARN }}" \
-            --query 'Service.ServiceUrl' \
-            --output text)
+          # Use custom domain if available, otherwise CloudFront domain
+          APP_URL="${{ secrets.CHAPTERFLOW_APP_BASE_URL }}"
+          if [ -z "${APP_URL}" ]; then
+            APP_URL="https://${{ steps.cf.outputs.distribution_domain }}"
+          fi
 
-          echo "Running health check against https://${SERVICE_URL}..."
+          echo "Running health check against ${APP_URL}..."
 
           HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
-            --max-time 10 \
+            --max-time 15 \
             --retry 3 \
-            --retry-delay 5 \
-            "https://${SERVICE_URL}/")
+            --retry-delay 10 \
+            "${APP_URL}/")
 
           echo "Health check response: HTTP ${HTTP_STATUS}"
 
@@ -227,5 +183,6 @@ jobs:
           echo "|--------|-------|" >> "$GITHUB_STEP_SUMMARY"
           echo "| **Commit** | \`${GITHUB_SHA::8}\` |" >> "$GITHUB_STEP_SUMMARY"
           echo "| **Branch** | \`${GITHUB_REF_NAME}\` |" >> "$GITHUB_STEP_SUMMARY"
-          echo "| **Service URL** | https://${{ steps.describe.outputs.service_url }} |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| **CloudFront** | ${{ steps.cf.outputs.distribution_domain }} |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| **Stack** | ${{ env.CDK_STACK_NAME }} |" >> "$GITHUB_STEP_SUMMARY"
           echo "| **Triggered by** | ${GITHUB_ACTOR} |" >> "$GITHUB_STEP_SUMMARY"

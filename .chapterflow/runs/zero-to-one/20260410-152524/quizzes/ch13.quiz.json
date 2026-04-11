@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is Chapter 13's main claim about failed technology bets?",
+      "choices": [
+        "Major technology bets can still fail when timing, scale, and business design are wrong",
+        "Failed technology bets prove the underlying technology was worthless",
+        "Ambitious technology automatically becomes a durable business"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says the technology can matter while the bet still fails.",
+        "direct": "Its main claim is that business conditions can still break an ambitious technology bet.",
+        "competitive": "A real technology can still get buried by a bad bet."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why is technical ambition alone not enough in this chapter?",
+      "choices": [
+        "Because important technology always arrives late",
+        "Because timing, scale, and structure still decide whether the business works",
+        "Because ambition should be avoided in business"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says ambition still needs the right business conditions underneath it.",
+        "direct": "Technical promise does not erase the separate question of business viability.",
+        "competitive": "A huge story still needs a workable bet."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What separates disciplined diagnosis from generic hindsight in this chapter?",
+      "choices": [
+        "Disciplined diagnosis asks what was misjudged in timing, scale, and design",
+        "Disciplined diagnosis assumes the whole sector was always doomed",
+        "Disciplined diagnosis avoids criticism so ambition is protected"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants readers to ask what broke in the conditions around the bet.",
+        "direct": "Its method is structural analysis rather than mockery from a distance.",
+        "competitive": "A good postmortem looks for the broken mechanism, not just a punchline."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Elias has a meaningful technology project, but the launch window may still be wrong. Which lesson fits best?",
+      "choices": [
+        "The technology should be abandoned immediately",
+        "A real technology can still fail if the timing is misjudged",
+        "Timing matters only after the product is widely adopted"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says timing is part of whether the bet works at all.",
+        "direct": "Elias is facing a business-condition problem, not necessarily a fake-technology problem.",
+        "competitive": "The vision can be real while the window is still bad."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why does Tessa push her case-review group to separate sector promise from business design?",
+      "choices": [
+        "Because sector promise alone is enough for durability",
+        "Because the specific structure of the bet can still be weak",
+        "Because all ambitious sectors should be ignored"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says a compelling technology story can still hide a bad structure.",
+        "direct": "Tessa is separating technical promise from the business design that must carry it.",
+        "competitive": "A glamorous story can still be wrapped around a stupid bet."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What is the chapter's main point about timing and scale?",
+      "choices": [
+        "They are minor execution details beside the real technology story",
+        "They help decide whether a promising technology can become a durable business",
+        "They matter only when the underlying technology is weak"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says timing and scale are part of the bet itself.",
+        "direct": "A real technology can still break if timing or scale is wrong.",
+        "competitive": "The conditions can still kill a real vision."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why does business design matter so much in Chapter 13?",
+      "choices": [
+        "Because the structure of the bet can fail even if the technology is meaningful",
+        "Because business design replaces the need for real technology",
+        "Because the chapter argues markets never matter"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says the plan, economics, and sequencing still matter around the technology.",
+        "direct": "Business design matters because a promising technology still needs a workable structure.",
+        "competitive": "A bad structure can bury a real technology."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Nia notices that the idea is exciting but the timing and budget assumptions are weak. What is she really evaluating?",
+      "choices": [
+        "Whether ambition is morally admirable",
+        "Whether the business conditions can actually carry the technology",
+        "Whether the technology should be treated as worthless"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Nia is checking whether the conditions around the technology are strong enough.",
+        "direct": "This is the difference between technical appeal and viable structure.",
+        "competitive": "She is forcing the conditions to earn the story."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "How does Chapter 13 connect real technology promise and failure?",
+      "choices": [
+        "Real technology promise guarantees that the business will eventually work",
+        "Failure always proves the technology never mattered",
+        "The technology can still matter while timing, scale, or structure still break the bet"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter says the technology and the business outcome can come apart.",
+        "direct": "It distinguishes underlying promise from the conditions needed to carry that promise into a durable business.",
+        "competitive": "The vision can be real while the bet still explodes."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How does Chapter 13 prepare the next chapter?",
+      "choices": [
+        "It asks why the founder intensity behind big bets can be both powerful and unstable",
+        "It concludes that business design is more important than founders",
+        "It returns from failure analysis to generic sector prophecy"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next chapter turns to the intense founders behind ambitious bets.",
+        "direct": "The bridge moves from failed technology-bet structure to the founder paradox.",
+        "competitive": "The next question is what that kind of conviction does to the founder carrying it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    }
+  ]
+}

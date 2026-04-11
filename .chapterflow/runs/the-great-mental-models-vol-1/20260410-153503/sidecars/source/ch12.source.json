@@ -1,0 +1,40 @@
+{
+  "chapterNumber": 12,
+  "chapterTitle": "Hanlon's Razor",
+  "supportLevel": "moderate_narrow",
+  "frozenSources": [
+    {
+      "path": ".chapterflow/runs/the-great-mental-models-vol-1/20260410-153503/source-freeze/book-source.md",
+      "kind": "frozen_book_source_note",
+      "support": "toc_identity_and_chapter_note",
+      "notes": [
+        "Chapter 12 title is Hanlon's Razor.",
+        "Official support is moderate through TOC identity and general model references, but not rich in frozen excerpts."
+      ]
+    },
+    {
+      "path": ".chapterflow/runs/the-great-mental-models-vol-1/20260410-153503/manifests/source-ledger.json",
+      "kind": "source_ledger_note",
+      "support": "official_model_reference",
+      "notes": [
+        "The official Farnam Street reference page gives compact summaries for Volume 1 models including Hanlon's razor."
+      ]
+    }
+  ],
+  "authorizedClaims": [
+    "Hanlon's razor is part of the official Volume 1 model set.",
+    "The chapter may frame the model as resisting premature malice explanations when error or ignorance already explains enough.",
+    "The chapter must preserve the limit that real malice can still exist."
+  ],
+  "forbiddenDrift": [
+    "exact quotes not directly supported by the frozen bundle",
+    "proverb genealogy or attribution disputes",
+    "claiming malice never exists",
+    "blanket excuse-making"
+  ],
+  "writingPolicy": {
+    "mode": "paraphrase_first",
+    "narrowness": "high",
+    "quotePolicy": "no_exact_quotes"
+  }
+}

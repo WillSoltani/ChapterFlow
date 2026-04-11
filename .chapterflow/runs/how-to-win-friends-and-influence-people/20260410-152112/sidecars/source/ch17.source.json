@@ -1,0 +1,32 @@
+{
+  "chapterId": "ch17",
+  "title": "A Formula That Will Work Wonders for You",
+  "frozenSources": [
+    {
+      "type": "source-freeze-title",
+      "path": ".chapterflow/runs/how-to-win-friends-and-influence-people/20260410-152112/source-freeze/book-source.md",
+      "support": "17. A Formula That Will Work Wonders for You"
+    },
+    {
+      "type": "skeleton-intent",
+      "path": ".chapterflow/runs/how-to-win-friends-and-influence-people/20260410-152112/skeleton/book-skeleton.md",
+      "support": "Make perspective-taking concrete by showing how motives become legible when you ask what the other person thinks they are protecting or pursuing."
+    }
+  ],
+  "conceptFocus": [
+    "perspective-taking as motive-reading",
+    "ask what the other person thinks they are protecting",
+    "ask what the other person thinks they are pursuing",
+    "keep empathy specific rather than sentimental"
+  ],
+  "guardrails": [
+    "avoid generic empathy rhetoric",
+    "keep the move strategic and concrete",
+    "do not confuse understanding with agreement",
+    "stay concept-first and anecdote-light"
+  ],
+  "bridges": {
+    "previousChapter": "Chapter 16 made shared agency matter more inside cooperation.",
+    "nextChapter": "Chapter 18 will use sympathy for the other person's ideas and desires without collapsing into surrender."
+  }
+}

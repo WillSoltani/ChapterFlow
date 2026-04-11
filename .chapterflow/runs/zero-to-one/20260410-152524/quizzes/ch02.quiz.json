@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's main mechanism for explaining the post-dot-com startup culture?",
+      "choices": [
+        "A crash created an overcorrection that turned caution into doctrine",
+        "A crash proved that ambition is usually irrational",
+        "A crash showed that only product quality matters in startups"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter does not say the crash taught nothing. It says the lessons became too broad and too permanent.",
+        "direct": "Overcorrection is the key concept. A real warning hardened into universal startup philosophy.",
+        "competitive": "The chapter's point is not anti-ambition. It is anti-fear masquerading as timeless wisdom."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Which item belongs to the safer rulebook the chapter criticizes?",
+      "choices": [
+        "Focus on product, not sales",
+        "Pursue monopoly before product-market fit",
+        "Ignore competition because all markets are empty"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter names four post-crash rules, and this is one of them.",
+        "direct": "Product-not-sales is part of the inherited rulebook the chapter treats as only partially true.",
+        "competitive": "That line sounds pure, which is exactly why it became such a comfortable hiding place."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why does the chapter treat the four lessons as more dangerous than obvious nonsense?",
+      "choices": [
+        "Because they are too technical for founders to understand correctly",
+        "Because each contains partial truth and therefore spreads easily as universal advice",
+        "Because they were invented long after the crash by business schools"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Partial truths travel far because they sound reasonable in many situations, even when they no longer fit well.",
+        "direct": "The chapter's criticism is about universality. A context-sensitive safeguard becomes weak when treated as permanent law.",
+        "competitive": "Bad doctrine survives best when it contains just enough truth to avoid suspicion."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Mara proposes a sharper one-year plan, and her cofounder calls commitment itself reckless. Which chapter lesson fits best?",
+      "choices": [
+        "Commitment is usually less serious than flexibility after any market crash",
+        "The culture may be rewarding defendability over a strategically necessary wager",
+        "The company should focus on product and ignore planning for now"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns that flexibility can become a status signal instead of a tool.",
+        "direct": "This is overcorrection in action: commitment looks suspect before its strategic value is even tested.",
+        "competitive": "Fear is winning the room early by making vagueness sound mature."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "A student team prefers a safer incremental project because everyone agrees it sounds sensible after studying startup crashes. What would the chapter ask first?",
+      "choices": [
+        "Does the safe project actually create a stronger company shape, or is it just easier to defend?",
+        "How can the team remove every possible risk before deciding?",
+        "How can the team avoid looking contrarian to professors and mentors?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter asks whether caution is serving judgment or simply lowering the chance of embarrassment.",
+        "direct": "This is the overcorrection test: strategic strength versus social legibility.",
+        "competitive": "If the project wins because it feels harder to criticize, that is not the same as winning because it is stronger."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Theo says he wants to stay focused on product and not get distracted by sales talk. What is the chapter's strongest concern?",
+      "choices": [
+        "He is proving the product must already be strong enough to spread on its own",
+        "He may be using product purity to hide a distribution weakness",
+        "He is correctly treating sales as morally inferior to engineering"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter's criticism is narrow but clear: avoiding sales language does not solve the commercial problem.",
+        "direct": "Product quality matters, but anti-sales posture can become a cover for distribution blindness.",
+        "competitive": "Theo may sound principled while simply ducking the harder half of company building."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why does improving on the competition become a weak universal rule in this chapter?",
+      "choices": [
+        "Because competitors are always irrelevant once a company launches",
+        "Because it can keep founders trapped inside categories defined by other firms",
+        "Because the chapter thinks all competition should be ignored emotionally"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter worries that competitor-focused thinking can narrow imagination before strategy begins.",
+        "direct": "Improvement inside an existing frame may still leave the frame itself unchallenged.",
+        "competitive": "If rivals define the game, you can get better at losing their game instead of building your own."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "June discovers that her modest plan feels rational partly because it lowers the chance she will look naive if she fails. What does the chapter suggest?",
+      "choices": [
+        "Her smaller plan is therefore objectively stronger",
+        "She should always ignore social embarrassment because only data matters",
+        "She may be mixing strategic caution with reputation protection"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter says fear can survive inside smart-sounding rules, so the emotional motive needs to be named.",
+        "direct": "This is a key distinction: judgment and ego protection can overlap, but they should not be treated as identical.",
+        "competitive": "If June cannot separate risk from shame-avoidance, fear keeps writing her strategy."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why is overcorrection more damaging than a single bad rule in this chapter's logic?",
+      "choices": [
+        "Because it reshapes what kinds of companies seem respectable before specific strategy questions are even asked",
+        "Because it makes founders incapable of learning anything from failure ever again",
+        "Because it eliminates all useful differences between industries"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter cares about culture because culture changes what even feels reasonable to attempt.",
+        "direct": "Overcorrection sets an ambition ceiling at the level of common sense, which is broader than any one tactical mistake.",
+        "competitive": "Once fear becomes doctrine, it stops guiding choices and starts shrinking the field of choices."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If Chapter 1 argued for definite creation, what does Chapter 2 add before the book moves on?",
+      "choices": [
+        "It shows why a crash-era culture may punish the very conviction definite creation requires",
+        "It proves that every cautious rule after failure should be discarded immediately",
+        "It replaces planning with pure improvisation as the best startup method"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter connects the book's opening idea to the cultural fear that makes that idea harder to live out.",
+        "direct": "Chapter 2 explains why definite creation became psychologically and culturally suspect after the crash.",
+        "competitive": "It shows why builders can agree with boldness in theory while still obeying fear in practice."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What does Chapter 12 say established organizations need if they want internal innovation to survive?",
+      "choices": [
+        "Sandboxes, autonomy, protected resources, and meaningful incentives",
+        "Only a strong innovation speech from leadership",
+        "Immediate mature-business metrics for every new idea"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says innovation inside large organizations needs concrete structural support.",
+        "direct": "Ries argues that entrepreneurial teams need sandboxes, autonomy, resources, and incentives.",
+        "competitive": "Innovation needs architecture, not applause."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does a sandbox matter in this chapter?",
+      "choices": [
+        "Because it removes all accountability from new projects",
+        "Because it gives early innovation protected space to learn before mature comparison",
+        "Because it guarantees that every idea will succeed"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A sandbox protects a new idea while it is still too early for full mature-business judgment.",
+        "direct": "The chapter values sandboxes because they let a venture generate evidence before core-business pressure dominates it.",
+        "competitive": "The sandbox stops the incumbent from grading infancy like maturity."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "An internal team has funding but every decision is overridden by the core business. What does Chapter 12 suggest?",
+      "choices": [
+        "Funding alone is enough because autonomy does not matter",
+        "The team lacks a crucial condition for learning because support without autonomy is weak support",
+        "The team should be judged immediately by mature business metrics"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says autonomy and resources must work together.",
+        "direct": "A funded team still cannot learn honestly if it lacks authority inside its scope.",
+        "competitive": "Budget without steering power is still a leash."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "In Omar's university incubator scenario, what was the real problem?",
+      "choices": [
+        "The incubator had no prize money at all",
+        "The university had too little interest in oversight",
+        "The team had support on paper but too little real autonomy"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The scenario shows that money and formal support are not enough without room to decide and learn.",
+        "direct": "Omar's incubator was funded, but heavy override prevented genuine entrepreneurial learning.",
+        "competitive": "The incubator had backing, but the leash was stronger than the support."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What distinction does Chapter 12 insist on regarding protection?",
+      "choices": [
+        "Protection should replace accountability completely",
+        "Protection should be paired with bounded accountability and incentives",
+        "Protection only matters after a venture is already profitable"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says support should not become exemption from standards.",
+        "direct": "Ries pairs structural protection with meaningful incentives and stage-appropriate responsibility.",
+        "competitive": "Build a sandbox, not a hiding place."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Why can the core business kill internal innovation too early?",
+      "choices": [
+        "Because mature metrics, incentives, and habits get applied before the new idea has learned enough",
+        "Because new ideas never need resources",
+        "Because established organizations must avoid all risk"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns that mature-business pressure can arrive before a new venture is ready for it.",
+        "direct": "Stable-business expectations can crush fragile learning when they dominate too early.",
+        "competitive": "The incumbent machine often executes the future for not already looking like the present."
+      },
+      "bloomsLevel": "understand-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "How could a nonprofit, university, or campus organization apply Chapter 12 well?",
+      "choices": [
+        "By creating bounded space, autonomy, resources, and accountability for new initiatives",
+        "By offering encouragement while keeping every decision centralized",
+        "By demanding mature proof before experiments begin"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter's logic works in any large system trying to support new learning.",
+        "direct": "Internal innovation needs structure whether the setting is corporate, academic, or nonprofit.",
+        "competitive": "Mission does not remove the need for a sandbox."
+      },
+      "bloomsLevel": "transfer",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What should you suspect when leaders praise innovation but offer only symbolic support?",
+      "choices": [
+        "That verbal encouragement may be replacing the structural protections innovation actually needs",
+        "That symbolic support is stronger than autonomy and resources",
+        "That the project is already mature enough for full comparison"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter is suspicious of support that sounds good but does not protect learning.",
+        "direct": "Innovation language is weak if the organization has not created sandbox boundaries, authority, and resource stability.",
+        "competitive": "A speech about innovation is often what the company gives when it refuses to build the room."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why do established organizations keep crushing early learning even when they claim to value innovation?",
+      "choices": [
+        "Because core-business metrics, politics, and incentives feel more legitimate by default",
+        "Because all internal ventures are vanity projects",
+        "Because accountability and innovation can never coexist"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The mature business has habits and expectations that naturally dominate unless the company protects something different.",
+        "direct": "Ries keeps the institutional gravity of the core business active as the reason innovation gets judged too early.",
+        "competitive": "The present has more political mass than the future unless someone builds a counterforce."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How does Chapter 12 connect to Chapter 13?",
+      "choices": [
+        "Chapter 13 turns toward the epilogue's larger waste-not theme",
+        "Chapter 13 abandons the issue of organizational learning",
+        "Chapter 13 repeats the sandbox list without widening the argument"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "After innovation structures, the book moves toward its closing reflection on waste.",
+        "direct": "Chapter 12 points forward to the epilogue's broader argument about not wasting effort, learning, and possibility.",
+        "competitive": "Once the company sees how it kills learning, the final waste charge comes into view."
+      },
+      "bloomsLevel": "connect-transfer",
+      "depthLevel": "hard"
+    }
+  ]
+}

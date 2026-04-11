@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch08-q01",
+      "prompt": "What makes the MyFitnessPal chapter an alignment company case?",
+      "choices": [
+        "It shows alignment as a company story about connected priorities across teams",
+        "It proves every team should own the same objective",
+        "It replaces teamwork with central control"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter takes alignment out of theory and into a company case.",
+        "direct": "Its main job is to show how visible connected priorities strengthen teamwork across teams.",
+        "competitive": "This case is about linked execution, not clone work."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch08-q02",
+      "prompt": "How does the chapter distinguish alignment from isolated local effort?",
+      "choices": [
+        "Alignment begins when connected priorities make dependencies visible across teams",
+        "Alignment means each team hides its plan until later",
+        "Alignment requires every team to avoid specialization"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The company becomes more aligned when teams can see how their work links.",
+        "direct": "The chapter says connection across teams is the difference, not just local seriousness.",
+        "competitive": "Private maps are local effort, not alignment."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch08-q03",
+      "prompt": "Why is identical work a weak substitute for alignment in this chapter?",
+      "choices": [
+        "Because sameness can flatten specialized work without creating real connection",
+        "Because the chapter rejects any coordination at all",
+        "Because aligned teams should never share direction"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Different teams can stay specialized while still moving together.",
+        "direct": "The chapter rejects flattening as a substitute for visible connection.",
+        "competitive": "Clone work looks tidy and still misses the map."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch08-q04",
+      "prompt": "Serena sees several teams with strong local plans but weak cross-team visibility. What best fits the chapter?",
+      "choices": [
+        "The company is aligned because every team worked hard",
+        "The company needs visible connected priorities before calling the effort coordinated",
+        "The company should hide dependencies to preserve local focus"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Serious local plans are weaker than visible connection across teams.",
+        "direct": "The missing piece is not more effort but clearer cross-team linkage.",
+        "competitive": "Parallel motion is not company alignment."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch08-q05",
+      "prompt": "A debate team council sounded unified but kept operating from separate local agendas. What chapter failure does this show?",
+      "choices": [
+        "Healthy specialization with no downside",
+        "Silo drift caused by hidden connections",
+        "Too much visible shared direction"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The problem is weak connection, not low effort.",
+        "direct": "The council drifted because subgroup priorities were not visibly connected.",
+        "competitive": "They had one mission and several private maps."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch08-q06",
+      "prompt": "Which misreading does the chapter reject?",
+      "choices": [
+        "Alignment is identical goals for every team",
+        "Alignment makes dependencies visible",
+        "Alignment connects shared direction across teams"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter separates alignment from uniformity.",
+        "direct": "Identical work is a weaker substitute than visible connected priorities.",
+        "competitive": "If uniformity is your answer, you missed the company lesson."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch08-q07",
+      "prompt": "What is happening when teams work hard but shared direction stays vague and dependencies stay hidden?",
+      "choices": [
+        "Real alignment is already complete",
+        "Silo drift is weakening the whole effort",
+        "The chapter says shared direction no longer matters"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Hidden links let teams fragment even when they mean well.",
+        "direct": "The chapter treats silo drift as the key failure pattern in the company case.",
+        "competitive": "Private agendas keep winning under teamwork language."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch08-q08",
+      "prompt": "A tutoring network wants shared direction without forcing clone plans on every group. Which judgment best fits the chapter?",
+      "choices": [
+        "The network should reject cross-group visibility",
+        "The network should connect specialized work under visible shared direction",
+        "The network should require identical goals from every group"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Alignment can connect different work without flattening it.",
+        "direct": "The chapter favors visible links over identical plans.",
+        "competitive": "The map matters more than the clone script."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch08-q09",
+      "prompt": "What deeper point does the chapter make about visible connection in a company?",
+      "choices": [
+        "It matters only after teams have already collided",
+        "It turns coordination into something actionable before local drift becomes costly",
+        "It belongs only to reporting and not to execution"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Visible links help teams coordinate before the friction gets expensive.",
+        "direct": "The chapter makes connection part of execution rather than just communication.",
+        "competitive": "See the drift early or pay for it later."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch08-q10",
+      "prompt": "Why does Chapter 8 naturally lead into a tracking chapter next?",
+      "choices": [
+        "Because once teams are connected, the next issue is proving whether aligned work is moving",
+        "Because alignment removes the need for measurement",
+        "Because company stories end after alignment"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The bridge asks how teams track the movement of aligned priorities.",
+        "direct": "After visible connection comes the question of proof and progress.",
+        "competitive": "Once teams share a map, the next fight is evidence of motion."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

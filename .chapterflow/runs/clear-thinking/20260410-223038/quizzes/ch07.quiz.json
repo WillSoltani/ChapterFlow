@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What best defines self-accountability in this chapter?",
+      "choices": [
+        "Accepting complete fault for every bad outcome",
+        "Owning your real contribution before escaping into explanation",
+        "Avoiding any discussion of outside causes"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants specific ownership, not total fault or denial of circumstances.",
+        "direct": "Self-accountability means examining your contribution first so learning stays possible.",
+        "competitive": "Name your part before the alibi gets busy."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does accountability interrupt autopilot?",
+      "choices": [
+        "Because it blocks excuse-first thinking before it crowds out the mirror",
+        "Because it guarantees outside factors no longer matter",
+        "Because it makes discomfort disappear quickly"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Autopilot likes fast explanation. Accountability interrupts that order.",
+        "direct": "Ownership works by stopping outward blame from arriving before your own contribution is examined.",
+        "competitive": "The alibi loses first move."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is the chapter's clearest distinction between accountability and shame?",
+      "choices": [
+        "Accountability names a specific contribution, while shame attacks the whole self",
+        "Accountability is emotional, while shame is logical",
+        "Accountability means staying silent about mistakes"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps responsibility useful by making it specific.",
+        "direct": "Shame globalizes the error; accountability isolates the actionable part.",
+        "competitive": "Mirror, not self-destruction."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Mara notices she skipped the one prep question that would have exposed the main risk before a hard meeting. What response best fits the chapter?",
+      "choices": [
+        "Focus only on how unfair the room was",
+        "Name the missed prep step first and turn it into a stronger standard for next time",
+        "Claim the whole meeting failure as entirely her fault"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants Mara to own the usable part without exaggerating it.",
+        "direct": "She should identify her preventable contribution before explaining the external chaos.",
+        "competitive": "Call your miss and make it a rule."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Elias realizes he never sent the clear brief he promised before blaming his coworkers for the project's confusion. What chapter principle is most visible?",
+      "choices": [
+        "The chapter says outside causes should be ignored completely",
+        "Owning contribution restores agency more effectively than blame-first explanation",
+        "The chapter thinks confusion is usually unavoidable"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Once Elias names his missing brief, he gets back a part of the situation he can improve.",
+        "direct": "Ownership beats blame because it reveals the controllable contribution.",
+        "competitive": "His lever appears when the alibi steps back."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Simone wants to blame the room after practice, but her weak preparation is obvious. What response best matches the chapter?",
+      "choices": [
+        "Lead with the grievance and ignore the preparation gap",
+        "Treat the whole result as entirely someone else's decision",
+        "Let the frustration wait long enough to identify the preparation gap first"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The usable lesson is in the preparation gap, not only in the frustration.",
+        "direct": "Simone should separate grievance from contribution so learning survives.",
+        "competitive": "Find the fix before the complaint takes the wheel."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why does the chapter say ownership restores agency faster than blame?",
+      "choices": [
+        "Because ownership identifies a part of the outcome that can still be improved",
+        "Because blame is never emotionally satisfying",
+        "Because agency means controlling other people better"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Agency returns when the person can see what is still theirs to work on.",
+        "direct": "The chapter values ownership because it produces a concrete next move.",
+        "competitive": "Claim your square and the board becomes playable."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why is accountability narrower than total fault in this chapter?",
+      "choices": [
+        "Because claiming everything would be another distortion instead of a clearer reading",
+        "Because the chapter wants people to avoid hard truths",
+        "Because accuracy matters only when the outcome is small"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps accountability useful by making it accurate, not exaggerated.",
+        "direct": "Total fault would be bad thinking too; the goal is the part that is actually yours.",
+        "competitive": "Overclaiming can lie as much as dodging can."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "How does this chapter lead into self-knowledge?",
+      "choices": [
+        "Once a person owns their part, they need a more accurate reading of strengths and weaknesses",
+        "Once a person is accountable, self-knowledge becomes unnecessary",
+        "There is no real connection between the chapters"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Ownership is the first move, but it still needs calibration.",
+        "direct": "Self-knowledge follows because accountability supplies honesty, not full precision.",
+        "competitive": "Raise the mirror first, then learn how to read it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Which question best applies the chapter's threshold test?",
+      "choices": [
+        "Is my explanation clarifying the event, or is it protecting me from the first honest look?",
+        "How can I make sure nobody blames me for this?",
+        "What outside factor sounds most convincing right now?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter tests whether explanation is serving truth or self-protection.",
+        "direct": "The mirror test distinguishes honest examination from defensive narration.",
+        "competitive": "Truth or cover story? That is the split."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "medium"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "chapterflow-v13-edition-lock",
+  "bookId": "the-gift-of-fear",
+  "runId": "20260410-224733",
+  "lockedAt": "2026-04-10T22:51:08Z",
+  "decision": {
+    "status": "auto_locked",
+    "reason": "English edition differences found in public metadata do not materially change chapter count, chapter order, or early-chapter interpretation. A dominant current English trade edition family exists and preserves the same 15 numbered chapters.",
+    "askUserRequired": false
+  },
+  "chosenEdition": {
+    "displayName": "Back Bay Books English trade edition family (aligned with the original 1997 English text)",
+    "publisher": "Back Bay Books / Little, Brown lineage",
+    "publishedYear": 2021,
+    "baseWorkYear": 1997,
+    "isbn13Reference": "9780316235020",
+    "chapterOrderSource": "Open Library and IUCAT catalog records cross-checked against Google Books metadata",
+    "materialEffectOnChapterWork": "none_detected_for_chapters_1_15"
+  },
+  "workingRules": {
+    "quoteMode": "paraphrase_first",
+    "exactQuoteSupport": "authorized preview or official author site only",
+    "frozenSourceText": ".chapterflow/runs/the-gift-of-fear/20260410-224733/source-freeze/book-source.md"
+  }
+}

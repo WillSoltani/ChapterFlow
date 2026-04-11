@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What does Chapter 10 say culture really is?",
+      "choices": [
+        "A mood layer around the real work",
+        "A productive form of alignment that changes execution",
+        "A set of perks that keeps morale high"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter treats culture as part of how work actually gets done.",
+        "direct": "Its definition is productive alignment, not mood or perks.",
+        "competitive": "Culture matters when it changes motion, not just atmosphere."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the chapter care so much about mission fit?",
+      "choices": [
+        "Because shared purpose matters more than prestige alone",
+        "Because talent is never useful",
+        "Because culture is mainly social chemistry"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says people need to care about the same mission deeply enough to reinforce one another.",
+        "direct": "Mission fit matters because an aligned team is stronger than a merely impressive one.",
+        "competitive": "Prestige does not compound if the mission pull is weak."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What limit keeps this chapter from collapsing into fluff?",
+      "choices": [
+        "Culture is just friendship",
+        "Perks and atmosphere can substitute for trust",
+        "Real culture is about productive fit, not startup-family theater"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter rejects perk talk and vague family language as substitutes for real fit.",
+        "direct": "Its limit is that culture matters through mission, trust, and role clarity in the work itself.",
+        "competitive": "Vibes cannot fake coherence."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Nolan has a skilled team that still does not compound well. Which lesson fits best?",
+      "choices": [
+        "Talent alone may not be enough without mission fit",
+        "Perks should be increased first",
+        "The team should ignore culture and focus only on output"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says weak mission fit can keep strong people from reinforcing one another.",
+        "direct": "Nolan is facing a culture problem at the level of alignment, not raw ability.",
+        "competitive": "The room has skill, but not enough shared pull."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why is the more aligned candidate often stronger than the more impressive candidate in founder club?",
+      "choices": [
+        "Because credentials never matter",
+        "Because selection shapes future execution quality",
+        "Because friendship is the main test"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says who joins shapes whether the team becomes coherent.",
+        "direct": "Selection is a design choice about how the company will actually work.",
+        "competitive": "A flashy hire can still be a structural downgrade."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "How does trust become productive in this chapter?",
+      "choices": [
+        "By creating lower drag and cleaner coordination",
+        "By making difficult conversations unnecessary",
+        "By replacing the need for role clarity"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter links trust to better coordination and lower internal friction.",
+        "direct": "Trust matters operationally because it supports cleaner execution.",
+        "competitive": "Real trust cuts waste."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Why does the chapter reject perks and vibe-talk as the core of culture?",
+      "choices": [
+        "Because office design is always harmful",
+        "Because decorative signals are weak substitutes for real fit",
+        "Because social connection never matters"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says culture matters when mission, trust, and roles reinforce the work itself.",
+        "direct": "Perks and atmosphere can decorate a team without making it more coherent.",
+        "competitive": "Surface polish cannot fake alignment."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Mia is choosing between a high-status team and a more aligned one. What would Chapter 10 tell her to prioritize?",
+      "choices": [
+        "Status, because it attracts more talent later",
+        "Mission fit and productive role coherence",
+        "Whichever group seems friendlier"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter treats productive alignment as more important than prestige alone.",
+        "direct": "Mia should judge the teams by fit for the real work, not by outside shine.",
+        "competitive": "Pick the crew that compounds, not the badge that sparkles."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "How does Chapter 10 connect culture and performance?",
+      "choices": [
+        "A close team always wins because it is emotionally warm",
+        "Shared mission and trust reduce internal waste and improve execution",
+        "Culture matters only after product-market fit"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says a well-matched team works better, not merely feels closer.",
+        "direct": "It links culture to output through lower drag and stronger coordination.",
+        "competitive": "A coherent crew leaks less force."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How does Chapter 10 prepare Chapter 11?",
+      "choices": [
+        "It asks whether internal quality alone can reach the market",
+        "It concludes that culture replaces distribution",
+        "It shifts from team fit back to ownership paperwork"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next question is whether strong internal execution is enough without deliberate reach to customers.",
+        "direct": "The bridge is from culture to distribution.",
+        "competitive": "A sharp engine still needs a road to the market."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    }
+  ]
+}

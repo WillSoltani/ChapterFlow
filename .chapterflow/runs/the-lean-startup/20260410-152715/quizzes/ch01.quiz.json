@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What job does Ries assign to a startup in this opening section?",
+      "choices": [
+        "Maximize feature output before competitors react",
+        "Learn how to build a sustainable business under uncertainty",
+        "Project confidence strongly enough to attract early support"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Ries treats a startup as a team trying to learn what kind of business can really work, not as a team chasing activity for its own sake.",
+        "direct": "The opening reset is that startup progress means learning toward a sustainable business, not merely shipping more work.",
+        "competitive": "Output and confidence can look strong while the business stays blurry. Learning is the real assignment."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Which condition changes what good management looks like in a startup?",
+      "choices": [
+        "Heavy regulation",
+        "Extreme uncertainty",
+        "Small team size"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The book's definition turns on uncertainty. That is why ordinary execution habits are not enough on their own.",
+        "direct": "Extreme uncertainty is the operating condition that makes learning a management task instead of a side benefit.",
+        "competitive": "Size is a surface trait. Uncertainty is the thing that breaks the old scorecard."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A team ships three new features but still cannot tell whether users care about them. According to Ries, what is the best reading of that situation?",
+      "choices": [
+        "The team has activity, but not yet real progress",
+        "The team should count the releases as proof of traction",
+        "The team has measured enough because output itself is evidence"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Visible work can still leave the real business question unanswered. Progress starts when the work teaches something reliable.",
+        "direct": "Feature delivery without uncertainty reduction is incomplete. The releases may matter later, but they do not yet prove progress.",
+        "competitive": "Shipping alone is weak evidence. If the releases taught nothing decisive, the team is still mostly guessing."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Maya's product team wants to celebrate a fast sprint even though retention is still unclear. What move best fits this chapter's logic?",
+      "choices": [
+        "Double the next sprint so the team keeps its momentum",
+        "Ask which assumption the sprint actually tested and reorder work around the missing evidence",
+        "Ignore retention until the feature set feels complete"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That move turns the conversation from busyness to learning. It asks what the work proved rather than how full the sprint looked.",
+        "direct": "The chapter pushes managers to reconnect action with uncertainty reduction. Naming the tested assumption is the cleanest way to do that.",
+        "competitive": "Momentum is not the asset if it is outrunning the truth. Force the sprint to answer the real question."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why does Ries borrow from lean manufacturing in this opening argument?",
+      "choices": [
+        "To praise cheap products regardless of quality",
+        "To show that detached effort becomes waste when feedback is missing",
+        "To argue that startups should copy factories exactly"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The lean idea matters because it highlights waste created by work that never meets feedback in time to help the next decision.",
+        "direct": "Ries adapts lean logic to startup conditions by treating feedback-detached effort as a costly form of waste.",
+        "competitive": "The point is not factory worship. The point is exposing respectable-looking waste before it gets expensive."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Luis stops his robotics team and asks what their next feature is supposed to reveal. What mistake is he trying to prevent?",
+      "choices": [
+        "Treating more features as automatic progress",
+        "Moving too slowly because of too much testing",
+        "Letting users influence the design too early"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "He is trying to stop the team from adding work that feels impressive but does not produce a clearer answer.",
+        "direct": "Luis is blocking output-first thinking. The chapter says a feature matters only when it exposes an assumption or reduces uncertainty.",
+        "competitive": "Feature fever is the trap. He wants the team to build for signal, not for pride."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "A student incubator team has strong booth traffic at demo day but no clear evidence about return use. How should they interpret that result?",
+      "choices": [
+        "As enough proof to keep scaling the same plan",
+        "As vanity attention unless it is tied to a behavior that sharpens the next decision",
+        "As a sign that learning can wait until after more marketing"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Attention can feel exciting while still teaching very little. The team needs a signal that changes what it knows or what it does next.",
+        "direct": "The chapter treats broad attention as too weak unless it connects to a measurable behavior that reduces uncertainty.",
+        "competitive": "Crowds flatter the room. They do not count for much if the business question is still foggy."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Which statement best captures build-measure-learn as Ries uses it here?",
+      "choices": [
+        "A motivational phrase for moving quickly",
+        "A way to skip planning by trusting instinct",
+        "A steering loop that ties action to evidence and the next change in direction"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The loop matters because each step has a job. It helps the team build, observe, and respond instead of just pushing ahead.",
+        "direct": "Build-measure-learn is structural, not decorative. Its purpose is to connect work with evidence and then force a better next move.",
+        "competitive": "Used properly, the loop makes speed answerable. Used badly, it collapses into slogan talk."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Two founders are moving equally fast. One changes direction after each clear signal; the other keeps shipping without narrowing the business question. Which founder is closer to Ries's standard, and why?",
+      "choices": [
+        "The first, because speed becomes progress only when it shortens the path between assumption and evidence",
+        "The second, because consistency of output matters more than uncertainty reduction",
+        "Neither, because startups should slow down until the market is certain"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The first founder is using speed to learn. That is the difference between momentum that helps and momentum that merely feels energetic.",
+        "direct": "Ries's standard favors cycles that alter decisions through evidence. Fast output that leaves the business question untouched does not earn the same status.",
+        "competitive": "Velocity is only leverage when it corners the truth faster. Otherwise it is a sharper form of drift."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If uncertainty rather than company size defines the startup problem, what idea is the next chapter most likely to expand?",
+      "choices": [
+        "That entrepreneurship belongs only to venture-backed founders",
+        "That entrepreneurship can appear in more settings than the usual startup image suggests",
+        "That uncertainty disappears once a team adopts build-measure-learn"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "This opening chapter shifts the definition away from startup image and toward startup conditions, which naturally widens who may fit the frame.",
+        "direct": "Once uncertainty becomes the real boundary, the next logical move is to broaden where entrepreneurship can happen.",
+        "competitive": "Size was the decoy. If uncertainty is the real filter, a lot more people are about to qualify."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

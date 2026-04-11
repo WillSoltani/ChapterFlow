@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch09-q01",
+      "prompt": "What is a catalyst in the chapter's practical sense?",
+      "choices": [
+        "A forceful push that replaces the need for effort",
+        "An influence that speeds progress by improving the pathway",
+        "A person who permanently carries the work for the group"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter treats catalysts as accelerators that improve how the reaction proceeds.",
+        "direct": "Catalysis changes the route through the work rather than replacing the work itself.",
+        "competitive": "The route gets faster; the burden does not magically vanish."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch09-q02",
+      "prompt": "Which change best fits the chapter's idea of pathway change?",
+      "choices": [
+        "Sending three extra reminder messages",
+        "Making the next handoff explicit so tasks stop stalling between stages",
+        "Telling everyone to care more about the deadline"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A clearer handoff changes how the work moves from one stage to the next.",
+        "direct": "The chapter values reduced delay in the route more than louder urgency.",
+        "competitive": "A clean transfer beats more pressure."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch09-q03",
+      "prompt": "Bella's routine improves because her notes and timer are already open when she sits down. What is the best reading?",
+      "choices": [
+        "The environment is acting as a catalyst",
+        "Bella no longer needs any effort",
+        "The chapter would call this activation energy only"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The setup speeds the routine by reducing waste before the work begins.",
+        "direct": "A condition in the environment can be catalytic when it improves flow.",
+        "competitive": "The room changed the route."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch09-q04",
+      "prompt": "Aaron's proposal team moves faster after Denise names the next sequence and handoff. Why is that catalytic rather than just forceful?",
+      "choices": [
+        "She made the route cleaner without doing the whole proposal herself",
+        "She proved the team needed a stronger personality in the room",
+        "She removed all effort from the project"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The team keeps the work, but delay leaves the route.",
+        "direct": "Denise accelerates flow by clarifying sequence instead of replacing everyone's labor.",
+        "competitive": "She fixed the route, not the people."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q05",
+      "prompt": "How does the chapter distinguish a catalyst from a rescuer?",
+      "choices": [
+        "A rescuer works harder than everyone else, so the chapter values that more",
+        "A catalyst improves flow, while a rescuer can turn into a bottleneck the system depends on",
+        "There is no real difference if output improves for a while"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The limit is whether the system moves better or merely leans on one person.",
+        "direct": "Dependency is the failure mode that separates rescue from genuine catalysis.",
+        "competitive": "If one hero has to keep carrying the load, the route is still weak."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q06",
+      "prompt": "Lucas floods a school project with reminders, but tasks still die in the same handoff gap. What does the chapter call that?",
+      "choices": [
+        "A hidden catalyst",
+        "A healthy form of urgency",
+        "Noise that fails to improve the pathway"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The activity is visible, but the route through the work has not improved.",
+        "direct": "Fake acceleration looks busy while preserving the same delay.",
+        "competitive": "The chat got louder and the reaction stayed slow."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q07",
+      "prompt": "Which action best applies catalysts to a personal routine?",
+      "choices": [
+        "Find a setup or rule that shortens the path to the next useful move",
+        "Wait for motivation to rise high enough every day",
+        "Add more visible pressure so the routine feels serious"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter favors conditions that reduce waste and speed flow.",
+        "direct": "Catalytic design improves the route to action rather than relying on mood.",
+        "competitive": "Build the accelerator into the routine."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q08",
+      "prompt": "Cora can keep familiar debate pairs or choose the pair that produces faster correction. Which choice fits the chapter?",
+      "choices": [
+        "Keep the familiar setup because comfort prevents friction",
+        "Choose the pair that improves feedback flow",
+        "Rotate pairs randomly because any variation is catalytic"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants the arrangement that changes the route between attempt and correction.",
+        "direct": "Catalysis is about better flow, not familiarity or random variety.",
+        "competitive": "Faster feedback is the real accelerator here."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch09-q09",
+      "prompt": "Which statement best captures the chapter's practical rule?",
+      "choices": [
+        "Protect whatever changes the pathway, and cut activity that only performs speed",
+        "Reward the most visible worker because intensity is the clearest accelerator",
+        "Treat any helper as catalytic if the group feels more hopeful"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The model asks you to preserve changed flow and distrust fake acceleration.",
+        "direct": "Improved transfer, lower waste, and less dependency matter more than visible effort.",
+        "competitive": "Keep the route fix and kill the noise."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch09-q10",
+      "prompt": "How does Catalysts set up Alloying?",
+      "choices": [
+        "It finishes chemistry by proving speed matters more than composition",
+        "It asks what changes rate, then points toward how combining elements can change the properties of the whole",
+        "It returns from chemistry to leverage and force placement"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The next step is to ask what happens when the mix itself produces stronger properties.",
+        "direct": "Catalysts focus on rate, and alloying extends the chemistry frame to beneficial combination.",
+        "competitive": "First the route gets faster, then the mix gets stronger."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

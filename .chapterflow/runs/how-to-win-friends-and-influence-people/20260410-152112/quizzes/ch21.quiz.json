@@ -1,0 +1,174 @@
+{
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the central move in Chapter 21?",
+      "choices": [
+        "Using challenge as a last resort",
+        "Avoiding all pressure forever",
+        "Starting every conversation with criticism"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter presents challenge as a final escalation after softer moves fail.",
+        "direct": "Option A fits because challenge comes late, not first.",
+        "competitive": "This is the late-game move."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why can challenge move some people?",
+      "choices": [
+        "Because it can awaken pride, standards, or proving energy",
+        "Because humiliation always motivates",
+        "Because facts no longer matter"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says some people respond when a real standard is put before them.",
+        "direct": "Challenge can shift the person from hearing to answering.",
+        "competitive": "A real mark can wake the room."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "When does the chapter say challenge should be used?",
+      "choices": [
+        "After softer persuasive moves fail",
+        "Before explanation is attempted",
+        "Only in public humiliation"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Challenge belongs late in the sequence.",
+        "direct": "The move is justified by prior failure of easier methods.",
+        "competitive": "You earn the pressure first."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A manager stops repeating reminders and challenges the team to meet the standard it claims to value. What chapter move is this?",
+      "choices": [
+        "A bounded challenge",
+        "A random distraction",
+        "False flattery"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The manager is using a standard-bound challenge after softer moves fail.",
+        "direct": "This is challenge tied to a real mark, not distraction.",
+        "competitive": "That is clean pressure, not ego theater."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "A school group sharpens once the situation becomes something they should be able to rise to. What changed?",
+      "choices": [
+        "The moment became answerable as a standard",
+        "The facts disappeared",
+        "The group was insulted into cooperation"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The challenge gave the group a real mark to meet.",
+        "direct": "Option A fits because the group moved from passive hearing to active response.",
+        "competitive": "The room finally had something to answer."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What is the chapter's main limit on challenge?",
+      "choices": [
+        "It must not become insult or humiliation",
+        "It should always be public and intense",
+        "It should replace all other methods"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps challenge bounded and non-abusive.",
+        "direct": "Pressure is allowed; contempt is not.",
+        "competitive": "Dirty pressure breaks the move."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Which option misreads Chapter 21 as insult?",
+      "choices": [
+        "Calling someone toward a real standard",
+        "Humiliating the person to force movement",
+        "Using challenge after softer methods fail"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter rejects humiliation and contempt.",
+        "direct": "Option B abandons the standard and turns the exchange personal.",
+        "competitive": "That is ego combat, not challenge."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "advanced"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why would humiliation fail even if challenge can work?",
+      "choices": [
+        "Because it hardens defense instead of awakening effort",
+        "Because it makes standards clearer",
+        "Because it removes all emotion"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Humiliation makes the person protect themselves instead of rise to the mark.",
+        "direct": "Insult changes aspiration into defense.",
+        "competitive": "Once it gets personal, the room fights you instead of the standard."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "advanced"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "When does challenge sharpen standards instead of causing damage?",
+      "choices": [
+        "When it stays late, bounded, and tied to a real mark",
+        "When it starts the conversation aggressively",
+        "When it tries to win through contempt"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter requires sequence, dignity, and a real standard.",
+        "direct": "Clean challenge works only under those conditions.",
+        "competitive": "Earned pressure plus a real mark keeps the move alive."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "advanced"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why does this chapter lead naturally into Chapter 22?",
+      "choices": [
+        "Because after defining escalation, the book turns to how correction should begin",
+        "Because the next chapter abandons emotional framing",
+        "Because challenge is the permanent tone from here on"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next chapter asks how fault should be introduced without resentment.",
+        "direct": "Option A fits because escalation does not replace skillful correction.",
+        "competitive": "After pressure, you still need a clean way to handle fault."
+      },
+      "bloomsLevel": "transfer",
+      "depthLevel": "advanced"
+    }
+  ]
+}

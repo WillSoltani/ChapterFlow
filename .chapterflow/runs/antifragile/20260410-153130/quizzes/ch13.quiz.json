@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's main claim?",
+      "choices": [
+        "Practice often discovers what works before theory explains it neatly",
+        "Theory is worthless in complex domains",
+        "Improvisation is always wiser than expertise"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says doing and feedback can teach before polished explanation catches up.",
+        "direct": "Taleb argues that practice often leads theory rather than merely following it.",
+        "competitive": "The world can teach first and let the lecture arrive later."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the chapter value tinkering?",
+      "choices": [
+        "Because it ignores all constraints",
+        "Because repeated adjustment under feedback can produce knowledge",
+        "Because it makes theory impossible"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Tinkering matters when repeated tries reveal what works.",
+        "direct": "The chapter treats iterative correction as a source of discovery before formal explanation is complete.",
+        "competitive": "The rough workshop can find the path before the clean framework can name it."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What common misreading does the chapter reject?",
+      "choices": [
+        "Theory never matters",
+        "Practice can teach through consequences",
+        "Feedback filters bad ideas"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter is not saying theory is useless.",
+        "direct": "Taleb rejects anti-theory slogans; his point is about order of discovery, not the elimination of explanation.",
+        "competitive": "He is demoting theory-prestige, not burning theory to the ground."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Mira can either keep refining a polished explanation before testing anything or run bounded prototypes that expose weak moves through feedback. Which option fits the chapter best?",
+      "choices": [
+        "Keep polishing the explanation until every detail is conceptually settled",
+        "Run bounded prototypes and let feedback teach before the theory is complete",
+        "Avoid both because uncertainty makes learning impossible"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter prefers the feedback-rich path that can discover what works.",
+        "direct": "The better fit is the prototype cycle where reality filters error instead of waiting for a complete theory.",
+        "competitive": "Take the bench that teaches, not the memo that stalls."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Which statement would the chapter reject most strongly?",
+      "choices": [
+        "A clean theory must always authorize discovery before practice can count",
+        "Practice can generate knowledge when consequences discipline it",
+        "Theory can clarify what practice discovered later"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter attacks the belief that theory must always come first.",
+        "direct": "Taleb rejects the prestige order that makes explanation the permanent parent of practice.",
+        "competitive": "That answer puts the lecture back on a throne the chapter is trying to break."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "When does practice stop being epistemically useful in this chapter?",
+      "choices": [
+        "When it is disciplined by strong feedback",
+        "When it becomes activity without correction from consequences",
+        "When it later receives a theoretical explanation"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Practice stops teaching when nothing is correcting it.",
+        "direct": "Without feedback strong enough to filter weak moves out, practice becomes motion without reliable discovery.",
+        "competitive": "If the world is not slapping the bad move down, the repetition is just noise."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "A studio project improves because repeated critique exposes weak choices before anyone can fully explain why the better version works. What pattern does this show?",
+      "choices": [
+        "Empty improvisation",
+        "Practice discovering before theory explains",
+        "Theory becoming irrelevant forever"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The project is learning through correction before explanation catches up.",
+        "direct": "This matches the chapter's account of feedback-rich practice generating knowledge first.",
+        "competitive": "The critique board is teaching before the tidy theory shows up."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why does feedback matter so much in the chapter?",
+      "choices": [
+        "Because consequences help filter bad ideas and preserve what survives",
+        "Because it makes abstraction impossible",
+        "Because it guarantees every experiment succeeds"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Feedback matters because it teaches by correction.",
+        "direct": "Consequences make practice informative by exposing failure and stabilizing what works.",
+        "competitive": "The hit does the sorting long before the explanation is polished."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What deeper shift does the chapter ask from the reader?",
+      "choices": [
+        "Move from assuming theory always leads to seeing practice as a source of knowledge",
+        "Assume all expertise is suspicious",
+        "Treat motion itself as evidence of learning"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter changes the reader's view of how knowledge can be discovered.",
+        "direct": "Taleb wants practice to be seen as epistemically serious rather than as a mere derivative of explanation.",
+        "competitive": "Stop acting like the lecture owns discovery and start seeing what the workshop knows."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How does this chapter lead into the next one?",
+      "choices": [
+        "It proves labels are enough to judge capability",
+        "It shows that once polished explanation loses authority, polished similarity becomes easier to mistrust",
+        "It argues that comparison should be abandoned"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The next chapter asks why polished resemblance can still hide real differences.",
+        "direct": "The bridge is from practice-first discovery to mistrust of surface similarity and false equivalence.",
+        "competitive": "Once polish loses the crown, the label starts looking guilty too."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

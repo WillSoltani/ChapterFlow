@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What main shift does Chapter 12 make?",
+      "choices": [
+        "From repetition alone to friction and the path of least resistance",
+        "From ease to satisfaction only",
+        "From friction to identity labels only"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter asks what path repeated behavior will naturally follow.",
+        "direct": "Chapter 12 moves from repetition into least effort and friction design.",
+        "competitive": "The book stops asking only whether reps happen and starts asking which path gets them."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does least resistance matter so much here?",
+      "choices": [
+        "Because people often repeat the option that costs less effort to begin",
+        "Because effort is always bad in every context",
+        "Because discipline never matters at all"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter treats lower effort as a real tendency in behavior.",
+        "direct": "Least resistance matters because easier paths often claim more repetitions.",
+        "competitive": "The cheaper route often gets the next rep."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What does friction change most directly?",
+      "choices": [
+        "How likely a behavior is to start and repeat",
+        "Whether a person is morally good",
+        "Whether hard work disappears forever"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Friction changes the odds that the habit begins.",
+        "direct": "The chapter uses friction to explain which action becomes more repeatable.",
+        "competitive": "Entry cost shapes repetition."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "June wants to read the packet more consistently. What best fits Chapter 12?",
+      "choices": [
+        "Put the packet where it is easiest to reach before the next work block",
+        "Hide the packet and rely on motivation alone",
+        "Assume placement never matters"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The good habit becomes easier when the packet is already in reach.",
+        "direct": "June should lower the starting friction of reading on purpose.",
+        "competitive": "Move the better path to the front and let convenience help."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why did Theo's lab bench routine improve once the tool stayed ready?",
+      "choices": [
+        "Because the good habit had less setup friction",
+        "Because quality no longer mattered",
+        "Because effort disappeared entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The ready tool made the first step easier to start.",
+        "direct": "Theo repeated the routine more because the bench lowered entry cost.",
+        "competitive": "The habit stopped paying a setup tax before every rep."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Yara wants to weaken late-night scrolling. What best matches Chapter 12?",
+      "choices": [
+        "Add a small barrier to the phone path and make the walk shoes easier to reach",
+        "Keep scrolling equally easy and hope intention wins",
+        "Treat barriers as irrelevant"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter changes both paths: easier for the good habit, harder for the bad one.",
+        "direct": "Yara should redesign access so scrolling stops being the cheapest route.",
+        "competitive": "Change the path cost and the default can change too."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What does the environment keep doing in this chapter?",
+      "choices": [
+        "Offering one path before another",
+        "Staying neutral in every case",
+        "Removing all need for design"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says placement and defaults keep inviting one action over another.",
+        "direct": "The environment keeps shaping which route feels easiest to take.",
+        "competitive": "The room is voting on the next move."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What limit does Chapter 12 keep on its argument?",
+      "choices": [
+        "Ease helps, but it does not replace discipline completely",
+        "Any hard thing is automatically wrong",
+        "Design solves every habit problem by itself"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps effort and discipline in the picture.",
+        "direct": "It says design changes repetition odds without pretending meaningful work becomes effortless.",
+        "competitive": "Ease is a lever, not a total cure."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "How does Chapter 12 build on Chapter 11?",
+      "choices": [
+        "Chapter 11 said reps matter, and Chapter 12 asks what path those reps will naturally follow",
+        "Chapter 12 abandons repetition and returns only to attraction",
+        "Chapter 12 repeats Chapter 11 without adding anything new"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Chapter 11 emphasized repeated action, and Chapter 12 designs the path of that action.",
+        "direct": "The bridge is from reps to friction and default routes.",
+        "competitive": "First accept reps, then design which route gets them."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why does Chapter 13 follow naturally after Chapter 12?",
+      "choices": [
+        "Because once single paths matter, the next question is how a whole environment can be reset to favor the better one",
+        "Because friction stops mattering after one object is moved",
+        "Because environment design belongs before least effort is explained"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Chapter 13 widens the frame from individual paths to broader setup.",
+        "direct": "The next chapter naturally asks what happens when the environment as a whole is redesigned around the better habit.",
+        "competitive": "First learn path design, then widen it to full reset logic."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    }
+  ]
+}

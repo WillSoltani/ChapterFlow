@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's main claim about why people often make bad decisions in tense moments?",
+      "choices": [
+        "They usually lack enough information to think at all",
+        "They often fail before reasoning starts because they do not recognize the moment requires thought",
+        "They care too much about pleasing other people"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says the earlier failure comes first. The moment slips by before the person notices it as a moment that needs judgment.",
+        "direct": "Recognition failure is the opening problem, not merely weak reasoning technique.",
+        "competitive": "The default gets the first move because the moment was missed."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does Parrish use the angry CEO warning near the start of the chapter?",
+      "choices": [
+        "To show how quickly pressure can hijack a person before deliberate judgment defines the moment",
+        "To argue that executives are more emotional than everyone else",
+        "To prove that anger is always worse than ego or inertia"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The CEO example is a warning about how fast circumstance can think for someone when recognition fails.",
+        "direct": "Its job is to show a moment getting framed by reaction before reasoning arrives.",
+        "competitive": "The story is about losing the frame, not about ranking emotions."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "When a reactive mistake forces you to repair trust and rework relationships afterward, what chapter idea are you seeing most clearly?",
+      "choices": [
+        "The downstream bill of short-term reactive relief",
+        "The value of acting as fast as possible",
+        "The fact that pressure always reveals the truth"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A quick reaction can feel satisfying for a second, then create a much larger cost later.",
+        "direct": "The chapter emphasizes that default behavior drains future capacity through cleanup and repair.",
+        "competitive": "The impulse took cash now and sent the invoice to tomorrow."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Leah is criticized during student newspaper layout night and feels the urge to shut the writer down in front of the room. What response best fits the chapter?",
+      "choices": [
+        "Reply sharply so everyone knows she is still in charge",
+        "Ask for one specific example before answering so the moment shifts back to the work",
+        "Leave the room immediately so no one sees her reaction"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That move treats the flush of defensiveness as a signal and creates just enough space for a better response.",
+        "direct": "Requesting specifics interrupts the ego spike and redirects the moment toward the actual issue.",
+        "competitive": "She stops defending rank long enough to protect the mission."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Omar starts hiding a key spreadsheet during a tense reorg because it feels safer to stay indispensable. Which explanation best fits the chapter?",
+      "choices": [
+        "He is wisely creating leverage with scarce information",
+        "A self-protective default is answering the threat before his longer-term goals do",
+        "He is showing healthy confidence under pressure"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter frames this kind of move as a quick survival response, not as thoughtful strategy.",
+        "direct": "Security threat has activated self-protection before Omar has considered the larger cost.",
+        "competitive": "The default sold him armor and hid the credibility loss."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What is the best way to distinguish necessary speed from default-driven speed in this chapter's framework?",
+      "choices": [
+        "Assume any urgent feeling justifies immediate action",
+        "Treat all fast action as a mistake",
+        "Ask whether the speed is serving the goal or merely relieving the trigger"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter does not condemn speed. It asks what the speed is actually serving.",
+        "direct": "Urgency is a boundary condition, so the right test is goal-serving action versus default discharge.",
+        "competitive": "Fast is only useful if the mission, not the impulse, owns it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Marcus almost sends a cold message after a friend goes silent for a day. The reveal is that she is at the hospital with her father. What chapter principle does this show?",
+      "choices": [
+        "Missing information should not be filled with motive before evidence exists",
+        "Friends should always explain themselves immediately",
+        "Silence is usually a sign that someone wants distance"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns that a default can turn uncertainty into a confident story long before facts arrive.",
+        "direct": "Marcus almost mistakes a trigger for evidence and lets reaction write a false narrative.",
+        "competitive": "His default tried to invoice someone for a story it invented."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "A manager feels publicly challenged, notices the room go quiet, and immediately doubles down so no one thinks he is weak. Which defaults are most clearly overlapping?",
+      "choices": [
+        "Emotion and ego",
+        "Social and inertia only",
+        "Inertia and emotion only"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The surge of feeling and the threat to status are combining in the same moment.",
+        "direct": "The chapter expects defaults to overlap, and this scene shows emotion reinforcing ego defense.",
+        "competitive": "Heat and rank fear just teamed up."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why do sophisticated thinking tools still fail in many ordinary conflicts, according to this chapter?",
+      "choices": [
+        "Because ordinary conflicts are too simple for formal tools",
+        "Because people rarely care enough about outcomes to use them",
+        "Because the tools arrive too late when the thinking moment is lost before analysis begins"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter keeps moving the failure earlier. If the moment is missed, the tool never gets a fair chance.",
+        "direct": "Parrish's point is chronological: no framework works well after default behavior has already framed the scene.",
+        "competitive": "The toolkit is useless once the default owns the opening move."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why does the next chapter logically turn to emotion first after this opening chapter?",
+      "choices": [
+        "Because emotion is the only default that matters in real life",
+        "Because feeling often grabs the scene before facts settle, making it a natural first hijacker to study",
+        "Because the book wants to leave social and ego pressure until the conclusion"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The opening chapter shows how a moment gets stolen. Emotion is a natural next step because it often strikes first.",
+        "direct": "Once recognition failure is clear, the next useful move is to study the default most likely to outrun facts early.",
+        "competitive": "If you want to study the first thief at the wheel, emotion is the obvious suspect."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

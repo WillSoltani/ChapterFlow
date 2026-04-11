@@ -1,0 +1,155 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch01-q01",
+      "prompt": "Which item best fits the chapter's definition of an open loop?",
+      "choices": [
+        "A commitment that still feels live because it has not been safely captured and clarified",
+        "A finished task you want to celebrate later",
+        "A long-term goal that already has every action scheduled"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "An open loop is something your mind still treats as unfinished business.",
+        "direct": "The chapter uses the term for unresolved commitments that remain mentally active.",
+        "competitive": "If the obligation is still charging attention, the loop is still open."
+      }
+    },
+    {
+      "questionId": "ch01-q02",
+      "prompt": "Why does the chapter argue that the mind struggles under modern knowledge work?",
+      "choices": [
+        "Because intelligence has declined over time",
+        "Because commitments arrive without clean boundaries and keep staying mentally live",
+        "Because digital tools make planning impossible"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter keeps returning to weak boundaries and unfinished definition, not to intelligence or tools alone.",
+        "direct": "Modern work creates many half-formed obligations that remain active because they have not been externally defined.",
+        "competitive": "The pressure comes from boundaryless commitments, not from some sudden collapse in human ability."
+      }
+    },
+    {
+      "questionId": "ch01-q03",
+      "prompt": "A project called 'fix the budget' has been on your list for days. According to the chapter, what is missing?",
+      "choices": [
+        "A better motivational quote",
+        "A more ambitious final goal",
+        "A visible next physical action"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The label tells you what matters, but not where movement begins.",
+        "direct": "A project name preserves intention without defining execution.",
+        "competitive": "The cloud still needs a move."
+      }
+    },
+    {
+      "questionId": "ch01-q04",
+      "prompt": "Lena keeps reopening the same client file because the project feels stressful. Which response matches the chapter's logic best?",
+      "choices": [
+        "Wait until she feels less anxious, then try again",
+        "Write the next physical action and place it in the trusted list she uses daily",
+        "Add the project to a broader yearly goals document"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter's fix is to make the project concrete enough that the mind no longer has to keep reloading it.",
+        "direct": "Trusted capture plus next-action definition reduces the need for repeated mental checking.",
+        "competitive": "She stops losing once the cloud turns into a move."
+      }
+    },
+    {
+      "questionId": "ch01-q05",
+      "prompt": "Which statement would the chapter treat as a tempting but weak substitute for control?",
+      "choices": [
+        "I know the next call I need to make",
+        "I wrote the commitment in a system I trust",
+        "I just need to be more disciplined about it"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter is interested in definition and trusted capture, not generic pressure to try harder.",
+        "direct": "Motivational self-talk does not replace the missing next action.",
+        "competitive": "Discipline talk is cheap when the commitment is still blurry."
+      }
+    },
+    {
+      "questionId": "ch01-q06",
+      "prompt": "Marcus wrote 'research proposal' in his notes app and still cannot stop thinking about it. What does that most likely show?",
+      "choices": [
+        "Capture happened, but clarification did not go far enough",
+        "He should stop using digital tools",
+        "The project is too important to organize"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The item has a home, but it still lacks enough definition to let the mind relax.",
+        "direct": "This is the chapter's key limit: capture alone can leave an obligation psychologically open.",
+        "competitive": "He moved the fog, but he did not decode it."
+      }
+    },
+    {
+      "questionId": "ch01-q07",
+      "prompt": "A student leaves the library and keeps rehearsing a task so it will not be forgotten. What principle from the chapter applies most directly?",
+      "choices": [
+        "Mental rehearsal is safer than external capture",
+        "Trusted externalization reduces the need to keep the task active in memory",
+        "The task should be ignored until the next study block"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter argues that the mind keeps rehearsing what it does not trust elsewhere.",
+        "direct": "External capture is valuable because it removes the storage burden from active attention.",
+        "competitive": "A real parking spot beats repeating the same reminder on the bus ride home."
+      }
+    },
+    {
+      "questionId": "ch01-q08",
+      "prompt": "Sofia keeps rereading client emails because she fears missing something. Which move best follows Chapter 1?",
+      "choices": [
+        "Extract the commitments from the messages and track them outside the inbox",
+        "Mark every email as unread until the weekend",
+        "Build a more detailed annual planning system first"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The inbox can store messages, but it is a poor place to keep live commitments mentally organized.",
+        "direct": "The chapter separates trusted commitment tracking from repeated rereading.",
+        "competitive": "If the inbox is still doing the job, the job was never really parked."
+      }
+    },
+    {
+      "questionId": "ch01-q09",
+      "prompt": "What is the strongest link between 'mind like water' and the next physical action?",
+      "choices": [
+        "Both encourage people to lower their standards",
+        "The next physical action helps make attention appropriately responsive instead of mentally crowded",
+        "Both depend on finishing every project immediately"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The visible next step reduces background uncertainty, which makes clean focus easier.",
+        "direct": "Appropriate response becomes more possible when a commitment has moved from vague concern to executable action.",
+        "competitive": "The step clears lane space. That is why the mind can hit the current demand cleanly."
+      }
+    },
+    {
+      "questionId": "ch01-q10",
+      "prompt": "If Chapter 1 proves that one defined next action can reduce mental drag, what question naturally follows next?",
+      "choices": [
+        "How can the same clarity be applied to every incoming obligation through a repeatable workflow?",
+        "Which personality type is best at remembering unfinished tasks?",
+        "Why should all goals be reduced to yearly metrics?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter ends by setting up a broader process for handling commitments consistently.",
+        "direct": "The next logical step is a workflow that scales this one-item clarity across all inputs.",
+        "competitive": "Once one loop can be closed on purpose, the real question is how to close them at volume."
+      }
+    }
+  ]
+}

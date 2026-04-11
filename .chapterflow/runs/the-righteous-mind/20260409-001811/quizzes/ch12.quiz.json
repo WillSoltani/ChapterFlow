@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "ch12-q01",
+      "prompt": "What does constructive disagreement mean in the final chapter?",
+      "choices": [
+        "Conflict that disappears once people understand each other",
+        "Conflict with better explanation and less self-righteous blindness",
+        "Agreement that every moral view is equally right"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter defines constructive disagreement as clearer conflict rather than easy harmony.",
+        "direct": "The correct answer preserves conflict while reducing contempt and bad explanation.",
+        "competitive": "The win is a smarter fight, not a truce or a shrug."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch12-q02",
+      "prompt": "Why do opponents start to look different once the framework is understood?",
+      "choices": [
+        "Because they become less human",
+        "Because they can be seen as reasoning inside different moral matrices",
+        "Because facts stop mattering"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The framework makes opponents more interpretable even when they remain disagreeable.",
+        "direct": "Readers can see other people as operating from different moral worlds rather than pure irrationality.",
+        "competitive": "The other side stops being a cartoon and starts looking like a rival matrix."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch12-q03",
+      "prompt": "A manager pauses a conflict to ask what each side thinks it is protecting. Which chapter move is that?",
+      "choices": [
+        "Explanation before contempt",
+        "Consensus enforcement",
+        "Proof that no one has values"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter recommends mapping the moral concern behind a position before moralizing the person.",
+        "direct": "This is the explanation-first discipline of constructive disagreement.",
+        "competitive": "The manager maps the matrix before taking the easy villain shot."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch12-q04",
+      "prompt": "Students understand one another better but still disagree strongly. What does the chapter say about that outcome?",
+      "choices": [
+        "It means the framework failed",
+        "It fits the chapter because understanding is not the same as agreement",
+        "It proves every side is equally right"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter expects some conflicts to remain even after explanation improves.",
+        "direct": "Constructive disagreement preserves real conflict while changing its quality.",
+        "competitive": "The fight can stay hot even after the cartoon burns off."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch12-q05",
+      "prompt": "Which limit does the chapter keep on humility?",
+      "choices": [
+        "Humility means giving up judgment",
+        "Humility means understanding without relativism or surrender",
+        "Humility means avoiding all criticism"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter asks for humility without requiring moral surrender.",
+        "direct": "Its closing balance is understanding plus conviction, not flattening all differences.",
+        "competitive": "Lose the vanity, not the spine."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch12-q06",
+      "prompt": "Why does the ending reject generic civility slogans?",
+      "choices": [
+        "Because politics and religion often involve whole moral worlds, not just etiquette problems",
+        "Because politeness is always bad",
+        "Because disagreement can never improve"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The conflicts are too deep to be solved by tone alone.",
+        "direct": "The chapter insists that belonging, loyalty, and moral meaning are at stake.",
+        "competitive": "Manners are too weak because the fights are over worlds."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch12-q07",
+      "prompt": "How does the final chapter use the earlier framework?",
+      "choices": [
+        "It abandons intuition, plurality, and group binding",
+        "It gathers them into one model for reading conflict more accurately",
+        "It turns them into a consensus formula"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The ending is a synthesis chapter that applies the book's main ideas to disagreement.",
+        "direct": "Earlier arguments become tools for interpreting live moral conflict.",
+        "competitive": "The whole machine of disagreement gets used at once here."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch12-q08",
+      "prompt": "If someone treats their own side as plain reality and the other side as obvious evil, what chapter problem is showing up?",
+      "choices": [
+        "Constructive disagreement",
+        "Self-righteous simplification",
+        "Moral humility"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns against confusing your own matrix with reality itself.",
+        "direct": "This is the self-righteous blindness the ending is trying to reduce.",
+        "competitive": "That is the vanity move the book wants broken."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch12-q09",
+      "prompt": "What is the most realistic kind of progress the chapter offers?",
+      "choices": [
+        "Universal agreement",
+        "Harder-earned humility and better explanation in ongoing conflict",
+        "The end of politics and religion disputes"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter offers improved explanation and less contempt, not peace.",
+        "direct": "Its practical gain is a less self-righteous way to stay in conflict.",
+        "competitive": "The progress is a smarter fight, not a finished one."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch12-q10",
+      "prompt": "What final discipline does the book ask of readers?",
+      "choices": [
+        "Keep conviction while improving explanation",
+        "Abandon judgment entirely",
+        "Assume every disagreement is trivial"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Readers are asked to hold onto judgment while becoming less contemptuous and more accurate.",
+        "direct": "The final discipline is conviction joined to better explanation and lower self-righteousness.",
+        "competitive": "Keep your side, but stop pretending your side is reality itself."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

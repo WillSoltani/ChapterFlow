@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch07-q01",
+      "prompt": "Why does the book treat alignment and connection as a separate superpower?",
+      "choices": [
+        "Because one committed team is not enough when several teams must move together",
+        "Because commitment no longer matters once teamwork begins",
+        "Because every team should own the same objective"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter begins when one-team force has to become cross-team coordination.",
+        "direct": "Alignment matters because several teams can still interfere with one another after commitment.",
+        "competitive": "One strong team inside a disconnected system is still not enough."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch07-q02",
+      "prompt": "How does the chapter define alignment?",
+      "choices": [
+        "Identical goals for every team",
+        "Visible shared direction connecting related team priorities",
+        "Silence about dependencies until they appear"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says alignment connects priorities across teams.",
+        "direct": "It is related work under visible shared direction, not sameness.",
+        "competitive": "Connection beats clones."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch07-q03",
+      "prompt": "Why is forced sameness a weak substitute for alignment?",
+      "choices": [
+        "Because the chapter says teams should stay completely independent",
+        "Because alignment connects differentiated work without flattening local expertise",
+        "Because visibility makes every team identical anyway"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Different teams can still move together without doing identical work.",
+        "direct": "The chapter protects specialization while insisting on visible connection.",
+        "competitive": "Sameness is neat-looking but weaker than real coordination."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch07-q04",
+      "prompt": "Quinn sees three teams with separate plans and unclear handoffs. What best fits the chapter?",
+      "choices": [
+        "The teams are aligned because each one has serious goals",
+        "The teams need visible connected priorities before calling the effort coordinated",
+        "The teams should hide their dependencies to avoid conflict"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Serious local plans are weaker than shared visible connection.",
+        "direct": "The missing piece is cross-team visibility, not more separate effort.",
+        "competitive": "Private maps are not coordination."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q05",
+      "prompt": "A robotics council worked hard in separate lanes and discovered conflicts late. What chapter failure does this show?",
+      "choices": [
+        "Healthy specialization with no downside",
+        "Disconnected priorities and hidden dependencies",
+        "Too much visible shared direction"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The problem is not low effort but weak connection.",
+        "direct": "The council lacked visible links between subgroup objectives.",
+        "competitive": "Busy silos still collide."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q06",
+      "prompt": "Which misreading does the chapter reject?",
+      "choices": [
+        "Alignment is bureaucratic sameness",
+        "Alignment requires visible connected priorities",
+        "Alignment exposes dependencies early"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter separates alignment from flattening every team into the same work.",
+        "direct": "Bureaucratic sameness is a weaker substitute than real connection.",
+        "competitive": "If sameness is your definition, you missed the mechanism."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q07",
+      "prompt": "What is happening when teams work hard but cannot see how their objectives affect one another?",
+      "choices": [
+        "Real teamwork is already complete",
+        "Siloed sincerity is creating preventable friction",
+        "The chapter says visibility no longer matters"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Hidden links let sincere teams still weaken one another.",
+        "direct": "The chapter treats private priorities and unclear dependencies as the key problem.",
+        "competitive": "Good motives still crash when the map stays private."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q08",
+      "prompt": "A volunteer network wants shared direction without forcing identical plans on every team. Which judgment best fits the chapter?",
+      "choices": [
+        "The network should avoid cross-team visibility",
+        "The network should connect differentiated work under visible shared direction",
+        "The network should require every team to own the same goals"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Alignment can connect different work without erasing it.",
+        "direct": "The chapter favors visible links over identical tasks.",
+        "competitive": "Real coordination beats clone work."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch07-q09",
+      "prompt": "What deeper point does the chapter make about dependency visibility?",
+      "choices": [
+        "It belongs only to project management and not to OKRs",
+        "It helps teams catch tradeoffs, duplicate effort, and conflict before collision",
+        "It matters only after teams have already collided"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter makes visibility part of how teamwork gets stronger.",
+        "direct": "Dependency visibility matters because it changes coordination before the cost rises.",
+        "competitive": "See the ambush early or pay for it later."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch07-q10",
+      "prompt": "Why does Chapter 7 naturally lead into the MyFitnessPal story next?",
+      "choices": [
+        "Because the theory of alignment now needs a company case",
+        "Because alignment no longer needs examples",
+        "Because teamwork ends with this superpower chapter"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next chapter turns the superpower into a concrete company case.",
+        "direct": "After the concept is clear, the book tests it inside MyFitnessPal.",
+        "competitive": "Now the case has to earn the theory."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

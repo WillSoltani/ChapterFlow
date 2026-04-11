@@ -1,0 +1,718 @@
+{
+  "chapterId": "ch11-adapt",
+  "number": 11,
+  "title": "Adapt",
+  "readingTimeMinutes": 7,
+  "contentVariants": {
+    "easy": {
+      "chapterBreakdown": {
+        "gentle": "A team can fix the same problem again and again while still failing to learn from it. Eric Ries uses Chapter 11 to show why recurring technical failures are often signals about the organization rather than just about the latest bug. An adaptive organization improves process and quality through feedback loops without slowing learning to a halt. The Five Whys matters because it helps the team keep asking what made the latest failure likely instead of stopping at the surface cause. That deeper questioning often shows that recurring technical issues come from human systems such as poor handoffs, unclear ownership, weak review habits, or incentives that push the wrong behavior. The chapter's lesson is not that more process is always better. It is that adaptive organizations use process to preserve learning and quality at the same time.",
+        "direct": "Ries argues that adaptive organizations use feedback loops to improve process and quality without turning process into a bureaucratic slowdown. The chapter centers the Five Whys because repeated root-cause questioning helps a team move below the immediate technical failure and ask what human-system condition keeps producing similar breakdowns. Recurring bugs and outages often point toward recurring organizational weakness. The chapter therefore treats adaptation as organizational learning rather than as rule accumulation. Quality matters, but quality systems fail when they protect procedure at the cost of learning speed.",
+        "competitive": "The same bug keeps coming back, and the team still wants to call it bad luck. Chapter 11 attacks that excuse. Adaptive organizations do not just patch recurring failures. They build feedback loops that force the company to ask what kind of human system keeps manufacturing the same technical pain. The Five Whys is useful because it makes the room go deeper than the latest defect. Ries is not arguing for more bureaucracy. He is arguing for process that keeps the startup from paying over and over for lessons it refused to learn the first time."
+      },
+      "keyTakeaways": [
+        {
+          "point": {
+            "gentle": "Adaptive organizations improve process and quality without killing learning speed.",
+            "direct": "The chapter treats adaptation as feedback-rich improvement rather than bureaucratic drag.",
+            "competitive": "A healthy company upgrades its process without strangling its ability to learn."
+          }
+        },
+        {
+          "point": {
+            "gentle": "The Five Whys helps teams move below a surface failure.",
+            "direct": "Repeated root-cause questioning reveals whether the latest incident points to deeper system causes.",
+            "competitive": "Keep asking why until the room stops hiding behind the last visible bug."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Recurring technical problems often come from human systems.",
+            "direct": "The chapter says repeated failures usually signal organizational conditions, not isolated accidents alone.",
+            "competitive": "When the same breakdown keeps returning, the machine around the code is usually guilty too."
+          }
+        }
+      ],
+      "oneMinuteRecap": {
+        "gentle": "Ries says adaptive organizations use feedback loops to improve process and quality without slowing learning to a halt. The Five Whys helps teams trace recurring technical failures to deeper human-system causes.",
+        "direct": "The chapter treats adaptation as organizational learning. Use feedback loops and root-cause questioning to fix the system behind repeated failure.",
+        "competitive": "Stop patching the same pain and ask what kind of human system keeps rebuilding it."
+      }
+    },
+    "medium": {
+      "chapterBreakdown": {
+        "gentle": "A startup can fix a bug, survive an outage, or blame one mistake and still fail to learn anything useful from the event. Eric Ries uses Chapter 11 to challenge that shallow pattern. The real question is not only what broke this time. The real question is what kind of organization keeps making similar failures likely.\n\nThat is why the chapter centers the adaptive organization. Adaptation means improving process and quality through feedback loops without slowing learning to a halt. Ries is not defending procedure for its own sake. He is asking how the company can keep becoming smarter as its work becomes more complex.\n\nThe Five Whys matters because it keeps the team from stopping at the most visible technical explanation. By asking repeatedly what made the latest failure possible, the organization can trace the problem downward into the conditions around the work.\n\nThose conditions are often human systems. Ownership may be blurry. Handoffs may be weak. Review habits may be inconsistent. Incentives may reward speed without enough responsibility for quality. A recurring technical problem can therefore be the visible symptom of a recurring organizational weakness.\n\nThe chapter also keeps a tension alive. Quality improvement matters, but quality systems can become heavy and slow if they forget why they exist. Process should help the startup learn and repair faster, not trap it in bureaucracy. The wrong answer is not only too little process. It is also process that protects itself more than it protects learning.\n\nRies uses adaptation to reframe internal operations as part of the learning loop. Feedback is not only something the company gets from customers. It is also something the organization should get from its own recurring failures. Chapter 12 then asks how larger, established companies can create conditions where that kind of learning still leaves room for innovation.",
+        "direct": "Ries uses Chapter 11 to argue that adaptive organizations improve process and quality through feedback loops without turning those improvements into a slowdown machine. The chapter's opening problem is familiar: the same technical pain keeps returning, but the team keeps treating each incident as if it were local and new.\n\nThe Five Whys is important because it gives the organization a way to move below the immediate defect. Repeated root-cause questioning pushes the team past the latest bug, outage, or mistake and toward the system conditions that keep making similar failure likely.\n\nThose deeper causes are often human systems rather than technical events alone. Recurring incidents can point toward poor communication, weak handoffs, unclear ownership, or incentives that reward local speed while starving organizational learning. If the company fixes only the latest technical symptom, it may stay busy while preserving the machinery that creates the next failure.\n\nThat is why the chapter refuses the simple quality-versus-speed story. Process is not automatically the enemy of learning. Good process can preserve learning by keeping repeated failures from being paid for again and again. But process becomes dangerous when it grows into bureaucracy and starts slowing the organization more than it teaches it.\n\nChapter 11 therefore treats adaptation as disciplined organizational learning. The startup should use recurring failure as feedback about how the company itself is operating, not just as evidence that a single technical issue needs another patch. The next chapter carries this lesson forward into the problem of innovation inside established firms.",
+        "competitive": "Teams love the story that the latest outage was a weird one-off. That story is comforting because it lets the room fix the surface, close the ticket, and keep pretending the system underneath is fine. Ries uses Chapter 11 to attack that comfort.\n\nAdaptive organizations do something harder. They build feedback loops that improve process and quality without letting process turn into a bureaucratic tax on learning. This is not ritual compliance. It is a way to keep the company from paying repeatedly for the same lesson.\n\nThe Five Whys matters because it drags the room below the visible defect. Keep asking what made this failure possible, and the answer often stops being purely technical. Weak handoffs, unclear ownership, bad escalation paths, and misaligned incentives start showing up. The recurring bug may be real, but the recurring cause may live in the human system around it.\n\nThat is why the chapter keeps quality and speed in tension instead of treating them as enemies. Too little process leaves the startup stupid in the same expensive way over and over. Too much process turns learning into sludge. Adaptive organizations find the middle ground where feedback loops strengthen quality without freezing motion.\n\nRies is really describing internal learning here. The startup should let recurring failure expose how the organization itself is built. If it refuses that lesson, the team will keep fixing symptoms while the factory that produces them stays open. Chapter 12 then asks how a larger company can preserve room for innovation once this adaptive discipline becomes necessary."
+      },
+      "keyTakeaways": [
+        {
+          "point": {
+            "gentle": "Adaptive organizations use feedback loops to improve process and quality.",
+            "direct": "The chapter frames adaptation as organizational learning through better internal feedback.",
+            "competitive": "Healthy companies let failure teach the system, not just the ticket."
+          },
+          "moreDetails": {
+            "gentle": "Adaptation matters because the business should become smarter as it grows rather than repeating the same avoidable mistakes.",
+            "direct": "Feedback loops inside the company matter because quality and process should improve learning rather than replace it.",
+            "competitive": "If the startup keeps paying tuition for the same lesson, its internal loop is broken."
+          }
+        },
+        {
+          "point": {
+            "gentle": "The Five Whys helps teams move beneath a surface failure.",
+            "direct": "Repeated root-cause questioning turns the latest incident into a search for the system behind it.",
+            "competitive": "Do not stop at the bug if the room that built the bug keeps behaving the same way."
+          },
+          "moreDetails": {
+            "gentle": "The method matters because recurring problems often have causes deeper than the immediate technical event.",
+            "direct": "The chapter values the Five Whys as a tool for reaching conditions that made the failure likely in the first place.",
+            "competitive": "The visible defect is often only the last domino."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Recurring technical problems often point toward human systems.",
+            "direct": "Repeated incidents usually signal organizational causes such as ownership, communication, or incentive problems.",
+            "competitive": "When the failure repeats, the organization is probably co-authoring it."
+          },
+          "moreDetails": {
+            "gentle": "This keeps the chapter from reducing learning to technical repair alone. The company has to inspect the way work is organized.",
+            "direct": "A team can look productive while fixing symptoms if it never addresses the conditions that make similar incidents recur.",
+            "competitive": "Patch the code all you want. If the handoff, review, or escalation path is broken, the factory stays open."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Quality and learning speed must be balanced rather than forced into a false choice.",
+            "direct": "The chapter rejects both careless speed and bureaucratic process growth.",
+            "competitive": "Move fast enough to learn, but not so blindly that the same failure keeps billing you."
+          },
+          "moreDetails": {
+            "gentle": "Good process supports quality without making the startup too slow to keep learning.",
+            "direct": "Process is useful only if it helps the organization repair intelligently without freezing adaptation.",
+            "competitive": "The right system is strong enough to catch repeats and light enough to keep moving."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Adaptation is a form of internal learning, not just external customer feedback.",
+            "direct": "The startup should use recurring failures as evidence about how the organization itself is built.",
+            "competitive": "The company needs a mirror inside the building, not only a dashboard outside it."
+          },
+          "moreDetails": {
+            "gentle": "This expands the learning loop from product outcomes to organizational behavior.",
+            "direct": "The chapter says the business should let failures teach it about its own process design and management habits.",
+            "competitive": "If only customers are allowed to teach the company, the company's own mistakes stay undereducated."
+          }
+        }
+      ],
+      "activationPrompt": {
+        "gentle": "Pick one recurring problem in a team or project and ask what human-system condition may be helping it return.",
+        "direct": "Take one repeated failure and run a Five Whys conversation that goes beyond the immediate technical event.",
+        "competitive": "Choose one problem your group keeps calling a one-off and force it to name the system that keeps reviving it."
+      },
+      "selfCheckPrompts": [
+        {
+          "gentle": "Why does Chapter 11 say adaptation is about more than fixing the latest bug?",
+          "direct": "How does Ries turn recurring failure into evidence about the organization itself?",
+          "competitive": "Why is the bug often only the most visible witness, not the whole crime?"
+        },
+        {
+          "gentle": "What makes the Five Whys useful in this chapter?",
+          "direct": "How does repeated root-cause questioning shift attention from surface incidents to human systems?",
+          "competitive": "Why does the room get smarter only after it stops worshipping the latest defect?"
+        }
+      ],
+      "predictionPrompt": {
+        "gentle": "If a company learns how to adapt internally, what challenge comes next for innovation in larger organizations?",
+        "direct": "How does Chapter 11 set up the problem of innovation inside established companies?",
+        "competitive": "Once the company can diagnose itself, what keeps a big organization from crushing new learning anyway?"
+      },
+      "oneMinuteRecap": {
+        "retrieve": {
+          "gentle": "What does an adaptive organization do in this chapter?",
+          "direct": "What definition of adaptation does Ries give here?",
+          "competitive": "What kind of company gets stronger instead of merely busier after repeated failure?"
+        },
+        "connect": {
+          "gentle": "Why does the chapter connect recurring technical problems to human systems?",
+          "direct": "How does the Five Whys move the diagnosis below the latest incident?",
+          "competitive": "Why is the team often repairing a symptom while the machine that makes symptoms stays alive?"
+        },
+        "preview": {
+          "gentle": "What problem about innovation inside established companies follows this chapter?",
+          "direct": "How does adaptation lead into the next chapter's innovation question?",
+          "competitive": "Once the organization learns to diagnose itself, what bigger-company obstacle comes into view?"
+        }
+      }
+    },
+    "hard": {
+      "chapterBreakdown": {
+        "gentle": "A company can become more operationally mature and still stay strangely stupid about repeated failure. Eric Ries uses Chapter 11 to expose that contradiction. The same incident keeps returning, but the organization keeps treating it as a fresh surprise instead of as feedback about its own design.\n\nThat is why adaptation matters here. An adaptive organization improves process and quality through feedback loops without slowing learning to a halt. The goal is not simply to create more rules. The goal is to build a company that can let error teach it before the price of repetition becomes normal.\n\nThe Five Whys becomes the chapter's most important tool because it resists the temptation to stop at the nearest technical explanation. Asking repeatedly what made the failure possible pushes the investigation toward the conditions surrounding the work. That is where recurring causes often live.\n\nThose causes are frequently human systems. Ownership may be too diffuse for anyone to notice warning signs. Escalation paths may be unclear. Managers may reward local speed but never pay attention to the repair cost of recurring defects. A technical incident can therefore be real while still being only the last visible expression of a much more organizational problem.\n\nThe chapter's tension is sharp because both extremes fail. If the company resists process entirely, it keeps relearning the same lesson in expensive ways. If it adds process that ignores learning speed, it hardens into bureaucracy and mistakes caution for intelligence. Adaptive organizations have to become disciplined without becoming frozen.\n\nThe deeper question underneath the chapter is uncomfortable: why do organizations keep diagnosing recurring failures as isolated technical events when those failures so often reveal weakness in human systems? Ries implies that the local diagnosis is emotionally easier. It protects status, avoids political discomfort, and lets the team feel productive quickly. But that comfort keeps the organization loyal to repetition.\n\nChapter 11 therefore turns quality work into moral and managerial work. Feedback loops, postmortems, and root-cause questioning are not neutral techniques. They are ways of deciding whether the company wants truth badly enough to let its own structure be criticized. Chapter 12 extends that question into a larger arena by asking how established companies can create protected space for innovation instead of letting the core system crush it.",
+        "direct": "Ries uses Chapter 11 to argue that adaptive organizations improve process and quality through feedback loops without turning process into the enemy of learning. The chapter focuses on repeated failure because repetition reveals whether the company is genuinely learning or merely repairing symptoms.\n\nThe Five Whys matters because it pushes the team below the immediate incident. By repeatedly asking what made the failure possible, the organization can move from the latest bug or outage to the system conditions that keep similar incidents likely.\n\nThose conditions are often human systems rather than technical details alone. Ownership, communication, review structure, escalation, incentives, and staffing patterns can all make recurring failure more likely. If the company fixes only the latest technical expression, it may stay active while preserving the system that will produce the next breakdown.\n\nThat is why Chapter 11 refuses the lazy tradeoff between quality and speed. Process is useful when it helps the company learn, adapt, and stop paying repeatedly for the same avoidable mistake. Process becomes harmful when it grows into bureaucracy that slows learning more than it improves quality.\n\nThe chapter's hardest edge is diagnostic and political. Organizations often prefer the local technical explanation because it is easier to discuss, easier to assign, and easier to close. A human-system explanation may implicate leadership habits or organizational design. Ries keeps that discomfort alive because adaptation requires a company to let recurring failure criticize the way the company itself is run.\n\nThis makes Chapter 11 a chapter about internal truth-telling. The startup should build feedback loops that expose not only product weakness but organizational weakness. Chapter 12 follows by asking how established firms can preserve that kind of learning while protecting innovation from the demands of the existing business.",
+        "competitive": "The team says the outage is fixed, but the same class of outage keeps coming back and everyone still wants to call it unlucky. Ries uses Chapter 11 to say what the room is avoiding: recurring technical pain is often evidence that the human system behind the work is weak.\n\nAdaptive organizations are hard because they have to improve process and quality without letting process congeal into bureaucracy. The mission is not compliance theater. The mission is to stop the startup from paying over and over for lessons it already had the chance to learn.\n\nThat is where the Five Whys earns its place. Keep asking what made the incident possible, and the answer often moves away from the code alone. Weak ownership, fragile handoffs, lazy escalation, incentive mistakes, and management blind spots start appearing. The defect is real, but the system that keeps inviting the defect is just as real.\n\nThe chapter's balance is unforgiving. Too little process leaves the company operationally reckless and doomed to repeat itself. Too much process slows learning until quality itself becomes a sluggish excuse. Adaptive organizations do not choose one failure mode over the other. They fight to stay disciplined enough to learn and light enough to move.\n\nRies also forces a harsher question: why does the organization keep protecting the local diagnosis when recurring failure is obviously pointing at the system? Because the local diagnosis is cheaper socially. It lets leaders avoid self-critique, lets teams close the meeting faster, and lets everyone feel busy instead of accountable. That comfort is exactly what adaptation has to break.\n\nChapter 11 is therefore about more than root-cause technique. It is about whether the company wants truth enough to let its own structure become the object of scrutiny. Chapter 12 then asks how a bigger company can preserve room for innovation when its core system is powerful enough to suffocate new learning by default."
+      },
+      "keyTakeaways": [
+        {
+          "point": {
+            "gentle": "Adaptive organizations improve quality and process without freezing learning.",
+            "direct": "The chapter defines adaptation as disciplined internal feedback rather than rule accumulation alone.",
+            "competitive": "A serious company gets smarter without turning itself to stone."
+          },
+          "moreDetails": {
+            "gentle": "The chapter is not asking for procedure for its own sake. It is asking the business to stop repeating avoidable mistakes while it keeps learning.",
+            "direct": "Feedback loops matter because the organization itself needs a way to improve as complexity rises.",
+            "competitive": "If every fix adds weight but no wisdom, the system is aging badly."
+          }
+        },
+        {
+          "point": {
+            "gentle": "The Five Whys pushes diagnosis beneath the latest incident.",
+            "direct": "Repeated root-cause questioning makes the team search for the conditions that produced the failure.",
+            "competitive": "Keep asking why until the answer stops flattering the room."
+          },
+          "moreDetails": {
+            "gentle": "This matters because a recurring problem may not be explained by the last visible event.",
+            "direct": "The method turns incidents into investigations of how the work environment itself is set up.",
+            "competitive": "The bug is often the symptom the system uses to announce itself."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Recurring technical failures often reveal weakness in human systems.",
+            "direct": "The chapter says repeated incidents often come from organizational causes such as ownership, incentives, or handoff design.",
+            "competitive": "When the error repeats, the org chart is probably on the stack trace too."
+          },
+          "moreDetails": {
+            "gentle": "This keeps the lesson from shrinking into a technical debugging rule. The company has to inspect how people and responsibilities are arranged.",
+            "direct": "A team can fix symptoms repeatedly while preserving the system conditions that manufacture them.",
+            "competitive": "If the review path, escalation route, or reward system keeps shaping bad behavior, the next incident is already warming up."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Quality and speed are in tension, but neither bureaucracy nor recklessness solves it.",
+            "direct": "The chapter rejects the false choice between learning speed and process discipline.",
+            "competitive": "Move too carelessly and you repeat yourself; move too cautiously and you calcify."
+          },
+          "moreDetails": {
+            "gentle": "Good process keeps the startup from paying for repeated mistakes without making it too slow to respond and improve.",
+            "direct": "The company needs enough discipline to preserve learning and enough agility to keep learning alive.",
+            "competitive": "The right process catches repeats without embalming motion."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Organizations often prefer local technical diagnoses because deeper system diagnoses are harder.",
+            "direct": "The chapter keeps the political and emotional cost of human-system truth in view.",
+            "competitive": "The room loves the bug explanation because the bug cannot challenge management."
+          },
+          "moreDetails": {
+            "gentle": "A deeper diagnosis may expose leadership habits or process design that people would rather not question.",
+            "direct": "Recurring failure becomes valuable only when the organization lets it criticize the way the organization itself is run.",
+            "competitive": "The team can stay busy fixing symptoms forever if it is allergic to structural embarrassment."
+          }
+        }
+      ],
+      "activationPrompt": {
+        "gentle": "Notice one repeated failure pattern and ask which human-system condition makes it likely to return.",
+        "direct": "Run a Five Whys exercise on a recurring problem and stop only when the organizational conditions become visible.",
+        "competitive": "Pick one problem your team keeps pretending is random and make the system confess."
+      },
+      "selfCheckPrompts": [
+        {
+          "gentle": "Why does the chapter say repeated failure should teach the organization about itself?",
+          "direct": "How does Ries turn recurring incidents into evidence about internal design?",
+          "competitive": "Why is the company itself often the missing cause in the postmortem?"
+        },
+        {
+          "gentle": "Why are local technical explanations so tempting?",
+          "direct": "What political or emotional function does the surface diagnosis serve?",
+          "competitive": "Why does the room keep choosing the explanation that embarrasses the org least?"
+        }
+      ],
+      "predictionPrompt": {
+        "gentle": "What problem about innovation in established companies comes after this kind of adaptation?",
+        "direct": "How does internal adaptive discipline prepare the next chapter's question about established firms?",
+        "competitive": "If a company can finally diagnose itself, what happens when a bigger core business starts crushing new learning?"
+      },
+      "oneMinuteRecap": {
+        "retrieve": {
+          "gentle": "What makes an organization adaptive in this chapter?",
+          "direct": "What role do feedback loops and process play here?",
+          "competitive": "What keeps a company from paying forever for lessons it already met?"
+        },
+        "connect": {
+          "gentle": "Why does the Five Whys lead toward human systems instead of stopping at the bug?",
+          "direct": "How do recurring incidents expose organizational causes?",
+          "competitive": "Why does the stack trace often continue into the org chart?"
+        },
+        "preview": {
+          "gentle": "What bigger-company innovation problem follows this chapter?",
+          "direct": "How does Chapter 11 set up Chapter 12?",
+          "competitive": "Once adaptation is internalized, what does a big firm's core business threaten next?"
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "exampleId": "ch11-ex01-recurring-bug-board",
+      "title": "Maya Sees the Same Bug Return for the Third Sprint",
+      "category": "work",
+      "format": "decision_point",
+      "endingType": "broader_principle",
+      "contexts": [
+        "incident review",
+        "recurring defect",
+        "team process"
+      ],
+      "scenario": {
+        "gentle": "Maya notices that the same bug category has reappeared on the sprint board again. The team can patch it quickly, but she suspects the pattern means something deeper is wrong in the way work is handed off and reviewed.",
+        "direct": "Maya realizes the repeated defect is probably not just a coding accident. The team has to decide whether to stop at the patch or inspect the system around the patch.",
+        "competitive": "The ticket looks new, but the wound is old. Maya can either fix the symptom again or ask what machine keeps printing it."
+      },
+      "whatToDo": {
+        "gentle": "Use the recurring bug as a signal to ask what process condition keeps making it likely.",
+        "direct": "Run a deeper root-cause review instead of treating the defect as another isolated event.",
+        "competitive": "Do not worship the patch. Make the system explain itself."
+      },
+      "whyItMatters": {
+        "gentle": "The chapter says repeated technical pain often points toward human systems.",
+        "direct": "This example makes adaptation concrete by shifting attention from the latest bug to the organization's habits.",
+        "competitive": "If the defect keeps respawning, the team process is probably writing sequels."
+      }
+    },
+    {
+      "exampleId": "ch11-ex02-jordan-five-whys-whiteboard",
+      "title": "Jordan Leads a Five Whys Session in a Campus Ops Review",
+      "category": "school",
+      "format": "dialogue",
+      "endingType": "reframe",
+      "contexts": [
+        "student operations",
+        "whiteboard analysis",
+        "root cause"
+      ],
+      "scenario": {
+        "gentle": "Jordan's student team keeps missing equipment handoffs for a campus event. Instead of blaming the latest volunteer, Jordan writes five successive why questions on a whiteboard and the group starts seeing flaws in scheduling and ownership.",
+        "direct": "The conversation moves from a single missed handoff to the student system that made confusion normal. Jordan uses the Five Whys to push the room past blame and toward design.",
+        "competitive": "Jordan refuses to let the team sacrifice one volunteer to a process failure. The whiteboard keeps asking why until the system starts sweating."
+      },
+      "whatToDo": {
+        "gentle": "Keep asking what made the latest miss likely until the group reaches the process behind it.",
+        "direct": "Use root-cause questioning to expose ownership and scheduling failures instead of stopping at the visible mistake.",
+        "competitive": "Drag the problem past the volunteer and into the machinery that set the volunteer up."
+      },
+      "whyItMatters": {
+        "gentle": "The chapter presents the Five Whys as a learning tool, not a blame ritual.",
+        "direct": "This scenario shows how repeated questioning can turn a local mistake into organizational learning.",
+        "competitive": "The room gets smarter when the why chain stops flattering the first obvious culprit."
+      }
+    },
+    {
+      "exampleId": "ch11-ex03-luis-speed-vs-process",
+      "title": "Luis Worries Process Will Slow His Startup to a Crawl",
+      "category": "personal",
+      "format": "dilemma",
+      "endingType": "inner_shift",
+      "contexts": [
+        "founder anxiety",
+        "speed tension",
+        "quality discipline"
+      ],
+      "scenario": {
+        "gentle": "Luis knows his team is repeating mistakes, but every suggestion about process makes him fear that the company will become slow and heavy. He feels trapped between carelessness and bureaucracy.",
+        "direct": "Luis is living the chapter's main tension. He needs enough process to stop paying repeatedly for the same failures, but not so much process that learning freezes.",
+        "competitive": "Luis is stuck between two bad gods: chaos and sludge."
+      },
+      "whatToDo": {
+        "gentle": "Build only the feedback-rich process that helps the team learn from repeated problems.",
+        "direct": "Treat process as a tool for preserving learning and quality rather than as a sign of maturity by itself.",
+        "competitive": "Install guardrails, not concrete shoes."
+      },
+      "whyItMatters": {
+        "gentle": "The chapter says quality and speed must be balanced instead of treated as enemies.",
+        "direct": "This example turns the process-versus-learning tension into a founder decision.",
+        "competitive": "The startup dies one way by repeating itself and another way by freezing itself."
+      }
+    },
+    {
+      "exampleId": "ch11-ex04-priya-postmortem-human-system",
+      "title": "Priya's Postmortem Finds the Outage Was Built Into the Team System",
+      "category": "work",
+      "format": "postmortem",
+      "endingType": "warning",
+      "contexts": [
+        "service outage",
+        "postmortem",
+        "human systems"
+      ],
+      "scenario": {
+        "gentle": "Priya's team reviews another service outage and notices that the same escalation confusion has appeared before. The postmortem shows the outage was worsened by unclear ownership and weak review paths, not just by one faulty change.",
+        "direct": "Priya sees the technical trigger, but the repeated escalation breakdown points to a human-system problem. Fixing the code alone would leave the next outage half-built already.",
+        "competitive": "The code lit the fire, but the org chart stacked the wood."
+      },
+      "whatToDo": {
+        "gentle": "Repair the organizational conditions alongside the technical defect.",
+        "direct": "Treat the recurring incident as evidence about ownership and escalation design, not only about implementation.",
+        "competitive": "Patch the code and redesign the hallway the failure keeps running through."
+      },
+      "whyItMatters": {
+        "gentle": "The chapter says recurring technical failures often trace back to human systems.",
+        "direct": "This example shows why repeated incidents should criticize the organization itself.",
+        "competitive": "If the postmortem stops at code, the next outage keeps its reservation."
+      }
+    },
+    {
+      "exampleId": "ch11-ex05-evan-lab-checklist",
+      "title": "Evan Keeps Blaming Students for a Lab Failure Pattern",
+      "category": "school",
+      "format": "predict_reveal",
+      "endingType": "surprise_cost",
+      "contexts": [
+        "lab operations",
+        "checklist failure",
+        "recurring error"
+      ],
+      "scenario": {
+        "gentle": "Evan's campus lab sees the same setup mistake across multiple student groups. At first he thinks each group is just careless, but the reveal is that the checklist and handoff instructions leave the crucial step too vague every time.",
+        "direct": "The repeated student error turns out to be a process-design failure. Evan learns that blaming individuals was hiding the same system problem in plain sight.",
+        "competitive": "The lab keeps accusing students of sloppiness until the checklist itself is caught committing the crime."
+      },
+      "whatToDo": {
+        "gentle": "Inspect the repeated environment and instructions before blaming each new participant.",
+        "direct": "Use recurring mistakes as evidence about process clarity and setup design.",
+        "competitive": "Interrogate the checklist before you prosecute the next student."
+      },
+      "whyItMatters": {
+        "gentle": "The chapter warns that recurring failures are often system signals rather than isolated accidents.",
+        "direct": "This scenario shows how human systems can hide behind repeated individual blame.",
+        "competitive": "A repeated mistake usually means the system has learned how to frame people for it."
+      }
+    },
+    {
+      "exampleId": "ch11-ex06-tessa-from-blame-to-learning",
+      "title": "Tessa Changes Her Team From Fast Blame to Slow Learning",
+      "category": "personal",
+      "format": "before_after",
+      "endingType": "clarified_path",
+      "contexts": [
+        "team leadership",
+        "organizational learning",
+        "adaptation"
+      ],
+      "scenario": {
+        "gentle": "Before, Tessa's team rushed to close incidents by naming the nearest mistake and moving on. After adopting a more adaptive approach, the team started asking what habits and structures made those mistakes keep returning.",
+        "direct": "Tessa moves the group from quick blame to feedback-driven organizational learning. The work becomes slower at the moment of diagnosis but smarter over time.",
+        "competitive": "Tessa stops rewarding the fastest culprit and starts rewarding the first honest look at the system."
+      },
+      "whatToDo": {
+        "gentle": "Turn recurring failures into chances to improve the way the team works, not just the way it patches.",
+        "direct": "Use incidents to revise ownership, communication, and process where needed.",
+        "competitive": "Make the lesson expensive once, then teach the system so it does not buy the same lesson again."
+      },
+      "whyItMatters": {
+        "gentle": "The chapter treats adaptation as disciplined internal learning.",
+        "direct": "This example captures the shift from incident closure to organizational improvement.",
+        "competitive": "A team grows up when the postmortem starts changing the people-system, not only the bug count."
+      }
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "What does an adaptive organization do in Chapter 11?",
+        "choices": [
+          "It improves process and quality through feedback loops without stopping learning",
+          "It removes all process so teams can move faster",
+          "It focuses only on customer feedback and ignores internal failures"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "The chapter says adaptation improves process and quality while keeping learning alive.",
+          "direct": "Ries defines adaptive organizations through feedback loops that do not turn into bureaucratic slowdown.",
+          "competitive": "Adaptive companies add intelligence, not just drag."
+        },
+        "bloomsLevel": "remember-understand",
+        "depthLevel": "easy"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "Why does Chapter 11 use the Five Whys?",
+        "choices": [
+          "To assign blame more precisely after a failure",
+          "To move below the surface incident toward deeper causes",
+          "To replace all other forms of quality work"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "The Five Whys helps the team keep asking what made the failure likely.",
+          "direct": "The method matters because it shifts diagnosis from the immediate defect to the conditions behind it.",
+          "competitive": "It keeps the room from hiding behind the last visible bug."
+        },
+        "bloomsLevel": "understand",
+        "depthLevel": "easy"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "A bug has reappeared for the third time. What does Chapter 11 suggest the team should suspect?",
+        "choices": [
+          "That recurring failure may point to a human-system problem as well as a technical one",
+          "That repetition proves the bug is impossible to understand",
+          "That the team should avoid discussing process until the product is larger"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "The chapter says repeated technical problems often signal deeper organizational causes.",
+          "direct": "A recurring defect should raise questions about ownership, handoffs, review, or incentives rather than only about the code itself.",
+          "competitive": "If the failure keeps coming back, the org chart may be helping write it."
+        },
+        "bloomsLevel": "apply",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "In Jordan's campus ops scenario, what did the Five Whys reveal?",
+        "choices": [
+          "That one volunteer should be removed from the team",
+          "That the missed handoff pointed toward scheduling and ownership flaws",
+          "That student groups should avoid postmortems"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "The repeated questions exposed process problems rather than only an individual's mistake.",
+          "direct": "Jordan used the Five Whys to trace the missed handoff toward organizational design flaws.",
+          "competitive": "The whiteboard moved the blame target from a volunteer to the system."
+        },
+        "bloomsLevel": "apply-analyze",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "What false choice does Chapter 11 reject?",
+        "choices": [
+          "That teams must choose either quality or speed with no balance possible",
+          "That teams must choose either hiring or training",
+          "That teams must choose either customers or revenue"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "The chapter says process should improve quality without freezing learning.",
+          "direct": "Ries rejects the idea that quality discipline and learning speed are natural enemies.",
+          "competitive": "The goal is not chaos or sludge. It is disciplined motion."
+        },
+        "bloomsLevel": "analyze",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "Why can a team stay busy and still fail to adapt?",
+        "choices": [
+          "Because fixing symptoms can leave the system that creates them untouched",
+          "Because adaptation requires avoiding all repairs",
+          "Because only founders can change process"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "The chapter warns that visible effort can hide repeated shallow diagnosis.",
+          "direct": "A team may patch each incident while preserving the human-system conditions that make similar incidents likely.",
+          "competitive": "Busy hands can keep the symptom alive if the system never gets questioned."
+        },
+        "bloomsLevel": "understand-analyze",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "How could a nonprofit, campus group, or small team apply Chapter 11 well?",
+        "choices": [
+          "By treating recurring errors as feedback about how the group is organized",
+          "By assuming only software companies need root-cause learning",
+          "By avoiding process changes until failure becomes severe"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "The chapter's logic works anywhere repeated mistakes can reveal a weak process.",
+          "direct": "Adaptation is transferable because any organization can use recurring failure to inspect ownership, handoffs, and incentives.",
+          "competitive": "Mission does not exempt the system from blame."
+        },
+        "bloomsLevel": "transfer",
+        "depthLevel": "hard"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "What is wrong with a postmortem that patches only the technical trigger and stops there?",
+        "choices": [
+          "It is always too expensive to run",
+          "It may miss the human-system causes that keep similar incidents recurring",
+          "It proves the incident was not serious"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "The chapter says recurring technical failures often point deeper than the immediate trigger.",
+          "direct": "Stopping at code can leave ownership, escalation, communication, or review failures untouched.",
+          "competitive": "Fix the spark only and the dry forest stays on duty."
+        },
+        "bloomsLevel": "analyze-evaluate",
+        "depthLevel": "hard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "Why do organizations keep misdiagnosing recurring failure as isolated technical trouble?",
+        "choices": [
+          "Because deeper human-system diagnoses are often socially and politically harder",
+          "Because recurring failure always has a random cause",
+          "Because process questions are unrelated to learning"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "The deeper diagnosis can be uncomfortable because it may challenge how the group works.",
+          "direct": "A local technical explanation is easier to discuss and close than a diagnosis that implicates leadership or organizational design.",
+          "competitive": "The room prefers the bug explanation because the bug cannot embarrass the org."
+        },
+        "bloomsLevel": "evaluate",
+        "depthLevel": "hard"
+      },
+      {
+        "questionId": "q10",
+        "prompt": "How does Chapter 11 connect to Chapter 12?",
+        "choices": [
+          "Chapter 12 asks how established companies can protect innovation once adaptation and internal learning matter",
+          "Chapter 12 abandons organizational learning and returns only to customer interviews",
+          "Chapter 12 argues that established companies should stop innovating"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "After adaptation inside the company, the next question is how bigger firms keep innovation alive.",
+          "direct": "Chapter 11 leads into the problem of preserving room for learning and innovation in established organizations.",
+          "competitive": "Once the org can diagnose itself, the next threat is the core business crushing new learning."
+        },
+        "bloomsLevel": "connect-transfer",
+        "depthLevel": "hard"
+      }
+    ]
+  },
+  "implementationPlan": {
+    "coreSkill": {
+      "gentle": "The core skill is using recurring failure as feedback about the organization instead of only about the latest defect.",
+      "direct": "Core skill: run root-cause learning deeply enough to reach the human system behind repeated failure.",
+      "competitive": "Core skill: make the system answer for the bugs it keeps helping create."
+    },
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": {
+          "gentle": "If our team sees the same issue return, then we will ask what process or ownership condition keeps making it likely.",
+          "direct": "If an incident pattern repeats, then I will push the review below the immediate trigger and into the system around the work.",
+          "competitive": "If the bug comes back, I will interrogate the machine that keeps inviting it."
+        }
+      },
+      {
+        "context": "school",
+        "plan": {
+          "gentle": "If a student group keeps making the same operational mistake, then we will inspect the checklist, handoff, and ownership design.",
+          "direct": "If a campus team blames individuals repeatedly, then we will use the Five Whys to test whether the process is the real repeat offender.",
+          "competitive": "If the same student error keeps appearing, I will put the system on trial before the next volunteer."
+        }
+      },
+      {
+        "context": "personal",
+        "plan": {
+          "gentle": "If I fear that process will slow everything down, then I will add only the discipline that helps me stop repeating the same mistakes.",
+          "direct": "If I feel trapped between speed and quality, then I will ask what minimal feedback loop would preserve learning without adding sludge.",
+          "competitive": "If I am choosing between chaos and bureaucracy, I will build guardrails instead of concrete shoes."
+        }
+      }
+    ],
+    "twentyFourHourChallenge": {
+      "gentle": "Within the next day, choose one repeated problem and write one human-system cause that may be helping it return.",
+      "direct": "Today, run a short Five Whys review on one recurring issue and name the organizational condition underneath it.",
+      "competitive": "In 24 hours, force one repeat failure to confess which system keeps sheltering it."
+    },
+    "weeklyPractice": {
+      "gentle": "For one week, notice each time a group blames a repeated failure on a one-off mistake without checking the process behind it.",
+      "direct": "Spend seven days catching local diagnoses that protect deeper organizational causes from scrutiny.",
+      "competitive": "This week, hunt every meeting where the bug gets blamed so the system can escape."
+    }
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch11-rc01",
+      "front": {
+        "gentle": "What makes an organization adaptive in this chapter?",
+        "direct": "How does Ries define adaptation here?",
+        "competitive": "What kind of company gets smarter instead of merely busier after failure?"
+      },
+      "back": {
+        "gentle": "An adaptive organization improves process and quality through feedback loops without stopping learning.",
+        "direct": "Adaptation means internal feedback that strengthens quality and process while preserving learning speed.",
+        "competitive": "It is a company that upgrades its system without strangling motion."
+      },
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch11-rc02",
+      "front": {
+        "gentle": "Why does the Five Whys matter in Chapter 11?",
+        "direct": "What job does repeated root-cause questioning do here?",
+        "competitive": "Why keep asking why when the bug already looks obvious?"
+      },
+      "back": {
+        "gentle": "It helps the team move beneath the latest incident toward deeper causes.",
+        "direct": "The Five Whys turns a surface failure into a search for the system conditions behind it.",
+        "competitive": "It keeps the room digging until the system, not just the symptom, becomes visible."
+      },
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch11-rc03",
+      "front": {
+        "gentle": "What do recurring technical failures often point toward?",
+        "direct": "What deeper target does the chapter keep returning to?",
+        "competitive": "What else is usually on the stack trace besides the code?"
+      },
+      "back": {
+        "gentle": "They often point toward human systems such as ownership, communication, or process design.",
+        "direct": "Repeated incidents commonly signal organizational causes rather than isolated technical accidents alone.",
+        "competitive": "The org chart is often helping write the failure."
+      },
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch11-rc04",
+      "front": {
+        "gentle": "How does Chapter 11 treat quality and speed?",
+        "direct": "What false tradeoff does the chapter reject?",
+        "competitive": "Why are chaos and sludge both wrong answers?"
+      },
+      "back": {
+        "gentle": "The chapter says quality and learning speed must be balanced.",
+        "direct": "Process should improve quality without freezing learning or becoming bureaucracy.",
+        "competitive": "Move fast enough to learn and disciplined enough to stop buying the same lesson twice."
+      },
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch11-rc05",
+      "front": {
+        "gentle": "What question does Chapter 11 prepare the reader to ask next?",
+        "direct": "How does this chapter connect to Chapter 12?",
+        "competitive": "Once the company can diagnose itself, what bigger problem appears?"
+      },
+      "back": {
+        "gentle": "It leads into how established companies can keep innovation alive.",
+        "direct": "The chapter sets up the problem of protecting innovation inside larger organizations.",
+        "competitive": "Once adaptation exists, the next fight is keeping the core business from crushing new learning."
+      },
+      "difficulty": "hard"
+    }
+  ],
+  "keyTakeawayCard": {
+    "gentle": "Chapter 11 says adaptive organizations use feedback loops and root-cause learning to improve quality without killing learning speed.",
+    "direct": "Ries treats recurring failure as evidence about the human system behind the work, not only about the latest defect.",
+    "competitive": "Stop patching the same pain and make the organization answer for the way it keeps rebuilding it."
+  }
+}

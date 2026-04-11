@@ -1,0 +1,51 @@
+{
+  "nameUsage": {},
+  "formatCategoryHistory": [],
+  "schoolSettingUsage": {},
+  "wordFrequency": {},
+  "phraseFrequency": {},
+  "openerRegistry": {
+    "gentle": {},
+    "direct": {},
+    "competitive": {}
+  },
+  "titleTemplateRegistry": {},
+  "endingPatternRegistry": {},
+  "withinChapterNames": {},
+  "approvedChapterHashes": {
+    "ch01": "3acb01e2c3e5e67324e25babfbfcc5178f87d475ad0ed9e40ee46e0bca760c18",
+    "ch02": "17597999e26050aaa39aed5a9071a2f3198da4d4f77d434db6a9717d4c740ace",
+    "ch03": "0e2dff91ce53388b4a307e3c8bdddb4fdccfe78b7e0b3211575cd28e926d43b9",
+    "ch04": "a4bcaca833a02d516cb8dc09e04aac910eaa39b3abe7765621aad339031c3628",
+    "ch05": "54af5b69ab2889eda67811f961a1572685aeecc9d774b4e8310ea251b3c7718b",
+    "ch06": "6ecf4dbbeeaa79ec3dff39860bb945db12c3f0f5a64149aeac0155c38538ed71",
+    "ch07": "33aee0ad7c1b0d4509ae95fb673ebd42385fd9bd5c0d65bd1bfab609b34b2cfd",
+    "ch08": "ec45bd5b2791343786927542ee9db225e55a848be6297ae599f7c47e538b0491",
+    "ch09": "8e2e1495d26e89be60fb3674ee258c9d74625b813a7d140bc5e59445ecbb4595",
+    "ch10": "cc34dbe3a57ca15fbc85f61666d73ac52594bddc4c2ac32bec17bb95c8b00b03",
+    "ch11": "43693f09f11fb2af649768ada3f0c40ddef21ebf74ac6d76064a6eb1787e4be7",
+    "ch12": "78c1335e863fe6814893b13ef6672279c2448ee52d58789c15702aa68c098656",
+    "ch13": "691114c4e905e9788e68e63bb305beccb97a26646aa4b646d8d14c25cff40fe8",
+    "ch14": "7f71b3bbad31418ac4201c941df1ff85e824bbc6c0f6f2c4e5e6b654e1189245",
+    "ch15": "934f5e4204130d6627fad148469341bda1ccc6ad2cf2f8d706e3095679b72ee9",
+    "ch16": "dfad7393ec23d7e59e7604293202eb025e21e9e1f199d6a4a0392a0529f32a5d",
+    "ch17": "1e91d58ad1079e36079923c1d05f0ac93e3454bbbe7883d6e7240b5b9320f638",
+    "ch18": "0247b9d9fb04ffba741b3172a3b1ecbc8577cfee5e3b6430599329f681f4a716",
+    "ch19": "a4fa891aba25813e6dad70e366acfdd208b61b3b4e353d8c9b4d2ce6b8be5dda",
+    "ch20": "aff119bb02b986a4c8130938d4ba1c262977432aee747bd3c55fdce59d7a24ad",
+    "ch21": "caf0db7525e9a199f22a5d472b1650194ff119665580a7bfb7868576c7bb2195",
+    "ch22": "36d12cdd7493cd9325f76f539cadeb5b84245fde85ce76e9899936f685e0cbd6",
+    "ch23": "dd5a716426edddf06c8b366f344856249122ff5469b9d19d43f435048ab2d023",
+    "ch24": "fd26d7421468e855c33de2226ede4bc4203f6e322ccf4f2db5aa0cfef9849cad",
+    "ch25": "6e102574e8378b28111803d9c6de438587179bc64147ffb5c4a63b703de7e0d3"
+  },
+  "baselineQuality": {
+    "baselineChapters": [
+      "ch01",
+      "ch02"
+    ],
+    "chapter1CriticScore": 10,
+    "chapter2CriticScore": 10,
+    "status": "floor_set"
+  }
+}

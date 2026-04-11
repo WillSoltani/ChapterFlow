@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0.0",
+  "bookId": "the-lean-startup",
+  "runId": "20260410-152715",
+  "createdAt": "2026-04-10T15:30:13Z",
+  "title": "The Lean Startup",
+  "author": "Eric Ries",
+  "selectionMode": "auto_locked",
+  "editionPreference": "ask_if_ambiguous",
+  "lockedEdition": {
+    "name": "2011 English Crown Business / Portfolio Penguin trade family",
+    "translator": "",
+    "publishedYear": 2011,
+    "translationYear": null,
+    "isbn13": "9780670921607",
+    "chapterRange": "Introduction-14"
+  },
+  "decision": {
+    "ambiguous": false,
+    "reason": "The dominant English 2011 trade family presents a stable chapter map across Open Library, Google Books metadata, and secondary chapter summaries. No competing revised English edition surfaced that would materially change chapter order, titles, or scope.",
+    "tradeoffs": [
+      "No full public-domain text exists because the book remains under copyright.",
+      "Frozen support therefore relies on authorized bibliographic metadata, chapter map evidence, and narrow secondary chapter summaries."
+    ]
+  },
+  "sourceText": ".chapterflow/runs/the-lean-startup/20260410-152715/source-freeze/book-source.md",
+  "sourceProvenance": "Frozen web bundle only: Open Library chapter map and edition metadata, Google Books bibliographic confirmation, and paraphrase-first secondary chapter summaries. No exact quotes unless separately verified in the frozen bundle."
+}

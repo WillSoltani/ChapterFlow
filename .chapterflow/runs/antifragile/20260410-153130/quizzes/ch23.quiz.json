@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's main claim?",
+      "choices": [
+        "Ethics becomes credible when decision-makers share the downside they impose",
+        "Ethics is mainly about writing better principles",
+        "Skin in the game only matters in finance"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says real responsibility includes bearing the cost of being wrong.",
+        "direct": "Taleb argues that moral seriousness depends on consequence-bearing, not principle-talk alone.",
+        "competitive": "If the chooser never eats the tail, the ethics claim is weak."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why is optionality at others' expense a problem in the chapter?",
+      "choices": [
+        "Because all optionality is immoral",
+        "Because it lets one party keep upside while another involuntarily bears the downside",
+        "Because every risky decision should be banned"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter objects to one-sided exposure.",
+        "direct": "Taleb criticizes arrangements where gain and flexibility stay private while losses are shifted onto others.",
+        "competitive": "The scam is keeping the upside and drafting somebody else into the tail."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What limit keeps the chapter from becoming revenge language?",
+      "choices": [
+        "Taleb demands identical risk in every situation",
+        "Taleb argues for aligned consequence rather than punishment or perfect symmetry in every detail",
+        "Taleb says pain itself is morally purifying"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter is not worshipping punishment.",
+        "direct": "Taleb wants exposure tied to decisions, not a crude ritual of retaliation or impossible equality.",
+        "competitive": "The target is insulation, not theatrical suffering."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Elena sees leaders approve a policy while others would absorb the losses if it fails. Which response best fits the chapter?",
+      "choices": [
+        "Ask whether the leaders also share the downside they may create",
+        "Ignore the exposure issue because intentions matter more",
+        "Assume the structure is ethical if the leaders sound responsible"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter starts by asking who bears the cost.",
+        "direct": "Elena should test whether authority is connected to consequence rather than protected from it.",
+        "competitive": "Make the signers stand inside the blast radius before you salute the policy."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Which statement would the chapter reject most strongly?",
+      "choices": [
+        "Shared downside can discipline judgment",
+        "Skin in the game is an ethical test of seriousness",
+        "Moral language alone can make exported risk acceptable"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter rejects the idea that good wording excuses one-sided risk.",
+        "direct": "Taleb argues that abstract principle loses force when the actor is insulated from the cost of being wrong.",
+        "competitive": "A polished speech does not insure the tail."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "How does shared downside improve the system as well as the ethics?",
+      "choices": [
+        "It removes all uncertainty",
+        "It disciplines decision-making by making reckless authority more personally costly",
+        "It guarantees identical incentives for every person"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exposure makes people less free to impose careless risks on others.",
+        "direct": "Skin in the game narrows the gap between authority and consequence, filtering out some reckless decisions.",
+        "competitive": "A stake in the loss shuts down some cheap heroics."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Priya realizes she would not bear the cost of the risky advice she wants to give. What pattern is she applying?",
+      "choices": [
+        "A rejection of all advice",
+        "Skin in the game as an ethical check on one-sided exposure",
+        "A belief that every risky choice is immoral"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "She is checking whether recommendation and consequence stay connected.",
+        "direct": "Priya is applying the chapter's rule that advice becomes ethically weaker when the adviser is protected from the downside.",
+        "competitive": "She refuses to sell courage she would never personally insure."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why does the chapter care about exported downside?",
+      "choices": [
+        "Because it joins private gain to public loss and weakens both ethics and judgment",
+        "Because all gain is suspicious",
+        "Because perfect equality of risk is always available"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says one-sided exposure creates a bad moral and practical structure.",
+        "direct": "Exported downside matters because the chooser is rewarded without being corrected by the losses created by the choice.",
+        "competitive": "The setup rewards swagger and invoices the pain to someone else."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What deeper shift does the chapter ask from the reader?",
+      "choices": [
+        "Move from admiring moral language to testing whether authority shares the downside it creates",
+        "Treat all optionality as forbidden",
+        "Assume ethics is mainly a matter of intention"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter changes what counts as serious responsibility.",
+        "direct": "Taleb wants the reader to judge ethics through consequence-bearing rather than through principle-talk alone.",
+        "competitive": "Stop rewarding polished virtue and ask who lives under the tail."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How does this chapter lead into the next one?",
+      "choices": [
+        "It asks what professional ethics should look like if practitioners must be tied to real consequence",
+        "It replaces ethics with technical management",
+        "It abandons exposure and returns to abstract principle alone"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next chapter asks how professions should be shaped by shared downside.",
+        "direct": "The bridge moves from general skin in the game into professional norms fitted to consequence-bearing.",
+        "competitive": "After the rule lands, the codebook has to face the tail."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

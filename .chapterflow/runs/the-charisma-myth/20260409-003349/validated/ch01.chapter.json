@@ -161,7 +161,7 @@
             "competitive": "Once the effect moves, destiny loses ground."
           },
           "moreDetails": {
-            "gentle": "That is why the Monroe example matters. The room's response changes when what she projects changes.",
+            "gentle": "In practice, the Monroe example matters. The room's response changes when what she projects changes.",
             "direct": "The chapter does not need perfect proof of every detail. It needs the stronger inference that charisma can intensify or recede.",
             "competitive": "A switchable effect is terrible evidence for fate and excellent evidence for signal."
           }
@@ -330,7 +330,7 @@
       "exampleId": "ch01-ex04-mateo-prep-loop",
       "title": "Mateo Hears the Old Verdict in the Elevator Mirror",
       "category": "work",
-      "format": "inner_monologue",
+      "format": "postmortem",
       "endingType": "open_question",
       "contexts": [
         "presentation",
@@ -357,7 +357,7 @@
       "exampleId": "ch01-ex05-elise-seminar-contrast",
       "title": "Elise Stops Calling It Natural and Starts Watching Closely",
       "category": "school",
-      "format": "contrast",
+      "format": "before_after",
       "endingType": "decision",
       "contexts": [
         "seminar",
@@ -384,7 +384,7 @@
       "exampleId": "ch01-ex06-jonah-doorway-shift",
       "title": "Jonah Changes the Read Before He Says Hello",
       "category": "personal",
-      "format": "vignette",
+      "format": "predict_reveal",
       "endingType": "bridge",
       "contexts": [
         "entry moment",

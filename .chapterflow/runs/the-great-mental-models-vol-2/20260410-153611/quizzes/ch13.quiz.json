@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch13-q01",
+      "prompt": "What does ecosystem mean in the chapter's practical sense?",
+      "choices": [
+        "A shared environment of connected parts affecting one another",
+        "A collection of separate actors working near each other",
+        "Any group that uses the same vocabulary"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter treats an ecosystem as a connected environment, not a pile of isolated pieces.",
+        "direct": "Ecosystem means outcomes emerge through shared conditions and linked relationships.",
+        "competitive": "The field is connected, not sealed."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch13-q02",
+      "prompt": "Which detail best shows interdependence?",
+      "choices": [
+        "A schedule change that alters the morning routine for everyone else",
+        "One student feeling privately proud of a good grade",
+        "A team member renaming a personal folder"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Interdependence appears when one change affects shared conditions for others.",
+        "direct": "The schedule change matters because it spreads into other routines inside the same environment.",
+        "competitive": "One move bent the room for everybody else."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch13-q03",
+      "prompt": "Priya's household keeps changing after one earlier work shift. What is the best reading?",
+      "choices": [
+        "The shift altered shared conditions, so the effect spread through the household",
+        "The chapter would say each person should be explained separately",
+        "The problem proves routines are always the wrong tool"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter sees the household as a connected environment.",
+        "direct": "The schedule change becomes system-wide because routines and timing are shared.",
+        "competitive": "One clock move rippled through the whole house."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch13-q04",
+      "prompt": "Why does Nadia's new dashboard matter beyond her own team?",
+      "choices": [
+        "Because every local improvement automatically helps everyone equally",
+        "Because the reporting change reshapes shared timing and expectations for other teams",
+        "Because the chapter says all dashboards create blame"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The dashboard changes conditions that other teams also have to work inside.",
+        "direct": "A local process change becomes system-wide when it alters shared constraints and rhythms.",
+        "competitive": "Her team moved and the field had to live with it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch13-q05",
+      "prompt": "How does the chapter distinguish isolated explanation from ecosystem explanation?",
+      "choices": [
+        "Isolated explanation ignores connected pathways, while ecosystem explanation includes relationships carrying the effect",
+        "Ecosystem explanation removes the original actor completely",
+        "There is no distinction because the most visible actor always tells the full story"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Ecosystem explanation widens the view to the shared environment and its pathways.",
+        "direct": "The chapter adds linked conditions and spillovers to the explanation instead of stopping at the focal actor.",
+        "competitive": "The full story includes the machinery that spread the move."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch13-q06",
+      "prompt": "A leader says, \"It is just the system, so no one is really responsible.\" What limit does the chapter emphasize?",
+      "choices": [
+        "System thinking should widen explanation without erasing accountability",
+        "The chapter agrees because complex environments remove ownership",
+        "Responsibility belongs only to whoever suffered the spillover"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps agency visible even while it widens the map.",
+        "direct": "Connected causes do not cancel ownership of the original move.",
+        "competitive": "The system is not an alibi."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch13-q07",
+      "prompt": "Which action best applies ecosystem thinking?",
+      "choices": [
+        "Stop the explanation at the first visible actor so accountability stays simple",
+        "Map the shared condition, the affected relationships, and the downstream changes",
+        "Assume every effect is too complex to trace clearly"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter asks you to trace how the effect travels through the system.",
+        "direct": "Ecosystem thinking becomes useful when it identifies pathways and second-order effects.",
+        "competitive": "Follow the ripple instead of worshipping the spark."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch13-q08",
+      "prompt": "Leo first blames one teammate for a robotics delay, but the postmortem reveals a sign-out bottleneck and missed handoff. Which response fits the chapter?",
+      "choices": [
+        "Ignore the shared pathway and keep the blame focused on one visible person",
+        "Treat the bottleneck and the handoff as part of the ecosystem carrying the effect",
+        "Conclude that no one involved made any mistake"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter asks him to include the shared pathway in the explanation.",
+        "direct": "The sign-out system and handoff are part of the cause because they transmitted the delay across the club.",
+        "competitive": "The bottleneck helped move the mistake through the whole room."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch13-q09",
+      "prompt": "Which statement best captures the chapter's practical rule?",
+      "choices": [
+        "Treat every result as owned by one actor so the lesson stays clean",
+        "Read the shared environment, trace spillovers, and keep accountability attached to the original action",
+        "Avoid system explanations because they always become vague"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter combines system-wide reading with responsibility that stays visible.",
+        "direct": "Ecosystem thinking is strongest when it maps the wider environment without blurring ownership.",
+        "competitive": "Trace the field and keep the trigger attached."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch13-q10",
+      "prompt": "How does this chapter set up niches?",
+      "choices": [
+        "It shows that systems share connected environments, then asks how parts take distinct roles within that field",
+        "It closes the biology section by resolving system questions completely",
+        "It returns to adaptation rate by focusing only on speed again"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next question is how connected parts occupy different roles inside a shared environment.",
+        "direct": "Ecosystem provides the shared field that niches will divide into differentiated positions.",
+        "competitive": "First see the shared field, then ask how each part stops crowding the same job."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

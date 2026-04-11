@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter\u2019s central claim about good decision making?",
+      "choices": [
+        "Strong choices avoid uncertainty entirely",
+        "Good judgment updates beliefs as evidence changes",
+        "The best decision is the one defended most confidently"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter argues that better judgment stays revisable as evidence changes.",
+        "direct": "Decision quality improves when beliefs update instead of hardening around certainty.",
+        "competitive": "The stronger mind rewrites the read when the field moves."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Which subtitle anchors frame this chapter?",
+      "choices": [
+        "Habits, teamwork, and focus",
+        "Goal setting, stretch targets, and war strategy",
+        "Forecasting the future, poker, and Bayesian psychology"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Those three anchors define the chapter\u2019s narrow focus on uncertain judgment.",
+        "direct": "The subtitle links forecasting, hidden information, and belief-updating.",
+        "competitive": "Those are the three pressure points that build the chapter\u2019s argument."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A manager gets new evidence that weakens the original launch forecast. What fits the chapter best?",
+      "choices": [
+        "Keep the old date to preserve confidence",
+        "Wait until certainty arrives before changing anything",
+        "Revise the estimate and name what could change it again"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter favors updating the forecast when evidence changes.",
+        "direct": "A live estimate should move when the field gives better information.",
+        "competitive": "Rewrite the odds before the stale story writes the loss."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "In Maya\u2019s scenario, what is the key mistake if the team keeps the old schedule story?",
+      "choices": [
+        "They are separating confidence from accuracy",
+        "They are treating a stale forecast like a fact",
+        "They are using too much probability language"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The problem is defending an old estimate after the evidence has changed.",
+        "direct": "Maya\u2019s team fails when it protects the first forecast instead of updating it.",
+        "competitive": "The schedule stops being a read and starts becoming theater."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What distinction does the chapter draw between confidence and accuracy?",
+      "choices": [
+        "Confidence and accuracy usually mean the same thing",
+        "Confidence helps speaking, but accuracy depends on evidence contact",
+        "Accuracy matters only after an outcome is known"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Someone can sound sure without having the strongest estimate.",
+        "direct": "Accuracy depends on how honestly the judgment tracks evidence and uncertainty.",
+        "competitive": "Swagger can carry a weak read."
+      },
+      "bloomsLevel": "understand-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Why does the chapter use poker as an anchor?",
+      "choices": [
+        "Poker proves that bluffing is the heart of leadership",
+        "Poker models decisions made with hidden information and changing odds",
+        "Poker shows that luck should replace analysis"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Poker matters here because people must act without seeing everything.",
+        "direct": "The anchor highlights hidden information and the need to judge odds honestly.",
+        "competitive": "You move on the read available now, not on fantasy visibility."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Victor sounds certain in debate prep, but Sonia keeps checking support. What chapter lesson fits best?",
+      "choices": [
+        "The louder speaker should lead",
+        "Evidence should outrank tone when judging the claim",
+        "The team should stop deciding until all doubt is gone"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter separates sounding sure from being accurate.",
+        "direct": "Support matters more than verbal force when the room judges a claim.",
+        "competitive": "Make the evidence beat the swagger."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Eli assumes a friend is angry and starts reading every sign through that story. What should Eli do next?",
+      "choices": [
+        "Treat the first story as an estimate and look for new evidence",
+        "Double down on the first assumption to stay decisive",
+        "Ignore the issue because personal choices cannot use odds"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter recommends holding the first read loosely enough to update it.",
+        "direct": "Downgrading the assumption from certainty to estimate opens room for better signal.",
+        "competitive": "Stop acting like the first guess already won the case."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Which statement best captures Bayesian psychology in this chapter?",
+      "choices": [
+        "Beliefs should stay fixed once a confident choice is made",
+        "Beliefs should update when evidence changes the estimate",
+        "Beliefs matter less than outcomes"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Bayesian psychology here means revising beliefs as new evidence arrives.",
+        "direct": "The estimate should move when the field changes enough to justify it.",
+        "competitive": "A living mind updates before pride locks the door."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How does this chapter prepare the way for the next one on innovation?",
+      "choices": [
+        "It shows that new ideas need perfect certainty before testing",
+        "It shows that innovation depends on treating ideas as revisable bets",
+        "It proves that creativity is mostly about confidence"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Revisable judgment makes it easier to test new ideas without demanding certainty first.",
+        "direct": "Innovation needs people who can evaluate uncertain possibilities and update quickly.",
+        "competitive": "New ideas survive when the mind can bet, test, and rewrite the read."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

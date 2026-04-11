@@ -4,12 +4,19 @@ Read:
 - PACK_ROOT/style/voice.md
 - PACK_ROOT/style/constraints.md
 - PACK_ROOT/style/memoir-fidelity.md
+- PACK_ROOT/style/books/{bookId}.md when that file exists for the brief's `bookId`
+- PACK_ROOT/style/books/antifragile.md when the brief says `bookId: antifragile`
+- PACK_ROOT/style/books/the-one-thing.md when the brief says `bookId: the-one-thing`
+- PACK_ROOT/style/books/the-art-of-war.md when the brief says `bookId: the-art-of-war`
 - PACK_ROOT/style/grade-bands.md
 - PACK_ROOT/style/bad-patterns.md
 - PACK_ROOT/style/gold-patterns.md
 - PACK_ROOT/style/gold-prose.md
 - PACK_ROOT/rules/chapter-quality-gate.md
 - PACK_ROOT/rules/prose-audit-rules.md
+- PACK_ROOT/rules/antifragile-polish-pass.md when the brief says `bookId: antifragile`
+- PACK_ROOT/rules/the-one-thing-polish-pass.md when the brief says `bookId: the-one-thing`
+- PACK_ROOT/rules/the-art-of-war-polish-pass.md when the brief says `bookId: the-art-of-war`
 - the chapter brief
 - the chapter outline
 - the canonical draft
@@ -43,5 +50,10 @@ Rules:
 - if reinforcement-style wording appears in the draft, cut it before conversion
 - if competitive prose sounds sloganized, shorten it until it is credible
 - if identity or standards language is doing filler work, cut it
+- if `bookId: the-one-thing`, remove abstract leverage metaphors unless they carry real operational meaning
+- if `bookId: the-one-thing`, remove support-surface-style recap wording before the converter sees it
+- if `bookId: antifragile`, preserve Taleb's bite without turning skepticism into caricature
+- if `bookId: antifragile`, make the chapter's actual limit explicit before the converter sees it
+- if `bookId: antifragile`, tighten endings until the next-chapter handoff feels structural rather than generic
 
 Output only the edited chapter draft.

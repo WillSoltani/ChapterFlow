@@ -330,6 +330,28 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
       "One of the clearest operator books in the library for leadership when the company is under real strain.",
     similarBookId: "the-prince",
   },
+  influence: {
+    authorCredentials:
+      "Social psychologist Robert B. Cialdini, PhD, writing from decades of research on persuasion, compliance, and the cue patterns behind automatic judgment.",
+    coverGradient: "linear-gradient(135deg, #0f172a 0%, #7c2d12 100%)",
+    hook: "See how consent gets shaped before your full judgment arrives, and learn where to slow the pattern down.",
+    description:
+      "A practical guide to the psychology of persuasion: how reciprocity, commitment, social proof, liking, authority, scarcity, unity, and cue convergence steer real decisions in work, school, and personal life.",
+    whatYoullLearn: [
+      "How persuasive cues trigger fast agreement before a full case has been reviewed",
+      "How the main levers of influence work alone and in stacked combinations across everyday decisions",
+      "How to keep useful speed while auditing the cues that are trying to borrow proof from familiarity, belonging, pressure, or authority",
+    ],
+    bestFor: ["leaders", "operators", "students", "psychology enthusiasts"],
+    category: "Psychology",
+    difficulty: "medium",
+    readerCount: 2260,
+    completionRate: 77,
+    badges: ["new", "staff-pick"],
+    staffPickReason:
+      "One of the most durable books in the library for seeing how small cues scale into real compliance before you notice the mechanism.",
+    similarBookId: "thinking-fast-and-slow",
+  },
   "leaders-eat-last": {
     authorCredentials:
       "Leadership speaker and organizational thinker focused on trust, culture, belonging, and the human biology behind cooperation.",
@@ -351,6 +373,73 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     staffPickReason:
       "One of the strongest culture books in the library for turning trust from rhetoric into operating practice.",
     similarBookId: "the-hard-thing-about-hard-things",
+  },
+  "the-one-thing": {
+    authorCredentials:
+      "Gary Keller is a real-estate entrepreneur and business builder; Jay Papasan is a business writer and editor focused on priority, leverage, and execution.",
+    coverGradient: "linear-gradient(135deg, #0f766e 0%, #172554 100%)",
+    hook:
+      "Give the most important work first claim before busyness, urgency, and scattered ambition split your force.",
+    description:
+      "A practical guide to leverage, priority, sequencing, and the discipline of choosing the one action that makes the next actions easier, fewer, or unnecessary.",
+    whatYoullLearn: [
+      "How to use the focusing question to identify the next task with the highest leverage",
+      "How purpose, priority, and time blocking work together so important work gets first claim instead of leftover attention",
+      "How to spot the lies, distractions, and structural habits that make busyness feel productive while producing little",
+    ],
+    bestFor: ["operators", "founders", "students", "self-improvers"],
+    category: "Productivity",
+    difficulty: "medium",
+    readerCount: 1880,
+    completionRate: 81,
+    badges: ["new", "staff-pick"],
+    staffPickReason:
+      "One of the sharpest productivity books in the library for turning priority into sequencing, leverage, and visible consequence.",
+    similarBookId: "essentialism",
+  },
+  "the-charisma-myth": {
+    authorCredentials:
+      "Executive coach and charisma researcher focused on presence, power, warmth, and trainable interpersonal signal under pressure.",
+    coverGradient: "linear-gradient(135deg, #0f766e 0%, #172554 100%)",
+    hook: "Carry warmth, authority, and presence on purpose before rooms decide who you are without your help.",
+    description:
+      "A practical guide to charisma as trainable signal: building presence, power, and warmth, shaping first impressions, handling conversation and body language, adapting online, and staying credible in difficult rooms.",
+    whatYoullLearn: [
+      "How presence, power, and warmth combine into the readable signals people use to judge charisma",
+      "How first impressions, conversation, and body language can be trained instead of treated like fixed personality traits",
+      "How to carry the same signal through digital communication, hard conversations, presentations, and crisis pressure",
+    ],
+    bestFor: ["leaders", "professionals", "speakers", "self-improvers"],
+    category: "Communication",
+    difficulty: "medium",
+    readerCount: 1870,
+    completionRate: 78,
+    badges: ["new", "staff-pick"],
+    staffPickReason:
+      "One of the cleanest books in the library for turning charisma from vague mystique into trainable signal mechanics.",
+    similarBookId: "the-like-switch",
+  },
+  "the-like-switch": {
+    authorCredentials:
+      "Former FBI behavioral analyst Jack Schafer with professor and co-author Marvin Karlins, writing on rapport, trust, attraction, and relationship-building cues.",
+    coverGradient: "linear-gradient(135deg, #0f766e 0%, #172554 100%)",
+    hook: "Build rapport faster by noticing the signals that make people feel safe, seen, and open to connection.",
+    description:
+      "A practical guide to first impressions, friendship cues, attraction, conversation, closeness, and long-term relationship maintenance, ending with a careful look at trust and deception.",
+    whatYoullLearn: [
+      "How first-impression signals and low-threat cues create the opening for rapport",
+      "How conversation, empathy, and reciprocal disclosure turn contact into real closeness",
+      "How to maintain relationships while staying alert to the risks that come with trust",
+    ],
+    bestFor: ["professionals", "self-improvers", "students", "relationship-builders"],
+    category: "Psychology",
+    difficulty: "medium",
+    readerCount: 1760,
+    completionRate: 79,
+    badges: ["new", "staff-pick"],
+    staffPickReason:
+      "One of the clearest social-skills books in the library for connecting first-contact mechanics to durable trust.",
+    similarBookId: "how-to-talk-to-anyone",
   },
   "good-to-great": {
     authorCredentials:
@@ -395,6 +484,52 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     staffPickReason:
       "One of the most practically useful books in the library for handling pressure, leverage, and difficult asks without theatrics.",
     similarBookId: "crucial-conversations",
+  },
+  "pre-suasion": {
+    authorCredentials:
+      "Social psychologist Robert B. Cialdini, PhD, extending his persuasion research into attentional setup, association, unity, ethical screening, and durable aftereffects.",
+    coverGradient: "linear-gradient(135deg, #0f172a 0%, #7c3aed 100%)",
+    hook:
+      "See how the room gets prepared before the pitch, so you can use that power more cleanly and defend against it more clearly.",
+    description:
+      "A practical guide to pre-suasion: shaping attention, associations, placement, unity, ethical permission, and aftereffects so you can understand what changes judgment before and after the main ask.",
+    whatYoullLearn: [
+      "How attention, context, and association change receptivity before a proposal is even evaluated",
+      "How unity, ethical screening, and timing affect whether influence feels supportive, manipulative, or self-defeating",
+      "How to audit persuasive setups and ask not only what wins the moment, but what deserves to be used and what will last",
+    ],
+    bestFor: ["leaders", "operators", "students", "psychology enthusiasts"],
+    category: "Psychology",
+    difficulty: "medium",
+    readerCount: 2035,
+    completionRate: 76,
+    badges: ["new", "staff-pick"],
+    staffPickReason:
+      "The clearest companion in the library to Influence for understanding how persuasion starts before the explicit pitch.",
+    similarBookId: "influence",
+  },
+  "super-thinking": {
+    authorCredentials:
+      "Entrepreneur and decision-systems writer Gabriel Weinberg with Lauren McCann, focused on practical mental models for everyday judgment.",
+    coverGradient: "linear-gradient(135deg, #0f172a 0%, #155e75 100%)",
+    hook:
+      "Think with better models before default reactions, shallow frames, and bad incentives keep choosing for you.",
+    description:
+      "A practical guide to mental models for everyday judgment: reducing unforced error, spotting unintended consequences, protecting future time, reading system dynamics, and updating decisions with cleaner feedback.",
+    whatYoullLearn: [
+      "How to use mental models to reduce self-created error before confidence turns a weak read into a bigger mistake",
+      "How to anticipate second-order effects, incentives, and system behavior instead of stopping at the first visible outcome",
+      "How to protect attention, time, and decision quality with repeatable models that stay useful across work and personal life",
+    ],
+    bestFor: ["operators", "leaders", "students", "self-improvers"],
+    category: "Psychology",
+    difficulty: "medium",
+    readerCount: 1680,
+    completionRate: 78,
+    badges: ["new", "staff-pick"],
+    staffPickReason:
+      "A sharp bridge between abstract mental models and the everyday decisions where they either pay off or quietly fail.",
+    similarBookId: "thinking-fast-and-slow",
   },
   "extreme-ownership": {
     authorCredentials:
@@ -484,6 +619,28 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
       "It turns scattered conversation advice into a clear progression from first hello to tact under pressure.",
     similarBookId: "crucial-conversations",
   },
+  "talk-like-ted": {
+    authorCredentials:
+      "Business communicator and presentation coach focused on TED-style public speaking, storytelling, and memorable idea delivery.",
+    coverGradient: "linear-gradient(135deg, #0f766e 0%, #1e293b 100%)",
+    hook: "Make an idea feel alive enough to hold a room before polished slides start pretending to do that work for you.",
+    description:
+      "A practical guide to public speaking through nine chapters on passion, storytelling, conversational delivery, novelty, memorable peaks, warmth, compression, vividness, and rehearsal under real audience pressure.",
+    whatYoullLearn: [
+      "How to find the deeper stake behind a talk so delivery starts from conviction instead of borrowed polish",
+      "How to use story, novelty, memorable moments, and vivid framing to make ideas easier to feel and retain",
+      "How to balance warmth, brevity, and rehearsal so a talk stays human, clear, and memorable under pressure",
+    ],
+    bestFor: ["speakers", "founders", "students", "professionals"],
+    category: "Communication",
+    difficulty: "medium",
+    readerCount: 1540,
+    completionRate: 79,
+    badges: ["new", "staff-pick"],
+    staffPickReason:
+      "It gives the clearest speaker-focused path in the library from inner stake to delivery mechanics without collapsing into presentation cliches.",
+    similarBookId: "how-to-talk-to-anyone",
+  },
   "the-art-of-war": {
     authorCredentials:
       "Sun Tzu, a Chinese military strategist writing around 500 BCE, translated by Lionel Giles in 1910 with commentary drawing on classical Chinese scholarship.",
@@ -505,6 +662,52 @@ const GENERATED_LIBRARY_BOOK_OVERRIDES: Record<string, LibraryBookOverride> = {
     staffPickReason:
       "One of the most rigorous classical strategy texts in the library for connecting ancient military logic to modern competitive decisions.",
     similarBookId: "the-prince",
+  },
+  "atomic-habits": {
+    authorCredentials:
+      "Habit researcher and writer focused on behavior change, identity-based habits, environment design, and small gains that compound over time.",
+    coverGradient: "linear-gradient(135deg, #0f766e 0%, #172554 100%)",
+    hook:
+      "Make small behaviors repeat reliably enough that they start compounding before motivation has a chance to disappear.",
+    description:
+      "A practical guide to building better habits through tiny changes, identity shifts, environment design, repetition, feedback, and review so consistent actions keep improving instead of fading out.",
+    whatYoullLearn: [
+      "How identity, cues, craving, response, and reward work together to make a habit easier to repeat",
+      "How to use environment design, tracking, and friction to make good behaviors more likely and bad ones less automatic",
+      "How repetition, challenge calibration, and periodic review turn a habit from a streak into a system that keeps compounding",
+    ],
+    bestFor: ["self-improvers", "students", "operators", "leaders"],
+    category: "Productivity",
+    difficulty: "medium",
+    readerCount: 2410,
+    completionRate: 82,
+    badges: ["new", "staff-pick"],
+    staffPickReason:
+      "The clearest habit book in the library for turning behavior change into a repeatable system instead of a motivation project.",
+    similarBookId: "the-power-of-habit",
+  },
+  "the-great-mental-models-vol-1": {
+    authorCredentials:
+      "Shane Parrish is the founder of Farnam Street, writing on judgment, decision-making, and the practical use of mental models across work and life.",
+    coverGradient: "linear-gradient(135deg, #0f172a 0%, #0f766e 100%)",
+    hook:
+      "Build a sharper thinking toolkit before borrowed assumptions and narrow frames keep making your decisions for you.",
+    description:
+      "A practical guide to foundational mental models: abstraction and reality, competence boundaries, first-principles thinking, second-order effects, probabilistic judgment, inversion, and the habits that make reasoning more reliable under pressure.",
+    whatYoullLearn: [
+      "How to use foundational mental models to inspect assumptions instead of accepting the first workable story",
+      "How to think with range, probability, inversion, and consequences that unfold beyond the first visible outcome",
+      "How to spot where your judgment is strong, where it is borrowed, and where a cleaner decision needs a different frame",
+    ],
+    bestFor: ["leaders", "operators", "investors", "curious readers"],
+    category: "Philosophy",
+    difficulty: "medium",
+    readerCount: 1890,
+    completionRate: 78,
+    badges: ["new", "staff-pick"],
+    staffPickReason:
+      "One of the cleanest entry points in the library for turning general reasoning advice into a reusable decision toolkit.",
+    similarBookId: "thinking-fast-and-slow",
   },
 };
 

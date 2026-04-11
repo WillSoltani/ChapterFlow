@@ -62,3 +62,15 @@
 - 2026-04-09T15:16:05Z ch14 start: entering writer stage from verified pre-writer artifacts.
 - 2026-04-09T15:24:58Z ch14 complete: validator PASS, wrapper parity PASS, artifact bundle verified, continuity sealed with sha256 30915e10355bcaf0ab820ba2212d8895986a589fbf690017f150ccfe48802f13.
 - 2026-04-09T15:24:58Z wave 13-14 close: artifact guard PASS (FAIL=0 WARN=0), quality sentry refreshed, wave clean.
+- 2026-04-10T00:05:00Z wave 15-16 pre-writer complete: briefs, outlines, quiz blueprints, and source sidecars verified for ch15 and ch16.
+- 2026-04-10T15:43:15Z ch15 complete: validator PASS, wrapper parity PASS, artifact bundle verified, continuity sealed with sha256 64ed9a9e66f6d7b4d2bd9be52b6c9f1972262ca1387142d5b2116a58c1588120.
+- 2026-04-10T16:27:04Z ch16 complete: validator PASS, wrapper parity PASS, artifact bundle verified, continuity sealed with sha256 c2de8e1a8116674381e2dfd51d8897ae1dbf0d9b2f04bcedadc52eb53289489a.
+- 2026-04-10T16:27:04Z wave 15-16 close: artifact guard pending rerun, quality sentry refreshed, wave ready for clean verification.
+- 2026-04-10T16:29:31Z wave 17-18 pre-writer complete: briefs, outlines, quiz blueprints, and source sidecars verified for ch17 and ch18.
+- 2026-04-10T16:49:40Z ch17 complete: validator PASS, wrapper parity PASS, artifact bundle verified, continuity sealed with sha256 0929f49422753f389276aa0e59bf510a8dd847afb5919e9649b15701151cf29e.
+- 2026-04-10T17:12:00Z ch18 complete: validator PASS, wrapper parity PASS, artifact bundle verified, continuity sealed with sha256 0869fe22069d39a00a1e1c14c23db59150f14ac530b2025a9527e174108828f8.
+- 2026-04-10T17:12:00Z wave 17-18 close: artifact guard pending rerun, quality sentry refreshed, wave ready for clean verification.
+- 2026-04-10T17:13:00Z wave 17-18 close verification complete: required artifacts for ch17 and ch18 are present on disk, repo artifact guard passed with FAIL=0 WARN=0, quality sentry passed at baseline mean 10 with no decay, and automatic continuation is ready for release-only assembly.
+- 2026-04-10T17:15:00Z release assembly complete from validated chapters only, but release gate blocked: source guard PASS, release guard PASS, release lint FAIL=224, full-book validator FAIL with 221 prose warnings. Strict-path repair is required before Phase 8.
+- 2026-04-10T17:15:30Z release gate pass: release assembled from validated chapters only, source guard PASS, release lint PASS, release guard PASS, full-book validator PASS, continuity resealed to repaired chapter hashes, Phase 8 unlocked.
+- 2026-04-10T17:16:30Z Phase 8 complete: repo package written at `book-packages/the-one-thing.modern.json`, repo validator PASS, repo-package lint PASS, Next.js build PASS; only non-blocking build warning was the existing `middleware` deprecation notice.

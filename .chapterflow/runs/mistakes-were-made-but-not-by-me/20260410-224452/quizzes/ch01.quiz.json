@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch01-q01",
+      "prompt": "A department head says, \"Errors were made in the rollout,\" after approving the final version herself. What is the chapter's first concern with that sentence?",
+      "choices": [
+        "It admits harm while blurring agency",
+        "It is too emotional for a professional setting",
+        "It focuses too much on the future"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The line leaves the damage visible but makes the actor harder to hold in place. That is what makes it a non-apology.",
+        "direct": "Correct. The sentence acknowledges the outcome while weakening ownership, which is the chapter's opening pattern.",
+        "competitive": "Right. Consequence stays onstage, actor exits. That is the move."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q02",
+      "prompt": "Which distinction best captures the chapter's difference between lying and self-justification?",
+      "choices": [
+        "Lying is emotional, but self-justification is logical",
+        "Lying hides the truth from others, while self-justification can reshape the story until it feels true inside",
+        "Lying happens in public, while self-justification happens only in private"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That is the key distinction. A liar may know the truth and conceal it. Self-justification goes deeper because the safer story can feel sincere.",
+        "direct": "Exactly. The distinction is between external concealment and internal identity protection.",
+        "competitive": "That is the hinge. One hides the truth. The other rebuilds a livable version."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q03",
+      "prompt": "Why do facts often fail to correct self-justification quickly?",
+      "choices": [
+        "Because facts only matter in political settings",
+        "Because facts are always less persuasive than emotion",
+        "Because facts threaten the person's self-image, not just the claim"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "That is the chapter's point. Once identity is at risk, the person is not just defending one statement. They are defending who they still need themselves to be.",
+        "direct": "Correct. Evidence is fighting a second battle when the false story is preserving innocence.",
+        "competitive": "Yes. The self is on defense, so facts are hitting more than a bad sentence."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q04",
+      "prompt": "Nia tells her lab partner, \"There was confusion about the rubric,\" even though she ignored the rubric herself. What is she doing?",
+      "choices": [
+        "Reducing the role of agency so the event feels less self-threatening",
+        "Making the feedback easier for her partner to hear",
+        "Gathering more evidence before deciding what happened"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nice read. The wording shifts the mistake into fog, which lets Nia keep distance from her own role.",
+        "direct": "Correct. She is replacing explicit ownership with blurred circumstance.",
+        "competitive": "She is editing herself out of the event."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q05",
+      "prompt": "Lena says, \"I was only being honest,\" after a cutting remark. Which answer best matches the chapter's warning?",
+      "choices": [
+        "Honesty always matters more than tone in close relationships",
+        "Direct people are usually misunderstood by sensitive friends",
+        "A flattering motive story can protect self-image before the harm is owned"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "That is the trap. The motive story sounds respectable, but it can block a fuller look at the injury.",
+        "direct": "Correct. Rebranding harm as courage or honesty is a classic self-protective move.",
+        "competitive": "Right. The virtue label arrives early so ownership can arrive late or never."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q06",
+      "prompt": "Which misreading does the chapter most clearly reject?",
+      "choices": [
+        "Only openly bad people rely on self-justification",
+        "Apologies should include repair steps",
+        "Language can change how responsibility feels"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The mechanism matters precisely because ordinary people use it in ordinary conflicts.",
+        "direct": "Correct. The pattern belongs to daily life as much as to scandal.",
+        "competitive": "That is the comfortable lie the chapter takes away."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q07",
+      "prompt": "A team retrospective says the delay happened because \"timelines got compressed,\" and nobody names the decision that caused it. What consequence fits the chapter best?",
+      "choices": [
+        "The team becomes more objective by removing personalities",
+        "The lesson stays weak because ownership never fully enters the analysis",
+        "The group becomes kinder without changing what it learns"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exactly. The fog can feel calmer, but it usually weakens learning because no one has to revise their own part in the event.",
+        "direct": "Correct. Blurred agency preserves faces and often preserves the conditions for repeat failure.",
+        "competitive": "No actor, no lesson. That is how the same miss comes back."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q08",
+      "prompt": "Mateo rewrites \"Sorry if feelings got hurt\" as \"I was harsh in our call.\" What changes most?",
+      "choices": [
+        "The apology becomes longer and more formal",
+        "The apology keeps the same emotional tone but sounds more polite",
+        "The apology restores agency and makes ownership do real work"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "That is the important shift. The second sentence keeps Mateo inside the event instead of treating the harm like weather.",
+        "direct": "Correct. Agency moves back into the apology, which changes the function of the message.",
+        "competitive": "Right. One text hides. The other stands there."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q09",
+      "prompt": "What is the strongest reason the chapter treats sincerity as an unreliable test of real accountability?",
+      "choices": [
+        "Because sincere people are usually too emotional to judge themselves",
+        "Because accountability always requires public punishment",
+        "Because a person can fully believe a protective story that still blocks correction and repair"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "That is the deeper point. Believing the story does not guarantee that the story is helping truth or repair.",
+        "direct": "Correct. Emotional conviction can coexist with identity defense and distorted explanation.",
+        "competitive": "Exactly. Feeling honest is cheap if the story still keeps the damage alive."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch01-q10",
+      "prompt": "Why is it useful to ask what force keeps people defending a flattering story once contradiction appears?",
+      "choices": [
+        "Because the chapter has already solved the problem and only needs examples",
+        "Because the chapter has shown the trap but not yet named the mechanism that powers it",
+        "Because later chapters stop discussing self-image and focus only on memory"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The opening chapter makes the pressure visible first, then points to the mechanism that still needs a name.",
+        "direct": "Correct. We can now see the defensive pattern, but the engine behind it is the next chapter's work.",
+        "competitive": "Right. Trap first, engine second. That sequencing is the point."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

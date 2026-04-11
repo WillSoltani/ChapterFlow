@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch03-q01",
+      "prompt": "What pressure makes Operation Crush a revealing OKR case in this chapter?",
+      "choices": [
+        "Intel faced a real competitive threat that made internal drift costly",
+        "Intel was enjoying stable growth and revisiting long-term culture",
+        "The company had too little technical talent to compete at all"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter begins with a real threat, so scattered priorities and slow feedback become dangerous quickly.",
+        "direct": "The case matters because pressure exposed whether the company could align fast enough to matter.",
+        "competitive": "The story is not about a calm planning season. It is about drift becoming expensive under threat."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch03-q02",
+      "prompt": "Why did one objective matter so much in Operation Crush?",
+      "choices": [
+        "It let each department define urgency in its own way",
+        "It gave the company one shared line of sight for coordinated execution",
+        "It removed the need for feedback from the field"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "One visible priority helped different functions work toward the same fight instead of protecting separate agendas.",
+        "direct": "The chapter treats one objective as the mechanism that turned urgency into direction across the company.",
+        "competitive": "One fight beats six private emergencies. That is the point."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch03-q03",
+      "prompt": "What role did field feedback play in the chapter logic?",
+      "choices": [
+        "It was optional once management had chosen the priority",
+        "It made the story more democratic but did not affect execution",
+        "It kept company-wide focus connected to reality while the fight was live"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Field truth mattered because leaders needed reality quickly enough to adjust.",
+        "direct": "Upward feedback is part of the operating loop here, not a soft extra.",
+        "competitive": "A blind command chain is just panic with titles."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch03-q04",
+      "prompt": "Aria team treats six different issues as simultaneous emergencies after a competitor move. What response best fits the chapter?",
+      "choices": [
+        "Preserve all six so no team feels ignored",
+        "Choose one priority that outranks the rest and align the week around it",
+        "Delay any decision until every group fully agrees"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter would narrow the fight so effort can reinforce itself.",
+        "direct": "Operation Crush logic says to define urgency through one visible objective, not let every alarm survive.",
+        "competitive": "If every emergency lives, none of them leads."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q05",
+      "prompt": "Janelle competition team stayed late, worked hard, and still entered the round with conflicting priorities. What failure does this show?",
+      "choices": [
+        "Urgency without coordinated alignment",
+        "Too much upward feedback from the field",
+        "A lack of any meaningful deadline pressure"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The room had intensity but not one shared fight.",
+        "direct": "This is the chapter distinction between looking urgent and actually coordinating execution.",
+        "competitive": "Sweat is not a substitute for alignment."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q06",
+      "prompt": "Why is it a weak reading to say Operation Crush proves panic creates excellence?",
+      "choices": [
+        "Because the chapter says fear itself sharpened the organization",
+        "Because the chapter says the mechanism was disciplined focus plus fast truth flow, not emergency emotion",
+        "Because the chapter avoids discussing pressure altogether"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The useful lesson is disciplined concentration, not permanent emergency feeling.",
+        "direct": "The chapter warns against confusing adrenaline with the mechanism that produced execution.",
+        "competitive": "If panic were the engine, every frantic company would become excellent."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q07",
+      "prompt": "Hugo leadership team trusts a clean dashboard while field technicians are reporting a new defect pattern. According to the chapter, what is the main risk?",
+      "choices": [
+        "The company is aligned too strongly around one objective",
+        "The response becomes brittle because leadership is acting on stale reality",
+        "The field team should stop surfacing problems until the weekly review"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Company-wide focus still needs reality to travel upward quickly.",
+        "direct": "Alignment hardens into error when leaders stop hearing live signals from the field.",
+        "competitive": "A neat dashboard can become a disciplined way to stay wrong."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q08",
+      "prompt": "A robotics lab keeps four late-stage ambitions alive before inspection day. Which judgment fits the chapter best?",
+      "choices": [
+        "Parallel ambition is safer because it honors every subgroup",
+        "The team should choose the one rescue goal that most changes the outcome",
+        "The team should avoid deciding until the last night reveals the answer"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter favors deliberate narrowing when time pressure makes spread attention costly.",
+        "direct": "One rescue goal creates coordinated action; parallel ambition preserves drift.",
+        "competitive": "Calling refusal to choose teamwork is the trap."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch03-q09",
+      "prompt": "What is the chapter hardest tension about crisis leadership?",
+      "choices": [
+        "Crisis should become the permanent model because it keeps people sharp",
+        "Crisis can reveal disciplined execution while also tempting leaders to depend on emergency intensity",
+        "Crisis matters only because it increases top-down control"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The case clarifies priorities, but the chapter warns against treating alarm itself as the source of excellence.",
+        "direct": "The tension is between learning from crisis clarity and becoming addicted to crisis as a management style.",
+        "competitive": "Use the clarity. Do not start worshipping the siren."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch03-q10",
+      "prompt": "Why does Chapter 3 naturally point toward a chapter about choosing priorities before crisis?",
+      "choices": [
+        "Because the book now wants to abandon execution stories for biography",
+        "Because the case suggests strong leaders should build clear priority discipline before emergency removes all slack",
+        "Because Operation Crush worked only because Intel stayed in constant crisis mode"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The bridge asks what disciplined leaders should do before pressure makes the choice for them.",
+        "direct": "If one-priority focus is powerful in crisis, the next question is how to choose deliberately before the clock compresses everything.",
+        "competitive": "Real leaders do not wait for the fire alarm to tell them what matters."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

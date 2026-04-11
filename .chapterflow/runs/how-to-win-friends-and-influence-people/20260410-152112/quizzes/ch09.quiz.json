@@ -1,0 +1,174 @@
+{
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What does Chapter 9 say creates quick liking?",
+      "choices": [
+        "Looking polished and impressive",
+        "Making the other person feel genuinely important",
+        "Talking more than the other person"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter points to felt importance rather than surface appeal.",
+        "direct": "Option B fits. Quick goodwill grows from visible regard.",
+        "competitive": "Fast warmth goes to felt value, not polished output."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why is private respect weaker than visible regard?",
+      "choices": [
+        "Because silent respect is always fake",
+        "Because regard has to register in the exchange to change it",
+        "Because other people only care about compliments"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Respect can be sincere and still have limited effect if the person cannot feel it.",
+        "direct": "The mechanism depends on legibility. Regard must register.",
+        "competitive": "No signal means no traction."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What makes a sign of importance believable in this chapter?",
+      "choices": [
+        "It is concrete and truthful",
+        "It is dramatic and enthusiastic",
+        "It arrives before anyone else speaks"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Specific, truthful appreciation sounds more human than inflated praise.",
+        "direct": "Option A fits because credibility comes from accuracy, not volume.",
+        "competitive": "Precision keeps warmth clean."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A manager opens a meeting by naming one precise way a teammate made the work possible. What chapter move is this?",
+      "choices": [
+        "Visible regard",
+        "Self-presentation",
+        "Argument avoidance"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The manager is making importance legible.",
+        "direct": "This is visible regard, not a charm display.",
+        "competitive": "The move makes value land fast."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "A student tells a classmate only \"great job,\" and the moment feels thin. What is missing?",
+      "choices": [
+        "A louder compliment",
+        "A more competitive tone",
+        "A concrete signal of why the person mattered"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Generic praise is weaker than specific appreciation.",
+        "direct": "Option C fits because the importance never became concrete.",
+        "competitive": "Warmth needs proof, not padding."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "In a personal conversation, what changes the tone most in Chapter 9?",
+      "choices": [
+        "Switching quickly to your own story",
+        "Making one true piece of regard visible",
+        "Keeping every statement neutral"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter favors a truthful signal of importance.",
+        "direct": "A real sign of value warms the exchange faster than self-shift.",
+        "competitive": "One clean signal beats neutral distance."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Which option crosses the line into flattery fog?",
+      "choices": [
+        "Naming a real contribution that mattered",
+        "Showing proportionate appreciation tied to the person",
+        "Inflating praise to get warmth quickly"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Flattery appears when praise outruns truth.",
+        "direct": "Option C breaks the chapter because it sounds manipulative.",
+        "competitive": "Overpraise poisons the move."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "advanced"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What limit does the chapter place on instant liking?",
+      "choices": [
+        "It can be encouraged but not forced in every room",
+        "It works only if you become more impressive",
+        "It requires constant compliments"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter is about plausible goodwill, not total control.",
+        "direct": "Option A fits. Regard helps, but it does not guarantee every reaction.",
+        "competitive": "You can improve odds, not command the room."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "advanced"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the deeper mechanism behind quick goodwill here?",
+      "choices": [
+        "People admire whoever speaks first",
+        "Visible, believable importance changes the social temperature",
+        "Warmth rises when compliments are frequent"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter links fast warmth to felt importance.",
+        "direct": "Believable regard changes the interaction more directly than polish.",
+        "competitive": "Value that lands shifts the room."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "advanced"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why does this chapter lead naturally into Chapter 10?",
+      "choices": [
+        "Because once goodwill exists, arguments test whether you will protect it",
+        "Because instant liking makes disagreement unnecessary",
+        "Because liking and argument are unrelated topics"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next chapter asks what happens when the wish to be right threatens newly built warmth.",
+        "direct": "Option A fits because Part Three tests whether relationship-first instincts survive disagreement.",
+        "competitive": "Goodwill is easy to lose when ego enters."
+      },
+      "bloomsLevel": "transfer",
+      "depthLevel": "advanced"
+    }
+  ]
+}

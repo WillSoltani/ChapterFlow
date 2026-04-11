@@ -1,0 +1,415 @@
+{
+  "nameUsage": {},
+  "formatCategoryHistory": [
+    {
+      "chapterId": "ch01",
+      "formats": [
+        "dialogue",
+        "decision_memo",
+        "text_thread",
+        "scene",
+        "coach_talk",
+        "reflection"
+      ],
+      "endingTypes": [
+        "question",
+        "warning",
+        "reframe",
+        "tradeoff",
+        "next_step",
+        "test"
+      ],
+      "categories": [
+        "work",
+        "work",
+        "personal",
+        "personal",
+        "school",
+        "school"
+      ]
+    },
+    {
+      "chapterId": "ch02",
+      "formats": [
+        "dialogue",
+        "decision_memo",
+        "scene",
+        "text_thread",
+        "coach_talk",
+        "reflection"
+      ],
+      "endingTypes": [
+        "reveal",
+        "caution",
+        "question",
+        "reframe",
+        "tradeoff",
+        "checkpoint"
+      ],
+      "categories": [
+        "work",
+        "work",
+        "personal",
+        "personal",
+        "school",
+        "school"
+      ]
+    },
+    {
+      "chapterId": "ch03",
+      "formats": [
+        "dialogue",
+        "decision_memo",
+        "text_thread",
+        "scene",
+        "coach_talk",
+        "reflection"
+      ],
+      "endingTypes": [
+        "consequence",
+        "test",
+        "reveal",
+        "caution",
+        "question",
+        "reframe"
+      ],
+      "categories": [
+        "work",
+        "work",
+        "personal",
+        "personal",
+        "school",
+        "school"
+      ]
+    },
+    {
+      "chapterId": "ch05",
+      "formats": [
+        "dialogue",
+        "decision_memo",
+        "text_thread",
+        "scene",
+        "coach_talk",
+        "reflection"
+      ],
+      "endingTypes": [
+        "reveal",
+        "caution",
+        "question",
+        "tradeoff",
+        "checkpoint",
+        "next_step"
+      ],
+      "categories": [
+        "work",
+        "work",
+        "personal",
+        "personal",
+        "school",
+        "school"
+      ]
+    },
+    {
+      "chapterId": "ch06",
+      "formats": [
+        "dialogue",
+        "decision_memo",
+        "text_thread",
+        "scene",
+        "coach_talk",
+        "reflection"
+      ],
+      "endingTypes": [
+        "warning",
+        "reveal",
+        "question",
+        "caution",
+        "tradeoff",
+        "checkpoint"
+      ],
+      "categories": [
+        "work",
+        "work",
+        "personal",
+        "personal",
+        "school",
+        "school"
+      ]
+    },
+    {
+      "chapterId": "ch07",
+      "formats": [
+        "dialogue",
+        "decision_memo",
+        "text_thread",
+        "scene",
+        "coach_talk",
+        "reflection"
+      ],
+      "endingTypes": [
+        "reveal",
+        "caution",
+        "question",
+        "reframe",
+        "tradeoff",
+        "checkpoint"
+      ],
+      "categories": [
+        "work",
+        "work",
+        "personal",
+        "personal",
+        "school",
+        "school"
+      ]
+    },
+    {
+      "chapterId": "ch08",
+      "formats": [
+        "dialogue",
+        "decision_memo",
+        "text_thread",
+        "scene",
+        "coach_talk",
+        "reflection"
+      ],
+      "endingTypes": [
+        "reveal",
+        "warning",
+        "question",
+        "reframe",
+        "consequence",
+        "checkpoint"
+      ],
+      "categories": [
+        "work",
+        "work",
+        "personal",
+        "personal",
+        "school",
+        "school"
+      ]
+    },
+    {
+      "chapterId": "ch09",
+      "formats": [
+        "dialogue",
+        "decision_memo",
+        "text_thread",
+        "scene",
+        "coach_talk",
+        "reflection"
+      ],
+      "endingTypes": [
+        "reveal",
+        "warning",
+        "question",
+        "reframe",
+        "tradeoff",
+        "checkpoint"
+      ],
+      "categories": [
+        "work",
+        "work",
+        "personal",
+        "personal",
+        "school",
+        "school"
+      ]
+    }
+  ],
+  "schoolSettingUsage": {},
+  "wordFrequency": {},
+  "phraseFrequency": {},
+  "openerRegistry": {
+    "gentle": {},
+    "direct": {},
+    "competitive": {}
+  },
+  "titleTemplateRegistry": {},
+  "endingPatternRegistry": {},
+  "withinChapterNames": {},
+  "approvedChapterHashes": {},
+  "baselineQuality": {},
+  "bookId": "the-elephant-in-the-brain",
+  "runId": "20260410-224024",
+  "title": "The Elephant in the Brain",
+  "author": "Kevin Simler; Robin Hanson",
+  "sourceFreeze": {
+    "status": "locked",
+    "lockedAt": "2026-04-10T00:00:00Z",
+    "materialAmbiguity": false,
+    "editionAnchor": {
+      "editionName": "The Elephant in the Brain: Hidden Motives in Everyday Life",
+      "publisher": "Oxford University Press",
+      "publishedYear": 2018,
+      "isbn13": "9780190495992",
+      "language": "English",
+      "region": "US"
+    },
+    "sourceRefs": [
+      "official-site-overview",
+      "official-site-outline",
+      "open-library-edition"
+    ]
+  },
+  "chapterOrder": [
+    {
+      "number": 1,
+      "title": "Animal Behavior",
+      "type": "chapter"
+    },
+    {
+      "number": 2,
+      "title": "Competition",
+      "type": "chapter"
+    },
+    {
+      "number": 3,
+      "title": "Norms",
+      "type": "chapter"
+    },
+    {
+      "number": 4,
+      "title": "Cheating",
+      "type": "chapter"
+    },
+    {
+      "number": 5,
+      "title": "Self-Deception",
+      "type": "chapter"
+    },
+    {
+      "number": 6,
+      "title": "Counterfeit Reasons",
+      "type": "chapter"
+    },
+    {
+      "number": 7,
+      "title": "Body Language",
+      "type": "chapter"
+    },
+    {
+      "number": 8,
+      "title": "Laughter",
+      "type": "chapter"
+    },
+    {
+      "number": 9,
+      "title": "Conversation",
+      "type": "chapter"
+    },
+    {
+      "number": 10,
+      "title": "Consumption",
+      "type": "chapter"
+    },
+    {
+      "number": 11,
+      "title": "Art",
+      "type": "chapter"
+    },
+    {
+      "number": 12,
+      "title": "Charity",
+      "type": "chapter"
+    },
+    {
+      "number": 13,
+      "title": "Education",
+      "type": "chapter"
+    },
+    {
+      "number": 14,
+      "title": "Medicine",
+      "type": "chapter"
+    },
+    {
+      "number": 15,
+      "title": "Religion",
+      "type": "chapter"
+    },
+    {
+      "number": 16,
+      "title": "Politics",
+      "type": "chapter"
+    }
+  ],
+  "waves": [
+    {
+      "wave": 1,
+      "chapters": [
+        1,
+        2
+      ],
+      "status": "completed"
+    },
+    {
+      "wave": 2,
+      "chapters": [
+        3,
+        4
+      ],
+      "status": "completed"
+    },
+    {
+      "wave": 3,
+      "chapters": [
+        5,
+        6
+      ],
+      "status": "completed"
+    },
+    {
+      "wave": 4,
+      "chapters": [
+        7,
+        8
+      ],
+      "status": "completed"
+    },
+    {
+      "wave": 5,
+      "chapters": [
+        9,
+        10
+      ],
+      "status": "in_progress"
+    },
+    {
+      "wave": 6,
+      "chapters": [
+        11,
+        12
+      ],
+      "status": "queued"
+    },
+    {
+      "wave": 7,
+      "chapters": [
+        13,
+        14
+      ],
+      "status": "queued"
+    },
+    {
+      "wave": 8,
+      "chapters": [
+        15,
+        16
+      ],
+      "status": "queued"
+    }
+  ],
+  "validatedChapterHashes": {
+    "ch01": "d18161b0687db25f9f882c9fe79192bf26af544ef2dd5df9312b42f67f29a61f",
+    "ch02": "08fb23e396104c933405ee2df0e8a2637b1b7006ad5446f6a01667a1cd846f1b",
+    "ch03": "a7fb99c8f0eb1926e3f90221abb32d37a3eb461164916221dc40aaceceb69416",
+    "ch04": "47ace6340f04d92fd694d8f42a5c311b2a89d8f7324ec326772da3ad11191fa1",
+    "ch05": "531079f47f55129f7aa1fde4a97ae0d1ebcfc72620578ac774d55b6491f48405",
+    "ch06": "cae1a06c15359312d6a127f8f5a9ef5fe195988f582e9c34534a6337cb03f976",
+    "ch07": "eff3cd0e8d0a2a784cf6d7f9d5f144e81dc6df39aba793ef326eecc2d85e10d6",
+    "ch08": "1ef077e344d15b0ac1f05b44c7b1d351d8ca00cc8d8d990fa9f119ee44c8ccc5",
+    "ch09": "fba00e18a6bd37e11d11c9b1d1d69a085646ef2c098aac6ad5548c26d9ec723e"
+  }
+}

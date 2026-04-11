@@ -1,0 +1,115 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch13-q01",
+      "prompt": "After Chapter 12 judges growth selectively, what does Chapter 13 add?",
+      "choices": [
+        "How movement over time changes later openings and traps",
+        "How speed is always better than timing",
+        "How current position tells the whole story"
+      ],
+      "correctIndex": 0,
+      "explanation": "Chapter 13 turns to dynamics, asking what sequence, timing, and reaction do to the future path of strategy."
+    },
+    {
+      "questionId": "ch13-q02",
+      "prompt": "What does dynamics mean in this chapter?",
+      "choices": [
+        "Working faster than everyone else",
+        "Sequence, timing, and reaction shaping later possibilities",
+        "Adding more motion whenever the situation feels slow"
+      ],
+      "correctIndex": 1,
+      "explanation": "Dynamics is not generic speed. It is reasoning about how movement changes what later moves become possible or costly."
+    },
+    {
+      "questionId": "ch13-q03",
+      "prompt": "Which mistake does Chapter 13 criticize?",
+      "choices": [
+        "Reading only the current snapshot and ignoring the path being created",
+        "Testing how others might react to a move",
+        "Changing timing when sequence matters"
+      ],
+      "correctIndex": 0,
+      "explanation": "The chapter warns that static analysis can miss the openings or traps already forming in the sequence."
+    },
+    {
+      "questionId": "ch13-q04",
+      "prompt": "A school team wants to act immediately, but the early move may trigger strong resistance before the opening is ready. What is the Chapter 13 issue?",
+      "choices": [
+        "The team needs more present activity",
+        "The timing may create a worse later path",
+        "The team should ignore reaction and stay fast"
+      ],
+      "correctIndex": 1,
+      "explanation": "Dynamics asks whether timing creates room to act or exposes the strategy too early."
+    },
+    {
+      "questionId": "ch13-q05",
+      "prompt": "Why does sequence matter strategically?",
+      "choices": [
+        "Because each move changes what later options will cost or enable",
+        "Because order matters only for scheduling convenience",
+        "Because faster sequences remove the need for judgment"
+      ],
+      "correctIndex": 0,
+      "explanation": "A move has to be judged by the future path it creates, not only by the present step itself."
+    },
+    {
+      "questionId": "ch13-q06",
+      "prompt": "How does Chapter 13 extend Chapter 12?",
+      "choices": [
+        "By replacing selective growth with blanket expansion",
+        "By asking how chosen movement changes later possibilities",
+        "By treating time as irrelevant once growth is selected"
+      ],
+      "correctIndex": 1,
+      "explanation": "Chapter 12 judged whether growth was worth choosing. Chapter 13 asks what later field that chosen motion creates."
+    },
+    {
+      "questionId": "ch13-q07",
+      "prompt": "A project improves after the team changes the order of steps rather than adding more effort. What concept is this showing?",
+      "choices": [
+        "Dynamics through better sequence",
+        "Proof that more activity was unnecessary in every case",
+        "Evidence that current position was enough"
+      ],
+      "correctIndex": 0,
+      "explanation": "The result improves because sequence changes the later path, not because the team simply moves faster."
+    },
+    {
+      "questionId": "ch13-q08",
+      "prompt": "What is the best sign that motion is creating a trap?",
+      "choices": [
+        "Later steps become more exposed, constrained, or expensive",
+        "A move creates stronger follow-on options",
+        "Timing opens a better window before resistance forms"
+      ],
+      "correctIndex": 0,
+      "explanation": "Bad dynamics narrows freedom and worsens the future path even if early motion looks impressive."
+    },
+    {
+      "questionId": "ch13-q09",
+      "prompt": "Why can static analysis miss a real opening?",
+      "choices": [
+        "Because openings sometimes exist only in the timing and sequence of movement",
+        "Because current position never matters",
+        "Because reaction always cancels timing"
+      ],
+      "correctIndex": 0,
+      "explanation": "A still picture can miss opportunities that appear only because a move lands at the right point in the sequence."
+    },
+    {
+      "questionId": "ch13-q10",
+      "prompt": "Why does the chapter point toward inertia and entropy?",
+      "choices": [
+        "Because once trajectories matter, the next question is why some paths harden or decay",
+        "Because dynamics makes structural drag irrelevant",
+        "Because later chapters stop caring about movement over time"
+      ],
+      "correctIndex": 0,
+      "explanation": "Chapter 13 makes sequence and motion visible, which sets up the next chapter's account of drag, resistance, and patterned decline."
+    }
+  ]
+}

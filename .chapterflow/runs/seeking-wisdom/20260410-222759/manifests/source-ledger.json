@@ -1,0 +1,45 @@
+{
+  "bookId": "seeking-wisdom",
+  "runId": "20260410-222759",
+  "createdAt": "2026-04-10T00:00:00-03:00",
+  "policy": {
+    "sourceDiscoveryMode": "web_bundle",
+    "sourcePolicy": "public_or_authorized_plus_secondary",
+    "quotePolicy": "paraphrase_first_exact_quotes_only_if_authorized_preview_supports_them"
+  },
+  "sources": [
+    {
+      "id": "google-books-ed3",
+      "title": "Seeking Wisdom: From Darwin to Munger",
+      "url": "https://books.google.com/books?id=7iQlAQAAIAAJ",
+      "type": "authorized_preview_metadata",
+      "role": "primary_metadata_and_preview_anchor",
+      "confidence": 0.95,
+      "notes": "Google Books page shows title, author, publisher PCA Publications, 2007, edition 3, 318 pages, and limited visible contents stub."
+    },
+    {
+      "id": "better-world-books-ed3",
+      "title": "Seeking Wisdom: From Darwin to Munger, 3rd Edition",
+      "url": "https://www.betterworldbooks.com/product/detail/-9781578644285",
+      "type": "retailer_bibliographic_metadata",
+      "role": "edition_cross_check",
+      "confidence": 0.83,
+      "notes": "Confirms 3rd edition labeling, ISBN 9781578644285 / 1578644283, publication date 2007-01-01."
+    },
+    {
+      "id": "jimbouman-summary",
+      "title": "Seeking Wisdom by Peter Bevelin: Summary and Notes",
+      "url": "https://jimbouman.com/seeking-wisdom-peter-bevelin/",
+      "type": "secondary_summary",
+      "role": "chapter_map_and_thematic_support",
+      "confidence": 0.76,
+      "notes": "Provides five-part structure, part summaries, the pilot checklist framing, and appendix sections. Used only as secondary support, not quote authority."
+    }
+  ],
+  "frozenBundle": {
+    "primaryTextStatus": "partial_preview_only",
+    "authorizedPreviewSupport": "thin",
+    "exactQuoteSupport": "none_approved",
+    "chapterMapStatus": "reconstructed_from_authorized_metadata_plus_secondary_structure"
+  }
+}

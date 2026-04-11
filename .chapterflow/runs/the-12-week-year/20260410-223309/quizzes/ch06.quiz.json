@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What main shift does Chapter 6 make?",
+      "choices": [
+        "From weekly planning into measurable truth about results",
+        "From scorekeeping back to annual planning",
+        "From results into broader weekly lists"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says a focused week still needs evidence, not just intention or effort.",
+        "direct": "Chapter 6 adds measurement and scorekeeping so execution gets judged by results rather than feeling.",
+        "competitive": "It makes the week answer to proof."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why is measuring results necessary in this chapter?",
+      "choices": [
+        "Because effort and activity alone can mislead people about how well execution is going",
+        "Because planning no longer matters once scoring begins",
+        "Because weekly scorecards replace commitment"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says a week can feel strong and still fail if no one checks what actually moved.",
+        "direct": "Measurement is necessary because planning and effort are too easy to overrate without evidence.",
+        "competitive": "Motion lies easily when the result never gets to answer back."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What does the weekly scorecard do?",
+      "choices": [
+        "It gives execution a recurring weekly truth signal",
+        "It tracks every task whether it matters or not",
+        "It replaces weekly planning entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says the scorecard helps reveal whether the week really delivered on what it was supposed to do.",
+        "direct": "A weekly scorecard connects the planned week to visible evidence instead of vague memory.",
+        "competitive": "It puts the score where the week cannot ignore it."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Priya's team was busy all week but the key result barely moved. What Chapter 6 move is strongest?",
+      "choices": [
+        "Judge the week mainly by how hard everyone worked",
+        "Measure the result directly and let that evidence correct the team's interpretation",
+        "Avoid scorekeeping so morale stays high"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says effort may be real and still not move the intended outcome enough.",
+        "direct": "Priya needs visible evidence, not a comforting story about busyness, if execution is going to improve.",
+        "competitive": "The result has to overrule the applause."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What key distinction does the chapter make between effort and evidence?",
+      "choices": [
+        "Effort and evidence are the same once the week is full enough",
+        "Evidence matters only for teams, not for individuals",
+        "Effort can be sincere while evidence still shows the result did not move enough"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter says a serious and active week can still fall short under honest measurement.",
+        "direct": "This distinction is central: hard work is not rejected, but it is not accepted as proof either.",
+        "competitive": "A hard week still has to prove it hit the target."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which misreading does Chapter 6 warn against?",
+      "choices": [
+        "Treating scorekeeping as punishment or empty vanity tracking",
+        "Using evidence to revise self-assessment",
+        "Separating planning from proof"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says the scorecard is feedback, not punishment and not performance theater.",
+        "direct": "Scorekeeping loses value when it becomes vanity, punishment, or ritual without correction.",
+        "competitive": "A fake scoreboard still protects the same lies."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Lucas had a packed study week, but the key work still did not happen. What diagnosis fits Chapter 6 best?",
+      "choices": [
+        "He needed a better story about his effort",
+        "He needed honest measurement instead of relying on busyness as proof",
+        "He should stop tracking the week entirely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says a busy week can still mislead if no evidence checks whether the right result moved.",
+        "direct": "Lucas needed a truth function, not just more activity language, to know what actually happened.",
+        "competitive": "The week sounded strong until the score demanded receipts."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why does the chapter insist on a weekly scorecard instead of occasional reflection alone?",
+      "choices": [
+        "Because regular scoring makes drift harder to hide behind memory or optimism",
+        "Because occasional reflection is always useless",
+        "Because weekly scorecards remove the need for planning"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says recurring feedback helps keep the week honest before the cycle is over.",
+        "direct": "Weekly cadence matters because delayed or vague feedback gives weak execution more room to rationalize itself.",
+        "competitive": "If the score shows up often, excuses lose some shelter."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What hard test sits underneath the chapter's scorekeeping warning?",
+      "choices": [
+        "Whether the scorecard creates a correction loop or only records information passively",
+        "Whether the scorecard contains enough categories and numbers",
+        "Whether the score stays positive enough to motivate people"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps asking whether tracking is actually changing behavior and decisions.",
+        "direct": "The real issue is whether visible truth becomes operational correction instead of passive reporting.",
+        "competitive": "If the board changes nothing, it is still just furniture."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If Chapter 6 is right, what should naturally follow once the truth about execution is visible?",
+      "choices": [
+        "More intentional protection of the right actions so the next week improves honestly",
+        "A retreat from measurement so morale stays comfortable",
+        "A decision to treat scoring as the whole system"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter points forward to intentional protection of the right work once the score has exposed reality.",
+        "direct": "Once evidence is visible, the next issue is how to respond more intentionally rather than more vaguely.",
+        "competitive": "After truth comes tighter protection, not softer excuses."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

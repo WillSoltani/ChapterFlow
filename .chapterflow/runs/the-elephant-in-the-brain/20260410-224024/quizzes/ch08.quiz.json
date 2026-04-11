@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What basic claim does Chapter 8 make about laughter?",
+      "choices": [
+        "It is mainly proof that someone is happy",
+        "It often works as a play signal",
+        "It removes serious meaning from an interaction"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "understand",
+      "depthLevel": "easy",
+      "explanation": {
+        "gentle": "The chapter treats laughter as a signal that changes how a moment gets read.",
+        "direct": "Its main move is to frame laughter as play-signaling rather than simple amusement.",
+        "competitive": "The laugh is doing social work, not just reporting mood."
+      }
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What does a play signal do in this chapter's model?",
+      "choices": [
+        "It marks behavior as safer or less fully aggressive",
+        "It proves no danger exists",
+        "It forces everyone to agree about the meaning"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "remember",
+      "depthLevel": "easy",
+      "explanation": {
+        "gentle": "A play signal changes the frame so the act feels less threatening.",
+        "direct": "It lowers apparent severity without claiming the act is empty.",
+        "competitive": "It reprices the move under softer rules."
+      }
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why is deniability important to laughter in risky moments?",
+      "choices": [
+        "It lets people retreat from full seriousness if needed",
+        "It guarantees nobody is offended",
+        "It turns every joke into a true statement"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "remember",
+      "depthLevel": "easy",
+      "explanation": {
+        "gentle": "The laugh gives the speaker room to pull back if the move lands badly.",
+        "direct": "Deniability allows partial commitment and partial retreat at the same time.",
+        "competitive": "The signal comes with built-in fallback."
+      }
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A manager laughs while criticizing a teammate's deadline estimate. Which chapter idea best explains the function of the laugh?",
+      "choices": [
+        "It softens social danger while the criticism still stands",
+        "It proves the criticism should not count",
+        "It shows the manager is unaware of the comment"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "apply",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "The laugh makes the critique easier to deliver without making it meaningless.",
+        "direct": "Social danger drops even though the underlying judgment remains active.",
+        "competitive": "The cover gets softer while the jab stays live."
+      }
+    },
+    {
+      "questionId": "q05",
+      "prompt": "At a school lunch table, everyone laughs after a joke at one student's expense. What should you notice first using this chapter?",
+      "choices": [
+        "How the laughter may reduce open conflict while preserving a status message",
+        "How laughter always means the target enjoyed the joke",
+        "How the group has moved beyond signaling"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "apply",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "The room may feel looser even while the target still gets the message.",
+        "direct": "Laughter can cushion escalation without cancelling the ranking move.",
+        "competitive": "The table stays smooth while the status hit lands."
+      }
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which misunderstanding does Chapter 8 reject?",
+      "choices": [
+        "Laughter can frame rough or awkward moments as safer",
+        "Laughter may preserve deniability",
+        "Laughter only means happiness and never carries threat"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "The chapter gives laughter a broader job than simple joy.",
+        "direct": "It rejects the idea that laughter is only a happiness signal.",
+        "competitive": "A laugh can carry pressure, not just pleasure."
+      }
+    },
+    {
+      "questionId": "q07",
+      "prompt": "How does Chapter 8 grow out of Chapter 7 on body language?",
+      "choices": [
+        "It adds another signal that helps manage sensitive interaction under risk",
+        "It replaces signaling with pure verbal logic",
+        "It argues body language no longer matters"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "After body language, the book turns to a vocal signal that also helps people navigate delicate moments.",
+        "direct": "Laughter continues the signaling story by adding danger-softening and deniability.",
+        "competitive": "The next signal gives risky interaction cover."
+      }
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why might someone add laughter to a risky flirt or tease?",
+      "choices": [
+        "To reduce threat and keep an escape route if the response is bad",
+        "To remove all meaning from the move",
+        "To guarantee the other person will respond positively"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "apply",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "The laugh can make the move feel safer while leaving room to retreat.",
+        "direct": "Danger-softening and deniability make risky bids easier to send.",
+        "competitive": "The signal cuts exposure on the test."
+      }
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does the chapter insist that laughter does not erase the message underneath it?",
+      "choices": [
+        "Because softened danger is compatible with retained social meaning",
+        "Because every laugh secretly means the opposite of the words",
+        "Because laughter has no effect on how others interpret risk"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard",
+      "explanation": {
+        "gentle": "The chapter works only if the message can remain real while the threat is reduced.",
+        "direct": "A laugh reframes danger, but it does not automatically cancel content.",
+        "competitive": "The signal trims cost without deleting payload."
+      }
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What is the strongest bridge from Chapter 8 into Chapter 9 on conversation?",
+      "choices": [
+        "If laughter wraps risky social content in safer framing, conversation may also carry display under ordinary exchange",
+        "Conversation matters only when laughter disappears",
+        "Laughter and conversation belong to unrelated parts of the book"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard",
+      "explanation": {
+        "gentle": "The next chapter asks how signaling continues once people move into ordinary talk.",
+        "direct": "Conversation becomes the next place where social display can hide inside a safer-looking form.",
+        "competitive": "After play-signal cover comes talk-signal cover."
+      }
+    }
+  ]
+}

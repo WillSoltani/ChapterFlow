@@ -6,6 +6,7 @@
     "dev": "CHAPTERFLOW_DEPLOYMENT_MODE=standalone NEXT_DIST_DIR=.next-chapterflow APP_BASE_URL=http://localhost:3000 NEXT_PUBLIC_SITE_URL=http://localhost:3000 NEXT_PUBLIC_CHAPTERFLOW_SITE_URL=http://localhost:3000 NEXT_PUBLIC_CHAPTERFLOW_APP_URL=http://localhost:3000 NEXT_PUBLIC_CHAPTERFLOW_AUTH_URL=http://localhost:3000 CHAPTERFLOW_SITE_BASE_URL=http://localhost:3000 CHAPTERFLOW_APP_BASE_URL=http://localhost:3000 CHAPTERFLOW_AUTH_BASE_URL=http://localhost:3000 COGNITO_REDIRECT_URI=http://localhost:3000/auth/callback COGNITO_LOGOUT_REDIRECT_URI=http://localhost:3000/ next dev --hostname 127.0.0.1 --port 3000",
     "dev:3001": "CHAPTERFLOW_DEPLOYMENT_MODE=standalone NEXT_DIST_DIR=.next-chapterflow PORT=3001 APP_BASE_URL=http://localhost:3001 NEXT_PUBLIC_SITE_URL=http://localhost:3001 NEXT_PUBLIC_CHAPTERFLOW_SITE_URL=http://localhost:3001 NEXT_PUBLIC_CHAPTERFLOW_APP_URL=http://localhost:3001 NEXT_PUBLIC_CHAPTERFLOW_AUTH_URL=http://localhost:3001 CHAPTERFLOW_SITE_BASE_URL=http://localhost:3001 CHAPTERFLOW_APP_BASE_URL=http://localhost:3001 CHAPTERFLOW_AUTH_BASE_URL=http://localhost:3001 COGNITO_REDIRECT_URI=http://localhost:3001/auth/callback COGNITO_LOGOUT_REDIRECT_URI=http://localhost:3001/ next dev --hostname 127.0.0.1 --port 3001",
     "build": "next build",
+    "build:open-next": "next build && npx open-next build",
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
@@ -40,6 +41,7 @@
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
+    "@opennextjs/aws": "^3.10.1",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch16-q01",
+      "prompt": "What does replication mean in the chapter's practical sense?",
+      "choices": [
+        "Persistence through copying or transmission into a new instance",
+        "Doing the same visible thing again",
+        "Keeping one successful method secret"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter defines replication as survival through transfer, not just repetition.",
+        "direct": "Replication means enough of the pattern survives into a new instance to keep functioning.",
+        "competitive": "It is about what makes it across the handoff intact."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch16-q02",
+      "prompt": "Which detail best shows transferability?",
+      "choices": [
+        "A process that another person can run successfully without hidden rescue",
+        "A routine that looks impressive when one person performs it",
+        "A notebook containing only final answers"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Transferability appears when the next instance can actually work.",
+        "direct": "The pattern is transferable when function survives the shift into new hands.",
+        "competitive": "It counts when the next operator can run the engine."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch16-q03",
+      "prompt": "Dana's process works for her but fails for Hugo. What is the best reading?",
+      "choices": [
+        "The system succeeded once but was not replicable enough to survive handoff",
+        "The chapter would say Hugo simply needed more confidence",
+        "The process proves replication does not matter if the original actor stays nearby"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The core structure did not survive the transfer clearly enough.",
+        "direct": "One successful instance is not enough when the next actor cannot reproduce the function.",
+        "competitive": "The pattern shined once and failed the first real handoff."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch16-q04",
+      "prompt": "Why does Coach Benton's lab training create weaker copies over time?",
+      "choices": [
+        "Because fidelity is dropping as critical details are lost in each retelling",
+        "Because exact copying is always impossible, so training is pointless",
+        "Because repetition automatically guarantees persistence"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Each missing detail weakens the next version of the procedure.",
+        "direct": "The training looks continuous, but the structure is degrading with every low-fidelity handoff.",
+        "competitive": "The copy keeps the label while the engine leaks out."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch16-q05",
+      "prompt": "How does the chapter distinguish replication from repetition?",
+      "choices": [
+        "Replication preserves enough structure to keep working, while repetition may copy only the visible moves",
+        "There is no difference if the surface looks the same",
+        "Replication requires exact duplication in every detail"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter asks whether the underlying structure survived, not just the outer sequence.",
+        "direct": "Repetition can copy behavior while missing the mechanism that made the pattern work.",
+        "competitive": "The ritual is not the machine."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch16-q06",
+      "prompt": "Mina copies the same planner and alarms as someone else, but the routine still fails. What limit does the chapter emphasize?",
+      "choices": [
+        "Surface imitation can miss the hidden dependency that made the routine reliable",
+        "The best routines should never be shared",
+        "Replication means copying every visible move and nothing else"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says the visible pattern may not include the structure that actually made it work.",
+        "direct": "Repetition fails when the handoff preserves decoration but misses the core dependency.",
+        "competitive": "She copied the paint and missed the engine."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch16-q07",
+      "prompt": "Which action best applies replication thinking?",
+      "choices": [
+        "Identify the core structure, the fidelity risks, and whether another person can make the pattern work",
+        "Repeat the visible sequence as closely as possible and assume the rest will follow",
+        "Treat any one-time success as proof of durability"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter asks you to judge what survives a handoff, not just what once succeeded.",
+        "direct": "Replication becomes useful when it tests transferability and fidelity directly.",
+        "competitive": "Name the engine, find the leaks, and test the next operator."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch16-q08",
+      "prompt": "A club process works for veterans but fails for new members because critical reasoning never made the training handoff. Which response fits the chapter?",
+      "choices": [
+        "Assume the new members lack discipline and ignore the handoff design",
+        "Treat the failure as a replication problem in what survived transmission",
+        "Conclude that routines should never be passed to others"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter would inspect what structure never survived into the new instance.",
+        "direct": "The process failed because the transfer preserved the shell more clearly than the mechanism.",
+        "competitive": "The handoff passed the script and dropped the system."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch16-q09",
+      "prompt": "Which statement best captures the chapter's practical rule?",
+      "choices": [
+        "One success proves a pattern can persist if people admire it enough",
+        "Replication depends on transferability, fidelity, and preserving core structure through handoff",
+        "Exact duplication in every surface detail is the only form of real persistence"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter makes persistence a question of what survives transmission well enough to keep working.",
+        "direct": "Wise replication protects the essential structure and checks whether the next instance can still function.",
+        "competitive": "Durability belongs to the engine that survives transfer, not to one flashy run."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch16-q10",
+      "prompt": "How does this chapter set up cooperation?",
+      "choices": [
+        "It shows how patterns persist across multiple actors, then asks how those actors coordinate together",
+        "It finishes persistence questions completely so no coordination issue remains",
+        "It returns to self-preservation by focusing only on defensive boundaries again"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next question is how multiple actors work together once a pattern can survive across them.",
+        "direct": "Replication spreads the pattern across people, and cooperation asks how those people align their action.",
+        "competitive": "First the pattern spreads, then the people carrying it have to coordinate."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

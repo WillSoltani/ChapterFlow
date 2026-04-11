@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What main shift does Chapter 10 make?",
+      "choices": [
+        "From the surface habit to the underlying cause it appears to solve",
+        "From cause diagnosis to genetic explanation",
+        "From bad habits to social conformity only"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter asks what problem the habit seems to solve instead of stopping at the visible behavior.",
+        "direct": "Chapter 10 argues that better change begins by diagnosing the underlying need beneath the bad habit.",
+        "competitive": "The book stops staring only at the move and starts asking what job the move is doing."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why can bad habits feel useful in the moment?",
+      "choices": [
+        "Because they often appear to solve a real problem or feeling quickly",
+        "Because they are always morally better than alternatives",
+        "Because they remove every later cost"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A bad habit can feel helpful because it seems to offer quick relief, certainty, or escape.",
+        "direct": "The chapter says the habit persists because it presents itself as a solution, even if it is a poor one overall.",
+        "competitive": "The bad answer can still feel like an answer."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why does naming the real problem matter so much?",
+      "choices": [
+        "Because the underlying cause matters more than the surface behavior alone",
+        "Because naming the cause eliminates all cravings instantly",
+        "Because the visible behavior never matters at all"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The person changes more effectively once the real need is identified.",
+        "direct": "Naming the cause matters because the craving can then be interpreted more accurately and answered better.",
+        "competitive": "A clearer question makes a better response possible."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Nora keeps stress-snacking during a deadline. What best fits Chapter 10?",
+      "choices": [
+        "Treat the snack only as a food problem",
+        "Ask whether the snack is functioning as a tension response and address tension directly",
+        "Assume the habit is random weakness with no deeper cause"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Nora should diagnose what the snack is trying to do in the moment.",
+        "direct": "The chapter would read this as a flawed solution to pressure rather than as hunger alone.",
+        "competitive": "Read the stress before answering the drawer."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why does Dev's bus-stop scrolling keep returning?",
+      "choices": [
+        "Because the scrolling may be answering boredom or avoidance",
+        "Because boredom never matters in habits",
+        "Because the phone itself is the only cause worth naming"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter asks what the habit is solving, not only what device is present.",
+        "direct": "Dev improves when the urge is read as information about boredom or avoidance rather than as a command from the app.",
+        "competitive": "The scroll keeps coming back because the problem keeps coming back."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Why does Camila's late-night browsing fit the chapter so well?",
+      "choices": [
+        "Because it may be responding to overload and restlessness, not only to curiosity",
+        "Because the browser has no connection to feelings",
+        "Because awareness would make the urge disappear at once"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The browsing may be serving a real state badly.",
+        "direct": "Chapter 10 fits because Camila changes once she names what the browser has been promising underneath the surface routine.",
+        "competitive": "The screen was answering a feeling, not just offering content."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What does reinterpretation actually change?",
+      "choices": [
+        "It changes the meaning of the craving from command to information about a problem",
+        "It makes substitutes unnecessary",
+        "It guarantees instant success"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The urge can be read instead of obeyed automatically.",
+        "direct": "Reinterpretation changes the story around the craving so the person can respond to the real need more accurately.",
+        "competitive": "The craving becomes data, not destiny."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What limit does Chapter 10 keep on its argument?",
+      "choices": [
+        "Awareness helps, but it does not fix every bad habit instantly",
+        "Once the cause is named, the habit is gone",
+        "Only social norms matter after all"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps its claim narrow and practical.",
+        "direct": "It says insight weakens attraction and opens a better path, but it does not erase fatigue, repetition, or context by itself.",
+        "competitive": "Seeing clearly is powerful, but not magical."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "How does Chapter 10 build on Chapter 9?",
+      "choices": [
+        "Chapter 9 showed social attraction, and Chapter 10 asks what problem the bad habit is solving underneath that attraction",
+        "Chapter 10 abandons attraction and cause completely",
+        "Chapter 10 repeats group selection without adding a new layer"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Chapter 9 showed that norms can make a bad habit feel normal, while Chapter 10 asks what deeper need the habit is also answering.",
+        "direct": "The bridge is that social support may keep the habit attractive, but the habit still has a job underneath that support.",
+        "competitive": "First see the crowd around the habit, then see the problem inside it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why does Chapter 11 follow naturally after Chapter 10?",
+      "choices": [
+        "Because once the better response is chosen, the next question is how to make it easier to do",
+        "Because cause diagnosis ends the whole behavior-change process",
+        "Because ease matters only after satisfaction"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Once the person has a better answer, the next challenge is execution.",
+        "direct": "Chapter 11 naturally follows by asking how the chosen good habit can become easier to start and repeat consistently.",
+        "competitive": "A better answer still has to become an easier move."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    }
+  ]
+}

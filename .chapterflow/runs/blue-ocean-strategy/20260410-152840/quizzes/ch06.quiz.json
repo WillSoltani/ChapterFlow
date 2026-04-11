@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the strategic sequence trying to do in this chapter?",
+      "choices": [
+        "Turn a promising opportunity into an ordered commercial test",
+        "Replace market judgment with a fixed formula",
+        "Skip execution concerns once demand looks strong"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter uses sequence to test whether a move can actually work.",
+        "direct": "Its job is to turn opportunity into an ordered viability pressure test.",
+        "competitive": "It drags the idea through reality before the room canonizes it."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why is visible demand alone not enough?",
+      "choices": [
+        "Because all market interest is misleading",
+        "Because the move still has to survive utility, price, cost, and adoption pressure",
+        "Because demand matters only after execution"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Demand is only the beginning of the test, not the end.",
+        "direct": "A move can look attractive and still fail later gates in the sequence.",
+        "competitive": "Hype is not immunity."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why does buyer utility come first in the sequence?",
+      "choices": [
+        "Because buyers always care most about price first",
+        "Because real value has to exist before later economic questions matter",
+        "Because adoption barriers automatically disappear after utility is proven"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Without real value, the rest of the sequence rests on something weak.",
+        "direct": "Utility comes first because later gates cannot rescue a move buyers do not truly value.",
+        "competitive": "No value, no rights for the spreadsheet."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Iris's team sees strong curiosity from buyers but has not yet proven that the move solves a meaningful problem. What should happen next?",
+      "choices": [
+        "Celebrate the demand and move straight into launch planning",
+        "Test buyer utility before treating the move as viable",
+        "Skip utility and focus on lowering cost immediately"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The first gate is utility, not launch excitement.",
+        "direct": "The move has to prove buyer value before later stages matter.",
+        "competitive": "Applause does not get to skip gate one."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Sonia's concept was liked by buyers but only worked at a price that kept the market very narrow. What does that reveal?",
+      "choices": [
+        "The move failed at the price gate",
+        "Buyer utility was automatically weak",
+        "Adoption is the only issue that matters now"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A move can have value and still fail because price keeps demand too small.",
+        "direct": "The sequence shows that strong utility does not excuse weak price logic.",
+        "competitive": "A niche-friendly price is not a broad-market victory."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which statement best captures a common misreading of this chapter?",
+      "choices": [
+        "The sequence is just four independent boxes to mention in any order",
+        "The sequence is an ordered pressure test that exposes different failure modes",
+        "Adoption can still fail a move even after earlier steps look strong"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter is stricter than a checklist.",
+        "direct": "Reducing the sequence to unordered boxes erases its real disciplinary force.",
+        "competitive": "Checklist comfort is how weak moves survive the meeting."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Evan's team has strong demand signals but the target price and cost structure do not support each other. What does the sequence reveal?",
+      "choices": [
+        "Demand is enough to overlook cost problems",
+        "The move is failing on alignment between price and cost",
+        "Adoption should be tested before economics"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The strategy breaks when the economics do not support the promise.",
+        "direct": "Price and cost have to align, not merely sound acceptable on separate slides.",
+        "competitive": "The market story was louder than the economics could carry."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why can adoption still block a move after utility, price, and cost look strong?",
+      "choices": [
+        "Because adoption is the final reality gate between concept and use",
+        "Because adoption always matters more than buyer value",
+        "Because adoption replaces the need for cost discipline"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A move can still stall if the obstacles to uptake stay too high.",
+        "direct": "Adoption pressure keeps the chapter from mistaking economic coherence for implementation readiness.",
+        "competitive": "The move can still die at the doorway."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does the chapter insist on alignment across the sequence instead of one strong answer?",
+      "choices": [
+        "Because one persuasive win cannot compensate for failure at another gate",
+        "Because every gate is equally optional",
+        "Because the room should focus only on the hardest gate and ignore the rest"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The move has to hold across the whole sequence, not just in one place.",
+        "direct": "Commercial viability depends on the gates reinforcing one another.",
+        "competitive": "One good answer cannot drag a broken move across the line."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Once a move survives buyer utility, price, cost, and adoption, what becomes the next major problem in the book's flow?",
+      "choices": [
+        "Further market research inside the same chapter",
+        "Organizational barriers to execution",
+        "Ignoring execution because commercial logic is enough"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The next chapter asks what inside the organization still resists the move.",
+        "direct": "Once the commercial gate clears, the issue becomes execution under organizational resistance.",
+        "competitive": "After the gauntlet, the institution becomes the next enemy."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deep"
+    }
+  ]
+}

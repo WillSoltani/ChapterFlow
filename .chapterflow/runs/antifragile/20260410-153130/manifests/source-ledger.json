@@ -1,0 +1,94 @@
+{
+  "bookId": "antifragile",
+  "runId": "20260410-153130",
+  "createdAt": "2026-04-10T15:34:50Z",
+  "policy": {
+    "sourceDiscoveryMode": "web_bundle",
+    "sourcePolicy": "public_or_authorized_plus_secondary",
+    "paraphraseDefault": true,
+    "exactQuotePolicy": "exact quotes allowed only when directly supported by frozen authorized preview"
+  },
+  "sources": [
+    {
+      "sourceId": "src-prh-2012-book-page",
+      "title": "Antifragile by Nassim Nicholas Taleb",
+      "url": "https://www.penguinrandomhouse.com/books/176227/antifragile-by-nassim-nicholas-taleb/9780679645276",
+      "type": "official_publisher_page",
+      "role": "primary-metadata",
+      "confidence": "high",
+      "notes": "Official publisher metadata for the 2012 English edition, format dates, and publisher description."
+    },
+    {
+      "sourceId": "src-googlebooks-preview-2012",
+      "title": "Antifragile: Things That Gain from Disorder - Google Books preview",
+      "url": "https://books.google.com/books/about/Antifragile.html?id=QGaMDQAAQBAJ",
+      "type": "authorized_preview",
+      "role": "primary-preview-and-toc",
+      "confidence": "high",
+      "notes": "Authorized Google Books preview with bibliographic data and visible contents listing."
+    },
+    {
+      "sourceId": "src-colorado-college-catalog",
+      "title": "Antifragile : things that gain from disorder / Colorado College Libraries catalog",
+      "url": "https://catalog.coloradocollege.edu/cgi-bin/koha/opac-detail.pl?biblionumber=800833",
+      "type": "library_catalog",
+      "role": "contents-crosscheck",
+      "confidence": "high",
+      "notes": "Library catalog record with full contents string for Books 1-7 and chapter titles."
+    },
+    {
+      "sourceId": "src-nla-catalog",
+      "title": "Antifragile : things that gain from disorder / National Library of Australia",
+      "url": "https://catalogue.nla.gov.au/Record/6195864",
+      "type": "library_catalog",
+      "role": "edition-crosscheck",
+      "confidence": "high",
+      "notes": "Catalog record confirming 2012 publication, first-edition identifiers, and seven-book structure."
+    },
+    {
+      "sourceId": "src-supersummary-prologue-book1",
+      "title": "Antifragile Prologue-Book 1, Chapter 4 Summary & Analysis",
+      "url": "https://www.supersummary.com/antifragile/prologue-book-1-chapter-4-summary/",
+      "type": "secondary_summary",
+      "role": "chapter-1-4-interpretation",
+      "confidence": "medium",
+      "notes": "Used for chapter-level interpretation and chapter-1/2 sidecar support; never treated as quote authority."
+    },
+    {
+      "sourceId": "src-supersummary-book2-book3",
+      "title": "Antifragile Book 2, Chapter 5-Book 3, Chapter 11 Summary & Analysis",
+      "url": "https://www.supersummary.com/antifragile/book-2-chapter-5-book-3-chapter-11-summary/",
+      "type": "secondary_summary",
+      "role": "mid-book-interpretation",
+      "confidence": "medium",
+      "notes": "Used to estimate concept density and one-line intent for chapters 5-11."
+    },
+    {
+      "sourceId": "src-supersummary-book4-book5",
+      "title": "Antifragile Book 4, Chapter 12-Book 5, Chapter 19 Summary & Analysis",
+      "url": "https://www.supersummary.com/antifragile/book-4-chapter-12-book-5-chapter-19-summary/",
+      "type": "secondary_summary",
+      "role": "later-book-interpretation",
+      "confidence": "medium",
+      "notes": "Used to estimate concept density and one-line intent for chapters 12-19."
+    },
+    {
+      "sourceId": "src-supersummary-book6",
+      "title": "Antifragile Book 6, Chapters 20-22 Summary & Analysis",
+      "url": "https://www.supersummary.com/antifragile/book-6-chapters-20-22-summary/",
+      "type": "secondary_summary",
+      "role": "later-book-interpretation",
+      "confidence": "medium",
+      "notes": "Used for chapter intent notes for chapters 20-22."
+    },
+    {
+      "sourceId": "src-supersummary-book7",
+      "title": "Antifragile Book 7, Chapter 23-Epilogue Summary & Analysis",
+      "url": "https://www.supersummary.com/antifragile/book-7-chapter-23-epilogue-summary/",
+      "type": "secondary_summary",
+      "role": "closing-book-interpretation",
+      "confidence": "medium",
+      "notes": "Used for chapter intent notes for chapters 23-25; conclusion only, not quote authority."
+    }
+  ]
+}

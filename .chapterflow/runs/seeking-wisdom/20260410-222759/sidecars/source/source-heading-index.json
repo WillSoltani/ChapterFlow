@@ -1,0 +1,53 @@
+{
+  "bookId": "seeking-wisdom",
+  "headings": [
+    {
+      "id": "part-1",
+      "heading": "What Influences Our Thinking",
+      "kind": "part",
+      "sourceRefs": ["google-books-ed3", "jimbouman-summary"]
+    },
+    {
+      "id": "part-2",
+      "heading": "The Psychology of Misjudgments",
+      "kind": "part",
+      "sourceRefs": ["jimbouman-summary"]
+    },
+    {
+      "id": "part-2-pilot-checklist",
+      "heading": "The Pilot's Checklist to Avoid Fooling Ourselves",
+      "kind": "subheading",
+      "sourceRefs": ["jimbouman-summary"]
+    },
+    {
+      "id": "part-2-memory",
+      "heading": "The 7 Sins of Memory",
+      "kind": "subheading",
+      "sourceRefs": ["jimbouman-summary"]
+    },
+    {
+      "id": "part-3",
+      "heading": "The Physics and Mathematics of Misjudgments",
+      "kind": "part",
+      "sourceRefs": ["jimbouman-summary"]
+    },
+    {
+      "id": "part-4",
+      "heading": "Guidelines to Better Thinking",
+      "kind": "part",
+      "sourceRefs": ["jimbouman-summary"]
+    },
+    {
+      "id": "appendix-munger-speech",
+      "heading": "Munger Harvard School Commencement Speech 1986",
+      "kind": "appendix",
+      "sourceRefs": ["jimbouman-summary"]
+    },
+    {
+      "id": "appendix-munger-buffett",
+      "heading": "Wisdom from Charles Munger and Warren Buffett",
+      "kind": "appendix",
+      "sourceRefs": ["jimbouman-summary"]
+    }
+  ]
+}

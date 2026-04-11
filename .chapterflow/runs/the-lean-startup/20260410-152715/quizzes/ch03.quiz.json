@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What kind of learning counts in this chapter?",
+      "choices": [
+        "Learning validated by evidence strong enough to prove something real",
+        "Any lesson the team can explain clearly after a sprint",
+        "Any feedback that improves morale and confidence"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Ries narrows learning to evidence-backed proof, not just a thoughtful summary after activity.",
+        "direct": "The chapter's standard is validated learning: evidence strong enough to reduce uncertainty about the business.",
+        "competitive": "A story about progress is too cheap. Proof is what counts."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why is claimed learning weaker than validated learning?",
+      "choices": [
+        "Because it usually comes only from financial metrics",
+        "Because it can be built from interpretation without strong proof",
+        "Because it always ignores customers"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A team can interpret events in many flattering ways. Validated learning matters because it asks what the evidence truly established.",
+        "direct": "Claimed learning is weaker because it can survive on thin signals and a generous story, while validated learning requires stronger support.",
+        "competitive": "Interpretation is flexible. Proof is harder to fake."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "A team releases a feature and gets a small burst of encouraging comments but no strong change in user behavior. What is the best reading?",
+      "choices": [
+        "The team has definitely validated product value",
+        "The team may have a clue, but not yet validated learning",
+        "The team should ignore the comments completely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Encouraging comments can matter as a clue, but the chapter asks for stronger evidence before calling something validated learning.",
+        "direct": "Thin positive feedback may guide the next test, but it does not automatically reduce uncertainty enough to count as proof.",
+        "competitive": "Warm reaction is not the same thing as a settled verdict."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Priya sees positive demo comments on the lab whiteboard. What move best fits this chapter's standard?",
+      "choices": [
+        "Treat the comments as confirmation and scale immediately",
+        "Ask what business question the comments actually proved and design a stronger behavior test",
+        "Ignore all feedback because comments are always misleading"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That move respects the comments without promoting them into more certainty than they earned.",
+        "direct": "The chapter wants teams to convert encouraging signals into stronger tests rather than into premature conclusions.",
+        "competitive": "Take the hint, not the fantasy. Push toward proof."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What job do experiments perform in this chapter?",
+      "choices": [
+        "They help teams sound more scientific in meetings",
+        "They expose assumptions to conditions where reality can answer back",
+        "They replace the need for any interpretation"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Experiments matter because they let the world answer an assumption instead of leaving the team inside its own story.",
+        "direct": "Ries treats experimentation as the discipline that turns assumptions into testable claims under real conditions.",
+        "competitive": "The experiment forces the story out of the room and into contact with reality."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Jordan's team keeps fixing the same outage symptom. Why does the chapter say that is not enough?",
+      "choices": [
+        "Because every recurring problem requires a full rebuild",
+        "Because surface repair can leave the deeper cause untouched",
+        "Because outages never teach anything useful"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "If the failure keeps returning, the team probably has not reached the condition that is generating it.",
+        "direct": "Root-cause discipline matters because repeated symptoms signal that the earlier correction stayed too shallow.",
+        "competitive": "Winning the emergency is weak if the machine behind it keeps running."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "A nonprofit team says it learned from a pilot because staff members felt more confident afterward. How would Ries likely judge that claim?",
+      "choices": [
+        "Confidence is enough if the team worked hard",
+        "Confidence may help morale, but it does not validate learning by itself",
+        "Morale is more important than evidence in mission-driven work"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Confidence can matter for energy, but the chapter asks what proof reduced uncertainty about the work itself.",
+        "direct": "The standard does not change for mission-driven settings. Feeling clearer is weaker than evidence that changes what the team truly knows.",
+        "competitive": "Morale is not the same thing as proof, even when the mission feels important."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Tessa predicts her team will overclaim demo feedback. What danger is she naming?",
+      "choices": [
+        "That early positive reactions will be mistaken for validated learning",
+        "That feedback forms are always useless",
+        "That teams should avoid demos until the product is finished"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "She is naming the chapter's core trap: thin positive support gets promoted into more certainty than it earned.",
+        "direct": "The danger is that a flattering but weak result will be treated as proof instead of as a clue requiring a stronger test.",
+        "competitive": "Applause is easy to overread when the room wants the story to stay alive."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Which kind of evidence matters most under this chapter's standard?",
+      "choices": [
+        "Evidence that flatters the team's original plan",
+        "Evidence strong enough to challenge a story the team wants to keep",
+        "Evidence that produces the cleanest presentation slide"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter becomes hardest where proof threatens a preferred interpretation. That is where validated learning earns its value.",
+        "direct": "Evidence matters most when it is strong enough to overrule attachment, not just support what the team already hoped was true.",
+        "competitive": "The proof worth respecting is the proof that can wound the plan."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If validated learning is the real output, what does the next chapter most need to make concrete?",
+      "choices": [
+        "Which office layout supports team morale",
+        "How to design experiments around important business hypotheses",
+        "Why all customer feedback should be trusted equally"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Once learning has been defined this strictly, the next step is showing how teams should create the kinds of tests that can produce it.",
+        "direct": "The logical next move is to design experiments around the business hypotheses that matter enough to steer the company.",
+        "competitive": "If proof is the bar, Chapter 4 has to build the tests that can hit it."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

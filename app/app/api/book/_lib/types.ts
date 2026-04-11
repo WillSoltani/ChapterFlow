@@ -57,6 +57,7 @@ export type BookPackageQuiz = {
   chapterId?: string;
   chapterNumber?: number;
   chapterTitle?: string;
+  title?: string;
   passingScorePercent: number;
   questions: BookPackageQuizQuestion[];
   retryQuestions?: BookPackageQuizQuestion[];
@@ -94,6 +95,11 @@ export type ImplementationPlan = {
 };
 
 export type BookPackageChapter = {
+  book?: {
+    bookId?: string;
+    title?: string;
+    author?: string;
+  };
   chapterId: string;
   number: number;
   title: string;

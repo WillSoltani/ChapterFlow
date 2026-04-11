@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch01-q01",
+      "prompt": "What is the introduction really trying to teach?",
+      "choices": [
+        "How poker strategy works at a professional level",
+        "How to judge decisions in a world with uncertainty and hidden information",
+        "How to ignore outcomes because luck controls everything"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The introduction uses poker as a model, but its real subject is decision quality under uncertainty. It does not teach card tactics, and it does not say outcomes stop mattering.",
+        "direct": "The book's opening frame is decision-making, not gambling technique. Poker matters because it captures hidden information and luck better than a perfect-information model does.",
+        "competitive": "The trap is treating the poker language as branding. Duke is opening a decision book, not running a masterclass in card play."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q02",
+      "prompt": "Why does Duke start with Pete Carroll's failed pass call?",
+      "choices": [
+        "Because it shows how quickly people judge a decision by its outcome",
+        "Because football is a better model than poker for decision-making",
+        "Because sports examples are easier to remember than business examples"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The play is useful because the public reacted as if the bad result proved the decision was foolish. Duke uses that reflex to expose resulting.",
+        "direct": "The example dramatizes the chapter's core error: outcome-first judgment. The other choices talk about convenience, not mechanism.",
+        "competitive": "Carroll's play is bait. It pulls readers into hindsight certainty, then Duke shows them they took the bait."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q03",
+      "prompt": "A project succeeds even though the team skipped important evidence review. What does this chapter suggest?",
+      "choices": [
+        "The strong result proves the decision process was strong",
+        "The outcome is useful data, but the process still needs separate scrutiny",
+        "The team should celebrate and stop overthinking the win"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "A good outcome can still come from a weak process. The chapter asks you to inspect both instead of letting one lucky ending settle everything.",
+        "direct": "This is the reverse side of resulting. A win does not automatically validate the reasoning that produced it.",
+        "competitive": "A green metric can flatter a reckless process. If you stop at the win, you miss the rot under it."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q04",
+      "prompt": "Nina's launch misses its target, and the executive room starts saying the decision was obviously bad. What response best fits the chapter?",
+      "choices": [
+        "Accept the verdict, because a failed launch is the clearest proof that the original call was wrong",
+        "Ask what information the team had before launch and judge the process from that live context",
+        "Avoid the postmortem entirely until the emotions cool down"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "This chapter keeps bringing judgment back to the information available at decision time. Nina still has to review the miss, but not through hindsight alone.",
+        "direct": "Option B is the only choice that separates process evaluation from outcome shock. Option A collapses into resulting, and option C delays learning.",
+        "competitive": "The disciplined move is to reconstruct the live decision environment, not bow to the room's instant blame story."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q05",
+      "prompt": "Which setting is most like Duke's poker model?",
+      "choices": [
+        "A situation where all relevant information is visible before the choice",
+        "A situation where some key variables stay hidden and luck can influence the outcome",
+        "A situation where rules are simple enough that emotions disappear"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Poker matters because it keeps hidden information and luck in view. That is why Duke uses it instead of chess as the main comparison.",
+        "direct": "The correct answer identifies the structural feature the chapter cares about: incomplete information plus variance. Visibility alone would point back toward chess.",
+        "competitive": "If the cards are all face up, you are not in Duke's core environment anymore."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q06",
+      "prompt": "A manager says, 'Because luck affects outcomes, no one can really judge whether my decision process was weak.' What does the chapter say about that claim?",
+      "choices": [
+        "It is mostly right because uncertainty makes accountability unfair",
+        "It is wrong because uncertainty raises the importance of process review",
+        "It is right only when the manager feels highly confident"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter never turns uncertainty into a free pass. It asks for a better standard of judgment, not for judgment to disappear.",
+        "direct": "Duke's move is sharper accountability, not softer accountability. Once results stop doing all the work, process review has to get stronger.",
+        "competitive": "Variance is not a hiding place. If luck is in the game, your process audit needs more teeth, not less."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q07",
+      "prompt": "After a debate-team loss, Omar's teammates insist the original strategy must have been foolish because they lost the round. What is the best next step?",
+      "choices": [
+        "Reconstruct what the team predicted before the round and separate that from the final ballot",
+        "Accept that competition outcomes always reveal the true quality of preparation",
+        "Ignore the ballots because outcomes are too noisy to teach anything"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants a fairer review, not a softer one. Omar's team should preserve the pre-round reasoning and then inspect where process, execution, and luck each mattered.",
+        "direct": "Option A avoids both extremes: scoreboard worship and outcome nihilism. The chapter teaches structured judgment, not indifference.",
+        "competitive": "Keep the live odds on the table. If the team only studies the ballot, it learns a flatter lesson than the round actually offers."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q08",
+      "prompt": "Priya's data only supports a range, but the room rewards confident-sounding forecasts. Which answer best matches the chapter's standard?",
+      "choices": [
+        "Give the cleanest certain answer possible so the audience trusts her",
+        "State the estimate as a probability and explain what information is still missing",
+        "Refuse to answer because certainty is impossible"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Duke is not asking Priya to go silent. She is asking her to sound honestly calibrated instead of theatrically certain.",
+        "direct": "Probability language fits the chapter because it preserves commitment while acknowledging incomplete information. Option A performs confidence; option C abandons judgment.",
+        "competitive": "The strong move is to price the belief honestly, not to bluff certainty or retreat from the call."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q09",
+      "prompt": "What is the hardest balance this introduction asks the reader to hold?",
+      "choices": [
+        "Be humble about outcomes while staying strict about process quality",
+        "Ignore process and trust long-run luck to even everything out",
+        "Replace all decisions with formulas that remove uncertainty"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter lowers the power of hindsight, but it never lowers the demand for disciplined reasoning. That balance is the real threshold.",
+        "direct": "Duke's opening position is two-sided: outcomes are noisy, and accountability still survives the noise. The wrong answers break one side of that structure.",
+        "competitive": "If you keep humility but lose standards, you get excuses. If you keep standards but worship outcomes, you get hindsight theater. The chapter demands both honesty and rigor."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch01-q10",
+      "prompt": "If the introduction succeeds, what should the next chapter naturally add?",
+      "choices": [
+        "A defense of never making decisions until certainty arrives",
+        "A way to treat beliefs and choices as bets with explicit levels of confidence",
+        "A longer argument that poker is morally superior to chess"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The opening chapter prepares the reader to think probabilistically. The next move is to make that posture more explicit by linking beliefs and decisions to bets.",
+        "direct": "Option B follows the bridge exactly: once certainty is weakened, confidence has to become visible and testable.",
+        "competitive": "The introduction clears the table. The next chapter should make you price your convictions instead of merely announcing them."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

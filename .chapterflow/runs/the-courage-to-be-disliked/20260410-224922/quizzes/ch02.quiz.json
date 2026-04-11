@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What does the second night mean by saying feelings of inferiority are subjective assumptions?",
+      "choices": [
+        "Inferiority is always fake and should be ignored",
+        "Inferiority often comes from interpreting another person's position as a verdict on yourself",
+        "Inferiority matters only when people lack obvious talent"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter does not call the pain unreal. It says the pain often takes shape through comparison and interpretation.",
+        "direct": "Its point is relational mechanism. Another person's height becomes my lowness through a status reading, not through an automatic law.",
+        "competitive": "The feeling can be real while the scoreboard behind it is still a story."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the chapter link bragging with inferiority instead of treating them as opposites?",
+      "choices": [
+        "Because boasting can be a way of hiding insecurity before others can judge you",
+        "Because confident people usually speak less than insecure people",
+        "Because the book thinks all visible pride is dishonest"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A bragging person may be trying to protect themselves from feeling lower.",
+        "direct": "Superiority display can be compensation rather than calm confidence, which is why it belongs in the same chapter.",
+        "competitive": "The boast is often a preemptive strike against humiliation."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is the cleanest reading of the line \"Life Is Not a Competition\" in this chapter?",
+      "choices": [
+        "Effort and achievement are unimportant compared with peace of mind",
+        "Standards should stay high, but other people should not function as your measuring device for worth",
+        "Healthy people never compare themselves with anyone in any domain"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter does not reject seriousness. It rejects turning human relationships into scorekeeping.",
+        "direct": "The claim separates disciplined growth from rivalrous self-definition.",
+        "competitive": "Excellence survives. The ladder is what gets attacked."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Mira hears that her coworker was promoted and instantly feels smaller. According to the chapter, what should she examine first?",
+      "choices": [
+        "Whether the promotion proves she chose the wrong career",
+        "Whether she is turning another person's success into a verdict about her own worth",
+        "Whether promotions usually depend more on luck than talent"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter asks her to notice the comparison story before treating it as truth.",
+        "direct": "The key move is separating the bare event from the identity judgment attached to it.",
+        "competitive": "If Mira catches the scoreboard early, it loses some of its power."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "In study group, Caleb keeps ranking classmates instead of working the material. What response best fits the chapter?",
+      "choices": [
+        "Push the group back toward understanding the task rather than deciding who stands highest",
+        "Let the ranking continue because competition always raises standards",
+        "Ignore Caleb and wait for the instructor to correct him later"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants learning to matter more than place.",
+        "direct": "This answer re-centers the work instead of letting rank organize the room.",
+        "competitive": "Break the ladder and return to the material."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Noor starts replying coldly after feeling replaced by a friend. Why is that important in the chapter's logic?",
+      "choices": [
+        "It shows that quiet distance can be part of revenge after comparison turns into status injury",
+        "It proves that hurt feelings fade fastest when people avoid direct conversation",
+        "It means the friendship was weak from the beginning"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter treats revenge as something that can grow quietly from wounded comparison.",
+        "direct": "Noor's coldness shows the escalation from inferiority and humiliation into retaliatory desire.",
+        "competitive": "Revenge does not need fireworks. Injured pride can work in silence."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Which statement best preserves the chapter's distinction between growth and competition?",
+      "choices": [
+        "Improvement matters, but another person's success does not have to count as your defeat",
+        "Real growth happens only when strong rivals keep pressuring you",
+        "The safest way to avoid competition is to stop caring about achievement"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps effort alive while removing the need to turn others into opponents.",
+        "direct": "This answer captures the difference between task-centered excellence and rivalrous self-worth.",
+        "competitive": "You can sharpen without needing someone else beneath you."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "When does disagreement become power struggle in the chapter's terms?",
+      "choices": [
+        "When people disagree loudly enough that a mediator is required",
+        "When the issue stops mattering and the hidden question becomes who will stand above whom",
+        "When one side brings better evidence than the other"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Power struggle begins when place matters more than the problem itself.",
+        "direct": "The chapter defines the shift structurally: substance gives way to status defense.",
+        "competitive": "It becomes a throne fight when the work disappears and rank takes command."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Which response would the chapter treat as a misuse of its anti-competition claim?",
+      "choices": [
+        "Since life is not a competition, ambition and standards should probably be abandoned",
+        "Another person's success can remain their event instead of becoming a sentence about me",
+        "Life tasks can matter deeply without requiring someone else to lose"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter does not call for softness or passivity. It calls for cleaner effort.",
+        "direct": "This answer confuses anti-rivalry with anti-discipline, which the chapter explicitly resists.",
+        "competitive": "That is the lazy distortion. The ladder is rejected, not the standard."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why does the second night naturally lead into a chapter about separating tasks?",
+      "choices": [
+        "Because once rivalry loses authority, the next question is what responsibility actually belongs to you and what belongs to others",
+        "Because most interpersonal problems are solved once work tasks are clearly listed",
+        "Because the book now needs a lighter topic after discussing revenge"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "If life stops being a contest, the next step is learning the boundary around your own responsibility.",
+        "direct": "The bridge is conceptual: task-centered living requires distinguishing my task from another person's judgment or outcome.",
+        "competitive": "Once the scoreboard dies, you still need a hard line around what is actually yours."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

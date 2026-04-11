@@ -1,0 +1,236 @@
+# Run Log
+
+- Phase 0 manifest lock:
+  - title = “Execution“
+  - author = “Larry-Bossidy,Ram-Charan”
+  - editionPreference = ask_if_ambiguous
+  - bookId = execution
+  - runId = 20260410-223439
+  - outputProfile = flagship_v4_compatible
+  - learningContract = research_native
+  - runProfile = balanced_flagship
+  - validationMode = chapter_gate
+  - chapterGateMode = automatic_continue
+  - chapterGateQuizMode = generate
+  - scenarioTonePolicy = required
+  - sourceDiscoveryMode = web_bundle
+  - editionSelectionMode = ask_if_ambiguous
+  - sourcePolicy = public_or_authorized_plus_secondary
+  - forbidBulkGenerators = true
+  - releaseAssembleFromValidatedOnly = true
+  - preserveApprovedChapterHashes = true
+- Phase 0 complete.
+- Phase 1 source discovery:
+  - canonical edition auto-locked to Crown Business 1st ed. (2002)
+  - frozen bundle uses authorized preview plus chapter map and targeted secondary support
+  - no edition ambiguity requiring user intervention
+- Phase 2 complete.
+- Phase 3 complete.
+- Chapter 1 pre-writer package created:
+  - briefs/ch01.md
+  - outlines/ch01.md
+  - quiz-blueprints/ch01.md
+  - sidecars/source/ch01.source.txt
+  - sidecars/source/ch01.source.json
+- Chapter 1 prose loop:
+  - drafts/canonical/ch01.md written
+  - drafts/edited/ch01.md written
+  - reports/ch01.critic.md written
+- Chapter 1 conversion artifacts:
+  - structured/ch01.chapter.json written
+  - quizzes/ch01.quiz.json written
+- Chapter 1 validation:
+  - validated/ch01.chapter.json written
+  - validated/ch01.review-package.json written
+  - reports/ch01.validation.md written
+  - sidecars/ch01.reading-metrics.json written
+  - continuity seal recorded for ch01
+- Chapter 2 pre-writer package created:
+  - briefs/ch02.md
+  - outlines/ch02.md
+  - quiz-blueprints/ch02.md
+  - sidecars/source/ch02.source.txt
+  - sidecars/source/ch02.source.json
+- Chapter 2 prose loop:
+  - drafts/canonical/ch02.md written
+  - drafts/edited/ch02.md written
+  - reports/ch02.critic.md written
+- Chapter 2 conversion artifacts:
+  - structured/ch02.chapter.json written
+  - quizzes/ch02.quiz.json written
+
+- Chapter 2 validation:
+  - validated/ch02.chapter.json written
+  - validated/ch02.review-package.json written
+  - reports/ch02.validation.md written
+  - sidecars/ch02.reading-metrics.json written
+  - continuity seal recorded for ch02
+- Wave 1 verification:
+  - review-package payload match verified for ch02
+  - source guard clean after chapters 1-2
+  - artifact guard clean after chapters 1-2
+- Chapter 3 pre-writer package created:
+  - briefs/ch03.md
+  - outlines/ch03.md
+  - quiz-blueprints/ch03.md
+  - sidecars/source/ch03.source.txt
+  - sidecars/source/ch03.source.json
+- Chapter 3 prose loop:
+  - drafts/canonical/ch03.md written
+  - drafts/edited/ch03.md written
+  - reports/ch03.critic.md written
+- Chapter 3 conversion artifacts:
+  - structured/ch03.chapter.json written
+  - quizzes/ch03.quiz.json written
+- Chapter 3 validation:
+  - validated/ch03.chapter.json written
+  - validated/ch03.review-package.json written
+  - reports/ch03.validation.md written
+  - sidecars/ch03.reading-metrics.json written
+  - continuity seal recorded for ch03
+- Chapter 4 pre-writer package created:
+  - briefs/ch04.md
+  - outlines/ch04.md
+  - quiz-blueprints/ch04.md
+  - sidecars/source/ch04.source.txt
+  - sidecars/source/ch04.source.json
+- Chapter 4 prose loop:
+  - drafts/canonical/ch04.md written
+  - drafts/edited/ch04.md written
+  - reports/ch04.critic.md written
+- Chapter 4 conversion artifacts:
+  - structured/ch04.chapter.json written
+  - quizzes/ch04.quiz.json written
+- Chapter 4 validation:
+  - validated/ch04.chapter.json written
+  - validated/ch04.review-package.json written
+  - reports/ch04.validation.md written
+  - sidecars/ch04.reading-metrics.json written
+  - continuity seal recorded for ch04
+- Chapter 5 pre-writer package created:
+  - briefs/ch05.md
+  - outlines/ch05.md
+  - quiz-blueprints/ch05.md
+  - sidecars/source/ch05.source.txt
+  - sidecars/source/ch05.source.json
+- Chapter 5 prose loop:
+  - drafts/canonical/ch05.md written
+  - drafts/edited/ch05.md written
+  - reports/ch05.critic.md written
+- Chapter 5 conversion artifacts:
+  - structured/ch05.chapter.json written
+  - quizzes/ch05.quiz.json written
+- Chapter 5 validation:
+  - validated/ch05.chapter.json written
+  - validated/ch05.review-package.json written
+  - reports/ch05.validation.md written
+  - sidecars/ch05.reading-metrics.json written
+  - continuity seal recorded for ch05
+- Chapter 6 pre-writer package created:
+  - briefs/ch06.md
+  - outlines/ch06.md
+  - quiz-blueprints/ch06.md
+  - sidecars/source/ch06.source.txt
+  - sidecars/source/ch06.source.json
+- Chapter 6 prose loop:
+  - drafts/canonical/ch06.md written
+  - drafts/edited/ch06.md written
+  - reports/ch06.critic.md written
+
+- Chapter 6 conversion artifacts:
+  - structured/ch06.chapter.json written
+  - quizzes/ch06.quiz.json written
+- Chapter 6 validation:
+  - validated/ch06.chapter.json written
+  - validated/ch06.review-package.json written
+  - reports/ch06.validation.md written
+  - sidecars/ch06.reading-metrics.json written
+  - continuity seal recorded for ch06
+- Wave 3 verification:
+  - review-package payload match verified for ch06
+  - validated lint clean for ch06 chapter and review-package
+  - artifact guard clean after chapters 5-6
+
+- Chapter 7 pre-writer package created:
+  - briefs/ch07.md
+  - outlines/ch07.md
+  - quiz-blueprints/ch07.md
+  - sidecars/source/ch07.source.txt
+  - sidecars/source/ch07.source.json
+- Chapter 7 prose loop:
+  - drafts/canonical/ch07.md written
+  - drafts/edited/ch07.md written
+  - reports/ch07.critic.md written
+- Chapter 7 conversion artifacts:
+  - structured/ch07.chapter.json written
+  - quizzes/ch07.quiz.json written
+- Chapter 7 validation:
+  - validated/ch07.chapter.json written
+  - validated/ch07.review-package.json written
+  - reports/ch07.validation.md written
+  - sidecars/ch07.reading-metrics.json written
+  - continuity seal recorded for ch07
+- Chapter 8 pre-writer package created:
+  - briefs/ch08.md
+  - outlines/ch08.md
+  - quiz-blueprints/ch08.md
+  - sidecars/source/ch08.source.txt
+  - sidecars/source/ch08.source.json
+
+- Chapter 8 prose loop:
+  - drafts/canonical/ch08.md written
+  - drafts/edited/ch08.md written
+  - reports/ch08.critic.md written
+- Chapter 8 conversion artifacts:
+  - structured/ch08.chapter.json written
+  - quizzes/ch08.quiz.json written
+- Chapter 8 validation:
+  - validated/ch08.chapter.json written
+  - validated/ch08.review-package.json written
+  - reports/ch08.validation.md written
+  - sidecars/ch08.reading-metrics.json written
+  - continuity seal recorded for ch08
+- Wave 4 verification:
+  - review-package payload match verified for ch08
+  - validated lint clean for ch08 chapter and review-package
+  - artifact guard clean after chapters 7-8
+- Chapter 9 pre-writer package created:
+  - briefs/ch09.md
+  - outlines/ch09.md
+  - quiz-blueprints/ch09.md
+  - sidecars/source/ch09.source.txt
+  - sidecars/source/ch09.source.json
+
+- Chapter 9 prose loop:
+  - drafts/canonical/ch09.md written
+  - drafts/edited/ch09.md written
+  - reports/ch09.critic.md written
+- Chapter 9 conversion artifacts:
+  - structured/ch09.chapter.json written
+  - quizzes/ch09.quiz.json written
+- Chapter 9 validation:
+  - validated/ch09.chapter.json written
+  - validated/ch09.review-package.json written
+  - reports/ch09.validation.md written
+  - sidecars/ch09.reading-metrics.json written
+  - continuity seal recorded for ch09
+- Chapter 10 pre-writer package created:
+  - briefs/ch10.md
+  - outlines/ch10.md
+  - quiz-blueprints/ch10.md
+  - sidecars/source/ch10.source.txt
+  - sidecars/source/ch10.source.json
+
+- Chapter 10 prose loop:
+  - drafts/canonical/ch10.md written
+  - drafts/edited/ch10.md written
+  - reports/ch10.critic.md written
+- Chapter 10 conversion artifacts:
+  - structured/ch10.chapter.json written
+  - quizzes/ch10.quiz.json written
+- Chapter 10 validation:
+  - validated/ch10.chapter.json written
+  - validated/ch10.review-package.json written
+  - reports/ch10.validation.md written
+  - sidecars/ch10.reading-metrics.json written
+  - continuity seal recorded for ch10

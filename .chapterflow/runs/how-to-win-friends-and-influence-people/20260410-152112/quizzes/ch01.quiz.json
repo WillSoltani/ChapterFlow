@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "A manager says, I was right, so the harsh correction should have worked. Which response fits Carnegie's opening argument best?",
+      "choices": [
+        "Being right and being effective are different if the criticism hardens the listener",
+        "Harsh criticism always works when the facts are on your side",
+        "Correction only fails when the other person is unusually sensitive"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter's first distinction is between correctness and influence. A true criticism can still fail if it wounds pride and invites defense before learning.",
+        "direct": "Correct. Carnegie is not denying the facts. He is showing that criticism often loses force once the listener feels attacked.",
+        "competitive": "Truth does not rescue a bad lever. If blame hardens the ego, your correctness may still buy a weak result."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does Carnegie open with figures like Crowley, Capone, and Schultz?",
+      "choices": [
+        "To prove that criticism works best on extreme cases",
+        "To show that even obvious wrongdoing does not stop people from justifying themselves",
+        "To argue that ordinary people are basically criminals at heart"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The examples are extreme so the pattern is unmistakable. Even clear guilt does not automatically produce honest self-judgment.",
+        "direct": "Option B fits the chapter's opening job. The cases establish self-justification as a human defense, not a small social exception.",
+        "competitive": "Carnegie starts where excuses should be dead and still finds them alive. That is exactly the point."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is the most important lesson of Lincoln's unsent letter to General Meade in this chapter?",
+      "choices": [
+        "Leaders should never feel anger after failure",
+        "A deserved rebuke can still be the wrong move if it serves anger better than influence",
+        "Written criticism is weaker than spoken criticism"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Lincoln may have been right, but Carnegie cares most about what sending the rebuke would have accomplished next.",
+        "direct": "Correct. The chapter uses Lincoln to separate moral correctness from strategic usefulness.",
+        "competitive": "The letter would have been emotionally satisfying and strategically dumb. Carnegie wants you to see that gap."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Elias has to address a teammate's visible error in front of the whole team. Which opening move best fits Carnegie's principle?",
+      "choices": [
+        "Expose the failure sharply so the lesson feels serious",
+        "State the correction cleanly and move the deeper review to a smaller setting",
+        "Say nothing at all so the teammate can save face completely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The principle is not silence. It is avoiding a public attack that makes defense more likely than learning.",
+        "direct": "Option B keeps accountability while stripping out unnecessary humiliation. That preserves more influence.",
+        "competitive": "Public blame spends leverage fast. Better to fix the issue without turning the room into an audience for shame."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "A reader concludes, So Carnegie thinks standards should disappear because criticism hurts feelings. What is the best correction?",
+      "choices": [
+        "Right, because accountability is always weaker than empathy",
+        "Wrong, because the chapter rejects criticism as a first lever, not standards or consequences themselves",
+        "Partly right, but only in family life and not at work"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter keeps a real limit. Some situations still need boundaries or consequences. Carnegie is questioning the usefulness of blame, not the existence of standards.",
+        "direct": "Option B matches the chapter's boundary exactly. Restraint is not the same thing as passivity.",
+        "competitive": "This is not a softness sermon. It is a warning against confusing condemnation with control."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "After a debate loss, the captain says harsh public blame is necessary because people only improve when embarrassed. Which chapter response is strongest?",
+      "choices": [
+        "Embarrassment always produces better future performance because it raises the stakes",
+        "Public blame may satisfy the captain, but it can push the speaker into self-defense and waste the review",
+        "The right answer is to avoid all postmortems and let the loss teach itself"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns that humiliation can crowd out learning. The person begins protecting dignity instead of using the feedback.",
+        "direct": "Correct. Carnegie's point is that criticism often serves the speaker's emotions better than the listener's improvement.",
+        "competitive": "If the postmortem becomes a face-saving exercise, the captain is not coaching. He is staging his frustration."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "In the roommate argument about dishes, why is You always do this such a weak opening line under Carnegie's logic?",
+      "choices": [
+        "Because it is too grammatically vague to communicate clearly",
+        "Because it widens one problem into an identity attack and invites a defensive reply",
+        "Because household conflicts should never include direct requests"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The line turns a present problem into a verdict on the whole person. That makes defense more likely than repair.",
+        "direct": "Option B is right. General blame invites general counterattack rather than focused correction.",
+        "competitive": "The accusation gives away the game. Once identity is on trial, the sink stops being the real issue."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What does the Bob Hoover example add that the Lincoln story alone does not?",
+      "choices": [
+        "It shows that criticism only fails in military settings",
+        "It shows that a person may already be punishing himself, so added humiliation can damage future reliability",
+        "It proves that life-threatening mistakes should always be ignored"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Hoover shows that correction enters an emotional situation already in progress. The other person may already feel the failure deeply.",
+        "direct": "Correct. The Hoover scene adds the idea that shame and fear can already be active before the critic speaks.",
+        "competitive": "The mechanic did not need a lecture to discover he failed. Hoover's restraint protected the next performance better than an outburst would have."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does the chapter become stronger when it admits that some situations still require consequences or loss of trust?",
+      "choices": [
+        "Because that boundary makes the principle more credible and prevents restraint from collapsing into passivity",
+        "Because it shows Carnegie secretly prefers punishment to influence",
+        "Because it limits the rule to criminal behavior only"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The limit matters because it keeps the chapter honest. Carnegie is narrowing the criticism claim, not pretending all wrong can be handled softly.",
+        "direct": "Option A is right. The chapter rejects blame as a first influence tool while leaving room for accountability where the stakes require it.",
+        "competitive": "A principle you can trust tells you where it stops. This one gets stronger because it refuses the lazy fantasy that all firmness is cruelty."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If criticism is such a weak opening lever, what is the most natural next question for the book to answer?",
+      "choices": [
+        "How to make criticism sound more sophisticated",
+        "What positive force can move people more effectively than blame does",
+        "How to avoid all conflict by saying less"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter ends with a gap on purpose. If blame hardens people, the reader naturally wants to know what stronger lever replaces it.",
+        "direct": "Correct. The bridge points toward a positive human motive that can do what criticism usually fails to do.",
+        "competitive": "Once condemnation loses credibility, the next move is obvious: find the lever that moves people without driving pride underground."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    }
+  ]
+}

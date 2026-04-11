@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What new claim does Chapter 5 add about self-deception?",
+      "choices": [
+        "It may help mislead other people more effectively, not just protect the self from pain",
+        "It only appears in clinical disorders",
+        "It means all motives are consciously hidden"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "understand",
+      "depthLevel": "easy",
+      "explanation": {
+        "gentle": "The chapter says self-deception can serve a social function as well as a defensive one.",
+        "direct": "Its key move is to add outward advantage to inward protection.",
+        "competitive": "The blind spot can improve the public sell."
+      }
+    },
+    {
+      "questionId": "q02",
+      "prompt": "How do older defensive theories differ from newer evolutionary ones in this chapter?",
+      "choices": [
+        "Defensive theories focus on pain avoidance, while evolutionary ones add social advantage",
+        "Defensive theories deny emotion, while evolutionary ones deny motive",
+        "They are exactly the same account"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "remember",
+      "depthLevel": "easy",
+      "explanation": {
+        "gentle": "The older view centers inner comfort, while the newer view adds better deception of others.",
+        "direct": "The chapter contrasts self-protection with socially useful concealment.",
+        "competitive": "One theory says shield the self; the other says sharpen the signal too."
+      }
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why do modular minds matter in the chapter?",
+      "choices": [
+        "They show that every thought is random",
+        "They make uneven access to motive possible inside one person",
+        "They prove people always know their true motives"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "remember",
+      "depthLevel": "easy",
+      "explanation": {
+        "gentle": "Different parts of the mind can hold different information with different access.",
+        "direct": "Modularity makes self-deception structurally possible without a single inner liar.",
+        "competitive": "The head is not one transparent room."
+      }
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A manager sounds completely sincere while explaining a decision, but may not fully see the status motive shaping it. What chapter idea best explains that?",
+      "choices": [
+        "Full introspective transparency",
+        "Self-deception improving the credibility of the outward signal",
+        "A total absence of motive"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "apply",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "The speaker may feel honest because the strategic motive is not fully visible inside.",
+        "direct": "Reduced motive access can make a public story look more convincing.",
+        "competitive": "The signal gets cleaner when the actor misses part of the play."
+      }
+    },
+    {
+      "questionId": "q05",
+      "prompt": "A student gives one spoken reason for a flashy move, while a coach suspects another hidden drive is also active. What mechanism is most visible?",
+      "choices": [
+        "Modular access to motive inside the same person",
+        "Proof that the student is consciously lying in full",
+        "Evidence that motives do not matter"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "apply",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "Different parts of the mind may not be sharing the full motive picture equally.",
+        "direct": "The chapter uses modularity to explain sincere but incomplete self-report.",
+        "competitive": "One process may know more than the spoken story does."
+      }
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which misunderstanding does Chapter 5 reject?",
+      "choices": [
+        "Self-deception can have social value",
+        "The whole self is always consciously faking ignorance",
+        "Motives may be partly hidden from the actor"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "The chapter does not need a single conscious inner trickster to explain the phenomenon.",
+        "direct": "Its model depends on uneven access, not on a fully informed central manipulator.",
+        "competitive": "No mastermind is required."
+      }
+    },
+    {
+      "questionId": "q07",
+      "prompt": "How does Chapter 5 grow out of Chapter 4 on cheating?",
+      "choices": [
+        "It shows how concealment can move inward instead of staying only public",
+        "It says cheating disappears once the mind gets involved",
+        "It says norms no longer matter at all"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "The chapter turns fig-leaf logic inward by asking what happens when the actor also misses the motive.",
+        "direct": "Self-deception is cheating logic relocated inside the self.",
+        "competitive": "The cover moves from the act into the actor."
+      }
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why can self-deception make outward behavior more convincing to other people?",
+      "choices": [
+        "Because reduced access to motive lowers visible doubt and strain",
+        "Because people stop having motives entirely",
+        "Because observers automatically trust everyone"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "apply",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "The person may show fewer outward signs of inner conflict.",
+        "direct": "If selfish motive is blurred at the source, speech and expression can look cleaner.",
+        "competitive": "Fewer inner tells often mean fewer public tells."
+      }
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why does the chapter treat sincerity as real but not decisive proof of transparent motive?",
+      "choices": [
+        "Because sincerity is always fake",
+        "Because modular minds and self-discretion can leave the actor partly blind to motive",
+        "Because motives never shape behavior"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard",
+      "explanation": {
+        "gentle": "A person can feel honest while still lacking full access to what is driving the act.",
+        "direct": "The chapter weakens naive trust in introspection without denying genuine feeling.",
+        "competitive": "Clean sincerity can ride on incomplete access."
+      }
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What is the strongest bridge from Chapter 5 into Chapter 6 on counterfeit reasons?",
+      "choices": [
+        "If motives stay partly hidden, the mind may start supplying cleaner explanations after the fact",
+        "Once self-deception appears, explanation disappears entirely",
+        "Counterfeit reasons matter only when people know their motives clearly"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard",
+      "explanation": {
+        "gentle": "The next move is explanation-building from limited access to motive.",
+        "direct": "Counterfeit reasons extend self-deception into post-hoc storytelling.",
+        "competitive": "The mind starts writing the cleaner cover story."
+      }
+    }
+  ]
+}

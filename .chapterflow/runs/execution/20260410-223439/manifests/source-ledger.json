@@ -1,0 +1,99 @@
+{
+  "bookId": "execution",
+  "runId": "20260410-223439",
+  "title": "Execution: The Discipline of Getting Things Done",
+  "authors": [
+    "Larry Bossidy",
+    "Ram Charan",
+    "Charles Burck"
+  ],
+  "lockedEdition": {
+    "publisher": "Crown Business",
+    "year": 2002,
+    "isbn13": "9780609610572",
+    "isbn10": "0609610570"
+  },
+  "sources": [
+    {
+      "sourceId": "src-prh-2002-product",
+      "title": "Execution by Larry Bossidy, Ram Charan, and Charles Burck",
+      "url": "https://www.penguinrandomhouse.com/books/16316/execution-by-larry-bossidy-ram-charan-and-charles-burck/9780609610572",
+      "type": "official_product_page",
+      "role": "authorized primary metadata and publisher synopsis",
+      "confidence": 0.97,
+      "notes": "Confirms canonical hardcover metadata, 320-page listing, authorship, publication date, and high-level thesis."
+    },
+    {
+      "sourceId": "src-google-books-2009-preview",
+      "title": "Google Books preview for Execution: The Discipline of Getting Things Done",
+      "url": "https://books.google.com/books/about/Execution.html?id=07jVCQAAQBAJ",
+      "type": "authorized_preview",
+      "role": "authorized preview metadata and partial table of contents",
+      "confidence": 0.94,
+      "notes": "Provides selected-page preview, chapter start pages, and confirms later ebook edition preserves the core chapter map."
+    },
+    {
+      "sourceId": "src-worldcat-audio-toc",
+      "title": "WorldCat contents record for Execution: the discipline of getting things done",
+      "url": "https://search.worldcat.org/title/Execution-%3A-the-discipline-of-getting-things-done/oclc/77501233",
+      "type": "library_catalog",
+      "role": "full chapter listing",
+      "confidence": 0.92,
+      "notes": "Supplies the full chapter sequence for parts I to III."
+    },
+    {
+      "sourceId": "src-betterworldbooks-ingram-toc",
+      "title": "Better World Books listing with Ingram table of contents",
+      "url": "https://www.betterworldbooks.com/product/detail/execution-the-discipline-of-getting-things-done-9781847940681",
+      "type": "retailer_metadata",
+      "role": "page-number verification and revised-edition comparison",
+      "confidence": 0.9,
+      "notes": "Confirms page starts for introduction, numbered chapters, conclusion, and that later paperback adds front matter while preserving core order."
+    },
+    {
+      "sourceId": "src-rlaexp-contents-digest",
+      "title": "Execution contents digest",
+      "url": "https://rlaexp.com/studio/biz/conceptual_resources/toc_reviews/conceptual_resources_files/execution.html",
+      "type": "secondary_contents_digest",
+      "role": "subheading map and chapter-focus extraction",
+      "confidence": 0.74,
+      "notes": "Used narrowly for chapter-level subtopics and subhead map; treated as secondary support only."
+    },
+    {
+      "sourceId": "src-porchlight-seven-behaviors",
+      "title": "Leader's Seven Essential Behaviors",
+      "url": "https://www.porchlightbooks.com/blogs/news/leader-039-s-seven-essential-behaviors",
+      "type": "secondary_summary",
+      "role": "verification of the seven behaviors named in chapter 3",
+      "confidence": 0.76,
+      "notes": "Confirms the seven-item list attributed to the book."
+    },
+    {
+      "sourceId": "src-cio-people-process-excerpt",
+      "title": "Book Excerpt–Execution: The Discipline of Getting Things Done",
+      "url": "https://www.cio.com/article/270312/staff-management-book-excerpt-execution-the-discipline-of-getting-things-done.html",
+      "type": "authorized_excerpt",
+      "role": "chapter 6 support",
+      "confidence": 0.9,
+      "notes": "Supplies direct chapter-linked claims about the people process and succession pipeline."
+    },
+    {
+      "sourceId": "src-yes24-synopsis-toc",
+      "title": "Execution | Bossidy | Crown Currency",
+      "url": "https://www.yes24.com/product/goods/281460",
+      "type": "retailer_summary",
+      "role": "cross-check on synopsis and full numbered contents",
+      "confidence": 0.78,
+      "notes": "Used as a secondary corroborating source for the chapter list and overview claims."
+    },
+    {
+      "sourceId": "src-apple-books-description",
+      "title": "Execution on Apple Books",
+      "url": "https://books.apple.com/us/book/execution/id420267095",
+      "type": "authorized_retailer_description",
+      "role": "publisher description and external review excerpt support",
+      "confidence": 0.87,
+      "notes": "Used for chapter-2-adjacent claims that the book contrasts execution winners and losers and locates responsibility with senior managers."
+    }
+  ]
+}

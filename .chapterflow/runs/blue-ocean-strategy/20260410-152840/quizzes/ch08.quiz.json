@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What core problem defines Chapter 8?",
+      "choices": [
+        "The strategy has too many implementation steps",
+        "Execution weakens when the process around the decision lacks legitimacy",
+        "Blue oceans fail mainly because customers resist novelty"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter is about thin execution caused by untrusted process.",
+        "direct": "The problem is not just the move; it is whether the process earned cooperation.",
+        "competitive": "A bad process can bleed force from a good strategy."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does an opaque process damage execution?",
+      "choices": [
+        "Because it automatically makes the strategy irrational",
+        "Because people stop caring about all outcomes equally",
+        "Because people may comply outwardly while withholding trust and commitment"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Opaque process often produces surface compliance and weak commitment.",
+        "direct": "The chapter says distrust can thin cooperation even when open rebellion never appears.",
+        "competitive": "People obey the verdict and quietly starve the move."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Which set correctly names the three elements of fair process in this chapter?",
+      "choices": [
+        "Engagement, explanation, and expectation clarity",
+        "Consensus, transparency, and incentives",
+        "Debate, voting, and accountability"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter anchors fair process in those three elements.",
+        "direct": "Engagement, explanation, and expectation clarity are the official elements used here.",
+        "competitive": "Voice, why, and clear rules beat the fake substitutes."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "In a work scenario, what best shows engagement before a hard strategic choice?",
+      "choices": [
+        "Collecting input after the final decision is already fixed",
+        "Letting people shape the discussion while meaningful options are still open",
+        "Announcing the answer first and asking for reactions later"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Engagement means involvement while the decision can still move.",
+        "direct": "The chapter rejects staged participation after the call is effectively closed.",
+        "competitive": "If the door is already locked, the listening session is theater."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "A school group accepts a tough decision only after the leader clearly explains why one option was chosen. Which element fixed the problem?",
+      "choices": [
+        "Explanation",
+        "Expectation clarity",
+        "Consensus"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The missing piece was understanding the reasoning.",
+        "direct": "Explanation makes the logic of the final choice intelligible.",
+        "competitive": "Once the hidden why is exposed, resistance loses some fuel."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which statement best matches the chapter's view of fair process and consensus?",
+      "choices": [
+        "Fair process means everyone gets the outcome they prefer",
+        "Fair process can support cooperation even when people dislike the result",
+        "Fair process matters only when the group already agrees"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says fairness is about the process, not universal victory.",
+        "direct": "People can cooperate without full preference satisfaction if the process was credible.",
+        "competitive": "Losing the decision does not prove the process was rigged."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "A team heard the reasoning behind the decision but still drifts because no one knows the new rules, roles, or standards. What is missing?",
+      "choices": [
+        "Expectation clarity",
+        "Engagement",
+        "Market creation"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "They need clear expectations after the choice.",
+        "direct": "Explanation alone is not enough if the post-decision standards stay vague.",
+        "competitive": "A smart why with muddy rules still executes badly."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "A seminar group can move fast with an opaque private decision or spend a bit more time preserving engagement, explanation, and expectation clarity. Which choice fits the chapter best?",
+      "choices": [
+        "Preserve fair-process discipline because speed can become expensive when trust collapses",
+        "Choose opacity because execution always improves when decisions are faster",
+        "Avoid all decisions until full consensus appears"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns that rushed opaque process can create later drag.",
+        "direct": "Short-term speed is often offset by weaker follow-through when the process loses legitimacy.",
+        "competitive": "Save ten minutes now and you may buy weeks of distrust later."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why can cooperation survive disagreement under fair process?",
+      "choices": [
+        "Because people forget their preferences once they hear the decision",
+        "Because procedural legitimacy can matter even when the preferred outcome is not granted",
+        "Because fair process eliminates conflict entirely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "People can live with a hard outcome when the process still feels trustworthy.",
+        "direct": "The chapter argues that serious input, honest reasoning, and clear expectations support cooperation despite disagreement.",
+        "competitive": "Trust in the process can carry a hard call farther than forced agreement can."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "How does Chapter 8 connect to the book's broader execution logic?",
+      "choices": [
+        "It replaces all earlier strategy work with generic leadership advice",
+        "It shows how motion created after key hurdles are broken becomes durable across the wider institution",
+        "It argues that execution should be postponed until every stakeholder agrees"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter helps execution last after earlier barriers are broken.",
+        "direct": "It follows tipping point leadership by showing how fair process supports durable follow-through.",
+        "competitive": "Break the bottleneck, then earn legitimacy so the move keeps living."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deep"
+    }
+  ]
+}

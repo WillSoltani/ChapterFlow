@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch02-q01",
+      "prompt": "What does cognitive dissonance name in this chapter?",
+      "choices": [
+        "The tension created when beliefs, actions, or self-image conflict",
+        "A habit of making decisions too quickly",
+        "A preference for certainty over complexity"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Dissonance is treated here as felt tension when important parts of a person's story stop fitting together.",
+        "direct": "Correct. Dissonance is the pressure created by inconsistency between beliefs, behavior, or identity.",
+        "competitive": "Right. It is the grind between your story and your conduct."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch02-q02",
+      "prompt": "Why does the smoker example matter so much here?",
+      "choices": [
+        "It proves most smokers are dishonest people",
+        "It shows how changing the story can feel easier than changing the behavior",
+        "It demonstrates that health warnings are usually ineffective"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That is the key. The contradiction is obvious, and the chapter shows how rationalization can soften it without removing it.",
+        "direct": "Exactly. The smoker example makes dissonance reduction visible because conduct stays while interpretation shifts.",
+        "competitive": "Yes. The habit survives, and the narrative does the repair work."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch02-q03",
+      "prompt": "A manager keeps telling herself her public forecast is still solid even after the updated numbers turn against it. What is most likely happening?",
+      "choices": [
+        "She has become more objective because she is under pressure",
+        "She is wisely ignoring short-term data",
+        "She is reducing dissonance by protecting the decision and the self tied to it"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Nice catch. Once her judgment is invested in the forecast, contradiction threatens more than the forecast itself.",
+        "direct": "Correct. The new data is not landing on neutral ground. It is landing on a defended commitment.",
+        "competitive": "Right. The numbers are hitting her self-story, not just the spreadsheet."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch02-q04",
+      "prompt": "Rowan loses the debate round and blames biased judging without reading the ballot carefully. Which mechanism fits best?",
+      "choices": [
+        "Dissonance reduction protecting Rowan's confidence in the original case",
+        "A preference for dramatic explanations over simple ones",
+        "A healthy refusal to internalize criticism too quickly"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That fits the chapter. The ballot threatens Rowan's self-story, so the mind reaches first for the explanation that hurts less.",
+        "direct": "Correct. The contradiction between confidence and result is being managed through reinterpretation.",
+        "competitive": "The ego took the hit, and the story moved to block it."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q05",
+      "prompt": "What is the cleanest difference between dissonance reduction and truth correction?",
+      "choices": [
+        "Truth correction is emotional, while dissonance reduction is rational",
+        "Truth correction happens slowly, while dissonance reduction always happens instantly",
+        "Truth correction lowers tension by changing what is real, while dissonance reduction lowers tension whether reality changes or not"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "That is the sharp distinction. Relief can arrive without any real improvement in the facts.",
+        "direct": "Correct. Dissonance reduction is about lowering pressure, not guaranteeing accuracy.",
+        "competitive": "Yes. Feeling better is not the same thing as being less wrong."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q06",
+      "prompt": "Which misreading does the chapter reject?",
+      "choices": [
+        "People only reduce dissonance when they are consciously lying",
+        "Dissonance can appear in ordinary daily decisions",
+        "Commitment changes how evidence feels"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Dissonance reduction is treated here as an ordinary pressure response, not just deliberate deception.",
+        "direct": "Correct. People can rationalize sincerely because the defense is partly internal, not just performative.",
+        "competitive": "Right. The story can feel true enough to defend, which is why this is tougher than a simple lie."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q07",
+      "prompt": "Why does Festinger's failed-prophecy example matter in this chapter?",
+      "choices": [
+        "It shows that highly committed people never change their minds",
+        "It shows that disconfirming evidence can produce a stronger defensive story instead of surrender",
+        "It proves that small groups are always irrational"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That is the lesson. Reality contradicted the belief, but the contradiction was reworked instead of accepted.",
+        "direct": "Correct. The example demonstrates that bad evidence can intensify defense when commitment is costly.",
+        "competitive": "Yes. The miss did not kill the belief. It forced the defense to get better."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q08",
+      "prompt": "Asha feels buyer's remorse and then starts praising the expensive purchase more strongly than before. What is the chapter's best reading of that shift?",
+      "choices": [
+        "She has gathered new evidence that the purchase was smarter",
+        "She is showing mature commitment to her decision",
+        "She may be reducing the discomfort of regret by revising the meaning of the choice"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "That fits the pattern. The calmer story may be doing emotional repair before any new facts have arrived.",
+        "direct": "Correct. Post-purchase certainty can be relief work rather than improved judgment.",
+        "competitive": "Right. The product did not get better. The story got better at defending it."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q09",
+      "prompt": "Why does the chapter treat confidence after commitment as ambiguous evidence?",
+      "choices": [
+        "Because confident people are usually less intelligent than uncertain people",
+        "Because confidence can reflect either clearer judgment or successful tension reduction",
+        "Because commitment makes all evidence equally unreliable"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exactly. Confidence is not automatically false, but confidence alone cannot tell you whether clarity or defense is doing the work.",
+        "direct": "Correct. Certainty may come from good reasoning, but it may also come from a mind quieting contradiction.",
+        "competitive": "Yes. Confidence can be proof or camouflage. Commitment alone does not decide which."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch02-q10",
+      "prompt": "If dissonance reduction helps people defend commitments so aggressively, what is the strongest reason the next chapter would turn toward blind spots and objectivity?",
+      "choices": [
+        "Because once defense feels natural, people can start mistaking a protected view for plain reality",
+        "Because dissonance only matters before prejudice enters the picture",
+        "Because objectivity is mostly a matter of reading more information"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That is the bridge. If a defended commitment feels solid enough from the inside, it can start feeling like simple truth instead of defense.",
+        "direct": "Correct. The next step is to show how self-protective certainty becomes a blind spot that feels objective.",
+        "competitive": "Right. Once the story survives pressure, it starts calling itself reality."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

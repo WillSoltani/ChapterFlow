@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's main implementation claim?",
+      "choices": [
+        "A good checklist works perfectly the first time if the idea is correct",
+        "The first practical checklist attempt reveals friction that has to be revised",
+        "Resistance mainly proves professionals should be overruled quickly"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says the first try matters because it exposes what has to be improved.",
+        "direct": "Gawande treats first-version friction as part of building a usable checklist, not as proof against the idea.",
+        "competitive": "The first draft is a stress test, not a final verdict."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the early WHO pilot matter in this chapter?",
+      "choices": [
+        "It provides the first real setting where the checklist idea meets practice",
+        "It proves the final checklist was already complete on day one",
+        "It shows that design work no longer matters once a pilot begins"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The pilot is where the abstract idea first gets tested in real use.",
+        "direct": "The chapter needs the pilot because theory alone cannot show where a checklist will feel awkward or workable.",
+        "competitive": "The room exposes what the whiteboard could not."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What can first-version resistance reveal?",
+      "choices": [
+        "Only that professionals dislike being told what to do",
+        "That the checklist may be too long, mistimed, or out of rhythm with the work",
+        "That checklists should always be abandoned quickly"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Pushback can show real design friction.",
+        "direct": "The chapter says resistance may reflect usability problems rather than empty pride alone.",
+        "competitive": "Sometimes the room is spotting the flaw, not dodging the standard."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A team says a new checklist interrupts the work at the wrong moment. What Chapter 5 response fits best?",
+      "choices": [
+        "Keep the checklist unchanged to prove authority",
+        "Treat the complaint as feedback about timing and revise the checklist's use point",
+        "Drop the checklist because any friction means the idea failed"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says implementation problems can be repaired through revision.",
+        "direct": "Bad timing is exactly the kind of friction the first try is supposed to expose.",
+        "competitive": "Fix the rhythm before you judge the tool."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why is it wrong to treat the first awkward version as proof that the checklist idea failed?",
+      "choices": [
+        "Because early drafts are expected to reveal what real use demands",
+        "Because every first version should be obeyed no matter what",
+        "Because the chapter says usability never matters"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The first try is useful because it shows what needs improvement.",
+        "direct": "The chapter distinguishes idea failure from first-version friction.",
+        "competitive": "A clumsy draft is data, not defeat."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What makes a checklist gain credibility in this chapter?",
+      "choices": [
+        "High-status people ordering everyone to accept it",
+        "Revision that respects the workflow while keeping essential checks intact",
+        "Adding more steps so nobody can skip anything"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Credibility grows when the tool becomes usable and still protects what matters.",
+        "direct": "The chapter ties trust to practical fit plus preserved purpose, not to hierarchy alone.",
+        "competitive": "The tool earns belief when it survives the room without losing its teeth."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "A family packing checklist feels clumsy on the first trip. What Chapter 5 lesson applies?",
+      "choices": [
+        "The checklist should be thrown out because first use felt awkward",
+        "The checklist should be revised so the key pause stays but the sequence fits real use better",
+        "The family should memorize everything and stop using lists"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says revision is part of making a checklist usable.",
+        "direct": "You keep the checklist's purpose while improving its timing or shape.",
+        "competitive": "Sharpen the tool instead of sulking over version one."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What is the danger if a team trims every uncomfortable step just to reduce resistance?",
+      "choices": [
+        "The checklist may lose the disciplined pause that made it useful",
+        "The checklist will automatically become more credible",
+        "The chapter says discomfort is always irrelevant"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A checklist can become too weak if revision removes its essential check.",
+        "direct": "The chapter's balance is usability without surrendering the purpose of the pause.",
+        "competitive": "If you sand off every hard edge, you may erase the point."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What is the chapter's deepest implementation lesson?",
+      "choices": [
+        "Good ideas should wait for perfect acceptance before testing",
+        "Implementation is where design becomes real through iterative refinement",
+        "Professional resistance is mostly a distraction from technical correctness"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says the real checklist is built through testing and revision.",
+        "direct": "Implementation is not separate from design. It is the place where design gets corrected by reality.",
+        "competitive": "The room finishes what the theory starts."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What question does the chapter hand to the next chapter?",
+      "choices": [
+        "How to prove one early pilot already settled the whole argument",
+        "How good checklist builders learn to make lists shorter, sharper, and more usable",
+        "Why all resistance disappears once a checklist is announced"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The next chapter asks what good checklist design actually requires.",
+        "direct": "Once the first try exposes friction, the book moves toward design discipline and construction rules.",
+        "competitive": "The next fight is building a tool the room can live with."
+      },
+      "bloomsLevel": "create",
+      "depthLevel": "deeper"
+    }
+  ]
+}

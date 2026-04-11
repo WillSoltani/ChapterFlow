@@ -1,0 +1,128 @@
+{
+  "schemaVersion": "chapterflow.v13.source-ledger",
+  "bookId": "mistakes-were-made-but-not-by-me",
+  "runId": "20260410-224452",
+  "createdAt": "2026-04-10",
+  "policy": {
+    "sourceDiscoveryMode": "web_bundle",
+    "sourcePolicy": "public_or_authorized_plus_secondary",
+    "editionSelectionMode": "ask_if_ambiguous"
+  },
+  "sources": [
+    {
+      "sourceId": "google-books-third-edition-preview",
+      "title": "Mistakes Were Made (but Not by Me) Third Edition: Why We Justify Foolish Beliefs, Bad Decisions, and Hurtful Acts",
+      "url": "https://books.google.com/books/about/Mistakes_Were_Made_but_Not_by_Me_Third_E.html?id=vZkGNIpAsTEC",
+      "type": "authorized_preview_metadata",
+      "role": "primary_authorized_preview",
+      "confidence": "high",
+      "notes": "Primary authorized web preview metadata used to confirm title, authors, publisher, date, edition framing, and third-edition update note."
+    },
+    {
+      "sourceId": "better-world-books-publisher-toc",
+      "title": "Mistakes Were Made (but Not by Me) Third Edition",
+      "url": "https://www.betterworldbooks.com/product/detail/mistakes-were-made-but-not-by-me-third-edition-why-we-justify-foolish-beliefs-bad-decisions-and-hurtful-acts-9780547416038/audio",
+      "type": "publisher_toc_mirror",
+      "role": "table_of_contents",
+      "confidence": "medium_high",
+      "notes": "Search result exposes publisher-supplied table of contents and edition metadata. Used for chapter order and pagination anchors."
+    },
+    {
+      "sourceId": "open-library-third-edition-record",
+      "title": "Mistakes Were Made Third Edition",
+      "url": "https://openlibrary.org/books/OL28536241M/Mistakes_Were_Made_Third_Edition",
+      "type": "bibliographic_record",
+      "role": "edition_crosscheck",
+      "confidence": "medium",
+      "notes": "Cross-check for publication year, publisher, and physical-page metadata for the 2020 third edition."
+    },
+    {
+      "sourceId": "ecrlib-catalog-toc",
+      "title": "Mistakes were made (but not by me): why we justify foolish beliefs, bad decisions, and hurtful acts",
+      "url": "https://discovery.ecrlib.org/GroupedWork/69f582f6-3bcc-17e1-d944-5f10c3995808-eng/Home",
+      "type": "library_catalog_record",
+      "role": "toc_crosscheck",
+      "confidence": "medium",
+      "notes": "Catalog record with first-edition table of contents used only as a cross-check against the third-edition TOC because the main chapter line-up remains aligned."
+    },
+    {
+      "sourceId": "gistfist-book-summary",
+      "title": "Mistakes Were Made (but Not by Me): Why We Justify Foolish Beliefs, Bad Decisions, and Hurtful Acts Summary",
+      "url": "https://www.gistfist.com/book-summaries/9780544574786",
+      "type": "secondary_summary",
+      "role": "chapter_framing_support",
+      "confidence": "medium",
+      "notes": "Used narrowly for the introduction framing that the book opens with public non-apologies and for the chapter numbering convention that treats the titled introduction as chapter 0."
+    },
+    {
+      "sourceId": "vermont-public-non-apology",
+      "title": "It's True: 'Mistakes Were Made' Is The King Of Non-Apologies",
+      "url": "https://www.vermontpublic.org/2013-05-14/its-true-mistakes-were-made-is-the-king-of-non-apologies",
+      "type": "journalism",
+      "role": "phrase_context_support",
+      "confidence": "medium",
+      "notes": "Used only to support the public non-apology framing behind the book's title and opening tension."
+    },
+    {
+      "sourceId": "graham-mann-notes",
+      "title": "Mistakes Were Made (but Not by Me) - Summary & Notes",
+      "url": "https://www.grahammann.net/book-notes/mistakes-were-made-but-not-by-me-carol-tavris-elliot-aronson",
+      "type": "secondary_summary",
+      "role": "chapter_specific_support",
+      "confidence": "medium",
+      "notes": "Used narrowly for Chapter 2 framing around dissonance as the engine of self-justification and for the smoking inconsistency example."
+    },
+    {
+      "sourceId": "psychotherapy-networker-review",
+      "title": "The Art of Self-justification",
+      "url": "https://www.psychotherapynetworker.org/article/art-self-justification/",
+      "type": "review",
+      "role": "chapter_specific_support",
+      "confidence": "medium",
+      "notes": "Supports the definition of cognitive dissonance as tension between inconsistent cognitions and reinforces the book's framing."
+    },
+    {
+      "sourceId": "neuromarketing-review",
+      "title": "Mistakes Were Made (but not by me)",
+      "url": "https://www.neurosciencemarketing.com/blog/articles/mistakes-were-made.htm",
+      "type": "review",
+      "role": "chapter_specific_support",
+      "confidence": "medium",
+      "notes": "Used narrowly for the phrase that the authors call cognitive dissonance the engine of self-justification."
+    },
+    {
+      "sourceId": "insightbooks-memory-summary",
+      "title": "Mistakes Were Made (But Not by Me) Summary - Key Insights",
+      "url": "https://insightbooks.app/books/mistakes-were-made-but-not-by-me",
+      "type": "secondary_summary",
+      "role": "chapter_specific_support",
+      "confidence": "medium",
+      "notes": "Used narrowly for Chapter 4 on memory as reconstructed self-justifying narrative, including spouse and student recall examples."
+    },
+    {
+      "sourceId": "twelvemin-summary",
+      "title": "Mistakes Were Made (But Not by Me) - Critical summary review",
+      "url": "https://12min.com/mistakes-were-made-but-not-by-me-critical%20summary%20review",
+      "type": "secondary_summary",
+      "role": "chapter_specific_support",
+      "confidence": "medium",
+      "notes": "Used narrowly for Chapters 3 and 4 on naive realism, blind spots, prejudice, and memory as the self-justifying historian."
+    },
+    {
+      "sourceId": "hopkins-memory-excerpt",
+      "title": "Mistakes Were Made (But Not by Me): Why We Justify Foolish Beliefs, Bad Decisions, and Hurtful Acts",
+      "url": "https://www.hopkinsandcompany.com/Books/Mistakes%20Were%20Made.htm",
+      "type": "excerpt_summary",
+      "role": "chapter_specific_support",
+      "confidence": "medium",
+      "notes": "Supports Chapter 4 framing around memory as a self-justifying historian and Anthony Greenwald's totalitarian ego metaphor."
+    }
+  ],
+  "selectionSummary": {
+    "chosenEditionSourceId": "google-books-third-edition-preview",
+    "tocSourceId": "better-world-books-publisher-toc",
+    "fullTextAvailable": false,
+    "authorizedPreviewAvailable": true,
+    "secondarySupportRequired": true
+  }
+}

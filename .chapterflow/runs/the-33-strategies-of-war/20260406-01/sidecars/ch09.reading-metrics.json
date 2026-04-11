@@ -1,0 +1,77 @@
+{
+  "chapterId": "the-33-strategies-of-war-ch09",
+  "chapterNumber": 9,
+  "contentHash": "aafe75478017068f251b67f80d16232d2761792a8e4b33cf851a7b6f181f781e",
+  "wordCounts": {
+    "easy": {
+      "gentle": 172,
+      "direct": 164,
+      "competitive": 171
+    },
+    "medium": {
+      "gentle": 375,
+      "direct": 339,
+      "competitive": 339
+    },
+    "hard": {
+      "gentle": 518,
+      "direct": 528,
+      "competitive": 558
+    }
+  },
+  "gradeBands": {
+    "easy": "6-8",
+    "medium": "9-11",
+    "hard": "12-14"
+  },
+  "readingTimeMinutes": 20,
+  "characterRoster": {
+    "breakdownAnchors": [
+      "Margot",
+      "Ravi"
+    ],
+    "exampleCharacters": {
+      "ch09-ex01": "Ingrid",
+      "ch09-ex02": "Tobias",
+      "ch09-ex03": "Maren",
+      "ch09-ex04": "Dante",
+      "ch09-ex05": "Sylvie",
+      "ch09-ex06": "Koa"
+    }
+  },
+  "schoolSettings": [
+    "graduate-public-policy",
+    "high-school-literary-magazine"
+  ],
+  "exampleDistribution": {
+    "formats": {
+      "decision_point": "ch09-ex01",
+      "cold_open": "ch09-ex02",
+      "dialogue": "ch09-ex03",
+      "case_in_progress": "ch09-ex04",
+      "dilemma": "ch09-ex05",
+      "aftermath": "ch09-ex06"
+    },
+    "endingTypes": {
+      "lever": "ch09-ex01",
+      "pivot": "ch09-ex02",
+      "resolution": "ch09-ex03",
+      "discipline": "ch09-ex04",
+      "commitment": "ch09-ex05",
+      "lesson": "ch09-ex06"
+    },
+    "categories": {
+      "work": 2,
+      "school": 2,
+      "personal": 2
+    }
+  },
+  "quizStats": {
+    "totalQuestions": 10,
+    "correctIndexDistribution": {
+      "1": 4,
+      "0": 3,
+      "2": 3
+    }
+  }
+}

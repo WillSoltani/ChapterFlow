@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What does Chapter 5 treat as arriving before explanation has done much work?",
+      "choices": [
+        "A complete judgment of your competence",
+        "The early signal created by your expression",
+        "A detailed understanding of your intentions"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says first impressions begin with what the other person reads on the face before much else is understood.",
+        "direct": "Option B fits the chapter. Carnegie starts with expression as an early atmosphere signal.",
+        "competitive": "The face lands first. Your full explanation does not."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why can visible warmth improve a first impression under Carnegie's logic?",
+      "choices": [
+        "Because it lowers strain and makes the exchange easier to enter",
+        "Because it guarantees instant friendship",
+        "Because it makes long explanations unnecessary"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Visible warmth helps because the other person can feel more received right away.",
+        "direct": "Correct. An open expression changes the opening atmosphere before content can do that work.",
+        "competitive": "Warmth cuts friction early."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What weak reading of Chapter 5 does the prose reject?",
+      "choices": [
+        "That the chapter is mainly about constant smiling or grin advice",
+        "That first impressions matter at all",
+        "That expression can influence room-feel"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps saying the principle is not pasted-on friendliness.",
+        "direct": "Option A is the misreading. Carnegie is not teaching cosmetic cheerfulness.",
+        "competitive": "This chapter is not grin management."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Naomi is rushing into a first meeting with tension on her face. Which response best fits Chapter 5?",
+      "choices": [
+        "Start talking faster so the team sees she is prepared",
+        "Let her expression soften and make the room easier before explaining anything",
+        "Avoid eye contact until everyone settles down"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Chapter 5 asks Naomi to change the opening signal before relying on words alone.",
+        "direct": "Option B fits. Visible warmth lowers the room's strain before the content begins working.",
+        "competitive": "Fix the face before you flood the room with explanation."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "At a volunteer sign-in table, why might a competent student leader still feel hard to approach?",
+      "choices": [
+        "Because competence always creates distance",
+        "Because an efficient setup can still feel cold if the expression looks closed or procedural",
+        "Because students prefer disorganization to structure"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says first contact is shaped by welcome, not only by process.",
+        "direct": "Correct. Visible warmth keeps competence from turning cold.",
+        "competitive": "An organized table with a closed face still feels uphill."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "In a personal conversation, what can happen when someone resets a closed expression before talking further?",
+      "choices": [
+        "The other person often feels less shut out and more able to stay in contact",
+        "The issue disappears completely",
+        "The conversation becomes less sincere because expression matters too much"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Visible warmth can keep a small moment from hardening too quickly.",
+        "direct": "Option A matches the chapter. A softer opening signal makes the exchange easier to stay in.",
+        "competitive": "Less facial friction creates more room fast."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What keeps visible warmth from becoming manipulation in this chapter?",
+      "choices": [
+        "It grows out of real good will rather than facial performance",
+        "It is used only in professional settings",
+        "It avoids all emotion in the face"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Sincerity is the guardrail. The expression has to come from real welcome.",
+        "direct": "Option A preserves the chapter's boundary. Once friendliness becomes a facial tactic, the move gets hollow.",
+        "competitive": "Readable ease works. Deployed friendliness leaks."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why does Chapter 5 naturally lead toward a chapter about names and recognition?",
+      "choices": [
+        "Because first-contact warmth raises the next question of how welcome becomes personally directed",
+        "Because first impressions matter only when names are already known",
+        "Because expression is less important than memory tricks"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Visible warmth opens the room, and the next question is how that welcome becomes more personal.",
+        "direct": "Option A fits the bridge. After readable welcome comes recognition.",
+        "competitive": "The face opens the door. The next move aims the welcome at the person."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Which statement best captures the difference between sincere visible warmth and forced brightness?",
+      "choices": [
+        "Sincere warmth is quieter but more trustworthy because it does not show strain",
+        "Forced brightness is better because it guarantees a stronger signal",
+        "There is no real difference if the smile is large enough"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter trusts simple human ease more than effort-showing friendliness.",
+        "direct": "Correct. People often detect when expression is being pushed into place.",
+        "competitive": "A grin that shows strain loses to a face carrying real ease."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deeper"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What is the most accurate high-level summary of Chapter 5?",
+      "choices": [
+        "Good first impressions come mainly from saying the smartest thing first",
+        "A good first impression often begins with visible warmth that makes another person feel received early",
+        "First impressions can be controlled only by strong self-confidence"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter makes visible welcome the opening social signal.",
+        "direct": "Option B is the chapter in one line. Expression matters early because it shapes the room before explanation does much work.",
+        "competitive": "Your face starts the room. Make it easier to enter."
+      },
+      "bloomsLevel": "transfer",
+      "depthLevel": "deeper"
+    }
+  ]
+}

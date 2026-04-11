@@ -1,0 +1,38 @@
+{
+  "title": "Incentives",
+  "heading": "Incentives",
+  "section": "Biology",
+  "pageStart": 337,
+  "approxWords": 145,
+  "properNouns": [
+    "Google Books",
+    "Ingram Syndetics"
+  ],
+  "repeatedTerms": [
+    "incentives",
+    "reward",
+    "penalty",
+    "behavior",
+    "system"
+  ],
+  "sourceReferences": [
+    {
+      "sourceId": "google-books-2024",
+      "use": "chapter title and page start"
+    },
+    {
+      "sourceId": "ingram-syndetics-toc",
+      "use": "chapter sequence after hierarchical organization"
+    }
+  ],
+  "supportSummary": [
+    "The chapter title supports a focus on how systems steer behavior through reward, penalty, and consequence.",
+    "Following Hierarchical Organization, the narrow support allows discussion of how layered systems guide action inside the structure they create.",
+    "Conservative paraphrase can emphasize behavior-shaping signals and tradeoffs without inventing biology detail."
+  ],
+  "unsupportedZones": [
+    "animal incentive case studies or evolutionary signaling detail not present in the frozen bundle",
+    "behavioral economics examples or named experiments not directly supported",
+    "exact quotations from the chapter interior"
+  ]
+}

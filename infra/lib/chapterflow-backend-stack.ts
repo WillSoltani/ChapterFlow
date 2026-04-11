@@ -25,6 +25,10 @@ function resolveAllowedWebOrigins(): string[] {
     "https://www.siliconx.ca",
     "https://chapterflow.siliconx.ca",
     "https://auth.siliconx.ca",
+    "https://chapterflow.ca",
+    "https://www.chapterflow.ca",
+    "https://app.chapterflow.ca",
+    "https://auth.chapterflow.ca",
   ];
 
   const envCandidates = [

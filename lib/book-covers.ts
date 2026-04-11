@@ -1,4 +1,5 @@
 const REAL_BOOK_COVER_PATHS: Record<string, string> = {
+  "atomic-habits": "/book-covers/atomic-habits.svg",
   "crucial-conversations": "/book-covers/crucial-conversations.svg",
   "the-power-of-habit": "/book-covers/the-power-of-habit.svg",
   essentialism: "/book-covers/essentialism.svg",
@@ -13,17 +14,28 @@ const REAL_BOOK_COVER_PATHS: Record<string, string> = {
   "the-almanack-of-naval-ravikant": "/book-covers/the-almanack-of-naval-ravikant.svg",
   "the-laws-of-human-nature": "/book-covers/laws-of-human-nature.svg",
   "the-hard-thing-about-hard-things": "/book-covers/the-hard-thing-about-hard-things.svg",
+  influence: "/book-covers/influence.svg",
   "leaders-eat-last": "/book-covers/leaders-eat-last.svg",
+  "the-one-thing": "/book-covers/the-one-thing.svg",
+  "the-charisma-myth": "/book-covers/the-charisma-myth.svg",
+  "the-like-switch": "/book-covers/the-like-switch.svg",
   "good-to-great": "/book-covers/good-to-great.svg",
   "how-to-talk-to-anyone": "/book-covers/how-to-talk-to-anyone.svg",
+  "talk-like-ted": "/book-covers/talk-like-ted.svg",
+  "the-great-mental-models-v-1": "/book-covers/the-great-mental-models-v-1.svg",
   indistractable: "/book-covers/indistractable.svg",
   "never-split-the-difference": "/book-covers/never-split-the-difference.svg",
   "pitch-anything": "/book-covers/pitch-anything.svg",
+  "pre-suasion": "/book-covers/pre-suasion.svg",
+  "super-thinking": "/book-covers/super-thinking.svg",
+  "the-art-of-war": "/book-covers/the-art-of-war.svg",
   "you-can't-hurt-me": "/book-covers/you-can't-hurt-me.svg",
   "extreme-ownership": "/book-covers/extreme-ownership.svg",
 };
 
-const BOOK_COVER_ALIASES: Record<string, string> = {};
+const BOOK_COVER_ALIASES: Record<string, string> = {
+  "the-great-mental-models-vol-1": "the-great-mental-models-v-1",
+};
 
 function dedupe(values: Array<string | undefined>): string[] {
   return [...new Set(values.filter((value): value is string => Boolean(value)))];

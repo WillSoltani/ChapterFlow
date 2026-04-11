@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch05-q01",
+      "prompt": "Why can repeated mistakes survive even when people already know better?",
+      "choices": [
+        "Because knowledge alone does not guarantee execution under pressure and routine",
+        "Because repeated mistakes always come from a lack of intelligence",
+        "Because understanding a principle makes process unnecessary"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter starts by separating knowing the step from reliably protecting the step.",
+        "direct": "Correct. Pressure, familiarity, and speed can still produce omission after the lesson is understood.",
+        "competitive": "That is the opening cut. The lesson can be learned while the miss keeps scoring."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch05-q02",
+      "prompt": "What is the checklist mainly for in this chapter?",
+      "choices": [
+        "Replacing judgment with fixed rules",
+        "Keeping a few critical checks visible in repeated situations",
+        "Making every task feel more official"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. The checklist exists to keep important steps from disappearing when the task gets rushed or familiar.",
+        "direct": "Its core job is omission defense, not mindless rule-following.",
+        "competitive": "The list pins the vulnerable step down before attention drops it."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch05-q03",
+      "prompt": "Maya's team wants to skip one final launch check because the release is already late. What chapter move fits best?",
+      "choices": [
+        "Ignore the check because urgency proves it matters less",
+        "Use the checklist to force the critical check back into view before shipping",
+        "Replace the checklist with a promise to be more careful next time"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exactly. The chapter wants the repeated high-value check protected when the room most wants to rush past it.",
+        "direct": "The right move is to treat the checklist as omission protection under time pressure.",
+        "competitive": "Urgency is the reason to respect the box, not the reason to erase it."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch05-q04",
+      "prompt": "Colin's team has missed the same client handoff step in three cycles. What is the strongest response from this chapter?",
+      "choices": [
+        "Give another warning speech and trust memory next time",
+        "Accept the misses as part of normal complexity",
+        "Build a short handoff routine around the recurring omission"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Yes. Repeated omission usually calls for process protection, not another lecture.",
+        "direct": "The chapter recommends a compact checklist when the same consequential miss keeps returning in a repeated setting.",
+        "competitive": "Patch the leak. Stop asking memory to suddenly become disciplined."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q05",
+      "prompt": "What makes a checklist stronger according to this chapter?",
+      "choices": [
+        "It is long enough to cover every possible problem",
+        "It is short, specific, and tied to recurring costly misses",
+        "It sounds formal enough that people take it seriously"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Correct. A useful list stays focused on the few important steps people are likely to omit.",
+        "direct": "The chapter favors lean relevant process over bloated generic procedure.",
+        "competitive": "A list gets stronger by getting sharper, not fatter."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q06",
+      "prompt": "Why does the chapter insist that a checklist is a floor, not a ceiling?",
+      "choices": [
+        "Because context still requires judgment beyond the written steps",
+        "Because checklists matter only in personal life",
+        "Because every important decision should ignore process"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The checklist catches recurring misses, but it cannot see everything that matters in the moment.",
+        "direct": "Judgment still has to interpret context and anomaly after the essential checks are complete.",
+        "competitive": "The paper can guard the gate. It cannot read the whole battlefield."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q07",
+      "prompt": "Priya wants an exam checklist even though Jordan says they already know the material. Which chapter principle applies?",
+      "choices": [
+        "Content knowledge removes the need for any setup routine",
+        "A checklist can protect against repeated setup omissions even when the material is understood",
+        "School situations are too small for process protection to matter"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exactly. The chapter separates understanding the material from reliably handling the repeated setup steps.",
+        "direct": "The checklist is useful here because the recurring problem is omission, not concept mastery.",
+        "competitive": "Knowing the subject does not excuse sloppy execution around the subject."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q08",
+      "prompt": "What is the best test of whether a checklist is actually useful?",
+      "choices": [
+        "It looks comprehensive on paper",
+        "It helps people avoid the same critical miss when the room speeds up",
+        "It can be applied to almost every task without change"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. The chapter keeps asking whether the process still protects the important step under live pressure.",
+        "direct": "A checklist proves itself by surviving rushed repeated conditions, not by looking elegant in calm conditions.",
+        "competitive": "If it folds when urgency bites, it was decoration."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch05-q09",
+      "prompt": "What is the chapter's strongest warning about process?",
+      "choices": [
+        "Any routine will eventually replace thought",
+        "Process should be abandoned whenever judgment is important",
+        "A bloated checklist can turn into theater and fake compliance"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Yes. The chapter warns against process that grows so large or stale that people stop using it meaningfully.",
+        "direct": "That is the main process failure mode here: ritual compliance displacing real protection.",
+        "competitive": "Fat process dies as theater and takes thinking down with it."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch05-q10",
+      "prompt": "Why does the chapter naturally point next toward temperament and emotion?",
+      "choices": [
+        "Because good routines still depend on a person being able to honor them under stress",
+        "Because checklists work only when emotions are removed completely",
+        "Because process protection becomes irrelevant once the list is written"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nice catch. A checklist can be sound and still fail if fear or ego pushes someone to skip it in the moment.",
+        "direct": "The bridge to the next chapter is that process protection still relies on emotional steadiness during execution.",
+        "competitive": "Building the shield is one thing. Keeping your hand on it when the heat rises is another."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

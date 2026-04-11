@@ -1,0 +1,21 @@
+{
+  "chapterId": "ch01",
+  "readingTimeMinutes": 6,
+  "readabilityTargets": {
+    "easy": "grade 8-9",
+    "medium": "grade 10-11",
+    "hard": "grade 12"
+  },
+  "surfaceCounts": {
+    "examples": 6,
+    "reviewCards": 5,
+    "quizQuestions": 10,
+    "easyTakeaways": 3,
+    "mediumTakeaways": 5,
+    "hardTakeaways": 5
+  },
+  "notes": [
+    "Rule-intro chapter with low concept count and high bridge weight.",
+    "Hard depth preserves unresolved replacement-theory question."
+  ]
+}

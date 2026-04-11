@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the chapter's first correction about workplaces?",
+      "choices": [
+        "Process is not the same thing as safety",
+        "All grievance predicts violence",
+        "Workplaces are safer than personal settings by default"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says structure helps only when it supports behavioral reading.",
+        "direct": "Procedure can blur warning patterns when it replaces judgment instead of sharpening it.",
+        "competitive": "A neat system can still miss a loud room."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why can distributed responsibility make a workplace pattern harder to see?",
+      "choices": [
+        "Because each person or office may only see one slice of the warning",
+        "Because data always becomes clearer when divided",
+        "Because institutions cannot record behavior at all"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says the warning can stay ordinary-looking when nobody connects the pieces.",
+        "direct": "Distributed roles can keep grievance, access conflict, and presence separated instead of read cumulatively.",
+        "competitive": "The pattern gets cover when every desk keeps one fragment."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why do grievance and access conflict matter so much together?",
+      "choices": [
+        "Because repeated complaint plus repeated access friction can form meaningful pressure",
+        "Because complaint alone always predicts the outcome",
+        "Because access problems only matter after a threat is spoken"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter reads the pairing, not just one element alone.",
+        "direct": "Grievance becomes more significant when it keeps leaning on contact, entry, or proximity.",
+        "competitive": "The complaint gets harder when it keeps pushing on a door."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Marcus sees recurring badge conflict and increasingly angry messages from the same person. What is the strongest chapter-consistent read?",
+      "choices": [
+        "Treat each issue as separate routine paperwork",
+        "Read grievance and access conflict as one warning pattern",
+        "Wait until one dramatic event proves the connection"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says ordinary channels can hide a connected pattern if each part is handled alone.",
+        "direct": "Repeated access trouble plus repeated grievance deserves a cumulative behavioral read.",
+        "competitive": "Stop filing the door and the anger in different folders."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "What makes process useful in this chapter rather than dangerous?",
+      "choices": [
+        "When it helps connect the pattern and move timing earlier",
+        "When it replaces judgment with categories",
+        "When it guarantees no warning can be missed"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter is not anti-process. It wants procedure to help people read behavior better.",
+        "direct": "Forms, meetings, and reports work only when they assemble the sequence instead of tranquilizing it.",
+        "competitive": "The system earns its keep when it sharpens the read."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "What limit does the chapter keep about grievance?",
+      "choices": [
+        "Not every grievance or conflict predicts the same level of danger",
+        "Any complaint means the same thing",
+        "Grievance is meaningless unless violence has already started"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter gives repeated pressure real weight without flattening every complaint into one severity.",
+        "direct": "Grievance matters behaviorally, but the chapter rejects one-size-fits-all danger claims.",
+        "competitive": "Hard reading is not the same as lazy alarm."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "At school, complaints, repeated waiting near offices, and access requests are being logged separately. What is the strongest chapter-consistent response?",
+      "choices": [
+        "Keep each report in its own system unless one dramatic event occurs",
+        "Reassemble the reports into one behavioral sequence and judge earlier",
+        "Assume the system is already reading the pattern correctly"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants the pattern read cumulatively rather than by isolated entry.",
+        "direct": "Distributed reporting can delay a harder read unless someone connects grievance, access, and presence earlier.",
+        "competitive": "Stop reading the reports by drawer and start reading them by room."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Which response would the chapter reject as too late?",
+      "choices": [
+        "Giving repeated small signals cumulative weight",
+        "Waiting for one decisive incident before taking the pattern seriously",
+        "Using process to connect reports across offices"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says repeated signals can matter before a dramatic moment appears.",
+        "direct": "Waiting for spectacle often just means letting normalization hide the sequence longer.",
+        "competitive": "The room can already be loud before it gets cinematic."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Why can ordinary channels make a warning pattern harder to recognize?",
+      "choices": [
+        "Because routine categories can flatten behavioral meaning into separate manageable issues",
+        "Because ordinary channels erase all evidence completely",
+        "Because only extraordinary channels contain real warning"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns that normalization can hide significance without hiding the data.",
+        "direct": "Administrative categories can separate what should be read behaviorally together.",
+        "competitive": "The warning can disappear into routine without disappearing from the building."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What issue does this chapter hand to the next one?",
+      "choices": [
+        "How intimate relationships distort outside interpretation differently from workplaces",
+        "How to remove all process from institutions",
+        "How grievance alone should decide every workplace case"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The next chapter moves from institutional blindness to intimate relationships.",
+        "direct": "After workplace normalization, the next issue is how danger is underread when the pattern is hidden inside closeness instead of bureaucracy.",
+        "competitive": "The warning is about to hide in love instead of paperwork."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

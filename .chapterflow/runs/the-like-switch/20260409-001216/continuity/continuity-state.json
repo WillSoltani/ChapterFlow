@@ -4,45 +4,54 @@
   "schoolSettingUsage": {},
   "wordFrequency": {},
   "phraseFrequency": {},
-  "openerRegistry": { "gentle": {}, "direct": {}, "competitive": {} },
+  "openerRegistry": {
+    "gentle": {},
+    "direct": {},
+    "competitive": {}
+  },
   "titleTemplateRegistry": {},
   "endingPatternRegistry": {},
   "withinChapterNames": {},
   "approvedChapterHashes": {
     "ch01": {
-      "sha256": "2121e99cce7ade3a4cd0731c21870e2cb3c8122dab8feafc836cd5d3c1193138",
-      "validatedAt": "2026-04-09T00:31:51Z",
+      "sha256": "85500c1a4de8f8c7c242f2740d845c04bf92763c0b718377ea01a65bef177b28",
+      "validatedAt": "2026-04-10T16:23:59.956Z",
       "title": "The Friendship Formula"
     },
     "ch02": {
-      "sha256": "70dbe0d3941eb8fc64caa346e24e52d34b83a94c85cfc83e6475a39321425a8b",
-      "validatedAt": "2026-04-09T00:57:50Z",
+      "sha256": "c10c8575602815c20812465bedc07b1b8387c769c1778f4937791ce1d2086325",
+      "validatedAt": "2026-04-10T16:24:00.007Z",
       "title": "Getting Noticed Before a Word Is Spoken"
     },
     "ch03": {
-      "sha256": "9acf08bddcbcab449a968365d8db9aa4ed9a8c483ff64bbb77c405e2b4502450",
-      "validatedAt": "2026-04-09T01:10:02Z",
+      "sha256": "33ba9cb8c54f10c789ab19ba383eae7cb591227131ab859d5b7b4fbda57b7f3c",
+      "validatedAt": "2026-04-10T16:24:00.014Z",
       "title": "The Golden Rule of Friendship"
     },
     "ch04": {
-      "sha256": "72e3b823d17d68896180e44ee32a643527f0aeaa685608ccdd7f6d50ef779a9e",
-      "validatedAt": "2026-04-09T01:27:51Z",
+      "sha256": "30471ec0756d7cb667402597a989ff10044d7bc1309346ae18a86536c35bea5d",
+      "validatedAt": "2026-04-10T16:24:00.015Z",
       "title": "The Laws of Attraction"
     },
     "ch05": {
-      "sha256": "cf419bf6d4ed029ffaec4b33a6ae0954626fb03848d0b8d7842637a6efaf5520",
-      "validatedAt": "2026-04-09T02:05:22Z",
+      "sha256": "e51bc3b905b31fd53feb65191d4cfbb5df60bcc586812d623767ef0414d312f6",
+      "validatedAt": "2026-04-10T16:24:00.020Z",
       "title": "Speaking the Language of Friendship"
     },
     "ch06": {
-      "sha256": "1f09cf0fb9dff32afb39f7e1811b87010fbd601d2f669126c232907e2c9a5d8a",
-      "validatedAt": "2026-04-09T02:27:49Z",
+      "sha256": "0f4226b4b68ed8806fa9b18aad092237a261fb04cb42040566cf144f7106d7f1",
+      "validatedAt": "2026-04-10T16:24:00.023Z",
       "title": "Building Closeness"
     },
     "ch07": {
-      "sha256": "c5061614bd94bfbc15d2be75c5019ecb75e933031c7130c764eeab563efca39f",
-      "validatedAt": "2026-04-09T15:22:16Z",
+      "sha256": "7aaefc96e7b62e2e1072ea4973427b84c5e1dc06a414ffb48fbf6b93d95e4b30",
+      "validatedAt": "2026-04-10T16:24:00.029Z",
       "title": "Nurturing and Sustaining Long-Term Relationships"
+    },
+    "ch08": {
+      "sha256": "f66f1c6a1e2489df1ec0dc7d2742aa3d783bb455e43e37170e375a2a40f120a3",
+      "validatedAt": "2026-04-10T15:45:24Z",
+      "title": "The Perils and Promise of Relationships"
     }
   },
   "baselineQuality": {

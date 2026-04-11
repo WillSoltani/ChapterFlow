@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What best defines the ego default in this chapter?",
+      "choices": [
+        "Feeling proud of your abilities",
+        "Protecting self-image before serving truth or outcome",
+        "Avoiding all disagreement with other people"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter is not against confidence itself. It is against letting image defense rule the moment.",
+        "direct": "Ego becomes the default when identity protection outranks evidence and learning.",
+        "competitive": "Image starts calling plays."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why can ordinary criticism feel so urgent under the ego default?",
+      "choices": [
+        "Because it can be read as a threat to standing or self-image",
+        "Because criticism is usually meant as an insult",
+        "Because the chapter says feedback is mostly unreliable"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Status threat makes the moment feel bigger than the work itself.",
+        "direct": "The body can treat a loss of standing as urgent before judgment catches up.",
+        "competitive": "Rank panic fires fast."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What is the chapter's clearest warning about ego-driven defense?",
+      "choices": [
+        "It makes a person seem less likable",
+        "It can shut down learning by turning feedback into a self-protection problem",
+        "It only becomes serious when someone is visibly angry"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The deeper cost is blocked learning, not only awkwardness.",
+        "direct": "The chapter treats ego as expensive because it makes revision and accuracy harder.",
+        "competitive": "Ego locks the lesson out."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Priya is corrected during a meeting and wants to defend herself immediately. What response best matches the chapter?",
+      "choices": [
+        "Answer fast so the room does not think she is weak",
+        "Pause, test the criticism, and protect the work before protecting face",
+        "Stay silent forever and never question the feedback"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The pause helps separate embarrassment from the actual quality question.",
+        "direct": "Priya needs to stop image protection from deciding before truth has a chance.",
+        "competitive": "Save the outcome, not the pose."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Evan resists changing the launch plan because revision would make him look wrong. What chapter principle is most visible?",
+      "choices": [
+        "Leadership means staying consistent no matter what",
+        "Ego can make image preservation feel more important than a stronger result",
+        "The chapter thinks teams should ignore leader status entirely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The problem is not revision itself. The problem is protecting image ahead of the plan.",
+        "direct": "Ego capture turns a better option into a threat to authority.",
+        "competitive": "Face beats truth if you let it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Why does Sofia mishear critique as humiliation after the debate round?",
+      "choices": [
+        "Because all school feedback is socially harmful",
+        "Because the chapter says critique should be ignored in public",
+        "Because identity threat is overwhelming the instructional value of the feedback"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The note could help her, but ego is hearing it as a drop in standing.",
+        "direct": "The chapter's mechanism is status threat converting information into self-defense.",
+        "competitive": "The lesson lands as rank damage."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Which statement best captures the chapter's view of dignity?",
+      "choices": [
+        "Dignity requires avoiding correction whenever possible",
+        "Dignity and defensiveness are the same once a person cares about standards",
+        "Dignity can survive being wrong, while defensiveness cannot"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter keeps self-respect alive while separating it from the need to stay untouched.",
+        "direct": "Stable dignity makes revision possible because it does not collapse under criticism.",
+        "competitive": "Real strength is revisable."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "What practical question does the chapter recommend in a defensive moment?",
+      "choices": [
+        "How do I stop other people from seeing this?",
+        "Is the outcome threatened, or only my image?",
+        "Who should agree with me first?"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That test helps separate real stakes from wounded self-story.",
+        "direct": "The chapter's pause is meant to distinguish goal danger from image danger.",
+        "competitive": "Check what is actually bleeding."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "How does the chapter distinguish ego pressure from the next chapter's social pressure?",
+      "choices": [
+        "Ego concerns private image first, while social pressure concerns belonging and group approval",
+        "Ego is emotional but social pressure is rational",
+        "There is no real difference between them"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Chapter 3 centers on self-image; Chapter 4 widens the threat to the group.",
+        "direct": "The border is image defense versus belonging pressure.",
+        "competitive": "Face first, crowd next."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Which response best applies the chapter's threshold test?",
+      "choices": [
+        "Reject criticism whenever it stings, because sting proves it is unfair",
+        "Ask whether resistance is protecting a real standard or only protecting identity from correction",
+        "Assume every challenge is helpful and accept it immediately"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter does not endorse blind surrender or blind resistance. It asks what the resistance is serving.",
+        "direct": "The test is whether the defense protects the outcome or just the self-story.",
+        "competitive": "Standard or ego? That is the split."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "medium"
+    }
+  ]
+}

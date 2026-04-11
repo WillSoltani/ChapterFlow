@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch04-q01",
+      "prompt": "What is the core mistake in social proof?",
+      "choices": [
+        "Treating visible group behavior as stronger evidence than it deserves",
+        "Ignoring every crowd entirely",
+        "Believing popularity never matters"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The error is letting the crowd settle the issue before checking what the crowd actually knows.",
+        "direct": "Correct. Visible consensus gets overcredited as proof.",
+        "competitive": "That is the trap. The crowd starts cashing evidence checks it never earned."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch04-q02",
+      "prompt": "Why is social proof emotionally persuasive?",
+      "choices": [
+        "Because other people can make uncertainty feel easier to carry",
+        "Because groups are always more rational than individuals",
+        "Because crowds cannot create feedback loops"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. Following others can feel safer than deciding alone when you are unsure.",
+        "direct": "Exactly. Uncertainty makes visible agreement feel like relief.",
+        "competitive": "Borrowed certainty is cheaper than private doubt."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch04-q03",
+      "prompt": "What question best tests whether a crowd deserves trust?",
+      "choices": [
+        "Are people adding independent evidence, or mostly reacting to each other?",
+        "How many people are visible in the group?",
+        "How uncomfortable would dissent feel?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That is the chapter discipline. The key issue is what the group knows, not just how large it looks.",
+        "direct": "Correct. Independence is the real test of crowd evidence.",
+        "competitive": "Make the crowd prove it is more than a mirror hall."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch04-q04",
+      "prompt": "Mason starts supporting a proposal after noticing that most of the meeting seems to favor it. What is the best diagnosis?",
+      "choices": [
+        "He may be mistaking room momentum for independent evidence",
+        "He is wrong because meetings never contain information",
+        "He only needs to trust consensus faster"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The room may still be right, but visible support alone does not prove why.",
+        "direct": "Correct. He is treating social momentum as if it settled the underlying case.",
+        "competitive": "He let room weather impersonate reasoning."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q05",
+      "prompt": "Why can a crowd look informed even when it is adding little new information?",
+      "choices": [
+        "Because imitation can build a self-reinforcing feedback loop",
+        "Because groups never change their minds",
+        "Because popularity always reflects quality"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. People can keep copying a visible cue until the agreement looks wiser than it is.",
+        "direct": "Exactly. Social reinforcement can inflate the apparent authority of consensus.",
+        "competitive": "The crowd starts citing itself as proof."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q06",
+      "prompt": "A crowded cafe feels automatically better than the quiet one. What chapter move is most faithful?",
+      "choices": [
+        "Treat the line as one clue and ask what evidence supports it",
+        "Assume popularity proves quality by itself",
+        "Ignore both cafes because crowds are useless"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That keeps the crowd in view without letting it settle the case alone.",
+        "direct": "Correct. The line may matter, but it is not self-validating proof.",
+        "competitive": "Use the queue as a clue, not as a fake verdict."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q07",
+      "prompt": "What is the hidden weakness in visible consensus?",
+      "choices": [
+        "It can reflect copying instead of independent confirmation",
+        "It always comes from irrational people",
+        "It can never be partially informative"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Agreement can be real and still be thinner than it looks if members are mostly copying each other.",
+        "direct": "Correct. Volume is not the same as independence.",
+        "competitive": "A big crowd can still be a thin evidence base."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q08",
+      "prompt": "What is the chapter trying to protect you from most?",
+      "choices": [
+        "Mistaking social comfort for evidentiary strength",
+        "Learning from groups at all",
+        "Using popularity as one clue among many"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. The crowd can be useful, but comfort and truth are not the same thing.",
+        "direct": "Right. The chapter separates visible agreement from self-certifying proof.",
+        "competitive": "It stops comfort from borrowing the language of evidence."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch04-q09",
+      "prompt": "When does social proof become especially dangerous?",
+      "choices": [
+        "When agreement is trusted without testing whether it is independent",
+        "When many people happen to agree after separate research",
+        "When a crowd offers one clue among several"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That is the hard threshold. Agreement needs an independence check before it deserves full trust.",
+        "direct": "Yes. The mistake begins when consensus volume substitutes for independent confirmation.",
+        "competitive": "That is where popularity turns into counterfeit proof."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch04-q10",
+      "prompt": "If the visible social cue disappeared and people had to decide privately, what would that reveal?",
+      "choices": [
+        "Whether the consensus had real independent support",
+        "Whether every crowd is wrong",
+        "Whether popularity never matters"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. Private judgment helps show how much of the agreement was real and how much was copied.",
+        "direct": "Correct. Removing visibility is a way to test the independence inside the consensus.",
+        "competitive": "Cover the mirror and see how much of the crowd is left."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

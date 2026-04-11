@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is the main problem Chapter 4 is trying to fix?",
+      "choices": [
+        "A lack of numerical precision in strategy meetings",
+        "Fragmented analysis that hides the whole strategic pattern",
+        "Too little interest in competitor data"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter targets the way detailed metrics can hide the overall curve.",
+        "direct": "Its core problem is fragmentation, not insufficient data.",
+        "competitive": "The room is drowning in rows and starving for pattern."
+      },
+      "bloomsLevel": "remember",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why are numbers not enough on their own in this chapter's logic?",
+      "choices": [
+        "Because all metrics are unreliable",
+        "Because they can improve local factors without revealing the full value curve",
+        "Because buyers never respond to measurable differences"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Separate gains can still leave the whole pattern unchanged.",
+        "direct": "Metrics matter, but they cannot replace whole-pattern judgment.",
+        "competitive": "Good rows can still serve a bad curve."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What role does the strategy canvas play in Chapter 4?",
+      "choices": [
+        "It creates a one-page view for comparing complete value curves",
+        "It eliminates the need for cost and buyer data",
+        "It guarantees that the best strategy becomes obvious immediately"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The one-page view helps the room see the full pattern at once.",
+        "direct": "The canvas restores comparison at the curve level rather than the row level.",
+        "competitive": "It drags the pattern into daylight."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "simple"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Mira's team keeps debating benchmark rows without seeing whether the offer is truly different. What should happen next?",
+      "choices": [
+        "Add more metrics until the answer becomes obvious",
+        "Compare rival and proposed curves on one page",
+        "Stop using any data for the rest of the meeting"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The team needs the whole picture, not more isolated rows.",
+        "direct": "A one-page curve comparison is the chapter's corrective move.",
+        "competitive": "Put the curve on trial and stop letting the rows filibuster."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "A school team has weighted scores for many factors but cannot describe the overall strategic picture. What are they missing?",
+      "choices": [
+        "A visible whole-pattern comparison",
+        "A longer list of rival features",
+        "A more emotional presentation style"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The scores rank parts of the offer without showing the full curve.",
+        "direct": "They need curve-level visibility, not more factor-level detail.",
+        "competitive": "The spreadsheet knows the rows and still cannot show the strategy."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which statement best matches the chapter's warning about numbers?",
+      "choices": [
+        "Numbers should be ignored once a curve is drawn",
+        "Numbers become dangerous when they stand in for whole-pattern judgment",
+        "Numbers matter only in mature industries"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter criticizes proxy judgment, not evidence itself.",
+        "direct": "Measurement fails when it replaces the strategic whole rather than informing it.",
+        "competitive": "Rows turn toxic when they claim the right to be the strategy."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Rafael's team thinks the decision is mostly about price, but a curve comparison shows the whole offer still mirrors the market. What does that reveal?",
+      "choices": [
+        "Price was only one row in a larger pattern problem",
+        "The team should ignore pricing permanently",
+        "Curve comparison matters only after launch"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "One noisy factor was hiding the bigger strategic issue.",
+        "direct": "The chapter asks the team to judge the full pattern, not only the loudest metric.",
+        "competitive": "The curve convicted the room's favorite distraction."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why is Chapter 4 different from Chapter 2 even though both use the strategy canvas?",
+      "choices": [
+        "Chapter 4 avoids visual tools and returns to narrative",
+        "Chapter 4 uses the canvas as a whole-pattern judgment test after Chapter 3 widened the options",
+        "Chapter 4 uses the canvas only to rank financial outcomes"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Here the canvas helps judge complete options, not just expose current factors.",
+        "direct": "The chapter shifts the canvas from diagnosis toward commitment-level comparison.",
+        "competitive": "It is the curve trial after the hunt."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "standard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What does whole-picture judgment make possible after the current curve becomes visible?",
+      "choices": [
+        "A move away from rivals and toward the demand the visible pattern still misses",
+        "The end of all need for customer research",
+        "A guaranteed choice without tradeoffs"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The visible pattern shows whose demand may still sit outside it.",
+        "direct": "Big-picture judgment becomes the bridge to the search for noncustomers.",
+        "competitive": "Expose the curve, then hunt the crowd it keeps excluding."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deep"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What is the clearest sign that a strategy team is still trapped in fragmented judgment?",
+      "choices": [
+        "It can explain why each metric improved but cannot show a convincingly different overall curve",
+        "It uses a one-page canvas to compare rivals directly",
+        "It keeps data as one input among several kinds of judgment"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Local gains are not enough if the full shape still looks familiar.",
+        "direct": "Fragmented judgment shows up when row-level wins replace whole-pattern difference.",
+        "competitive": "They can defend the cells and still cannot save the curve."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "deep"
+    }
+  ]
+}

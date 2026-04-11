@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What pressure does Chapter 2 add to the explanation of human behavior?",
+      "choices": [
+        "Competition within groups as well as pressure from the outside environment",
+        "Only climate and geography",
+        "Purely individual personality differences"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "understand",
+      "depthLevel": "easy",
+      "explanation": {
+        "gentle": "The chapter says people are shaped partly by social competition inside the group.",
+        "direct": "Its added force is intra-group competition.",
+        "competitive": "The contest inside the group joins the causal story."
+      }
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Which set names the chapter's three games correctly?",
+      "choices": [
+        "Labor, ritual, and law",
+        "Sex, status, and politics",
+        "Family, money, and technology"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "remember",
+      "depthLevel": "easy",
+      "explanation": {
+        "gentle": "Those are the three games the chapter uses to organize competition.",
+        "direct": "The framework is built around sex, status, and politics.",
+        "competitive": "Three arenas, one chapter spine."
+      }
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What shared mechanism links the three games?",
+      "choices": [
+        "All three depend on signaling partner quality",
+        "All three depend on formal law",
+        "All three depend on avoiding other people"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "remember",
+      "depthLevel": "easy",
+      "explanation": {
+        "gentle": "The chapter says people keep reading each other as possible partners, friends, or allies.",
+        "direct": "Signaling is the common logic across the three games.",
+        "competitive": "Different audiences, same readout system."
+      }
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A promotion goes to the employee who built support across teams before the decision was announced. Which game is most clearly visible?",
+      "choices": [
+        "The political game of coalition power",
+        "The sexual game of mate selection",
+        "A game-free process with no signaling"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "apply",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "Coalition-building is the clearest clue that the political game is active.",
+        "direct": "The case turns on alliance value and coordinated backing.",
+        "competitive": "The promotion ran through the coalition map."
+      }
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why does the chapter treat status as consequential rather than superficial?",
+      "choices": [
+        "Because status only matters in formal ceremonies",
+        "Because status changes who includes, trusts, and supports you",
+        "Because status always replaces friendship"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "apply",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "Status matters because it affects inclusion and support inside the group.",
+        "direct": "The chapter ties status to trust, access, and backup.",
+        "competitive": "Standing moves resources, not just feelings."
+      }
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which misconception does Chapter 2 resist?",
+      "choices": [
+        "That cooperation becomes impossible once competition appears",
+        "That signaling exists across several social games",
+        "That politics can include coalition behavior outside government"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "The chapter keeps cooperation real even while competition stays active.",
+        "direct": "Its model says cooperation often happens inside competition, not after competition disappears.",
+        "competitive": "Competition does not cancel the group. It reshapes how group life runs."
+      }
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What is the chapter really saying when it calls behavior a signal?",
+      "choices": [
+        "That behavior gives other people clues about what kind of partner you would be",
+        "That behavior has no literal function",
+        "That all communication is dishonest"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "Signals are readable clues, not proof that the literal act means nothing.",
+        "direct": "The chapter uses signaling to explain how behavior gets interpreted by choosers.",
+        "competitive": "The move still does something, and it still tells the audience something."
+      }
+    },
+    {
+      "questionId": "q08",
+      "prompt": "At tryouts, captains keep talking about who will 'hold the group together.' Which chapter idea best explains that?",
+      "choices": [
+        "Selection is only about measurable skill",
+        "The political and status games can shape who gets chosen",
+        "The chapter applies only to adults, not to school groups"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "apply",
+      "depthLevel": "medium",
+      "explanation": {
+        "gentle": "The choice reflects alliance and social-fit judgments, not just raw task value.",
+        "direct": "Group selection often reads coalition value and status fit along with skill.",
+        "competitive": "The roster spot is being decided by more than talent."
+      }
+    },
+    {
+      "questionId": "q09",
+      "prompt": "A classmate says, 'If helping also improves your standing, then it is not really cooperative.' What answer fits the chapter best?",
+      "choices": [
+        "That is too strict, because one act can help the group and reward the actor together",
+        "That is correct, because signal value erases group benefit",
+        "That cannot happen unless formal politics is involved"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard",
+      "explanation": {
+        "gentle": "The chapter's framework allows real cooperation and competitive payoff in the same act.",
+        "direct": "Its hard edge is that mixed motives create a weighting problem, not a simple fraud verdict.",
+        "competitive": "Helping and climbing can run through one move."
+      }
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What is the strongest bridge from Chapter 2 into Chapter 3 on norms?",
+      "choices": [
+        "If sex, status, and politics keep shaping behavior, groups need rules that contain those games",
+        "After competition, norms are no longer necessary",
+        "Norms matter only in formal government settings"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard",
+      "explanation": {
+        "gentle": "The chapter leads naturally to the question of how groups keep competition from breaking cooperation.",
+        "direct": "Norms are the next logical response to ongoing social games.",
+        "competitive": "If the games stay on, something has to hold the group together."
+      }
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "chapterNumber": 8,
+  "title": "Probabilistic Thinking",
+  "heading": "Probabilistic Thinking",
+  "approxWords": 1200,
+  "properNouns": [
+    "Bayesian"
+  ],
+  "repeatedTerms": [
+    "probability",
+    "likelihood",
+    "uncertainty",
+    "Bayesian thinking",
+    "fat tails",
+    "asymmetry"
+  ],
+  "sourceReferences": [
+    {
+      "sourceId": "src-fs-probabilistic",
+      "title": "Probabilistic Thinking: How to Make Better Decisions",
+      "url": "https://fs.blog/probabilistic-thinking/",
+      "role": "primary_chapter_support"
+    },
+    {
+      "sourceId": "src-fs-mental-models",
+      "title": "Mental Models: The Best Way to Make Intelligent Decisions (~100 Models Explained)",
+      "url": "https://fs.blog/mental-models/",
+      "role": "secondary_chapter_support"
+    }
+  ]
+}

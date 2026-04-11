@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "chapterflow.v13.source-ledger",
+  "bookId": "the-elephant-in-the-brain",
+  "runId": "20260410-224024",
+  "createdAt": "2026-04-10",
+  "sourcePolicy": "public_or_authorized_plus_secondary",
+  "sources": [
+    {
+      "sourceId": "official-site-overview",
+      "title": "The Elephant in the Brain official site overview",
+      "url": "https://www.elephantinthebrain.com/",
+      "type": "official_overview",
+      "role": "book thesis, scope, institution list, author framing",
+      "confidence": "high",
+      "authorized": true,
+      "notes": "Official author-managed book site. Used for high-level thesis and positioning only."
+    },
+    {
+      "sourceId": "official-site-outline",
+      "title": "Outline of The Elephant in the Brain",
+      "url": "https://www.elephantinthebrain.com/outline.html",
+      "type": "official_outline",
+      "role": "chapter order, chapter titles, chapter summaries, chapter-level anchor selection",
+      "confidence": "high",
+      "authorized": true,
+      "notes": "Primary chapter map for the run. Supports chapter briefs and source sidecars."
+    },
+    {
+      "sourceId": "open-library-edition",
+      "title": "Open Library edition record for The Elephant in the Brain",
+      "url": "https://openlibrary.org/works/OL19728362W/The_elephant_in_the_brain",
+      "type": "bibliographic_metadata",
+      "role": "edition metadata, publication details, TOC cross-check",
+      "confidence": "medium",
+      "authorized": false,
+      "notes": "Used as a reputable bibliographic cross-check for publisher, year, pagination, ISBN, and TOC."
+    }
+  ]
+}

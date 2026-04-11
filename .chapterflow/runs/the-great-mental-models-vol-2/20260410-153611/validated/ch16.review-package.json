@@ -1,0 +1,757 @@
+{
+  "schemaVersion": "1.1.0",
+  "bookId": "the-great-mental-models-vol-2",
+  "chapterId": "ch16-replication",
+  "chapterNumber": 16,
+  "title": "Replication",
+  "chapters": [
+    {
+      "chapterId": "ch16-replication",
+      "number": 16,
+      "title": "Replication",
+      "readingTimeMinutes": 7,
+      "contentVariants": {
+        "easy": {
+          "chapterBreakdown": {
+            "gentle": "Replication is about carrying forward what lets a system keep working beyond one instance. The chapter matters because something can succeed once and still fail to persist if it cannot be transferred clearly enough. The practical lesson is to ask what must survive transmission and what is only surface detail.",
+            "direct": "Replication means persistence through copying or transmission. The chapter matters because repeating something is not the same as making it transferable.",
+            "competitive": "One win means little if the pattern dies when someone else tries to run it."
+          },
+          "keyTakeaways": [
+            {
+              "point": {
+                "gentle": "Replication extends a system beyond one instance.",
+                "direct": "The model asks what can persist through transmission.",
+                "competitive": "A system lasts when it can survive handoff."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Fidelity matters when something is copied.",
+                "direct": "Transmission can degrade when key structure is lost.",
+                "competitive": "A bad copy can keep the name and lose the function."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Repetition is not always replication.",
+                "direct": "Copying visible moves can miss the structure that actually made the system work.",
+                "competitive": "Surface imitation is not durable transfer."
+              }
+            }
+          ],
+          "oneMinuteRecap": {
+            "gentle": "The chapter teaches that systems persist by transmitting what matters with enough fidelity to keep functioning. Strong judgment asks what must survive a handoff and what can change without breaking the pattern.",
+            "direct": "Replication widens judgment from one successful instance to the question of transferability. The warning is that repetition can look similar while losing the core structure.",
+            "competitive": "Protect the pattern that works, not just the look of it."
+          }
+        },
+        "medium": {
+          "chapterBreakdown": {
+            "gentle": "Dana built a process that worked beautifully when she ran it herself and then failed when Hugo tried to carry it forward. The checklist was too thin, the order of steps lived mostly in Dana's head, and the handoff captured the routine's surface more than the structure that made it effective. That is the chapter's opening lesson. A system does not persist beyond one instance just because it worked once. It persists when what matters can be transmitted with enough fidelity to keep working.\n\nReplication is the model for persistence through copying, teaching, or transfer. The chapter matters because present success is narrower than continued existence across time. A team, habit, or procedure can look strong in one case and still fail to last if the pattern cannot be reproduced outside the original actor.\n\nIris sees the same logic in tutoring when one student's notebook records the solved problem but not the reasoning that produced it. The next student can repeat the visible steps and still miss the underlying pattern. That is why transferability matters. A pattern has to carry enough structure into a new instance to remain functional.\n\nThe chapter becomes more useful when it names fidelity directly. Coach Benton may teach a lab procedure several times, but if each retelling drops one critical detail, the class keeps producing weaker copies. The procedure appears to continue while its core function quietly degrades.\n\nThat is also why replication must be separated from repetition. Mina can copy the visible sequence of a morning routine and still fail because the real structure depended on preparation the night before. Repetition can preserve appearance while losing mechanism.\n\nThe model also includes a limit. Replication does not require exact sameness in every detail. A pattern can adapt to a new setting and still remain itself if the essential structure survives the transfer. Wise judgment therefore distinguishes core function from surface decoration.\n\nThe practical rule is to ask what exactly must be carried forward, which features are essential to the pattern, and whether the transfer preserves enough fidelity to make the next instance truly workable. Replication matters because it turns one-off success into a test of durability through transmission.",
+            "direct": "Replication begins where one successful instance stops being enough. Dana's process works in her hands and breaks in Hugo's because the handoff preserves surface steps more clearly than the structure that made the system succeed. The chapter matters because persistence requires transferability, not just local excellence.\n\nThat is the practical meaning of replication. A system extends itself by copying or transmitting what allows it to function in a new instance. Teams pass procedures forward, students pass methods forward, and routines persist only when they can survive changed hands or changed conditions.\n\nIris's tutoring notebook reveals the difference between visible repetition and transferable structure. Coach Benton's lab training reveals what low fidelity looks like when each retelling loses one detail. In both cases the pattern appears to continue while its working core degrades.\n\nThe chapter's key gain is fidelity. Transmission only preserves a system when enough of the essential structure survives the handoff. If the transfer drops a key dependency, the next version may look similar while performing worse.\n\nThat is why repetition is a trap when it is mistaken for replication. Mina can copy the visible parts of a routine and still miss what actually made it reliable. Surface imitation can preserve the ritual while losing the function.\n\nThe practical rule is exact. Identify what must be carried forward, separate structure from decoration, and test whether the next instance can still work without the original actor holding it together. Replication sharpens judgment because it treats persistence as a question of fidelity and transfer, not of simple repetition.",
+            "competitive": "Dana had a process that looked strong until somebody else touched it. Hugo followed the checklist, copied the visible steps, and still could not make the system work. The chapter starts there because one-off success is cheap. Replication is what separates a real pattern from a private performance.\n\nThat is the replication lesson. A system persists when what matters can survive transmission into another set of hands, another moment, or another setting. If the pattern only works with the original actor present, it has not really extended itself.\n\nIris proves it when a notebook captures the answer but not the reasoning. Coach Benton proves it when training copies the procedure's shell while losing one critical detail each round. The name stays the same. The function decays.\n\nThat is why fidelity matters so much. A low-quality transfer can keep enough surface similarity to fool people while the structure that made the pattern work quietly disappears. The system is being repeated, not replicated.\n\nThe chapter also rejects a lazy fantasy about copying. Exact duplication is not always required. What matters is whether the essential structure survives well enough to keep functioning in a new instance. Surface changes are allowed. Structural drift is not.\n\nSo the rule is hard and useful. Name the core pattern, separate it from the decoration, and test whether somebody else can carry it forward without the original actor propping it up. Replication matters because durability belongs to what can survive a handoff, not to what only wins once."
+          },
+          "keyTakeaways": [
+            {
+              "point": {
+                "gentle": "Replication extends a system beyond one current instance.",
+                "direct": "The model asks what can persist through transfer or copying.",
+                "competitive": "A pattern lasts when it survives handoff."
+              },
+              "moreDetails": {
+                "gentle": "The chapter treats persistence as a question of what can keep working after it leaves the original actor or moment.",
+                "direct": "Replication matters because present success does not guarantee continued existence across time.",
+                "competitive": "If it dies outside the first set of hands, it was never durable."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Transferability determines what can persist.",
+                "direct": "A pattern has to move into a new instance without losing its working core.",
+                "competitive": "If it cannot travel, it cannot last."
+              },
+              "moreDetails": {
+                "gentle": "A process, lesson, or routine becomes replicable when enough of its structure can be taught or carried forward clearly.",
+                "direct": "The chapter becomes practical when it asks what makes the pattern workable in someone else's hands.",
+                "competitive": "Durability starts where the handoff stops being guesswork."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Fidelity matters in transmission.",
+                "direct": "Low-quality copying can preserve appearance while degrading function.",
+                "competitive": "The copy can keep the look and lose the engine."
+              },
+              "moreDetails": {
+                "gentle": "Each omitted detail can weaken the next version even if the pattern still looks similar on the surface.",
+                "direct": "The chapter uses fidelity to explain how drift enters systems through imperfect retelling or handoff.",
+                "competitive": "If the transfer leaks structure, the next version inherits the weakness."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Repetition can fail when core structure is missing.",
+                "direct": "Doing the visible steps again is not enough to count as replication.",
+                "competitive": "Ritual is not the same thing as transfer."
+              },
+              "moreDetails": {
+                "gentle": "A pattern can be repeated exactly on the surface and still fail because the hidden dependency was not carried forward.",
+                "direct": "The chapter protects against copying outward behavior while missing the mechanism that produced the result.",
+                "competitive": "You can mimic the moves and still miss the system that made them work."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Wise judgment designs what can survive transmission.",
+                "direct": "Separate essential structure from decoration before trying to pass a pattern on.",
+                "competitive": "Protect the engine, not just the paint."
+              },
+              "moreDetails": {
+                "gentle": "Replication becomes useful when it identifies the parts that must remain stable and the parts that can adapt across settings.",
+                "direct": "The model sharpens judgment by making persistence a design question about transfer and fidelity.",
+                "competitive": "If you know the core and the decoration, you can build something that actually survives the handoff."
+              }
+            }
+          ],
+          "activationPrompt": {
+            "gentle": "Choose one process, routine, or lesson that works well now, then write what must be carried forward, what usually gets lost in handoff, and whether the next person could make it work without you.",
+            "direct": "Run a replication audit on one live pattern: core structure, transferable elements, fidelity risks, repetition trap, and the design change that would make the next instance genuinely workable.",
+            "competitive": "Pick one thing you think is durable and test it brutally: what is the engine, what is decoration, what leaks in transfer, and could somebody else run it tomorrow without you?"
+          },
+          "selfCheckPrompt": {
+            "gentle": "Can you explain why repeating something is not always the same as replicating it?",
+            "direct": "Why is transferability a stricter test than one-time success?",
+            "competitive": "How can a pattern win once and still fail the handoff?"
+          },
+          "oneMinuteRecap": {
+            "retrieve": {
+              "gentle": "What has to survive for replication to count?",
+              "direct": "What determines whether a pattern is truly transferable?",
+              "competitive": "What has to make it through the handoff?"
+            },
+            "connect": {
+              "gentle": "How do replication, fidelity, and repetition fit together?",
+              "direct": "Why can surface similarity hide structural drift?",
+              "competitive": "How can the copy look right and still be getting weaker?"
+            },
+            "preview": {
+              "gentle": "Once patterns can survive across multiple actors, how do those actors coordinate rather than merely repeat beside one another?",
+              "direct": "What question comes next about cooperation once replication extends across people?",
+              "competitive": "If the pattern can spread across people, how do those people stop acting like isolated copies?"
+            }
+          }
+        },
+        "hard": {
+          "chapterBreakdown": {
+        "gentle": "Replication matters because present survival does not guarantee persistence across time. Dana's process works in her hands and fails in Hugo's because the handoff preserves visible steps more clearly than the structure that made the system function. The chapter begins there to show that one instance can succeed while the pattern itself remains nontransferable.\n\nThat is why replication is defined as persistence through transmission rather than as simple repetition. Teams, routines, lessons, and procedures last only when what matters can be carried into new instances with enough fidelity to keep working. A pattern that depends too heavily on the original actor has not really survived beyond that actor.\n\nIris's tutoring notes and Coach Benton's lab instruction reveal the same problem from different angles. One copy preserves the answer but not the reasoning. Another preserves most of the procedure but drops one critical detail with each retelling. In both cases the pattern appears to continue while its working core drifts.\n\nThe chapter's hard edge is fidelity. Transmission never matters in the abstract. It matters because low-fidelity transfer produces versions that keep the label and lose the function. The system survives in name while degrading in structure.\n\nThe chapter therefore sharply separates replication from repetition. Mina can repeat the visible elements of a routine and still fail because the hidden dependency never made it into the copy. Repetition preserves appearance. Replication preserves enough of the generative structure to make another workable instance.\n\nThe model also refuses a brittle idea of copying. Exact sameness is not always necessary. A pattern may adapt to a new setting and still count as replicated if its essential structure survives the change. Wise judgment therefore asks what must remain stable and what can vary without breaking the function.\n\nStrong judgment turns replication into a design question. What is the core pattern? What parts are decorative? Where does fidelity break down in transmission? And does the next instance truly work without the original actor quietly holding it together? Replication sharpens judgment because it makes persistence a test of transferability rather than a celebration of one-time success.\n\nThat frame leads naturally into cooperation. Once a pattern can survive across multiple actors, the next question is how those actors coordinate their activity rather than merely carrying parallel copies.",
+            "direct": "Replication is the model for persistence beyond one current instance. Dana's process succeeds when she runs it and breaks when Hugo inherits it because the handoff captures surface sequence more faithfully than the structure that made the process work. The chapter matters because one strong performance does not prove the pattern can survive transmission.\n\nThat is the practical meaning of replication. A system extends itself by transferring enough essential structure into a new instance that the function still holds. Teams do this with procedures, teachers do it with methods, and routines do it when they remain workable across changing hands or settings.\n\nIris's notebook shows the trap of preserved answers without preserved reasoning. Coach Benton's training shows the trap of low-fidelity transfer where each retelling loses one critical piece. The appearance of continuity remains while the operational core degrades.\n\nThat makes fidelity central. Replication only works when the important parts survive the handoff with enough accuracy to preserve the function. A degraded copy may still look familiar, but familiarity is not the same as persistence.\n\nThat is also why repetition can mislead. Mina copies the visible moves of a routine and still fails because the hidden dependency was not transmitted. Doing it again is not the same as carrying forward the structure that made it work.\n\nThe limit keeps the model flexible. Exact duplication is not required in every setting. A pattern can adapt in its surface form and still be replicated if the essential structure remains stable enough to function. Replication therefore depends on distinguishing core mechanism from decoration.\n\nThe practical rule is exacting. Identify the essential structure, test what survives transfer, inspect where fidelity degrades, and ask whether the next instance can function without secret dependence on the original source. Replication matters because it converts success into a question of durable transfer rather than one-time execution.\n\nThat logic points to cooperation. Once multiple actors can carry the pattern, the next challenge is how they coordinate around it instead of merely repeating it side by side.",
+            "competitive": "Replication destroys the lazy belief that one successful run proves you built something durable. Dana's process looks brilliant until Hugo takes it over and the whole thing starts sagging. The checklist is there, the visible steps are there, and the working structure is not. The chapter starts there because private competence is not the same as persistence.\n\nThat is the first discipline. Stop calling repetition replication. A pattern only survives when the part that makes it work can cross into new hands, new moments, or new settings without falling apart. If the original actor has to keep rescuing the copy, the pattern never really left home.\n\nIris proves it when the notebook saves the answer and loses the reasoning. Coach Benton proves it when each round of training drops one more critical detail. The copy keeps the costume and loses the engine.\n\nThat is why fidelity matters so much. Transfer is not about visual similarity. It is about whether the essential structure arrives intact enough for the next instance to function. If the structure leaks, the pattern is decaying even while people pretend it is being preserved.\n\nThe chapter also attacks the repetition trap directly. Mina can repeat the visible ritual of a routine and still miss the hidden dependency that made it reliable. Surface imitation preserves the look. Replication preserves the generative pattern.\n\nThe model keeps one hard limit in view. Exact sameness is not always the goal. A pattern may change its surface and still survive if the core mechanism makes it across intact. Wise judgment has to know the difference between adaptive variation and structural drift.\n\nSo the rule is hard and useful. Name the engine, strip away the decoration, and test whether somebody else can carry the pattern forward without the original actor quietly doing the real work offstage. Replication matters because durability belongs to what can survive a handoff, not to what only shines once."
+          },
+          "keyTakeaways": [
+            {
+              "point": {
+                "gentle": "Replication extends systems beyond one present instance.",
+                "direct": "The model asks whether a pattern can persist through transfer.",
+                "competitive": "A pattern lasts when it can leave the first pair of hands."
+              },
+              "moreDetails": {
+                "gentle": "The chapter treats durability as the ability to keep functioning after the original source is no longer carrying the whole burden.",
+                "direct": "Replication matters because present success does not prove continued existence across time or across actors.",
+                "competitive": "If it dies outside the original operator, it never truly lasted."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Transferability determines what can genuinely persist.",
+                "direct": "A pattern survives only if the next instance can carry enough structure forward.",
+                "competitive": "If it cannot travel, it cannot live long."
+              },
+              "moreDetails": {
+                "gentle": "A process or lesson becomes durable when the parts that make it work can move into a new context without collapsing.",
+                "direct": "The chapter becomes operational when it asks whether the next actor can run the pattern without hidden dependence on the original source.",
+                "competitive": "Real durability starts where the handoff stops needing rescue."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Fidelity matters because low-quality copying causes drift.",
+                "direct": "Transmission fails when essential details are lost along the way.",
+                "competitive": "The copy can keep the badge and drop the engine."
+              },
+              "moreDetails": {
+                "gentle": "Each small omission can weaken the next version even while the pattern still looks similar.",
+                "direct": "The chapter uses fidelity to explain why continuity in appearance can hide decay in function.",
+                "competitive": "If the transfer leaks structure, the next version inherits weakness disguised as sameness."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Repetition can preserve the look while losing the mechanism.",
+                "direct": "Repeating visible behavior is not enough when the hidden dependency is missing.",
+                "competitive": "The ritual can survive while the pattern dies."
+              },
+              "moreDetails": {
+                "gentle": "A routine or procedure may be copied on the surface and still fail because the structural reason it worked never made the handoff.",
+                "direct": "The chapter protects against mistaking outward similarity for durable replication.",
+                "competitive": "You can copy the moves perfectly and still miss the machine underneath them."
+              }
+            },
+            {
+              "point": {
+                "gentle": "Wise judgment separates core structure from adaptable surface.",
+                "direct": "Replication requires knowing what must stay stable and what can vary.",
+                "competitive": "Protect the engine and let the paint change."
+              },
+              "moreDetails": {
+                "gentle": "A pattern can adapt to a new setting and still remain itself if the essential structure survives the transfer.",
+                "direct": "The model sharpens judgment by making persistence a design problem about fidelity, transfer, and allowable variation.",
+                "competitive": "If you know the core, you can let the surface flex without letting the pattern rot."
+              }
+            }
+          ],
+          "activationPrompt": {
+            "gentle": "Choose one process, lesson, or routine that you want to last beyond your direct involvement, then map what must survive transmission, what usually degrades, and how you would preserve the core while letting the surface adapt.",
+            "direct": "Run a full replication audit this week: essential structure, transferable elements, fidelity risks, repetition traps, and the redesign that would let the next instance function without secret dependence on you.",
+            "competitive": "Take one thing you think is durable and force the truth out of it. Name the engine, expose the leak points, separate decoration from structure, and test whether somebody else could run it tomorrow without you backstage."
+          },
+          "selfCheckPrompts": [
+            {
+              "gentle": "Can you explain why one successful instance is not enough to prove real persistence?",
+              "direct": "Why is transferability a harder test than one-time execution?",
+              "competitive": "Why does one win prove almost nothing about durability?"
+            },
+            {
+              "gentle": "Can you explain how the chapter distinguishes adaptive variation from structural drift?",
+              "direct": "Why can surface changes be acceptable while fidelity failures are not?",
+              "competitive": "When is the copy flexing well and when is it rotting?"
+            }
+          ],
+          "predictionPrompt": {
+            "gentle": "If a pattern can survive across multiple actors, how do those actors coordinate their actions together?",
+            "direct": "How might the next chapter move from replication into cooperation?",
+            "competitive": "Once the pattern spreads across people, how do those people stop acting like isolated copies?"
+          },
+          "oneMinuteRecap": {
+            "retrieve": {
+              "gentle": "What must survive a handoff for replication to be real?",
+              "direct": "What tells you that a pattern is genuinely transferable?",
+              "competitive": "What has to make it across the handoff intact?"
+            },
+            "connect": {
+              "gentle": "How do replication, fidelity, and repetition belong together?",
+          "direct": "How can a familiar copy still conceal loss of the core pattern?",
+              "competitive": "How can the copy look right while the engine is quietly failing?"
+            },
+            "preview": {
+              "gentle": "Once a pattern survives across multiple actors, how do those actors coordinate rather than merely repeat beside one another?",
+              "direct": "Why does replication logically lead into cooperation?",
+              "competitive": "If the pattern can spread across people, how do those people start acting together?"
+            }
+          }
+        }
+      },
+      "examples": [
+        {
+          "exampleId": "ch16-ex01-dana-handoff",
+          "title": "Dana's Fragile Handoff",
+          "category": "work",
+          "format": "dialogue",
+          "endingType": "broader_principle",
+          "contexts": [
+            "checklist",
+            "handoff note",
+            "process board"
+          ],
+          "scenario": {
+            "gentle": "Dana's process works well until Hugo inherits it and discovers the checklist never captured the structure that made it work.",
+            "direct": "A one-person success fails the first real transfer test.",
+            "competitive": "The pattern looked durable until it left the first pair of hands."
+          },
+          "whatToDo": {
+            "gentle": "Clarify the steps that actually matter instead of only the visible sequence.",
+            "direct": "Design the handoff around the structure that preserves function in the next instance.",
+            "competitive": "Write the engine down, not just the ritual."
+          },
+          "whyItMatters": {
+            "gentle": "The example shows why one successful run is not enough to prove real replication.",
+            "direct": "Replication starts where transfer keeps the function alive without the original actor holding it up.",
+            "competitive": "A pattern that dies in handoff was never durable."
+          }
+        },
+        {
+          "exampleId": "ch16-ex02-iris-notebook",
+          "title": "Iris and the Missing Reasoning",
+          "category": "personal",
+          "format": "before_after",
+          "endingType": "perspective_reframe",
+          "contexts": [
+            "tutoring notebook",
+            "margin notes",
+            "worked example"
+          ],
+          "scenario": {
+            "gentle": "A notebook preserves the solved steps but not the reasoning, so the next student repeats the result without understanding the method.",
+            "direct": "The transfer keeps the answer and loses the structure.",
+            "competitive": "The copy kept the costume and dropped the engine."
+          },
+          "whatToDo": {
+            "gentle": "Capture the pattern that generated the result, not just the finished version of the result itself.",
+            "direct": "Design notes for transferability by preserving mechanism along with visible output.",
+            "competitive": "Pass the method, not just the trophy."
+          },
+          "whyItMatters": {
+            "gentle": "The example shows how repetition can be visible while replication quietly fails.",
+            "direct": "Transferability depends on the next person inheriting enough structure to make the pattern work again.",
+            "competitive": "The field does not care that the copy looks right if it cannot generate the outcome."
+          }
+        },
+        {
+          "exampleId": "ch16-ex03-lab-drift",
+          "title": "The Lab Procedure Drift",
+          "category": "school",
+          "format": "predict_reveal",
+          "endingType": "surprising_implication",
+          "contexts": [
+            "highlighted worksheet",
+            "procedure card",
+            "lab bench"
+          ],
+          "scenario": {
+            "gentle": "Each round of lab training loses one critical detail until the class is repeating a weaker version of the same procedure.",
+            "direct": "Low-fidelity transfer creates visible continuity and hidden degradation.",
+            "competitive": "The pattern kept its name while its function leaked away."
+          },
+          "whatToDo": {
+            "gentle": "Watch for small omissions that weaken the next version of a pattern each time it is taught.",
+            "direct": "Check fidelity at the handoff points instead of assuming the procedure survives because it is still recognizable.",
+            "competitive": "Inspect the leak points before the copy keeps decaying in plain sight."
+          },
+          "whyItMatters": {
+            "gentle": "The example makes transmission drift visible in a school setting.",
+            "direct": "Replication becomes easier to judge when each copy is still familiar but less functional.",
+            "competitive": "The field was preserving the label and losing the system."
+          }
+        },
+        {
+          "exampleId": "ch16-ex04-theo-transfer-design",
+          "title": "Theo Designs for Transfer",
+          "category": "work",
+          "format": "decision_point",
+          "endingType": "cross_domain",
+          "contexts": [
+            "training board",
+            "handoff checklist",
+            "owner transition"
+          ],
+          "scenario": {
+            "gentle": "Theo must decide whether to spend time documenting the invisible logic of a process before ownership shifts.",
+            "direct": "The real choice is whether the pattern will survive the next instance or depend on memory and rescue.",
+            "competitive": "He can build something portable or leave a trap for the next operator."
+          },
+          "whatToDo": {
+            "gentle": "Capture the structure that makes the process work before the original operator disappears from the loop.",
+            "direct": "Design for transferability by preserving the dependencies and judgment points that the next person will need.",
+            "competitive": "Make the pattern survive the handoff without needing you backstage."
+          },
+          "whyItMatters": {
+            "gentle": "The example shows replication as a design choice rather than as an accident.",
+            "direct": "Replication becomes practical when the handoff is built around what preserves function.",
+            "competitive": "Durability starts when you stop leaving the engine undocumented."
+          }
+        },
+        {
+          "exampleId": "ch16-ex05-mina-routine",
+          "title": "Mina Copies the Surface",
+          "category": "personal",
+          "format": "dilemma",
+          "endingType": "common_trap",
+          "contexts": [
+            "planner",
+            "alarm sequence",
+            "packed bag"
+          ],
+          "scenario": {
+            "gentle": "Mina uses the same planner and alarms as someone else but skips the hidden preparation that made the routine reliable.",
+            "direct": "The routine is being repeated without the structure that made it work.",
+            "competitive": "She copied the ritual and missed the machine."
+          },
+          "whatToDo": {
+            "gentle": "Look for the hidden dependency that makes the visible routine possible before copying the outward pattern.",
+            "direct": "Distinguish core structure from decoration before you decide what should be repeated.",
+            "competitive": "Find the engine before you imitate the paint."
+          },
+          "whyItMatters": {
+            "gentle": "The example protects the chapter from turning repetition into proof of replication.",
+            "direct": "The chapter stays honest by showing how surface imitation can fail even when it looks disciplined.",
+            "competitive": "The copy looked loyal and still broke the pattern."
+          }
+        },
+        {
+          "exampleId": "ch16-ex06-caleb-postmortem",
+          "title": "Caleb's Handoff Postmortem",
+          "category": "school",
+          "format": "postmortem",
+          "endingType": "self_directed_question",
+          "contexts": [
+            "shared folder",
+            "training notes",
+            "procedure drift"
+          ],
+          "scenario": {
+            "gentle": "Caleb reviews why a club process worked for veterans and failed for new members, then finds that crucial reasoning never made the training handoff.",
+            "direct": "The next instance inherited the shell of the process and lost the core.",
+            "competitive": "The rookies got the script and not the system."
+          },
+          "whatToDo": {
+            "gentle": "During review, ask which parts of the pattern never survived transmission to the next group.",
+            "direct": "Use postmortems to separate transfer failure from simple lack of effort in the new instance.",
+            "competitive": "Do not blame the next operator until you inspect what the handoff actually carried."
+          },
+          "whyItMatters": {
+            "gentle": "The example shows how replication improves explanation after failure.",
+            "direct": "The chapter becomes practical when it turns one-off success into a test of what really survived the transfer.",
+            "competitive": "The field learns when it stops celebrating the first run and starts testing the handoff."
+          }
+        }
+      ],
+      "reviewCards": [
+        {
+          "cardId": "ch16-rc01",
+          "front": {
+            "gentle": "What has to survive for replication to be real?",
+            "direct": "What makes a pattern more than one successful instance?",
+            "competitive": "What has to make it across the handoff?"
+          },
+          "back": {
+            "gentle": "Replication is real when enough of the essential structure survives to make the next instance work.",
+            "direct": "A pattern becomes more than one success when it can carry its function into a new instance.",
+            "competitive": "It counts when the engine survives the handoff, not just the look."
+          },
+          "difficulty": "easy"
+        },
+        {
+          "cardId": "ch16-rc02",
+          "front": {
+            "gentle": "Why does fidelity matter in transmission?",
+            "direct": "How can a familiar copy still be getting weaker?",
+            "competitive": "Why can the copy keep the badge and lose the engine?"
+          },
+          "back": {
+            "gentle": "Fidelity matters because each missing detail can weaken the next version of the pattern.",
+            "direct": "A familiar copy can still get weaker when the handoff preserves appearance better than structure.",
+            "competitive": "The copy keeps the badge and loses the engine when structure leaks out of the transfer."
+          },
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch16-rc03",
+          "front": {
+            "gentle": "How is replication different from repetition?",
+            "direct": "Why is doing it again not enough?",
+            "competitive": "Why is ritual not the same as transfer?"
+          },
+          "back": {
+            "gentle": "Replication preserves enough structure to keep the pattern working, while repetition can preserve only the visible moves.",
+            "direct": "Doing it again is not enough when the core mechanism was never carried forward.",
+            "competitive": "Ritual is not transfer when the copy mimics the moves and loses the machine."
+          },
+          "difficulty": "medium"
+        },
+        {
+          "cardId": "ch16-rc04",
+          "front": {
+            "gentle": "Why does the chapter allow adaptation in replication?",
+            "direct": "How can a pattern change and still remain itself?",
+            "competitive": "When can the paint change without breaking the engine?"
+          },
+          "back": {
+            "gentle": "The chapter allows adaptation because exact sameness is not required if the essential structure still survives.",
+            "direct": "A pattern can change on the surface and still remain itself when the core mechanism stays intact.",
+            "competitive": "The paint can change if the engine still makes the next instance run."
+          },
+          "difficulty": "hard"
+        },
+        {
+          "cardId": "ch16-rc05",
+          "front": {
+            "gentle": "What practical rule does replication leave you with?",
+            "direct": "How should you judge whether something is truly transferable?",
+            "competitive": "What do you inspect before you trust the handoff?"
+          },
+          "back": {
+            "gentle": "Identify what must be carried forward, what is only surface detail, and whether the next instance can still work.",
+            "direct": "Judge transfer by the essential structure, the fidelity of the handoff, and whether the pattern survives without hidden rescue from the original source.",
+            "competitive": "Inspect the engine, the leak points, and whether the next operator can run the field without you."
+          },
+          "difficulty": "hard"
+        }
+      ],
+      "keyTakeawayCard": {
+        "gentle": "Replication teaches that systems persist by transmitting what matters with enough fidelity to keep working, that repetition can preserve surface while losing structure, and that durable transfer depends on knowing what must survive the handoff.",
+        "direct": "Strong judgment reads persistence through transferability, fidelity, and structural survival rather than through one-time success or surface imitation.",
+        "competitive": "Protect the engine, watch the handoff, and remember that durability belongs to what survives transfer, not to what only shines once."
+      },
+      "implementationPlan": {
+        "coreSkill": {
+          "gentle": "The core skill is identifying what must survive a handoff for a pattern to remain workable.",
+          "direct": "Core skill: separate essential structure from decoration, inspect fidelity risks, and test whether the next instance can function without hidden rescue.",
+          "competitive": "Core skill: know the engine, not just the ritual."
+        },
+        "ifThenPlans": [
+          {
+            "context": "work",
+            "plan": {
+              "gentle": "If a process depends heavily on one person, then I will ask what structure has not yet survived into the handoff.",
+              "direct": "If ownership is about to shift, then I will document the dependencies and judgment steps the next operator will need.",
+              "competitive": "If the pattern lives in one person's head, I will pull the engine out before the handoff."
+            }
+          },
+          {
+            "context": "school",
+            "plan": {
+              "gentle": "If a method is being taught to others, then I will ask whether the reasoning and sequence are both surviving the transfer.",
+              "direct": "If a procedure drifts with each retelling, then I will inspect the fidelity losses rather than blaming the latest learner first.",
+              "competitive": "If the copy keeps getting weaker, I will hunt the leak in the handoff."
+            }
+          },
+          {
+            "context": "personal",
+            "plan": {
+              "gentle": "If I want a routine to last, then I will ask what hidden preparation makes the visible pattern work.",
+              "direct": "If I am copying a routine, then I will separate the mechanism from the surface before I decide what to repeat.",
+              "competitive": "If I want the pattern, I will copy the engine instead of the paint."
+            }
+          }
+        ],
+        "twentyFourHourChallenge": {
+          "gentle": "Within 24 hours, choose one process or routine and write what must survive the handoff, what usually degrades, and whether someone else could run it without you.",
+          "direct": "Run one replication audit today: essential structure, fidelity risk, repetition trap, and the redesign that would let the next instance work independently.",
+          "competitive": "Today, test one handoff by naming the engine, the leak points, and whether the next operator can run the field without your hidden rescue."
+        },
+        "weeklyPractice": {
+          "gentle": "For one week, notice one pattern each day and ask what survives transmission well, what drifts, and what surface detail is distracting from the real structure.",
+          "direct": "Track daily examples of transferability, fidelity loss, repetition traps, and durable handoff design.",
+          "competitive": "Spend seven days catching where the copy kept the look and lost the machine."
+        }
+      },
+      "quiz": {
+        "passingScorePercent": 80,
+        "questions": [
+          {
+            "questionId": "ch16-q01",
+            "prompt": "What does replication mean in the chapter's practical sense?",
+            "choices": [
+              "Persistence through copying or transmission into a new instance",
+              "Doing the same visible thing again",
+              "Keeping one successful method secret"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "The chapter defines replication as survival through transfer, not just repetition.",
+              "direct": "Replication means enough of the pattern survives into a new instance to keep functioning.",
+              "competitive": "It is about what makes it across the handoff intact."
+            },
+            "bloomsLevel": "understand",
+            "depthLevel": "easy"
+          },
+          {
+            "questionId": "ch16-q02",
+            "prompt": "Which detail best shows transferability?",
+            "choices": [
+              "A process that another person can run successfully without hidden rescue",
+              "A routine that looks impressive when one person performs it",
+              "A notebook containing only final answers"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Transferability appears when the next instance can actually work.",
+              "direct": "The pattern is transferable when function survives the shift into new hands.",
+              "competitive": "It counts when the next operator can run the engine."
+            },
+            "bloomsLevel": "understand",
+            "depthLevel": "easy"
+          },
+          {
+            "questionId": "ch16-q03",
+            "prompt": "Dana's process works for her but fails for Hugo. What is the best reading?",
+            "choices": [
+              "The system succeeded once but was not replicable enough to survive handoff",
+              "The chapter would say Hugo simply needed more confidence",
+              "The process proves replication does not matter if the original actor stays nearby"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "The core structure did not survive the transfer clearly enough.",
+              "direct": "One successful instance is not enough when the next actor cannot reproduce the function.",
+              "competitive": "The pattern shined once and failed the first real handoff."
+            },
+            "bloomsLevel": "apply",
+            "depthLevel": "easy"
+          },
+          {
+            "questionId": "ch16-q04",
+            "prompt": "Why does Coach Benton's lab training create weaker copies over time?",
+            "choices": [
+              "Because fidelity is dropping as critical details are lost in each retelling",
+              "Because exact copying is always impossible, so training is pointless",
+              "Because repetition automatically guarantees persistence"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "Each missing detail weakens the next version of the procedure.",
+              "direct": "The training looks continuous, but the structure is degrading with every low-fidelity handoff.",
+              "competitive": "The copy keeps the label while the engine leaks out."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "ch16-q05",
+            "prompt": "How does the chapter distinguish replication from repetition?",
+            "choices": [
+              "Replication preserves enough structure to keep working, while repetition may copy only the visible moves",
+              "There is no difference if the surface looks the same",
+              "Replication requires exact duplication in every detail"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "The chapter asks whether the underlying structure survived, not just the outer sequence.",
+              "direct": "Repetition can copy behavior while missing the mechanism that made the pattern work.",
+              "competitive": "The ritual is not the machine."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "ch16-q06",
+            "prompt": "Mina copies the same planner and alarms as someone else, but the routine still fails. What limit does the chapter emphasize?",
+            "choices": [
+              "Surface imitation can miss the hidden dependency that made the routine reliable",
+              "The best routines should never be shared",
+              "Replication means copying every visible move and nothing else"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "The chapter says the visible pattern may not include the structure that actually made it work.",
+              "direct": "Repetition fails when the handoff preserves decoration but misses the core dependency.",
+              "competitive": "She copied the paint and missed the engine."
+            },
+            "bloomsLevel": "apply",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "ch16-q07",
+            "prompt": "Which action best applies replication thinking?",
+            "choices": [
+              "Identify the core structure, the fidelity risks, and whether another person can make the pattern work",
+              "Repeat the visible sequence as closely as possible and assume the rest will follow",
+              "Treat any one-time success as proof of durability"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "The chapter asks you to judge what survives a handoff, not just what once succeeded.",
+              "direct": "Replication becomes useful when it tests transferability and fidelity directly.",
+              "competitive": "Name the engine, find the leaks, and test the next operator."
+            },
+            "bloomsLevel": "apply",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "ch16-q08",
+            "prompt": "A club process works for veterans but fails for new members because critical reasoning never made the training handoff. Which response fits the chapter?",
+            "choices": [
+              "Assume the new members lack discipline and ignore the handoff design",
+              "Treat the failure as a replication problem in what survived transmission",
+              "Conclude that routines should never be passed to others"
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "The chapter would inspect what structure never survived into the new instance.",
+              "direct": "The process failed because the transfer preserved the shell more clearly than the mechanism.",
+              "competitive": "The handoff passed the script and dropped the system."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "medium"
+          },
+          {
+            "questionId": "ch16-q09",
+            "prompt": "Which statement best captures the chapter's practical rule?",
+            "choices": [
+              "One success proves a pattern can persist if people admire it enough",
+              "Replication depends on transferability, fidelity, and preserving core structure through handoff",
+              "Exact duplication in every surface detail is the only form of real persistence"
+            ],
+            "correctIndex": 1,
+            "explanation": {
+              "gentle": "The chapter makes persistence a question of what survives transmission well enough to keep working.",
+              "direct": "Wise replication protects the essential structure and checks whether the next instance can still function.",
+              "competitive": "Durability belongs to the engine that survives transfer, not to one flashy run."
+            },
+            "bloomsLevel": "evaluate",
+            "depthLevel": "hard"
+          },
+          {
+            "questionId": "ch16-q10",
+            "prompt": "How does this chapter set up cooperation?",
+            "choices": [
+              "It shows how patterns persist across multiple actors, then asks how those actors coordinate together",
+              "It finishes persistence questions completely so no coordination issue remains",
+              "It returns to self-preservation by focusing only on defensive boundaries again"
+            ],
+            "correctIndex": 0,
+            "explanation": {
+              "gentle": "The next question is how multiple actors work together once a pattern can survive across them.",
+              "direct": "Replication spreads the pattern across people, and cooperation asks how those people align their action.",
+              "competitive": "First the pattern spreads, then the people carrying it have to coordinate."
+            },
+            "bloomsLevel": "analyze",
+            "depthLevel": "hard"
+          }
+        ]
+      }
+    }
+  ],
+  "sourceSidecar": {
+    "title": "Replication",
+    "heading": "Replication",
+    "section": "Biology",
+    "pageStart": 287,
+    "approxWords": 145,
+    "properNouns": [
+      "Google Books",
+      "Ingram Syndetics"
+    ],
+    "repeatedTerms": [
+      "replication",
+      "copy",
+      "transmission",
+      "persistence",
+      "system"
+    ],
+    "sourceReferences": [
+      {
+        "sourceId": "google-books-2024",
+        "use": "chapter title and page start"
+      },
+      {
+        "sourceId": "ingram-syndetics-toc",
+        "use": "chapter sequence after self-preservation"
+      }
+    ],
+    "supportSummary": [
+      "The chapter title supports a focus on persistence through copying or transmission.",
+      "Following Self-Preservation, the narrow support allows discussion of systems extending themselves beyond one current instance.",
+      "Conservative paraphrase can emphasize reproducibility, transfer, and persistence without inventing biology detail."
+    ],
+    "unsupportedZones": [
+      "genetics or cellular reproduction detail not present in the frozen bundle",
+      "named biological reproduction stories or technical biology case studies",
+      "exact quotations from the chapter interior"
+    ]
+  },
+  "validationSummary": {
+    "status": "PASS",
+    "validator": "chapterflow_v13_lint.py plus manual chapter-gate artifact verification"
+  }
+}

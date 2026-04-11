@@ -1,0 +1,32 @@
+{
+  "chapterId": "ch15",
+  "title": "The Safety Valve in Handling Complaints",
+  "frozenSources": [
+    {
+      "type": "source-freeze-title",
+      "path": ".chapterflow/runs/how-to-win-friends-and-influence-people/20260410-152112/source-freeze/book-source.md",
+      "support": "15. The Safety Valve in Handling Complaints"
+    },
+    {
+      "type": "skeleton-intent",
+      "path": ".chapterflow/runs/how-to-win-friends-and-influence-people/20260410-152112/skeleton/book-skeleton.md",
+      "support": "Show that people relax when they are allowed to air their case instead of being cut off or corrected too soon."
+    }
+  ],
+  "conceptFocus": [
+    "airing complaints lowers immediate pressure",
+    "cutting people off can intensify resistance",
+    "the valve metaphor is about release before correction",
+    "de-escalation can prepare later cooperation"
+  ],
+  "guardrails": [
+    "avoid generic venting rhetoric",
+    "keep the valve metaphor tied to de-escalation",
+    "do not confuse hearing a complaint with endorsing it",
+    "stay concept-first and anecdote-light"
+  ],
+  "bridges": {
+    "previousChapter": "Chapter 14 shows how early agreement can shape momentum.",
+    "nextChapter": "Chapter 16 will move from released pressure into cooperation."
+  }
+}

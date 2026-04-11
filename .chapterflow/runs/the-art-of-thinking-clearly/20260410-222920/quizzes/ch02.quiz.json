@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch02-q01",
+      "prompt": "What is the core mistake in the swimmer's body illusion?",
+      "choices": [
+        "Assuming a visible outcome is caused entirely by the activity that surrounds it",
+        "Thinking practice matters at all",
+        "Believing elite performers work hard"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The illusion gives all the credit to the activity and ignores the people who were filtered into the visible sample.",
+        "direct": "Correct. It collapses selection and production into one flattering causal story.",
+        "competitive": "That is the fake ad. The activity gets total credit while the gate disappears."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch02-q02",
+      "prompt": "Why is a visible elite swimmer weaker evidence than it first appears?",
+      "choices": [
+        "Because swimmers usually exaggerate their training",
+        "Because the visible example reflects both training and selection",
+        "Because sports always depend mostly on luck"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. The swimmer may reflect real training effects, but also a filter that helped decide who remained visible.",
+        "direct": "Exactly. The exemplar is a selected survivor, not a neutral average outcome.",
+        "competitive": "The body is proof plus residue, not proof alone."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch02-q03",
+      "prompt": "Which question best repairs the illusion before you copy a visible result?",
+      "choices": [
+        "Who was likely to stay long enough to become the example?",
+        "How famous is the example already?",
+        "Does the example make me feel motivated?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That question brings the hidden filter back. It helps you see more than the polished finish.",
+        "direct": "Correct. You need the selection process, not just the visible outcome.",
+        "competitive": "That is the gate question. Ask it before the champion sells you the fantasy."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch02-q04",
+      "prompt": "Talia believes an elite graduate program creates confident students because every graduate she meets seems polished and articulate. What diagnosis best fits the chapter?",
+      "choices": [
+        "She is mixing selection effects with development effects",
+        "She is wrong because programs never matter",
+        "She only needs more alumni interviews"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The program may help, but it may also admit students who were already more likely to look confident.",
+        "direct": "Correct. She is collapsing the admission filter and the program's real effects into one exaggerated claim.",
+        "competitive": "She is applauding the gate and calling it transformation."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q05",
+      "prompt": "Why does the mind often overlook selection and focus on transformation instead?",
+      "choices": [
+        "Because selection is vivid and easy to remember",
+        "Because visible change is more memorable than hidden attrition",
+        "Because observers naturally calculate dropout rates"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. Dramatic visible results grab attention more easily than the quieter cases that dropped away.",
+        "direct": "Exactly. Transformation is psychologically vivid, while attrition and fit are harder to see and recall.",
+        "competitive": "The makeover gets the spotlight. The gate works in silence."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q06",
+      "prompt": "A manager says a famous firm must create excellence because so many alumni look impressive later. What is the most faithful response?",
+      "choices": [
+        "The firm might develop talent, but you still need to inspect who it hired and retained",
+        "The alumni are irrelevant because all firms are the same",
+        "Impressive alumni prove the firm works equally well for everyone"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That keeps both truths in view. The firm may matter, but so does the gate.",
+        "direct": "Correct. The visible alumni cannot settle the question without selection and attrition data.",
+        "competitive": "Respect the badge, then audit the gate that made the badge look magical."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q07",
+      "prompt": "Why can copying a visible exemplar become expensive?",
+      "choices": [
+        "Because all imitation is a sign of weakness",
+        "Because the exemplar may encode hidden fit and selection you cannot copy directly",
+        "Because visible people always give bad advice"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Yes. You may copy the surface practice while missing the hidden conditions that helped the example become visible.",
+        "direct": "Correct. The transfer claim is often wider than the sample can justify.",
+        "competitive": "You copy the champion's surface and ignore the gate that helped create the champion."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q08",
+      "prompt": "What is the chapter's strongest correction for this illusion?",
+      "choices": [
+        "Deny that environments shape people",
+        "Separate what the system develops from what the system selects",
+        "Ignore visible winners completely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "That is the core repair. You keep the real effects while removing the exaggerated claim.",
+        "direct": "Right. Cleaner attribution means splitting development effects from filtering effects.",
+        "competitive": "That move keeps the credit honest and kills the fake universality."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch02-q09",
+      "prompt": "When does admiration for a visible result turn into bad attribution?",
+      "choices": [
+        "When the result is used as if it were representative output for average entrants",
+        "When the result inspires someone to work harder",
+        "When the result comes from a competitive field"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That is the threshold. Inspiration is fine, but the polished example should not become a universal promise.",
+        "direct": "Yes. The error begins when a selected survivor is treated like neutral evidence of average effects.",
+        "competitive": "That is the line where the champion starts posing as a fair forecast."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch02-q10",
+      "prompt": "If you restored the hidden dropouts and bad fits beside every polished exemplar, what would most likely change?",
+      "choices": [
+        "Your causal claims would become narrower and more realistic",
+        "You would stop respecting excellence at all",
+        "You would conclude all success is random"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Exactly. You could still admire the visible result, but your forecast would become more honest.",
+        "direct": "Correct. Restoring the hidden sample trims exaggerated causal claims without denying real development effects.",
+        "competitive": "The fantasy gets smaller. The lesson gets tougher and more trustworthy."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    }
+  ]
+}

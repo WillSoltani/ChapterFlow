@@ -1,0 +1,40 @@
+{
+  "chapterNumber": 11,
+  "chapterTitle": "Occam's Razor",
+  "supportLevel": "moderate_narrow",
+  "frozenSources": [
+    {
+      "path": ".chapterflow/runs/the-great-mental-models-vol-1/20260410-153503/source-freeze/book-source.md",
+      "kind": "frozen_book_source_note",
+      "support": "toc_identity_and_chapter_note",
+      "notes": [
+        "Chapter 11 title is Occam's Razor.",
+        "Official support is moderate through the official mental-models page and TOC identity, but not rich in frozen excerpts."
+      ]
+    },
+    {
+      "path": ".chapterflow/runs/the-great-mental-models-vol-1/20260410-153503/manifests/source-ledger.json",
+      "kind": "source_ledger_note",
+      "support": "official_model_reference",
+      "notes": [
+        "The official Farnam Street reference page gives compact summaries for Volume 1 models including Occam's razor."
+      ]
+    }
+  ],
+  "authorizedClaims": [
+    "Occam's razor is part of the official Volume 1 model set.",
+    "The chapter may frame the model as preferring the simpler sufficient explanation or structure.",
+    "The chapter must preserve the limit that simpler is not automatic proof."
+  ],
+  "forbiddenDrift": [
+    "exact quotes not directly supported by the frozen bundle",
+    "historical survey of William of Ockham",
+    "technical philosophy of science lecture",
+    "claiming the simplest answer is always correct"
+  ],
+  "writingPolicy": {
+    "mode": "paraphrase_first",
+    "narrowness": "high",
+    "quotePolicy": "no_exact_quotes"
+  }
+}

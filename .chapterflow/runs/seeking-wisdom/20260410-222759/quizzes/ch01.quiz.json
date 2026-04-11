@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "ch01-q01",
+      "prompt": "What is the central practical claim of this chapter?",
+      "choices": [
+        "Many bad decisions repeat recognizable patterns before they become obvious in hindsight.",
+        "Most bad decisions come from a lack of intelligence rather than pressure.",
+        "Once you learn a list of biases, you can solve most hard cases quickly."
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter argues that many errors recur in familiar forms, which means the first defense is learning to inspect a decision for those forms before the outcome hardens.",
+        "direct": "Correct. The chapter's practical move is recurring-pattern diagnosis, not a complaint about intelligence and not a promise of effortless mastery through labels.",
+        "competitive": "That is the right read. The edge is noticing the old trap early, not acting superior about knowing bias vocabulary."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q02",
+      "prompt": "Why does the chapter use Munger's two-track analysis?",
+      "choices": [
+        "To prove that emotion should be ignored entirely",
+        "To review both the incentives in the situation and the distortions in the mind",
+        "To replace judgment with a rigid formula"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exactly. The chapter uses two-track analysis because both the outside structure and the inside pressure matter.",
+        "direct": "Munger's method keeps two sources of error visible at once: what rationally governs the situation and what may be bending your judgment.",
+        "competitive": "This is the whole point of the tool. Check the game on the table and the game in your head before either one tricks you."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q03",
+      "prompt": "A decision feels unusually urgent and persuasive. According to the chapter, what is the best first move?",
+      "choices": [
+        "Trust the intensity because strong feelings usually mark important truth",
+        "Ask which recurring pressure or trap might already be shaping the decision",
+        "Wait until the result arrives and study the mistake afterward"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Right. The chapter wants diagnosis before regret, not after it.",
+        "direct": "The useful move is to inspect the decision for a familiar trap while the cost is still avoidable.",
+        "competitive": "Urgency is exactly when you need the trap check. Hindsight is a luxury with terrible timing."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch01-q04",
+      "prompt": "Elena sees that her team's forecast rests on one unsupported assumption, but everyone else in the room already likes the number. What response best matches this chapter?",
+      "choices": [
+        "Let the forecast pass for now because group agreement is usually a good proxy for evidence",
+        "Ask which assumption would break the forecast first and separate agreement from support",
+        "Stay quiet and collect objections privately after the forecast becomes official"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Nice catch. Elena should force the room back toward evidence before confidence hardens into commitment.",
+        "direct": "The chapter treats crowd confidence as a possible trap, so the right move is to expose the weak assumption before approval turns social comfort into defended truth.",
+        "competitive": "Elena wins by breaking the room's momentum early. Once the number goes public, ego starts guarding it."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q05",
+      "prompt": "What makes public commitment especially dangerous for judgment?",
+      "choices": [
+        "It guarantees that the original decision was careless",
+        "It makes other people irrational even when the evidence is clear",
+        "It raises the emotional cost of revising a view after the evidence changes"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Yes. Public commitment can turn revision into something that feels personally costly even when it is logically necessary.",
+        "direct": "That is the mechanism. Once a stance is visible, updating can feel like self-contradiction, which makes accuracy harder to serve.",
+        "competitive": "Public commitment weaponizes ego against revision. The evidence weakens while pride gets louder."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q06",
+      "prompt": "Priya hears five classmates give the same answer and starts doubting her own notes. Which trap is the chapter most clearly warning about?",
+      "choices": [
+        "Treating group agreement as stronger evidence than it really is",
+        "Assuming private notes are always superior to discussion",
+        "Believing that classroom mistakes only happen when nobody prepared"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "That is it. The crowd can lower the discomfort of a belief without making the belief more supported.",
+        "direct": "The chapter distinguishes social reassurance from proof. Priya's risk is confusing the two.",
+        "competitive": "A room full of matching answers can still be renting confidence from itself."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q07",
+      "prompt": "Tessa notices that a family argument keeps ending the same way even though the topic shifts slightly each time. What chapter move best applies?",
+      "choices": [
+        "Treat the next disagreement as entirely fresh to avoid bias",
+        "Review the repeated structure of the fight before entering the next round",
+        "Focus only on the latest triggering comment because that is the most concrete fact"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Correct. The chapter says repeated mistakes should be reviewed as patterns before they become outcomes again.",
+        "direct": "A postmortem on the recurring structure is stronger than pretending the next round has no relation to the earlier ones.",
+        "competitive": "If the loop is old, treating it like brand-new drama just protects the loop."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q08",
+      "prompt": "Omar asks his friends what evidence would make them abandon their favorite investment idea. Why is that such a strong question in this chapter's logic?",
+      "choices": [
+        "It replaces uncertainty with certainty",
+        "It forces the group to define a reversal threshold instead of trading confidence",
+        "It proves the idea is bad if nobody answers immediately"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Exactly. A reversal question moves the conversation away from momentum and back toward evidence.",
+        "direct": "This chapter values review discipline, and a reversal threshold exposes whether the claim has been tested or only socially stabilized.",
+        "competitive": "That question strips the swagger off the room. If nobody can name the kill condition, the certainty is bluffing."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch01-q09",
+      "prompt": "What is the chapter's main warning about learning the names of familiar traps?",
+      "choices": [
+        "The names are mostly useless because every case is unique",
+        "The names matter only in professional settings, not personal ones",
+        "The names can create false mastery if they replace review with quick labeling"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "Yes. The chapter wants pattern recognition to keep humility alive, not to end thought too early.",
+        "direct": "That is the boundary condition. A label is useful only if it triggers better inspection rather than acting as a conclusion.",
+        "competitive": "Bias vocabulary can upgrade your certainty without upgrading your judgment if you let the label do the work."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch01-q10",
+      "prompt": "If repeated judgment traps keep returning, which next question best extends this chapter into the next one?",
+      "choices": [
+        "Which motives, rewards, or fears keep making these traps attractive?",
+        "Which personality type is least vulnerable to bias?",
+        "Which decisions can be made without any social or emotional pressure?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The chapter naturally points forward by asking what motives keep feeding the same familiar mistakes.",
+        "direct": "The strongest extension is into incentives and human motives, because recurring traps usually keep recurring for recurring reasons.",
+        "competitive": "That is the real next move. If the pattern repeats, something keeps paying for it."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}
