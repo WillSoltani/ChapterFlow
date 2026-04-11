@@ -23,12 +23,39 @@
     ],
     "Elodie": [
       "ch01"
+    ],
+    "Nadia": [
+      "ch02"
+    ],
+    "Rowan": [
+      "ch02"
+    ],
+    "Selim": [
+      "ch02"
+    ],
+    "Cora": [
+      "ch02"
+    ],
+    "Felix": [
+      "ch02"
+    ],
+    "Yasmin": [
+      "ch02"
+    ],
+    "Daphne": [
+      "ch02"
+    ],
+    "Ivo": [
+      "ch02"
     ]
   },
   "formatCategoryHistory": [],
   "schoolSettingUsage": {
     "graduate-architecture-studio": [
       "ch01"
+    ],
+    "law-school-moot-court": [
+      "ch02"
     ]
   },
   "wordFrequency": {},
@@ -50,8 +77,21 @@
       "Odessa",
       "Rafi",
       "Elodie"
+    ],
+    "ch02": [
+      "Nadia",
+      "Rowan",
+      "Selim",
+      "Cora",
+      "Felix",
+      "Yasmin",
+      "Daphne",
+      "Ivo"
     ]
   },
-  "approvedChapterHashes": {},
+  "approvedChapterHashes": {
+    "ch01": "7ce5f39131717fcc5f4682cf9234eb5aece84fe649faf28e007f9f6a7b61b14d",
+    "ch02": "e1b4bb329c7f0e0ded1ef06dc11b241585e4ef64a6c7342a2861a7b38d490221"
+  },
   "baselineQuality": {}
 }

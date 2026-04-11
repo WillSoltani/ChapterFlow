@@ -53,7 +53,7 @@
             "competitive": "The page has limits, and craft decides what survives them."
           },
           "moreDetails": {
-                "gentle": "A checklist therefore cannot be judged just by how many good ideas it contains.",
+            "gentle": "A checklist therefore cannot be judged just by how many good ideas it contains.",
             "direct": "Completeness can damage the tool if it makes the checklist too heavy for real execution.",
             "competitive": "A list that tries to save everything often saves too little."
           }
@@ -62,7 +62,7 @@
           "point": {
             "gentle": "Dan Boorman and aviation show why a checklist has to fit the work.",
             "direct": "The chapter uses aviation to show that design quality depends on when the list appears and how much it asks of the user.",
-                "competitive": "If the tool fights the flow of work, the workflow will defeat it."
+            "competitive": "If the tool fights the flow of work, the workflow will defeat it."
           },
           "moreDetails": {
             "gentle": "A strong list has to arrive where people can still use it.",
@@ -84,7 +84,7 @@
         },
         {
           "point": {
-                "gentle": "Weak checklist design often becomes bloated, vague, or badly timed.",
+            "gentle": "Weak checklist design often becomes bloated, vague, or badly timed.",
             "direct": "The good-versus-bad distinction turns on focus, placement, and the selection of key checks.",
             "competitive": "Weak lists bury the signal in clutter."
           },
@@ -249,7 +249,7 @@
       "exampleId": "ch06-ex01-talia-laminated-clutter",
       "title": "Talia Sees That a Longer List Can Make the Room Weaker",
       "category": "work",
-      "format": "vignette",
+      "format": "before_after",
       "endingType": "realization",
       "contexts": [
         "laminated checklist",
@@ -276,7 +276,7 @@
       "exampleId": "ch06-ex02-marcus-timing-slide",
       "title": "Marcus Learns That Timing Matters as Much as Content",
       "category": "school",
-      "format": "inner_monologue",
+      "format": "postmortem",
       "endingType": "consequence",
       "contexts": [
         "aviation seminar",
@@ -303,7 +303,7 @@
       "exampleId": "ch06-ex03-noor-home-list",
       "title": "Noor Compares a Cluttered Home List With a Sharper One",
       "category": "personal",
-      "format": "contrast",
+      "format": "predict_reveal",
       "endingType": "reversal",
       "contexts": [
         "departure routine",

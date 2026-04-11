@@ -248,3 +248,28 @@ Phase 0 complete.
 - Chapter 16 canonical draft written
 - Chapter 16 edited draft written
 - Chapter 16 critic report written
+
+2026-04-10 Chapter 16 chapter gate passed.
+- structured lint: FAIL=0 WARN=0
+- validated lint: FAIL=0 WARN=0
+- artifact guard: FAIL=0 WARN=0
+- review wrapper matches validated payload
+- continuity seal written for ch16
+
+2026-04-10 Wave 8 completed clean.
+- chapters 15 and 16 validated and sealed
+- repo artifact guard after wave: FAIL=0 WARN=0
+
+2026-04-10 Release gate passed.
+- source guard: FAIL=0 WARN=0
+- release lint: FAIL=0 WARN=0
+- release guard: FAIL=0 WARN=0
+- release package assembled from validated chapter JSON only
+- release validation report written
+- release audit report written
+
+2026-04-10 Repo wiring and build completed.
+- release copied to book-packages/the-elephant-in-the-brain.modern.json
+- repo package lint: FAIL=0 WARN=0
+- legacy validate-book.mjs: failed under v12-only contract checks; documented in release.validation.md
+- npm run build: passed

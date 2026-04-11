@@ -299,7 +299,7 @@
           "exampleId": "ch03-ex02-elias-whiteboard-columns",
           "title": "Elias Sorts Problems Before He Sorts People",
           "category": "school",
-          "format": "vignette",
+          "format": "before_after",
           "endingType": "consequence",
           "contexts": [
             "engineering management workshop",
@@ -353,7 +353,7 @@
           "exampleId": "ch03-ex04-nolan-two-projects",
           "title": "Nolan Compares Command-Heavy Work With Coordination-Heavy Work",
           "category": "work",
-          "format": "contrast",
+          "format": "predict_reveal",
           "endingType": "open_question",
           "contexts": [
             "project review",
@@ -407,7 +407,7 @@
           "exampleId": "ch03-ex06-omar-control-voice",
           "title": "Omar Hears the Voice That Wants Total Control",
           "category": "personal",
-          "format": "inner_monologue",
+          "format": "postmortem",
           "endingType": "bridge",
           "contexts": [
             "late-night planning",

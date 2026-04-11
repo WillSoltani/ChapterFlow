@@ -249,7 +249,7 @@
       "exampleId": "ch05-ex01-lena-pilot-board",
       "title": "Lena Watches a Clean Draft Turn Clumsy in the Room",
       "category": "work",
-      "format": "contrast",
+      "format": "predict_reveal",
       "endingType": "realization",
       "contexts": [
         "pre-op briefing",
@@ -330,7 +330,7 @@
       "exampleId": "ch05-ex04-paul-whiteboard-cuts",
       "title": "Paul Crosses Out Steps Until the Room Can Carry the List",
       "category": "work",
-      "format": "vignette",
+      "format": "before_after",
       "endingType": "open_question",
       "contexts": [
         "whiteboard edits",
@@ -357,7 +357,7 @@
       "exampleId": "ch05-ex05-shreya-skeptic-note",
       "title": "Shreya Learns That Skepticism Can Be Useful Data",
       "category": "school",
-      "format": "inner_monologue",
+      "format": "postmortem",
       "endingType": "decision",
       "contexts": [
         "methods seminar",

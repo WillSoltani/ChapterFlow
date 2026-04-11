@@ -378,6 +378,33 @@
         "school",
         "school"
       ]
+    },
+    {
+      "chapterId": "ch16",
+      "formats": [
+        "dialogue",
+        "decision_memo",
+        "text_thread",
+        "scene",
+        "coach_talk",
+        "reflection"
+      ],
+      "endingTypes": [
+        "reveal",
+        "caution",
+        "question",
+        "reframe",
+        "tradeoff",
+        "checkpoint"
+      ],
+      "categories": [
+        "work",
+        "work",
+        "personal",
+        "personal",
+        "school",
+        "school"
+      ]
     }
   ],
   "schoolSettingUsage": {},
@@ -560,7 +587,7 @@
         15,
         16
       ],
-      "status": "in_progress"
+      "status": "completed"
     }
   ],
   "validatedChapterHashes": {
@@ -578,6 +605,7 @@
     "ch12": "a96e8d06610127614ee6bb013f2dd65636f26753063645ac6109d423d9b0954b",
     "ch13": "8d2a6d24e4ff731f041e7e9936a4d12858e88a36190eedb59007635d6397807b",
     "ch14": "77560929d1508bdb6b927f14872fa65bc929cd077d198a31f4d79384fe1ce8eb",
-    "ch15": "f4af09ced7dce700c6d00115c4bf4c957685e9334bd8b9af641f15b7d41afe88"
+    "ch15": "f4af09ced7dce700c6d00115c4bf4c957685e9334bd8b9af641f15b7d41afe88",
+    "ch16": "a412035a1d1e6ef0b50ff3cbfbcb7814f2a64e215adbc1bf61a0b60d034dc92f"
   }
 }

@@ -119,3 +119,16 @@
 - 2026-04-11T02:36:40Z Chapter 13 quiz and validator passes wrote `quizzes/ch13.quiz.json`, `validated/ch13.chapter.json`, `validated/ch13.review-package.json`, `sidecars/ch13.reading-metrics.json`, and `reports/ch13.validation.md`.
 - 2026-04-11T02:36:40Z Chapter 13 final checks passed: chapter lint `FAIL=0 WARN=0`, review-package lint `FAIL=0 WARN=0`, artifact guard `FAIL=0 WARN=0`.
 - 2026-04-11T02:36:40Z Chapter 13 hash sealed in `continuity/continuity-state.json` as `12b8abfbeeb0d903b3f54e265bc2d859db5d4f7865ed372d5babb2bab1d2dbb5`.
+- 2026-04-11T02:41:12Z Chapter 14 writer pass wrote `drafts/canonical/ch14.md`.
+- 2026-04-11T02:41:12Z Chapter 14 editor pass wrote `drafts/edited/ch14.md`.
+- 2026-04-11T02:41:12Z Chapter 14 critic gate wrote `reports/ch14.critic.md` with `Score: 11/12` and approved conversion with local-patch-only guidance.
+- 2026-04-11T03:00:31Z Chapter 14 converter wrote `structured/ch14.chapter.json` and passed chapter lint with `FAIL=0 WARN=0` after local repairs to two repeated clause scaffolds and one duplicate preview prompt.
+- 2026-04-11T03:04:17Z Chapter 14 quiz and validator passes wrote `quizzes/ch14.quiz.json`, `validated/ch14.chapter.json`, `validated/ch14.review-package.json`, `sidecars/ch14.reading-metrics.json`, and `reports/ch14.validation.md`.
+- 2026-04-11T03:08:54Z Strict-path deviation detected: `approvedChapterHashes[ch14]` was written before the full final lint stack completed. The premature seal entry was removed, the Chapter 14 gate was re-run, and the corrected path was resumed.
+- 2026-04-11T03:08:54Z Chapter 14 final checks passed on the corrected path: chapter lint `FAIL=0 WARN=0`, review-package lint `FAIL=0 WARN=0`, artifact guard `FAIL=0 WARN=0`.
+- 2026-04-11T03:09:49Z Chapter 14 hash sealed in `continuity/continuity-state.json` as `255aceda15cac5d4e86631bc4154ce58011ca6af0492fc284f9f571954742aba`.
+- 2026-04-11T03:09:49Z Wave 7 close check passed clean with Chapter 13 and Chapter 14 fully validated, sealed, and artifact-guarded.
+- 2026-04-11T03:18:12Z Wave 8 pre-writer package wrote `briefs/ch15.md`, `outlines/ch15.md`, `quiz-blueprints/ch15.md`, `sidecars/source/ch15.source.txt`, `sidecars/source/ch15.source.json`, `briefs/ch16.md`, `outlines/ch16.md`, `quiz-blueprints/ch16.md`, `sidecars/source/ch16.source.txt`, and `sidecars/source/ch16.source.json`.
+- 2026-04-11T03:22:41Z Chapter 15 writer pass wrote `drafts/canonical/ch15.md`.
+- 2026-04-11T03:22:41Z Chapter 15 editor pass wrote `drafts/edited/ch15.md`.
+- 2026-04-11T03:22:41Z Chapter 15 critic gate wrote `reports/ch15.critic.md` with `Score: 11/12` and approved conversion with local-patch-only guidance.

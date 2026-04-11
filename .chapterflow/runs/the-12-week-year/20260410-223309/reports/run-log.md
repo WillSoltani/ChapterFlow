@@ -108,3 +108,15 @@
 - 2026-04-10T22:33:09-03:00 - Phase 13E/13F complete for Chapter 14. Wrote `structured/ch14.chapter.json`, `quizzes/ch14.quiz.json`, `reports/ch14.validation.md`, `validated/ch14.chapter.json`, `validated/ch14.review-package.json`, and `sidecars/ch14.reading-metrics.json`.
 - 2026-04-10T22:33:09-03:00 - Chapter 14 final checks passed: chapter lint `FAIL=0 WARN=0`, review-package lint `FAIL=0 WARN=0`.
 - 2026-04-10T22:33:09-03:00 - Sealed Chapter 14 hash `c8938a78dfd45ba71a27a56bdfa37a013cd63bd4b0b1ad13be031d57a4c7d4b3` into `continuity/continuity-state.json`.
+
+- 2026-04-10T22:33:09-03:00 - Strict-path repair for Chapter 15 structured conversion: removed stacked phrase repeats and a review-card echo at the converter layer, reran chapter lint to `FAIL=0 WARN=0`, and regenerated the validated bundle.
+- 2026-04-10T22:33:09-03:00 - Phase 15E/15F complete for Chapter 15. Wrote `structured/ch15.chapter.json`, `quizzes/ch15.quiz.json`, `reports/ch15.validation.md`, `validated/ch15.chapter.json`, `validated/ch15.review-package.json`, and `sidecars/ch15.reading-metrics.json`.
+- 2026-04-10T22:33:09-03:00 - Chapter 15 final checks passed: chapter lint `FAIL=0 WARN=0`, review-package lint `FAIL=0 WARN=0`.
+- 2026-04-10T22:33:09-03:00 - Sealed Chapter 15 hash `63a28f91ba30761872d3d2c0c5a7680930bfc6c0d83c7eefb31e0981af5ef109` into `continuity/continuity-state.json`.
+
+- 2026-04-10T22:33:09-03:00 - Strict-path repair for Chapter 16 structured conversion: removed one duplicated hard-versus-medium warning surface at the converter layer, reran chapter lint to `FAIL=0 WARN=0`, and regenerated the validated bundle.
+- 2026-04-10T22:33:09-03:00 - Phase 16E/16F complete for Chapter 16. Wrote `structured/ch16.chapter.json`, `quizzes/ch16.quiz.json`, `reports/ch16.validation.md`, `validated/ch16.chapter.json`, `validated/ch16.review-package.json`, and `sidecars/ch16.reading-metrics.json`.
+- 2026-04-10T22:33:09-03:00 - Chapter 16 final checks passed: chapter lint `FAIL=0 WARN=0`, review-package lint `FAIL=0 WARN=0`.
+- 2026-04-10T22:33:09-03:00 - Sealed Chapter 16 hash `6b99259bdd2d90995b97fc661c54da5475a5991a7b158ade8892201088ed47a7` into `continuity/continuity-state.json`.
+
+- 2026-04-10T22:33:09-03:00 - Wave 8 guard checks passed after Chapters 15 and 16: source guard `FAIL=0 WARN=0`, artifact guard `FAIL=0 WARN=0`.

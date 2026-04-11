@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What main correction does Chapter 15 make?",
+      "choices": [
+        "It argues that a written plan still needs weekly process control to stay alive",
+        "It says weekly routines should replace planning entirely",
+        "It teaches that accountability matters only after scorekeeping is installed"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says a good plan still needs weekly control, routine, and accountability.",
+        "direct": "It corrects plan-on-paper thinking by arguing for recurring weekly structure.",
+        "competitive": "It says the bridge needs a machine, not admiration."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why do Weekly Plans and The Weekly Routine matter here?",
+      "choices": [
+        "Because they make the work look organized",
+        "Because they keep the plan in regular contact with real execution",
+        "Because they remove the need for priorities"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says the weekly layer decides what actually moves now.",
+        "direct": "Weekly plans and routine matter because they stop execution from becoming improvised and urgency-driven.",
+        "competitive": "They keep the week from hijacking the machine."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What role does Don't Go It Alone play in the chapter?",
+      "choices": [
+        "It rejects team execution completely",
+        "It adds accountability so private drift is harder to hide",
+        "It turns the plan into a scorekeeping system"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter uses accountability to make slippage easier to see.",
+        "direct": "Outside visibility matters because private commitments are easy to reinterpret.",
+        "competitive": "It gives the lie less room to breathe."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Devin has a team plan, but urgent work keeps pushing out the real priorities. What Chapter 15 move is strongest?",
+      "choices": [
+        "Install a recurring weekly planning rhythm before urgency chooses the week",
+        "Write a bigger 12 week plan with more goals",
+        "Wait until the team feels more motivated"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says weekly planning keeps the written plan active in the week.",
+        "direct": "Devin needs process control so the team's actual week stops being designed by urgency.",
+        "competitive": "He needs the weekly machine, not a prettier document."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why does the chapter treat accountability as important?",
+      "choices": [
+        "Because private plans make drift easy to excuse",
+        "Because other people should control every decision",
+        "Because accountability removes the need for routine"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says another person or team can see slippage sooner.",
+        "direct": "Accountability matters because outside visibility reduces flattering interpretation.",
+        "competitive": "A witness cuts the excuse space."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which misreading does Chapter 15 reject?",
+      "choices": [
+        "That process control means ceremonial routine, calendar theater, or empty check-ins",
+        "That weekly plans influence execution",
+        "That accountability can expose drift"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps routine tied to real commitments rather than appearances.",
+        "direct": "Its limit is that process control matters only when it changes behavior instead of decorating the week.",
+        "competitive": "It rejects disciplined-looking drift dressed as structure."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Lila had a strong plan but no weekly accountability. What diagnosis fits best?",
+      "choices": [
+        "The plan stayed private enough for drift to remain flattering",
+        "The plan failed because too many people were involved",
+        "The next step is to remove structure entirely"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says private commitments are easy to let slide quietly.",
+        "direct": "Lila needed outside visibility because the written plan alone could not expose drift fast enough.",
+        "competitive": "Privacy gave the lie cover."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why does the chapter warn about ceremonial routine?",
+      "choices": [
+        "Because routine is always a mistake",
+        "Because process control fails when the rhythm stops exposing real commitments",
+        "Because routines should stay private"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns that routine becomes hollow when it no longer helps the real work move.",
+        "direct": "Ceremonial process is a pitfall because it preserves organized appearance after execution has already slipped.",
+        "competitive": "If the ritual stops biting, it switched sides."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What hard warning sits underneath Chapter 15?",
+      "choices": [
+        "That a written plan can become a story about seriousness when the week never tests it",
+        "That routine should replace goals entirely",
+        "That accountability is less useful than private determination"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter warns that the plan itself can start feeling like proof even when execution is still weak.",
+        "direct": "Weekly process is the reality test that separates sincere planning from disciplined-looking drift.",
+        "competitive": "The plan becomes theater when the week stops cross-examining it."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If Chapter 15 is right, what naturally comes next?",
+      "choices": [
+        "The visible score that reveals whether the weekly machine is producing real movement",
+        "A return to broad planning without weekly control",
+        "A decision to keep all commitments private"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter points toward scorekeeping as the next way to test whether the system is working.",
+        "direct": "Once process control exists, the next question is what measure tells the truth about progress.",
+        "competitive": "If the machine is running, the next move is proving it is not faking motion."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

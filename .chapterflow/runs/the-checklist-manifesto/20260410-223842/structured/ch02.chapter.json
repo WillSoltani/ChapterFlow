@@ -251,7 +251,11 @@
       "category": "work",
       "format": "dialogue",
       "endingType": "realization",
-      "contexts": ["hospital procedure room", "sterile field", "peer pressure"],
+      "contexts": [
+        "hospital procedure room",
+        "sterile field",
+        "peer pressure"
+      ],
       "scenario": {
         "gentle": "Elena is preparing for a line insertion when a colleague says they have done this a hundred times and there is no need to slow down over a basic sterile check. The tray is already open, gloves are on, and the room feels too busy for a pause that looks elementary.",
         "direct": "Elena hears the most dangerous sentence in a high-skill room: we know this already. The problem is that the skipped step is exactly the one the checklist exists to protect.",
@@ -274,7 +278,11 @@
       "category": "school",
       "format": "decision_point",
       "endingType": "consequence",
-      "contexts": ["aviation-safety class", "training cockpit", "preflight sequence"],
+      "contexts": [
+        "aviation-safety class",
+        "training cockpit",
+        "preflight sequence"
+      ],
       "scenario": {
         "gentle": "In an aviation-safety class, Marcus can either run a familiar preflight sequence from memory or use the laminated checklist card clipped beside the model cockpit panel. He worries the card will make him look less prepared in front of the instructor.",
         "direct": "Marcus knows the sequence, but that is exactly why the temptation to trust recall is strong. The card looks basic. The chapter says that is not a reason to ignore it.",
@@ -295,9 +303,13 @@
       "exampleId": "ch02-ex03-riya-home-routine",
       "title": "Riya Learns Why Familiar Tasks Still Need a Visible Step",
       "category": "personal",
-      "format": "inner_monologue",
+      "format": "postmortem",
       "endingType": "reversal",
-      "contexts": ["home care", "medicine cabinet", "fatigue"],
+      "contexts": [
+        "home care",
+        "medicine cabinet",
+        "fatigue"
+      ],
       "scenario": {
         "gentle": "Riya is managing medication and a follow-up call for a tired parent after a long day. The routine feels simple enough to keep in her head until she realizes she cannot remember whether one routine dose was logged or only imagined.",
         "direct": "Riya runs into the chapter's quiet lesson at home: familiar repeated steps become vulnerable exactly because they feel too ordinary to protect explicitly.",
@@ -318,9 +330,13 @@
       "exampleId": "ch02-ex04-theo-short-vs-bloated",
       "title": "Theo Compares a Sharp Checklist With a Bloated Procedure",
       "category": "work",
-      "format": "contrast",
+      "format": "predict_reveal",
       "endingType": "open_question",
-      "contexts": ["operations review", "team meeting", "process design"],
+      "contexts": [
+        "operations review",
+        "team meeting",
+        "process design"
+      ],
       "scenario": {
         "gentle": "Theo compares two teams. One carries a five-item card for a recurring high-risk task. The other scrolls through a long digital form full of every possible reminder. The short card gets used in the room. The longer document gets skimmed and ignored.",
         "direct": "Theo sees the chapter's boundary in practice. One tool protects a few vital actions. The other tries to protect everything and ends up protecting nothing reliably.",
@@ -341,9 +357,13 @@
       "exampleId": "ch02-ex05-nadia-visible-verify",
       "title": "Nadia Learns That Seeing the Check Changes the Room",
       "category": "school",
-      "format": "vignette",
+      "format": "before_after",
       "endingType": "decision",
-      "contexts": ["nursing simulation lab", "skills station", "team verification"],
+      "contexts": [
+        "nursing simulation lab",
+        "skills station",
+        "team verification"
+      ],
       "scenario": {
         "gentle": "In a nursing simulation lab, Nadia watches one team state each basic check aloud while another team moves silently from memory. The first group feels slower for a moment, but the instructor points out that they caught the one item the second group assumed had already been done.",
         "direct": "Nadia notices that visible verification changes the room. The spoken check makes one basic action real instead of assumed.",
@@ -366,7 +386,11 @@
       "category": "personal",
       "format": "dilemma",
       "endingType": "bridge",
-      "contexts": ["family logistics", "routine errand", "skip temptation"],
+      "contexts": [
+        "family logistics",
+        "routine errand",
+        "skip temptation"
+      ],
       "scenario": {
         "gentle": "Isaac is rushing through a recurring errand for a family member and hears himself think that one basic follow-up call can wait because today is unusually packed. Nothing about the skipped move feels dramatic in the moment.",
         "direct": "Isaac is not forgetting the step. He is meeting the chapter's second pressure head-on: he remembers it and still decides this case is the exception.",

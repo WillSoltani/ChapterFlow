@@ -353,7 +353,7 @@
           "exampleId": "ch01-ex04-omar-prep-loop",
           "title": "Omar Realizes Confidence Is Not the Same as Coverage",
           "category": "work",
-          "format": "inner_monologue",
+          "format": "postmortem",
           "endingType": "open_question",
           "contexts": [
             "operating room prep",
@@ -380,7 +380,7 @@
           "exampleId": "ch01-ex05-priya-capstone-contrast",
           "title": "Priya Sees Why the Best Technician Does Not Automatically Lead the Whole System",
           "category": "school",
-          "format": "contrast",
+          "format": "predict_reveal",
           "endingType": "decision",
           "contexts": [
             "engineering capstone",
@@ -407,7 +407,7 @@
           "exampleId": "ch01-ex06-lucas-home-bridge",
           "title": "Lucas Builds a Tiny Routine for a Dense Morning",
           "category": "personal",
-          "format": "vignette",
+          "format": "before_after",
           "endingType": "bridge",
           "contexts": [
             "family logistics",

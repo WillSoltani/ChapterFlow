@@ -98,7 +98,8 @@
       "ch09"
     ],
     "Omar": [
-      "ch09"
+      "ch09",
+      "ch16"
     ],
     "Parker": [
       "ch10"
@@ -153,6 +154,15 @@
     ],
     "Asha": [
       "ch15"
+    ],
+    "Nina": [
+      "ch16"
+    ],
+    "Kira": [
+      "ch16"
+    ],
+    "Damon": [
+      "ch16"
     ]
   },
   "formatCategoryHistory": [],
@@ -256,6 +266,12 @@
       "Victor",
       "Asha",
       "Caleb"
+    ],
+    "ch16": [
+      "Nina",
+      "Omar",
+      "Kira",
+      "Damon"
     ]
   },
   "approvedChapterHashes": {
@@ -273,7 +289,8 @@
     "ch12": "df391a00147114fe502df1eb2c16646e24f88b71851fa787c5339bfa1449dc36",
     "ch13": "8c21aa55fce681a46ffe215ecade9cc4d24781fc848720a3b032461210b09401",
     "ch14": "2d0507a4fef04b2678f2ecb811a852cfbfcdf42888a5bbaee06d0bacf9a8b7bf",
-    "ch15": "a37e472eb5ae4cc706445fef9662700e5f4fe468412d9ca090b34866096b30ce"
+    "ch15": "a37e472eb5ae4cc706445fef9662700e5f4fe468412d9ca090b34866096b30ce",
+    "ch16": "54748e641be04b8151c31756599e4542973ca81c8fbf317a4f905df7d37a8274"
   },
   "baselineQuality": {
     "status": "established",

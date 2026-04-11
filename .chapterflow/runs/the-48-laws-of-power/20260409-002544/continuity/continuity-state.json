@@ -391,7 +391,7 @@
       "ch32"
     ],
     "Tovin": [
-      "ch32"
+      "ch44"
     ],
     "Elira": [
       "ch32"
@@ -427,7 +427,7 @@
       "ch35"
     ],
     "Nerida": [
-      "ch35"
+      "ch44"
     ],
     "Bastien": [
       "ch36"
@@ -518,6 +518,12 @@
     ],
     "Laleh": [
       "ch43"
+    ],
+    "Ilyas": [
+      "ch44"
+    ],
+    "Coralie": [
+      "ch44"
     ]
   },
   "formatCategoryHistory": [],
@@ -792,6 +798,12 @@
       "Mireya",
       "Sorin",
       "Laleh"
+    ],
+    "ch44": [
+      "Tovin",
+      "Nerida",
+      "Ilyas",
+      "Coralie"
     ]
   },
   "approvedChapterHashes": {
@@ -837,7 +849,8 @@
     "ch40": "bb90216ea30609c07f597f5f684e650e06b3f520ae4384b1c80938955e389c99",
     "ch41": "d1a666d1976849f327339d0b9dbfe3338d9c0b5d96355356a90170d4852efdfd",
     "ch42": "40b3562ef36778a8d90744912cd8198e9d9d3ab99a3d0b9d1abfcbd9f71a3dcc",
-    "ch43": "411c58d7bbf9e7074366dcc72bd7444a9ef47b485dbe8370e7dd2eac8e4b188b"
+    "ch43": "411c58d7bbf9e7074366dcc72bd7444a9ef47b485dbe8370e7dd2eac8e4b188b",
+    "ch44": "5c80668d4c08d2e4c7babd102f9895153452b54dc103e330ca8462de1224d767"
   },
   "baselineQuality": {
     "chapters": [

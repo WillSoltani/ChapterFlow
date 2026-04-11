@@ -251,7 +251,11 @@
       "category": "work",
       "format": "decision_point",
       "endingType": "realization",
-      "contexts": ["hospital floor", "shift change", "handoff risk"],
+      "contexts": [
+        "hospital floor",
+        "shift change",
+        "handoff risk"
+      ],
       "scenario": {
         "gentle": "Mira is ending a chaotic hospital shift. The monitor alarm is still chirping when the incoming clinician asks for a quick verbal handoff and starts reaching for the chart. Mira can either rush through the exchange or stop long enough to confirm one unstable medication detail that has already moved twice during the day.",
         "direct": "Mira has thirty seconds to pass a patient to the next clinician. One medication change is easy to assume the chart already captures, but she knows that assumption is exactly how details vanish in dense systems.",
@@ -274,7 +278,11 @@
       "category": "school",
       "format": "dialogue",
       "endingType": "consequence",
-      "contexts": ["medical simulation lab", "whiteboard debrief", "team learning"],
+      "contexts": [
+        "medical simulation lab",
+        "whiteboard debrief",
+        "team learning"
+      ],
       "scenario": {
         "gentle": "In a medical simulation lab, Daniel listens while his group explains why the manikin case went badly. The marker squeaks on the whiteboard as classmates list dosage choices and technical errors. Their instructor asks a simpler question: who actually confirmed the airway handoff when the team changed roles?",
         "direct": "Daniel expects the debrief to center on knowledge gaps. Instead, the instructor points to a missing confirmation during a role change and says the team knew enough but did not hold the chain together.",
@@ -297,7 +305,11 @@
       "category": "personal",
       "format": "dilemma",
       "endingType": "reversal",
-      "contexts": ["home recovery", "discharge papers", "family stress"],
+      "contexts": [
+        "home recovery",
+        "discharge papers",
+        "family stress"
+      ],
       "scenario": {
         "gentle": "Sofia gets home after a relative's procedure and spreads discharge papers, medication bottles, and appointment cards across the kitchen counter. Every instruction seems important. She starts by tackling the most dramatic warning and nearly overlooks the ordinary timing note attached to a routine medication.",
         "direct": "At home, Sofia faces the civilian version of extreme complexity. Nothing looks advanced, but too many small instructions arrive at once and one boring line is the easiest one to lose.",
@@ -318,9 +330,13 @@
       "exampleId": "ch01-ex04-omar-prep-loop",
       "title": "Omar Realizes Confidence Is Not the Same as Coverage",
       "category": "work",
-      "format": "inner_monologue",
+      "format": "postmortem",
       "endingType": "open_question",
-      "contexts": ["operating room prep", "pager noise", "mental load"],
+      "contexts": [
+        "operating room prep",
+        "pager noise",
+        "mental load"
+      ],
       "scenario": {
         "gentle": "Omar moves through pre-procedure prep while two pagers buzz and another team member asks a question from the doorway. He knows the routine well enough that he feels the seductive comfort of speed. Then he notices he cannot remember whether one basic check happened or whether he only pictured it happening.",
         "direct": "Omar's problem is not ignorance. It is a crowded mental field where familiarity makes one missing confirmation hard to distinguish from one completed confirmation.",
@@ -341,9 +357,13 @@
       "exampleId": "ch01-ex05-priya-capstone-contrast",
       "title": "Priya Sees Why the Best Technician Does Not Automatically Lead the Whole System",
       "category": "school",
-      "format": "contrast",
+      "format": "predict_reveal",
       "endingType": "decision",
-      "contexts": ["engineering capstone", "design review", "team roles"],
+      "contexts": [
+        "engineering capstone",
+        "design review",
+        "team roles"
+      ],
       "scenario": {
         "gentle": "Priya compares two capstone teams. One team has a standout student who solves every hard technical issue but keeps the project in their head. The other team uses simple checkpoints and handoffs so everybody knows when their part affects the next person. The first team looks more impressive at a glance. The second team misses fewer basics.",
         "direct": "Priya notices that technical brilliance and system reliability are not identical. One group has stronger star power. The other has stronger seams.",
@@ -364,9 +384,13 @@
       "exampleId": "ch01-ex06-lucas-home-bridge",
       "title": "Lucas Builds a Tiny Routine for a Dense Morning",
       "category": "personal",
-      "format": "vignette",
+      "format": "before_after",
       "endingType": "bridge",
-      "contexts": ["family logistics", "morning rush", "repeatable routine"],
+      "contexts": [
+        "family logistics",
+        "morning rush",
+        "repeatable routine"
+      ],
       "scenario": {
         "gentle": "Lucas is caring for his father after discharge while still trying to get two children out the door for school. The mornings feel small, domestic, and chaotic rather than dramatic. After one near miss with a routine instruction, he starts using a short visible sequence on the counter so the same basic step does not disappear again.",
         "direct": "Lucas learns that high-stakes omission can hide inside ordinary family logistics. A tiny routine stabilizes the part of the morning most likely to slip.",

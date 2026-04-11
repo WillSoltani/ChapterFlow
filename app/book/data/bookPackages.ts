@@ -32,6 +32,7 @@ import theArtOfWarPackageJson from "@/book-packages/the-art-of-war.modern.json";
 import atomicHabitsPackageJson from "@/book-packages/atomic-habits.modern.json";
 import theGreatMentalModelsVol1PackageJson from "@/book-packages/the-great-mental-models-vol-1.modern.json";
 import theLeanStartupPackageJson from "@/book-packages/the-lean-startup.modern.json";
+import theChecklistManifestoPackageJson from "@/book-packages/the-checklist-manifesto.modern.json";
 import executionPackageJson from "@/book-packages/execution.modern.json";
 import { getBookCoverPath } from "@/lib/book-covers";
 
@@ -737,6 +738,18 @@ export function getTheLeanStartupPackageForTone(tone: ToneKey): BookPackage {
   return normalizeNstdPackage(theLeanStartupPackageJson, tone);
 }
 
+export const THE_CHECKLIST_MANIFESTO_PACKAGE = normalizeNstdPackage(
+  theChecklistManifestoPackageJson,
+  "direct"
+);
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const THE_CHECKLIST_MANIFESTO_RAW_CHAPTERS = getRawChapters(theChecklistManifestoPackageJson);
+
+export function getTheChecklistManifestoPackageForTone(tone: ToneKey): BookPackage {
+  return normalizeNstdPackage(theChecklistManifestoPackageJson, tone);
+}
+
 export const EXECUTION_PACKAGE = normalizeNstdPackage(executionPackageJson, "direct");
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -781,6 +794,7 @@ export const BOOK_PACKAGES: BookPackage[] = [
   ATOMIC_HABITS_PACKAGE,
   THE_GREAT_MENTAL_MODELS_VOL_1_PACKAGE,
   THE_LEAN_STARTUP_PACKAGE,
+  THE_CHECKLIST_MANIFESTO_PACKAGE,
   EXECUTION_PACKAGE,
 ];
 
@@ -819,6 +833,7 @@ const BOOK_PACKAGE_TONE_GETTERS: Partial<Record<string, (tone: ToneKey) => BookP
   "atomic-habits": getAtomicHabitsPackageForTone,
   "the-great-mental-models-vol-1": getTheGreatMentalModelsVol1PackageForTone,
   "the-lean-startup": getTheLeanStartupPackageForTone,
+  "the-checklist-manifesto": getTheChecklistManifestoPackageForTone,
   execution: getExecutionPackageForTone,
 };
 
@@ -1085,6 +1100,14 @@ export const BOOK_PACKAGE_PRESENTATION: Record<string, BookPackagePresentation> 
     synopsis:
       "A modern reading of validated learning, MVPs, innovation accounting, pivots, growth engines, adaptive organizations, and anti-waste management under uncertainty.",
     pages: 336,
+  },
+  "the-checklist-manifesto": {
+    icon: "✅",
+    coverImage: getBookCoverPath("the-checklist-manifesto"),
+    difficulty: "Medium",
+    synopsis:
+      "A modern reading of Atul Gawande's nine chapters on complexity, omission, team pause points, disciplined checklists, resistance, and carrying structured safeguards into other high-stakes fields.",
+    pages: 224,
   },
   execution: {
     icon: "⚙️",
