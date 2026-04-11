@@ -25,3 +25,7 @@
 - 2026-04-11 Chapter 18 validated, review-packaged, and hash-sealed.
 - 2026-04-11 Chapter 19 validated, review-packaged, and hash-sealed.
 - 2026-04-11 Chapter 20 validated, review-packaged, and hash-sealed.
+- 2026-04-11 Chapter 21 validated, review-packaged, and hash-sealed.
+- 2026-04-11 Continuity hash seals repaired to the v13 release-guard canonical hash method and revalidated.
+- 2026-04-11 Release assembled from validated chapters only; source guard, release lint, release guard, and repo build passed.
+- 2026-04-11 Repo validator blocker documented: scripts/book/validate-book.mjs expects a different package contract than this sealed v13 corpus.

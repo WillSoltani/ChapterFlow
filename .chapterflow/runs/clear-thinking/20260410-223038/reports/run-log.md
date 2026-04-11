@@ -160,3 +160,15 @@
 - 2026-04-11T15:42:33Z Chapter 18 final checks passed: chapter lint `FAIL=0 WARN=0`, review-package lint `FAIL=0 WARN=0`, artifact guard `FAIL=0 WARN=0`.
 - 2026-04-11T15:42:57Z Chapter 18 hash sealed in `continuity/continuity-state.json` as `8526a15c87b858d5752e1263f1755a8fdb1e575ac65ac52c96903c260d3a8ebf`.
 - 2026-04-11T15:42:57Z Wave 9 close check passed clean with Chapter 17 and Chapter 18 fully validated, sealed, and artifact-guarded.
+- 2026-04-11T15:48:33Z Wave 10 pre-writer package wrote `briefs/ch19.md`, `outlines/ch19.md`, `quiz-blueprints/ch19.md`, `sidecars/source/ch19.source.txt`, `briefs/ch20.md`, `outlines/ch20.md`, `quiz-blueprints/ch20.md`, and `sidecars/source/ch20.source.txt`.
+- 2026-04-11T15:48:33Z Chapter 19 writer pass wrote `drafts/canonical/ch19.md`.
+- 2026-04-11T15:48:33Z Chapter 19 editor pass wrote `drafts/edited/ch19.md`.
+- 2026-04-11T15:48:33Z Chapter 19 critic gate wrote `reports/ch19.critic.md` with `Score: 11/12` and approved conversion with local-patch-only guidance.
+- 2026-04-11T15:51:08Z Chapter 19 converter wrote `structured/ch19.chapter.json` and passed chapter lint with `FAIL=0 WARN=0` on the first gate pass.
+- 2026-04-11T15:52:58Z Chapter 19 quiz and validator passes wrote `quizzes/ch19.quiz.json`, `validated/ch19.chapter.json`, `validated/ch19.review-package.json`, `sidecars/ch19.reading-metrics.json`, and `reports/ch19.validation.md`.
+- 2026-04-11T15:53:19Z Strict-path deviation detected: `sidecars/source/ch19.source.json` was missing during Chapter 19 final artifact guard. The missing source sidecar was created from the frozen source lane, `sidecars/source/ch20.source.json` was also added to restore Wave 10 pre-writer completeness, and the Chapter 19 gate was re-run on the corrected path.
+- 2026-04-11T15:53:19Z Chapter 19 final checks passed on the corrected path: chapter lint `FAIL=0 WARN=0`, review-package lint `FAIL=0 WARN=0`, artifact guard `FAIL=0 WARN=0`.
+- 2026-04-11T15:53:52Z Chapter 19 hash sealed in `continuity/continuity-state.json` as `e5f47066107e54ac050ee788f838054d5223334122977a7f223a9e2df53514e2`.
+- 2026-04-11T15:53:52Z Chapter 20 writer pass wrote `drafts/canonical/ch20.md`.
+- 2026-04-11T15:53:52Z Chapter 20 editor pass wrote `drafts/edited/ch20.md`.
+- 2026-04-11T15:53:52Z Chapter 20 critic gate wrote `reports/ch20.critic.md` with `Score: 11/12` and approved conversion with local-patch-only guidance.

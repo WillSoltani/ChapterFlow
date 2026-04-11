@@ -102,6 +102,17 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       timeToLiveAttribute: "revalidatedAt",
     });
 
+    // OpenNext queries this GSI to check if cached pages have been
+    // revalidated (by path + revalidatedAt timestamp).
+    cacheTable.addGlobalSecondaryIndex({
+      indexName: "revalidate",
+      partitionKey: { name: "path", type: dynamodb.AttributeType.STRING },
+      sortKey: {
+        name: "revalidatedAt",
+        type: dynamodb.AttributeType.STRING,
+      },
+    });
+
     // -------------------------------------------------------------------
     // SQS — ISR revalidation queue
     // -------------------------------------------------------------------
@@ -207,13 +218,14 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       }),
     );
 
-    // SSM access (same as App Runner role)
+    // SSM access — the app's getServerEnv() tries multiple candidate paths
+    // (prefixed, bare name, lowercase) so we grant access to all parameters.
     lambdaRole.addToPolicy(
       new iam.PolicyStatement({
         sid: "SsmConfigAccess",
         actions: ["ssm:GetParameter", "ssm:GetParameters"],
         resources: [
-          `arn:${cdk.Aws.PARTITION}:ssm:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:parameter${props.ssmPrefix}/*`,
+          `arn:${cdk.Aws.PARTITION}:ssm:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:parameter/*`,
         ],
       }),
     );

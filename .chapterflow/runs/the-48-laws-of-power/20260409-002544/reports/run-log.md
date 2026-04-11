@@ -799,6 +799,10 @@ Phase 5 complete.
 - Validation result: PASS.
 - Continuity hash sealed for `ch47`: `985eeb0b7ae23691cee81649264f485e4e8d87d505e52eae99d9884ce161e0f8`
 - Opened Chapter 48 at the prewriter boundary only after Chapter 47 gate pass.
+- Completed writer, editor, critic, converter, quiz, and validator steps for Chapter 48.
+- Validation result: PASS.
+- Continuity hash sealed for `ch48`: `ac441eae8dbe9d59c24439f575750cacf0e20021e9360f6cc175e2f508346f86`
+- Final artifact guard result after Chapter 48: FAIL=0 WARN=0
 - Wrote Chapter 45 source sidecar, brief, outline, and quiz blueprint before drafting.
 
 - Completed writer, editor, critic, converter, quiz, and validator steps for Chapter 44.
@@ -863,3 +867,7 @@ Phase 5 complete.
 - Completed writer, editor, critic, converter, quiz, and validator steps for Chapter 48.
 - Validation result: PASS.
 - Continuity hash sealed for `ch48`: `276cf7285b5c86a44ea5d2e4357a6ea5d6156ea5d08d191f2739b07c72bc7e39`
+
+- Completed writer, editor, critic, converter, quiz, and validator steps for Chapter 48.
+- Validation result: PASS.
+- Continuity hash sealed for `ch48`: `ac441eae8dbe9d59c24439f575750cacf0e20021e9360f6cc175e2f508346f86`

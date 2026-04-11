@@ -263,3 +263,8 @@ Phase 4 complete for Chapter 1.
 - Writer pass complete.
 - Editor pass complete.
 - Critic pass complete with 11/12 and local-caution approval.
+
+- Chapter 11 converter output written and synced to quiz JSON.
+- Chapter 11 chapter gate validation: pass (FAIL=0 WARN=0).
+- Chapter 11 validated artifacts written; review-package payload matches validated chapter payload.
+- Chapter 11 continuity seal recorded with sha256 f029b0520b4eed4b219dd68e8afbf715b8982ff840d87381c4a9a6668727f6e1.

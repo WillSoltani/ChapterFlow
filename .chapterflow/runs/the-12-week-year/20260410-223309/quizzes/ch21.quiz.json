@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What main correction does Chapter 21 make?",
+      "choices": [
+        "It argues that the 13th week should be used for review, reset, and recommitment into the next cycle",
+        "It says the final chapter is mostly sentimental summary",
+        "It teaches that the cycle ends once relief arrives"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says the ending should launch the next round.",
+        "direct": "It corrects the idea that the 13th week is just a pause by making it a bridge into renewed execution.",
+        "competitive": "It says the close has to reload the machine."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why does the title combine Final Thoughts with the 13th Week?",
+      "choices": [
+        "To tie reflection to continued action",
+        "To prove the system is complete and should now stop",
+        "To remove the need for another cycle"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The title links reflection with what happens next.",
+        "direct": "It keeps the closing chapter attached to action rather than leaving it as summary only.",
+        "competitive": "It fuses reflection with another round instead of a fadeout."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What does the chapter say the 13th week should do?",
+      "choices": [
+        "Provide relief without any review",
+        "Turn one cycle into the next through review, reset, and recommitment",
+        "Replace the need for future planning"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says the 13th week is a bridge into the next cycle.",
+        "direct": "Its purpose is to review the last round and recommit with better information.",
+        "competitive": "It is the handoff between rounds."
+      },
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Elise ends a hard cycle with her team. What Chapter 21 move is strongest?",
+      "choices": [
+        "Let the team drift away from the cycle and revisit it later",
+        "Use the 13th week to review what happened and reset the next-round priority",
+        "Celebrate only and avoid reopening the effort"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Elise should use the 13th week to review and reset.",
+        "direct": "The chapter says the close should become a handoff into the next cycle rather than relief alone.",
+        "competitive": "She needs the reload, not just the exhale."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Why does the chapter reject a magical view of reflection?",
+      "choices": [
+        "Because reflection matters only if it changes the next commitment",
+        "Because review should be avoided when a cycle was difficult",
+        "Because reset works automatically without effort"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says review matters when it improves what comes next.",
+        "direct": "It rejects reflection as emotional closure only and ties it to a stronger next round.",
+        "competitive": "If the review changes nothing, it is just prettier language for stopping."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Which misreading does Chapter 21 reject?",
+      "choices": [
+        "That the final chapter should point into the next cycle",
+        "That the 13th week is only for rest and decompression",
+        "That recommitment belongs to execution"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter rejects treating the 13th week as recovery only.",
+        "direct": "It warns against using the ending for decompression without review and recommitment.",
+        "competitive": "It rejects cashing out before the reload happens."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What larger system view does the final chapter reinforce?",
+      "choices": [
+        "That execution is a repeated cycle of work, review, and renewal",
+        "That one strong round completes the system",
+        "That recurrence weakens commitment"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter says the system continues through repeated cycles.",
+        "direct": "It ends the book by presenting execution as recurring work followed by review and renewal.",
+        "competitive": "The rounds keep going. The system lives in recurrence."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Mateo ends a cycle relieved but does no review. What diagnosis fits best?",
+      "choices": [
+        "He used the 13th week exactly as intended",
+        "He turned final reflection into a stronger next commitment",
+        "He let decompression waste learning that should have shaped the next cycle"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The chapter warns that relief alone can waste what the cycle taught.",
+        "direct": "Mateo is treating the ending as recovery only, so the next round loses the benefit of honest review.",
+        "competitive": "He kept the exhale and dumped the intel."
+      },
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "What hard warning sits underneath Chapter 21?",
+      "choices": [
+        "That the final chapter should not mention the next cycle",
+        "That readers often decompress so completely that the learning from the cycle leaks away",
+        "That recommitment is less important than closure"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter warns that endings can waste learning if they stop at recovery.",
+        "direct": "Its hard warning is that people often feel finished before they turn the cycle's insight into better action.",
+        "competitive": "The intel dies when the close turns into a full cash-out."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "If Chapter 21 is right, what is the book's final takeaway?",
+      "choices": [
+        "A good cycle should end in rest alone",
+        "The system is complete once one 12-week round succeeds",
+        "The close of one cycle should become the deliberate start of the next one"
+      ],
+      "correctIndex": 2,
+      "explanation": {
+        "gentle": "The book ends by turning one cycle into the next.",
+        "direct": "Its final takeaway is that honest review, reset, and recommitment should send the system forward.",
+        "competitive": "The ending chambers another round."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    }
+  ]
+}

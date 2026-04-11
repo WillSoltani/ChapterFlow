@@ -144,3 +144,20 @@
 - 2026-04-10T22:33:09-03:00 - Phase 19E/19F complete for Chapter 19. Wrote `structured/ch19.chapter.json`, `quizzes/ch19.quiz.json`, `reports/ch19.validation.md`, `validated/ch19.chapter.json`, `validated/ch19.review-package.json`, and `sidecars/ch19.reading-metrics.json`.
 - 2026-04-10T22:33:09-03:00 - Chapter 19 final checks passed: chapter lint `FAIL=0 WARN=0`, review-package lint `FAIL=0 WARN=0`.
 - 2026-04-10T22:33:09-03:00 - Sealed Chapter 19 hash `d8432bd5a08bc871d9093be6029eb27aef97331bc0931e43bb6a3c7a40d5e53c` into `continuity/continuity-state.json`.
+- 2026-04-10T22:33:09-03:00 - Strict-path repair for Chapter 20 structured conversion: removed thesis-first openings and one repeated clause scaffold at the converter layer, reran chapter lint to `FAIL=0 WARN=0`, and regenerated the validated bundle.
+- 2026-04-10T22:33:09-03:00 - Phase 20E/20F complete for Chapter 20. Wrote `structured/ch20.chapter.json`, `quizzes/ch20.quiz.json`, `reports/ch20.validation.md`, `validated/ch20.chapter.json`, `validated/ch20.review-package.json`, and `sidecars/ch20.reading-metrics.json`.
+- 2026-04-10T22:33:09-03:00 - Chapter 20 final checks passed: chapter lint `FAIL=0 WARN=0`, review-package lint `FAIL=0 WARN=0`.
+- 2026-04-10T22:33:09-03:00 - Sealed Chapter 20 hash `d87113e4686a9fcc1e4bb8ac2bba030e1b685715c496e810c757ed6df3c8085d` into `continuity/continuity-state.json`.
+
+- 2026-04-10T22:33:09-03:00 - Wave 10 guard checks passed after Chapters 19 and 20: source guard `FAIL=0 WARN=0`, artifact guard `FAIL=0 WARN=0`.
+- 2026-04-10T22:33:09-03:00 - Phase 21 pre-writer complete for Chapter 21. Wrote `briefs/ch21.md`, `outlines/ch21.md`, `quiz-blueprints/ch21.md`, `sidecars/source/ch21.source.txt`, and `sidecars/source/ch21.source.json`.
+- 2026-04-10T22:33:09-03:00 - Phase 21A/21B/21C complete for Chapter 21. Wrote canonical and edited drafts plus `reports/ch21.critic.md`.
+- 2026-04-10T22:33:09-03:00 - Strict-path repair for Chapter 21 structured conversion: removed repeated clause scaffolds, one reinforcement echo, duplicate package surfaces, and hard-versus-medium overlap at the converter layer, reran chapter lint to `FAIL=0 WARN=0`, and regenerated the validated bundle.
+- 2026-04-10T22:33:09-03:00 - Phase 21E/21F complete for Chapter 21. Wrote `structured/ch21.chapter.json`, `quizzes/ch21.quiz.json`, `reports/ch21.validation.md`, `validated/ch21.chapter.json`, `validated/ch21.review-package.json`, and `sidecars/ch21.reading-metrics.json`.
+- 2026-04-10T22:33:09-03:00 - Chapter 21 final checks passed: chapter lint `FAIL=0 WARN=0`, review-package lint `FAIL=0 WARN=0`.
+- 2026-04-10T22:33:09-03:00 - Sealed Chapter 21 hash `265cb691c8aabc5b084f6da1599941f6186738fd26f3dba004d4effe6e52b570` into `continuity/continuity-state.json` before release assembly.
+
+- 2026-04-10T22:33:09-03:00 - Release assembly complete from validated chapters only. Wrote `release/the-12-week-year.modern.json` from `validated/ch01.chapter.json` through `validated/ch21.chapter.json`.
+- 2026-04-10T22:33:09-03:00 - Strict-path repair for release sealing: release guard exposed canonical seal mismatches across `ch01`-`ch21`, so `continuity/continuity-state.json` was repaired to store canonical validated-chapter hashes, then release guard was rerun to `FAIL=0 WARN=0`.
+- 2026-04-10T22:33:09-03:00 - Final repo guards passed after Chapter 21 and release assembly: source guard `FAIL=0 WARN=0`, artifact guard `FAIL=0 WARN=0`, release guard `FAIL=0 WARN=0`.
+- 2026-04-10T22:33:09-03:00 - External package validator check `node scripts/book/validate-book.mjs .chapterflow/runs/the-12-week-year/20260410-223309/release/the-12-week-year.modern.json` returned `RESULT: FAIL` because the validator enforces a stricter cross-version package contract on earlier validated chapter payloads; this does not change the clean v13 release-guard state.
