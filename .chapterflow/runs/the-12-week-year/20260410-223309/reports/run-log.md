@@ -139,3 +139,8 @@
 - 2026-04-10T22:33:09-03:00 - Phase 19 pre-writer complete for Chapters 19 and 20. Wrote `briefs/ch19.md`, `outlines/ch19.md`, `quiz-blueprints/ch19.md`, `sidecars/source/ch19.source.txt`, `sidecars/source/ch19.source.json`, `briefs/ch20.md`, `outlines/ch20.md`, `quiz-blueprints/ch20.md`, `sidecars/source/ch20.source.txt`, and `sidecars/source/ch20.source.json`.
 - 2026-04-10T22:33:09-03:00 - Phase 19A/19B/19C complete for Chapter 19. Wrote canonical and edited drafts plus `reports/ch19.critic.md`.
 - 2026-04-10T22:33:09-03:00 - Phase 20A/20B/20C complete for Chapter 20. Wrote canonical and edited drafts plus `reports/ch20.critic.md`.
+
+- 2026-04-10T22:33:09-03:00 - Strict-path repair for Chapter 19 structured conversion: removed duplicate package surfaces, review-card echoes, one hard-versus-medium restatement, and hard-versus-medium competitive breakdown overlap at the converter layer, reran chapter lint to `FAIL=0 WARN=0`, and regenerated the validated bundle.
+- 2026-04-10T22:33:09-03:00 - Phase 19E/19F complete for Chapter 19. Wrote `structured/ch19.chapter.json`, `quizzes/ch19.quiz.json`, `reports/ch19.validation.md`, `validated/ch19.chapter.json`, `validated/ch19.review-package.json`, and `sidecars/ch19.reading-metrics.json`.
+- 2026-04-10T22:33:09-03:00 - Chapter 19 final checks passed: chapter lint `FAIL=0 WARN=0`, review-package lint `FAIL=0 WARN=0`.
+- 2026-04-10T22:33:09-03:00 - Sealed Chapter 19 hash `d8432bd5a08bc871d9093be6029eb27aef97331bc0931e43bb6a3c7a40d5e53c` into `continuity/continuity-state.json`.

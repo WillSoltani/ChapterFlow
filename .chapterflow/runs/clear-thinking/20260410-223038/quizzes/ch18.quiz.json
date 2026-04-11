@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 70,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What best defines open search in this chapter?",
+      "choices": [
+        "Collecting as many ideas as possible without ever choosing",
+        "Keeping the field of plausible options open long enough before evaluation narrows it",
+        "Picking the first option that seems efficient"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Open search means preserving serious alternatives before judgment starts cutting them down.",
+        "direct": "The chapter defines open search as disciplined widening before evaluation, not endless ideation or premature commitment.",
+        "competitive": "Keep the field real before the cuts begin."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why is early lock-in risky?",
+      "choices": [
+        "Because it can make the first workable answer win before comparison happens",
+        "Because it always proves the decision maker is careless",
+        "Because any fast decision is automatically wrong"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The first answer can look stronger than it is if the field closes too soon.",
+        "direct": "Early lock-in is risky because one candidate may win by arrival time instead of fit.",
+        "competitive": "The early favorite can steal the match."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What do multiple serious options improve later in the process?",
+      "choices": [
+        "They guarantee the newest idea will be best",
+        "They strengthen evaluation by making comparison more honest",
+        "They remove the need to narrow choices later"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Several candidates help because tradeoffs become easier to see.",
+        "direct": "The chapter values multiple options because evaluation works better when alternatives can be compared directly.",
+        "competitive": "Rivals make the later cut smarter."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "A team circles the first plan on the whiteboard and starts debating details before other candidates are named. What is the better move?",
+      "choices": [
+        "Assume the circled plan is best because it appeared first",
+        "Pause judgment and add other serious candidates before ranking",
+        "Keep one plan only so the team moves faster"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The field should widen before evaluation starts narrowing it.",
+        "direct": "The chapter asks for candidate generation before ranking so the first answer does not win by default.",
+        "competitive": "Make the favorite face real rivals."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "In a meeting, each new suggestion gets rejected immediately. According to the chapter, what is going wrong?",
+      "choices": [
+        "Generation and evaluation are collapsing into each other too early",
+        "The group needs stranger ideas",
+        "The group should commit even faster"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Search is being cut down before enough candidates can reach the table.",
+        "direct": "The chapter protects a separation between generating options and judging them.",
+        "competitive": "The cuts started before the bracket filled."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "A student group wants to repeat last year's plan because it feels safe, but they have not named other plausible routes. What should happen first?",
+      "choices": [
+        "Lock in the familiar route because experience makes comparison unnecessary",
+        "Widen the option set with other serious candidates before choosing",
+        "Wait indefinitely until dozens of ideas appear"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter wants a broader field before commitment, not automatic repetition or endless delay.",
+        "direct": "Open search matters because habit can crowd out better alternatives before they get serious attention.",
+        "competitive": "Do not let the incumbent win uncontested."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What is the possibility space in this chapter?",
+      "choices": [
+        "The wider set of plausible alternatives before the best one is chosen",
+        "A list of unrealistic ideas gathered for inspiration",
+        "The one option already favored by the group"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Possibility space means the broader field of plausible routes that exist before narrowing begins.",
+        "direct": "The chapter uses possibilities to mean real alternatives still available during disciplined search.",
+        "competitive": "It is the field before the cuts."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why is novelty not the same as quality?",
+      "choices": [
+        "Because a different option still has to fit the problem better, not merely look new",
+        "Because the oldest option is usually correct",
+        "Because surprising ideas should always be removed first"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "A new idea helps only if it deserves consideration for fit, not just for surprise.",
+        "direct": "The chapter rejects novelty worship because exploration serves judgment, not excitement alone.",
+        "competitive": "Different does not automatically hit harder."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "How does broader exploration help evaluation?",
+      "choices": [
+        "It guarantees the final choice will be easy",
+        "It gives evaluation real contrast among serious candidates",
+        "It removes the need to judge tradeoffs later"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Evaluation improves when alternatives can be compared against one another.",
+        "direct": "A wider field helps because tradeoffs and hidden strengths become easier to see across candidates.",
+        "competitive": "Contrast gives the knife a reason."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "According to the chapter's threshold test, when is the search wide enough to start narrowing?",
+      "choices": [
+        "When the first workable answer appears",
+        "When the option set has opened enough to avoid trap answers and support real comparison",
+        "When every imaginable possibility has been listed"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The search is wide enough when more than one serious route can be judged honestly.",
+        "direct": "The threshold is not endless possibility. It is enough breadth to keep the first plausible answer from winning by default.",
+        "competitive": "Start cutting once the field is real."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What mechanism does the chapter say drives groupthink?",
+      "choices": [
+        "The cost of speaking up is visible while the cost of silence is hidden",
+        "Groups naturally become less intelligent as they grow larger",
+        "Leaders always prefer agreement to accuracy"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "simple",
+      "explanation": {
+        "gentle": "The chapter treats groupthink as a structural incentive problem.",
+        "direct": "Begin with the mechanism: silence wins when dissent feels personally expensive.",
+        "competitive": "The engine is priced truth, not sudden stupidity."
+      }
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What best describes mission-first command in this chapter?",
+      "choices": [
+        "Leaders avoid setting standards so the team can be creative",
+        "Leaders define objective and constraints while leaving method flexible for capable people",
+        "Leaders let the team vote on every important decision"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "simple",
+      "explanation": {
+        "gentle": "Mission-first command still keeps clear standards and boundaries.",
+        "direct": "Keep the definition tight: the leader owns purpose and limits, while local method stays adaptive.",
+        "competitive": "The pattern is centralized aim and decentralized execution."
+      }
+    },
+    {
+      "questionId": "q03",
+      "prompt": "When does the chapter say tighter procedural command may be preferable?",
+      "choices": [
+        "Whenever the leader wants faster meetings",
+        "Whenever the team disagrees in public",
+        "When the team is inexperienced, the terrain is unfamiliar, or the error cost is high"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "simple",
+      "explanation": {
+        "gentle": "The reversal is about readiness and risk, not about ego.",
+        "direct": "Hold onto the condition: novices and high-risk settings often need more procedure first.",
+        "competitive": "The chapter permits tighter control when the board cannot safely absorb distributed judgment yet."
+      }
+    },
+    {
+      "questionId": "q04",
+      "prompt": "In Raina's launch meeting, what is the real failure before any plan is changed?",
+      "choices": [
+        "The team has not collected enough market data",
+        "Status has made honest risk disclosure too costly",
+        "The vice president is less intelligent than the rest of the room"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "standard",
+      "explanation": {
+        "gentle": "The plan is weaker because the room is protecting rank instead of the decision.",
+        "direct": "Read Raina's room correctly: the structure is suppressing truth before the plan can improve.",
+        "competitive": "The board is already compromised because status has frozen candor."
+      }
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Malcolm sees student reporting improve when the adviser stops scripting every move. What is the best reading of that change?",
+      "choices": [
+        "Students learn better when standards disappear",
+        "Autonomy matters only because deadlines became shorter",
+        "Mission and standards stayed clear while method became local to the reporter"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "standard",
+      "explanation": {
+        "gentle": "The stronger result comes from clearer purpose with more local judgment, not from vagueness.",
+        "direct": "Notice Malcolm's case: the adviser removed the script, not the standard.",
+        "competitive": "The gain comes from shifting method downward while holding the publication bar steady."
+      }
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Esme wants a roadmap review that surfaces the real risks. Which move best fits the chapter?",
+      "choices": [
+        "Ask each function to name the failure mode they see before asking for agreement",
+        "Wait to hear objections only after leadership has formally approved the plan",
+        "Privately assume that silence means consent and move faster"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "standard",
+      "explanation": {
+        "gentle": "She needs a meeting structure that makes dissent operational instead of socially expensive.",
+        "direct": "Test Esme's move by whether it rewards risk disclosure before consensus gets staged.",
+        "competitive": "Good command rewrites the room so truth has a job description."
+      }
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Dorian's team follows every checklist step but slows down whenever conditions change. What does the chapter suggest?",
+      "choices": [
+        "Add more approvals so the team feels safer",
+        "Clarify the objective, non-negotiables, and escalation points while letting leads handle local adjustments",
+        "Keep the exact script because consistency matters more than adaptation"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "standard",
+      "explanation": {
+        "gentle": "The problem is not too much discipline. It is frozen judgment at the edge.",
+        "direct": "Watch Dorian's bottleneck: the team needs bounded decision rights, not more waiting.",
+        "competitive": "The fix is to preserve standards while cutting the permission lag."
+      }
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Keziah is told to own a story but is given almost no brief, no standard, and no clear deadline. What is the chapter's diagnosis?",
+      "choices": [
+        "This is vagueness disguised as autonomy",
+        "This is ideal mission-first leadership",
+        "This proves detailed control is always better"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "standard",
+      "explanation": {
+        "gentle": "Mission-based command still requires purpose and boundaries.",
+        "direct": "Separate Keziah's freedom from actual briefing quality: she has room but not guidance.",
+        "competitive": "No mission means no real autonomy, only distributed fog."
+      }
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Which criticism best captures the chapter's ethical limit?",
+      "choices": [
+        "It only applies to corporate teams",
+        "It underrates the value of morale",
+        "Leaders can misuse autonomy language to withhold needed context and then blame the team for confusion"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "evaluate_create",
+      "depthLevel": "deeper",
+      "explanation": {
+        "gentle": "The limit appears when autonomy becomes cover for underleading.",
+        "direct": "Judge the misuse carefully: leaders can sound empowering while actually briefing badly.",
+        "competitive": "The rot begins when command exports confusion and calls it trust."
+      }
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why does Chapter 6 logically follow this chapter?",
+      "choices": [
+        "Because mission-first command only matters in schools",
+        "Because once initiative exists, the organization still has to decide how to structure units so that initiative can move",
+        "Because Chapter 6 rejects the need for any central purpose"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "evaluate_create",
+      "depthLevel": "deeper",
+      "explanation": {
+        "gentle": "The next chapter extends the same autonomy logic from command behavior to organizational design.",
+        "direct": "Place the sequence correctly: first the team learns to think, then the organization learns how to arrange that thinking.",
+        "competitive": "If judgment is finally alive, the next question is how to structure it for speed and resilience."
+      }
+    }
+  ]
+}

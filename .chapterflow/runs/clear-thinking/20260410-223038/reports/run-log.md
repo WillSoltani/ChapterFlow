@@ -155,3 +155,8 @@
 - 2026-04-11T15:38:13Z Chapter 18 writer pass wrote `drafts/canonical/ch18.md`.
 - 2026-04-11T15:38:13Z Chapter 18 editor pass wrote `drafts/edited/ch18.md`.
 - 2026-04-11T15:38:13Z Chapter 18 critic gate wrote `reports/ch18.critic.md` with `Score: 11/12` and approved conversion with local-patch-only guidance.
+- 2026-04-11T15:40:58Z Chapter 18 converter wrote `structured/ch18.chapter.json` and passed chapter lint with `FAIL=0 WARN=0` after a local repair to one reusable reinforcement stem.
+- 2026-04-11T15:42:16Z Chapter 18 quiz and validator passes wrote `quizzes/ch18.quiz.json`, `validated/ch18.chapter.json`, `validated/ch18.review-package.json`, `sidecars/ch18.reading-metrics.json`, and `reports/ch18.validation.md`.
+- 2026-04-11T15:42:33Z Chapter 18 final checks passed: chapter lint `FAIL=0 WARN=0`, review-package lint `FAIL=0 WARN=0`, artifact guard `FAIL=0 WARN=0`.
+- 2026-04-11T15:42:57Z Chapter 18 hash sealed in `continuity/continuity-state.json` as `8526a15c87b858d5752e1263f1755a8fdb1e575ac65ac52c96903c260d3a8ebf`.
+- 2026-04-11T15:42:57Z Wave 9 close check passed clean with Chapter 17 and Chapter 18 fully validated, sealed, and artifact-guarded.
