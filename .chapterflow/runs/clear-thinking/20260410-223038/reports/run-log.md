@@ -148,3 +148,10 @@
 - 2026-04-11T15:31:44Z Chapter 17 writer pass wrote `drafts/canonical/ch17.md`.
 - 2026-04-11T15:31:44Z Chapter 17 editor pass wrote `drafts/edited/ch17.md`.
 - 2026-04-11T15:31:44Z Chapter 17 critic gate wrote `reports/ch17.critic.md` with `Score: 11/12` and approved conversion with local-patch-only guidance.
+- 2026-04-11T15:36:15Z Chapter 17 converter wrote `structured/ch17.chapter.json` and passed chapter lint with `FAIL=0 WARN=0` after local repairs to two repeated clause scaffolds and one repeated emphasis scaffold.
+- 2026-04-11T15:37:00Z Chapter 17 quiz and validator passes wrote `quizzes/ch17.quiz.json`, `validated/ch17.chapter.json`, `validated/ch17.review-package.json`, `sidecars/ch17.reading-metrics.json`, and `reports/ch17.validation.md`.
+- 2026-04-11T15:37:12Z Chapter 17 final checks passed: chapter lint `FAIL=0 WARN=0`, review-package lint `FAIL=0 WARN=0`, artifact guard `FAIL=0 WARN=0`.
+- 2026-04-11T15:37:33Z Chapter 17 hash sealed in `continuity/continuity-state.json` as `a497ce44fcbcc590a1c48da6e5553f45f47e9eadaf9145a4ec6237333cb981fd`.
+- 2026-04-11T15:38:13Z Chapter 18 writer pass wrote `drafts/canonical/ch18.md`.
+- 2026-04-11T15:38:13Z Chapter 18 editor pass wrote `drafts/edited/ch18.md`.
+- 2026-04-11T15:38:13Z Chapter 18 critic gate wrote `reports/ch18.critic.md` with `Score: 11/12` and approved conversion with local-patch-only guidance.

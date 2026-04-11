@@ -58,10 +58,14 @@ class ChapterFlowFrontendStack extends cdk.Stack {
     serverFunction;
     constructor(scope, id, props) {
         super(scope, id, props);
-        const backend = props.backendStack;
         const domainName = props.domainName ?? "chapterflow.ca";
         const appDomain = `app.${domainName}`;
         const openNextDir = path.join(__dirname, "../../.open-next");
+        // Construct ARNs from known names to avoid cross-stack references
+        const appTableArn = cdk.Arn.format({ service: "dynamodb", resource: "table", resourceName: props.appTableName }, this);
+        const analyticsTableArn = cdk.Arn.format({ service: "dynamodb", resource: "table", resourceName: props.analyticsTableName }, this);
+        const ingestBucketArn = `arn:${cdk.Aws.PARTITION}:s3:::${props.ingestBucketName}`;
+        const contentBucketArn = `arn:${cdk.Aws.PARTITION}:s3:::${props.contentBucketName}`;
         cdk.Tags.of(this).add("App", "ChapterFlow");
         cdk.Tags.of(this).add("System", "Frontend");
         cdk.Tags.of(this).add("ManagedBy", "CDK");
@@ -107,10 +111,10 @@ class ChapterFlowFrontendStack extends cdk.Stack {
         });
         // DynamoDB access — app tables (same as App Runner role)
         const ddbResources = [
-            backend.appTable.tableArn,
-            `${backend.appTable.tableArn}/index/*`,
-            backend.analyticsTable.tableArn,
-            `${backend.analyticsTable.tableArn}/index/*`,
+            appTableArn,
+            `${appTableArn}/index/*`,
+            analyticsTableArn,
+            `${analyticsTableArn}/index/*`,
         ];
         lambdaRole.addToPolicy(new iam.PolicyStatement({
             sid: "AppDynamoDbAccess",
@@ -148,17 +152,14 @@ class ChapterFlowFrontendStack extends cdk.Stack {
             sid: "AppS3Access",
             actions: ["s3:GetObject", "s3:PutObject"],
             resources: [
-                `${backend.ingestBucket.bucketArn}/*`,
-                `${backend.contentBucket.bucketArn}/*`,
+                `${ingestBucketArn}/*`,
+                `${contentBucketArn}/*`,
             ],
         }));
         lambdaRole.addToPolicy(new iam.PolicyStatement({
             sid: "AppS3MetadataAccess",
             actions: ["s3:GetBucketLocation"],
-            resources: [
-                backend.ingestBucket.bucketArn,
-                backend.contentBucket.bucketArn,
-            ],
+            resources: [ingestBucketArn, contentBucketArn],
         }));
         // S3 access — static assets + cache bucket
         lambdaRole.addToPolicy(new iam.PolicyStatement({
@@ -176,7 +177,7 @@ class ChapterFlowFrontendStack extends cdk.Stack {
             sid: "SsmConfigAccess",
             actions: ["ssm:GetParameter", "ssm:GetParameters"],
             resources: [
-                `arn:${cdk.Aws.PARTITION}:ssm:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:parameter${backend.ssmPrefix}/*`,
+                `arn:${cdk.Aws.PARTITION}:ssm:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:parameter${props.ssmPrefix}/*`,
             ],
         }));
         // SQS access — revalidation queue
@@ -196,11 +197,11 @@ class ChapterFlowFrontendStack extends cdk.Stack {
         // -------------------------------------------------------------------
         const commonEnv = {
             // App data resources
-            BOOK_TABLE_NAME: backend.appTable.tableName,
-            BOOK_ANALYTICS_TABLE_NAME: backend.analyticsTable.tableName,
-            BOOK_INGEST_BUCKET: backend.ingestBucket.bucketName,
-            BOOK_CONTENT_BUCKET: backend.contentBucket.bucketName,
-            SSM_PARAMETER_PREFIX: backend.ssmPrefix,
+            BOOK_TABLE_NAME: props.appTableName,
+            BOOK_ANALYTICS_TABLE_NAME: props.analyticsTableName,
+            BOOK_INGEST_BUCKET: props.ingestBucketName,
+            BOOK_CONTENT_BUCKET: props.contentBucketName,
+            SSM_PARAMETER_PREFIX: props.ssmPrefix,
             // OpenNext ISR infrastructure
             CACHE_BUCKET_NAME: assetsBucket.bucketName,
             CACHE_BUCKET_KEY_PREFIX: "_cache",

@@ -831,3 +831,23 @@ Phase 5 complete.
 - Completed writer, editor, critic, converter, quiz, and validator steps for Chapter 46.
 - Validation result: PASS.
 - Continuity hash sealed for `ch46`: `84966bbac9de686b4f8a20425778230826939469f26100e3f51f82635ae97985`
+
+- Completed writer, editor, critic, converter, quiz, and validator steps for Chapter 47.
+- Validation result: PASS.
+- Continuity hash sealed for `ch47`: `81a9a10675890d0589340a007cd192af106d2ad99ceb2978496227a2283debcf`
+
+- Completed writer, editor, critic, converter, quiz, and validator steps for Chapter 47.
+- Validation result: PASS.
+- Continuity hash sealed for `ch47`: `74941f28d115d3a004e98f36a92d53a47bbd190dc2aec5c584d0c096b44e10da`
+
+- Completed writer, editor, critic, converter, quiz, and validator steps for Chapter 47.
+- Validation result: PASS.
+- Continuity hash sealed for `ch47`: `1eab8764203c089fb3d9ba0ade638b9fcafccd2b099fc4c4015cf1a5346cfdaf`
+
+- Completed writer, editor, critic, converter, quiz, and validator steps for Chapter 47.
+- Validation result: PASS.
+- Continuity hash sealed for `ch47`: `985eeb0b7ae23691cee81649264f485e4e8d87d505e52eae99d9884ce161e0f8`
+
+- Completed writer, editor, critic, converter, quiz, and validator steps for Chapter 47.
+- Validation result: PASS.
+- Continuity hash sealed for `ch47`: `985eeb0b7ae23691cee81649264f485e4e8d87d505e52eae99d9884ce161e0f8`

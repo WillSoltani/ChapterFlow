@@ -134,3 +134,8 @@
 - 2026-04-10T22:33:09-03:00 - Phase 18E/18F complete for Chapter 18. Wrote `structured/ch18.chapter.json`, `quizzes/ch18.quiz.json`, `reports/ch18.validation.md`, `validated/ch18.chapter.json`, `validated/ch18.review-package.json`, and `sidecars/ch18.reading-metrics.json`.
 - 2026-04-10T22:33:09-03:00 - Chapter 18 final checks passed: chapter lint `FAIL=0 WARN=0`, review-package lint `FAIL=0 WARN=0`.
 - 2026-04-10T22:33:09-03:00 - Sealed Chapter 18 hash `aa09b20c43ae7663328e32537bd3177c9484ca8624aed7aeba4693694ae16345` into `continuity/continuity-state.json`.
+
+- 2026-04-10T22:33:09-03:00 - Wave 9 guard checks passed after Chapters 17 and 18: source guard `FAIL=0 WARN=0`, artifact guard `FAIL=0 WARN=0`.
+- 2026-04-10T22:33:09-03:00 - Phase 19 pre-writer complete for Chapters 19 and 20. Wrote `briefs/ch19.md`, `outlines/ch19.md`, `quiz-blueprints/ch19.md`, `sidecars/source/ch19.source.txt`, `sidecars/source/ch19.source.json`, `briefs/ch20.md`, `outlines/ch20.md`, `quiz-blueprints/ch20.md`, `sidecars/source/ch20.source.txt`, and `sidecars/source/ch20.source.json`.
+- 2026-04-10T22:33:09-03:00 - Phase 19A/19B/19C complete for Chapter 19. Wrote canonical and edited drafts plus `reports/ch19.critic.md`.
+- 2026-04-10T22:33:09-03:00 - Phase 20A/20B/20C complete for Chapter 20. Wrote canonical and edited drafts plus `reports/ch20.critic.md`.

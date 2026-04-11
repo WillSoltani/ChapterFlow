@@ -45,7 +45,17 @@ const env = {
     account: process.env.CDK_DEFAULT_ACCOUNT,
     region: "us-east-1",
 };
-const backend = new chapterflow_backend_stack_1.ChapterFlowBackendStack(app, "ChapterFlowBackend", { env });
+new chapterflow_backend_stack_1.ChapterFlowBackendStack(app, "ChapterFlowBackend", { env });
+// Backend resource names — these are stable, well-known values.
+// Using explicit strings instead of cross-stack references so each
+// stack can be deployed independently without CloudFormation export conflicts.
+const appTableName = process.env.CHAPTERFLOW_BOOK_TABLE_NAME || "ChapterFlowApp";
+const analyticsTableName = process.env.CHAPTERFLOW_BOOK_ANALYTICS_TABLE_NAME || "ChapterFlowInsights";
+const ingestBucketName = process.env.BOOK_INGEST_BUCKET ||
+    "chapterflowbackend-chapterflowingestbucketdb5de03f-3yot64zeyaq7";
+const contentBucketName = process.env.BOOK_CONTENT_BUCKET ||
+    "chapterflowbackend-chapterflowcontentbucket2ed1848-qo8kewolurc0";
+const ssmPrefix = process.env.SSM_PARAMETER_PREFIX || "/chapterflow/prod";
 // The frontend stack requires OpenNext build artifacts (.open-next/).
 // Only instantiate it when those artifacts exist — this allows
 // `cdk deploy ChapterFlowBackend` to run independently (e.g. in the
@@ -59,7 +69,11 @@ if (!openNextExists) {
 if (openNextExists) {
     new chapterflow_frontend_stack_1.ChapterFlowFrontendStack(app, "ChapterFlowFrontend", {
         env,
-        backendStack: backend,
+        appTableName,
+        analyticsTableName,
+        ingestBucketName,
+        contentBucketName,
+        ssmPrefix,
         domainName: process.env.CHAPTERFLOW_DOMAIN_NAME || "chapterflow.ca",
         serverEnv: {
             // These are populated from GitHub Secrets in CI/CD.

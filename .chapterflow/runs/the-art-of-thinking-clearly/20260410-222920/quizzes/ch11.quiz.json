@@ -1,0 +1,174 @@
+{
+  "questions": [
+    {
+      "questionId": "ch11-q01",
+      "prompt": "What is the core mistake in availability bias?",
+      "choices": [
+        "Letting easy recall make an example feel more common or important than it really is",
+        "Ignoring all vivid examples completely",
+        "Believing that memory is always inaccurate"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The problem begins when easy recall starts pretending to be evidence.",
+        "direct": "Correct. Availability bias starts when accessibility substitutes for representative evidence.",
+        "competitive": "That is the trap. The loud memory starts setting the odds."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch11-q02",
+      "prompt": "Why do vivid examples often feel stronger than calm statistics?",
+      "choices": [
+        "Because they are easier to recall",
+        "Because they are always more representative",
+        "Because statistics never matter"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. Vividness makes examples easier to remember.",
+        "direct": "Correct. Ease of retrieval can inflate how important an example feels.",
+        "competitive": "Exactly. Memory serves the vivid case up first."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch11-q03",
+      "prompt": "Which example best fits availability bias?",
+      "choices": [
+        "A recent travel scare makes flying feel unusually risky",
+        "A plane develops a new mechanical problem",
+        "A traveler compares two airlines by ticket price"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The recent vivid example is changing the felt risk.",
+        "direct": "Correct. The judgment is being pulled by what memory offers first.",
+        "competitive": "That is it. The loud scare is trying to own the odds."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch11-q04",
+      "prompt": "What is memory fluency in this chapter?",
+      "choices": [
+        "The ease with which an example comes to mind",
+        "A precise measure of real frequency",
+        "A method for ignoring anecdotes"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. It means an example is easy to retrieve.",
+        "direct": "Correct. Memory fluency is retrieval ease, which can be mistaken for evidential strength.",
+        "competitive": "Right. It is the speed of recall, not proof of the pattern."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch11-q05",
+      "prompt": "Why can one dramatic project failure distort planning?",
+      "choices": [
+        "Because it is memorable and may crowd out the broader pattern",
+        "Because one failure always defines the system",
+        "Because routine successes are irrelevant"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The vivid failure can be easier to remember than the routine pattern.",
+        "direct": "Correct. A memorable case can overpower representative evidence if recall speed is mistaken for frequency.",
+        "competitive": "Yes. One loud miss can start faking the whole forecast."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch11-q06",
+      "prompt": "Which correction best fits this chapter?",
+      "choices": [
+        "Ask what evidence is representative, not only memorable",
+        "Ignore all stories and use no examples",
+        "Trust whichever example feels most emotional"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The key is to separate memorable from typical.",
+        "direct": "Correct. Representative-evidence checks keep accessibility from dominating judgment.",
+        "competitive": "Exactly. Make the loud case fight the full field."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch11-q07",
+      "prompt": "When does a memorable example become bias under this chapter?",
+      "choices": [
+        "When recall ease starts standing in for frequency, risk, or importance",
+        "Whenever a story is emotional",
+        "Whenever statistics are available"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The problem is not stories themselves but overcrediting accessibility.",
+        "direct": "Correct. Bias starts when what is easy to recall is treated as if it were automatically representative.",
+        "competitive": "Yes. The loud story turns corrupt when it starts replacing the full field."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch11-q08",
+      "prompt": "Why can recent events feel more common than they are?",
+      "choices": [
+        "Because recency makes them easier to retrieve from memory",
+        "Because recent events always matter most",
+        "Because old events stop being real evidence"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Recency boosts recall ease.",
+        "direct": "Correct. Recent examples often feel common because they are more accessible in memory.",
+        "competitive": "Exactly. The fresh clip gets to the front of the line."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch11-q09",
+      "prompt": "What is the deepest practical correction in availability bias?",
+      "choices": [
+        "Force vivid examples to compete with representative evidence",
+        "Stop noticing emotional stories entirely",
+        "Only trust whatever is hardest to remember"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter asks you to compare the memorable case with the broader pattern.",
+        "direct": "Correct. Better judgment restores the distribution instead of trusting retrieval speed alone.",
+        "competitive": "Right. Make the star witness face the whole roster."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch11-q10",
+      "prompt": "What is the chapter's core threshold question?",
+      "choices": [
+        "Am I judging by what is representative or by what reached memory first?",
+        "Do I usually remember dramatic stories better?",
+        "Should I stop trusting memory completely?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. That question exposes whether availability is doing too much work.",
+        "direct": "Correct. The key test is whether the estimate belongs to the broader pattern or only to the easiest recalled case.",
+        "competitive": "That is the test. If the odds ride on the first loud memory, the field has not been checked."
+      },
+      "bloomsLevel": "evaluate-transfer",
+      "depthLevel": "hard"
+    }
+  ]
+}

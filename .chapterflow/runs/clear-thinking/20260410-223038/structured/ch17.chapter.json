@@ -1,0 +1,666 @@
+{
+  "chapterId": "ch17-define-the-problem",
+  "number": 17,
+  "title": "Define the Problem",
+  "readingTimeMinutes": 6,
+  "contentVariants": {
+    "easy": {
+      "chapterBreakdown": {
+        "gentle": "Learning from a mistake helps, but the next decision can still go wrong if the situation is named badly at the start. Parrish uses this chapter to shift from cleanup after a miss to clarity before the next move. The work is to see what is actually wrong, what is really blocking progress, and what part of that blockage belongs to you.",
+        "direct": "Better decisions begin with accurate framing. This chapter says a person can work hard on the wrong thing if a symptom gets mistaken for the actual difficulty. Clear definition means naming the true obstacle, the owned portion, and the underlying condition before solutions compete.",
+        "competitive": "A clean postmortem still loses value if the next target gets named wrong. The chapter is about aiming at the real blockage instead of swinging at the loudest irritation."
+      },
+      "keyTakeaways": [
+        {
+          "point": {
+            "gentle": "A visible symptom is not always the real difficulty.",
+            "direct": "The loudest complaint can still be the wrong target.",
+            "competitive": "Noise is not the obstacle."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Useful framing separates blame from ownership.",
+            "direct": "The chapter asks what you can own or influence, not who looks worst.",
+            "competitive": "Own the leverage, not the theater."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Clarity about cause should help action, not stall it.",
+            "direct": "Root-cause thinking matters only until the next move is aimed correctly.",
+            "competitive": "Get clear enough to strike the right thing."
+          }
+        }
+      ],
+      "oneMinuteRecap": {
+        "gentle": "Define the Problem follows mistake handling by asking how the next decision gets framed more clearly before action starts. The chapter keeps the reader focused on the real obstacle, honest ownership, and cause that matters enough to guide action.",
+        "direct": "The argument is that weak framing wastes sincere effort. Better definition names the actual obstacle, the owned portion of it, and the cause that matters before solution search begins.",
+        "competitive": "If you name the wrong target, even disciplined effort misses."
+      }
+    },
+    "medium": {
+      "chapterBreakdown": {
+        "gentle": "Handling a mistake well can keep it from being wasted, but it does not improve the next decision by itself. A person can extract the lesson and still stumble again if the next situation is named badly from the start. Parrish places Define the Problem here because clean learning after failure should sharpen the next decision before action begins.\n\nThe chapter stays practical because the source lane is narrow and strong: problem framing, obstacles, responsibility, and root cause. That means this is not a lesson in abstract diagnosis or blame assignment. It is a lesson in making the real decision visible. When the frame is weak, people can spend real effort solving the most vivid irritation while the actual blockage keeps running underneath.\n\nSo the chapter pushes the reader past symptoms. The first complaint may be real, but it may still be only the surface effect of something else. Better framing asks what keeps repeating, what still blocks progress even after the visible annoyance is removed, and what obstacle would still be there tomorrow if the current emotion cooled down.\n\nResponsibility matters because a vague problem statement often collapses into blame. Once that happens, action gets worse. Parrish is not asking who deserves the harshest judgment. He is asking what part of the situation is actually owned, what part can be influenced, and what part simply has to be treated as a constraint. That split keeps the chapter honest without making it accusatory.\n\nRoot cause sharpens the frame, but the chapter refuses to worship perfect explanation. It is not an invitation to disappear into endless digging. The real requirement is understanding enough that the next move lands on the right obstacle. Clear definition improves action because it reduces confusion, not because it unlocks total certainty.\n\nFrom there, the bridge to the next chapter is clean. Once the real problem is framed accurately, the reader is finally ready to explore possible solutions without locking in too early.",
+        "direct": "A good postmortem does not guarantee a good next decision. Parrish moves to problem definition because the lesson from a mistake can still be wasted if the next challenge is framed badly before action starts.\n\nThe chapter stays practical by focusing on four things: framing, obstacle, responsibility, and root cause. Defining the problem is not brainstorming a fix and it is not deciding who to blame. It is making the actual decision visible. When that does not happen, people can work hard on the wrong thing.\n\nSymptoms are the first trap. The loudest complaint, latest frustration, or most emotional detail can feel like the whole issue even when it is only the surface expression of a deeper blockage. Better definition asks what keeps repeating and what would still have to be dealt with if the visible irritation disappeared.\n\nResponsibility is the second trap. A bad frame often turns into blame language, and blame usually weakens action. The chapter asks what is owned, what is influenceable, and what must simply be recognized as a condition of the situation.\n\nRoot cause matters because it sharpens the decision space, but the chapter keeps a boundary against overanalysis. You do not need total causal certainty. You need enough clarity to aim at the right obstacle.\n\nThat better aim opens the next move in the book. Once the real problem is defined, possible solutions can be explored against the correct target instead of against a misleading symptom.",
+        "competitive": "A clean lesson from failure still gets wasted if the next target is named wrong. Parrish goes here because the front end of a decision can fail before action even starts.\n\nThe lane is tight: framing, obstacle, responsibility, root cause. No diagnosis theater. No blame pageant. The job is to make the real fight visible so effort stops landing on the most dramatic surface detail.\n\nSymptoms are expensive because they borrow urgency from noise. The complaint is loud, the frustration is fresh, and the person swings at that because it feels concrete. Meanwhile the actual blockage keeps billing the future.\n\nResponsibility is where the frame either gets useful or gets moralistic. If the problem statement becomes a blame speech, leverage disappears. The question is what part is yours to change, what part you can move, and what part you must account for without pretending it is controllable.\n\nRoot cause matters, but not as a religion. Perfect explanation is not the prize. What matters is aim clean enough that the next move hits the real obstruction.\n\nOnce the target is real, the search for options can finally get interesting. The next chapter explores solutions, but only after this one stops the reader from solving the wrong thing."
+      },
+      "keyTakeaways": [
+        {
+          "point": {
+            "gentle": "Better decisions can fail before action starts if the situation is framed badly.",
+            "direct": "Weak framing wastes later effort by sending it at the wrong target.",
+            "competitive": "A bad label can lose the fight before the first move."
+          },
+          "moreDetails": {
+            "gentle": "The chapter follows mistake handling because learning matters only if the next decision begins with a clearer read of what is actually wrong.",
+            "direct": "Good effort cannot rescue a decision that begins by naming the wrong problem.",
+            "competitive": "The swing looks disciplined and still lands on air when the target call is wrong."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Symptoms should be tested instead of automatically trusted.",
+            "direct": "The most visible complaint may be only the surface expression of the real blockage.",
+            "competitive": "Surface noise can hide the real jam."
+          },
+          "moreDetails": {
+            "gentle": "A visible irritation can matter and still fail to explain what keeps repeating underneath it.",
+            "direct": "The better question is what obstacle would still remain if the loudest symptom went away tonight.",
+            "competitive": "If tonight's noise vanished, what would still be clogging the lane tomorrow?"
+          }
+        },
+        {
+          "point": {
+            "gentle": "Ownership makes the frame more usable.",
+            "direct": "A strong problem statement distinguishes what is owned, influenced, and merely faced.",
+            "competitive": "Leverage starts where ownership gets clean."
+          },
+          "moreDetails": {
+            "gentle": "Responsibility matters because a problem you can partly own gives you a place to act.",
+            "direct": "Blame language weakens the frame because it spends energy on judgment instead of leverage.",
+            "competitive": "Once the statement turns into prosecution, the handle disappears."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Root cause should sharpen action, not expand the fog.",
+            "direct": "Cause analysis matters until the next move can be aimed at the right obstruction.",
+            "competitive": "Trace the drag until the hit gets accurate."
+          },
+          "moreDetails": {
+            "gentle": "The chapter wants underlying conditions that guide action, not endless hidden layers that freeze it.",
+            "direct": "Clarity matters because it narrows the decision space to what actually needs to change.",
+            "competitive": "Read deep enough to stop wasting swings."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Clear definition opens better solution search.",
+            "direct": "A real option search starts only after the actual problem has been named.",
+            "competitive": "Options get stronger when the target stops moving."
+          },
+          "moreDetails": {
+            "gentle": "Once the obstacle is clear, the next chapter can explore responses without drifting into guesswork.",
+            "direct": "Problem definition is the gate that keeps solution generation tied to reality.",
+            "competitive": "A clean target gives the option search something worth hitting."
+          }
+        }
+      ],
+      "activationPrompt": {
+        "gentle": "Choose one repeating frustration and rewrite it in three lines: the symptom you notice, the obstacle that keeps progress stuck, and the part you actually own or influence.",
+        "direct": "Take one live decision and separate the visible complaint, the true blockage, and the owned portion before you consider fixes.",
+        "competitive": "Pick one mess and stop calling the smoke the fire."
+      },
+      "selfCheckPrompt": {
+        "gentle": "Could you explain why the first complaint is not always the real problem?",
+        "direct": "Can you distinguish symptom, obstacle, ownership, and cause without drifting into blame?",
+        "competitive": "Can you name the drag without turning it into a blame speech?"
+      },
+      "oneMinuteRecap": {
+        "gentle": "This chapter moves from mistake learning into front-end clarity. It asks the reader to define what is actually wrong, what obstacle is real, and what part can be owned before any solution search begins.",
+        "direct": "Weak framing sends sincere effort at the wrong target. Better framing tests symptoms, identifies the real obstruction, separates ownership from blame, and uses cause only far enough to guide action.",
+        "competitive": "Name the actual fight, find the handle, then go look for moves."
+      }
+    },
+    "hard": {
+      "chapterBreakdown": {
+        "gentle": "A person can respond to mistakes with honesty and still keep repeating them if the next situation is named by surface irritation instead of by the actual blockage. Parrish places Define the Problem here because clearer thinking has to work before action, not only after cleanup. The lesson from a miss should improve the way the next challenge is framed.\n\nThe chapter's discipline is practical. Problem framing matters because a bad frame can absorb real effort, sincere intention, and useful motion while still leaving the real obstacle untouched. The first complaint is often vivid enough to recruit attention, but the real question is what keeps producing that complaint and what decision must actually be made.\n\nThat is why symptoms need pressure. They can be real without being central. A person may think the problem is the angry email, the missed checkpoint, the clogged lab hour, or the recurring fight at home when the actual obstacle is weaker handoff, unclear expectations, a bottleneck in the process, or a habit no one has owned directly. The chapter is asking for the move from visible irritation to operative blockage.\n\nOwnership makes that move usable. If the frame becomes a blame document, the reader may feel morally certain while becoming practically weaker. Parrish's lane is responsibility, not accusation. The important split is among what is yours to change, what is yours to influence, and what must be accounted for without pretending control. That split turns clarity into leverage.\n\nRoot cause belongs here, but only under a strict boundary. The chapter does not promise a perfect hidden answer that will explain every surface effect. The point is to go far enough underneath the symptom that action aims at the right structure instead of at a decoy. Clear thinking improves when analysis stops serving certainty theater and starts serving precision.\n\nThat tension matters because underanalysis and overanalysis both miss. The shallow reader grabs the symptom and rushes to fix it. The overconfident reader keeps digging until motion dies. Parrish wants a middle path: define the problem clearly enough that later solutions are tested against the real obstacle, while accepting that not every cause will be fully known.\n\nThat is the bridge to option search. Once the problem is named with enough accuracy, the next chapter can ask which possible solutions deserve serious exploration before commitment closes the field.",
+        "direct": "Parrish moves from mistake handling to problem definition because postmortem learning still fails if the next decision starts from the wrong frame. A person can reflect honestly after a miss and still waste the next round by solving the symptom instead of the real obstruction.\n\nThis chapter keeps its pressure on four elements: framing, obstacle, responsibility, and root cause. Defining the problem is not early solution search, and it is not a covert blame exercise. It is the work of making the actual decision visible enough that later effort has the right target.\n\nThat is harder than it sounds because symptoms arrive with emotional force. The latest complaint feels concrete. The visible irritation is easy to point at. But a symptom can be accurate and still secondary. The sharper question is what keeps repeating underneath it and what would still have to change even if the current annoyance vanished.\n\nResponsibility determines whether the frame can guide action. If the statement of the problem is really a statement of who is disappointing, leverage narrows fast. The chapter asks for ownership without accusation: what is yours, what can you influence, and what condition must you simply plan around.\n\nRoot cause sharpens the decision space, but only if it remains subordinate to action. Total causal certainty is not available in many live situations. Parrish is not asking for exhaustive diagnosis. He is asking for enough depth that the next move aims at the structure producing the trouble rather than at a distracting surface effect.\n\nThat creates the central tension. If you stay shallow, you solve what is loud. If you dig without limit, you freeze. The chapter's standard is neither speed nor certainty by itself. It is accurate enough framing that solution search begins against the right obstacle.\n\nThat is why Explore Possible Solutions follows next. Only once the problem is defined can options be judged for fit instead of for how quickly they soothe the symptom.",
+        "competitive": "The postmortem can be clean and the next decision can still get smoked if the target call is wrong. Parrish places this chapter here because clarity has to show up before the move, not just after the damage report.\n\nThe lane is strict: framing, obstacle, responsibility, root cause. No consulting costume. No blame theater. The job is to expose the real fight so later effort does not waste itself on whatever part of the mess is loudest.\n\nSymptoms rent attention because they come preloaded with urgency. The email is hot. The delay is visible. The argument is fresh. The person swings there, feels productive, and leaves the real drag untouched. The chapter keeps asking what keeps recreating the surface signal.\n\nOwnership is the hinge. If the problem statement is mainly a case against somebody, it may feel satisfying while making action weaker. Useful framing names the handle: what you can change, what you can influence, and what you must respect as a condition of the terrain.\n\nRoot cause matters, but only until aim improves. You do not need a perfect map of every hidden factor. You need enough structural clarity that the next move stops punching a decoy.\n\nThat is the balance this chapter protects. Too shallow and you chase the symptom. Too deep and you disappear into elegant delay. Clear thinking lives in the middle: enough depth to hit the right obstruction, enough restraint to keep moving.\n\nOnce the target is real, option search stops being a guessing contest. That is the door this chapter opens for the next one."
+      },
+      "keyTakeaways": [
+        {
+          "point": {
+            "gentle": "Weak framing can waste an otherwise honest next decision.",
+            "direct": "A decision can fail early because the problem was named inaccurately.",
+            "competitive": "The wrong target call can kill the round before the move."
+          },
+          "moreDetails": {
+            "gentle": "Mistake recovery helps only if the next situation begins with a cleaner read of what actually needs attention.",
+            "direct": "Reflection after failure loses value when the next decision still starts from a distorted frame.",
+            "competitive": "A clean lesson still dies if the next target gets miscalled."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Symptoms must be separated from the obstacle that keeps recreating them.",
+            "direct": "The visible complaint can be real without being the structure that blocks progress.",
+            "competitive": "The smoke may be loud while the jam stays lower in the system."
+          },
+          "moreDetails": {
+            "gentle": "The chapter keeps asking what would still need to be faced if the current irritation disappeared.",
+            "direct": "A stronger frame looks for the repeating condition underneath the latest expression of trouble.",
+            "competitive": "Clearer definition hunts the mechanism that keeps respawning the signal."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Ownership makes the problem statement actionable.",
+            "direct": "Responsibility matters because leverage depends on what is owned or influenceable.",
+            "competitive": "No handle, no useful move."
+          },
+          "moreDetails": {
+            "gentle": "The chapter rejects blame language because accusation often hides where action can actually begin.",
+            "direct": "The split among ownership, influence, and constraint keeps clarity practical instead of moralistic.",
+            "competitive": "Once the frame turns into indictment, the grip slips."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Root cause matters only far enough to improve aim.",
+            "direct": "Cause analysis should narrow the decision space toward the right obstruction.",
+            "competitive": "Dig until the hit gets cleaner, not until motion dies."
+          },
+          "moreDetails": {
+            "gentle": "The chapter does not ask for complete certainty about every hidden cause.",
+            "direct": "Useful depth means enough understanding to redirect action away from the symptom and toward the underlying drag.",
+            "competitive": "Structural clarity beats causal perfection."
+          }
+        },
+        {
+          "point": {
+            "gentle": "Clear framing must avoid both shallow reaction and elegant paralysis.",
+            "direct": "The standard is accurate enough definition to act without pretending every cause is fully known.",
+            "competitive": "Too shallow chases noise. Too deep worships delay."
+          },
+          "moreDetails": {
+            "gentle": "Better thinking lives between fixing the first complaint and disappearing into endless diagnosis.",
+            "direct": "The chapter protects a middle path where action improves because the target is real, not because certainty is complete.",
+            "competitive": "Clean aim matters more than total explanation."
+          }
+        }
+      ],
+      "activationPrompt": {
+        "gentle": "Take one recurring difficulty and write four lines: the surface symptom, the repeating obstacle, the owned portion, and the cause you understand well enough to guide your next move.",
+        "direct": "Choose one live decision and define the complaint, the real obstruction, the ownership split, and the cause depth that is sufficient for action.",
+        "competitive": "Pick one recurring drag and separate the signal, the jam, the handle, and the depth you actually need."
+      },
+      "selfCheckPrompts": [
+        {
+          "gentle": "Why can good intentions and hard work still miss if the situation is framed poorly?",
+          "direct": "How does inaccurate problem definition waste later effort even when execution is disciplined?",
+          "competitive": "Why can a strong swing still lose when the target call is weak?"
+        },
+        {
+          "gentle": "How can you search for cause without turning the chapter into overthinking?",
+          "direct": "What does it mean to go deep enough for aim while refusing endless diagnosis?",
+          "competitive": "How do you dig for structure without building a shrine to delay?"
+        }
+      ],
+      "predictionPrompt": {
+        "gentle": "Once the real problem is named more clearly, how should that change the way possible solutions are explored next?",
+        "direct": "How does accurate framing improve the search for options before commitment?",
+        "competitive": "What happens to the option field once the target stops being fake?"
+      },
+      "oneMinuteRecap": {
+        "retrieve": {
+          "gentle": "Can you rebuild the chapter's chain: symptom, obstacle, ownership, cause, then solution search?",
+          "direct": "Recall the sequence: visible complaint tested, real obstruction named, ownership clarified, cause probed far enough, options explored next.",
+          "competitive": "Name the chain: signal, jam, handle, depth, options."
+        },
+        "connect": {
+          "gentle": "How does the chapter keep responsibility honest without turning it into blame?",
+          "direct": "Why does practical ownership create leverage while accusation usually weakens action?",
+          "competitive": "How does a clean handle beat a satisfying indictment?"
+        },
+        "preview": {
+          "gentle": "Why does defining the problem have to happen before exploring possible solutions?",
+          "direct": "How does better framing stop the next chapter from becoming a search for fixes to the wrong thing?",
+          "competitive": "If the target is finally real, how does the option hunt change?"
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "exampleId": "ch17-ex01-sprint-board",
+      "title": "Elise Stops Fixing the Noisy Complaint and Names the Real Delay on the Sprint Board",
+      "category": "work",
+      "format": "decision_point",
+      "endingType": "consequence",
+      "contexts": [
+        "sprint board",
+        "whiteboard complaint list",
+        "handoff delay"
+      ],
+      "scenario": {
+        "gentle": "Elise stands by a whiteboard filled with complaints about missed updates. The team wants to solve the loudest frustration, but she notices the cards all stall at the same approval handoff before anyone posts the update.",
+        "direct": "Elise has to decide whether the problem is 'people are not communicating' or 'work stalls at one repeat approval point.'",
+        "competitive": "The board is noisy, but the choke point keeps wearing the same name tag."
+      },
+      "whatToDo": {
+        "gentle": "Define the problem as the recurring approval bottleneck before discussing reminder rules or stronger wording in updates.",
+        "direct": "Aim at the blocked handoff rather than the visible complaint about communication.",
+        "competitive": "Hit the jam, not the shouting around it."
+      },
+      "whyItMatters": {
+        "gentle": "If Elise frames the issue correctly, the team's next move can change the actual delay instead of polishing the symptom.",
+        "direct": "The right frame turns effort toward the obstacle that keeps recreating the complaint.",
+        "competitive": "Once the target is real, the fix can finally draw blood."
+      }
+    },
+    {
+      "exampleId": "ch17-ex02-product-review",
+      "title": "Marco Separates Blame from Ownership in a Product Review Dialogue",
+      "category": "work",
+      "format": "dialogue",
+      "endingType": "future_risk",
+      "contexts": [
+        "product review",
+        "conference room",
+        "responsibility split"
+      ],
+      "scenario": {
+        "gentle": "Marco sits in a conference room while two teammates argue over who caused a launch slip. The room keeps circling names and intentions, but no one is stating what part of the process each person can actually change.",
+        "direct": "The discussion is turning into blame instead of a usable problem definition.",
+        "competitive": "Everyone has a defendant. Nobody has a handle."
+      },
+      "whatToDo": {
+        "gentle": "Pause the blame loop and restate the issue in terms of ownership, influence, and fixed constraints.",
+        "direct": "Convert the argument from accusation into a map of leverage.",
+        "competitive": "Trade the trial for a grip."
+      },
+      "whyItMatters": {
+        "gentle": "Marco can move the conversation toward action only if the frame identifies what can be owned.",
+        "direct": "Without that shift, the team leaves with judgment and no practical next step.",
+        "competitive": "If the room exits with verdicts instead of leverage, the next miss is already warming up."
+      }
+    },
+    {
+      "exampleId": "ch17-ex03-lab-signup",
+      "title": "Taryn Names the Lab Bottleneck Before Trying Another Study Sprint",
+      "category": "school",
+      "format": "dilemma",
+      "endingType": "hidden_benefit",
+      "contexts": [
+        "lab bottleneck",
+        "signup sheet",
+        "group deadline"
+      ],
+      "scenario": {
+        "gentle": "Taryn feels behind and wants the group to work longer hours. At the lab door she sees the signup sheet packed at one narrow testing window, while the rest of the week stays half empty.",
+        "direct": "The tempting frame is 'we need more effort,' but the repeating obstacle is a shared bottleneck at one stage of the lab schedule.",
+        "competitive": "The team is trying to solve panic with extra sweat while the queue keeps charging rent."
+      },
+      "whatToDo": {
+        "gentle": "Define the real problem as the bottlenecked testing slot before asking everyone for more time.",
+        "direct": "Name the constrained stage instead of treating motivation as the main issue.",
+        "competitive": "Fix the clog before you tax the people."
+      },
+      "whyItMatters": {
+        "gentle": "A sharper frame may reveal that the group needs schedule redesign more than another burst of effort.",
+        "direct": "The benefit of correct framing is that it opens better options than pressure alone.",
+        "competitive": "Once the jam is visible, brute force stops pretending to be a strategy."
+      }
+    },
+    {
+      "exampleId": "ch17-ex04-advisor-postmortem",
+      "title": "Dorian Uses an Advisor Check-In to Trace a Recurring School Failure to the Real Constraint",
+      "category": "school",
+      "format": "postmortem",
+      "endingType": "broader_principle",
+      "contexts": [
+        "advisor check-in",
+        "recurring project bottleneck",
+        "deadline review"
+      ],
+      "scenario": {
+        "gentle": "During an advisor check-in, Dorian lists several late submissions and says he keeps running out of time. As they walk back through the pattern, it becomes clear that each delay begins when he waits too long to confirm assumptions before drafting.",
+        "direct": "The visible symptom is lateness, but the repeating constraint is delayed clarification at the start of the work.",
+        "competitive": "The calendar looked guilty, but the drag was hiding upstream."
+      },
+      "whatToDo": {
+        "gentle": "Redefine the problem around early clarification rather than around generic time pressure.",
+        "direct": "Aim at the recurring upstream constraint that keeps producing the late finish.",
+        "competitive": "Go upstream and hit the drag where it spawns."
+      },
+      "whyItMatters": {
+        "gentle": "Dorian learns that the real issue can sit earlier in the process than the visible failure.",
+        "direct": "Root cause sharpens action when it identifies the stage that keeps recreating the symptom.",
+        "competitive": "Once the source is real, the clock stops taking the full blame."
+      }
+    },
+    {
+      "exampleId": "ch17-ex05-home-routine",
+      "title": "Kaia Sees How Home Friction Changes Once the Actual Problem Is Named",
+      "category": "personal",
+      "format": "before_after",
+      "endingType": "sharper_question",
+      "contexts": [
+        "quiet kitchen routine",
+        "morning conflict",
+        "personal pattern"
+      ],
+      "scenario": {
+        "gentle": "Before, Kaia called every rough morning a motivation problem and promised herself more discipline. After watching the pattern in the quiet kitchen for a week, she sees the real issue is that the first task of the day starts with unclear priorities and a phone already in hand.",
+        "direct": "The symptom is a rushed morning. The obstacle is a routine that begins without a clear first move and with instant distraction.",
+        "competitive": "She stopped blaming her character and caught the opening leak."
+      },
+      "whatToDo": {
+        "gentle": "Name the obstacle as an unclear start condition rather than as a vague lack of willpower.",
+        "direct": "Frame the issue around the starting setup that keeps recreating the rush.",
+        "competitive": "Target the opening lane, not your identity."
+      },
+      "whyItMatters": {
+        "gentle": "That sharper frame changes the next question from 'How do I try harder?' to 'What start condition should change?'",
+        "direct": "Problem definition improves action by changing what kind of solution is even worth considering.",
+        "competitive": "Once the target is structural, the option search stops insulting you."
+      }
+    },
+    {
+      "exampleId": "ch17-ex06-budget-shock",
+      "title": "Emmett Predicts One Cause for His Money Stress and Finds a Different Owned Obstacle",
+      "category": "personal",
+      "format": "predict_reveal",
+      "endingType": "tradeoff",
+      "contexts": [
+        "banking app",
+        "monthly review",
+        "owned obstacle"
+      ],
+      "scenario": {
+        "gentle": "Emmett expects his money stress to come from one large bill. When he reviews the month, the reveal is different: the real strain comes from small automatic renewals he never grouped or questioned.",
+        "direct": "He predicted a single dramatic cause, but the owned obstacle is an unreviewed set of recurring commitments.",
+        "competitive": "He came looking for one villain and found a swarm he had been funding quietly."
+      },
+      "whatToDo": {
+        "gentle": "Redefine the problem around the recurring commitments he can audit instead of the one painful bill he cannot change.",
+        "direct": "Aim at the owned structure that keeps producing the strain.",
+        "competitive": "Hit the drain you can shut, not the hit you cannot erase."
+      },
+      "whyItMatters": {
+        "gentle": "Emmett trades the comfort of blaming one external cost for the leverage of owning a repeatable pattern.",
+        "direct": "The tradeoff is emotional: less righteous blame, more actionable responsibility.",
+        "competitive": "He loses a satisfying villain and gains a real handle."
+      }
+    }
+  ],
+  "implementationPlan": {
+    "coreSkill": {
+      "gentle": "The core skill is defining the real problem by separating the visible symptom from the actual obstacle, then identifying the part you own or can influence before you chase solutions.",
+      "direct": "Core skill: name the real obstruction, the ownership split, and the useful cause depth before solution search begins.",
+      "competitive": "Core skill: stop punching the symptom and call the real target."
+    },
+    "ifThenPlans": [
+      {
+        "context": "work",
+        "plan": {
+          "gentle": "If a work problem feels urgent and noisy, then I will write the complaint, the repeating obstacle, and the owned portion before proposing a fix.",
+          "direct": "If the team is rushing toward a work solution, then I will restate the problem in terms of symptom, obstacle, and leverage first.",
+          "competitive": "If work gets loud fast, I will force the target call before the first swing."
+        }
+      },
+      {
+        "context": "school",
+        "plan": {
+          "gentle": "If a school delay keeps repeating, then I will ask what stage keeps recreating it and what I can directly change there.",
+          "direct": "If the same school frustration returns, then I will map the bottleneck and my owned handle before I add more effort.",
+          "competitive": "If school keeps charging the same fee, I will hunt the choke point before I burn more hours."
+        }
+      },
+      {
+        "context": "personal",
+        "plan": {
+          "gentle": "If a personal pattern keeps frustrating me, then I will stop naming my character as the issue and define the actual setup that keeps producing the result.",
+          "direct": "If a life problem repeats, then I will separate the symptom from the structure and identify what part is mine to adjust.",
+          "competitive": "If the same home pattern keeps biting, I will call the mechanism before I call myself the problem."
+        }
+      }
+    ],
+    "twentyFourHourChallenge": {
+      "gentle": "Within 24 hours, take one live frustration and rewrite it in a way that names the symptom, the real obstacle, and the owned portion.",
+      "direct": "Today, define one active problem without blame language and without jumping to solutions.",
+      "competitive": "Before tomorrow, call one real target."
+    },
+    "weeklyPractice": {
+      "gentle": "For one week, keep a short note on recurring frustrations and record whether each one was first named as a symptom or as the actual obstacle.",
+      "direct": "Spend seven days catching where your first frame of a problem was too surface-level, then rewrite it with clearer ownership and cause depth.",
+      "competitive": "For a week, audit your target calls."
+    }
+  },
+  "keyTakeawayCard": {
+    "gentle": "Better decisions begin when the visible complaint is tested, the real obstacle is named, and ownership is clarified before solutions start competing.",
+    "direct": "Define the problem by separating symptom from obstruction, blame from responsibility, and explanation from useful aim.",
+    "competitive": "Call the real target before you start swinging."
+  },
+  "reviewCards": [
+    {
+      "cardId": "ch17-review-01",
+      "front": {
+        "gentle": "Why is the first complaint often a weak place to stop?",
+        "direct": "Why can the loudest symptom still be the wrong target?",
+        "competitive": "Why does noise make bad targets feel real?"
+      },
+      "back": {
+        "gentle": "Because the visible irritation may be only the surface effect of a deeper obstacle that keeps recreating it.",
+        "direct": "Symptoms can be accurate and still secondary to the structure blocking progress underneath.",
+        "competitive": "The signal can shout while the real jam keeps printing it."
+      },
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "ch17-review-02",
+      "front": {
+        "gentle": "What makes responsibility useful in this chapter?",
+        "direct": "Why does ownership matter more than blame here?",
+        "competitive": "Why is leverage better than accusation?"
+      },
+      "back": {
+        "gentle": "Responsibility creates a place to act by identifying what is owned, influenceable, or simply constrained.",
+        "direct": "Ownership sharpens the frame because it shows where action can begin instead of where judgment can collect.",
+        "competitive": "A clean handle beats a satisfying villain."
+      },
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "ch17-review-03",
+      "front": {
+        "gentle": "How far should root-cause thinking go?",
+        "direct": "What boundary does the chapter put on cause analysis?",
+        "competitive": "When should digging stop?"
+      },
+      "back": {
+        "gentle": "It should go far enough to aim action at the real obstacle, but not so far that movement disappears.",
+        "direct": "Cause analysis is useful until the next move can target the right obstruction without pretending total certainty.",
+        "competitive": "Stop once the aim gets real."
+      },
+      "difficulty": "hard"
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "prompt": "What best defines problem framing in this chapter?",
+        "choices": [
+          "Picking a fix as early as possible",
+          "Naming what is actually wrong and what decision is really in front of you",
+          "Assigning fault before action begins"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "Problem framing means making the real difficulty visible before solutions start competing.",
+          "direct": "The chapter defines framing as clarifying the actual problem and decision, not jumping to fixes or blame.",
+          "competitive": "Call the target before you pick the weapon."
+        },
+        "bloomsLevel": "understand",
+        "depthLevel": "easy"
+      },
+      {
+        "questionId": "q02",
+        "prompt": "Why can symptoms mislead a decision?",
+        "choices": [
+          "They are always imaginary",
+          "They often show the surface effect rather than the repeating obstacle underneath",
+          "They matter only in emotional situations"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "A symptom can be real and still not explain what keeps causing the trouble.",
+          "direct": "The chapter warns that visible complaints can distract from the structure that keeps recreating them.",
+          "competitive": "The smoke is visible, but the jam keeps making it."
+        },
+        "bloomsLevel": "understand",
+        "depthLevel": "easy"
+      },
+      {
+        "questionId": "q03",
+        "prompt": "What does responsibility mean in this chapter?",
+        "choices": [
+          "Finding who deserves the strongest criticism",
+          "Separating what is owned or influenceable from what is simply constrained",
+          "Taking personal blame for every part of the situation"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "Responsibility helps by showing where action can begin.",
+          "direct": "The chapter treats responsibility as leverage, not accusation or total self-blame.",
+          "competitive": "Ownership gives you a handle."
+        },
+        "bloomsLevel": "understand",
+        "depthLevel": "easy"
+      },
+      {
+        "questionId": "q04",
+        "prompt": "A team keeps complaining about poor updates, but the work repeatedly stalls at the same approval step. What is the better problem definition?",
+        "choices": [
+          "The team needs to care more about communication",
+          "The recurring approval bottleneck is delaying progress",
+          "The updates should sound more urgent"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "The visible complaint points toward a deeper blockage in the process.",
+          "direct": "Better framing names the repeated obstacle rather than polishing the symptom.",
+          "competitive": "Hit the choke point, not the noise around it."
+        },
+        "bloomsLevel": "apply",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "q05",
+        "prompt": "In a meeting about a missed launch, which response best follows the chapter?",
+        "choices": [
+          "Focus on which person deserves the most blame",
+          "Map what is owned, what can be influenced, and what constraints remain",
+          "Pause action until every personal motive is understood"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "The chapter wants a usable ownership split, not a blame contest.",
+          "direct": "Separating ownership, influence, and constraint creates leverage for action.",
+          "competitive": "A handle beats a defendant."
+        },
+        "bloomsLevel": "analyze",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "q06",
+        "prompt": "A study group keeps missing deadlines because everyone works harder near the end, but the lab testing slot is always overcrowded at one stage. What should they define first?",
+        "choices": [
+          "The group has a motivation problem",
+          "The bottlenecked testing stage is the main obstacle",
+          "The deadline should be ignored until morale improves"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "The repeating bottleneck is more informative than the visible panic.",
+          "direct": "The chapter asks for the real obstruction before more effort gets added.",
+          "competitive": "Fix the clog before taxing the people."
+        },
+        "bloomsLevel": "apply",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "q07",
+        "prompt": "What is root cause for this chapter?",
+        "choices": [
+          "A perfect hidden explanation for every detail",
+          "The underlying condition that keeps producing the visible symptom",
+          "The single person who started the problem first"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "Root cause points to the condition that keeps recreating what you see on the surface.",
+          "direct": "The chapter uses root cause to sharpen action toward the structure producing the symptom.",
+          "competitive": "It is the engine behind the smoke."
+        },
+        "bloomsLevel": "understand",
+        "depthLevel": "medium"
+      },
+      {
+        "questionId": "q08",
+        "prompt": "Why is overanalysis a risk in defining a problem?",
+        "choices": [
+          "Because any search for cause is automatically harmful",
+          "Because clarity should improve aim, not turn into endless diagnosis",
+          "Because quick emotional reactions are more trustworthy than structure"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "The point is to know enough to act better, not to freeze while chasing perfect explanation.",
+          "direct": "The chapter rejects endless digging because the goal is accurate action, not total certainty.",
+          "competitive": "Dig until the aim gets real, then move."
+        },
+        "bloomsLevel": "evaluate",
+        "depthLevel": "hard"
+      },
+      {
+        "questionId": "q09",
+        "prompt": "How does better framing change later decisions?",
+        "choices": [
+          "It guarantees that all solutions will work",
+          "It keeps effort aimed at the actual obstacle instead of a distracting symptom",
+          "It removes the need to explore multiple options"
+        ],
+        "correctIndex": 1,
+        "explanation": {
+          "gentle": "Clearer framing helps later effort land on what really matters.",
+          "direct": "The value of definition is that later action and option search work against the correct target.",
+          "competitive": "A real target upgrades every later swing."
+        },
+        "bloomsLevel": "analyze",
+        "depthLevel": "hard"
+      },
+      {
+        "questionId": "q10",
+        "prompt": "Before solution search begins, what should be defined according to the chapter's threshold test?",
+        "choices": [
+          "What is actually wrong, what obstacle is in the way, and what part is yours to own or change",
+          "Which option feels most motivating right now",
+          "Who first noticed the problem and how upset they are"
+        ],
+        "correctIndex": 0,
+        "explanation": {
+          "gentle": "The chapter wants the real difficulty, the real obstacle, and the owned portion named first.",
+          "direct": "That threshold test prevents solution search from starting against a vague or distorted target.",
+          "competitive": "Call the fight, the jam, and the handle before you pick moves."
+        },
+        "bloomsLevel": "evaluate",
+        "depthLevel": "hard"
+      }
+    ]
+  }
+}

@@ -2,9 +2,17 @@ import * as cdk from "aws-cdk-lib";
 import { Construct } from "constructs";
 import * as cloudfront from "aws-cdk-lib/aws-cloudfront";
 import * as lambda from "aws-cdk-lib/aws-lambda";
-import { ChapterFlowBackendStack } from "./chapterflow-backend-stack";
 export interface ChapterFlowFrontendStackProps extends cdk.StackProps {
-    readonly backendStack: ChapterFlowBackendStack;
+    /**
+     * Names/ARNs of backend resources. Using explicit strings instead of
+     * cross-stack references so the backend stack can be deployed independently
+     * without CloudFormation export conflicts.
+     */
+    readonly appTableName: string;
+    readonly analyticsTableName: string;
+    readonly ingestBucketName: string;
+    readonly contentBucketName: string;
+    readonly ssmPrefix: string;
     /**
      * The Route53 hosted zone domain name (e.g. "chapterflow.ca").
      * The app will be served at app.${domainName}.
