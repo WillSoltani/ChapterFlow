@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What is presence of mind in this chapter's terms?",
+      "choices": [
+        "A practiced way to widen perception under pressure before acting",
+        "The ability to feel no anger, fear, or embarrassment",
+        "A preference for waiting overnight before any major decision"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "simple",
+      "explanation": {
+        "gentle": "The chapter treats presence of mind as trained judgment rather than natural calm.",
+        "direct": "Start with the mechanism: it is a repeatable reset that widens the field before action.",
+        "competitive": "The edge is not numbness. It is recovered command under load."
+      }
+    },
+    {
+      "questionId": "q02",
+      "prompt": "What is the key distinction in the chapter's reversal?",
+      "choices": [
+        "The difference between polite language and real conflict",
+        "The difference between emotional urgency and real urgency",
+        "The difference between direct action and indirect action"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "simple",
+      "explanation": {
+        "gentle": "The reversal keeps the chapter from becoming a blanket defense of delay.",
+        "direct": "Keep the distinction clear: the reader has to tell the body's alarm from the field's actual clock.",
+        "competitive": "The whole chapter turns on whether the urgency is external or only internal."
+      }
+    },
+    {
+      "questionId": "q03",
+      "prompt": "Why does Greene treat a counter-ritual as necessary?",
+      "choices": [
+        "Because every stressful situation requires the same exact response",
+        "Because thinking harder inside pressure is always enough to self-correct",
+        "Because the stressed mind often needs a prebuilt interruption before perception widens again"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "remember_understand",
+      "depthLevel": "simple",
+      "explanation": {
+        "gentle": "The ritual exists because the compressed state is unreliable as a designer in the moment.",
+        "direct": "Notice the practical point: the surge can arrive before reflective reasoning is fully available.",
+        "competitive": "A prebuilt interrupt survives pressure better than improvising calm from inside the pressure."
+      }
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Leena's blame email feels unusually clear during the outage. What is the best reading of that feeling?",
+      "choices": [
+        "It proves the facts are already settled enough for public escalation",
+        "It may be a narrowed state making one move feel cleaner than the evidence supports",
+        "It shows that speed matters more than verification in public crises"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "standard",
+      "explanation": {
+        "gentle": "The chapter warns that compression often feels like certainty from the inside.",
+        "direct": "Read the signal correctly: stress can make one option feel morally obvious before the map is complete.",
+        "competitive": "A loud impulse can fake the look of field awareness when the map has actually shrunk."
+      }
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Omar gets publicly challenged during his demo and wants to defend instantly. What counter-move best fits the chapter?",
+      "choices": [
+        "Answer immediately so the room does not interpret a pause as weakness",
+        "Ask for a short reset, slow his pace, and restate the criticism neutrally before answering",
+        "Stay silent for the rest of the session so he does not speak from emotion"
+      ],
+      "correctIndex": 1,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "standard",
+      "explanation": {
+        "gentle": "Embarrassment narrows the field the same way anger can.",
+        "direct": "Use the reset properly: he needs enough width to hear the content rather than obey the sting.",
+        "competitive": "The winning move is to interrupt the ego surge before it spends the response."
+      }
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Nora delays her public escalation only long enough to write the timeline and verify the facts. Why is that delay strategic rather than evasive?",
+      "choices": [
+        "Because the pause improves the read instead of merely postponing discomfort",
+        "Because any delay is smarter than fast action during conflict",
+        "Because public escalation is never justified in operational disputes"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "standard",
+      "explanation": {
+        "gentle": "A useful pause earns its keep by widening perception.",
+        "direct": "Classify the delay by outcome: if the map gets better, the pause is doing strategic work.",
+        "competitive": "She is buying width, not hiding from consequence."
+      }
+    },
+    {
+      "questionId": "q07",
+      "prompt": "Bennett wants to unload on his team at halftime. Which reset best matches the chapter?",
+      "choices": [
+        "Channel the full frustration so the players understand the stakes",
+        "Wait until the next day to say anything about the first half",
+        "Lower the temperature and give a short list of concrete corrections the team can execute"
+      ],
+      "correctIndex": 2,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "standard",
+      "explanation": {
+        "gentle": "Leadership pressure can spread narrowing across a whole group.",
+        "direct": "Focus on signal quality: his job is to preserve usable instruction rather than broadcast his own compression.",
+        "competitive": "If the room inherits his heat, execution drops even if the emotion looks strong."
+      }
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Asha learns the family situation is stable for a few hours even though everyone feels panicked now. What has she just separated?",
+      "choices": [
+        "Actual deadline pressure from physiological alarm",
+        "Long-term strategy from short-term tactics",
+        "Personal conflict from structural opposition"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "apply_analyze",
+      "depthLevel": "standard",
+      "explanation": {
+        "gentle": "The chapter's reversal depends on classifying the clock correctly.",
+        "direct": "Separate the clocks: the louder alarm in the body is not always the faster clock in the field.",
+        "competitive": "Once she finds the real timer, panic loses its authority."
+      }
+    },
+    {
+      "questionId": "q09",
+      "prompt": "Which criticism best captures the chapter's main limit?",
+      "choices": [
+        "Its advice fails when readers use waiting to avoid decisions that really must be made",
+        "Its advice only works for people in formal leadership roles",
+        "Its advice depends on suppressing emotion completely"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "evaluate_create",
+      "depthLevel": "deeper",
+      "explanation": {
+        "gentle": "The limit appears when delay stops serving judgment and starts serving avoidance.",
+        "direct": "Test the weakness honestly: reflection can become a respectable disguise for not acting at the needed time.",
+        "competitive": "Bad delay is just panic with better public relations."
+      }
+    },
+    {
+      "questionId": "q10",
+      "prompt": "Why does this chapter need to come before Chapter 4 on manufactured urgency?",
+      "choices": [
+        "Because readers first need a way to resist pressure before they can understand how pressure might later be used deliberately",
+        "Because Chapter 4 proves that urgency is always superior to presence of mind",
+        "Because Chapter 4 abandons the book's interest in self-mastery"
+      ],
+      "correctIndex": 0,
+      "bloomsLevel": "evaluate_create",
+      "depthLevel": "deeper",
+      "explanation": {
+        "gentle": "The sequence matters because unmanaged urgency would otherwise own the reader before they ever tried to use it.",
+        "direct": "Read the bridge carefully: self-control under pressure has to come before pressure can become a deliberate tool.",
+        "competitive": "If urgency still rules you, you cannot weaponize it cleanly later."
+      }
+    }
+  ]
+}

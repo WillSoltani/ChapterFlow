@@ -120,3 +120,17 @@
 - 2026-04-10T22:33:09-03:00 - Sealed Chapter 16 hash `6b99259bdd2d90995b97fc661c54da5475a5991a7b158ade8892201088ed47a7` into `continuity/continuity-state.json`.
 
 - 2026-04-10T22:33:09-03:00 - Wave 8 guard checks passed after Chapters 15 and 16: source guard `FAIL=0 WARN=0`, artifact guard `FAIL=0 WARN=0`.
+- 2026-04-10T22:33:09-03:00 - Path deviation repaired during Chapter 18 pre-writer creation: one attempted patch target pointed at `/Users/willsoltani/dev/chapterflow-runs/...` instead of the active run root; no stray artifact was created, the run state was verified, and artifact creation resumed strictly under `.chapterflow/runs/the-12-week-year/20260410-223309`.
+- 2026-04-10T22:33:09-03:00 - Phase 17 pre-writer complete for Chapters 17 and 18. Wrote `briefs/ch17.md`, `outlines/ch17.md`, `quiz-blueprints/ch17.md`, `sidecars/source/ch17.source.txt`, `sidecars/source/ch17.source.json`, `briefs/ch18.md`, `outlines/ch18.md`, `quiz-blueprints/ch18.md`, `sidecars/source/ch18.source.txt`, and `sidecars/source/ch18.source.json`.
+- 2026-04-10T22:33:09-03:00 - Phase 17A/17B/17C complete for Chapter 17. Wrote canonical and edited drafts plus `reports/ch17.critic.md`.
+- 2026-04-10T22:33:09-03:00 - Phase 18A/18B/18C complete for Chapter 18. Wrote canonical and edited drafts plus `reports/ch18.critic.md`.
+
+- 2026-04-10T22:33:09-03:00 - Strict-path repair for Chapter 17 structured conversion: removed repeated clause scaffolds in the medium converter output, reran chapter lint to `FAIL=0 WARN=0`, and regenerated the validated bundle.
+- 2026-04-10T22:33:09-03:00 - Phase 17E/17F complete for Chapter 17. Wrote `structured/ch17.chapter.json`, `quizzes/ch17.quiz.json`, `reports/ch17.validation.md`, `validated/ch17.chapter.json`, `validated/ch17.review-package.json`, and `sidecars/ch17.reading-metrics.json`.
+- 2026-04-10T22:33:09-03:00 - Chapter 17 final checks passed: chapter lint `FAIL=0 WARN=0`, review-package lint `FAIL=0 WARN=0`.
+- 2026-04-10T22:33:09-03:00 - Sealed Chapter 17 hash `e61fd1d6ff19aa6b8289585137dd9e98718a17e3241230e8ec2f2959903bfab6` into `continuity/continuity-state.json`.
+
+- 2026-04-10T22:33:09-03:00 - Strict-path repair for Chapter 18 structured conversion: removed duplicate package surfaces and one hard-versus-medium restatement at the converter layer, reran chapter lint to `FAIL=0 WARN=0`, and regenerated the validated bundle.
+- 2026-04-10T22:33:09-03:00 - Phase 18E/18F complete for Chapter 18. Wrote `structured/ch18.chapter.json`, `quizzes/ch18.quiz.json`, `reports/ch18.validation.md`, `validated/ch18.chapter.json`, `validated/ch18.review-package.json`, and `sidecars/ch18.reading-metrics.json`.
+- 2026-04-10T22:33:09-03:00 - Chapter 18 final checks passed: chapter lint `FAIL=0 WARN=0`, review-package lint `FAIL=0 WARN=0`.
+- 2026-04-10T22:33:09-03:00 - Sealed Chapter 18 hash `aa09b20c43ae7663328e32537bd3177c9484ca8624aed7aeba4693694ae16345` into `continuity/continuity-state.json`.

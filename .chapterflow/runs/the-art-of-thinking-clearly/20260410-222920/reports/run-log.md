@@ -221,3 +221,23 @@ Phase 4 complete for Chapter 1.
 - Writer pass complete.
 - Editor pass complete.
 - Critic pass complete with 11/12 and local-caution approval.
+
+- Converter complete.
+- Quiz complete and resynced from the final structured chapter payload.
+- Validator pass complete after local mechanical repair on Chapter 9 reinforcement surfaces and breakdown lengths.
+- Validated chapter written.
+- Validated review wrapper written with full validated chapter payload only.
+- Reading metrics sidecar written.
+- Continuity hash sealed for ch09.
+
+## Phase 4 Status Continued
+
+- Chapter 10 pre-writer artifacts created and verified:
+  - brief
+  - outline
+  - quiz blueprint
+  - source sidecar text
+  - source sidecar json
+- Writer pass complete.
+- Editor pass complete.
+- Critic pass complete with 11/12 and local-caution approval.

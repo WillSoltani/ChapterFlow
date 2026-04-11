@@ -61,7 +61,8 @@
     ],
     "Marcus": [
       "ch06",
-      "ch14"
+      "ch14",
+      "ch19"
     ],
     "Quinn": [
       "ch07"
@@ -163,6 +164,39 @@
     ],
     "Damon": [
       "ch16"
+    ],
+    "Nia": [
+      "ch17"
+    ],
+    "Rafael": [
+      "ch17"
+    ],
+    "Cora": [
+      "ch17"
+    ],
+    "Jonas": [
+      "ch17"
+    ],
+    "Selene": [
+      "ch18"
+    ],
+    "Isaac": [
+      "ch18"
+    ],
+    "Marisol": [
+      "ch18"
+    ],
+    "Trent": [
+      "ch18"
+    ],
+    "Taliah": [
+      "ch19"
+    ],
+    "Ren": [
+      "ch19"
+    ],
+    "Brooke": [
+      "ch19"
     ]
   },
   "formatCategoryHistory": [],
@@ -272,6 +306,24 @@
       "Omar",
       "Kira",
       "Damon"
+    ],
+    "ch17": [
+      "Nia",
+      "Rafael",
+      "Cora",
+      "Jonas"
+    ],
+    "ch18": [
+      "Selene",
+      "Isaac",
+      "Marisol",
+      "Trent"
+    ],
+    "ch19": [
+      "Taliah",
+      "Marcus",
+      "Ren",
+      "Brooke"
     ]
   },
   "approvedChapterHashes": {
@@ -290,7 +342,10 @@
     "ch13": "8c21aa55fce681a46ffe215ecade9cc4d24781fc848720a3b032461210b09401",
     "ch14": "2d0507a4fef04b2678f2ecb811a852cfbfcdf42888a5bbaee06d0bacf9a8b7bf",
     "ch15": "a37e472eb5ae4cc706445fef9662700e5f4fe468412d9ca090b34866096b30ce",
-    "ch16": "54748e641be04b8151c31756599e4542973ca81c8fbf317a4f905df7d37a8274"
+    "ch16": "54748e641be04b8151c31756599e4542973ca81c8fbf317a4f905df7d37a8274",
+    "ch17": "2bf1303ecb866b66f78672e3c9919c7897c63312493c703df5cd03569e98232e",
+    "ch18": "605642230ab285c993db82968b308474b7c2ed0107deb22adc6d37235651bf22",
+    "ch19": "c153ed707a67874c8840b9fb5b51994a3730b95f39ac0d42d52393386b5e9277"
   },
   "baselineQuality": {
     "status": "established",

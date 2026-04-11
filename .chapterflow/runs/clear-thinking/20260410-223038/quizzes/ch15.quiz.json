@@ -1,0 +1,175 @@
+{
+  "passingScorePercent": 80,
+  "questions": [
+    {
+      "questionId": "q01",
+      "prompt": "What best defines a safeguard in this chapter?",
+      "choices": [
+        "A permanent restriction on all behavior",
+        "A practical structure that protects a known weak point",
+        "A motivational reminder that you should care more"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter treats safeguards as practical protection around known exposure.",
+        "direct": "A safeguard matters because it changes the route or speed of a repeatable bad path.",
+        "competitive": "The build protects the leak instead of lecturing it."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q02",
+      "prompt": "Why is awareness alone often not enough in a known weak condition?",
+      "choices": [
+        "Because awareness always disappears completely",
+        "Because the bad path can remain easier and faster than the wiser move",
+        "Because judgment has no role once exposure is known"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The chapter says the same weak path often stays too easy to repeat.",
+        "direct": "Awareness loses when the exposed route stays frictionless and fast.",
+        "competitive": "The leak keeps winning if the lane stays cheap."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q03",
+      "prompt": "What does friction do in this chapter?",
+      "choices": [
+        "It punishes mistakes after they happen",
+        "It slows a weak move long enough for judgment to return",
+        "It replaces the need for any future learning"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Friction matters because a little delay can protect a wiser move.",
+        "direct": "The mechanism is changed tempo around the exposed path, not punishment.",
+        "competitive": "Slow the slide and the line can catch up."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "q04",
+      "prompt": "Nadia adds a second review before a fast approval click. What principle is most visible?",
+      "choices": [
+        "A guardrail can interrupt a repeatable bad path before speed finishes the decision",
+        "The right answer is always more self-criticism",
+        "Approval screens are too minor to matter"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Nadia is making the bad path harder to repeat.",
+        "direct": "The chapter values structure that changes the speed advantage of the exposed route.",
+        "competitive": "Tax the click before it bills you again."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q05",
+      "prompt": "Everett says a guardrail is not a vote against self-trust. What is he protecting?",
+      "choices": [
+        "The idea that known exposure deserves design without becoming humiliation",
+        "The claim that boundaries are unnecessary",
+        "The belief that only fear creates discipline"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter wants proportionate protection, not shame.",
+        "direct": "Everett is preserving the boundary between practical structure and self-attack.",
+        "competitive": "Keep the wall. Drop the ego drama."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q06",
+      "prompt": "Leona pauses for a premortem before another lab signoff. What chapter mechanism is she using?",
+      "choices": [
+        "She is trying to imagine every possible disaster",
+        "She is studying the most likely repeatable failure before it becomes expensive",
+        "She is avoiding responsibility for the result"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "Premortem helps by asking how the known weak step is most likely to fail.",
+        "direct": "The chapter uses foresight to bring protection upstream before the miss is billed in reality.",
+        "competitive": "Forecast the obvious hit while it is still cheap."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q07",
+      "prompt": "What makes a guardrail different from overcontrol?",
+      "choices": [
+        "A guardrail protects a known weak point instead of trying to control everything",
+        "A guardrail is always invisible",
+        "A guardrail removes judgment from the process"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "The chapter keeps protection targeted and practical.",
+        "direct": "Proportion matters because structure should defend real exposure without hardening into total control.",
+        "competitive": "Build around the leak, not around the whole map."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "q08",
+      "prompt": "Why does the chapter insist on proportion?",
+      "choices": [
+        "Because too much structure can become its own distortion",
+        "Because all safeguards are mostly symbolic",
+        "Because flexibility means never using rules"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Protection should help without becoming rigid.",
+        "direct": "The chapter refuses both underprotection and overcontrol by tying safeguards to real exposure.",
+        "competitive": "Too little wall leaks. Too much wall traps."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q09",
+      "prompt": "How do guardrails, friction, and premortem work together?",
+      "choices": [
+        "They punish failure after the fact",
+        "They change the route, speed, and foresight around a repeatable bad path",
+        "They eliminate the need for any judgment"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "These supports protect the weak point in different practical ways.",
+        "direct": "Guardrails close one route, friction slows one move, and premortem studies the likely break before it happens.",
+        "competitive": "Change the lane, tax the speed, forecast the hit."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "q10",
+      "prompt": "What question naturally follows once sensible safeguards are in place?",
+      "choices": [
+        "How to keep adding rules forever",
+        "How to handle mistakes when protection still proves incomplete",
+        "How to stop reflecting on failure entirely"
+      ],
+      "correctIndex": 1,
+      "explanation": {
+        "gentle": "The next chapter asks what to do when a miss still gets through.",
+        "direct": "Protection lowers some risks, but disciplined repair and learning still matter after failure.",
+        "competitive": "A smarter wall still leaves a recovery problem."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    }
+  ]
+}

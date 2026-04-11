@@ -1,0 +1,174 @@
+{
+  "questions": [
+    {
+      "questionId": "ch10-q01",
+      "prompt": "What is the core mistake in contrast effect?",
+      "choices": [
+        "Letting nearby comparisons change how a target feels more than its own properties do",
+        "Refusing to compare options at all",
+        "Assuming all things should be judged in isolation only"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The problem begins when the frame starts doing too much work.",
+        "direct": "Correct. Nearby contrast starts changing evaluation more than the target itself should warrant.",
+        "competitive": "That is the trap. The lineup starts moving the score."
+      },
+      "bloomsLevel": "remember-understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch10-q02",
+      "prompt": "Why can a neutral item feel expensive after a bargain?",
+      "choices": [
+        "Because the bargain became the reference point for the next price",
+        "Because neutral prices are always overpriced",
+        "Because comparison should never happen"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The earlier price changes how the next one feels.",
+        "direct": "Correct. A fresh comparison frame can distort the evaluation of the next item.",
+        "competitive": "Exactly. The bargain rigged the next tag."
+      },
+      "bloomsLevel": "understand",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch10-q03",
+      "prompt": "Which example best fits contrast effect?",
+      "choices": [
+        "A decent candidate looks exceptional after a weak interview",
+        "A candidate improves because of extra preparation",
+        "A manager changes the hiring criteria midway"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The previous interview is changing how the next candidate feels.",
+        "direct": "Correct. The sequence is altering evaluation of the current target.",
+        "competitive": "That is it. The weak opener inflated the next score."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "easy"
+    },
+    {
+      "questionId": "ch10-q04",
+      "prompt": "What is borrowed value in this chapter?",
+      "choices": [
+        "Praise or blame that the target inherits from nearby comparisons",
+        "Value created by real improvements in the target",
+        "A fair comparison between two equal options"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The target inherits a feeling from what stood next to it.",
+        "direct": "Correct. Contrast can lend the target borrowed strength or borrowed weakness.",
+        "competitive": "Right. The lineup is spotting points."
+      },
+      "bloomsLevel": "apply-analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch10-q05",
+      "prompt": "Why is contrast effect cognitively tempting?",
+      "choices": [
+        "Because relative judgment is fast and efficient",
+        "Because people never use stable standards",
+        "Because all comparisons are manipulative"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. Comparison helps people choose quickly.",
+        "direct": "Correct. Relative judgment is efficient, which is why the bias can go unnoticed.",
+        "competitive": "Yes. Fast comparison is useful enough to get trusted."
+      },
+      "bloomsLevel": "analyze",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch10-q06",
+      "prompt": "Which correction best fits this chapter?",
+      "choices": [
+        "Ask what the target looks like in isolation",
+        "Ban all sequence and context from decisions",
+        "Trust your first contrast-based impression"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. Isolation helps rebuild a cleaner baseline.",
+        "direct": "Correct. Removing the frame mentally exposes whether the target deserves the feeling on its own.",
+        "competitive": "Exactly. Pull it out of the lineup and rescore it."
+      },
+      "bloomsLevel": "apply",
+      "depthLevel": "medium"
+    },
+    {
+      "questionId": "ch10-q07",
+      "prompt": "When does comparison become bias under this chapter?",
+      "choices": [
+        "When the nearby frame changes evaluation more than the target's merits should justify",
+        "Whenever people compare two options",
+        "Whenever a decision feels emotional"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Right. The problem is not comparison itself but overcrediting the frame.",
+        "direct": "Correct. Bias starts when sequence alters the judgment more than the target's actual properties warrant.",
+        "competitive": "Yes. The lineup turns corrupt when it owns the scoreboard."
+      },
+      "bloomsLevel": "analyze-evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch10-q08",
+      "prompt": "Why can a hard task make the next task feel easy?",
+      "choices": [
+        "Because the first task changed the reference point for difficulty",
+        "Because the second task objectively became simpler",
+        "Because difficulty is always imaginary"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The earlier task resets the scale.",
+        "direct": "Correct. The contrast frame changes how the next task registers.",
+        "competitive": "Exactly. The moving ruler changed the score."
+      },
+      "bloomsLevel": "evaluate",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch10-q09",
+      "prompt": "What is the deepest practical correction in contrast effect?",
+      "choices": [
+        "Separate the target's actual properties from the sequence that framed it",
+        "Avoid all comparison for the rest of the week",
+        "Only trust decisions made instantly"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. The chapter asks you to notice the frame before trusting the feeling.",
+        "direct": "Correct. Better judgment rebuilds the baseline so the object is not confused with the comparison context.",
+        "competitive": "Right. Make sure the score belongs to the target, not the lineup."
+      },
+      "bloomsLevel": "evaluate-create",
+      "depthLevel": "hard"
+    },
+    {
+      "questionId": "ch10-q10",
+      "prompt": "What is the chapter's core threshold question?",
+      "choices": [
+        "If I saw this target in isolation, would I rate it the same way?",
+        "Do I usually prefer the second option?",
+        "Should I stop comparing everything?"
+      ],
+      "correctIndex": 0,
+      "explanation": {
+        "gentle": "Yes. That question reveals whether contrast is doing too much work.",
+        "direct": "Correct. Isolation testing shows whether the evaluation survives after the frame is removed.",
+        "competitive": "That is the test. If the score dies off the lineup, the lineup owned it."
+      },
+      "bloomsLevel": "evaluate-transfer",
+      "depthLevel": "hard"
+    }
+  ]
+}

@@ -785,8 +785,49 @@ Phase 5 complete.
 - Completed writer, editor, critic, converter, quiz, and validator steps for Chapter 44.
 - Validation result: PASS.
 - Continuity hash sealed for `ch44`: `5c80668d4c08d2e4c7babd102f9895153452b54dc103e330ca8462de1224d767`
+- Repaired Chapter 45 prewriter drift: replaced banned primary names with allowed names in brief and outline before writer start.
+- Completed writer, editor, critic, converter, quiz, and validator steps for Chapter 45.
+- Validation result: PASS.
+- Continuity hash sealed for `ch45`: `bb4d7b380be8bad803db27e6aea3c99686d8ca27edbb9ba023da0f80e2d1dae9`
+- Opened Chapter 46 at the prewriter boundary only after Chapter 45 gate pass.
+- Completed writer, editor, critic, converter, quiz, and validator steps for Chapter 46.
+- Validation result: PASS.
+- Continuity hash sealed for `ch46`: `84966bbac9de686b4f8a20425778230826939469f26100e3f51f82635ae97985`
+- Wave `45-46` artifact guard result: FAIL=0 WARN=0
+- Opened Chapter 47 at the prewriter boundary only after wave `45-46` was clean.
 - Wrote Chapter 45 source sidecar, brief, outline, and quiz blueprint before drafting.
 
 - Completed writer, editor, critic, converter, quiz, and validator steps for Chapter 44.
 - Validation result: PASS.
 - Continuity hash sealed for `ch44`: `5c80668d4c08d2e4c7babd102f9895153452b54dc103e330ca8462de1224d767`
+
+- Repaired Chapter 45 prewriter drift: replaced banned primary names with allowed names in brief and outline before writer start.
+- Completed writer, editor, critic, converter, quiz, and validator steps for Chapter 45.
+- Validation result: PASS.
+- Continuity hash sealed for `ch45`: `aa2ddbf0728d31345bb29dff334a3d4bc54792aeac203cc5bcfc84e35d98fb5f`
+
+- Repaired Chapter 45 prewriter drift: replaced banned primary names with allowed names in brief and outline before writer start.
+- Completed writer, editor, critic, converter, quiz, and validator steps for Chapter 45.
+- Validation result: PASS.
+- Continuity hash sealed for `ch45`: `da607e9cfb3e513244ce0f915a947a8ca93aa438b14629d0e980095807b65d08`
+
+- Repaired Chapter 45 prewriter drift: replaced banned primary names with allowed names in brief and outline before writer start.
+- Completed writer, editor, critic, converter, quiz, and validator steps for Chapter 45.
+- Validation result: PASS.
+- Continuity hash sealed for `ch45`: `bb4d7b380be8bad803db27e6aea3c99686d8ca27edbb9ba023da0f80e2d1dae9`
+
+- Completed writer, editor, critic, converter, quiz, and validator steps for Chapter 46.
+- Validation result: PASS.
+- Continuity hash sealed for `ch46`: `f661ea4561e922090d1b1dcc4bd927e275045b8370fbac0684b356c92dcc4c0f`
+
+- Completed writer, editor, critic, converter, quiz, and validator steps for Chapter 46.
+- Validation result: PASS.
+- Continuity hash sealed for `ch46`: `6f63a66b2bdc609c1b698fbc882f468fdde31d2c2a851c683ff8618250b18d82`
+
+- Completed writer, editor, critic, converter, quiz, and validator steps for Chapter 46.
+- Validation result: PASS.
+- Continuity hash sealed for `ch46`: `261d76fe378ece0e9d36563e4b7f600a41428a71d4b88e9dfe5054c14dba7886`
+
+- Completed writer, editor, critic, converter, quiz, and validator steps for Chapter 46.
+- Validation result: PASS.
+- Continuity hash sealed for `ch46`: `84966bbac9de686b4f8a20425778230826939469f26100e3f51f82635ae97985`

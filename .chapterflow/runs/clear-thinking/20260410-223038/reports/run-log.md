@@ -132,3 +132,19 @@
 - 2026-04-11T03:22:41Z Chapter 15 writer pass wrote `drafts/canonical/ch15.md`.
 - 2026-04-11T03:22:41Z Chapter 15 editor pass wrote `drafts/edited/ch15.md`.
 - 2026-04-11T03:22:41Z Chapter 15 critic gate wrote `reports/ch15.critic.md` with `Score: 11/12` and approved conversion with local-patch-only guidance.
+- 2026-04-11T03:40:27Z Chapter 15 converter wrote `structured/ch15.chapter.json` and passed chapter lint with `FAIL=0 WARN=0` after a local repair to one banned reusable stem in a hard takeaway detail.
+- 2026-04-11T03:45:04Z Chapter 15 quiz and validator passes wrote `quizzes/ch15.quiz.json`, `validated/ch15.chapter.json`, `validated/ch15.review-package.json`, `sidecars/ch15.reading-metrics.json`, and `reports/ch15.validation.md`.
+- 2026-04-11T03:46:38Z Chapter 15 final checks passed: chapter lint `FAIL=0 WARN=0`, review-package lint `FAIL=0 WARN=0`, artifact guard `FAIL=0 WARN=0`.
+- 2026-04-11T03:47:31Z Chapter 15 hash sealed in `continuity/continuity-state.json` as `a2f4a074fbfffa7488b312d0b7efab1881913de6dc40aedfe9914baa00668315`.
+- 2026-04-11T03:51:42Z Chapter 16 writer pass wrote `drafts/canonical/ch16.md`.
+- 2026-04-11T03:51:42Z Chapter 16 editor pass wrote `drafts/edited/ch16.md`.
+- 2026-04-11T03:51:42Z Chapter 16 critic gate wrote `reports/ch16.critic.md` with `Score: 11/12` and approved conversion with local-patch-only guidance.
+- 2026-04-11T15:14:52Z Chapter 16 converter wrote `structured/ch16.chapter.json` and passed chapter lint with `FAIL=0 WARN=0` after local repairs to two competitive `moreDetails` lines and one review-card echo.
+- 2026-04-11T15:19:15Z Chapter 16 quiz and validator passes wrote `quizzes/ch16.quiz.json`, `validated/ch16.chapter.json`, `validated/ch16.review-package.json`, `sidecars/ch16.reading-metrics.json`, and `reports/ch16.validation.md`.
+- 2026-04-11T15:19:58Z Chapter 16 final checks passed: chapter lint `FAIL=0 WARN=0`, review-package lint `FAIL=0 WARN=0`, artifact guard `FAIL=0 WARN=0`.
+- 2026-04-11T15:21:03Z Chapter 16 hash sealed in `continuity/continuity-state.json` as `0299e3e28c3c72503483fe367f6633f487b29177cd4244d94a9630ee2af9294c`.
+- 2026-04-11T15:21:03Z Wave 8 close check passed clean with Chapter 15 and Chapter 16 fully validated, sealed, and artifact-guarded.
+- 2026-04-11T15:27:54Z Wave 9 pre-writer package wrote `briefs/ch17.md`, `outlines/ch17.md`, `quiz-blueprints/ch17.md`, `sidecars/source/ch17.source.txt`, `sidecars/source/ch17.source.json`, `briefs/ch18.md`, `outlines/ch18.md`, `quiz-blueprints/ch18.md`, `sidecars/source/ch18.source.txt`, and `sidecars/source/ch18.source.json`.
+- 2026-04-11T15:31:44Z Chapter 17 writer pass wrote `drafts/canonical/ch17.md`.
+- 2026-04-11T15:31:44Z Chapter 17 editor pass wrote `drafts/edited/ch17.md`.
+- 2026-04-11T15:31:44Z Chapter 17 critic gate wrote `reports/ch17.critic.md` with `Score: 11/12` and approved conversion with local-patch-only guidance.

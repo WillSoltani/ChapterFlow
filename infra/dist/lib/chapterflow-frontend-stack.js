@@ -393,10 +393,14 @@ class ChapterFlowFrontendStack extends cdk.Stack {
             enableAcceptEncodingGzip: true,
             enableAcceptEncodingBrotli: true,
         });
-        // Origin request policy for server function — forward all headers/cookies
+        // Origin request policy for server function.
+        // IMPORTANT: Do NOT forward the Host header — Lambda Function URLs
+        // reject requests where Host doesn't match their own domain, returning
+        // {"Message":null}. Instead, we pass the real host via x-forwarded-host
+        // (set as a custom header on the origin).
         const serverOriginRequestPolicy = new cloudfront.OriginRequestPolicy(this, "ServerOriginRequestPolicy", {
             originRequestPolicyName: "ChapterFlowServerOriginRequest",
-            headerBehavior: cloudfront.OriginRequestHeaderBehavior.all("CloudFront-Viewer-Country"),
+            headerBehavior: cloudfront.OriginRequestHeaderBehavior.allowList("x-forwarded-host", "accept", "accept-language", "content-type", "x-open-next-cache-key", "rsc", "next-router-prefetch", "next-router-state-tree", "next-url"),
             queryStringBehavior: cloudfront.OriginRequestQueryStringBehavior.all(),
             cookieBehavior: cloudfront.OriginRequestCookieBehavior.all(),
         });
