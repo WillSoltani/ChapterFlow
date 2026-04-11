@@ -304,11 +304,19 @@ class ChapterFlowFrontendStack extends cdk.Stack {
             schedule: events.Schedule.rate(cdk.Duration.minutes(5)),
         });
         warmerRule.addTarget(new targets.LambdaFunction(warmerFn));
-        // Warmer needs to invoke the server function
+        // Warmer needs to invoke the server function.
+        // Use a constructed ARN instead of this.serverFunction.functionArn to
+        // avoid a circular dependency: DefaultPolicy → ServerFn → DefaultPolicy.
         lambdaRole.addToPolicy(new iam.PolicyStatement({
             sid: "InvokeServerFn",
             actions: ["lambda:InvokeFunction"],
-            resources: [this.serverFunction.functionArn],
+            resources: [
+                cdk.Arn.format({
+                    service: "lambda",
+                    resource: "function",
+                    resourceName: "ChapterFlowServer",
+                }, this),
+            ],
         }));
         // -------------------------------------------------------------------
         // S3 deployment — upload static assets
@@ -348,7 +356,11 @@ class ChapterFlowFrontendStack extends cdk.Stack {
         // Parse Lambda function URLs to hostnames for CloudFront origins
         const serverOriginDomain = cdk.Fn.select(2, cdk.Fn.split("/", serverFnUrl.url));
         const imageOriginDomain = cdk.Fn.select(2, cdk.Fn.split("/", imageFnUrl.url));
-        const s3Origin = origins.S3BucketOrigin.withOriginAccessControl(assetsBucket, { originPath: "/_assets" });
+        // Use OAI instead of OAC to avoid circular dependency:
+        // OAC creates a bucket policy referencing the Distribution ID, but the
+        // Distribution depends on the bucket as origin → cycle.
+        // OAI grants access to an identity, not the distribution, breaking the cycle.
+        const s3Origin = origins.S3BucketOrigin.withOriginAccessIdentity(assetsBucket, { originPath: "/_assets" });
         const serverOrigin = new origins.HttpOrigin(serverOriginDomain, {
             protocolPolicy: cloudfront.OriginProtocolPolicy.HTTPS_ONLY,
             customHeaders: { "x-forwarded-host": appDomain },

@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 import "source-map-support/register";
+import * as fs from "fs";
+import * as path from "path";
 import * as cdk from "aws-cdk-lib";
 import { ChapterFlowBackendStack } from "../lib/chapterflow-backend-stack";
 import { ChapterFlowFrontendStack } from "../lib/chapterflow-frontend-stack";
@@ -13,6 +15,23 @@ const env = {
 
 const backend = new ChapterFlowBackendStack(app, "ChapterFlowBackend", { env });
 
+// The frontend stack requires OpenNext build artifacts (.open-next/).
+// Only instantiate it when those artifacts exist — this allows
+// `cdk deploy ChapterFlowBackend` to run independently (e.g. in the
+// deploy-infra-dev workflow) without needing a full app build.
+const openNextDir = path.join(__dirname, "../../.open-next");
+const openNextExists = fs.existsSync(
+  path.join(openNextDir, "server-functions/default"),
+);
+
+if (!openNextExists) {
+  console.warn(
+    "⚠ Skipping ChapterFlowFrontend stack — .open-next/ build output not found.\n" +
+      "  Run `npx open-next build` first to include the frontend stack.",
+  );
+}
+
+if (openNextExists) {
 new ChapterFlowFrontendStack(app, "ChapterFlowFrontend", {
   env,
   backendStack: backend,
@@ -69,3 +88,4 @@ new ChapterFlowFrontendStack(app, "ChapterFlowFrontend", {
     }),
   },
 });
+}
